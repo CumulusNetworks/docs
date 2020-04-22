@@ -38,7 +38,7 @@ Read the [release
 notes](https://support.cumulusnetworks.com/hc/en-us/articles/115002201048)
 for new features and known issues in this release.
 
-### What's New in Cumulus Linux 3.2.1
+## What's New in Cumulus Linux 3.2.1
 
 Cumulus Linux 3.2.1 adds these new features and platforms, including:
 
@@ -58,10 +58,9 @@ Cumulus Linux 3.2.1 adds these new features and platforms, including:
 
 For further information regarding these new features, and for
 information regarding bug fixes and known issues present in this
-release, refer to the [product release
-notes](https://support.cumulusnetworks.com/hc/en-us/articles/115002201048).
+release, refer to the product release notes for versions [3.2.0](https://support.cumulusnetworks.com/hc/en-us/articles/232013208-Cumulus-Linux-3-2-0-Release-Notes) and [3.2.1](https://support.cumulusnetworks.com/hc/en-us/articles/115002201048).
 
-### Open Source Contributions
+## Open Source Contributions
 
 Cumulus Networks has forked various software projects, like CFEngine,
 `Netdev` and some Puppet Labs packages in order to implement various
@@ -74,10 +73,14 @@ applications as well.
 The list of open source projects is on the [open source
 software](http://oss.cumulusnetworks.com/) page.
 
-### Hardware Compatibility List
+## Hardware Compatibility List
 
 You can find the most up to date hardware compatibility list (HCL)
 [here](http://cumulusnetworks.com/hcl/). Use the HCL to confirm that
 your switch model is supported by Cumulus Networks. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
+
+## Download the User Guide
+
+You can download a PDF of the user guide for versions {{<exlink url="https://drive.google.com/file/d/1fcsf4fi6JZiI7kov2bsxAb3Q3ikBZskP/view?usp=sharing" text="3.2.0">}} and {{<exlink url="https://drive.google.com/file/d/1iIwu_v9yDhzgXKUr6FPLwvSC2FPa8Rb1/view?usp=sharing" text="3.2.1">}}.

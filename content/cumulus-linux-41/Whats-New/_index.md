@@ -7,7 +7,12 @@ toc: 2
 This document supports the Cumulus Linux 4.1 release and lists the new platforms and features.
 
 - For a list of all the platforms supported in Cumulus Linux 4.1, see the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
+- For a list of open and fixed issues in Cumulus Linux 4.1, see the {{<link url="Cumulus-Linux-4.1-Release-Notes" text="Cumulus Linux 4.1 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.1, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+
+## What's New in Cumulus Linux 4.1.1
+
+Cumulus Linux 4.1.1 contains security bug fixes.
 
 ## What's New in Cumulus Linux 4.1.0
 
@@ -33,4 +38,4 @@ Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#ipv6-route-replacement" text="IPv6 route replacement option">}} to maintain resilient hashing for IPv6 flows
 - {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="Default reserved VLAN range">}} reduced to 3600-3999
 - The default {{<link url="Switch-Port-Attributes/#mtu" text="MTU">}} has changed to 9216 from 1500
-- New NCLU commands: `net show neighbors`, `net show sensor output`, `net show system leds`
+- New NCLU commands: `net show neighbors`, `net show sensor output`, `net show system leds` `net show system asic`, `net show system ztp`

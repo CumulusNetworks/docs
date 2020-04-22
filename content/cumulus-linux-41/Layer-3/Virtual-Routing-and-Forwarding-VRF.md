@@ -42,9 +42,9 @@ To configure VRF, you associate each subset of interfaces to a VRF routing table
 
 To configure a VRF, run the following commands:
 
-<details>
+{{< tabs "TabID44 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 The following example commands configure a VRF called rocket with a table ID that is automatically assigned:
 
@@ -55,17 +55,15 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file. The following example configures a VRF called rocket with a table ID that is automatically assigned.
 
 ```
 ...
-auto swp1 
+auto swp1
 iface swp1
   vrf rocket
 
@@ -81,15 +79,17 @@ To load the new configuration, run `ifreload -a`:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Specify a Table ID
 
 Instead of having Cumulus Linux assign a table ID for the VRF table, you can specify your own table ID in the configuration. The table ID to name mapping is saved in `/etc/iproute2/rt_tables.d/` for name-based references. Instead of using the `auto` option as shown above, specify the table ID. For example:
 
-<details>
+{{< tabs "TabID89 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add vrf rocket vrf-table 1016
@@ -97,11 +97,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file:
 
@@ -123,7 +121,9 @@ To load the new configuration, run `ifreload -a`:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -247,7 +247,7 @@ The most common use case for VRF is to use multiple independent routing and forw
 
 For route leaking, a destination VRF is interested in the routes of a source VRF. As routes come and go in the source VRF, they are dynamically leaked to the destination VRF through BGP. If the routes in the source VRF are learned through BGP, no additional configuration is necessary. If the routes in the source VRF are learned through OSPF, or if they are statically configured or directly-connected networks have to be reached, the routes need to be first *redistributed* into BGP (in the source VRF) for them to be leaked.
 
-You can also use route leaking to reach remote destinations as well as directly connected destinations in another VRF. Multiple VRFs can import routes from a single source VRF and a VRF can import routes from multiple source VRFs. This is typically used when a single VRF provides connectivity to external networks or a shared service for many other VRFs. The routes that are leaked dynamically across VRFs can be controlled using a route-map.  
+You can also use route leaking to reach remote destinations as well as directly connected destinations in another VRF. Multiple VRFs can import routes from a single source VRF and a VRF can import routes from multiple source VRFs. This is typically used when a single VRF provides connectivity to external networks or a shared service for many other VRFs. The routes that are leaked dynamically across VRFs can be controlled using a route-map.
 
 Because route leaking happens through BGP, the underlying mechanism relies on the BGP constructs of the Route Distinguisher (RD) and Route Targets (RTs). However, you do not need to configure these parameters; they are automatically derived when you enable route leaking between a pair of VRFs.
 
@@ -264,8 +264,9 @@ When you use route leaking:
 
 In the following example commands, routes in the BGP routing table of VRF `rocket` are dynamically leaked into VRF `turtle`.
 
-<details>
-<summary>NCLU Commands </summary>
+{{< tabs "TabID266 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp vrf turtle ipv4 unicast import vrf rocket
@@ -273,10 +274,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -291,7 +291,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -310,8 +312,9 @@ You can exclude certain prefixes from being imported. The prefixes must be confi
 
 The following example configures a route map to match the source protocol BGP and imports the routes from VRF turtle to VRF rocket. For the imported routes, the community is set to 11:11 in VRF rocket.
 
-<details>
-<summary>NCLU Commands </summary>
+{{< tabs "TabID313 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp vrf rocket ipv4 unicast import vrf turtle
@@ -323,10 +326,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -348,7 +350,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -402,8 +406,9 @@ To remove route leaking configuration, run the following commands. These command
 
 The following example commands delete leaked routes from VRF `rocket` to VRF `turtle`:
 
-<details>
-<summary>NCLU Commands </summary>
+{{< tabs "TabID407 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net del bgp vrf turtle ipv4 unicast import vrf rocket
@@ -411,10 +416,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -429,7 +433,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -441,7 +447,7 @@ Do not use the kernel commands; they are no longer supported and might cause iss
 
 In Cumulus Linux, {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}, {{<link url="Open-Shortest-Path-First-OSPF" text="OSPFv2">}} and {{<link url="Routing" text="static routing">}} (IPv4 and IPv6) are supported within a VRF context. Various FRRouting routing constructs, such as routing tables, nexthops, router-id, and related processing are also VRF-aware.
 
-{{<link url="FRRouting-Overview" text="FRRouting">}} learns of VRFs provisioned on the system as well as interface attachment to a VRF through notifications from the kernel. 
+{{<link url="FRRouting-Overview" text="FRRouting">}} learns of VRFs provisioned on the system as well as interface attachment to a VRF through notifications from the kernel.
 
 You can assign switch ports to each VRF table with an interface-level configuration, and BGP instances can be assigned to the table with a BGP router-level command.
 
@@ -464,8 +470,9 @@ VRFs are provisioned using NCLU. VRFs can be pre-provisioned in FRRouting too, b
 
 ### Example VRF Configuration in BGP
 
-<details>
-<summary>NCLU Commands </summary>
+{{< tabs "TabID471 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp vrf vrf1012 autonomous-system 64900
@@ -486,10 +493,9 @@ cumulus@switch:~$ net add bgp vrf vrf1012 ipv6 unicast neighbor ISLv6 activate
 cumulus@switch:~$ net add bgp vrf vrf1012 neighbor ISLv6 route-map ALLOW_BR2_v6 out
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -521,7 +527,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -555,11 +563,12 @@ router bgp 64900 vrf vrf1012
 
 ### Example VRF Configuration in OSPF
 
-<details>
-<summary>NCLU Commands </summary>
+{{< tabs "TabID564 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add ospf vrf vrf1 
+cumulus@switch:~$ net add ospf vrf vrf1
 cumulus@switch:~$ net add ospf vrf vrf1 router-id 4.4.4.4
 cumulus@switch:~$ net add ospf vrf vrf1 log-adjacency-changes detail
 cumulus@switch:~$ net add ospf vrf vrf1 network 10.0.0.0/24 area 0.0.0.1
@@ -572,10 +581,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -603,7 +611,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -631,8 +641,9 @@ router ospf vrf vrf1
 
 To show VRF information, you can use NCLU, vtysh, or Linux commands.
 
-<details>
-<summary>NCLU Commands </summary>
+{{< tabs "TabID642 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 To show the routes in a VRF, run the `net show route vrf <vrf-name>` command. For example:
 
@@ -695,7 +706,7 @@ To show the OSPF VRFs, run the `net show ospf vrf all` command. For example:
 
 ```
 cumulus@switch:~$ net show ospf vrf all
-Name                                  Id         RouterId  
+Name                                  Id         RouterId
 Default-IP-Routing-Table              0          6.0.0.7
 vrf1012                               45         9.9.12.7
 vrf1013                               52         9.9.13.7
@@ -709,7 +720,7 @@ Total number of OSPF VRFs: 6
 To show all the OSPF routes in a VRF, run the `net show ospf vrf <vrf-name> route` command. For example:
 
 ```
-cumulus@switch:~$ net show ospf vrf vrf1012 route 
+cumulus@switch:~$ net show ospf vrf vrf1012 route
 Codes: K - kernel route, C - connected, S - static, R - RIP,
        O - OSPF, I - IS-IS, B - BGP, P - PIM, E - EIGRP, N - NHRP,
        T - Table, v - VNC, V - VNC-Direct, A - Babel,
@@ -733,14 +744,14 @@ To show which interfaces are in a VRF (either BGP or OSPF), run the `net show vr
 cumulus@switch:~$ net show vrf list
 VRF: mgmt
 --------------------
-eth0              UP     a0:00:00:00:00:11 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+eth0              UP     a0:00:00:00:00:11 <BROADCAST,MULTICAST,UP,LOWER_UP>
 
-VRF: turtle 
--------------------- 
-vlan13@bridge     UP     44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP> 
-vlan13-v0@vlan13  UP     44:39:39:ff:00:13 <BROADCAST,MULTICAST,UP,LOWER_UP> 
-vlan24@bridge     UP     44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>  
-vlan24-v0@vlan24  UP     44:39:39:ff:00:24 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+VRF: turtle
+--------------------
+vlan13@bridge     UP     44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>
+vlan13-v0@vlan13  UP     44:39:39:ff:00:13 <BROADCAST,MULTICAST,UP,LOWER_UP>
+vlan24@bridge     UP     44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>
+vlan24-v0@vlan24  UP     44:39:39:ff:00:24 <BROADCAST,MULTICAST,UP,LOWER_UP>
 vlan4001@bridge   UP     44:39:39:ff:40:94 <BROADCAST,MULTICAST,UP,LOWER_UP>
 ```
 
@@ -750,10 +761,10 @@ To show the interfaces for a specific VRF, run the `net show vrf list <vrf-name>
 cumulus@switch:~$ net show vrf list turtle
 VRF: turtle
 --------------------
-vlan13@bridge     UP      44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP> 
-vlan13-v0@vlan13  UP      44:39:39:ff:00:13 <BROADCAST,MULTICAST,UP,LOWER_UP> 
-vlan24@bridge     UP      44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP> 
-vlan24-v0@vlan24  UP      44:39:39:ff:00:24 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+vlan13@bridge     UP      44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>
+vlan13-v0@vlan13  UP      44:39:39:ff:00:13 <BROADCAST,MULTICAST,UP,LOWER_UP>
+vlan24@bridge     UP      44:38:39:00:00:03 <BROADCAST,MULTICAST,UP,LOWER_UP>
+vlan24-v0@vlan24  UP      44:39:39:ff:00:24 <BROADCAST,MULTICAST,UP,LOWER_UP>
 vlan4001@bridge   UP      44:39:39:ff:40:94 <BROADCAST,MULTICAST,UP,LOWER_UP>
 ```
 
@@ -766,8 +777,8 @@ You can only specify one VRF with the `net show vrf list <vrf-name>` command. Fo
 To show the VNIs for the interfaces in a VRF, run the `net show vrf vni` command. For example:
 
 ```
-cumulus@switch:~$ net show vrf vni 
-VRF         VNI     VxLAN IF    L3-SVI    State  Rmac 
+cumulus@switch:~$ net show vrf vni
+VRF         VNI     VxLAN IF    L3-SVI    State  Rmac
 turtle      104001  vxlan4001   vlan4001  Up     44:39:39:ff:40:94
 ```
 
@@ -789,10 +800,9 @@ cumulus@switch:~$ net show vrf vni json
 }
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 To show all VRFs learned by FRRouting from the kernel, run the `show vrf` command. The table ID shows the corresponding routing table in the kernel.
 
@@ -860,7 +870,7 @@ To show all OSPF routes in a VRF, run the `show ip ospf vrf all route` command. 
 ```
 cumulus@switch:~$ sudo vtysh
 
-switch# show ip ospf vrf all route 
+switch# show ip ospf vrf all route
 ============ OSPF network routing table ============
 N    7.0.0.0/24            [10] area: 0.0.0.0
                            directly attached to swp2
@@ -898,7 +908,7 @@ C>* 50.1.1.0/24 is directly connected, swp31s1
 VRF rocket:
 K>* 0.0.0.0/0 [0/8192] unreachable (ICMP unreachable)
 O
-8.0.0.0/24 [110/10] 
+8.0.0.0/24 [110/10]
 is directly connected, swp1, 00:23:26
 C>* 8.0.0.0/24 is directly connected, swp1
 C>* 8.0.0.5/32 is directly connected, rocket
@@ -906,11 +916,9 @@ C>* 8.0.0.100/32 is directly connected, rocket
 C>* 50.0.1.0/24 is directly connected, swp31s0
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 To list all VRFs, and include the VRF ID and table ID, run the `ip -d link show type vrf` command. For example:
 
@@ -960,7 +968,7 @@ cumulus@switch:~$ ip -d link show vrf vrf1012
     group_address 01:80:c2:00:00:00 mcast_snooping 1 mcast_router 1 mcast_query_use_ifaddr 0 mcast_querier 0
     mcast_hash_elasticity 4096 mcast_hash_max 4096 mcast_last_member_count 2 mcast_startup_query_count 2
     mcast_last_member_interval 100 mcast_membership_interval 26000 mcast_querier_interval 25500
-    mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125 
+    mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125
     nf_call_iptables 0 nf_call_ip6tables 0 nf_call_arptables 0
     vrf_slave addrgenmode eui64
 ```
@@ -969,28 +977,28 @@ To show IPv4 routes in a VRF, run the `ip route show table <vrf-name>` command. 
 
 ```
 cumulus@switch:~$ ip route show table vrf1012
-unreachable default  metric 240 
-broadcast 20.7.2.0 dev br2  proto kernel  scope link  src 20.7.2.1 dead linkdown 
-20.7.2.0/24 dev br2  proto kernel  scope link  src 20.7.2.1 dead linkdown 
-local 20.7.2.1 dev br2  proto kernel  scope host  src 20.7.2.1 
-broadcast 20.7.2.255 dev br2  proto kernel  scope link  src 20.7.2.1 dead linkdown 
-broadcast 169.254.2.8 dev swp1.2  proto kernel  scope link  src 169.254.2.9 
-169.254.2.8/30 dev swp1.2  proto kernel  scope link  src 169.254.2.9 
-local 169.254.2.9 dev swp1.2  proto kernel  scope host  src 169.254.2.9 
-broadcast 169.254.2.11 dev swp1.2  proto kernel  scope link  src 169.254.2.9 
-broadcast 169.254.2.12 dev swp2.2  proto kernel  scope link  src 169.254.2.13 
-169.254.2.12/30 dev swp2.2  proto kernel  scope link  src 169.254.2.13 
-local 169.254.2.13 dev swp2.2  proto kernel  scope host  src 169.254.2.13 
-broadcast 169.254.2.15 dev swp2.2  proto kernel  scope link  src 169.254.2.13 
-broadcast 169.254.2.16 dev swp3.2  proto kernel  scope link  src 169.254.2.17 
-169.254.2.16/30 dev swp3.2  proto kernel  scope link  src 169.254.2.17 
-local 169.254.2.17 dev swp3.2  proto kernel  scope host  src 169.254.2.17 
-broadcast 169.254.2.19 dev swp3.2  proto kernel  scope link  src 169.254.2.17 
+unreachable default  metric 240
+broadcast 20.7.2.0 dev br2  proto kernel  scope link  src 20.7.2.1 dead linkdown
+20.7.2.0/24 dev br2  proto kernel  scope link  src 20.7.2.1 dead linkdown
+local 20.7.2.1 dev br2  proto kernel  scope host  src 20.7.2.1
+broadcast 20.7.2.255 dev br2  proto kernel  scope link  src 20.7.2.1 dead linkdown
+broadcast 169.254.2.8 dev swp1.2  proto kernel  scope link  src 169.254.2.9
+169.254.2.8/30 dev swp1.2  proto kernel  scope link  src 169.254.2.9
+local 169.254.2.9 dev swp1.2  proto kernel  scope host  src 169.254.2.9
+broadcast 169.254.2.11 dev swp1.2  proto kernel  scope link  src 169.254.2.9
+broadcast 169.254.2.12 dev swp2.2  proto kernel  scope link  src 169.254.2.13
+169.254.2.12/30 dev swp2.2  proto kernel  scope link  src 169.254.2.13
+local 169.254.2.13 dev swp2.2  proto kernel  scope host  src 169.254.2.13
+broadcast 169.254.2.15 dev swp2.2  proto kernel  scope link  src 169.254.2.13
+broadcast 169.254.2.16 dev swp3.2  proto kernel  scope link  src 169.254.2.17
+169.254.2.16/30 dev swp3.2  proto kernel  scope link  src 169.254.2.17
+local 169.254.2.17 dev swp3.2  proto kernel  scope host  src 169.254.2.17
+broadcast 169.254.2.19 dev swp3.2  proto kernel  scope link  src 169.254.2.17
 ```
 
 To show IPv6 routes in a VRF, run the `ip -6 route show table <vrf-name>` command. For example:
 
-``` 
+```
 cumulus@switch:~$ ip -6 route show table vrf1012
 local fe80:: dev lo  proto none  metric 0  pref medium
 local fe80:: dev lo  proto none  metric 0  pref medium
@@ -1018,7 +1026,7 @@ cumulus@switch:~$ ip link list rocket
 
 VRF: rocket
 --------------------
-swp1.10@swp1     UP             6c:64:1a:00:5a:0c <BROADCAST,MULTICAST,UP,LOWER_UP> 
+swp1.10@swp1     UP             6c:64:1a:00:5a:0c <BROADCAST,MULTICAST,UP,LOWER_UP>
 swp2.10@swp2     UP             6c:64:1a:00:5a:0d <BROADCAST,MULTICAST,UP,LOWER_UP>
 ```
 
@@ -1029,17 +1037,17 @@ cumulus@switch:~$ ip route list rocket
 
 VRF: rocket
 --------------------
-unreachable default  metric 8192 
-10.1.1.0/24 via 10.10.1.2 dev swp2.10 
-10.1.2.0/24 via 10.99.1.2 dev swp1.10 
-broadcast 10.10.1.0 dev swp2.10  proto kernel  scope link  src 10.10.1.1 
-10.10.1.0/28 dev swp2.10  proto kernel  scope link  src 10.10.1.1 
-local 10.10.1.1 dev swp2.10  proto kernel  scope host  src 10.10.1.1 
-broadcast 10.10.1.15 dev swp2.10  proto kernel  scope link  src 10.10.1.1 
-broadcast 10.99.1.0 dev swp1.10  proto kernel  scope link  src 10.99.1.1 
-10.99.1.0/30 dev swp1.10  proto kernel  scope link  src 10.99.1.1 
-local 10.99.1.1 dev swp1.10  proto kernel  scope host  src 10.99.1.1 
-broadcast 10.99.1.3 dev swp1.10  proto kernel  scope link  src 10.99.1.1 
+unreachable default  metric 8192
+10.1.1.0/24 via 10.10.1.2 dev swp2.10
+10.1.2.0/24 via 10.99.1.2 dev swp1.10
+broadcast 10.10.1.0 dev swp2.10  proto kernel  scope link  src 10.10.1.1
+10.10.1.0/28 dev swp2.10  proto kernel  scope link  src 10.10.1.1
+local 10.10.1.1 dev swp2.10  proto kernel  scope host  src 10.10.1.1
+broadcast 10.10.1.15 dev swp2.10  proto kernel  scope link  src 10.10.1.1
+broadcast 10.99.1.0 dev swp1.10  proto kernel  scope link  src 10.99.1.1
+10.99.1.0/30 dev swp1.10  proto kernel  scope link  src 10.99.1.1
+local 10.99.1.1 dev swp1.10  proto kernel  scope host  src 10.99.1.1
+broadcast 10.99.1.3 dev swp1.10  proto kernel  scope link  src 10.99.1.1
 
 local fe80:: dev lo  proto none  metric 0  pref medium
 local fe80:: dev lo  proto none  metric 0  pref medium
@@ -1058,7 +1066,9 @@ You can also show routes in a VRF using the `ip [-6] route show vrf <vrf-name>` 
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## BGP Unnumbered Interfaces with VRF
 
@@ -1070,8 +1080,9 @@ The BGP unnumbered configuration is the same as for a non-VRF, applied under the
 
 To configure BGP unnumbered:
 
-<details>
-<summary>NCLU Commands </summary>
+{{< tabs "TabID1081 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add vrf vrf1 vrf-table auto
@@ -1104,10 +1115,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file. For example:
 
@@ -1169,7 +1179,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -1244,8 +1256,9 @@ In the following example, there is one IPv4 network with a VRF named
 
 Configure each DHCP server and relay as follows:
 
-<details>
-<summary>Sample DHCP Server Configuration</summary>
+{{< tabs "TabID1258 ">}}
+
+{{< tab "DHCP Server Configuration ">}}
 
 1. Create the file `isc-dhcp-server-rocket` in `/etc/default/`. Here is sample content:
 
@@ -1293,10 +1306,9 @@ cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcpd -f -q -cf /
     /etc/dhcp/dhcpd-rocket.conf -pf /var/run/dhcpd-rocket.pid swp2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-<summary>Sample DHCP6 Server Configuration</summary>
+{{< tab "DHCP6 Server Configuration ">}}
 
 1. Create the file `isc-dhcp-server6-turtle` in `/etc/default/`. Here is sample content:
 
@@ -1344,11 +1356,13 @@ cumulus@switch:~$ sudo ip vrf exec turtle dhcpd -6 -q -cf /
   /etc/dhcp/dhcpd6-turtle.conf -pf /var/run/dhcpd6-turtle.pid swp3
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
+{{< /tabs >}}
 
-<summary>Sample DHCP Relay Configuration</summary>
+{{< tabs "TabID1362 ">}}
+
+{{< tab "DHCP Relay Configuration ">}}
 
 1. Create the file `isc-dhcp-relay-rocket` in `/etc/default/`. Here is sample content:
 
@@ -1396,10 +1410,9 @@ cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcrelay -d -q -i /
     swp2s2 -i swp2s3 102.0.0.2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-<summary>Sample DHCP6 Relay Configuration</summary>
+{{< tab "DHCP6 Relay Configuration ">}}
 
 1. Create the file `isc-dhcp-relay6-turtle` in `/etc/default/`. Here is sample content:
 
@@ -1447,7 +1460,9 @@ cumulus@switch:~$ sudo ip vrf exec turtle /usr/sbin/dhcrelay -d -q -6 -l /
     swp18s0 -u swp18s1 -pf /var/run/dhcrelay6@turtle.pid
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Use ping or traceroute on a VRF
 

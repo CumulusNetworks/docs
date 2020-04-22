@@ -16,8 +16,6 @@ cascade:
   old: true
 ---
 
-{{<exlink url="mailto:vitas%40nppfactor.kiev.ua" text="Vitalii Demianets">}}
-
 ## Introducing Cumulus Linux
 
 Cumulus Linux is the first full-featured Linux operating system for the
@@ -33,7 +31,7 @@ solutions, and monitoring and troubleshooting recommendations. In
 addition, the quick start guide provides an end-to-end setup process to
 get you started.
 
-### What's New in Cumulus Linux 3.6.2
+## What's New in Cumulus Linux 3.6.2
 
 Cumulus Linux 3.6.2 contains the following new features, platforms, and
 improvements:
@@ -47,7 +45,7 @@ improvements:
   - New [`vrf_route_leak_enable` option](/cumulus-linux-36/Layer-3/Virtual-Routing-and-Forwarding-VRF/#enabling-vrf-route-leaking)
     used to enable VRF route leaking
 
-### What's New in Cumulus Linux 3.6.0
+## What's New in Cumulus Linux 3.6.0
 
 Cumulus Linux 3.6.0 contains a number of new platforms, features and
 improvements:
@@ -84,24 +82,28 @@ improvements:
       - [Control which RIB routes are injected into EVPN](/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#controlling-which-rib-routes-are-injected-into-evpn)
 
 For information on bug fixes and known issues present in this release,
-refer to the 
+refer to the
 [product release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003039873-Cumulus-Linux-3-6-Release-Notes).
 
-### Open Source Contributions
+## Open Source Contributions
 
 To implement various Cumulus Linux features, Cumulus Networks has forked
 various software projects, like CFEngine, `Netdev` and some Puppet Labs
-packages. The forked code resides in the Cumulus Networks 
+packages. The forked code resides in the Cumulus Networks
 [GitHub repository](https://github.com/CumulusNetworks).
 
 Cumulus Networks has also developed and released new applications as
 open source. The list of open source projects is on the [open source
 software](http://oss.cumulusnetworks.com/) page.
 
-### Hardware Compatibility List
+## Hardware Compatibility List
 
 You can find the most up-to-date hardware compatibility list (HCL)
 [here](https://cumulusnetworks.com/hcl/). Use the HCL to confirm that
 your switch model is supported by Cumulus Networks. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
+
+## Download the User Guide
+
+You can download a PDF of the user guide for versions {{<exlink url="https://drive.google.com/file/d/1chNu0VUt97IYjam4ZJ9R-MMzNtvjTj7J/view?usp=sharing" text="3.6.0">}}, {{<exlink url="https://drive.google.com/file/d/1pt3c1lq6phTP-jTvyb47LQSW8oSyNuk4/view?usp=sharing" text="3.6.1">}} and {{<exlink url="https://drive.google.com/file/d/1SXI0d1MKkP14O2Jk5INkJLmkPBi13Toe/view?usp=sharing" text="3.6.2">}}.

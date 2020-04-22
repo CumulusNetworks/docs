@@ -109,9 +109,9 @@ Configure the links between the hosts and the routers in *active-active* mode fo
 
 To create an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration that incorporates VRR, use a configuration like the following:
 
-<details>
+{{< tabs "TabID111 ">}}
 
-<summary>leaf01 Configuration</summary>
+{{< tab "leaf01 Configuration ">}}
 
 ```
 cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.21
@@ -200,11 +200,9 @@ iface vlan400
     vlan-raw-device bridge
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf02 Configuration</summary>
+{{< tab "leaf02 Configuration ">}}
 
 ```
 cumulus@leaf02:~$ net add interface eth0 ip address 192.168.0.22
@@ -293,59 +291,13 @@ iface vlan400
     vlan-raw-device bridge
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
+{{< /tabs >}}
 
-<summary>server01 Configuration</summary>
+{{< tabs "TabID297 ">}}
 
-Create a configuration like the following on an Ubuntu host:
-
-```
-auto eth0
-iface eth0 inet dhcp
-
-auto eth1
-iface eth1 inet manual
-    bond-master uplink
-
-auto eth2
-iface eth2 inet manual
-    bond-master uplink
-
-auto uplink
-iface uplink inet static
-    bond-slaves eth1 eth2
-    bond-mode 802.3ad
-    bond-miimon 100
-    bond-lacp-rate 1
-    bond-min-links 1
-    bond-xmit-hash-policy layer3+4
-    address 172.16.1.101
-    netmask 255.255.255.0
-    post-up ip route add 172.16.0.0/16 via 172.16.1.1
-    post-up ip route add 10.0.0.0/8 via 172.16.1.1
-
-auto uplink:200
-iface uplink:200 inet static
-    address 10.0.2.101
-
-auto uplink:300
-iface uplink:300 inet static
-    address 10.0.3.101
-
-auto uplink:400
-iface uplink:400 inet static
-    address 10.0.4.101
-
-# modprobe bonding
-```
-
-</details>
-
-<details>
-
-<summary>server02 Configuration</summary>
+{{< tab "server01 Configuration ">}}
 
 Create a configuration like the following on an Ubuntu host:
 
@@ -389,7 +341,55 @@ iface uplink:400 inet static
 # modprobe bonding
 ```
 
-</details>
+{{< /tab >}}
+
+{{< tab "server02 Configuration ">}}
+
+Create a configuration like the following on an Ubuntu host:
+
+```
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet manual
+    bond-master uplink
+
+auto eth2
+iface eth2 inet manual
+    bond-master uplink
+
+auto uplink
+iface uplink inet static
+    bond-slaves eth1 eth2
+    bond-mode 802.3ad
+    bond-miimon 100
+    bond-lacp-rate 1
+    bond-min-links 1
+    bond-xmit-hash-policy layer3+4
+    address 172.16.1.101
+    netmask 255.255.255.0
+    post-up ip route add 172.16.0.0/16 via 172.16.1.1
+    post-up ip route add 10.0.0.0/8 via 172.16.1.1
+
+auto uplink:200
+iface uplink:200 inet static
+    address 10.0.2.101
+
+auto uplink:300
+iface uplink:300 inet static
+    address 10.0.3.101
+
+auto uplink:400
+iface uplink:400 inet static
+    address 10.0.4.101
+
+# modprobe bonding
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## VRRP
 

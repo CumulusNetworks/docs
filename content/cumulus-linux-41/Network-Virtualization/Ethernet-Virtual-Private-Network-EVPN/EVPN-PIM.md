@@ -85,9 +85,9 @@ The following example shows an EVPN-PIM configuration on the VTEP, where:
 - The group mapping 192.168.0.1 is configured for a static RP (shown at the top of the `/etc/frr/frr.conf` file example below).
 - Multicast group 239.1.1.111 is mapped to VXLAN1000111. Multicast group 239.1.1.112 is mapped to VXLAN1000112 (shown in the example `/etc/network/interfaces` file below).
 
-<details>
+{{< tabs "TabID87 ">}}
 
-<summary>VTEP /etc/frr/frr.conf file</summary>
+{{< tab "/etc/frr/frr.conf file ">}}
 
 ```
 cumulus@switch:~$ sudo cat /etc/frr/frr.conf
@@ -161,11 +161,9 @@ line vty
 end
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>VTEP /etc/network/interfaces file </summary>
+{{< tab "/etc/network/interfaces file ">}}
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
@@ -265,7 +263,9 @@ iface vlan4002
     vrf vrf2
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Verify EVPN-PIM
 

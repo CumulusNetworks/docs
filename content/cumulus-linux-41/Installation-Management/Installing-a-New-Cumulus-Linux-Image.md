@@ -328,7 +328,7 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 
 4. Insert the USB drive into the switch, then continue with the appropriate instructions below for your x86 or ARM platform.
 
-{{< tabs "TabID389 ">}}
+{{< tabs "TabID330 ">}}
 
 {{< tab "x86 Platforms ">}}
 

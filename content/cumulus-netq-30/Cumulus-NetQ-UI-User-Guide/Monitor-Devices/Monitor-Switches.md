@@ -296,7 +296,7 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screenn card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench</td>
 </tr>
 <tr class="odd">
 <td>Default Time</td>

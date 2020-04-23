@@ -220,9 +220,7 @@ cumulus@switch:~$ sudo ip -d link show bridge
 
 An example configuration for single tag translation in traditional bridge mode on a leaf switch is shown below.
 
-<details>
-
-<summary>Example /etc/network/interfaces File</summary>
+{{< expand "Example /etc/network/interfaces File" >}}
 
 ```
 auto swp3.11
@@ -239,7 +237,7 @@ iface br11
     bridge-ports swp3.11 vxlan1000101
 ```
 
-</details>
+{{< /expand >}}
 
 ## Configure Double Tag Translation
 

@@ -37,6 +37,7 @@ On the right side panel under Servers Summary, the green button means successful
 2.  Download & Install the GNS3 VM (OVA file) for Virtualbox    
 
 The GNS3 VM will run within VirtualBox (Type 2 Hypervisor) for nested virtualization. Download & Install the GNS3 VM [zip file](https://www.gns3.com/software/download-vm). The GNS3 GUI and the GNS3 VM must be using the same version.
+
 ![vmDownload](/images/cumulus-vx/GNS3_regular/2_vmDownload.png)
 
 3. Download & Install VirtualBox
@@ -69,6 +70,7 @@ If there’s no success in getting Virtualbox and GNS3 to communicate, you may g
 - If the error mentions “VirtualBox Host-Only Ethernet Adapter #2”, go to VirtualBox and make sure the Adapter for your GNS3 VM also says ‘VirtualBox Host-Only Ethernet Adapter #2’ under the Network section. If not, click on it and make the changes. 
 
 ![errors](/images/cumulus-vx/GNS3_VirtualBox/4_Error_Adapter2.png)
+
 Close and re-Open GNS3. Go through the same GNS3 VM Preferences settings to get GNS3 to communicate with VirtualBox, and hopefully there are no more errors.
 
 -   If the error mentions eth0 or DHCP, you have to Start the VM within VirtualBox and make changes to the network settings. Open VirtualBox, select the GNS3 VM, click Start to start the VM. On the screen mentioning eth0 (like below), hit Enter for OK. Your mouse MUST be within the grey/gray message box for the VM to respond to your keyboard clicks.
@@ -140,24 +142,22 @@ Back to the appliance installation in GNS3, click Import and import the .qcow2 d
 ![import](/images/cumulus-vx/GNS3_regular/11_import.png)
 ![downloadAppliance](/images/cumulus-vx/GNS3_regular/11_downloadAppliance.png)
 ![downloadAppliance](/images/cumulus-vx/GNS3_regular/12_downloadAppliance.png)
-~~pic22,23,24~
 
 ***Take note of the username and password*** & click **Finish**.
-![
-![gns3OVAfile](/images/cumulus-vx/GNS3_regular/3_gns3OVAfile.png)
+![username&password](/images/cumulus-vx/GNS3_regular/13_downloadAppliance.png)
 
 9. So far, the nested virtualization of GNS3 VM into Workstation Player to be used with the GNS3 GUI is complete, and a Cumulus VX appliance has been imported into GNS3. Next task, configuring Cumulus VX!!
  
  In GNS3, click Browse Switches icon, and the imported Cumulus VX virtual machine should appear.
 
-~~pic26~~
+![BrowseAppliances](/images/cumulus-vx/GNS3_regular/14_useTheAppliance.png)
 
 -   If this is the reader’s first time using GNS3, it’s recommended to read the [“Your First GNS3 Topology”](https://docs.gns3.com/1wr2j2jEfX6ihyzpXzC23wQ8ymHzID4K3Hn99-qqshfg/index.html) doc on GNS3’s site.
     
 
 Here’s a simple topology. Let’s configure the devices so the end hosts can ping each other.
 
-~~pic27~~
+![topology](/images/cumulus-vx/GNS3_regular/15_topology.png)
 
 -   To download the UbuntuDockerGuest appliance: GNS3 site > Marketplace > Appliances > Ubuntu Docker Guest > Download  
     To Import the appliance into GNS3: [https://docs.gns3.com/1_3RdgLWgfk4ylRr99htYZrGMoFlJcmKAAaUAc8x9Ph8/index.html](https://docs.gns3.com/1_3RdgLWgfk4ylRr99htYZrGMoFlJcmKAAaUAc8x9Ph8/index.html) 
@@ -166,7 +166,7 @@ Here’s a simple topology. Let’s configure the devices so the end hosts can p
     
 How to change Interface MAC Address in VirtualBox: Highlight the GNS3 VM > **Settings** > **Network**> select a **Network Adapter** > **Advanced** > from there view or change the MAC Address > **OK** 
 
-~~pic28~~
+![macAddy](/images/cumulus-vx/GNS3_VirtualBox/macAddress.png)
 
 Start all the nodes, and open all the consoles.  
 
@@ -174,7 +174,7 @@ Start all the nodes, and open all the consoles.
 
 Right click on a UbuntuGuest, select Edit config, and change the network values of the interface. Do this to both hosts.
 
-~~pic29~~
+![vpcs](/images/cumulus-vx/GNS3_regular/18_VPCS_ip.png)
 
 On the Ubuntu machines, run `ifconfig` to verify your new network changes.
 
@@ -185,17 +185,17 @@ Password: CumulusLinux!***
 
 Take note that `whoami` shows the username of the Cumulus devices is cumulus; `sudo` will be needed to run privileged commands in the Cumulus devices.
 
-~~pic30~~
+![login](/images/cumulus-vx/GNS3_regular/16_login.png)
 
 Run `ifconfig` to show there are no network settings yet. Running `cat /etc/networks/interfaces` shows that eth0 is configured using DHCP; also eth0 is the management port.
 
 Let’s add a Switch and a NAT cloud to the topology so the Cumulus devices can receive an ip address on eth0 via DHCP.
 
-~~pic31~~
+![NEWtopology](/images/cumulus-vx/GNS3_regular/19_topologyNew.png)
 
 Run `ifconfig` & there’s now an ip address assigned to eth0.
 
-~~pic32~~
+![ifconfig](/images/cumulus-vx/GNS3_regular/20_root_ifconfig.png)
 
 The rest of this demo will be following the Configure Switch Ports steps from the [Cumulus Linux v3.7 ‘Quick Start Guide’](https://docs.cumulusnetworks.com/cumulus-linux-37/Quick-Start-Guide/) to configure swp1 and swp2.  
   
@@ -208,11 +208,11 @@ Edit the /etc/network/interfaces file; remember to use `sudo` in order to edit t
 `auto swp2`  
 `iface swp2`
 
-~~pic33~~
+![NetworkInterfaces](/images/cumulus-vx/GNS3_regular/21_swp1_swp2.png)
    
   Save the file, exit the file, reload the configuration using `sudo ifreload -a`, run `ifconfig`. You should now see the addition of swp1 and swp2 interfaces.
 
-~~pic34~~
+![ifreload](/images/cumulus-vx/GNS3_regular/22_ifreload.png)
 
 Let’s add swp1 and swp2 to a bridge, reload the configuration, view the bridge settings, & display the bridge interface.
 `auto bridge`
@@ -224,11 +224,11 @@ Exit the file.
 `brctl show`
 `ifconfig`
 
-~~pic35~~
+![brctlshow](/images/cumulus-vx/GNS3_regular/23_brctlshow.png)
   
 Now the Ubuntu machines can Ping each other!
 
-~~pic36~~
+![ping](/images/cumulus-vx/GNS3_regular/24_successfulPing.png)
   
 >In this demo, you:
 >-   Downloaded GNS3, GNS3 VM, and a Type-2 hypervisor VirtualBox

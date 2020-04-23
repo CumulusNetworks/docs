@@ -51,9 +51,9 @@ The routers implement the layer 2 network interconnecting the hosts and the redu
 - One bond interface or switch port interface to each host. For networks using MLAG, use bond interfaces. Otherwise, use switch port interfaces.
 - One or more interfaces to each peer router. To accommodate higher bandwidth between the routers and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have unique IP addresses for both the physical (the `address` option below) and virtual (the `address-virtual` option below) interfaces; the unique address is used when the switch initiates an ARP request.
 
-<details>
+{{< tabs "TabID53 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 The example NCLU commands below create a VLAN-aware bridge interface for a VRR-enabled network:
 
@@ -67,11 +67,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The example file configuration below create a VLAN-aware bridge interface for a VRR-enabled network:
 
@@ -97,7 +95,9 @@ iface vlan500
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Configure the Hosts
 
@@ -109,9 +109,9 @@ Configure the links between the hosts and the routers in *active-active* mode fo
 
 To create an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration that incorporates VRR, use a configuration like the following:
 
-<details>
+{{< tabs "TabID111 ">}}
 
-<summary>leaf01 Configuration</summary>
+{{< tab "leaf01 Configuration ">}}
 
 ```
 cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.21
@@ -200,11 +200,9 @@ iface vlan400
     vlan-raw-device bridge
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf02 Configuration </summary>
+{{< tab "leaf02 Configuration ">}}
 
 ```
 cumulus@leaf02:~$ net add interface eth0 ip address 192.168.0.22
@@ -293,59 +291,13 @@ iface vlan400
     vlan-raw-device bridge
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
+{{< /tabs >}}
 
-<summary>server01 Configuration </summary>
+{{< tabs "TabID297 ">}}
 
-Create a configuration like the following on an Ubuntu host:
-
-```
-auto eth0
-iface eth0 inet dhcp
-
-auto eth1
-iface eth1 inet manual
-    bond-master uplink
-
-auto eth2
-iface eth2 inet manual
-    bond-master uplink
-
-auto uplink
-iface uplink inet static
-    bond-slaves eth1 eth2
-    bond-mode 802.3ad
-    bond-miimon 100
-    bond-lacp-rate 1
-    bond-min-links 1
-    bond-xmit-hash-policy layer3+4
-    address 172.16.1.101
-    netmask 255.255.255.0
-    post-up ip route add 172.16.0.0/16 via 172.16.1.1
-    post-up ip route add 10.0.0.0/8 via 172.16.1.1
-
-auto uplink:200
-iface uplink:200 inet static
-    address 10.0.2.101
-
-auto uplink:300
-iface uplink:300 inet static
-    address 10.0.3.101
-
-auto uplink:400
-iface uplink:400 inet static
-    address 10.0.4.101
-
-# modprobe bonding
-```
-
-</details>
-
-<details>
-
-<summary>server02 Configuration </summary>
+{{< tab "server01 Configuration ">}}
 
 Create a configuration like the following on an Ubuntu host:
 
@@ -389,7 +341,55 @@ iface uplink:400 inet static
 # modprobe bonding
 ```
 
-</details>
+{{< /tab >}}
+
+{{< tab "server02 Configuration ">}}
+
+Create a configuration like the following on an Ubuntu host:
+
+```
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet manual
+    bond-master uplink
+
+auto eth2
+iface eth2 inet manual
+    bond-master uplink
+
+auto uplink
+iface uplink inet static
+    bond-slaves eth1 eth2
+    bond-mode 802.3ad
+    bond-miimon 100
+    bond-lacp-rate 1
+    bond-min-links 1
+    bond-xmit-hash-policy layer3+4
+    address 172.16.1.101
+    netmask 255.255.255.0
+    post-up ip route add 172.16.0.0/16 via 172.16.1.1
+    post-up ip route add 10.0.0.0/8 via 172.16.1.1
+
+auto uplink:200
+iface uplink:200 inet static
+    address 10.0.2.101
+
+auto uplink:300
+iface uplink:300 inet static
+    address 10.0.3.101
+
+auto uplink:400
+iface uplink:400 inet static
+    address 10.0.4.101
+
+# modprobe bonding
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## VRRP
 
@@ -434,9 +434,9 @@ The NCLU commands write VRRP configuration to the `/etc/network/interfaces` file
 
 The following example commands configure two switches (spine01 and spine02) that form one virtual router group (VRID 44) with IPv4 address 10.0.0.1/24 and IPv6 address 2001:0db8::1/64. *spine01* is the master; it has a priority of 254. *spine02* is the backup VRRP router.
 
-<details>
+{{< tabs "TabID438 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 **spine01**
 
@@ -458,11 +458,9 @@ cumulus@spine02:~$ net pending
 cumulus@spine02:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux and vtysh Commands </summary>
+{{< tab "Linux and vtysh Commands ">}}
 
 1. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="Configuring FRRouting">}}.
 
@@ -498,7 +496,9 @@ cumulus@spine02:~$ net commit
     spine02# exit
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 

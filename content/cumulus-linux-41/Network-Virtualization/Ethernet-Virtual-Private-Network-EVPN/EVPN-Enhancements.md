@@ -11,9 +11,9 @@ This section describes EVPN enhancements.
 
 MAC addresses that are intended to be pinned to a particular VTEP can be provisioned on the VTEP as a static bridge FDB entry. EVPN picks up these MAC addresses and advertises them to peers as remote static MACs. You configure static bridge FDB entries for MACs under the bridge configuration:
 
-<details>
+{{< tabs "TabID13 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bridge post-up bridge fdb add 00:11:22:33:44:55 dev swp1 vlan 101 master static
@@ -33,11 +33,9 @@ iface br101
 ...
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file. For example:
 
@@ -53,7 +51,9 @@ iface bridge
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Filter EVPN Routes
 
@@ -61,9 +61,9 @@ A common deployment scenario for large data centers is to sub divide the data ce
 
 To filter EVPN routes based on the route-type and allow only certain types of EVPN routes to be advertised in the fabric:
 
-<details>
+{{< tabs "TabID63 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 Use the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn default-route` command or the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn route-type (macip|prefix|multicast)` command.
 
@@ -75,11 +75,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 The following example configures EVPN to advertise type-5 routes only:
 
@@ -92,10 +90,12 @@ switch(config)# match evpn route-type prefix
 switch(config)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Advertise SVI IP Addresses
 
@@ -110,9 +110,9 @@ In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multi
 
 To advertise *all* SVI IP/MAC addresses on the switch, run these commands:
 
-<details>
+{{< tabs "TabID112 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn advertise-svi-ip
@@ -120,18 +120,16 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp 65011
-switch(config-router)# address-family l2vpn evpn 
+switch(config-router)# address-family l2vpn evpn
 switch(config-router-af)# advertise-svi-ip
 switch(config-router-af)# end
 switch)# write memory
@@ -146,13 +144,15 @@ exit-address-family
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To advertise a *specific* SVI IP/MAC address, run these commands:
 
-<details>
+{{< tabs "TabID152 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn vni 10 advertise-svi-ip
@@ -160,11 +160,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -180,7 +178,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -210,9 +210,9 @@ For information on EVPN BUM flooding with PIM, refer to {{<link url="EVPN-BUM-Tr
 
 To disable BUM flooding, run the NCLU `net add bgp l2vpn evpn bum-flood-disable` command or the vtysh `flooding disable` command. For example:
 
-<details>
+{{< tabs "TabID212 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn bum-flood-disable
@@ -220,11 +220,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands</summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -238,7 +236,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -254,9 +254,9 @@ router bgp 65000
 
 To re-enable BUM flooding, run the NCLU `net del bgp l2vpn evpn bum-flood-disable` command or the vtysh `flooding head-end-replication` command. For example:
 
-<details>
+{{< tabs "TabID256 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net del bgp l2vpn evpn bum-flood-disable
@@ -264,17 +264,15 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65011
-switch(config-router)# address-family l2vpn evpn 
+switch(config-router)# address-family l2vpn evpn
 switch(config-router-af)# flooding head-end-replication
 switch(config-router-af)# end
 switch)# write memory
@@ -282,7 +280,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Verify Configuration
 
@@ -358,7 +358,7 @@ In an MLAG configuration, MAC mobility detection runs independently on each swit
 
 ### When Does Duplicate Address Detection Trigger?
 
-The VTEP that sees an address move from remote to local begins the detection process by starting a timer. Each VTEP runs duplicate address detection independently. Detection always starts with the first mobility event from *remote* to *local*. If the address is initially remote, the detection count can start with the very first move for the address. If the address is initially local, the detection count starts only with the second or higher move for the address. If an address is undergoing a mobility event between remote VTEPs, duplicate detection is not started. 
+The VTEP that sees an address move from remote to local begins the detection process by starting a timer. Each VTEP runs duplicate address detection independently. Detection always starts with the first mobility event from *remote* to *local*. If the address is initially remote, the detection count can start with the very first move for the address. If the address is initially local, the detection count starts only with the second or higher move for the address. If an address is undergoing a mobility event between remote VTEPs, duplicate detection is not started.
 
 The following illustration shows VTEP-A, VTEP-B, and VTEP-C in an EVPN configuration. Duplicate address detection triggers on VTEP-A when there is a duplicate MAC address for two hosts attached to VTEP-A and VTEP-B. However, duplicate detection does *not* trigger on VTEP-A when mobility events occur between two remote VTEPs (VTEP-B and VTEP-C).
 
@@ -370,34 +370,34 @@ To change the threshold for MAC and IP address moves, run the `net add bgp l2vpn
 
 The following example command sets the maximum number of address moves allowed to 10 and the duplicate address detection time interval to 1200 seconds.
 
-<details>
+{{< tabs "TabID372 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection max-moves 10 time 1200 
+cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection max-moves 10 time 1200
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp 65011
-switch(config-router)# address-family l2vpn evpn 
+switch(config-router)# address-family l2vpn evpn
 switch(config-router-af)# dup-addr-detection max-moves 10 time 1200
 switch(config-router-af)# end
 switch)# write memory
 switch)# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To disable duplicate address detection, see {{<link url="#disable-duplicate-address-detection" text="Disable Duplicate Address Detection">}} below.
 
@@ -440,19 +440,17 @@ To enable Cumulus Linux to *freeze* detected duplicate addresses, run the `net a
 
 The following example command freezes duplicate addresses for a period of 1000 seconds, after which it is cleared automatically:
 
-<details>
+{{< tabs "TabID442 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze 1000
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -467,7 +465,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -477,26 +477,24 @@ Cumulus Networks recommends you set the freeze timer to be three times the dupli
 
 The following example command freezes duplicate addresses permanently (until you issue the {{<link url="#clear-duplicate-addresses" text="clear command">}}):
 
-<details>
+{{< tabs "TabID479 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze permanent
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp 65011
-switch(config-router)# address-family l2vpn evpn 
+switch(config-router)# address-family l2vpn evpn
 switch(config-router-af)# dup-addr-detection freeze permanent
 switch(config-router-af)# end
 switch)# write memory
@@ -504,25 +502,25 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Clear Duplicate Addresses
 
 You can clear a duplicate MAC or IP address (and unfreeze a frozen address). The following example command clears IP address 10.0.0.9 for VNI 101.
 
-<details>
+{{< tabs "TabID512 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net clear evpn dup-addr vni 101 ip 10.0.0.9
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -532,23 +530,23 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To clear duplicate addresses for all VNIs, run the following command:
 
-<details>
+{{< tabs "TabID538 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net clear evpn dup-addr vni all
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -558,7 +556,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -576,26 +576,24 @@ When you clear a duplicate MAC address, all its associated IP addresses are also
 
 By default, duplicate address detection is enabled and a syslog error is generated when a duplicate address is detected. To disable duplicate address detection, run the following command.
 
-<details>
+{{< tabs "TabID578 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net del bgp l2vpn evpn dup-addr-detection
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp 65011
-switch(config-router)# address-family l2vpn evpn 
+switch(config-router)# address-family l2vpn evpn
 switch(config-router-af)# no dup-addr-detection
 switch(config-router-af)# end
 switch)# write memory
@@ -603,7 +601,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 When you disable duplicate address detection, Cumulus Linux clears the configuration and all existing duplicate addresses.
 
@@ -647,11 +647,11 @@ IP: 10.0.0.9
 
 To show a list of MAC addresses detected as duplicate for a specific VNI or for all VNIs, run the NCLU `net show evpn mac vni <vni-id|all> duplicate` command or the vtysh `show evpn mac vni <vni-id|all> duplicate` command. The following example command shows a list of duplicate MAC addresses for VNI 1001:
 
-``` 
+```
 cumulus@switch:~$ net show evpn mac vni 1001 duplicate
 Number of MACs (local and remote) known for this VNI: 16
 MAC               Type   Intf/Remote VTEP      VLAN
-aa:bb:cc:dd:ee:ff local  hostbond3             1001  
+aa:bb:cc:dd:ee:ff local  hostbond3             1001
 ```
 
 To show a list of IP addresses detected as duplicate for a specific VNI or for all VNIs, run the NCLU `net show evpn arp-cache vni <vni-id|all> duplicate` command or the vtysh `show evpn arp-cache vni <vni-id|all> duplicate` command. The following example command shows a list of duplicate IP addresses for VNI 1001:

@@ -7,6 +7,52 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29385</td>
+<td><p>The following vulnerability has been announced in the openssl package:<br/>
+CVE-2020-1967: Bernd Edlinger discovered that malformed data passed to the SSL_check_chain() function during or after a TLS 1.3 handshake could cause a NULL dereference, resulting in denial of service.<br/>
+Vulnerable: &lt;= 1.1.1d-0+deb10u2<br/>
+Fixed: 1.1.1d-0+deb10u3</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29367</td>
+<td><p>On switches with the Trident3 ASIC, PFC is not working as expected. If you set the PFC for only one CoS,  pause frames are sent for all CoS traffic.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29312</td>
+<td><p>FRR incorrectly orders advertise-all-vni to be later in the configuration than manual rd or route-target definitions. This causes the rd/route-target configuration to be misapplied or not applied at all.<br/>
+To work around this issue, when you manually configure the rd or route-target for a VNI, you must manually edit /etc/frr/frr.conf file to define advertise-all-vni before the rd or route-target configuration within the l2vpn evpn address family.</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29309</td>
+<td><p>When Optimized Multicast Flooding (OMF) is enabled with the bridge.optimized_mcast_flood = TRUE setting in the /etc/cumulus/swichd.conf file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29296</td>
+<td><p>The following vulnerabilities have been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.<br/>
+Vulnerable: &lt;= 2.20.1-2+deb10u1 (CVE-2020-5260) &lt;= 2.20.1-2+deb10u2 (CVE-2020-11008)<br/>
+Fixed: 2.20.1-2+deb10u3</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29284</td>
+<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
+CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
+<td>3.0.0-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29259</td>
 <td><p>You might see the following gport error messages in switchd.log:</p>
 
@@ -32,6 +78,12 @@ cumulus@switch:~$ sudo echo 0 &gt; /var/run/hw-management/config/suspend
 
 </td>
 <td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29165</td>
+<td><p>An inconsistent link-state advertisement may be seen with FRR/OSPF in some circumstances. For example, when you configure the OSPF default originate route as metric-type 1 with a specific metric, Cumulus Linux shows the default originate route as an external metric-type 2 route with the default metric in the database. This problem has been observed when there are both IPv4 and IPv6 default routes in the routing table.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -89,6 +141,13 @@ an SDP or GATT service discovery to take place which would allow HID<br/>
 reports to be injected to the input subsystem from a non-bonded source.</p></td>
 <td>4.0.0-4.1.0</td>
 <td>4.1.1</td>
+</tr>
+<tr>
+<td>CM-29044</td>
+<td><p>A large number of flapping peers causes FRR to require a corresponding update to internal data structures that track peer information. Updating this internal data structure does not delete links that are down due to the flapping. The size of this array then grows to contain both current peers as well as peers that should have been deleted during the flap processing. The contents of this array is processed by FRR to poll the links, which consumes CPU for all items in the array. This additional polling consumes more CPU than necessary but has no functional impact.<br/>
+To work around this issue, restart FRR.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28992</td>
@@ -158,12 +217,6 @@ To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself 
 <td></td>
 </tr>
 <tr>
-<td>CM-28830</td>
-<td><p>hsflowd does not work with the management VRF.</p></td>
-<td>4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28825</td>
 <td><p>hostapd is not installed in Cumulus Linux 4.0.0 by default.<br/>
 To work around this issue, run the following commands to install the package:</p>
@@ -225,12 +278,6 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <td><p>The OVSDB log contains duplicate MAC addresses with the well-known BFD MAC address (00:23:20:00:00:01). This is mainly cosmetic, but clutters the log.</p></td>
 <td>3.7.12-4.0.0</td>
 <td>4.1.0-4.1.1</td>
-</tr>
-<tr>
-<td>CM-28657</td>
-<td><p>The BFD session to the NSX controller sometimes remains down.</p></td>
-<td>3.7.12, 4.0.0-4.1.1</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-28656</td>
@@ -711,7 +758,7 @@ Command '['/sbin/ifreload', '-a']' returned non-zero exit status 1
 </tr>
 <tr>
 <td>CM-27740</td>
-<td><p>On a Mellanox SN3700C switch, when you run the NCLU net del all command to delete all configuration on the switch, you see an error similar to the following:</p>
+<td><p>When you run the NCLU net del all command to delete all configuration on the switch, you see an error similar to the following:</p>
 
 ERROR: [Errno 2] No such file or directory: '/cumulus/switchd/config/interface/&lt;swp&gt;/port_security/enable'#012Traceback
 
@@ -1072,6 +1119,12 @@ To work around this issue, restart FRR after removing the IPv6 numbered configur
 <tr>
 <td>CM-26860</td>
 <td><p>When you run the NCLU net show commit last or net show commit &lt;number&gt; command, where &lt;number&gt; is the last commit, no output is shown. </p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-26841</td>
+<td><p>In the ethool -m output, the Revision Compliance field might show Unallocated when the SFF-8363 Revision Compliance value is SFF-8636 version 2.8 or later.</p></td>
 <td>4.0.0-4.1.1</td>
 <td></td>
 </tr>

@@ -8,8 +8,6 @@ toc: 1
 draft: true
 pdfhidden: True
 ---
-
-
 ## 3.7.12 Open Source Software Licenses 
 | Package | Version | License(s) |
 |---	        |---	        |---	    |

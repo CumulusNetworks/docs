@@ -1,7 +1,7 @@
 ---
 title: Application Management
 author: Cumulus Networks
-weight: 630
+weight: 310
 aliases:
  - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950
@@ -22,9 +22,9 @@ To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Inte
 
 {{<figure src="/images/netq/netq-mgmt-wb-cloud-241.png" width="700">}}
 
-{{%notice note%}}
+{{<notice note>}}
 For on-premises deployments, an additional LDAP Server Info card is available. Refer to {{<link url="Integrate-NetQ-with-Your-LDAP-Server" text="Integrate NetQ with Your LDAP server">}} for details.
-{{%/notice%}}
+{{</notice>}}
 
 ## Manage User Accounts
 

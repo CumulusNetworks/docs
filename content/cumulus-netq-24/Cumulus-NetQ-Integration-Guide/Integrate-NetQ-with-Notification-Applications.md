@@ -129,11 +129,10 @@ A notification configuration must contain one channel, one rule, and one filter.
 
 ### Create Your Channel
 
-For Pager Duty--
+For Pager Duty:
 
-    Configure a channel using the integration key for your Pager Duty setup. Verify the configuration.
+Configure a channel using the integration key for your Pager Duty setup. Verify the configuration.
 
-    ```
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
     Successfully added/updated channel pd-netq-events
     
@@ -143,45 +142,40 @@ For Pager Duty--
     --------------- ---------------- ---------------- ------------------------
     pd-netq-events  pagerduty        info             integration-key: c6d666e
                                                     210a8425298ef7abde0d1998      
-    ```
 
-For Slack--
+For Slack:
 
-    Create an *incoming webhook* as described in the documentation for your version of Slack. Verify the configuration.
+Create an *incoming webhook* as described in the documentation for your version of Slack. Verify the configuration.
 
-        ```
-        cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
-        Successfully added/updated channel slk-netq-events
+    cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
+    Successfully added/updated channel slk-netq-events
         
-        cumulus@switch:~$ netq show notification channel
-        Matching config_notify records:
-        Name            Type             Severity Channel Info
-        --------------- ---------------- -------- ----------------------
-        slk-netq-events slack            info     webhook:https://hooks.s
-                                                lack.com/services/text/
-                                                moretext/evenmoretext
-        ```
-For Syslog--
+    cumulus@switch:~$ netq show notification channel
+    Matching config_notify records:
+    Name            Type             Severity Channel Info
+    --------------- ---------------- -------- ----------------------
+    slk-netq-events slack            info     webhook:https://hooks.s
+                                            lack.com/services/text/
+                                            moretext/evenmoretext
 
-    Create the channel using the syslog server hostname (or IP address) and port. Verify the configuration.
+For Syslog:
 
-        ```
-        cumulus@switch:~$ netq add notification channel syslog syslog-netq-events hostname syslog-server port 514
-        Successfully added/updated channel syslog-netq-events
+Create the channel using the syslog server hostname (or IP address) and port. Verify the configuration.
+
+    cumulus@switch:~$ netq add notification channel syslog syslog-netq-events hostname syslog-server port 514
+    Successfully added/updated channel syslog-netq-events
         
-        cumulus@switch:~$ netq show notification channel
-        Matching config_notify records:
-        Name            Type             Severity Channel Info
-        --------------- ---------------- -------- ----------------------
-        syslog-netq-eve syslog            info     host:syslog-server
-        nts                                        port: 514
-        ```
+    cumulus@switch:~$ netq show notification channel
+    Matching config_notify records:
+    Name            Type             Severity Channel Info
+    --------------- ---------------- -------- ----------------------
+    syslog-netq-eve syslog            info     host:syslog-server
+    nts                                        port: 514
 
 ### Create a Rule
 
 Create and verify a rule that accepts all interface events. Verify the configuration.
 
-    ```
     cumulus@switch:~$ netq add notification rule all-ifs key ifname value ALL
     Successfully added/updated rule all-ifs
     
@@ -190,15 +184,13 @@ Create and verify a rule that accepts all interface events. Verify the configura
     Name            Rule Key         Rule Value
     --------------- ---------------- --------------------
     all-interfaces  ifname           ALL
-    ```
 
 ### Create a Filter
 
 Create a filter to tie the rule to the channel. Verify the configuration.
 
-For PagerDuty--
+For PagerDuty:
 
-    ```
     cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel pd-netq-events
     Successfully added/updated filter notify-all-ifs
     
@@ -207,11 +199,9 @@ For PagerDuty--
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
     notify-all-ifs  1          info             pd-netq-events   all-ifs
-    ```
 
-For Slack--
+For Slack:
 
-    ```
     cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel slk-netq-events
     Successfully added/updated filter notify-all-ifs
 
@@ -220,11 +210,9 @@ For Slack--
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
     notify-all-ifs  1          info             slk-netq-events   all-ifs
-    ```
 
-For Syslog--
+For Syslog:
 
-    ```
     cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel syslog-netq-events
     Successfully added/updated filter notify-all-ifs
 
@@ -233,7 +221,6 @@ For Syslog--
     Name            Order      Severity         Channels         Rules
     --------------- ---------- ---------------- ---------------- ----------
     notify-all-ifs  1          info             syslog-netq-events all-ifs
-    ```
 
 NetQ is now configured to send all interface events to your selected channel.
 
@@ -288,12 +275,11 @@ To configure the NetQ notifier to send notifications to PagerDuty:
 1.  Configure the following options using the `netq add notification
     channel` command:
 
-    | Option                                   | Description                                                                                                                                                        |
-    | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | Option          | Description       |
+    | --------------- | ----------------- |
     | CHANNEL\_TYPE \<text-channel-name\>      | The third-party notification channel and name; use *pagerduty* in this case.                                                                                       |
     | integration-key \<text-integration-key\> | The {{<exlink url="https://v2.developer.pagerduty.com/docs/events-api-v2" text="integration">}} key is also called the service\_key or routing\_key. The default is an empty string (""). |
     | severity                                 | (Optional) The log level to set, which can be one of *info*, *warning*, *error*, *critical* or *debug*. The severity defaults to *info*.                           |
-
 
         cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
         Successfully added/updated channel pd-netq-events
@@ -402,1926 +388,444 @@ Slack channels (as described earlier).
 There is a fixed set of valid rule keys. Values are entered as regular
 expressions and *vary according to your deployment*.
 
-<table class="confluenceTable">
-
-<thead class=" ">
-
-<tr>
-
-<td class="confluenceTh" rowspan="1" colspan="1">
-
-Service
-
-</td>
-
-<td class="confluenceTh" rowspan="1" colspan="1">
-
-Rule Key
-
-</td>
-
-<td class="confluenceTh" rowspan="1" colspan="1">
-
-Description
-
-</td>
-
-<td class="confluenceTh" rowspan="1" colspan="1">
-
-Example Rule Values
-
-</td>
-
-</tr>
-
-</thead>
-
-<tfoot class=" ">
-
-</tfoot>
-
-<tbody class=" ">
-
-<tr>
-
-<td class="confluenceTd" rowspan="9" colspan="1">
-
-BGP
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-message_type
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Network protocol or service identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-bgp
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-User-defined, text-based name for a switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf11, exit01, spine-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-peer
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-User-defined, text-based name for a peer switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server4, leaf-3, exit02, spine06
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-desc
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Text description
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
- 
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-vrf
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Name of VRF interface
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-mgmt, default
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous state of the BGP service
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Established, Failed
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current state of the BGP service
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Established, Failed
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_last_reset_time
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous time that BGP service was reset
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Apr3, 2019, 4:17 pm
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_last_reset_time
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Most recent time that BGP service was reset
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Apr8, 2019, 11:38 am
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="6" colspan="1">
-
-MLAG (CLAG)
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-message_type
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Network protocol or service identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-clag
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-User-defined, text-based name for a switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf-9, exit01, spine04
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_conflicted_bonds
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous pair of interfaces in a conflicted bond
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-swp7 swp8, swp3 swp4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_conflicted_bonds
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current pair of interfaces in a conflicted bond
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-swp11 swp12, swp23 swp24
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_state_protodownbond
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous state of the bond
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-protodown, up
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_state_protodownbond
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current state of the bond
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-protodown, up
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="5" colspan="1">
-
-ConfigDiff
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-message_type
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Network protocol or service identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-configdiff
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-User-defined, text-based name for a switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf11, exit01, spine-4
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-vni
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Virtual Network Instance identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-12, 23
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous state of the configuration file
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-created, modified
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current state of the configuration file
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-created, modified
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="7" colspan="1">
-
-EVPN
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-message_type
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Network protocol or service identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-evpn
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-User-defined, text-based name for a switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf-9, exit01, spine04
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-vni
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Virtual Network Instance identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-12, 23
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_in_kernel_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous VNI state, in kernel or not
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-true, false
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_in_kernel_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current VNI state, in kernel or not
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-true, false
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_adv_all_vni_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous VNI advertising state, advertising all or not
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-true, false
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_adv_all_vni_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current VNI advertising state, advertising all or not
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-true, false
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="3" colspan="1">
-
-Link
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-message_type
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Network protocol or service identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-link
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-User-defined, text-based name for a switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf-6, exit01, spine7
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-ifname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Software interface name
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-eth0, swp53
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="7" colspan="1">
-
-LLDP
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-message_type
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Network protocol or service identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-lldp
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-User-defined, text-based name for a switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf41, exit01, spine-5, tor-36
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-ifname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Software interface name
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-eth1, swp12
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_peer_ifname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous software interface name
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-eth1, swp12, swp27
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_peer_ifname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Curent software interface name
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-eth1, swp12, swp27
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_peer_hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous user-defined, text-based name for a peer switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf41, exit01, spine-5, tor-36
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_peer_hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current user-defined, text-based name for a peer switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf41, exit01, spine-5, tor-36
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="4" colspan="1">
-
-Node
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-message_type
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Network protocol or service identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-node
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-User-defined, text-based name for a switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf41, exit01, spine-5, tor-36
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-ntp_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current state of NTP service
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-in sync, not sync
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-db_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current state of DB
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Add, Update, Del, Dead
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="4" colspan="1">
-
-NTP
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-message_type
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Network protocol or service identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-ntp
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-User-defined, text-based name for a switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf-9, exit01, spine04
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous state of service
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-in sync, not sync
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current state of service
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-in sync, not sync
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="20" colspan="1">
-
-Port
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-message_type
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Network protocol or service identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-port
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-User-defined, text-based name for a switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf13, exit01, spine-8, tor-36
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-ifname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Interface name
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-eth0, swp14
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_speed
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous speed rating of port
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-10 G, 25 G, 40 G, unknown
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_transreceiver
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous transceiver
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-40G Base-CR4, 25G Base-CR
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_vendor_name
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous vendor name of installed port module
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Amphenol, OEM, Mellanox, Fiberstore, Finisar
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_serial_number
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous serial number of installed port module
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-MT1507VS05177, AVE1823402U, PTN1VH2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_supported_fec
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous forward error correction (FEC) support status
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-none, Base R, RS
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_advertised_fec
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous FEC advertising state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-true, false, not reported
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_fec
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous FEC capability
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-none
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_autoneg
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous activation state of auto-negotiation
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-on, off
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_speed
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current speed rating of port
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-10 G, 25 G, 40 G
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_transreceiver
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current transceiver
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-40G Base-CR4, 25G Base-CR
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_vendor_name
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current vendor name of installed port module
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Amphenol, OEM, Mellanox, Fiberstore, Finisar
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_part_number
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current part number of installed port module
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-SFP-H10GB-CU1M, MC3309130-001, 603020003
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_serial_number
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current serial number of installed port module
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-MT1507VS05177, AVE1823402U, PTN1VH2
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_supported_fec
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current FEC support status
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-none, Base R, RS
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_advertised_fec
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current FEC advertising state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-true, false
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_fec
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current FEC capability
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-none
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_autoneg
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current activation state of auto-negotiation
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-on, off
-
-</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd" rowspan="10" colspan="1">
-
-Sensors
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-sensor
-
+<table>
+<tr>
+<th>Service</th>
+<th>Rule Key</th>
+<th>Description</th>
+<th>Example Rule Values</th>
+</tr>
+<tr>
+<td rowspan="9">BGP</td>
+<td>message_type</td>
+<td>Network protocol or service identifier</td>
+<td>bgp</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf11, exit01, spine-4</td>
+</tr>
+<tr>
+<td>peer</td>
+<td>User-defined, text-based name for a peer switch or host</td>
+<td>server4, leaf-3, exit02, spine06</td>
+</tr>
+<tr>
+<td>desc
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Network protocol or service identifier
-
+<td>Text description</td>
+<td></td>
+</tr>
+<tr><td>vrf</td>
+<td>Name of VRF interface</td>
+<td>mgmt, default</td>
+</tr>
+<tr>
+<td>old_state</td>
+<td>Previous state of the BGP service</td>
+<td>Established, Failed</td>
+</tr>
+<tr>
+<td>new_state</td>
+<td>Current state of the BGP service</td>
+<td>Established, Failed</td>
+</tr>
+<tr>
+<td>old_last_reset_time</td>
+<td>Previous time that BGP service was reset</td>
+<td>Apr3, 2019, 4:17 pm</td>
+</tr>
+<tr>
+<td>new_last_reset_time</td>
+<td>Most recent time that BGP service was reset</td>
+<td>Apr8, 2019, 11:38 am</td>
+</tr>
+<tr>
+<td rowspan="6">MLAG (CLAG)</td>
+<td>message_type</td>
+<td>Network protocol or service identifier</td>
+<td>clag</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf-9, exit01, spine04</td>
+</tr>
+<tr>
+<td>old_conflicted_bonds</td>
+<td>Previous pair of interfaces in a conflicted bond</td>
+<td>swp7 swp8, swp3 swp4</td>
+</tr>
+<tr>
+<td>new_conflicted_bonds</td>
+<td>Current pair of interfaces in a conflicted bond</td>
+<td>swp11 swp12, swp23 swp24</td>
+</tr>
+<tr>
+<td>old_state_protodownbond</td>
+<td>Previous state of the bond</td>
+<td>protodown, up</td>
+</tr>
+<tr>
+<td>new_state_protodownbond</td>
+<td>Current state of the bond</td>
+<td>protodown, up</td>
+</tr>
+<tr>
+<td rowspan="5">ConfigDiff</td>
+<td>message_type</td>
+<td>Network protocol or service identifier
 </td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Fan: fan1, fan-2  
+<td>configdiff</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf11, exit01, spine-4</td>
+</tr>
+<tr>
+<td>vni</td>
+<td>Virtual Network Instance identifier</td>
+<td>12, 23</td>
+</tr>
+<tr>
+<td>old_state</td>
+<td>Previous state of the configuration file</td>
+<td>created, modified</td>
+</tr>
+<tr>
+<td>new_state</td>
+<td>Current state of the configuration file</td>
+<td>created, modified</td>
+</tr>
+<tr>
+<td rowspan="7">EVPN</td>
+<td>message_type</td>
+<td>Network protocol or service identifier</td>
+<td>evpn</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf-9, exit01, spine04</td>
+</tr>
+<tr>
+<td>vni</td>
+<td>Virtual Network Instance identifier</td>
+<td>12, 23</td>
+</tr>
+<tr>
+<td>old_in_kernel_state</td>
+<td>Previous VNI state, in kernel or not</td>
+<td>true, false</td>
+</tr>
+<tr>
+<td>new_in_kernel_state</td>
+<td>Current VNI state, in kernel or not</td>
+<td>true, false</td>
+</tr>
+<tr>
+<td>old_adv_all_vni_state</td>
+<td>Previous VNI advertising state, advertising all or not</td>
+<td>true, false</td>
+</tr>
+<tr>
+<td>new_adv_all_vni_state</td>
+<td>Current VNI advertising state, advertising all or not</td>
+<td>true, false</td></tr>
+<tr>
+<td rowspan="3">Link</td>
+<td>message_type</td>
+<td>Network protocol or service identifier</td>
+<td>link</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf-6, exit01, spine7</td>
+</tr>
+<tr>
+<td>ifname</td>
+<td>Software interface name</td>
+<td>eth0, swp53</td>
+</tr>
+<tr>
+<td rowspan="7">LLDP</td>
+<td>message_type</td>
+<td>Network protocol or service identifier</td>
+<td>lldp</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf41, exit01, spine-5, tor-36</td>
+</tr>
+<tr>
+<td>ifname</td>
+<td>Software interface name</td>
+<td>eth1, swp12</td>
+</tr>
+<tr>
+<td>old_peer_ifname</td>
+<td>Previous software interface name</td>
+<td>eth1, swp12, swp27</td>
+</tr>
+<tr>
+<td>new_peer_ifname</td>
+<td>Current software interface name</td>
+<td>eth1, swp12, swp27</td>
+</tr>
+<tr>
+<td>old_peer_hostname</td>
+<td>Previous user-defined, text-based name for a peer switch or host</td>
+<td>server02, leaf41, exit01, spine-5, tor-36</td>
+</tr>
+<tr>
+<td>new_peer_hostname</td>
+<td>Current user-defined, text-based name for a peer switch or host</td>
+<td>server02, leaf41, exit01, spine-5, tor-36</td>
+</tr>
+<tr>
+<td rowspan="4">Node</td>
+<td>message_type</td>
+<td>Network protocol or service identifier</td>
+<td>node</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf41, exit01, spine-5, tor-36</td>
+</tr>
+<tr>
+<td>ntp_state</td>
+<td>Current state of NTP service</td>
+<td>in sync, not sync</td>
+</tr>
+<tr>
+<td>db_state</td>
+<td>Current state of DB</td>
+<td>Add, Update, Del, Dead</td>
+</tr>
+<tr>
+<td rowspan="4">NTP</td>
+<td>message_type</td>
+<td>Network protocol or service identifier</td>
+<td>ntp</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf-9, exit01, spine04</td>
+</tr>
+<tr>
+<td>old_state</td>
+<td>Previous state of service</td>
+<td>in sync, not sync</td>
+</tr>
+<tr>
+<td>new_state</td>
+<td>Current state of service</td>
+<td>in sync, not sync</td>
+</tr>
+<tr>
+<td rowspan="20">Port</td>
+<td>message_type</td>
+<td>Network protocol or service identifier</td>
+<td>port</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf13, exit01, spine-8, tor-36</td>
+</tr>
+<tr>
+<td>ifname</td>
+<td>Interface name</td>
+<td>eth0, swp14</td>
+</tr>
+<tr>
+<td>old_speed</td>
+<td>Previous speed rating of port</td>
+<td>10 G, 25 G, 40 G, unknown</td>
+</tr>
+<tr>
+<td>old_transreceiver</td>
+<td>Previous transceiver</td>
+<td>40G Base-CR4, 25G Base-CR</td>
+</tr>
+<tr>
+<td>
+old_vendor_name</td>
+<td>Previous vendor name of installed port module</td>
+<td>Amphenol, OEM, Mellanox, Fiberstore, Finisar</td>
+</tr>
+<tr>
+<td>
+old_serial_number</td>
+<td>Previous serial number of installed port module</td>
+<td>MT1507VS05177, AVE1823402U, PTN1VH2</td>
+</tr>
+<tr>
+<td>old_supported_fec</td>
+<td>Previous forward error correction (FEC) support status</td>
+<td>none, Base R, RS</td>
+</tr>
+<tr>
+<td>old_advertised_fec</td>
+<td>Previous FEC advertising state</td>
+<td>true, false, not reported</td>
+</tr>
+<tr>
+<td>old_fec</td>
+<td>Previous FEC capability</td>
+<td>none</td>
+</tr>
+<tr>
+<td>old_autoneg</td>
+<td>Previous activation state of auto-negotiation</td>
+<td>on, off</td>
+</tr>
+<tr>
+<td>new_speed</td>
+<td>Current speed rating of port</td>
+<td>10 G, 25 G, 40 G</td>
+</tr>
+<tr>
+<td>new_transreceiver</td>
+<td>Current transceiver</td>
+<td>40G Base-CR4, 25G Base-CR</td>
+</tr>
+<tr>
+<td>new_vendor_name</td>
+<td>Current vendor name of installed port module</td>
+<td>Amphenol, OEM, Mellanox, Fiberstore, Finisar</td>
+</tr>
+<tr>
+<td>new_part_number</td>
+<td>Current part number of installed port module</td>
+<td>SFP-H10GB-CU1M, MC3309130-001, 603020003</td>
+</tr>
+<tr>
+<td>new_serial_number</td>
+<td>Current serial number of installed port module</td>
+<td>MT1507VS05177, AVE1823402U, PTN1VH2</td>
+</tr>
+<tr>
+<td>new_supported_fec</td>
+<td>Current FEC support status</td>
+<td>none, Base R, RS</td>
+</tr>
+<tr>
+<td>new_advertised_fec</td>
+<td>Current FEC advertising state</td>
+<td>true, false</td>
+</tr>
+<tr>
+<td>new_fec</td>
+<td>Current FEC capability</td>
+<td>none</td>
+</tr>
+<tr>
+<td>new_autoneg</td>
+<td>Current activation state of auto-negotiation</td>
+<td>on, off</td>
+</tr>
+<tr>
+<td rowspan="10">Sensors</td>
+<td>sensor</td>
+<td>Network protocol or service identifier</td>
+<td>Fan: fan1, fan-2  
 Power Supply Unit: psu1, psu2  
-Temperature: psu1temp1, temp2
-
-</td>
-
+Temperature: psu1temp1, temp2</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-User-defined, text-based name for a switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf-26, exit01, spine2-4
-
-</td>
-
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf-26, exit01, spine2-4</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous state of a fan, power supply unit, or thermal sensor
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Fan: ok, absent, bad  
+<td>old_state</td>
+<td>Previous state of a fan, power supply unit, or thermal sensor</td>
+<td>Fan: ok, absent, bad  
 PSU: ok, absent, bad  
-Temp: ok, busted, bad, critical
-
-</td>
-
+Temp: ok, busted, bad, critical</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current state of a fan, power supply unit, or thermal sensor
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Fan: ok, absent, bad  
+<td>new_state</td>
+<td>Current state of a fan, power supply unit, or thermal sensor</td>
+<td>Fan: ok, absent, bad  
 PSU: ok, absent, bad  
-Temp: ok, busted, bad, critical
-
-</td>
-
+Temp: ok, busted, bad, critical</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_s_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous state of a fan or power supply unit.
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Fan: up, down  
-PSU: up, down
-
-</td>
-
+<td>old_s_state</td>
+<td>Previous state of a fan or power supply unit.</td>
+<td>Fan: up, down  
+PSU: up, down</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_s_state
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current state of a fan or power supply unit.
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Fan: up, down  
-PSU: up, down
-
-</td>
-
+<td>new_s_state</td>
+<td>Current state of a fan or power supply unit.</td>
+<td>Fan: up, down  
+PSU: up, down</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_s_max
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current maximum temperature threshold value
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Temp: 110
-
-</td>
-
+<td>new_s_max</td>
+<td>Current maximum temperature threshold value</td>
+<td>Temp: 110</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_s_crit
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current critical high temperature threshold value
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Temp: 85
-
-</td>
-
+<td>new_s_crit</td>
+<td>Current critical high temperature threshold value</td>
+<td>Temp: 85</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_s_lcrit
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current critical low temperature threshold value
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Temp: -25
-
-</td>
-
+<td>new_s_lcrit</td>
+<td>Current critical low temperature threshold value</td>
+<td>Temp: -25</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_s_min
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current minimum temperature threshold value
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Temp: -50
-
-</td>
-
+<td>new_s_min</td>
+<td>Current minimum temperature threshold value</td>
+<td>Temp: -50</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="7" colspan="1">
-
-Services
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-message_type
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Network protocol or service identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-services
-
-</td>
-
+<td rowspan="7">Services</td>
+<td>message_type</td>
+<td>Network protocol or service identifier</td>
+<td>services</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-hostname
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-User-defined, text-based name for a switch or host
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-server02, leaf03, exit01, spine-8
-
-</td>
-
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf03, exit01, spine-8</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-name
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Name of service
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-clagd, lldpd, ssh, ntp, netqd, net-agent
-
-</td>
-
+<td>name</td>
+<td>Name of service</td>
+<td>clagd, lldpd, ssh, ntp, netqd, net-agent</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_pid
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous process or service identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-12323, 52941
-
-</td>
-
+<td>old_pid</td>
+<td>Previous process or service identifier</td>
+<td>12323, 52941</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_pid
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current process or service identifier
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-12323, 52941
-
-</td>
-
+<td>new_pid</td>
+<td>Current process or service identifier</td>
+<td>12323, 52941</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-old_status
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Previous status of service
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-up, down
-
-</td>
-
+<td>old_status</td>
+<td>Previous status of service</td>
+<td>up, down</td>
 </tr>
-
 <tr>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-new_status
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-Current status of service
-
-</td>
-
-<td class="confluenceTd" rowspan="1" colspan="1">
-
-up, down
-
-</td>
-
+<td>new_status</td>
+<td>Current status of service</td>
+<td>up, down</td>
 </tr>
-
-</tbody>
-
 </table>
 
 {{%notice note%}}

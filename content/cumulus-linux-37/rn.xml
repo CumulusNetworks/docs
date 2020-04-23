@@ -192,12 +192,6 @@ codecs.</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-28657</td>
-<td><p>The BFD session to the NSX controller sometimes remains down.</p></td>
-<td>3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28656</td>
 <td><p>In OVSDB VLAN-aware mode, removing a VTEP binding on the NSX controller fails to clean up all interfaces associated with the logical switch.</p></td>
 <td>3.7.12</td>

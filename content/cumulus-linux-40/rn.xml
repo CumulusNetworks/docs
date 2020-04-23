@@ -36,7 +36,7 @@ To work around this issue, when you manually configure the rd or route-target fo
 </tr>
 <tr>
 <td>CM-29296</td>
-<td><p>The following vulnerability has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities have been announced in git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.<br/>
 Vulnerable: &lt;= 2.20.1-2+deb10u1 (CVE-2020-5260) &lt;= 2.20.1-2+deb10u2 (CVE-2020-11008)<br/>
@@ -278,12 +278,6 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <td><p>The OVSDB log contains duplicate MAC addresses with the well-known BFD MAC address (00:23:20:00:00:01). This is mainly cosmetic, but clutters the log.</p></td>
 <td>3.7.12-4.0.0</td>
 <td>4.1.0-4.1.1</td>
-</tr>
-<tr>
-<td>CM-28657</td>
-<td><p>The BFD session to the NSX controller sometimes remains down.</p></td>
-<td>3.7.12, 4.0.0-4.1.1</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-28656</td>

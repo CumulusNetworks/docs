@@ -23,7 +23,7 @@ Fixed: 1.1.1d-0+deb10u3</p></td>
 </tr>
 <tr>
 <td>CM-29319</td>
-<td><p>When you configure an RD or RT with NCLU, you see duplicate VNI stanzas in the /etc/frr/frr.conf file. </p></td>
+<td><p>When you configure an RD or RT with NCLU, you see duplicate VNI stanzas in the /etc/frr/frr.conf file. To work around this issue, you must manually edit /etc/frr/frr.conf to have advertise-all-vni defined before the RD/RT config within the l2vpn EVPN address-family and then reload the FRR service with &apos;sudo systemctl reload frr&apos;</p></td>
 <td>4.1.0-4.1.1</td>
 <td></td>
 </tr>
@@ -42,7 +42,7 @@ To work around this issue, when you manually configure the rd or route-target fo
 </tr>
 <tr>
 <td>CM-29296</td>
-<td><p>The following vulnerability has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities have been announced in git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.<br/>
 Vulnerable: &lt;= 2.20.1-2+deb10u1 (CVE-2020-5260) &lt;= 2.20.1-2+deb10u2 (CVE-2020-11008)<br/>
@@ -216,12 +216,6 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <td>CM-28682</td>
 <td><p>On the Mellanox Spectrum switch in an EVPN symmetric configuration with MLAG, simultaneously shutting down the layer 3 interfaces that serve as uplinks to the VXLAN fabric might result in traffic loss of up to 15 seconds.</p></td>
 <td>4.1.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28657</td>
-<td><p>The BFD session to the NSX controller sometimes remains down.</p></td>
-<td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1356,7 +1350,7 @@ Fixed: 1.1.1d-0+deb10u3</p></td>
 </tr>
 <tr>
 <td>CM-29319</td>
-<td><p>When you configure an RD or RT with NCLU, you see duplicate VNI stanzas in the /etc/frr/frr.conf file. </p></td>
+<td><p>When you configure an RD or RT with NCLU, you see duplicate VNI stanzas in the /etc/frr/frr.conf file. To work around this issue, you must manually edit /etc/frr/frr.conf to have advertise-all-vni defined before the RD/RT config within the l2vpn EVPN address-family and then reload the FRR service with &apos;sudo systemctl reload frr&apos;</p></td>
 <td>4.1.0-4.1.1</td>
 <td></td>
 </tr>
@@ -1375,7 +1369,7 @@ To work around this issue, when you manually configure the rd or route-target fo
 </tr>
 <tr>
 <td>CM-29296</td>
-<td><p>The following vulnerability has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities have been announced in git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.<br/>
 Vulnerable: &lt;= 2.20.1-2+deb10u1 (CVE-2020-5260) &lt;= 2.20.1-2+deb10u2 (CVE-2020-11008)<br/>
@@ -1606,12 +1600,6 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <td>CM-28682</td>
 <td><p>On the Mellanox Spectrum switch in an EVPN symmetric configuration with MLAG, simultaneously shutting down the layer 3 interfaces that serve as uplinks to the VXLAN fabric might result in traffic loss of up to 15 seconds.</p></td>
 <td>4.1.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28657</td>
-<td><p>The BFD session to the NSX controller sometimes remains down.</p></td>
-<td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>

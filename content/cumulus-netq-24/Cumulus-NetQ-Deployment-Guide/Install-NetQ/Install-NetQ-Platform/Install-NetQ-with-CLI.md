@@ -2,10 +2,6 @@
 title: Install NetQ Using the CLI
 author: Cumulus Networks
 weight: 100
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
 toc: 5
 ---
 You can now install the NetQ software using the NetQ CLI.
@@ -110,7 +106,7 @@ You can specify the IP address instead of the interface name here: use <code>ip-
     ```
     </details>
     <details><summary>For Cloud, Server Cluster Deployment</summary>
-    
+
     Run the following commands on your *master* NetQ Cloud Appliance with the `config-key` sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account."
 
     ```

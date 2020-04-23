@@ -2,10 +2,6 @@
 title: Install NetQ Using the Admin UI
 author: Cumulus Networks
 weight: 95
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
 toc: 5
 ---
 You can now install the NetQ software using the Admin UI.

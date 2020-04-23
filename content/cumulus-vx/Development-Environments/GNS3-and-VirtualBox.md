@@ -234,7 +234,7 @@ Now the Ubuntu machines can Ping each other!
 >-   Downloaded GNS3, GNS3 VM, and a Type-2 hypervisor VirtualBox
 >-   Configured nested virtualization between GNS3 VM and VirtualBox to be used within GNS3
 >-   Imported a Cumulus VX virtual machine within GNS3
->- Configured the Cumulus VX virtual machine: 2 switch ports & a bridge in order to for two hosts to ping each other
+>-   Configured the Cumulus VX virtual machine: 2 switch ports & a bridge in order to for two hosts to ping each other
 
 
 

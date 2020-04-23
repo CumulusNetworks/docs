@@ -61,7 +61,7 @@ Now GNS3 will connect with VirtualBox and the GNS3 VM will be started within Vir
 
 ![booting](/images/cumulus-vx/GNS3_VirtualBox/4_booting.png)
 
-![booting](/images/cumulus-vx/GNS3_VirtualBox/5_gns3CommunicareWithVirtualBox.png)
+![booting](/images/cumulus-vx/GNS3_VirtualBox/5_gns3CommunicateWithVirtualBox.png)
 
 6. **Possible Errors:**
     
@@ -73,51 +73,50 @@ Close and re-Open GNS3. Go through the same GNS3 VM Preferences settings to get 
 
 -   If the error mentions eth0 or DHCP, you have to Start the VM within VirtualBox and make changes to the network settings. Open VirtualBox, select the GNS3 VM, click Start to start the VM. On the screen mentioning eth0 (like below), hit Enter for OK. Your mouse MUST be within the grey/gray message box for the VM to respond to your keyboard clicks.
 
-![eth0_Error](/images/cumulus-vx/GNS3_VirtualBox/Error4_etho0.png)
+![eth0_Error](/images/cumulus-vx/GNS3_VirtualBox/Error4_eth0.png)
 
 We need to change the Network settings. While the mouse is within the grey/gray area, use your keyboard to scroll down and Highlight Network, hit Enter.
 
-(![macAddressinBVox](/images/cumulus-vx/GNS3_VirtualBox/macAddress.png))
+![NetworkSettings](/images/cumulus-vx/GNS3_VirtualBox/7_networkSettings.png))
 
 “The server will reboot at the end of the process. Continue?”
 
 Yes.
 
-~~pic11~~
+![server](/images/cumulus-vx/GNS3_VirtualBox/8_server.png)
 
 A yaml file appears. It shows network interface configuration, and the lines are commented. Delete the pound symbols (#) to uncomment the lines to enable eth0 and allow DHCP. Hit **[Ctrl+O]** to save the file > Hit **Enter** to save the name > Hit **[Ctrl-X]** to exit the configuration file.
 
-~~pic12~~
+![yaml](/images/cumulus-vx/GNS3_VirtualBox/7_yaml.png)
 
 Close the VM & Start it again. If “True” is not shown for “KVM support available”, the VM settings in VirtualBox need to be changed to enable Virtualization.
 
-~~pic13~~
+![KVM](/images/cumulus-vx/GNS3_VirtualBox/9_KVM_yes.png)
 
 Close the window, in VirtualBox, highlight the GNS3 VM, select **Settings** icon > **System** > **Processor** > click the Enable Nested VT-x/AMD-V > **OK**
 
-~~pic14~~
+![virtualization](/images/cumulus-vx/GNS3_VirtualBox/6_virtualization.png)
 
 >If by chance you still cannot get GNS3, GNS3 VM, and VirtualBox to work together,, try [version 2.2.3](https://github.com/GNS3/gns3-gui/releases/tag/v2.2.3) of GNS3 & GNS3 VM with VirtualBox v6.1.  
       
     
-
-~~pic15~~
+![v2.2.3](/images/cumulus-vx/GNS3_VirtualBox/0_version2.2.3.png)
 
 _Hopefully_ there will be no more errors. Close and re-Open both VirtualBox and GNS3.
 
 Try again integrating the GNS3 GUI with the GNS3 VM: Go to **Edit** > **Preferences** > **GNS3 VM**. Click the Enable the GNS3 VM box. In the Virtualization engine section, select VirtualBox. In the Settings select GNS3 VM. Change the vCPUs and RAM fields if desired. Click **Apply**, then **OK**.
 
-~~pic16~~
+![preferences](/images/cumulus-vx/GNS3_VirtualBox/3_vmPreferences.png)
 
 With the errors gone, GNS3 should be able to communicate with VirtualBox and GNS3 VM running within VirtualBox.
 
-~~pic17~~
+![gns3VM](/images/cumulus-vx/GNS3_VirtualBox/10_communication.png)
 
 7. Download & Install Cumulus VX Appliance from GNS3
 
 Go to GNS3 site, click Marketplace, and Search for Cumulus VX Appliances or just click [here](https://gns3.com/marketplace/appliance/cumulus-vx).
 
-~~pic18~~
+![cumulusappliance](/images/cumulus-vx/GNS3_regular/6_gns3_cumulusvx.png)
 
 8. Download & Install Cumulus VX
 
@@ -125,23 +124,27 @@ Open GNS3, **File** > **Import Appliance** > select the downloaded Cumulus VS ap
 
 Select the default settings for the next from prompts until reaching the “Required files” prompt.
 
-~~pic19~~
+![downloadAppliance](/images/cumulus-vx/GNS3_regular/8_downloadAppliance.png)
 
 A list of Cumulus VX versions and files will be shown. Version 3.7.6 will be used in this demo..
 
 Navigate to the Cumulus VX download page [here](https://cumulusnetworks.com/products/cumulus-vx/download/). Select the appropriate version, and download that .qcow2 file.
 
-~~pic20&21~~
+![cumulusVX](/images/cumulus-vx/GNS3_regular/9_downloadAppliance.png)
+![qcow2](/images/cumulus-vx/GNS3_regular/10_downloadAppliance.png)
 
 This download should take a few minutes.
 
 Back to the appliance installation in GNS3, click Import and import the .qcow2 download. The Status should go from “Missing files” to “Ready to Install”. Highlight the file, click Next, & click Yes to begin the install.
 
+![import](/images/cumulus-vx/GNS3_regular/11_import.png)
+![downloadAppliance](/images/cumulus-vx/GNS3_regular/11_downloadAppliance.png)
+![downloadAppliance](/images/cumulus-vx/GNS3_regular/12_downloadAppliance.png)
 ~~pic22,23,24~
 
 ***Take note of the username and password*** & click **Finish**.
-
-~~pic25~~
+![
+![gns3OVAfile](/images/cumulus-vx/GNS3_regular/3_gns3OVAfile.png)
 
 9. So far, the nested virtualization of GNS3 VM into Workstation Player to be used with the GNS3 GUI is complete, and a Cumulus VX appliance has been imported into GNS3. Next task, configuring Cumulus VX!!
  

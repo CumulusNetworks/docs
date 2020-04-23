@@ -19,19 +19,21 @@ Option 2: Running Locally within GNS3 (no nested virtualization)
 
 # **Nested Virtualization of GNS3 VM within VirtualBox**
 
-```This demo was done on a Windows 10 device. If your machine isn't Windows, GNS3’s site has Windows, MacOSX, & Linux [installation instructions](https://docs.gns3.com).
+```
+This demo was done on a Windows 10 device. If your machine isn't Windows, GNS3’s site has Windows, MacOSX, & Linux [installation instructions](https://docs.gns3.com).
 ```
 
 1.  Download & Install GNS3
 
 Go to the [GNS3 site](https://www.gns3.com/) and click Free Download. Sign up or LogIn to your account. Run the .exe, during installation use all the default settings, for simplicity of this download. (GNS3 will download several other programs)
 ![Download GNS3](/images/cumulus-vx/GNS3_regular/1_gns3Download_chooseComponents.png)
->This demo was done on a Windows 10 device. If your machine isn't Windows, GNS3’s site has Windows, MacOSX, & Linux [installation instructions](https://docs.gns3.com).
 
 After installation, open GNS3 & hit **Cancel** on the Setup Wizard. 
+
 ![CancelSetupWizard](/images/cumulus-vx/GNS3_regular/2_gns3Download_hitCancel.png)
 
 On the right side panel under Servers Summary, the green button means successful download of the GNS3 GUI; the local GNS3 server is running. If there’s no green button, it may help to restart your machine and restart GNS3. (If still no luck, check your antivirus and your firewall.)
+
 ![serverSummary](/images/cumulus-vx/GNS3_regular/2_server_summary.png)
 
 2.  Download & Install the GNS3 VM (OVA file) for Virtualbox    
@@ -40,9 +42,7 @@ The GNS3 VM will run within VirtualBox (Type 2 Hypervisor) for nested virtualiza
 
 ![vmDownload](/images/cumulus-vx/GNS3_regular/2_vmDownload.png)
 
-3. Download & Install VirtualBox
-
-[VirtualBox](https://www.virtualbox.org/)
+3. Download & Install [VirtualBox](https://www.virtualbox.org/)
 
 4. Import the GNS3 VM into VirtualBox
 
@@ -52,7 +52,8 @@ Extract the files from the GNS3.VM.VMware download from earlier, which contains 
 
 5. So far GNS3 GUI, a type-2 hypervisor (VirtualBox), and GNS3 VM have been downloaded. Now to integrate the GNS3 GUI with the GNS3 VM.
 
->In the past, VirtualBox nested virtualization was only allowed with an AMD processor. As of late 2019, VirtualBox nested virtualization is allowed with both AMD & Intel processors!
+```In the past, VirtualBox nested virtualization was only allowed with an AMD processor. As of late 2019, VirtualBox nested virtualization is allowed with both AMD & Intel processors!
+```
 
 Open GNS3. New Project prompt will appear; name it whatever you’d like. Now we need to integrate the GNS3 GUI with the GNS3 VM. Go to Edit > Preferences > GNS3 VM. Click the Enable the GNS3 VM box. In the Virtualization engine section, select VirtualBox. In the Settings select GNS3 VM. Change the vCPUs and RAM fields if desired. Click Apply, then OK.
 
@@ -130,12 +131,11 @@ Select the default settings for the next from prompts until reaching the “Requ
 
 A list of Cumulus VX versions and files will be shown. Version 3.7.6 will be used in this demo..
 
-Navigate to the Cumulus VX download page [here](https://cumulusnetworks.com/products/cumulus-vx/download/). Select the appropriate version, and download that .qcow2 file.
+Navigate to the Cumulus VX download page [here](https://cumulusnetworks.com/products/cumulus-vx/download/). Select the appropriate version, and download that .qcow2 file. This download should take a few minutes.
 
 ![cumulusVX](/images/cumulus-vx/GNS3_regular/9_downloadAppliance.png)
 ![qcow2](/images/cumulus-vx/GNS3_regular/10_downloadAppliance.png)
 
-This download should take a few minutes.
 
 Back to the appliance installation in GNS3, click Import and import the .qcow2 download. The Status should go from “Missing files” to “Ready to Install”. Highlight the file, click Next, & click Yes to begin the install.
 
@@ -152,8 +152,8 @@ Back to the appliance installation in GNS3, click Import and import the .qcow2 d
 
 ![BrowseAppliances](/images/cumulus-vx/GNS3_regular/14_useTheAppliance.png)
 
--   If this is the reader’s first time using GNS3, it’s recommended to read the [“Your First GNS3 Topology”](https://docs.gns3.com/1wr2j2jEfX6ihyzpXzC23wQ8ymHzID4K3Hn99-qqshfg/index.html) doc on GNS3’s site.
-    
+```If this is the reader’s first time using GNS3, it’s recommended to read the [“Your First GNS3 Topology”](https://docs.gns3.com/1wr2j2jEfX6ihyzpXzC23wQ8ymHzID4K3Hn99-qqshfg/index.html) doc on GNS3’s site.
+```    
 
 Here’s a simple topology. Let’s configure the devices so the end hosts can ping each other.
 
@@ -172,6 +172,7 @@ Start all the nodes, and open all the consoles.
 
 >The console sessions should open up using Solar-PuTTY (during download of GNS3, if you OK’ed all the default settings, Solar-PuTTY was downloaded also). The console sessions for the Cumulus devices take a few moments.
 
+
 Right click on a UbuntuGuest, select Edit config, and change the network values of the interface. Do this to both hosts.
 
 ![vpcs](/images/cumulus-vx/GNS3_regular/18_VPCS_ip.png)
@@ -182,6 +183,7 @@ For the Cumulus devices: Remember the password and username from earlier? Use th
 
 >***Username: cumulus  
 Password: CumulusLinux!***
+
 
 Take note that `whoami` shows the username of the Cumulus devices is cumulus; `sudo` will be needed to run privileged commands in the Cumulus devices.
 
@@ -197,10 +199,10 @@ Run `ifconfig` & there’s now an ip address assigned to eth0.
 
 ![ifconfig](/images/cumulus-vx/GNS3_regular/20_root_ifconfig.png)
 
+```
 The rest of this demo will be following the Configure Switch Ports steps from the [Cumulus Linux v3.7 ‘Quick Start Guide’](https://docs.cumulusnetworks.com/cumulus-linux-37/Quick-Start-Guide/) to configure swp1 and swp2.  
+```
   
-  
-
 Edit the /etc/network/interfaces file; remember to use `sudo` in order to edit the network interfaces.
 
 `auto swp1`  
@@ -215,6 +217,7 @@ Edit the /etc/network/interfaces file; remember to use `sudo` in order to edit t
 ![ifreload](/images/cumulus-vx/GNS3_regular/22_ifreload.png)
 
 Let’s add swp1 and swp2 to a bridge, reload the configuration, view the bridge settings, & display the bridge interface.
+
 `auto bridge`
 `iface bridge`
 `bridge-ports swp1 swp2`

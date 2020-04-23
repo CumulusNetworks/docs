@@ -23,7 +23,7 @@ Option 2: Running Locally within GNS3 (no nested virtualization)
 1.  Download & Install GNS3
 
 Go to the [GNS3 site](https://www.gns3.com/) and click Free Download. Sign up or LogIn to your account. Run the .exe, during installation use all the default settings, for simplicity of this download. (GNS3 will download several other programs)
-![Download GNS3](/images/cumulus-vx/1_gns3Download.png)
+![Download GNS3](/images/cumulus-vx/GNS3_regular/1_gns3Download_chooseComponents.png)
 >This demo was done on a Windows 10 device. If your machine isn't Windows, GNS3’s site has Windows, MacOSX, & Linux [installation instructions](https://docs.gns3.com).
 
 After installation, open GNS3 & hit **Cancel** on the Setup Wizard. 
@@ -231,6 +231,6 @@ Now the Ubuntu machines can Ping each other!
 
 
 
-# **Using Cumulus VX Locally within GNS3**
+# **Running Locally within GNS3 (no nested virtualization)**
 
 

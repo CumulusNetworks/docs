@@ -2,10 +2,6 @@
 title: Set Up Your VMware Virtual Machine for an On-premises Server Cluster
 author: Cumulus Networks
 weight: 78
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
 toc: 5
 bookhidden: true
 ---
@@ -52,7 +48,7 @@ Make a note of the private IP address you assign to the worker node. It is neede
 11. Verify the worker node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="cloud">}}
-    
+
 12. Run the Bootstrap CLI on the worker node. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap server="cluster">}}

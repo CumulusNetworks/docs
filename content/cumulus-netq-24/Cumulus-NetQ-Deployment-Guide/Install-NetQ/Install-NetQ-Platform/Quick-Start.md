@@ -2,10 +2,6 @@
 title: Install NetQ Quick Start
 author: Cumulus Networks
 weight: 110
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
 toc: 5
 ---
 If you have previously installed NetQ 2.4.1 or know how you would answer the key installation questions, you can go directly to the instructions for those choices using the table here.

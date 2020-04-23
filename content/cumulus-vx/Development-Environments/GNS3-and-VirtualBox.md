@@ -19,6 +19,8 @@ Option 2: Running Locally within GNS3 (no nested virtualization)
 
 # **Nested Virtualization of GNS3 VM within VirtualBox**
 
+```This demo was done on a Windows 10 device. If your machine isn't Windows, GNS3’s site has Windows, MacOSX, & Linux [installation instructions](https://docs.gns3.com).
+```
 
 1.  Download & Install GNS3
 
@@ -27,15 +29,15 @@ Go to the [GNS3 site](https://www.gns3.com/) and click Free Download. Sign up or
 >This demo was done on a Windows 10 device. If your machine isn't Windows, GNS3’s site has Windows, MacOSX, & Linux [installation instructions](https://docs.gns3.com).
 
 After installation, open GNS3 & hit **Cancel** on the Setup Wizard. 
-~~pic1~~
+![CancelSetupWizard](/images/cumulus-vx/GNS3_regular/2_gns3Download_hitCancel.png)
 
 On the right side panel under Servers Summary, the green button means successful download of the GNS3 GUI; the local GNS3 server is running. If there’s no green button, it may help to restart your machine and restart GNS3. (If still no luck, check your antivirus and your firewall.)
-~~pic2~~
+![serverSummary](/images/cumulus-vx/GNS3_regular/2_server_summary.png)
 
 2.  Download & Install the GNS3 VM (OVA file) for Virtualbox    
 
 The GNS3 VM will run within VirtualBox (Type 2 Hypervisor) for nested virtualization. Download & Install the GNS3 VM [zip file](https://www.gns3.com/software/download-vm). The GNS3 GUI and the GNS3 VM must be using the same version.
-~~pic3~~
+![vmDownload](/images/cumulus-vx/GNS3_regular/2_vmDownload.png)
 
 3. Download & Install VirtualBox
 
@@ -45,7 +47,7 @@ The GNS3 VM will run within VirtualBox (Type 2 Hypervisor) for nested virtualiza
 
 Extract the files from the GNS3.VM.VMware download from earlier, which contains the OVA file. Open VirtualBox, click **File** > **Import Appliance** > **Next**. Select the GNS3 VM OVA file that was downloaded earlier. Leave everything at default and Click Import to import the GNS3 VM into VirtualBox.
 
-~~pic4~~
+![gns3OVAfile](/images/cumulus-vx/GNS3_regular/3_gns3OVAfile.png)
 
 5. So far GNS3 GUI, a type-2 hypervisor (VirtualBox), and GNS3 VM have been downloaded. Now to integrate the GNS3 GUI with the GNS3 VM.
 
@@ -53,27 +55,29 @@ Extract the files from the GNS3.VM.VMware download from earlier, which contains 
 
 Open GNS3. New Project prompt will appear; name it whatever you’d like. Now we need to integrate the GNS3 GUI with the GNS3 VM. Go to Edit > Preferences > GNS3 VM. Click the Enable the GNS3 VM box. In the Virtualization engine section, select VirtualBox. In the Settings select GNS3 VM. Change the vCPUs and RAM fields if desired. Click Apply, then OK.
 
-~~pic5~~
+![vmPreferences](/images/cumulus-vx/GNS3_VirtualBox/3_vmPreferences.png)
 
 Now GNS3 will connect with VirtualBox and the GNS3 VM will be started within VirtualBox! The GNS3 VM will automatically start booting up with in VirtualBox.
 
-~~pics6&7~~
+![booting](/images/cumulus-vx/GNS3_VirtualBox/4_booting.png)
+
+![booting](/images/cumulus-vx/GNS3_VirtualBox/5_gns3CommunicareWithVirtualBox.png)
 
 6. **Possible Errors:**
     
 If there’s no success in getting Virtualbox and GNS3 to communicate, you may get several errors including: Ethernet Adapter, eth0, & DHCP. Pay close attention to the error messages.
 - If the error mentions “VirtualBox Host-Only Ethernet Adapter #2”, go to VirtualBox and make sure the Adapter for your GNS3 VM also says ‘VirtualBox Host-Only Ethernet Adapter #2’ under the Network section. If not, click on it and make the changes. 
 
-~~pic8~~
+![errors](/images/cumulus-vx/GNS3_VirtualBox/4_Error_Adapter2.png)
 Close and re-Open GNS3. Go through the same GNS3 VM Preferences settings to get GNS3 to communicate with VirtualBox, and hopefully there are no more errors.
 
 -   If the error mentions eth0 or DHCP, you have to Start the VM within VirtualBox and make changes to the network settings. Open VirtualBox, select the GNS3 VM, click Start to start the VM. On the screen mentioning eth0 (like below), hit Enter for OK. Your mouse MUST be within the grey/gray message box for the VM to respond to your keyboard clicks.
 
-~~pic9~~
+![eth0_Error](/images/cumulus-vx/GNS3_VirtualBox/Error4_etho0.png)
 
 We need to change the Network settings. While the mouse is within the grey/gray area, use your keyboard to scroll down and Highlight Network, hit Enter.
 
-~~pic10~~
+(![macAddressinBVox](/images/cumulus-vx/GNS3_VirtualBox/macAddress.png))
 
 “The server will reboot at the end of the process. Continue?”
 

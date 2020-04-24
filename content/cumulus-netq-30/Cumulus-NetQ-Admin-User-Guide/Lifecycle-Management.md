@@ -1,5 +1,5 @@
 ---
-title: l Management
+title: Lifecycle Management
 author: Cumulus Networks
 weight: 640
 aliases:

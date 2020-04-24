@@ -258,4 +258,135 @@ Now the Ubuntu machines can Ping each other!
 
 # **Running Locally within GNS3 (no nested virtualization)**
 
+{{%notice note%}}
+
+This demo was done on a Windows 10 device. If your machine isn't Windows, GNS3’s site has Windows, MacOSX, & Linux [installation instructions](https://docs.gns3.com).
+
+{{%/notice%}}
+
+#### 1. Download & Install [VirtualBox](https://www.virtualbox.org/)
+
+#### 2. Download and Install the Cumulus VX OVA image(s) for VirtualBox
+
+Navigate to the Cumulus VX [download page](https://cumulusnetworks.com/products/cumulus-vx/download/). Select the appropriate version, and download that VirtualBox OVA image. Version 3.7.6 will be used in this demo.
+
+![CumulusVersion](/images/cumulus-vx/GNS3_regular/9_downloadAppliance.png)
+
+![VboxOVA](/images/cumulus-vx/GNS3_VirtualBox/11_VboxOVA.png)
+
+#### 3. Create a Cumulus VX virtual machine in VirtualBox & Edit Settings
+
+Open VirtualBox. **File** > **Import Appliance** > click the Folder icon at the end of “File:“ > select the Cumulus VX OVA file.
+
+![importOVA](/images/cumulus-vx/GNS3_VirtualBox/12_importOVA.png)
+
+Click **Next**. Before importing, double click the Name field & change the name to ***CumulusVX-leaf1***.
+
+![changeVMname](/images/cumulus-vx/GNS3_VirtualBox/12_changeFileName.png)
+
+Click **Import**.
+
+Import and Create 3 additional Cumulus VX VMs:
+1) Right click the created ***CumulsVX-leaf1*** VM > select **Clone**  
+2) Change the name of the VM to ***CumulusVX-leaf2*** > **Next**  
+3) Select **Full Clone** > **Clone**  
+4) Repeat steps for 2 additional VMs:
+***CumulusVX-spine1***
+***CumulusVX-spine2***
+
+How to change Interface MAC Address in VirtualBox: Highlight the GNS3 VM > **Settings** > **Network**> select a Network Adapter > **Advanced** > from there view or change the MAC Address > **OK**
+
+![macAddy](/images/cumulus-vx/GNS3_VirtualBox/macAddress.png)
+
+{{%notice note%}}
+
+Refer to the Next Steps section [here](https://docs.cumulusnetworks.com/cumulus-vx/Getting-Started/VirtualBox/) to learn to configure the network interfaces and routing.
+
+{{%/notice%}}
+
+#### 4. Download & Install GNS3
+
+Go to the [GNS3 site](https://www.gns3.com/) and click Free Download. Sign up or LogIn to your account. Run the .exe, during installation use all the default settings, for simplicity of this download. (GNS3 will download several other programs)
+
+![gns3Download](/images/cumulus-vx/GNS3_regular/1_gns3Download_chooseComponents.png)
+
+After installation, open GNS3 & hit **Cancel** on the Setup Wizard. 
+
+![setupWizard](/images/cumulus-vx/GNS3_regular/2_gns3Download_hitCancel.png)
+
+On the right side panel under Servers Summary, the green button means successful download of the GNS3 GUI; the local GNS3 server is running. If there’s no green button, it may help to restart your machine and restart GNS3. (If still no luck, check your antivirus and your firewall.)
+
+![serverSummary](/images/cumulus-vx/GNS3_regular/2_server_summary.png)
+
+#### 5. Add Cumulus VX VMs in GNS3
+
+Open GNS3 > **Edit** > **Preferences** > **VirtualBox VMs** > **New** > Run this Virtual Box VM on my local computer > **Next** > select the ***CumulsVX-leaf1*** VM from the VM list > **Finish**
+
+![newVMs](/images/cumulus-vx/GNS3_VirtualBox/14_NewVMs.png)
+
+![newVMs](/images/cumulus-vx/GNS3_VirtualBox/15_NewVMs.png)
+
+Edit the VM templates that were added: in the same Preferences prompt, highlight ***CumulusVX-leaf1*** > **Edit** > **Network** > **Adapters**: 4 > check the ‘Allow GNS3 to use any configured VirtualBox adapter’ box > **OK**  
+(In the Network tab, Paravirtualized Network or whatever is default can be used for Type)
+
+![newVMS](/images/cumulus-vx/GNS3_VirtualBox/16_NewVMs.png)
+
+Repeat these Edit Preferences steps for ***CumulusVX-leaf2***, ***Cumulus VX-spine1***, & ***Cumulus VX-spine2***
+
+#### 6. Configuring & Using Cumulus VX in GNS3!
+
+In GNS3, click **Browse End Devices** icon, and the imported Cumulus VX virtual machines should appear.
+
+![endDevices](/images/cumulus-vx/GNS3_VirtualBox/18_endDevices.png)
+
+{{%notice note%}}
+
+If this is the reader’s first time using GNS3, it’s recommended to read the [“Your First GNS3 Topology”](https://docs.gns3.com/1wr2j2jEfX6ihyzpXzC23wQ8ymHzID4K3Hn99-qqshfg/index.html) doc on GNS3’s site.
+
+{{%/notice%}} 
+
+Here’s a Two-Leaf, Two-Spine Topology:
+
+Connect the devices, start the nodes, & open the consoles.
+
+![2leaf2spine](/images/cumulus-vx/GNS3_VirtualBox/19_2leaf2spine.png)
+
+> Ee1 in GNS3 corresponds to spw1 in Cumulus VX, e2 to swp2, and so on.
+
+{{%notice note%}}
+
+A note about the VirtualBox VMs: when you click inside the VM, the VM will “take control” of your mouse and you cannot use/see the mouse anymore. To be able to use/see your mouse again, hit the **host key [Right Ctrl]**.
+
+{{%/notice%}}
+
+![HostKey](/images/cumulus-vx/GNS3_VirtualBox/20_HostKey.png)
+
+If you don’t want the VM to take over your mouse, hit Cancel on this screen, then Enter to get to the Cumulus login prompt.
+
+![login](/images/cumulus-vx/GNS3_VirtualBox/21_VX_VM.png)
+
+>***Username: cumulus  
+Password: CumulusLinux!***
+
+{{%notice note%}}
+
+- Head over to [Two-Leaf, Two-Spine Topology](https://docs.cumulusnetworks.com/cumulus-vx/Create-a-Two-Leaf-Two-Spine-Topology/) to configure the network interfaces and routing.
+
+{{%/notice%}}
+
+You can also drag & drop virtual PCs (VPCS) and connect them to the Cumulus VX VMs.  
+1) Add the VPCS  
+2) Start the VPCS, start the Console  
+3) Configure the IP address & default gateway  
+![VPCSConfigure](/images/cumulus-vx/GNS3_VirtualBox/21_VPCS.png)
+4) Start all the VMs
+5) After configuration of the VMs and VPCs, you should be able to ping between the VMs & the VPCS  
+
+![VPCS&VMs](/images/cumulus-vx/GNS3_VirtualBox/22_vpcsAndVM.png)
+    
+{{%notice note%}}
+
+Additional Cumulus VX + VirtualBox reading (https://docs.cumulusnetworks.com/cumulus-vx/Getting-Started/VirtualBox/)
+
+{{%/notice%}}
 

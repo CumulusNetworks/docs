@@ -265,7 +265,7 @@ This lifecycle management feature provides an inventory of switches that have be
 
 A count of the switches NetQ was able to discover and the Cumulus Linux versions that are running on those switches is available from the LCM dashboard.
 
-{{<figure src="/images/netq/lcm-switches-card-300.png" width="200">}}
+{{<figure src="/images/netq/lcm-switches-card-300.png" width="400">}}
 
 To view the list of switches, click **Manage** on the Switches card.
 

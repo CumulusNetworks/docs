@@ -645,9 +645,7 @@ cumulus@switch:~$ net show bgp vrf <vrf> ipv4 unicast
 
 On the Broadcom Trident II+ and Maverick-based switch, when a lookup is done after VXLAN decapsulation on the external-facing switch (the exit or border leaf), the switch does not rewrite the MAC addresses or TTL. For through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (such as the Internet). This applies to all forms of VXLAN routing (centralized, asymmetric, and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit or border leaf. This includes traffic destined to external networks (through traffic) and traffic destined to the exit leaf SVI address. To work around this issue, modify the external-facing interface for each VLAN sub-interface on the exit leaf by creating a temporary VNI and associating it with the existing VLAN ID.
 
-<details>
-
-<summary>Example Workaround </summary>
+{{< expand "Example Workaround "  >}}
 
 For example, if the expected interface configuration is:
 
@@ -727,7 +725,7 @@ iface vlan4001
 
 If you use an MLAG pair instead of a single exit/border leaf, add the same temporary VNIs on both switches of the MLAG pair.
 
-</details>
+{{< /expand >}}
 
 ### Centralized Routing with ARP Suppression Enabled on the Gateway
 

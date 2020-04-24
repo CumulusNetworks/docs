@@ -1,21 +1,17 @@
 ---
-title: Set Up Your KVM Virtual Machine for a Cloud Server Cluster
+title: Set Up Your KVM Virtual Machine for an On-premises Server Cluster
 author: Cumulus Networks
-weight: 75
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
+weight: 74
 toc: 5
 bookhidden: true
 ---
 First configure the VM on the master node, and then configure the VM on each worker node.
 
-Follow these steps to setup and configure your VM on a cluster of servers in a cloud deployment:
+Follow these steps to setup and configure your VM on a cluster of servers in an on-premises deployment:
 
 1. Verify that your master node meets the VM requirements.
 
-    {{<netq-install/vm-reqs deployment="cloud" hypervisor="kvm">}}
+    {{<netq-install/vm-reqs deployment="onprem" hypervisor="kvm">}}
 
 2. Confirm that the needed ports are open for communications.
 
@@ -23,7 +19,7 @@ Follow these steps to setup and configure your VM on a cluster of servers in a c
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/kvm-platform-image deployment="cloud">}}
+    {{<netq-install/kvm-platform-image deployment="onprem">}}
 
 4. Setup and configure your VM.
 
@@ -31,9 +27,9 @@ Follow these steps to setup and configure your VM on a cluster of servers in a c
 
 5. Verify the master node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
-    {{<netq-install/verify-cmd deployment="cloud">}}
+    {{<netq-install/verify-cmd deployment="onprem">}}
 
-6. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+6. Run the Bootstrap CLI on the master node. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap server="single">}}
 
@@ -51,7 +47,7 @@ Make a note of the private IP address you assign to the worker node. It is neede
 
 11. Verify the worker node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
-    {{<netq-install/verify-cmd deployment="cloud">}}
+    {{<netq-install/verify-cmd deployment="onprem">}}
 
 12. Run the Bootstrap CLI on the worker node. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 

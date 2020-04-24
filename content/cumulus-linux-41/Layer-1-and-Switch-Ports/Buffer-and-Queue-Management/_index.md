@@ -43,9 +43,7 @@ The following example `/etc/cumulus/datapath/traffic.conf` datapath configuratio
 - Per-port source packet fields and mapping apply to the designated set of ports.
 - Per-port remark packet fields and mapping apply to the designated set of ports.
 
-<details>
-
-<summary>Click to see the traffic.conf file</summary>
+{{< expand "Click to see the traffic.conf file"  >}}
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
@@ -242,7 +240,7 @@ dos_enable = false
 #forwarding_table.profile = default
 ```
 
-</details>
+{{< /expand >}}
 
 {{%notice note%}}
 
@@ -569,9 +567,7 @@ The downstream switches with ECN enabled perform the same actions as the traffic
 
 ECN is supported on {{<exlink url="https://cumulusnetworks.com/hcl" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum ASICs">}}.
 
-<details>
-
-<summary>Click to learn how to configure ECN </summary>
+{{< expand "Click to learn how to configure ECN "  >}}
 
 ECN is disabled by default in Cumulus Linux. You can enable ECN for individual switch priorities on specific switch ports in the `/etc/cumulus/datapath/traffic.conf` file:
 
@@ -601,7 +597,7 @@ The following configuration example shows ECN configured for ports swp1 through 
 
 On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.
 
-</details>
+{{< /expand >}}
 
 ## Check Interface Buffer Status
 

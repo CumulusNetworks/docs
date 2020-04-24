@@ -2,9 +2,6 @@
 title: Prepare Your Existing NetQ Appliances for a NetQ 2.4 Deployment
 author: Cumulus Networks
 weight: 90
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
 toc: 5
 ---
 This topic describes how to prepare a NetQ 2.3.x or earlier NetQ Appliance before installing NetQ 2.4.x. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ 2.4.x.
@@ -17,12 +14,12 @@ Log in to your appliance.
 
 - NetQ Appliance: SuperMicro SYS-6019P-WTR ({{<exlink url="https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf" text="user manual">}}, {{<exlink url="https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf" text="quick reference guide">}})
 - NetQ Cloud Appliance: SuperMicro SYS-E300-9D ({{<exlink url="https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf" text="user manual">}})
-    
+
 </details>
 
 <details><summary>For on-premises solutions using the NetQ Appliance, optionally back up your NetQ data.</summary>
 
-1. Run the backup script to create a backup file in `/opt/<backup-directory>`.  
+1. Run the backup script to create a backup file in `/opt/<backup-directory>`.
 
     {{%notice note%}}
 Be sure to replace the `backup-directory` option with the name of the directory you want to use for the backup file. This location must be somewhere that is *off* of the appliance to avoid it being overwritten during these preparation steps.
@@ -43,9 +40,9 @@ netq_master_snapshot_2020-01-09_07_24_50_UTC.tar.gz
 </details>
 
 <details><summary>Install Ubuntu 18.04 LTS. </summary>
-    
+
 Use the instructions {{<exlink url="https://www.fosslinux.com/6406/how-to-install-ubuntu-server-18-04-lts.htm" text="here">}}.
-    
+
  Note these tips:
 
 - Ignore the instructions for MAAS.
@@ -107,7 +104,7 @@ network:
 ```
 
 - Apply the settings.
-    
+
 ```
 $ sudo netplan apply
 ```
@@ -185,7 +182,7 @@ Download the software from the {{<exlink url="https://cumulusnetworks.com/downlo
     Note that the bootstrap file is the same for both appliances.
 
     {{< figure src="/images/netq/netq-24-bootstrap-dwnld-241.png" width="200" >}}
-    
+
 4. Scroll down and click **Download**.
 
 5. Select *Appliance* for the NetQ Appliance or *Appliance (Cloud)* for the NetQ Cloud Appliance from the **Hypervisor/Platform** list.

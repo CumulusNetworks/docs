@@ -1569,3 +1569,16 @@ footer {
   position: fixed;
   width: 0;
 }
+
+.expand-sc {
+  border-radius: $border-radius;
+  border: $padding-1 solid $cn-heather;
+}
+
+.expand-label {
+  color: $cn-jade;
+}
+
+.expand-content {
+  padding: $padding-16;
+}

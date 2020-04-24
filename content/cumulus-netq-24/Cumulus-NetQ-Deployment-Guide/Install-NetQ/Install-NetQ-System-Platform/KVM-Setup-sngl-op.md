@@ -1,19 +1,15 @@
 ---
-title: Set Up Your VMware Virtual Machine for a Single Cloud Server
+title: Set Up Your KVM Virtual Machine for a Single On-premises Server
 author: Cumulus Networks
-weight: 77
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
+weight: 72
 toc: 5
 bookhidden: true
 ---
-Follow these steps to setup and configure your VM on a single server in a cloud deployment:
+Follow these steps to setup and configure your VM on a single server in an on-premises deployment:
 
 1. Verify that your system meets the VM requirements.
 
-    {{<netq-install/vm-reqs deployment="cloud" hypervisor="vmware">}}
+    {{<netq-install/vm-reqs deployment="onprem" hypervisor="kvm">}}
 
 2. Confirm that the needed ports are open for communications.
 
@@ -21,15 +17,15 @@ Follow these steps to setup and configure your VM on a single server in a cloud 
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/vmw-platform-image deployment="cloud">}}
+    {{<netq-install/kvm-platform-image deployment="onprem">}}
 
 4. Setup and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="vmware">}}
+    {{<netq-install/vm-setup hypervisor="kvm">}}
 
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
-    {{<netq-install/verify-cmd deployment="cloud">}}
+    {{<netq-install/verify-cmd deployment="onprem">}}
 
 6. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 

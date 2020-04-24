@@ -1,27 +1,23 @@
 ---
-title: Install the NetQ Cloud Appliance Cluster
+title: Install the NetQ Appliance Cluster
 author: Cumulus Networks
-weight: 83
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
+weight: 82
 toc: 5
 bookhidden: true
 ---
-To prepare your NetQ Cloud Appliances:
+To prepare your on-premises NetQ Appliances:
 
 Inside each box that was shipped to you, you'll find:
 
-- A Cumulus NetQ Cloud Appliance (a Supermicro SuperServer E300-9D)
+- A Cumulus NetQ Appliance (a Supermicro 6019P-WTR server)
 - Hardware accessories, such as power cables and rack mounting gear (note that network cables and optics ship separately)
 - Information regarding your order
 
-If you're looking for hardware specifications (including LED layouts and FRUs like the power supply or fans and accessories like included cables) or safety and environmental information, check out the appliance's {{<exlink url="https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf" text="user manual">}}.
+For more detail about hardware specifications (including LED layouts and FRUs like the power supply or fans, and accessories like included cables) or safety and environmental information, refer to the {{<exlink url="https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf" text="user manual">}} and {{<exlink url="https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf" text="quick reference guide">}}.
 
-#### Install the Appliance
+#### Install Each Appliance
 
-{{<netq-install/appliance-setup deployment="cloud">}}
+{{<netq-install/appliance-setup deployment="onprem">}}
 
 #### Configure the Password, Hostname and IP Address
 
@@ -74,7 +70,7 @@ If you have changed the IP address or hostname of the NetQ Appliance, you need t
 
     ```
     cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]
-    ```  
+    ```
 
 2. Run the Bootstrap CLI on the appliance. This example uses interface *eth0*. Replace this with your updated IP address, hostname or interface using the `interface <text-opta-ifname>` or `ip-addr <text-ip-addr>` option.
 
@@ -88,13 +84,13 @@ If you have changed the IP address or hostname of the NetQ Appliance, you need t
 
 Now that the appliances are up and running, verify that the software is available and each appliance is ready for installation.
 
-1. On the master NetQ Cloud Appliance, verify that the needed packages are present and of the correct release, version 2.4.1 and update 26 or later.
+1. On the master node, verify that the needed packages are present and of the correct release, version 2.4.1 and update 26 or later.
 
     {{<netq-install/verify-pkgs>}}
 
 2. Verify the installation images are present and of the correct release, version 2.4.1.
 
-    {{<netq-install/verify-image deployment="cloud">}}
+    {{<netq-install/verify-image deployment="onprem">}}
 
 3. Run the following commands to prevent daily upgrades and Message of the Day news.
 
@@ -105,24 +101,24 @@ Now that the appliances are up and running, verify that the software is availabl
     cumulus@hostname:~$ sudo systemctl stop motd-news.{service,timer}
     ```
 
-4. Verify the master NetQ Cloud Appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
+4. Verify the master node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
-    {{<netq-install/verify-cmd deployment="cloud">}}
+    {{<netq-install/verify-cmd deployment="onprem">}}
 
 5. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap server="single">}}
 
-6. On your first worker NetQ Cloud Appliance, verify that the needed packages are present and of the correct release, version 2.4.1 and update 26 or later.
+6. On your first worker node, verify that the needed packages are present and of the correct release, version 2.4.1 and update 26 or later.
 
     {{<netq-install/verify-pkgs>}}
 
-7. Configure the IP address, hostname, and password using the same steps as as for the master node. Refer to {{<link url="#configure-the-password-hostname-and-ip-address" text="Configure the Password, Hostname, and IP Address">}}.
+7. Configure the IP address, hostname, and password using the same steps as as for the master node. Refer to {{<link title="#NetQ-Appliance-Setup-clstr-op" text="Configure the Password, Hostname and IP Address">}}.
     {{<notice note>}}
-Make a note of the private IP addresses you assign to the master and worker nodes. They are needed for the later installation steps.
+Make a note of the private IP addresses you assign to the master and worker nodes. They are needed for the installation steps.
     {{</notice>}}
 
-8. Copy the *netq-bootstrap-2.4.1.tgz* and *NetQ-2.4.1-opta.tgz* files,  downloaded for the master NetQ Cloud Appliance, to the */mnt/installables/* directory on the worker NetQ Cloud Appliance.
+8. Copy the *netq-bootstrap-2.4.1.tgz* and *NetQ-2.4.1.tgz* files,  downloaded for the master NetQ Appliance, to the */mnt/installables/* directory on the worker NetQ Appliance.
 
 9. Run the following `systemctl` commands to disable automatic daily upgrades and Message of the Day news.
 
@@ -135,17 +131,27 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 10. Verify that the needed files are present and of the correct release.
 
-    {{<netq-install/verify-image deployment="cloud">}}
+    {{<netq-install/verify-image deployment="onprem">}}
 
 11. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
-    {{<netq-install/verify-cmd deployment="cloud">}}
+    ```
+    cumulus@<hostname>:~$ sudo opta-check
+    ```
 
-12. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+12. Run the Bootstrap CLI on the appliance *for the interface you defined above* (eth0 or eth1 for example). This example uses the *eth0* interface.
 
-    {{<netq-install/bootstrap server="cluster">}}
+    ```
+    cumulus@<hostname>:~$ netq bootstrap worker interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz
+    ```
 
-13. Repeat Steps 6-12 for each additional worker NetQ Cloud Appliance.
+    Allow about five minutes for this to complete,  and only then continue to the next step.
+
+    {{<notice tip>}}
+If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
+    {{</notice>}}
+
+13. Repeat Steps 6-12 for each additional worker NetQ Appliance.
 
 The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the CLI.
 

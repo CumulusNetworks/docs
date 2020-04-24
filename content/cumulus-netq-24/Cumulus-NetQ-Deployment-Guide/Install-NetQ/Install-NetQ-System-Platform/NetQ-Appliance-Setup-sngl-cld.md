@@ -2,10 +2,6 @@
 title: Install the NetQ Cloud Appliance
 author: Cumulus Networks
 weight: 81
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
 toc: 5
 bookhidden: true
 ---
@@ -70,11 +66,11 @@ cumulus@hostname:~$ sudo netplan apply
 {{%notice info%}}
 If you have changed the IP address or hostname of the NetQ Appliance, you need to re-register this address with NetQ.
 
-1. Reset the appliance, indicating whether you want to purge any NetQ DB data or keep it.
+1. Reset the appliance.
 
     ```
-    cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]
-    ```  
+    cumulus@hostname:~$ netq bootstrap reset
+    ```
 
 2. Run the Bootstrap CLI on the appliance. This example uses interface *eth0*. Replace this with your updated IP address, hostname or interface using the `interface <text-opta-ifname>` or `ip-addr <text-ip-addr>` option.
 
@@ -96,16 +92,7 @@ Now that the appliance is up and running, verify that the software is available 
 
     {{<netq-install/verify-image deployment="cloud">}}
 
-3. Run the following commands to prevent daily upgrades and Message of the Day news.
-
-    ```
-    cumulus@hostname:~$ sudo systemctl disable apt-{daily,daily-upgrade}.{service,timer}
-    cumulus@hostname:~$ sudo systemctl stop apt-{daily,daily-upgrade}.{service,timer}
-    cumulus@hostname:~$ sudo systemctl disable motd-news.{service,timer}
-    cumulus@hostname:~$ sudo systemctl stop motd-news.{service,timer}
-    ```
-
-4. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
+5. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 

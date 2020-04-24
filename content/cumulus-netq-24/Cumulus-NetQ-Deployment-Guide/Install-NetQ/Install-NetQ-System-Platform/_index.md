@@ -2,9 +2,6 @@
 title: Install NetQ System Platform
 author: Cumulus Networks
 weight: 65
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
 toc: 4
 ---
 This topic walks you through the NetQ System Platform installation decisions and then provides installation steps based on those choices. If you are already comfortable with your installation choices, you may use the matrix in {{<link title="Install NetQ Quick Start">}} to go directly to the installation steps.

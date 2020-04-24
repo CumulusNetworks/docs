@@ -2,10 +2,6 @@
 title: Set Up Your KVM Virtual Machine for a Single Cloud Server
 author: Cumulus Networks
 weight: 73
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
 toc: 5
 bookhidden: true
 ---

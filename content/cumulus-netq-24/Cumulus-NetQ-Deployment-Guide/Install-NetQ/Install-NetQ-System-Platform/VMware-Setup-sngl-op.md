@@ -1,20 +1,15 @@
 ---
-title: Set Up Your KVM Virtual Machine for a Single On-premises Server 
+title: Set Up Your VMware Virtual Machine for a Single On-premises Server
 author: Cumulus Networks
-weight: 72
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
-pageID: 12320951
+weight: 76
 toc: 5
 bookhidden: true
-draft: true
 ---
 Follow these steps to setup and configure your VM on a single server in an on-premises deployment:
 
 1. Verify that your system meets the VM requirements.
 
-    {{<netq-install/vm-reqs deployment="onprem" hypervisor="kvm">}}
+    {{<netq-install/vm-reqs deployment="onprem" hypervisor="vmware">}}
 
 2. Confirm that the needed ports are open for communications.
 
@@ -22,11 +17,11 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/kvm-platform-image deployment="onprem">}}
+    {{<netq-install/vmw-platform-image deployment="onprem">}}
 
 4. Setup and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="kvm">}}
+    {{<netq-install/vm-setup hypervisor="vmware">}}
 
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 

@@ -28,7 +28,7 @@ This demo was done on a Windows 10 device. If your machine isn't Windows, GNS3�
 
 >This demo will be based on GNS3 v.2.2.6 & VMware Workstation Player 14. 
 
-Go to GNS3’s GitHub, download and install [v2.2.6](https://github.com/GNS3/gns3-gui/releases/tag/v2.2.6) named GNS3-2.2.6-all-in-one.exe. During installation use all the default settings, for simplicity of this installation. (GNS3 will install several other programs).**
+Go to GNS3’s GitHub, download and install [v2.2.6](https://github.com/GNS3/gns3-gui/releases/tag/v2.2.6) named GNS3-2.2.6-all-in-one.exe. During installation use all the default settings, for simplicity of this installation. (GNS3 will install several other programs).
 
 ![v226Download](/images/cumulus-vx/GNS3_Player/01_v226download.png)
 
@@ -147,7 +147,7 @@ Back to the appliance installation in GNS3, click **Import** and import the .qco
 
 ![downloadAppliance](/images/cumulus-vx/GNS3_regular/12_downloadAppliance.png)
 
->Take note of the username and password*** & click **Finish**. 
+>***Take note of the username and password*** & click **Finish**. 
  
 ![username&password](/images/cumulus-vx/GNS3_regular/13_downloadAppliance.png)
  

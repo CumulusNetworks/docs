@@ -163,7 +163,7 @@ Back to the appliance installation in GNS3, click **Import** and import the .qco
 
 #### 9. Configuring Cumulus VX!!
 
-So far, the nested virtualization of GNS3 VM into Workstation Player to be used with the GNS3 GUI is complete, and a Cumulus VX appliance has been imported into GNS3. 
+So far, the nested virtualization of GNS3 VM into VirtualBox to be used with the GNS3 GUI is complete, and a Cumulus VX appliance has been imported into GNS3. 
 In GNS3, click **Browse Switches** icon, and the imported Cumulus VX virtual machine should appear.
  
 ![BrowseAppliances](/images/cumulus-vx/GNS3_regular/14_useTheAppliance.png)

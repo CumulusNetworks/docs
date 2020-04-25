@@ -271,7 +271,6 @@ Network Adapter(4): Host-only (equivalent to Internal Network)
 
 >![macAddy](/images/cumulus-vx/GNS3_Player/macAdd.png)
 
-
 Create and edit the Network Connections of 3 more VMs named: ***CumulusVX-leaf2***, ***CumulusVX-spine1***, & ***CumulusVX-spine2***.
 
 ![theVMs](/images/cumulus-vx/GNS3_Player/theVMs.png)
@@ -366,6 +365,5 @@ You can also drag & drop virtual PCs (VPCS) and connect them to the Cumulus VX V
 5) After configuration of the VMs and VPCs, you should be able to ping between the VMs & the VPCS  
 
 ![VPCS&VMs](/images/cumulus-vx/GNS3_VirtualBox/22_vpcsAndVM.png)
-
 
 

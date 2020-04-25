@@ -147,6 +147,7 @@ A list of Cumulus VX versions and files will be shown. (Version 3.7.6 will be us
 Navigate to the Cumulus VX download page [here](https://cumulusnetworks.com/products/cumulus-vx/download/). Select the appropriate version, and download that **.qcow2 file**. This download should take a few minutes.
 
 ![cumulusVX](/images/cumulus-vx/GNS3_regular/9_downloadAppliance.png)
+
 ![qcow2](/images/cumulus-vx/GNS3_regular/10_downloadAppliance.png)
 
 Back to the appliance installation in GNS3, click **Import** and import the .qcow2 download. The Status should go from “Missing files” to “Ready to Install”. Highlight the file, click **Next**, & click **Yes** to begin the install.
@@ -216,8 +217,11 @@ Run `ifconfig` & there’s now an ip address assigned to eth0.
 
 ![ifconfig](/images/cumulus-vx/GNS3_regular/20_root_ifconfig.png)
 
+
 {{%notice note%}}
+
 The rest of this demo will be following the Configure Switch Ports steps from the [Cumulus Linux v3.7 ‘Quick Start Guide’](https://docs.cumulusnetworks.com/cumulus-linux-37/Quick-Start-Guide/) to configure swp1 and swp2.  
+
 {{%/notice%}}
   
 Edit the /etc/network/interfaces file; remember to use `sudo` in order to edit the network interfaces.
@@ -400,5 +404,4 @@ You can also drag & drop virtual PCs (VPCS) and connect them to the Cumulus VX V
 Additional Cumulus VX + VirtualBox reading (https://docs.cumulusnetworks.com/cumulus-vx/Getting-Started/VirtualBox/)
 
 {{%/notice%}}
-
 

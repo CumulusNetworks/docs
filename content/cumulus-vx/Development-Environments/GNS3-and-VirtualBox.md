@@ -258,8 +258,10 @@ Now the Ubuntu machines can Ping each other!
 >-   Configured the Cumulus VX virtual machine: 2 switch ports & a bridge in order to for two hosts to ping each other
 
 
-Alt-**Running Locally within GNS3 (no nested virtualization)**
-======
+
+
+**Running Locally within GNS3 (no nested virtualization)**
+
 
 {{%notice note%}}
 

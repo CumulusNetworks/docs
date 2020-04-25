@@ -16,7 +16,7 @@ There are 2 ways to use GNS3 with VirtualBox:
 Option 1: Nested Virtualization of GNS3 VM within VirtualBox
 Option 2: Running Locally within GNS3 (no nested virtualization)
 
-Both options will shown in this demo.
+Both options will be shown in this demo.
 ```
 
 

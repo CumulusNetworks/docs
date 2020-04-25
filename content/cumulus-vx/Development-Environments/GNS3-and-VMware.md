@@ -320,7 +320,7 @@ Repeat for ***CumulusVX-leaf2***, ***Cumulus VX-spine1***, & ***Cumulus VX-spine
 
 ![4VMs](/images/cumulus-vx/GNS3_Player/8_4templates.png)
 
-Edit the VM templates that were added: in the same Preferences prompt, highlight ***CumulusVX-leaf1*** > **Edit** > **Network** > Adapters: 4 > check the ‘Allow GNS3 to use any configured VirtualBox adapter’ box > **OK**
+Edit the VM templates that were added: in the same Preferences prompt, highlight ***CumulusVX-leaf1*** > **Edit** > **Network** > Adapters: 4 > check the ‘Allow GNS3 to use any configured VMware adapter’ box > **OK**
 
 Repeat these Edit Preferences steps for ***CumulusVX-leaf2***, ***Cumulus VX-spine1***, & ***Cumulus VX-spine2***
 
@@ -376,11 +376,5 @@ You can also drag & drop virtual PCs (VPCS) and connect them to the Cumulus VX V
 5) After configuration of the VMs and VPCs, you should be able to ping between the VMs & the VPCS  
 
 ![VPCS&VMs](/images/cumulus-vx/GNS3_VirtualBox/22_vpcsAndVM.png)
-    
-{{%notice note%}}
-
-Additional Cumulus VX + VirtualBox reading (https://docs.cumulusnetworks.com/cumulus-vx/Getting-Started/VirtualBox/)
-
-{{%/notice%}}
 
 

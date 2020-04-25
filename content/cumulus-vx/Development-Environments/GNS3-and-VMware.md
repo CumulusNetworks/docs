@@ -40,16 +40,15 @@ After installation, open GNS3 & hit **Cancel** on the Setup Wizard.
 
 On the right side panel under Servers Summary, the green button means successful download of the GNS3 GUI; the local GNS3 server is running. If there’s no green button, it may help to restart your machine and restart GNS3. (If still no luck, check your antivirus and your firewall.) 
 
-![serverSummary](/images/cumulus-vx/GNS3_regular/1_server_summary.png)
+![serverSummary](/images/cumulus-vx/GNS3_regular/2_server_summary.png)
 
 #### 2. Download & Install the GNS3 VM (OVA file) for VMware
 The GNS3 VM will run within VMware Workstaion Player (Type 2 Hypervisor) for nested virtualization. From GNS3's GitHub page, Download & Install the GNS3 VM [zip file](https://github.com/GNS3/gns3-gui/releases/tag/v2.2.6) named **GNS3.VM.Wmware.workstation2.2.6.zip**. The GNS3 GUI and the GNS3 VM must be using the same version. 
 
 ![VMdownload](/images/cumulus-vx/GNS3_Player/02_v226downloadVM.png)
 
-#### 3. Download & Install VMware Workstation Player 14
+#### 3. Download & Install [VMware Workstation Player 14](https://my.vmware.com/en/web/vmware/free#desktop_end_user_computing/vmware_workstation_player/14_0|PLAYER-1418|product_downloads)
 There are many versions of GNS3 and Workstation Player. From a lot of trial and error, the combination of versions that work together are: GNS3 v2.2.6 & VMware Player 14.  
-Download & Install [VMware Workstation Player 14](https://my.vmware.com/en/web/vmware/free#desktop_end_user_computing/vmware_workstation_player/14_0|PLAYER-1418|product_downloads).
 
 ![PlayerDownload](/images/cumulus-vx/GNS3_Player/03_PlayerDownload.png)
 
@@ -201,7 +200,7 @@ The rest of this demo will be following the Configure Switch Ports steps from th
 
 {{%/notice%}} 
 
-Edit the /etc/network/interfaces file; remember to use `sudo` in order to edit the network interfaces. 
+Edit the /etc/network/interfaces file; remember to use `sudo` in order to edit the network interfaces.
 `auto swp1`
 `iface swp1`
 `auto swp2`
@@ -213,7 +212,7 @@ Save the file, exit the file, reload the configuration using `sudo ifreload -a`,
 
 ![ifreload](/images/cumulus-vx/GNS3_regular/22_ifreload.png)
 
-Let’s add swp1 and swp2 to a bridge, reload the configuration, view the bridge settings, & display the bridge interface. 
+Let’s add swp1 and swp2 to a bridge, reload the configuration, view the bridge settings, & display the bridge interface.
 `auto bridge`
 `iface bridge`
 `bridge-ports swp1 swp2`
@@ -245,9 +244,9 @@ This demo was done on a Windows 10 device. If your machine isn't Windows, GNS3�
 
 {{%/notice%}}
 
-#### 1. Download & Install VMware Workstation Player
+#### 1. Download & Install [WMware Workstation Player 14](https://my.vmware.com/en/web/vmware/free#desktop_end_user_computing/vmware_workstation_player/14_0|PLAYER-1418|product_downloads)
 
-There are many versions of GNS3 and Workstation Player. From a lot of trial and error, the combination of versions that work together are: GNS3 v2.2.6 & VM Player 14. Download & Install [WMware Workstation Player 14](https://my.vmware.com/en/web/vmware/free#desktop_end_user_computing/vmware_workstation_player/14_0|PLAYER-1418|product_downloads)
+There are many versions of GNS3 and Workstation Player. From a lot of trial and error, the combination of versions that work together are: GNS3 v2.2.6 & VM Player 14. 
 
 ![Player14](/images/cumulus-vx/GNS3_Player/03_PlayerDownload.png)
 
@@ -264,7 +263,7 @@ Open VMware Workstation Player. **Player** > **File** > **Open** > select the Cu
 
 ![NewVMware](/images/cumulus-vx/GNS3_Player/1_PlayerFileOpen.png)
 
-![ova](/images/cumulus-vx/GNS3_Player/3_ovas.png)
+![ova](/images/cumulus-vx/GNS3_Player/3_ova.png)
 
 Change the name of the new VM to ***CumulusVX-leaf1***, and Click **Import** to import the Cumulus VX VM into Workstation Player.
 
@@ -278,15 +277,16 @@ Network Adapter(2): Host-only (equivalent to Internal Network)
 Network Adapter(3): Host-only (equivalent to Internal Network)  
 Network Adapter(4): Host-only (equivalent to Internal Network)
 
-How to change Interface MAC Address in VMware Workstation Player: Highlight the GNS3 VM > right click > **Settings** > **Hardware** > select a **Network Adapter** > **Advanced** > from there view or change the MAC Address
+>How to change Interface MAC Address in VMware Workstation Player: Highlight the GNS3 VM > right click > **Settings** > **Hardware** > select a **Network Adapter** > **Advanced** > from there view or change the MAC Address
 
-![macAddy](/images/cumulus-vx/GNS3_Player/macAdd.png)
+
+>![macAddy](/images/cumulus-vx/GNS3_Player/macAdd.png)
 
 Create and edit the Network Connections of 3 more VMs named: ***CumulusVX-leaf2***, ***CumulusVX-spine1***, & ***CumulusVX-spine2***.
 
 ![theVMs](/images/cumulus-vx/GNS3_Player/theVMs.png)
 
-This demo will show how to configure the Cumulus VX VMs in a Two-Leaf, Two-Spine Topology.
+This demo will show how to configure the Cumulus VX VMs in a Two-Leaf, Two-Spine Topology using GNS3 & VMware.
 
 ![2leaf2spine](/images/cumulus-vx/GNS3_Player/6_spineleafTopology.png)
 
@@ -307,7 +307,7 @@ After installation, open GNS3 & hit **Cancel** on the Setup Wizard.
 
 On the right side panel under Servers Summary, the green button means successful download of the GNS3 GUI; the local GNS3 server is running. If there’s no green button, it may help to restart your machine and restart GNS3. (If still no luck, check your antivirus and your firewall.) 
 
-![serverSummary](/images/cumulus-vx/GNS3_regular/1_server_summary.png)
+![serverSummary](/images/cumulus-vx/GNS3_regular/2_server_summary.png)
 
 #### 5.Run your virtual network in GNS3
 

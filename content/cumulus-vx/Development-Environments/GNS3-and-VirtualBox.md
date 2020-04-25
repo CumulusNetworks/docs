@@ -52,7 +52,7 @@ The GNS3 VM will run within VirtualBox (Type 2 Hypervisor) for nested virtualiza
 
 #### 4. Import the GNS3 VM into VirtualBox
 
-Extract the files from the GNS3.VM.VMware download from earlier, which contains the OVA file. Open VirtualBox, click **File** > **Import Appliance** > **Next**. Select the GNS3 VM OVA file that was downloaded earlier. Leave everything at default and Click Import to import the GNS3 VM into VirtualBox.
+Extract the files from the GNS3.VM.VirtualBox download from earlier, which contains the OVA file. Open VirtualBox, click **File** > **Import Appliance** > **Next**. Select the GNS3 VM OVA file that was downloaded earlier. Leave everything at default and Click Import to import the GNS3 VM into VirtualBox.
 
 ![gns3OVAfile](/images/cumulus-vx/GNS3_regular/3_gns3OVAfile.png)
 
@@ -122,7 +122,7 @@ If by chance you still cannot get GNS3, GNS3 VM, and VirtualBox to work together
 
 _Hopefully_ there will be no more errors. Close and re-Open both VirtualBox and GNS3.
 
-Try again integrating the GNS3 GUI with the GNS3 VM: Go to **Edit** > **Prefere$
+Try again integrating the GNS3 GUI with the GNS3 VM: Go to **Edit** > **Preferences** > **GNS3 VM**. Click the Enable the GNS3 VM box. In the Virtualization engine section, select VirtualBox. In the Settings section, select GNS3 VM. Change the vPCS and RAM fields if desired. Click **Apply**, then **OK**. 
 
 ![preferences](/images/cumulus-vx/GNS3_VirtualBox/3_vmPreferences.png)
 
@@ -258,8 +258,8 @@ Now the Ubuntu machines can Ping each other!
 >-   Configured the Cumulus VX virtual machine: 2 switch ports & a bridge in order to for two hosts to ping each other
 
 
-
-# **Running Locally within GNS3 (no nested virtualization)**
+Alt-**Running Locally within GNS3 (no nested virtualization)**
+======
 
 {{%notice note%}}
 
@@ -294,8 +294,8 @@ Import and Create 3 additional Cumulus VX VMs:
 2) Change the name of the VM to ***CumulusVX-leaf2*** > **Next**  
 3) Select **Full Clone** > **Clone**  
 4) Repeat steps for 2 additional VMs:
-***CumulusVX-spine1***
-***CumulusVX-spine2***
+
+***CumulusVX-spine1*** & ***CumulusVX-spine2***
 
 How to change Interface MAC Address in VirtualBox: Highlight the GNS3 VM > **Settings** > **Network**> select a Network Adapter > **Advanced** > from there view or change the MAC Address > **OK**
 
@@ -303,7 +303,7 @@ How to change Interface MAC Address in VirtualBox: Highlight the GNS3 VM > **Set
 
 {{%notice note%}}
 
-Refer to the Next Steps section [here](https://docs.cumulusnetworks.com/cumulus-vx/Getting-Started/VirtualBox/) to learn to configure the network interfaces and routing.
+Refer to the 'Next Steps' section in this Cumulus VX & VirtualBox [demo](https://docs.cumulusnetworks.com/cumulus-vx/Getting-Started/VirtualBox/) to learn to configure the network interfaces and routing.
 
 {{%/notice%}}
 
@@ -377,15 +377,23 @@ Password: CumulusLinux!***
 
 {{%/notice%}}
 
-You can also drag & drop virtual PCs (VPCS) and connect them to the Cumulus VX VMs.  
-1) Add the VPCS  
-2) Start the VPCS, start the Console  
-3) Configure the IP address & default gateway  
-![VPCSConfigure](/images/cumulus-vx/GNS3_VirtualBox/21_VPCS.png)
-4) Start all the VMs
-5) After configuration of the VMs and VPCs, you should be able to ping between the VMs & the VPCS  
+You can also drag & drop virtual PCs (VPCS) and connect them to the Cumulus VX VMs.
 
 ![VPCS&VMs](/images/cumulus-vx/GNS3_VirtualBox/22_vpcsAndVM.png)
+
+1) Add the VPCS  
+2) Start the VPCS, start the Console  
+3) Configure the IP address & default gateway
+![VPCS](/images/cumulus-vx/GNS3_VirtualBox/21_VPCS.png)
+4) Start all the VMs
+5) After configuration of the VMs and VPCs, you should be able to ping between the VMs & the VPCS
+
+
+
+
+
+
+
     
 {{%notice note%}}
 

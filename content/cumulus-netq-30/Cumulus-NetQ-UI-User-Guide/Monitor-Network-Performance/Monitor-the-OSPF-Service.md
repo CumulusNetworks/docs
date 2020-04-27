@@ -112,7 +112,7 @@ The large OSPF service card contains two tabs.
 
 The *Sessions Summary* tab displays:  
 
-{{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-300.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -346,7 +346,7 @@ A summary of the OSPF service is available from the Network Services card workfl
 
 To view the summary, open the small OSPF Service card.
 
-{{< figure src="/images/netq/ntwk-svcs-all-ospf-small-230.png" width="200" >}}
+{{<figure src="/images/netq/ntwk-svcs-all-ospf-small-230.png" width="200">}}
 
 For more detail, select a different size OSPF Service card.
 
@@ -356,7 +356,7 @@ It is useful to know the number of network nodes running the OSPF protocol over 
 
 To view these distributions, open the medium OSPF Service card.
 
-{{< figure src="/images/netq/ntwk-svcs-all-ospf-medium-230.png" width="200" >}}
+{{<figure src="/images/netq/ntwk-svcs-all-ospf-medium-230.png" width="200">}}
 
 You can dig a little deeper with the large OSPF Service card tabs.
 
@@ -372,7 +372,7 @@ To view switches and hosts with the most OSPF sessions:
 
     The table content is sorted by this characteristic, listing nodes running the most OSPF sessions at the top. Scroll down to view those with the fewest sessions.
 
-    {{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-300.png" width="500">}}
 
 To compare this data with the same data at a previous time:
 
@@ -384,9 +384,9 @@ To compare this data with the same data at a previous time:
 
 4. Select the time period that you want to compare with the original time. We chose *Past Week* for this example.  
 
-    {{< figure src="/images/netq/time-picker-popup-narrow-222.png" width="150" >}}
+    {{<figure src="/images/netq/time-picker-popup-narrow-222.png" width="150">}}
 
-    {{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-past-week-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-past-week-300.png" width="500">}}
 
     You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running OSPF than previously, looking for changes in the topology, and so forth.
 
@@ -402,13 +402,13 @@ To view switches with the most unestablished OSPF sessions:
 
     The table content is sorted by this characteristic, listing nodes with the most unestablished OSPF sessions at the top. Scroll down to view those with the fewest unestablished sessions.
 
-    {{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-most-unestab-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-most-unestab-230.png" width="500">}}
 
 Where to go next depends on what data you see, but a couple of options include:
 
 - Change the time period for the data to compare with a prior time.
 
-    {{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-most-unestab-pst-wk-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-most-unestab-pst-wk-230.png" width="500">}}
 
     If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switches">}}.
 
@@ -422,13 +422,13 @@ To view switches with the most OSPF alarms:
 
 1. Open the large OSPF Service card.
 
-2. Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/>.
+2. Hover over the header and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18">}}.
 
 3. Select **Switches with Most Alarms** from the filter above the table.
 
     The table content is sorted by this characteristic, listing nodes with the most OSPF alarms at the top. Scroll down to view those with the fewest alarms.
 
-    {{< figure src="/images/netq/ntwk-svcs-all-ospf-large-alarms-tab-230.png" width="500" >}}
+    {{<figure src="/images/netq/ntwk-svcs-all-ospf-large-alarms-tab-230.png" width="500">}}
 
 Where to go next depends on what data you see, but a few options include:
 
@@ -448,7 +448,7 @@ To view all OSPF events:
 Where to go next depends on what data you see, but a couple of options include:
 
 - Open one of the other full screen tabs in this flow to focus on devices or sessions
-- Export the data for use in another analytics tool, by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> and providing a name for the data file
+- Export the data for use in another analytics tool, by clicking {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">}} and providing a name for the data file
 
 ### View Details for All Devices Running OSPF
 
@@ -458,7 +458,7 @@ To view all device details, open the full screen OSPF Service card and click the
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-allswitches-tab-241.png" width="700">}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
+To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner.
 
 ### View Details for All OSPF Sessions
 
@@ -468,7 +468,7 @@ To view all session details, open the full screen OSPF Service card and click th
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-sessions-tab-222.png" width="700">}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
+To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner.
 
 Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}} for more detail. To return to original display of results, click the associated tab.
 
@@ -476,9 +476,9 @@ Use the icons above the table to select/deselect, filter, and export items in th
 
 With NetQ, you can monitor a single session of the OSPF service, view session state changes, and compare with alarms occurring at the same time, as well as monitor the running OSPF configuration and changes to the configuration file. For an overview and how to configure OSPF to run in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/" text="Open Shortest Path First - OSPF">}} or {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/" text="Open Shortest Path First v3 - OSPFv3">}}.
 
-{{%notice note%}}
-To access the single session cards, you must open the full screen OSPF Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Cards).
-{{%/notice%}}
+{{<notice note>}}
+To access the single session cards, you must open the full screen OSPF Service, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards).
+{{</notice>}}
 
 ### Granularity of Data Shown Based on Time Period
 

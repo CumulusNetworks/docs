@@ -378,6 +378,82 @@ Scopes are displayed as regular expressions in the rule card.
 
 When a rule is filtered by more than one parameter, each is displayed on the card. Leaving a value blank for a parameter defaults to all; all hostnames, interfaces, or sensors.
 
+### Specify Notification Channels
+
+The notification channel specified by a TCA rule tells NetQ where to send the notification message. 
+
+To specify a notification channel:
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+
+    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+
+    This opens the Channels view.
+
+    {{<figure src="/images/netq/channels-none-created-300.png" width="700">}}
+
+2. Determine the type of channel you want to add (Slack, PagerDuty, or Syslog). Follow the instructions for the selected type.
+
+#### Specify Slack Channels
+
+To specify Slack channels:
+
+1. Create one or more channels using Slack.
+
+2. In NetQ, click **Slack** in the Channels view.
+
+3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+
+4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+
+    {{<figure src="/images/netq/channels-add-slack-300.png" width="250">}}
+
+5. Copy and paste the incoming webhook URL for a channel you created in Step 1 (or earlier).
+
+6. Click **Add**.
+
+    {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
+
+7. Repeat to add additional Slack channels as needed.
+
+#### Specify PagerDuty Channels
+
+To specify PagerDuty channels:
+
+1. Create one or more channels using PagerDuty.
+
+2. In NetQ, click **PagerDuty** in the Channels view.
+
+3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+
+4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+
+    {{<figure src="/images/netq/channels-add-pagerduty-300.png" width="250">}}
+
+5. Copy and paste the integration key for a PagerDuty channel you created in Step 1 (or earlier).
+
+6. Click **Add**.
+
+7. Repeat to add additional PagerDuty channels as needed.
+
+#### Specify a Syslog Channel
+
+To specify a Syslog channel:
+
+1. Click **Syslog** in the Channels view.
+
+3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+
+4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+
+    {{<figure src="/images/netq/channels-add-syslog-300.png" width="250">}}
+
+5. Enter the IP address and port of the Syslog server.
+
+6. Click **Add**.
+
+7. Repeat to add additional Syslog channels as needed.
+
 ### Create a TCA Rule
 
 Now that you know which events are supported and how to set the scope, you can create a basic rule to deliver one of the TCA events to a notification channel.

@@ -12,7 +12,7 @@ Cumulus Linux is a powerful operating system for routers that comes with secure 
 
 {{%notice note%}}
 
-Not all security measures are created equal; many can ruin a user experience without adding a significant amount of security. Cumulus Networks recommends that you focus on security measures with the greatest benefits and the fewest drawbacks. Then, expand to include other security mitigations as your comfort level increases.
+Not all security measures are created equal; certain measures can ruin a user experience without adding a significant amount of security. Cumulus Networks recommends that you focus on security measures with the greatest benefits and the fewest drawbacks. Then, expand to include other security mitigations as your comfort level increases.
 
 {{%/notice%}}
 
@@ -20,7 +20,7 @@ Not all security measures are created equal; many can ruin a user experience wit
 
 This section discusses issues that have the biggest security impacts with the least impact to management and user experiences.
 
-### Hardware Security
+### Secure Switch Hardware
 
 Securing the switch hardware is vital because an attacker with physical access to the hardware can eventually have access to the entire device, allowing them to change configurations, capture all the traffic moving through the switch, and even steal the switch itself. If there is a security breach in the hardware, the entire system is compromised. Securing the router from various attacks or misconfigurations is very important.
 
@@ -86,7 +86,7 @@ cumulus@switch:~$ net add interface swp3 bridge vids 100,200
 cumulus@switch:~$ net commit
 ```
 
-### Control Plane Policy Policing
+### Customize Control Plane Policies
 
 Cumulus Linux comes out of the box with a default control plane security policy that is located in the `/etc/cumulus/acl/policy.d/` directory. You can see a full list of the default rules [here](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Netfilter-ACLs/Default-Cumulus-Linux-ACL-Configuration/).
 
@@ -137,7 +137,7 @@ cumulus@switch:~$ sudo apt-get autoremove
 
 ### Management Security
 
-#### Management VRF
+#### Enable Management VRF
 
 Management virtual routing tables and forwarding (VRF) separates out-of-band management network traffic from the in-band data plane network. Management VRF increases network security by separating the management routing tables from the main routing tables. It also protects the management network from interference or attacks directed at the routing infrastructure of the main network, which might prevent you from managing the router or switch.
 
@@ -158,7 +158,7 @@ Be sure to enable all the network services inside each VRF including the followi
 - DNS
 - NTP
 
-#### Management ACL
+#### Customize the Management ACL
 
 Management Access Control List (ACL) is the main list of user permissions for Cumulus Linux. Review and customize the management ACL as soon as possible during the installation process to help prevent user errors or malicious behavior by restricting the abilities of administrative users. Due to many unique needs and environments, the management ACL is highly customizable; it is important that you change the defaults.
 
@@ -272,7 +272,7 @@ cumulus@switch:~$  sudo grep \!authenticate /etc/sudoers.d/*
 cumulus@switch:~$  sudo grep \!authenticate /etc/sudoers
 ```
 
-#### Session Timeouts and Limits
+#### Limit User Sessions
 
 It is important to limit the number of sessions a user can run at the same time so that a single user or account does not make contradictory changes. Good practice is to set the limit to 10.
 
@@ -300,8 +300,6 @@ export TMOUT=600
 ```
 
 ### Remote Access Security
-
-#### Restrict SSH
 
 Secure Shell (SSH) is a protocol for secure remote login and other secure network services over an insecure network. It is most commonly used to allow administrators to securely access remote systems, such as Linux.
 
@@ -389,7 +387,7 @@ Restart NTP for the changes to take effect:
 cumulus@switch:~$ sudo systemctl restart ntp@mgmt.service
 ```
 
-#### Routing Protocol Security
+#### Secure Routing Protocols
 
 Open Shortest Path First (OSPF) and Border Gateway Protocol (BGP) are dynamic routing protocols that allow routers to negotiate with each other to determine the best path to send traffic through the network. During this negotiation, routers learn about the networks connected to the other routers. The routers then use this information to determine where to send traffic on the network.
 
@@ -414,7 +412,7 @@ cumulus@switch:~$ net commit
 
 For more information, see [here](https://docs.cumulusnetworks.com/version/cumulus-linux-37/Layer-3/Border-Gateway-Protocol-BGP/#configure-md5-enabled-bgp-neighbors).
 
-#### File Services
+#### Remove File Transfer Services
 
 Trivial File Transfer Protocol (TFTP) is a simple and unauthenticated alternative to File Transfer Protcol (FTP) and is often used to update the configuration of network devices. By nature, TFTP contains no means to authenticate the user. If using TFTP is not mandatory within your organization, disable or uninstall it.
 
@@ -443,7 +441,7 @@ This section discusses items that have similar impacts to both security, and man
 
 ### Hardware Security
 
-#### 802.1X
+#### Configure 802.1X
 
 802.1X is a popular technology because it authenticates devices that physically attach to the switch. It can also assign these devices different levels of access to the network after they authenticate. There are many use cases for this technology and each configuration varies widely. For additional details, go [here](https://docs.cumulusnetworks.com/cumulus-linux/Layer-1-and-Switch-Ports/802.1X-Interfaces/) and [here](https://cumulusnetworks.com/blog/campus-design-feature-set-up-part-4/).
 
@@ -490,13 +488,13 @@ The following example is a starting point to build on. This is a base 802.1X con
     cumulus@switch:~$ net commit
     ```
 
-#### USB Ports
+#### Disable USB Ports
 
 The Cumulus Linux switch comes with several USB ports as part of the external hardware. USB drives are standard among many industries and therefore easily accessible to those who want to do harm to the switch. While a best practice for any switch, disabling the USB ports is especially important if Cumulus Linux is set up in a publicly available area.
 
 ### Management Security
 
-#### Password Policy and User Management
+#### Set Password Policies
 
 User passwords are the easiest way to break into any system. After a hacker steals a password, they have access to whatever the user has and can obtain information without raising too much suspicion. Therefore, many companies enforce specific user password requirements.
 
@@ -570,7 +568,7 @@ Filesystem  	Size  Used Avail Use% Mounted on
 
 ### Secure Network Protocols
 
-#### Source Route
+#### Prevent Source Routing
 
 Source routing is a common security threat that allows attackers to send packets to your network and then use the returned information to break into your network. If your organization is not purposefully using source routing, disable it.
 
@@ -596,7 +594,7 @@ net.ipv4.conf.default.accept_source_route=0
 
 Alternatively, you can create a new file in the `/etc/sysctl.d` directory, then add the `net.ipv4.conf.default.accept_source_route=0` line to the file.
 
-#### ICMP Redirects
+#### Prevent ICMP Redirects
 
 Internet Control Message Protocol (ICMP) is a great troubleshooting tool, but can be a security threat if your router automatically accepts an ICMP redirect message. Attackers can use this to their advantage by sending unrecognized redirects to either capture your traffic or create a DOS attack.
 

@@ -36,7 +36,7 @@ netq [<hostname>] show sensors temp [<temp-name>] [around <text-time>] [json]
 netq [<hostname>] show sensors fan [<fan-name>] [around <text-time>] [json]
 
 netq [<hostname>] show interface-stats [errors|all] [<physical-port>] [around <text-time>] [json]
-netq [<hostname>] show interface-utils [<text-port>] [tx|rx] [around <text-time>] [json]
+netq [<hostname>] show interface-utilization [<text-port>] [tx|rx] [around <text-time>] [json]
 netq [<hostname>] show resource-util [cpu | memory] [around <text-time>] [json]
 netq [<hostname>] show resource-util disk [<text-diskname>] [around <text-time>] [json]
 netq [<hostname>] show cl-ssd-util [around <text-time>] [json]
@@ -512,29 +512,31 @@ to view the full sensor data.
     Matching sensors records:
     Hostname          Name            Description                         State      Message                             Last Changed
     ----------------- --------------- ----------------------------------- ---------- ----------------------------------- -------------------------
-    exit01            fan1            fan tray 1, fan 1                   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            fan2            fan tray 1, fan 2                   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            fan3            fan tray 2, fan 1                   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            fan4            fan tray 2, fan 2                   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            fan5            fan tray 3, fan 1                   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            fan6            fan tray 3, fan 2                   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            psu1fan1        psu1 fan                            ok                                             Fri Apr 19 16:01:17 2019
-    exit01            psu1temp1       psu1 temp sensor                    ok                                             Fri Apr 19 16:01:17 2019
-    exit01            psu2fan1        psu2 fan                            ok                                             Fri Apr 19 16:01:17 2019
-    exit01            psu2temp1       psu2 temp sensor                    ok                                             Fri Apr 19 16:01:17 2019
-    exit01            temp1           board sensor near cpu               ok                                             Fri Apr 19 16:01:17 2019
-    exit01            temp2           board sensor near virtual switch    ok                                             Fri Apr 19 16:01:17 2019
-    exit01            temp3           board sensor at front left corner   ok                                             Fri Apr 19 16:01:17 2019
-    exit01            temp4           board sensor at front right corner  ok                                             Fri Apr 19 16:01:17 2019
-    exit01            temp5           board sensor near fan               ok                                             Fri Apr 19 16:01:17 2019
-    exit02            fan1            fan tray 1, fan 1                   ok                                             Fri Apr 19 16:01:33 2019
-    exit02            fan2            fan tray 1, fan 2                   ok                                             Fri Apr 19 16:01:33 2019
-    exit02            fan3            fan tray 2, fan 1                   ok                                             Fri Apr 19 16:01:33 2019
-    exit02            fan4            fan tray 2, fan 2                   ok                                             Fri Apr 19 16:01:33 2019
-    exit02            fan5            fan tray 3, fan 1                   ok                                             Fri Apr 19 16:01:33 2019
-    exit02            fan6            fan tray 3, fan 2                   ok                                             Fri Apr 19 16:01:33 2019
-    exit02            psu1fan1        psu1 fan                            ok                                             Fri Apr 19 16:01:33 2019
-    exit02            psu1temp1       psu1 temp sensor                    ok                                             Fri Apr 19 16:01:33 2019
+    border01          fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
+    border01          fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
+    border01          fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
+    border01          fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
+    border01          psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:07:56 2020
+    border01          fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
+    border01          fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
+    border01          psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:07:56 2020
+    border02          fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:07:54 2020
+    border02          fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:07:54 2020
+    border02          psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:07:54 2020
+    border02          fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:07:54 2020
+    border02          fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:54 2020
+    border02          fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:07:54 2020
+    border02          fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:07:54 2020
+    border02          psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:07:54 2020
+    fw1               psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:08:45 2020
+    fw1               fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:08:45 2020
+    fw1               psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:08:45 2020
+    fw1               fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:08:45 2020
+    fw1               fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
+    fw1               fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:08:45 2020
+    fw1               fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
+    fw1               fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
+    fw2               fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:53 2020
     ...
 
 ## View All Sensor-related Events
@@ -557,10 +559,8 @@ Agent does not collect statistics for non-physical interfaces, such as
 bonds, bridges, and VXLANs. The NetQ Agent collects the following statistics:
 
 - Statistics
-    - **Transmit**: tx\_bytes, tx\_carrier, tx\_colls, tx\_drop, tx\_errs,
-        tx\_packets
-    - **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame,
-        rx\_multicast, rx\_packets
+    - **Transmit**: tx\_bytes, tx\_carrier, tx\_colls, tx\_drop, tx\_errs, tx\_packets
+    - **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame, rx\_multicast, rx\_packets
 - Utilization
     - rx\_util, tx\_util
     - port speed
@@ -569,7 +569,7 @@ These can be viewed using the following NetQ CLI commands:
 
 ```
 netq [<hostname>] show interface-stats [errors | all] [<physical-port>] [around <text-time>] [json]
-netq [<hostname>] show interface-utils [<text-port>] [tx|rx] [around <text-time>] [json]
+netq [<hostname>] show interface-utilization [<text-port>] [tx|rx] [around <text-time>] [json]
 ```
 
 Where the various options are:
@@ -588,73 +588,99 @@ all of their physical interfaces.
 ```
 cumulus@switch:~$ netq show interface-stats
 Matching proc_dev_stats records:
-Hostname          Interface                 Duration         RX Bytes             RX Drop              RX Errors            TX Bytes             TX Drop              TX Errors            Last Changed
------------------ ------------------------- ---------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-edge01            eth0                      30               2278                 0                    16                   4007                 0                    0                    Mon Jun  3 23:03:14 2019
-edge01            lo                        30               864                  0                    0                    864                  0                    0                    Mon Jun  3 23:03:14 2019
-exit01            bridge                    60               336                  0                    0                    1176                 0                    0                    Mon Jun  3 23:02:27 2019
-exit01            eth0                      30               3424                 0                    0                    6965                 0                    0                    Mon Jun  3 23:02:58 2019
-exit01            mgmt                      30               2682                 0                    0                    7488                 0                    0                    Mon Jun  3 23:02:58 2019
-exit01            swp44                     30               2457                 0                    0                    2457                 0                    0                    Mon Jun  3 23:02:58 2019
-exit01            swp51                     30               2462                 0                    0                    1769                 0                    0                    Mon Jun  3 23:02:58 2019
-exit01            swp52                     30               2634                 0                    0                    2629                 0                    0                    Mon Jun  3 23:02:58 2019
-exit01            vlan4001                  50               336                  0                    0                    1176                 0                    0                    Mon Jun  3 23:02:27 2019
-exit01            vrf1                      60               1344                 0                    0                    0                    0                    0                    Mon Jun  3 23:02:27 2019
-exit01            vxlan4001                 50               336                  0                    0                    1368                 0                    0                    Mon Jun  3 23:02:27 2019
-exit02            bridge                    61               1008                 0                    0                    392                  0                    0                    Mon Jun  3 23:03:07 2019
-exit02            eth0                      20               2711                 0                    0                    4983                 0                    0                    Mon Jun  3 23:03:07 2019
-exit02            mgmt                      30               2162                 0                    0                    5506                 0                    0                    Mon Jun  3 23:03:07 2019
-exit02            swp44                     20               3040                 0                    0                    3824                 0                    0                    Mon Jun  3 23:03:07 2019
+Hostname          Interface                 RX Packets           RX Drop              RX Errors            TX Packets           TX Drop              TX Errors            Last Updated
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+border01          swp1                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:56:48 2020
+border01          swp54                     82660                0                    0                    81630                0                    0                    Wed Apr 22 23:56:48 2020
+border01          swp52                     83115                0                    0                    81491                0                    0                    Wed Apr 22 23:56:48 2020
+border01          swp4                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:56:48 2020
+border01          swp53                     77128                0                    0                    70080                0                    0                    Wed Apr 22 23:56:48 2020
+border01          swp3                      183252               0                    0                    168795               0                    0                    Wed Apr 22 23:56:48 2020
+border01          swp49                     396524               0                    0                    324746               0                    0                    Wed Apr 22 23:56:48 2020
+border01          swp51                     80054                1                    0                    82420                0                    0                    Wed Apr 22 23:56:48 2020
+border01          swp2                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:56:48 2020
+border01          swp50                     179866               0                    0                    178564               0                    0                    Wed Apr 22 23:56:48 2020
+border02          swp1                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:57:12 2020
+border02          swp54                     75295                0                    0                    69453                0                    0                    Wed Apr 22 23:57:12 2020
+border02          swp52                     83255                0                    0                    82895                0                    0                    Wed Apr 22 23:57:12 2020
+border02          swp4                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:57:12 2020
 ...
 ```
 
-In this example, we view the interface statistics for switch port 29.
+In this example, we view the interface statistics for switch port 1.
 
 ```
-cumulus@switch:~$ netq show interface-stats swp29
+cumulus@switch:~$ netq show interface-stats swp1
+
 Matching proc_dev_stats records:
-Hostname          Interface                 RX Bytes             RX Drop              RX Errors            TX Bytes             TX Drop              TX Errors            Last Updated
+Hostname          Interface                 RX Packets           RX Drop              RX Errors            TX Packets           TX Drop              TX Errors            Last Updated
 ----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-spine01           swp29                     12853778             0                    0                    13281292             0                    0                    Wed Sep 25 14:43:17 2019
-spine02           swp29                     11739987             0                    0                    13316634             0                    0                    Wed Sep 25 14:43:32 2019
+border01          swp1                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:56:18 2020
+border02          swp1                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:56:11 2020
+fw1               swp1                      163602               11                   0                    106430               0                    0                    Wed Apr 22 23:56:22 2020
+fw2               swp1                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:56:07 2020
+leaf01            swp1                      104053               1                    0                    160584               0                    0                    Wed Apr 22 23:56:18 2020
+leaf02            swp1                      104271               1                    0                    109072               0                    0                    Wed Apr 22 23:56:28 2020
+leaf03            swp1                      177346               3                    0                    106817               0                    0                    Wed Apr 22 23:56:25 2020
+leaf04            swp1                      183301               9                    0                    107134               0                    0                    Wed Apr 22 23:56:26 2020
+spine01           swp1                      83887                0                    0                    83131                0                    0                    Wed Apr 22 23:56:03 2020
+spine02           swp1                      99007                0                    0                    85146                0                    0                    Wed Apr 22 23:56:31 2020
+spine03           swp1                      88968                0                    0                    81558                0                    0                    Wed Apr 22 23:56:13 2020
+spine04           swp1                      88795                0                    0                    75526                0                    0                    Wed Apr 22 23:56:27 2020
 ```
 
 In this example, we view the utilization for the leaf03 switch.
 
 ```
-cumulus@switch:~$ netq leaf03 show interface-utils 
+cumulus@switch:~$ netq leaf03 show interface-utilization
 Matching port_stats records:
-Hostname          Interface                 RX Bytes             RX Drop              RX Errors            RX Util              TX Bytes             TX Drop              TX Errors            TX Util              Port Speed           Last Changed
+Hostname          Interface                 RX Bytes (30sec)     RX Drop (30sec)      RX Errors (30sec)    RX Util (%age)       TX Bytes (30sec)     TX Drop (30sec)      TX Errors (30sec)    TX Util (%age)       Port Speed           Last Changed
 ----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
-leaf03            bond03                    4447                 0                    0                    0                    5041                 0                    0                    0                    NA                   Wed Sep 25 14:46:16
-                                                                                                                                                                                                                                         2019
-leaf03            bond04                    3811                 0                    0                    0                    4957                 0                    0                    0                    NA                   Wed Sep 25 14:46:16
-                                                                                                                                                                                                                                         2019
-leaf03            bridge                    540                  0                    0                    0                    476                  0                    0                    0                    NA                   Wed Sep 25 14:46:16
-                                                                                                                                                                                                                                         2019
-leaf03            eth0                      3471                 0                    0                    0.00033102           10480                0                    0                    0.000999451          1G                   Wed Sep 25 14:46:16
-                                                                                                                                                                                                                                         2019
-...
+leaf03            swp1                      3937                 0                    0                    0                    4933                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp54                     2459                 0                    0                    0                    2459                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp52                     2459                 0                    0                    0                    2459                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp53                     2545                 0                    0                    0                    2545                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp3                      3937                 0                    0                    0                    4962                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp49                     27858                0                    0                    0                    7732                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp51                     1599                 0                    0                    0                    2459                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp2                      3985                 0                    0                    0                    4924                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp50                     7575                 0                    0                    0                    28221                0                    0                    0                    1G                   Fri Apr 24 09:35:51
 ```
 
 In this example, we view the transmit utilization only.
 
 ```
-cumulus@switch:~$ netq show interface-utils tx
+cumulus@switch:~$ netq show interface-utilization tx
+
 Matching port_stats records:
-Hostname          Interface                 TX Bytes             TX Drop              TX Errors            TX Util              Port Speed           Last Changed
+Hostname          Interface                 TX Bytes (30sec)     TX Drop (30sec)      TX Errors (30sec)    TX Util (%age)       Port Speed           Last Changed
 ----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
-exit01            bridge                    784                  0                    0                    0                    NA                   Wed Sep 25 14:48:10
-                                                                                                                                                     2019
-exit01            eth0                      7497                 0                    0                    0.00071497           1G                   Wed Sep 25 14:48:10
-                                                                                                                                                     2019
-exit01            lo                        0                    0                    0                    0                    NA                   Mon Sep 23 22:45:38
-                                                                                                                                                     2019
-exit01            mgmt                      8014                 0                    0                    0                    NA                   Wed Sep 25 14:48:10
-                                                                                                                                                     2019
-exit01            swp1                      0                    0                    0                    0                    Unknown              Mon Sep 23 22:45:38
-                                                                                                                                                     2019
-...
+border01          swp1                      0                    0                    0                    0                    Unknown              Fri Apr 24 09:33:20
+                                                                                                                                                     2020
+border01          swp54                     2461                 0                    0                    0                    1G                   Fri Apr 24 09:33:20
+                                                                                                                                                     2020
+border02          swp1                      0                    0                    0                    0                    Unknown              Fri Apr 24 09:33:05
+                                                                                                                                                     2020
+border02          swp54                     2461                 0                    0                    0                    1G                   Fri Apr 24 09:33:05
+                                                                                                                                                     2020
+border02          swp52                     2461                 0                    0                    0                    1G                   Fri Apr 24 09:33:05
+                                                                                                                                                     2020
+border02          swp4                      0                    0                    0                    0                    Unknown              Fri Apr 24 09:33:05
+                                                                                                                                                     2020
+border02          swp53                     2566                 0                    0                    0                    1G                   Fri Apr 24 09:33:05
+                                                                                                                                                     2020
+leaf02            swp1                      4209                 0                    0                    0                    1G                   Fri Apr 24 09:33:08
+                                                                                                                                                     2020
+leaf02            swp54                     2459                 0                    0                    0                    1G                   Fri Apr 24 09:33:08
+                                                                                                                                                     2020
 ```
 
 ## View Switch Resource Utilization

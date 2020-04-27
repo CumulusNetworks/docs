@@ -25,7 +25,7 @@ Found in the application header, click <img src="https://icons.cumulusnetworks.c
 - **Admin**: contains link to user documentation and application management features
 - **Notifications**: contains link to event notification configuration
 
-{{< figure src="/images/netq/main-menu-241.png" width="500" >}}
+{{< figure src="/images/netq/main-menu-300.png" width="500" >}}
 
 ## Recent Actions
 

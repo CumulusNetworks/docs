@@ -160,7 +160,7 @@ The use of `netq-latest` in this example means that a `get` to the
 <details><summary>Install Python.</summary>
 ```
 root@ubuntu:~# apt-get update
-root@ubuntu:~# apt-get install python python2.7 python-apt
+root@ubuntu:~# apt-get install python python2.7 python-apt python3-lib2to3 python3-distutils
 ```
 </details>
 

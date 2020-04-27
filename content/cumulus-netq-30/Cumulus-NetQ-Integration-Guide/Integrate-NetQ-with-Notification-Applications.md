@@ -26,7 +26,7 @@ based on rules you create. You must have at least one rule per filter. A select 
 
 {{<figure src="/images/netq/event-notif-arch-222.png">}}
 
-{{%notice note%}}
+{{<notice note>}}
 
 You may choose to implement a proxy server (that sits between the NetQ
 Platform and the integration channels) that receives, processes and
@@ -34,16 +34,16 @@ distributes the notifications rather than having them sent directly to
 the integration channel. If you use such a proxy, you must configure
 NetQ with the proxy information.
 
-{{%/notice%}}
+{{</notice>}}
 
 In either case, notifications are generated for the following types of
 events:
 
 | Category | Events |
 | --- | --- | 
-| Network Protocols | <ul><li>BGP status and session state</li><li>CLAG (MLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>LNV status and session state \*\*</li><li>OSPF status and session state </li><li>VLAN status and session state \*</li><li>VXLAN status and session state \*</li></ul> |
+| Network Protocols | <ul><li>BGP status and session state</li><li>CLAG (MLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>OSPF status and session state </li><li>VLAN status and session state \*</li><li>VXLAN status and session state \*</li></ul> |
 | Interfaces | <ul><li>Link status</li><li>Ports and cables status</li><li>MTU status</li></ul> |
-| Services | <ul><li>NetQ Agent status</li><li>PTM</li><li>SSH \*</li><li>NTP status \*</li></ul> |
+| Services | <ul><li>NetQ Agent status</li><li>PTM</li><li>SSH \*</li><li>NTP status\*</li></ul> |
 | Traces | <ul><li>On-demand trace status</li><li>Scheduled trace status</li></ul> |
 | Sensors | <ul><li>Fan status</li><li>PSU (power supply unit) status</li><li>Temperature status</li></ul> |
 | System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux License status</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li></ul> |

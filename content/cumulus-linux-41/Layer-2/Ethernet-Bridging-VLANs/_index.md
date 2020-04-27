@@ -100,9 +100,9 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tabs >}}
 
-## Configure an SVI (Switch VLAN Interface)
+## Configure a Switch Virtual Interface (SVI)
 
-Bridges can be included as part of a routing topology after being assigned an IP address. This enables hosts within the bridge to communicate with other hosts outside of the bridge through a *switch VLAN interface* (SVI), which provides layer 3 routing. The IP address of the bridge is typically from the same subnet as the member hosts of the bridge.
+Bridges can be included as part of a routing topology after being assigned an IP address. This enables hosts within the bridge to communicate with other hosts outside of the bridge through a *switch virtual interface* (SVI), which provides layer 3 routing. The IP address of the bridge is typically from the same subnet as the member hosts of the bridge.
 
 {{%notice note%}}
 
@@ -158,9 +158,7 @@ When you configure a switch initially, all southbound bridge ports might be down
 
 To keep the SVI perpetually UP, create a dummy interface, then make the dummy interface a member of the bridge.
 
-<details>
-
-<summary>Example Configuration</summary>
+{{< expand "Example Configuration"  >}}
 
 Consider the following configuration, without a dummy interface in the bridge:
 
@@ -236,7 +234,7 @@ Now add the dummy interface to your network configuration:
         link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
     ```
 
-</details>
+{{< /expand >}}
 
 ## IPv6 Link-local Address Generation
 

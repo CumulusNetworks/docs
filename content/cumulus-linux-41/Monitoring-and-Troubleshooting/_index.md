@@ -292,11 +292,9 @@ If you want to limit the number of `syslog` messages that can be written to the 
 module(load="imuxsock"
       SysSock.RateLimit.Interval="2" SysSock.RateLimit.Burst="50")
 ```
+The following test script shows an example of rate-limit outputvin Cumulus Linux
 
-<details>
-
-<summary>The following test script shows an example of rate-limit output
-in Cumulus Linux ... </summary>
+{{< expand "Example test script" >}}
 
 ```
 root@leaf1:mgmt-vrf:/home/cumulus# cat ./syslog.py 
@@ -328,7 +326,7 @@ root@leaf1:mgmt-vrf:/home/cumulus# tail -n 60 /var/log/syslog
 2017-02-22T19:59:50.058324+00:00 leaf1 rsyslogd-2177: imuxsock[pid 22830]: begin to drop messages due to rate-limiting
 ```
 
-</details>
+{{< /expand >}}
 
 ### Harmless syslog Error: Failed to reset devices.list
 

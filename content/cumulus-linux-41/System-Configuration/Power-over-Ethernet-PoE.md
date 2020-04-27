@@ -55,8 +55,7 @@ You use the `poectl` command utility to configure PoE on a {{<exlink url="https:
 
 The PoE configuration resides in `/etc/cumulus/poe.conf`. The file lists all the switch ports, whether PoE is enabled for those ports and the priority for each port.
 
-<details>
-<summary>Sample poe.conf file ... </summary>
+{{< expand "Sample poe.conf file ... "  >}}
 
 ```
 [enable]
@@ -160,7 +159,7 @@ swp47 = low
 swp48 = low
 ```
 
-</details>
+{{< /expand >}}
 
 By default, PoE and PoE+ are enabled on all Ethernet/1G switch ports, and these ports are set with a low priority. Switch ports can have low, high or critical priority.
 

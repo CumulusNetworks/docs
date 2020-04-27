@@ -304,9 +304,7 @@ cumulus@switch:~$
 
 To view the current state of the configuration, run the `show running-config` command:
 
-<details>
-
-<summary>Example command </summary>
+{{< expand "Example command "  >}}
 
 ```
 switch# show running-config
@@ -401,7 +399,7 @@ line vty
 end
 ```
 
-</details>
+{{< /expand >}}
 
 {{%notice note%}}
 

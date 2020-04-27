@@ -65,9 +65,7 @@ Entering incorrect information during the installation process might produce con
 
 Be sure to restart `netd` after editing the files.
 
-<details>
-
-<summary>Alternative Installation Method Using debconf-utils </summary>
+{{< expand "Alternative Installation Method Using debconf-utils "  >}}
 
 Instead of running the installer and following the interactive prompts, as described above, you can pre-seed the installer parameters using `debconf-utils`.
 
@@ -126,7 +124,7 @@ Instead of running the installer and following the interactive prompts, as descr
    # libnss-ldapd:powerpc    libnss-ldapd/clean_nsswitch     boolean false
    ```
 
-</details>
+{{< /expand >}}
 
 ## Update the nslcd.conf File
 
@@ -464,9 +462,7 @@ The `ldapsearch` command performs LDAP operations directly on the LDAP server. T
 cumulus@switch:~$ ldapsearch -H ldap://ldap.example.com -b dc=example,dc=com -x uid=myuser
 ```
 
-<details>
-
-<summary>Click to expand the command output ... </summary>
+{{< expand "Click to expand the command output ... "  >}}
 
 ```
 # extended LDIF
@@ -508,7 +504,7 @@ result: 0 Success
 # numEntries: 1
 ```
 
-</details>
+{{< /expand >}}
 
 ### NCLU
 

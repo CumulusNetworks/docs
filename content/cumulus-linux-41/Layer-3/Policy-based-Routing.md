@@ -304,9 +304,7 @@ A new Linux routing table ID is used for each next hop and next hop group.
 
 When you want to change or extend an existing PBR rule, you must first delete the conditions in the rule, then add the rule back with the modification or addition.
 
-<details>
-
-<summary> Modify an existing match/set condition</summary>
+{{< expand " Modify an existing match/set condition"  >}}
 
 The example below shows an existing configuration.
 
@@ -372,11 +370,9 @@ cumulus@switch:~$ sudo cat /cumulus/switchd/run/iprule/show | grep 303 -A 1
      [hwstatus: unit: 0, installed: yes, route-present: yes, resolved: yes, nh-valid: yes, nh-type: nh, ecmp/rif: 0x1, action: route,  hitcount: 0]
 ```
 
-</details>
+{{< /expand >}}
 
-<details>
-
-<summary>Add a match condition to an existing rule</summary>
+{{< expand "Add a match condition to an existing rule"  >}}
 
 The example below shows an existing configuration, where only one source IP match is configured:
 
@@ -435,7 +431,7 @@ cumulus@mlx-2400-91:~$ cat /cumulus/switchd/run/iprule/show | grep 302 -A 1
      [hwstatus: unit: 0, installed: yes, route-present: yes, resolved: yes, nh-valid: yes, nh-type: nh, ecmp/rif: 0x1, action: route,  hitcount: 0]
 ```
 
-</details>
+{{< /expand >}}
 
 ## Delete PBR Rules and Policies
 
@@ -566,10 +562,6 @@ cumulus@switch:~$
 
 If a PBR rule has multiple conditions (for example, a source IP match and a destination IP match), but you only want to delete one condition, you have to delete all conditions first, then re-add the ones you want to keep.
 
-<details>
-
-<summary>Example configuration</summary>
-
 The example below shows an existing configuration that has a source IP match and a destination IP match.
 
 ```
@@ -604,7 +596,5 @@ net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
 net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
 net commit
 ```
-
-</details>
 
 {{%/notice%}}

@@ -454,6 +454,26 @@ To specify a Syslog channel:
 
 7. Repeat to add additional Syslog channels as needed.
 
+### Remove Notification Channels
+
+You can view your notification channels at any time. If you create new channels or retire selected channels, you might need to add or remove them from NetQ as well. To add channels refer to {{<link title="#Specify Notification Channels" text="Specify Notification Channels">}}.
+
+To remove channels:
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+
+    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+
+    This opens the Channels view.
+
+    {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
+
+2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, or Syslog).
+
+3. Select one or more channels.
+
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
+
 ### Create a TCA Rule
 
 Now that you know which events are supported and how to set the scope, you can create a basic rule to deliver one of the TCA events to a notification channel.

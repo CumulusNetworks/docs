@@ -60,6 +60,25 @@ def get_hugo_folder(product, version):
         print("ERROR: Unknown product {}".format(product))
         exit(1)
 
+def format_license_string(license_string):
+    '''
+    Modify the license string to work around any special characters for HTML, markdown or CSS needs.
+
+    license_string - string to format
+
+    Returns:
+    Formatted string that can be placed into a markdown page
+    '''
+
+    # Remove extra white space
+    modified_string = license_string.strip()
+    # Replace * character with HTML escape to not mess up markdown
+    modified_string = modified_string.replace("*", "&#42;")
+    # Add a space after license semi-colon to allow CSS to auto line break.
+    modified_string = modified_string.replace(";", "; ")
+
+    return modified_string
+
 def build_foss_license_markdown(csv_file, version):
     '''
     Builds a list of lines that contain the entire formatted foss licenses in markdown table format.
@@ -73,10 +92,12 @@ def build_foss_license_markdown(csv_file, version):
     f = open(csv_file, "r")
     for line in f:
         split_line = line.split(",")
+        license_string = format_license_string(split_line[2])
+
         if header:
-            output.append("| {} | {} | {} |\n".format(split_line[0], split_line[1].strip(), split_line[2].strip()))
+            output.append("| {} | {} | {} |\n".format(split_line[0], split_line[1].strip(), license_string))
         else:
-            output.append("| [{}](/cumulus-linux-{}/Whats-New/licenses/{}.txt) | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), split_line[2].strip()))
+            output.append("| [{}](/cumulus-linux-{}/Whats-New/licenses/{}.txt) | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), license_string))
         if header:
             output.append("|---	        |---	        |---	    |\n")
             header = False
@@ -233,7 +254,7 @@ def main():
     Main function
     '''
     products = {
-        "cl": ["3.7.12", "4.1.0"]
+        "cl": ["3.7.12", "4.1.0", "4.1.1"]
     }
 
     cvs_file_list = []

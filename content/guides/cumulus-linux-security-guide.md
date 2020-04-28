@@ -93,7 +93,7 @@ Cumulus Linux comes out of the box with a default control plane security policy 
 Best practices dictate that:
 
 - All ACL drops are logged
-- The use of IP Tables is required in configuration
+- The use of IP tables is required in configuration
 - Any line with the action *LOG* must be immediately followed with the same line with the action *DROP*
 
 Be sure to apply changes to the default control plane policies with `cl-acltool` so that they are hardware accelerated correctly.

@@ -498,7 +498,7 @@ The Cumulus Linux switch comes with several USB ports as part of the external ha
 
 User passwords are the easiest way to break into any system. After a hacker steals a password, they have access to whatever the user has and can obtain information without raising too much suspicion. Therefore, many companies enforce specific user password requirements.
 
-The default password requirements for Cumulus Linux are strong cryptographic hash (SHA-512). No accounts with nullok are in the `/etc/pam.d` file.
+The default password requirements for Cumulus Linux are strong cryptographic hash (SHA-512). No accounts with nullok exist in the `/etc/pam.d` file.
 
 Password configurations should be consistent with NIST [password complexity guidelines](https://en.wikipedia.org/wiki/Password_policy#NIST_guidelines), but companies can set their own individual requirements for users.
 
@@ -570,7 +570,7 @@ Filesystem  	Size  Used Avail Use% Mounted on
 
 #### Prevent Source Routing
 
-Source routing is a common security threat that allows attackers to send packets to your network and then use the returned information to break into your network. If your organization is not purposefully using source routing, disable it.
+Source routing is a common security threat that allows attackers to send packets to your network, then use the returned information to break into your network. If your organization is not purposefully using source routing, disable it.
 
 To disable IPv4 source-routed packets, set the current behavior with the following command:
 

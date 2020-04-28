@@ -295,150 +295,156 @@ scenarios for all devices in the network.
 
 ### View Interface Statistics
 
-The `ethtool` command provides a wealth of statistics about network interfaces.
-The `netq show ethtool-stats` command returns statistics about a given node and
-interface, including frame errors, ACL drops, buffer drops and more.
+The `ethtool` command provides a wealth of statistics about network interfaces. The `netq show ethtool-stats` command returns statistics about a given node and interface, including frame errors, ACL drops, buffer drops and more.
 
-You can use the `around` option to view the information for a particular time.
-If no changes are found, a "No matching ethtool_stats records found" message is
-displayed. This example illustrates the statistics for switch port swp1 on a
-specific switch in the network.
+You can use the `around` option to view the information for a particular time. If no changes are found, a "No matching ethtool_stats records found" message is displayed. This example illustrates the statistics for switch port swp1 on a specific switch in the network.
 
 ```
-cumulus@noc-pr:~$ netq cel-redxp-13 show ethtool-stats port swp1 rx
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 tx
+
+Matching ethtool_stats records:
+Hostname          Interface                 HwIfOutOctets        HwIfOutUcastPkts     HwIfOutMcastPkts     HwIfOutBcastPkts     HwIfOutDiscards      HwIfOutErrors        HwIfOutQDrops        HwIfOutNonQDrops     HwIfOutQLen          HwIfOutPausePkt      SoftOutErrors        SoftOutDrops         SoftOutTxFifoFull    Last Updated
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            swp50s3                   8749                 0                    44                   0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:57 2020
+```
+
+```
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 rx
+
 Matching ethtool_stats records:
 Hostname          Interface                 HwIfInOctets         HwIfInUcastPkts      HwIfInBcastPkts      HwIfInMcastPkts      HwIfInDiscards       HwIfInL3Drops        HwIfInBufferDrops    HwIfInAclDrops       HwIfInDot3LengthErro HwIfInErrors         HwIfInDot3FrameError HwIfInPausePkt       SoftInErrors         SoftInDrops          SoftInFrameErrors    Last Updated
                                                                                                                                                                                                                     rs                                        s
 ----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-cel-redxp-13      swp1                      261764               0                    0                    2285                 0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Fri Apr 24 21:14:14 2020
+leaf01            swp50s3                   9131                 0                    0                    23                   0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:25 2020
 ```
 
-```
-cumulus@noc-pr:~$ netq cel-redxp-13 show ethtool-stats port swp1 tx
-Matching ethtool_stats records:
-Hostname          Interface                 HwIfOutOctets        HwIfOutUcastPkts     HwIfOutMcastPkts     HwIfOutBcastPkts     HwIfOutDiscards      HwIfOutErrors        HwIfOutQDrops        HwIfOutNonQDrops     HwIfOutQLen          HwIfOutPausePkt      SoftOutErrors        SoftOutDrops         SoftOutTxFifoFull    Last Updated
------------------ ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-cel-redxp-13      swp1                      202995               0                    1524                 0                    1                    0                    1                    0                    0                    0                    0                    0                    0                    Fri Apr 24 21:14:45 2020
-```
+Use the `extended` keyword to provide even more statistics:
 
 ```
-cumulus@noc-pr:~$ netq cel-redxp-13 show ethtool-stats port swp1 tx extended
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 tx extended
+
 Matching ethtool_stats records:
 Hostname          Interface                 HwIfOutPfc0Pkt       HwIfOutPfc1Pkt       HwIfOutPfc2Pkt       HwIfOutPfc3Pkt       HwIfOutPfc4Pkt       HwIfOutPfc5Pkt       HwIfOutPfc6Pkt       HwIfOutPfc7Pkt       HwIfOutWredDrops     HwIfOutQ0WredDrops   HwIfOutQ1WredDrops   HwIfOutQ2WredDrops   HwIfOutQ3WredDrops   HwIfOutQ4WredDrops   HwIfOutQ5WredDrops   HwIfOutQ6WredDrops   HwIfOutQ7WredDrops   HwIfOutQ8WredDrops   HwIfOutQ9WredDrops   Last Updated
 ----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-cel-redxp-13      swp1                      0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Fri Apr 24 21:14:45 2020
+leaf01            swp50s3                   0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:57 2020
 ```
 
 ```
-cumulus@noc-pr:~$ netq cel-redxp-13 show ethtool-stats port swp1 rx extended
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 rx extended
+
 Matching ethtool_stats records:
 Hostname          Interface                 HwIfInPfc0Pkt        HwIfInPfc1Pkt        HwIfInPfc2Pkt        HwIfInPfc3Pkt        HwIfInPfc4Pkt        HwIfInPfc5Pkt        HwIfInPfc6Pkt        HwIfInPfc7Pkt        Last Updated
 ----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-cel-redxp-13      swp1                      0                    0                    0                    0                    0                    0                    0                    0                    Fri Apr 24 21:14:45 2020
+leaf01            swp50s3                   0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:25 2020
 ```
 
+JSON output is also available for these commands:
+
 ```
-cumulus@noc-pr:~$ netq cel-redxp-13 show ethtool-stats port swp1 tx extended json
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 tx json
 {
     "ethtool_stats":[
         {
-            "hwifoutq8wreddrops":0,
+            "hwifoutoctets":12571,
+            "hwifoutucastpkts":0,
+            "hwifoutpausepkt":0,
+            "softouttxfifofull":0,
+            "hwifoutmcastpkts":58,
+            "hwifoutbcastpkts":0,
+            "softouterrors":0,
+            "interface":"swp50s3",
+            "lastUpdated":1588112216.0,
+            "softoutdrops":0,
+            "hwifoutdiscards":0,
+            "hwifoutqlen":0,
+            "hwifoutnonqdrops":0,
+            "hostname":"leaf01",
+            "hwifouterrors":0,
+            "hwifoutqdrops":0
+	}
+    ],
+    "truncatedResult":false
+}
+```
+
+```
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 rx json
+{
+    "ethtool_stats":[
+        {
+            "hwifindot3frameerrors":0,
+            "hwifinpausepkt":0,
+            "hwifinbufferdrops":0,
+            "interface":"swp50s3",
+            "hwifinucastpkts":0,
+            "hwifinbcastpkts":0,
+            "hwifindiscards":0,
+            "softinframeerrors":0,
+            "softinerrors":0,
+            "hwifinoctets":15086,
+            "hwifinacldrops":0,
+            "hwifinl3drops":0,
+            "hostname":"leaf01",
+            "hwifinerrors":0,
+            "softindrops":0,
+            "hwifinmcastpkts":38,
+            "lastUpdated":1588112216.0,
+            "hwifindot3lengtherrors":0
+	}
+    ],
+    "truncatedResult":false
+}
+```
+
+```
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 tx extended json
+{
+    "ethtool_stats":[
+        {
+            "hostname":"leaf01",
+            "hwifoutq5wreddrops":0,
             "hwifoutq3wreddrops":0,
             "hwifoutpfc3pkt":0,
+            "hwifoutq6wreddrops":0,
+            "hwifoutq9wreddrops":0,
+            "hwifoutq2wreddrops":0,
+            "hwifoutq8wreddrops":0,
+            "hwifoutpfc7pkt":0,
+            "hwifoutpfc4pkt":0,
             "hwifoutpfc6pkt":0,
-            "hwifoutq4wreddrops":0,
-            "hwifoutpfc1pkt":0,
             "hwifoutq7wreddrops":0,
             "hwifoutpfc0pkt":0,
-            "hwifoutq9wreddrops":0,
-            "hwifoutpfc4pkt":0,
-            "hwifoutpfc7pkt":0,
-            "hwifoutq1wreddrops":0,
-            "hwifoutpfc5pkt":0,
+            "hwifoutpfc1pkt":0,
+            "interface":"swp50s3",
             "hwifoutq0wreddrops":0,
-            "hostname":"cel-redxp-13",
-            "interface":"swp1",
+            "hwifoutq4wreddrops":0,
             "hwifoutpfc2pkt":0,
-            "lastUpdated":1587762885.0,
-            "hwifoutq6wreddrops":0,
-            "hwifoutq5wreddrops":0,
-            "hwifoutq2wreddrops":0,
-            "hwifoutwreddrops":0
+            "lastUpdated":1588112216.0,
+            "hwifoutwreddrops":0,
+            "hwifoutpfc5pkt":0,
+            "hwifoutq1wreddrops":0
 	}
     ],
     "truncatedResult":false
 }
-cumulus@noc-pr:~$ netq cel-redxp-13 show ethtool-stats port swp1 rx extended json
+```
+
+```
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 rx extended json
 {
     "ethtool_stats":[
         {
-            "hwifinpfc3pkt":0,
-            "hwifinpfc2pkt":0,
-            "hwifinpfc1pkt":0,
-            "hwifinpfc0pkt":0,
-            "hwifinpfc7pkt":0,
-            "hwifinpfc4pkt":0,
-            "lastUpdated":1587762916.0,
-            "hwifinpfc6pkt":0,
             "hwifinpfc5pkt":0,
-            "interface":"swp1",
-            "hostname":"cel-redxp-13"
-	}
-    ],
-    "truncatedResult":false
-}
-```
-
-```
-cumulus@noc-pr:~$ netq cel-redxp-13 show ethtool-stats port swp1 rx json
-{
-    "ethtool_stats":[
-        {
-            "hostname":"cel-redxp-13",
-            "softinerrors":0,
-            "softinframeerrors":0,
-            "hwifinucastpkts":0,
-            "interface":"swp1",
-            "hwifinerrors":0,
-            "hwifindiscards":0,
-            "hwifinbufferdrops":0,
-            "hwifindot3frameerrors":0,
-            "hwifinl3drops":0,
-            "softindrops":0,
-            "hwifinbcastpkts":0,
-            "hwifinmcastpkts":2378,
-            "hwifindot3lengtherrors":0,
-            "hwifinacldrops":0,
-            "hwifinoctets":272300,
-            "hwifinpausepkt":0,
-            "lastUpdated":1587762916.0
-	}
-    ],
-    "truncatedResult":false
-}
-```
-
-```
-cumulus@noc-pr:~$ netq cel-redxp-13 show ethtool-stats port swp1 tx json
-{
-    "ethtool_stats":[
-        {
-            "hwifoutucastpkts":0,
-            "hostname":"cel-redxp-13",
-            "hwifoutpausepkt":0,
-            "hwifoutoctets":206850,
-            "softouttxfifofull":0,
-            "hwifoutnonqdrops":0,
-            "lastUpdated":1587762916.0,
-            "softoutdrops":0,
-            "softouterrors":0,
-            "hwifoutmcastpkts":1553,
-            "hwifoutbcastpkts":0,
-            "hwifouterrors":0,
-            "hwifoutqlen":0,
-            "interface":"swp1",
-            "hwifoutdiscards":1,
-            "hwifoutqdrops":1
+            "hwifinpfc0pkt":0,
+            "hwifinpfc1pkt":0,
+            "interface":"swp50s3",
+            "hwifinpfc4pkt":0,
+            "lastUpdated":1588112216.0,
+            "hwifinpfc3pkt":0,
+            "hwifinpfc6pkt":0,
+            "hostname":"leaf01",
+            "hwifinpfc7pkt":0,
+            "hwifinpfc2pkt":0
 	}
     ],
     "truncatedResult":false

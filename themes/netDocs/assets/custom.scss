@@ -1546,8 +1546,19 @@ footer {
 
 #gsc-i-id1 {
   background: unset !important;
+  height: 40px !important;
   text-indent: unset !important;
 }
+
+.gsc-search-button-v2 {
+  height: 50px !important;
+}
+
+.gsc-search-button-v2 svg {
+  height: 25px;
+  width: 25px;
+}
+
 
 .search-hint {
   margin-top: 20px;

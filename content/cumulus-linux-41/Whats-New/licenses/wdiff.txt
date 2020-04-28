@@ -1,0 +1,48 @@
+This is the Debian prepackaged version of GNU wdiff, a program
+to compare two files word by word. GNU wdiff was written by
+François Pinard <pinard@iro.umontreal.ca>.
+
+This package was put together by Santiago Vila <sanvila@debian.org>,
+from sources obtained from:
+
+http://ftp.gnu.org/gnu/wdiff/wdiff-1.2.2.tar.gz
+
+The changes were fairly minimal, and consisted of adding various
+debian/* files to the distribution.
+
+GNU wdiff is Copyright (C) 1992, 1997, 1998, 1999, 2009, 2010, 2011,
+2012, 2013, 2014 Free Software Foundation, Inc.
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+On Debian systems, the complete text of the GNU General Public License
+can be found in `/usr/share/common-licenses/GPL'.
+
+
+GNU wdiff manual is Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010,
+2011, 2012, 2013 Free Software Foundation, Inc.
+
+     Permission is granted to make and distribute verbatim copies of this
+  manual provided the copyright notice and this permission notice are
+  preserved on all copies.
+
+     Permission is granted to copy and distribute modified versions of
+  this manual under the conditions for verbatim copying, provided that
+  the entire resulting derived work is distributed under the terms of a
+  permission notice identical to this one.
+
+     Permission is granted to copy and distribute translations of this
+  manual into another language, under the above conditions for modified
+  versions, except that this permission notice may be stated in a
+  translation approved by the Foundation.

@@ -8,8 +8,6 @@ toc: 1
 draft: true
 pdfhidden: True
 ---
-
-
 ## 4.1.1 Open Source Software Licenses 
 | Package | Version | License(s) |
 |---	        |---	        |---	    |

@@ -13,7 +13,7 @@ This topic for network administrators only.
 
 As an administrator, you want to manage the deployment of Cumulus Networks product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible. With this release, NetQ introduces Lifecycle Management (LCM) to the NetQ CLI, which supports Cumulus Linux image, switch, and credential management.
 
-You can read about LCM in the {{<link url="Lifecycle-Management" text="NetQ administrator guide">}}.
+You can read more about LCM in the {{<link url="Lifecycle-Management" text="NetQ administrator guide">}}.
 
 ## LCM Command Summary
 
@@ -31,21 +31,56 @@ The NetQ CLI provides a number of `netq lcm` commands to perform LCM. The syntax
     netq lcm show images [<text-image-id>] [json]
     netq lcm show upgrade-jobs [json]
 
+## Upgrade Steps
+
+To upgrade Cumulus Linux on your switches, you need to do the following:
+
+1. Configure {{<link url="#configure-access-credentials" text="access credentials">}} to the switches.
+1. Configure {{<link url="#configure-switch-roles" text="switch roles">}} to determine the order in which the switches get upgraded.
+1. Upload the {{<link url="#upload-cumulus-linux-install-images" text="Cumulus Linux install image">}}.
+1. Run {{<link url="#upgrade-cumulus-linux-on-a-switch" text="the upgrade">}}.
+
 ## Configure Access Credentials
 
-Switch access credentials are needed for performing upgrades. You can choose between basic authentication (username and password) and SSH key-based authentication. These credentials apply to all switches.
+Switch access credentials are needed for upgrading Cumulus Linux on the switches. You can choose between basic authentication (username and password) and SSH key-based authentication. These credentials apply to all switches.
 
-To configure username/password authentication for the _cumulus_ user with the password _CumulusLinux!_, run:
+To configure basic authentication for the _cumulus_ user with the password _CumulusLinux!_, run:
 
-    netq lcm add credentials (username cumulus password CumulusLinux!
+    netq lcm add credentials username cumulus password CumulusLinux!
 
-To configure access credentials using a public SSH key, run: 
+To configure authentication using a public SSH key, run:
 
     netq lcm add credentials ssh-key PUBLIC_SSH_KEY
 
+### View Credentials
+
+A switch can have just one set of credentials. To see the credentials, run `netq lcm show credentials`.
+
+If an SSH key is used for the credentials, the public key is displayed in the command output:
+
+```
+cumulus@switch:~$ netq lcm show credentials
+Type             SSH Key        Username         Password         Last Changed
+---------------- -------------- ---------------- ---------------- -------------------------
+SSH              MY-SSH-KEY                                       Tue Apr 28 19:08:52 2020
+```
+
+If a username and passord is used for the credentials, the username is displayed in the command output but the password is masked:
+
+```
+cumulus@leaf01:mgmt-vrf:~$ netq lcm show credentials 
+Type             SSH Key        Username         Password         Last Changed
+---------------- -------------- ---------------- ---------------- -------------------------
+BASIC                           cumulus          **************   Tue Apr 28 19:10:27 2020
+```
+
+### Remove Credentials
+
+To remove the credentials, run `netq lcm del credentials`.
+
 ## Configure Switch Roles
 
-Four pre-defined switch roles are available, based on Clos architecture:
+Four pre-defined switch roles are available. Their names are based on Clos architecture:
 
 - Superspine
 - Spine
@@ -104,18 +139,20 @@ For more information about Cumulus Linux images and LCM, read {{<link url="Lifec
 
 1. Download the version of Cumulus Linux you plan to use to upgrade the switches from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux" text="Cumulus Networks web site">}}.
 
-1. Upload the image onto an accessible part of your network.
+1. Upload the image onto an accessible part of your network. The following example uses the Cumulus Linux 3.7.12 disk image, named `cumulus-linux-3.7.12-bcm-amd64.bin`.
 
        cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-3.7.12-bcm-amd64.bin
 
+## Upgrade Cumulus Linux on a Switch
 
+LCM provides the ability to upgrade Cumulus Linux on switches on your network through NetQ. Once the image is uploaded and the switch credentials are configured, you can upgrade the operating system. To do you, you need:
 
+- A Cumulus Linux license file accessible over the network.
+- A Cumulus Linux install image accessible over the network.
+- The ID for the Cumulus Linux image.
+- The names of the switches you plan to upgrade.
 
-
-
-1. Add the cumulus user credentials to the switch.
-
-       cumulus@switch:~$ netq lcm add credentials username cumulus password CumulusLinux!
+To upgrade one or more switches:
 
 1. Get the Cumulus Linux install image ID. Determine the image ID intended to upgrade the switches and copy it.
 
@@ -129,15 +166,23 @@ For more information about Cumulus Linux images and LCM, read {{<link url="Lifec
        eff1b37b1dec394cb832ceb4d .7.11-vx-amd64.
        94e234d9a1f62deb279c405   bin
 
-## Upgrade Cumulus Linux on a Switch
+1. Perform the upgrade:
 
-Perform the upgrade.
+       cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 license LICENSE hostnames spine01,spine02 order spine
 
-       cumulus@switch:~$ netq lcm upgrade name upgrade-00 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 license LICENSE hostnames spine01,spine02 order spine
+You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:
 
-## Rerunning an Upgrade Job
+    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 license LICENSE hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
 
-If the upgrade job fails, and you would like to rerun the upgrade job, you need to run the upgrade job with a new unique name. You need to get the history of all previous upgrade jobs to ensure that the new upgrade job will not have a duplicate name.
+You can also decide to run LCM before and after the upgrade by adding the `run-before-after` option to the command:
+
+    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 license LICENSE hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-before-after
+
+## Running an Upgrade Job Again
+
+Every upgrade job requires a unique name. If the upgrade job fails, you need to provide a new name for the job in order to run the upgrade job again. You can get the history of all previous upgrade jobs to ensure that the new upgrade job does not have a duplicate name.
+
+To see a history of previous upgrades that have been run, run `netq lcm show upgrade-jobs`:
 
 ```
 cumulus@switch:~$ netq lcm show upgrade-jobs
@@ -157,29 +202,7 @@ job_upgrade_ Upgrade to CL3. 3.7.12               COMPLETED                     
 ad48ae2cfafb
 ```
 
-## Show Upgrade Jobs and Their Status
-
-To see a history of previous upgrades that have been run, run `netq lcm show upgrade-jobs`:
-
-```
-cumulus@leaf01:mgmt-vrf:~$ netq lcm show upgrade-jobs
-Job ID       Name            CL Version           Pre-Check Status                 Warnings         Errors       Start Time
------------- --------------- -------------------- -------------------------------- ---------------- ------------ --------------------
-job_upgrade_ 3.7.12 Upgrade  3.7.12               WARNING                                                        Fri Apr 24 20:27:47
-fda24660-866                                                                                                     2020
-9-11ea-bda5-
-ad48ae2cfafb
-job_upgrade_ DataCenter      3.7.12               WARNING                                                        Mon Apr 27 17:44:36
-81749650-88a                                                                                                     2020
-e-11ea-bda5-
-ad48ae2cfafb
-job_upgrade_ Upgrade to CL3. 3.7.12               COMPLETED                                                      Fri Apr 24 17:56:59
-4564c160-865 7.12                                                                                                2020
-3-11ea-bda5-
-ad48ae2cfafb
-```
-
-Then, to see details a particular upgrade job, run:
+To see details a particular upgrade job, run `netq lcm show status job-ID`:
 
 ```
 cumulus@switch:~$ netq lcm show status job_upgrade_fda24660-8669-11ea-bda5-ad48ae2cfafb
@@ -190,3 +213,7 @@ spine03     3.7.12        COMPLETED        Fri Apr 24 20:28:17 2020  COMPLETED  
 leaf03      3.7.12        COMPLETED        Fri Apr 24 20:33:26 2020  COMPLETED         Fri Apr 24 20:37:10 2020  COMPLETED         Fri Apr 24 20:33:37 2020
 fw1         3.7.12        COMPLETED        Fri Apr 24 20:38:48 2020  COMPLETED         Fri Apr 24 20:42:05 2020  COMPLETED         Fri Apr 24 20:38:58 2020
 ```
+
+## Back Up and Restore
+
+To back up and restore the switches themselves, use the `config-backup` and `config-restore` commands in Cumulus Linux directly on the switches. For more information, read the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Back-up-and-Restore/" text="Cumulus Linux user guide">}}.

@@ -148,9 +148,9 @@ cumulus@switch:~$ net add vrf mgmt
 cumulus@switch:~$ net commit
 ```
 
-For more information about working with a management VRF, such as running services in a specific VRF,  refer to the [Management VRF documentation](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/.)
+For more information about working with a management VRF, such as running services in a specific VRF,  refer to the [Management VRF documentation](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/).
 
-Be sure to enable all the network services inside each VRF including the following:
+Be sure to enable all the network services inside each VRF including:
 
 - Traffic flow reporting
 - Syslog
@@ -160,7 +160,7 @@ Be sure to enable all the network services inside each VRF including the followi
 
 #### Customize the Management ACL
 
-Management Access Control List (ACL) is the main list of user permissions for Cumulus Linux. Review and customize the management ACL as soon as possible during the installation process to help prevent user errors or malicious behavior by restricting the abilities of administrative users. Due to many unique needs and environments, the management ACL is highly customizable; it is important that you change the defaults.
+The Management Access Control List (ACL) is the main list of user permissions for Cumulus Linux. Review and customize the management ACL as soon as possible during the installation process to help prevent user errors or malicious behavior by restricting the abilities of administrative users. Due to many unique needs and environments, the management ACL is highly customizable; it is important that you change the defaults.
 
 Use the following guidelines as a starting point to build your management ACL. These guidelines reference example IP addresses and ports that are shown in detail in the firewall rules in the next section.
 
@@ -173,7 +173,7 @@ Use the following guidelines as a starting point to build your management ACL. T
 - Allow MLAG traffic on the backup interface eth0 (UDP port 5342).
 - Allow outbound syslog only to known logging stations (UDP port 514).
 - Allow outbound Flow only to known flow collectors (UDP port 6343).
-- Allow outbound connection for the NetQ agent to the NetQ server (TCP port 31980).
+- Allow outbound connections for the NetQ agent to the NetQ server (TCP port 31980).
 - Block transit traffic on the management network (allow ingress to the switch or egress from the switch).
 - Allow traffic to and from the local subnets to be forwarded through the data plane switch ports.
 
@@ -234,7 +234,6 @@ In the command output, the `L` (immediately following the word `root`) indicates
 ```
 cumulus@switch:~$ sudo passwd -S root
 root L 08/07/2019 0 99999 7 -1
-cumulus@switch:
 ```
 
 The `P` (immediately following the word `root`) indicates the account is *not* locked:
@@ -242,18 +241,17 @@ The `P` (immediately following the word `root`) indicates the account is *not* l
 ```
 cumulus@switch:~$ sudo passwd -S root
 root P 09/10/2019 0 99999 7 -1
-cumulus@cumulus:mgmt-vrf:~$
 ```
 
 To lock the root account, run the following command:
 
 ```
-cumulus@switch:~$ passwd -l root
+cumulus@switch:~$ sudo passwd -l root
 ```
 
 #### Harden sudo Access
 
-The sudo command allows you to execute programs in Linux with the security privileges of a superuser. It is important to enforce sudo rules to avoid abuse. By default, sudo credentials are cached for a set amount of time after you execute a command with privileges via sudo.
+The sudo command allows you to execute programs in Linux with the security privileges of a superuser. It is important to enforce sudo rules to avoid abuse. By default, sudo credentials are cached for a set amount of time after you execute a command with privileges using sudo.
 
 To increase security, configure Cumulus Linux to require the superuser password with the `sudo` command. Run the `visudo` command to edit the default settings and change the `timestamp_timeout` option to `0`:
 
@@ -393,11 +391,11 @@ Open Shortest Path First (OSPF) and Border Gateway Protocol (BGP) are dynamic ro
 
 If left unsecured, an attacker can exploit a dynamic routing protocol such as OSPF or BGP to reroute packets to a rogue system instead of its intended destination. To help mitigate this threat, enable authentication on these protocols.
 
-To configure OSPF authentication, two NCLU commands are required: one to add the key and a second to enable authentication on the interface:
+To configure OSPF authentication, two NCLU commands are required: one to add the key and a second to enable authentication on an interface (swp1 in the command example):
 
 ```
-cumulus@switch:~$ net add interface swp# ospf message-digest-key 1 md5 thisisthekey
-cumulus@switch:~$ net add interface swp# ospf authentication message-digest
+cumulus@switch:~$ net add interface swp1 ospf message-digest-key 1 md5 thisisthekey
+cumulus@switch:~$ net add interface swp1 ospf authentication message-digest
 cumulus@switch:~$ net commit
 ```
 
@@ -443,7 +441,7 @@ This section discusses items that have similar impacts to both security, and man
 
 #### Configure 802.1X
 
-802.1X is a popular technology because it authenticates devices that physically attach to the switch. It can also assign these devices different levels of access to the network after they authenticate. There are many use cases for this technology and each configuration varies widely. For additional details, go [here](https://docs.cumulusnetworks.com/cumulus-linux/Layer-1-and-Switch-Ports/802.1X-Interfaces/) and [here](https://cumulusnetworks.com/blog/campus-design-feature-set-up-part-4/).
+802.1X is a popular technology because it authenticates devices that physically attach to the switch. It can also assign these devices different levels of access to the network after they authenticate. There are many use cases for this technology and each configuration varies widely. For additional details, see [802.1X Interfaces](https://docs.cumulusnetworks.com/cumulus-linux/Layer-1-and-Switch-Ports/802.1X-Interfaces/) and [campus design](https://cumulusnetworks.com/blog/campus-design-feature-set-up-part-4/).
 
 The following example is a starting point to build on. This is a base 802.1X configuration:
 

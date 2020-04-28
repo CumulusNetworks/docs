@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29484</td>
+<td><p>The following vulnerability affects libgd2/libgd3:<br/>
+CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
+Vulnerable: &lt;= 2.1.0-5+deb8u13<br/>
+Fixed: 2.1.0-5+deb8u14</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29483</td>
+<td><p>The following vulnerability affects imptool:<br/>
+CVE-2020-5208: It's been found that multiple functions in ipmitool before 1.8.19 neglect proper checking of the data received from a remote LAN party, which may lead to buffer overflows and potentially to remote code execution on the ipmitool side. This is especially dangerous if ipmitool is run as a privileged user.<br/>
+Vulnerable: &lt;= 1.8.14-4<br/>
+Fixed: 1.8.14-4+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29367</td>
 <td><p>On switches with the Trident3 ASIC, PFC is not working as expected. If you set the PFC for only one CoS,  pause frames are sent for all CoS traffic.</p></td>
 <td>3.7.11-3.7.12</td>
@@ -179,7 +197,7 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 </tr>
 <tr>
 <td>CM-28811</td>
-<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+<td><p>The following security vulnerability affects the libvpx1 library:<br/>
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>
@@ -748,6 +766,13 @@ To work around this issue, disable MAC learning on QinQ VLANs by adding bridge-l
 <td><p>On switches with the Spectrum ASIC, the underlay hashes VXLAN packets for a given overlay flow randomly.<br/>
 To work around this issue, configure the ECMP hash seed to the same value on the EVPN egress leaf switches.</p></td>
 <td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-25923</td>
+<td><p>The default route injected through OSPF when you configure <code>default-information originate always]} is unreliable and might age out unexpectedly.<br/>
+To work around this issue, rely on a different source of default route other than injection with default-information originate.</p></td>
+<td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -1792,6 +1817,24 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29484</td>
+<td><p>The following vulnerability affects libgd2/libgd3:<br/>
+CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
+Vulnerable: &lt;= 2.1.0-5+deb8u13<br/>
+Fixed: 2.1.0-5+deb8u14</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29483</td>
+<td><p>The following vulnerability affects imptool:<br/>
+CVE-2020-5208: It's been found that multiple functions in ipmitool before 1.8.19 neglect proper checking of the data received from a remote LAN party, which may lead to buffer overflows and potentially to remote code execution on the ipmitool side. This is especially dangerous if ipmitool is run as a privileged user.<br/>
+Vulnerable: &lt;= 1.8.14-4<br/>
+Fixed: 1.8.14-4+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29367</td>
 <td><p>On switches with the Trident3 ASIC, PFC is not working as expected. If you set the PFC for only one CoS,  pause frames are sent for all CoS traffic.</p></td>
 <td>3.7.11-3.7.12</td>
@@ -1904,7 +1947,7 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 </tr>
 <tr>
 <td>CM-28811</td>
-<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+<td><p>The following security vulnerability affects the libvpx1 library:<br/>
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>
@@ -2706,6 +2749,13 @@ To work around this issue, disable MAC learning on QinQ VLANs by adding bridge-l
 <td><p>On switches with the Spectrum ASIC, the underlay hashes VXLAN packets for a given overlay flow randomly.<br/>
 To work around this issue, configure the ECMP hash seed to the same value on the EVPN egress leaf switches.</p></td>
 <td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-25923</td>
+<td><p>The default route injected through OSPF when you configure <code>default-information originate always]} is unreliable and might age out unexpectedly.<br/>
+To work around this issue, rely on a different source of default route other than injection with default-information originate.</p></td>
+<td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -3963,12 +4013,6 @@ route-map peerlink-add-asn permit 20
 <td>3.0.0-3.7.10</td>
 </tr>
 <tr>
-<td>CM-24762</td>
-<td><p>On the EdgeCore AS7326 switch, the 1000BASE-T SFP RJ-45 on a 25G port does not work at 1G. </p>
-</td>
-<td>3.7.3-3.7.10</td>
-</tr>
-<tr>
 <td>CM-23016</td>
 <td><p>When FRR restarts, snmp<span class="error">&#91;err&#93;</span> dev/kmem: Permission denied error messages are recorded in the log file and SNMPd might crash periodically.</p></td>
 <td>3.7.5-3.7.10</td>
@@ -4050,6 +4094,24 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-29484</td>
+<td><p>The following vulnerability affects libgd2/libgd3:<br/>
+CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
+Vulnerable: &lt;= 2.1.0-5+deb8u13<br/>
+Fixed: 2.1.0-5+deb8u14</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29483</td>
+<td><p>The following vulnerability affects imptool:<br/>
+CVE-2020-5208: It's been found that multiple functions in ipmitool before 1.8.19 neglect proper checking of the data received from a remote LAN party, which may lead to buffer overflows and potentially to remote code execution on the ipmitool side. This is especially dangerous if ipmitool is run as a privileged user.<br/>
+Vulnerable: &lt;= 1.8.14-4<br/>
+Fixed: 1.8.14-4+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29284</td>
@@ -4139,7 +4201,7 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 </tr>
 <tr>
 <td>CM-28811</td>
-<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+<td><p>The following security vulnerability affects the libvpx1 library:<br/>
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>
@@ -5055,6 +5117,13 @@ To work around this issue, configure the ECMP hash seed to the same value on the
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
+<td>CM-25923</td>
+<td><p>The default route injected through OSPF when you configure <code>default-information originate always]} is unreliable and might age out unexpectedly.<br/>
+To work around this issue, rely on a different source of default route other than injection with default-information originate.</p></td>
+<td>3.7.8-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-25890</td>
 <td><p>In some cases, the switchd service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).</p></td>
 <td>3.7.0-3.7.12</td>
@@ -5306,13 +5375,6 @@ This issue only affects QinQ configurations. </p>
 </td>
 <td>3.7.5-3.7.12</td>
 <td></td>
-</tr>
-<tr>
-<td>CM-24762</td>
-<td><p>On the EdgeCore AS7326 switch, the 1000BASE-T SFP RJ-45 on a 25G port does not work at 1G. </p>
-</td>
-<td>3.7.3-3.7.10</td>
-<td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-24751</td>
@@ -6084,6 +6146,24 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29484</td>
+<td><p>The following vulnerability affects libgd2/libgd3:<br/>
+CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
+Vulnerable: &lt;= 2.1.0-5+deb8u13<br/>
+Fixed: 2.1.0-5+deb8u14</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29483</td>
+<td><p>The following vulnerability affects imptool:<br/>
+CVE-2020-5208: It's been found that multiple functions in ipmitool before 1.8.19 neglect proper checking of the data received from a remote LAN party, which may lead to buffer overflows and potentially to remote code execution on the ipmitool side. This is especially dangerous if ipmitool is run as a privileged user.<br/>
+Vulnerable: &lt;= 1.8.14-4<br/>
+Fixed: 1.8.14-4+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29284</td>
 <td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
@@ -6171,7 +6251,7 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 </tr>
 <tr>
 <td>CM-28811</td>
-<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+<td><p>The following security vulnerability affects the libvpx1 library:<br/>
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>
@@ -6900,6 +6980,13 @@ To work around this issue, configure the ECMP hash seed to the same value on the
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
+<td>CM-25923</td>
+<td><p>The default route injected through OSPF when you configure <code>default-information originate always]} is unreliable and might age out unexpectedly.<br/>
+To work around this issue, rely on a different source of default route other than injection with default-information originate.</p></td>
+<td>3.7.8-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-25890</td>
 <td><p>In some cases, the switchd service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).</p></td>
 <td>3.7.0-3.7.12</td>
@@ -7151,13 +7238,6 @@ This issue only affects QinQ configurations. </p>
 </td>
 <td>3.7.5-3.7.12</td>
 <td></td>
-</tr>
-<tr>
-<td>CM-24762</td>
-<td><p>On the EdgeCore AS7326 switch, the 1000BASE-T SFP RJ-45 on a 25G port does not work at 1G. </p>
-</td>
-<td>3.7.3-3.7.10</td>
-<td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-24751</td>
@@ -8566,6 +8646,24 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29484</td>
+<td><p>The following vulnerability affects libgd2/libgd3:<br/>
+CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
+Vulnerable: &lt;= 2.1.0-5+deb8u13<br/>
+Fixed: 2.1.0-5+deb8u14</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29483</td>
+<td><p>The following vulnerability affects imptool:<br/>
+CVE-2020-5208: It's been found that multiple functions in ipmitool before 1.8.19 neglect proper checking of the data received from a remote LAN party, which may lead to buffer overflows and potentially to remote code execution on the ipmitool side. This is especially dangerous if ipmitool is run as a privileged user.<br/>
+Vulnerable: &lt;= 1.8.14-4<br/>
+Fixed: 1.8.14-4+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29284</td>
 <td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
@@ -8653,7 +8751,7 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 </tr>
 <tr>
 <td>CM-28811</td>
-<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+<td><p>The following security vulnerability affects the libvpx1 library:<br/>
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>
@@ -9354,6 +9452,13 @@ To work around this issue, configure the ECMP hash seed to the same value on the
 <td>3.7.9-3.7.12</td>
 </tr>
 <tr>
+<td>CM-25923</td>
+<td><p>The default route injected through OSPF when you configure <code>default-information originate always]} is unreliable and might age out unexpectedly.<br/>
+To work around this issue, rely on a different source of default route other than injection with default-information originate.</p></td>
+<td>3.7.8-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-25890</td>
 <td><p>In some cases, the switchd service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).</p></td>
 <td>3.7.0-3.7.12</td>
@@ -9892,13 +9997,6 @@ This issue only affects QinQ configurations. </p>
  </td>
 <td>3.7.7-3.7.8</td>
 <td>3.7.9-3.7.12</td>
-</tr>
-<tr>
-<td>CM-24762</td>
-<td><p>On the EdgeCore AS7326 switch, the 1000BASE-T SFP RJ-45 on a 25G port does not work at 1G. </p>
-</td>
-<td>3.7.3-3.7.10</td>
-<td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-24751</td>
@@ -10920,6 +11018,24 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29484</td>
+<td><p>The following vulnerability affects libgd2/libgd3:<br/>
+CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
+Vulnerable: &lt;= 2.1.0-5+deb8u13<br/>
+Fixed: 2.1.0-5+deb8u14</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29483</td>
+<td><p>The following vulnerability affects imptool:<br/>
+CVE-2020-5208: It's been found that multiple functions in ipmitool before 1.8.19 neglect proper checking of the data received from a remote LAN party, which may lead to buffer overflows and potentially to remote code execution on the ipmitool side. This is especially dangerous if ipmitool is run as a privileged user.<br/>
+Vulnerable: &lt;= 1.8.14-4<br/>
+Fixed: 1.8.14-4+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29284</td>
 <td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
@@ -11007,7 +11123,7 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 </tr>
 <tr>
 <td>CM-28811</td>
-<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+<td><p>The following security vulnerability affects the libvpx1 library:<br/>
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>
@@ -12158,13 +12274,6 @@ This issue only affects QinQ configurations. </p>
  </td>
 <td>3.7.7-3.7.8</td>
 <td>3.7.9-3.7.12</td>
-</tr>
-<tr>
-<td>CM-24762</td>
-<td><p>On the EdgeCore AS7326 switch, the 1000BASE-T SFP RJ-45 on a 25G port does not work at 1G. </p>
-</td>
-<td>3.7.3-3.7.10</td>
-<td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-24751</td>
@@ -13642,6 +13751,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29484</td>
+<td><p>The following vulnerability affects libgd2/libgd3:<br/>
+CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
+Vulnerable: &lt;= 2.1.0-5+deb8u13<br/>
+Fixed: 2.1.0-5+deb8u14</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29483</td>
+<td><p>The following vulnerability affects imptool:<br/>
+CVE-2020-5208: It's been found that multiple functions in ipmitool before 1.8.19 neglect proper checking of the data received from a remote LAN party, which may lead to buffer overflows and potentially to remote code execution on the ipmitool side. This is especially dangerous if ipmitool is run as a privileged user.<br/>
+Vulnerable: &lt;= 1.8.14-4<br/>
+Fixed: 1.8.14-4+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29284</td>
 <td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
@@ -13729,7 +13856,7 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 </tr>
 <tr>
 <td>CM-28811</td>
-<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+<td><p>The following security vulnerability affects the libvpx1 library:<br/>
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>
@@ -14936,13 +15063,6 @@ This issue only affects QinQ configurations. </p>
  </td>
 <td>3.7.5-3.7.6</td>
 <td>3.7.7-3.7.12</td>
-</tr>
-<tr>
-<td>CM-24762</td>
-<td><p>On the EdgeCore AS7326 switch, the 1000BASE-T SFP RJ-45 on a 25G port does not work at 1G. </p>
-</td>
-<td>3.7.3-3.7.10</td>
-<td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-24751</td>
@@ -16333,6 +16453,24 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29484</td>
+<td><p>The following vulnerability affects libgd2/libgd3:<br/>
+CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
+Vulnerable: &lt;= 2.1.0-5+deb8u13<br/>
+Fixed: 2.1.0-5+deb8u14</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29483</td>
+<td><p>The following vulnerability affects imptool:<br/>
+CVE-2020-5208: It's been found that multiple functions in ipmitool before 1.8.19 neglect proper checking of the data received from a remote LAN party, which may lead to buffer overflows and potentially to remote code execution on the ipmitool side. This is especially dangerous if ipmitool is run as a privileged user.<br/>
+Vulnerable: &lt;= 1.8.14-4<br/>
+Fixed: 1.8.14-4+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29284</td>
 <td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
@@ -16413,7 +16551,7 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 </tr>
 <tr>
 <td>CM-28811</td>
-<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+<td><p>The following security vulnerability affects the libvpx1 library:<br/>
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>
@@ -17242,13 +17380,6 @@ This issue only affects QinQ configurations. </p>
  </td>
 <td>3.7.5-3.7.6</td>
 <td>3.7.7-3.7.12</td>
-</tr>
-<tr>
-<td>CM-24762</td>
-<td><p>On the EdgeCore AS7326 switch, the 1000BASE-T SFP RJ-45 on a 25G port does not work at 1G. </p>
-</td>
-<td>3.7.3-3.7.10</td>
-<td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-24751</td>
@@ -18693,6 +18824,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29484</td>
+<td><p>The following vulnerability affects libgd2/libgd3:<br/>
+CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
+Vulnerable: &lt;= 2.1.0-5+deb8u13<br/>
+Fixed: 2.1.0-5+deb8u14</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29483</td>
+<td><p>The following vulnerability affects imptool:<br/>
+CVE-2020-5208: It's been found that multiple functions in ipmitool before 1.8.19 neglect proper checking of the data received from a remote LAN party, which may lead to buffer overflows and potentially to remote code execution on the ipmitool side. This is especially dangerous if ipmitool is run as a privileged user.<br/>
+Vulnerable: &lt;= 1.8.14-4<br/>
+Fixed: 1.8.14-4+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29284</td>
 <td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
@@ -18767,7 +18916,7 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 </tr>
 <tr>
 <td>CM-28811</td>
-<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+<td><p>The following security vulnerability affects the libvpx1 library:<br/>
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>
@@ -19479,13 +19628,6 @@ To work around this issue, remove the --nl flag from the dhcrelay service. </p><
  <a href="https://security-tracker.debian.org/tracker/imagemagick" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/imagemagick</a></p></td>
 <td>3.0.0-3.7.6</td>
 <td>3.7.7-3.7.12</td>
-</tr>
-<tr>
-<td>CM-24762</td>
-<td><p>On the EdgeCore AS7326 switch, the 1000BASE-T SFP RJ-45 on a 25G port does not work at 1G. </p>
-</td>
-<td>3.7.3-3.7.10</td>
-<td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-24751</td>
@@ -21111,6 +21253,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29484</td>
+<td><p>The following vulnerability affects libgd2/libgd3:<br/>
+CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
+Vulnerable: &lt;= 2.1.0-5+deb8u13<br/>
+Fixed: 2.1.0-5+deb8u14</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29483</td>
+<td><p>The following vulnerability affects imptool:<br/>
+CVE-2020-5208: It's been found that multiple functions in ipmitool before 1.8.19 neglect proper checking of the data received from a remote LAN party, which may lead to buffer overflows and potentially to remote code execution on the ipmitool side. This is especially dangerous if ipmitool is run as a privileged user.<br/>
+Vulnerable: &lt;= 1.8.14-4<br/>
+Fixed: 1.8.14-4+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29284</td>
 <td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
@@ -21185,7 +21345,7 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 </tr>
 <tr>
 <td>CM-28811</td>
-<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+<td><p>The following security vulnerability affects the libvpx1 library:<br/>
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>
@@ -21871,13 +22031,6 @@ To work around this issue, remove the --nl flag from the dhcrelay service. </p><
  <a href="https://security-tracker.debian.org/tracker/imagemagick" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/imagemagick</a></p></td>
 <td>3.0.0-3.7.6</td>
 <td>3.7.7-3.7.12</td>
-</tr>
-<tr>
-<td>CM-24762</td>
-<td><p>On the EdgeCore AS7326 switch, the 1000BASE-T SFP RJ-45 on a 25G port does not work at 1G. </p>
-</td>
-<td>3.7.3-3.7.10</td>
-<td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-24751</td>
@@ -23693,6 +23846,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29484</td>
+<td><p>The following vulnerability affects libgd2/libgd3:<br/>
+CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
+Vulnerable: &lt;= 2.1.0-5+deb8u13<br/>
+Fixed: 2.1.0-5+deb8u14</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29483</td>
+<td><p>The following vulnerability affects imptool:<br/>
+CVE-2020-5208: It's been found that multiple functions in ipmitool before 1.8.19 neglect proper checking of the data received from a remote LAN party, which may lead to buffer overflows and potentially to remote code execution on the ipmitool side. This is especially dangerous if ipmitool is run as a privileged user.<br/>
+Vulnerable: &lt;= 1.8.14-4<br/>
+Fixed: 1.8.14-4+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29284</td>
 <td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
@@ -23767,7 +23938,7 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 </tr>
 <tr>
 <td>CM-28811</td>
-<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+<td><p>The following security vulnerability affects the libvpx1 library:<br/>
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>
@@ -26398,6 +26569,24 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29484</td>
+<td><p>The following vulnerability affects libgd2/libgd3:<br/>
+CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
+Vulnerable: &lt;= 2.1.0-5+deb8u13<br/>
+Fixed: 2.1.0-5+deb8u14</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29483</td>
+<td><p>The following vulnerability affects imptool:<br/>
+CVE-2020-5208: It's been found that multiple functions in ipmitool before 1.8.19 neglect proper checking of the data received from a remote LAN party, which may lead to buffer overflows and potentially to remote code execution on the ipmitool side. This is especially dangerous if ipmitool is run as a privileged user.<br/>
+Vulnerable: &lt;= 1.8.14-4<br/>
+Fixed: 1.8.14-4+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29284</td>
 <td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
@@ -26472,7 +26661,7 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 </tr>
 <tr>
 <td>CM-28811</td>
-<td><p>The following security vulnerability has been announced in the libvpx1 library:<br/>
+<td><p>The following security vulnerability affects the libvpx1 library:<br/>
 CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/>
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>

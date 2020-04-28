@@ -68,38 +68,3 @@ The following table summarizes the previously deprecated commands that have been
 | ------- | ------- | ------- |
 | netq [&lt;hostname>] show lnv [around &lt;text-time>] [json] | LNV is no longer supported in Cumulus Linux. | 3.0.0 |
 | netq check lnv [around &lt;text-time>] [json] | LNV is no longer supported in Cumulus Linux. | 3.0.0 |
-
-## Deprecated Commands
-
-The following table summarizes the commands that are present, but no longer active.  A recommended alternative is provided, if appropriate.
-
-<table>
- <colgroup>
-  <col style="width: 30%" />
-  <col style="width: 40%" />
-  <col style="width: 20%" />
-  <col style="width: 10%" />
- </colgroup>
- <thead>
- <tr class="header">
- <th>Command</th>
- <th>Status</th>
- <th>Alternate Command</th>
- <th>Version</th>
- </tr>
- </thead>
- <tbody>
-  <tr>
-    <td>netq hello</td>
-    <td>Removed the Hello World command.</td>
-    <td>N/A</td>
-    <td>2.4.1</td>
-  </tr>
-  <tr>
-    <td>netq query &lt;wildcard-query> [json]<br />netq query show fields &lt;netq-table><br />netq query show tables</td>
-    <td>The <code>netq query</code> commands only worked only in NetQ 1.x.</td>
-    <td></td>
-    <td>2.4.1</td>
-  </tr>
-</body>
-</table>

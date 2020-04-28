@@ -13,11 +13,11 @@ A number of commands have changed in this release to accommodate the addition of
 
 ## New Commands
 
-The following table summarizes the new commands available with this release. They are grouped into the following categories: new `netq show` commands, What Just Happened feature, clustering deployment, detailed validation commands, and threshold-based events.
+The following table summarizes the new commands available with this release. They include lifecycle management and modular agent commands.
 
 | Command | Summary | Version |
 | ------- | ------- | ------- |
-| netq lcm add credentials (username &lt;text-switch-username> password &lt;text-switch-password> \| ssh-key &lt;text-ssh-key>) | Creates credentials (either SSH key or basic username/password auth) to perform life cycle management (LCM). | 3.0.0 |
+| netq lcm add credentials (username &lt;text-switch-username> password &lt;text-switch-password> \| ssh-key &lt;text-ssh-key>) | Creates credentials (either SSH key or basic username/password auth) to perform {{<link url="Configure-Lifecycle-Management" text="life cycle management">}} (LCM). | 3.0.0 |
 | netq lcm add image &lt;text-image-path> | Uploads a Cumulus Linux install image to the LCM repository. | 3.0.0 |
 | netq lcm add role (superspine \| spine \| leaf \| exit) switches &lt;text-switch-hostnames> | Adds a switch role to one or more switches. | 3.0.0 |
 | netq lcm del credentials | Removes a set of LCM credentials. | 3.0.0 |
@@ -28,15 +28,14 @@ The following table summarizes the new commands available with this release. The
 | netq lcm show switches [version &lt;text-cumulus-linux-version>] [json] | Displays all the switches running Cumulus Linux that are managed under LCM. | 3.0.0 |
 | netq lcm show upgrade-jobs [json] | Displays all the LCM upgrade jobs and their status. | 3.0.0 |
 | netq lcm upgrade name &lt;text-job-name> image-id &lt;text-image-id> license &lt;text-cumulus-license> hostnames &lt;text-switch-hostnames> [order &lt;text-upgrade-order>] [run-before-after] | Creates and runs a new upgrade job. | 3.0.0 |
-| netq config add agent command service-key &lt;text-service-key-anchor> [poll-period &lt;text-cmd-periodicity>] [command &lt;text-cmd-text>] [enable True \| enable False] | Configures, enables and disables commands that the NetQ agent runs at preset intervals. | 3.0.0 |
-| netq config agent factory-reset commands | Restores NetQ agent commands to their defaults. | 3.0.0 |
-| netq config del agent command service-key &lt;text-service-key-anchor> | Deletes a NetQ agent command. | 3.0.0 |
-| netq config show agent commands [service-key &lt;text-service-key-anchor>] [json] | Displays the NetQ agent commands. | 3.0.0 |
+| netq config add agent command service-key &lt;text-service-key-anchor> [poll-period &lt;text-cmd-periodicity>] [command &lt;text-cmd-text>] [enable True \| enable False] | Configures, enables and disables {{<link url="Modular-NetQ-Agent-Commands" text="modular agent commands">}} that the NetQ agent runs at preset intervals. | 3.0.0 |
+| netq config agent factory-reset commands | Restores modular agent commands to their defaults. | 3.0.0 |
+| netq config del agent command service-key &lt;text-service-key-anchor> | Deletes a modular agent command. | 3.0.0 |
+| netq config show agent commands [service-key &lt;text-service-key-anchor>] [json] | Displays the modular agent commands. | 3.0.0 |
 
 ## Modified Commands
 
-The following table summarizes the commands that have been changed with
-this release.
+The following table summarizes the commands that have been changed with this release.
 
 | Updated Command | Old Command | What Changed | Version |
 | --------------- | ----------- | ------------ | ------- |

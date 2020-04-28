@@ -83,7 +83,7 @@ can:
   - Anticipate impact of connectivity changes,
   - and so forth.
 
-**Validate Configurations**
+### Validate Configurations
 
 The NetQ CLI enables validation of your network health through two sets
 of commands: `netq check` and `netq show`. They extract the information
@@ -104,17 +104,17 @@ for numerous components and services as shown in the following table.
 | Component or Service | Check | Show | Component or Service | Check | Show |
 | -------------------- | :---: | :---:| -------------------- | :---: | :---: |
 | Agents | X | X | LLDP |  | X |
-| BGP | X | X | LNV | X | X |
-| CLAG (MLAG) | X | X | MACs |  | X |
-| Events |  | X | MTU | X |  |
-| EVPN | X | X | NTP | X | X |
-| Interfaces | X | X | OSPF | X | X |
-| Inventory  |  | X | Sensors | X | X |
-| IPv4/v6 |  | X | Services |  | X |
-| Kubernetes |  | X | VLAN | X | X |
-| License | X |  | VXLAN | X | X |
+| BGP | X | X | MACs |   | X |
+| CLAG (MLAG) | X | X | MTU | X |  |
+| Events |  | X | NTP | X | X |
+| EVPN | X | X | OSPF | X | X |
+| Interfaces | X | X | Sensors | X | X |
+| Inventory  |  | X | Services |   | X |
+| IPv4/v6 |  | X | VLAN | X | X |
+| Kubernetes |  | X | VXLAN | X | X |
+| License | X |  |  |  |  |
 
-**Monitor Communication Paths**
+### Monitor Communication Paths
 
 The trace engine is used to validate the available communication paths
 between two network devices. The corresponding `netq trace` command
@@ -161,7 +161,7 @@ parts of the paths have issues, that data is called out in the summary
 at the top of the output and shown in red along the paths, giving you a
 starting point for troubleshooting.
 
-**View Historical State and Configuration**
+### View Historical State and Configuration
 
 All of the check, show and trace commands can be run for the current
 status and for a prior point in time. For example, this is useful when
@@ -230,7 +230,7 @@ last night and that they can be run from any switch in the network.
     exit-1            swp7.3                       DataVrf1081     655537     -          NotEstd      Fri Feb 15 17:28:48 2019
     exit-1            swp7.4                       DataVrf1082     655537     -          NotEstd      Fri Feb 15 17:28:48 2019
 
-**Manage Network Events**
+### Manage Network Events
 
 The NetQ notifier manages the events that occur for the devices and
 components, protocols and services that it receives from the NetQ
@@ -240,8 +240,8 @@ an interface or routing protocol goes down and you want to get them back
 up and running as quickly as possible, preferably before anyone notices
 or complains. You can improve resolution time significantly by creating
 filters that focus on topics appropriate for a particular group of
-users. You can easily create filters around events related to BGP, LNV,
-and MLAG session states, interfaces, links, NTP and other services,
+users. You can easily create filters around events related to BGP and
+MLAG session states, interfaces, links, NTP and other services,
 fans, power supplies, and physical sensor measurements.
 
 For example, for operators responsible for routing, you can create an

@@ -209,12 +209,12 @@ for the following:
 - **cl-pkg-info**: Information about software packages installed on monitored switches
 - **cl-resource**: ACL and forwarding information
 - **cl-ssd-util**: SSD utilization information
-- **clag**: CLAG status
+- **clag**: CLAG/MLAG status
 - **ethtool-stats**: Interface statistics
 - **events**: Display changes over time
 - **evpn**: EVPN status
 - **interface-stats**: Interface statistics
-- **interface-utils**: Interface statistics plus utilization
+- **interface-utilization**: Interface statistics plus utilization
 - **interfaces**: network interface port status
 - **inventory**: hardware component information
 - **ip**: IPv4 status
@@ -224,7 +224,7 @@ for the following:
 - **lldp**: LLDP status
 - **mac-history**: Historical information for a MAC address
 - **macs**: MAC table or address information
-- **mlag**: MLAG status
+- **mlag**: MLAG status (an alias for CLAG)
 - **notification**: Slack or PagerDuty notification configurations
 - **ntp**: NTP status
 - **opta-health**: Display health of apps on the OPTA

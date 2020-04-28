@@ -187,12 +187,10 @@ the state:
 ## Scenario: VXLAN Active-active Device or Interface Is Down
 
 When a VXLAN active-active device or interface in an MLAG configuration
-is down, log messages also include VXLAN and LNV checks.
+is down, log messages also include VXLAN checks.
 
     2017-05-22T23:16:51.517522+00:00 noc-pr netq-notifier[5501]: WARNING: VXLAN: 2 node(s) have failures. They are: spine01, leaf01
     2017-05-22T23:16:51.525403+00:00 noc-pr netq-notifier[5501]: WARNING: LINK: 2 link(s) are down. They are: leaf01 vx-37, spine01 vx-37
-    2017-05-22T23:16:54.194681+00:00 noc-pr netq-notifier[5501]: WARNING: LNV: 1 node(s) have failures. They are: leaf02
-    2017-05-22T23:16:59.448755+00:00 noc-pr netq-notifier[5501]: WARNING: LNV: 3 node(s) have failures. They are: leaf01, leaf03, leaf04
     2017-05-22T23:17:04.703044+00:00 noc-pr netq-notifier[5501]: WARNING: CLAG: 2 node(s) have failures. They are: spine01, leaf01
 
 To begin your investigation, show the status of the `clagd` service:
@@ -284,10 +282,7 @@ NetQ Notifier sends messages similar to the following:
     2017-05-22T23:51:19.622379+00:00 noc-pr netq-notifier[5501]: WARNING: LINK: 2 link(s) flapped and are down. They are: leaf01 hostbond5, leaf01 hostbond4
     2017-05-22T23:51:19.622922+00:00 noc-pr netq-notifier[5501]: WARNING: LINK: 23 link(s) are down. They are: leaf01 VlanA-1-104-v0, leaf01 VlanA-1-101-v0, leaf01 VlanA-1, leaf01 vx-33, leaf01 vx-36, leaf01 vx-37, leaf01 vx-34, leaf01 vx-35, leaf01 swp7, leaf01 VlanA-1-102-v0, leaf01 VlanA-1-103-v0, leaf01 VlanA-1-100-v0, leaf01 VlanA-1-106-v0, leaf01 swp8, leaf01 VlanA-1.106, leaf01 VlanA-1.105, leaf01 VlanA-1.104, leaf01 VlanA-1.103, leaf01 VlanA-1.102, leaf01 VlanA-1.101, leaf01 VlanA-1.100, leaf01 VlanA-1-105-v0, leaf01 vx-38
     2017-05-22T23:51:27.696572+00:00 noc-pr netq-notifier[5501]: INFO: LINK: 15 link(s) are up. They are: leaf01 VlanA-1.106, leaf01 VlanA-1-104-v0, leaf01 VlanA-1.104, leaf01 VlanA-1.103, leaf01 VlanA-1.101, leaf01 VlanA-1-100-v0, leaf01 VlanA-1.100, leaf01 VlanA-1.102, leaf01 VlanA-1-101-v0, leaf01 VlanA-1-102-v0, leaf01 VlanA-1.105, leaf01 VlanA-1-103-v0, leaf01 VlanA-1-106-v0, leaf01 VlanA-1, leaf01 VlanA-1-105-v0
-    2017-05-22T23:51:30.863789+00:00 noc-pr netq-notifier[5501]: WARNING: LNV: 1 node(s) have failures. They are: leaf01
     2017-05-22T23:51:36.156708+00:00 noc-pr netq-notifier[5501]: WARNING: CLAG: 2 node(s) have failures. They are: spine01, leaf01
-    2017-05-22T23:51:36.183638+00:00 noc-pr netq-notifier[5501]: WARNING: LNV: 2 node(s) have failures. They are: spine02, leaf01
-    2017-05-22T23:51:41.444670+00:00 noc-pr netq-notifier[5501]: WARNING: LNV: 1 node(s) have failures. They are: leaf01
 
 Showing the MLAG state reveals which nodes are down:
 

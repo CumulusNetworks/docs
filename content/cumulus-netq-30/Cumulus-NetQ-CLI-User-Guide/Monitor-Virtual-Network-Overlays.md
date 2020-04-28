@@ -20,10 +20,6 @@ It helps answer questions such as:
 - Is my control plane configured correctly?
 - Can device A reach device B?
 
-{{%notice note%}}
-Lightweight network virtualization (LNV) has been removed from Cumulus Linux 4.0.0 and disabled in Cumulus NetQ 2.4.0. If you need LNV, you must use Cumulus Linux 3.7.x and either enable LNV in NetQ 2.4.0, or use NetQ 2.3.1 or earlier.
-{{%/notice%}}
-
 ## Monitor Virtual Extensible LANs
 
 Virtual Extensible LANs (VXLANs) provide a way to create a virtual

@@ -20,7 +20,7 @@
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12</td>
@@ -74,6 +74,13 @@ Fixed: 2.1.5-2+deb8u9</p></td>
 <td><p>A large number of flapping peers causes FRR to require a corresponding update to internal data structures that track peer information. Updating this internal data structure does not delete links that are down due to the flapping. The size of this array then grows to contain both current peers as well as peers that should have been deleted during the flap processing. The contents of this array is processed by FRR to poll the links, which consumes CPU for all items in the array. This additional polling consumes more CPU than necessary but has no functional impact.<br/>
 To work around this issue, restart FRR.</p></td>
 <td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29043</td>
+<td><p>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.<br/>
+To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
+<td>3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -1798,7 +1805,7 @@ net.ipv6.ip6frag_high_thresh = 262144
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12</td>
@@ -4046,7 +4053,7 @@ To work around this issue, use net show interface command for LLDP output when c
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12</td>
@@ -6078,7 +6085,7 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12</td>
@@ -8560,7 +8567,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12</td>
@@ -10914,7 +10921,7 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12</td>
@@ -13636,7 +13643,7 @@ If you need link pause or PFC functionality, you must use a switch that does not
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12</td>
@@ -16327,7 +16334,7 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12</td>
@@ -18687,7 +18694,7 @@ If you need link pause or PFC functionality, you must use a switch that does not
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12</td>
@@ -21105,7 +21112,7 @@ If you need link pause or PFC functionality, you must use a switch that does not
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12</td>
@@ -23687,7 +23694,7 @@ If you need link pause or PFC functionality, you must use a switch that does not
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12</td>
@@ -26392,7 +26399,7 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12</td>

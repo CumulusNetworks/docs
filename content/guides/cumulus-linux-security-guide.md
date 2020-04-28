@@ -38,7 +38,7 @@ dos_enable = true
 
 Restart the `switchd` service with the `sudo systemctl restart switchd.service` command for the changes to take effect.
 
-To specify which DOS checks you want to enable, open the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf` file and enable the desired DOS check(s) by setting the corresponding value(s) to true:
+To specify which DOS checks you want to enable, open the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf` file and enable the desired DOS checks by setting the corresponding values to true:
 
 ```
 cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf
@@ -96,7 +96,7 @@ Best practices dictate that:
 - The use of IP Tables is required in configuration
 - Any line with the action *LOG* must be immediately followed with the same line with the action *DROP*
 
-Be sure to apply changes to the default control plane policies with `cl-acltool` so that they are properly hardware accelerated.
+Be sure to apply changes to the default control plane policies with `cl-acltool` so that they are hardware accelerated correctly.
 
 The following command applies all the ACLs and control plane policy rules in the `/etc/cumulus/acl/policy.d/` directory:
 
@@ -112,7 +112,7 @@ cumulus@switch:~$ sudo cl-acltool -L all
 
 ### Disable Insecure SSL and TLS Protocol Versions in Nginx
 
-Cumulus Linux is packaged with Nginx, an open source web server that supports the Cumulus Linux RESTful API via HTTPS. By default, Nginx is enabled and listening on localhost (127.0.0.1) port 8080. For more information, go [here](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/HTTP-API/).
+Cumulus Linux is packaged with Nginx, an open source web server that supports the Cumulus Linux RESTful API through HTTPS. By default, Nginx is enabled and listening on localhost (127.0.0.1) port 8080. For more information, go [here](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/HTTP-API/).
 
 For backward compatibility, Nginx natively supports the outdated and vulnerable SSLv3 and TLSv1 protocols. To secure against potential exploits using those protocols, you must disable them. Open the `/etc/nginx/nginx.conf` file in a text editor and edit the `ssl_protocols` line to allow only the TLSv1.1 and TLSv1.2 protocols:
 
@@ -333,7 +333,7 @@ To secure SSH further, consider enabling or reviewing the following options in t
 
 - Make sure SSH listens on the eth0 or management VRF interfaces only. Configure the `ListenAddress` option.
 - Disable root SSH login access. Configure the `PermitRootLogin no` option.
-- Review default SSH cryptographic policy.
+- Review the default SSH cryptographic policy.
 - Review enabled ciphers.
 - Review Message Authentication Codes.
 - Review HostKeyAlgorithms.
@@ -342,7 +342,7 @@ To secure SSH further, consider enabling or reviewing the following options in t
 - Use key based authentication.
 - Disable SSH compression.
 
-For more information about the options in `sshd`, click [here] (https://linux.die.net/man/5/sshd_config).
+For more information about the options in `sshd`, click [here](https://linux.die.net/man/5/sshd_config).
 
 ### Secure Network Protocols
 

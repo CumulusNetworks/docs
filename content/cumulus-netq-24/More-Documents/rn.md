@@ -8,8 +8,6 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-
-
 <a href="/cumulus-netq-24/rn.xls"><img src="/images/xls_icon.png" height="20px" width="20px" alt="Download 2.4 Release Notes xls" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cumulus-netq-24/rn.xls">Download all 2.4 release notes as .xls</a>
 ## 2.4.1 Release Notes
 ### Open issues in 2.4.1

@@ -53,7 +53,7 @@ for the following protocols:
 
   - Bridging protocols: LLDP, STP, MLAG
   - Routing protocols: BGP, OSPF
-  - Network virtualization: EVPN, LNV, VXLAN
+  - Network virtualization: EVPN, VXLAN
 
 The NetQ Agent is supported on Cumulus Linux 3.3.2 and later.
 

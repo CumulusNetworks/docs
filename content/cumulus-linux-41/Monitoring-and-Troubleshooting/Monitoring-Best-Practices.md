@@ -214,6 +214,12 @@ Monitoring the routing table provides trending on the size of the infrastructure
 | Host Entries | <pre>cumulus@switch:~$ cl-resource-query<br>cumulus@switch:~$ cl-resource-query -k</pre> | 600 seconds |
 | Route Entries | <pre>cumulus@switch:~$ cl-resource-query<br>cumulus@switch:~$ cl-resource-query -k</pre> | 600 seconds |
 
+{{%notice note%}}
+
+You can also run the `net show system asic` command, which is the NCLU command equivalent of `cl-resource-query`.
+
+{{%/notice%}}
+
 ### Routing Logs
 
 | Layer 3 Logs | Log Location | Log Entries |

@@ -246,9 +246,7 @@ Configuration:
 --------------------------------------------------------------------
 ```
 
-<details>
-
-<summary>Runtime Configuration (Advanced) </summary>
+{{< expand "Runtime Configuration (Advanced) "  >}}
 
 {{%notice warning%}}
 
@@ -280,7 +278,7 @@ To reset any interface list to none:
 cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
 ```
 
-</details>
+{{< /expand >}}
 
 ## Enable the SNMP Subagent in LLDP
 

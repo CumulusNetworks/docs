@@ -43,9 +43,9 @@ For Tomahawk and Tomahawk+ platforms, you must configure the switch to operate i
 
 To configure a PBR policy:
 
-<details>
+{{< tabs "TabID45 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 1. Configure the policy map. The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
 
@@ -86,11 +86,9 @@ You can only set one policy per interface.
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 1. Before you run the vtysh commands, you need to enable the `pbrd` service in the `/etc/frr/daemons` file, then restart FRR with the `systemctl restart frr.service` command.
 
@@ -120,9 +118,9 @@ You can only set one policy per interface.
     cumulus@switch:~$ sudo vtysh
 
     switch# configure terminal
-    switch(config)# pbr-map map1 seq 1 
+    switch(config)# pbr-map map1 seq 1
     switch(config-pbr-map)# match dst-ip 10.1.2.0/24
-    switch(config-pbr-map)# match src-ip 10.1.4.1/24 
+    switch(config-pbr-map)# match src-ip 10.1.4.1/24
     ```
 
     If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
@@ -167,7 +165,9 @@ You can only set one policy per interface.
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -195,9 +195,9 @@ In the following example, the PBR-enabled switch has a PBR policy to route all t
 
 The configuration for the example above is:
 
-<details>
+{{< tabs "TabID197 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 0.0.0.0/0
@@ -207,11 +207,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -229,7 +227,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -304,9 +304,7 @@ A new Linux routing table ID is used for each next hop and next hop group.
 
 When you want to change or extend an existing PBR rule, you must first delete the conditions in the rule, then add the rule back with the modification or addition.
 
-<details>
-
-<summary> Modify an existing match/set condition </summary>
+{{< expand " Modify an existing match/set condition"  >}}
 
 The example below shows an existing configuration.
 
@@ -372,11 +370,9 @@ cumulus@switch:~$ sudo cat /cumulus/switchd/run/iprule/show | grep 303 -A 1
      [hwstatus: unit: 0, installed: yes, route-present: yes, resolved: yes, nh-valid: yes, nh-type: nh, ecmp/rif: 0x1, action: route,  hitcount: 0]
 ```
 
-</details>
+{{< /expand >}}
 
-<details>
-
-<summary>Add a match condition to an existing rule </summary>
+{{< expand "Add a match condition to an existing rule"  >}}
 
 The example below shows an existing configuration, where only one source IP match is configured:
 
@@ -435,7 +431,7 @@ cumulus@mlx-2400-91:~$ cat /cumulus/switchd/run/iprule/show | grep 302 -A 1
      [hwstatus: unit: 0, installed: yes, route-present: yes, resolved: yes, nh-valid: yes, nh-type: nh, ecmp/rif: 0x1, action: route,  hitcount: 0]
 ```
 
-</details>
+{{< /expand >}}
 
 ## Delete PBR Rules and Policies
 
@@ -447,9 +443,9 @@ Use caution when deleting PBR rules and next hop groups, as you might create an 
 
 {{%/notice%}}
 
-<details>
+{{< tabs "TabID451 ">}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands ">}}
 
 The following examples show how to delete a PBR rule match:
 
@@ -491,11 +487,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands ">}}
 
 The following examples show how to delete a PBR rule match:
 
@@ -560,15 +554,13 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
 If a PBR rule has multiple conditions (for example, a source IP match and a destination IP match), but you only want to delete one condition, you have to delete all conditions first, then re-add the ones you want to keep.
-
-<details>
-
-<summary>Example configuration </summary>
 
 The example below shows an existing configuration that has a source IP match and a destination IP match.
 
@@ -604,7 +596,5 @@ net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
 net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
 net commit
 ```
-
-</details>
 
 {{%/notice%}}

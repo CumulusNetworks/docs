@@ -5,16 +5,7 @@
 {{ end }}
 
 {{ define "main" }}
-{{ if .Page.Params.old }}
-<div class= "notices info" id = "info" >
-  <p>This documentation is for an older version of the software. If you are
-  using the current version of {{ .Page.Params.product }}, this content may not be up
-  to date. The current version of the documentation is available
-  {{ $prod := (index (sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc") 0).Section  }}
-<a href = {{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink  | default (.Site.GetPage $prod).RelPermalink }}
->here</a>. If you are redirected to the main page of the user guide, then this page may have been renamed; please search for it there.</p>
-</div>
-{{ end }}
+{{ partial "old" . }}
 <article class="markdown">
     <h1>  {{- .Page.Title -}} </h1>
   {{- .Content -}}

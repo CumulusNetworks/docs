@@ -104,7 +104,7 @@ trend of the:
 <td>Percentage of devices which passed validation versus the number of devices checked during the time window for:
 <ul>
 <li><strong>System health</strong>: NetQ Agent health, Cumulus Linux license status, and sensors</li>
-<li><strong>Network services health</strong>: BGP, CLAG, EVPN, LNV, NTP, OSPF, and VXLAN health</li>
+<li><strong>Network services health</strong>: BGP, CLAG, EVPN, NTP, OSPF, and VXLAN health</li>
 <li><strong>Interface health</strong>: interfaces MTU, VLAN health</li>
 </ul>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
@@ -202,7 +202,7 @@ The *Network Service Health* tab displays:
 </tr>
 <tr class="odd">
 <td>Health trend</td>
-<td>Trend of BGP, CLAG, EVPN, LNV, NTP, OSPF, and VXLAN services health, represented by an arrow:
+<td>Trend of BGP, CLAG, EVPN, NTP, OSPF, and VXLAN services health, represented by an arrow:
 <ul>
 <li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</li>
 <li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</li>
@@ -212,12 +212,12 @@ The *Network Service Health* tab displays:
 </tr>
 <tr class="even">
 <td>Health score</td>
-<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for BGP, CLAG, EVPN, LNV, NTP, and VXLAN protocols and services.</p>
+<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for BGP, CLAG, EVPN, NTP, and VXLAN protocols and services.</p>
 <p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
 </tr>
 <tr class="odd">
 <td>Charts</td>
-<td>Distribution of passing validations for BGP, CLAG, EVPN, LNV, NTP, and VXLAN services during the designated time period</td>
+<td>Distribution of passing validations for BGP, CLAG, EVPN, NTP, and VXLAN services during the designated time period</td>
 </tr>
 <tr class="even">
 <td>Table</td>
@@ -438,7 +438,7 @@ From the System Health tab on the large Network Health card you can click on a c
 
 ## View Network Services Health
 
-The network services health is a calculated average of the individual network protocol and services health metrics. In all cases, validation is performed on NTP. If you are running BGP, CLAG, EVPN, LNV, OSPF, or VXLAN protocols the calculation includes these as well. You can view the overall health of network services from the medium Network Health card and information about individual services from the Network Service Health tab on the large Network Health card.
+The network services health is a calculated average of the individual network protocol and services health metrics. In all cases, validation is performed on NTP. If you are running BGP, CLAG, EVPN, OSPF, or VXLAN protocols the calculation includes these as well. You can view the overall health of network services from the medium Network Health card and information about individual services from the Network Service Health tab on the large Network Health card.
 
 To view information about each network protocol or service:
 

@@ -8,31 +8,18 @@ aliases:
 pageID: 12321047
 toc: 3
 ---
-NetQ provides the information you need to monitor the health of your
-network fabric, devices, and interfaces. You are able to easily validate
-the operation and view the configuration across the entire network from
-switches to hosts to containers. For example, you can monitor the
-operation of routing protocols and virtual network configurations, the
-status of NetQ Agents and hardware components, and the operation and
-efficiency of interfaces. When issues are present, NetQ makes it easy to
-identify and resolve them. You can also see when changes have occurred
-to the network, devices, and interfaces by viewing their operation,
-configuration, and status at an earlier point in time.
+NetQ provides the information you need to monitor the health of your network fabric, devices, and interfaces. You are able to easily validate the operation and view the configuration across the entire network from switches to hosts to containers. For example, you can monitor the operation of routing protocols and virtual network configurations, the status of NetQ Agents and hardware components, and the operation and efficiency of interfaces. When issues are present, NetQ makes it easy to identify and resolve them. You can also see when changes have occurred to the network, devices, and interfaces by viewing their operation, configuration, and status at an earlier point in time.
 
 ## Validate Network Health
 
-NetQ `check` commands validate the various elements of your network
-fabric, looking for inconsistencies in configuration across your fabric,
-connectivity faults, missing configuration, and so forth, and then and
-display the results for your assessment. They can be run from any node
-in the network.
+NetQ `check` commands validate the various elements of your network fabric, looking for inconsistencies in configuration across your fabric, connectivity faults, missing configuration, and so forth, and then and display the results for your assessment. They can be run from any node in the network.
 
 ### Validate the Network Fabric
 
 You can validate the following network fabric elements:
 
 ```
-cumulus@switch:~$ netq check 
+cumulus@switch:~$ netq check
     agents      :  Netq agent
     bgp         :  BGP info
     cl-version  :  Cumulus Linux version
@@ -40,7 +27,7 @@ cumulus@switch:~$ netq check
     evpn        :  EVPN
     interfaces  :  network interface port
     license     :  License information
-    lnv         :  Lightweight Network Virtualization info
+    mlag        :  Multi-chassis LAG (alias of clag)
     mtu         :  Link MTU
     ntp         :  NTP
     ospf        :  OSPF info
@@ -71,29 +58,32 @@ Then run `netq config restart cli` to apply the change.
 If you update your scripts to work with the new version of the commands, simply change the `old-check` value to *false* or remove it. Then restart the CLI.
 {{%/notice%}}
 
-The following new syntax of the `netq check` commands is:
+The new syntax of the `netq check` commands is:
 
 ```
-netq check agents [around <text-time>] [json]
-netq check bgp [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json]
-netq check clag [include <clag-number-range-list> | exclude <clag-number-range-list>] [around <text-time>] [json]
-netq check evpn [mac-consistency] [include <evpn-number-range-list> | exclude <evpn-number-range-list>] [around <text-time>] [json]
-netq check interfaces [include <interface-number-range-list> | exclude <interface-number-range-list>] [around <text-time>] [json]
-netq check license [include <license-number-range-list> | exclude <license-number-range-list>] [around <text-time>] [json]
-netq check mtu [unverified] [include <mtu-number-range-list> | exclude <mtu-number-range-list>] [around <text-time>] [json]
-netq check ntp [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [json]
-netq check ospf [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json]
-netq check sensors [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [json]
-netq check vlan [unverified] [include <vlan-number-range-list> | exclude <vlan-number-range-list>] [around <text-time>] [json]
-netq check vxlan [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json]
+netq check agents [include <agent-number-range-list> | exclude <agent-number-range-list>] [around <text-time>] [json | summary]
+netq check bgp [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
+netq check mlag [include <mlag-number-range-list> | exclude <mlag-number-range-list>] [around <text-time>] [json | summary]
+netq check evpn [mac-consistency] [include <evpn-number-range-list> | exclude <evpn-number-range-list>] [around <text-time>] [json | summary]
+netq check interfaces [include <interface-number-range-list> | exclude <interface-number-range-list>] [around <text-time>] [json | summary]
+netq check license [include <license-number-range-list> | exclude <license-number-range-list>] [around <text-time>] [json | summary]
+netq check mtu [unverified] [include <mtu-number-range-list> | exclude <mtu-number-range-list>] [around <text-time>] [json | summary]
+netq check ntp [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [json | summary]
+netq check ospf [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json | summary]
+netq check sensors [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [json | summary]
+netq check vlan [unverified] [include <vlan-number-range-list> | exclude <vlan-number-range-list>] [around <text-time>] [json | summary]
+netq check vxlan [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
 ```
 
-Each of the check commands provides a starting point for troubleshooting
-configuration and connectivity issues within your network in real time.
+Each of the check commands provides a starting point for troubleshooting configuration and connectivity issues within your network in real time.
 
-A summary of the validation results is achieved by running the `netq check` commands without any options; for example, `netq check agents` or `netq check evpn`. This summary displays such data as the total number of nodes checked, how many failed a test, total number of sessions checked, how many of these that failed, and so forth.
+{{%notice tip%}}
+Use `netq check mlag` in place of `netq check clag` from NetQ 2.4 onward. `netq check clag` remains available for automation scripts, but you should begin migrating to `netq check mlag` to maintain compatibility with future NetQ releases.
+{{%/notice%}}
 
-With the NetQ 2.4.0 release, you have can view more information about the individual tests that are run as part of the validation, with the exception of agents and LNV.
+You can view only the summary of the validation results by running the `netq check` commands with `summary` option; for example, `netq check agents summary` or `netq check evpn summary`. This summary displays such data as the total number of nodes checked, how many failed a test, total number of sessions checked, how many of these that failed, and so forth.
+
+You can view more information about the individual tests that are run as part of the validation, including individual tests for agents.
 
 You can run validations for a time in the past and output the results in JSON format if desired. The `around` option enables users to view the network state at an earlier time. The `around` option value requires an integer *plus* a unit of measure (UOM), with no space between them. The following are valid UOMs:
 
@@ -108,7 +98,7 @@ You can run validations for a time in the past and output the results in JSON fo
 If you want to go back in time by months or years, use the equivalent number of days.
 {{%/notice%}}
 
-For validation commands that have the `include <protocol-number-range-list>` and `exclude <protocol-number-range-list>` options, you can include or exclude one or more of the various tests performed during the validation. Each test is assigned a number, which is used to identify which tests to run. By default, all tests are run. The value of `<protocol-number-range-list>` is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
+You can include or exclude one or more of the various tests performed during the validation. Each test is assigned a number, which is used to identify which tests to run. By default, all tests are run. The value of `<protocol-number-range-list>` is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
 
 - include 1,3,5
 - include 1-5
@@ -125,7 +115,7 @@ Output from the `netq check` commands are color-coded; green for successful resu
 
 ### What the NetQ Validation System Checks
 
-Each of the `netq check` commands perform a set of validation tests appropriate to the protocol or element being validated. 
+Each of the `netq check` commands perform a set of validation tests appropriate to the protocol or element being validated.
 
 To view the list of tests run for a given protocol or service, use either `netq show unit-tests <protocol/service>` or perform a tab completion on `netq check <protocol/service> [include|exclude]`.
 
@@ -133,9 +123,11 @@ This section describes these tests.
 
 ### NetQ Agent Validation Tests
 
-The `netq check agents` command looks for an agent status of Rotten for each node in the network. A *Fresh* status indicates the Agent
-is running as expected. The Agent sends a heartbeat every 30 seconds, and if three consecutive heartbeats are missed, its status changes to
-*Rotten*.
+The `netq check agents` command looks for an agent status of Rotten for each node in the network. A *Fresh* status indicates the Agent is running as expected. The Agent sends a heartbeat every 30 seconds, and if three consecutive heartbeats are missed, its status changes to *Rotten*. This check only runs one test:
+
+| Test Number | Test Name | Description |
+| :---------: | --------- | ----------- |
+| 0 | Agent Health | Checks for nodes that have failed or lost communication |
 
 ### BGP Validation Tests
 
@@ -206,10 +198,6 @@ The `netq check license` command runs the following test:
 | :---------: | --------- | ----------- |
 | 0 | License Validity | Checks for validity of license on all switches |
 
-### LNV Validation Tests
-
-The `netq check lnv` command checks for VXRD peer database, VXSND peer database, VNI operational state and head end replication list consistency.
-
 ### Link MTU Validation Tests
 
 The `netq check mtu` command runs the following tests:
@@ -219,6 +207,24 @@ The `netq check mtu` command runs the following tests:
 | 0 | Link MTU Consistency | Checks for consistency of MTU setting on two sides of a physical interface |
 | 1 | VLAN interface | Checks if the MTU of an SVI is no smaller than the parent interface, substracting the VLAN tag size |
 | 2 | Bridge interface | Checks if the MTU on a bridge is not arbitrarily smaller than the smallest MTU among its members |
+
+### MLAG Validation Tests
+
+The `netq check mlag` command runs the following tests:
+
+| Test Number | Test Name | Description |
+| :---------: | --------- | ----------- |
+| 0 | Peering | Checks if: <ul><li>MLAG peerlink is up</li><li>MLAG peerlink bond slaves are down (not in full capacity and redundancy)</li><li>Peering is established between two nodes in a MLAG pair</li></ul> |
+| 1 | Backup IP | Checks if: <ul><li>MLAG backup IP configuration is missing on a MLAG node</li><li>MLAG backup IP is correctly pointing to the MLAG peer and its connectivity is available</li></ul> |
+| 2 | Clag Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in a MLAG pair</li><li>there is any duplication of a MLAG sysmac within a bridge domain </li></ul> |
+| 3 | VXLAN Anycast IP | Checks if the VXLAN anycast IP address is consistently configured on both nodes in an MLAG pair |
+| 4 | Bridge Membership | Checks if the MLAG peerlink is part of bridge |
+| 5 | Spanning Tree | Checks if: <ul><li>STP is enabled and running on the MLAG nodes</li><li>MLAG peerlink role is correct from STP perspective</li><li>the bridge ID is consistent between two nodes of a MLAG pair</li><li>the VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
+| 6 | Dual Home | Checks for: <ul><li>MLAG bonds that are not in dually connected state</li><li>dually connected bonds have consistent VLAN and MTU configuration on both sides</li><li>STP has consistent view of bonds' dual connectedness</li></ul> |
+| 7 | Single Home | Checks for: <ul><li>singly connected bonds</li><li>STP has consistent view of bond's single connectedness</li></ul> |
+| 8 | Conflicted Bonds | Checks for bonds in MLAG conflicted state and shows the reason |
+| 9 | ProtoDown Bonds | Checks for bonds in protodown state and shows the reason |
+| 10 | SVI | Checks if: <ul><li>an SVI is configured on both sides of a MLAG pair</li><li>SVI on both sides have consistent MTU setting</li></ul> |
 
 ### NTP Validation Tests
 
@@ -280,15 +286,15 @@ The default validation confirms that the NetQ Agent is running on all monitored 
 
 ```
 cumulus@switch:~$ netq check agents
-Checked nodes: 12, Rotten nodes: 0
-```
-This example shows representative results when one or more of the NetQ Agents do not pass the validation check.
-```
-cumulus@switch:~$ netq check agents
-Checked nodes: 25, Rotten nodes: 1
-Hostname          Status           Last Changed
------------------ ---------------- -------------------------
-leaf01            Rotten           8d:13h:34m:51s
+agent check result summary:
+
+Checked nodes       : 13
+Total nodes         : 13
+Rotten nodes        : 0
+Failed nodes        : 0
+Warning nodes       : 0
+
+Agent Health Test   : passed
 ```
 
 ### Perform a BGP Validation
@@ -297,25 +303,47 @@ The default validation runs a network-wide BGP connectivity and configuration ch
 
 ```
 cumulus@switch:~$ netq check bgp
-Total Nodes: 15, Failed Nodes: 0, Total Sessions: 16, Failed Sessions: 0
+bgp check result summary:
+
+Checked nodes       : 8
+Total nodes         : 8
+Rotten nodes        : 0
+Failed nodes        : 0
+Warning nodes       : 0
+
+Additional summary:
+Total Sessions      : 30
+Failed Sessions     : 0
+
+Session Establishment Test   : passed
+Address Families Test        : passed
+Router ID Test               : passed
+
 ```
 
-This example indicates that all nodes running BGP and all BGP sessions are running properly. If there were issues with any
-of the nodes, NetQ would provide information about each node to aid in
-resolving the issues.
+This example indicates that all nodes running BGP and all BGP sessions are running properly. If there were issues with any of the nodes, NetQ would provide information about each node to aid in resolving the issues.
 
 ### Perform a BGP Validation for a Particular VRF
 
-Using the `vrf <vrf>` option of the `netq check bgp` command, you can validate the BGP service where communication is occurring through a particular virtual route. In this example, the VRF of interest is named *DataVrf1081*.
+Using the `vrf <vrf>` option of the `netq check bgp` command, you can validate the BGP service where communication is occurring through a particular virtual route. In this example, the VRF of interest is named *vrf1*.
 
 ```
-cumulus@switch:~$ netq check bgp vrf DataVrf1081
-Total Nodes: 25, Failed Nodes: 1, Total Sessions: 52 , Failed Sessions: 1
-Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
------------------ --------------- ----------------- ----------------- --------------------------------------------- -------------------------
-exit-1            DataVrf1081     swp7.3            firewall-2        BGP session with peer firewall-2 (swp7.3 vrf  1d:5h:47m:31s
-                                                                      DataVrf1081) failed,                         
-                                                                      reason: Peer not configured      
+cumulus@switch:~$ netq check bgp vrf vrf1
+bgp check result summary:
+
+Checked nodes       : 2
+Total nodes         : 2
+Rotten nodes        : 0
+Failed nodes        : 0
+Warning nodes       : 0
+
+Additional summary:
+Total Sessions      : 2
+Failed Sessions     : 0
+
+Session Establishment Test   : passed
+Address Families Test        : passed
+Router ID Test               : passed
 ```
 
 ### Perform a BGP Validation with Selected Tests
@@ -367,93 +395,84 @@ cumulus@switch:~$ netq check bgp json
 {
     "tests":{
         "Session Establishment":{
+            "suppressed_warnings":0,
             "errors":[
-                {
-                    "hostname":"exit-1",
-                    "error":{
-                        "peerHostname":"firewall-2",
-                        "lastChanged":"Tue Jun 11 00:00:26 2019",
-                        "hostname":"exit-1",
-                        "peerName":"swp7.3",
-                        "reason":"BGP session with peer firewall-2 (swp7.3 vrf DataVrf1081) failed, reason: Peer not configured",
-                        "vrf":"DataVrf1081"
-                    }
-                },
-                . . .
+
             ],
-            "enabled":true,
-            "passed":false,
+            "suppressed_errors":0,
+            "passed":true,
             "warnings":[
+
+            ],
+            "duration":0.0000853539,
+            "enabled":true,
+            "suppressed_unverified":0,
+            "unverified":[
 
             ]
         },
         "Address Families":{
+            "suppressed_warnings":0,
             "errors":[
-                {
-                    "hostname":"exit-1",
-                    "error":{
-                        "peerHostname":"firewall-1",
-                        "lastChanged":"Sat Jun  1 03:34:10 2019",
-                        "hostname":"exit-1",
-                        "peerName":"swp6.3",
-                        "reason":"BGP session with peer firewall-1 swp6.3: AFI/SAFI evpn not activated on peer",
-                        "vrf":"DataVrf1081"
-                    }
-                },
-                . . .
+
             ],
-            "enabled":true,
-            "passed":false,
+            "suppressed_errors":0,
+            "passed":true,
             "warnings":[
+
+            ],
+            "duration":0.0002634525,
+            "enabled":true,
+            "suppressed_unverified":0,
+            "unverified":[
 
             ]
         },
         "Router ID":{
+            "suppressed_warnings":0,
             "errors":[
 
             ],
-            "enabled":true,
+            "suppressed_errors":0,
             "passed":true,
             "warnings":[
+
+            ],
+            "duration":0.0001821518,
+            "enabled":true,
+            "suppressed_unverified":0,
+            "unverified":[
 
             ]
         }
     },
     "failed_node_set":[
-        "exit-1",
-        "torc-12",
-        "spine-1",
-        "spine-3",
-        "spine-2",
-        "torc-21",
-        "firewall-1"
+
     ],
     "summary":{
-        "total_cnt":14,
-        "rotten_node_cnt":5,
-        "failed_node_cnt":7,
-        "warn_node_cnt":0,
-        "checked_cnt":9,
-        "total_sessions":174,
-        "failed_sessions":42
+        "checked_cnt":8,
+        "total_cnt":8,
+        "rotten_node_cnt":0,
+        "failed_node_cnt":0,
+        "warn_node_cnt":0
     },
     "rotten_node_set":[
-        "exit-2",
-        "torc-22",
-        "hostd-11",
-        "torc-11",
-        "firewall-2"
+
     ],
     "warn_node_set":[
 
     ],
-    "validation":"BGP"
+    "additional_summary":{
+        "total_sessions":30,
+        "failed_sessions":0
+    },
+    "validation":"bgp"
 }
 ```
 
 ### Perform a CLAG Validation
 
-The default validation runs a network-wide CLAG connectivity and configuration check on all nodes running the CLAD service. This example shows results for a fully successful validation.
+The default validation runs a network-wide CLAG connectivity and configuration check on all nodes running the CLAG service. This example shows results for a fully successful validation.
 
 ```
 cumulus@switch:~$ netq check clag
@@ -631,44 +650,12 @@ Vlan Consistency Test            : passed,
 Vrf Consistency Test             : passed,
 ```
 
-### Perform an EVPN MAC Consistency Validation
-
-Using the `mac-consistency` option, you can view any inconsistencies in the usage of MAC addresses in the EVPN overlay network. 
-
-{{%notice info%}}
-The NetQ 2.3.x release is the last release that will support the `mac-consistency` option. However, this is equivalent to running only the EVPN Type 2 validation test. Refer to {{<link url="#perform-an-evpn-validation-with-selected-tests" text="Perform an EVPN Validation with Selected Tests">}} for details. As of Cumulus NetQ 2.4, the `mac-consistency` option will be removed.
-{{%/notice%}} 
-
-```
-cumulus@oob-mgmt-server:~$ netq check evpn mac-consistency
-evpn check result summary:
-
-Checked nodes       : 6
-Total nodes         : 6
-Rotten nodes        : 0
-Failed nodes        : 0
-Warning nodes       : 0
-
-Additional summary:
-Failed BGP Sessions : 0
-Total Sessions      : 16
-Total VNIs          : 3
-
-EVPN BGP Session Test            : passed,
-EVPN VNI Type Consistency Test   : passed,
-EVPN Type 2 Test                 : passed,
-EVPN Type 3 Test                 : passed,
-EVPN Session Test                : passed,
-Vlan Consistency Test            : passed,
-Vrf Consistency Test             : passed,
-```
-
 ### Perform an EVPN Validation for a Time in the Past
 
 Using the `around` option, you can view the state of the EVPN service at a time in the past. Be sure to include the UOM.
 
 ```
-cumulus@oob-mgmt-server:~$ netq check evpn around 4d
+cumulus@switch:~$ netq check evpn around 4d
 evpn check result summary:
 
 Checked nodes       : 6
@@ -724,7 +711,6 @@ Failed BGP Sessions : 0
 Total Sessions      : 0
 Total VNIs          : 3
 
-
 EVPN BGP Session Test            : skipped
 EVPN VNI Type Consistency Test   : skipped
 EVPN Type 2 Test                 : passed,
@@ -751,7 +737,6 @@ Failed BGP Sessions : 0
 Total Sessions      : 0
 Total VNIs          : 3
 
-
 EVPN BGP Session Test            : skipped
 EVPN VNI Type Consistency Test   : passed,
 EVPN Type 2 Test                 : passed,
@@ -777,7 +762,6 @@ Additional summary:
 Failed BGP Sessions : 0
 Total Sessions      : 16
 Total VNIs          : 3
-
 
 EVPN BGP Session Test            : passed,
 EVPN VNI Type Consistency Test   : passed,
@@ -815,10 +799,10 @@ Autoneg Test       : passed,
 
 ### Perform an Interfaces Validation for a Time in the Past
 
-Using the `around` option, you can view the state of the interfaces at a time in the past. Be sure to include the UOM. 
+Using the `around` option, you can view the state of the interfaces at a time in the past. Be sure to include the UOM.
 
 ```
-cumulus@oob-mgmt-server:~$ netq check interfaces around 6h
+cumulus@switch:~$ netq check interfaces around 6h
 interface check result summary:
 
 Checked nodes       : 12
@@ -854,15 +838,12 @@ Refer to {{<link url="#interface-validation-tests" text="Interface Validation Te
 
 ### Perform a License Validation
 
-You can also check for any nodes that have invalid licenses without
-going to each node. Because switches do not operate correctly without a
-valid license you might want to verify that your Cumulus Linux licenses
-on a regular basis.
+You can also check for any nodes that have invalid licenses without going to each node. Because switches do not operate correctly without a valid license you might want to verify that your Cumulus Linux licenses on a regular basis.
 
 This example shows that all licenses on switches are valid.
 
 ```
-cumulus@oob-mgmt-server:~$ netq check license
+cumulus@switch:~$ netq check license
 license check result summary:
 
 Checked nodes       : 12
@@ -879,12 +860,7 @@ License validity Test   : passed,
 ```
 
 {{%notice tip%}}
-
-This command checks every node, meaning every switch and host in the
-network. Hosts do not require a Cumulus Linux license, so the number of
-licenses checked might be smaller than the total number of nodes
-checked.
-
+This command checks every node, meaning every switch and host in the network. Hosts do not require a Cumulus Linux license, so the number of licenses checked might be smaller than the total number of nodes checked.
 {{%/notice%}}
 
 ### Perform a Link MTU Validation  
@@ -911,12 +887,145 @@ VLAN interface Test         : passed,
 Bridge interface Test       : passed,
 ```
 
+### Perform an MLAG Validation
+
+The default validation runs a network-wide MLAG connectivity and configuration check on all nodes running the MLAG service. This example shows results for a fully successful validation.
+
+```
+cumulus@switch:~$ netq check mlag
+mlag check result summary:
+
+Checked nodes       : 4
+Total nodes         : 4
+Rotten nodes        : 0
+Failed nodes        : 0
+Warning nodes       : 0
+
+Peering Test             : passed,
+Backup IP Test           : passed,
+Clag SysMac Test         : passed,
+VXLAN Anycast IP Test    : passed,
+Bridge Membership Test   : passed,
+Spanning Tree Test       : passed,
+Dual Home Test           : passed,
+Single Home Test         : passed,
+Conflicted Bonds Test    : passed,
+ProtoDown Bonds Test     : passed,
+SVI Test                 : passed,
+```
+
+This example shows representative results for one or more failures, warnings, or errors. In particular, you can see that you have duplicate system MAC addresses.
+
+```
+cumulus@switch:~$ netq check mlag
+mlag check result summary:
+
+Checked nodes       : 4
+Total nodes         : 4
+Rotten nodes        : 0
+Failed nodes        : 2
+Warning nodes       : 0
+
+Peering Test             : passed,
+Backup IP Test           : passed,
+Clag SysMac Test         : 0 warnings, 2 errors,
+VXLAN Anycast IP Test    : passed,
+Bridge Membership Test   : passed,
+Spanning Tree Test       : passed,
+Dual Home Test           : passed,
+Single Home Test         : passed,
+Conflicted Bonds Test    : passed,
+ProtoDown Bonds Test     : passed,
+SVI Test                 : passed,
+
+Clag SysMac Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+leaf01            Duplicate sysmac with leaf02/None            
+leaf03            Duplicate sysmac with leaf04/None            
+```
+
+### Perform an MLAG Validation with Selected Tests
+
+Using the `include <mlag-number-range-list>` and `exclude <mlag-number-range-list>` options, you can include or exclude one or more of the various checks performed during the validation. You can select from the following MLAG validation tests:
+
+| Test Number | Test Name |
+| :---------: | --------- |
+| 0 | Peering |
+| 1 | Backup IP |
+| 2 | Clag Sysmac |
+| 3 | VXLAN Anycast IP |
+| 4 | Bridge Membership |
+| 5 | Spanning Tree |
+| 6 | Dual Home |
+| 7 | Single Home |
+| 8 | Conflicted Bonds |
+| 9 | ProtoDown Bonds |
+| 10 | SVI |
+
+Refer to {{<link url="#mlag-validation-tests" text="MLAG Validation Tests">}} for descriptions of these tests.
+
+To include only the CLAG SysMAC test during a validation:
+
+```
+cumulus@switch:~$ netq check mlag include 2
+mlag check result summary:
+
+Checked nodes       : 4
+Total nodes         : 4
+Rotten nodes        : 0
+Failed nodes        : 2
+Warning nodes       : 0
+
+Peering Test             : skipped
+Backup IP Test           : skipped
+Clag SysMac Test         : 0 warnings, 2 errors,
+VXLAN Anycast IP Test    : skipped
+Bridge Membership Test   : skipped
+Spanning Tree Test       : skipped
+Dual Home Test           : skipped
+Single Home Test         : skipped
+Conflicted Bonds Test    : skipped
+ProtoDown Bonds Test     : skipped
+SVI Test                 : skipped
+
+Clag SysMac Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+leaf01            Duplicate sysmac with leaf02/None
+leaf03            Duplicate sysmac with leaf04/None
+```
+
+To exclude the backup IP, CLAG SysMAC, and VXLAN anycast IP tests during a validation:
+
+```
+cumulus@switch:~$ netq check mlag exclude 1-3
+mlag check result summary:
+
+Checked nodes       : 4
+Total nodes         : 4
+Rotten nodes        : 0
+Failed nodes        : 0
+Warning nodes       : 0
+
+Peering Test             : passed,
+Backup IP Test           : skipped
+Clag SysMac Test         : skipped
+VXLAN Anycast IP Test    : skipped
+Bridge Membership Test   : passed,
+Spanning Tree Test       : passed,
+Dual Home Test           : passed,
+Single Home Test         : passed,
+Conflicted Bonds Test    : passed,
+ProtoDown Bonds Test     : passed,
+SVI Test                 : passed,
+```
+
 ### Perform an NTP Validation
 
-The default validation checks for synchronization of the NTP server with all nodes in the network. It is always important to have your devices in time synchronization to
-ensure configuration and management events can be tracked and correlations can be made between events. 
+The default validation checks for synchronization of the NTP server with all nodes in the network. It is always important to have your devices in time synchronization to ensure configuration and management events can be tracked and correlations can be made between events.
 
-This example shows that server04 has an error.
+This example shows that *server04* has an error.
 
 ```
 cumulus@switch:~$ netq check ntp
@@ -937,12 +1046,12 @@ NTP Sync Test   : 0 warnings, 1 errors,
 NTP Sync Test details:
 Hostname          NTP Sync Connect Time
 ----------------- -------- -------------------------
-server04          no       2019-09-17 19:21:47      
+server04          no       2019-09-17 19:21:47
 ```
 
 ### Perform an OSPF Validation
 
-The default validation runs a network-wide OSPF connectivity and configuration check on all nodes running the OSPF service. This example shows results several errors in the Timers and Interface MTU tests. 
+The default validation runs a network-wide OSPF connectivity and configuration check on all nodes running the OSPF service. This example shows results several errors in the Timers and Interface MTU tests.
 
 ```
 cumulus@switch:~# netq check ospf
@@ -973,13 +1082,9 @@ tor-2             uplink-2                  0.0.0.20                  27.0.0.20 
 
 ### Perform a Sensors Validation
 
-Hardware platforms have a number sensors to provide environmental data
-about the switches. Knowing these are all within range is a good check
-point for maintenance. 
+Hardware platforms have a number sensors to provide environmental data about the switches. Knowing these are all within range is a good check point for maintenance.
 
-For example, if you had a temporary HVAC failure
-and you are concerned that some of your nodes are beginning to overheat,
-you can run this validation to determine if any switches have already reached the maximum temperature threshold.
+For example, if you had a temporary HVAC failure and you are concerned that some of your nodes are beginning to overheat, you can run this validation to determine if any switches have already reached the maximum temperature threshold.
 
 ```
 cumulus@switch:~$ netq check sensors
@@ -1041,10 +1146,7 @@ BUM replication Test    : passed,
 ```
 
 {{%notice tip%}}
-
-Both asymmetric and symmetric VXLAN configurations are validated with
-this command.
-
+Both asymmetric and symmetric VXLAN configurations are validated with this command.
 {{%/notice%}}
 
 ## Validation Check Result Filtering
@@ -1052,16 +1154,14 @@ this command.
 You can create filters to suppress false alarms or uninteresting errors and warnings that can be a nuisance in CI workflows. For example, certain configurations permit a singly-connected CLAG bond and the standard error that is generated is not useful.
 
 {{%notice note%}}
-
 Filtered errors and warnings related to validation checks do NOT generate notifications and are not counted in the alarm and info event totals. They are counted as part of suppressed notifications instead.
-
 {{%/notice%}}
 
 The filters are defined in the  `check-filter.yml` file in the `/etc/netq/` directory. You can create a rule for individual check commands or you can create a global rule that applies to all tests run by the check command. Additionally, you can create a rule specific to a particular test run by the check command.
 
 Each rule must contain at least one `match` criteria and an `action` response. The only action currently available is *filter*. The match can be comprised of multiple criteria, one per line, creating a logical AND. Matches can be made against any column in the validation check output. The match criteria values *must match* the case and spacing of the column names in the corresponding `netq check` output and are parsed as regular expressions.
 
-This example shows a global rule for the BGP checks that indicates any events generated by the *DataVrf* virtual route forwarding interface coming from *swp3* or *swp7.* are to be suppressed. It also shows a test-specific rule to filter all Address Families events from devices with hostnames starting with *exit-1* or *firewall*. 
+This example shows a global rule for the BGP checks that indicates any events generated by the *DataVrf* virtual route forwarding interface coming from *swp3* or *swp7.* are to be suppressed. It also shows a test-specific rule to filter all Address Families events from devices with hostnames starting with *exit-1* or *firewall*.
 
 ```
 bgp:
@@ -1080,7 +1180,6 @@ bgp:
                 action:
                     filter
 ```
-
 
 ### Create Filters for Provisioning Exceptions
 
@@ -1161,37 +1260,52 @@ To create a validation filter:
 
 ## View Network Details
 
-The `netq show` commands display a wide variety of content about the
-network and its various elements. You can show content for the
-following:
+The `netq show` commands display a wide variety of content about the network and its various elements. You can show content for the following:
 
- ```
-cumulus@switch:~$ netq show [tab]
-    agents        :  Netq agent
-    bgp           :  BGP info
-    clag          :  Cumulus Multi-chassis LAG
-    events        :  Display changes over time
-    evpn          :  EVPN
-    interfaces    :  network interface port
-    inventory     :  Inventory information
-    ip            :  IPv4 related info
-    ipv6          :  IPv6 related info
-    kubernetes    :  Kubernetes Information
-    lldp          :  LLDP based neighbor info
-    macs          :  Mac table or MAC address info
-    notification  :  Send notifications to Slack or PagerDuty
-    ntp           :  NTP
-    ospf          :  OSPF info
-    sensors       :  Temperature/Fan/PSU sensors
-    services      :  System services
-    vlan          :  VLAN
-    vxlan         :  VXLAN data path
+```
+cumulus@switch:~$ netq show [TAB]
+    agents                   :  Netq agent
+    bgp                      :  BGP info
+    cl-btrfs-info            :  Btrfs Information
+    cl-manifest              :  Manifest Information
+    cl-pkg-info              :  Package Information
+    cl-resource              :  add help text
+    cl-ssd-util              :  SSD Utilization Information
+    clag                     :  Cumulus Multi-chassis LAG
+    ethtool-stats            :  Interface statistics
+    events                   :  Display changes over time
+    evpn                     :  EVPN
+    interface-stats          :  Interface statistics
+    interface-utilization    :  Interface utils
+    interfaces               :  network interface port
+    inventory                :  Inventory information
+    ip                       :  IPv4 related info
+    ipv6                     :  IPv6 related info
+    job-status               :  add help text
+    kubernetes               :  Kubernetes Information
+    lldp                     :  LLDP based neighbor info
+    mac-history              :  Mac history info for a mac address
+    macs                     :  Mac table or MAC address info
+    mlag                     :  Multi-chassis LAG (alias of clag)
+    notification             :  Send notifications to Slack or PagerDuty
+    ntp                      :  NTP
+    opta-health              :  Display health of apps on the OPTA
+    opta-platform            :  Appliance version info and uptime
+    ospf                     :  OSPF info
+    recommended-pkg-version  :  Current host information to be considered
+    resource-util            :  add help text
+    sensors                  :  Temperature/Fan/PSU sensors
+    services                 :  System services
+    tca                      :  Threshold Crossing Alerts
+    trace                    :  Control plane trace path across fabric
+    unit-tests               :  Show list of unit tests for netq tests
+    validation               :  Schedule a validation check
+    vlan                     :  VLAN
+    vxlan                    :  VXLAN data path
+    wjh-drop                 :  add help text
 ```
 
-For example, to validate the the status of the NetQ agents running in
-the fabric, run `netq show agents`. A *Fresh* status indicates the Agent
-is running as expected. The Agent sends a heartbeat every 30 seconds,
-and if three consecutive heartbeats are missed, its status changes to
+For example, to validate the the status of the NetQ agents running in the fabric, run `netq show agents`. A *Fresh* status indicates the Agent is running as expected. The Agent sends a heartbeat every 30 seconds, and if three consecutive heartbeats are missed, its status changes to
 *Rotten*.
 
 ```
@@ -1199,25 +1313,26 @@ cumulus@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-exit01            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:30m:19s            1d:21h:30m:9s             1d:21h:30m:9s              Tue Sep 24 22:45:03 2019
-exit02            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:32m:1s             1d:21h:31m:51s            1d:21h:31m:51s             Tue Sep 24 22:43:35 2019
-leaf01            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:31m:14s            1d:21h:31m:5s             1d:21h:31m:5s              Tue Sep 24 22:44:25 2019
-leaf02            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:31m:57s            1d:21h:31m:47s            1d:21h:31m:47s             Tue Sep 24 22:44:20 2019
-leaf03            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:31m:4s             1d:21h:30m:55s            1d:21h:30m:55s             Tue Sep 24 22:44:19 2019
-leaf04            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:32m:37s            1d:21h:32m:28s            1d:21h:32m:28s             Tue Sep 24 22:43:05 2019
-server01          Fresh            no       2.3.0-ub18.04u21~1569246309.30858c3  1d:21h:10m:50s            1d:21h:10m:38s            1d:21h:10m:38s             Tue Sep 24 22:49:10 2019
-server02          Fresh            yes      2.3.0-ub18.04u21~1569246309.30858c3  1d:21h:10m:50s            1d:21h:10m:38s            1d:21h:10m:38s             Wed Sep 25 18:35:44 2019
-server03          Fresh            yes      2.3.0-ub18.04u21~1569246309.30858c3  1d:21h:10m:50s            1d:21h:10m:38s            1d:21h:10m:38s             Wed Sep 25 15:37:10 2019
-server04          Fresh            yes      2.3.0-ub18.04u21~1569246309.30858c3  1d:21h:10m:49s            1d:21h:10m:37s            1d:21h:10m:37s             Tue Sep 24 22:49:33 2019
-spine01           Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:30m:10s            1d:21h:30m:1s             1d:21h:30m:1s              Tue Sep 24 22:44:40 2019
-spine02           Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      1d:21h:30m:16s            1d:21h:30m:6s             1d:21h:30m:6s              Tue Sep 24 22:43:32 2019
+edge01            Fresh            yes      2.4.1-ub16.04u26~1580274921.63cf8a4  35d:2h:33m:52s            21d:21h:35m:44s           21d:21h:35m:44s            Mon Mar 16 22:19:05 2020
+exit01            Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:35m:28s            35d:2h:35m:21s            21d:21h:58m:31s            Mon Mar 16 21:56:16 2020
+exit02            Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:35m:36s            35d:2h:35m:29s            21d:21h:58m:26s            Mon Mar 16 21:55:20 2020
+leaf01            Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:33m:56s            35d:2h:33m:49s            21d:21h:58m:31s            Mon Mar 16 21:58:09 2020
+leaf02            Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:34m:17s            35d:2h:34m:10s            21d:21h:58m:31s            Mon Mar 16 21:57:17 2020
+leaf03            Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:34m:6s             35d:2h:33m:59s            21d:21h:58m:32s            Mon Mar 16 21:56:47 2020
+leaf04            Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:34m:35s            35d:2h:34m:28s            21d:21h:58m:32s            Mon Mar 16 21:57:57 2020
+server01          Fresh            yes      2.4.1-ub16.04u26~1580274921.63cf8a4  21d:4h:3m:8s              21d:4h:2m:59s             21d:4h:2m:59s              Tue Mar 17 15:50:08 2020
+server02          Fresh            yes      2.4.1-ub16.04u26~1580274921.63cf8a4  21d:4h:3m:7s              21d:4h:2m:59s             21d:4h:2m:59s              Tue Mar 17 15:53:25 2020
+server03          Fresh            yes      2.4.1-ub16.04u26~1580274921.63cf8a4  21d:4h:3m:9s              21d:4h:3m:1s              21d:4h:3m:1s               Tue Mar 17 15:54:09 2020
+server04          Fresh            yes      2.4.1-ub16.04u26~1580274921.63cf8a4  21d:4h:3m:8s              21d:4h:2m:58s             21d:4h:2m:58s              Tue Mar 17 15:50:45 2020
+spine01           Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:34m:37s            35d:2h:34m:30s            21d:21h:58m:32s            Mon Mar 16 21:56:34 2020
+spine02           Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:35m:6s             35d:2h:34m:59s            21d:21h:58m:31s            Mon Mar 16 21:57:23 2020
 ```
 
 Some additional examples follow.
 
 View the status of BGP:
 
- ```
+```
 cumulus@switch:~$ netq show bgp
 Hostname          Neighbor                     VRF             ASN        Peer ASN   PfxRx        Last Changed
 ----------------- ---------------------------- --------------- ---------- ---------- ------------ -------------------------
@@ -1255,28 +1370,22 @@ spine02           swp4(leaf04)                 default         65020      65012 
 
 View the status of your VLANs:
 
- ```
+```
 cumulus@switch:~$ netq show vlan
 Matching vlan records:
 Hostname          VLANs                     SVIs                      Last Changed
 ----------------- ------------------------- ------------------------- -------------------------
-server11          1                                                   Thu Feb  7 00:17:48 2019
-server21          1                                                   Thu Feb  7 00:17:48 2019
-server11          1                                                   Thu Feb  7 00:17:48 2019
-server13          1                                                   Thu Feb  7 00:17:48 2019
-server21          1                                                   Thu Feb  7 00:17:48 2019
-server23          1                                                   Thu Feb  7 00:17:48 2019
-leaf01            100-106,1000-1009         100-106 1000-1009         Thu Feb  7 00:17:49 2019
-leaf02            100-106,1000-1009         100-106 1000-1009         Thu Feb  7 00:17:49 2019
-leaf11            100-106,1000-1009         100-106 1000-1009         Thu Feb  7 00:17:49 2019
-leaf12            100-106,1000-1009         100-106 1000-1009         Thu Feb  7 00:17:50 2019
-leaf21            100-106,1000-1009         100-106 1000-1009         Thu Feb  7 00:17:50 2019
-leaf22            100-106,1000-1009         100-106 1000-1009         Thu Feb  7 00:17:50 2019
+exit01            4001                      4001                      Tue Mar 17 19:52:16 2020
+exit02            4001                      4001                      Tue Mar 17 19:52:16 2020
+leaf01            1,13,24,4001              13 24 4001                Tue Mar 17 19:52:16 2020
+leaf02            1,13,24,4001              13 24 4001                Tue Mar 17 19:52:16 2020
+leaf03            1,13,24,4001              13 24 4001                Tue Mar 17 19:52:16 2020
+leaf04            1,13,24,4001              13 24 4001                Tue Mar 17 19:52:16 2020
 ```
 
 View the status of the hardware sensors:
 
- ```
+```
 cumulus@switch:~$ netq show sensors all
 Matching sensors records:
 Hostname          Name            Description                         State      Message                             Last Changed

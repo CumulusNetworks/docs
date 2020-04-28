@@ -36,7 +36,7 @@ for the most up to date documentation.
 Read the [release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115015543848)
 for new features and known issues in this release.
 
-### What's New in Cumulus Linux 3.5
+## What's New in Cumulus Linux 3.5
 
 Cumulus Linux 3.5 contains a number of new platforms, features and
 improvements:
@@ -72,7 +72,7 @@ For further information regarding bug fixes and known issues present in
 this release, refer to the 
 [product release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115015543848).
 
-### Open Source Contributions
+## Open Source Contributions
 
 Cumulus Networks has forked various software projects, like CFEngine,
 `Netdev` and some Puppet Labs packages in order to implement various
@@ -85,10 +85,14 @@ applications as well.
 The list of open source projects is on the 
 [open source software](http://oss.cumulusnetworks.com/) page.
 
-### Hardware Compatibility List
+## Hardware Compatibility List
 
 You can find the most up to date hardware compatibility list (HCL)
 [here](https://cumulusnetworks.com/hcl/). Use the HCL to confirm that
 your switch model is supported by Cumulus Networks. The HCL is updated
 regularly, listing products by port configuration, manufacturer, and SKU
 part number.
+
+## Download the User Guide
+
+You can download a PDF of the user guide for versions {{<exlink url="https://drive.google.com/file/d/1_77_pdyRPMjzkqpA75GsE0G0uVQmfxnW/view?usp=sharing" text="3.5.0">}}, {{<exlink url="https://drive.google.com/file/d/1sOajT8pCBM9a5afu-dw6X-6Spt40uKfG/view?usp=sharing" text="3.5.1">}}, {{<exlink url="https://drive.google.com/file/d/1UZ0W1I17FOR1ysbVlO7I6GIpNYSAv3IP/view?usp=sharing" text="3.5.2">}} and {{<exlink url="https://drive.google.com/file/d/1pEA0pUEW4-1qlKKO7q0-R0mKjqgDhZ5x/view?usp=sharing" text="3.5.3">}}.

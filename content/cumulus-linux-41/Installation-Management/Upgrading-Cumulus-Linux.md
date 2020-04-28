@@ -16,16 +16,16 @@ Cumulus Networks recommends that you deploy, provision, configure, and upgrade s
 
 {{%notice tip%}}
 
-Be sure to read the knowledge base article 
+Be sure to read the knowledge base article
 {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360010451353" text="Upgrades: Network Device and Linux Host Worldview Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 
 {{%/notice%}}
 
 Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Cumulus Networks recommends you consider making the following files and directories part of a backup strategy.
 
-<details>
+{{< tabs "TabID25 ">}}
 
-<summary>Network Configuration Files </summary>
+{{< tab "Network Configuration Files ">}}
 
 | File Name and Location | Explanation| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | ----------------------------| -------------------- |
@@ -38,11 +38,9 @@ Understanding the location of configuration data is required for successful upgr
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Additional Commonly Used Files </summary>
+{{< tab "Commonly-Used Files ">}}
 
 | File Name and Location | Explanation| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | --------------------------- | -------------------- |
@@ -56,7 +54,7 @@ Understanding the location of configuration data is required for successful upgr
 |`/etc/ssh/` | SSH configuration files | {{<link title="SSH for Remote Access">}} | {{<exlink url="https://wiki.debian.org/SSH">}} |
 | `/etc/sudoers`, `/etc/sudoers.d` | Best practice is to place changes in `/etc/sudoers.d/` instead of `/etc/sudoers`; changes in the `/etc/sudoers.d/` directory are not lost during upgrade. | {{<link title="Using sudo to Delegate Privileges">}} |
 
-</details>
+{{< /tab >}}
 
 {{%notice note%}}
 
@@ -66,9 +64,7 @@ Understanding the location of configuration data is required for successful upgr
 
 {{%/notice%}}
 
-<details>
-
-<summary>Never Migrate these Files between Versions or Switches</summary>
+{{< tab "Never Migrate Files ">}}
 
 | File Name and Location  | Explanation |
 | ----------------------- | ----------- |
@@ -91,7 +87,9 @@ Understanding the location of configuration data is required for successful upgr
 | `/root/.ansible` | Ansible `tmp` files. Do not copy. |
 | `/home/cumulus/.ansible` | Ansible `tmp` files. Do not copy.|
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 If you are using certain forms of network virtualization, including {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}} or {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}}, you might have updated the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you made to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
 
@@ -218,15 +216,15 @@ To upgrade the switch using package upgrade:
     The default action is to keep your current version.
     *** daemons (Y/I/N/O/D/Z) [default=N] ?
 
-    - To see the differences between the currently installed version and the 
+    - To see the differences between the currently installed version and the
     new version, type `D`- To keep the currently installed version, type `N`.
-    The new package version is installed with the suffix `_.dpkg-dist` 
-    (for example, `/etc/frr/daemons.dpkg-dist`). When upgrade is complete and 
-    **before** you reboot, merge your changes with the changes from the newly 
-    installed file.  
-    - To install the new version, type `I`. Your currently installed version is 
-    saved with the suffix `.dpkg-old`.  
-    When the upgrade is complete, you can search for the files with the 
+    The new package version is installed with the suffix `_.dpkg-dist`
+    (for example, `/etc/frr/daemons.dpkg-dist`). When upgrade is complete and
+    **before** you reboot, merge your changes with the changes from the newly
+    installed file.
+    - To install the new version, type `I`. Your currently installed version is
+    saved with the suffix `.dpkg-old`.
+    When the upgrade is complete, you can search for the files with the
     `sudo find / -mount -type f -name '*.dpkg-*'` command.
     ```
 
@@ -260,7 +258,7 @@ If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}
 
 {{%notice warning%}}
 
-For networks with MLAG deployments, Cumulus Networks only supports upgrading to Cumulus Linux 4.1 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.1. Version 3.7.10 is available on the 
+For networks with MLAG deployments, Cumulus Networks only supports upgrading to Cumulus Linux 4.1 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.1. Version 3.7.10 is available on the
 {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux&version=3.7.10" text="downloads page">}} on our website.
 
 {{%/notice%}}

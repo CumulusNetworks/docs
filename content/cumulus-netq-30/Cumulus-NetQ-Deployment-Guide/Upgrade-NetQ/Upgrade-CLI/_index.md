@@ -7,7 +7,7 @@ aliases:
  - /pages/viewpage.action?pageId=12320951
 toc: 4
 ---
-While it is not required to upgrade the NetQ CLI on your monitored switches and hosts when you upgrade to NetQ 2.4.1, doing so gives you access to new features and important bug fixes. Refer to the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360041040413" text="release notes">}} for details.
+While it is not required to upgrade the NetQ CLI on your monitored switches and hosts when you upgrade to NetQ 2.4.1, doing so gives you access to new features and important bug fixes. Refer to the {{<link title="Cumulus NetQ 3.0 Release Notes" text="release notes">}} for details.
 
 To upgrade the NetQ CLI:
 

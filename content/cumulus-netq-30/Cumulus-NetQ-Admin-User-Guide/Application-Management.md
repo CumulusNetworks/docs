@@ -725,6 +725,20 @@ To configure additional premises:
 
 9. Click **Finish**.
 
+## System Server Information
+
+You can easily view the configuration of the physical server of VM from the NetQ Management dashboard.
+
+To view the server information:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+
+2. Select *Management* from the **Admin** column.
+
+3. Locate the System Server Info card.
+
+    {{<figure src="/images/netq/netq-mgmt-sys-server-info-card-300.png" width="500">}}
+
 ## Integrate with Your LDAP Server
 
 For on-premises deployments you can integrate your LDAP server with NetQ to provide access to NetQ using LDAP user accounts instead of ,or in addition to, the NetQ user accounts. Refer to {{<link title="Integrate NetQ with Your LDAP Server">}} for more detail.

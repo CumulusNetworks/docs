@@ -631,13 +631,15 @@ Test a NetQ CLI command
 
 To deploy these NetQ CLI configuration commands to several devices at the same time, use ansible ad-hoc commands from the oob-mgmt-server. An example of how to configure the NetQ CLI on all of the Cumulus Linux nodes that use mgmt vrf is below:
 ```
-vagrant@oob-mgmt-server:~$ ansible spine:leaf:exit -a ‘netq config add cli server api.netq.cumulusnetworks.com access-key <access-key> secret-key <secret-key> premise <netq-premise-name> vrf mgmt port 443’
-vagrant@oob-mgmt-server:~$ ansible spine:leaf:exit -a ‘netq config restart cli’
+vagrant@oob-mgmt-server:~$ ansible spine:leaf:exit -a 'netq config add cli server api.netq.cumulusnetworks.com access-key <access-key> secret-key <secret-key> premise <netq-premise-name> vrf mgmt port 443'
+vagrant@oob-mgmt-server:~$ ansible spine:leaf:exit -a 'netq config restart cli'
+```
 
-#Ubuntu hosts
 
-vagrant@oob-mgmt-server:~$ ansible host -a ‘netq config add cli server api.netq.cumulusnetworks.com access-key <access-key> secret-key <secret-key> premise <netq-premise-name> vrf mgmt port 443’
-vagrant@oob-mgmt-server:~$ ansible host -a ‘netq config restart cli’
+For Ubuntu hosts use:
+```
+vagrant@oob-mgmt-server:~$ ansible host -a 'netq config add cli server api.netq.cumulusnetworks.com access-key <access-key> secret-key <secret-key> premise <netq-premise-name> vrf mgmt port 443'
+vagrant@oob-mgmt-server:~$ ansible host -a 'netq config restart cli'
 ```
 
 ## Integration Guide

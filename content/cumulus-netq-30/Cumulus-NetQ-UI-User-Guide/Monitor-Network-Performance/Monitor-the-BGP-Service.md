@@ -18,7 +18,7 @@ With NetQ, you can monitor the number of nodes running the BGP service, view swi
 
 The small BGP Service card displays:
 
-{{< figure src="/images/netq/ntwk-svcs-all-bgp-small-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-bgp-small-300.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -57,7 +57,7 @@ The small BGP Service card displays:
 
 The medium BGP Service card displays:
 
-{{< figure src="/images/netq/ntwk-svcs-all-bgp-medium-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-bgp-medium-300.png" width="200" >}}
 
 <table>
 <colgroup>
@@ -113,7 +113,7 @@ The large BGP service card contains two tabs.
 
 The *Sessions Summary* tab displays:  
 
-{{< figure src="/images/netq/ntwk-svcs-all-bgp-large-summary-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-bgp-large-summary-tab-300.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -171,7 +171,7 @@ The *Sessions Summary* tab displays:
 
 The *Alarms* tab displays:
 
-{{< figure src="/images/netq/ntwk-svcs-all-bgp-large-alarms-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-bgp-large-alarms-tab-300.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -223,7 +223,7 @@ The *Alarms* tab displays:
 
 The full screen BGP Service card provides tabs for all switches, all sessions, and all alarms.
 
-{{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsess-tab-241.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsw-tab-300.png" width="700">}}
 
 <table>
 <colgroup>
@@ -357,7 +357,7 @@ A summary of the BGP service is available from the Network Services card workflo
 
 To view the summary, open the small BGP Service card.
 
-{{< figure src="/images/netq/ntwk-svcs-all-bgp-small-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-bgp-small-300.png" width="200" >}}
 
 For more detail, select a different size BGP Service card.
 
@@ -367,7 +367,7 @@ It is useful to know the number of network nodes running the BGP protocol over a
 
 To view these distributions, open the medium BGP Service card.
 
-{{< figure src="/images/netq/ntwk-svcs-all-bgp-medium-230.png" width="200" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-bgp-medium-300.png" width="200" >}}
 
 If a visual correlation is apparent, you can dig a little deeper with the large BGP Service card tabs.
 
@@ -383,7 +383,7 @@ To view switches and hosts with the most BGP sessions:
 
     The table content is sorted by this characteristic, listing nodes running the most BGP sessions at the top. Scroll down to view those with the fewest sessions.
 
-    {{<figure src="/images/netq/ntwk-svcs-all-bgp-large-summary-tab-230.png" width="500">}}
+    {{<figure src="/images/netq/ntwk-svcs-all-bgp-large-summary-tab-300.png" width="500">}}
 
 To compare this data with the same data at a previous time:
 
@@ -397,7 +397,7 @@ To compare this data with the same data at a previous time:
 
     {{<figure src="/images/netq/time-picker-popup-narrow-222.png" width="150">}}
 
-    {{<figure src="/images/netq/ntwk-svcs-all-bgp-large-summary-tab-past-week-230.png" width="500">}}
+    {{<figure src="/images/netq/ntwk-svcs-all-bgp-large-summary-tab-past-week-300.png" width="500">}}
 
     You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running BGP than previously, looking for changes in the topology, and so forth.
 
@@ -413,7 +413,7 @@ To view switches with the most unestablished BGP sessions:
 
     The table content is sorted by this characteristic, listing nodes with the most unestablished BGP sessions at the top. Scroll down to view those with the fewest unestablished sessions.
 
-    {{< figure src="/images/netq/ntwk-svcs-allbgp-large-unestab-sessions.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-allbgp-large-unestab-sessions-300.png" width="500" >}}
 
 Where to go next depends on what data you see, but a couple of options
 include:
@@ -438,7 +438,7 @@ To view switches with the most BGP alarms:
 
     The table content is sorted by this characteristic, listing nodes with the most BGP alarms at the top. Scroll down to view those with the fewest alarms.
 
-    {{< figure src="/images/netq/ntwk-svcs-all-bgp-large-alarms-tab-230.png" width="500" >}}
+    {{< figure src="/images/netq/ntwk-svcs-all-bgp-large-alarms-tab-300.png" width="500" >}}
 
 Where to go next depends on what data you see, but a few options
 include:
@@ -461,7 +461,7 @@ To view all BGP events:
 
     By default, events are listed in most recent to least recent order.
 
-    {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-alarms-tab-241.png" width="700">}}
+    {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-alarms-tab-300.png" width="700">}}
 
 Where to go next depends on what data you see, but a couple of options
 include:
@@ -478,7 +478,7 @@ You can view all stored attributes of all switches and hosts running BGP in your
 
 To view all device details, open the full screen BGP Service card and click the **All Switches** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-switches-tab-241.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsw-tab-300.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
@@ -488,7 +488,7 @@ You can view all stored attributes of all BGP sessions in your network in the fu
 
 To view all session details, open the full screen BGP Service card and click the **All Sessions** tab.
 
-{{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsess-tab-241.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsess-tab-300.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
@@ -523,7 +523,7 @@ On the medium and large single BGP session cards, the status of the sessions is 
 
 The small BGP Session card displays:
 
-{{<figure src="/images/netq/ntwk-svcs-single-bgp-small-230.png" width="200">}}
+{{<figure src="/images/netq/ntwk-svcs-single-bgp-small-300.png" width="200">}}
 
 <table>
 <colgroup>
@@ -558,7 +558,7 @@ The small BGP Session card displays:
 
 The medium BGP Session card displays:
 
-{{<figure src="/images/netq/ntwk-svcs-single-bgp-medium-230.png" width="200">}}
+{{<figure src="/images/netq/ntwk-svcs-single-bgp-medium-300.png" width="200">}}
 
 <table>
 <colgroup>
@@ -623,7 +623,7 @@ The large BGP Session card contains two tabs.
 
 The *Session Summary* tab displays:
 
-{{<figure src="/images/netq/ntwk-svcs-single-bgp-large-summary-tab-231.png" width="500">}}
+{{<figure src="/images/netq/ntwk-svcs-single-bgp-large-summary-tab-300.png" width="500">}}
 
 <table>
 <colgroup>
@@ -700,7 +700,7 @@ The *Session Summary* tab displays:
 
 The *Configuration File Evolution* tab displays:
 
-{{<figure src="/images/netq/ntwk-svcs-single-bgp-large-config-tab-230.png" width="500">}}
+{{<figure src="/images/netq/ntwk-svcs-single-bgp-large-config-tab-300.png" width="500">}}
 
 <table>
 <colgroup>
@@ -749,7 +749,7 @@ The *Configuration File Evolution* tab displays:
 
 The full screen BGP Session card provides tabs for all BGP sessions and all events.
 
-{{<figure src="/images/netq/ntwk-svcs-single-bgp-fullscr-allsess-tab-241.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-single-bgp-fullscr-allsess-tab-300.png" width="700">}}
 
 <table>
 <colgroup>

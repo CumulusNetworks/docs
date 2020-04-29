@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ
+title: Cumulus NetQ 3.0
 author: Cumulus Networks
 weight: 1
 aliases:
@@ -13,4 +13,4 @@ cascade:
     siteSlug: cumulus-netq
     draft: true
 ---
-Cumulus® NetQ is a highly-scalable, modern network operations tool set that provides visibility into your overlay and underlay networks in real-time. NetQ delivers actionable insights and operational intelligence about the health of your data center - from the container, virtual machine, or host, all the way to the switch and port.
+Cumulus® NetQ is a highly-scalable, modern network operations tool set utilizes telemetry for deep troubleshooting, visibility, and automated workflows from a single GUI interface, reducing maintenance and network downtimes. It combines the ability to easily upgrade, configure and deploy network elements with a full suite of operations capabilities, such as visibility, troubleshooting, validation, trace and comparative look-back functionality.

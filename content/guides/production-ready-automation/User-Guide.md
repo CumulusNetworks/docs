@@ -8,7 +8,7 @@ draft: true
 ---
 This section discusses how you can run a Cumulus Production Ready automation, unchanged and unmodified on your own system in your enterprise. You can test, learn, and experience using Cumulus Linux driven by best practice Ansible automation, and test drive our officially supported golden standard configurations and architectures by running the production ready automation as-is and unmodified.
 
-For more details about how to customize, reuse and adapt these examples of simulation, automation or CI/CD for your own purposes, refer to {{<link url="Integration-Guide" text="Integration Guide">}}.
+For more details about how to customize, reuse and adapt these examples of simulation, automation or CI/CD for your own purposes, refer to the {{<link url="Integration-Guide" text="Integration Guide">}}.
 
 ## Hardware Requirements
 
@@ -39,11 +39,11 @@ Operating Systems:
 - Cumulus NetQ 2.4 or later (optional)
 - Ubuntu 16.04 or 18.04
 
-{{< notice note>}}
+{{%notice note%}}
 
-Other Linux distributions, like CentOS or RHEL, may be supported, but have not been tested.
+Cumulus Networks has not tested other Linux distributions, like CentOS or RHEL.
 
-{{< /notice >}}
+{{%/notice%}}
 
 Software Packages:
 
@@ -57,9 +57,9 @@ Vagrant plugins:
 - Vagrant-libvirt
 - Vagrant-scp
 
-Refer to the {<link url="Appendix" text="Appendix">}} for an example bash script that installs these package dependencies to be able to support Cumulus VX simulation with Vagrant/libvirt.
+Refer to the {{<link title="Example Install Scripts" text="Example Install Scripts">}} for an example bash script that installs these package dependencies to be able to support Cumulus VX simulation with Vagrant/libvirt.
 
-## Start A Golden Standard Topology
+## Manually Start A Golden Standard Topology
 
 The easiest way to start a Production Ready automation demo after preparing the system is to use the bash script provided. The procedure is described in the {{<link url="Quick-Start" text="Quick Start section">}}. The bash script performs the following steps automatically:
 
@@ -70,7 +70,7 @@ The easiest way to start a Production Ready automation demo after preparing the 
 
 To have more control over which nodes start and in which order they start, you can launch the simulation manually. This method saves CPU and memory resources.
 
-To manually start a demo topology, such as {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym" text="EVPN Symmetric Mode">}}, you must ensure that you also fetch and pull down the included Cumulus Linux base Reference Topology. You can do this in one of two ways:
+To manually start a demo topology, such as {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym" text="EVPN Symmetric Mode">}}, ensure that you also fetch and pull down the included Cumulus Linux base Reference Topology. You can do this in one of two ways:
 
 - Use the `--recurse-submodule` option with the initial `git clone`. This option also fetches the submodule files in the same step as the clone. We use this option in the procedure below.
 - Perform a normal git clone, then fetch the submodule files separately with the `git submodule init` and `git submodule update` options. For more information about git submodules, see {{<exlink url="https://git-scm.com/book/en/v2/Git-Tools-Submodules" text="this guide">}}.
@@ -108,11 +108,11 @@ user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation#
 
 Perform a `vagrant up` for the out of band management devices. Omit the netq-ts if you do not intend on using it to save CPU and Memory resource consumption.
 
-{{<notice info>}}
+{{%notice info%}}
 
 You must bring up the OOB Server and OOB Switch first. The OOB Server acts as the management network DHCP server. If the OOB Server and Switch are not online first, the management interfaces of the other network devices will be temporarily unreachable.
 
-{{</notice>}}
+{{%/notice%}}
 
 ```
 user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation# vagrant up oob-mgmt-server oob-mgmt-switch netq-ts
@@ -207,7 +207,7 @@ ok: [border01]
 
 You now have a deployed and operational golden standard Cumulus architecture. For more details about the specific network topology, it’s IP addressing and how to interact with the features in demonstration, visit the demo project page for the `README.md`.
 
-### Automatically Launch the Production Ready Automation on Cumulus in the Cloud
+## Automatically Launch Production Ready Automation on Cumulus in the Cloud
 
 This method is the easiest way to experience the final product of the Cumulus golden standard EVPN VXLAN demo configurations. This method is best suited to fast track all of the simulation setup and provisioning and get to testing any of the official golden standard EVPN VXLAN demo configurations.
 
@@ -221,7 +221,7 @@ If you are interested in taking a closer look at the processes of automation, de
 3. Click the “Run Now" button
 4. Follow the instructions on the `Guided Tour` panel to test and experience the unique aspects of your selected demo.
 
-### Manually Launch an Automation Demo Topology From Cumulus In the Cloud
+## Manually Launch Automation Demo Topology From Cumulus In the Cloud
 
 [Cumulus in the Cloud](https://www.cumulusnetworks.com/citc) provides the fastest way to enjoy the experience of provisioning a full datacenter using best practice Ansible automation and see a working example of infrastructure as code. By removing the complexity of the simulation hardware and software dependencies, users can be in the driver’s seat of a fully provisioned data center to test the automation experience and any of the demo solution architectures in minutes. Cumulus in the cloud also includes a free temporary NetQ Cloud account to showcase NetQ’s features with live data from your simulation.
 
@@ -378,7 +378,7 @@ More complete and detailed information about installing NetQ can be found in the
     Successfully bootstrapped the master node
     ```
 
-    {{%notice info%}}
+    {{%notice note%}}
 
 `<URL-path>` is either a local filesystem absolute path, or an HTTP server URL starting with `http://`
 
@@ -449,4 +449,29 @@ For Ubuntu hosts use:
 ```
 vagrant@oob-mgmt-server:~$ ansible host -a 'netq config add cli server api.netq.cumulusnetworks.com access-key <access-key> secret-key <secret-key> premise <netq-premise-name> vrf mgmt port 443'
 vagrant@oob-mgmt-server:~$ ansible host -a 'netq config restart cli'
+```
+
+## Clean Up Stuck or Orphaned Simulations
+
+Occasionally errors occur when you use Vagrant or when you delete files from a project that is in use.
+
+To clean up stuck or orphaned libvirt simultations:
+
+1. Use the `virsh list --all` command to inspect the system and see all running libvirt simulations. Find your libvirt *domains* that you want to clean up. Simulations often have a common prefix from the same simulation that is normally the parent folder.
+
+2. Use `virsh` to perform three operations on each virtual machine (libvirt domain) that you want to clean up.
+    1. `virsh destroy <name>`
+    2. `virsh undefine <name>`
+    3. `virsh vol-delete --pool default <name>.img`
+
+Run the script below to clean up all simulations that match a common pattern from `virsh list`.
+
+{{%notice info%}}
+
+Use this script with caution on servers with other simulations and in shared environments as it does not prompt for confirmation and might delete systems you match accidentally!
+
+{{%/notice%}}
+
+```
+#for vm in $(virsh list --all | grep <match-pattern> | awk -F ' ' '{print$2}'); do virsh destroy $vm; virsh undefine $vm; virsh vol-delete --pool default $vm.img; done
 ```

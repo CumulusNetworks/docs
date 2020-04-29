@@ -6,7 +6,7 @@ product: Cumulus Networks Guides
 version: "1.0"
 draft: true
 ---
-Cumulus production ready automation provides several examples of a fully operationalized automated data center and includes:
+Cumulus production ready automation provides several examples of a fully operationalized, automated data center and includes:
 
 - A standard reference topology for all examples
 - A full Vagrant/libvirt simulation of the reference topology
@@ -17,9 +17,9 @@ Cumulus production ready automation provides several examples of a fully operati
 
 You can use this production ready automation package as a learning resource and as a starting template to implement these features, technologies and operational workflows in your Cumulus Linux Network environments.
 
-Network devices and hosts in simulation that are the core architecture of this example are simulated in a pre-constructed network topology referred to as the Cumulus Linux Reference Topology (cldemo2). This simulation environment is based on Vagrant and libvirt/kvm. It provides the foundational physical infrastructure and bootstrap configuration to be able to support and demonstrate Cumulus Linux features and technologies. Additional technical details are discussed in {{%link title="#Cumulus Linux Reference Topology" text="Cumulus Linux Reference Topology" %}}.
+Network devices and hosts in simulation that are the core architecture of this example are simulated in a pre-constructed network topology referred to as the Cumulus Linux Reference Topology (cldemo2). This simulation environment is based on Vagrant and libvirt/kvm. It provides the foundational physical infrastructure and bootstrap configuration to be able to support and demonstrate Cumulus Linux features and technologies. Additional technical details are discussed in {{<link url="#cumulus-linux-reference-topology" text="Cumulus Linux Reference Topology">}}.
 
-{{%notice tip%}}
+{{%notice note%}}
 
 This is the second Cumulus Linux demo environment, creating the name `cldemo2`
 
@@ -29,13 +29,13 @@ This package also contains examples of Cumulus best practice Ansible automation 
 
 As network operations become more programmatic and automated, and in combination with a robust simulation platform, CI/CD and devops style workflows are supplanting legacy workflows. You can test configuration changes automatically in a simulated environment to allow for more rapid and robust change management workflows. Cumulus production ready automation provides an example CI/CD pipeline implemented on Gitlab with the CI network testing and validation powered by {{% exlink text="Cumulus NetQ" url="https://docs.cumulusnetworks.com/cumulus-netq/" %}}.
 
-These golden standard demos and the underlying base reference topology are officially hosted on gitlab in the Golden Turtle folder of the Cumulus Consulting Gitlab group: https://gitlab.com/cumulus-consulting/goldenturtle.
+These golden standard demos and the underlying base reference topology are officially hosted on gitlab in the Golden Turtle folder of the {{% exlink text="Cumulus Consulting Gitlab group" url="https://gitlab.com/cumulus-consulting/goldenturtle" %}}.
 
-{{<notice tip>}}
+{{%notice note%}}
 
 The name *Golden Turtle* comes from the idea of a *golden reference* and the rocket turtle, which is the Cumulus Networks mascot. Golden reference + rocket turtle = Golden Turtle.
 
-{{</notice>}}
+{{%/notice%}}
 
 ## Golden Standard Demos
 
@@ -45,11 +45,9 @@ Cumulus Networks currently provides three officially supported demo solutions to
 - [EVPN Centralized Routing](https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpncent) - A EVPN-VXLAN environment with layer 2 extension between tenants with inter-tenant routing on a centralized (fw) device.
 - [EVPN Symmetric Mode](https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym) - An EVPN-VXLAN environment with layer 2 extension, layer 3 VXLAN routing and VRFs for multi-tenancy
 
-You can see more detailed information, such as IP addressing and specifics of the included features on the README.md page of each demo:
+You can see more detailed information, such as IP addressing and specifics of the included features on the README.md page of each demo: https://gitlab.com/cumulus-consulting/goldenturtle.
 
-https://gitlab.com/cumulus-consulting/goldenturtle
-
-## Cumulus Linux Reference topology
+## Cumulus Linux Reference Topology
 
 The Cumulus Linux reference topology provides a common and consistent preconfigured spine and leaf base network topology. This serves as the basis for all supported Cumulus demos and golden standards. This reference topology is intended to be a blank slate with minimal configuration to prepare the simulation to receive additional deployment and provisioning that demonstrates a feature or represents a fully operational production network.
 
@@ -57,7 +55,7 @@ When you start the reference topology simulation environment, all interfaces (ex
 
 See the Contributors Guide for more information on how to build a package like this or contribute your own demo or environment for the base cumulus reference topology.
 
-The Cumulus Linux reference topology provides a complete 2-tier spine and leaf topology. It also includes a complete out of band management. The devices include:
+The Cumulus Linux reference topology provides a complete two-tier spine and leaf topology. It also includes a complete out of band management. The devices include:
 
 - 4x Cumulus Linux 3.7 spines
 - 2x Cumulus Linux 3.7 leafs
@@ -70,4 +68,4 @@ The Cumulus Linux reference topology provides a complete 2-tier spine and leaf t
 
 {{<img src="/images/guides/cldemo2-diagram.png" >}}
 
-The Cumulus Linux reference topology is included with every officially supported Cumulus Linux demo. More details about that relationship are discussed in the Contributors Guide. To see a full example of cumulus production ready automation, use one of the {{<link text="EVPN VXLAN golden standard demos" title="#Officially Supported Golden Standard Demos" >}}.
+The Cumulus Linux reference topology is included with every officially supported Cumulus Linux demo. More details about that relationship are discussed in the Contributors Guide. To see a full example of cumulus production ready automation, use one of the {{<link text="EVPN VXLAN golden standard demos" title="#Golden Standard Demos" >}}.

@@ -41,7 +41,7 @@ To log in to the UI:
 
     The default Cumulus Workbench opens, with your username shown in the upper right corner of the application.
 
-    {{< figure src="/images/netq/access-ui-cumulus-wb-241.png" width="700" >}}
+    {{< figure src="/images/netq/access-ui-cumulus-wb-300.png" width="700" >}}
 
 {{< /tab >}}
 

@@ -7,8 +7,36 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29460</td>
+<td><p>The following security vulnerabilities affect qemu packages, which are available for optional installation on Cumulus Linux:<br/>
+CVE-2019-12068: In QEMU 1:4.1-1, 1:2.1+dfsg-12+deb8u6, 1:2.8+dfsg-6+deb9u8, 1:3.1+dfsg-8~deb10u1, 1:3.1+dfsg-8+deb10u2, and 1:2.1+dfsg-12+deb8u12 (fixed), when executing script in lsi_execute_script(), the LSI scsi adapter emulator advances 's-&gt;dsp' index to read next opcode. This can lead to an infinite loop if the next opcode is empty. Move the existing loop exit after 10k iterations so that it covers no-op opcodes as well.<br/>
+CVE-2019-15034: hw/display/bochs-display.c in QEMU 4.0.0 does not ensure a sufficient PCI config space allocation, leading to a buffer overflow involving the PCIe extended config space.<br/>
+CVE-2019-20382: QEMU 4.1.0 has a memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
+CVE-2020-1983: A use after free vulnerability in ip_reass() in ip_input.c of libslirp 4.2.0 and prior releases allows crafted packets to cause a denial of service.<br/>
+Vulnerable: &lt;= 3.1+dfsg-8+deb10u4<br/>
+Fixed: 3.1+dfsg-8+deb10u5</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29420</td>
+<td><p>When you configure the mgmt Interface Class, then reboot the switch, eth0 goes into an ADMDN state.<br/>
+To work around this issue, either bring up eth0 with the sudo ifup eth0 command or create /etc/rc.local with the following content to bring up eth0 on startup:</p>
+
+#!/bin/sh -e
+ifup eth0
+
+
+
+sudo chmod +x /etc/rc.local
+
+</td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29385</td>
-<td><p>The following vulnerability has been announced in the openssl package:<br/>
+<td><p>The following vulnerability affects the openssl package:<br/>
 CVE-2020-1967: Bernd Edlinger discovered that malformed data passed to the SSL_check_chain() function during or after a TLS 1.3 handshake could cause a NULL dereference, resulting in denial of service.<br/>
 Vulnerable: &lt;= 1.1.1d-0+deb10u2<br/>
 Fixed: 1.1.1d-0+deb10u3</p></td>
@@ -52,7 +80,7 @@ Fixed: 2.20.1-2+deb10u3</p></td>
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12, 4.0.0-4.1.1</td>
@@ -109,6 +137,13 @@ cumulus@switch:~$ sudo echo 0 &gt; /var/run/hw-management/config/suspend
 <td><p>A large number of flapping peers causes FRR to require a corresponding update to internal data structures that track peer information. Updating this internal data structure does not delete links that are down due to the flapping. The size of this array then grows to contain both current peers as well as peers that should have been deleted during the flap processing. The contents of this array is processed by FRR to poll the links, which consumes CPU for all items in the array. This additional polling consumes more CPU than necessary but has no functional impact.<br/>
 To work around this issue, restart FRR.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29043</td>
+<td><p>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.<br/>
+To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1334,8 +1369,36 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29460</td>
+<td><p>The following security vulnerabilities affect qemu packages, which are available for optional installation on Cumulus Linux:<br/>
+CVE-2019-12068: In QEMU 1:4.1-1, 1:2.1+dfsg-12+deb8u6, 1:2.8+dfsg-6+deb9u8, 1:3.1+dfsg-8~deb10u1, 1:3.1+dfsg-8+deb10u2, and 1:2.1+dfsg-12+deb8u12 (fixed), when executing script in lsi_execute_script(), the LSI scsi adapter emulator advances 's-&gt;dsp' index to read next opcode. This can lead to an infinite loop if the next opcode is empty. Move the existing loop exit after 10k iterations so that it covers no-op opcodes as well.<br/>
+CVE-2019-15034: hw/display/bochs-display.c in QEMU 4.0.0 does not ensure a sufficient PCI config space allocation, leading to a buffer overflow involving the PCIe extended config space.<br/>
+CVE-2019-20382: QEMU 4.1.0 has a memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
+CVE-2020-1983: A use after free vulnerability in ip_reass() in ip_input.c of libslirp 4.2.0 and prior releases allows crafted packets to cause a denial of service.<br/>
+Vulnerable: &lt;= 3.1+dfsg-8+deb10u4<br/>
+Fixed: 3.1+dfsg-8+deb10u5</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29420</td>
+<td><p>When you configure the mgmt Interface Class, then reboot the switch, eth0 goes into an ADMDN state.<br/>
+To work around this issue, either bring up eth0 with the sudo ifup eth0 command or create /etc/rc.local with the following content to bring up eth0 on startup:</p>
+
+#!/bin/sh -e
+ifup eth0
+
+
+
+sudo chmod +x /etc/rc.local
+
+</td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29385</td>
-<td><p>The following vulnerability has been announced in the openssl package:<br/>
+<td><p>The following vulnerability affects the openssl package:<br/>
 CVE-2020-1967: Bernd Edlinger discovered that malformed data passed to the SSL_check_chain() function during or after a TLS 1.3 handshake could cause a NULL dereference, resulting in denial of service.<br/>
 Vulnerable: &lt;= 1.1.1d-0+deb10u2<br/>
 Fixed: 1.1.1d-0+deb10u3</p></td>
@@ -1379,7 +1442,7 @@ Fixed: 2.20.1-2+deb10u3</p></td>
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12, 4.0.0-4.1.1</td>
@@ -1486,6 +1549,13 @@ reports to be injected to the input subsystem from a non-bonded source.</p></td>
 <td><p>A large number of flapping peers causes FRR to require a corresponding update to internal data structures that track peer information. Updating this internal data structure does not delete links that are down due to the flapping. The size of this array then grows to contain both current peers as well as peers that should have been deleted during the flap processing. The contents of this array is processed by FRR to poll the links, which consumes CPU for all items in the array. This additional polling consumes more CPU than necessary but has no functional impact.<br/>
 To work around this issue, restart FRR.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29043</td>
+<td><p>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.<br/>
+To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>

@@ -17,7 +17,7 @@ Follow these steps to setup and configure your VM on a single server in a cloud 
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/vmw-platform-image deployment="cloud">}}
+    {{<netq-install/vmw-platform-image deployment="cloud" version="2.4.1">}}
 
 4. Setup and configure your VM.
 
@@ -29,7 +29,7 @@ Follow these steps to setup and configure your VM on a single server in a cloud 
 
 6. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single">}}
+    {{<netq-install/bootstrap server="single" version="2.4.1">}}
 
 The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the CLI.
 

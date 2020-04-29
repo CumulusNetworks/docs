@@ -62,7 +62,7 @@ Messages have the following structure:
 
 | Element  | Description  |
 | ----------- | -------------- |
-| message type | Category of event; *agent*, *bgp*, *clag*, *clsupport*, *configdiff*, *evpn*, *license*, *link*, *lldp*, *lnv*, *mtu*, *node*, *ntp*, *ospf*, *packageinfo*, *ptm*, *resource*, *runningconfigdiff*, *sensor*, *services*, *ssdutil*, *tca*, *trace*, *version*, *vlan* or *vxlan* |
+| message type | Category of event; *agent*, *bgp*, *clag*, *clsupport*, *configdiff*, *evpn*, *license*, *link*, *lldp*, *mtu*, *node*, *ntp*, *ospf*, *packageinfo*, *ptm*, *resource*, *runningconfigdiff*, *sensor*, *services*, *ssdutil*, *tca*, *trace*, *version*, *vlan* or *vxlan* |
 | timestamp    | Date and time event occurred  |
 | opid         | Identifier of the service or process that generated the event |
 | hostname     | Hostname of network device where event occurred |

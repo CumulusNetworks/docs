@@ -100,9 +100,9 @@ cumulus@switch:~$ ifreload -a
 
 {{< /tabs >}}
 
-## Configure an SVI (Switch VLAN Interface)
+## Configure a Switch Virtual Interface (SVI)
 
-Bridges can be included as part of a routing topology after being assigned an IP address. This enables hosts within the bridge to communicate with other hosts outside of the bridge through a *switch VLAN interface* (SVI), which provides layer 3 routing. The IP address of the bridge is typically from the same subnet as the member hosts of the bridge.
+Bridges can be included as part of a routing topology after being assigned an IP address. This enables hosts within the bridge to communicate with other hosts outside of the bridge through a *switch virtual interface* (SVI), which provides layer 3 routing. The IP address of the bridge is typically from the same subnet as the member hosts of the bridge.
 
 {{%notice note%}}
 

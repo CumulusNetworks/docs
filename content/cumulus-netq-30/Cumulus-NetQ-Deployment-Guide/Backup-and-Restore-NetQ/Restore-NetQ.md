@@ -9,7 +9,7 @@ You can restore NetQ data using the backup file you created in {{<link title="Ba
 
 To restore NetQ on the same hardware where the backup file resides:
 
-1. If you are restoring data from NetQ 2.4.0 or earlier, obtain an updated script.
+1. If you are restoring data from NetQ 2.4.0 or earlier, or you upgraded from NetQ 2.4.0 to 2.4.1, obtain an updated backuprestore script. If you installed NetQ 2.4.1 as a fresh install, you can skip this step. Replace \<version\> in these commands with *2.4.1* or later release version.
 
    ```
    cumulus@switch:~$ tar -xvzf  /mnt/installables/NetQ-<version>.tgz  -C /tmp/ ./netq-deploy-<version>.tgz

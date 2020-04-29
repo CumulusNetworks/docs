@@ -13,7 +13,7 @@ If the rollback option is selected during the lifecycle management upgrade proce
 
 To manually create a backup:
 
-1. If you are backing up data from NetQ 2.4.0 or earlier, obtain an updated script.
+1. If you are backing up data from NetQ 2.4.0 or earlier, or you upgraded from NetQ 2.4.0 to 2.4.1, obtain an updated backuprestore script. If you installed NetQ 2.4.1 as a fresh install, you can skip this step. Replace \<version\> in these commands with *2.4.1* or later release version.
 
    ```
    cumulus@switch:~$ tar -xvzf  /mnt/installables/NetQ-<version>.tgz  -C /tmp/ ./netq-deploy-<version>.tgz

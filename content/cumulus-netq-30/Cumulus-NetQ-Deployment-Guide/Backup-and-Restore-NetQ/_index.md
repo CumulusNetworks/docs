@@ -9,6 +9,6 @@ It is recommended that you back up your NetQ data according to your company poli
 
 These topics describe how to backup and also restore your NetQ data for NetQ On-premises Appliance and VMs.
 
-{{%notice note%}}
-These procedures *do not* apply to your NetQ Cloud Appliance or VM. Data backup is handled automatically with the NetQ cloud service.
-{{%/notice%}}
+{{<notice note>}}
+These procedures <em>do not</em> apply to your NetQ Cloud Appliance or VM. Data backup is handled automatically with the NetQ cloud service.
+{{</notice>}}

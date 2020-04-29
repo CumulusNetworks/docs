@@ -61,18 +61,18 @@ If you update your scripts to work with the new version of the commands, simply 
 The new syntax of the `netq check` commands is:
 
 ```
-netq check agents [include <agent-number-range-list> | exclude <agent-number-range-list>] [around <text-time>] [json | summary]
-netq check bgp [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
-netq check mlag [include <mlag-number-range-list> | exclude <mlag-number-range-list>] [around <text-time>] [json | summary]
-netq check evpn [mac-consistency] [include <evpn-number-range-list> | exclude <evpn-number-range-list>] [around <text-time>] [json | summary]
-netq check interfaces [include <interface-number-range-list> | exclude <interface-number-range-list>] [around <text-time>] [json | summary]
-netq check license [include <license-number-range-list> | exclude <license-number-range-list>] [around <text-time>] [json | summary]
-netq check mtu [unverified] [include <mtu-number-range-list> | exclude <mtu-number-range-list>] [around <text-time>] [json | summary]
-netq check ntp [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [json | summary]
-netq check ospf [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json | summary]
-netq check sensors [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [json | summary]
-netq check vlan [unverified] [include <vlan-number-range-list> | exclude <vlan-number-range-list>] [around <text-time>] [json | summary]
-netq check vxlan [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
+netq check agents [label <text-label-name> | hostnames <text-list-hostnames>] [include <agent-number-range-list> | exclude <agent-number-range-list>] [around <text-time>] [json]
+netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
+netq check mlag [label <text-label-name> | hostnames <text-list-hostnames> ] [include <mlag-number-range-list> | exclude <mlag-number-range-list>] [around <text-time>] [json | summary]
+netq check evpn [mac-consistency] [label <text-label-name> | hostnames <text-list-hostnames>] [include <evpn-number-range-list> | exclude <evpn-number-range-list>] [around <text-time>] [json | summary]
+netq check interfaces [label <text-label-name> | hostnames <text-list-hostnames>] [include <interface-number-range-list> | exclude <interface-number-range-list>] [around <text-time>] [json | summary]
+netq check license [label <text-label-name> | hostnames <text-list-hostnames>] [include <license-number-range-list> | exclude <license-number-range-list>] [around <text-time>] [json | summary]
+netq check mtu [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [include <mtu-number-range-list> | exclude <mtu-number-range-list>] [around <text-time>] [json | summary]
+netq check ntp [label <text-label-name> | hostnames <text-list-hostnames>] [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [json | summary]
+netq check ospf [label <text-label-name> | hostnames <text-list-hostnames>] [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json | summary]
+netq check sensors [label <text-label-name> | hostnames <text-list-hostnames>] [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [json | summary]
+netq check vlan [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [include <vlan-number-range-list> | exclude <vlan-number-range-list>] [around <text-time>] [json | summary]
+netq check vxlan [label <text-label-name> | hostnames <text-list-hostnames>] [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
 ```
 
 Each of the check commands provides a starting point for troubleshooting configuration and connectivity issues within your network in real time.
@@ -609,7 +609,7 @@ SVI Test                 : passed,
 The default validation (using no options) checks that all switches in the network have a consistent version.
 
 ```
-cumulus@switch:/$ netq check cl-version
+cumulus@switch:~$ netq check cl-version
 version check result summary:
 
 Checked nodes       : 12

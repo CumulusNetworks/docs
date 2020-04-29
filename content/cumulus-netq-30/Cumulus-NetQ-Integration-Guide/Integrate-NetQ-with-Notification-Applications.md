@@ -1596,13 +1596,13 @@ Now that you know which events are supported and how to set the scope, you can c
 For example, this rule tells NetQ to deliver an event notification to the *tca_slack_ifstats*  pre-configured Slack channel when the CPU utilization exceeds 95% of its capacity on any monitored switch:
 
 ```
-netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope * channel tca_slack_ifstats threshold 95
+netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' channel tca_slack_ifstats threshold 95
 ```
 
 This rule tells NetQ to deliver an event notification to the *tca_pd_ifstats* PagerDuty channel when the number of transmit bytes per second (Bps) on the *leaf12* switch exceeds 20,000 Bps on any interface:
 
 ```
-netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,* channel tca_pd_ifstats threshold 20000
+netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' channel tca_pd_ifstats threshold 20000
 ```
 
 This rule tells NetQ to deliver an event notification to the *syslog-netq* syslog channel when the temperature on sensor *temp1* on the *leaf12* switch exceeds 32 degrees Celcius:
@@ -1622,13 +1622,13 @@ In addition to defining a scope for TCA rule, you can also set a severity of eit
 For example, if you want add a critical severity to the CPU utilization rule you created earlier:
 
 ```
-netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope * severity critical channel tca_slack_resources threshold 95
+netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' severity critical channel tca_slack_resources threshold 95
 ```
 
 Or if an event is important, but not critical. Set the `severity` to *info*:
 
 ```
-netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,* severity info channel tca_pd_ifstats threshold 20000
+netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' severity info channel tca_pd_ifstats threshold 20000
 ```
 
 ### Create Multiple Rules for a TCA Event
@@ -1643,7 +1643,7 @@ You are likely to want more than one rule around a particular event. For example
 ```
 netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf*,temp1 channel syslog-netq threshold 32
 
-netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope *,temp1 channel tca_sensors,tca_pd_sensors threshold 32
+netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope '*',temp1 channel tca_sensors,tca_pd_sensors threshold 32
 
 netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf03,temp1 channel syslog-netq threshold 29
 ```
@@ -1760,6 +1760,6 @@ In summary:
 
 | Input Event | Scope Parameters | TCA Scope 1 | TCA Scope 2 | TCA Scope 3 | Scope Applied |
 | --- | --- | --- | --- | --- | --- |
- leaf01,swp1 | Hostname, Interface | \*,\* | leaf\*,\* | leaf01,swp1 || Scope 3 |
-| leaf01,swp3 | Hostname, Interface | \*,\* | leaf\*,\* | leaf01,swp1 | Scope 2 |
-| spine01,swp1 | Hostname, Interface | \*,\* | leaf\*,\* | leaf01,swp1 | Scope 1 |
+ leaf01,swp1 | Hostname, Interface | \'\*\',\'\*\' | leaf\*,\'\*\' | leaf01,swp1 | Scope 3 |
+| leaf01,swp3 | Hostname, Interface | \'\*\',\'\*\' | leaf\*,\'\*\' | leaf01,swp1 | Scope 2 |
+| spine01,swp1 | Hostname, Interface | \'\*\',\'\*\' | leaf\*,\'\*\' | leaf01,swp1 | Scope 1 |

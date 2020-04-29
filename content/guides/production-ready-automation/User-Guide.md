@@ -10,7 +10,11 @@ This section discusses how you can run a Cumulus Production Ready automation, un
 
 For more details about how to customize, reuse and adapt these examples of simulation, automation or CI/CD for your own purposes, refer to the {{<link url="Integration-Guide" text="Integration Guide">}}.
 
-## Hardware Requirements
+## System Requirements
+
+For a robust simulation environment and CI/CD with gitlab, a dedicated, always-on, enterprise class server is recommended. Using the NetQ server in individual development environments is not normally required and is normally only needed for CI testing where the gitlab-runner is installed and registered to your CI/CD enabled project.
+
+### Hardware Requirements
 
 - Min 16GB RAM (Without NetQ) - 32GB Ram recommended
 - Min 256GB Disk - more than 1TB Disk recommended
@@ -31,31 +35,27 @@ The memory requirements of a full cldemo2 topology are:
 | With NetQ     | 23296MB     |
 | Without NetQ  | 15104MB     |
 
-## Software Requirements
+### Software Requirements
 
-Operating Systems:
+- Operating Systems:
+    - Cumulus Linux 3.7.11 or later
+    - Cumulus NetQ 2.4 or later (optional)
+    - Ubuntu 16.04 or 18.04
 
-- Cumulus Linux 3.7.11 or later
-- Cumulus NetQ 2.4 or later (optional)
-- Ubuntu 16.04 or 18.04
-
-{{%notice note%}}
+    {{%notice note%}}
 
 Cumulus Networks has not tested other Linux distributions, like CentOS or RHEL.
 
 {{%/notice%}}
 
-Software Packages:
-
-- Vagrant 2.2.4 or later
-- Libvirt
-- Qemu
-- Git
-
-Vagrant plugins:
-
-- Vagrant-libvirt
-- Vagrant-scp
+- Software Packages:
+    - Vagrant 2.2.4 or later
+    - Libvirt
+    - Qemu
+    - Git
+- Vagrant plugins:
+    - Vagrant-libvirt
+    - Vagrant-scp
 
 Refer to the {{<link title="Example Install Scripts" text="Example Install Scripts">}} for an example bash script that installs these package dependencies to be able to support Cumulus VX simulation with Vagrant/libvirt.
 

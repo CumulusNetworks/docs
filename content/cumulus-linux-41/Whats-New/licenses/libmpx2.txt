@@ -1,0 +1,1 @@
+libmpx2 has no debian/copyright file

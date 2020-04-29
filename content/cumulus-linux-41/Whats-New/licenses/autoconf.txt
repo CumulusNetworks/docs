@@ -1,0 +1,297 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: http://www.gnu.org/software/autoconf/
+Upstream-Name: Autoconf
+Upstream-Contact: GNU Autoconf Maintainers <autoconf@gnu.org>
+
+Files: *
+Copyright: 1992-1996, 1999-2001, 2003, 2005-2012 Free Software Foundation, Inc.
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as published by the
+ Free Software Foundation, either version 3 of the License, or (at your
+ option) any later version.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License along
+ with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ The GNU General Public License version 3 may be found on Debian systems
+ in /usr/share/common-licenses/GPL-3.
+
+Files:
+ lib/autotest/autotest.m4
+ lib/autotest/specific.m4
+ lib/autotest/general.m4
+ lib/m4sugar/m4sh.m4
+ lib/m4sugar/m4sugar.m4
+ lib/m4sugar/foreach.m4
+ lib/autoconf/functions.m4
+ lib/autoconf/oldnames.m4
+ lib/autoconf/c.m4
+ lib/autoconf/status.m4
+ lib/autoconf/go.m4
+ lib/autoconf/autoheader.m4
+ lib/autoconf/autoupdate.m4
+ lib/autoconf/autotest.m4
+ lib/autoconf/specific.m4
+ lib/autoconf/types.m4
+ lib/autoconf/erlang.m4
+ lib/autoconf/autoscan.m4
+ lib/autoconf/programs.m4
+ lib/autoconf/autoconf.m4
+ lib/autoconf/headers.m4
+ lib/autoconf/general.m4
+ lib/autoconf/lang.m4
+ lib/autoconf/fortran.m4
+ lib/autoconf/libs.m4
+Copyright: 2000-2002, 2009-2012 Free Software Foundation, Inc.
+License: GPL-3+ with Autoconf exception
+ This file is part of Autoconf.  This program is free
+ software; you can redistribute it and/or modify it under the
+ terms of the GNU General Public License as published by the
+ Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ Under Section 7 of GPL version 3, you are granted additional
+ permissions described in the Autoconf Configure Script Exception,
+ version 3.0, as published by the Free Software Foundation.
+ .
+ You should have received a copy of the GNU General Public License
+ and a copy of the Autoconf Configure Script Exception along with
+ this program; see the files COPYINGv3 and COPYING.EXCEPTION
+ respectively.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ The GNU General Public License version 3 may be found on Debian systems
+ in /usr/share/common-licenses/GPL-3.
+ .
+ The Autoconf Configure Script Exception version 3 is below:
+ .
+		    AUTOCONF CONFIGURE SCRIPT EXCEPTION
+			Version 3.0, 18 August 2009
+ .
+  Copyright (C) 2009 Free Software Foundation, Inc. <http://fsf.org/>
+  Everyone is permitted to copy and distribute verbatim copies
+  of this license document, but changing it is not allowed.
+ .
+ This Exception is an additional permission under section 7 of the GNU
+ General Public License, version 3 ("GPLv3").  It applies to a given
+ file that bears a notice placed by the copyright holder of the file
+ stating that the file is governed by GPLv3 along with this Exception.
+ .
+ The purpose of this Exception is to allow distribution of Autoconf's
+ typical output under terms of the recipient's choice (including
+ proprietary).
+ .
+ 0. Definitions
+ .
+ "Covered Code" is the source or object code of a version of Autoconf
+ that is a covered work under this License.
+ .
+ "Normally Copied Code" for a version of Autoconf means all parts of
+ its Covered Code which that version can copy from its code (i.e., not
+ from its input file) into its minimally verbose, non-debugging and
+ non-tracing output.
+ .
+ "Ineligible Code" is Covered Code that is not Normally Copied Code.
+ .
+ 1. Grant of Additional Permission.
+ .
+ You have permission to propagate output of Autoconf, even if such
+ propagation would otherwise violate the terms of GPLv3.  However, if
+ by modifying Autoconf you cause any Ineligible Code of the version you
+ received to become Normally Copied Code of your modified version, then
+ you void this Exception for the resulting covered work.  If you convey
+ that resulting covered work, you must remove this Exception in accordance
+ with the second paragraph of Section 7 of GPLv3.
+ .
+ 2. No Weakening of Autoconf Copyleft.
+ .
+ The availability of this Exception does not imply any general presumption
+ that third-party software is unaffected by the copyleft requirements of
+ the license of Autoconf.
+
+Files: BUGS README INSTALL NEWS README TODO doc/install.texi
+ m4/m4.m4 m4/make-case.m4
+Copyright: 1992-1996, 1998-2012 Free Software Foundation, Inc.
+License: permissive-short-disclaimer
+ Copying and distribution of this file, with or without modification,
+ are permitted in any medium without royalty provided the copyright
+ notice and this notice are preserved.  This file is offered as-is,
+ without warranty of any kind.
+
+Files: Makefile.in aclocal.m4
+Copyright: 1996-2009 Free Software Foundation, Inc.
+License: permissive-long-disclaimer
+ This Makefile.in is free software; the Free Software Foundation
+ gives unlimited permission to copy and/or distribute it,
+ with or without modifications, as long as this notice is preserved.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+ even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ PARTICULAR PURPOSE.
+
+Files: emacs/Makefile.in m4/autobuild.m4
+Copyright: 1994-2012 Free Software Foundation, Inc.
+License: permissive-without-disclaimer
+ This Makefile.in is free software; the Free Software Foundation
+ gives unlimited permission to copy and/or distribute it,
+ with or without modifications, as long as this notice is preserved.
+
+Files: configure
+Copyright: 1992-1996, 1998-2012 Free Software Foundation, Inc.
+License: permissive-without-notices-or-disclaimer
+ This configure script is free software; the Free Software Foundation
+ gives unlimited permission to copy, distribute and modify it.
+
+Files:
+ build-aux/config.guess
+ build-aux/config.sub
+ build-aux/elisp-comp
+ build-aux/mdate-sh
+ build-aux/mdate-sh
+ build-aux/missing
+Copyright: 1992-2012 Free Software Foundation, Inc.
+License: GPL-2+ with Autoconf exception
+ This file is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, see <http://www.gnu.org/licenses/>.
+ .
+ As a special exception to the GNU General Public License, if you
+ distribute this file as part of a program that contains a
+ configuration script generated by Autoconf, you may include it under
+ the same distribution terms that you use for the rest of that program.
+ .
+ The GNU General Public License version 2 may be found on Debian systems
+ in /usr/share/common-licenses/GPL-2.
+
+Files:
+ build-aux/gnupload
+ lib/Autom4te/XFile.pm
+ lib/Autom4te/Channels.pm
+ lib/Autom4te/FileUtils.pm
+ lib/Autom4te/Configure_ac.pm
+Copyright: 2001-2012 Free Software Foundation, Inc.
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2, or (at your option)
+ any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ The GNU General Public License version 2 may be found on Debian systems
+ in /usr/share/common-licenses/GPL-2.
+
+Files: build-aux/install-sh
+Copyright: 1994 X Consortium
+License: MIT-X-Consortium
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to
+ deal in the Software without restriction, including without limitation the
+ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+ X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+ AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNEC-
+ TION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ .
+ Except as contained in this notice, the name of the X Consortium shall not
+ be used in advertising or otherwise to promote the sale, use or other deal-
+ ings in this Software without prior written authorization from the X Consor-
+ tium.
+ .
+ FSF changes to this file are in the public domain.
+
+Files: build-aux/texinfo.tex
+Copyright: 1985-1986, 1988, 1990-2012 Free Software Foundation, Inc.
+License: GPL-3+ with Texinfo exception
+ This texinfo.tex file is free software: you can redistribute it and/or
+ modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+ .
+ This texinfo.tex file is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ As a special exception, when this file is read by TeX when processing
+ a Texinfo source document, you may use the result without
+ restriction.  (This has been our intent since Texinfo was invented.)
+ .
+ The GNU General Public License version 3 may be found on Debian systems
+ in /usr/share/common-licenses/GPL-3.
+
+Files: doc/*.info doc/*.texi
+Copyright: 1992-1996, 1998-2012 Free Software Foundation, Inc.
+License: GFDL-1.3+
+ Permission is granted to copy, distribute and/or modify this
+ document under the terms of the GNU Free Documentation License,
+ Version 1.3 or any later version published by the Free Software
+ Foundation; with no Invariant Sections, no Front-Cover texts, and
+ no Back-Cover Texts.  A copy of the license is included in the
+ section entitled "GNU Free Documentation License."
+ .
+ The GNU Free Documentation License Version 1.3 may be found on Debian
+ systems in /usr/share/common-licenses/GFDL-1.3.
+
+Files: doc/fdl.texi
+Copyright: 2000-2002, 2007-2008 Free Software Foundation, Inc.
+License: no-modification
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+Files: doc/gen-oids.texi
+Copyright: 2008-2010 Free Software Foundation, Inc.
+License: permissive
+ Copying and distribution of this file, with or without modification,
+ are permitted in any medium without royalty provided the copyright
+ notice and this notice are preserved.
+
+Files: debian/*
+Copyright:
+ 1997-2012 Ben Pfaff <pfaffben@debian.org>
+ 2009, 2010 Russ Allbery <rra@debian.org>
+License: other
+ The authors hereby relinquish any claim to any copyright that they may
+ have in this work, whether granted under contract or by operation of law
+ or international treaty, and hereby commit to the public, at large, that
+ they shall not, at any time in the future, seek to enforce any copyright
+ in this work against any person or entity, or prevent any person or
+ entity from copying, publishing, distributing or creating derivative
+ works of this work.

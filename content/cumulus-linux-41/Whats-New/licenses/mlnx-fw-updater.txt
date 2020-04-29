@@ -1,0 +1,15 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: *
+Copyright: Copyright 2017 Mellanox Technologies <support@mellanox.com>
+License: Proprietary
+ * Copyright (C) Mellanox Technologies, Ltd. 2017.  ALL RIGHTS RESERVED.
+ *
+ * This software product is a proprietary product of Mellanox Technologies, Ltd.
+ * (the "Company") and all right, title, and interest in and to the software product,
+ * including all associated intellectual property rights, are and shall
+ * remain exclusively with the Company.
+ *
+ * This software product is governed by the End User License Agreement
+ * provided with the software product.
+ *

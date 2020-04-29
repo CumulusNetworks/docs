@@ -1,0 +1,30 @@
+This is the Debian GNU/Linux prepackaged version of jigit. Jigit includes:
+
+ * a set of tools written by Steve McIntyre <steve@einval.com> to help
+   create ISO images from jigdo files.
+
+   Copyright (c) 2004-2011 Steve McIntyre. jigit may be copied under
+   the terms and conditions of version 2 of the GNU General Public
+   License, as published by the Free Software Foundation (Cambridge,
+   MA, USA).
+
+ * the libjte library which contains utility code to help in creating
+   jigdo files.
+
+   Copyright (C) 2000-2011 Free Software Foundation, Inc.,
+   Steve McIntyre, George Danchev, Thomas Schmitt.
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public License
+   as published by the Free Software Foundation; either version 2.1
+   of the License, or (at your option) any later version.
+
+On Debian GNU/Linux systems, the complete text of the GNU General
+Public License (v2) can be found in /usr/share/common-licenses/GPL-2
+and the complete text of the GNU Lesser General Public License (v2.1)
+can be found in /usr/share/common-licenses/LGPL-2.1 .
+
+This package was also put together by Steve McIntyre
+<93sam@debian.org> from sources obtained from:
+
+http://www.einval.com/~steve/software/JTE/

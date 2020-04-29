@@ -160,7 +160,7 @@ The use of `netq-latest` in this example means that a `get` to the
 <details><summary>Install Python.</summary>
 ```
 root@ubuntu:~# apt-get update
-root@ubuntu:~# apt-get install python python2.7 python-apt
+root@ubuntu:~# apt-get install python python2.7 python-apt python3-lib2to3 python3-distutils
 ```
 </details>
 
@@ -225,7 +225,7 @@ Download the software from the {{<exlink url="https://cumulusnetworks.com/downlo
 Run the bootstrap CLI on your appliance *for the interface you defined above* (eth0 or eth1 for example). This example uses the *eth0* interface.
 
 ```
-cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz
+cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-3.0.0.tgz
 ```
 
 Allow about five minutes for this to complete.

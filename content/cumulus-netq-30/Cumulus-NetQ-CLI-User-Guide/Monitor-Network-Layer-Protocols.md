@@ -13,33 +13,34 @@ protocols running on Linux-based hosts, including IP (Internet
 Protocol), BGP (Border Gateway Protocol) and OSPF (Open Shortest Path
 First). NetQ provides the ability to:
 
-  - Validate protocol configurations
-  - Validate layer 3 communication paths
+- Validate protocol configurations.
+- Validate layer 3 communication paths.
 
 It helps answer questions such as:
 
-  - Who are the IP neighbors for a switch?
-  - How many IPv4 and IPv6 addresses am I using?
-  - When did changes occur to my IP configuration?
-  - Is BGP working as expected?
-  - Is OSPF working as expected?
-  - Can device A reach device B using IP addresses?
+- Who are the IP neighbors for a switch?
+- How many IPv4 and IPv6 addresses am I using?
+- When did changes occur to my IP configuration?
+- Is BGP working as expected?
+- Is OSPF working as expected?
+- Can device A reach device B using IP addresses?
 
 ## Monitor IP Configuration
 
 NetQ enables you to view the current status and the status an earlier
 point in time. From this information, you can:
 
-  - determine IP addresses of one or more interfaces
-  - determine IP neighbors for one or more devices
-  - determine IP routes owned by a device
-  - identify changes to the IP configuration
+- Determine IP addresses of one or more interfaces.
+- Determine IP neighbors for one or more devices.
+- Determine IP routes owned by a device.
+- Identify changes to the IP configuration.
 
 The `netq show ip` command is used to obtain the address, neighbor, and
 route information from the devices. Its syntax is:
 
     netq <hostname> show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
     netq [<hostname>] show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [around <text-time>] [json]
+    netq show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [subnet|supernet|gateway] [around <text-time>] [json]
     netq <hostname> show ip neighbors [<remote-interface>] [<ipv4>|<ipv4> vrf <vrf>|vrf <vrf>] [<mac>] [around <text-time>] [json]
     netq [<hostname>] show ip neighbors [<remote-interface>] [<ipv4>|<ipv4> vrf <vrf>|vrf <vrf>] [<mac>] [around <text-time>] [count] [json]
     netq <hostname> show ip routes [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [origin] [around <text-time>] [count] [json]
@@ -47,6 +48,7 @@ route information from the devices. Its syntax is:
      
     netq <hostname> show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
     netq [<hostname>] show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [around <text-time>] [json]
+    netq show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [subnet|supernet|gateway] [around <text-time>] [json]
     netq <hostname> show ipv6 neighbors [<remote-interface>] [<ipv6>|<ipv6> vrf <vrf>|vrf <vrf>] [<mac>] [around <text-time>] [count] [json]
     netq [<hostname>] show ipv6 neighbors [<remote-interface>] [<ipv6>|<ipv6> vrf <vrf>|vrf <vrf>] [<mac>] [around <text-time>] [json]
     netq <hostname> show ipv6 routes [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [origin] [around <text-time>] [count] [json]
@@ -71,9 +73,9 @@ You can view the IPv4 and IPv6 address information for all of your
 devices, including the interface and VRF for each device. Additionally,
 you can:
 
-  - view the information at an earlier point in time
-  - filter against a particular device, interface or VRF assignment
-  - obtain a count of all of the addresses
+- View the information at an earlier point in time.
+- Filter against a particular device, interface or VRF assignment.
+- Obtain a count of all of the addresses.
 
 Each of these provides information for troubleshooting potential
 configuration and communication issues at the layer 3 level.
@@ -243,10 +245,9 @@ devices, including the interface port, MAC address, VRF assignment, and
 whether it learns the MAC address from the peer (remote=yes).
 Additionally, you can:
 
-  - view the information at an earlier point in time
-  - filter against a particular device, interface, address or VRF
-    assignment
-  - obtain a count of all of the addresses
+- View the information at an earlier point in time.
+- Filter against a particular device, interface, address or VRF assignment.
+- Obtain a count of all of the addresses.
 
 Each of these provides information for troubleshooting potential
 configuration and communication issues at the layer 3 level.
@@ -309,9 +310,9 @@ the IP address (with or without mask), the destination (by hostname) of
 the route, next hops available, VRF assignment, and whether a host is
 the owner of the route or MAC address. Additionally, you can:
 
-  - view the information at an earlier point in time
-  - filter against a particular address or VRF assignment
-  - obtain a count of all of the routes
+- View the information at an earlier point in time.
+- Filter against a particular address or VRF assignment.
+- Obtain a count of all of the routes.
 
 Each of these provides information for troubleshooting potential
 configuration and communication issues at the layer 3 level.
@@ -415,9 +416,9 @@ operation using the NetQ CLI. For each device, you can view its
 associated neighbors, ASN (autonomous system number), peer ASN, receive
 IP or EVPN address prefixes, and VRF assignment. Additionally, you can:
 
-  - view the information at an earlier point in time
-  - filter against a particular device, ASN, or VRF assignment
-  - validate it is operating correctly across the network
+- View the information at an earlier point in time.
+- Filter against a particular device, ASN, or VRF assignment.
+- Validate it is operating correctly across the network.
 
 The `netq show bgp` command is used to obtain the BGP configuration
 information from the devices. The `netq check bgp` command is used to
@@ -425,7 +426,7 @@ validate the configuration. The syntax of these commands is:
 
     netq [<hostname>] show bgp [<bgp-session>|asn <number-asn>] [vrf <vrf>] [around <text-time>] [json]
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type bgp [between <text-time> and <text-endtime>] [json]
-    netq check bgp [vrf <vrf>] [around <text-time>] [json]
+    netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
 
 {{%notice note%}}
 When entering a time value, you must include a numeric value *and* the unit of measure:
@@ -782,17 +783,15 @@ operation using the NetQ CLI. For each device, you can view its
 associated interfaces, areas, peers, state, and type of OSPF running
 (numbered or unnumbered). Additionally, you can:
 
-  - view the information at an earlier point in time
-  - filter against a particular device, interface, or area
-  - validate it is operating correctly across the network
+- View the information at an earlier point in time.
+- Filter against a particular device, interface, or area.
+- Validate it is operating correctly across the network.
 
-The ` netq show ospf  `command is used to obtain the OSPF configuration
-information from the devices. The `netq check ospf` command is used to
-validate the configuration. The syntax of these commands is:
+The `netq show ospf` command is used to obtain the OSPF configuration information from the devices. The `netq check ospf` command is used to validate the configuration. The syntax of these commands is:
 
     netq [<hostname>] show ospf [<remote-interface>] [area <area-id>] [around <text-time>] [json]
     netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type ospf [between <text-time> and <text-endtime>] [json]
-    netq check ospf [around <text-time>] [json]
+    netq check ospf [label <text-label-name> | hostnames <text-list-hostnames>] [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json | summary]
 
 {{%notice note%}}
 When entering a time value, you must include a numeric value *and* the unit of measure:
@@ -894,10 +893,9 @@ A single command, `netq check ospf`, enables you to validate that all
 configured route peering is established across the network. The command
 checks for:
 
-  - router ID conflicts, such as duplicate IDs
-  - links that are down, or have mismatched MTUs
-  - mismatched session parameters (hello timer, dead timer, area ids,
-    and network type)
+- Router ID conflicts, such as duplicate IDs.
+- Links that are down, or have mismatched MTUs.
+- Mismatched session parameters (hello timer, dead timer, area IDs and network type).
 
 When peer information is not available, the command verifies whether
 OSPF is configured on the peer and if so, whether the service is
@@ -907,8 +905,7 @@ All of these conditions trigger a configuration check failure. When a
 failure is found, the reason is identified in the output along with the
 time the issue occurred.
 
-This example shows a check on the OSPF operations that found no failed
-sessions.
+This example shows a check on the OSPF operations that found no failed sessions.
 
     cumulus@switch:~$ netq check ospf
     Total Sessions: 16, Failed Sessions: 0

@@ -27,8 +27,7 @@ cumulus@switch:~$ netq check
     evpn        :  EVPN
     interfaces  :  network interface port
     license     :  License information
-    lnv         :  Lightweight Network Virtualization info
-    mlag        :  Multi-chassis LAG
+    mlag        :  Multi-chassis LAG (alias of clag)
     mtu         :  Link MTU
     ntp         :  NTP
     ospf        :  OSPF info
@@ -62,18 +61,18 @@ If you update your scripts to work with the new version of the commands, simply 
 The new syntax of the `netq check` commands is:
 
 ```
-netq check agents [include <agent-number-range-list> | exclude <agent-number-range-list>] [around <text-time>] [json | summary]
-netq check bgp [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
-netq check mlag [include <mlag-number-range-list> | exclude <mlag-number-range-list>] [around <text-time>] [json | summary]
-netq check evpn [mac-consistency] [include <evpn-number-range-list> | exclude <evpn-number-range-list>] [around <text-time>] [json | summary]
-netq check interfaces [include <interface-number-range-list> | exclude <interface-number-range-list>] [around <text-time>] [json | summary]
-netq check license [include <license-number-range-list> | exclude <license-number-range-list>] [around <text-time>] [json | summary]
-netq check mtu [unverified] [include <mtu-number-range-list> | exclude <mtu-number-range-list>] [around <text-time>] [json | summary]
-netq check ntp [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [json | summary]
-netq check ospf [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json | summary]
-netq check sensors [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [json | summary]
-netq check vlan [unverified] [include <vlan-number-range-list> | exclude <vlan-number-range-list>] [around <text-time>] [json | summary]
-netq check vxlan [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
+netq check agents [label <text-label-name> | hostnames <text-list-hostnames>] [include <agent-number-range-list> | exclude <agent-number-range-list>] [around <text-time>] [json]
+netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
+netq check mlag [label <text-label-name> | hostnames <text-list-hostnames> ] [include <mlag-number-range-list> | exclude <mlag-number-range-list>] [around <text-time>] [json | summary]
+netq check evpn [mac-consistency] [label <text-label-name> | hostnames <text-list-hostnames>] [include <evpn-number-range-list> | exclude <evpn-number-range-list>] [around <text-time>] [json | summary]
+netq check interfaces [label <text-label-name> | hostnames <text-list-hostnames>] [include <interface-number-range-list> | exclude <interface-number-range-list>] [around <text-time>] [json | summary]
+netq check license [label <text-label-name> | hostnames <text-list-hostnames>] [include <license-number-range-list> | exclude <license-number-range-list>] [around <text-time>] [json | summary]
+netq check mtu [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [include <mtu-number-range-list> | exclude <mtu-number-range-list>] [around <text-time>] [json | summary]
+netq check ntp [label <text-label-name> | hostnames <text-list-hostnames>] [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [json | summary]
+netq check ospf [label <text-label-name> | hostnames <text-list-hostnames>] [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json | summary]
+netq check sensors [label <text-label-name> | hostnames <text-list-hostnames>] [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [json | summary]
+netq check vlan [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [include <vlan-number-range-list> | exclude <vlan-number-range-list>] [around <text-time>] [json | summary]
+netq check vxlan [label <text-label-name> | hostnames <text-list-hostnames>] [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
 ```
 
 Each of the check commands provides a starting point for troubleshooting configuration and connectivity issues within your network in real time.
@@ -84,7 +83,7 @@ Use `netq check mlag` in place of `netq check clag` from NetQ 2.4 onward. `netq 
 
 You can view only the summary of the validation results by running the `netq check` commands with `summary` option; for example, `netq check agents summary` or `netq check evpn summary`. This summary displays such data as the total number of nodes checked, how many failed a test, total number of sessions checked, how many of these that failed, and so forth.
 
-With the NetQ 2.4.0 release, you have can view more information about the individual tests that are run as part of the validation, with the exception of agents and LNV. With NetQ 2.4.1, you can view individual tests for agents as well. LNV is disabled by default.
+You can view more information about the individual tests that are run as part of the validation, including individual tests for agents.
 
 You can run validations for a time in the past and output the results in JSON format if desired. The `around` option enables users to view the network state at an earlier time. The `around` option value requires an integer *plus* a unit of measure (UOM), with no space between them. The following are valid UOMs:
 
@@ -198,10 +197,6 @@ The `netq check license` command runs the following test:
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | License Validity | Checks for validity of license on all switches |
-
-### LNV Validation Tests
-
-The `netq check lnv` command checks for VXRD peer database, VXSND peer database, VNI operational state and head end replication list consistency.
 
 ### Link MTU Validation Tests
 
@@ -614,7 +609,7 @@ SVI Test                 : passed,
 The default validation (using no options) checks that all switches in the network have a consistent version.
 
 ```
-cumulus@switch:/$ netq check cl-version
+cumulus@switch:~$ netq check cl-version
 version check result summary:
 
 Checked nodes       : 12
@@ -1281,7 +1276,7 @@ cumulus@switch:~$ netq show [TAB]
     events                   :  Display changes over time
     evpn                     :  EVPN
     interface-stats          :  Interface statistics
-    interface-utils          :  Interface utils
+    interface-utilization    :  Interface utils
     interfaces               :  network interface port
     inventory                :  Inventory information
     ip                       :  IPv4 related info
@@ -1289,10 +1284,9 @@ cumulus@switch:~$ netq show [TAB]
     job-status               :  add help text
     kubernetes               :  Kubernetes Information
     lldp                     :  LLDP based neighbor info
-    lnv                      :  Lightweight Network Virtualization info
     mac-history              :  Mac history info for a mac address
     macs                     :  Mac table or MAC address info
-    mlag                     :  Multi-chassis LAG
+    mlag                     :  Multi-chassis LAG (alias of clag)
     notification             :  Send notifications to Slack or PagerDuty
     ntp                      :  NTP
     opta-health              :  Display health of apps on the OPTA
@@ -1304,12 +1298,11 @@ cumulus@switch:~$ netq show [TAB]
     services                 :  System services
     tca                      :  Threshold Crossing Alerts
     trace                    :  Control plane trace path across fabric
-    unit-tests               :  Show list of unit tests for netq check
+    unit-tests               :  Show list of unit tests for netq tests
     validation               :  Schedule a validation check
     vlan                     :  VLAN
     vxlan                    :  VXLAN data path
     wjh-drop                 :  add help text
-
 ```
 
 For example, to validate the the status of the NetQ agents running in the fabric, run `netq show agents`. A *Fresh* status indicates the Agent is running as expected. The Agent sends a heartbeat every 30 seconds, and if three consecutive heartbeats are missed, its status changes to

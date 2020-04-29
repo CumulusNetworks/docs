@@ -23,9 +23,9 @@ To restore NetQ on the same hardware where the backup file resides:
    cumulus@switch:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
    ```
 
-   {{%notice tip%}}
-   You can abbreviate the `restore` and `localdir` options of this command to `-r` and `-l` to reduce typing.
-   {{%/notice%}}
+   {{<notice tip>}}
+   You can abbreviate the <code>restore</code> and <code>localdir</code> options of this command to <code>-r</code> and <code>-l</code> to reduce typing.
+   {{</notice>}}
 
    This is a sample of what you see while the script is running:
 

@@ -27,9 +27,9 @@ To manually create a backup:
    cumulus@switch:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
    ```
 
-   {{%notice tip%}}
-You can abbreviate the `backup` and `localdir` options of this command to `-b` and `-l` to reduce typing. If the backup directory identified does not already exist, the script creates the directory during the backup process.
-   {{%/notice%}}
+   {{<notice tip>}}
+You can abbreviate the <code>backup</code> and <code>localdir</code> options of this command to <code>-b</code> and <code>-l</code> to reduce typing. If the backup directory identified does not already exist, the script creates the directory during the backup process.
+   {{</notice>}}
 
    This is a sample of what you see as the script is running:
 

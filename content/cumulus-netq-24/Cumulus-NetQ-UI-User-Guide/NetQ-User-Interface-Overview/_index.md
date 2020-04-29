@@ -14,6 +14,6 @@ The UI is accessible in both on-site and in-cloud deployments. It is supported o
 
 {{%notice tip%}}
 
-Before you get started, you should refer to the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360041040413-Cumulus-NetQ-2-4-Release-Notes" text="release notes">}} for this version.
+Before you get started, you should refer to the {{<link title="Cumulus NetQ 2.4 Release Notes" text="release notes">}} for this version.
 
 {{%/notice%}}

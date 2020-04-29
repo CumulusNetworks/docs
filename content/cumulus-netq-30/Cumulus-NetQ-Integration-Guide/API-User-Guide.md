@@ -3,8 +3,6 @@ title: Cumulus NetQ API User Guide
 author: Cumulus Networks
 weight: 205
 aliases:
- - /display/NETQ/Cumulus+NetQ+API+User+Guide
- - /pages/viewpage.action?pageId=12321983
 pageID: 12321983
 toc: 3
 ---
@@ -21,22 +19,18 @@ endpoint and model parameter are contained in the API .json files.
 
 For information regarding new features, improvements, bug fixes, and
 known issues present in this release, refer to the
-{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360041040413-Cumulus-NetQ-2-4-Release-Notes" text="release notes">}}.
-
-
+{{<link title="Cumulus NetQ 3.0 Release Notes" text="release notes">}}.
 
 ## API Organization
 
 The Cumulus NetQ API provides endpoints for:
 
-  - **Network routing protocols**: BGP, EVPN, LLDP, CLAG, MSTP,
-    Neighbors, NTP, Routes
-  - **Virtual networks**: VLAN
-  - **Services**: Services
-  - **Interfaces**: Interface, Port
-  - **Inventory and Devices**: Address, Inventory, MAC Address tables,
-    Node, Sensors
-  - **Events**: Events
+- **Network routing protocols**: BGP, EVPN, LLDP, CLAG, MSTP, Neighbors, NTP, Routes
+- **Virtual networks**: VLAN
+- **Services**: Services
+- **Interfaces**: Interface, Port
+- **Inventory and Devices**: Address, Inventory, MAC Address tables, Node, Sensors
+- **Events**: Events
 
 Each endpoint has its own API. You can make requests for all data and
 all devices or you can filter the request by a given hostname.
@@ -72,10 +66,10 @@ We will use curl to execute our requests. Each request contains an API
 method (GET, POST, etc.), the address and API object to query, a variety
 of headers, and sometimes a body. In the log in step you used above:
 
-  - API method = POST
-  - Address and API object = "https://\<netq.domain\>:32708/netq/auth/v1/login"
-  - Headers = -H "Content-Type: application/json"
-  - Body = -d '{"username":"admin","password":"admin"}'
+- API method = POST
+- Address and API object = "https://\<netq.domain\>:32708/netq/auth/v1/login"
+- Headers = -H "Content-Type: application/json"
+- Body = -d '{"username":"admin","password":"admin"}'
 
 {{%notice note%}}
 

@@ -19,7 +19,7 @@ Follow these steps to setup and configure your VM on a cluster of servers in an 
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/kvm-platform-image deployment="onprem">}}
+    {{<netq-install/kvm-platform-image deployment="onprem" version="2.4.1">}}
 
 4. Setup and configure your VM.
 
@@ -31,7 +31,7 @@ Follow these steps to setup and configure your VM on a cluster of servers in an 
 
 6. Run the Bootstrap CLI on the master node. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single">}}
+    {{<netq-install/bootstrap server="single" version="2.4.1">}}
 
 7. Verify that your first worker node meets the VM requirements, as described in Step 1.
 
@@ -51,7 +51,7 @@ Make a note of the private IP address you assign to the worker node. It is neede
 
 12. Run the Bootstrap CLI on the worker node. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="cluster">}}
+    {{<netq-install/bootstrap server="cluster" version="2.4.1">}}
 
 13. Repeat Steps 7 through 12 for each additional worker node you want in your cluster.
 

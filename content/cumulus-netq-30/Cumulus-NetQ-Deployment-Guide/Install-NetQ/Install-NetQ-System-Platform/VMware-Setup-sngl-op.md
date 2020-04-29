@@ -17,7 +17,7 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/vmw-platform-image deployment="onprem">}}
+    {{<netq-install/vmw-platform-image deployment="onprem" version="3.0.0">}}
 
 4. Setup and configure your VM.
 
@@ -29,7 +29,7 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
 6. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single">}}
+    {{<netq-install/bootstrap server="single" version="3.0.0">}}
 
 The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the CLI.
 

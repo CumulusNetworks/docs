@@ -74,9 +74,7 @@ If you have changed the IP address or hostname of the NetQ Appliance, you need t
 
 2. Run the Bootstrap CLI on the appliance. This example uses interface *eth0*. Replace this with your updated IP address, hostname or interface using the `interface <text-opta-ifname>` or `ip-addr <text-ip-addr>` option.
 
-    ```
-    cumulus@hostname:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz
-    ```
+    {{<netq-install/bootstrap server="single" version="3.0.0">}}
 
 {{%/notice%}}
 
@@ -86,11 +84,11 @@ Now that the appliance is up and running, verify that the software is available 
 
 1. Verify that the needed packages are present and of the correct release, version 2.4.1 and update 26 or later.
 
-    {{<netq-install/verify-pkgs>}}
+    {{<netq-install/verify-pkgs version="3.0.0">}}
 
 2. Verify the installation images are present and of the correct release, version 2.4.1.
 
-    {{<netq-install/verify-image deployment="cloud">}}
+    {{<netq-install/verify-image deployment="cloud" version="3.0.0">}}
 
 5. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -98,7 +96,7 @@ Now that the appliance is up and running, verify that the software is available 
 
 5. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single">}}
+    {{<netq-install/bootstrap server="single" version="3.0.0">}}
 
 The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the CLI.
 

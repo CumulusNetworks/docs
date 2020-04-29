@@ -64,6 +64,7 @@ cumulus@hostname:~$ sudo netplan apply
 ```
 
 {{%notice info%}}
+
 If you have changed the IP address or hostname of the NetQ Appliance, you need to re-register this address with NetQ.
 
 1. Reset the appliance, indicating whether you want to purge any NetQ DB data or keep it.
@@ -74,9 +75,7 @@ If you have changed the IP address or hostname of the NetQ Appliance, you need t
 
 2. Run the Bootstrap CLI on the appliance. This example uses interface *eth0*. Replace this with your updated IP address, hostname or interface using the `interface <text-opta-ifname>` or `ip-addr <text-ip-addr>` option.
 
-    ```
-    cumulus@hostname:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz
-    ```
+    {{<netq-install/bootstrap server="single" version="3.0.0">}}
 
 {{%/notice%}}
 
@@ -84,13 +83,13 @@ If you have changed the IP address or hostname of the NetQ Appliance, you need t
 
 Now that the appliances are up and running, verify that the software is available and each appliance is ready for installation.
 
-1. On the master node, verify that the needed packages are present and of the correct release, version 2.4.1 and update 26 or later.
+1. On the master node, verify that the needed packages are present and of the correct release, version 3.0.0 and update xx or later.
 
-    {{<netq-install/verify-pkgs>}}
+    {{<netq-install/verify-pkgs version="3.0.0">}}
 
-2. Verify the installation images are present and of the correct release, version 2.4.1.
+2. Verify the installation images are present and of the correct release, version 3.0.0.
 
-    {{<netq-install/verify-image deployment="onprem">}}
+    {{<netq-install/verify-image deployment="onprem" version="3.0.0">}}
 
 3. Run the following commands to prevent daily upgrades and Message of the Day news.
 
@@ -107,18 +106,18 @@ Now that the appliances are up and running, verify that the software is availabl
 
 5. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single">}}
+    {{<netq-install/bootstrap server="single" version="3.0.0">}}
 
-6. On your first worker node, verify that the needed packages are present and of the correct release, version 2.4.1 and update 26 or later.
+6. On your first worker node, verify that the needed packages are present and of the correct release, version 3.0.0 and update xx or later.
 
-    {{<netq-install/verify-pkgs>}}
+    {{<netq-install/verify-pkgs version="3.0.0">}}
 
 7. Configure the IP address, hostname, and password using the same steps as as for the master node. Refer to {{<link title="#NetQ-Appliance-Setup-clstr-op" text="Configure the Password, Hostname and IP Address">}}.
     {{<notice note>}}
 Make a note of the private IP addresses you assign to the master and worker nodes. They are needed for the installation steps.
     {{</notice>}}
 
-8. Copy the *netq-bootstrap-2.4.1.tgz* and *NetQ-2.4.1.tgz* files,  downloaded for the master NetQ Appliance, to the */mnt/installables/* directory on the worker NetQ Appliance.
+8. Copy the *netq-bootstrap-3.0.0.tgz* and *NetQ-3.0.0.tgz* files,  downloaded for the master NetQ Appliance, to the */mnt/installables/* directory on the worker NetQ Appliance.
 
 9. Run the following `systemctl` commands to disable automatic daily upgrades and Message of the Day news.
 
@@ -131,7 +130,7 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 10. Verify that the needed files are present and of the correct release.
 
-    {{<netq-install/verify-image deployment="onprem">}}
+    {{<netq-install/verify-image deployment="onprem" version="3.0.0">}}
 
 11. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -141,15 +140,7 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 12. Run the Bootstrap CLI on the appliance *for the interface you defined above* (eth0 or eth1 for example). This example uses the *eth0* interface.
 
-    ```
-    cumulus@<hostname>:~$ netq bootstrap worker interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz
-    ```
-
-    Allow about five minutes for this to complete,  and only then continue to the next step.
-
-    {{<notice tip>}}
-If this step fails for any reason, you can run `netq bootstrap reset` and then try again.
-    {{</notice>}}
+    {{<netq-install/bootstrap server="cluster" version="3.0.0">}}
 
 13. Repeat Steps 6-12 for each additional worker NetQ Appliance.
 

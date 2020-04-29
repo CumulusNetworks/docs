@@ -5,14 +5,26 @@ weight: 160
 toc: 4
 ---
 
-NetQ 2.x data is stored in a Cassandra database. A backup is performed by running scripts provided with the software and located in the `/usr/sbin` directory. When a backup is performed, a single tar file is created. The file is stored on a local drive that you specify and is named `netq_master_snapshot_<timestamp>.tar.gz`. Currently, only one backup file is supported, and includes the entire set of data tables. It is replaced each time a new backup is created.
+NetQ data is stored in a Cassandra database. A backup is performed by running scripts provided with the software and located in the `/usr/sbin` directory. When a backup is performed, a single tar file is created. The file is stored on a local drive that you specify and is named `netq_master_snapshot_<timestamp>.tar.gz`. Currently, only one backup file is supported, and includes the entire set of data tables. It is replaced each time a new backup is created.
 
-To create a backup:
+{{<notice note>}}
+If the rollback option is selected during the lifecycle management upgrade process (the default behavior), a backup is created automatically.
+{{</notice>}}
 
-1. Run the backup script to create a backup file in `/opt/<backup-directory>` being sure to replace the `backup-directory` option with the name of the directory you want to use for the backup file.
+To manually create a backup:
+
+1. If you are backing up data from NetQ 2.4.0 or earlier, obtain an updated script.
 
    ```
-   cumulus@<netq-platform/netq-appliance>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
+   cumulus@switch:~$ tar -xvzf  /mnt/installables/NetQ-<version>.tgz  -C /tmp/ ./netq-deploy-<version>.tgz
+
+   cumulus@switch:~$ tar -xvzf /tmp/netq-deploy-<version>.tgz   -C /usr/sbin/ --strip-components 1 --wildcards backuprestore/*.sh
+   ```
+
+2. Run the backup script to create a backup file in `/opt/<backup-directory>` being sure to replace the `backup-directory` option with the name of the directory you want to use for the backup file.
+
+   ```
+   cumulus@switch:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
    ```
 
    {{%notice tip%}}
@@ -38,12 +50,12 @@ You can abbreviate the `backup` and `localdir` options of this command to `-b` a
    [Fri 26 Jul 2019 02:35:48 PM UTC] - Backup finished successfully!
    ```
 
-2. Verify the backup file has been created.
+3. Verify the backup file has been created.
 
    ```
-   cumulus@<netq-platform/netq-appliance>:~$ cd /opt/<backup-directory>
-   cumulus@<netq-platform/netq-appliance>:~/opt/<backup-directory># ls
+   cumulus@switch:~$ cd /opt/<backup-directory>
+   cumulus@switch:~/opt/<backup-directory># ls
    netq_master_snapshot_2019-06-04_07_24_50_UTC.tar.gz
    ```
-   
+
 To create a scheduled backup, add `./backuprestore.sh --backup --localdir /opt/<backup-directory>` to an existing cron job, or create a new one.

@@ -9,11 +9,18 @@ You can restore NetQ data using the backup file you created in {{<link title="Ba
 
 To restore NetQ on the same hardware where the backup file resides:
 
-1. Log in to the NetQ server.
+1. If you are restoring data from NetQ 2.4.0 or earlier, obtain an updated script.
+
+   ```
+   cumulus@switch:~$ tar -xvzf  /mnt/installables/NetQ-<version>.tgz  -C /tmp/ ./netq-deploy-<version>.tgz
+
+   cumulus@switch:~$ tar -xvzf /tmp/netq-deploy-<version>.tgz   -C /usr/sbin/ --strip-components 1 --wildcards backuprestore/*.sh
+   ```
+
 2. Run the restore script being sure to replace the `backup-directory` option with the name of the directory where the backup file resides.
 
    ```
-   cumulus@<netq-platform/netq-appliance>:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
+   cumulus@switch:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
    ```
 
    {{%notice tip%}}
@@ -49,8 +56,9 @@ To restore NetQ on the same hardware where the backup file resides:
 To restore NetQ on new hardware:
 
 1. Copy the backup file from `/opt/<backup-directory>` on the older hardware to the backup directory on the new hardware.
+
 2. Run the restore script on the new hardware, being sure to replace the `backup-directory` option with the name of the directory where the backup file resides.
 
    ```
-   cumulus@<netq-platform/netq-appliance>:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
+   cumulus@switch:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
    ```

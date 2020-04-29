@@ -1,7 +1,7 @@
 ---
 title: Application Management
 author: Cumulus Networks
-weight: 310
+weight: 630
 aliases:
  - /display/NETQ/NetQ+Management
  - /pages/viewpage.action?pageId=12321950
@@ -380,7 +380,7 @@ When a rule is filtered by more than one parameter, each is displayed on the car
 
 ### Specify Notification Channels
 
-The notification channel specified by a TCA rule tells NetQ where to send the notification message. 
+The notification channel specified by a TCA rule tells NetQ where to send the notification message.
 
 To specify a notification channel:
 
@@ -679,3 +679,23 @@ In summary:
 | leaf01, swp1 | Hostname, Interface | hostname=leaf01, ifname=swp1 | hostname ^ leaf, ifname=\* | hostname=\*, ifname=\* | Scope 1 |
 | leaf01, swp3 | Hostname, Interface | hostname=leaf01, ifname=swp1 | hostname ^ leaf, ifname=\* | hostname=\*, ifname=\* | Scope 2 |
 | spine01, swp1 | Hostname, Interface | hostname=leaf01, ifname=swp1 | hostname ^ leaf, ifname=\* | hostname=\*, ifname=\* | Scope 3 |
+
+## Configure Multiple Premises
+
+The NetQ Management dashboard provides the ability to monitor data for multiple external premises in addition to your local premises.
+
+To configure additional premises:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+
+2. Select *Management* from the **Admin** column.
+
+3. Locate the External Premises card.
+
+4. Click **Add**.
+
+5. 
+
+## Integrate with Your LDAP Server
+
+For on-premises deployments you can integrate your LDAP server with NetQ to provide access to NetQ using LDAP user accounts instead of ,or in addition to, the NetQ user accounts. Refer to {{<link title="Integrate NetQ with Your LDAP Server">}} for more detail.

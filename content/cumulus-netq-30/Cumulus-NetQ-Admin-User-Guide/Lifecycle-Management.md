@@ -20,15 +20,6 @@ The Manage Switch Assets view provides a summary card for switch inventory, uplo
 If you have a workbench open, you can also access this view by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg", height="18", width="18"/> (Upgrade) in the workbench header.
 {{</notice>}}
 
-<!-- In preparation for using the installation and upgrade workflow:
-
-- Upload the required images
-- Configure switch access credentials (required for upgrades)
-- Verify the switches you want to manage are running NetQ Agent 2.4 or later
-- Assign each switch a role (optional, but recommended)
-
-Once you have completed these tasks, you can take advantage of the UI workflow to install or upgrade switch images. Refer to {{<link title="#Image Installation and Upgrade" text="Image Installation and Upgrade">}}. -->
-
 ## Image Management
 
 Cumulus Linux binary images can be uploaded to a local LCM repository for use with installation and upgrade of your switches. You can upload images from an external drive. When NetQ discovers Cumulus Linux switches running NetQ 2.4 or later in your network, it extracts the meta data needed to select the appropriate image for a given switch; including the software version (x.y.z), the CPU architecture (ARM, x86), platform (based on ASIC vendor, Broadcom or Mellanox) and SHA Checksum.
@@ -169,7 +160,7 @@ To remove images:
 
 ## Credential Management
 
-Switch access credentials are needed for performing upgrades. You can choose between basic authentication (username and password) and SSH key-based authentication. These credentials apply to all switches.
+Switch access credentials are needed for performing upgrades. You can choose between basic authentication (SSH password) and SSH (Public/Private key) authentication. These credentials apply to all switches.
 
 ### Specify Switch Credentials
 
@@ -345,7 +336,7 @@ To export the switch listing:
 
 ## Network Snapshot and Compare
 
-Creating and comparing network snapshots can be used at various times; typically when you are upgrading or changing the configuration of your switches in some way. The instructions here describe how to create and compare network snapshots at any time. Refer to {{<link title="#Image Installation and Upgrade" text="Image Installation and Upgrade">}} to see how snapshots are automatically created in that workflow.
+Creating and comparing network snapshots can be used at various times; typically when you are upgrading or changing the configuration of your switches in some way. The instructions here describe how to create and compare network snapshots at any time. Refer to {{<link title="#Image Installation and Upgrade" text="Image Installation and Upgrade">}} to see how snapshots are automatically created in that workflow to validate that the network state has not changed after an upgrade.
 
 ### Create a Network Snapshot
 
@@ -694,7 +685,7 @@ To install or upgrade switches:
     <td>Upgrade failed in previous attempt for switch &lt;hostname&gt;.</td>
     <td>Warning</td>
     <td>LCM was unable to upgrade switch during last attempt.</td>
-    <td>???</td>
+    <td></td>
     </tr>
     <tr>
     <td>(4) MLAG Configuration</td>
@@ -708,14 +699,14 @@ To install or upgrade switches:
     <td>MLAG configuration checks timed out</td>
     <td>Error</td>
     <td>One or more switches stopped responding to the MLAG checks.</td>
-    <td>???</td>
+    <td></td>
     </tr>
     <tr>
     <td></td>
     <td>MLAG configuration checks failed</td>
     <td>Error</td>
     <td>One or more switches failed the MLAG checks.</td>
-    <td>???</td>
+    <td></td>
     </tr>
     <tr>
     <td></td>
@@ -823,3 +814,18 @@ If an upgrade job fails for any reason, you can view the associated error(s):
     This example, shows that the upgrade failure was due to bad switch access credentials. You would need to fix those and then create a new upgrade job.
 
     {{<figure src="/images/netq/lcm-upgrade-switches-upgrade-error-message-300.png" width="700">}}
+
+#### Reasons for Upgrade Failure
+
+Upgrades can fail at any of the stages of of the process, including when backing up data, upgrading the Cumulus Linux software, and restoring the data. Failures can occur when attempting to connect to a switch or perform a particular task on the switch.
+
+Some of the common reasons for upgrade failures and the errors they present:
+
+| Reason | Error Message |
+| --- | --- |
+| Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15". Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
+| Switch is reachable, but user-provided credentials are invalid | Invalid/incorrect username/password. Skipping remaining 2 retries to prevent account lockout: Warning: Permanently added [10.20.251.35]:1120' (ECDSA) to the list of known hosts. Permission denied, please try again. |
+| Switch is reachable, but a valid Cumulus Linux license is not installed | 1587866683.880463 2020-04-26 02:04:43 license.c:336 CRIT No license file. No license installed! |
+| Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: /etc/network/interfaces: No such file or directory |
+| Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
+| Retry failed after five attempts | FAILED In all retries to process the LCM Job |

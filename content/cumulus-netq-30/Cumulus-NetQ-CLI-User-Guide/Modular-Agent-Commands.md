@@ -51,10 +51,10 @@ The NetQ predefined commands are described as follows:
 - **agent_stats**: Collects the NetQ agent's statistics every 5 minutes.
 - **agent_util_stats**: Collects the NetQ agent's CPU and memory utilization every 30 seconds.
 - **cl-support-json**: Polls the switch every 3 minutes to determine if a `cl-support` file was generated.
-- **config-mon-json**:
+- **config-mon-json**: Polls the `/etc/network/interfaces`, `/etc/frr/frr.conf`, `/etc/lldpd.d/README.conf` and `/etc/ptm.d/topology.dot` files every 2 minutes looking to see if the contents of any of these files changes. If a change occurs, the contents of the file and its modification time are transmitted to the NetQ appliance or VM.
 - **ports**: Polls for optics plugged into the switch every hour.
 - **proc-net-dev**: Polls for network statistics on the switch every 30 seconds.
-- **running-config-mon-json**:
+- **running-config-mon-json**: Polls the `clagctl` parameters every 30 seconds and sends a diff of any changes to the NetQ appliance or VM.
 
 ## Modify the Polling Frequency
 

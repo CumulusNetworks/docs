@@ -1,3 +1,7 @@
+# Doc files we should never directly commit #
+content/cumulus-linux/*
+content/cumulus-netq/*
+
 # Compiled source #
 ###################
 *.class
@@ -44,10 +48,10 @@ resources/_gen/assets/*
 public/*
 hugo
 
-# VSCode Related # 
+# VSCode Related #
 ##################
 .vscode/*
 
-# Common Python Venv # 
+# Common Python Venv #
 ######################
 venv/*

@@ -13,14 +13,14 @@ A number of commands have changed in this release to accommodate the addition of
 
 ## New Commands
 
-The following table summarizes the new commands available with this release. They are grouped into the following categories: new `netq show` commands, What Just Happened feature, clustering deployment, detailed validation commands, and threshold-based events.
+The following table summarizes the new commands available with this release. They are grouped by lifecycle management (LCM) commands and agent commands.
 
 | Command | Summary | Version |
 | ------- | ------- | ------- |
-| netq lcm add credentials (username &lt;text-switch-username> password &lt;text-switch-password> \| ssh-key &lt;text-ssh-key>) | Creates credentials (either SSH key or basic username/password auth) to perform life cycle management (LCM). | 3.0.0 |
+| netq lcm add credentials (username &lt;text-switch-username> password &lt;text-switch-password> \| ssh-key &lt;text-ssh-key>) | Creates switch access credentials (either SSH key or basic username/password auth) to enable Cumulus Linux upgrades on switches. | 3.0.0 |
 | netq lcm add image &lt;text-image-path> | Uploads a Cumulus Linux install image to the LCM repository. | 3.0.0 |
 | netq lcm add role (superspine \| spine \| leaf \| exit) switches &lt;text-switch-hostnames> | Adds a switch role to one or more switches. | 3.0.0 |
-| netq lcm del credentials | Removes a set of LCM credentials. | 3.0.0 |
+| netq lcm del credentials | Removes existing LCM credentials. | 3.0.0 |
 | netq lcm del image &lt;text-image-id> | Deletes a Cumulus Linux install image from the LCM repository. | 3.0.0 |
 | netq lcm show credentials [json] | Displays configured LCM credentials. | 3.0.0 |
 | netq lcm show images [&lt;text-image-id>] [json] | Displays Cumulus Linux install images that have been added to the LCM repository. | 3.0.0 |

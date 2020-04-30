@@ -1,5 +1,5 @@
 ---
-title: Update NetQ 2.4.0 Agents
+title: Verify NetQ Agent Version
 author: Cumulus Networks
 weight: 146
 aliases:
@@ -7,8 +7,6 @@ aliases:
  - /pages/viewpage.action?pageId=12320951
 toc: 5
 ---
-Cumulus Networks recommends upgrading your NetQ Agents to the latest release. If you are using NetQ Agent 2.4.0 update 24 or earlier, you must upgrade to ensure proper operation.
-
 You can verify the version of the agent software you have deployed as described in the following sections.
 
 ## For Switches Running Cumulus Linux 3.x or 4.x

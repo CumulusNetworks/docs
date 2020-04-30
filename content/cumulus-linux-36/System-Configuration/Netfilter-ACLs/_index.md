@@ -340,9 +340,7 @@ mapped into the following tables and are updated in this order:
 
 {{%notice warning%}}
 
-Only Broadcom-based switches support incremental nonatomic updates.
-Mellanox-based switches do **not** support incremental updates;
-therefore traffic **is** affected and gets stopped.
+Only switches with the Broadcom ASIC support *incremental* nonataomic updates. Mellanox switches with the Spectrum-based ASIC only support *standard* nonatomic updates; using nonatomic mode on Spectrum-based ASICs impacts traffic on ACL updates.
 
 {{%/notice%}}
 

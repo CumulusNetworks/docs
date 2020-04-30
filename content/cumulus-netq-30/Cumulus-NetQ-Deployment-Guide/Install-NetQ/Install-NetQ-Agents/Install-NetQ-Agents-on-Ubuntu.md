@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 120
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the  NetQ 2.4.1 Agents on each server you want to monitor. NetQ 2.4 Agents can be installed on servers running:
+After installing your Cumulus NetQ software, you should install the  NetQ 3.0.0 Agent on each server you want to monitor. NetQ Agents can be installed on servers running:
 
 - Ubuntu 16.04
 - Ubuntu 18.04 (NetQ 2.2.2 and later)
@@ -18,9 +18,9 @@ For servers running Ubuntu OS, you need to:
 - Install and configure network time server, if needed
 - Obtain NetQ software packages
 
-{{%notice note%}}
-If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so `apt-get` can access the agent package on the Cumulus Networks repository.
-{{%/notice%}}
+{{<notice note>}}
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the agent package on the Cumulus Networks repository.
+{{</notice>}}
 
 ### Verify Service Package Versions
 
@@ -51,9 +51,9 @@ If NTP is not already installed and configured, follow these steps:
 
 1. Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
-```
-root@ubuntu:~# sudo apt-get install ntp
-```
+    ```
+    root@ubuntu:~# sudo apt-get install ntp
+    ```
 
 2. Configure the network time server.
 
@@ -188,7 +188,7 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
     </details>
 
     {{%notice note%}}
-The use of `netq-latest` in these examples means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.3` - use that instead.
+The use of `netq-latest` in these examples means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.4` - use that instead.
     {{%/notice%}}
 
 ## Install NetQ Agent on an Ubuntu Server
@@ -210,10 +210,10 @@ root@ubuntu:~# sudo apt-get install netq-agent
 root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-    You should see version 2.4.1 and update 26 in the results. For example:
+    You should see version 3.0.0 and update 27 in the results. For example:
 
-    - netq-agent_**2.4.1**-ub18.04u**26**~1581351889.c5ec3e5_amd64.deb, or
-    - netq-agent_**2.4.1**-ub16.04u**26**~1581350451.c5ec3e5_amd64.deb
+    - netq-agent_**3.0.0**-ub18.04u**27**~1588048540.0e20d33_amd64.deb, or
+    - netq-agent_**3.0.0**-ub16.04u**27**~1588049492.0e20d33_amd64.deb
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 130
 toc: 5
 ---
-After installing your Cumulus NetQ software and the  NetQ 2.4.1 Agents on each switch you want to monitor, you can also install the NetQ CLI on servers running:
+After installing your Cumulus NetQ software and the  NetQ 3.0.0 Agents on each switch you want to monitor, you can also install the NetQ CLI on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7
@@ -49,11 +49,11 @@ root@rhel7:~# sudo yum install wget
 
 If NTP is not already installed and configured, follow these steps:
 
-1. Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1. Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Appliance or VM to enable useful statistical analysis.
 
-```
-root@rhel7:~# sudo yum install ntp
-```
+    ```
+    root@rhel7:~# sudo yum install ntp
+    ```
 
 2. Configure the NTP server.
 
@@ -63,10 +63,10 @@ root@rhel7:~# sudo yum install ntp
 
 3. Enable and start the NTP service.
 
-```
-root@rhel7:~# sudo systemctl enable ntp
-root@rhel7:~# sudo systemctl start ntp
-```
+    ```
+    root@rhel7:~# sudo systemctl enable ntp
+    root@rhel7:~# sudo systemctl start ntp
+    ```
 
    {{%notice tip%}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
@@ -74,15 +74,15 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 4.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 
-```
-root@rhel7:~# ntpq -pn
-remote           refid            st t when poll reach   delay   offset  jitter
-==============================================================================
-+173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
-+12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
-2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
-\*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
-```
+    ```
+    root@rhel7:~# ntpq -pn
+    remote           refid            st t when poll reach   delay   offset  jitter
+    ==============================================================================
+    +173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
+    +12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
+    2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
+    \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
+    ```
 
 ## Install NetQ CLI on a RHEL or CentOS Server
 
@@ -90,47 +90,45 @@ A simple process installs the NetQ CLI on a RHEL or CentOS server.
 
 1. Reference and update the local `yum` repository and key.
 
-```
-root@rhel7:~# rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
-root@rhel7:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
-```
+    ```
+    root@rhel7:~# rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
+    root@rhel7:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
+    ```
 
 2.  Edit `/etc/yum.repos.d/cumulus-host-el.repo` to set the `enabled=1` flag for the two NetQ repositories.
 
-```
-root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
-...
-[cumulus-arch-netq-2.4]
-name=Cumulus netq packages
-baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.4/$basearch
-gpgcheck=1
-enabled=1
-[cumulus-noarch-netq-2.4]
-name=Cumulus netq architecture-independent packages
-baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.4/noarch
-gpgcheck=1
-enabled=1
-...
-```
+    ```
+    root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
+    ...
+    [cumulus-arch-netq-3.0]
+    name=Cumulus netq packages
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/$basearch
+    gpgcheck=1
+    enabled=1
+    [cumulus-noarch-netq-3.0]
+    name=Cumulus netq architecture-independent packages
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/noarch
+    gpgcheck=1
+    enabled=1
+    ...
+    ```
 
 3.  Install the Bash completion and CLI software on the server.
 
-```
-root@rhel7:~# sudo yum -y install bash-completion
-root@rhel7:~# sudo yum install netq-apps
-```
+    ```
+    root@rhel7:~# sudo yum -y install bash-completion
+    root@rhel7:~# sudo yum install netq-apps
+    ```
 
 4. Verify you have the correct version of the CLI.
 
-```
-root@rhel7:~# rpm -q -netq-apps
-```
+    ```
+    root@rhel7:~# rpm -q -netq-apps
+    ```
 
-   You should see version 2.4.1 and update 26 or later in the results. For example:
+   You should see version 3.0.0 and update 27 or later in the results. For example:
 
-   ```
-netq-apps-**2.4.1**-rh7u**26**~1581350236.c5ec3e5.x86_64.rpm 
-   ```
+    - netq-apps-**3.0.0**-rh7u**27**~1581350236.c5ec3e5.x86_64.rpm
 
 5. Continue with the next section.
 
@@ -179,7 +177,7 @@ To generate AuthKeys:
 
 3. From the Main Menu, select *Management* in the **Admin** column.
 
-    {{< figure src="/images/netq/main-menu-mgmt-selected-240.png" width="400">}}
+    {{< figure src="/images/netq/main-menu-admin-mgmt-selected-300.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
 
@@ -203,39 +201,39 @@ secret-key: <user-secret-key-value-here>
 ```
     {{%/notice%}}
 
-Now that you have your AuthKeys, use the following command to configure the CLI:
+7. Now that you have your AuthKeys, use the following command to configure the CLI:
 
-```
-netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]
-```
+    ```
+    netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]
+    ```
 
-Restart the CLI afterward to activate the configuration.
+8. Restart the CLI afterward to activate the configuration.
 
-This example uses the individual access key, a premises of *datacenterwest*,  and the default Cloud address, port and VRF.  **Be sure to replace the key values with your generated keys if you are using this example on your server.**
+    This example uses the individual access key, a premises of *datacenterwest*,  and the default Cloud address, port and VRF.  **Be sure to replace the key values with your generated keys if you are using this example on your server.**
 
-```
-root@rhel7:~# sudo netq config add cli server api.netq.cumulusnetworks.com access-key 123452d9bc2850a1726f55534279dd3c8b3ec55e8b25144d4739dfddabe8149e secret-key /vAGywae2E4xVZg8F+HtS6h6yHliZbBP6HXU3J98765= premises datacenterwest
-Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
-Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
+    ```
+    root@rhel7:~# sudo netq config add cli server api.netq.cumulusnetworks.com access-key 123452d9bc2850a1726f55534279dd3c8b3ec55e8b25144d4739dfddabe8149e secret-key /vAGywae2E4xVZg8F+HtS6h6yHliZbBP6HXU3J98765= premises datacenterwest
+    Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
+    Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
-root@rhel7:~# sudo netq config restart cli
-Restarting NetQ CLI... Success!
-```
+    root@rhel7:~# sudo netq config restart cli
+    Restarting NetQ CLI... Success!
+    ```
 
-This example uses an optional keys file. **Be sure to replace the keys filename and path with the *full path* and name of your keys file, and the *datacenterwest* premises name with your premises name if you are using this example on your server.**
+    This example uses an optional keys file. **Be sure to replace the keys filename and path with the *full path* and name of your keys file, and the *datacenterwest* premises name with your premises name if you are using this example on your server.**
 
-```
-root@rhel7:~# sudo netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /home/netq/nq-cld-creds.yml premises datacenterwest
-Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
-Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
+    ```
+    root@rhel7:~# sudo netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /home/netq/nq-cld-creds.yml premises datacenterwest
+    Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
+    Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
-root@rhel7:~# sudo netq config restart cli
-Restarting NetQ CLI... Success!
-```
+    root@rhel7:~# sudo netq config restart cli
+    Restarting NetQ CLI... Success!
+    ```
 
-{{%notice tip%}}
+    {{%notice tip%}}
 Rerun this command if you have multiple premises and want to query a different premises.
-{{%/notice%}}
+    {{%/notice%}}
 
 </details>
 
@@ -245,36 +243,36 @@ You can configure the NetQ CLI in the `netq.yml` configuration file contained in
 
 1. Open the `netq.yml` file using your text editor of choice. For example:
 
-```
-root@rhel7:~# sudo nano /etc/netq/netq.yml
-```
+    ```
+    root@rhel7:~# sudo nano /etc/netq/netq.yml
+    ```
 
 2. Locate the *netq-cli* section, or add it.
 
 3. Set the parameters for the CLI as follows:
 
-| Parameter | On-premises | Cloud |
-| ----| ---- | ---- |
-| netq-user | User who can access the CLI | User who can access the CLI |
-| server | IP address of the NetQ server or NetQ Appliance | api.netq.cumulusnetworks.com |
-| port (default) | 32708 | 443 |
-| premises | NA | Name of premises you want to query |
+    | Parameter | On-premises | Cloud |
+    | ----| ---- | ---- |
+    | netq-user | User who can access the CLI | User who can access the CLI |
+    | server | IP address of the NetQ server or NetQ Appliance | api.netq.cumulusnetworks.com |
+    | port (default) | 32708 | 443 |
+    | premises | NA | Name of premises you want to query |
 
-An on-premises configuration should be similar to this:
+    An on-premises configuration should be similar to this:
 
-```
-netq-cli:
-  netq-user: admin@company.com
-  port: 32708
-  server: 192.168.0.254
-  ```
+    ```
+    netq-cli:
+    netq-user: admin@company.com
+    port: 32708
+    server: 192.168.0.254
+    ```
 
-A cloud configuration should be similar to this:
+    A cloud configuration should be similar to this:
 
-```
-netq-cli:
-  netq-user: admin@company.com
-  port: 443
-  premises: datacenterwest
-  server: api.netq.cumulusnetworks.com
-```
+    ```
+    netq-cli:
+    netq-user: admin@company.com
+    port: 443
+    premises: datacenterwest
+    server: api.netq.cumulusnetworks.com
+    ```

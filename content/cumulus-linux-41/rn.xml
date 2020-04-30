@@ -48,16 +48,22 @@ Fixed: 3.1+dfsg-8+deb10u5</p></td>
 <tr>
 <td>CM-29420</td>
 <td><p>When you configure the mgmt Interface Class, then reboot the switch, eth0 goes into an ADMDN state.<br/>
-To work around this issue, either bring up eth0 with the sudo ifup eth0 command or create /etc/rc.local with the following content to bring up eth0 on startup:</p>
-
-#!/bin/sh -e
-ifup eth0
+The workaround for now is to edit networking.service as shown below:</p>
 
 
+$ systemctl edit networking.service 
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+SyslogIdentifier=networking
+TimeoutStopSec=30s
+ExecStart=/sbin/ifup -a
+ExecStart=/sbin/ifup --allow=mgmt
+ExecStop=/sbin/ifdown -a
+ExecReload=/sbin/ifreload -a
 
-sudo chmod +x /etc/rc.local
 
-</td>
+<p>Note the extra ExecStart to run --allow=mgmt</p></td>
 <td>4.1.0-4.1.1</td>
 <td></td>
 </tr>
@@ -1437,16 +1443,22 @@ Fixed: 3.1+dfsg-8+deb10u5</p></td>
 <tr>
 <td>CM-29420</td>
 <td><p>When you configure the mgmt Interface Class, then reboot the switch, eth0 goes into an ADMDN state.<br/>
-To work around this issue, either bring up eth0 with the sudo ifup eth0 command or create /etc/rc.local with the following content to bring up eth0 on startup:</p>
-
-#!/bin/sh -e
-ifup eth0
+The workaround for now is to edit networking.service as shown below:</p>
 
 
+$ systemctl edit networking.service 
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+SyslogIdentifier=networking
+TimeoutStopSec=30s
+ExecStart=/sbin/ifup -a
+ExecStart=/sbin/ifup --allow=mgmt
+ExecStop=/sbin/ifdown -a
+ExecReload=/sbin/ifreload -a
 
-sudo chmod +x /etc/rc.local
 
-</td>
+<p>Note the extra ExecStart to run --allow=mgmt</p></td>
 <td>4.1.0-4.1.1</td>
 <td></td>
 </tr>

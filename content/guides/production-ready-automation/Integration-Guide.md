@@ -76,14 +76,7 @@ For a robust simulation environment and CI/CD with gitlab, a dedicated, always-o
 - Operating Systems:
   - Cumulus Linux 3.7.11 or later
   - Cumulus NetQ 2.4 or later (optional)
-  - Ubuntu 16.04 or 18.04
-
-  {{< notice note>}}
-
-Other Linux distributions, such as CentOS or RHE, have not been tested.
-
-{{< /notice >}}
-
+  - Ubuntu 16.04 or 18.04 (Cumulus Networks has *not* tested other Linux distributions, such as CentOS or RHE)
 - Software Packages:
   - Vagrant 2.2.4 or later
   - Libvirt
@@ -193,6 +186,7 @@ Customizing the Ansible automation to create or modify roles and modify the play
 ## Customize and Set Up CI/CD
 
 ### Network CI/CD on Gitlab
+
 CI/CD is the next logical step after successfully implementing your version of IaC and thinking about applying the concept of automatically producing builds of your network code for automated testing and verification.
 
 Cumulus Production Ready Automation uses Gitlab for CI/CD. References for Gitlab CI can be found [here](https://docs.gitlab.com/ee/ci/README.html). **Caution**: Most CI/CD Guides and references are contextualized for classic software development CI workflows. Our use case of CI/CD for the network is building network simulations as the product of the code is a corner case.

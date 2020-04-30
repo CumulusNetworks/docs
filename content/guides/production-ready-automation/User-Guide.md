@@ -40,14 +40,7 @@ The memory requirements of a full cldemo2 topology are:
 - Operating Systems:
     - Cumulus Linux 3.7.11 or later
     - Cumulus NetQ 2.4 or later (optional)
-    - Ubuntu 16.04 or 18.04
-
-    {{%notice note%}}
-
-Cumulus Networks has not tested other Linux distributions, like CentOS or RHEL.
-
-{{%/notice%}}
-
+    - Ubuntu 16.04 or 18.04 (Cumulus Networks has *not* tested other Linux distributions, such as CentOS or RHEL)
 - Software Packages:
     - Vagrant 2.2.4 or later
     - Libvirt

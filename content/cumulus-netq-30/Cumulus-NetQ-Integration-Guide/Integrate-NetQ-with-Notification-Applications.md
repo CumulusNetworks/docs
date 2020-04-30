@@ -22,7 +22,7 @@ to the Notification function. Notification then stores, filters and
 sends messages to any configured notification applications. Filters are
 based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold.
 
-{{<figure src="/images/netq/event-notif-arch-222.png">}}
+{{<figure src="/images/netq/event-notif-arch-300.png">}}
 
 {{<notice note>}}
 

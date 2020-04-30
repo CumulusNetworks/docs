@@ -3,8 +3,6 @@ title: Integrate NetQ with Notification Applications
 author: Cumulus Networks
 weight: 200
 aliases:
- - /display/NETQ/Integrate+with+Third-party+Software+and+Hardware
- - /pages/viewpage.action?pageId=12320911
 toc: 3
 ---
 After you have installed the NetQ applications package and the NetQ Agents,
@@ -24,7 +22,7 @@ to the Notification function. Notification then stores, filters and
 sends messages to any configured notification applications. Filters are
 based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold.
 
-{{<figure src="/images/netq/event-notif-arch-222.png">}}
+{{<figure src="/images/netq/event-notif-arch-300.png">}}
 
 {{<notice note>}}
 
@@ -825,8 +823,7 @@ PSU: up, down</td>
 </tr>
 </table>
 
-{{%notice note%}}
-
+{{<notice note>}}
 Rule names are case sensitive, and no wildcards are permitted. Rule
 names may contain spaces, but must be enclosed with single quotes in
 commands. It is easier to use dashes in place of spaces or mixed case
@@ -834,8 +831,7 @@ for better readability. For example, use bgpSessionChanges or
 BGP-session-changes or BGPsessions, instead of 'BGP Session Changes'.
 
 Use Tab completion to view the command options syntax.
-
-{{%/notice%}}
+{{</notice>}}
 
 #### Example Rules
 
@@ -922,15 +918,13 @@ output results.
 
 {{<figure src="/images/netq/NQ-2x-Filter-Process-Flow.png">}}
 
-{{%notice note%}}
-
-Filter names may contain spaces, but *must* be enclosed with single
+{{<notice note>}}
+Filter names may contain spaces, but <em>must</em> be enclosed with single
 quotes in commands. It is easier to use dashes in place of spaces or
 mixed case for better readability. For example, use bgpSessionChanges or
 BGP-session-changes or BGPsessions, instead of 'BGP Session Changes'.
 Filter names are also case sensitive.
-
-{{%/notice%}}
+{{</notice>}}
 
 #### Example Filters
 
@@ -1009,13 +1003,11 @@ the drop filter:
     cumulus@switch:~$ netq add notification filter svcDown before bgpSpine
     Successfully added/updated filter svcDown
 
-{{%notice tip%}}
-
+{{<notice tip>}}
 You do not need to reenter all the severity, channel, and rule
 information for existing rules if you only want to change their
 processing order.
-
-{{%/notice%}}
+{{</notice>}}
 
 Run the `netq show notification` command again to verify the changes:
 

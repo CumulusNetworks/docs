@@ -314,6 +314,11 @@ Linux uses *source* layer 3 addresses only to do load balancing on most older di
 
 Freshly provisioned hosts that have never sent traffic may not ARP for their default gateways. The post-up ARPing in `/etc/network/interfaces` on the host should take care of this. If the host does not ARP, then `rdnbrd` on the leaf cannot learn about the host.
 
+### Unsupported with EVPN
+
+Redistribute neighbor is unsupported when the BGP EVPN Address Family is enabled. Enabling both redistribute neighbor and EVPN will lead to unreachable IPv4 ARP and IPv6 neighbor entries.
+
+
 ## Troubleshooting
 
 ### How do I determine if rdnbrd (the redistribute neighbor daemon) is running?

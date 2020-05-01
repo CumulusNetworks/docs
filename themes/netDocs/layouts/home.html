@@ -77,7 +77,7 @@
           <!--  <div class="resources-search"> -->
           <!-- <input type="text" class="resources-search-input" placeholder="Search the documentation" value="">
           <button type="submit">Search</button> -->
-  
+
           <script async src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script>
           <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl="/search/"></div>
           <!-- </div> -->
@@ -94,13 +94,13 @@
             <h3>Cumulus Linux</h3>
             <p class="small">An open network operating system designed for efficiency, automation and scale</p>
             <ul>
-              {{ if .Site.IsServer }} 
+              {{ if .Site.IsServer }}
                 <li><a href="/cumulus-linux-41/">User guide</a></li>
                 <li><a href="/cumulus-linux-41/Quick-Start-Guide/">Quick start guide</a></li>
-              {{ else }} 
+              {{ else }}
                 <li><a href="/cumulus-linux/">User guide</a></li>
                 <li><a href="/cumulus-linux/Quick-Start-Guide/">Quick start guide</a></li>
-              {{ end }} 
+              {{ end }}
               <!-- <li><a href="/pdfs/cumulus-linux.pdf">User guide (PDF)</a></li> -->
             </ul>
           </div>
@@ -114,12 +114,12 @@
                 <li><a href="/cumulus-netq-24/Cumulus-NetQ-Integration-Guide/">Integration guide</a></li>
                 <li><a href="/cumulus-netq-24/Cumulus-NetQ-UI-User-Guide/">GUI user guide</a></li>
                 <li><a href="/cumulus-netq-24/Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
-              {{ else }} 
+              {{ else }}
                 <li><a href="/cumulus-netq/Cumulus-NetQ-Deployment-Guide/">Deployment guide</a></li>
                 <li><a href="/cumulus-netq/Cumulus-NetQ-Integration-Guide/">Integration guide</a></li>
                 <li><a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/">GUI user guide</a></li>
                 <li><a href="/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
-              {{ end }} 
+              {{ end }}
             </ul>
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
@@ -153,16 +153,16 @@
               </div>
               <div class="card">
                 <a href="https://cumulusnetworks.com/support/"></a>
-                <h3><img src="/headphones-customer-support.svg">Support</h3>
-                <p>View our various support offerings, including submitting tickets, participating in the community, reading the knowledge base and keeping up with security announcements.</p>
-              <span> See support items <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
+                <h3><img src="/headphones-customer-support.svg">Technical Guides</h3>
+                <p>Something something our network design and architecture guides.</p>
+              <span> Technical Guides <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
               </div>
               <div class="w-100 d-none d-sm-block d-xl-none mb-4"><!-- wrap every 2 on sm--></div>
               <div class="card">
                 <a href="https://support.cumulusnetworks.com/hc/en-us/sections/200398876-Release-Notes"></a>
-                <h3><img src="/book-open.svg">Release notes</h3>
-                <p>Release notes provide information on all the new features, fixed and new known issues for every product release.</p>
-                <span>View release notes <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
+                <h3><img src="/book-open.svg">Knowledge Base</h3>
+                <p>A number of articles about specific stuff</p>
+                <span>Knowledge Base <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
               </div>
               <div class="card">
                 <a href="/contributor-guide/"></a>
@@ -191,17 +191,18 @@
               </ul>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-4">
-              <h3>Chassis<br />(Cumulus Linux 3.x only)</h3>
+              <h3>Cumulus Linux PDF Archives</h3>
               <ul>
-                <li><a href="/chassis/">Overview</a></li>
-                <li><a href="/chassis/Chassis-Default-Configurations/">Default configurations</a></li>
+                <li><a href="/chassis/">Cumulus Linux 3.5 and earlier</a></li>
+                <li><a href="/chassis/">Cumulus Linux 2.5 ESR</a></li>
+                <li><a href="/chassis/">Cumulus Chassis</a></li>
               </ul>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-4">
-                <h3>Other Resources</h3>
+                <h3>Cumulus NetQ PDF Archives</h3>
                 <ul>
-                  <li><a href="/contributor-guide/">Contributor guide</a></li>
-                  <li><a href="/guides/">Technical guides</a></li>
+                  <li><a href="/contributor-guide/">Cumulus NetQ 2.3</a></li>
+                  <li><a href="/guides/">Cumulus NetQ 1.4</a></li>
                 </ul>
             </div>
           </div>
@@ -386,7 +387,7 @@
    <script>
       var siteNav = document.getElementById('site-nav');
       var burgerMenu = document.querySelector('.burger-menu');
- 
+
       burgerMenu.addEventListener('click', function() {
         siteNav.classList.toggle('menu-opened');
       });

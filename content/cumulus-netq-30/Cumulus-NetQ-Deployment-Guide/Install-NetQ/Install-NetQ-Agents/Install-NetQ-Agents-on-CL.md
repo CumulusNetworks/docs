@@ -106,32 +106,24 @@ To install the NetQ Agent:
 
 1. Update the local `apt` repository, then install the NetQ software on the switch.
 
-```
-cumulus@switch:~$ sudo apt-get update
-cumulus@switch:~$ sudo apt-get install netq-agent
-```
+    ```
+    cumulus@switch:~$ sudo apt-get update
+    cumulus@switch:~$ sudo apt-get install netq-agent
+    ```
 
 2. Verify you have the correct version of the Agent.
 
-```
-cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
-```
+    ```
+    cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
 
-  You should see version 3.0.0 and update 27 or later in the results. For example:
-
-  - Cumulus Linux 3.3.2-3.7.x
-    - netq-agent_**3.0.0**-cl3u**27**~1588048439.0e20d33_armel.deb
-    - netq-agent_**3.0.0**-cl3u**27**~1581350238.c5ec3e5a_amd64.deb
-
-  - Cumulus Linux 4.0.0
-    - netq-agent_**3.0.0**-cl4u**27**~1588048918.0e20d335_armel.deb
-    - netq-agent_**3.0.0**-cl4u**27**~1581350537.c5ec3e5_amd64.deb
+    {{<netq-install/agent-version version="3.0.0" opsys="cl">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
-```
-cumulus@switch:~$ sudo systemctl restart rsyslog.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart rsyslog.service
+    ```
 
 4. Continue with NetQ Agent configuration in the next section.
 
@@ -148,9 +140,9 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 1. Open the `netq.yml` file using your text editor of choice. For example:
 
-```
-cumulus@switch:~$ sudo nano /etc/netq/netq.yml
-```
+    ```
+    cumulus@switch:~$ sudo nano /etc/netq/netq.yml
+    ```
 
 2. Locate the *netq-agent* section, or add it.
 
@@ -159,14 +151,14 @@ cumulus@switch:~$ sudo nano /etc/netq/netq.yml
     - server: IP address of the NetQ Appliance or VM where the agent should send its collected data
     - vrf: default (default) or one that you specify
 
-Your configuration should be similar to this:
+    Your configuration should be similar to this:
 
-```
-netq-agent:
-  port: 31980
-  server: 127.0.0.1
-  vrf: default
-```
+    ```
+    netq-agent:
+    port: 31980
+    server: 127.0.0.1
+    vrf: default
+    ```
 
 ### Configure NetQ Agents Using the NetQ CLI
 

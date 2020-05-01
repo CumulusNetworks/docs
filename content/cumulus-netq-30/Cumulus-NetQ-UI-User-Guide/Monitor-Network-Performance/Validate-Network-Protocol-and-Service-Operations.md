@@ -167,7 +167,7 @@ The large Validation Request card displays:
 The full screen Validation Request card displays all scheduled
 validation requests.
 
-{{< figure src="/images/netq/valid-request-fullscr-241.png" width="700" >}}
+{{< figure src="/images/netq/valid-request-fullscr-300.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -517,7 +517,7 @@ The *Summary* tab displays:
 </tr>
 <tr class="even">
 <td>Table/Filter options</td>
-<td><p>When the <strong>Most Active</strong> filter option is selected, the table displays switches and hosts running the given service or protocol in decreasing order of alarm counts-devices with the largest number of warnings and failures are listed first.</p>
+<td><p>When the <strong>Most Active</strong> filter option is selected, the table displays switches and hosts running the given service or protocol in decreasing order of alarm counts. Devices with the largest number of warnings and failures are listed first. You can click on the device name to open its switch card on your workbench.</p>
 <p>When the <strong>Most Recent</strong> filter option is selected, the table displays switches and hosts running the given service or protocol sorted by <strong>timestamp</strong>, with the device with the most recent warning or failure listed first. The table provides the following additional information:</p>
 <ul>
 <li><strong>Hostname</strong>: User-defined name for switch or host</li>
@@ -570,7 +570,7 @@ The *Configuration* tab displays:
 
 The full screen Validation Result card provides a tab for all on-demand validation results.
 
-{{< figure src="/images/netq/od-valid-result-bgp-fullscr-241.png" width="700" >}}
+{{< figure src="/images/netq/od-valid-result-bgp-fullscr-300.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -632,9 +632,9 @@ The full screen Validation Result card provides a tab for all on-demand validati
 
 Once an on-demand validation request has completed, the results are available in the corresponding Validation Result card.
 
-{{%notice tip%}}
+{{<notice tip>}}
 It may take a few minutes for all results to be presented if the load on the NetQ Platform is heavy at the time of the run.
-{{%/notice%}}
+{{</notice>}}
 
 To view the results:
 
@@ -654,7 +654,7 @@ To view the results:
 
     {{< figure src="/images/netq/od-valid-result-bgp-large-230.png" width="500" >}}
 
-5. If there are a large number of device warnings or failures, view the devices with the most issues in the table on the right. By default,     this table displays the **Most Active** devices.
+5. If there are a large number of device warnings or failures, view the devices with the most issues in the table on the right. By default, this table displays the **Most Active** devices. Click on a device name to open its switch card on your workbench.
 
 6. To view the most recent issues, select **Most Recent** from the filter above the table.
 
@@ -662,7 +662,7 @@ To view the results:
 
 8. To view all data available for all on-demand validation results for a given protocol, switch to the full screen card.
 
-    {{< figure src="/images/netq/od-valid-result-bgp-fullscr-241.png" width="700" >}}
+    {{< figure src="/images/netq/od-valid-result-bgp-fullscr-300.png" width="700" >}}
 
 9. Double-click in a given result row to open details about the validation.
 
@@ -901,7 +901,7 @@ The *Configuration* tab displays:
 The full screen Scheduled Validation Result card provides tabs for all scheduled
 validation results for the service.
 
-{{< figure src="/images/netq/sch-valid-result-fullscr-241.png" width="700" >}}
+{{< figure src="/images/netq/sch-valid-result-fullscr-300.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -982,7 +982,7 @@ To view the results:
 
 1. Open the full size Validation Request card to view all scheduled validations.
 
-    {{<figure src="/images/netq/valid-request-fullscr-222.png" width="700">}}
+    {{<figure src="/images/netq/valid-request-fullscr-300.png" width="700">}}
 
 2. Select the validation results you want to view by clicking in the first column of the result and clicking the check box.
 

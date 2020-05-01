@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 122
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the NetQ 2.4.1 Agents on each server you want to monitor. NetQ 2.4 Agents can be installed on servers running:
+After installing your Cumulus NetQ software, you should install the NetQ 3.0.0 Agents on each server you want to monitor. NetQ Agents can be installed on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7
@@ -102,14 +102,14 @@ root@rhel7:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps
 ```
 root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
 ...
-[cumulus-arch-netq-2.4]
+[cumulus-arch-netq-3.0]
 name=Cumulus netq packages
-baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.4/$basearch
+baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/$basearch
 gpgcheck=1
 enabled=1
-[cumulus-noarch-netq-2.4]
+[cumulus-noarch-netq-3.0]
 name=Cumulus netq architecture-independent packages
-baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.4/noarch
+baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/noarch
 gpgcheck=1
 enabled=1
 ...
@@ -134,9 +134,9 @@ root@rhel7:~# sudo yum install netq-agent
 root@rhel7:~# rpm -q -netq-agent
 ```
 
-    You should see version 2.4.1 and update 26 or later in the results. For example: 
+    You should see version 3.0.0 and update 27 or later in the results. For example: 
     
-    netq-agent-**2.4.1**-rh7u**26**~1581350236.c5ec3e5.x86_64.rpm
+    netq-agent-**3.0.0**-rh7u**27**~1588050478.0e20d33.x86_64.rpm
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

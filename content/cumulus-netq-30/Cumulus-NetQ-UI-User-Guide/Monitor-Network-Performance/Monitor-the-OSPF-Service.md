@@ -112,7 +112,7 @@ The large OSPF service card contains two tabs.
 
 The *Sessions Summary* tab displays:  
 
-{{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-230.png" width="500" >}}
+{{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-300.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -372,7 +372,7 @@ To view switches and hosts with the most OSPF sessions:
 
     The table content is sorted by this characteristic, listing nodes running the most OSPF sessions at the top. Scroll down to view those with the fewest sessions.
 
-    {{<figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-230.png" width="500">}}
+    {{<figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-300.png" width="500">}}
 
 To compare this data with the same data at a previous time:
 
@@ -386,7 +386,7 @@ To compare this data with the same data at a previous time:
 
     {{<figure src="/images/netq/time-picker-popup-narrow-222.png" width="150">}}
 
-    {{<figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-past-week-230.png" width="500">}}
+    {{<figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-past-week-300.png" width="500">}}
 
     You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running OSPF than previously, looking for changes in the topology, and so forth.
 

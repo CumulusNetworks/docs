@@ -234,7 +234,7 @@ You can enable nonatomic updates for `switchd`, which offer better scaling becau
 
 {{%notice warning%}}
 
-Only Broadcom-based ASICs support incremental nonatomic updates. Mellanox Spectrum-based ASICs do **not** support incremental updates; therefore traffic **is** affected and gets stopped.
+Only switches with the Broadcom ASIC support *incremental* nonataomic updates. Mellanox switches with the Spectrum-based ASIC only support *standard* nonatomic updates; using nonatomic mode on Spectrum-based ASICs impacts traffic on ACL updates.
 
 {{%/notice%}}
 

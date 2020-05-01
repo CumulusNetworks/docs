@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 118
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the  NetQ 2.4.1 Agents on each switch you want to monitor. NetQ 2.4 Agents can be installed on switches running:
+After installing your Cumulus NetQ software, you should install the  NetQ 3.0.0 Agents on each switch you want to monitor. NetQ Agents can be installed on switches running:
 
 - Cumulus Linux version 3.3.2-3.7.x
 - Cumulus Linux version 4.0.0 and later
@@ -16,9 +16,9 @@ For servers running Cumulus Linux, you need to:
 - Install and configure NTP, if needed
 - Obtain NetQ software packages
 
-{{%notice note%}}
-If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so `apt-get` can access the software package in the Cumulus Networks repository.
-{{%/notice%}}
+{{<notice note>}}
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the Cumulus Networks repository.
+{{</notice>}}
 
 ### Verify NTP is Installed and Configured
 
@@ -42,9 +42,9 @@ If NTP is not running:
 - verify the IP address or hostname of the NTP server in the `/etc/ntp.conf` file, and then
 - re-enable and start the NTP service using the `systemctl [enable|start] ntp` commands.
 
-{{%notice tip%}}
-If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
-{{%/notice%}}
+{{<notice tip>}}
+If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
+{{</notice>}}
 
 ### Obtain NetQ Agent Software Package
 
@@ -56,40 +56,47 @@ Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
 
 *Note that NetQ has a separate repository from Cumulus Linux.*
 
-<details><summary>Cumulus Linux 3.x</summary>
+{{< tabs "TabID59" >}}
+
+{{< tab "Cumulus Linux 3.x" >}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.4
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-3.0
 ...
 ```
 
-{{%notice tip%}}
-The repository `deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
-{{%/notice%}}
-</details>
-<details><summary>Cumulus Linux 4.x</summary>
+{{<notice tip>}}
+The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest</code> can be used if you want to always retrieve the latest posted version of NetQ.
+{{</notice>}}
+
+{{< /tab >}}
+
+{{< tab "Cumulus Linux 4.x" >}}
+
+Add the repository:
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-2.4
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-3.0
 ...
 ```
 
-{{%notice tip%}}
-The repository `deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
-{{%/notice%}}
-</details>
+{{<notice tip>}}
+The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> can be used if you want to always retrieve the latest posted version of NetQ.
+{{</notice>}}
 
-### Add the Apt Repository Key (Cumulus Linux 4.0 Only)
-
-Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux.
+Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
 
 ```
 cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
 ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Install the NetQ Agent on Cumulus Linux Switch
 
@@ -99,32 +106,24 @@ To install the NetQ Agent:
 
 1. Update the local `apt` repository, then install the NetQ software on the switch.
 
-```
-cumulus@switch:~$ sudo apt-get update
-cumulus@switch:~$ sudo apt-get install netq-agent
-```
+    ```
+    cumulus@switch:~$ sudo apt-get update
+    cumulus@switch:~$ sudo apt-get install netq-agent
+    ```
 
 2. Verify you have the correct version of the Agent.
 
-```
-cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
-```
+    ```
+    cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
 
-    You should see version 2.4.1 and update 26 or later in the results. For example:
-
-    - Cumulus Linux 3.3.2-3.7.x
-      - netq-agent_**2.4.1**-cl3u**26**~1581350572.c5ec3e5_armel.deb
-      - netq-agent_**2.4.1**-cl3u**26**~1581350238.c5ec3e5a_amd64.deb
-
-    - Cumulus Linux 4.0.0
-      - netq-agent_**2.4.1**-cl4u**26**~1581350349.c5ec3e5a_armel.deb
-      - netq-agent_**2.4.1**-cl3u**26**~1581350537.c5ec3e5_amd64.deb
+    {{<netq-install/agent-version version="3.0.0" opsys="cl">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
-```
-cumulus@switch:~$ sudo systemctl restart rsyslog.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart rsyslog.service
+    ```
 
 4. Continue with NetQ Agent configuration in the next section.
 
@@ -141,33 +140,33 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 1. Open the `netq.yml` file using your text editor of choice. For example:
 
-```
-root@rhel7:~# sudo nano /etc/netq/netq.yml
-```
+    ```
+    cumulus@switch:~$ sudo nano /etc/netq/netq.yml
+    ```
 
 2. Locate the *netq-agent* section, or add it.
 
 3. Set the parameters for the agent as follows:
     - port: 31980 (default configuration)
-    - server: IP address of the NetQ Platform or NetQ Appliance where the agent should send its collected data
+    - server: IP address of the NetQ Appliance or VM where the agent should send its collected data
     - vrf: default (default) or one that you specify
 
-Your configuration should be similar to this:
+    Your configuration should be similar to this:
 
-```
-netq-agent:
-  port: 31980
-  server: 127.0.0.1
-  vrf: default
-```
+    ```
+    netq-agent:
+    port: 31980
+    server: 127.0.0.1
+    vrf: default
+    ```
 
 ### Configure NetQ Agents Using the NetQ CLI
 
-If the CLI is configured, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Platform or NetQ Appliance. To configure the NetQ CLI, refer to {{<link title="Install and Configure the NetQ CLI on Cumulus Linux Switches#install-the-netq-cli-installation-on-a-cumulus-linux-switch">}}.
+If the CLI is configured, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Appliance or VM. To configure the NetQ CLI, refer to {{<link title="Install and Configure the NetQ CLI on Cumulus Linux Switches#install-the-netq-cli-installation-on-a-cumulus-linux-switch">}}.
 
-{{%notice info%}}
+{{<notice info>}}
 If you intend to use VRF, refer to {{<link url="#configure-the-agent-to-use-a-vrf" text="Configure the Agent to Use VRF">}}. If you intend to specify a port for communication, refer to {{<link url="#configure-the-agent-to-communicate-over-a-specific-port" text="Configure the Agent to Communicate over a Specific Port">}}.
-{{%/notice%}}
+{{</notice>}}
 
 Use the following command to configure the NetQ Agent:
 
@@ -175,7 +174,7 @@ Use the following command to configure the NetQ Agent:
 netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
 ```
 
-This example uses an IP address of *192.168.1.254* and the default port and VRF for the NetQ hardware.
+This example uses an IP address of *192.168.1.254* and the default port and VRF for the NetQ Appliance or VM.
 
 ```
 cumulus@switch:~$ sudo netq config add agent server 192.168.1.254
@@ -189,7 +188,7 @@ A couple of additional options are available for configuring the NetQ Agent. If 
 
 ### Configure the Agent to Use a VRF
 
-While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Platform only via a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/" text="VRF">}}, including a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Management-VRF/" text="management VRF">}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Platform over it, configure the agent like this:
+While optional, Cumulus strongly recommends that you configure NetQ Agents to communicate with the NetQ Appliance or VM only via a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Virtual-Routing-and-Forwarding-VRF/" text="VRF">}}, including a {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Management-VRF/" text="management VRF">}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if the management VRF is configured and you want the agent to communicate with the NetQ Appliance or VM over it, configure the agent like this:
 
 ```
 cumulus@leaf01:~$ sudo netq config add agent server 192.168.1.254 vrf mgmt
@@ -198,7 +197,7 @@ cumulus@leaf01:~$ sudo netq config restart agent
 
 ### Configure the Agent to Communicate over a Specific Port
 
-By default, NetQ uses port 31980 for communication between the NetQ Platform and NetQ Agents. If you want the NetQ Agent to communicate with the NetQ Platform via a different port, you need to specify the port number when configuring the NetQ Agent like this:
+By default, NetQ uses port 31980 for communication between the NetQ Appliance or VM and NetQ Agents. If you want the NetQ Agent to communicate with the NetQ Appliance or VM via a different port, you need to specify the port number when configuring the NetQ Agent, like this:
 
 ```
 cumulus@leaf01:~$ sudo netq config add agent server 192.168.1.254 port 7379

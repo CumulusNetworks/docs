@@ -9,77 +9,59 @@ Some of these views provide data that is also available through the card workflo
 
 Access these tables through the Main Menu (<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>), under the **Network** heading.
 
-{{<figure src="/images/netq/main-menu-ntwk-choices-highlighted-241.png" width="500">}}
+{{<figure src="/images/netq/main-menu-admin-ntwk-choices-selected-300.png" width="600">}}
 
-For NetQ 2.4.1, the tables can be manipulated using the settings above the tables, shown here and described in {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.
+Tables can be manipulated using the settings above the tables, shown here and described in {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.
 
 {{<figure src="/images/netq/main-menu-ntwk-table-settings-241.png" width="100">}}
 
-For NetQ 2.4.0, you can use the filter function at the top of the table. Expand and collapse the filter by clicking the down and up arrow in the title bar.
-
-{{<figure src="/images/netq/main-menu-ntwk-table-filter-240.png" width="500">}}
-
-You can filter the list of items by selecting a field,  entering a meaningful value, and then clicking **Apply**. Click **Clear** to remove the filter.
+Pagination options are shown when there are more than 25 results.
 
 ## View All NetQ Agents
 
-The Agents view provides all available parameter data about all NetQ Agents in the system. The first figure shows the NetQ 2.4.0 view and the second figure shows the updated filtering and pagination provided in NetQ 2.4.1.
-
-{{<figure src="/images/netq/main-menu-ntwk-agents-240.png" width="700">}}
+The Agents view provides all available parameter data about all NetQ Agents in the system.
 
 {{<figure src="/images/netq/main-menu-ntwk-agents-241.png" width="700">}}
 
 ## View All Events
 
-The Events view provides all available parameter data about all events in the system. The first figure shows the NetQ 2.4.0 view and the second figure shows the updated filtering and pagination provided in NetQ 2.4.1.
-
-{{<figure src="/images/netq/main-menu-ntwk-events-240.png" width="700">}}
+The Events view provides all available parameter data about all events in the system.
 
 {{<figure src="/images/netq/main-menu-ntwk-events-241.png" width="700">}}
 
 ## View All MACs
 
-The MACs (media access control addresses) view provides all available parameter data about all MAC addresses in the system. The first figure shows the NetQ 2.4.0 view and the second figure shows the updated filtering and pagination provided in NetQ 2.4.1.
-
-{{<figure src="/images/netq/main-menu-ntwk-macs-240.png" width="700">}}
+The MACs (media access control addresses) view provides all available parameter data about all MAC addresses in the system.
 
 {{<figure src="/images/netq/main-menu-ntwk-macs-241.png" width="700">}}
 
 ## View All VLANs
 
-The VLANs (virtual local area networks) view provides all available parameter data about all VLANs in the system. The first figure shows the NetQ 2.4.0 view and the second figure shows the updated filtering provided in NetQ 2.4.1. Pagination options are not shown as there must be more than 25 items before NetQ begins paginating results.
-
-{{<figure src="/images/netq/main-menu-ntwk-vlans-240.png" width="700">}}
+The VLANs (virtual local area networks) view provides all available parameter data about all VLANs in the system.
 
 {{<figure src="/images/netq/main-menu-ntwk-vlans-241.png" width="700">}}
 
 ## View All IP Routes
 
-The IP Routes view provides all available parameter data about all IP routes, all IPv4 routes, and all IPv6 routes in the system. The first figure shows the NetQ 2.4.0 view and the second figure shows the updated filtering and pagination provided in NetQ 2.4.1.
-
-{{<figure src="/images/netq/main-menu-ntwk-iproutes-all-240.png" width="700">}}
+The IP Routes view provides all available parameter data about all IP routes, all IPv4 routes, and all IPv6 routes in the system.
 
 {{<figure src="/images/netq/main-menu-ntwk-iproutes-all-241.png" width="700">}}
 
 ## View All IP Neighbors
 
-The IP Neighbors view provides all available parameter data about all IP neighbors, all IPv4 neighbors, and all IPv6 neighbors in the system. The first figure shows the NetQ 2.4.0 view and the second figure shows the updated filtering and pagination provided in NetQ 2.4.1.
-
-{{<figure src="/images/netq/main-menu-ntwk-ipnbrs-all-240.png" width="700">}}
+The IP Neighbors view provides all available parameter data about all IP neighbors, all IPv4 neighbors, and all IPv6 neighbors in the system.
 
 {{<figure src="/images/netq/main-menu-ntwk-ipnbrs-all-241.png" width="700">}}
 
 ## View All IP Addresses
 
-The IP Addresses view provides all available parameter data about all IP addresses, all IPv4 addresses, and all IPv6 addresses in the system. The first figure shows the NetQ 2.4.0 view and the second figure shows the updated filtering and pagination provided in NetQ 2.4.1.
-
-{{<figure src="/images/netq/main-menu-ntwk-ipaddrs-all-240.png" width="700">}}
+The IP Addresses view provides all available parameter data about all IP addresses, all IPv4 addresses, and all IPv6 addresses in the system.
 
 {{<figure src="/images/netq/main-menu-ntwk-ipaddrs-all-241.png" width="700">}}
 
 ## View All Sensors
 
-The Sensors view provides all available parameter data provided by the power supply units (PSUs), fans, and temperature sensors in the system. The feature is only available in NetQ 2.4.1 and later.
+The Sensors view provides all available parameter data provided by the power supply units (PSUs), fans, and temperature sensors in the system.
 
 {{<figure src="/images/netq/main-menu-ntwk-sensors-psu-241.png" width="700">}}
 
@@ -87,9 +69,9 @@ The Sensors view provides all available parameter data provided by the power sup
 
 The *What Just Happened* (WJH) feature, available on Mellanox switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. You must have Cumulus Linux 4.0.0 or later and NetQ 2.4.0 or later to take advantage of this feature.
 
-{{%notice tip%}}
+{{<notice tip>}}
 If your switches are sourced from a vendor other than Mellanox, this view is blank as no data is collected.
-{{%/notice%}}
+{{</notice>}}
 
 When WJH capabilities are combined with Cumulus NetQ, you have the ability to hone in on losses, anywhere in the fabric, from a single management console. You can:
 
@@ -117,15 +99,15 @@ To enable WJH in NetQ:
 
 1. Configure the NetQ Agent on the Mellanox switch.
 
-```
-cumulus@switch:~$ netq config add agent wjh
-```
+    ```
+    cumulus@switch:~$ netq config add agent wjh
+    ```
 
 2. Restart the NetQ Agent to start collecting the WJH data.
 
-```
-cumulus@switch:~$ netq config restart agent
-```
+    ```
+    cumulus@switch:~$ netq config restart agent
+    ```
 
 When you are finished viewing the WJH metrics, you might want to disable the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.
 
@@ -273,15 +255,15 @@ The What Just Happened view displays events based on conditions detected in the 
 <li><strong>Hostname</strong>: Name of the Mellanox server</li>
 <li><strong>Reason</strong>: Reason why the buffer dropped packet
 <ul><li>Tail drop: Tail drop is enabled, and buffer queue is filled to maximum capacity</li>
-<li>WRED: Weighted Random Early Detection is enabled, and buffer queue is filled to maximum</li>
+<li>WRED: Weighted Random Early Detection is enabled, and buffer queue is filled to maximum capacity or the RED engine dropped the packet as of random congestion prevention.</li>
 </ul></li>
 </ul></td>
 <tr class="even">
 <td>ACL Drops tab</td>
-<td>Displays the reason for an ACL to be (something?). By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
+<td>Displays the reason for an ACL to drop packets. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server</li>
-<li><strong>Reason</strong>: Reason why (ACL xxx)
+<li><strong>Reason</strong>: Reason why ACL dropped packets
 <ul><li>Ingress port ACL:  ACL action set to deny on the ingress port</li>
 <li>Ingress router ACL: ACL action set to deny on the ingress router interface</li>
 <li>Egress port ACL:  ACL action set to deny on the egress port</li>

@@ -46,17 +46,13 @@ cumulus@switch:~$ net commit
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge.100
-vlan bridge.100
-  bridge-igmp-querier-src 123.1.1.1
-
 auto bridge
 iface bridge
   bridge-ports swp1 swp2 swp3
   bridge-vlan-aware yes
   bridge-vids 100 200
   bridge-pvid 1
-  bridge-mcquerier 1
+  bridge-mcsnoop yes
 ...
 ```
 

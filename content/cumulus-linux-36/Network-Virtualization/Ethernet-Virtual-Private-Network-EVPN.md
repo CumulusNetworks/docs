@@ -1814,6 +1814,8 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
     separate from the underlay, which resides in the default VRF. A
     layer 3 VNI mapping for the default VRF is not supported.
 
+  - EVPN is not supported when {{<link title="Redistribute Neighbor" >}} is also configured. Enabling both features simultaneously causes instability in IPv4 and IPv6 neighbor entries.
+
 ## Example Configurations
 
 - Basic Clos (4x2) for bridging

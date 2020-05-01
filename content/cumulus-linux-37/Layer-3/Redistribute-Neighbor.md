@@ -235,6 +235,11 @@ This release of redistribute neighbor does not support {{<link url="Virtual-Rout
 
 Redistribute neighbor does not work with more than 1024 interfaces. Doing so can cause the `rdnbrd` service to crash.
 
+### Unsupported with EVPN
+
+Redistribute neighbor is unsupported when the BGP EVPN Address Family is enabled. Enabling both redistribute neighbor and EVPN will lead to unreachable IPv4 ARP and IPv6 neighbor entries.
+
+
 ## Troubleshooting
 
 ### How do I determine if rdnbrd (the redistribute neighbor daemon) is running?

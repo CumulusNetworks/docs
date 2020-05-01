@@ -1350,6 +1350,22 @@ reports to be injected to the input subsystem from a non-bonded source.</p></td>
 <td>4.0.0-4.1.0</td>
 </tr>
 <tr>
+<td>CM-29033</td>
+<td><p>When using apt-get update &amp;&amp; apt-get upgrade to upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later, a message similar to the following may appear. </p>
+
+
+
+Reading <span class="code-keyword">package</span> lists... Done
+E: Repository 'http:<span class="code-comment">//apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Label' value from 'cumulus-repository-4.0.0' to 'cumulus-repository-4.1.0'
+</span>E: Repository 'http:<span class="code-comment">//apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Codename' value from 'CumulusLinux-4.0.0' to 'CumulusLinux-4.1.0'
+</span>N: This must be accepted explicitly before updates <span class="code-keyword">for</span> <span class="code-keyword">this</span> repository can be applied. See apt-secure(8) manpage <span class="code-keyword">for</span> details.
+
+
+
+<p>To work around this issue and proceed with the upgrade, run apt-get update --allow-releaseinfo-change. </p></td>
+<td>4.0.0-4.1.0</td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
@@ -1563,6 +1579,23 @@ To work around this issue, restart FRR.</p></td>
 To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29033</td>
+<td><p>When using apt-get update &amp;&amp; apt-get upgrade to upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later, a message similar to the following may appear. </p>
+
+
+
+Reading <span class="code-keyword">package</span> lists... Done
+E: Repository 'http:<span class="code-comment">//apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Label' value from 'cumulus-repository-4.0.0' to 'cumulus-repository-4.1.0'
+</span>E: Repository 'http:<span class="code-comment">//apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Codename' value from 'CumulusLinux-4.0.0' to 'CumulusLinux-4.1.0'
+</span>N: This must be accepted explicitly before updates <span class="code-keyword">for</span> <span class="code-keyword">this</span> repository can be applied. See apt-secure(8) manpage <span class="code-keyword">for</span> details.
+
+
+
+<p>To work around this issue and proceed with the upgrade, run apt-get update --allow-releaseinfo-change. </p></td>
+<td>4.0.0-4.1.0</td>
+<td>4.1.1</td>
 </tr>
 <tr>
 <td>CM-28992</td>

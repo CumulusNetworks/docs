@@ -173,7 +173,7 @@ you can check the sensors on all your nodes around the time you think
 the issue occurred:
 
 ```
-cumulus@leaf01:~$ netq check sensors around 12h    
+cumulus@leaf01:~$ netq check sensors around 12h
 Total Nodes: 25, Failed Nodes: 0, Checked Sensors: 221, Failed Sensors: 0
 ```
 

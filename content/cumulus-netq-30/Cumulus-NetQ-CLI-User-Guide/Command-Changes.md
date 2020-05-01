@@ -9,11 +9,11 @@ pageID: 12321059
 toc: 3
 ---
 
-A number of commands have changed in this release to accommodate the addition of new keywords and options or to simplify their syntax. Additionally, new commands have been added and others have been removed. A summary of those changes is provided here.
+A number of commands have changed in this release to accommodate the addition of new options or to simplify their syntax. Additionally, new commands have been added and others have been removed. A summary of those changes is provided here.
 
 ## New Commands
 
-The following table summarizes the new commands available with this release. They are grouped by lifecycle management (LCM) commands and agent commands.
+The following table summarizes the new commands available with this release. They include lifecycle management (LCM) and modular agent commands.
 
 | Command | Summary | Version |
 | ------- | ------- | ------- |
@@ -28,19 +28,18 @@ The following table summarizes the new commands available with this release. The
 | netq lcm show switches [version &lt;text-cumulus-linux-version>] [json] | Displays all the switches running Cumulus Linux that are managed under LCM. | 3.0.0 |
 | netq lcm show upgrade-jobs [json] | Displays all the LCM upgrade jobs and their status. | 3.0.0 |
 | netq lcm upgrade name &lt;text-job-name> image-id &lt;text-image-id> license &lt;text-cumulus-license> hostnames &lt;text-switch-hostnames> [order &lt;text-upgrade-order>] [run-before-after] | Creates and runs a new upgrade job. | 3.0.0 |
-| netq config add agent command service-key &lt;text-service-key-anchor> [poll-period &lt;text-cmd-periodicity>] [command &lt;text-cmd-text>] [enable True \| enable False] | Configures, enables and disables commands that the NetQ agent runs at preset intervals. | 3.0.0 |
-| netq config agent factory-reset commands | Restores NetQ agent commands to their defaults. | 3.0.0 |
-| netq config del agent command service-key &lt;text-service-key-anchor> | Deletes a NetQ agent command. | 3.0.0 |
-| netq config show agent commands [service-key &lt;text-service-key-anchor>] [json] | Displays the NetQ agent commands. | 3.0.0 |
+| netq config add agent command service-key &lt;text-service-key-anchor> [poll-period &lt;text-cmd-periodicity>] [command &lt;text-cmd-text>] [enable True \| enable False] | Configures, enables and disables {{<link url="Modular-NetQ-Agent-Commands" text="modular agent commands">}} that the NetQ agent runs at preset intervals. | 3.0.0 |
+| netq config agent factory-reset commands | Restores modular agent commands to their defaults. | 3.0.0 |
+| netq config del agent command service-key &lt;text-service-key-anchor> | Deletes a modular agent command. | 3.0.0 |
+| netq config show agent commands [service-key &lt;text-service-key-anchor>] [json] | Displays the modular agent commands. | 3.0.0 |
 
 ## Modified Commands
 
-The following table summarizes the commands that have been changed with
-this release.
+The following table summarizes the commands that have been changed with this release.
 
 | Updated Command | Old Command | What Changed | Version |
 | --------------- | ----------- | ------------ | ------- |
-| netq [&lt;hostname>] show ethtool-stats port &lt;physical-port> (rx \| tx) [extended] [around &lt;text-time>] [json] | netq [&lt;hostname>] show ethtool-stats [&lt;physical-port>] [rx \| tx \| min]  [around &lt;text-time>] [json] | The `port`, `rx` and `tx` keywords are now required. Removed the `min` keyword. Added the `extended` keyword to show more statistics. | 3.0.0 |
+| netq [&lt;hostname>] show ethtool-stats port &lt;physical-port> (rx \| tx) [extended] [around &lt;text-time>] [json] | netq [&lt;hostname>] show ethtool-stats [&lt;physical-port>] [rx \| tx \| min]  [around &lt;text-time>] [json] | The `port`, `rx` and `tx` options are now required. Removed the `min` option. Added the `extended` option to show more statistics. | 3.0.0 |
 | netq [&lt;hostname>] show events [level info \| level error \| level warning \| level critical \| level debug] [type clsupport \| type ntp \| type mtu \| type configdiff \| type vlan \| type trace \| type vxlan \| type clag \| type bgp \| type interfaces \| type interfaces-physical \| type agents \| type ospf \| type evpn \| type macs \| type services \| type lldp \| type license \| type os \| type sensors \| type btrfsinfo] [between &lt;text-time> and &lt;text-endtime>] [json] | netq [&lt;hostname>] show events [level info \| level error \| level warning \| level critical \| level debug] [type clsupport \| type ntp \| type mtu \| type configdiff \| type vlan \| type trace \| type vxlan \| type clag \| type bgp \| type interfaces \| type interfaces-physical \| type agents \| type ospf \| type evpn \| type lnv \| type macs \| type services \| type lldp \| type license \| type os \| type sensors \| type btrfsinfo] [between &lt;text-time> and &lt;text-endtime>] [json] | Removed `type lnv` since LNV is no longer supported in Cumulus Linux. | 3.0.0 |
 | netq [&lt;hostname>] show interface-utilization [&lt;text-port>] [tx\|rx] [around &lt;text-time>] [json] | netq [&lt;hostname>] show interface-utils [&lt;text-port>] [tx\|rx] [around &lt;text-time>] [json] | Changed `interface-utils` keyword to `interface-utilization`. | 3.0.0 |
 | netq check agents [hostnames &lt;text-list-hostnames>] [include &lt;agent-number-range-list> \| exclude &lt;agent-number-range-list>] [around &lt;text-time>] [json] | netq check agents [include &lt;agent-number-range-list> \| exclude &lt;agent-number-range-list>] [around &lt;text-time>] [json] | Added ability to specify a list of hostnames using the `hostnames <text-list-hostnames>]` option. | 3.0.0 |

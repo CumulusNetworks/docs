@@ -368,22 +368,6 @@ Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing:
 <td></td>
 </tr>
 <tr>
-<td>CM-28184</td>
-<td><p>TACACS users are unable to execute sudo commands.<br/>
-To work around this issue, add the tacacs0 user to the sudo group; for example:</p>
-
-cumulus@switch:~$  usermod -a -G sudo tacacs0
-
-
-<p>Alternatively, run the following command:</p>
-
-ip vrf exec default sudo -i
-
-</td>
-<td>4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28136</td>
 <td><p>The MLAG switch pair has VLANs defined that are not used on MLAG bonds. These VLANs still synchronize MAC addresses across to the peer switch. This results in log messages that indicate a MAC address is installed and the VLAN is not defined; for example:</p>
 
@@ -1792,22 +1776,6 @@ Warning: The unit file, source configuration file or drop-ins of hsflowd@mgmt.se
 <td><p>When host-resources and ucd-snmp-mib are polled, you see permission denied messages similar to the following:</p>
 
 Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing: Permission denied
-
-</td>
-<td>4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28184</td>
-<td><p>TACACS users are unable to execute sudo commands.<br/>
-To work around this issue, add the tacacs0 user to the sudo group; for example:</p>
-
-cumulus@switch:~$  usermod -a -G sudo tacacs0
-
-
-<p>Alternatively, run the following command:</p>
-
-ip vrf exec default sudo -i
 
 </td>
 <td>4.0.0-4.1.1</td>

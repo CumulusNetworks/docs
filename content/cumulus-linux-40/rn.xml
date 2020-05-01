@@ -502,22 +502,6 @@ Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing:
 <td></td>
 </tr>
 <tr>
-<td>CM-28184</td>
-<td><p>TACACS users are unable to execute sudo commands.<br/>
-To work around this issue, add the tacacs0 user to the sudo group; for example:</p>
-
-cumulus@switch:~$  usermod -a -G sudo tacacs0
-
-
-<p>Alternatively, run the following command:</p>
-
-ip vrf exec default sudo -i
-
-</td>
-<td>4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28169</td>
 <td><p>On the Dell Z9264F-ON switch, the CPU core temperature sensors report ABSENT.</p></td>
 <td>3.7.11, 4.0.0</td>

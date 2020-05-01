@@ -278,10 +278,10 @@ The What Just Happened view displays events based on conditions detected in the 
 </ul></td>
 <tr class="even">
 <td>ACL Drops tab</td>
-<td>Displays the reason for an ACL to be (something?). By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
+<td>Displays the reason for an ACL to drop packets. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server</li>
-<li><strong>Reason</strong>: Reason why (ACL xxx)
+<li><strong>Reason</strong>: Reason why ACL dropped packets
 <ul><li>Ingress port ACL:  ACL action set to deny on the ingress port</li>
 <li>Ingress router ACL: ACL action set to deny on the ingress router interface</li>
 <li>Egress port ACL:  ACL action set to deny on the egress port</li>

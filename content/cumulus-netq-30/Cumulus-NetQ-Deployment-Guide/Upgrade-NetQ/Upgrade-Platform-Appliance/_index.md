@@ -43,10 +43,17 @@ To complete the preparation:
 
 3. Copy the file to the */mnt/installables/* directory on your appliance or VM.
 
-4. Update the NetQ debian packages using the following three commands.
+4. Update /etc/apt/sources.list.d/cumulus-netq.list to netq-3.0 as followed
 
     ```
-    cumulus@<hostname>:~$ sudo dpkg --remove --force-remove-reinstreq netq-apps netq-agent 2>/dev/null
+    cat /etc/apt/sources.list.d/cumulus-netq.list
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-3.0
+    ```
+
+5. Update the NetQ debian packages using the following three commands.
+
+    ```
+    cumulus@<hostname>:~$ sudo dpkg --remove --force-remove-reinstreq cumulus-netq netq-apps netq-agent 2>/dev/null
     [sudo] password for cumulus:
     (Reading database ... 71621 files and directories currently installed.)
     Removing netq-apps (2.4.1-ub18.04u24~1577405296.fcf3c28) ...
@@ -102,8 +109,8 @@ To upgrade your NetQ software:
 {{< tab "On-premises Deployments" >}}
 
 ```
-cumulus@<hostname>:~$ netq bootstrap master upgrade NetQ-3.0.0.tgz
-2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-2.4.1.tgz
+cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.0.0.tgz
+2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.0.0.tgz
 2020-04-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
 2020-04-28 15:47:35.667579: master-node-installer: Removing old images
 -----------------------------------------------
@@ -115,7 +122,7 @@ Successfully bootstrap-upgraded the master node
 {{< tab "Cloud Deployments" >}}
 
 ```
-netq bootstrap master upgrade NetQ-3.0.0-opta.tgz
+netq bootstrap master upgrade /mnt/installables/NetQ-3.0.0-opta.tgz
 ```
 
 {{< /tab >}}

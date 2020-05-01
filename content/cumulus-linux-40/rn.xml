@@ -1395,7 +1395,7 @@ To work around this issue, wait up to 15 seconds on 40G interfaces and 30 second
 </tr>
 <tr>
 <td>CM-25923</td>
-<td><p>The default route injected through OSPF when you configure <code>default-information originate always]} is unreliable and might age out unexpectedly.<br/>
+<td><p>The default route injected through OSPF when you configure default-information originate always is unreliable and might age out unexpectedly.<br/>
 To work around this issue, rely on a different source of default route other than injection with default-information originate.</p></td>
 <td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
 <td></td>

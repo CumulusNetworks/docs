@@ -46,28 +46,6 @@ Fixed: 3.1+dfsg-8+deb10u5</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-29420</td>
-<td><p>When you configure the mgmt Interface Class, then reboot the switch, eth0 goes into an ADMDN state.<br/>
-The workaround for now is to edit networking.service as shown below:</p>
-
-
-$ systemctl edit networking.service 
-[Service]
-Type=oneshot
-RemainAfterExit=yes
-SyslogIdentifier=networking
-TimeoutStopSec=30s
-ExecStart=/sbin/ifup -a
-ExecStart=/sbin/ifup --allow=mgmt
-ExecStop=/sbin/ifdown -a
-ExecReload=/sbin/ifreload -a
-
-
-<p>Note the extra ExecStart to run --allow=mgmt</p></td>
-<td>4.1.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29385</td>
 <td><p>The following vulnerability affects the openssl package:<br/>
 CVE-2020-1967: Bernd Edlinger discovered that malformed data passed to the SSL_check_chain() function during or after a TLS 1.3 handshake could cause a NULL dereference, resulting in denial of service.<br/>
@@ -799,7 +777,7 @@ To work around this issue, wait up to 15 seconds on 40G interfaces and 30 second
 </tr>
 <tr>
 <td>CM-25923</td>
-<td><p>The default route injected through OSPF when you configure <code>default-information originate always]} is unreliable and might age out unexpectedly.<br/>
+<td><p>The default route injected through OSPF when you configure default-information originate always is unreliable and might age out unexpectedly.<br/>
 To work around this issue, rely on a different source of default route other than injection with default-information originate.</p></td>
 <td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
@@ -1441,28 +1419,6 @@ Fixed: 3.1+dfsg-8+deb10u5</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-29420</td>
-<td><p>When you configure the mgmt Interface Class, then reboot the switch, eth0 goes into an ADMDN state.<br/>
-The workaround for now is to edit networking.service as shown below:</p>
-
-
-$ systemctl edit networking.service 
-[Service]
-Type=oneshot
-RemainAfterExit=yes
-SyslogIdentifier=networking
-TimeoutStopSec=30s
-ExecStart=/sbin/ifup -a
-ExecStart=/sbin/ifup --allow=mgmt
-ExecStop=/sbin/ifdown -a
-ExecReload=/sbin/ifreload -a
-
-
-<p>Note the extra ExecStart to run --allow=mgmt</p></td>
-<td>4.1.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29385</td>
 <td><p>The following vulnerability affects the openssl package:<br/>
 CVE-2020-1967: Bernd Edlinger discovered that malformed data passed to the SSL_check_chain() function during or after a TLS 1.3 handshake could cause a NULL dereference, resulting in denial of service.<br/>
@@ -2251,7 +2207,7 @@ To work around this issue, wait up to 15 seconds on 40G interfaces and 30 second
 </tr>
 <tr>
 <td>CM-25923</td>
-<td><p>The default route injected through OSPF when you configure <code>default-information originate always]} is unreliable and might age out unexpectedly.<br/>
+<td><p>The default route injected through OSPF when you configure default-information originate always is unreliable and might age out unexpectedly.<br/>
 To work around this issue, rely on a different source of default route other than injection with default-information originate.</p></td>
 <td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
 <td></td>

@@ -90,11 +90,11 @@ Now that the appliance is up and running, verify that the software is available 
 
     {{<netq-install/verify-image deployment="cloud" version="3.0.0">}}
 
-5. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
+3. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-5. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+4. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap server="single" version="3.0.0">}}
 

@@ -83,7 +83,7 @@ If you have changed the IP address or hostname of the NetQ Appliance, you need t
 
 Now that the appliance is up and running, verify that the software is available and the appliance is ready for installation.
 
-1. Verify that the needed packages are present and of the correct release, version 3.0.0 and update xx or later.
+1. Verify that the needed packages are present and of the correct release, version 3.0.0 and update 27 or later.
 
     {{<netq-install/verify-pkgs version="3.0.0">}}
 

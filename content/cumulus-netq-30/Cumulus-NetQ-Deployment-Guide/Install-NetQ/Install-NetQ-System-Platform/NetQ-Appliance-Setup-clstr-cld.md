@@ -82,7 +82,7 @@ If you have changed the IP address or hostname of the NetQ Appliance, you need t
 
 Now that the appliances are up and running, verify that the software is available and each appliance is ready for installation.
 
-1. On the master NetQ Cloud Appliance, verify that the needed packages are present and of the correct release, version 3.0.0 and update xx or later.
+1. On the master NetQ Cloud Appliance, verify that the needed packages are present and of the correct release, version 3.0.0 and update 27 or later.
 
     {{<netq-install/verify-pkgs version="3.0.0">}}
 
@@ -98,7 +98,7 @@ Now that the appliances are up and running, verify that the software is availabl
 
     {{<netq-install/bootstrap server="single" version="3.0.0">}}
 
-5. On your first worker NetQ Cloud Appliance, verify that the needed packages are present and of the correct release, version 3.0.0 and update xx or later.
+5. On your first worker NetQ Cloud Appliance, verify that the needed packages are present and of the correct release, version 3.0.0 and update 27 or later.
 
     {{<netq-install/verify-pkgs version="3.0.0">}}
 

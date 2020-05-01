@@ -43,10 +43,17 @@ To complete the preparation:
 
 3. Copy the file to the */mnt/installables/* directory on your appliance or VM.
 
-4. Update the NetQ debian packages using the following three commands.
+4. Update /etc/apt/sources.list.d/cumulus-netq.list to netq-3.0 as followed
 
     ```
-    cumulus@<hostname>:~$ sudo dpkg --remove --force-remove-reinstreq netq-apps netq-agent 2>/dev/null
+    cat /etc/apt/sources.list.d/cumulus-netq.list
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-3.0
+    ```
+
+5. Update the NetQ debian packages using the following three commands.
+
+    ```
+    cumulus@<hostname>:~$ sudo dpkg --remove --force-remove-reinstreq cumulus-netq netq-apps netq-agent 2>/dev/null
     [sudo] password for cumulus:
     (Reading database ... 71621 files and directories currently installed.)
     Removing netq-apps (2.4.1-ub18.04u24~1577405296.fcf3c28) ...

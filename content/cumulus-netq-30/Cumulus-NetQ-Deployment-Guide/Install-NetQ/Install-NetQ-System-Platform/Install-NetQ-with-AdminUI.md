@@ -7,14 +7,14 @@ toc: 5
 You can now install the NetQ software using the Admin UI.
 
 {{<notice info>}}
-This is the final set of steps for installing NetQ. If you have not already performed the installation preparation steps, go to {{<link title="Install NetQ Platform">}} before continuing here.
+This is the final set of steps for installing NetQ. If you have not already performed the installation preparation steps, go to {{<link title="Install NetQ System Platform">}} before continuing here.
 {{</notice>}}
 
 To install NetQ:
 
-1. Log in to your NetQ platform server, NetQ Appliance, NetQ Cloud Appliance or the master node of your cluster.
+1. Log in to your NetQ On-premises Appliance, NetQ Cloud Appliance, the master node of your cluster, or VM.
 
-    In your browser address field, enter **https://**<*hostname-or-ipaddr*>**:8443**
+    In your browser address field, enter *https://\<hostname-or-ipaddr\>:8443*.
 
     This opens the Admin UI.
 
@@ -78,4 +78,4 @@ With the NetQ 2.4.0 release, you must have one master and two worker nodes. With
 
         When the installation and activation is complete, the NetQ System Health dashboard is visible for tracking the status of key components in the system. Single server deployments display two cards, one for the server, and one for Kubernetes pods. Server cluster deployments display additional cards, including one each for the Cassandra database, Kafka, and Zookeeper services.
 
-        {{<figure src="/images/netq/adminui-health-db-cloud-240.png" width="700">}}
+        {{<figure src="/images/netq/adminui-health-db-onprem-300.png" width="700" caption="On-premises deployment">}}

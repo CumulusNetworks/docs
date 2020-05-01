@@ -126,9 +126,7 @@ A simple process installs the NetQ CLI on a RHEL or CentOS server.
     root@rhel7:~# rpm -q -netq-apps
     ```
 
-   You should see version 3.0.0 and update 27 or later in the results. For example:
-
-    - netq-apps-**3.0.0**-rh7u**27**~1581350236.c5ec3e5.x86_64.rpm
+    {{<netq-install/cli-version version="3.0.0" opsys="rh">}}
 
 5. Continue with the next section.
 
@@ -143,7 +141,7 @@ Two methods are available for configuring the NetQ CLI on a switch:
 
 The steps to configure the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment. Follow the instructions for your deployment type.
 
-<details><summary>Configure the CLI for On-premises Deployments</summary>
+<details><summary>On-premises Deployments</summary>
 
 Use the following command to configure the CLI:
 
@@ -165,7 +163,7 @@ If you have a server cluster deployed, use the IP address of the master server.
 {{%/notice%}}
 
 </details>
-<details><summary>Configure the CLI for Cloud Deployments</summary>
+<details><summary>Cloud Deployments</summary>
 
 To access and configure the CLI on your NetQ Platform or NetQ Cloud Appliance, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to Cumulus NetQ!*
 

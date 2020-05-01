@@ -199,21 +199,18 @@ To install the NetQ Agent:
 
 1.  Install the software packages on the server.
 
-```
-root@ubuntu:~# sudo apt-get update
-root@ubuntu:~# sudo apt-get install netq-agent
-```
+    ```
+    root@ubuntu:~# sudo apt-get update
+    root@ubuntu:~# sudo apt-get install netq-agent
+    ```
 
 2. Verify you have the correct version of the Agent.
 
-```
-root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
-```
+    ```
+    root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
 
-    You should see version 3.0.0 and update 27 in the results. For example:
-
-    - netq-agent_**3.0.0**-ub18.04u**27**~1588048540.0e20d33_amd64.deb, or
-    - netq-agent_**3.0.0**-ub16.04u**27**~1588049492.0e20d33_amd64.deb
+    {{<netq-install/agent-version version="3.0.0" opsys="ub">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

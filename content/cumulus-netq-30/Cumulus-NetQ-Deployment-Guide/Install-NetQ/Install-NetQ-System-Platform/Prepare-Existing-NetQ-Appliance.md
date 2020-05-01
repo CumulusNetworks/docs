@@ -165,12 +165,12 @@ Download the software from the {{<exlink url="https://cumulusnetworks.com/downlo
 
 2. Select *3.0* from the **Version** list, and then select *3.0.0* from the submenu.
 
-    {{< figure src="/images/netq/netq-24-download-options-241.png" width="500" >}}
+    {{< figure src="/images/netq/netq-30-bootstrap-download-300.png" width="500" >}}
 
 3. Select *Bootstrap* from the **Hypervisor/Platform** list.
     Note that the bootstrap file is the same for both appliances.
 
-    {{< figure src="/images/netq/netq-24-bootstrap-dwnld-241.png" width="200" >}}
+    {{< figure src="/images/netq/netq-300-download-bootstrap.png" width="200" >}}
 
 4. Scroll down and click **Download**.
 
@@ -178,7 +178,7 @@ Download the software from the {{<exlink url="https://cumulusnetworks.com/downlo
 
     Make sure you select the right install choice based on whether you are preparing the on-premises or cloud version of the appliance.
 
-    {{< figure src="/images/netq/netq-24-appliance-onpremcld-dwnld-241.png" width="410" >}}
+    {{< figure src="/images/netq/netq-30-appliance-onpremcld-dwnld-300.png" width="410" >}}
 
 6. Scroll down and click **Download**.
 
@@ -188,8 +188,8 @@ Download the software from the {{<exlink url="https://cumulusnetworks.com/downlo
 
     ```
     cumulus@<hostname>:~$ dpkg -l | grep netq
-    ii  netq-agent   3.0.0-ub18.04u26~1581351889.c5ec3e5 amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-    ii  netq-apps    3.0.0-ub18.04u26~1581351889.c5ec3e5 amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+    ii  netq-agent   3.0.0-ub18.04u27~1588242914.9fb5b87_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+    ii  netq-apps    3.0.0-ub18.04u27~1588242914.9fb5b87_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
 
     cumulus@<hostname>:~$ cd /mnt/installables/
     cumulus@<hostname>:/mnt/installables$ ls

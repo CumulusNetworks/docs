@@ -66,14 +66,7 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb     CumulusLinux-
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    You should see version 3.0.0 and update 27 in the results. For example:
-
-    - For Cumulus Linux 3.3.2-3.7.x:  
-      - netq-apps_**3.0.0**-cl3u**27**~1588048439.0e20d33_armel.deb
-      - netq-apps_**3.0.0**-cl3u**27**~1581350537.c5ec3e5_amd64.deb
-    - For Cumulus Linux 4.0.0:
-      - netq-apps_**3.0.0**-cl4u**27**~1588048918.0e20d335_armel.deb
-      - netq-apps_**3.0.0**-cl4u**27**~1581350238.c5ec3e5a_amd64.deb
+    {{<netq-install/cli-version version="3.0.0" opsys="cl">}}
 
 4. Continue with NetQ CLI configuration in the next section.
 

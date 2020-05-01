@@ -28,7 +28,7 @@ To complete the preparation:
 
     3. Select the relevant software from the **HyperVisor/Platform** list:
 
-        <!-- {{< figure src="/images/netq/netq-24-download-options-241.png" width="500" >}} -->
+        {{< figure src="/images/netq/netq-30-download-options-300.png" width="500" >}}
          
         | Your Deployment Type | Hypervisor/Platform Selection | Downloaded Filename |
         | ---- | ---- | ---- |
@@ -39,7 +39,7 @@ To complete the preparation:
 
     4. Scroll down and click **Download**. For example: The NetQ Appliance images.
 
-        <!-- {{< figure src="/images/netq/netq-24-appliance-onpremcld-dwnld-241.png" width="420" >}} -->
+        {{< figure src="/images/netq/netq-30-appliance-onpremcld-dwnld-300.png" width="420" >}}
 
 3. Copy the file to the */mnt/installables/* directory on your appliance or VM.
 
@@ -175,12 +175,8 @@ netq upgrade bundle /mnt/installables/NetQ-3.0.0-opta.tgz
 2. After the upgrade is completed, confirm the upgrade was successful.
 
     ```
-    cat /etc/app-release
+    cumulus@<hostname>:~$ cat /etc/app-release
+    BOOTSTRAP_VERSION=3.0.0
+    APPLIANCE_MANIFEST_HASH=d40ca38672
+    APPLIANCE_VERSION=3.0.0
     ```
-
-    The output should look like this:
-
-    | System Platform | On-premises | Cloud |
-    | ---- | ---- | ---- |
-    | <strong>NetQ VMs</strong> | <ul><li>KVM:<br>APPLIANCE_VERSION=3.0.0<br>APPLIANCE_MANIFEST_HASH=E9361...12BE7<br>APPLIANCE_NAME="&lt;NetQ Platform Name&gt;"</li><li>VMware:<br>APPLIANCE_VERSION=3.0.0<br>APPLIANCE_MANIFEST_HASH=7916C...6D0EF<br>APPLIANCE_NAME="&lt;NetQ Platform Name&gt;"</li></ul> | <ul><li>KVM: <br> APPLIANCE_VERSION=3.0.0<br>APPLIANCE_MANIFEST_HASH=383E9...F4371<br>APPLIANCE_NAME="&lt;NetQ Cloud Platform Name&gt;"</li><li>VMware: <br> APPLIANCE_VERSION=3.0.0<br>APPLIANCE_MANIFEST_HASH=E6176...A3EA1<br>APPLIANCE_NAME="&lt;NetQ Cloud Platform Name&gt;"</li></ul> |
-    | <strong>NetQ Appliance</strong> | APPLIANCE_VERSION=3.0.0<br>APPLIANCE_MANIFEST_HASH=ADB58...E6732<br>APPLIANCE_NAME="NetQ Appliance" | APPLIANCE_VERSION=3.0.0<br>APPLIANCE_MANIFEST_HASH=4F50D...57FE1<br>APPLIANCE_NAME="NetQ Cloud Appliance" |

@@ -211,10 +211,7 @@ A simple process installs the NetQ CLI on an Ubuntu server.
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 
-    You should see version 3.0.0 and update 27 or later in the results. For example:
-
-    - netq-apps_**3.0.0**-ub18.04u**27**~1588048540.0e20d33_amd64.deb, or
-    - netq-apps_**3.0.0**-ub16.04u**27**~1588049492.0e20d33_amd64.deb.
+    {{<netq-install/cli-version version="3.0.0" opsys="ub">}}
 
 5. Continue with NetQ CLI configuration in the next section.
 
@@ -229,7 +226,7 @@ Two methods are available for configuring the NetQ CLI on a switch:
 
 The steps to configure the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment. Follow the instruction for your deployment type.
 
-<details><summary>Configure the CLI for On-premises Deployments</summary>
+<details><summary>On-premises Deployments</summary>
 
 Use the following command to configure the CLI:
 
@@ -251,7 +248,7 @@ If you have a server cluster deployed, use the IP address of the master server.
 {{%/notice%}}
 
 </details>
-<details><summary> Configure the CLI for Cloud Deployments</summary>
+<details><summary>Cloud Deployments</summary>
 
 To access and configure the CLI on your NetQ Platform or NetQ Cloud Appliance, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to Cumulus NetQ!*
 

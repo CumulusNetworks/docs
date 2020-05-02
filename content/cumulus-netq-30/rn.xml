@@ -7,6 +7,51 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>NETQ-5808</td>
+<td><p>When upgrading to NetQ 3.0.0, if you are using NetQ Agent 2.3.1 or earlier and have MLAG configured, the MLAG service becomes unresponsive. To resolve this issue, upgrade your NetQ Agents to version 3.0.0.</p></td>
+<td>3.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>NETQ-5774</td>
+<td><p>When installing NetQ on switches running in Cumulus Linux 3.7.x  with management VRF configured, the CLI and Agent server are configured as follows:</p>
+
+
+netq config add cli server &lt;ipaddr&gt; vrf mgmt
+netq config restart cli
+
+netq config add agent server &lt;ipaddr&gt; vrf mgmt
+netq config restart agent
+
+
+
+<p>This results in netqd running in both default and management VRF and the NetQ Agent running in default VRF. In this scenario, the NetQ Agent status is not reported correctly to the management VRF.</p>
+
+<p>To workaround this issue:</p>
+
+<p>If you have management VRF configured, run the following commands:</p>
+
+
+systemctl stop netqd.service
+systemctl disable netqd.service
+systemctl enable netqd@mgmt.service
+systemctl restart netqd@mgmt.service
+
+
+
+<p>If you have default VRF configured, run the following commands:</p>
+
+
+systemctl stop netqd@mgmt.service
+systemctl disable netqd@mgmt.service
+systemctl enable netqd.service
+systemctl restart netqd.service
+
+</td>
+<td>3.0.0</td>
+<td></td>
+</tr>
+<tr>
 <td>NETQ-5768</td>
 <td><p>When multiple premises are deployed and Cumulus Linux upgrades have been performed on switches using the lifecycle management feature, the Upgrade History card displays history for all premises rather than only those for the selected premises.</p></td>
 <td>3.0.0</td>
@@ -21,6 +66,12 @@
 <tr>
 <td>NETQ-5737</td>
 <td><p>Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</p></td>
+<td>3.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>NETQ-5591</td>
+<td><p>The lifecycle management feature does not present general alarm or info events; however, errors related to the upgrade process are reported within the NetQ UI.</p></td>
 <td>3.0.0</td>
 <td></td>
 </tr>

@@ -16,7 +16,6 @@
 
 {{ if eq .Params.type "pdf" }}
     {{ range (where $.Site.Pages "Type" .Section) }}
-            {{ .Page.Scratch.Set "pdf" true }}
             <article class="markdown">
                 <span class="toc{{ .Params.toc }}"><h1><a id="{{- urlize .Title -}}"></a>{{- .Title -}}</h1></span>
                 {{- .Content -}}

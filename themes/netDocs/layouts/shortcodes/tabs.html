@@ -2,36 +2,14 @@
 {{ $id := .Get 0 }}
 {{ $group := printf "tabs-%s" $id }}
 
-
-{{/*  First, we need to determine if this is being called from the pdf template or from a unique page
-      the pdf template sets a "pdf" scratch value when the page is being built */}}
-
-{{ if .Page.Scratch.Get "pdftemplate" }}
-
-{{/*  Each tab is only expanded if the value is unique
-      Two tabs with the same value id makes one of them be hidden. If all are the same, all are hidden
-      By pulling the current unix timestamp in nanosectons we should be able to generate a unique id for every tab
-      Note that this is called on a per-shortcode basis
-      any counters used here are lost on the next call of the tab shortcode even on the same page */}}
-
-  {{- range $index, $tab :=  .Scratch.Get $group -}}
-    {{ $counter := now.UnixNano }}
-    <div class="book-tabs">
-        <input type="radio" class="hidden" name="tabs-{{$counter}}" id="tabs-{{$counter}}" checked="checked"/>
-        <label for="tabs-{{$counter}}">{{ $tab.Name }}</label>
-        <div class="book-tabs-content markdown-inner">
-          {{ .Content | markdownify }}
-        </div>
-    </div>
-  {{- end -}}
-{{ else }}
-  <div class="book-tabs">
-    {{- range $index, $tab :=  .Scratch.Get $group -}}
-      <input type="radio" class="hidden" name="{{ $group }}" id="{{ printf "%s-%d" $group $index }}" {{ if not $index }}checked="checked"{{ end }} />
-      <label for="{{ printf "%s-%d" $group $index }}">{{ $tab.Name }}</label>
-      <div class="book-tabs-content markdown-inner">
-        {{ .Content | markdownify }}
-      </div>
-    {{- end -}}
+<div class="book-tabs">
+{{- range $index, $tab :=  .Scratch.Get $group -}}
+  <input type="radio" class="hidden" name="{{ $group }}" id="{{ printf "%s-%d" $group $index }}" {{ if not $index }}checked="checked"{{ end }} />
+  <label for="{{ printf "%s-%d" $group $index }}">
+    {{ $tab.Name }}
+  </label>
+  <div class="book-tabs-content markdown-inner">
+    {{ .Content | markdownify }}
   </div>
-{{ end }}
+{{- end -}}
+</div>

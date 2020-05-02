@@ -181,13 +181,10 @@ To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
 <td>CM-29033</td>
 <td><p>When using apt-get update &amp;&amp; apt-get upgrade to upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later, a message similar to the following may appear. </p>
 
-
-
-Reading <span class="code-keyword">package</span> lists... Done
-E: Repository 'http:<span class="code-comment">//apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Label' value from 'cumulus-repository-4.0.0' to 'cumulus-repository-4.1.0'
-</span>E: Repository 'http:<span class="code-comment">//apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Codename' value from 'CumulusLinux-4.0.0' to 'CumulusLinux-4.1.0'
-</span>N: This must be accepted explicitly before updates <span class="code-keyword">for</span> <span class="code-keyword">this</span> repository can be applied. See apt-secure(8) manpage <span class="code-keyword">for</span> details.
-
+Reading package lists... Done
+E: Repository 'http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Label' value from 'cumulus-repository-4.0.0' to 'cumulus-repository-4.1.0'
+E: Repository 'http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Codename' value from 'CumulusLinux-4.0.0' to 'CumulusLinux-4.1.0'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
 
 
 <p>To work around this issue and proceed with the upgrade, run apt-get update --allow-releaseinfo-change. </p></td>
@@ -2307,6 +2304,12 @@ To work around this issue, restart switchd.</p></td>
  To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
 </td>
 <td>3.7.2</td>
+</tr>
+<tr>
+<td>CM-23123</td>
+<td><p>When you enable FEC (RS or BaseR) on an interface, removing the configuration from that interface does not revert the FEC status to off/none. </p>
+</td>
+<td>3.7.2-3.7.12</td>
 </tr>
 <tr>
 <td>CM-23016</td>

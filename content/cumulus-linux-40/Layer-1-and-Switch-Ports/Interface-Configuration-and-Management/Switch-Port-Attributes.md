@@ -1423,6 +1423,12 @@ For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must conf
 
 {{%notice note%}}
 
+Do not manually edit the `/etc/network/interfaces` file, then run `ifreload -a` or use `ethtool` to change the port speed, as this returns an error. If you change the speed to a setting that is already in use by manually editing the `/etc/network/interfaces` file or with `ethtool`, no error is returned, but no changes are made.
+
+{{%/notice%}}
+
+{{%notice note%}}
+
 100G switch ASICs do not support 1000Base-X auto-negotiation (Clause 37), which is recommended for 1G fiber optical modules. As a result, single fiber breaks cannot be detected when using 1G optical modules on these switches.
 
 The auto-negotiation setting must be the same on both sides of the connection. If using 1G fiber modules in 25G SFP28 ports, ensure auto-negotiation is disabled on the link partner interface as well.

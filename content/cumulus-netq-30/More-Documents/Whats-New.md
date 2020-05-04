@@ -21,6 +21,7 @@ You can upgrade from NetQ 2.4.x to NetQ 3.0.0. Upgrades from NetQ 2.3.x and earl
 - Tune NetQ Agent polling for events and resources, and specify polling frequency using `netq config agent command` command set
 - Specify a list of hostnames when running `netq check` commands
 - View additional statistics from `netq <hostname> show ethtool-status` command
+- Ported Python 2 codebase to Python 3
 
 {{<notice note>}}
 LNV support has been removed as of this release.

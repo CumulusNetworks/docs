@@ -7,8 +7,8 @@ toc: 3
 ---
 The complete Cumulus NetQ solution contains several components that must be installed, including the NetQ applications, the database, and the NetQ Agents. NetQ can be deployed in two arrangements:
 
-- All components installed locally (the applications and database are installed as a single entity, called the NetQ Platform); known hereafter as the on-premises solution
-- Only the aggregation and forwarding application installed locally (called the NetQ Collector), with the database and all other applications installed in the cloud; known hereafter as the cloud solution
+- All software components installed locally (the applications and database are installed as a single entity, called the *NetQ Platform*) running on the *NetQ On-premises Appliance* or *NetQ On-premises Virtual Machine (VM)*; known hereafter as the *on-premises solution*
+- Only the aggregation and forwarding application software installed locally (called the *NetQ Collector*) running on the *NetQ Cloud Appliance* or *NetQ Cloud VM*, with the database and all other applications installed in the cloud; known hereafter as the *cloud solution*
 
 The NetQ Agents reside on the switches and hosts being monitored in your network.
 
@@ -16,7 +16,7 @@ For the on-premises solution, the NetQ Agents collect and transmit data from the
 
 {{< figure src="/images/netq/install-onprem-basic-300.png" width="600">}}
 
-For the cloud solution, the NetQ Agent function is exactly the same, transmitting collected data, but instead sends it to the NetQ Collector containing only the aggregation and forwarding application. The NetQ Collector then transmits this data to Cumulus Networks cloud-based infrastructure for further processing and storage. This data is then provided for display through the same user interfaces as the on-premises solution. In this solution, the browser interface can be pointed to the local NetQ Cloud Appliance or Virtual Machine, or directly to *netq.cumulusnetworks.com*.
+For the cloud solution, the NetQ Agent function is exactly the same, transmitting collected data, but instead sends it to the NetQ Collector containing only the aggregation and forwarding application. The NetQ Collector then transmits this data to Cumulus Networks cloud-based infrastructure for further processing and storage. This data is then provided for display through the same user interfaces as the on-premises solution. In this solution, the browser interface can be pointed to the local NetQ Cloud Appliance or VM, or directly to *netq.cumulusnetworks.com*.
 
 {{< figure src="/images/netq/install-cloud-basic-300.png" width="700">}}
 
@@ -33,6 +33,6 @@ The documentation walks you through these choices and then provides the instruct
 No matter how you answer the questions above, the installation workflow can be summarized as follows:
 
 1. Prepare physical server or virtual machine.
-2. Install the NetQ Platform or NetQ Collector.
+2. Install the software (NetQ Platform or NetQ Collector).
 3. Install and configure NetQ Agents on switches and hosts.
 4. Install and configure NetQ CLI on switches and hosts (optional, but useful).

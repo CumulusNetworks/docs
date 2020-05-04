@@ -2281,6 +2281,9 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
   If an MLAG pair is used instead of a single exit/border leaf, add
   the same temporary VNIs on both switches of the MLAG pair.
 
+
+  - EVPN is not supported when {{<link title="Redistribute Neighbor" >}} is also configured. Enabling both features simultaneously causes instability in IPv4 and IPv6 neighbor entries.
+  
 ## Example Configurations
 
 - Basic Clos (4x2) for bridging

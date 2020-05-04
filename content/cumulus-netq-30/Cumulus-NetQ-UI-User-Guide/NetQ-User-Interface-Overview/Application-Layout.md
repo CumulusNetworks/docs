@@ -19,13 +19,13 @@ The NetQ UI contains two main areas:
 
 Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the main menu which provides navigation to:
 
-- **Favorites**: contains link to the user-defined favorite workbenche; Home is listed by default and points to the Cumulus Workbench
+- **Favorites**: contains link to the user-defined favorite workbenches; Home is points to the Cumulus Workbench until reset by a user
 - **NetQ**: contains links to all workbenches
 - **Network**: contains links to tabular data about various network elements and the What Just Happened feature
-- **Admin**: contains link to user documentation and application management features
-- **Notifications**: contains link to event notification configuration
+- **Admin**: contains links to application management and lifecycle management features (only visible to users with Admin access role)
+- **Notifications**: contains link to threshold-based event rules and notification channels
 
-{{< figure src="/images/netq/main-menu-241.png" width="500" >}}
+{{< figure src="/images/netq/main-menu-admin-300.png" width="600" >}}
 
 ## Recent Actions
 
@@ -49,9 +49,9 @@ Found in the header, the graph and performance rating provide a view into the he
 
 {{< figure src="/images/netq/quick-ntwk-health-header-222.png" width="200" >}}
 
-{{%notice note%}}
+{{<notice note>}}
 On initial start up of the application, it may take up to an hour to reach an accurate health indication as some processes run every 30 minutes.
-{{%/notice%}}
+{{</notice>}}
 
 ## Workbenches
 

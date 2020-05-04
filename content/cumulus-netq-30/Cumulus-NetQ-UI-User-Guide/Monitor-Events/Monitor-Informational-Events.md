@@ -71,7 +71,7 @@ The medium Info card displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg" height="18" width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-1.svg" height="18" width="18"/></td>
 <td>Indicates data is for all warning, info, and debug severity events in the network</td>
 </tr>
 <tr class="odd">
@@ -115,7 +115,7 @@ The large Info card displays:
 <td>Range of time in which the displayed data was collected; applies to all card sizes</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg" height="18" width="18"/></td>
+<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-1.svg" height="18" width="18"/></td>
 <td>Indicates data is for all warning, info, and debug severity events in the network</td>
 </tr>
 <tr class="odd">
@@ -152,7 +152,7 @@ Alarms Status
 
 The full screen Info card provides tabs for all events.
 
-{{<figure src="/images/netq/events-info-fullscr-241.png" width="700">}}
+{{<figure src="/images/netq/events-info-fullscr-300.png" width="700">}}
 
 <table>
 <colgroup>
@@ -244,6 +244,10 @@ You can filter instead for the devices that have the most info events by selecti
 <p> </p>
 {{<figure src="/images/netq/events-info-large-by-event-count-222.png" width="500">}}
 
+{{<notice tip>}}
+You can open the switch card for any of the listed devices by clicking on the device name.
+{{</notice>}}
+
 ## View All Events
 
 You can view all events in the network either by clicking the **Show All Events** link under the table on the large Info Events card, or by opening the full screen Info Events card.
@@ -252,6 +256,6 @@ You can view all events in the network either by clicking the **Show All Events*
 
 OR
 
-{{<figure src="/images/netq/events-info-fullscr-241.png" width="700">}}
+{{<figure src="/images/netq/events-info-fullscr-300.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.

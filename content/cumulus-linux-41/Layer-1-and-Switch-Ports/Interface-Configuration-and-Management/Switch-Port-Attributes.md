@@ -1408,6 +1408,7 @@ For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must conf
     ```
 
 2. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
+
 3. If you want to set the speed of any SFPs to 1G, set the port speed to 1000 Mbps using NCLU commands; this is *not* necessary for 10G SFPs. You don't need to set the port speed to 1G for all four ports. For example, if you intend only for swp5 and swp6 to use 1G SFPs, do the following:
 
     ```
@@ -1415,6 +1416,12 @@ For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must conf
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
     ```
+
+{{%notice note%}}
+
+Do not use `ethtool` or `ifreload -a` to change the port speed; using ethtool or `ifreload -a` error returns an error. If you change the speed with `ethtool` to a setting that is already in use, `ethtool` (and `ifreload -a`) do not return an error, but no changes are made.
+
+{{%/notice%}}
 
 {{%notice note%}}
 

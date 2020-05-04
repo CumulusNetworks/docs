@@ -1382,6 +1382,12 @@ order; for example, swp1, swp2, swp3, and swp4.
 
 {{%notice note%}}
 
+Do not use `ethtool` or `ifreload -a` to change the port speed; using ethtool or `ifreload -a` error returns an error. If you change the speed with `ethtool` to a setting that is already in use, `ethtool` (and `ifreload -a`) do not return an error, but no changes are made.
+
+{{%/notice%}}
+
+{{%notice note%}}
+
 100G switch ASICs do not support 1000Base-X auto-negotiation (Clause
 37), which is recommended for 1G fiber optical modules. As a result,
 single fiber breaks cannot be detected when using 1G optical modules on

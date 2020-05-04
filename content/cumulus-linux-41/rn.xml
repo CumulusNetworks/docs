@@ -46,22 +46,6 @@ Fixed: 3.1+dfsg-8+deb10u5</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-29420</td>
-<td><p>When you configure the mgmt Interface Class, then reboot the switch, eth0 goes into an ADMDN state.<br/>
-To work around this issue, either bring up eth0 with the sudo ifup eth0 command or create /etc/rc.local with the following content to bring up eth0 on startup:</p>
-
-#!/bin/sh -e
-ifup eth0
-
-
-
-sudo chmod +x /etc/rc.local
-
-</td>
-<td>4.1.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29385</td>
 <td><p>The following vulnerability affects the openssl package:<br/>
 CVE-2020-1967: Bernd Edlinger discovered that malformed data passed to the SSL_check_chain() function during or after a TLS 1.3 handshake could cause a NULL dereference, resulting in denial of service.<br/>
@@ -378,22 +362,6 @@ Warning: The unit file, source configuration file or drop-ins of hsflowd@mgmt.se
 <td><p>When host-resources and ucd-snmp-mib are polled, you see permission denied messages similar to the following:</p>
 
 Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing: Permission denied
-
-</td>
-<td>4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28184</td>
-<td><p>TACACS users are unable to execute sudo commands.<br/>
-To work around this issue, add the tacacs0 user to the sudo group; for example:</p>
-
-cumulus@switch:~$  usermod -a -G sudo tacacs0
-
-
-<p>Alternatively, run the following command:</p>
-
-ip vrf exec default sudo -i
 
 </td>
 <td>4.0.0-4.1.1</td>
@@ -793,7 +761,7 @@ To work around this issue, wait up to 15 seconds on 40G interfaces and 30 second
 </tr>
 <tr>
 <td>CM-25923</td>
-<td><p>The default route injected through OSPF when you configure <code>default-information originate always]} is unreliable and might age out unexpectedly.<br/>
+<td><p>The default route injected through OSPF when you configure default-information originate always is unreliable and might age out unexpectedly.<br/>
 To work around this issue, rely on a different source of default route other than injection with default-information originate.</p></td>
 <td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
@@ -1382,6 +1350,19 @@ reports to be injected to the input subsystem from a non-bonded source.</p></td>
 <td>4.0.0-4.1.0</td>
 </tr>
 <tr>
+<td>CM-29033</td>
+<td><p>When using apt-get update &amp;&amp; apt-get upgrade to upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later, a message similar to the following may appear. </p>
+
+Reading package lists... Done
+E: Repository 'http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Label' value from 'cumulus-repository-4.0.0' to 'cumulus-repository-4.1.0'
+E: Repository 'http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Codename' value from 'CumulusLinux-4.0.0' to 'CumulusLinux-4.1.0'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
+
+
+<p>To work around this issue and proceed with the upgrade, run apt-get update --allow-releaseinfo-change. </p></td>
+<td>4.0.0-4.1.0</td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
@@ -1432,22 +1413,6 @@ CVE-2020-1983: A use after free vulnerability in ip_reass() in ip_input.c of lib
 Vulnerable: &lt;= 3.1+dfsg-8+deb10u4<br/>
 Fixed: 3.1+dfsg-8+deb10u5</p></td>
 <td>4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29420</td>
-<td><p>When you configure the mgmt Interface Class, then reboot the switch, eth0 goes into an ADMDN state.<br/>
-To work around this issue, either bring up eth0 with the sudo ifup eth0 command or create /etc/rc.local with the following content to bring up eth0 on startup:</p>
-
-#!/bin/sh -e
-ifup eth0
-
-
-
-sudo chmod +x /etc/rc.local
-
-</td>
-<td>4.1.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1611,6 +1576,20 @@ To work around this issue, restart FRR.</p></td>
 To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29033</td>
+<td><p>When using apt-get update &amp;&amp; apt-get upgrade to upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later, a message similar to the following may appear. </p>
+
+Reading package lists... Done
+E: Repository 'http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Label' value from 'cumulus-repository-4.0.0' to 'cumulus-repository-4.1.0'
+E: Repository 'http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Codename' value from 'CumulusLinux-4.0.0' to 'CumulusLinux-4.1.0'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
+
+
+<p>To work around this issue and proceed with the upgrade, run apt-get update --allow-releaseinfo-change. </p></td>
+<td>4.0.0-4.1.0</td>
+<td>4.1.1</td>
 </tr>
 <tr>
 <td>CM-28992</td>
@@ -1824,22 +1803,6 @@ Warning: The unit file, source configuration file or drop-ins of hsflowd@mgmt.se
 <td><p>When host-resources and ucd-snmp-mib are polled, you see permission denied messages similar to the following:</p>
 
 Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing: Permission denied
-
-</td>
-<td>4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-28184</td>
-<td><p>TACACS users are unable to execute sudo commands.<br/>
-To work around this issue, add the tacacs0 user to the sudo group; for example:</p>
-
-cumulus@switch:~$  usermod -a -G sudo tacacs0
-
-
-<p>Alternatively, run the following command:</p>
-
-ip vrf exec default sudo -i
 
 </td>
 <td>4.0.0-4.1.1</td>
@@ -2239,7 +2202,7 @@ To work around this issue, wait up to 15 seconds on 40G interfaces and 30 second
 </tr>
 <tr>
 <td>CM-25923</td>
-<td><p>The default route injected through OSPF when you configure <code>default-information originate always]} is unreliable and might age out unexpectedly.<br/>
+<td><p>The default route injected through OSPF when you configure default-information originate always is unreliable and might age out unexpectedly.<br/>
 To work around this issue, rely on a different source of default route other than injection with default-information originate.</p></td>
 <td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
 <td></td>

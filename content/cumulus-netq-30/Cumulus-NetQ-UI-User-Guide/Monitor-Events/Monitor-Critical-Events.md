@@ -151,7 +151,7 @@ The category with the largest number of alarms is shown at the top, followed by 
 
 The full screen Alarms card provides tabs for all events.
 
-{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab-241.png" width="700" >}}
+{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab-300.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -214,25 +214,21 @@ In this example, there are a small number of alarms (2), the number of alarms is
 
 ## View the Distribution of Alarms
 
-It is helpful to know where and when alarms are occurring in your network. The Alarms card workflow enables you to see the distribution of alarms based on its source-network services, interfaces, or other system services. You can also view the trend of alarms in each source category.
+It is helpful to know where and when alarms are occurring in your network. The Alarms card workflow enables you to see the distribution of alarms based on its source: network services, interfaces, system services, and threshold-based events.
 
 To view the alarm distribution, open the medium Alarms card. Scroll down to view all of the charts.
 
 {{< figure src="/images/netq/events-alarms-medium-222.png" width="200" >}}
 
-## Monitor System and Interface Alarm Details
+## Monitor Alarm Details
 
-The Alarms card workflow enables users to easily view and track critical severity system and interface alarms occurring anywhere in your network.
+The Alarms card workflow enables users to easily view and track critical severity alarms occurring anywhere in your network. You can sort alarms based on their occurrence or view devices with the most network services alarms.
 
-### View All System and Interface Alarms
+To view critical alarms, open the large Alarms card.
 
-You can view the alarms associated with the system and interfaces using the Alarms card workflow. You can sort alarms based on their occurrence or view devices with the most network services alarms.
+{{< figure src="/images/netq/events-alarms-large-summary-tab-300.png" width="500" >}}
 
-To view network services alarms, open the large Alarms card.
-
-{{< figure src="/images/netq/events-alarms-large-systrcif-tab-231.png" width="500" >}}
-
-From this card, you can view the distribution of alarms for each of the categories over time. The charts are sorted by total alarm count, with the highest number of alarms i a category listed at the top. Scroll down to view any hidden charts. A list of the associated alarms is also displayed. By default, the list of the most recent alarms for the systems and interfaces is displayed when viewing the large cards.
+From this card, you can view the distribution of alarms for each of the categories over time. The charts are sorted by total alarm count, with the highest number of alarms i a category listed at the top. Scroll down to view any hidden charts. A list of the associated alarms is also displayed. By default, the list of the most recent alarms is displayed when viewing the large card.
 
 ### View Devices with the Most Alarms
 
@@ -240,7 +236,11 @@ You can filter instead for the devices that have the most alarms.
 
 To view devices with the most alarms, open the large Alarms card, and then select **Devices by event count** from the dropdown.
 
-{{< figure src="/images/netq/events-alarms-large-by-event-count-222.png" width="500" >}}
+{{< figure src="/images/netq/events-alarms-large-by-event-count-300.png" width="500" >}}
+
+{{<notice tip>}}
+You can open the switch card for any of the listed devices by clicking on the device name.
+{{</notice>}}
 
 ### Filter Alarms by Category
 
@@ -278,13 +278,13 @@ To compare two time periods:
 
 5. Select a different time period.  
 
-    {{< figure src="/images/netq/events-alarms-large-systrcif-tab-event-count-222.png" width="500" >}}
+    {{<figure src="/images/netq/events-alarms-large-by-event-count-300.png" width="500">}}
     <p> </p>
-    {{< figure src="/images/netq/events-alarms-large-systrcif-event-count-tab-1w-222.png" width="500" >}}
+    {{<figure src="/images/netq/events-alarms-large-by-event-count-1w-300.png" width="500">}}
 
 6. Compare the two cards with the **Devices by event count** filter applied.
 
-    In this example, both the total alarm count and the devices with the most alarms in each time period are unchanged. You could go back further in time to see if this changes or investigate the current status of the largest offenders.
+    In this example, the total alarm count and the devices with the most alarms in each time period have changed for the better overall. You could go back further in time  or investigate the current status of the largest offenders.
 
 ## View All Events
 
@@ -294,6 +294,6 @@ You can view all events in the network either by clicking the **Show All Events*
 
 OR
 
-{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab-241.png" width="700" >}}
+{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab-300.png" width="700" >}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.

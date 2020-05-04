@@ -13,5 +13,5 @@ This guide is intended for network administrators who are responsible for instal
 For information about monitoring and troubleshooting your network, refer to the {{<link url="Cumulus-NetQ-CLI-User-Guide">}} or the {{<link url="Cumulus-NetQ-UI-User-Guide">}}.
 
 {{%notice tip%}}
-Before you get started, you should review the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360041040413" text="release notes">}} for this version.
+Before you get started, you should review the {{<link title="Cumulus NetQ 3.0 Release Notes" text="release notes">}} for this version.
 {{%/notice%}}

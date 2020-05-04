@@ -59,8 +59,7 @@ subnet 172.0.24.0 netmask 255.255.255.0 {
 }
 ```
 
-Here is an example DHCP configuration with {{<exlink url="http://www.thekelleys.org.uk/dnsmasq/doc.html" text="dnsmasq">}} (static address
-assignment):
+Here is an example DHCP configuration with {{<exlink url="http://www.thekelleys.org.uk/dnsmasq/doc.html" text="dnsmasq">}} (static address assignment):
 
 ```
 dhcp-host=sw4,192.168.100.14,6c:64:1a:00:03:ba,set:sw4
@@ -110,7 +109,7 @@ You need a console connection to access the switch; you cannot perform this proc
 
 {{%/notice%}}
 
-{{< tabs "TabID112 ">}}
+{{< tabs "TabID111 ">}}
 
 {{< tab "Install from ONIE ">}}
 

@@ -9,16 +9,23 @@ You can restore NetQ data using the backup file you created in {{<link title="Ba
 
 To restore NetQ on the same hardware where the backup file resides:
 
-1. Log in to the NetQ server.
+1. If you are restoring data from NetQ 2.4.0 or earlier, or you upgraded from NetQ 2.4.0 to 2.4.1, obtain an updated backuprestore script. If you installed NetQ 2.4.1 as a fresh install, you can skip this step. Replace \<version\> in these commands with *2.4.1* or later release version.
+
+   ```
+   cumulus@switch:~$ tar -xvzf  /mnt/installables/NetQ-<version>.tgz  -C /tmp/ ./netq-deploy-<version>.tgz
+
+   cumulus@switch:~$ tar -xvzf /tmp/netq-deploy-<version>.tgz   -C /usr/sbin/ --strip-components 1 --wildcards backuprestore/*.sh
+   ```
+
 2. Run the restore script being sure to replace the `backup-directory` option with the name of the directory where the backup file resides.
 
    ```
-   cumulus@<netq-platform/netq-appliance>:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
+   cumulus@switch:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
    ```
 
-   {{%notice tip%}}
-   You can abbreviate the `restore` and `localdir` options of this command to `-r` and `-l` to reduce typing.
-   {{%/notice%}}
+   {{<notice tip>}}
+   You can abbreviate the <code>restore</code> and <code>localdir</code> options of this command to <code>-r</code> and <code>-l</code> to reduce typing.
+   {{</notice>}}
 
    This is a sample of what you see while the script is running:
 
@@ -49,8 +56,9 @@ To restore NetQ on the same hardware where the backup file resides:
 To restore NetQ on new hardware:
 
 1. Copy the backup file from `/opt/<backup-directory>` on the older hardware to the backup directory on the new hardware.
+
 2. Run the restore script on the new hardware, being sure to replace the `backup-directory` option with the name of the directory where the backup file resides.
 
    ```
-   cumulus@<netq-platform/netq-appliance>:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
+   cumulus@switch:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
    ```

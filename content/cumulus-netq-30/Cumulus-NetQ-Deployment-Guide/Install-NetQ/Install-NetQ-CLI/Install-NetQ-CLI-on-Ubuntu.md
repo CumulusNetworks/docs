@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 128
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the  NetQ 2.4.0 Agents on each switch you want to monitor. NetQ 2.4 Agents can be installed on servers running:
+After installing your Cumulus NetQ software, you should install the  NetQ 3.0.0 Agents on each switch you want to monitor. NetQ Agents can be installed on servers running:
 
 - Ubuntu 16.04
 - Ubuntu 18.04 (NetQ 2.2.2 and later)
@@ -51,9 +51,9 @@ If NTP is not already installed and configured, follow these steps:
 
 1.  Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
-```
-root@ubuntu:~# sudo apt-get install ntp
-```
+    ```
+    root@ubuntu:~# sudo apt-get install ntp
+    ```
 
 2.  Configure the network time server.
 
@@ -191,7 +191,7 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
     </details>
 
     {{%notice note%}}
-The use of `netq-latest` in these examples means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.3` - use that instead.
+The use of `netq-latest` in these examples means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.4` - use that instead.
     {{%/notice%}}
 
 ## Install NetQ CLI on an Ubuntu Server
@@ -200,21 +200,18 @@ A simple process installs the NetQ CLI on an Ubuntu server.
 
 1.  Install the CLI software on the server.
 
-```
-root@ubuntu:~# sudo apt-get update
-root@ubuntu:~# sudo apt-get install netq-apps
-```
+    ```
+    root@ubuntu:~# sudo apt-get update
+    root@ubuntu:~# sudo apt-get install netq-apps
+    ```
 
 4. Verify you have the correct version of the CLI.
 
-```
-root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
-```
+    ```
+    root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
+    ```
 
-    You should see version 2.4.1 and update 26 or later in the results. For example:
-
-    - netq-apps_**2.4.1**-ub18.04u**26**~1581351889.c5ec3e5_amd64.deb, or
-    - netq-apps_**2.4.1**-ub16.04u**26**~1581350451.c5ec3e5_amd64.deb. 
+    {{<netq-install/cli-version version="3.0.0" opsys="ub">}}
 
 5. Continue with NetQ CLI configuration in the next section.
 
@@ -229,7 +226,7 @@ Two methods are available for configuring the NetQ CLI on a switch:
 
 The steps to configure the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment. Follow the instruction for your deployment type.
 
-<details><summary>Configure the CLI for On-premises Deployments</summary>
+<details><summary>On-premises Deployments</summary>
 
 Use the following command to configure the CLI:
 
@@ -251,7 +248,7 @@ If you have a server cluster deployed, use the IP address of the master server.
 {{%/notice%}}
 
 </details>
-<details><summary> Configure the CLI for Cloud Deployments</summary>
+<details><summary>Cloud Deployments</summary>
 
 To access and configure the CLI on your NetQ Platform or NetQ Cloud Appliance, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to Cumulus NetQ!*
 
@@ -263,7 +260,7 @@ To generate AuthKeys:
 
 3. From the Main Menu, select *Management* in the **Admin** column.
 
-    {{< figure src="/images/netq/main-menu-mgmt-selected-240.png" width="400">}}
+    {{< figure src="/images/netq/main-menu-admin-mgmt-selected-300.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
 
@@ -287,39 +284,39 @@ secret-key: <user-secret-key-value-here>
 ```
     {{%/notice%}}
 
-Now that you have your AuthKeys, use the following command to configure the CLI:
+7. Now that you have your AuthKeys, use the following command to configure the CLI:
 
-```
-netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]
-```
+    ```
+    netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]
+    ```
 
-Restart the CLI afterward to activate the configuration.
+8. Restart the CLI afterward to activate the configuration.
 
-This example uses the individual access key, a premises of *datacenterwest*,  and the default Cloud address, port and VRF.  **Be sure to replace the key values with your generated keys if you are using this example on your server.**
+    This example uses the individual access key, a premises of *datacenterwest*,  and the default Cloud address, port and VRF.  **Be sure to replace the key values with your generated keys if you are using this example on your server.**
 
-```
-root@ubuntu:~# sudo netq config add cli server api.netq.cumulusnetworks.com access-key 123452d9bc2850a1726f55534279dd3c8b3ec55e8b25144d4739dfddabe8149e secret-key /vAGywae2E4xVZg8F+HtS6h6yHliZbBP6HXU3J98765= premises datacenterwest
-Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
-Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
+    ```
+    root@ubuntu:~# sudo netq config add cli server api.netq.cumulusnetworks.com access-key 123452d9bc2850a1726f55534279dd3c8b3ec55e8b25144d4739dfddabe8149e secret-key /vAGywae2E4xVZg8F+HtS6h6yHliZbBP6HXU3J98765= premises datacenterwest
+    Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
+    Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
-root@ubuntu:~# sudo netq config restart cli
-Restarting NetQ CLI... Success!
-```
+    root@ubuntu:~# sudo netq config restart cli
+    Restarting NetQ CLI... Success!
+    ```
 
-This example uses an optional keys file. **Be sure to replace the keys filename and path with the *full path* and name of your keys file, and the *datacenterwest* premises name with your premises name if you are using this example on your server.**
+    This example uses an optional keys file. **Be sure to replace the keys filename and path with the *full path* and name of your keys file, and the *datacenterwest* premises name with your premises name if you are using this example on your server.**
 
-```
-root@ubuntu:~# sudo netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /home/netq/nq-cld-creds.yml premises datacenterwest
-Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
-Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
+    ```
+    root@ubuntu:~# sudo netq config add cli server api.netq.cumulusnetworks.com cli-keys-file /home/netq/nq-cld-creds.yml premises datacenterwest
+    Successfully logged into NetQ cloud at api.netq.cumulusnetworks.com:443
+    Updated cli server api.netq.cumulusnetworks.com vrf default port 443. Please restart netqd (netq config restart cli)
 
-root@ubuntu:~# sudo netq config restart cli
-Restarting NetQ CLI... Success!
-```
+    root@ubuntu:~# sudo netq config restart cli
+    Restarting NetQ CLI... Success!
+    ```
 
-{{%notice tip%}}
+    {{%notice tip%}}
 Rerun this command if you have multiple premises and want to query a different premises.
-{{%/notice%}}
+    {{%/notice%}}
 
 </details>
 
@@ -329,36 +326,36 @@ You can configure the NetQ CLI in the `netq.yml` configuration file contained in
 
 1. Open the `netq.yml` file using your text editor of choice. For example:
 
-```
-root@ubuntu:~# sudo nano /etc/netq/netq.yml
-```
+    ```
+    root@ubuntu:~# sudo nano /etc/netq/netq.yml
+    ```
 
 2. Locate the *netq-cli* section, or add it.
 
 3. Set the parameters for the CLI as follows:
 
-| Parameter | On-premises | Cloud |
-| ----| ---- | ---- |
-| netq-user | User who can access the CLI | User who can access the CLI |
-| server | IP address of the NetQ server or NetQ Appliance | api.netq.cumulusnetworks.com |
-| port (default) | 32708 | 443 |
-| premises | NA | Name of premises you want to query |
+    | Parameter | On-premises | Cloud |
+    | ----| ---- | ---- |
+    | netq-user | User who can access the CLI | User who can access the CLI |
+    | server | IP address of the NetQ server or NetQ Appliance | api.netq.cumulusnetworks.com |
+    | port (default) | 32708 | 443 |
+    | premises | NA | Name of premises you want to query |
 
-An on-premises configuration should be similar to this:
+    An on-premises configuration should be similar to this:
 
-```
-netq-cli:
-  netq-user: admin@company.com
-  port: 32708
-  server: 192.168.0.254
-  ```
+    ```
+    netq-cli:
+    netq-user: admin@company.com
+    port: 32708
+    server: 192.168.0.254
+    ```
 
-A cloud configuration should be similar to this:
+    A cloud configuration should be similar to this:
 
-```
-netq-cli:
-  netq-user: admin@company.com
-  port: 443
-  premises: datacenterwest
-  server: api.netq.cumulusnetworks.com
-```
+    ```
+    netq-cli:
+    netq-user: admin@company.com
+    port: 443
+    premises: datacenterwest
+    server: api.netq.cumulusnetworks.com
+    ```

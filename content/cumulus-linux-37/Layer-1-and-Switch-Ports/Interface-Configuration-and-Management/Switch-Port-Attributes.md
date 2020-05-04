@@ -1382,7 +1382,7 @@ order; for example, swp1, swp2, swp3, and swp4.
 
 {{%notice note%}}
 
-Do not use `ethtool` or `ifreload -a` to change the port speed; using ethtool or `ifreload -a` error returns an error. If you change the speed with `ethtool` to a setting that is already in use, `ethtool` (and `ifreload -a`) do not return an error, but no changes are made.
+Do not manually edit the `/etc/network/interfaces` file, then run `ifreload -a` or use `ethtool` to change the port speed, as this returns an error. If you change the speed to a setting that is already in use by manually editing the `/etc/network/interfaces` file or with `ethtool`, no error is returned, but no changes are made.
 
 {{%/notice%}}
 

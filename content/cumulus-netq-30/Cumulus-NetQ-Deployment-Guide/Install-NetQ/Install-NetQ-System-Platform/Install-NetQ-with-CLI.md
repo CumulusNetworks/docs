@@ -21,7 +21,7 @@ To install NetQ:
     Run the following command on your NetQ platform server or NetQ Appliance:
 
     ```
-    cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-2.4.1.tgz
+    cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-3.0.0.tgz
     ```
 
     {{<notice tip>}}
@@ -56,7 +56,7 @@ You can specify the IP address instead of the interface name here: use <code>ip-
     Run the following commands on your *master* node, using the IP addresses of your worker nodes:
 
     ```
-    cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-2.4.1.tgz workers <worker-1-ip> <worker-2-ip>
+    cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-3.0.0.tgz workers <worker-1-ip> <worker-2-ip>
     ```
 
     {{<notice tip>}}
@@ -91,7 +91,7 @@ You can specify the IP address instead of the interface name here: use <code>ip-
     Run the following command on your NetQ Cloud Appliance with the `config-key` sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account."
 
     ```
-    cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-2.4.1-opta.tgz config-key <your-config-key-from-email> proxy-host <proxy-hostname> proxy-port <proxy-port>
+    cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-3.0.0-opta.tgz config-key <your-config-key-from-email> proxy-host <proxy-hostname> proxy-port <proxy-port>
     ```
 
     {{<notice tip>}}
@@ -110,7 +110,7 @@ You can specify the IP address instead of the interface name here: use <code>ip-
     Run the following commands on your *master* NetQ Cloud Appliance with the `config-key` sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account."
 
     ```
-    cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-2.4.1-opta.tgz config-key <your-config-key-from-email> workers <worker-1-ip> <worker-2-ip> proxy-host <proxy-hostname> proxy-port <proxy-port>
+    cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-3.0.0-opta.tgz config-key <your-config-key-from-email> workers <worker-1-ip> <worker-2-ip> proxy-host <proxy-hostname> proxy-port <proxy-port>
     ```
 
     {{<notice tip>}}

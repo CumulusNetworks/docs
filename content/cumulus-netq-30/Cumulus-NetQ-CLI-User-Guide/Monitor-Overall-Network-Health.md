@@ -61,18 +61,18 @@ If you update your scripts to work with the new version of the commands, simply 
 The new syntax of the `netq check` commands is:
 
 ```
-netq check agents [label <text-label-name> | hostnames <text-list-hostnames>] [include <agent-number-range-list> | exclude <agent-number-range-list>] [around <text-time>] [json]
-netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
-netq check mlag [label <text-label-name> | hostnames <text-list-hostnames> ] [include <mlag-number-range-list> | exclude <mlag-number-range-list>] [around <text-time>] [json | summary]
-netq check evpn [mac-consistency] [label <text-label-name> | hostnames <text-list-hostnames>] [include <evpn-number-range-list> | exclude <evpn-number-range-list>] [around <text-time>] [json | summary]
-netq check interfaces [label <text-label-name> | hostnames <text-list-hostnames>] [include <interface-number-range-list> | exclude <interface-number-range-list>] [around <text-time>] [json | summary]
-netq check license [label <text-label-name> | hostnames <text-list-hostnames>] [include <license-number-range-list> | exclude <license-number-range-list>] [around <text-time>] [json | summary]
-netq check mtu [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [include <mtu-number-range-list> | exclude <mtu-number-range-list>] [around <text-time>] [json | summary]
-netq check ntp [label <text-label-name> | hostnames <text-list-hostnames>] [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [json | summary]
-netq check ospf [label <text-label-name> | hostnames <text-list-hostnames>] [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json | summary]
-netq check sensors [label <text-label-name> | hostnames <text-list-hostnames>] [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [json | summary]
-netq check vlan [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [include <vlan-number-range-list> | exclude <vlan-number-range-list>] [around <text-time>] [json | summary]
-netq check vxlan [label <text-label-name> | hostnames <text-list-hostnames>] [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
+netq check agents [hostnames <text-list-hostnames>] [include <agent-number-range-list> | exclude <agent-number-range-list>] [around <text-time>] [json]
+netq check bgp [hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
+netq check mlag [hostnames <text-list-hostnames> ] [include <mlag-number-range-list> | exclude <mlag-number-range-list>] [around <text-time>] [json | summary]
+netq check evpn [mac-consistency] [hostnames <text-list-hostnames>] [include <evpn-number-range-list> | exclude <evpn-number-range-list>] [around <text-time>] [json | summary]
+netq check interfaces [hostnames <text-list-hostnames>] [include <interface-number-range-list> | exclude <interface-number-range-list>] [around <text-time>] [json | summary]
+netq check license [hostnames <text-list-hostnames>] [include <license-number-range-list> | exclude <license-number-range-list>] [around <text-time>] [json | summary]
+netq check mtu [hostnames <text-list-hostnames>] [unverified] [include <mtu-number-range-list> | exclude <mtu-number-range-list>] [around <text-time>] [json | summary]
+netq check ntp [hostnames <text-list-hostnames>] [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [json | summary]
+netq check ospf [hostnames <text-list-hostnames>] [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json | summary]
+netq check sensors [hostnames <text-list-hostnames>] [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [json | summary]
+netq check vlan [hostnames <text-list-hostnames>] [unverified] [include <vlan-number-range-list> | exclude <vlan-number-range-list>] [around <text-time>] [json | summary]
+netq check vxlan [hostnames <text-list-hostnames>] [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
 ```
 
 Each of the check commands provides a starting point for troubleshooting configuration and connectivity issues within your network in real time.
@@ -1313,19 +1313,26 @@ cumulus@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-edge01            Fresh            yes      2.4.1-ub16.04u26~1580274921.63cf8a4  35d:2h:33m:52s            21d:21h:35m:44s           21d:21h:35m:44s            Mon Mar 16 22:19:05 2020
-exit01            Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:35m:28s            35d:2h:35m:21s            21d:21h:58m:31s            Mon Mar 16 21:56:16 2020
-exit02            Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:35m:36s            35d:2h:35m:29s            21d:21h:58m:26s            Mon Mar 16 21:55:20 2020
-leaf01            Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:33m:56s            35d:2h:33m:49s            21d:21h:58m:31s            Mon Mar 16 21:58:09 2020
-leaf02            Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:34m:17s            35d:2h:34m:10s            21d:21h:58m:31s            Mon Mar 16 21:57:17 2020
-leaf03            Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:34m:6s             35d:2h:33m:59s            21d:21h:58m:32s            Mon Mar 16 21:56:47 2020
-leaf04            Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:34m:35s            35d:2h:34m:28s            21d:21h:58m:32s            Mon Mar 16 21:57:57 2020
-server01          Fresh            yes      2.4.1-ub16.04u26~1580274921.63cf8a4  21d:4h:3m:8s              21d:4h:2m:59s             21d:4h:2m:59s              Tue Mar 17 15:50:08 2020
-server02          Fresh            yes      2.4.1-ub16.04u26~1580274921.63cf8a4  21d:4h:3m:7s              21d:4h:2m:59s             21d:4h:2m:59s              Tue Mar 17 15:53:25 2020
-server03          Fresh            yes      2.4.1-ub16.04u26~1580274921.63cf8a4  21d:4h:3m:9s              21d:4h:3m:1s              21d:4h:3m:1s               Tue Mar 17 15:54:09 2020
-server04          Fresh            yes      2.4.1-ub16.04u26~1580274921.63cf8a4  21d:4h:3m:8s              21d:4h:2m:58s             21d:4h:2m:58s              Tue Mar 17 15:50:45 2020
-spine01           Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:34m:37s            35d:2h:34m:30s            21d:21h:58m:32s            Mon Mar 16 21:56:34 2020
-spine02           Fresh            yes      2.4.1-cl3u26~1580274318.63cf8a4      35d:2h:35m:6s             35d:2h:34m:59s            21d:21h:58m:31s            Mon Mar 16 21:57:23 2020
+border01          Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:16:00 2020  Wed Apr 29 16:38:24 2020  Wed Apr 29 16:38:24 2020   Sun May  3 16:40:32 2020
+border02          Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:10:31 2020  Wed Apr 29 16:38:22 2020  Wed Apr 29 16:38:22 2020   Sun May  3 16:53:06 2020
+fw1               Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:20:18 2020  Wed Apr 29 16:38:35 2020  Wed Apr 29 16:38:35 2020   Sun May  3 16:40:29 2020
+fw2               Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:35:24 2020  Wed Apr 29 16:38:29 2020  Wed Apr 29 16:38:29 2020   Sun May  3 16:40:07 2020
+leaf01            Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:05:01 2020  Wed Apr 29 16:38:23 2020  Wed Apr 29 16:38:23 2020   Sun May  3 16:40:06 2020
+leaf02            Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:59:26 2020  Wed Apr 29 16:38:32 2020  Wed Apr 29 16:38:32 2020   Sun May  3 16:40:20 2020
+leaf03            Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:05:01 2020  Wed Apr 29 16:38:11 2020  Wed Apr 29 16:38:11 2020   Sun May  3 16:40:41 2020
+oob-mgmt-server   Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 00:31:08 2020  Fri Apr 24 00:31:20 2020  Wed Apr 29 16:39:15 2020   Sun May  3 16:40:01 2020
+server01          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:14 2020  Fri Apr 24 01:30:27 2020  Wed Apr 29 16:39:16 2020   Sun May  3 16:41:15 2020
+server02          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:14 2020  Fri Apr 24 01:30:26 2020  Wed Apr 29 16:39:19 2020   Sun May  3 16:40:51 2020
+server03          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Wed Apr 29 16:46:24 2020  Wed Apr 29 16:46:24 2020   Sun May  3 16:47:01 2020
+server04          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:14 2020  Fri Apr 24 01:30:27 2020  Wed Apr 29 16:39:16 2020   Sun May  3 16:41:33 2020
+server05          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Wed Apr 29 16:46:26 2020  Wed Apr 29 16:46:26 2020   Sun May  3 16:47:12 2020
+server06          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Fri Apr 24 01:30:27 2020  Wed Apr 29 16:38:47 2020   Sun May  3 16:40:24 2020
+server07          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 00:43:06 2020  Fri Apr 24 00:43:18 2020  Wed Apr 29 16:39:16 2020   Mon May  4 13:25:24 2020
+spine01           Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:54:53 2020  Wed Apr 29 16:38:18 2020  Wed Apr 29 16:38:18 2020   Sun May  3 17:12:12 2020
+spine02           Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:49:37 2020  Wed Apr 29 16:38:28 2020  Wed Apr 29 16:38:28 2020   Sun May  3 16:39:50 2020
+spine03           Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:49:40 2020  Wed Apr 29 16:38:12 2020  Wed Apr 29 16:38:12 2020   Sun May  3 16:40:06 2020
+spine04           Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:48:20 2020  Wed Apr 29 16:38:24 2020  Wed Apr 29 16:38:24 2020   Sun May  3 16:40:18 2020
+
 ```
 
 Some additional examples follow.

@@ -2,11 +2,6 @@
 title: GNS3 and QEMU - KVM
 author: Cumulus Networks
 weight: 65
-aliases:
- - /display/VX/GNS3-and-QEMU-KVM
- - /display/VX/GNS3+and+QEMU+KVM
- - /pages/viewpage.action?pageId=5126717
-pageID: 5126717
 ---
 Before you run your virtual network under GNS3, make sure you:
 

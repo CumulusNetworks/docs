@@ -2,10 +2,6 @@
 title: Comparing Cumulus VX to other Cumulus Networks Products
 author: Cumulus Networks
 weight: 13
-aliases:
- - /display/VX/Comparing-Cumulus-VX-to-other-Cumulus-Networks-Products
- - /display/VX/Comparing+Cumulus+VX+to+other+Cumulus+Networks+Products
- - /pages/viewpage.action?pageId=5126709
 pageID: 5126709
 product: Cumulus VX
 version: '3.7'

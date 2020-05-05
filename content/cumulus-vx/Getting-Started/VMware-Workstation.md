@@ -2,10 +2,6 @@
 title: VMware Workstation
 author: Cumulus Networks
 weight: 41
-aliases:
- - /display/VX/VMware-Workstation
- - /display/VX/VMware+Workstation
- - /pages/viewpage.action?pageId=5126698
 pageID: 5126698
 ---
 The following sections describe how to import and set up a

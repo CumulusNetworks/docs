@@ -2,9 +2,6 @@
 title: LNV VXLAN Active-Active Mode
 author: Cumulus Networks
 weight: 395
-aliases:
- - /display/CL36/LNV+VXLAN+Active+Active+Mode
- - /pages/viewpage.action?pageId=8362217
 pageID: 8362217
 ---
 *LNV active-active mode* allows a pair of

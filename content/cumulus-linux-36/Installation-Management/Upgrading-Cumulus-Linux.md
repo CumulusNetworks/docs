@@ -2,9 +2,6 @@
 title: Upgrading Cumulus Linux
 author: Cumulus Networks
 weight: 45
-aliases:
- - /display/CL36/Upgrading+Cumulus+Linux
- - /pages/viewpage.action?pageId=8362142
 pageID: 8362142
 ---
 Cumulus Networks software melds the Linux host world with the networking

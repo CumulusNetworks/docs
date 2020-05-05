@@ -2,9 +2,6 @@
 title: Adding and Updating Packages
 author: Cumulus Networks
 weight: 49
-aliases:
- - /display/CL36/Adding+and+Updating+Packages
- - /pages/viewpage.action?pageId=8362126
 pageID: 8362126
 ---
 You use the Advanced Packaging Tool (`apt`) to manage additional

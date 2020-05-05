@@ -2,9 +2,6 @@
 title: VLAN-aware Bridge Mode
 author: Cumulus Networks
 weight: 347
-aliases:
- - /display/DOCS/VLAN+aware+Bridge+Mode
- - /pages/viewpage.action?pageId=8362673
 pageID: 8362673
 ---
 The Cumulus Linux bridge driver supports two configuration modes, one

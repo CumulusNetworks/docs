@@ -2,9 +2,6 @@
 title: ASIC Monitoring
 author: Cumulus Networks
 weight: 980
-aliases:
- - /display/DOCS/ASIC+Monitoring
- - /pages/viewpage.action?pageId=8366348
 toc: 3
 ---
 

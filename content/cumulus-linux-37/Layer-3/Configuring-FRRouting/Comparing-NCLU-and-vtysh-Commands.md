@@ -2,9 +2,6 @@
 title: Comparing NCLU and vtysh Commands
 author: Cumulus Networks
 weight: 419
-aliases:
- - /display/DOCS/Comparing+NCLU+and+vtysh+Commands
- - /pages/viewpage.action?pageId=8362920
 pageID: 8362920
 ---
 Using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} is the primary way to {{<link url="Configuring-FRRouting" text="configure routing">}} in Cumulus Linux. However, an alternative exists in the the `vtysh` modal CLI. The available commands are as follows:

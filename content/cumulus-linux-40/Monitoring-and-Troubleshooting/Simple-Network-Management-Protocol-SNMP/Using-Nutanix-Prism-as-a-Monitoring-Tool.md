@@ -2,9 +2,6 @@
 title: Using Nutanix Prism as a Monitoring Tool
 author: Cumulus Networks
 weight: 1090
-aliases:
- - /display/DOCS/Using+Nutanix+Prism+as+a+Monitoring+Tool
- - /pages/viewpage.action?pageId=8366339
 toc: 4
 ---
 Nutanix Prism is a graphical user interface (GUI) for managing infrastructure and virtual environments. You need to take special steps within Cumulus Linux before you can configure Prism.

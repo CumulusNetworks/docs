@@ -2,9 +2,6 @@
 title: Filtering Learned MAC Addresses
 author: Cumulus Networks
 weight: 297
-aliases:
- - /display/DOCS/Filtering+Learned+MAC+Addresses
- - /pages/viewpage.action?pageId=8362575
 pageID: 8362575
 ---
 On Broadcom switches, a MAC address is learned on a bridge regardless of

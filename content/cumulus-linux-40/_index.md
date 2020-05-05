@@ -2,10 +2,6 @@
 title: Cumulus Linux 4.0 User Guide
 author: Cumulus Networks
 weight: -40
-aliases:
- - /display/DOCS/
- - /display/DOCS/Cumulus+Linux+User+Guide
- - /pages/viewpage.action?pageId=8366246
 subsection: true
 cascade:
     product: Cumulus Linux

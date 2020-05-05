@@ -2,9 +2,6 @@
 title: Monitoring and Troubleshooting
 author: Cumulus Networks
 weight: 25
-aliases:
- - /display/CL36/Monitoring+and+Troubleshooting
- - /pages/viewpage.action?pageId=8362087
 pageID: 8362087
 ---
 This chapter introduces monitoring and troubleshooting Cumulus Linux.

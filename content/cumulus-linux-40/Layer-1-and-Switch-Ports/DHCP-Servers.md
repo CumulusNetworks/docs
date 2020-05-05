@@ -2,9 +2,6 @@
 title: DHCP Servers
 author: Cumulus Networks
 weight: 350
-aliases:
- - /display/DOCS/DHCP+Servers
- - /pages/viewpage.action?pageId=8366764
 toc: 3
 ---
 A DHCP Server automatically provides and assigns IP addresses and other network parameters to client devices. It relies on the Dynamic Host Configuration Protocol to respond to broadcast requests from clients.

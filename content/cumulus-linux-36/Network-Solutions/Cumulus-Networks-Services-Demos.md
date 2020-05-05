@@ -2,9 +2,6 @@
 title: Cumulus Networks Services Demos
 author: Cumulus Networks
 weight: 247
-aliases:
- - /display/CL36/Cumulus+Networks+Services+Demos
- - /pages/viewpage.action?pageId=8362453
 pageID: 8362453
 ---
 The Cumulus Networks Services team demos provide a virtual environment

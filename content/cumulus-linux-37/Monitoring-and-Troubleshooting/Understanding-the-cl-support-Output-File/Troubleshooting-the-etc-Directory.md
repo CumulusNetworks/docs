@@ -2,9 +2,6 @@
 title: Troubleshooting the etc Directory
 author: Cumulus Networks
 weight: 445
-aliases:
- - /display/DOCS/Troubleshooting+the+etc+Directory
- - /pages/viewpage.action?pageId=8362601
 pageID: 8362601
 ---
 The `{{<link url="Understanding-the-cl-support-Output-File" text="cl-support">}}`

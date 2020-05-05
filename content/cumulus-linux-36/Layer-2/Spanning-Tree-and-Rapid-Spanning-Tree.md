@@ -2,9 +2,6 @@
 title: Spanning Tree and Rapid Spanning Tree
 author: Cumulus Networks
 weight: 115
-aliases:
- - /display/CL36/Spanning+Tree+and+Rapid+Spanning+Tree
- - /pages/viewpage.action?pageId=8362181
 pageID: 8362181
 ---
 Spanning tree protocol (STP) is always recommended in layer 2

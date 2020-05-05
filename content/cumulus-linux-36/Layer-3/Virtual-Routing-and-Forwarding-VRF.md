@@ -2,11 +2,6 @@
 title: Virtual Routing and Forwarding - VRF
 author: Cumulus Networks
 weight: 191
-aliases:
- - /display/CL36/Virtual+Routing+and+Forwarding+++VRF
-  - /display/CL36/Virtual+Routing+and+Forwarding+-+VRF
-   - /display/CL36/Virtual+Routing+and+Forwarding+VRF
- - /pages/viewpage.action?pageId=8362412
 pageID: 8362412
 ---
 Cumulus Linux provides *virtual* *routing and forwarding* (VRF) to allow

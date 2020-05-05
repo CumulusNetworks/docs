@@ -2,11 +2,6 @@
 title: Ethernet Bridging - VLANs
 author: Cumulus Networks
 weight: 121
-aliases:
- - /display/CL36/Ethernet+Bridging+++VLANs
- - /display/CL36/Ethernet+Bridging+-+VLANs
- - /display/CL36/Ethernet+Bridging+VLANs
- - /pages/viewpage.action?pageId=8362150
 pageID: 8362150
 ---
 Ethernet bridges provide a means for hosts to communicate through layer

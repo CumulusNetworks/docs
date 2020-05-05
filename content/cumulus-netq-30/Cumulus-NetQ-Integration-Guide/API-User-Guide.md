@@ -2,8 +2,6 @@
 title: Cumulus NetQ API User Guide
 author: Cumulus Networks
 weight: 205
-aliases:
-pageID: 12321983
 toc: 3
 ---
 The NetQ API provides access to key telemetry and system monitoring data

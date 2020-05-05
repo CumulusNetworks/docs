@@ -2,10 +2,6 @@
 title: VMware vSphere - ESXi 5.5
 author: Cumulus Networks
 weight: 37
-aliases:
- - /display/VX/VMware-vSphere-ESXi-5.5
- - /display/VX/VMware+vSphere+ESXi+5.5
- - /pages/viewpage.action?pageId=5126689
 pageID: 5126689
 ---
 The following sections describe how to import and set up a

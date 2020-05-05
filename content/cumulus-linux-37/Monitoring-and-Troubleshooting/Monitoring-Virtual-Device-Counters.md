@@ -2,9 +2,6 @@
 title: Monitoring Virtual Device Counters
 author: Cumulus Networks
 weight: 221
-aliases:
- - /display/DOCS/Monitoring+Virtual+Device+Counters
- - /pages/viewpage.action?pageId=8362605
 pageID: 8362605
 ---
 Cumulus Linux gathers statistics for VXLANs and VLANs using virtual

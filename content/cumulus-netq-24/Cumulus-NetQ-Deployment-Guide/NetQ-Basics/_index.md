@@ -2,10 +2,6 @@
 title: Cumulus NetQ Overview
 author: Cumulus Networks
 weight: 20
-aliases:
- - /display/NETQ/Cumulus+NetQ+Primer
- - /pages/viewpage.action?pageId=12320801
-pageID: 12320801
 toc: 3
 ---
 

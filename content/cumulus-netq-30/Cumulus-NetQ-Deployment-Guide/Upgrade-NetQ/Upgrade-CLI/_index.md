@@ -2,9 +2,6 @@
 title: Upgrade NetQ CLI
 author: Cumulus Networks
 weight: 147
-aliases:
- - /display/NETQ/Upgrade+NetQ
- - /pages/viewpage.action?pageId=12320951
 toc: 4
 ---
 While it is not required to upgrade the NetQ CLI on your monitored switches and hosts when you upgrade to NetQ 3.0.0, doing so gives you access to new features and important bug fixes. Refer to the {{<link title="Cumulus NetQ 3.0 Release Notes" text="release notes">}} for details.

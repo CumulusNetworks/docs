@@ -2,10 +2,6 @@
 title: Libvirt and KVM - QEMU
 author: Cumulus Networks
 weight: 45
-aliases:
- - /display/VX/Libvirt-and-KVM-QEMU
- - /display/VX/Libvirt+and+KVM+QEMU
- - /pages/viewpage.action?pageId=5126704
 pageID: 5126704
 ---
 The following sections describe how to set up a two-leaf/two-spine

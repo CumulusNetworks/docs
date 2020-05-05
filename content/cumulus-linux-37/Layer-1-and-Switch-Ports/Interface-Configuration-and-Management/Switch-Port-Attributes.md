@@ -2,9 +2,6 @@
 title: Switch Port Attributes
 author: Cumulus Networks
 weight: 309
-aliases:
- - /display/DOCS/Switch+Port+Attributes
- - /pages/viewpage.action?pageId=8363026
 pageID: 8363026
 ---
 Cumulus Linux exposes network interfaces for several types of physical

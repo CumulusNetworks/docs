@@ -2,10 +2,6 @@
 title: GNS3 and VirtualBox
 author: Cumulus Networks
 weight: 63
-aliases:
- - /display/VX/GNS3-and-VirtualBox
-  - /display/VX/GNS3+and+VirtualBox
- - /pages/viewpage.action?pageId=5126714
 pageID: 5126714
 ---
 Before you run your virtual network under GNS3, make sure you:

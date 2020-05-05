@@ -2,11 +2,6 @@
 title: Address Resolution Protocol - ARP
 author: Cumulus Networks
 weight: 175
-aliases:
- - /display/CL36/Address+Resolution+Protocol+-+ARP
- - /display/CL36/Address+Resolution+Protocol+++ARP
- - /display/CL36/Address+Resolution+Protocol+ARP
- - /pages/viewpage.action?pageId=8362442
 pageID: 8362442
 ---
 Address Resolution Protocol (ARP) is a communication protocol used for 

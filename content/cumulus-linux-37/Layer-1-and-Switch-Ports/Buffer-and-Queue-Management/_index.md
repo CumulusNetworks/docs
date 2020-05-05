@@ -2,9 +2,6 @@
 title: Buffer and Queue Management
 author: Cumulus Networks
 weight: 93
-aliases:
- - /display/DOCS/Buffer+and+Queue+Management
- - /pages/viewpage.action?pageId=8363032
 pageID: 8363032
 ---
 Hardware datapath configuration manages packet buffering, queueing and

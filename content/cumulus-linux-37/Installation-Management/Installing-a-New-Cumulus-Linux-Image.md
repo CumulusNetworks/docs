@@ -2,9 +2,6 @@
 title: Installing a New Cumulus Linux Image
 author: Cumulus Networks
 weight: 43
-aliases:
- - /display/DOCS/Installing+a+New+Cumulus+Linux+Image
- - /pages/viewpage.action?pageId=8362643
 pageID: 8362643
 ---
 This topic discusses how to install a new Cumulus Linux disk image using {{<exlink url="http://www.onie.org/" text="ONIE">}}, an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.

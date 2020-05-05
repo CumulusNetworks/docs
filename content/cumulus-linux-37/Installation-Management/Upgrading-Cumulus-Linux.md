@@ -2,9 +2,6 @@
 title: Upgrading Cumulus Linux
 author: Cumulus Networks
 weight: 45
-aliases:
- - /display/DOCS/Upgrading+Cumulus+Linux
- - /pages/viewpage.action?pageId=8362647
 pageID: 8362647
 ---
 This topic describes how to upgrade Cumulus Linux on your switches to a more recent release.

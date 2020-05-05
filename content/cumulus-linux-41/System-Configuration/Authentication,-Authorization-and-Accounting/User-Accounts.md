@@ -2,9 +2,6 @@
 title: User Accounts
 author: Cumulus Networks
 weight: 150
-aliases:
- - /display/DOCS/User+Accounts
- - /pages/viewpage.action?pageId=8366274
 toc: 4
 ---
 By default, Cumulus Linux has two user accounts: *cumulus* and *root*.

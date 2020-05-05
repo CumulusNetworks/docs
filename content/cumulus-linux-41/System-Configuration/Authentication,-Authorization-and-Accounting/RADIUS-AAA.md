@@ -2,9 +2,6 @@
 title: RADIUS AAA
 author: Cumulus Networks
 weight: 190
-aliases:
- - /display/DOCS/RADIUS+AAA
- - /pages/viewpage.action?pageId=8366280
 toc: 4
 ---
 Cumulus Networks offers add-on packages that enable {{<exlink url="https://en.wikipedia.org/wiki/RADIUS" text="RADIUS">}} users to log in to Cumulus Linux switches in a transparent way with minimal configuration. There is no need to create accounts or directories on the switch. Authentication is handled with PAM and includes login, `ssh`, `sudo` and `su`.

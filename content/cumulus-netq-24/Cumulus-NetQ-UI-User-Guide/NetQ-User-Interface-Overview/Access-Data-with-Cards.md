@@ -2,10 +2,6 @@
 title: Access Data with Cards
 author: Cumulus Networks
 weight: 280
-aliases:
- - /display/NETQ22/NetQ-User-Interface-Overview
- - /pages/viewpage.action?pageId=12321856
-pageID: 12321856
 toc: 4
 ---
 Cards present information about your network for monitoring and

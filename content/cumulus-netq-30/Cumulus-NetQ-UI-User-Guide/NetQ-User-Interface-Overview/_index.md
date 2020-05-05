@@ -2,8 +2,6 @@
 title: NetQ User Interface Overview
 author: Cumulus Networks
 weight: 230
-aliases:
-pageID: 12321856
 toc: 3
 ---
 The NetQ 2.x graphical user interface (UI) enables you to access NetQ capabilities through a web browser as opposed to through a terminal window using the Command Line Interface (CLI). Visual representations of the health of the network, inventory, and system events make it easy to both find faults and misconfigurations, and to fix them.

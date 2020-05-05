@@ -2,9 +2,6 @@
 title: Configuring Hardware-enabled DDOS Protection
 author: Cumulus Networks
 weight: 327
-aliases:
- - /display/CL36/Configuring+Hardware+enabled+DDOS+Protection
- - /pages/viewpage.action?pageId=8362500
 pageID: 8362500
 ---
 The DDOS protection mechanism protects data plane, control plane and

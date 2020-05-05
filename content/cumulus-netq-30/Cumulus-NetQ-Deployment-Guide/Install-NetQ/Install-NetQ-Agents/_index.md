@@ -2,9 +2,6 @@
 title: Install NetQ Agents
 author: Cumulus Networks
 weight: 115
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
 toc: 4
 ---
 After installing your Cumulus NetQ 3.0.0 software, you should install the corresponding NetQ 3.0.0 Agent on each switch and server you want to monitor. There are important features and fixes included in the NetQ Agent with each release.

@@ -2,9 +2,6 @@
 title: Segment Routing
 author: Cumulus Networks
 weight: 199
-aliases:
- - /display/CL36/Segment+Routing
- - /pages/viewpage.action?pageId=8362428
 pageID: 8362428
 ---
 Cumulus Linux supports *segment routing,* also known as source routing,

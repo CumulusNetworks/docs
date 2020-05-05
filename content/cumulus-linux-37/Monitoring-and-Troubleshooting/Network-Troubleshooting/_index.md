@@ -2,9 +2,6 @@
 title: Network Troubleshooting
 author: Cumulus Networks
 weight: 229
-aliases:
- - /display/DOCS/Network+Troubleshooting
- - /pages/viewpage.action?pageId=8362596
 pageID: 8362596
 ---
 Cumulus Linux contains a number of command line and analytical tools to

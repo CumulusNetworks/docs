@@ -110,7 +110,6 @@ def sanatize_rn_for_markdown(string):
     #output_string = output_string.replace("\n\n", "<br />")
     #output_string = output_string.replace("\n", "<br />")
 
-
     # Escape pipe characters
     output_string = output_string.replace("|", "\|")
 
@@ -119,6 +118,11 @@ def sanatize_rn_for_markdown(string):
     output_string = output_string.replace("[", "&#91;")
     output_string = output_string.replace("]", "&#93;")
 
+    # NetQ-5774 Fix. The use of "<>" in a string inside a code (<pre>) block disappears
+    output_string = output_string.replace("<ipaddr>", "\<ipaddr\>")
+
+    # Special Linux command, CM-29033
+    output_string = output_string.replace("&amp;&amp;", "&&")
 
     return output_string
 

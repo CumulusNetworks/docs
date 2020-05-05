@@ -2,9 +2,6 @@
 title: Ethernet Virtual Private Network - EVPN
 author: Cumulus Networks
 weight: 530
-aliases:
- - /display/DOCS/Ethernet+Virtual+Private+Network+++EVPN
- - /pages/viewpage.action?pageId=8366455
 toc: 3
 ---
 VXLAN is the de facto technology for implementing network virtualization in the data center, enabling layer 2 segments to be extended over an IP core (the underlay). The initial definition of VXLAN ({{<exlink url="https://tools.ietf.org/html/rfc7348" text="RFC 7348">}}) did not include any control plane and relied on a flood-and-learn approach for MAC address learning.

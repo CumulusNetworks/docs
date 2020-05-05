@@ -2,9 +2,6 @@
 title: Docker on Cumulus Linux
 author: Cumulus Networks
 weight: 253
-aliases:
- - /display/DOCS/Docker+on+Cumulus+Linux
- - /pages/viewpage.action?pageId=8362980
 pageID: 8362980
 ---
 Cumulus Linux is based on Linux kernel 4.1, which supports the

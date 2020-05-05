@@ -2,10 +2,6 @@
 title: NetQ CLI Changes
 author: Cumulus Networks
 weight: 490
-aliases:
- - /display/NETQ/NetQ+Command+Line+Overview
- - /pages/viewpage.action?pageId=12321059
-pageID: 12321059
 toc: 3
 ---
 

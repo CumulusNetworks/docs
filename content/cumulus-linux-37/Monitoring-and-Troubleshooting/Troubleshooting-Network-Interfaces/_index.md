@@ -2,9 +2,6 @@
 title: Troubleshooting Network Interfaces
 author: Cumulus Networks
 weight: 227
-aliases:
- - /display/DOCS/Troubleshooting+Network+Interfaces
- - /pages/viewpage.action?pageId=8362603
 pageID: 8362603
 ---
 The following sections describe various ways you can troubleshoot

@@ -2,8 +2,6 @@
 title: Troubleshooting
 author: Cumulus Networks
 weight: 590
-aliases:
- - /pages/viewpage.action?pageId=12910740
 toc: 4
 ---
 This section provides various commands to help you examine your EVPN configuration and provides troubleshooting tips.

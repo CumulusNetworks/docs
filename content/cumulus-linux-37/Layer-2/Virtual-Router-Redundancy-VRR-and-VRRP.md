@@ -2,9 +2,6 @@
 title: Virtual Router Redundancy - VRR and VRRP
 author: Cumulus Networks
 weight: 127
-aliases:
- - /display/DOCS/Virtual+Router+Redundancy+VRR+and+VRRP
- - /pages/viewpage.action?pageId=8362691
 pageID: 8362691
 ---
 Cumulus Linux provides the option of using Virtual Router Redundancy

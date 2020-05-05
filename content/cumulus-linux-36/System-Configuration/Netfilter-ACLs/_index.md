@@ -2,9 +2,6 @@
 title: Netfilter - ACLs
 author: Cumulus Networks
 weight: 69
-aliases:
- - /display/CL36/Netfilter+++ACLs
- - /pages/viewpage.action?pageId=8362058
 pageID: 8362058
 ---
 [Netfilter](http://www.netfilter.org/) is the packet filtering framework

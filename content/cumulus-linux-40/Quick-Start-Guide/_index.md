@@ -2,9 +2,6 @@
 title: Quick Start Guide
 author: Cumulus Networks
 weight: 10
-aliases:
- - /display/DOCS/Quick+Start+Guide
- - /pages/viewpage.action?pageId=8366263
 toc: 2
 ---
 

@@ -2,8 +2,6 @@
 title: Lifecycle Management
 author: Cumulus Networks
 weight: 640
-aliases:
-pageID: 12321950
 toc: 4
 ---
 As an administrator, you want to manage the deployment of Cumulus Networks product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible. With this release, NetQ expands its initial lifecycle management (LCM) feature of network Snapshot and Compare to support Cumulus Linux image, switch, and credential management, and a UI workflow for the Cumulus Linux image installation and upgrade, including backup and restoration of the switch configuration files. Each of these features can be managed separately, but the greatest benefits are seen when they are used together in the workflow.

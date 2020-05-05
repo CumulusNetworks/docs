@@ -2,9 +2,6 @@
 title: Cumulus Networks Services Demos
 author: Cumulus Networks
 weight: 1150
-aliases:
- - /display/DOCS/Cumulus+Networks+Services+Demos
- - /pages/viewpage.action?pageId=8366711
 toc: 3
 ---
 The Cumulus Networks Services team demos provide a virtual environment built using either VirtualBox or `libvirt` using Vagrant to manage the VMs. This environment utilizes the reference topology shown below. Vagrant and Cumulus VX can be used together to build virtual simulations of production networks to validate configurations, develop automation code and simulate failure scenarios.

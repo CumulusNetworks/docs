@@ -2,9 +2,6 @@
 title: Adding and Updating Packages
 author: Cumulus Networks
 weight: 80
-aliases:
- - /display/DOCS/Adding+and+Updating+Packages
- - /pages/viewpage.action?pageId=8366352
 toc: 3
 ---
 

@@ -2,9 +2,6 @@
 title: Link Layer Discovery Protocol
 author: Cumulus Networks
 weight: 117
-aliases:
- - /display/CL36/Link+Layer+Discovery+Protocol
- - /pages/viewpage.action?pageId=8362145
 pageID: 8362145
 ---
 The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery

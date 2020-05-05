@@ -2,9 +2,6 @@
 title: Network Virtualization
 author: Cumulus Networks
 weight: 520
-aliases:
- - /display/DOCS/Network+Virtualization
- - /pages/viewpage.action?pageId=8366427
 toc: 2
 ---
 Cumulus Linux supports a few forms of {{<exlink url="http://en.wikipedia.org/wiki/Network_virtualization" text="network virtualization">}}.

@@ -2,7 +2,6 @@
 title: EVPN Enhancements
 author: Cumulus Networks
 weight: 550
-aliases:
 toc: 4
 ---
 This section describes EVPN enhancements.

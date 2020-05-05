@@ -2,9 +2,6 @@
 title: Hybrid Cloud Connectivity with QinQ and VXLANs
 author: Cumulus Networks
 weight: 650
-aliases:
- - /display/DOCS/Hybrid+Cloud+Connectivity+with+QinQ+and+VXLANs
- - /pages/viewpage.action?pageId=8366508
 toc: 3
 ---
 *QinQ* is an amendment to the {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text="IEEE 802.1Q specification">}} that provides the capability for multiple {{<link url="VLAN-Tagging" text="VLAN tags">}} to be inserted into a single Ethernet frame.

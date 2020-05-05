@@ -2,9 +2,6 @@
 title: Configuration Examples
 author: Cumulus Networks
 weight: 580
-aliases:
- - /display/DOCS/EVPN+Configuration+Examples
- - /pages/viewpage.action?pageId=12910740
 toc: 4
 ---
 This section shows the following configuration examples:

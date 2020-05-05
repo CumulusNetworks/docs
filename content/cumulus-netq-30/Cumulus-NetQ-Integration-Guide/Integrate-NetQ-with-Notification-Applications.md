@@ -2,7 +2,6 @@
 title: Integrate NetQ with Notification Applications
 author: Cumulus Networks
 weight: 200
-aliases:
 toc: 3
 ---
 After you have installed the NetQ applications package and the NetQ Agents,

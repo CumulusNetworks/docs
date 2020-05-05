@@ -2,10 +2,6 @@
 title: Monitor Switch Hardware
 author: Cumulus Networks
 weight: 510
-aliases:
- - /display/NETQ/Monitor+Switch+Hardware+and+Software
- - /pages/viewpage.action?pageId=12321058
-pageID: 12321058
 toc: 3
 ---
 With NetQ, a network administrator can monitor the key components of switch an NetQ Appliance hardware, including the motherboard, ASIC, microprocessor,

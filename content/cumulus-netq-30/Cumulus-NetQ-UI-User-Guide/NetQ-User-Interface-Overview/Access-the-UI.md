@@ -2,10 +2,6 @@
 title: Access the NetQ UI
 author: Cumulus Networks
 weight: 240
-aliases:
- - /display/NETQ22/NetQ-User-Interface-Overview
- - /pages/viewpage.action?pageId=12321856
-pageID: 12321856
 toc: 4
 ---
 Logging in to the NetQ UI is as easy as opening any web page.

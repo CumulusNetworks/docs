@@ -2,9 +2,6 @@
 title: Adding and Updating Packages
 author: Cumulus Networks
 weight: 49
-aliases:
- - /display/DOCS/Adding+and+Updating+Packages
- - /pages/viewpage.action?pageId=8362631
 pageID: 8362631
 ---
 You use the Advanced Packaging Tool (`apt`) to manage additional applications (in the form of packages) and to install the latest updates.

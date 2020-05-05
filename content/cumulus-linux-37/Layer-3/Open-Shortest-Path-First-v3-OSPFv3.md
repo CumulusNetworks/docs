@@ -2,11 +2,6 @@
 title: Open Shortest Path First v3 - OSPFv3
 author: Cumulus Networks
 weight: 183
-aliases:
- - /display/DOCS/Open+Shortest+Path+First+v3+OSPFv3
- - /display/DOCS/Open+Shortest+Path+First+v3+-+OSPFv3
- - /display/DOCS/Open+Shortest+Path+First+v3+-+OSPFv3+-+Protocol
- - /pages/viewpage.action?pageId=8362924
 pageID: 8362924
 ---
 OSPFv3 is a revised version of OSPFv2 to support the IPv6 address family. Refer to {{<link url="Open-Shortest-Path-First-OSPF">}} for a discussion on the basic concepts, which remain the same between the two versions.

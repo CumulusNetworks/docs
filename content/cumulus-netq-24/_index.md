@@ -2,10 +2,6 @@
 title: Cumulus NetQ 2.4
 author: Cumulus Networks
 weight: 1
-aliases:
- - /display/NETQ/Cumulus+NetQ
- - /pages/viewpage.action?pageId=12322014
-pageID: 12322014
 subsection: true
 toc: 1
 cascade:

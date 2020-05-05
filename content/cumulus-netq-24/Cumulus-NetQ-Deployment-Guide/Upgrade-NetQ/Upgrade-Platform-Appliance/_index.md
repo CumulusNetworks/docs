@@ -2,9 +2,6 @@
 title: Upgrade the NetQ Platform
 author: Cumulus Networks
 weight: 141
-aliases:
- - /display/NETQ/Upgrade+NetQ
- - /pages/viewpage.action?pageId=12320951
 toc: 4
 ---
 The first step in upgrading your NetQ 2.4.0 installation to NetQ 2.4.1 is to upgrade your NetQ Platform. This topic describes how to upgrade this for both on-premises and cloud deployments.

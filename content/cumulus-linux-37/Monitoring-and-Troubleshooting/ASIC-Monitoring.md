@@ -2,9 +2,6 @@
 title: ASIC Monitoring
 author: Cumulus Networks
 weight: 223
-aliases:
- - /display/DOCS/ASIC+Monitoring
- - /pages/viewpage.action?pageId=8362627
 pageID: 8362627
 ---
 Cumulus Linux provides an ASIC monitoring tool that collects and

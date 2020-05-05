@@ -306,14 +306,14 @@ The `bridge fdb` command in Linux interacts with the forwarding database table (
 |--- |--- |
 | self | The Linux kernel FDB entry flag that indicates the FDB entry belongs to the FDB on the device referenced by the device.<br>For example, this FDB entry belongs to the VXLAN device `vx-1000`: `00:02:00:00:00:08 dev vx-1000 dst 27.0.0.10 self` |
 | master |The Linux kernel FDB entry flag that indicates the FDB entry belongs to the FDB on the device's master and the FDB entry is pointing to a master's port.<br>For example, this FDB entry is from the master device named bridge and is pointing to the VXLAN bridge port `vx-1001`: `02:02:00:00:00:08 dev vx-1001 vlan 1001 master bridge` |
-| offload | The Linux kernel FDB entry flag that indicates the FDB entry is managed (or offloaded) by an external control plane, such as the BGP control plane for EVPN.|
+| extern_learn | The Linux kernel FDB entry flag that indicates the FDB entry is managed (or offloaded) by an external control plane, such as the BGP control plane for EVPN.|
 
 The following example shows the `bridge fdb show` command output:
 
 ```
 cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
-02:02:00:00:00:08 dev vx-1001 vlan 1001 offload master bridge
-02:02:00:00:00:08 dev vx-1001 dst 27.0.0.10 self offload
+02:02:00:00:00:08 dev vx-1001 vlan 1001 extern_learn master bridge
+02:02:00:00:00:08 dev vx-1001 dst 27.0.0.10 self extern_learn
 ```
 
 {{%notice note%}}

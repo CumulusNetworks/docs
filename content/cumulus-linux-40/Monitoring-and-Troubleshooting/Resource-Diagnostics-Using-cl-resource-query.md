@@ -2,9 +2,6 @@
 title: Resource Diagnostics Using cl-resource-query
 author: Cumulus Networks
 weight: 930
-aliases:
- - /display/DOCS/Resource+Diagnostics+Using+cl+resource+query
- - /pages/viewpage.action?pageId=8366314
 toc: 3
 ---
 You can use the `cl-resource-query` command to retrieve information about host entries, MAC entries, layer 2 and layer 3 routes, and {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}} routes that are in use. Because Cumulus Linux synchronizes routes between the kernel and the switching silicon, if the required resource pools in hardware fill up, new kernel routes can cause existing routes to move from being fully allocated to being partially allocated. To avoid this, monitor the routes in the hardware to keep them below the ASIC limits. For example, on a Broadcom Tomahawk switch, the limits are as follows:

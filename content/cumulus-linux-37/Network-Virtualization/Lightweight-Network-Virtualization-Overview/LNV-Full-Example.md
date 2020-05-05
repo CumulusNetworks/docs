@@ -2,9 +2,6 @@
 title: LNV Full Example
 author: Cumulus Networks
 weight: 377
-aliases:
- - /display/DOCS/LNV+Full+Example
- - /pages/viewpage.action?pageId=8362715
 pageID: 8362715
 ---
 {{%notice warning%}}

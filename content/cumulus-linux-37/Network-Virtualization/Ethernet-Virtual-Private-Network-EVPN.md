@@ -2,10 +2,6 @@
 title: Ethernet Virtual Private Network - EVPN
 author: Cumulus Networks
 weight: 143
-aliases:
- - /display/DOCS/Ethernet+Virtual+Private+Network+EVPN
- - /display/DOCS/Ethernet+Virtual+Private+Network+-+EVPN
- - /pages/viewpage.action?pageId=8362732
 pageID: 8362732
 ---
 VXLAN is the de facto technology for implementing network virtualization

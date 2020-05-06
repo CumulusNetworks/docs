@@ -1,0 +1,41 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Role-Tiny
+Upstream-Contact: Matt S. Trout <mst@shadowcat.co.uk>
+Source: https://metacpan.org/release/Role-Tiny
+
+Files: *
+Copyright: 2010-2012, Matt S. Trout <mst@shadowcat.co.uk>
+ 2010-2012, David Leadbeater <dgl@dgl.cx>
+ 2010-2012, Arthur Axel "fREW" Schmidt <frioux@gmail.com>
+ 2010-2012, Andrew Rodland <arodland@cpan.org>
+ 2010-2012, John Napiorkowski <jjn1056@yahoo.com>
+ 2010-2012, Peter Rabbitson <ribasushi@cpan.org>
+ 2010-2012, Chip Salzenberg <chip@pobox.com>
+ 2010-2012, Alex J. G. Burzyński <ajgb@cpan.org>
+ 2010-2012, Jesse Luehrs <doy at tozt dot net>
+ 2010-2012, Chris Prather <chris@prather.org>
+ 2010-2012, Christian Walde <walde.christian@googlemail.com>
+ 2010-2012, Dagfinn Ilmari Mannsåker <ilmari@ilmari.org>
+ 2010-2012, Toby Inkster <tobyink@cpan.org>
+License: Artistic or GPL-1+
+
+Files: debian/*
+Copyright: 2012, Alessandro Ghedini <ghedo@debian.org>
+ 2012-2017, gregor herrmann <gregoa@debian.org>
+License: Artistic or GPL-1+
+
+License: Artistic
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the Artistic License, which comes with Perl.
+ .
+ On Debian systems, the complete text of the Artistic License can be
+ found in `/usr/share/common-licenses/Artistic'.
+
+License: GPL-1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 1, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 1 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1'.

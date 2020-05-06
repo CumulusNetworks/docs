@@ -1,0 +1,8 @@
+This package was created by Rob Browning <rlb@defaultvalue.org> on Sun,
+18 Jan 1998 13:36:35 -0600
+
+The source for this package was created by Robert Browning with some
+code borrowed from the previous Debian emacs 19 package.  Unless
+otherwise noted, the contents are Copyright Robert Browning, 1998-2012
+and all of the code is covered under the terms of the GPL.  See the
+file /usr/share/common-licenses/GPL for more information.

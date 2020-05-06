@@ -1,0 +1,80 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Automake
+Upstream-Contact: automake@gnu.org
+Source: https://www.gnu.org/software/automake/
+
+Files: *
+Copyright: 1995-2013, Free Software Foundation, Inc
+License: GPL-2+
+ This program is free software; you can redistribute it
+ and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later
+ version.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+
+Files: lib/Automake/Getopt.pm
+ lib/gendocs.sh
+ lib/texinfo.tex
+ t/candist.sh
+ t/cond46.sh
+ t/ext3.sh
+ t/init2.sh
+ t/link_override.sh
+ t/subst5.sh
+Copyright: 2003-2013, Free Software Foundation, Inc
+License: GPL-3+
+ This program is free software; you can redistribute it
+ and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation; either
+ version 3 of the License, or (at your option) any later
+ version.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 3 can be found in the file
+ `/usr/share/common-licenses/GPL-3'.
+
+Files: doc/*.texi
+Copyright: Copyright 1995-2013 Free Software Foundation, Inc.
+License: GFDL-NIV-1.3+
+ Permission is granted to copy, distribute and/or modify this document
+ under the terms of the GNU Free Documentation License,
+ Version 1.3 or any later version published by the Free Software
+ Foundation; with no Invariant Sections, with no Front-Cover texts,
+ and with no Back-Cover Texts.  A copy of the license is included in the
+ section entitled ``GNU Free Documentation License.''
+ .
+ On Debian systems, the full text of the GNU Free Documentation
+ License version 1.3 can be found in the file
+ `/usr/share/common-licenses/GFDL-1.3'.
+
+Files: doc/amhello/*
+Copyright: 2006-2013, Free Software Foundation, Inc
+License: permissive
+ This program is free software; the Free Software Foundation
+ gives unlimited permission to copy, distribute and modify it.

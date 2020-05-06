@@ -19,7 +19,6 @@ The following table describes the features available in both Cumulus Linux softw
 | {{< link title="ASIC Monitoring" text="Buffer Monitoring" >}}                                                              | {{< unsupported >}} | {{< unsupported >}} | {{< unsupported >}} | {{< unsupported >}}            |
 | {{< link title="Buffer and Queue Management#Congestion Notification" text="ECN" >}}                                        | {{< unsupported >}} | {{< supported >}}   | {{< supported >}}   | {{< supported >}}              |
 | {{< link title="GRE Tunneling" text="GRE" >}}                                                                              | {{< unsupported >}} | {{< unsupported >}} | {{< unsupported >}} | {{< unsupported >}}            |
-| {{< link title="Network Address Translation - NAT" text="NAT" >}}                                                          | {{< unsupported >}} | {{< unsupported >}} | {{< unsupported >}} | {{< supported >}}\*            |
 | {{< link title="Buffer and Queue Management#priority-flow-control" text="PFC" >}}                                          | {{< unsupported >}} | {{< supported >}}   | {{< supported >}}   | {{< supported >}}              |
 | {{< link title="Buffer and Queue Management" text="Quality of Service" >}}                                                 | {{< unsupported >}} | {{< supported >}}   | {{< supported >}}   | {{< supported >}}              |
 | {{< link title="Monitoring System Statistics and Network Traffic with sFlow" text="sFlow" >}}                              | {{< supported >}}   | {{< supported >}}   | {{< supported >}}   | {{< supported >}}              |
@@ -37,7 +36,6 @@ The following table describes the features available in both Cumulus Linux softw
 | {{< link title="ASIC Monitoring" text="Buffer Monitoring" >}}                                                              | {{< unsupported >}} | {{< unsupported >}} | {{< unsupported >}} | {{< unsupported >}} |
 | {{< link title="Buffer and Queue Management#Congestion Notification" text="ECN" >}}                                        | {{< supported >}}   | {{< supported >}}   | {{< unsupported >}} | {{< unsupported >}} |
 | {{< link title="GRE Tunneling" text="GRE" >}}                                                                              | {{< unsupported >}} | {{< unsupported >}} | {{< unsupported >}} | {{< unsupported >}} |
-| {{< link title="Network Address Translation - NAT" text="NAT" >}}                                                          | {{< unsupported >}} | {{< unsupported >}} | {{< unsupported >}} | {{< unsupported >}} |
 | {{< link title="Buffer and Queue Management#priority-flow-control" text="PFC" >}}                                          | {{< supported >}}   | {{< supported >}}   | {{< unsupported >}} | {{< unsupported >}} |
 | {{< link title="Buffer and Queue Management" text="Quality of Service" >}}                                                 | {{< supported >}}   | {{< unsupported >}} | {{< unsupported >}} | {{< unsupported >}} |
 | {{< link title="Monitoring System Statistics and Network Traffic with sFlow" text="sFlow" >}}                              | {{< supported >}}   | {{< supported >}}   | {{< supported >}}   | {{< supported >}}   |
@@ -53,7 +51,6 @@ The following table describes the features available in both Cumulus Linux softw
 | {{< link title="ASIC Monitoring" text="Buffer Monitoring" >}}                                                              | {{< unsupported >}} |
 | {{< link title="Buffer and Queue Management#Congestion Notification" text="ECN" >}}                                        | {{< unsupported >}} |
 | {{< link title="GRE Tunneling" text="GRE" >}}                                                                              | {{< unsupported >}} |
-| {{< link title="Network Address Translation - NAT" text="NAT" >}}                                                          | {{< unsupported >}} |
 | {{< link title="Buffer and Queue Management#priority-flow-control" text="PFC" >}}                                          | {{< unsupported >}} |
 | {{< link title="Buffer and Queue Management" text="Quality of Service" >}}                                                 | {{< unsupported >}} |
 | {{< link title="Monitoring System Statistics and Network Traffic with sFlow" text="sFlow" >}}                              | {{< unsupported >}} |
@@ -64,16 +61,15 @@ The following table describes the features available in both Cumulus Linux softw
 
 ## Mellanox-based ASICs
 
-| Feature                                                                                                                    | Spectrum            | Spectrum 2          |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------- | ------------------- |
-| {{< link title="ASIC Monitoring" text="Buffer Monitoring" >}}                                                              | {{< supported >}}   | {{< supported >}}   |
-| {{< link title="Buffer and Queue Management#Congestion Notification" text="ECN" >}}                                        | {{< supported >}}   | {{< supported >}}   |
-| {{< link title="GRE Tunneling" text="GRE" >}}                                                                              | {{< supported >}}   | {{< supported >}}   |
-| {{< link title="Network Address Translation - NAT" text="NAT" >}}                                                          | {{< unsupported >}} | {{< supported >}}   |
-| {{< link title="Buffer and Queue Management#priority-flow-control" text="PFC" >}}                                          | {{< supported >}}   | {{< supported >}}   |
-| {{< link title="Buffer and Queue Management" text="Quality of Service" >}}                                                 | {{< supported >}}   | {{< unsupported >}} |
-| {{< link title="Monitoring System Statistics and Network Traffic with sFlow" text="sFlow" >}}                              | {{< supported >}}   | {{< supported >}}   |
-| {{< link title="Network Virtualization" text="VXLAN Bridging (L2 Only)" >}}                                                | {{< supported >}}   | {{< supported >}}   |
-| {{< link title="Setting Date and Time#precision-time-protocol-ptp-boundary-clock" text="Precision Time Protocol (PTP)" >}} | {{< unsupported >}} | {{< unsupported >}} |
-| {{< link title="VXLAN Routing" text="VXLAN Routing (L2 + L3)" >}}                                                          | {{< supported >}}   | {{< supported >}}   |
-| {{< link title="Mellanox What Just Happened (WJH)" text="What Just Happened" >}}                                           | {{< supported >}}   | {{< supported >}}   |
+| Feature                                                                                                                    | Spectrum          | Spectrum 2          |
+| -------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------------------- |
+| {{< link title="ASIC Monitoring" text="Buffer Monitoring" >}}                                                              | {{< supported >}} | {{< supported >}}   |
+| {{< link title="Buffer and Queue Management#Congestion Notification" text="ECN" >}}                                        | {{< supported >}} | {{< supported >}}   |
+| {{< link title="GRE Tunneling" text="GRE" >}}                                                                              | {{< supported >}} | {{< supported >}}   |
+| {{< link title="Buffer and Queue Management#priority-flow-control" text="PFC" >}}                                          | {{< supported >}} | {{< supported >}}   |
+| {{< link title="Buffer and Queue Management" text="Quality of Service" >}}                                                 | {{< supported >}} | {{< unsupported >}} |
+| {{< link title="Monitoring System Statistics and Network Traffic with sFlow" text="sFlow" >}}                              | {{< supported >}} | {{< supported >}}   |
+| {{< link title="Network Virtualization" text="VXLAN Bridging (L2 Only)" >}}                                                | {{< supported >}} | {{< supported >}}   |
+| {{< link title="Setting Date and Time#precision-time-protocol-ptp-boundary-clock" text="Precision Time Protocol (PTP)" >}} | {{< supported >}} | {{< supported >}}   |
+| {{< link title="VXLAN Routing" text="VXLAN Routing (L2 + L3)" >}}                                                          | {{< supported >}} | {{< supported >}}   |
+| {{< link title="Mellanox What Just Happened (WJH)" text="What Just Happened" >}}                                           | {{< supported >}} | {{< supported >}}   |

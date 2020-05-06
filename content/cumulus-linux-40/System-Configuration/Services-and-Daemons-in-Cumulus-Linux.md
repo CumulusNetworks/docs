@@ -2,9 +2,6 @@
 title: Services and Daemons in Cumulus Linux
 author: Cumulus Networks
 weight: 230
-aliases:
- - /display/DOCS/Services+and+Daemons+in+Cumulus+Linux
- - /pages/viewpage.action?pageId=8366299
 toc: 3
 ---
 *Services* (also known as *daemons*) and *processes* are at the heart of how a Linux system functions. Most of the time, a service takes care of itself; you just enable and start it, then let it run. However, because a Cumulus Linux switch is a Linux system, you can dig deeper if you like. Services can start multiple processes as they run. Services are important to monitor on a Cumulus Linux switch.

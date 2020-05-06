@@ -2,9 +2,6 @@
 title: Interface Configuration and Management
 author: Cumulus Networks
 weight: 91
-aliases:
- - /display/DOCS/Interface+Configuration+and+Management
- - /pages/viewpage.action?pageId=8363023
 pageID: 8363023
 ---
 `ifupdown` is the network interface manager for Cumulus Linux. Cumulus

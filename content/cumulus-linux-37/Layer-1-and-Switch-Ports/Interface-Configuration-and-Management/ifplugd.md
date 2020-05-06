@@ -2,9 +2,6 @@
 title: ifplugd
 author: Cumulus Networks
 weight: 311
-aliases:
- - /display/DOCS/ifplugd
- - /pages/viewpage.action?pageId=8362693
 pageID: 8362693
 ---
 `ifplugd` is an Ethernet link-state monitoring daemon, that can execute

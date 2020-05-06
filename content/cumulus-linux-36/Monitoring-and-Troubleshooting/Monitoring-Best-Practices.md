@@ -2,9 +2,6 @@
 title: Monitoring Best Practices
 author: Cumulus Networks
 weight: 229
-aliases:
- - /display/CL36/Monitoring+Best+Practices
- - /pages/viewpage.action?pageId=8362120
 pageID: 8362120
 ---
 The following monitoring processes are considered best practices for

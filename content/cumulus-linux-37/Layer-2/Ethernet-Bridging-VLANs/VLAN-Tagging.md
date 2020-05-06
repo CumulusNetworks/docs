@@ -2,9 +2,6 @@
 title: VLAN Tagging
 author: Cumulus Networks
 weight: 351
-aliases:
- - /display/DOCS/VLAN+Tagging
- - /pages/viewpage.action?pageId=8362668
 pageID: 8362668
 ---
 This topic shows two examples of VLAN tagging, one basic and one more

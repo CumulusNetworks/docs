@@ -2,9 +2,6 @@
 title: Integrating Hardware VTEPs with VMware NSX-MH
 author: Cumulus Networks
 weight: 393
-aliases:
- - /display/DOCS/Integrating+Hardware+VTEPs+with+VMware+NSX+MH
- - /pages/viewpage.action?pageId=8362796
 pageID: 8362796
 ---
 Switches running Cumulus Linux can integrate with VMware NSX

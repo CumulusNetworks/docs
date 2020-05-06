@@ -2,8 +2,6 @@
 title: Troubleshooting
 author: Cumulus Networks
 weight: 590
-aliases:
- - /pages/viewpage.action?pageId=12910740
 toc: 4
 ---
 This section provides various commands to help you examine your EVPN configuration and provides troubleshooting tips.
@@ -43,11 +41,11 @@ cumulus@leaf01:~$ bridge fdb show
 00:02:00:00:00:01 dev swp3 vlan 100 master bridge
 00:02:00:00:00:02 dev swp4 vlan 100 master bridge
 72:bc:b4:a3:eb:1e dev vni100 master bridge permanent
-00:02:00:00:00:06 dev vni100 vlan 100 offload master bridge
+00:02:00:00:00:06 dev vni100 vlan 100 extern_learn master bridge
 00:00:00:00:00:00 dev vni100 dst 10.0.0.3 self permanent
 00:00:00:00:00:00 dev vni100 dst 10.0.0.4 self permanent
 00:00:00:00:00:00 dev vni100 dst 10.0.0.2 self permanent
-00:02:00:00:00:06 dev vni100 dst 10.0.0.2 self offload
+00:02:00:00:00:06 dev vni100 dst 10.0.0.2 self extern_learn
 ...
 ```
 
@@ -59,8 +57,8 @@ The following example output for the `ip neigh show` command shows:
 ```
 cumulus@leaf01:~$ ip neigh show
 172.16.120.11 dev vlan100-v0 lladdr 00:02:00:00:00:01 STALE
-172.16.120.42 dev vlan100 lladdr 00:02:00:00:00:0e offload REACHABLE
-172.16.130.23 dev vlan200 lladdr 00:02:00:00:00:07 offload REACHABLE
+172.16.120.42 dev vlan100 lladdr 00:02:00:00:00:0e extern_learn REACHABLE
+172.16.130.23 dev vlan200 lladdr 00:02:00:00:00:07 extern_learn REACHABLE
 172.16.120.11 dev vlan100 lladdr 00:02:00:00:00:01 REACHABLE
 ...
 ```
@@ -155,26 +153,26 @@ VLAN      Master    Interface    MAC                TunnelDest    State      Fla
 100       br0       br0          00:01:00:00:11:00                permanent                 1 day, 03:38:43
 100       br0       swp3         00:02:00:00:00:01                                          00:00:26
 100       br0       swp4         00:02:00:00:00:02                                          00:00:16
-100       br0       vni100       00:02:00:00:00:0a                           offload        1 day, 03:38:20
-100       br0       vni100       00:02:00:00:00:0d                           offload        1 day, 03:38:20
-100       br0       vni100       00:02:00:00:00:0e                           offload        1 day, 03:38:20
-100       br0       vni100       00:02:00:00:00:05                           offload        1 day, 03:38:19
-100       br0       vni100       00:02:00:00:00:06                           offload        1 day, 03:38:19
-100       br0       vni100       00:02:00:00:00:09                           offload        1 day, 03:38:20
+100       br0       vni100       00:02:00:00:00:0a                           extern_learn   1 day, 03:38:20
+100       br0       vni100       00:02:00:00:00:0d                           extern_learn   1 day, 03:38:20
+100       br0       vni100       00:02:00:00:00:0e                           extern_learn   1 day, 03:38:20
+100       br0       vni100       00:02:00:00:00:05                           extern_learn   1 day, 03:38:19
+100       br0       vni100       00:02:00:00:00:06                           extern_learn   1 day, 03:38:19
+100       br0       vni100       00:02:00:00:00:09                           extern_learn   1 day, 03:38:20
 200       br0       br0          00:00:5e:00:01:01                permanent                 1 day, 03:38:42
 200       br0       br0          00:01:00:00:11:00                permanent                 1 day, 03:38:43
 200       br0       swp5         00:02:00:00:00:03                                          00:00:26
- 200       br0       swp6         00:02:00:00:00:04                                          00:00:26
-200       br0       vni200       00:02:00:00:00:0b                           offload        1 day, 03:38:20
-200       br0       vni200       00:02:00:00:00:0c                           offload        1 day, 03:38:20
-200       br0       vni200       00:02:00:00:00:0f                           offload        1 day, 03:38:20
-200       br0       vni200       00:02:00:00:00:07                           offload        1 day, 03:38:19
-200       br0       vni200       00:02:00:00:00:08                           offload        1 day, 03:38:19
-200       br0       vni200       00:02:00:00:00:10                           offload        1 day, 03:38:20
+ 200       br0       swp6         00:02:00:00:00:04                                         00:00:26
+200       br0       vni200       00:02:00:00:00:0b                           extern_learn   1 day, 03:38:20
+200       br0       vni200       00:02:00:00:00:0c                           extern_learn   1 day, 03:38:20
+200       br0       vni200       00:02:00:00:00:0f                           extern_learn   1 day, 03:38:20
+200       br0       vni200       00:02:00:00:00:07                           extern_learn   1 day, 03:38:19
+200       br0       vni200       00:02:00:00:00:08                           extern_learn   1 day, 03:38:19
+200       br0       vni200       00:02:00:00:00:10                           extern_learn   1 day, 03:38:20
 4001      br0       br0          00:01:00:00:11:00                permanent                 1 day, 03:38:42
-4001      br0       vni4001      00:01:00:00:12:00                           offload        1 day, 03:38:19
-4001      br0       vni4001      00:01:00:00:13:00                           offload        1 day, 03:38:20
-4001      br0       vni4001      00:01:00:00:14:00                           offload        1 day, 03:38:20
+4001      br0       vni4001      00:01:00:00:12:00                           extern_learn   1 day, 03:38:19
+4001      br0       vni4001      00:01:00:00:13:00                           extern_learn   1 day, 03:38:20
+4001      br0       vni4001      00:01:00:00:14:00                           extern_learn   1 day, 03:38:20
 untagged            br0          00:00:5e:00:01:01                permanent  self           never
 untagged            vlan100      00:00:5e:00:01:01                permanent  self           never
 untagged            vlan200      00:00:5e:00:01:01                permanent  self           never

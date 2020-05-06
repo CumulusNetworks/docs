@@ -2,9 +2,6 @@
 title: Setting Date and Time
 author: Cumulus Networks
 weight: 65
-aliases:
- - /display/DOCS/Setting+Date+and+Time
- - /pages/viewpage.action?pageId=8362545
 pageID: 8362545
 ---
 Setting the time zone, date and time requires root privileges; use

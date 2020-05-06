@@ -2,9 +2,6 @@
 title: Segment Routing
 author: Cumulus Networks
 weight: 203
-aliases:
- - /display/DOCS/Segment+Routing
- - /pages/viewpage.action?pageId=8362962
 pageID: 8362962
 ---
 {{%notice warning%}}

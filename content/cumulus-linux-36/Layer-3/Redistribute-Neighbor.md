@@ -2,9 +2,6 @@
 title: Redistribute Neighbor
 author: Cumulus Networks
 weight: 189
-aliases:
- - /display/CL36/Redistribute+Neighbor
- - /pages/viewpage.action?pageId=8362425
 pageID: 8362425
 ---
 *Redistribute neighbor* provides a mechanism for IP subnets to span

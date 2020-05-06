@@ -2,9 +2,6 @@
 title: Static VXLAN Tunnels
 author: Cumulus Networks
 weight: 363
-aliases:
- - /display/DOCS/Static+VXLAN+Tunnels
- - /pages/viewpage.action?pageId=8362793
 pageID: 8362793
 ---
 In VXLAN-based networks, there are a range of complexities and challenges in determining the destination *virtual tunnel endpoints* (VTEPs) for any given VXLAN. At scale, various solutions, including {{<link url="Lightweight-Network-Virtualization-Overview" text="Lightweight Network Virtualization">}}

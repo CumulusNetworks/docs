@@ -2,9 +2,6 @@
 title: Verify NetQ Agent Version
 author: Cumulus Networks
 weight: 146
-aliases:
- - /display/NETQ/Install+NetQ
- - /pages/viewpage.action?pageId=12320951
 toc: 5
 ---
 You can verify the version of the agent software you have deployed as described in the following sections.

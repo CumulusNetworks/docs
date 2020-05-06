@@ -2,11 +2,6 @@
 title: Ethernet Bridging - VLANs
 author: Cumulus Networks
 weight: 440
-aliases:
- - /display/DOCS/Ethernet+Bridging+++VLANs
- - /display/DOCS/Ethernet+Bridging+VLANs
- - /display/DOCS/Ethernet+Bridging+-+VLANs
- - /pages/viewpage.action?pageId=8366378
 toc: 3
 ---
 Ethernet bridges enable hosts to communicate through layer 2 by connecting all of the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} (maximum transmission unit). The bridge MTU is the minimum MTU among all its members. By default, the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360005695794" text="bridge's MAC address">}} is the MAC address of the first port in the `bridge-ports` list. The bridge can also be assigned an IP address, as discussed {{<link url="#bridge-mac-addresses" text="below">}}.
@@ -311,14 +306,14 @@ The `bridge fdb` command in Linux interacts with the forwarding database table (
 |--- |--- |
 | self | The Linux kernel FDB entry flag that indicates the FDB entry belongs to the FDB on the device referenced by the device.<br>For example, this FDB entry belongs to the VXLAN device `vx-1000`: `00:02:00:00:00:08 dev vx-1000 dst 27.0.0.10 self` |
 | master |The Linux kernel FDB entry flag that indicates the FDB entry belongs to the FDB on the device's master and the FDB entry is pointing to a master's port.<br>For example, this FDB entry is from the master device named bridge and is pointing to the VXLAN bridge port `vx-1001`: `02:02:00:00:00:08 dev vx-1001 vlan 1001 master bridge` |
-| offload | The Linux kernel FDB entry flag that indicates the FDB entry is managed (or offloaded) by an external control plane, such as the BGP control plane for EVPN.|
+| extern_learn | The Linux kernel FDB entry flag that indicates the FDB entry is managed (or offloaded) by an external control plane, such as the BGP control plane for EVPN.|
 
 The following example shows the `bridge fdb show` command output:
 
 ```
 cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
-02:02:00:00:00:08 dev vx-1001 vlan 1001 offload master bridge
-02:02:00:00:00:08 dev vx-1001 dst 27.0.0.10 self offload
+02:02:00:00:00:08 dev vx-1001 vlan 1001 extern_learn master bridge
+02:02:00:00:00:08 dev vx-1001 dst 27.0.0.10 self extern_learn
 ```
 
 {{%notice note%}}

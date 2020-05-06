@@ -2,9 +2,6 @@
 title: Switch Port Attributes
 author: Cumulus Networks
 weight: 309
-aliases:
- - /display/DOCS/Switch+Port+Attributes
- - /pages/viewpage.action?pageId=8363026
 pageID: 8363026
 ---
 Cumulus Linux exposes network interfaces for several types of physical
@@ -1346,7 +1343,7 @@ For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you
 must configure the four ports in the same core to be 10G. Each set of
 four 25G ports are controlled by a single core; therefore, each core
 must run at the same clock speed. The four ports must be in sequential
-order; for example, swp1, swp2, swp3, and swp4.
+order; for example, swp1, swp2, swp3, and swp4, unless a particular core grouping is specified in the `/etc/cumulus/ports.conf` file.
 
 1. Edit the `/etc/cumulus/ports.conf` file and configure the four ports
    to be 10G. 1G SFPs are clocked at 10G speeds; therefore, for 1G
@@ -1368,6 +1365,15 @@ order; for example, swp1, swp2, swp3, and swp4.
         9=25G
         ...
 
+    {{%notice note%}}
+
+You cannot use `ethtool -s speed XX` (or `ifreload -a` after setting the speed in the `/etc/network/interfaces` file) to change the port speed unless the four ports in a core group are already configured to 10G and `switchd` has been restarted.  If the ports are still in 25G mode, using
+`ethtool` or `ifreload` to change the speed to 10G or 1G returns an error (and a return code of 255).
+
+If you change the speed with `ethtool` to a setting already in use in the `/etc/cumulus/ports.conf` file, `ethtool` (and `ifreload -a`) do not return an error and no changes are made.
+
+{{%/notice%}}
+
 2. {{<link url="Configuring-switchd/#restart-switchd" text="Restart `switchd`">}}.
 
 3. If you want to set the speed of any SFPs to 1G, set the port speed
@@ -1379,12 +1385,6 @@ order; for example, swp1, swp2, swp3, and swp4.
         cumulus@switch:~$ net add interface swp5-swp6 link speed 1000
         cumulus@switch:~$ net pending
         cumulus@switch:~$ net commit
-
-{{%notice note%}}
-
-Do not manually edit the `/etc/network/interfaces` file, then run `ifreload -a` or use `ethtool` to change the port speed, as this returns an error. If you change the speed to a setting that is already in use by manually editing the `/etc/network/interfaces` file or with `ethtool`, no error is returned, but no changes are made.
-
-{{%/notice%}}
 
 {{%notice note%}}
 

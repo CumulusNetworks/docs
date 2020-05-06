@@ -2,15 +2,8 @@
 title: Quick Start Guide
 author: Cumulus Networks
 weight: 11
-aliases:
- - /display/RMP/Quick-Start-Guide
- - /display/RMP/Quick+Start+Guide
- - /pages/viewpage.action?pageId=5122816
-pageID: 5122816
 product: Cumulus RMP
 version: "3.7"
-imgData: cumulus-rmp
-siteSlug: cumulus-rmp
 ---
 This quick start guide provides an end-to-end setup process for
 installing and running Cumulus RMP, as well as a collection of example

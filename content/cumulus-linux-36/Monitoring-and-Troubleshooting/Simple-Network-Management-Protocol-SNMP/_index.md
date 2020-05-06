@@ -2,10 +2,6 @@
 title: Simple Network Management Protocol (SNMP) Monitoring
 author: Cumulus Networks
 weight: 227
-aliases:
- - /display/CL36/Simple+Network+Management+Protocol+(SNMP)+Monitoring
- - /display/CL36/Simple+Network+Management+Protocol+SNMP+Monitoring
- - /pages/viewpage.action?pageId=8362103
 pageID: 8362103
 ---
 Cumulus Linux uses the open source Net-SNMP agent `snmpd`, version 5.7,

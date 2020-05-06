@@ -2,9 +2,6 @@
 title: SSH for Remote Access
 author: Cumulus Networks
 weight: 279
-aliases:
- - /display/CL36/SSH+for+Remote+Access
- - /pages/viewpage.action?pageId=8362046
 pageID: 8362046
 ---
 You can generate authentication keys to access a Cumulus Linux switch

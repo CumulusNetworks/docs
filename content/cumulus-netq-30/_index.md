@@ -2,8 +2,6 @@
 title: Cumulus NetQ 3.0
 author: Cumulus Networks
 weight: -10
-aliases:
-pageID: 12322014
 subsection: true
 toc: 1
 cascade:

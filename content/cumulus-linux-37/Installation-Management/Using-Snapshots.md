@@ -2,9 +2,6 @@
 title: Using Snapshots
 author: Cumulus Networks
 weight: 47
-aliases:
- - /display/DOCS/Using+Snapshots
- - /pages/viewpage.action?pageId=8362648
 pageID: 8362648
 ---
 Cumulus Linux supports the ability to take snapshots of the complete file system as well as the ability to roll back to a previous snapshot. Snapshots are performed automatically right before and after you upgrade Cumulus Linux using {{<link url="Upgrading-Cumulus-Linux" text="package install">}}, and right before and after you commit a switch configuration using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. In addition, you can take a snapshot at any time. You can roll back the entire file system to a specific snapshot or just retrieve specific files.

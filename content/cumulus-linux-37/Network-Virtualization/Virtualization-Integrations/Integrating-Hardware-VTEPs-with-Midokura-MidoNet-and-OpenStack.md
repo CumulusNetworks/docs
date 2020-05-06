@@ -2,9 +2,6 @@
 title: Integrating Hardware VTEPs with Midokura MidoNet and OpenStack
 author: Cumulus Networks
 weight: 389
-aliases:
- - /display/DOCS/Integrating+Hardware+VTEPs+with+Midokura+MidoNet+and+OpenStack
- - /pages/viewpage.action?pageId=8362812
 pageID: 8362812
 ---
 Cumulus Linux seamlessly integrates with the MidoNet OpenStack

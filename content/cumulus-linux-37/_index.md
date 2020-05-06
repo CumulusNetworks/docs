@@ -2,10 +2,6 @@
 title: Cumulus Linux 3.7 User Guide
 author: Cumulus Networks
 weight: -37
-aliases:
- - /display/DOCS/
- - /display/DOCS/Cumulus+Linux+User+Guide
- - /pages/viewpage.action?pageId=8362527
 pageID: 8362527
 subsection: true
 cascade:

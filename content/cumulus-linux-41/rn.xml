@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29568</td>
+<td><p>When NAT is configured, non-NAT traffic is incorrectly forwarded to the CPU.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29546</td>
 <td><p>In vtysh, if you configure, then remove a layer 3 VNI for a VRF, the VNI is removed from zebra even if the VNI interface still exists in the kernel.<br/>
 If you configure a layer 2 VNI as a layer 3 VNI by mistake, removing the layer 3 VNI binding removes it from zebra but EVPN-learned MACs and neighbors are not installed into the kernel.<br/>
@@ -48,6 +54,17 @@ asic-monitor[7389]: --------------
 
 </td>
 <td>3.7.11-3.7.12, 4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29513</td>
+<td><p>Configuration of interfaces fails to apply when you set FEC. You see a message similar to the following:</p>
+
+cmd '/sbin/ethtool --set-fec &lt;switch-port&gt; encoding rs' failed: returned 255      (Cannot set FEC settings: Connection timed out
+
+
+<p>To work around this issue, reapply the configuration with NCLU and run the net commit or ifreload -a a second time to allow the interface configuration to apply.</p></td>
+<td>4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1455,6 +1472,12 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-29568</td>
+<td><p>When NAT is configured, non-NAT traffic is incorrectly forwarded to the CPU.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29546</td>

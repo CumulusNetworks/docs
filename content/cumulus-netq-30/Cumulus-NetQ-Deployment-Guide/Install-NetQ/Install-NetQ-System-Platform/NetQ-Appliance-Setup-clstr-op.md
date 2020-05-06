@@ -99,7 +99,7 @@ Now that the appliances are up and running, verify that the software is availabl
 
 4. Run the Bootstrap CLI. Be sure to replace the *eno1* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.0.0" platform="appliance">}}
+    {{<netq-install/bootstrap server="single" version="3.0.0" platform="appliance" deployment="onprem">}}
 
 5. On one or your worker nodes, verify that the needed packages are present and of the correct release, version 3.0.0 and update 27 or later.
 

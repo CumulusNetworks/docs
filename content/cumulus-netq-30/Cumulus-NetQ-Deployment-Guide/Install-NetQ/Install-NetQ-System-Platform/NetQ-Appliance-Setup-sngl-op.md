@@ -97,7 +97,7 @@ Now that the appliance is up and running, verify that the software is available 
 
 4. Run the Bootstrap CLI. Be sure to replace the *eno1* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.0.0" platform="appliance">}}
+    {{<netq-install/bootstrap server="single" version="3.0.0" platform="appliance" deployment="onprem">}}
 
 The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the NetQ CLI.
 

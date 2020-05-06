@@ -47,7 +47,7 @@ Make a note of the private IP address you assign to the worker node. It is neede
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-11. Run the Bootstrap CLI on the worker node. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+11. Run the Bootstrap CLI on the worker node.
 
     {{<netq-install/bootstrap version="3.0.0" server="cluster" platform="vm" deployment="cloud">}}
 

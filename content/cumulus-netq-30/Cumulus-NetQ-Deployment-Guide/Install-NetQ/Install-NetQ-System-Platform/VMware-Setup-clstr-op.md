@@ -31,7 +31,7 @@ Follow these steps to setup and configure your VM a cluster of servers  in an on
 
 6. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.0.0">}}
+    {{<netq-install/bootstrap server="single" version="3.0.0" deployment="cloud" platform="vm">}}
 
 7. Verify that your first worker node meets the VM requirements, as described in Step 1.
 

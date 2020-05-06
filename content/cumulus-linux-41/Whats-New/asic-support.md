@@ -71,9 +71,9 @@ The following table describes the features available in both Cumulus Linux softw
 | {{< link title="GRE Tunneling" text="GRE" >}}                                                                              | {{< supported >}}   | {{< supported >}}   |
 | {{< link title="Network Address Translation - NAT" text="NAT" >}}                                                          | {{< unsupported >}} | {{< supported >}}   |
 | {{< link title="Buffer and Queue Management#priority-flow-control" text="PFC" >}}                                          | {{< supported >}}   | {{< supported >}}   |
-| {{< link title="Buffer and Queue Management" text="Quality of Service" >}}                                                 | {{< supported >}}   | {{< unsupported >}} |
+| {{< link title="Buffer and Queue Management" text="Quality of Service" >}}                                                 | {{< supported >}}   | {{< supported >}} |
 | {{< link title="Monitoring System Statistics and Network Traffic with sFlow" text="sFlow" >}}                              | {{< supported >}}   | {{< supported >}}   |
 | {{< link title="Network Virtualization" text="VXLAN Bridging (L2 Only)" >}}                                                | {{< supported >}}   | {{< supported >}}   |
-| {{< link title="Setting Date and Time#precision-time-protocol-ptp-boundary-clock" text="Precision Time Protocol (PTP)" >}} | {{< unsupported >}} | {{< unsupported >}} |
+| {{< link title="Setting Date and Time#precision-time-protocol-ptp-boundary-clock" text="Precision Time Protocol (PTP)" >}} | {{< supported >}} | {{< unsupported >}} |
 | {{< link title="VXLAN Routing" text="VXLAN Routing (L2 + L3)" >}}                                                          | {{< supported >}}   | {{< supported >}}   |
 | {{< link title="Mellanox What Just Happened (WJH)" text="What Just Happened" >}}                                           | {{< supported >}}   | {{< supported >}}   |

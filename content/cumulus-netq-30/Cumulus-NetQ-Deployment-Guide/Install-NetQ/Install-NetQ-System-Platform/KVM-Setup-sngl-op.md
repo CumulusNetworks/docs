@@ -21,7 +21,7 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
 4. Setup and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="kvm">}}
+    {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="3.0.0">}}
 
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 

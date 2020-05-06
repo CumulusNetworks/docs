@@ -1,5 +1,5 @@
 ---
-title: Install the NetQ On-Premises Appliance
+title: Install the NetQ On-premises Appliance
 author: Cumulus Networks
 weight: 80
 toc: 5
@@ -91,15 +91,15 @@ Now that the appliance is up and running, verify that the software is available 
 
     {{<netq-install/verify-image deployment="onprem" version="3.0.0">}}
 
-4. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
+3. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="onprem">}}
 
-5. Run the Bootstrap CLI. Be sure to replace the *eno1* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
+4. Run the Bootstrap CLI. Be sure to replace the *eno1* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap server="single" version="3.0.0" platform="appliance">}}
 
-The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the CLI.
+The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the NetQ CLI.
 
 Click the installation and activation method you want to use to complete installation:
 

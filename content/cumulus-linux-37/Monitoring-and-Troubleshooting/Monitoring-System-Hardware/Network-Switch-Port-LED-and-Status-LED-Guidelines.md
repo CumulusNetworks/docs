@@ -2,9 +2,6 @@
 title: Network Switch Port LED and Status LED Guidelines
 author: Cumulus Networks
 weight: 431
-aliases:
- - /display/DOCS/Network+Switch+Port+LED+and+Status+LED+Guidelines
- - /pages/viewpage.action?pageId=8362595
 pageID: 8362595
 ---
 Data centers today have a large number of network switches manufactured by different hardware vendors running network operating systems (NOS) from different providers. This chapter provides a set of guidelines for how network port and status LEDs should appear on the front panel of a network switch. This provides a network operator with a standard way to identify the state of a switch and its ports by looking at its front panel, irrespective of the hardware vendor or NOS.

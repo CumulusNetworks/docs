@@ -2,11 +2,6 @@
 title: Multi-Chassis Link Aggregation - MLAG
 author: Cumulus Networks
 weight: 123
-aliases:
- - /display/CL36/Multi+Chassis+Link+Aggregation+++MLAG
- - /display/CL36/Multi+Chassis+Link+Aggregation+-+MLAG
- - /display/CL36/Multi+Chassis+Link+Aggregation+MLAG
- - /pages/viewpage.action?pageId=8362169
 pageID: 8362169
 ---
 Multi-Chassis Link Aggregation (MLAG), enables a server or switch with a

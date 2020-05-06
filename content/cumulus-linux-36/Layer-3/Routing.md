@@ -2,9 +2,6 @@
 title: Routing
 author: Cumulus Networks
 weight: 165
-aliases:
- - /display/CL36/Routing
- - /pages/viewpage.action?pageId=8362382
 pageID: 8362382
 ---
 This chapter discusses routing on switches running Cumulus Linux.

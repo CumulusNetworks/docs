@@ -2,9 +2,6 @@
 title: Using Nutanix Prism as a Monitoring Tool
 author: Cumulus Networks
 weight: 501
-aliases:
- - /display/CL36/Using+Nutanix+Prism+as+a+Monitoring+Tool
- - /pages/viewpage.action?pageId=8362113
 pageID: 8362113
 ---
 Nutanix Prism is a graphical user interface (GUI) for managing

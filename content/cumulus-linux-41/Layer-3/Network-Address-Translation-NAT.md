@@ -357,7 +357,7 @@ To see the NAT rules configured on the switch, run the `sudo iptables -t nat -v 
 `sudo cl-acltool -L ip -v` command. For example:
 
 ```
-cumulus@switch:~$ sudo iptables -t nat -v -L
+cumulus@switch:~$ sudo iptables -t nat -v -L -n
 ...
 Chain POSTROUTING (policy ACCEPT 27 packets, 3249 bytes)
  pkts bytes target   prot opt in   out   source      destination

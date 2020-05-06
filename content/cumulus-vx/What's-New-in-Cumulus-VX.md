@@ -2,12 +2,6 @@
 title: What's New in Cumulus VX
 author: Cumulus Networks
 weight: 11
-aliases:
- - /display/VX/What's-New-in-Cumulus-VX
- - /display/VX/What's+New+in+Cumulus+VX
- - /display/VX/Whats-New-in-Cumulus-VX
- - /display/VX/Whats+New+in+Cumulus+VX
- - /pages/viewpage.action?pageId=5126710
 pageID: 5126710
 product: Cumulus VX
 version: '3.7'

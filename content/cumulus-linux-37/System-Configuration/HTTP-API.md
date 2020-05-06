@@ -2,9 +2,6 @@
 title: HTTP API
 author: Cumulus Networks
 weight: 79
-aliases:
- - /display/DOCS/HTTP+API
- - /pages/viewpage.action?pageId=8362591
 pageID: 8362591
 ---
 Cumulus Linux implements an HTTP (Web) application programing interface

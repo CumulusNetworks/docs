@@ -2,10 +2,6 @@
 title: "Monitoring Interfaces and Transceivers Using ethtool - ethtool Counter Definitions"
 author: Cumulus Networks
 weight: 459
-aliases:
- 
-- "/display/DOCS/Monitoring+Interfaces+and+Transceivers+Using+ethtool+ethtool+Counter+Definitions"
-- /pages/viewpage.action?pageId=9018051
 pageID: 9018051
 ---
 The `ethtool` command enables you to query or control the network driver

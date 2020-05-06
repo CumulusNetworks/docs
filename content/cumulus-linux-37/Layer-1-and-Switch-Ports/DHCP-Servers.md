@@ -2,9 +2,6 @@
 title: DHCP Servers
 author: Cumulus Networks
 weight: 97
-aliases:
- - /display/DOCS/DHCP+Servers
- - /pages/viewpage.action?pageId=8363042
 pageID: 8363042
 ---
 To run DHCP for both IPv4 and IPv6, you need to initiate the DHCP server

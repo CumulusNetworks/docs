@@ -35,7 +35,7 @@ To add more worker nodes:
 
     On completion, a card for the new node is added to the Cluster dashboard.
 
-    If the addition fails for any reason, download the log file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/>, run `netq bootstrap reset`, and then try again.
+    If the addition fails for any reason, download the log file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/>, run `netq bootstrap reset` on this new worker node, and then try again.
 
 6. Repeat this process to add more worker nodes as needed.
 

@@ -2,9 +2,6 @@
 title: Configuring switchd
 author: Cumulus Networks
 weight: 73
-aliases:
- - /display/CL36/Configuring+switchd
- - /pages/viewpage.action?pageId=8362056
 pageID: 8362056
 ---
 `switchd` is the daemon at the heart of Cumulus Linux. It communicates

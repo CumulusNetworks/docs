@@ -2,10 +2,6 @@
 title: Monitor Switches
 author: Cumulus Networks
 weight: 440
-aliases:
- - /display/NETQ/Monitor+Switches
- - /pages/viewpage.action?pageId=12321794
-pageID: 12321794
 toc: 4
 ---
 With the NetQ UI, you can monitor individual switches separately from the network. You are able to view the status of services they are running, health of its various components, and connectivity performance. Being able to monitor switch component inventory aids in upgrade, compliance, and other planning tasks. Viewing individual switch health helps isolate performance issues.

@@ -2,9 +2,6 @@
 title: Network Topology
 author: Cumulus Networks
 weight: 740
-aliases:
- - /display/DOCS/Network+Topology
- - /pages/viewpage.action?pageId=8366639
 toc: 3
 ---
 In computer networks, *topology* refers to the structure of interconnecting various nodes. Some commonly used topologies in networks are star, hub and spoke, leaf and spine, and broadcast.

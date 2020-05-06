@@ -2,9 +2,6 @@
 title: Hybrid Cloud Connectivity with QinQ and VXLANs
 author: Cumulus Networks
 weight: 153
-aliases:
- - /display/CL36/Hybrid+Cloud+Connectivity+with+QinQ+and+VXLANs
- - /pages/viewpage.action?pageId=8362276
 pageID: 8362276
 ---
 *QinQ* is an amendment to the [IEEE 802.1Q specification](http://www.ieee802.org/1/pages/802.1Q.html) 

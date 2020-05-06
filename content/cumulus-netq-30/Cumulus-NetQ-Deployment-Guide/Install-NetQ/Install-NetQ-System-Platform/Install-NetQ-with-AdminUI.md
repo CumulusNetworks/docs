@@ -62,7 +62,7 @@ With the NetQ 2.4.0 release, you must have one master and two worker nodes. With
 
     4. Install NetQ software.
 
-        You install the NetQ software using the installation files (`NetQ-2.4.1-tgz` for on-premises deployments or `NetQ-2.4.1-opta.tgz` for cloud deployments)  that you downloaded and stored previously.
+        You install the NetQ software using the installation files (`NetQ-3.0.0-tgz` for on-premises deployments or `NetQ-3.0.0-opta.tgz` for cloud deployments)  that you downloaded and stored previously.
 
         Enter the appropriate filename in the field provided.
 

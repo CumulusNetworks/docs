@@ -2,9 +2,6 @@
 title: Troubleshooting VXLANs
 author: Cumulus Networks
 weight: 155
-aliases:
- - /display/DOCS/Troubleshooting+VXLANs
- - /pages/viewpage.action?pageId=9014338
 pageID: 9014338
 ---
 This topic discusses various ways you can verify and troubleshoot

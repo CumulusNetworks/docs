@@ -2,9 +2,6 @@
 title: Monitoring System Hardware
 author: Cumulus Networks
 weight: 940
-aliases:
- - /display/DOCS/Monitoring+System+Hardware
- - /pages/viewpage.action?pageId=8366315
 toc: 3
 ---
 You monitor system hardware using the following commands and utilities:

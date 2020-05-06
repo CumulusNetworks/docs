@@ -2,11 +2,6 @@
 title: Prescriptive Topology Manager - PTM
 author: Cumulus Networks
 weight: 103
-aliases:
- - /display/CL36/Prescriptive+Topology+Manager+++PTM
- - /display/CL36/Prescriptive+Topology+Manager+-+PTM
- - /display/CL36/Prescriptive+Topology+Manager+PTM
- - /pages/viewpage.action?pageId=8362487
 pageID: 8362487
 ---
 In data center topologies, right cabling is a time-consuming endeavor

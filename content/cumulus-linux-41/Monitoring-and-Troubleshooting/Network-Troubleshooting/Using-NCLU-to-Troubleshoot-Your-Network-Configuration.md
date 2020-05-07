@@ -2,9 +2,6 @@
 title: Using NCLU to Troubleshoot Your Network Configuration
 author: Cumulus Networks
 weight: 1050
-aliases:
- - /display/DOCS/Using+NCLU+to+Troubleshoot+Your+Network+Configuration
- - /pages/viewpage.action?pageId=8366320
 toc: 4
 ---
 The {{<link url="Network-Command-Line-Utility-NCLU" text="Network Command Line Utility">}} (NCLU) can quickly return a lot of information about your network configuration.

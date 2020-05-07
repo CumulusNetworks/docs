@@ -2,10 +2,6 @@
 title: Cumulus VX Support Policy
 author: Cumulus Networks
 weight: 15
-aliases:
- - /display/VX/Cumulus-VX-Support-Policy
- - /display/VX/Cumulus+VX+Support+Policy
- - /pages/viewpage.action?pageId=5126708
 pageID: 5126708
 product: Cumulus VX
 version: '3.7'

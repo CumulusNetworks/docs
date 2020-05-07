@@ -2,10 +2,6 @@
 title: Monitor Critical Events
 author: Cumulus Networks
 weight: 324
-aliases:
- - /display/NETQ/Monitor+Events
- - /pages/viewpage.action?pageId=12321771
-pageID: 12321771
 toc: 4
 ---
 You can easily monitor critical events occurring across your network using the Alarms card. You can determine the number of events for the various system, interface, and network protocols and services components in the network. The content of the cards in the workflow is described first, and then followed by common tasks you would perform using this card workflow.

@@ -2,9 +2,6 @@
 title: Troubleshooting Log Files
 author: Cumulus Networks
 weight: 461
-aliases:
- - /display/CL36/Troubleshooting+Log+Files
- - /pages/viewpage.action?pageId=8362097
 pageID: 8362097
 ---
 The only real unique entity for logging on Cumulus Linux compared to any

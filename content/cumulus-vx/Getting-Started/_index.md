@@ -2,10 +2,6 @@
 title: Getting Started
 author: Cumulus Networks
 weight: 17
-aliases:
- - /display/VX/Getting-Started
- - /display/VX/Getting+Started
- - /pages/viewpage.action?pageId=5126687
 pageID: 5126687
 ---
 To install Cumulus VX, first download and install the preferred

@@ -2,7 +2,6 @@
 title: Install NetQ
 author: Cumulus Networks
 weight: 60
-aliases:
 toc: 3
 ---
 The complete Cumulus NetQ solution contains several components that must be installed, including the NetQ applications, the database, and the NetQ Agents. NetQ can be deployed in two arrangements:

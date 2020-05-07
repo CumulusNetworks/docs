@@ -2,15 +2,8 @@
 title: Cumulus RMP
 author: Cumulus Networks
 weight: -37
-aliases:
- - /display/RMP/Cumulus-RMP
- - /display/RMP/Cumulus+RMP
- - /display/RMP/
- - /pages/viewpage.action?pageId=5122807
-pageID: 5122807
 product: Cumulus RMP
 version: "3.7"
-siteSlug: cumulus-rmp
 subsection: true
 ---
 

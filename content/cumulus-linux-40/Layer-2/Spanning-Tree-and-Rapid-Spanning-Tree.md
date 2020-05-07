@@ -2,9 +2,6 @@
 title: Spanning Tree and Rapid Spanning Tree
 author: Cumulus Networks
 weight: 400
-aliases:
- - /display/DOCS/Spanning+Tree+and+Rapid+Spanning+Tree
- - /pages/viewpage.action?pageId=8366412
 toc: 3
 ---
 Spanning tree protocol (STP) is always recommended in layer 2 topologies as it prevents bridge loops and broadcast radiation on a bridged network. STP also provides redundant links for automatic failover when an active link fails. STP is enabled by default for both VLAN-aware and traditional bridges.

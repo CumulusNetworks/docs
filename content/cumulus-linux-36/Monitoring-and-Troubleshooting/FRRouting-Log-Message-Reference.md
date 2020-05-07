@@ -2,9 +2,6 @@
 title: FRRouting Log Message Reference
 author: Cumulus Networks
 weight: 233
-aliases:
- - /display/CL36/FRRouting+Log+Message+Reference
- - /pages/viewpage.action?pageId=8362123
 pageID: 8362123
 ---
 The following table lists the HIGH severity ERROR log messages generated

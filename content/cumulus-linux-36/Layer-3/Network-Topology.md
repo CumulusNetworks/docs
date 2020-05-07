@@ -2,9 +2,6 @@
 title: Network Topology
 author: Cumulus Networks
 weight: 169
-aliases:
- - /display/CL36/Network+Topology
- - /pages/viewpage.action?pageId=8362385
 pageID: 8362385
 ---
 In computer networks, *topology* refers to the structure of

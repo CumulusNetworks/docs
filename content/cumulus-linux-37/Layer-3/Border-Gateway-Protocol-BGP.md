@@ -2,10 +2,6 @@
 title: Border Gateway Protocol - BGP
 author: Cumulus Networks
 weight: 185
-aliases:
- - /display/DOCS/Border+Gateway+Protocol+BGP
- - /display/DOCS/Border+Gateway+Protocol+-+BGP
- - /pages/viewpage.action?pageId=8362926
 pageID: 8362926
 ---
 BGP is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. Specifically, BGP:

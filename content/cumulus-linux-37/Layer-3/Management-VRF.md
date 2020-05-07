@@ -166,7 +166,7 @@ The message `Duplicate IPv4 address detected, some interfaces may not be visible
 By default, when you issue a `ping` or `traceroute`, the packet is sent to the dataplane network (the main routing table). To use `ping` or `traceroute` on the management network, use `ping -I mgmt` or `traceroute -i mgmt`. To select a source address within the management VRF, use the `-s` flag for `traceroute`.
 
 ```
-cumulus@switch:~$ ping -I <destination-ip>
+cumulus@switch:~$ ping -I mgmt <destination-ip>
 ```
 
 Or:

@@ -7,6 +7,61 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29546</td>
+<td><p>In vtysh, if you configure, then remove a layer 3 VNI for a VRF, the VNI is removed from zebra even if the VNI interface still exists in the kernel.<br/>
+If you configure a layer 2 VNI as a layer 3 VNI by mistake, removing the layer 3 VNI binding removes it from zebra but EVPN-learned MACs and neighbors are not installed into the kernel.<br/>
+To work around this issue, delete, then re-add the missing VNI. For example:</p>
+
+cumulus@switch:~$ sudo ifdown vni10100
+cumulus@switch:~$ sudo ifup vni10100
+
+
+<p>If you flap the link with the ip link set vni10100 down; ip link set vni10100 up commands, zebra does not re-add the VNI.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29525</td>
+<td><p>The asic-monitor.service fails when you configure /etc/cumulus/datapath/monitor.conf with monitor.histogram_pg.collect.port_group_list  = <span class="error">&#91;all_packet_pg&#93;</span> and there is traffic passing through the buffer. When the service fails, you see the following traceback in journalctl:</p>
+
+
+asic-monitor[7389]: asic-monitor-module INFO: 2020-05-01 18:28:12.548734: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg
+asic-monitor[7389]: asic-monitor ERROR: ASIC monitor exception: sx_api_port_counter_tc_get failed: Parameter Error
+asic-monitor[7389]: File "/usr/bin/asic-monitor", line 139, in &lt;module&gt;
+asic-monitor[7389]: main(sys.argv[1:])
+asic-monitor[7389]: File "/usr/bin/asic-monitor", line 126, in main
+asic-monitor[7389]: traceback.print_stack()
+asic-monitor[7389]: Traceback (most recent call last):
+asic-monitor[7389]: File "/usr/bin/asic-monitor", line 117, in main
+asic-monitor[7389]: monitor.run()
+asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 158, in run
+asic-monitor[7389]: self.take_action(state_desc, results, state_desc_dict, depth=0)
+asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 89, in take_action
+asic-monitor[7389]: collect_results = self.asic_manager.read_state(collect_pg)
+asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/mlx_asic_manager.py", line 715, in read_state
+asic-monitor[7389]: packet_info[linux_port_label])
+asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/mlx_asic_manager.py", line 442, in read_packet_stats
+asic-monitor[7389]: raise RuntimeError('sx_api_port_counter_tc_get failed: %s' % sx_status_msg[rc])
+asic-monitor[7389]: RuntimeError: sx_api_port_counter_tc_get failed: Parameter Error
+asic-monitor[7389]: asic-monitor-module INFO: ASIC monitor stopping
+asic-monitor[7389]: --------------
+
+</td>
+<td>3.7.11-3.7.12, 4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29492</td>
+<td><p>When you create SPAN or ERSPAN rules in ebtables, the action fails to install if it is not in lowercase. Make sure that the SPAN or ERSPAN action is all lowercase; for example:</p>
+
+[ebtables]
+-A FORWARD --in-interface swp10 -j span --dport swp1
+
+</td>
+<td>3.7.12, 4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29485</td>
 <td><p>The following vulnerability affects the openldap package:<br/>
 CVE-2020-12243: A vulnerability was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. LDAP search filters with nested boolean expressions can result in denial of service (slapd daemon crash).<br/>
@@ -98,6 +153,19 @@ CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distrib
 <td></td>
 </tr>
 <tr>
+<td>CM-29270</td>
+<td><p>On Mellanox switches with the Spectrum-2 ASIC, when you use more than 16 bonds on the switch, you might experience forwarding issues or see an error similar to the following in switchd.log:</p>
+
+2020-04-07T15:59:27.345421+10:00 le-266-q14-2-res switchd[8422]: hal_mlx_bond.c:1696 ERR member_fwd_update_cb spartan-bm87 collector set failed for swp3s0: Driver's Return Status is Non-Zero
+2020-04-07T15:59:27.345557+10:00 le-266-q14-2-res switchd[8422]:
+2020-04-07T15:59:27.348432+10:00 le-266-q14-2-res switchd[8422]: hal_mlx_bond.c:1705 ERR member_fwd_update_cb spartan-bm87 distributor set failed for swp3s0: Driver's Return Status is Non-Zero
+
+
+<p>To work around this issue, configure fewer than 16 bonds on a switch.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29259</td>
 <td><p>You might see the following gport error messages in switchd.log:</p>
 
@@ -135,6 +203,18 @@ cumulus@switch:~$ sudo echo 0 &gt; /var/run/hw-management/config/suspend
 <td>CM-29165</td>
 <td><p>An inconsistent link-state advertisement may be seen with FRR/OSPF in some circumstances. For example, when you configure the OSPF default originate route as metric-type 1 with a specific metric, Cumulus Linux shows the default originate route as an external metric-type 2 route with the default metric in the database. This problem has been observed when there are both IPv4 and IPv6 default routes in the routing table.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29145</td>
+<td><p>If you try to remove BFD configuration with a reload, the FRR service fails. The reload action results in a TypeError: expected string or bytes-like object error.<br/>
+This issue is only seen if there is default configuration, such as configuration in the /etc/frr/frr.conf file that is suppressed from view in the FRR running-configuration.<br/>
+To work around this issue, remove the default configuration lines; for example: </p>
+
+username cumulus nopassword
+
+</td>
+<td>4.1.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1377,6 +1457,20 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29546</td>
+<td><p>In vtysh, if you configure, then remove a layer 3 VNI for a VRF, the VNI is removed from zebra even if the VNI interface still exists in the kernel.<br/>
+If you configure a layer 2 VNI as a layer 3 VNI by mistake, removing the layer 3 VNI binding removes it from zebra but EVPN-learned MACs and neighbors are not installed into the kernel.<br/>
+To work around this issue, delete, then re-add the missing VNI. For example:</p>
+
+cumulus@switch:~$ sudo ifdown vni10100
+cumulus@switch:~$ sudo ifup vni10100
+
+
+<p>If you flap the link with the ip link set vni10100 down; ip link set vni10100 up commands, zebra does not re-add the VNI.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29485</td>
 <td><p>The following vulnerability affects the openldap package:<br/>
 CVE-2020-12243: A vulnerability was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. LDAP search filters with nested boolean expressions can result in denial of service (slapd daemon crash).<br/>
@@ -1468,6 +1562,19 @@ CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distrib
 <td></td>
 </tr>
 <tr>
+<td>CM-29270</td>
+<td><p>On Mellanox switches with the Spectrum-2 ASIC, when you use more than 16 bonds on the switch, you might experience forwarding issues or see an error similar to the following in switchd.log:</p>
+
+2020-04-07T15:59:27.345421+10:00 le-266-q14-2-res switchd[8422]: hal_mlx_bond.c:1696 ERR member_fwd_update_cb spartan-bm87 collector set failed for swp3s0: Driver's Return Status is Non-Zero
+2020-04-07T15:59:27.345557+10:00 le-266-q14-2-res switchd[8422]:
+2020-04-07T15:59:27.348432+10:00 le-266-q14-2-res switchd[8422]: hal_mlx_bond.c:1705 ERR member_fwd_update_cb spartan-bm87 distributor set failed for swp3s0: Driver's Return Status is Non-Zero
+
+
+<p>To work around this issue, configure fewer than 16 bonds on a switch.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29259</td>
 <td><p>You might see the following gport error messages in switchd.log:</p>
 
@@ -1515,6 +1622,18 @@ Vulnerable: &lt;= 3.6.7-4+deb10u2<br/>
 Not vulnerable: 3.6.7-4+deb10u3</p></td>
 <td>4.0.0-4.1.0</td>
 <td>4.1.1</td>
+</tr>
+<tr>
+<td>CM-29145</td>
+<td><p>If you try to remove BFD configuration with a reload, the FRR service fails. The reload action results in a TypeError: expected string or bytes-like object error.<br/>
+This issue is only seen if there is default configuration, such as configuration in the /etc/frr/frr.conf file that is suppressed from view in the FRR running-configuration.<br/>
+To work around this issue, remove the default configuration lines; for example: </p>
+
+username cumulus nopassword
+
+</td>
+<td>4.1.0-4.1.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29111</td>

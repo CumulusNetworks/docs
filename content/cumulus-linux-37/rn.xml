@@ -7,6 +7,70 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29546</td>
+<td><p>In vtysh, if you configure, then remove a layer 3 VNI for a VRF, the VNI is removed from zebra even if the VNI interface still exists in the kernel.<br/>
+If you configure a layer 2 VNI as a layer 3 VNI by mistake, removing the layer 3 VNI binding removes it from zebra but EVPN-learned MACs and neighbors are not installed into the kernel.<br/>
+To work around this issue, delete, then re-add the missing VNI. For example:</p>
+
+cumulus@switch:~$ sudo ifdown vni10100
+cumulus@switch:~$ sudo ifup vni10100
+
+
+<p>If you flap the link with the ip link set vni10100 down; ip link set vni10100 up commands, zebra does not re-add the VNI.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29525</td>
+<td><p>The asic-monitor.service fails when you configure /etc/cumulus/datapath/monitor.conf with monitor.histogram_pg.collect.port_group_list  = <span class="error">&#91;all_packet_pg&#93;</span> and there is traffic passing through the buffer. When the service fails, you see the following traceback in journalctl:</p>
+
+
+asic-monitor[7389]: asic-monitor-module INFO: 2020-05-01 18:28:12.548734: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg
+asic-monitor[7389]: asic-monitor ERROR: ASIC monitor exception: sx_api_port_counter_tc_get failed: Parameter Error
+asic-monitor[7389]: File "/usr/bin/asic-monitor", line 139, in &lt;module&gt;
+asic-monitor[7389]: main(sys.argv[1:])
+asic-monitor[7389]: File "/usr/bin/asic-monitor", line 126, in main
+asic-monitor[7389]: traceback.print_stack()
+asic-monitor[7389]: Traceback (most recent call last):
+asic-monitor[7389]: File "/usr/bin/asic-monitor", line 117, in main
+asic-monitor[7389]: monitor.run()
+asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 158, in run
+asic-monitor[7389]: self.take_action(state_desc, results, state_desc_dict, depth=0)
+asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 89, in take_action
+asic-monitor[7389]: collect_results = self.asic_manager.read_state(collect_pg)
+asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/mlx_asic_manager.py", line 715, in read_state
+asic-monitor[7389]: packet_info[linux_port_label])
+asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/mlx_asic_manager.py", line 442, in read_packet_stats
+asic-monitor[7389]: raise RuntimeError('sx_api_port_counter_tc_get failed: %s' % sx_status_msg[rc])
+asic-monitor[7389]: RuntimeError: sx_api_port_counter_tc_get failed: Parameter Error
+asic-monitor[7389]: asic-monitor-module INFO: ASIC monitor stopping
+asic-monitor[7389]: --------------
+
+</td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29518</td>
+<td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+Vulnerable: 2.1.5-2+deb8u9<br/>
+Fixed: 2.1.5-2+deb8u10</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29492</td>
+<td><p>When you create SPAN or ERSPAN rules in ebtables, the action fails to install if it is not in lowercase. Make sure that the SPAN or ERSPAN action is all lowercase; for example:</p>
+
+[ebtables]
+-A FORWARD --in-interface swp10 -j span --dport swp1
+
+</td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29484</td>
 <td><p>The following vulnerability affects libgd2/libgd3:<br/>
 CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
@@ -1815,6 +1879,45 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-29525</td>
+<td><p>The asic-monitor.service fails when you configure /etc/cumulus/datapath/monitor.conf with monitor.histogram_pg.collect.port_group_list  = <span class="error">&#91;all_packet_pg&#93;</span> and there is traffic passing through the buffer. When the service fails, you see the following traceback in journalctl:</p>
+
+
+asic-monitor[7389]: asic-monitor-module INFO: 2020-05-01 18:28:12.548734: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg
+asic-monitor[7389]: asic-monitor ERROR: ASIC monitor exception: sx_api_port_counter_tc_get failed: Parameter Error
+asic-monitor[7389]: File "/usr/bin/asic-monitor", line 139, in &lt;module&gt;
+asic-monitor[7389]: main(sys.argv[1:])
+asic-monitor[7389]: File "/usr/bin/asic-monitor", line 126, in main
+asic-monitor[7389]: traceback.print_stack()
+asic-monitor[7389]: Traceback (most recent call last):
+asic-monitor[7389]: File "/usr/bin/asic-monitor", line 117, in main
+asic-monitor[7389]: monitor.run()
+asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 158, in run
+asic-monitor[7389]: self.take_action(state_desc, results, state_desc_dict, depth=0)
+asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 89, in take_action
+asic-monitor[7389]: collect_results = self.asic_manager.read_state(collect_pg)
+asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/mlx_asic_manager.py", line 715, in read_state
+asic-monitor[7389]: packet_info[linux_port_label])
+asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/mlx_asic_manager.py", line 442, in read_packet_stats
+asic-monitor[7389]: raise RuntimeError('sx_api_port_counter_tc_get failed: %s' % sx_status_msg[rc])
+asic-monitor[7389]: RuntimeError: sx_api_port_counter_tc_get failed: Parameter Error
+asic-monitor[7389]: asic-monitor-module INFO: ASIC monitor stopping
+asic-monitor[7389]: --------------
+
+</td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29518</td>
+<td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+Vulnerable: 2.1.5-2+deb8u9<br/>
+Fixed: 2.1.5-2+deb8u10</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29484</td>
@@ -4096,6 +4199,15 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29518</td>
+<td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+Vulnerable: 2.1.5-2+deb8u9<br/>
+Fixed: 2.1.5-2+deb8u10</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29484</td>
 <td><p>The following vulnerability affects libgd2/libgd3:<br/>
 CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
@@ -6144,6 +6256,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-29518</td>
+<td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+Vulnerable: 2.1.5-2+deb8u9<br/>
+Fixed: 2.1.5-2+deb8u10</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29484</td>
@@ -8646,6 +8767,15 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29518</td>
+<td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+Vulnerable: 2.1.5-2+deb8u9<br/>
+Fixed: 2.1.5-2+deb8u10</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29484</td>
 <td><p>The following vulnerability affects libgd2/libgd3:<br/>
 CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
@@ -11016,6 +11146,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-29518</td>
+<td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+Vulnerable: 2.1.5-2+deb8u9<br/>
+Fixed: 2.1.5-2+deb8u10</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29484</td>
@@ -13751,6 +13890,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29518</td>
+<td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+Vulnerable: 2.1.5-2+deb8u9<br/>
+Fixed: 2.1.5-2+deb8u10</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29484</td>
 <td><p>The following vulnerability affects libgd2/libgd3:<br/>
 CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
@@ -16453,6 +16601,15 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29518</td>
+<td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+Vulnerable: 2.1.5-2+deb8u9<br/>
+Fixed: 2.1.5-2+deb8u10</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29484</td>
 <td><p>The following vulnerability affects libgd2/libgd3:<br/>
 CVE-2018-14553: gdImageClone in gd.c in libgd 2.1.0-rc2 through 2.2.5 has a NULL pointer dereference allowing attackers to crash an application via a specific function call sequence. Only affects PHP when linked with an external libgd (not bundled).<br/>
@@ -18822,6 +18979,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-29518</td>
+<td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+Vulnerable: 2.1.5-2+deb8u9<br/>
+Fixed: 2.1.5-2+deb8u10</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29484</td>
@@ -21251,6 +21417,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-29518</td>
+<td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+Vulnerable: 2.1.5-2+deb8u9<br/>
+Fixed: 2.1.5-2+deb8u10</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29484</td>
@@ -23844,6 +24019,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-29518</td>
+<td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+Vulnerable: 2.1.5-2+deb8u9<br/>
+Fixed: 2.1.5-2+deb8u10</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29484</td>
@@ -26567,6 +26751,15 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-29518</td>
+<td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+Vulnerable: 2.1.5-2+deb8u9<br/>
+Fixed: 2.1.5-2+deb8u10</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29484</td>

@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29546</td>
+<td><p>In vtysh, if you configure, then remove a layer 3 VNI for a VRF, the VNI is removed from zebra even if the VNI interface still exists in the kernel.<br/>
+If you configure a layer 2 VNI as a layer 3 VNI by mistake, removing the layer 3 VNI binding removes it from zebra but EVPN-learned MACs and neighbors are not installed into the kernel.<br/>
+To work around this issue, delete, then re-add the missing VNI. For example:</p>
+
+cumulus@switch:~$ sudo ifdown vni10100
+cumulus@switch:~$ sudo ifup vni10100
+
+
+<p>If you flap the link with the ip link set vni10100 down; ip link set vni10100 up commands, zebra does not re-add the VNI.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29485</td>
 <td><p>The following vulnerability affects the openldap package:<br/>
 CVE-2020-12243: A vulnerability was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. LDAP search filters with nested boolean expressions can result in denial of service (slapd daemon crash).<br/>

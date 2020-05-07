@@ -1,0 +1,98 @@
+This package is a collection of files needed to use and/or build TeX
+packages in Debian.  Its contents are either written by the Debian
+maintainers, or taken and adapted from the upstream sources.
+
+It was first created Mon, 13 Jun 2005 17:55:58 +0200.
+
+License:
+
+Unless otherwise indicated (see individual file listing below), it is
+covered by the following license, the GPL:
+
+This package is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or (at
+your option) any later version.
+
+This package is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License,
+version 2, with the Debian GNU/Linux distribution in file
+/usr/share/common-licenses/GPL-2; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301,
+USA.
+
+
+Copyright Holders of individual files, sorted by directory:
+
+- toplevel:
+
+  split-texmf: Frank Küster (2005) <frank@debian.org>
+  TODO is probably not copyrightable and contains contributions
+	by all coworkers.
+
+- debian:  
+
+  Currently, all files are Copyright 2004,2005 Frank Küster
+  <frank@debian.org>, except
+
+  common.variables: Frank Küster (2004,2005) <frank@debian.org> (based on a
+                  framework by Davide Salvetti (1999-2002)
+                  <salve@debian.org>)
+
+  rules: Frank Küster (2004,2005) <frank@debian.org> with eperl code
+	 based on work by Davide, as above
+
+- doc:
+
+  Makefile  version.ent  tex-sed:
+	Frank Küster (2004,2005) <frank@debian.org>
+	Hilmar Preusse (2005) <hille42@web.de>
+  Debian-TeX-Policy.sgml:
+	Frank Küster (2004) <frank@debian.org>
+	Richard Lewis (2005) <rtf@jabble.com>
+	Norbert Preining (2005) <preining@logic.at>
+
+
+- dsfp:
+
+  dsf-patchfunc  dsf-patch.mk:
+	 Frank Küster (2004,2005) <frank@debian.org>
+
+- scripts:
+
+  update-fmtutil: Atsuhito Kohda (2002,2003) <kohda@debian.org>
+		  Julian Gilbey (2002) <jdg@debian.org>
+  update-fmtutil.8: Atsuhito Kohda (2002) <kohda@debian.org>
+  update-texmf:   Atsuhito Kohda (2002,2003) <kohda@debian.org>
+	          Frank Küster (2004) <frank@debian.org>
+  update-texmf.8: Atsuhito Kohda (2002,2003) <kohda@debian.org>
+		  Hilmar Preusse (2004) <hille42@web.de>
+  update-updmap:  Atsuhito Kohda (2002,2003) <kohda@debian.org>
+	          Frank Küster (2004) <frank@debian.org>
+		  Florent Rougon (2005) <f.rougon@free.fr>
+  update-updmap.1: Atsuhito Kohda (2002,2003) <kohda@debian.org>
+		  Florent Rougon (2004,2005) <f.rougon@free.fr>
+  update-fontlang: Norbert Preinig (2005) <preining@logic.at> based 
+ 		  on update-updmap
+  update-language.8: Frank Küster (2005) <frank@debian.org>
+  update-fontlang.8: Frank Küster (2005) <frank@debian.org>
+		  Atsuhito Kohda (2002,2003) <kohda@debian.org>
+		  Florent Rougon (2004,2005) <f.rougon@free.fr>
+  tex.pm:         Jan Hauke Rahm (2009) <info@jhr-online.de>
+
+- conf/texmf.d/
+
+  all files are split from texmf.in-teTeX, Copyright
+  Thomas Esser (1995-2005) <te@dbs.uni-hannover.de>, in the Public
+  Domain,  except 
+
+  90TeXDoc.cnf:  Atsuhito Kohda (2003) <kohda@debian.org>
+
+- conf/fmt.d/
+
+  00tex.cnf: Thomas Esser (1998,1999) <te@dbs.uni-hannover.de>, 
+	     in the Public Domain

@@ -14,7 +14,12 @@ When using a VM, the following system resources must be allocated:
 <tbody>
 <tr class="even">
 <td>Processor</td>
+{{- if eq (.Get "deployment") "onprem" -}}
 <td>Eight (8) virtual CPUs</td>
+{{ end }}
+{{- if eq (.Get "deployment") "cloud" -}}
+<td>Four (4) virtual CPUs</td>
+{{ end }}
 </tr>
 <tr class="odd">
 <td>Memory</td>

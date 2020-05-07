@@ -2,6 +2,7 @@
 title: ASIC Supported Features
 weight: 10
 toc: 2
+Draft: true
 ---
 
 Cumulus Linux supports a number of switching platforms and networking ASICs. The network ASIC is responsible for hardware accelerating packet forwarding and a number of features.

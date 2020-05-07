@@ -290,6 +290,12 @@ router bgp 65000
 ...
 ```
 
+{{%notice note%}}
+
+When you disable the `bgp bestpath as-path multipath relax` option, EVPN type-5 routes do not use the updated configuration. Type-5 routes will continue to use all available ECMP paths in the underlay fabric, regardless of ASN.
+
+{{%/notice%}}
+
 ## Route Reflectors
 
 In a two-tier Clos network, the leaf (or tier 1) switches are the only ones connected to end stations. The spines themselves do not have any routes to announce; they are merely **reflecting** the routes announced by one leaf to the other leaves. Therefore, the spine switches function as route reflectors while the leaf switches serve as route reflector clients.

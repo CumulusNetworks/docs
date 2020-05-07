@@ -252,7 +252,7 @@ To enable ECMP in BGP, run the following command:
 
 {{< tabs "12 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp bestpath as-path multipath-relax
@@ -262,7 +262,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -289,6 +289,12 @@ router bgp 65000
   bgp bestpath as-path multipath-relax
 ...
 ```
+
+{{%notice note%}}
+
+When you disable the `bgp bestpath as-path multipath relax` option, EVPN type-5 routes do not use the updated configuration. Type-5 routes will continue to use all available ECMP paths in the underlay fabric, regardless of ASN.
+
+{{%/notice%}}
 
 ## Route Reflectors
 

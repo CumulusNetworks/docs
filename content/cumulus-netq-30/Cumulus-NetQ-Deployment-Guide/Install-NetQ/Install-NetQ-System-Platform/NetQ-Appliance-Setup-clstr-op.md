@@ -123,7 +123,7 @@ Make a note of the private IP addresses you assign to the master and worker node
 
     {{<netq-install/verify-cmd deployment="onprem">}}
 
-10. Run the Bootstrap CLI on the worker node. Be sure to replace the *eno1* interface used in this example with the interface or IP address on your appliance used to listen for NetQ Agents.
+10. Run the Bootstrap CLI on the worker node.
 
     {{<netq-install/bootstrap server="cluster" version="3.0.0">}}
 

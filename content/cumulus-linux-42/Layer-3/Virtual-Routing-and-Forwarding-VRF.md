@@ -240,7 +240,7 @@ The most common use case for VRF is to use multiple independent routing and forw
 
 {{%notice note%}}
 
-VRF route leaking uses BGP to replicate the leaked routes across VRFs. However, Cumulus Linux cannot replicate the host routes for neighbors local to a switch where the leak is configured. To discover all directly connected neighbors in the source VRF of a leaked route, enable the `vrf_route_leak_enable_dynamic` option in the `/etc/cumulus/switchd.conf` file. These routes are then replicated into the target/destination VRF as specified in the leaked route.
+VRF route leaking uses BGP to replicate the leaked routes across VRFs. However, Cumulus Linux cannot replicate the host routes for neighbors local to a switch where the leak is configured. To discover all directly connected neighbors in the source VRF of a leaked route, enable the `vrf_route_leak_enable_dynamic` option in the `/etc/cumulus/switchd.conf` file. These routes are then replicated into the target or destination VRF as specified in the leaked route.
 
 The `vrf_route_leak_enable_dynamic` option makes certain inter-VRF traffic ASIC accelerated. Enable this option if you are experiencing slow performance.
 

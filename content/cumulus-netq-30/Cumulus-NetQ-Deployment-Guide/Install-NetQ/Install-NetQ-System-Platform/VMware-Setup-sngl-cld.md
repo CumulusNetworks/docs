@@ -5,7 +5,7 @@ weight: 77
 toc: 5
 bookhidden: true
 ---
-Follow these steps to setup and configure your VM on a single server in a cloud deployment:
+Follow these steps to setup and configure your VM for a cloud deployment:
 
 1. Verify that your system meets the VM requirements.
 
@@ -21,7 +21,7 @@ Follow these steps to setup and configure your VM on a single server in a cloud 
 
 4. Setup and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="vmware">}}
+    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="3.0.0">}}
 
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 

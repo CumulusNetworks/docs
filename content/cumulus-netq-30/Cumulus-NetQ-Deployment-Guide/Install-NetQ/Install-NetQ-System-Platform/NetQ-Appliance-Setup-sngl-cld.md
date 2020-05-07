@@ -37,7 +37,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
     passwd: password updated successfully
     ```
 
-3. The default hostname for the NetQ On-premises Appliance is *netq-appliance*. Change the hostname to fit your naming conventions using the following command:
+3. The default hostname for the NetQ Cloud Appliance is *netq-appliance*. Change the hostname to fit your naming conventions using the following command:
 
     ```
     cumulus@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME

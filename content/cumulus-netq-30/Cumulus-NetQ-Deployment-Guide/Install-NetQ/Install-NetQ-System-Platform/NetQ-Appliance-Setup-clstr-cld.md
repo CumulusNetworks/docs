@@ -39,7 +39,7 @@ Change the password and specify the hostname and IP address for each appliance b
     passwd: password updated successfully
     ```
 
-3. The default hostname for the NetQ On-premises Appliance is *netq-appliance*. Change the hostname to fit your naming conventions using the following command:
+3. The default hostname for the NetQ Cloud Appliance is *netq-appliance*. Change the hostname to fit your naming conventions using the following command:
 
     ```
     cumulus@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
@@ -125,7 +125,7 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 10. Run the Bootstrap CLI on the worker node. Be sure to replace the *eno1* interface used in this example with the interface or IP address on your appliance used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="cluster" version="3.0.0">}}
+    {{<netq-install/bootstrap server="cluster" version="3.0.0" deployment="cloud" platform="appliance">}}
 
 11. Repeat Steps 5-10 for each additional worker NetQ Cloud Appliance.
 

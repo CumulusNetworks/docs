@@ -24,6 +24,15 @@ To take a *quick* look at a Cumulus Networks Golden Standard demo, use our simul
 
 ## Start a Golden Standard Demo Topology
 
+The following procedue describes the easiest way to start a Production Ready automation demo using a bash script that is provided in the package. The bash script performs the following steps automatically:
+
+- Checks if the Cumulus Linux Reference Topology submodule is present (if not present, it attempts to download it)
+- Performs a vagrant up for the oob-mgmt-network devices
+- Performs a series of vagrant up commands to bring up the rest of the network simulation
+- Copies the network automation into the simulation using `vagrant scp`
+
+To have more control over which nodes start and in which order, and to save CPU and memory resources, you can launch the simulation manually. Refer to the {{<link text="User Guide" title="User Guide" >}}.
+
 To start a Golden Standard demo topology:
 
 1. From the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle" text="Golden Turtle Gitlab page">}}, select the demo topology that you want to use.

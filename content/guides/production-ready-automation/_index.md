@@ -6,10 +6,10 @@ product: Cumulus Networks Guides
 version: "1.0"
 draft: true
 ---
-Cumulus production ready automation provides several examples of a fully operationalized, automated data center and includes:
+The Cumulus production ready automation package provides several examples of a fully operationalized, automated data center and includes:
 
 - A standard reference topology for all examples
-- A full Vagrant/libvirt simulation of the reference topology (cldemo2) that provides the foundational physical infrastructure and bootstrap configuration to be able to support and demonstrate Cumulus Linux features and technologies.
+- A full Vagrant/libvirt simulation of the reference topology (cldemo2) that provides the foundational physical infrastructure and bootstrap configuration to support and demonstrate Cumulus Linux features and technologies
 - Best practice Ansible automation and infrastructure as code (IaC)
 - Working examples of continuous integration/continuous deployment (CI/CD) using Gitlab
 - CI/CD testing powered by NetQ Cloud
@@ -44,7 +44,7 @@ The Cumulus Linux reference topology is included with every officially supported
 
 ## Infrastructure as Code
 
-This package contains examples of Cumulus best practice Ansible automation and infrastructure as code (IaC). A completely stock Ansible core installation is used without any vendor specific or 3rd party plugins. Examples of Ansible best practices using roles, highly granular templates, and structured variables represent how your network configurations can be stored as a highly scalable version of infrastructure as code. It is that base code that gets rendered by the automation engine to produce the final configurations that exist on the network devices.
+The Cumulus production ready automation package contains examples of Cumulus best practice Ansible automation and infrastructure as code (IaC). A completely stock Ansible core installation is used without any vendor specific or third party plugins. Examples of Ansible best practices using roles, highly granular templates, and structured variables represent how you can store your network configurations as a highly scalable version of infrastructure as code. It is that base code that gets rendered by the automation engine to produce the final configurations that exist on the network devices.
 
 ## Continuous Integration/Continuous Deployment
 

@@ -6,15 +6,13 @@ product: Cumulus Networks Guides
 version: "1.0"
 draft: true
 ---
-This quick start provides a high-level overview on how to run your own vagrant/libvirt/kvm server. Provided are procedures on how to:
+This quick start provides a quick and easy way to run your own Vagrant, libvirt, and KVM server. Provided are procedures on how to:
 
-- Start a Golden Standard demo topology
+- Start a Golden Standard demo topology using a bash script
 - Start the blank Cumulus reference topology if you are looking to build configuration from scratch
 - Destroy and end a simulation
 
-To run a full cldemo2 topology *without* NetQ, you need 15104MB of memory. If you intend to run NetQ, you need 23296MB of memory.
-
-More detailed steps and complete sytem reqirements are provided in the {{<link text="User Guide" title="User Guide" >}}.
+To run a full cldemo2 topology *without* NetQ, you need 15104MB of memory. If you intend to run NetQ, you need 23296MB of memory. See the {{<link text="User Guide" title="User Guide" >}} for complete sytem reqirements.
 
 {{%notice tip%}}
 

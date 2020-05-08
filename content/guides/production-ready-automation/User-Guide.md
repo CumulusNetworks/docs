@@ -6,7 +6,7 @@ product: Cumulus Networks Guides
 version: "1.0"
 draft: true
 ---
-This section discusses how you can run a Cumulus Production Ready automation, unchanged and unmodified on your own system in your enterprise. You can test, learn, and experience using Cumulus Linux driven by best practice Ansible automation, and test drive our officially supported golden standard configurations and architectures by running the production ready automation as-is and unmodified.
+This section discusses how you can run a Cumulus Production Ready automation, unchanged and unmodified on your own system in your enterprise. You can test, learn, and experience Cumulus Linux driven by best practice Ansible automation, and test drive our officially supported golden standard configurations and architectures by running the production ready automation as-is and unmodified.
 
 For more details about how to customize, reuse and adapt these examples of simulation, automation or CI/CD for your own purposes, refer to the {{<link url="Integration-Guide" text="Integration Guide">}}.
 
@@ -16,32 +16,20 @@ For a robust simulation environment and CI/CD with gitlab, a dedicated, always-o
 
 ### Hardware Requirements
 
-- Min 16GB RAM (Without NetQ) - 32GB Ram recommended
-- Min 256GB Disk - more than 1TB Disk recommended
-- SSD Recommended (NetQ requirement)
-- Internet connectivity for package installs during simulation bringup
-- Minimum of 8x CPU Cores
-
-{{%notice tip%}}
-
-Tight on resources? See the manual start section for more information about how to start a subset of this simulation. Or, try it on our hardware for free with {{<exlink url="http://cumulusnetworks.com/citc" text="Cumulus in the Cloud">}}.
-
-{{%/notice%}}
-
-The memory requirements of a full cldemo2 topology are:
-
-| Deployment    | Memory      |
-| ------------- |-------------|
-| With NetQ     | 23296MB     |
-| Without NetQ  | 15104MB     |
+- A Minimum of 16GB RAM (without NetQ) - 32GB Ram recommended
+- A Minimum 256GB disk - more than 1TB disk recommended
+- SSD recommended (NetQ requirement)
+- Internet connectivity for package installs during simulation start up
+- A minimum of eight CPU Cores
+- 15104MB of memory *without* NetQ or 23296MB of memory *with* NetQ
 
 ### Software Requirements
 
-- Operating Systems:
+- Operating systems:
     - Cumulus Linux 3.7.11 or later
     - Cumulus NetQ 2.4 or later (optional)
     - Ubuntu 16.04 or 18.04 (Cumulus Networks has *not* tested other Linux distributions, such as CentOS or RHEL)
-- Software Packages:
+- Software packages:
     - Vagrant 2.2.4 or later
     - Libvirt
     - Qemu
@@ -50,18 +38,11 @@ The memory requirements of a full cldemo2 topology are:
     - Vagrant-libvirt
     - Vagrant-scp
 
-Refer to the {{<link title="Example Install Scripts" text="Example Install Scripts">}} for an example bash script that installs these package dependencies to be able to support Cumulus VX simulation with Vagrant/libvirt.
+Refer to the {{<link title="Example Install Scripts" text="Example Install Scripts">}} for an example bash script that installs these package dependencies to be able to support Cumulus VX simulation with Vagrant and libvirt.
 
 ## Manually Start A Golden Standard Topology
 
-The easiest way to start a Production Ready automation demo after preparing the system is to use the bash script provided. The procedure is described in the {{<link url="Quick-Start" text="Quick Start section">}}. The bash script performs the following steps automatically:
-
-- Checks if the Cumulus Linux Reference Topology submodule is present (if not present, it attempts to download it)
-- Performs a vagrant up for the oob-mgmt-network devices
-- Performs a series of vagrant up commands to bring up the rest of the network simulation
-- Copies the network automation into the simulation using `vagrant scp`
-
-To have more control over which nodes start and in which order they start, you can launch the simulation manually. This method saves CPU and memory resources.
+The {{<link url="Quick-Start" text="Quick Start section">}} provides the easiest way to start a Production Ready automation demo after preparing the system using the bash script provided. However, if you want more control over which nodes start and in which order, you can launch the simulation manually. This method saves CPU and memory resources.
 
 To manually start a demo topology, such as {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym" text="EVPN Symmetric Mode">}}, ensure that you also fetch and pull down the included Cumulus Linux base Reference Topology. You can do this in one of two ways:
 

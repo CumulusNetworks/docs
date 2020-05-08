@@ -26,17 +26,17 @@ For a robust simulation environment and CI/CD with gitlab, a dedicated, always-o
 ### Software Requirements
 
 - Operating systems:
-    - Cumulus Linux 3.7.11 or later
-    - Cumulus NetQ 2.4 or later (optional)
-    - Ubuntu 16.04 or 18.04 (Cumulus Networks has *not* tested other Linux distributions, such as CentOS or RHEL)
+  - Cumulus Linux 3.7.11 or later
+  - Cumulus NetQ 2.4 or later (optional)
+  - Ubuntu 16.04 or 18.04 (Cumulus Networks has *not* tested other Linux distributions, such as CentOS or RHEL)
 - Software packages:
-    - Vagrant 2.2.4 or later
-    - Libvirt
-    - Qemu
-    - Git
+  - Vagrant 2.2.4 or later
+  - Libvirt
+  - Qemu
+  - Git
 - Vagrant plugins:
-    - Vagrant-libvirt
-    - Vagrant-scp
+  - Vagrant-libvirt
+  - Vagrant-scp
 
 Refer to the {{<link title="Example Install Scripts" text="Example Install Scripts">}} for an example bash script that installs these package dependencies to be able to support Cumulus VX simulation with Vagrant and libvirt.
 

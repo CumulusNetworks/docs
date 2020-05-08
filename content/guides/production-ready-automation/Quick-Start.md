@@ -6,7 +6,7 @@ product: Cumulus Networks Guides
 version: "1.0"
 draft: true
 ---
-This quick start provides a quick and easy way to run your own Vagrant, libvirt, and KVM server. Provided are procedures on how to:
+This quick start provides a quick and easy way to run your own Vagrant, libvirt, and KVM server. Procedures are provided on how to:
 
 - Start a Golden Standard demo topology using a bash script
 - Start the blank Cumulus reference topology if you are looking to build configuration from scratch
@@ -22,7 +22,7 @@ To take a *quick* look at a Cumulus Networks Golden Standard demo, use our simul
 
 ## Start a Golden Standard Demo Topology
 
-The following procedue describes the easiest way to start a Production Ready automation demo using a bash script that is provided in the package. The bash script performs the following steps automatically:
+The following procedue describes the easiest way to start a Production Ready automation demo using a bash script provided in the package. The bash script performs the following steps automatically:
 
 - Checks if the Cumulus Linux Reference Topology submodule is present (if not present, it attempts to download it)
 - Performs a vagrant up for the oob-mgmt-network devices
@@ -31,7 +31,7 @@ The following procedue describes the easiest way to start a Production Ready aut
 
 To have more control over which nodes start and in which order, and to save CPU and memory resources, you can launch the simulation manually. Refer to the {{<link text="User Guide" title="User Guide" >}}.
 
-To start a Golden Standard demo topology:
+To start a Golden Standard demo topology suing a bash script:
 
 1. From the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle" text="Golden Turtle Gitlab page">}}, select the demo topology that you want to use.
 
@@ -153,13 +153,9 @@ Check the `README.md` on the selected demo repository for more information about
 
 ## Start the Blank Cumulus Reference Topology
 
-The Cumulus Linux reference topology is included as a submodule in all of the Cumulus Networks Golden Standard demos. This eliminates the need to clone the base reference topology project. <!-- For more information about submodules see the contributor’s guide. TODO: add link to contributor's guide -->
+The Cumulus Linux reference topology is included as a submodule in all of the Cumulus Networks Golden Standard demos, which eliminates the need to clone the base reference topology project. <!-- For more information about submodules see the contributor’s guide. TODO: add link to contributor's guide -->
 
-{{%notice note%}}
-
-You are not required to start the reference topology by itself unless you are looking to build configuration from scratch or intend to start from a completely blank slate network topology.
-
-{{%/notice%}}
+You can start the reference topology by itself if you want to build configuration from scratch or intend to start from a completely blank slate network topology.
 
 1. Clone the cldemo2 Cumulus Linux reference topology:
 

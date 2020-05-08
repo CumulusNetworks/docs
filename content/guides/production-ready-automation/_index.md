@@ -29,14 +29,14 @@ See the Contributors Guide for more information on how to build a package like t
 
 The Cumulus Linux reference topology provides a complete two-tier spine and leaf topology. It also includes a complete out of band management. The devices include:
 
-- 4x Cumulus Linux 3.7 spines
-- 2x Cumulus Linux 3.7 leafs
-- 8x Ubuntu 18.04 servers
-- 2x Cumulus Linux 3.7 border leafs
-- 2x Cumulus Linux 3.7 "fw" devices providing a placeholder for ‘policy’ devices
-- 1x Ubuntu 18.04 out of band management server (oob-mgmt-server)
-- 1x Cumulus Linux 3.7 out of band management switch (oob-mgmt-switch)
-- 1x Cumulus NetQ Cloud virtual appliance (netq-ts)
+- 4 Cumulus Linux 3.7 spines
+- 4 Cumulus Linux 3.7 leafs
+- 8 Ubuntu 18.04 servers
+- 2 Cumulus Linux 3.7 border leafs
+- 2 Cumulus Linux 3.7 "fw" devices providing a placeholder for ‘policy’ devices
+- 1 Ubuntu 18.04 out of band management server (oob-mgmt-server)
+- 1 Cumulus Linux 3.7 out of band management switch (oob-mgmt-switch)
+- 1 Cumulus NetQ Cloud virtual appliance (netq-ts)
 
 {{<img src="/images/guides/cldemo2-diagram.png" >}}
 

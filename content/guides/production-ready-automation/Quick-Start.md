@@ -6,28 +6,29 @@ product: Cumulus Networks Guides
 version: "1.0"
 draft: true
 ---
-To take a *quick* look at a Cumulus Networks golden standard demo, use our simulation platform, Cumulus In the Cloud. The simulation platform has no system requirements or dependencies. Visit [Cumulus In the Cloud](https://cumulsunetworks.com/citc) to get a full blank slate Cumulus Linux reference topology; you can even one-click deploy any of the golden standard demos right from the UI.
+This quick start provides a high-level overview on how to run your own vagrant/libvirt/kvm server. Provided are procedures on how to:
 
-{{%notice info%}}
+- Start a Golden Standard demo topology
+- Start the blank Cumulus reference topology if you are looking to build configuration from scratch
+- Destroy and end a simulation
 
-Ensure that all system dependencies are satisfied first. See {{<link url="User-Guide#software-requirements" text="Software Requirements">}} for more information.
+To run a full cldemo2 topology *without* NetQ, you need 15104MB of memory. If you intend to run NetQ, you need 23296MB of memory.
+
+More detailed steps and complete sytem reqirements are provided in the {{<link text="User Guide" title="User Guide" >}}.
+
+{{%notice tip%}}
+
+To take a *quick* look at a Cumulus Networks Golden Standard demo, use our simulation platform, Cumulus In the Cloud. The simulation platform has no system requirements or dependencies. Visit {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus In the Cloud">}} to get a full blank slate Cumulus Linux reference topology; you can even one-click deploy any of the golden standard demos right from the UI.
 
 {{%/notice%}}
 
-The memory requirements of a full cldemo2 topology are:
-
-| Deployment    | Memory      |
-| ------------- |-------------|
-| With NetQ     | 23296MB     |
-| Without NetQ  | 15104MB     |
-
 ## Start a Golden Standard Demo Topology
 
-An Ubuntu 18.04LTS box with additional CPU and memory resources for installing NetQ is included in the out of band management network of the base Cumulus Linux reference topology. NetQ is not a required element for any of the golden standard demos to properly function. NetQ is used in the topology to power CI/CD testing and to preview and test the NetQ functionality. If you do not intent to use NetQ, we recommended you do not start it in simulation to save an additional 8GB of memory.
+To start a Golden Standard demo topology:
 
-1. Select the demo topology that you want to use from the {{% exlink text="Golden Turtle Gitlab page" url="https://gitlab.com/cumulus-consulting/goldenturtle" %}}.
+1. From the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle" text="Golden Turtle Gitlab page">}}, select the demo topology that you want to use.
 
-2. Perform a git clone for your selected Golden Turtle demo using the `--recurse-submodules` argument to also download the required base Cumulus Reference Simulation Topology:
+2. Perform a git clone for your selected Golden Turtle demo using the `--recurse-submodules` argument to also download the required base Cumulus Reference simulation topology:
 
     ```
     user@host:~# git clone --recurse-submodules https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym.git
@@ -56,9 +57,13 @@ An Ubuntu 18.04LTS box with additional CPU and memory resources for installing N
     user@host:~/dc_configs_vxlan_evpnsym#
     ```
 
-4. Run the `start-demo.sh` script. If you do not intent to use the NetQ telemetry server, use the`--no-netq` option to skip booting the server.
+4. Run the `start-demo.sh` script. If you do not intent to use the NetQ telemetry server, use the `--no-netq` option to skip booting the server.
 
-    During this step, Vagrant starts and provisions the base simulation. It might take about 15 or more minutes for this step to complete depending on the host machine and internet connection speed.
+    {{%notice note%}}
+
+An Ubuntu 18.04LTS box with additional CPU and memory resources for installing NetQ is included in the out of band management network of the base Cumulus Linux reference topology. NetQ is *not* a required element for any of the golden standard demos to function. NetQ is used in the topology to power CI/CD testing and to preview and test the NetQ functionality. If you do not intent to use NetQ, Cumulus Networks recommends that you do not start it in simulation to save an additional 8GB of memory.
+
+{{%/notice%}}
 
     ```
     user@host:~/dc_configs_vxlan_evpnsym# ./start-demo.sh --no-netq
@@ -72,6 +77,8 @@ An Ubuntu 18.04LTS box with additional CPU and memory resources for installing N
     ==> oob-mgmt-server: Creating domain with the following settings...
     <output omitted for brevity>
     ```
+
+     During this step, Vagrant starts and provisions the base simulation. It might take about 15 or more minutes for this step to complete depending on the host machine and internet connection speed.
 
 5. After the launch script succeeds, change to the `cldemo2/simulation` directory:
 
@@ -111,7 +118,7 @@ An Ubuntu 18.04LTS box with additional CPU and memory resources for installing N
 
     {{%notice note%}}
 
-The `-i` flag is used to specify the location of the Ansible inventory. This is required, unless the inventory is moved into a [standard Ansible location](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html).
+The `-i` flag is used to specify the location of the Ansible inventory. This is required, unless the inventory is moved into a {{<exlink url="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html" text="standard Ansible location">}}.
 
 {{%/notice%}}
 
@@ -135,15 +142,19 @@ The `-i` flag is used to specify the location of the Ansible inventory. This is 
     <output omitted for brevity>
     ```
 
-Check the `README.md` on your selected demo repo for more information about that specific topology, such as IP addresses and for a small guided tour of the specific technologies or architectures in the demo.
+Check the `README.md` on the selected demo repository for more information about that specific topology, such as IP addresses, and for a small guided tour of the specific technologies or architectures in the demo.
 
 ## Start the Blank Cumulus Reference Topology
 
-Starting the reference topology by itself is not normally required unless you are looking to build configuration from scratch or intend to start from a completely blank slate network topology.
+The Cumulus Linux reference topology is included as a submodule in all of the Cumulus Networks Golden Standard demos. This eliminates the need to clone the base reference topology project. <!-- For more information about submodules see the contributor’s guide. TODO: add link to contributor's guide -->
 
-The Cumulus Linux Reference Topology is included as a submodule in all of the Cumulus Networks golden standard demos. This eliminates the need to clone the base reference topology project. For more information about submodules see the contributor’s guide. <!-- TODO: add link to contributor's guide -->
+{{%notice note%}}
 
-1. Clone the cldemo2 Cumulus Linux Reference topology:
+You are not required to start the reference topology by itself unless you are looking to build configuration from scratch or intend to start from a completely blank slate network topology.
+
+{{%/notice%}}
+
+1. Clone the cldemo2 Cumulus Linux reference topology:
 
     ```
     user@host:~# git clone https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2.git
@@ -163,7 +174,7 @@ The Cumulus Linux Reference Topology is included as a submodule in all of the Cu
     user@host:~/cldemo2#
     ```  
 
-3. Run the `start-blank-topology.sh` script to launch the simulation. Optionally, you can use the `--no-netq` argument to skip loading the 8GB 4 vCPU netq-ts box, if you do not intent to use it.
+3. Run the `start-blank-topology.sh` script to launch the simulation. Use the `--no-netq` argument to skip loading the 8GB 4 vCPU netq-ts box, if you do not intent to use it.
 
     ```
     user@host:~/cldemo2# ./start-blank-topology.sh --no-netq
@@ -184,11 +195,11 @@ The Cumulus Linux Reference Topology is included as a submodule in all of the Cu
 
 5. Use the `vagrant ssh` command to ssh into the oob-mgmt-server. This is the jump box to access the rest of the simulation.
 
-Refer to the `README.md` for the Cumulus Linux Reference Topology Gitlab project and the developers guide for more information about how to start developing and building onto this blank slate topology.
+For more information about how to start developing and building onto this blank slate topology, refer to the `README.md` for the Cumulus Linux Reference Topology Gitlab project and the developer's guide.
 
 ## Destroy and End a Simulation
 
-From the `simulation` folder, run the `vagrant destroy -f` command:
+To destroy *all* the systems or VMs in the simulation, run the `vagrant destroy -f` command from the `simulation` folder:
 
 ```
 user@host:~/cldemo2/simulation# vagrant destroy -f

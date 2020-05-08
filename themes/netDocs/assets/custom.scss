@@ -40,13 +40,13 @@ body {
     padding-top: 112px;
     text-align: center;
     @media #{$md-up} {
-      min-height: 324px;  
+      min-height: 324px;
     }
     .container {
       display: none;
       @media #{$md-up} {
         display: block;
-      } 
+      }
     }
 
     h1 {
@@ -110,7 +110,7 @@ body {
     &.four-across {
       grid-gap: 20px;
       grid-template-columns: repeat(1, 1fr);
-  
+
       @media #{$sm-up} {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -118,11 +118,11 @@ body {
       @media #{$lg-up} {
         grid-template-columns: repeat(3, 1fr);
       }
-  
+
       @media #{$xl-up} {
         grid-template-columns: repeat(4, 1fr);
       }
-    }  
+    }
   }
 
   .card {
@@ -544,7 +544,7 @@ body {
         display: block;
       }
     }
-    
+
     .productMenu-dropdown {
       display: block;
       @media #{$xl-up} {
@@ -647,14 +647,14 @@ body {
         left: auto;
       }
     }
-    
+
     .screen-layout {
       padding-right: 20px;
       display: none;
       justify-content: center;
       align-items: center;
       @media #{$md-up} {
-        display: flex;  
+        display: flex;
       }
 
       &:before {
@@ -747,7 +747,7 @@ body {
 
     >div {
       .product-dropdown {
-        flex: 1; 
+        flex: 1;
         border-right: 1px solid rgb(224, 228, 236);
         box-shadow: 2px 0 5px -2px rgba(175,184,197,.2);
         .dropdown {
@@ -781,7 +781,7 @@ body {
           }
         }
       }
-      
+
       .version-dropdown {
         padding-left: 5px;
         .dropdown {
@@ -794,7 +794,7 @@ body {
         }
       }
     }
-    
+
   }
   .m-bottom-nav {
     padding: 20px 30px 20px 30px;
@@ -885,7 +885,7 @@ body {
   cursor: pointer !important;
   height: 31px;
   &:hover {
-    border-color: #00ad69 !important;  
+    border-color: #00ad69 !important;
   }
 }
 
@@ -916,7 +916,7 @@ main {
     .book-page {
       display: none;
       @media #{$sm-up} {
-        display: block;  
+        display: block;
       }
     }
   }
@@ -943,7 +943,7 @@ main {
     .book-page {
       display: none;
       @media #{$sm-up} {
-        display: block;  
+        display: block;
       }
     }
   }
@@ -953,7 +953,7 @@ main {
       display: none;
 
       @media #{$md-up} {
-        display: block;  
+        display: block;
       }
     }
   }
@@ -1199,7 +1199,7 @@ div.notices.tip {
   margin: 1.99rem 0;
   padding: 1.764rem;
 
-  
+
   p {
     color: $cn-limited-spruce;
     font-size: .882rem;
@@ -1354,8 +1354,8 @@ h2, h3, h4 {
     span {
       &.clipboard {
         opacity: 1;
-        cursor: pointer; 
-      }  
+        cursor: pointer;
+      }
     }
   }
 }
@@ -1666,17 +1666,17 @@ footer {
 }
 
 .markdown pre {
-  //white-space: pre-wrap; 
+  //white-space: pre-wrap;
   overflow-x: auto;
 }
 
 .markdown td pre {
-  white-space: pre-wrap; 
+  white-space: pre-wrap;
   overflow-x: auto;
 }
 
 .markdown td {
-  font-size: 0.76rem; 
+  font-size: 0.76rem;
 }
 
 .book-tabs input[type="radio"] {

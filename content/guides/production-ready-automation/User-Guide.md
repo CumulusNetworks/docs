@@ -12,7 +12,7 @@ For more details about how to customize, reuse and adapt these examples of simul
 
 ## System Requirements
 
-For a robust simulation environment and CI/CD with gitlab, a dedicated, always-on, enterprise class server is recommended. Using the NetQ server in individual development environments is not normally required and is normally only needed for CI testing where the gitlab-runner is installed and registered to your CI/CD enabled project.
+For a robust simulation environment and CI/CD with gitlab, a dedicated, always-on, enterprise class server is recommended. Using the NetQ server in individual development environments is not typically required and is only needed for CI testing where the gitlab-runner is installed and registered to your CI/CD enabled project.
 
 ### Hardware Requirements
 
@@ -42,144 +42,146 @@ Refer to the {{<link title="Example Install Scripts" text="Example Install Scrip
 
 ## Manually Start A Golden Standard Topology
 
-The {{<link url="Quick-Start" text="Quick Start section">}} provides the easiest way to start a Production Ready automation demo after preparing the system using the bash script provided. However, if you want more control over which nodes start and in which order, you can launch the simulation manually. This method saves CPU and memory resources.
+The {{<link url="Quick-Start" text="Quick Start section">}} provides the easiest way to start a Production Ready automation demo after preparing the system using a bash script. However, if you want more control over which nodes start and in which order, you can launch the simulation manually. This method saves CPU and memory resources.
 
-To manually start a demo topology, such as {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym" text="EVPN Symmetric Mode">}}, ensure that you also fetch and pull down the included Cumulus Linux base Reference Topology. You can do this in one of two ways:
+To manually start a demo topology, such as {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym" text="EVPN Symmetric Mode">}}, ensure that you also fetch and pull down the included Cumulus Linux base reference topology. You can do this in one of two ways:
 
 - Use the `--recurse-submodule` option with the initial `git clone`. This option also fetches the submodule files in the same step as the clone. We use this option in the procedure below.
 - Perform a normal git clone, then fetch the submodule files separately with the `git submodule init` and `git submodule update` options. For more information about git submodules, see {{<exlink url="https://git-scm.com/book/en/v2/Git-Tools-Submodules" text="this guide">}}.
 
-When the cldemo2 submodule files are properly downloaded, the cldemo2 folder will contain a subfolder named `simulation`. This `simulation` folder contains the Vagrantfile. Using `vagrant` commands like `vagrant ssh oob-mgmt-server` are only valid when issued from the same directory as the simulation’s Vagrantfile.
+When the cldemo2 submodule files are downloaded correctly, the cldemo2 folder contains a subfolder called `simulation`. This `simulation` folder contains the Vagrantfile. Using `vagrant` commands like `vagrant ssh oob-mgmt-server` are only valid when issued from the same directory as the simulation’s Vagrantfile.
 
-Download a golden standard automation demo such as EVPN Symmetric Mode. Use the `--recurse-submodule` option to make sure git also fetches the base Cumulus Linux Reference Topology simulation files.
+To start a Golden Standard topology manually:
 
-```
-user@host:~# git clone --recurse-submodules https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym.git
-Cloning into 'dc_configs_vxlan_evpnsym'...
-remote: Enumerating objects: 535, done.
-remote: Counting objects: 100% (535/535), done.
-remote: Compressing objects: 100% (300/300), done.
-remote: Total 535 (delta 198), reused 465 (delta 133), pack-reused 0
-Receiving objects: 100% (535/535), 66.78 KiB | 1.45 MiB/s, done.
-Resolving deltas: 100% (198/198), done.
-Submodule 'cldemo2' (https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2.git) registered for path 'cldemo2'
-Cloning into '/root/dc_configs_vxlan_evpnsym/cldemo2'...
-remote: Enumerating objects: 215, done.
-remote: Counting objects: 100% (215/215), done.
-remote: Compressing objects: 100% (119/119), done.
-remote: Total 852 (delta 139), reused 156 (delta 96), pack-reused 637
-Receiving objects: 100% (852/852), 7.64 MiB | 8.21 MiB/s, done.
-Resolving deltas: 100% (549/549), done.
-Submodule path 'cldemo2': checked out '214c8a66e3fef8f6d5d2b1e13ca3942e4cfd120f'
-```
+1. Download a golden standard automation demo, such as EVPN Symmetric Mode. Use the `--recurse-submodule` option to make sure git also fetches the base Cumulus Linux Reference Topology simulation files.
 
-Change into the folder created by the previous step, and into the `cldemo2/simulation` subfolder. This is the directory where the Vagrantfile is present and where vagrant commands are valid for this simulation
+   ```
+   user@host:~# git clone --recurse-submodules https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym.git
+   Cloning into 'dc_configs_vxlan_evpnsym'...
+   remote: Enumerating objects: 535, done.
+   remote: Counting objects: 100% (535/535), done.
+   remote: Compressing objects: 100% (300/300), done.
+   remote: Total 535 (delta 198), reused 465 (delta 133), pack-reused 0
+   Receiving objects: 100% (535/535), 66.78 KiB | 1.45 MiB/s, done.
+   Resolving deltas: 100% (198/198), done.
+   Submodule 'cldemo2' (https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2.git) registered for path 'cldemo2'
+   Cloning into '/root/dc_configs_vxlan_evpnsym/cldemo2'...
+   remote: Enumerating objects: 215, done.
+   remote: Counting objects: 100% (215/215), done.
+   remote: Compressing objects: 100% (119/119), done.
+   remote: Total 852 (delta 139), reused 156 (delta 96), pack-reused 637
+   Receiving objects: 100% (852/852), 7.64 MiB | 8.21 MiB/s, done.
+   Resolving deltas: 100% (549/549), done.
+   Submodule path 'cldemo2': checked out '214c8a66e3fef8f6d5d2b1e13ca3942e4cfd120f'
+   ```
 
-```
-user@host:~# cd dc_configs_vxlan_evpnsym/cldemo2/simulation/
-user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation# 
-```
+2. Change to the folder created by the previous step, then into the `cldemo2/simulation` subfolder. This is the directory where the Vagrantfile is present and where vagrant commands are valid for this simulation
 
-Perform a `vagrant up` for the out of band management devices. Omit the netq-ts if you do not intend on using it to save CPU and Memory resource consumption.
+   ```
+   user@host:~# cd dc_configs_vxlan_evpnsym/cldemo2/simulation/
+   user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation#
+   ```
 
-{{%notice info%}}
+3. Run `vagrant up` for the out of band management devices.
 
-You must bring up the OOB Server and OOB Switch first. The OOB Server acts as the management network DHCP server. If the OOB Server and Switch are not online first, the management interfaces of the other network devices will be temporarily unreachable.
+   If you do not intend to use NetQ, omit `netq-ts` to save CPU and memory resource consumption.
 
-{{%/notice%}}
+   {{%notice info%}}
 
-```
-user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation# vagrant up oob-mgmt-server oob-mgmt-switch netq-ts
-Bringing machine 'oob-mgmt-server' up with 'libvirt' provider...
-Bringing machine 'oob-mgmt-switch' up with 'libvirt' provider...
-Bringing machine 'netq-ts' up with 'libvirt' provider...
-==> oob-mgmt-server: Checking if box 'generic/ubuntu1804' version '2.0.6' is up to date...
-==> oob-mgmt-switch: Checking if box 'CumulusCommunity/cumulus-vx' version '3.7.11' is up to date...
-==> netq-ts: Checking if box 'generic/ubuntu1804' version '2.0.6' is up to date...
-<output omitted for brevity>
-```
-
-Perform a `vagrant up` to bring up the other network devices in any manner you wish. It is possible to bring up all of the rest of the nodes in the simulation with simply issuing a `vagrant up` with no devices specified. Vagrant for libvirt tries to start devices in parallel (start all at the same time). Occasionally, launching an entire Reference Topology Simulation in parallel can cause errors to occur that may result in a partial or incomplete bringup. It is recommended to break up the simulation bring up into smaller more manageable groups, to still be able to realize the speed benefits of parallelism and reduce the chances of errors during bringup.
-
-In this example below, the bringup is split into 4 separate stages. Each stage separated by `&&` will be executed alone. The example below combines those serialized stages in one line. 
-
-{{%notice tip%}}
-
-The `&&` operator in Linux will only execute the next command if the previous command was successful. This will stop the bringup of the simulation if an error occurs.
+You must start the oob-mgmt-server and oob-mgmt-switch first. The oob-mgmt-server acts as the management network DHCP server. If the oob-mgmt-server and switch are not online first, the management interfaces of the other network devices will be unreachable temporarily.
 
 {{%/notice%}}
 
-```
-user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation# vagrant up /leaf/ /spine/ && vagrant up server01 server02 server03 server04 && vagrant up server05 server06 server07 server08 && vagrant up border01 border02 fw1 fw2
-```
+   ```
+   user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation# vagrant up oob-mgmt-server oob-mgmt-switch netq-ts
+   Bringing machine 'oob-mgmt-server' up with 'libvirt' provider...
+   Bringing machine 'oob-mgmt-switch' up with 'libvirt' provider...
+   Bringing machine 'netq-ts' up with 'libvirt' provider...
+   ==> oob-mgmt-server: Checking if box 'generic/ubuntu1804' version '2.0.6' is up to date...
+   ==> oob-mgmt-switch: Checking if box 'CumulusCommunity/cumulus-vx' version '3.7.11' is up to date...
+   ==> netq-ts: Checking if box 'generic/ubuntu1804' version '2.0.6' is up to date...
+   <output omitted for brevity>
+   ```
 
-Enter the simulation via the oob-mgmt-server by performing a `vagrant ssh oob-mgmt-server`
+4. Run `vagrant up` to start up the other network devices. You can start up all the remaining nodes in the simulation with `vagrant up` (with no specific devices specified). Vagrant for libvirt tries to start devices in parallel. Occasionally, starting an entire Reference Topology Simulation in parallel can cause errors that result in a partial or incomplete startup process. Cumulus Networks recommends you bring up the simulation in smaller, more manageable groups.
 
-```
-user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation# vagrant ssh oob-mgmt-server
-                                                 _
-      _______   x x x                           | |
- ._  <_______~ x X x   ___ _   _ _ __ ___  _   _| |_   _ ___
-(' \  ,' || `,        / __| | | | '_ ` _ \| | | | | | | / __|
- `._:^   ||   :>     | (__| |_| | | | | | | |_| | | |_| \__ \
-     ^T~~~~~~T'       \___|\__,_|_| |_| |_|\__,_|_|\__,_|___/
-     ~"     ~"
+   In the example below, we start the simulation in four separate stages. Each stage separated by `&&` is executed alone. The example combines those serialized stages in one line.
 
+   {{%notice tip%}}
 
-############################################################################
-#
-#         Out Of Band Management Server (oob-mgmt-server)
-#
-############################################################################
-vagrant@oob-mgmt-server:~$
-```
+The `&&` operator in Linux only executes the next command if the previous command is successful. If an error occurs, the simulation start up process stops.
 
-Perform another `git clone` from your target golden standard demo project (refer to step 1) once inside the simulation to fetch the automation files. Alternatively, `vagrant scp` can be used to copy the automation files into the simulation.
+{{%/notice%}}
 
-```
-vagrant@oob-mgmt-server:~$ git clone https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym
-Cloning into 'dc_configs_vxlan_evpnsym'...
-warning: redirecting to https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym.git/
-remote: Enumerating objects: 560, done.
-remote: Counting objects: 100% (560/560), done.
-remote: Compressing objects: 100% (310/310), done.
-remote: Total 560 (delta 214), reused 490 (delta 148), pack-reused 0
-Receiving objects: 100% (560/560), 70.27 KiB | 3.90 MiB/s, done.
-Resolving deltas: 100% (214/214), done.
-vagrant@oob-mgmt-server:~$
-```
+   ```
+   user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation# vagrant up /leaf/ /spine/ && vagrant up server01 server02 server03 server04 && vagrant up server05 server06 server07 server08 && vagrant up border01 border02 fw1 fw2
+   ```
 
-Change into the project folder and into the automation subfolder
+5. Enter the simulation from the oob-mgmt-server with the `vagrant ssh oob-mgmt-server` command.
 
-```
-vagrant@oob-mgmt-server:~$ cd dc_configs_vxlan_evpnsym/automation/
-vagrant@oob-mgmt-server:~/dc_configs_vxlan_evpnsym/automation$
-```
+   ```
+   user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation# vagrant ssh oob-mgmt-server
+                                                    _
+         _______   x x x                           | |
+    ._  <_______~ x X x   ___ _   _ _ __ ___  _   _| |_   _ ___
+    (' \  ,' || `,        / __| | | | '_ ` _ \| | | | | | | / __|
+    `   ._:^   ||   :>     | (__| |_| | | | | | | |_| | | |_| \__ \
+        ^T~~~~~~T'       \___|\__,_|_| |_| |_|\__,_|_|\__,_|___/
+        ~"     ~"
 
-Run the deploy.yml playbook and specify the inventory path with the `-i` option
+   ############################################################################
+   #
+   #  Out Of Band Management Server (oob-mgmt-server)
+   #
+   ############################################################################
+   vagrant@oob-mgmt-server:~$
+   ```
 
-```
-vagrant@oob-mgmt-server:~/dc_configs_vxlan_evpnsym/automation$ ansible-playbook playbooks/deploy.yml -i inventories/pod1 --diff
+6. Run another `git clone` from your target golden standard demo project (refer to step 1) from inside the simulation to fetch the automation files. Alternatively, you can run `vagrant scp` to copy the automation files into the simulation.
 
-PLAY [spine leaf border] ****************************************************************
+   ```
+   vagrant@oob-mgmt-server:~$ git clone https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym
+   Cloning into 'dc_configs_vxlan_evpnsym'...
+   warning: redirecting to https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym.git/
+   remote: Enumerating objects: 560, done.
+   remote: Counting objects: 100% (560/560), done.
+   remote: Compressing objects: 100% (310/310), done.
+   remote: Total 560 (delta 214), reused 490 (delta 148), pack-reused 0
+   Receiving objects: 100% (560/560), 70.27 KiB | 3.90 MiB/s, done.
+   Resolving deltas: 100% (214/214), done.
+   vagrant@oob-mgmt-server:~$
+   ```
 
+7. Change to the project folder, then to the automation subfolder:
 
-TASK [Gathering Facts] ****************************************************************
-Sunday 12 April 2020  23:35:25 +0000 (0:00:00.073)       0:00:00.073 ********** 
-ok: [spine03]
-ok: [spine04]
-ok: [spine02]
-ok: [spine01]
-ok: [leaf01]
-ok: [leaf02]
-ok: [leaf03]
-ok: [leaf04]
-ok: [border02]
-ok: [border01]
-<output omitted for brevity>
-```
+   ```
+   vagrant@oob-mgmt-server:~$ cd dc_configs_vxlan_evpnsym/automation/
+   vagrant@oob-mgmt-server:~/dc_configs_vxlan_evpnsym/automation$
+   ```
 
-You now have a deployed and operational golden standard Cumulus architecture. For more details about the specific network topology, it’s IP addressing and how to interact with the features in demonstration, visit the demo project page for the `README.md`.
+8. Run the `deploy.yml` playbook and specify the inventory path with the `-i` option:
+
+   ```
+   vagrant@oob-mgmt-server:~/dc_configs_vxlan_evpnsym/automation$ ansible-playbook playbooks/deploy.yml -i inventories/pod1 --diff
+
+   PLAY [spine leaf border] ****************************************************************
+
+   TASK [Gathering Facts] ****************************************************************
+   Sunday 12 April 2020  23:35:25 +0000 (0:00:00.073)       0:00:00.073 ********** 
+   ok: [spine03]
+   ok: [spine04]
+   ok: [spine02]
+   ok: [spine01]
+   ok: [leaf01]
+   ok: [leaf02]
+   ok: [leaf03]
+   ok: [leaf04]
+   ok: [border02]
+   ok: [border01]
+   <output omitted for brevity>
+   ```
+
+You now have a deployed and operational golden standard Cumulus architecture. For more details about the specific network topology, its IP addressing and how to interact with the features in demonstration, visit the demo project page for the `README.md`.
 
 ## Automatically Launch Production Ready Automation on Cumulus in the Cloud
 

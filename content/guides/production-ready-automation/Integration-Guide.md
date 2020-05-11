@@ -6,12 +6,12 @@ product: Cumulus Networks Guides
 version: "1.0"
 draft: true
 ---
-This section provides guidance on how to customize and adapt the main individual pieces of the Cumulus Production Ready Automation to suit your own needs and work for your own environment.
+This section provides guidance on how to customize and adapt the main individual pieces of the Cumulus Production Ready Automation to suit your own needs to work for your own environment.
 
-These main features of the Cumulus Production Ready Automation depend on each other to provide the fully operationalized automated data center.
+These main features of the Cumulus Production Ready Automation depend on each other to provide the fully operationalized automated data center:
 
 - Base simulation
-- Automation providing infrastructure as code (IaC)
+- Automation providing Infrastructure as Code (IaC)
 - Continuous Integration/Continuous Deployment (CI/CD)
 
 Building a simulation that represents your production network is the first step in taking advantage of next generation NetDevOps style operational workflows. Ideally, you test all network changes in simulation or in a staging environment before they reach production. Cumulus VX is an extremely lightweight and high fidelity simulation platform. With a small memory footprint and all of the software components being exactly the same as Cumulus Linux running on hardware, you can construct a highly scalable and robust simulation environment  that matches the production environment; from interface labels down to MAC addresses.
@@ -24,35 +24,27 @@ For more about why Cumulus Networks made the choices they did for Production Rea
 
 ## Infrastructure as Code
 
-IaC or (Infrastructure as code) is an abstract concept that lets you store your network configurations, or a coded version of your network configuration, normally in a source code repository. The choice of your automation engine or automation tools drives and influences the ways you can turn your network configurations into more highly scalable and repeatable chunks of “code" that get rendered by the automation tools during deployment.
+IaC lets you store a coded version of your network configuration in a source code repository. The choice of your automation engine or automation tools drives and influences the ways you can turn your network configurations into more highly scalable and repeatable chunks of “code" that get rendered by the automation tools during deployment.
 
 Cumulus Production Ready Automation uses Ansible as its automation engine. Due to this choice, our version of infrastructure as code are the Ansible best practices that include the use of roles, Jinja2 templates, and structured variable files.
 
-As part of the Production Ready Automation, complete Ansible configurations include:
+As part of the Production Ready Automation, complete Ansible configurations include playbooks, roles,templates, variables, and inventory.
 
-- playbooks
-- roles
-- templates
-- variables
-- inventory
+## Continuous Integration and Continuous Deployment
 
-## Continuous Integration and Continuous Delivery
+Continuous Integration (CI) is based on the idea that you can make changes frequently and at any time of day. However, before you can integrate the changes for deployment into production, the whole network, with those changes, must pass testing to ensure that the change does not cause an unintended consequence.
 
-CI/CD is an abbreviation for Continuous Integration and Continuous Deployment. These terms are normally used together, but are distinct and separate stages. It is possible to perform just CI, without CD, for example, but you don't normally implement CD without CI.
-
-Continuous Integration is based on the idea that changes should be able to happen frequently and at any time of day. But before changes can be “integrated" or accepted and be considered for deployment into production, the whole network, with those changes, must be able to pass a set of testing to ensure that the change does not cause an unintended consequence or is an otherwise bad change.
-
-Once testing passes and the change is integrated from the CI stage, the CD stage or “continual deployment" stage is optionally also carried out automatically. For the network, this could mean that changes that pass automated testing from CI, could then be automatically deployed to the production environment. Automated CD is still uncommon for network operations.
+After testing passes and the change is integrated from the CI stage, the Continuous Deployment (CD) stage can be carried out automatically. For the network, this means that changes that pass automated testing from CI can then be deployed automatically to the production environment. Automated CD is still uncommon for network operations.
 
 {{%notice note%}}
 
-Cumulus Networks strongly recommends that all customers deploy a CI strategy. We recommend against a CD strategy for most customers. Using CD can lead to network changes during critical business hours with unintended consequences. Only organizations with proper testing and operations in place should consider CD.
+Cumulus Networks strongly recommends that you deploy a CI strategy, but recommends against a CD strategy. Using CD can lead to network changes during critical business hours with unintended consequences. Only  consider CD if your organization has with proper testing and operations in place.
 
 {{%/notice%}}
 
 ## System Requirements
 
-For a robust simulation environment and CI/CD with gitlab, a dedicated, always-on, enterprise class server is recommended. Using the NetQ server in individual development environments is not normally required and is normally only needed for CI testing where the gitlab-runner is installed and registered to your CI/CD enabled project.
+For a robust simulation environment and CI/CD with GitLab, a dedicated, always-on, enterprise class server is recommended. Using the NetQ server in individual development environments is not normally required and is normally only needed for CI testing where GitLab Runner is installed and registered to your CI/CD enabled project.
 
 ### Hardware Requirements
 
@@ -62,11 +54,11 @@ For a robust simulation environment and CI/CD with gitlab, a dedicated, always-o
     - 1024MB for the oob-mgmt-server
     - 768MB for the oob-mgmt-switch
     - 8192MB for Netq-ts
-- Disk requirements vary. Vagrant/libvirt uses thin disk images but a good reference point is
+- Disk requirements vary. Vagrant/libvirt uses thin disk images but a good reference point is:
     - 256GB Disk with 64GB or more free memory
     - Recommended 1TB or more disk
     - SSD Recommended (NetQ Requirement)
-- High Speed Broadband/Wideband Internet Connection for package installs during simulation bringup
+- High Speed Broadband/Wideband Internet Connection for package installs during simulation startup
 - A minimum of eight x86_64 CPU cores
 
 ### Software Requirements and Dependencies
@@ -126,15 +118,15 @@ dc_configs_vxlan_evpnsym/
 
 ### File and Folder Descriptions
 
-| File/Folder | Description |
+| <div style="width:200px">File/Folder | Description |
 | ----------- | ----------- |
 | `Automation` | This directory contains all of the required files to support the Ansible automation and IaC. |
 | `cldemo2/ci-common` | This directory contains the common scripts used for CI/CD in all of the officially supported colden standard demo projects. All of the scripts called by the `gitlab-ci.yml` file that perform the work in the CI pipeline exist here. |
 | `simulation` | This directory contains all the files required to support the base Cumulus Networks Reference Topology simulation. This is where the `topology_converter`, `Vagrantfile`, and all the associated provisioning scripts for the base reference simulation topology live. |
 | `.git` | This directory contains the Git project data and configuration. This is technically part of the configuration as code, but should really never need to be manually modified or customized. Git commands look for this directory to perform their work on the files of the project. If you are creating your own custom project, delete this folder or fork the project in GitLab. |
 | `.gitignore` | This file informs Git which files to ignore and not track as part of the project. This  includes the `.vagrant` directory inside the simulation directory and other dynamic runtime files that are not useful or intended to be part of the source code of the project. <br>Note: Not including the `.vagrant` directory in your `.gitignore` file can lead to an unnecessarily large Git repository. |
-| `├── .gitlab-ci.yml` | This file defines the CI pipeline stages and jobs for GitLab CI. This is a type of configuration file. The example provided in the Cumulus Linux golden standard projects is a starting point and reference for how to model your own CI pipeline. Refer to the GitLab CI documentation for more information. |
-| `└── tests` | This folder contains the CI test scripts for the project. These scripts are copied into the simulation and run from inside of the simulation. Each project and demo has a unique set of tests so scripts for this stage of CI are broken out from the rest of the common CI scripts and remain unique to the project.|
+| `.gitlab-ci.yml` | This file defines the CI pipeline stages and jobs for GitLab CI. This is a type of configuration file. The example provided in the Cumulus Linux golden standard projects is a starting point and reference for how to model your own CI pipeline. Refer to the GitLab CI documentation for more information. |
+| `tests` | This folder contains the CI test scripts for the project. These scripts are copied into the simulation and run from inside of the simulation. Each project and demo has a unique set of tests so scripts for this stage of CI are broken out from the rest of the common CI scripts and remain unique to the project.|
 
 These demo simulations are a good basis for how to organize your own project. In our unique use case we are providing a common base topology for reuse across many different possible solution architectures. For this reason, we are using a Git submodule to include that base reference topology with the automation repository so everything can be packaged together.
 
@@ -148,28 +140,30 @@ If you choose to make this suggested change, it has an impact and requires chang
 
 ## Customize a Simulation
 
-Building a custom simulation is the foundation of transforming and automating your network and operations. A custom Vagrant/libvirt topology using Cumulus VX is generated automatically by using the `topology_converter` tool.
+Building a custom simulation is the foundation of transforming and automating your network and operations. A custom Vagrant and libvirt topology using Cumulus VX is generated automatically using the `topology_converter` tool.
 
 The `topology_converter` handles the complexity of building, generating, and maintaining the Vagrantfile. The `topology_converter` produces a Vagrantfile and brings with it all of the associated bootstrap provisioning scripts to be able to provide the experience of performing a simple `vagrant up` and having a connected network simulation ready to receive further network configuration.
 
-Because a Vagrantfile is difficult to build, modify, and maintain by hand, there is really no other feasible way to manage a custom simulation other than by using and relying on the `topology_converter` utility.
-
 {{%notice note%}}
 
-Cumulus Networks does not recommended you manually edit and maintain a raw Vagranfile. Always use `topology_converter` workflows to make changes to the Vagrantfile.
+Cumulus Networks does not recommended you edit manually and maintain a raw Vagranfile. Always use `topology_converter` workflows to make changes to the Vagrantfile.
 
 {{%/notice%}}
 
-Refer to the `topology_converter` GitLab project and documentation for detailed information about the `topology_converter` utility, all of its options, and detailed instructions on how to build a `.dot` file. These are the high level steps required to create a custom Cumulus VX topology:
+For detailed information about the `topology_converter` utility and detailed instructions on how to build a `.dot` file, refer to the `topology_converter` GitLab project and documentation. 
 
-1. Consider how to handle out-of-band management. The easiest option is to use the [“Automated Network Management" feature](https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation/auto_mgmt_network). Alternatively, the out of band management network can be manually created in the topology.dot file to more accurately represent your production network.
-2. Create a `topology.dot` file. The name of the file does not have to be topology.dot, but the contents must be in the graphviz format and syntax. Use the cldemo2.dot file in the Cumulus Linux Reference Topology project as a reference or template to define your own set of network nodes, attributes and links.
-3. Put all of the topology_converter project files and your custom topology.dot file in a ‘simulation’ folder of your project. Perform a git clone to obtain all of the topology_converter project files. Copying the topology_converter files from the ‘simulation’ directory of The Cumulus Linux Reference Topology (cldemo2) is possible, but has a number of extr
-4. Create the Vagrantfile from your topology definition. Ensure the `-p libvirt` option is specified. If the “automated Network Management" feature is used, the `-c` option in `topology_converter` is required.
+These are the high level steps required to create a custom Cumulus VX topology:
 
-`python3 ./topology_converter.py ./topology.dot -c -p libvirt`
+1. Consider how to handle out-of-band management. The easiest option is to use {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation/auto_mgmt_network" text="Automated Network Management">}}. To more accurately represent your production network, you can create the out-of-band management network in the `topology.dot` file.
+2. Create a `topology.dot` file. Enusre that the contents are in the graphviz format and syntax. Use the `cldemo2.dot` file in the Cumulus Linux Reference Topology project as a reference or template to define your own set of network nodes, attributes and links.
+3. Put all the `topology_converter` project files and your custom `topology.dot` file in a `simulation` folder for your project. Run the `git clone` command to obtain all the `topology_converter` project files.
+4. Create the Vagrantfile from your topology definition. Ensure that the `-p libvirt` option is specified. If you use the Automated Network Management feature, the `-c` option in `topology_converter` is required:
 
-### Customize Automation and IaC
+   ```
+   `python3 ./topology_converter.py ./topology.dot -c -p libvirt`
+   ```
+
+## Customize Automation and IaC
 
 Cumulus Networks has provided a scalable and extensible framework for how to store or encode a data center network configuration and deploy it using Ansible automation. IaC or infrastructure as code is the concept of thinking about your network configuration as a form of source code just like in the software development world.
 
@@ -182,8 +176,6 @@ There are a nearly infinite number of ways to implement network configuration or
 Customizing the Ansible automation to create or modify roles and modify the playbooks requires proficiencies using Ansible that are out of scope of this guide. The core concept in use to provide the granular control of the inventory is based on Ansible roles. Please see Ansible’s documentation on using roles [here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html).
 
 ## Customize and Set Up CI/CD
-
-### Network CI/CD on Gitlab
 
 CI/CD is the next logical step after successfully implementing your version of IaC and thinking about applying the concept of automatically producing builds of your network code for automated testing and verification.
 
@@ -229,7 +221,7 @@ The last step is currently expected to be performed manually in the Cumulus Netw
 
 As a matter of practice, it is uncommon to need to fully automate deployments to the live production network. This is the “CD" “continuous delivery" component of the CI/CD paradigm. Most network operators still prefer to queue up changes in a batch and deploy to the live network manually from the `master` branch on a periodic schedule.
 
-### Install and Register GitLab Runner to your Project
+### Install and Register GitLab Runner
 
 Installing and registering `gitlab-runner` to the project is a relatively simple task. It is important to remember that all jobs will run on the server and in the environment as the `gitlab-runner` user. Therefore, perform at least some manual testing and initial development for CI on your GitLab Runner server under that user as there are occasionally some thing such as vagrant plugins that differ per user.
 
@@ -289,7 +281,7 @@ user@host:~#
 
 On your project on gitlab.com, on the left panel, browse through Settings -> CI/CD. Then expand the “Runners" Section. Scroll down to the section “Runners activated for this project". Check to make sure the runner that was just registered is present in this list with a green “ready" indicator.
 
-## Gitlab CI Variables
+### Gitlab CI Variables
 
 Gitlab CI provides a number of built in environment variables for use in CI scripts. A list of all of the available variables provided by gitlab can be found [here](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)
 
@@ -319,6 +311,7 @@ Configure the following variables in the Settings -> CI/CD -> Variables area in 
 | `NETQ_SECRET_KEY` | The valid secret-key for the associated access-key that is also provided. Only available once at generation in NetQ Cloud User Management.<br>For example:<br> `hxXoSwlcJqKVyu7V/FT7eHpSKrz4jKIr15OMX9Z9MTI=` |
 
 ### Customize the CI Pipeline
+
 Gitlab CI uses a configuration file contained in the project files to define the pipeline. A pipeline is made of up a series of sequential stages. A stage is made up of one or more jobs that may run in parallel. The .gitlab-ci.yml file defines the stages, jobs, what occurs in each job and also the order in which the stages are executed.
 
 CI/CD for a network as code departs slightly from a traditional software code workflow. For our use case, first we must build and provision a simulation network that represents production. Building a simulation from scratch is the current paradigm that we use for our golden standard configurations. After creating a fresh simulation, we can then deploy our IaC to that contains our changes. Then, with those changes, we perform a testing phase to ensure that the network is functional for our needs. If all of that provisioning, deploying, and testing is successful, we can be confident that the same process, on production equipment, will share that same success.
@@ -329,7 +322,7 @@ It would also be possible to build a CI/CD pipeline for a simulation environment
 
 {{%/notice%}}
 
-### Example GitLab CI Stages
+#### Example GitLab CI Stages
 
 lint - In the lint stage, basic yaml syntax checking is performed. This stage helps catch basic syntax and format errors that would cause failures in later stages and ensures good formatting.
 

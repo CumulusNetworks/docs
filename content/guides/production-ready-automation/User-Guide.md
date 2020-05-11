@@ -1,5 +1,5 @@
 ---
-title: Use the Production Ready Automation
+title: Run the Production Ready Automation
 author: Cumulus Networks
 weight: 30
 product: Cumulus Networks Guides

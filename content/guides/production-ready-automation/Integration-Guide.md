@@ -10,9 +10,15 @@ This section provides guidance on how to customize and adapt the main individual
 
 These main features of the Cumulus Production Ready Automation depend on each other to provide the fully operationalized automated data center:
 
-- Base simulation
-- Automation providing Infrastructure as Code (IaC)
-- Continuous Integration/Continuous Deployment (CI/CD)
+- **Base simulation**
+- **Automation providing Infrastructure as Code (IaC)** lets you store a coded version of your network configuration in a source code repository. Cumulus Networks Production Ready Automation uses Ansible as its automation engine. Our version of infrastructure as code are the Ansible best practices that include the use of roles, Jinja2 templates, and structured variable files. Complete Ansible configurations include playbooks, roles,templates, variables, and inventory.
+- **Continuous Integration and Continuous Deployment (CI/CD)** is based on the idea that you can make changes frequently and at any time of day. However, before you can integrate the changes for deployment into production, the whole network, with those changes, must pass testing to ensure that the change does not cause an unintended consequence. After testing passes and the change is integrated from the CI stage, you can carry out the CD stage automatically. For the network, this means changes that pass automated testing from CI can then be deployed automatically to the production environment. Automated CD is still uncommon for network operations.
+
+   {{%notice note%}}
+
+Cumulus Networks strongly recommends that you deploy a CI strategy, but recommends against a CD strategy. Using CD can lead to network changes during critical business hours with unintended consequences. Only  consider CD if your organization has with proper testing and operations in place.
+
+{{%/notice%}}
 
 Building a simulation that represents your production network is the first step in taking advantage of next generation NetDevOps style operational workflows. Ideally, you test all network changes in simulation or in a staging environment before they reach production. Cumulus VX is an extremely lightweight and high fidelity simulation platform. With a small memory footprint and all of the software components being exactly the same as Cumulus Linux running on hardware, you can construct a highly scalable and robust simulation environment  that matches the production environment; from interface labels down to MAC addresses.
 
@@ -21,26 +27,6 @@ Building a simulation that represents your production network is the first step 
 For more about why Cumulus Networks made the choices they did for Production Ready Automation read the [blog post](https://cumulusnetworks.com/blog/production-ready-automation/) that describes our motivations and technical reasoning.
 
 {{% /notice %}}
-
-## Infrastructure as Code
-
-IaC lets you store a coded version of your network configuration in a source code repository. The choice of your automation engine or automation tools drives and influences the ways you can turn your network configurations into more highly scalable and repeatable chunks of “code" that get rendered by the automation tools during deployment.
-
-Cumulus Production Ready Automation uses Ansible as its automation engine. Due to this choice, our version of infrastructure as code are the Ansible best practices that include the use of roles, Jinja2 templates, and structured variable files.
-
-As part of the Production Ready Automation, complete Ansible configurations include playbooks, roles,templates, variables, and inventory.
-
-## Continuous Integration and Continuous Deployment
-
-Continuous Integration (CI) is based on the idea that you can make changes frequently and at any time of day. However, before you can integrate the changes for deployment into production, the whole network, with those changes, must pass testing to ensure that the change does not cause an unintended consequence.
-
-After testing passes and the change is integrated from the CI stage, the Continuous Deployment (CD) stage can be carried out automatically. For the network, this means that changes that pass automated testing from CI can then be deployed automatically to the production environment. Automated CD is still uncommon for network operations.
-
-{{%notice note%}}
-
-Cumulus Networks strongly recommends that you deploy a CI strategy, but recommends against a CD strategy. Using CD can lead to network changes during critical business hours with unintended consequences. Only  consider CD if your organization has with proper testing and operations in place.
-
-{{%/notice%}}
 
 ## System Requirements
 
@@ -61,7 +47,7 @@ For a robust simulation environment and CI/CD with GitLab, a dedicated, always-o
 - High Speed Broadband/Wideband Internet Connection for package installs during simulation startup
 - A minimum of eight x86_64 CPU cores
 
-### Software Requirements and Dependencies
+### Software Requirements
 
 - Operating Systems:
   - Cumulus Linux 3.7.11 or later
@@ -78,7 +64,7 @@ For a robust simulation environment and CI/CD with GitLab, a dedicated, always-o
 
 Refer to {{<link title="Example Install Scripts" text="Example Install Scripts">}} for sample bash scripts used to install the software package and environment dependencies.
 
-### CI/CD Requirements and Dependencies
+### CI/CD Requirements
 
 - An account with gitlab.com or your own internal GitLab instance
 - A dedicated simulation environment for the GitLab Runner to start and test simulations
@@ -175,7 +161,7 @@ There are a nearly infinite number of ways to implement network configuration or
 
 Customizing the Ansible automation to create or modify roles and modify the playbooks requires proficiencies using Ansible that are out of scope of this guide. The core concept in use to provide the granular control of the inventory is based on Ansible roles. Please see Ansible’s documentation on using roles [here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html).
 
-## Customize and Set Up CI/CD
+## Customize CI/CD
 
 CI/CD is the next logical step after successfully implementing your version of IaC and thinking about applying the concept of automatically producing builds of your network code for automated testing and verification.
 
@@ -338,7 +324,7 @@ test simulation - This stage also has two jobs that run in parallel. Testing is 
 
 cleanup simulation - In this final stage, the NetQ Cloud premises is cleaned up for the next simulation and the simulation itself is destroyed.
 
-#### General Procedure - Customize CI Pipeline
+#### General Procedure
 
 With GitLab CI, the `.gitlab-ci.yml` file describes the CI Pipeline, its jobs and what each job does. This section focuses on reusing a `.gitlab-ci.yml` file from the Cumulus Production Ready Automation package for your own use.
 
@@ -380,7 +366,7 @@ prep:
 
 For each job that is defined in the `.gitlab-ci.yml` file, check the `script:` lines to ensure that the path is correct to each shell script. In the published Production Ready Automation examples, the paths to the shell scripts are inside the cldemo2 submodule.
 
-### Add or Enable CI/CD to your Existing GitLab Project
+### Add CI/CD to your Existing GitLab Project
 
 The following steps provide a high level overview of how to implement and enable CI for your project using the model of calling discrete and modular bash scripts for each job in the provided example:
 

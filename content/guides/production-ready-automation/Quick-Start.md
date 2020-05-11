@@ -33,7 +33,7 @@ To control which nodes start and in which order, and to save CPU and memory reso
 
 To start a golden standard demo topology using a bash script:
 
-1. From the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle" text="Golden Turtle Gitlab page">}}, select the demo topology that you want to use.
+1. From the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle" text="Golden Turtle GitLab page">}}, select the demo topology that you want to use.
 
 2. Run the `git clone` command for your selected Golden Turtle demo using the `--recurse-submodules` argument to also download the required base reference topology:
 
@@ -151,7 +151,7 @@ The `-i` flag is used to specify the location of the Ansible inventory. This is 
 
 Check the `README.md` on the selected demo repository for more information about the topology, such as IP addresses, and for a small guided tour of the specific technologies or architectures in the demo.
 
-## Start the Blank Cumulus Reference Topology
+## Start a Blank Reference Topology
 
 The Cumulus Networks reference topology is included as a submodule in all of the Cumulus Networks golden standard demos, which eliminates the need to clone the base reference topology project. <!-- For more information about submodules see the contributor’s guide. TODO: add link to contributor's guide -->
 
@@ -198,7 +198,7 @@ You can start the reference topology by itself if you want to build configuratio
 
 5. Use the `vagrant ssh` command to ssh into the oob-mgmt-server. This is the jump box to access the rest of the simulation.
 
-For more information about how to start developing and building onto this blank slate topology, refer to the `README.md` for the Cumulus Networks reference topology Gitlab project and the developer's guide.
+For more information about how to start developing and building onto this blank slate topology, refer to the `README.md` for the Cumulus Networks reference topology GitLab project and the developer's guide.
 
 ## Destroy and End a Simulation
 

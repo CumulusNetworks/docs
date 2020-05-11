@@ -4,6 +4,46 @@ author: Cumulus Networks
 weight: 810
 toc: 3
 ---
+
+<!-- Uberflip Embedded Hub Widget -->
+  <div id="UfEmbeddedHub1589230743123"></div>
+  <script>
+  window._ufHubConfig = window._ufHubConfig || [];
+  window._ufHubConfig.push({
+    'containers':{'app':'#UfEmbeddedHub1589230743123'},
+    'collection': '4432321',
+    'openLink':function(url){
+      window.open(url);
+    },
+    'lazyloader':{
+      'itemDisplayLimit':20,
+      'maxTilesPerRow':0,
+      'maxItemsTotal': 3
+    },
+    'tileSize': 'large',
+    'enablePageTracking':false,
+    'baseUrl': 'https://cumulusnetworks.com/learn/resources/',
+    'filesUrl': 'https://cumulusnetworks.com/learn/resources/',
+    'generatedAtUTC': '2020-05-11 20:57:47',
+  });
+  </script>
+  <script>(function(d,t,u) {
+    function load(){
+      var s=d.createElement(t);s.src=u;d.body.appendChild(s);
+    }
+    if (window.addEventListener) {
+      window.addEventListener('load',load,false);
+    }
+    else if (window.attachEvent) {
+      window.attachEvent('onload',load);
+    }
+    else{
+      window.onload=load;
+    }
+  }(document,'script','https://cumulusnetworks.com/learn/resources/hubsFront/embed_collection'));
+  </script>
+  <!-- /End Uberflip Embedded Hub Widget -->
+  
 BGP is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. Specifically, BGP:
 
 - Does not require the routing state to be periodically refreshed, unlike OSPF.

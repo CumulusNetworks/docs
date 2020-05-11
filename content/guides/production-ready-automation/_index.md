@@ -10,7 +10,7 @@ The Production Ready Automation package from Cumulus Networks provides several e
 
 - A full Vagrant and libvirt simulation of the Cumulus Networks reference topology (cldemo2) that provides the foundational physical infrastructure and bootstrap configuration to support and demonstrate Cumulus Linux features and technologies
 - Best practice Ansible automation and infrastructure as code (IaC)
-- Working examples of continuous integration/continuous deployment (CI/CD) using GitLab
+- Working examples of Continuous Integration and Continuous Deployment (CI/CD) using GitLab
 - CI/CD testing powered by NetQ Cloud
 - A standard reference topology for all examples
 - A variety of golden standard EVPN-VXLAN architecture reference configurations

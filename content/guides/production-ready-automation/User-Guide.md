@@ -261,12 +261,12 @@ You now have a deployed and operational golden standard Cumulus Linux architectu
 
 The Cumulus Linux reference topology includes an Ubuntu 18.04 server with additional CPU, memory, and disk resources to support a NetQ Cloud Server installation. Vagrant provisions this box with all of the required software package dependencies to be able to go immediately to the bootstrap and install steps of the NetQ server setup documented in the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="NetQ Deployment Guide" >}} starting at the “Download the bootstrap and NetQ installation tarballs" section.
 
-To use the included NetQ Cloud server, you must have the following:
+To use the included NetQ Cloud server, the following is required:
 
-- An active NetQ Cloud account with netq.cumulusnetworks.com
-- An additional site/premises set up and provisioned that is dedicated for virtualization use. This amounts to a unique NetQ configuration key for your simulation environment. Do not mix a simulation topology with an existing site or use an existing and in-use NetQ premises config-key.
-- The NetQ bootstrap tarball downloaded from cumulusnetworks.com
-- The NetQ OPTA install tarball downloaded from cumulusnetworks.com
+- An active NetQ Cloud account with netq.cumulusnetworks.com.
+- An additional site/premises set up and provisioned that is dedicated for virtualization use (a unique NetQ configuration key for your simulation environment). Do not mix a simulation topology with an existing site or use an existing and in-use NetQ premises configuration key.
+- The NetQ bootstrap tarball downloaded from cumulusnetworks.com.
+- The NetQ OPTA install tarball downloaded from cumulusnetworks.com.
 
 {{%notice info%}}
 
@@ -276,34 +276,34 @@ The `NetQ bootstrap` and `NetQ OPTA install` tarballs are two unique files.
 
 ### Stage the NetQ Installation Tarballs
 
-The NetQ application and version is driven by the version of the bootstrap and install files that are used to install the NetQ application on the provided Ubuntu server. The installation procedure uses the NetQ agent that is preinstalled on the netq-ts box. You must stage the NetQ bootstrap and install the tarball files that are downloaded from cumulusnetworks.com for the NetQ installation procedure.
+The NetQ application and version is driven by the version of the bootstrap and install files used to install the NetQ application on the provided Ubuntu server. The installation procedure uses the NetQ agent that is preinstalled on the Cumulus NetQ Cloud virtual appliance (netq-ts). You must stage the NetQ bootstrap and install the tarball files that are downloaded from cumulusnetworks.com for the NetQ installation procedure.
 
-You can stage the installation tarballs in either one of two locations relative to the netq-ts box:
+You can stage the installation tarballs in either one of two locations relative to netq-ts:
 
-- On the local filesystem of the netq-ts itself.
+- On the local filesystem of netq-ts itself.
 
-   **After** you start the simulation with `vagrant up`, copy the bootstrap and installation tarballs onto the netq-ts box (typically with SCP or `vagrant scp`).
+   **After** you start the simulation with `vagrant up`, copy the bootstrap and installation tarballs onto netq-ts (with SCP or `vagrant scp`).
 
-- On a remote HTTP server reachable by the netq-ts.
+- On a remote HTTP server reachable by netq-ts.
 
    Place the bootstrap and installation tarballs onto an HTTP server. An HTTP url is provided during the bootstrap and installation procedures.
 
-   You must decide whether to stage the installation tarball files directly onto the server for installation, or host them on a remote HTTP server that the netq-ts can reach.
+   You must decide whether to stage the installation tarball files directly onto the server for installation, or host them on a remote HTTP server that netq-ts can reach.
 
-   The installation tarball files when they are downloaded from cumulusnetworks.com are called:
+   When downloaded from cumulusnetworks.com, the installation tarball files are called:
 
     - `netq-bootstrap-X.Y.Z.tgz` (bootstrap tarball)
     - `NetQ-X.Y.Z-opta.tgz` (install tarball)
 
     {{%notice info%}}
 
-The `netq-bootstrap` and `netq-opta` image X.Y.Z version numbers must match.
+The `netq-bootstrap` and `netq-opta` image version numbers must match.
 
 {{%/notice%}}
 
 ### Stage from the Local Filesystem
 
-For specific steps on how to login to cumulusnetworks.com and download the NetQ files, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="Download the bootstrap and NetQ installation tarballs" >}} in the NetQ documentation. You typically use SCP to copy the files onto the Linux-based simulation host securely.
+For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="Download the bootstrap and NetQ installation tarballs" >}} in the NetQ documentation. Use SCP to copy the files onto the Linux-based simulation host securely.
 
 The following procedure shows you how to copy the installation tarball files to the `/mnt/installables` directory (any directory that has sufficient read permissions is suitable for staging these files). Repeat the following steps for each file:
 
@@ -313,7 +313,7 @@ The following procedure shows you how to copy the installation tarball files to 
 
 2. Move or copy the files onto the simulation host. SCP is most commonly used to push files onto the Linux-based simulation host.
 
-3. To copy the file from the simulation host to the simulation on the netq-ts, run the `vagrant scp` command. The `vagrant scp` plugin uses `vagrant ssh`, and is subject to the permissions of the `vagrant` user account. Copy files to a path where the `vagrant` user has permissions, such as `/home/cumulus/`.
+3. To copy the file from the simulation host to the simulation on netq-ts, run the `vagrant scp` command. The `vagrant scp` plugin uses `vagrant ssh` and is subject to the permissions of the `vagrant` user account. Copy files to a path where the `vagrant` user has permissions, such as `/home/cumulus/`.
 
    Make sure you run the `vagrant scp` command from inside the `simulation` folder (where the `Vagrantfile` for the simulation exists).
 
@@ -339,7 +339,7 @@ For specific steps on how to login to cumulusnetworks.com and download the NetQ 
     - bootstrap
     - appliance (cloud)
 2. Install apache2.
-3. Confirm services are running.
+3. Confirm the services are running.
 4. Copy the tarball files to the `/var/www/html` directory (with permissions).
 5. Derive HTTP staging URLs for the next steps.
 
@@ -347,12 +347,12 @@ For specific steps on how to login to cumulusnetworks.com and download the NetQ 
 
 This step sets up the NetQ Cloud server. This process installs the NetQ Cloud server application to be able to receive and aggregate agent data and securely transport the data to the cloud associated with your account.
 
-- The bootstrap and install tarball files must be staged in either the local filesystem on netq-ts or on a remote HTTP server accessible from netq-ts. See the {{<link text="previous section" title="#Staging the NetQ installation tarballs on the netq-ts" >}} for instructions.
-- The NetQ config-key associated with the NetQ site/premises that this simulation will occupy is required. You receive the key from Cumulus Networks by email as part of NetQ Cloud onboarding.
+- You must stage the bootstrap and install tarball files in either the local filesystem on netq-ts or on a remote HTTP server accessible from netq-ts. See the {{<link text="previous section" title="#Staging the NetQ installation tarballs on the netq-ts" >}} for instructions.
+- The NetQ configuration key associated with the NetQ site/premises that this simulation will occupy is required. You receive the key from Cumulus Networks by email as part of NetQ Cloud onboarding.
 
 For more complete information about installing NetQ, refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="NetQ documentation" >}}. To complete the NetQ Cloud Server installation in the Cumulus demo topology, follow these steps:
 
-1. Perform the NetQ server bootstrap using the bootstrap tarball. Use `eth0` as the interface identifier. This step takes a few minutes.
+1. Perform the NetQ server bootstrap with the bootstrap tarball. Use `eth0` as the interface identifier. This step takes a few minutes.
 
     ```
     vagrant@netq-ts:~$  netq bootstrap master interface eth0 tarball <URL-path>/netq-bootstrap-X.Y.Z.tgz
@@ -370,7 +370,7 @@ For more complete information about installing NetQ, refer to the {{<exlink url=
 
 {{%/notice%}}
 
-2. After the bootstrap step completes, perform the NetQ Application install with the `-opta.tgz` bundle and  use your config-key for your NetQ Cloud premises:
+2. After the bootstrap step completes, perform the NetQ application install with the `-opta.tgz` bundle and  use the configuration key for your NetQ Cloud premises:
 
     ```
     vagrant@netq-ts:~$ netq install opta standalone full interface eth0 bundle <URL-path>/NetQ-X.Y.Z-opta.tgz config-key <your-config-key>
@@ -390,18 +390,9 @@ For more complete information about installing NetQ, refer to the {{<exlink url=
 
 ### (Optional) Configure the NetQ CLI Agents
 
-In most normal NetQ installation workflows, you must configure and install the NetQ agent on all of the network devices and Linux hosts. The NetQ agent installation and configuration to point to NetQ server’s preconfigured static IP address have already been completed as part of the Cumulus Linux Reference Topology provisioning from Vagrant. This step requires user credentials and cannot be preprovisioned with the Cumulus Reference Topology.
-
 The NetQ CLI is a separate daemon that is configured independently from the NetQ agent data collection and telemetry streaming daemon. To fully complete the NetQ installation in your demo environment, you must also configure and install the CLI on all devices where you want to run the `netq` CLI commands. In most deployments, this is also configured with every agent so that you can obtain all NetQ data from any device in the network.
 
-**Prerequisites**
-
-You must have a set of authorization keys generated for a NetQ user. For more information, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-CLI/Install-NetQ-CLI-on-CL/" text="Configuring the CLI for Cloud Deployments" >}} in the NetQ documentation.
-
-This creates two keys:
-
-  - Access-key
-  - Secret-key
+You must have a set of authorization keys generated for a NetQ user (access-key and secret-key). Refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-CLI/Install-NetQ-CLI-on-CL/" text="Configuring the CLI for Cloud Deployments" >}} in the NetQ documentation to create the keys.
 
 To install the CLI:
 
@@ -429,14 +420,16 @@ To install the CLI:
     vagrant@netq-ts:~$  netq show agents
    ```
 
-To deploy these NetQ CLI configuration commands to several devices at the same time, use Ansible ad-hoc commands from the oob-mgmt-server. The following example shows you how to configure the NetQ CLI on all of the Cumulus Linux nodes that use the management VRF:
+To deploy the NetQ CLI configuration commands to several devices at the same time, use Ansible ad-hoc commands from the oob-mgmt-server.
+
+The following example shows you how to configure the NetQ CLI on all of the Cumulus Linux nodes that use the management VRF:
 
 ```
 vagrant@oob-mgmt-server:~$ ansible spine:leaf:exit -a 'netq config add cli server api.netq.cumulusnetworks.com access-key <access-key> secret-key <secret-key> premise <netq-premise-name> vrf mgmt port 443'
 vagrant@oob-mgmt-server:~$ ansible spine:leaf:exit -a 'netq config restart cli'
 ```
 
-For Ubuntu hosts:
+The following example shows you how to configure the NetQ CLI on Ubuntu hosts:
 
 ```
 vagrant@oob-mgmt-server:~$ ansible host -a 'netq config add cli server api.netq.cumulusnetworks.com access-key <access-key> secret-key <secret-key> premise <netq-premise-name> vrf mgmt port 443'
@@ -451,7 +444,7 @@ To clean up stuck or orphaned libvirt simultations:
 
 1. Use the `virsh list --all` command to inspect the system and see all running libvirt simulations. Find the libvirt *domains* that you want to clean up. Simulations often have a common prefix from the same simulation that is normally the parent folder.
 
-2. Use `virsh` to perform these operations on each virtual machine (libvirt domain) that you want to clean up.
+2. Run these commands on each virtual machine (libvirt domain) that you want to clean up:
    - `virsh destroy <name>`
    - `virsh undefine <name>`
    - `virsh vol-delete --pool default <name>.img`

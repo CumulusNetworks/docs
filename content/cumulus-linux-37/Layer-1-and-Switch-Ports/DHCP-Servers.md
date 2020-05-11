@@ -119,8 +119,8 @@ Edit the `/etc/dhcp/dhcpd.conf` file and add the interface name `ifname`
 to assign an IP address through DHCP. The following provides an example:
 
     host myhost {
-         ifname = "swp1" ;
-         fixed_address = 10.10.10.10 ;
+         ifname "swp1" ;
+         fixed_address 10.10.10.10 ;
     }
 
 ## Troubleshooting

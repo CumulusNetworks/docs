@@ -2131,31 +2131,6 @@ Fixed version: 1:2.8.0-cl4u3</p></td>
 <td>3.7.9-3.7.10</td>
 </tr>
 <tr>
-<td>CM-26147</td>
-<td><p>On the EdgeCore AS4610 switch, the ping command fails unless you run the command with sudo. <br/>
- To work around this issue, run the following commands: </p>
-
- cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping 
- cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping6
-
-
-<p> Run the following command to verify the workaround: </p>
- 
- 
- cumulus@switch:~$ getcap /usr/share/mgmt-vrf/bin/ping* 
- 
- 
-<p> You should see the following output: </p>
- 
- 
- /usr/share/mgmt-vrf/bin/ping = cap_net_raw+ep 
- /usr/share/mgmt-vrf/bin/ping6 = cap_net_raw+ep 
- 
- 
-</td>
-<td>3.7.6-3.7.10</td>
-</tr>
-<tr>
 <td>CM-26146</td>
 <td><p>clagd memory consumption increases under certain unknown conditions. </p>
 </td>

@@ -818,6 +818,32 @@ See /var/log/netd.log for more details.
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
+<td>CM-26147</td>
+<td><p>On the EdgeCore AS4610 switch, the ping command fails unless you run the command with sudo. <br/>
+ To work around this issue, run the following commands: </p>
+
+ cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping 
+ cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping6
+
+
+<p> Run the following command to verify the workaround: </p>
+ 
+ 
+ cumulus@switch:~$ getcap /usr/share/mgmt-vrf/bin/ping* 
+ 
+ 
+<p> You should see the following output: </p>
+ 
+ 
+ /usr/share/mgmt-vrf/bin/ping = cap_net_raw+ep 
+ /usr/share/mgmt-vrf/bin/ping6 = cap_net_raw+ep 
+ 
+ 
+</td>
+<td>3.7.6-3.7.10, 4.1.0-4.1.1</td>
+<td>3.7.11-4.0.0</td>
+</tr>
+<tr>
 <td>CM-26139</td>
 <td><p>Selective ERSPAN does not work when you specify a bridge port.</p></td>
 <td>3.7.6-3.7.12, 4.0.0-4.1.1</td>
@@ -2302,6 +2328,32 @@ See /var/log/netd.log for more details.
 </td>
 <td>3.7.7-3.7.10, 4.0.0-4.1.1</td>
 <td>3.7.11-3.7.12</td>
+</tr>
+<tr>
+<td>CM-26147</td>
+<td><p>On the EdgeCore AS4610 switch, the ping command fails unless you run the command with sudo. <br/>
+ To work around this issue, run the following commands: </p>
+
+ cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping 
+ cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping6
+
+
+<p> Run the following command to verify the workaround: </p>
+ 
+ 
+ cumulus@switch:~$ getcap /usr/share/mgmt-vrf/bin/ping* 
+ 
+ 
+<p> You should see the following output: </p>
+ 
+ 
+ /usr/share/mgmt-vrf/bin/ping = cap_net_raw+ep 
+ /usr/share/mgmt-vrf/bin/ping6 = cap_net_raw+ep 
+ 
+ 
+</td>
+<td>3.7.6-3.7.10, 4.1.0-4.1.1</td>
+<td>3.7.11-4.0.0</td>
 </tr>
 <tr>
 <td>CM-26139</td>

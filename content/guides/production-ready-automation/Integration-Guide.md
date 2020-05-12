@@ -62,7 +62,7 @@ Using the NetQ server in individual development environments is not required and
   - Vagrant-libvirt
   - Vagrant-scp
 
-Refer to {{<link title="Example Install Scripts" text="Example Install Scripts">}} for sample bash scripts used to install the software package and environment dependencies.
+To see sample bash scripts used to install the software package and environment dependencies, refer to {{<link title="Example Install Scripts" text="Example Install Scripts">}}.
 
 ### CI/CD Requirements
 
@@ -99,21 +99,19 @@ dc_configs_vxlan_evpnsym/
 
 | <div style="width:200px">File/Folder | Description |
 | ----------- | ----------- |
-| `Automation` | This directory contains all of the required files to support the Ansible automation and IaC. |
-| `cldemo2/ci-common` | This directory contains the common scripts used for CI/CD in all of the officially supported colden standard demo projects. All of the scripts called by the `gitlab-ci.yml` file that perform the work in the CI pipeline exist here. |
-| `simulation` | This directory contains all the files required to support the base Cumulus Networks reference topology simulation. This is where the `topology_converter`, `Vagrantfile`, and all the associated provisioning scripts for the base reference simulation topology live. |
-| `.git` | This directory contains the Git project data and configuration. This is technically part of the configuration as code, but should really never need to be manually modified or customized. Git commands look for this directory to perform their work on the files of the project. If you are creating your own custom project, delete this folder or fork the project in GitLab. |
-| `.gitignore` | This file informs Git which files to ignore and not track as part of the project. This  includes the `.vagrant` directory inside the simulation directory and other dynamic runtime files that are not useful or intended to be part of the source code of the project. <br>Note: Not including the `.vagrant` directory in your `.gitignore` file can lead to an unnecessarily large Git repository. |
-| `.gitlab-ci.yml` | This file defines the CI pipeline stages and jobs for GitLab CI. This is a type of configuration file. The example provided in the Cumulus Linux golden standard projects is a starting point and reference for how to model your own CI pipeline. Refer to the GitLab CI documentation for more information. |
-| `tests` | This folder contains the CI test scripts for the project. These scripts are copied into the simulation and run from inside of the simulation. Each project and demo has a unique set of tests so scripts for this stage of CI are broken out from the rest of the common CI scripts and remain unique to the project.|
+| `Automation` | Contains all of the required files to support the Ansible automation and IaC. |
+| `cldemo2/ci-common` | Contains the common scripts used for CI/CD in all the officially-supported golden standard demo projects. All the scripts called by the `gitlab-ci.yml` file that perform the work in the CI pipeline exist here. |
+| `simulation` | Contains all the files required to support the base Cumulus Networks reference topology simulation. This is where the `topology_converter`, `Vagrantfile`, and all the associated provisioning scripts for the base reference simulation topology live. |
+| `.git` | Contains the Git project data and configuration. This is part of the configuration as code, which does not require modification or customization. Git commands look for this directory to perform work on the project files. If you are creating your own custom project, delete this folder or fork the project in GitLab. |
+| `.gitignore` | Informs Git which files to ignore and not track as part of the project. This includes the `.vagrant` directory inside the simulation directory and other dynamic runtime files that are not useful or intended to be part of the source code of the project. <br>Note: Not including the `.vagrant` directory in your `.gitignore` file can lead to an unnecessarily large Git repository. |
+| `.gitlab-ci.yml` | Defines the CI pipeline stages and jobs for GitLab CI. This is a type of configuration file. The example provided in the Cumulus Linux golden standard projects is a starting point and reference for how to model your own CI pipeline. Refer to the GitLab CI documentation for more information. |
+| `tests` | Contains the CI test scripts for the project. These scripts are copied into the simulation and run from inside the simulation. Each project and demo has a unique set of tests so scripts for this stage of CI are broken out from the rest of the common CI scripts and remain unique to the project.|
 
-These demo simulations are a good basis for how to organize your own project. In our unique use case we provide a common base topology for reuse across many different possible solution architectures. For this reason, we use a Git submodule to include that base reference topology with the automation repository so everything can be packaged together.
-
-For real world deployments, the use of a Git submodule is unlikely to be necessary or useful. In cases without the use of a submodule, It makes more sense to have the `simulation` folder and the `ci-common` folder under the root of the project instead of inside a subfolder. The additional `cldemo2` folder is imposed by the submodule feature.
+These demo simulations provide a good basis for how to organize your own project. The Cumulus Networks reference topology provides a common base topology for reuse across many different possible solution architectures. For this reason, a Git submodule includes that base reference topology with the automation repository so everything can be packaged together. For real world deployments, the use of a Git submodule is unlikely to be necessary or useful. In cases without the use of a submodule, it makes more sense to have the `simulation` folder and the `ci-common` folder under the root of the project instead of inside a subfolder. The additional `cldemo2` folder is imposed by the submodule feature.
 
 {{%notice note%}}
 
-If you choose to make this suggested change, it has an impact and requires changes to the hard-coded relative paths in the `.gitlab-ci.yml` file and the `ci-common scripts` to not include the `cldemo2` subfolder.
+If you choose to make this suggested change, it has an impact and requires changes to the hard-coded relative paths in the `.gitlab-ci.yml` file and the `ci-common scripts` to exclude the `cldemo2` subfolder.
 
 {{%/notice%}}
 
@@ -235,16 +233,16 @@ Refer to {{<link title="Example Install Scripts" text="Example Install Scripts">
        vagrant plugin install vagrant-libvirt vagrant-mutate vagrant-scp
        ```
 
-3. Locate the GitLab Runner registration token for your project. You can find the registration token for your project on gitlab.com. On the left panel, browse through Settings -> CI/CD, then expand the Runners Section. Scroll down to the “Set up a specific Runner manually" section. The registration token is in step 3. It looks similar to this: `zLZLhVDkfJPq7eWXV6rw`
+3. Locate the GitLab Runner registration token for your project. You can find the registration token for your project on gitlab.com. On the left panel, browse through Settings -> CI/CD, then expand the *Runners* Section. Scroll down to the *Set up a specific Runner manually* section. The registration token is in step 3. It looks similar to this: `zLZLhVDkfJPq7eWXV6rw`
 
 4. Perform the GitLab Runner registration. The GitLab Runner registration parameters are:
 
     | Gitlab Parameter | Setting |
     | ---------------- | ------- |
     | Gitlab-ci coordinator URL | https://gitlab.com |
-    | Gitlab-ci token |  From Step #3 above |
+    | Gitlab-ci token |  From step 3 above |
     | Gitlab-ci description for this runner | Any informative description of this server |
-    | Gitlab-ci tags | None. Leave Blank. Press Return |
+    | Gitlab-ci tags | None. Leave Blank. Press Return. |
     | Executor | shell |
 
     ```
@@ -274,7 +272,7 @@ Refer to {{<link title="Example Install Scripts" text="Example Install Scripts">
    user@host:~#
    ```
 
-6. Confirm the runner status on gitlab.com. On your project on gitlab.com, browse through Settings -> CI/CD on the left panel, then expand the “Runners" section. Scroll down to the “Runners activated for this project" section. Check to make sure that the runner you registered is present in this list with a green ready indicator.
+6. Confirm the runner status on gitlab.com. On your project on gitlab.com, browse through **Settings**|**CI/CD** on the left panel, then expand the *Runners* section. Scroll down to the *Runners activated for this project* section. Check to make sure that the runner you registered is present in this list with a green ready indicator.
 
 ### Gitlab CI Variables
 
@@ -292,29 +290,29 @@ GitLab also provides a way for you to define custom environment variables for th
 
 Because NetQ installation requires unique configuration and access keys, these are stored as masked variables with the Gitlab project (you can configure the keys to be valid only on protected branches). These variables are called during the NetQ provisioning CI job to allow for programmatic provisioning of NetQ in the automated CI pipeline.
 
-It is best practice to configure a dedicated or dummy CI and CLI user in NetQ cloud User Management. This allows the generated access-key and secret-key from this account to be more easily disposable in case you need to revoke or change them. See the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/" text="NetQ documentation">}} for more information about setting up netQ users and generating auth keys to store with your CI/CD enabled GitLab project.
+It is best practice to configure a dedicated or dummy CI and CLI user in NetQ cloud User Management. This allows the generated access-key and secret-key from this account to be more easily disposable in case you need to revoke or change them. For more information about setting up NetQ users and generating auth keys to store with your CI/CD enabled GitLab project, refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/" text="NetQ documentation">}}.
 
-If you want to use the reference `ci-common` and test scripts unmodified, configure the following variables in the Settings -> CI/CD -> Variables area in GitLab on your project:
+If you want to use the reference `ci-common` and test scripts unmodified, configure the following variables in the **Settings**|**CI/CD**|**Variables** area in GitLab on your project:
 
 |Variable Name | Descritpion |
 |------------- | ----------- |
-| `CONCURRENCY_ID` | An integer value to help the simulation host be able to support concurrent simulations for concurrent projects. This is required if your GitLab Runner supports multiple projects that can run simulations concurrently.<br>For example:<br> `1` |
-| `NETQ_ACCESS_KEY` | A valid access\-key generated from the NetQ cloud user Management page.<br>For example:<br> `bf5802fd59456d7be723d85f99c303b5c943c536f75b86e1da8fb94a48a18dfa` |
-| `NETQ_BOOTSTRAP_TARBALL` | The URL to the NetQ bootstrap tarball on netq-ts. See the staging the NetQ installation tarballs for more information. This variable must be entered/stored in gitlab as base64 encoded due to the / characters in the path.<br>For example:<br> `L21udC9pbnN0YWxsYWJsZXMvbmV0cS1ib290c3RyYXAtMi40LjEudGd6` |
-| `NETQ_CONFIG_KEY` | The config-key for your your dedicated premises for CI and simulation from Cumulus NetQ Cloud Onboarding process email.<br>For example:<br> `CXx0Dh1zY3XucHJXZDMubmV0cx5jdX11bHVzbmV0d29Ya3MuYd9tGLsD` |
-| `NETQ_OPTA_TARBALL` | The URL of the NetQ OPTA install tarball. You must store this variable in GitLab as base64 encoded due to the / characters in the path.<br>For example:<br> `L21udC9pbnN0YWxsYWJsZXMvTmV0US0yLjQuMS1vcHRhLnRneg==` |
+| `CONCURRENCY_ID` | An integer value to help the simulation host support concurrent simulations for concurrent projects. This is required if your GitLab Runner supports multiple projects that can run simulations concurrently.<br>For example:<br> `1` |
+| `NETQ_ACCESS_KEY` | A valid access\-key generated from the NetQ Cloud User Management page.<br>For example:<br> `bf5802fd59456d7be723d85f99c303b5c943c536f75b86e1da8fb94a48a18dfa` |
+| `NETQ_BOOTSTRAP_TARBALL` | The URL to the NetQ bootstrap tarball on netq-ts. See the staging the NetQ installation tarballs for more information. This variable must be stored in gitlab as base64 encoded due to the slash characters (/) in the path.<br>For example:<br> `L21udC9pbnN0YWxsYWJsZXMvbmV0cS1ib290c3RyYXAtMi40LjEudGd6` |
+| `NETQ_CONFIG_KEY` | The config-key for your your dedicated premises for CI and simulation from the Cumulus NetQ Cloud Onboarding process email.<br>For example:<br> `CXx0Dh1zY3XucHJXZDMubmV0cx5jdX11bHVzbmV0d29Ya3MuYd9tGLsD` |
+| `NETQ_OPTA_TARBALL` | The URL of the NetQ OPTA install tarball. You must store this variable in GitLab as base64 encoded due to the slash characters (/) in the path.<br>For example:<br> `L21udC9pbnN0YWxsYWJsZXMvTmV0US0yLjQuMS1vcHRhLnRneg==` |
 | `NETQ_PREMISE_NAME` | The string of your premises name for this dedicated CI/CD simulation environment.<br>For example:<br> `netq-demo-dc-6` |
 | `NETQ_SECRET_KEY` | The valid secret-key for the associated access-key that is also provided. Only available once at generation in NetQ Cloud User Management.<br>For example:<br> `hxXoSwlcJqKVyu7V/FT7eHpSKrz4jKIr15OMX9Z9MTI=` |
 
 ### Customize the CI Pipeline
 
-Gitlab CI uses a configuration file in the project files to define the pipeline. A pipeline is made of up a series of sequential stages. A stage is made up of one or more jobs that can run in parallel. The `.gitlab-ci.yml` file defines the stages, jobs, what occurs in each job and the order in which the stages execute.
+Gitlab CI uses a configuration file in the project files to define the pipeline. A pipeline consists of a series of sequential stages. A stage is made up of one or more jobs that can run in parallel. The `.gitlab-ci.yml` file defines the stages, jobs, what occurs in each job, and the order in which the stages execute.
 
-CI/CD for a network as code departs slightly from a traditional software code workflow. For our use case, first we must build and provision a simulation network that represents production. Building a simulation from scratch is the current paradigm that we use for our golden standard configurations. After creating a fresh simulation, we can then deploy our IaC to that contains our changes. Then, with those changes, we perform a testing phase to ensure that the network is functional for our needs. If all of that provisioning, deploying, and testing is successful, we can be confident that the same process, on production equipment, will share that same success.
+CI/CD for a network as code departs slightly from a traditional software code workflow. Cumulus Networks builds and provisions a simulation network that represents production first. Building a simulation from scratch is the current paradigm used for the golden standard configurations. After creating a fresh simulation, the IaC that contains the changes is deployed. Then, with those changes, the testing phase begins to ensure that the network is functional for our needs. If all of that provisioning, deploying, and testing is successful, we can be confident that the same process, on production equipment, will share that same success.
 
 {{%notice note%}}
 
-It is also possible to build a CI/CD pipeline for a simulation environment in an “always-on" mode; where the staging/development simulation is not destroyed after each pipeline run. This creates additional challenges such as rollback integrity after failed runs.
+It is also possible to build a CI/CD pipeline for a simulation environment in *always-on* mode, where the staging and development simulation is not destroyed after each pipeline run. This creates additional challenges, such as rollback integrity after failed runs.
 
 {{%/notice%}}
 
@@ -332,9 +330,9 @@ It is also possible to build a CI/CD pipeline for a simulation environment in an
 
 #### General Procedure
 
-With GitLab CI, the `.gitlab-ci.yml` file describes the CI Pipeline, its jobs and what each job does. This section focuses on reusing a `.gitlab-ci.yml` file from the Cumulus Production Ready Automation package for your own use.
+With GitLab CI, the `.gitlab-ci.yml` file describes the CI Pipeline, its jobs and what each job does. This section describes how to reuse a `.gitlab-ci.yml` file from the Cumulus Production Ready Automation package for your own use.
 
-The included example `.gitlab-ci.yml` files are created and defined specifically to separate out the complex logic of each job from the pipeline and job definition. In the `.gitlab-ci.yml` examples, each job has a single `script:` line. Each single `script:` line is a call to another shell script. This makes the `.gitlab-ci.yml` file neater, cleaner, and easier from which to start.
+The included example `.gitlab-ci.yml` files are created and defined specifically to separate the complex logic of each job from the pipeline and job definition. In the `.gitlab-ci.yml` examples, each job has a single `script:` line. Each single `script:` line is a call to another shell script. This makes the `.gitlab-ci.yml` file neater, cleaner, and easier from which to start.
 
 Use a `.gitlab-ci.yml` file from one of the golden standard demo topologies as the starting point for your `.gitlab-ci.yml` file. The `.gitlab-ci.yml` file from the Cumulus Networks reference topology (cldemo2) does not contain a provision stage that calls an Ansible playbook to deploy a network configuration.
 
@@ -378,7 +376,7 @@ The following steps provide a high level overview of how to implement and enable
 
 1. Plan a permanent dedicated GitLab Runner simulation host machine. Review system requirements and package dependencies.
 2. Install GitLab Runner and package dependencies (see {{<link title="Example Install Scripts" text="Example Install Scripts">}} )
-3. {{<link text="Register GitLab Runner to the project" title="#Install and register the gitlab-runner to your project" >}}. Pause GitLab Runner on the project until the rest of the supporting CI/CD scripts are in place. Disable shared and public runners for the project.
+3. {{<link text="Register GitLab Runner to the project" title="#install and register gitlab runner" >}}. Pause GitLab Runner on the project until the rest of the supporting CI/CD scripts are in place. Disable shared and public runners for the project.
 4. Evaluate the example CI pipeline design and stages. Use the `.gitlab-ci.yml` file as an example.
 5. Place your `.gitlab-ci.yml` file in the root of your project.
 6. Determine the CI scripts required for each job from your `.gitlab-ci.yml` file.

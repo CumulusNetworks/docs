@@ -75,7 +75,6 @@ The ARP tunable parameters are set to the following values by default in Cumulus
 </tr>
 <tr class="even">
 <td><p><code>arp_ignore</code></p></td>
-<!-- 4.0B4 default is 2 -->
 <td><p>1</p></td>
 <td><p>INT</p></td>
 <td><p>Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:</p>

@@ -259,7 +259,7 @@ You now have a deployed and operational golden standard Cumulus Linux architectu
 
 ## Install and Configure the NetQ Cloud Server
 
-The Cumulus Linux reference topology includes an Ubuntu 18.04 server with additional CPU, memory, and disk resources to support a NetQ Cloud Server installation. Vagrant provisions this box with all of the required software package dependencies to be able to go immediately to the bootstrap and install steps of the NetQ server setup documented in the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="NetQ Deployment Guide" >}} starting at the “Download the bootstrap and NetQ installation tarballs" section.
+The Cumulus Networks reference topology includes an Ubuntu 18.04 server with additional CPU, memory, and disk resources to support a NetQ Cloud Server installation. Vagrant provisions this box with all of the required software package dependencies to be able to go immediately to the bootstrap and install steps of the NetQ server setup documented in the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="NetQ Deployment Guide" >}} starting at the “Download the bootstrap and NetQ installation tarballs" section.
 
 To use the included NetQ Cloud server, the following is required:
 
@@ -303,7 +303,7 @@ The `netq-bootstrap` and `netq-opta` image version numbers must match.
 
 ### Stage from the Local Filesystem
 
-For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="Download the bootstrap and NetQ installation tarballs" >}} in the NetQ documentation. Use SCP to copy the files onto the Linux-based simulation host securely.
+For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="Download the bootstrap and NetQ installation tarballs" >}} in the NetQ documentation. Use SCP to copy the files onto the Linux-based simulation host securely.
 
 The following procedure shows you how to copy the installation tarball files to the `/mnt/installables` directory (any directory that has sufficient read permissions is suitable for staging these files). Repeat the following steps for each file:
 
@@ -333,7 +333,7 @@ The following procedure shows you how to copy the installation tarball files to 
 
 ### Stage from a Remote HTTP Server
 
-For specific steps on how to login to cumulusnetworks.com and download the NetQ files, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="Download the bootstrap and NetQ installation tarballs" >}} in the NetQ documentation. Specific steps on how to copy the tarballs onto a remote HTTP server vary depending on the specific HTTP server software. This following example shows you how to set up an HTTP server with Apache on a Debian- or Ubuntu-based Linux system.
+For specific steps on how to login to cumulusnetworks.com and download the NetQ files, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="Download the bootstrap and NetQ installation tarballs" >}} in the NetQ documentation. Specific steps on how to copy the tarballs onto a remote HTTP server vary depending on the specific HTTP server software. This following example shows you how to set up an HTTP server with Apache on a Debian- or Ubuntu-based Linux system.
 
 1. Download these two required installation files from cumulusnetworks.com:
     - bootstrap
@@ -350,7 +350,7 @@ This step sets up the NetQ Cloud server. This process installs the NetQ Cloud se
 - You must stage the bootstrap and install tarball files in either the local filesystem on netq-ts or on a remote HTTP server accessible from netq-ts. See the {{<link text="previous section" title="#Staging the NetQ installation tarballs on the netq-ts" >}} for instructions.
 - The NetQ configuration key associated with the NetQ site/premises that this simulation will occupy is required. You receive the key from Cumulus Networks by email as part of NetQ Cloud onboarding.
 
-For more complete information about installing NetQ, refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="NetQ documentation" >}}. To complete the NetQ Cloud Server installation in the Cumulus demo topology, follow these steps:
+For more complete information about installing NetQ, refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="NetQ documentation" >}}. To complete the NetQ Cloud Server installation in the Cumulus demo topology, follow these steps:
 
 1. Perform the NetQ server bootstrap with the bootstrap tarball. Use `eth0` as the interface identifier. This step takes a few minutes.
 
@@ -392,7 +392,7 @@ For more complete information about installing NetQ, refer to the {{<exlink url=
 
 The NetQ CLI is a separate daemon that is configured independently from the NetQ agent data collection and telemetry streaming daemon. To fully complete the NetQ installation in your demo environment, you must also configure and install the CLI on all devices where you want to run the `netq` CLI commands. In most deployments, this is also configured with every agent so that you can obtain all NetQ data from any device in the network.
 
-You must have a set of authorization keys generated for a NetQ user (access-key and secret-key). Refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-CLI/Install-NetQ-CLI-on-CL/" text="Configuring the CLI for Cloud Deployments" >}} in the NetQ documentation to create the keys.
+You must have a set of authorization keys generated for a NetQ user (access-key and secret-key). Refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-CLI/Install-NetQ-CLI-on-CL/" text="Configuring the CLI for Cloud Deployments" >}} in the NetQ documentation to create the keys.
 
 To install the CLI:
 

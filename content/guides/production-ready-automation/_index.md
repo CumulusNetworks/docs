@@ -17,7 +17,7 @@ The Production Ready Automation package from Cumulus Networks provides several e
 
 You can use this Production Ready Automation package as a learning resource and as a starting template to implement these features, technologies and operational workflows in your Cumulus Linux network environments.
 
-## Cumulus Linux Reference Topology
+## Cumulus Networks Reference Topology
 
 The Cumulus Networks reference topology provides a common and consistent preconfigured spine and leaf base network topology, which serves as the basis for all supported Cumulus Networks demos and golden standards.
 

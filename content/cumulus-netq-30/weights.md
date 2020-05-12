@@ -7,6 +7,6 @@ product: Cumulus NetQ
 version: "3.0"
 imgData: cumulus-netq
 siteSlug: cumulus-netq
-pdfprint: false
+pdfhidden: true
 ---
 

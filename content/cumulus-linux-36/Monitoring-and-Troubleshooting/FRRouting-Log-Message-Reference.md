@@ -3,6 +3,7 @@ title: FRRouting Log Message Reference
 author: Cumulus Networks
 weight: 233
 pageID: 8362123
+pdfhidden: true
 ---
 The following table lists the HIGH severity ERROR log messages generated
 by FRRouting. These messages appear in `/var/log/frr/frr.log`.

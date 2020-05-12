@@ -6,9 +6,9 @@ product: Cumulus Networks Guides
 version: "1.0"
 draft: true
 ---
-This section discusses how you can run the Cumulus Production Ready Automation, unchanged and unmodified on your own system in your enterprise. You can test, learn, and experience Cumulus Linux driven by best practice Ansible automation, and test drive our officially supported golden standard configurations and architectures by running the Production Ready Automation as-is and unmodified.
+This section discusses how you can run the Cumulus Production Ready Automation, unchanged and unmodified on your own system in your enterprise. You can test, learn, and experience Cumulus Linux driven by best practice Ansible automation, and test drive the officially-supported golden standard configurations and architectures by running the Production Ready Automation as-is and unmodified.
 
-For more details about how to customize, reuse, and adapt these examples of simulation, automation, or CI/CD for your own purposes, refer to the {{<link url="Integration-Guide" text="Integration Guide">}}.
+For more details about how to customize, reuse, and adapt these examples of simulation, automation, or CI/CD for your own purposes, refer to {{<link title="Customize Production Ready Automation" text="Customize Production Ready Automation">}}.
 
 ## System Requirements
 
@@ -44,13 +44,13 @@ Using the NetQ server in individual development environments is not typically re
   - Vagrant-libvirt
   - Vagrant-scp
 
-Refer to the {{<link title="Example Install Scripts" text="Example Install Scripts">}} for an example bash script that installs these package dependencies to be able to support Cumulus VX simulation with Vagrant and libvirt.
+Refer to the {{<link title="Example Install Scripts" text="Example Install Scripts">}} for an example bash script that installs these package dependencies to support Cumulus VX simulation with Vagrant and libvirt.
 
 ## Manually Start A Golden Standard Topology
 
-The {{<link url="Quick-Start" text="Quick Start section">}} provides the easiest way to start a Production Ready Automation demo after preparing the system using a bash script. However, if you want more control over which nodes start and in which order, you can launch the simulation manually. This method saves CPU and memory resources.
+The {{<link url="Quick-Start" text="Quick Start section">}} provides the easiest way to start a Production Ready Automation demo using a bash script. However, if you want more control over which nodes start and in which order, you can launch the simulation manually. This method saves CPU and memory resources.
 
-To manually start a demo topology, such as {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym" text="EVPN Symmetric Mode">}}, ensure that you also fetch and pull down the included Cumulus Linux base reference topology. You can do this in one of two ways:
+To manually start a demo topology, such as {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym" text="EVPN Symmetric Mode">}}, make sure you also fetch and pull down the included Cumulus Linux base reference topology. You can do this in one of two ways:
 
 - Use the `--recurse-submodule` option with the initial `git clone`. This option also fetches the submodule files in the same step as the clone. We use this option in the procedure below.
 - Perform a normal `git clone`, then fetch the submodule files separately with the `git submodule init` and `git submodule update` options. For more information about Git submodules, see {{<exlink url="https://git-scm.com/book/en/v2/Git-Tools-Submodules" text="this guide">}}.
@@ -88,7 +88,7 @@ To start a golden standard topology manually:
    user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation#
    ```
 
-3. Run the `vagrant up` command for the out of band management devices.
+3. Run the `vagrant up` command for the out-of-band management devices.
 
    If you do not intend to use NetQ, omit `netq-ts` to save CPU and memory resource consumption.
 
@@ -109,9 +109,11 @@ You must start the oob-mgmt-server and oob-mgmt-switch first. The oob-mgmt-serve
    <output omitted for brevity>
    ```
 
-4. Run the `vagrant up` command to start up the other network devices. You can start up all the remaining nodes in the simulation with the `vagrant up` command (with no specific devices specified). Vagrant for libvirt tries to start devices in parallel. Occasionally, starting an entire reference topology simulation in parallel can cause errors that result in a partial or incomplete startup process. Cumulus Networks recommends you start the simulation in smaller, more manageable groups.
+4. Run the `vagrant up` command to start up the other network devices. You can start up all the remaining nodes in the simulation with the `vagrant up` command (with no specific devices specified). 
 
-   In the example below, we start the simulation in four separate stages. Each stage separated by `&&` is executed alone. The example combines those serialized stages in one line.
+   Vagrant for libvirt tries to start devices in parallel. Occasionally, starting an entire reference topology simulation in parallel can cause errors that result in a partial or incomplete startup process. Cumulus Networks recommends you start the simulation in smaller, more manageable groups.
+
+   The example below starts the simulation in four separate stages. Each stage separated by `&&` is executed alone. The example combines those serialized stages in one line.
 
    {{%notice tip%}}
 
@@ -189,23 +191,23 @@ The `&&` operator in Linux only executes the next command if the previous comman
 
 You now have a deployed and operational golden standard Cumulus Linux architecture. For more details about the specific network topology, IP addressing, and how to interact with the features in demonstration, visit the demo project page for the `README.md`.
 
-## Automatically Run Production Ready Automation on Cumulus in the Cloud
+## Automatically Run Production Ready Automation in Cumulus in the Cloud
 
-This method is the easiest way to experience the final product of the Cumulus golden standard EVPN VXLAN demo configurations. This method is best suited to fast track all of the simulation setup and provisioning and get to testing any of the official golden standard EVPN VXLAN demo configurations.
+This method is the easiest way to experience the final product of the Cumulus golden standard EVPN VXLAN demo configurations. This method is best suited to fast track all of the simulation setup and provisioning and start testing any of the official golden standard EVPN VXLAN demo configurations.
 
 If you are interested in taking a closer look at the processes of automation and deployment, and see the actual examples of the infrastructure as code, you need to clone the demo project and manually run the automation playbook to render the configuration as code into the network devices. This automated process clones your selected demo repository and runs the Ansible deployment playbook for you with a few easy and convenient clicks from the Cumulus In the Cloud UI.
 
 1. Go to http://cumulusnetworks.com/citc to request a demo or to reach your existing simulation.
-2. After you reach your simulation console, choose a demo from the drop down menu on the left panel
+2. After you reach your simulation console, choose a demo from the drop down menu on the left panel.
 
     {{<img src="/images/guides/citc-interface-demo.png" >}}
 
 3. Click the **Run Now** button.
 4. Follow the instructions on the `Guided Tour` panel to test and experience the unique aspects of your selected demo.
 
-## Manually Launch Automation Demo Topology From Cumulus In the Cloud
+## Manually the Run Automation Demo from Cumulus in the Cloud
 
-[Cumulus in the Cloud](https://www.cumulusnetworks.com/citc) provides the fastest way to enjoy the experience of provisioning a full datacenter using best practice Ansible automation and see a working example of infrastructure as code. By removing the complexity of the simulation hardware and software dependencies, you can be in the driver’s seat of a fully provisioned data center to test the automation experience and any of the demo solution architectures in minutes. Cumulus in the cloud also includes a free temporary NetQ Cloud account to showcase the NetQ features with live data from your simulation.
+{{<exlink url="https://www.cumulusnetworks.com/citc" text="Cumulus in the Cloud">}} provides the fastest way to enjoy the experience of provisioning a full data center using best practice Ansible automation and see a working example of infrastructure as code. By removing the complexity of the simulation hardware and software dependencies, you can be in the driver’s seat of a fully provisioned data center to test the automation experience and any of the demo solution architectures in minutes. Cumulus in the cloud also includes a free temporary NetQ Cloud account to showcase the NetQ features with live data from your simulation.
 
 1. Start from the `oob-mgmt-server` on your cumulus in the cloud simulation. Use an SSH client to connect for the best experience. Find the SSH client connection information from the **Services** window in the UI.
 
@@ -259,7 +261,7 @@ You now have a deployed and operational golden standard Cumulus Linux architectu
 
 ## Install and Configure the NetQ Cloud Server
 
-The Cumulus Networks reference topology includes an Ubuntu 18.04 server with additional CPU, memory, and disk resources to support a NetQ Cloud Server installation. Vagrant provisions this box with all of the required software package dependencies to be able to go immediately to the bootstrap and install steps of the NetQ server setup documented in the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="NetQ Deployment Guide" >}} starting at the “Download the bootstrap and NetQ installation tarballs" section.
+The Cumulus Networks reference topology includes an Ubuntu 18.04 server with additional CPU, memory, and disk resources to support a NetQ Cloud Server installation. Vagrant provisions this box with all of the required software package dependencies to be able to go immediately to the bootstrap and install steps of the NetQ server setup documented in the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance/" text="NetQ Deployment Guide" >}} starting at the “Download the bootstrap and NetQ installation tarballs" section.
 
 To use the included NetQ Cloud server, the following is required:
 
@@ -301,9 +303,9 @@ The `netq-bootstrap` and `netq-opta` image version numbers must match.
 
 {{%/notice%}}
 
-### Stage from the Local Filesystem
+#### Stage from the Local Filesystem
 
-For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="Download the bootstrap and NetQ installation tarballs" >}} in the NetQ documentation. Use SCP to copy the files onto the Linux-based simulation host securely.
+For specific steps on how to log into cumulusnetworks.com and download the NetQ files, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance/" text="Download the bootstrap and NetQ installation tarballs" >}} in the NetQ documentation. Use SCP to copy the files onto the Linux-based simulation host securely.
 
 The following procedure shows you how to copy the installation tarball files to the `/mnt/installables` directory (any directory that has sufficient read permissions is suitable for staging these files). Repeat the following steps for each file:
 
@@ -331,9 +333,9 @@ The following procedure shows you how to copy the installation tarball files to 
     vagrant@netq-ts:~$ sudo mv /home/cumulus/NetQ-X.Y.Z.tgz /mnt/installables/
     ```
 
-### Stage from a Remote HTTP Server
+#### Stage from a Remote HTTP Server
 
-For specific steps on how to login to cumulusnetworks.com and download the NetQ files, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="Download the bootstrap and NetQ installation tarballs" >}} in the NetQ documentation. Specific steps on how to copy the tarballs onto a remote HTTP server vary depending on the specific HTTP server software. This following example shows you how to set up an HTTP server with Apache on a Debian- or Ubuntu-based Linux system.
+For specific steps on how to login to cumulusnetworks.com and download the NetQ files, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance/" text="Download the bootstrap and NetQ installation tarballs" >}} in the NetQ documentation. Specific steps on how to copy the tarballs onto a remote HTTP server vary depending on the specific HTTP server software. This following example shows you how to set up an HTTP server with Apache on a Debian- or Ubuntu-based Linux system.
 
 1. Download these two required installation files from cumulusnetworks.com:
     - bootstrap
@@ -345,12 +347,12 @@ For specific steps on how to login to cumulusnetworks.com and download the NetQ 
 
 ### Install the NetQ Application
 
-This step sets up the NetQ Cloud server. This process installs the NetQ Cloud server application to be able to receive and aggregate agent data and securely transport the data to the cloud associated with your account.
+This step sets up the NetQ Cloud server. This process installs the NetQ Cloud server application to be able to receive and aggregate agent data and transport the data securely to the cloud associated with your account.
 
-- You must stage the bootstrap and install tarball files in either the local filesystem on netq-ts or on a remote HTTP server accessible from netq-ts. See the {{<link text="previous section" title="#Staging the NetQ installation tarballs on the netq-ts" >}} for instructions.
+- You must stage the bootstrap and install tarball files in either the local filesystem on netq-ts or on a remote HTTP server accessible from netq-ts. See the {{<link text="previous section" title="#Stage the NetQ Installation Tarballs" >}} for instructions.
 - The NetQ configuration key associated with the NetQ site/premises that this simulation will occupy is required. You receive the key from Cumulus Networks by email as part of NetQ Cloud onboarding.
 
-For more complete information about installing NetQ, refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-Platform/Prepare-Existing-NetQ-Appliance/" text="NetQ documentation" >}}. To complete the NetQ Cloud Server installation in the Cumulus demo topology, follow these steps:
+For more complete information about installing NetQ, refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance/" text="NetQ documentation" >}}. To complete the NetQ Cloud Server installation in the Cumulus demo topology, follow these steps:
 
 1. Perform the NetQ server bootstrap with the bootstrap tarball. Use `eth0` as the interface identifier. This step takes a few minutes.
 
@@ -411,13 +413,13 @@ To install the CLI:
 2. Restart the NetQ CLI daemon:
 
    ```
-    vagrant@netq-ts:~$  netq config restart cli
+    vagrant@netq-ts:~$ netq config restart cli
    ```
 
 3. Test a NetQ CLI command:
 
    ```
-    vagrant@netq-ts:~$  netq show agents
+    vagrant@netq-ts:~$ netq show agents
    ```
 
 To deploy the NetQ CLI configuration commands to several devices at the same time, use Ansible ad-hoc commands from the oob-mgmt-server.
@@ -436,7 +438,7 @@ vagrant@oob-mgmt-server:~$ ansible host -a 'netq config add cli server api.netq.
 vagrant@oob-mgmt-server:~$ ansible host -a 'netq config restart cli'
 ```
 
-## Clean Up Stuck or Orphaned Simulations
+## Clean Up Orphaned Simulations
 
 Occasionally, errors occur when you use Vagrant or when you delete files from a project that is in use.
 

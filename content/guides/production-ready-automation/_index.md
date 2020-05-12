@@ -9,23 +9,17 @@ draft: true
 The Production Ready Automation package from Cumulus Networks provides several examples of a fully operationalized, automated data center and includes:
 
 - A full Vagrant and libvirt simulation of the Cumulus Networks reference topology (cldemo2) that provides the foundational physical infrastructure and bootstrap configuration to support and demonstrate Cumulus Linux features and technologies
+- A standard reference topology for all examples
+- A variety of golden standard EVPN-VXLAN architecture reference configurations
 - Best practice Ansible automation and infrastructure as code (IaC)
 - Working examples of Continuous Integration and Continuous Deployment (CI/CD) using GitLab
 - CI/CD testing powered by NetQ Cloud
-- A standard reference topology for all examples
-- A variety of golden standard EVPN-VXLAN architecture reference configurations
 
 You can use this Production Ready Automation package as a learning resource and as a starting template to implement these features, technologies and operational workflows in your Cumulus Linux network environments.
 
 ## Cumulus Networks Reference Topology
 
-The Cumulus Networks reference topology provides a common and consistent preconfigured spine and leaf base network topology, which serves as the basis for all supported Cumulus Networks demos and golden standards.
-
-This reference topology is intended to be a blank slate with minimal configuration to prepare the simulation to receive additional deployment and provisioning that demonstrates a feature or represents a fully operational production network.
-
-When you start the reference topology simulation environment, all interfaces (except for the out-of-band management network) are unconfigured and administratively down. The golden standard configurations and demos provide interface and routing protocol configurations that are applied to this simulation topology.
-
-See the Contributors Guide for more information on how to build a package like this, or contribute your own demo or environment for the base Cumulus Networks reference topology.
+The Cumulus Networks reference topology provides a common and consistent preconfigured spine and leaf base network topology, which serves as the basis for all supported Cumulus Networks demos and golden standards. This reference topology is intended to be a blank slate with minimal configuration to prepare the simulation to receive additional deployment and provisioning that demonstrates a feature or represents a fully operational production network.
 
 The Cumulus Networks reference topology provides a complete two-tier spine and leaf topology. It also includes a complete out-of-band management. The devices include:
 
@@ -40,15 +34,11 @@ The Cumulus Networks reference topology provides a complete two-tier spine and l
 
 {{<img src="/images/guides/cldemo2-diagram.png" >}}
 
+When you start the reference topology simulation environment, all interfaces (except for the out-of-band management network) are unconfigured and administratively down. The golden standard configurations and demos provide interface and routing protocol configurations that are applied to this simulation topology.
+
 The Cumulus Networks reference topology is included with every officially-supported Cumulus Linux demo. To see a full example of the Production Ready Automation, use one of the {{<link text="EVPN VXLAN golden standard demos" title="#golden standard demos" >}}.
 
-## Infrastructure as Code
-
-The Production Ready Automation package contains examples of best practice Ansible automation and infrastructure as code (IaC). A completely stock Ansible core installation is used without any vendor specific or third party plugins. Examples of Ansible best practices using roles, highly granular templates, and structured variables represent how you can store your network configurations as a highly scalable version of infrastructure as code. It is that base code that is rendered by the automation engine to produce the final configurations that exist on the network devices.
-
-## Continuous Integration/Continuous Deployment
-
-As network operations become more programmatic and automated, and in combination with a robust simulation platform, CI/CD and devops style workflows are supplanting legacy workflows. You can test configuration changes automatically in a simulated environment to allow for more rapid and robust change management workflows. The Production Ready Automation package provides an example CI/CD pipeline implemented on GitLab with the CI network testing and validation powered by {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq/" text="Cumulus NetQ">}}.
+<!-- For information on how to build a package like this, or contribute your own demo or environment for the base Cumulus Networks reference topology, refer to the Contributors Guide.-->
 
 ## Golden Standard Demos
 
@@ -67,3 +57,11 @@ The name *Golden Turtle* comes from the idea of a *golden reference* and the roc
 - {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym" text="EVPN Symmetric Mode">}} is an EVPN-VXLAN environment with a layer 2 extension, layer 3 VXLAN routing, and VRFs for multi-tenancy.
 
 To see more detailed information about IP addressing and included features, see the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle" text="README.md page of the demo">}}.
+
+## Infrastructure as Code
+
+The Production Ready Automation package contains examples of best practice Ansible automation and infrastructure as code (IaC). A completely stock Ansible core installation is used without any vendor specific or third party plugins. Examples of Ansible best practices using roles, highly granular templates, and structured variables represent how you can store your network configurations as a highly scalable version of infrastructure as code. It is that base code that is rendered by the automation engine to produce the final configurations that exist on the network devices.
+
+## Continuous Integration and Continuous Deployment
+
+As network operations become more programmatic and automated, and in combination with a robust simulation platform, CI/CD and devops style workflows are supplanting legacy workflows. You can test configuration changes automatically in a simulated environment to allow for more rapid and robust change management workflows. The Production Ready Automation package provides an example CI/CD pipeline implemented on GitLab with the CI network testing and validation powered by {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq/" text="Cumulus NetQ">}}.

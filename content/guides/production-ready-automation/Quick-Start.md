@@ -6,13 +6,13 @@ product: Cumulus Networks Guides
 version: "1.0"
 draft: true
 ---
-This quick start provides a quick and easy way to run your own Vagrant, libvirt, and KVM server. Procedures are provided on how to:
+This quick start provides a quick and easy way to run your own Vagrant, libvirt, and KVM server, with procedures on how to:
 
 - Start a golden standard demo topology using a bash script
 - Start the blank Cumulus Networks reference topology if you are looking to build configuration from scratch
 - Destroy and end a simulation
 
-To run a full cldemo2 topology *without* NetQ, you need 15104MB of memory. If you intend to run NetQ, you need 23296MB of memory. See the {{<link text="User Guide" title="User Guide" >}} for complete sytem reqirements.
+To run a full reference topology *without* NetQ, you need 15104MB of memory. If you intend to run NetQ, you need 23296MB of memory. Refer to the {{<link text="Run the Production Ready Automation" title="Run Production Ready Automation" >}} for complete sytem reqirements.
 
 {{%notice tip%}}
 
@@ -25,11 +25,11 @@ To take a *quick* look at a Cumulus Networks golden standard demo, use our simul
 The following procedue describes the easiest way to start a Production Ready automation demo using a bash script provided in the package. The bash script performs the following steps automatically:
 
 - Checks if the Cumulus Networks reference topology submodule is present and attempts to download the reference topology if it is not present
-- Runs the `vagrant up` command for the oob-mgmt-network devices
+- Runs the `vagrant up` command for the out-of-band management network devices
 - Runs a series of `vagrant up` commands to bring up the rest of the network simulation
 - Runs the `vagrant scp` command to copy the network automation into the simulation
 
-To control which nodes start and in which order, and to save CPU and memory resources, you can run the simulation manually. Refer to the {{<link text="User Guide" title="User Guide" >}}.
+To control which nodes start and in which order, and to save CPU and memory resources, you can run the simulation manually. Refer to the {{<link text="Run the Production Ready Automation" title="Run Production Ready Automation" >}}.
 
 To start a golden standard demo topology using a bash script:
 
@@ -64,11 +64,11 @@ To start a golden standard demo topology using a bash script:
     user@host:~/dc_configs_vxlan_evpnsym#
     ```
 
-4. Run the `start-demo.sh` script. If you do not intent to use the NetQ telemetry server, use the `--no-netq` option to skip booting the server.
+4. Run the `start-demo.sh` script. If you do not intent to use the NetQ telemetry server, add the `--no-netq` option to skip booting the server.
 
     {{%notice note%}}
 
-An Ubuntu 18.04LTS box with additional CPU and memory resources for installing NetQ is included in the out of band management network of the base Cumulus Networks reference topology. NetQ is *not* a required element for any of the golden standard demos to function. NetQ is used in the topology to power CI/CD testing and to preview and test the NetQ functionality. If you do not intent to use NetQ, Cumulus Networks recommends that you do not start it in simulation to save an additional 8GB of memory.
+An Ubuntu 18.04LTS box with additional CPU and memory resources for installing NetQ is included in the out-of-band management network of the base Cumulus Networks reference topology. NetQ is *not* a required element for any of the golden standard demos to function. NetQ is used in the topology to power CI/CD testing and to preview and test the NetQ functionality. If you do not intent to use NetQ, Cumulus Networks recommends that you do not start it in simulation to save an additional 8GB of memory.
 
 {{%/notice%}}
 
@@ -177,7 +177,7 @@ You can start the reference topology by itself if you want to build configuratio
     user@host:~/cldemo2#
     ```  
 
-3. Run the `start-blank-topology.sh` script to launch the simulation. Use the `--no-netq` argument to skip loading the 8GB 4 vCPU netq-ts box, if you do not intent to use it.
+3. Run the `start-blank-topology.sh` script to launch the simulation. If you do not intent to use NetQ, add the `--no-netq` option to skip loading the 8GB 4 vCPU netq-ts box.
 
     ```
     user@host:~/cldemo2# ./start-blank-topology.sh --no-netq
@@ -187,7 +187,7 @@ You can start the reference topology by itself if you want to build configuratio
     <output omitted for brevity>
     ```
 
-    This step might take time depending on internet connection speed and the host machine.
+    This step might take time depending on the host machine and internet connection speed.
 
 4. After the launch script succeeds, change to the simulation directory:
 

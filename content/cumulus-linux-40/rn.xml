@@ -415,6 +415,12 @@ Port security is not supported on bond/MLAG interfaces.</p></td>
 <td>4.1.0-4.1.1</td>
 </tr>
 <tr>
+<td>CM-28442</td>
+<td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28441</td>
 <td><p>If a LLDP neighbor advertises a PortDescr that contains commas, ptmctl -d splits the string on the commas and misplaces its components in other columns.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
@@ -2251,6 +2257,19 @@ You can prevent EVPN next hops from not being removed when the contributing peer
  
 </td>
 <td>3.7.6-3.7.10</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
 </tr>
 <tr>
 <td>CM-24784</td>

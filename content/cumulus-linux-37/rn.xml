@@ -356,6 +356,12 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>CM-28442</td>
+<td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28441</td>
 <td><p>If a LLDP neighbor advertises a PortDescr that contains commas, ptmctl -d splits the string on the commas and misplaces its components in other columns.</p></td>
 <td>3.7.11-3.7.12</td>
@@ -928,6 +934,20 @@ To work around this issue, power cycle the switch. </p>
 <td><p>When first creating a bond and enslaving an interface, NCLU hides some of the bridge command suggestions, although they are still accepted. </p>
 </td>
 <td>3.7.3-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -1615,6 +1635,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Affects </th>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -2096,6 +2125,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -2137,6 +2176,12 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 
 
 <p>To work around this issue, reboot the switch.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28442</td>
+<td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
 <td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
@@ -2968,6 +3013,20 @@ To work around this issue, power cycle the switch. </p>
 <td><p>When first creating a bond and enslaving an interface, NCLU hides some of the bridge command suggestions, although they are still accepted. </p>
 </td>
 <td>3.7.3-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -4328,6 +4387,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -5436,6 +5505,20 @@ route-map peerlink-add-asn permit 20
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
 <td>3.7.5-3.7.12</td>
@@ -6387,6 +6470,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -7306,6 +7399,20 @@ route-map peerlink-add-asn permit 20
  Verify that you do not have any existing lines in .vimrc that set modelines or modeline.</p></td>
 <td>3.0.0-3.7.10</td>
 <td>3.7.11-3.7.12</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24894</td>
@@ -8896,6 +9003,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -10038,6 +10155,20 @@ route-map peerlink-add-asn permit 20
  </td>
 <td>3.7.2-3.7.8</td>
 <td>3.7.9-3.7.12</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24963</td>
@@ -11277,6 +11408,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -12324,6 +12465,20 @@ route-map peerlink-add-asn permit 20
  </td>
 <td>3.7.2-3.7.8</td>
 <td>3.7.9-3.7.12</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24963</td>
@@ -14019,6 +14174,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -15032,6 +15197,20 @@ route-map peerlink-add-asn permit 20
  <b>Note</b>: This workaround is not guaranteed because the race condition cannot be always be avoided. </p></td>
 <td>3.7.4-3.7.6</td>
 <td>3.7.7-3.7.12</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24975</td>
@@ -16723,6 +16902,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -17372,6 +17561,20 @@ You can prevent EVPN next hops from not being removed when the contributing peer
  <b>Note</b>: This workaround is not guaranteed because the race condition cannot be always be avoided. </p></td>
 <td>3.7.4-3.7.6</td>
 <td>3.7.7-3.7.12</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24975</td>
@@ -19097,6 +19300,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -19673,6 +19886,20 @@ You can prevent EVPN next hops from not being removed when the contributing peer
  <b>Note</b>: This workaround is not guaranteed because the race condition cannot be always be avoided. </p></td>
 <td>3.7.4-3.7.6</td>
 <td>3.7.7-3.7.12</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24975</td>
@@ -21535,6 +21762,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -22091,6 +22328,20 @@ You can prevent EVPN next hops from not being removed when the contributing peer
  </td>
 <td>3.7.2-3.7.8</td>
 <td>3.7.9-3.7.12</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24975</td>
@@ -24131,6 +24382,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -24641,6 +24902,20 @@ You can prevent EVPN next hops from not being removed when the contributing peer
  </td>
 <td>3.7.2-3.7.8</td>
 <td>3.7.9-3.7.12</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24975</td>
@@ -26863,6 +27138,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -27306,6 +27591,20 @@ For the detailed security status of ghostscript, refer to its security tracker p
  </td>
 <td>3.0.0-3.7.6</td>
 <td>3.7.7-3.7.12</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24975</td>

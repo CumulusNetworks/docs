@@ -135,7 +135,7 @@ For detailed information about the `topology_converter` utility and detailed ins
 These are the high level steps required to create a custom Cumulus VX topology:
 
 1. Consider how to handle out-of-band management. The easiest option is to use {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation/auto_mgmt_network" text="Automated Network Management">}}. To more accurately represent your production network, you can create the out-of-band management network in the `topology.dot` file.
-2. Create a `topology.dot` file. Enusre that the contents are in graphviz format and syntax. Use the `cldemo2.dot` file in the Cumulus Linux reference topology project as a template to define your own set of network nodes, attributes, and links.
+2. Create a `topology.dot` file. Enusre that the contents are in graphviz format and syntax. Use the `cldemo2.dot` file in the Cumulus Networks reference topology project as a template to define your own set of network nodes, attributes, and links.
 3. Put all the `topology_converter` project files and your custom `topology.dot` file in a `simulation` folder for your project. Run the `git clone` command to obtain all the `topology_converter` project files.
 4. Create the Vagrantfile from your topology definition. Ensure that the `-p libvirt` option is specified. If you use the Automated Network Management feature, the `-c` option in `topology_converter` is required:
 

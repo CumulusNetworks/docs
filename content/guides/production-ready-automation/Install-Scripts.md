@@ -8,7 +8,7 @@ draft: true
 ---
 This section provides the package dependency install scripts.
 
-## Script without gitlab-runner for CI/CD
+## Script without GitLab Runner for CI/CD
 
 ```
 #!/bin/bash
@@ -25,7 +25,7 @@ dpkg -i vagrant_2.2.7_x86_64.deb
 vagrant plugin install vagrant-libvirt vagrant-mutate vagrant-scp
 ```
 
-## Script with gitlab-runner for CI/CD
+## Script with GitLab Runner for CI/CD
 
 ```
 #!/bin/bash

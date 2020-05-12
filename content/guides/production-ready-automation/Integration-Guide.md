@@ -294,7 +294,7 @@ GitLab also provides a way for you to define custom environment variables for th
 
 Because NetQ installation requires unique configuration and access keys, these are stored as masked variables with the Gitlab project (you can configure the keys to be valid only on protected branches). These variables are called during the NetQ provisioning CI job to allow for programmatic provisioning of NetQ in the automated CI pipeline.
 
-It is best practice to configure a dedicated/dummy CI and CLI user in NetQ cloud User Management. This allows the generated access-key and secret-key from this account to be more easily disposable in case you need to revoke or change them. See the NetQ documentation for more information about setting up netQ users and generating auth keys to store with your CI/CD enabled gitlab project.
+It is best practice to configure a dedicated/dummy CI and CLI user in NetQ cloud User Management. This allows the generated access-key and secret-key from this account to be more easily disposable in case you need to revoke or change them. See the NetQ documentation for more information about setting up netQ users and generating auth keys to store with your CI/CD enabled GitLab project.
 
 If you want to use the reference ci-common and test scripts unmodified, configure the following variables in the Settings -> CI/CD -> Variables area in GitLab on your project:
 

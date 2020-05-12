@@ -12,7 +12,7 @@ Building a simulation that represents your production network is the first step 
 
 These main features of the Cumulus Production Ready Automation depend on each other to provide the fully operationalized automated data center:
 
-- **Base simulation** is the base Cumulus Networks reference topology simulation.
+- **Base simulation** is the Cumulus Networks reference topology simulation; a common base topology for reuse across many different possible solution architectures.
 - **Automation providing Infrastructure as Code (IaC)** lets you store a coded version of your network configuration in a source code repository. Cumulus Networks Production Ready Automation uses Ansible as its automation engine and applies Ansible best practices that include the use of roles, Jinja2 templates, and structured variable files. Complete Ansible configurations include playbooks, roles, templates, variables, and inventory.
 - **Continuous Integration and Continuous Deployment (CI/CD)** is based on the idea that you can make changes frequently and at any time of day. However, before you can integrate the changes for deployment into production, you must test to ensure that the change does not cause an unintended consequence. After testing passes and the change is integrated from the continuous integration (CI) stage, you can carry out the continuous deployment (CD) stage automatically. For the network, this means that you can deploy the changes that pass automated testing to the production environment automatically. Automated continuous deployment is still uncommon for network operations.
 

@@ -205,7 +205,7 @@ If you are interested in taking a closer look at the processes of automation and
 3. Click the **Run Now** button.
 4. Follow the instructions on the `Guided Tour` panel to test and experience the unique aspects of your selected demo.
 
-## Manually the Run Automation Demo from Cumulus in the Cloud
+## Manually Run the Automation Demo from Cumulus in the Cloud
 
 {{<exlink url="https://www.cumulusnetworks.com/citc" text="Cumulus in the Cloud">}} provides the fastest way to enjoy the experience of provisioning a full data center using best practice Ansible automation and see a working example of infrastructure as code. By removing the complexity of the simulation hardware and software dependencies, you can be in the driver’s seat of a fully provisioned data center to test the automation experience and any of the demo solution architectures in minutes. Cumulus in the cloud also includes a free temporary NetQ Cloud account to showcase the NetQ features with live data from your simulation.
 

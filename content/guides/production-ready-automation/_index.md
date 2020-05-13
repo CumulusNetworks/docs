@@ -8,9 +8,9 @@ draft: true
 ---
 The Production Ready Automation package from Cumulus Networks provides several examples of a fully operationalized, automated data center and includes:
 
-- A full Vagrant and libvirt simulation of the Cumulus Networks reference topology (cldemo2) that provides the foundational physical infrastructure and bootstrap configuration to support and demonstrate Cumulus Linux features and technologies
 - A standard reference topology for all examples
 - A variety of golden standard EVPN-VXLAN architecture reference configurations
+- A full Vagrant and libvirt simulation of the Cumulus Networks reference topology (cldemo2) that provides the foundational physical infrastructure and bootstrap configuration to support and demonstrate Cumulus Linux features and technologies
 - Best practice Ansible automation and infrastructure as code (IaC)
 - Working examples of Continuous Integration and Continuous Deployment (CI/CD) using GitLab
 - CI/CD testing powered by NetQ Cloud
@@ -42,7 +42,7 @@ The Cumulus Networks reference topology is included with every officially-suppor
 
 ## Golden Standard Demos
 
-Cumulus Networks currently provides three officially-supported demo solutions to overlay and provision the reference topology. These demos are EVPN-VXLAN environments; each performs tenant routing in a different style.
+Cumulus Networks currently provides three officially-supported demo solutions to overlay and provision the reference topology. These demos are EVPN-VXLAN environments and each performs tenant routing in a different style.
 
 The golden standard demos and the underlying base reference topology are officially hosted on GitLab in the Golden Turtle folder of the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle" text="Cumulus Consulting GitLab group">}}.
 
@@ -56,7 +56,7 @@ The name *Golden Turtle* comes from the idea of a *golden reference* and the roc
 - {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpncent" text="EVPN Centralized Routing">}} is an EVPN-VXLAN environment with a layer 2 extension between tenants with inter-tenant routing on a centralized (fw) device.
 - {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/dc_configs_vxlan_evpnsym" text="EVPN Symmetric Mode">}} is an EVPN-VXLAN environment with a layer 2 extension, layer 3 VXLAN routing, and VRFs for multi-tenancy.
 
-To see more detailed information about IP addressing and included features, see the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle" text="README.md page of the demo">}}.
+For more detailed information about IP addressing and included features, refer to the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle" text="README.md page of the demo">}}.
 
 ## Infrastructure as Code
 
@@ -64,4 +64,4 @@ The Production Ready Automation package contains examples of best practice Ansib
 
 ## Continuous Integration and Continuous Deployment
 
-As network operations become more programmatic and automated, and in combination with a robust simulation platform, CI/CD and devops style workflows are supplanting legacy workflows. You can test configuration changes automatically in a simulated environment to allow for more rapid and robust change management workflows. The Production Ready Automation package provides an example CI/CD pipeline implemented on GitLab with the CI network testing and validation powered by {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq/" text="Cumulus NetQ">}}.
+As network operations become more programmatic and automated, and in combination with a robust simulation platform, CI/CD and DevOps style workflows are supplanting legacy workflows. You can test configuration changes automatically in a simulated environment to allow for more rapid and robust change management workflows. The Production Ready Automation package provides an example CI/CD pipeline implemented on GitLab with the CI network testing and validation powered by {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq/" text="Cumulus NetQ">}}.

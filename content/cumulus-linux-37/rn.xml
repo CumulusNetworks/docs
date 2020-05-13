@@ -7,6 +7,45 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29643</td>
+<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
+To work around this issue, flap the BGP peer.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29594</td>
+<td><p>When you run an Ansible script to replace the /etc/network/interfaces file, then run the ifreload -a command, you see errors similar to the following:</p>
+
+error: swp1s1.2: netlink: cannot set link swp1s1.2 up: operation failed with 'Network is down' (100)
+warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLINK answers: Cannot assign requested address
+
+
+<p>To work around this issue,  run the ifreload -a command a second time.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29562</td>
+<td><p>If you have an SVI with multiple VRR IP addresses and try to delete one of the VRR configurations, net commit or ifreload -a returns an error.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29546</td>
 <td><p>In vtysh, if you configure, then remove a layer 3 VNI for a VRF, the VNI is removed from zebra even if the VNI interface still exists in the kernel.<br/>
 If you configure a layer 2 VNI as a layer 3 VNI by mistake, removing the layer 3 VNI binding removes it from zebra but EVPN-learned MACs and neighbors are not installed into the kernel.<br/>
@@ -51,6 +90,12 @@ asic-monitor[7389]: --------------
 <td></td>
 </tr>
 <tr>
+<td>CM-29519</td>
+<td><p>The JSON format output of the net show bgp l2vpn evpn summary command shows the incorrect neighbour state. </p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -92,6 +137,12 @@ Fixed: 1.8.14-4+deb8u1</p></td>
 <td>CM-29367</td>
 <td><p>On switches with the Trident3 ASIC, PFC is not working as expected. If you set the PFC for only one CoS,  pause frames are sent for all CoS traffic.</p></td>
 <td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29322</td>
+<td><p>When the BGP Multi-protocol Unreach NLRI attribute is received in a BGP update without a next hop attribute, the BGP session is brought down unexpectedly. RFC 4760 defines that the next-hop attribute is not required for updates containing MP_UNREACH_NLRI.</p></td>
+<td>3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -170,6 +221,12 @@ To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
 <td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29037</td>
+<td><p>Silent reboots sometimes occur on the switch with nothing that indicates a reboot reason in the syslog file. </p></td>
+<td>3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -1908,6 +1965,20 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29525</td>
@@ -4233,6 +4304,20 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -6314,6 +6399,20 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29518</td>
@@ -8849,6 +8948,20 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -11252,6 +11365,20 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29518</td>
@@ -14020,6 +14147,20 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -16755,6 +16896,20 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -19157,6 +19312,20 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29518</td>
@@ -21619,6 +21788,20 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29518</td>
@@ -24245,6 +24428,20 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29518</td>
@@ -27001,6 +27198,20 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29518</td>

@@ -16,7 +16,7 @@ To run a full reference topology *without* NetQ, you need 15104MB of memory. If 
 
 {{%notice tip%}}
 
-To take a *quick* look at a Cumulus Networks golden standard demo, use our simulation platform, Cumulus In the Cloud. The simulation platform has no system requirements or dependencies. Visit {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus In the Cloud">}} to get a full blank slate Cumulus Networks reference topology; you can even one-click deploy any of the golden standard demos right from the UI.
+To take a *quick* look at a Cumulus Networks golden standard demo, use our simulation platform, Cumulus in the Cloud. The simulation platform has no system requirements or dependencies. Visit {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus In the Cloud">}} to get a full blank slate Cumulus Networks reference topology. You can even one-click deploy any of the golden standard demos right from the UI.
 
 {{%/notice%}}
 
@@ -68,7 +68,7 @@ To start a golden standard demo topology using a bash script:
 
     {{%notice note%}}
 
-An Ubuntu 18.04LTS box with additional CPU and memory resources for installing NetQ is included in the out-of-band management network of the base Cumulus Networks reference topology. NetQ is *not* a required element for any of the golden standard demos to function. NetQ is used in the topology to power CI/CD testing and to preview and test the NetQ functionality. If you do not intent to use NetQ, Cumulus Networks recommends that you do not start it in simulation to save an additional 8GB of memory.
+An Ubuntu 18.04LTS box with additional CPU and memory resources for installing NetQ is included in the out-of-band management network of the base Cumulus Networks reference topology. NetQ is *not* a required element for any of the golden standard demos to function but is used in the topology to power CI/CD testing, and to preview and test the NetQ functionality. If you do not intent to use NetQ, Cumulus Networks recommends that you do not start it in simulation to save an additional 8GB of memory.
 
 {{%/notice%}}
 
@@ -157,7 +157,7 @@ The Cumulus Networks reference topology is included as a submodule in all of the
 
 You can start the reference topology by itself if you want to build configuration from scratch or intend to start from a completely blank slate network topology.
 
-1. Clone the `cldemo2` Cumulus Networks reference topology:
+1. Clone the Cumulus Networks reference topology (`cldemo2`):
 
     ```
     user@host:~# git clone https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2.git
@@ -177,7 +177,7 @@ You can start the reference topology by itself if you want to build configuratio
     user@host:~/cldemo2#
     ```  
 
-3. Run the `start-blank-topology.sh` script to launch the simulation. If you do not intent to use NetQ, add the `--no-netq` option to skip loading the 8GB 4 vCPU netq-ts box.
+3. Run the `start-blank-topology.sh` script to launch the simulation. If you do not intent to use the NetQ telemetry server, add the `--no-netq` option to skip booting the server.
 
     ```
     user@host:~/cldemo2# ./start-blank-topology.sh --no-netq

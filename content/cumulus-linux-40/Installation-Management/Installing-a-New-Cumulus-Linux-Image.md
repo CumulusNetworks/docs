@@ -324,40 +324,32 @@ Use caution when performing the actions below; it is possible to severely damage
     - `onie-installer-x86_64`, if installing on an x86 platform
     - `onie-installer-arm`, if installing on an ARM platform
 
-    You can also use any of the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes mentioned here">}}.
-
     {{%notice warning%}}
 
 When using a Mac or Windows computer to rename the installation file, the file extension might still be present. Make sure to remove the file extension otherwise ONIE is not able to detect the file.
 
-    {{%/notice%}}
+{{%/notice%}}
 
 4. Insert the USB drive into the switch, then continue with the appropriate instructions below for your x86 or ARM platform.
 
-### Instructions for x86 Platforms
+{{< tabs "TabID00" >}}
 
-<details>
-
-<summary>Click to expand x86 instructions... </summary>
+{{< tab "x86 Platforms" >}}
 
 1. Prepare the switch for installation:
 
     - If the switch is offline, connect to the console and power on the switch.
     - If the switch is already online in ONIE, use the `reboot` command.
 
-    {{%notice note%}}
-
-SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
-
-    {{%/notice%}}
+    SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
 
 2. Monitor the console and select the ONIE option from the first GRUB screen shown below.
 
-    {{< img src = "/images/cumulus-linux/install-image-GNUx86-1.png" >}}
+    {{< figure src = "/images/cumulus-linux/install-image-GNUx86-1.png" >}}
 
 3. Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB menu specific to the ONIE partition. No action is necessary in this menu to select the default option *ONIE: Install OS*.
 
-    {{< img src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
+    {{< figure src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
 
 4. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins. Here is some sample output:
 
@@ -395,24 +387,16 @@ SSH sessions to the switch get dropped after this step. To complete the remainin
 
 5. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 
-</details>
+{{< /tab >}}
 
-### Instructions for ARM Platforms
-
-<details>
-
-<summary>Click to expand ARM instructions... </summary>
+{{< tab "ARM Platforms" >}}
 
 1. Prepare the switch for installation:
 
     - If the switch is offline, connect to the console and power on the switch.
     - If the switch is already online in ONIE, use the `reboot` command.
 
-    {{%notice note%}}
-
-SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
-
-    {{%/notice%}}
+    SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
 
 2. Interrupt the normal boot process before the countdown (shown below) completes. Press any key to stop the autoboot.
 
@@ -427,7 +411,6 @@ SSH sessions to the switch get dropped after this step. To complete the remainin
         DDR:400 MHz (800 MT/s data rate) (Asynchronous), LBC:37.500 MHz
     L1: D-cache 32 kB enabled
     I-cache 32 kB enabled
-
     ...
 
     USB: USB2513 hub OK
@@ -484,7 +467,9 @@ SSH sessions to the switch get dropped after this step. To complete the remainin
 
 5. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Related Information
 

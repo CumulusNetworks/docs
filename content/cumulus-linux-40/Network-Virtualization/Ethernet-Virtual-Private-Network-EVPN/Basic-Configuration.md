@@ -22,9 +22,9 @@ The other BGP neighbor address family specific configurations supported for EVPN
 
 To configure an EVPN route exchange with a BGP peer, activate the peer or peer group within the EVPN address family. For example:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp autonomous-system 65000
@@ -34,11 +34,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -51,10 +49,12 @@ switch(config-router-af)# neighbor swp1 activate
 switch(config-router-af)# end
 switch)# write memory
 switch)# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -85,9 +85,9 @@ This configuration is only needed on leaf switches that are VTEPs. EVPN routes r
 
 {{%/notice%}}
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn advertise-all-vni
@@ -95,11 +95,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -114,7 +112,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
@@ -138,9 +138,9 @@ For eBGP EVPN peering, the peers are in a different AS so using an automatic RT 
 
 If you do *not* want RDs and RTs to be derived automatically, you can define them manually. The following example commands are per VNI. You must specify these commands under `address-family l2vpn evpn` in BGP.
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn vni 10200 rd 172.16.100.1:20
@@ -150,11 +150,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -173,7 +171,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
@@ -195,9 +195,9 @@ If you delete the RD or RT later, it reverts back to its corresponding default v
 
 You can configure multiple RT values. In addition, you can configure both the import and export route targets with a single command by using `route-target both`:
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn vni 10400 route-target import 100:400
@@ -207,11 +207,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -231,7 +229,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
@@ -253,9 +253,9 @@ You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF"
 
 The leaf switches peer with each other in a full mesh within the EVPN address family without using route reflectors. The leafs generally peer to their loopback addresses, which are advertised in OSPF. The receiving VTEP imports routes into a specific VNI with a matching route target community.
 
-<details>
+{{< tabs "TabID8" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp autonomous-system 65020
@@ -277,11 +277,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -318,7 +316,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
@@ -363,9 +363,9 @@ In a centralized routing deployment, you must configure layer 3 interfaces even 
 
 The following examples show a configuration using two VXLANs (10100 and 10200) and two VLANs (100 and 200).
 
-<details>
+{{< tabs "TabID10" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bridge bridge ports vni100,vni200
@@ -384,11 +384,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file.
 
@@ -430,7 +428,9 @@ iface vni200
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you must edit the bridge configuration in the `/etc/network/interfaces` file using a text editor:
 
@@ -469,9 +469,9 @@ net.ipv6.neigh.default.gc_thresh2=8192
 
 Cumulus Networks recommends that you keep ARP and ND suppression enabled to reduce flooding of ARP/ND packets over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
 
-<details>
+{{< tabs "TabID12" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add vxlan vni100 bridge arp-nd-suppress off
@@ -481,11 +481,9 @@ cumulus@switch:~$ net commit
 
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the /etc/network/interfaces file.
 
@@ -509,7 +507,9 @@ iface vni200
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## EVPN and VXLAN Active-active Mode
 
@@ -536,3 +536,4 @@ For information about active-active VTEPs and anycast IP behavior, and for failu
 - You must configure the overlay (tenants) in a specific VRF and separate from the underlay, which resides in the default VRF. Layer 3 VNI mapping for the default VRF is not supported.
 - In an EVPN deployment, Cumulus Linux supports a single BGP ASN which represents the ASN of the core as well as the ASN for any tenant VRFs if they have BGP peerings. If you need to change the ASN, you must first remove the layer 3 VNI in the `/etc/frr/frr.conf` file, modify the BGP ASN, then add back the layer 3 VNI in the `/etc/frr/frr.conf` file.
   - EVPN is not supported when {{<link title="Redistribute Neighbor" >}} is also configured. Enabling both features simultaneously causes instability in IPv4 and IPv6 neighbor entries.
+  

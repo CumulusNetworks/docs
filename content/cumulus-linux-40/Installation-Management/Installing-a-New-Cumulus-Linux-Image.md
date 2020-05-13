@@ -70,9 +70,9 @@ If you do not have a web server, you can use {{<exlink url="https://www.apachefr
 
 Follow the steps below if you can log into the switch on a serial console (ONIE), or log in on the console or with ssh (Install from Cumulus Linux).
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>Install from ONIE </summary>
+{{< tab "Install from ONIE" >}}
 
 1. Place the Cumulus Linux disk image in a directory on the web server.
 2. Run the `onie-nos-install` command:
@@ -81,11 +81,9 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
     ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Install from Cumulus Linux </summary>
+{{< tab "Install from Cumulus Linux" >}}
 
 1. Place the Cumulus Linux disk image in a directory on the web server.
 
@@ -95,7 +93,9 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Install Using a Web Server with no DHCP
 
@@ -107,9 +107,9 @@ You need a console connection to access the switch; you cannot perform this proc
 
 {{%/notice%}}
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>Install from ONIE </summary>
+{{< tab "Install from ONIE" >}}
 
 1. ONIE is in *{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" text="discovery mode">}}*. You must disable discovery mode with the following command:
 
@@ -137,11 +137,9 @@ You need a console connection to access the switch; you cannot perform this proc
     ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Install from Cumulus Linux </summary>
+{{< tab "Install from Cumulus Linux" >}}
 
 1. Place the Cumulus Linux disk image in a directory on your web server.
 
@@ -151,15 +149,17 @@ You need a console connection to access the switch; you cannot perform this proc
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Install Using FTP Without a Web Server
 
 Follow the steps below if your laptop is on the same network as the switch eth0 interface but *no* DHCP server is available.
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>Install from ONIE </summary>
+{{< tab "Install from ONIE" >}}
 
 1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
@@ -189,11 +189,9 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
     ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Install from Cumulus Linux </summary>
+{{< tab "Install from Cumulus Linux" >}}
 
 1. Place the Cumulus Linux disk image into a TFTP or FTP directory.
 
@@ -205,15 +203,17 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
     cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Install Using a Local File
 
 Follow the steps below to install the disk image referencing a local file.
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>Install from ONIE </summary>
+{{< tab "Install from ONIE" >}}
 
 1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
@@ -241,11 +241,9 @@ Follow the steps below to install the disk image referencing a local file.
     ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Install from Cumulus Linux </summary>
+{{< tab "Install from Cumulus Linux" >}}
 
 1. Copy the Cumulus Linux disk image to the switch.
 
@@ -255,7 +253,9 @@ Follow the steps below to install the disk image referencing a local file.
     cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Install Using a USB Drive
 

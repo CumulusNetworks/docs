@@ -60,9 +60,9 @@ The bridge ageing option is in the {{<link url="Network-Command-Line-Utility-NCL
 
 To configure bridge ageing:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add bridge bridge ageing` command. The following example commands set MAC address ageing to 600 seconds:
 
@@ -72,11 +72,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file and add `bridge-ageing` to the bridge stanza. The following example sets MAC address ageing to 600 seconds.
 
@@ -95,7 +93,9 @@ Run the `ifreload -a` command to load the new configuration:
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Configure an SVI (Switch VLAN Interface)
 
@@ -109,9 +109,9 @@ When you add an interface to a bridge, it ceases to function as a router interfa
 
 To configure the SVI:
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add bridge` and `net add vlan` commands. The following example commands configure an SVI using swp1 and swp2, and VLAN ID 10.
 
@@ -122,11 +122,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file to add the interfaces and VLAN ID you want to use. The following configures an SVI using swp1 and swp2, and VLAN ID 10. The `bridge-vlan-aware` parameter associates the SVI with the VLAN-aware bridge.
 
@@ -151,7 +149,9 @@ Run the `ifreload -a` command to load the new configuration:
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 When you configure a switch initially, all southbound bridge ports might be down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking, which leaves the SVI in the UP state always, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
 
@@ -243,9 +243,9 @@ By default, Cumulus Linux automatically generates IPv6 {{<exlink url="https://en
 
 To disable automatic address generation for a regular IPv6 address on a VLAN:
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add vlan <vlan> ipv6-addrgen off` command. The following example command disables automatic address generation for a regular IPv6 address on a VLAN 100.
 
@@ -255,11 +255,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file and add the line `ipv6-addrgen off` to the VLAN stanza. The following example disables automatic address generation for a regular IPv6 address on VLAN 100.
 
@@ -280,13 +278,15 @@ Run the `ifreload -a` command to load the new configuration:
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To re-enable automatic link-local address generation for a VLAN:
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net del vlan <vlan> ipv6-addrgen off` command. The following example command re-enables automatic address generation for a regular IPv6 address on VLAN 100.
 
@@ -296,11 +296,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1.  Edit the `/etc/network/interfaces` file and **remove** the line `ipv6-addrgen off` from the VLAN stanza. The following example re-enables automatic address generation for a regular IPv6 address on a VLAN 100.
 
@@ -310,7 +308,9 @@ cumulus@switch:~$ net commit
     cumulus@switch:~$ ifreload -a
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## bridge fdb Command Output
 

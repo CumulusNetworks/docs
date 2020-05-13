@@ -178,7 +178,7 @@ GitLab Runner uses the `shell` executor type. There are a unique set of dependen
 
 ### Branching Strategy
 
-Gitlab CI pipelines build dynamically and then execute when code is pushed to the remote repository (normally gitlab.com). Different versions of code can exist on different branches as changes move upstream toward `master` and you can control CI pipelines independently and uniquely for each branch in a project. This ability to customize pipelines per branch are what allow for different automated workflows as changes are merged into upstream branches. For an introduction to GitLab flow best practices, refer to {{<exlink url="https://docs.gitlab.com/ee/topics/gitlab_flow.html" text="Introduction to GitLab Flow">}}.
+GitLab CI pipelines build dynamically and then execute when code is pushed to the remote repository (normally gitlab.com). Different versions of code can exist on different branches as changes move upstream toward `master` and you can control CI pipelines independently and uniquely for each branch in a project. This ability to customize pipelines per branch are what allow for different automated workflows as changes are merged into upstream branches. For an introduction to GitLab flow best practices, refer to {{<exlink url="https://docs.gitlab.com/ee/topics/gitlab_flow.html" text="Introduction to GitLab Flow">}}.
 
 Cumulus Networks recommends the following branching strategy as a simple starting point:
 
@@ -237,7 +237,7 @@ Refer to {{<link title="Example Install Scripts" text="Example Install Scripts">
 
 4. Perform the GitLab Runner registration. The GitLab Runner registration parameters are:
 
-    | Gitlab Parameter | Setting |
+    | GitLab Parameter | Setting |
     | ---------------- | ------- |
     | Gitlab-ci coordinator URL | https://gitlab.com |
     | Gitlab-ci token |  From step 3 above |
@@ -276,7 +276,7 @@ Refer to {{<link title="Example Install Scripts" text="Example Install Scripts">
 
 ### Gitlab CI Variables
 
-Gitlab CI provides a number of built in environment variables for use in CI scripts. For a list of all the available variables provided by GitLab, refer to {{<exlink url="https://docs.gitlab.com/ee/ci/variables/predefined_variables.html" text="Predefined Variables">}}.
+GitLab CI provides a number of built in environment variables for use in CI scripts. For a list of all the available variables provided by GitLab, refer to {{<exlink url="https://docs.gitlab.com/ee/ci/variables/predefined_variables.html" text="Predefined Variables">}}.
 
 The included ci-common and test scripts rely on the following built-in variables:
 
@@ -288,7 +288,7 @@ $CI_PROJECT_NAME
 
 GitLab also provides a way for you to define custom environment variables for the runner for that project. Access to view, change, or add variables require that you have developer or maintainer privileges on the project and can access the project settings.
 
-Because NetQ installation requires unique configuration and access keys, these are stored as masked variables with the Gitlab project (you can configure the keys to be valid only on protected branches). These variables are called during the NetQ provisioning CI job to allow for programmatic provisioning of NetQ in the automated CI pipeline.
+Because NetQ installation requires unique configuration and access keys, these are stored as masked variables with the GitLab project (you can configure the keys to be valid only on protected branches). These variables are called during the NetQ provisioning CI job to allow for programmatic provisioning of NetQ in the automated CI pipeline.
 
 It is best practice to configure a dedicated or dummy CI and CLI user in NetQ cloud User Management. This allows the generated access-key and secret-key from this account to be more easily disposable in case you need to revoke or change them. For more information about setting up NetQ users and generating auth keys to store with your CI/CD enabled GitLab project, refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq-30/" text="NetQ documentation">}}.
 
@@ -336,7 +336,7 @@ The included example `.gitlab-ci.yml` files are created and defined specifically
 
 Use a `.gitlab-ci.yml` file from one of the golden standard demo topologies as the starting point for your `.gitlab-ci.yml` file. The `.gitlab-ci.yml` file from the Cumulus Networks reference topology (cldemo2) does not contain a provision stage that calls an Ansible playbook to deploy a network configuration.
 
-The examples on Gitlab make use of [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to package the base CI/CD scripts and the Cumulus Networks reference topology itself (the Vagrantfile). This is only due to the need for reuse, but for production networks, you can package all this together in the same project. Cumulus Networks does not recommend using a submodule unless you have shared code across multiple projects.
+The examples on GitLab make use of [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to package the base CI/CD scripts and the Cumulus Networks reference topology itself (the Vagrantfile). This is only due to the need for reuse, but for production networks, you can package all this together in the same project. Cumulus Networks does not recommend using a submodule unless you have shared code across multiple projects.
 
 When Git submodules are not in use for the project, you can remove the `variables:` key in a job, which is only required when the project is using a submodule. For example:
 

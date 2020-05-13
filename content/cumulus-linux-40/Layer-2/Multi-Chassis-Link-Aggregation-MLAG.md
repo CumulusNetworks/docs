@@ -369,7 +369,7 @@ Make sure that the VLAN subinterface is not in your layer 2 domain and does not 
 
 {{%/notice%}}
 
-The commands to create the configurations for both spines and four leafs look like the following. Note that the `clag-id` and `clagd-sys-mac` must be the same for the corresponding bonds on spine01 and spine02, leaf01 and leaf02, as well as leaf03 and leaf04.
+The commands to create the configurations look like the following. The `clag-id` and `clagd-sys-mac` must be the same for the corresponding bonds on spine01 and spine02, the corresponding bonds on leaf01 and leaf02, and the corresponding bonds on leaf03 and leaf04.
 
 {{< tabs "TabID4" >}}
 

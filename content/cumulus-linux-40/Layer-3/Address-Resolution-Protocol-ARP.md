@@ -131,9 +131,9 @@ Proxy ARP works with IPv4 only; ARP is an IPv4-only protocol.
 
 To enable proxy ARP:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following example commands enable proxy ARP on swp1.
 
@@ -143,11 +143,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file to set `/proc/sys/net/ipv4/conf/<interface>/proxy_arp` to `1` in the interface stanza. The following example configuration enables proxy ARP on swp1.
 
@@ -166,13 +164,15 @@ Run the `ifreload -a` command to reload the configuration:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 If you are running two interfaces in the same broadcast domain (typically seen when using {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}}, which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the interface and the -v0 interface so that both interfaces do not respond with proxy ARP replies.
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add interface swp1 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id"
@@ -182,11 +182,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file. For example:
 
@@ -211,13 +209,15 @@ Run the `ifreload -a` command to reload the configuration:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 If you are running proxy ARP on a VRR interface, add a post-up line to the VRR interface stanza similar to the following. For example, if vlan100 is the VRR interface for the configuration above:
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add vlan 100 post-up "echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp"
@@ -228,11 +228,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file. For example:
 
@@ -255,7 +253,9 @@ Run the `ifreload -a` command to reload the configuration:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Duplicate Address Detection (Windows Hosts)
 

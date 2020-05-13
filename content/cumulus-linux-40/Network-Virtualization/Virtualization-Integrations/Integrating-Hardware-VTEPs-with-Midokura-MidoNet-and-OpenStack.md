@@ -447,9 +447,7 @@ mcast-mac-remote
 
 The `ovsdb-client dump` command is large but shows all of the information and tables used in communication between the OVS client and server.
 
-<details>
-
-<summary>Click to expand the output ... </summary>
+{{< expand "Click to expand the output ... "  >}}
 
 ```
 cumulus@switch12:~$ ovsdb-client dump
@@ -554,4 +552,4 @@ MAC _uuid ipaddr locator logical_switch
 "fa:16:3e:14:04:2e" 65605488-9ee5-4c8e-93e5-7b1cc15cfcc7 "" 2fcf8b7e-e084-4bcb-b668-755ae7ac0bfb 44d162dc-0372-4749-a802-5b153c7120ec
 ```
 
-</details>
+{{< /expand >}}

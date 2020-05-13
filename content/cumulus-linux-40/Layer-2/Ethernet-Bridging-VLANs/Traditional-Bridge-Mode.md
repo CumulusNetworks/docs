@@ -15,9 +15,9 @@ The following examples show how to create a simple traditional mode bridge confi
 
 To configure spanning tree options for a bridge interface, refer to {{<link title="Spanning Tree and Rapid Spanning Tree">}}.
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following example commands configure a traditional mode bridge called my\_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
 
@@ -28,11 +28,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file. The following example command configures a traditional mode bridge called my\_bridge with IP address 10.10.10.10/24. swp1, swp2, swp3, and swp4 are members of the bridge.
 
@@ -50,10 +48,10 @@ iface swp3
 auto swp4
 iface swp4
 
-auto my_bridge 
-iface my_bridge 
-    address 10.10.10.10/24 
-    bridge-ports swp1 swp2 swp3 swp4 
+auto my_bridge
+iface my_bridge
+    address 10.10.10.10/24
+    bridge-ports swp1 swp2 swp3 swp4
     bridge-vlan-aware no
 ...
 ```
@@ -64,7 +62,9 @@ Run the `ifreload -a` command to reload the network configuration:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 

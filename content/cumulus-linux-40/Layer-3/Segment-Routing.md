@@ -41,9 +41,9 @@ Switches r1 through r5 announce their loopbacks (the 10.1.1.\* addresses above) 
 
 The table below contains the configuration for all five nodes.
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>Node r1 </summary>
+{{< tab "Node r1" >}}
 
 **/etc/network/interfaces**
 
@@ -114,11 +114,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Node r2 </summary>
+{{< tab "Node r2" >}}
 
 **/etc/network/interfaces**
 
@@ -189,11 +187,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Node r3 </summary>
+{{< tab "Node r3" >}}
 
 **/etc/network/interfaces**
 
@@ -264,11 +260,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Node r4 </summary>
+{{< tab "Node r4" >}}
 
 **/etc/network/interfaces**
 
@@ -335,11 +329,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Node r5 </summary>
+{{< tab "Node r5" >}}
 
 **/etc/network/interfaces**
 
@@ -412,15 +404,17 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Configure Segment Routing
 
 To configure the segment routing example above:
 
-<details>
+{{< tabs "TabID5" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 1. For each switch in the topology, add the label indexes:
 
@@ -440,11 +434,9 @@ To configure the segment routing example above:
    cumulus@switch:~$ net commit
    ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 1. For each switch in the topology, add the label indexes:
 
@@ -474,7 +466,9 @@ To configure the segment routing example above:
    cumulus@switch:~$
    ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 

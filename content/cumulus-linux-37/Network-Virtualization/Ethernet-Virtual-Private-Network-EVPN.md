@@ -4221,7 +4221,7 @@ line vty
 
 </details>
 
-## Clos Configuration with MLAG and EVPN Asymetric Routing
+## Clos Configuration with MLAG and EVPN Asymmetric Routing
 
 The following example configuration is a basic Clos topology with EVPN asymmetric routing. MLAG is configured between leaf switches.
 

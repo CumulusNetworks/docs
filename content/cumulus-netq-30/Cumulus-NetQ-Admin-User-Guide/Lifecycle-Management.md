@@ -481,11 +481,15 @@ To remove an existing snapshot:
 
     Click **Back** or **Choose Action** to cancel the deletion of your selected snapshot(s).
 
-## Image Installation and Upgrade
+## Cumulus Linux Upgrade
 
-The workflow for installation and upgrade using LCM is to select switches, choose options, run pre-checks, view job preview, begin job, monitor job, review snapshot comparison and analyze as needed.
+The workflow for installation and upgrade of Cumulus Linux using LCM is to: select switches, choose options, run pre-checks, view job preview, begin job, monitor job, review snapshot comparison and analyze as needed.
 
 {{<figure src="/images/netq/lcm-upgrade-workflow-300.png" width="700">}}
+
+{{<notice info>}}
+Upgrades can be performed between Cumulus Linux 3.x releases, and between Cumulus Linux 4.x releases. <em>Lifecycle management does not support upgrades from Cumulus Linux 3.x to 4.x releases.</em>
+{{</notice>}}
 
 ### Prepare
 
@@ -504,7 +508,7 @@ Your LCM dashboard should look similar to this after you have completed these st
 
 To install or upgrade switches:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**.
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**, or click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" height="18" width="18">}} (Upgrade) in a workbench header.
 
 2. Click **Manage** on the Switches card.
 
@@ -624,13 +628,13 @@ To install or upgrade switches:
     </tr>
     <tr>
     <td></td>
-    <td>Upgrade CL version and current CL version on switch &lt;hostname&gt; are the same.</td>
+    <td>CL version to be upgraded to and current version on switch &lt;hostname&gt; are the same.</td>
     <td>Warning</td>
     <td>Switch is already operating the desired upgrade CL version. No upgrade is required.</td>
     <td>Choose an alternate CL version for upgrade or remove switch from upgrade job.</td>
     </tr>
     <tr>
-    <td>(3) Switch Reachability</td>
+    <td>(3) Switch Connectivity</td>
     <td>Global credentials are not specified</td>
     <td>Error</td>
     <td>Switch access credentials are required to perform a CL upgrade, and they have not been specified.</td>
@@ -751,17 +755,17 @@ Several viewing options are available for monitoring the upgrade job.
 
     {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-300.png" width="700">}}
 
-- Monitor the job with summary information only in the Update History page by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}:
+- Monitor the job with summary information only in the Upgrade History page. Open this view by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the full details view:
 
     {{<figure src="/images/netq/lcm-upgrade-switches-upg-history-upgrading-summary-300.png" width="700">}}
 
-    Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-down-1.svg" height="18" width="18">}} to view what stage the job is in.
+    This view is refreshed automatically. Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-down-1.svg" height="18" width="18">}} to view what stage the job is in.
 
     {{<figure src="/images/netq/lcm-upgrade-switches-upg-history-stage-view-300.png" width="700">}}
 
     Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}} to view the detailed view.
 
-After either a successful or failed upgrade attempt has been run, a new Upgrade History card appears on your LCM dashboard.
+After either a successful or failed upgrade attempt has been performed, a new Upgrade History card appears on your LCM dashboard.
 
 {{<figure src="/images/netq/lcm-upgrade-history-card-300.png" width="200">}}
 
@@ -791,6 +795,46 @@ On successful completion, you can:
 
     In our example, all switches have been upgraded to Cumulus Linux 3.7.12.
 
+Upgrades can be considered successful and still have post-check warnings. For example, the OS has been updated, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages are provided in the Post-Upgrade Tasks section of the preview. Click on the warning category to view the detailed messages.
+
+<!-- Expand the following dropdown to view common failures, their causes and corrective actions.
+
+<details><summary>Post-check Failure Messages</summary>
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 24%" />
+<col style="width: 10%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr>
+<th>Post-check</th>
+<th>Message</th>
+<th>Type</th>
+<th>Description</th>
+<th>Corrective Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Health of Services</td>
+<td>Service &lt;service-name&gt; is missing on Host &lt;hostname&gt; for &lt;VRF default|VRF mgmt&gt;.</td>
+<td>Warning</td>
+<td>A given service is not yet running on the upgraded host. For example: Service ntp is missing on Host Leaf01 for VRF default.</td>
+<td>Wait for up to x more minutes to see if the specified services come up. If they do not, xxx.</td>
+</tr>
+<tr>
+<td>Switch Connectivity</td>
+<td>Service &lt;service-name&gt; is missing on Host &lt;hostname&gt; for &lt;VRF default|VRF mgmt&gt;.</td>
+<td>Warning</td>
+<td>A given service is not yet running on the upgraded host. For example: Service ntp is missing on Host Leaf01 for VRF default.</td>
+<td>Wait for up to x more minutes to see if the specified services come up. If they do not, xxx.</td>
+</tr>
+</tbody>
+</table> -->
+
 #### Sample Failed Upgrade
 
 If an upgrade job fails for any reason, you can view the associated error(s):
@@ -815,14 +859,14 @@ If an upgrade job fails for any reason, you can view the associated error(s):
 
 #### Reasons for Upgrade Failure
 
-Upgrades can fail at any of the stages of of the process, including when backing up data, upgrading the Cumulus Linux software, and restoring the data. Failures can occur when attempting to connect to a switch or perform a particular task on the switch.
+Upgrades can fail at any of the stages of the process, including when backing up data, upgrading the Cumulus Linux software, and restoring the data. Failures can occur when attempting to connect to a switch or perform a particular task on the switch.
 
 Some of the common reasons for upgrade failures and the errors they present:
 
 | Reason | Error Message |
 | --- | --- |
 | Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15". Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
-| Switch is reachable, but user-provided credentials are invalid | Invalid/incorrect username/password. Skipping remaining 2 retries to prevent account lockout: Warning: Permanently added [10.20.251.35]:1120' (ECDSA) to the list of known hosts. Permission denied, please try again. |
+| Switch is reachable, but user-provided credentials are invalid | Invalid/incorrect username/password. Skipping remaining 2 retries to prevent account lockout: Warning: Permanently added '\<hostname-ipaddr\>' to the list of known hosts. Permission denied, please try again. |
 | Switch is reachable, but a valid Cumulus Linux license is not installed | 1587866683.880463 2020-04-26 02:04:43 license.c:336 CRIT No license file. No license installed! |
 | Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: /etc/network/interfaces: No such file or directory |
 | Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |

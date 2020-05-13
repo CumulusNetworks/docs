@@ -488,7 +488,7 @@ The workflow for installation and upgrade of Cumulus Linux using LCM is to: sele
 {{<figure src="/images/netq/lcm-upgrade-workflow-300.png" width="700">}}
 
 {{<notice info>}}
-Upgrades can be performed  between Cumulus Linux 3.x releases, and between Cumulus Linux 4.x releases. <em>Lifecycle management does not support upgrades from Cumulus Linux 3.x to 4.x releases.</em>
+Upgrades can be performed between Cumulus Linux 3.x releases, and between Cumulus Linux 4.x releases. <em>Lifecycle management does not support upgrades from Cumulus Linux 3.x to 4.x releases.</em>
 {{</notice>}}
 
 ### Prepare

@@ -157,9 +157,7 @@ When you configure a switch initially, all southbound bridge ports might be down
 
 To keep the SVI perpetually UP, create a dummy interface, then make the dummy interface a member of the bridge.
 
-<details>
-
-<summary>Example Configuration </summary>
+{{< expand "Example Configuration "  >}}
 
 Consider the following configuration, without a dummy interface in the bridge:
 
@@ -235,7 +233,7 @@ cumulus@switch:~$ ip link show bridge
     link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
 ```
 
-</details>
+{{< /expand >}}
 
 ## IPv6 Link-local Address Generation
 

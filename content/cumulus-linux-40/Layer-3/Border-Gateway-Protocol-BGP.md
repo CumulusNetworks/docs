@@ -584,9 +584,7 @@ Assigning an IP address to the loopback device is essential.
 
 ### Advanced: How Next Hop Fields Are Set
 
-<details>
-
-<summary>Click to expand... </summary>
+{{< expand "Click to expand... "  >}}
 
 This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ({{<exlink url="https://www.ietf.org/rfc/rfc2858.txt" text="multiprotocol reachable NLRI">}}) initiated by the system, which applies whether IPv6 prefixes or IPv4 prefixes are exchanged with ENHE. There are two main aspects to determine: how many IPv6 next hops are included in the MP\_REACH\_NLRI (the RFC allows either one or two next hops) and the values of the next hops. This section also describes how a received MP\_REACH\_NLRI is handled as far as processing IPv6 next hops.
 
@@ -615,7 +613,7 @@ If this address is a link-local IPv6 address, it is reset so that the link-local
 
 The above rules imply that there are scenarios where a generated update has two IPv6 next hops, and both of them are the IPv6 link-local address of the peering interface on the local system. If you are peering with a switch or router that is not running Cumulus Linux and expects the first next hop to be a global IPv6 address, a route map can be used on the sender to specify a global IPv6 address. This conforms with the recommendations in the Internet draft {{<exlink url="https://tools.ietf.org/html/draft-kato-bgp-ipv6-link-local-00" text="draft-kato-bgp-ipv6-link-local-00.txt">}}, "BGP4+ Peering Using IPv6 Link-local Address."
 
-</details>
+{{< /expand >}}
 
 ### Limitations
 

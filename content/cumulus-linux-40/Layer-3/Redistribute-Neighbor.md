@@ -254,9 +254,7 @@ Configure the loopback and physical interfaces. Referring back to the topology d
 - The post-up ARPing is used to force the host to ARP as soon as its interface comes up. This allows the leaf to learn about the host as soon as possible.
 - The post-up `ip route replace` is used to install a default route via one or both leaf nodes if both swp1 and swp2 are up.
 
-    <details>
-
-    <summary>Click to expand </summary>
+        {{< expand "Click to expand "  >}}
 
     ```
     # The loopback network interface
@@ -281,7 +279,7 @@ Configure the loopback and physical interfaces. Referring back to the topology d
     ...
     ```
 
-</details>
+{{< /expand >}}
 
 #### Install ifplugd
 

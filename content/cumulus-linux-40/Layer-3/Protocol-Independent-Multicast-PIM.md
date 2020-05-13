@@ -1436,9 +1436,7 @@ Source                     Group               RP  Local  SPT    Uptime
 
 ## Example Configurations
 
-<details>
-
-<summary>Complete Multicast Network Configuration Example </summary>
+{{< expand "Complete Multicast Network Configuration Example "  >}}
 
 ```
 RP# show run
@@ -1553,7 +1551,7 @@ line vty
 end
 ```
 
-</details>
+{{< /expand >}}
 
 ## Caveats and Errata
 

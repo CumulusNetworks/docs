@@ -563,9 +563,7 @@ cumulus@switch:~$
 
 If a PBR rule has multiple conditions (for example, a source IP match and a destination IP match), but you only want to delete one condition, you have to delete all conditions first, then re-add the ones you want to keep.
 
-<details>
-
-<summary>Example configuration </summary>
+{{< expand "Example configuration "  >}}
 
 The example below shows an existing configuration that has a source IP match and a destination IP match.
 
@@ -602,6 +600,6 @@ net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
 net commit
 ```
 
-</details>
+{{< /expand >}}
 
 {{%/notice%}}

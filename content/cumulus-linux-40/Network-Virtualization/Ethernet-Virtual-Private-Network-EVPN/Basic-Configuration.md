@@ -445,13 +445,9 @@ iface bridge1
 ...
 ```
 
-{{%notice note%}}
-
 When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Routing#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that the Linux kernel ARP `sysctl` settings `gc_thresh2` and `gc_thresh3` are both set to a value larger than the number of neighbor (ARP/ND) entries anticipated in the deployment. To configure these settings, edit the `/etc/sysctl.d/neigh.conf` file, then reboot the switch. If your network has more hosts than the values used in the example below, change the `sysctl` entries accordingly.
 
-<details>
-
-<summary> Example /etc/sysctl.d/neigh.conf file</summary>
+{{< expand " Example /etc/sysctl.d/neigh.conf file" >}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/sysctl.d/neigh.conf
@@ -463,9 +459,7 @@ net.ipv6.neigh.default.gc_thresh2=8192
 ...
 ```
 
-</details>
-
-{{%/notice%}}
+{{< /expand >}}
 
 Cumulus Networks recommends that you keep ARP and ND suppression enabled to reduce flooding of ARP/ND packets over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
 

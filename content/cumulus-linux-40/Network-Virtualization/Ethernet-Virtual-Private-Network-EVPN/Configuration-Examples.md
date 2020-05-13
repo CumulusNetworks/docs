@@ -881,7 +881,7 @@ line vty
 
 {{< /tabs >}}
 
-## Clos Configuration with MLAG and Centralized Routing
+## EVPN Centralized Routing
 
 The following example configuration shows a basic Clos topology with
 centralized routing. MLAG is configured between leaf switches.
@@ -1910,7 +1910,7 @@ line vty
 
 {{< /tabs >}}
 
-## Clos Configuration with MLAG and EVPN Asymetric Routing
+## EVPN Asymmetric Routing
 
 The following example configuration is a basic Clos topology with EVPN asymmetric routing. MLAG is configured between leaf switches.
 
@@ -2957,7 +2957,7 @@ line vty
 
 {{< /tabs >}}
 
-## Basic Clos Configuration with EVPN Symmetric Routing
+## EVPN Symmetric Routing
 
 The following example configuration is a basic Clos topology with EVPN
 symmetric routing with external prefix (type-5) routing via dual,

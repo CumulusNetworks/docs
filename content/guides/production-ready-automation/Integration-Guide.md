@@ -66,7 +66,7 @@ To see sample bash scripts used to install the software package and environment 
 
 ### CI/CD Requirements
 
-- An account with gitlab.com or your own internal GitLab instance
+- An account with GitLab.com or your own internal GitLab instance
 - A dedicated simulation environment for the GitLab Runner to start and test simulations
 - The GitLab Runner package installed on the simulation host machine (set up a GitLab Runner user and environment on the system)
 - A project on your GitLab instance that is set up with simulation, automation, and IAC
@@ -111,7 +111,7 @@ These demo simulations provide a good basis for how to organize your own project
 
 {{%notice note%}}
 
-If you choose to make this suggested change, it has an impact and requires changes to the hard-coded relative paths in the `.gitlab-ci.yml` file and the `ci-common scripts` to exclude the `cldemo2` subfolder.
+If you do not use a Git submodule, you need to change to the hard-coded relative paths in the `.gitlab-ci.yml` file and the `ci-common scripts` to exclude the `cldemo2` subfolder.
 
 {{%/notice%}}
 
@@ -119,11 +119,11 @@ If you choose to make this suggested change, it has an impact and requires chang
 
 Building a custom simulation is the foundation of transforming and automating your network and operations. You generate a custom Vagrant and libvirt topology using Cumulus VX automatically using the `topology_converter` tool.
 
-The `topology_converter` handles the complexity of building, generating, and maintaining the Vagrantfile. It produces a Vagrantfile and brings with it all of the associated bootstrap provisioning scripts to provide the experience of performing a simple `vagrant up` and having a connected network simulation ready to receive further network configuration.
+The `topology_converter` handles the complexity of building, generating, and maintaining the `Vagrantfile`. It produces a `Vagrantfile` and brings with it all of the associated bootstrap provisioning scripts to provide the experience of performing a simple `vagrant up` and having a connected network simulation ready to receive further network configuration.
 
 {{%notice note%}}
 
-Cumulus Networks does not recommended you manually edit and maintain a raw Vagranfile. Always use `topology_converter` workflows to make changes to the Vagrantfile.
+Cumulus Networks does not recommended you manually edit and maintain a raw `Vagranfile`. Always use `topology_converter` workflows to make changes to the `Vagrantfile`.
 
 {{%/notice%}}
 
@@ -132,9 +132,9 @@ For detailed information about the `topology_converter` utility and detailed ins
 These are the high level steps required to create a custom Cumulus VX topology:
 
 1. Consider how to handle out-of-band management. The easiest option is to use {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation/auto_mgmt_network" text="Automated Network Management">}}. To more accurately represent your production network, you can create the out-of-band management network in the `topology.dot` file.
-2. Create a `topology.dot` file. Enusre that the contents are in graphviz format and syntax. Use the `cldemo2.dot` file in the Cumulus Networks reference topology project as a template to define your own set of network nodes, attributes, and links.
+2. Create a `topology.dot` file. Ensure that the contents are in graphviz format and syntax. Use the `cldemo2.dot` file in the Cumulus Networks reference topology project as a template to define your own set of network nodes, attributes, and links.
 3. Put all the `topology_converter` project files and your custom `topology.dot` file in a `simulation` folder for your project. Run the `git clone` command to obtain all the `topology_converter` project files.
-4. Create the Vagrantfile from your topology definition. Ensure that the `-p libvirt` option is specified. If you use Automated Network Management, the `-c` option in `topology_converter` is required; for example:
+4. Create the `Vagrantfile` from your topology definition. Make sure you specify the `-p libvirt` option. If you use Automated Network Management, the `-c` option in `topology_converter` is required. For example:
 
    ```
    python3 ./topology_converter.py ./topology.dot -c -p libvirt
@@ -336,7 +336,7 @@ The included example `.gitlab-ci.yml` files are created and defined specifically
 
 Use a `.gitlab-ci.yml` file from one of the golden standard demo topologies as the starting point for your `.gitlab-ci.yml` file. The `.gitlab-ci.yml` file from the Cumulus Networks reference topology (cldemo2) does not contain a provision stage that calls an Ansible playbook to deploy a network configuration.
 
-The examples on GitLab make use of [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to package the base CI/CD scripts and the Cumulus Networks reference topology itself (the Vagrantfile). This is only due to the need for reuse, but for production networks, you can package all this together in the same project. Cumulus Networks does not recommend using a submodule unless you have shared code across multiple projects.
+The examples on GitLab make use of [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to package the base CI/CD scripts and the Cumulus Networks reference topology itself (the `Vagrantfile`). This is only due to the need for reuse, but for production networks, you can package all this together in the same project. Cumulus Networks does not recommend using a submodule unless you have shared code across multiple projects.
 
 When Git submodules are not in use for the project, you can remove the `variables:` key in a job, which is only required when the project is using a submodule. For example:
 

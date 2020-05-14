@@ -6,9 +6,14 @@ product: Cumulus Networks Guides
 version: "1.0"
 draft: true
 ---
-This section provides the package dependency install scripts.
+This section provides the following package dependency install scripts:
 
-## Script without GitLab Runner for CI/CD
+- Install script with GitLab Runner for CI/CD
+- Install script without GitLab Runner for CI/CD
+
+{{< tabs "TABID01 ">}}
+
+{{< tab "Without GitLab Runner ">}}
 
 ```
 #!/bin/bash
@@ -25,7 +30,9 @@ dpkg -i vagrant_2.2.7_x86_64.deb
 vagrant plugin install vagrant-libvirt vagrant-mutate vagrant-scp
 ```
 
-## Script with GitLab Runner for CI/CD
+{{< /tab >}}
+
+{{< tab "With GitLab Runner ">}}
 
 ```
 #!/bin/bash
@@ -48,3 +55,7 @@ echo 'PATH=/usr/sbin:$PATH' >> ./.bashrc
 adduser gitlab-runner libvirtd 
 vagrant plugin install vagrant-libvirt vagrant-mutate vagrant-scp
 ```
+
+{{< /tab >}}
+
+{{< /tabs >}}

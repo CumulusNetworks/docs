@@ -35,15 +35,15 @@ Using the NetQ server in individual development environments is not required and
 ### Hardware Requirements
 
 - Memory requirements vary. To estimate the needs for your simulation, use these values:
-    - 768MB for each Cumulus Linux node
-    - 512MB for each Ubuntu 18.04 host
-    - 1024MB for the oob-mgmt-server
-    - 768MB for the oob-mgmt-switch
-    - 8192MB for netq-ts
+  - 768MB for each Cumulus Linux node
+  - 512MB for each Ubuntu 18.04 host
+  - 1024MB for the oob-mgmt-server
+  - 768MB for the oob-mgmt-switch
+  - 8192MB for netq-ts
 - Disk requirements vary. Vagrant and libvirt use thin disk images but a good reference point is:
-    - 256GB disk with 64GB or more free memory
-    - 1TB or more disk recommended
-    - SSD recommended (NetQ requirement)
+  - 256GB disk with 64GB or more free memory
+  - 1TB or more disk recommended
+  - SSD recommended (NetQ requirement)
 - High speed broadband or wideband Internet connection for package installs during simulation startup
 - A minimum of eight x86_64 CPU cores
 

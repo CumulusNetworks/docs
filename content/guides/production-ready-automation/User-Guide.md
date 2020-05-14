@@ -14,7 +14,7 @@ For more details about how to customize, reuse, and adapt these examples of simu
 
 For a robust simulation environment and CI/CD with GitLab, a dedicated, always-on, enterprise class server is recommended.
 
-   {{%notice note%}}
+{{%notice note%}}
 
 Using the NetQ server in individual development environments is not typically required and is only needed for CI testing where the GitLab Runner is installed and registered to your CI/CD-enabled project.
 
@@ -321,6 +321,7 @@ The following procedure shows you how to copy the installation tarball files to 
     ```
 
 5. Run `vagrant ssh` into netq-ts, then move the files to the `/mnt/installables` directory:
+
     ```
     user@host:~/dc_configs_vxlan_evpnsym/cldemo2/simulation# vagrant ssh netq-ts
     vagrant@netq-ts:~$

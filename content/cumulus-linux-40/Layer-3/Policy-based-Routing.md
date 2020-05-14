@@ -16,7 +16,7 @@ Policy-based routing is applied to incoming packets. All packets received on a P
 - You can apply only one PBR policy per input interface.
 - You can match on *source* and *destination* IP address only.
 - PBR is not supported for GRE or VXLAN tunneling.
-- PBR is not supported on ethernet interfaces.
+- PBR is not supported on management interfaces, such as eth0.
 - A PBR rule cannot contain both IPv4 and IPv6 addresses.
 
 {{%/notice%}}

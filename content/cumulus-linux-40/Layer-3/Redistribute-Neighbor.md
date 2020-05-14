@@ -63,9 +63,9 @@ The following example configuration is based on the {{<exlink url="https://githu
 
 The following steps demonstrate how to configure leaf01, but you can follow the same steps on any of the leafs.
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 1. Configure the host facing ports using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:
 
@@ -120,11 +120,9 @@ The following steps demonstrate how to configure leaf01, but you can follow the 
     cumulus@leaf01:~$ net commit
     ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtsh Commands </summary>
+{{< tab "vtsh Commands" >}}
 
 1. Edit the `/etc/network/interfaces` file to configure the host facing ports, using the same IP address on both host-facing interfaces as well as a /32 prefix. In this case, swp1 and swp2 are configured as they are the ports facing server01 and server02:
 
@@ -206,7 +204,9 @@ The following steps demonstrate how to configure leaf01, but you can follow the 
         cumulus@leaf01:~$
         ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. The following example uses OSPF as the routing protocol:
 
@@ -254,9 +254,7 @@ Configure the loopback and physical interfaces. Referring back to the topology d
 - The post-up ARPing is used to force the host to ARP as soon as its interface comes up. This allows the leaf to learn about the host as soon as possible.
 - The post-up `ip route replace` is used to install a default route via one or both leaf nodes if both swp1 and swp2 are up.
 
-    <details>
-
-    <summary>Click to expand </summary>
+        {{< expand "Click to expand "  >}}
 
     ```
     # The loopback network interface
@@ -281,7 +279,7 @@ Configure the loopback and physical interfaces. Referring back to the topology d
     ...
     ```
 
-</details>
+{{< /expand >}}
 
 #### Install ifplugd
 
@@ -316,7 +314,6 @@ Freshly provisioned hosts that have never sent traffic may not ARP for their def
 ### Unsupported with EVPN
 
 Redistribute neighbor is unsupported when the BGP EVPN Address Family is enabled. Enabling both redistribute neighbor and EVPN will lead to unreachable IPv4 ARP and IPv6 neighbor entries.
-
 
 ## Troubleshooting
 

@@ -7,4 +7,5 @@ bookhidden: true
 version: "3.0"
 imgData: cumulus-netq
 siteSlug: cumulus-netq
+pdfhidden: true
 ---

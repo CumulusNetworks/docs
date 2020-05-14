@@ -22,9 +22,9 @@ This chapter discusses the various architectures and strategies available from t
 
 **Example Configuration**
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>leaf01 configuration </summary>
+{{< tab "leaf01" >}}
 
 ```
 auto bridge
@@ -48,11 +48,9 @@ iface swp1
   mstpctl-bpduguard yes
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Ubuntu host configuration </summary>
+{{< tab "Ubuntu host" >}}
 
 ```
 auto eth1
@@ -76,7 +74,9 @@ iface br-20 inet manual
   bridge-ports eth2.20 vnet1
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Layer 2 - MLAG
 
@@ -94,9 +94,9 @@ iface br-20 inet manual
 
 **Example Configuration**
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>leaf01 configuration </summary>
+{{< tab "leaf01" >}}
 
 ```
 auto bridge
@@ -129,11 +129,9 @@ iface host-01
   {bond-defaults removed for brevity}
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Ubuntu host configuration </summary>
+{{< tab "Ubuntu host" >}}
 
 ```
 auto bond0
@@ -149,7 +147,9 @@ iface vm-br10 inet manual
   bridge-ports bond0.10 vnet0
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Layer 3 - Single-attached Hosts
 
@@ -167,9 +167,9 @@ iface vm-br10 inet manual
 
 **Example Configuration**
 
-<details>
+{{< tabs "TabID4" >}}
 
-<Summary>leaf01 configuration </summary>
+{{< tab "leaf01" >}}
 
 `/etc/network/interfaces` file
 
@@ -188,11 +188,9 @@ interface swp1
   ip ospf area 0
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<Summary>leaf02 configuration </summary>
+{{< tab "leaf02" >}}
 
 `/etc/network/interfaces` file
 
@@ -211,11 +209,9 @@ interface swp1
   ip ospf area 0
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<Summary>host1 Example Config (Ubuntu) </summary>
+{{< tab "Ubuntu host1" >}}
 
 ```
 auto eth1
@@ -224,11 +220,9 @@ iface eth1 inet static
   up ip route add 0.0.0.0/0 nexthop via 172.16.1.1
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>host2 Example Config (Ubuntu)</summary>
+{{< tab "Ubuntu host2" >}}
 
 ```
 auto eth1
@@ -237,7 +231,9 @@ iface eth1 inet static
   up ip route add 0.0.0.0/0 nexthop via 172.16.2.1
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Layer 3 - Redistribute Neighbor
 
@@ -311,9 +307,9 @@ iface eth1 inet static
 
 **Example Configuration**
 
-<details>
+{{< tabs "TabID8" >}}
 
-<summary>leaf01 configuration </summary>
+{{< tab "leaf01" >}}
 
 `/etc/network/interfaces file`
 
@@ -332,11 +328,9 @@ interface swp1
   ip ospf area 0
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf02 configuration </summary>
+{{< tab "leaf02" >}}
 
 `/etc/network/interfaces` file
 
@@ -355,11 +349,9 @@ interface swp1
   ip ospf area 0
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Ubuntu host configuration </summary>
+{{< tab "Ubuntu host" >}}
 
 ```
 auto lo
@@ -379,7 +371,9 @@ iface eth2 inet static
   address 172.16.1.2/32
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Layer 3 - EVPN with Symmetric VXLAN Routing
 
@@ -399,9 +393,9 @@ Each server is configured on a VLAN, with a total of two VLANs for the setup. ML
 
 **Example Configuration**
 
-<details>
+{{< tabs "TabID11" >}}
 
-<summary>leaf01 /etc/network/interfaces </summary>
+{{< tab "leaf01" >}}
 
 ```
 # Loopback interface
@@ -561,11 +555,9 @@ iface vlan4001
     vrf vrf1
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Leaf02 /etc/network/interfaces </summary>
+{{< tab "Leaf02" >}}
 
 ```
 # Loopback interface
@@ -724,11 +716,9 @@ iface vlan4001
     vrf vrf1
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Server01 /etc/network/interfaces </summary>
+{{< tab "Server01" >}}
 
 ```
 auto lo
@@ -763,11 +753,9 @@ iface uplink inet static
   post-up ip route add default via 10.1.3.1
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Server02 /etc/network/interfaces </summary>
+{{< tab "Server02" >}}
 
 ```
 auto lo
@@ -802,4 +790,6 @@ iface uplink inet static
   post-up ip route add default via 10.2.4.1
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}

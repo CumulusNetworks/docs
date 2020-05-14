@@ -7,9 +7,66 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29643</td>
+<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
+To work around this issue, flap the BGP peer.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29603</td>
+<td><p>When you move an interface from one VRF to another and modify the description in the same configuration operation, FRR crashes and restarts during a service reload. If these two changes occur in separate reloads, FRR does not crash.</p></td>
+<td>4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29594</td>
+<td><p>When you run an Ansible script to replace the /etc/network/interfaces file, then run the ifreload -a command, you see errors similar to the following:</p>
+
+error: swp1s1.2: netlink: cannot set link swp1s1.2 up: operation failed with 'Network is down' (100)
+warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLINK answers: Cannot assign requested address
+
+
+<p>To work around this issue,  run the ifreload -a command a second time.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29591</td>
+<td><p>When you add an IPv4 route with an IPv6 next hop, switchd crashes.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29576</td>
+<td><p>The Conntrack table fills up with OFFLOAD entries for flows that do not match the NAT rules in iptables.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29568</td>
 <td><p>When NAT is configured, non-NAT traffic is incorrectly forwarded to the CPU.</p></td>
 <td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29562</td>
+<td><p>If you have an SVI with multiple VRR IP addresses and try to delete one of the VRR configurations, net commit or ifreload -a returns an error.</p></td>
+<td>3.7.12, 4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -54,6 +111,12 @@ asic-monitor[7389]: --------------
 
 </td>
 <td>3.7.11-3.7.12, 4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29519</td>
+<td><p>The JSON format output of the net show bgp l2vpn evpn summary command shows the incorrect neighbour state. </p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -115,6 +178,29 @@ CVE-2020-1983: A use after free vulnerability in ip_reass() in ip_input.c of lib
 Vulnerable: &lt;= 3.1+dfsg-8+deb10u4<br/>
 Fixed: 3.1+dfsg-8+deb10u5</p></td>
 <td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29420</td>
+<td><p>When you configure the mgmt interface class (as shown below), eth0 remains in an admin down state on subsequent reboots:</p>
+
+allow-mgmt eth0
+iface eth0 inet dhcp
+    vrf mgmt
+allow-mgmt mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+
+</td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29409</td>
+<td><p>When PFC is configured, the control queue does not take priority over other classes and traffic gets dropped.</p></td>
+<td>4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -235,6 +321,12 @@ username cumulus nopassword
 <td></td>
 </tr>
 <tr>
+<td>CM-29131</td>
+<td><p>NTP does not start when you use the default VRF instead of the management VRF.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29068</td>
 <td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
@@ -252,6 +344,12 @@ To work around this issue, restart FRR.</p></td>
 <td><p>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.<br/>
 To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28982</td>
+<td><p>On the EdgeCore Minipack-AS8000, when you try to configure ROCEv2, you see errors indicating that PFC is not working properly.</p></td>
+<td>4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -410,6 +508,12 @@ Vulnerable: 8.1901.0-1</p>
 <td><p>NCLU incorrectly allows you to configure port security on bond/MLAG interfaces.<br/>
 Port security is not supported on bond/MLAG interfaces.</p></td>
 <td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28442</td>
+<td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -816,6 +920,32 @@ See /var/log/netd.log for more details.
 </td>
 <td>3.7.7-3.7.10, 4.0.0-4.1.1</td>
 <td>3.7.11-3.7.12</td>
+</tr>
+<tr>
+<td>CM-26147</td>
+<td><p>On the EdgeCore AS4610 switch, the ping command fails unless you run the command with sudo. <br/>
+ To work around this issue, run the following commands: </p>
+
+ cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping 
+ cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping6
+
+
+<p> Run the following command to verify the workaround: </p>
+ 
+ 
+ cumulus@switch:~$ getcap /usr/share/mgmt-vrf/bin/ping* 
+ 
+ 
+<p> You should see the following output: </p>
+ 
+ 
+ /usr/share/mgmt-vrf/bin/ping = cap_net_raw+ep 
+ /usr/share/mgmt-vrf/bin/ping6 = cap_net_raw+ep 
+ 
+ 
+</td>
+<td>3.7.6-3.7.10, 4.1.0-4.1.1</td>
+<td>3.7.11-4.0.0</td>
 </tr>
 <tr>
 <td>CM-26139</td>
@@ -1474,9 +1604,54 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29643</td>
+<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
+To work around this issue, flap the BGP peer.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29594</td>
+<td><p>When you run an Ansible script to replace the /etc/network/interfaces file, then run the ifreload -a command, you see errors similar to the following:</p>
+
+error: swp1s1.2: netlink: cannot set link swp1s1.2 up: operation failed with 'Network is down' (100)
+warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLINK answers: Cannot assign requested address
+
+
+<p>To work around this issue,  run the ifreload -a command a second time.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29591</td>
+<td><p>When you add an IPv4 route with an IPv6 next hop, switchd crashes.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29576</td>
+<td><p>The Conntrack table fills up with OFFLOAD entries for flows that do not match the NAT rules in iptables.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29568</td>
 <td><p>When NAT is configured, non-NAT traffic is incorrectly forwarded to the CPU.</p></td>
 <td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1490,6 +1665,12 @@ cumulus@switch:~$ sudo ifup vni10100
 
 
 <p>If you flap the link with the ip link set vni10100 down; ip link set vni10100 up commands, zebra does not re-add the VNI.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29519</td>
+<td><p>The JSON format output of the net show bgp l2vpn evpn summary command shows the incorrect neighbour state. </p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -1530,6 +1711,23 @@ CVE-2020-1983: A use after free vulnerability in ip_reass() in ip_input.c of lib
 Vulnerable: &lt;= 3.1+dfsg-8+deb10u4<br/>
 Fixed: 3.1+dfsg-8+deb10u5</p></td>
 <td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29420</td>
+<td><p>When you configure the mgmt interface class (as shown below), eth0 remains in an admin down state on subsequent reboots:</p>
+
+allow-mgmt eth0
+iface eth0 inet dhcp
+    vrf mgmt
+allow-mgmt mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+
+</td>
+<td>4.1.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1659,6 +1857,12 @@ username cumulus nopassword
 <td></td>
 </tr>
 <tr>
+<td>CM-29131</td>
+<td><p>NTP does not start when you use the default VRF instead of the management VRF.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29111</td>
 <td><p>Due to a packaging error, all switches installed from the same Cumulus Linux image have the same SSH host keys. This affects switches originally installed with Cumulus Linux 4.0.0 and 4.1.0 from a disk image only (including those that were upgraded by apt to a later release).</p>
 
@@ -1739,6 +1943,12 @@ N: This must be accepted explicitly before updates for this repository can be ap
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
 <td>3.0.0-4.1.0</td>
 <td>4.1.1</td>
+</tr>
+<tr>
+<td>CM-28982</td>
+<td><p>On the EdgeCore Minipack-AS8000, when you try to configure ROCEv2, you see errors indicating that PFC is not working properly.</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28948</td>
@@ -1896,6 +2106,12 @@ Vulnerable: 8.1901.0-1</p>
 <td><p>NCLU incorrectly allows you to configure port security on bond/MLAG interfaces.<br/>
 Port security is not supported on bond/MLAG interfaces.</p></td>
 <td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28442</td>
+<td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2302,6 +2518,32 @@ See /var/log/netd.log for more details.
 </td>
 <td>3.7.7-3.7.10, 4.0.0-4.1.1</td>
 <td>3.7.11-3.7.12</td>
+</tr>
+<tr>
+<td>CM-26147</td>
+<td><p>On the EdgeCore AS4610 switch, the ping command fails unless you run the command with sudo. <br/>
+ To work around this issue, run the following commands: </p>
+
+ cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping 
+ cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping6
+
+
+<p> Run the following command to verify the workaround: </p>
+ 
+ 
+ cumulus@switch:~$ getcap /usr/share/mgmt-vrf/bin/ping* 
+ 
+ 
+<p> You should see the following output: </p>
+ 
+ 
+ /usr/share/mgmt-vrf/bin/ping = cap_net_raw+ep 
+ /usr/share/mgmt-vrf/bin/ping6 = cap_net_raw+ep 
+ 
+ 
+</td>
+<td>3.7.6-3.7.10, 4.1.0-4.1.1</td>
+<td>3.7.11-4.0.0</td>
 </tr>
 <tr>
 <td>CM-26139</td>

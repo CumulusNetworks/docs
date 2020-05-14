@@ -76,6 +76,8 @@ $md-breakpoint: $sm-breakpoint + $toc-width;
 
 $body-max-width: $container-max-width - $menu-width - $toc-width;
 
+$xs-down: 'only screen and (max-width: 575px)';
+
 $sm-up: 'only screen and (min-width: 576px)';
 $md-up: 'only screen and (min-width: 768px)';
 $lg-up: 'only screen and (min-width: 992px)';

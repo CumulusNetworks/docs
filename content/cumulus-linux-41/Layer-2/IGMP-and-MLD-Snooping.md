@@ -31,7 +31,7 @@ To enable IGMP/MLD snooping over VXLAN:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bridge mybridge mcsnoop yes
+cumulus@switch:~$ net add bridge bridge mcsnoop yes
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -81,7 +81,7 @@ Add the following lines to the `/etc/cumulus/acl/policy.d/23_acl_test.rules` fil
 
 ## Configure IGMP/MLD Querier
 
-If no multicast router is sending queries to configure IGMP/MLD querier on the switch, you can add a configuration similar to the following in the `/etc/network/interfaces` file. To enable IGMP and MLD snooping for a bridge, set `bridge-mcquerier` to *1* in the bridge stanza. By default, the source IP address of IGMP queries is 0.0.0.0. To set the source IP address of the queries to be the bridge IP address, configure `bridge-mcqifaddr 1`.
+If no multicast router is sending queries to configure IGMP/MLD querier on the switch, you can add a configuration similar to the following in the `/etc/network/interfaces` file. To enable IGMP and MLD snooping for a bridge, set `bridge-mcquerier` to *1* in the bridge stanza. By default, the source IP address of IGMP queries is 0.0.0.0. 
 
 For an explanation of the relevant parameters, see the `ifupdown-addons-interfaces` man page.
 
@@ -103,7 +103,7 @@ iface bridge
 ...
 ```
 
-For a VLAN-aware bridge, like *bridge* in the above example, to enable querier functionality for VLAN 100 in the bridge, set `bridge-mcquerier` to *1* in the bridge stanza and set `bridge-igmp-querier-src` to *123.1.1.1* in the bridge.100 stanza.
+For a VLAN-aware bridge, like *bridge* in the above example, to enable querier functionality for VLAN 100 in the bridge, set `bridge-mcquerier` to *1* in the bridge stanza and set `bridge-igmp-querier-src` to *123.1.1.1* in the bridge.100 stanza. 123.1.1.1 would typically be a loopback IP address.
 
 You can specify a range of VLANs as well. For example:
 
@@ -115,7 +115,7 @@ vlan bridge.[1-200]
 ...
 ```
 
-For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, use a configuration like the following:
+For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you can set the source IP address of the queries to be the bridge IP address, configure `bridge-mcqifaddr 1`. Use a configuration like the following:
 
 ```
 ...

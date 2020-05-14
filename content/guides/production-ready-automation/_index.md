@@ -1,5 +1,5 @@
 ---
-title: Cumulus Networks Production Ready Automation
+title: Production Ready Automation Guide
 author: Cumulus Networks
 weight: 10
 product: Cumulus Networks Guides

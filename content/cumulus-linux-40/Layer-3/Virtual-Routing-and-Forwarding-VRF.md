@@ -37,9 +37,9 @@ To configure VRF, you associate each subset of interfaces to a VRF routing table
 
 To configure a VRF, run the following commands:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following example commands configure a VRF called rocket with a table ID that is automatically assigned:
 
@@ -50,11 +50,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file. The following example configures a VRF called rocket with a table ID that is automatically assigned.
 
@@ -76,15 +74,17 @@ To load the new configuration, run `ifreload -a`:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Specify a Table ID
 
 Instead of having Cumulus Linux assign a table ID for the VRF table, you can specify your own table ID in the configuration. The table ID to name mapping is saved in `/etc/iproute2/rt_tables.d/` for name-based references. Instead of using the `auto` option as shown above, specify the table ID. For example:
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add vrf rocket vrf-table 1016
@@ -92,11 +92,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file:
 
@@ -118,7 +116,9 @@ To load the new configuration, run `ifreload -a`:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -266,9 +266,9 @@ When you use route leaking:
 
 In the following example commands, routes in the BGP routing table of VRF `rocket` are dynamically leaked into VRF `turtle`.
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp vrf turtle ipv4 unicast import vrf rocket
@@ -276,11 +276,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -295,7 +293,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -314,9 +314,9 @@ You can exclude certain prefixes from being imported. The prefixes must be confi
 
 The following example configures a route map to match the source protocol BGP and imports the routes from VRF turtle to VRF rocket. For the imported routes, the community is set to 11:11 in VRF rocket.
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp vrf rocket ipv4 unicast import vrf turtle
@@ -328,11 +328,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -354,7 +352,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Verify Route Leaking Configuration
 
@@ -402,9 +402,9 @@ To remove route leaking configuration, run the following commands. These command
 
 The following example commands delete leaked routes from VRF `rocket` to VRF `turtle`:
 
-<details>
+{{< tabs "TabID8" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net del bgp vrf turtle ipv4 unicast import vrf rocket
@@ -412,11 +412,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -431,7 +429,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -466,9 +466,9 @@ VRFs are provisioned using NCLU. VRFs can be pre-provisioned in FRRouting too, b
 
 ### Example VRF Configuration in BGP
 
-<details>
+{{< tabs "TabID10" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp vrf vrf1012 autonomous-system 64900
@@ -489,11 +489,9 @@ cumulus@switch:~$ net add bgp vrf vrf1012 ipv6 unicast neighbor ISLv6 activate
 cumulus@switch:~$ net add bgp vrf vrf1012 neighbor ISLv6 route-map ALLOW_BR2_v6 out
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -525,7 +523,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -559,9 +559,9 @@ router bgp 64900 vrf vrf1012
 
 ### Example VRF Configuration in OSPF
 
-<details>
+{{< tabs "TabID12" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add ospf vrf vrf1 
@@ -577,11 +577,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -609,7 +607,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -637,9 +637,9 @@ router ospf vrf vrf1
 
 To show VRF information, you can use NCLU, vtysh, or Linux commands.
 
-<details>
+{{< tabs "TabID14" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 To show the routes in a VRF, run the `net show route vrf <vrf-name>` command. For example:
 
@@ -796,11 +796,9 @@ cumulus@switch:~$ net show vrf vni json
 }
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 To show all VRFs learned by FRRouting from the kernel, run the `show vrf` command. The table ID shows the corresponding routing table in the kernel.
 
@@ -906,7 +904,7 @@ C>* 50.1.1.0/24 is directly connected, swp31s1
 VRF rocket:
 K>* 0.0.0.0/0 [0/8192] unreachable (ICMP unreachable)
 O
-8.0.0.0/24 [110/10] 
+8.0.0.0/24 [110/10]
 is directly connected, swp1, 00:23:26
 C>* 8.0.0.0/24 is directly connected, swp1
 C>* 8.0.0.5/32 is directly connected, rocket
@@ -914,11 +912,9 @@ C>* 8.0.0.100/32 is directly connected, rocket
 C>* 50.0.1.0/24 is directly connected, swp31s0
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 To list all VRFs, and include the VRF ID and table ID, run the `ip -d link show type vrf` command. For example:
 
@@ -1066,7 +1062,9 @@ You can also show routes in a VRF using the `ip [-6] route show vrf <vrf-name>` 
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## BGP Unnumbered Interfaces with VRF
 
@@ -1078,9 +1076,9 @@ The BGP unnumbered configuration is the same as for a non-VRF, applied under the
 
 To configure BGP unnumbered:
 
-<details>
+{{< tabs "TabID17" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add vrf vrf1 vrf-table auto
@@ -1113,11 +1111,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file. For example:
 
@@ -1179,7 +1175,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -1254,9 +1252,9 @@ In the following example, there is one IPv4 network with a VRF named
 
 Configure each DHCP server and relay as follows:
 
-<details>
+{{< tabs "TabID19" >}}
 
-<summary>Sample DHCP Server Configuration</summary>
+{{< tab "DHCP Server" >}}
 
 1. Create the file `isc-dhcp-server-rocket` in `/etc/default/`. Here is sample content:
 
@@ -1304,11 +1302,9 @@ cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcpd -f -q -cf /
     /etc/dhcp/dhcpd-rocket.conf -pf /var/run/dhcpd-rocket.pid swp2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Sample DHCP6 Server Configuration</summary>
+{{< tab "DHCP6 Server" >}}
 
 1. Create the file `isc-dhcp-server6-turtle` in `/etc/default/`. Here is sample content:
 
@@ -1356,11 +1352,9 @@ cumulus@switch:~$ sudo ip vrf exec turtle dhcpd -6 -q -cf /
     /etc/dhcp/dhcpd6-turtle.conf -pf /var/run/dhcpd6-turtle.pid swp3
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Sample DHCP Relay Configuration</summary>
+{{< tab "DHCP Relay" >}}
 
 1. Create the file `isc-dhcp-relay-rocket` in `/etc/default/`. Here is sample content:
 
@@ -1407,11 +1401,9 @@ cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcrelay -d -q -i /
     swp2s2 -i swp2s3 102.0.0.2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Sample DHCP6 Relay Configuration</summary>
+{{< tab "DHCP6 Relay" >}}
 
 1. Create the file `isc-dhcp-relay6-turtle` in `/etc/default/`. Here is sample content:
 
@@ -1459,7 +1451,9 @@ cumulus@switch:~$ sudo ip vrf exec turtle /usr/sbin/dhcrelay -d -q -6 -l /
     swp18s0 -u swp18s1 -pf /var/run/dhcrelay6@turtle.pid
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Use ping or traceroute on a VRF
 

@@ -16,9 +16,7 @@ In many instances, you can use NCLU to configure ACLs; however, in some cases, y
 
 If you need help to configure ACLs, run `net example acl` to see a basic configuration:
 
-<details>
-
-<summary>Example </summary>
+{{< expand "Example "  >}}
 
 ```
 cumulus@leaf01:~$ net example acl
@@ -69,7 +67,7 @@ Verification
 switch# net show configuration acl
 ```
 
-</details>
+{{< /expand >}}
 
 ## Traffic Rules In Cumulus Linux
 
@@ -719,13 +717,9 @@ Even though the table above specifies that zero IPv6 rules are supported with th
 
 The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux implementation on top of the underlying hardware but they are not always directly compatible. Here are the supported rules for chains in `iptables`, `ip6tables` and `ebtables`.
 
-{{%notice note%}}
-
 To learn more about any of the options shown in the tables below, run `iptables -h [name of option]`. The same help syntax works for options for `ip6tables` and `ebtables`.
 
-<details>
-
-<summary>Click to see an example of help syntax for an ebtables target</summary>
+{{< expand "Click to see an example of help syntax for an ebtables target"  >}}
 
 ```
 root@leaf1# ebtables -h tricolorpolice
@@ -744,9 +738,7 @@ Supported chains for the filter table:
 INPUT FORWARD OUTPUT
 ```
 
-</details>
-
-{{%/notice%}}
+{{< /expand >}}
 
 ### iptables and ip6tables Rule Support
 
@@ -870,9 +862,7 @@ For example, to rate limit the incoming traffic on swp1 to 400 packets per secon
 
 Here is another example of control plane ACL rules to lock down the switch. You specify them in `/etc/cumulus/acl/policy.d/00control_plane.rules`:
 
-<details>
-
-<summary>View the contents of the file ... </summary>
+{{< expand "View the contents of the file ... "  >}}
 
 ```
 INGRESS_INTF = swp+
@@ -909,7 +899,7 @@ SNMP_SERVERS_4 = "192.168.0.1/32"
 -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -j DROP
 ```
 
-</details>
+{{< /expand >}}
 
 ### Set DSCP on Transit Traffic
 

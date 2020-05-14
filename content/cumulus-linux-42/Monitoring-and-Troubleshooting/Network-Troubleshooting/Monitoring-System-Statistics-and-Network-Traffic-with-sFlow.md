@@ -72,6 +72,7 @@ You can set up the collectors and variables on each switch.
 Edit the `/etc/hsflowd.conf` file to set up your collectors and sampling rates in `/etc/hsflowd.conf`. For example:
 
 ```
+sflow {
 # ====== Sampling/Polling/Collectors ======
   # EITHER: automatic (DNS SRV+TXT from _sflow._udp):
   #   DNS-SD { }
@@ -92,6 +93,7 @@ Edit the `/etc/hsflowd.conf` file to set up your collectors and sampling rates i
   #   collectors:
   collector { ip=192.0.2.100 udpport=6343 }
   collector { ip=192.0.2.200 udpport=6344 }
+}
 ```
 
 This configuration polls the counters every 20 seconds, samples 1 of every 40000 packets for 40G interfaces, and sends this information to a collector at 192.0.2.100 on port 6343 and to another collector at 192.0.2.200 on port 6344.

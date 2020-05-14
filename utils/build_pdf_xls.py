@@ -95,9 +95,9 @@ def get_dir_list():
         else:
             split_dir = directory.split("-")
             if len(split_dir) == 3:
-                if split_dir[0] == "cumulus" and split_dir[2][0] == "4":
+                if split_dir[1] == "linux" and split_dir[2][0] == "4":
                     return_dirs.append(directory)
-                elif split_dir[0] == "netq" and split_dir[3][0] == "3":
+                elif split_dir[1] == "netq" and split_dir[2][0] == "3":
                     return_dirs.append(directory)
 
     return return_dirs

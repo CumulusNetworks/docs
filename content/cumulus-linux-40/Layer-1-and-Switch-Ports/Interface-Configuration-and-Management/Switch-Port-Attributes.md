@@ -52,9 +52,9 @@ Depending upon the connector used for a port, enabling auto-negotiation also ena
 
 To configure auto-negotiation for a switch:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add interface <interface> link autoneg` command. The following example commands enable auto-negotiation for the swp1 interface:
 
@@ -64,11 +64,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1. Edit the `/etc/network/interfaces` file. The following example disables auto-negotiation for the swp1 interface.
 
@@ -100,7 +98,9 @@ A runtime configuration is non-persistent; the configuration you create here doe
 
     {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -137,9 +137,9 @@ You can configure ports to one speed less than their maximum speed.
 
 To configure the port speed and duplex mode:
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add interface <interface> link speed` command. The following commands configure the port speed for the swp1 interface. The duplex mode setting defaults to *full*. You only need to specify `link duplex` if you want to set half-duplex mode.
 
@@ -175,11 +175,9 @@ iface swp31
     link-duplex half
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file to create a persistent configuration for the port speeds:
 
@@ -223,7 +221,9 @@ A runtime configuration is non-persistent, which means the configuration you cre
 
     {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## MTU
 
@@ -231,9 +231,9 @@ Interface MTU applies to traffic traversing the management port, front panel/swi
 
 On Mellanox switches, the default MTU setting is 9238 in Cumulus Linux. On Broadcom switches, the default MTU setting is 1500. To change the setting, run the following commands:
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add interface <interface> mtu` command. The following example command sets MTU to 9000 for the swp1 interface.
 
@@ -251,11 +251,9 @@ iface swp1
     mtu 9000
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1. Edit the `/etc/network/interfaces` file. The following example sets MTU to 9000 for the swp1 interface.
 
@@ -287,7 +285,9 @@ A runtime configuration is non-persistent, which means the configuration you cre
 
     {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -360,9 +360,9 @@ The MTU for an SVI interface, such as vlan100, is derived from the bridge. When 
 
 To show the MTU setting for an interface:
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net show interface <interface>` command:
 
@@ -373,11 +373,9 @@ cumulus@switch:~$ net show interface swp1
 UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Run the `ip link show <interface>` command:
 
@@ -387,7 +385,9 @@ cumulus@switch:~$ ip link show dev swp1
    link/ether 44:38:39:00:03:c1 brd ff:ff:ff:ff:ff:ff
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Bring Down an Interface for a Bridge Member
 
@@ -574,9 +574,9 @@ Active FEC encoding: Off
 
 To enable **Reed Solomon (RS) FEC** on a link:
 
-<details>
+{{< tabs "TabID8" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add interface <interface> link fec rs` command. For example:
 
@@ -586,11 +586,9 @@ cumulus@switch:~$ sudo net pending
 cumulus@switch:~$ sudo net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1. Edit the `/etc/network/interfaces` file. The following example enables RS FEC for the swp1 interface (`link-fec rs`):
 
@@ -624,13 +622,15 @@ A runtime configuration is non-persistent, which means the configuration you cre
 
     {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To enable **Base-R/FireCode FEC** on a link:
 
-<details>
+{{< tabs "TabID10" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add interface <interface> link fec baser` command. For example:
 
@@ -640,11 +640,9 @@ cumulus@switch:~$ sudo net pending
 cumulus@switch:~$ sudo net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1. Edit the `/etc/network/interfaces` file. The following example enables Base-R FEC for the swp1 interface (`link-fec baser`):
 
@@ -678,7 +676,9 @@ A runtime configuration is non-persistent, which means the configuration you cre
 
     {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To enable FEC with Auto-negotiation:
 
@@ -688,9 +688,9 @@ FEC with auto-negotiation is supported on DACs only.
 
 {{%/notice%}}
 
-<details>
+{{< tabs "TabID12" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add interface <interface> link autoneg` `on` command. The following example command enables FEC with auto-negotiation on the swp12 interface:
 
@@ -700,11 +700,9 @@ cumulus@switch:~$ sudo net pending
 cumulus@switch:~$ sudo net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1. Edit the `/etc/network/interfaces` file and set auto-negotiation to *on*. For example:
 
@@ -736,7 +734,9 @@ A runtime configuration is non-persistent, which means the configuration you cre
 
     {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To show the FEC and auto-negotiation settings for an interface, run the
 following command:
@@ -753,9 +753,9 @@ Link partner advertised FEC modes: Not reported
 
 To disable FEC on a link:
 
-<details>
+{{< tabs "TabID14" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add interface <interface> link fec off` command. For example:
 
@@ -765,11 +765,9 @@ cumulus@switch:~$ sudo net pending
 cumulus@switch:~$ sudo net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1. Edit the `/etc/network/interfaces` file. The following example disables Base-R FEC for the swp1 interface (`link-fec baser`):
 
@@ -801,7 +799,9 @@ A runtime configuration is non-persistent, which means the configuration you cre
 
     {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Interface Configuration Recommendations for Broadcom Platforms
 
@@ -906,9 +906,9 @@ These restrictions do *not* apply to a 2x50G breakout configuration.
 
 To configure a breakout port:
 
-<details>
+{{< tabs "TabID16" >}}
 
-<summary>NCLU Commands - 4x25G breakout ports only </summary>
+{{< tab "NCLU Commands - 4x25G breakout ports only" >}}
 
 Run the following commands to configure the port to break out and set the link speed. The following example command breaks out swp3 into four 25G ports:
 
@@ -957,11 +957,9 @@ When you commit your change, `switchd` restarts to apply the changes. The restar
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. See the examples below.
 2. Configure the breakout ports in the `/etc/network/interfaces` file. See the example below.
@@ -1082,7 +1080,9 @@ iface swp26s3
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice tip%}}
 
@@ -1094,9 +1094,9 @@ Refer to {{<exlink url="https://community.mellanox.com/docs/DOC-2685" text="this
 
 If you want to support 10G speed modules or cables on 100G ports you must set up the port in 10G mode first by configuring breakout ports on the 100G ports using the following commands:
 
-<details>
+{{< tabs "TabID18" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add interface swp25 breakout 4x10G
@@ -1104,11 +1104,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout.
 
@@ -1145,15 +1143,17 @@ cumulus@switch:~$ net commit
 
 3. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Remove a Breakout Port
 
 To remove a breakout port:
 
-<details>
+{{< tabs "TabID20" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 1. Run the `net del interface <interface>` command. For example:
 
@@ -1180,11 +1180,9 @@ To remove a breakout port:
 
 3. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1. Edit the `/etc/cumulus/ports.conf` file to configure the interface for the original speed.
 
@@ -1200,7 +1198,9 @@ To remove a breakout port:
 
 2. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Combine Four 10G Ports into One 40G Port
 
@@ -1215,9 +1215,9 @@ The `/etc/cumulus/ports.conf` file varies across different hardware platforms. C
 
 {{%/notice%}}
 
-<details>
+{{< tabs "TabID22" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 To gang swp1 through swp4 into a 40G port, run the following commands:
 
@@ -1239,11 +1239,9 @@ These commands create the following configuration snippet in the `/etc/cumulus/p
 5=10G
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` file as shown below, then {{<link url="Configuring-switchd#restart-switchd" text="restart switchd">}}.
 
@@ -1257,7 +1255,9 @@ To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` fi
 5=10G
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Logical Switch Port Limitations
 
@@ -1591,9 +1591,9 @@ On a Spectrum switch, after you set the interface speed to 40G in the `ports.con
 
 To correctly set the port speed, run the following commands.
 
-<details>
+{{< tabs "TabID24" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add interface <interface> link speed` command. The
 following example command sets the port speed to 40G:
@@ -1604,11 +1604,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Run the `ethtool -s <interface> speed` command. The following example command sets the port speed to 40G:
 
@@ -1616,7 +1614,9 @@ Run the `ethtool -s <interface> speed` command. The following example command se
 cumulus@switch:~$ sudo ethtool -s swp1 speed 40000
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Delay in Reporting Interface as Operational Down
 

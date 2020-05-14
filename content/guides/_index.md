@@ -18,3 +18,4 @@ Currently, the available documents here include the following:
 
 - [Campus architecture solution guide](campus-architecture-guide)
 - [Cumulus Linux security guide](cumulus-linux-security-guide)
+<!-- - [Production Ready Automation guide](production-ready-automation)-->

@@ -195,7 +195,7 @@ You now have a deployed and operational golden standard Cumulus Linux architectu
 
 This method is the easiest way to experience the final product of the Cumulus golden standard EVPN VXLAN demo configurations. This method is best suited to fast track all of the simulation setup and provisioning and start testing any of the official golden standard EVPN VXLAN demo configurations.
 
-If you are interested in taking a closer look at the processes of automation and deployment, and see the actual examples of the infrastructure as code, you need to clone the demo project and manually run the automation playbook to render the configuration as code into the network devices. This automated process clones your selected demo repository and runs the Ansible deployment playbook for you with a few easy and convenient clicks from the Cumulus In the Cloud UI.
+If you are interested in taking a closer look at the processes of automation and deployment, and see the actual examples of the infrastructure as code, you need to clone the demo project and manually run the automation playbook to render the configuration as code into the network devices. This automated process clones your selected demo repository and runs the Ansible deployment playbook for you with a few easy and convenient clicks from the Cumulus in the Cloud UI.
 
 1. Go to {{<exlink url="https://www.cumulusnetworks.com/citc" text="Cumulus in the Cloud">}} to request a demo or to reach your existing simulation.
 2. After you reach your simulation console, choose a demo from the drop down menu on the left panel.
@@ -207,9 +207,9 @@ If you are interested in taking a closer look at the processes of automation and
 
 ## Manually Run the Automation Demo from Cumulus in the Cloud
 
-{{<exlink url="https://www.cumulusnetworks.com/citc" text="Cumulus in the Cloud">}} provides the fastest way to enjoy the experience of provisioning a full data center using best practice Ansible automation and see a working example of infrastructure as code. By removing the complexity of the simulation hardware and software dependencies, you can be in the driver’s seat of a fully provisioned data center to test the automation experience and any of the demo solution architectures in minutes. Cumulus in the cloud also includes a free temporary NetQ Cloud account to showcase the NetQ features with live data from your simulation.
+{{<exlink url="https://www.cumulusnetworks.com/citc" text="Cumulus in the Cloud">}} provides the fastest way to enjoy the experience of provisioning a full data center using best practice Ansible automation and see a working example of infrastructure as code. By removing the complexity of the simulation hardware and software dependencies, you can be in the driver’s seat of a fully provisioned data center to test the automation experience and any of the demo solution architectures in minutes. Cumulus in the Cloud also includes a free temporary NetQ Cloud account to showcase the NetQ features with live data from your simulation.
 
-1. Start from the `oob-mgmt-server` in your cumulus in the cloud simulation. For the best experience, use an SSH client to connect. Find the SSH client connection information from the **Services** window in the UI.
+1. Start from the `oob-mgmt-server` in your Cumulus in the Cloud simulation. For the best experience, use an SSH client to connect. Find the SSH client connection information from the **Services** window in the UI.
 
     {{<img src="/images/guides/citc-interface-services.png" >}}
 

@@ -2,6 +2,7 @@
 
 
 <script>
+    finished = false;
     function replace_url() {
         var elems = document.getElementsByTagName("a");
         for (var i = 0; i < elems.length; i++) {
@@ -42,6 +43,8 @@
             $(this).find( $('.book-tabs .book-tabs-content') ).show();
             $(this).find( 'input[type="radio"]' ).attr('name', Math.floor(Math.random() * 100000000000000));
         });
+
+        finished = true;
     }
 
     window.onload = function() {
@@ -51,6 +54,11 @@
         // Auto expand all of the code folding "<details>" tags.
         $( "details" ).attr("open", "true");
     }
+
+    function docraptorJavaScriptFinished(){
+        return finished;
+    }
+
 </script>
 <meta name="author" content="Cumulus Networks" />
 <meta name="keywords" content="COMMIT_INFO" />

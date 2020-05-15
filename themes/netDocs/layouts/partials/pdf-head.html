@@ -2,7 +2,6 @@
 
 
 <script>
-    finished = false;
     function replace_url() {
         var elems = document.getElementsByTagName("a");
         for (var i = 0; i < elems.length; i++) {
@@ -50,20 +49,17 @@
         replace_url();
         // Auto expand all of the code folding "<details>" tags.
         $( "details" ).attr("open", "true");
-        sleep(10000)
-        finished = true;
     }
 
-    function sleep(milliseconds) {
-        const date = Date.now();
-        let currentDate = null;
-        do {
-            currentDate = Date.now();
-        } while (currentDate - date < milliseconds);
-    }
-
-    function docraptorJavaScriptFinished(){
-        return finished;
+    docraptorJavaScriptFinished = function() {
+        if (! didWait) {
+            setTimeout(function(){
+                didWait = true;
+            }, 10000);
+            return false;
+        }
+        // It's been 10 seconds, let's return true and make the PDF!
+        return true;
     }
 
 </script>

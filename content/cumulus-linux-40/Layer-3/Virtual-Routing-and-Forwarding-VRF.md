@@ -1265,16 +1265,16 @@ Configure each DHCP server and relay as follows:
    #
    # This is a POSIX shell fragment
    #
-   # Path to dhcpd&#39;s config file (default: /etc/dhcp/dhcpd.conf).
-   DHCPD_CONF=&quot;-cf /etc/dhcp/dhcpd-rocket.conf&quot;
-   # Path to dhcpd&#39;s PID file (default: /var/run/dhcpd.pid).
-   DHCPD_PID=&quot;-pf /var/run/dhcpd-rocket.pid&quot;
+   # Path to dhcpd's config file (default: /etc/dhcp/dhcpd.conf).
+   DHCPD_CONF="-cf /etc/dhcp/dhcpd-rocket.conf"
+   # Path to dhcpd's PID file (default: /var/run/dhcpd.pid).
+   DHCPD_PID="-pf /var/run/dhcpd-rocket.pid"
    # Additional options to start dhcpd with.
-   # Don&#39;t use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
-   #OPTIONS=&quot;&quot;
+   # Don't use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
+   #OPTIONS=""
    # On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
-   # Separate multiple interfaces with spaces, e.g. &quot;eth0 eth1&quot;.
-   INTERFACES=&quot;swp2&quot;
+   # Separate multiple interfaces with spaces, e.g. "eth0 eth1".
+   INTERFACES="swp2"
    ```
 
 2. Enable the DHCP server:
@@ -1315,16 +1315,16 @@ cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcpd -f -q -cf /
    #
    # This is a POSIX shell fragment
    #
-   # Path to dhcpd&#39;s config file (default: /etc/dhcp/dhcpd.conf).
-   DHCPD_CONF=&quot;-cf /etc/dhcp/dhcpd6-turtle.conf&quot;
-   # Path to dhcpd&#39;s PID file (default: /var/run/dhcpd.pid).
-   DHCPD_PID=&quot;-pf /var/run/dhcpd6-turtle.pid&quot;
+   # Path to dhcpd's config file (default: /etc/dhcp/dhcpd.conf).
+   DHCPD_CONF="-cf /etc/dhcp/dhcpd6-turtle.conf"
+   # Path to dhcpd's PID file (default: /var/run/dhcpd.pid).
+   DHCPD_PID="-pf /var/run/dhcpd6-turtle.pid"
    # Additional options to start dhcpd with.
-   # Don&#39;t use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
-   #OPTIONS=&quot;&quot;
+   # Don't use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
+   #OPTIONS=""
    # On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
-   # Separate multiple interfaces with spaces, e.g. &quot;eth0 eth1&quot;.
-   INTERFACES=&quot;swp3&quot;
+   # Separate multiple interfaces with spaces, e.g. "eth0 eth1".
+   INTERFACES="swp3"
    ```
 
 2. Enable the DHCP server:
@@ -1366,15 +1366,15 @@ cumulus@switch:~$ sudo ip vrf exec turtle dhcpd -6 -q -cf /
    # This is a POSIX shell fragment
    #
    # What servers should the DHCP relay forward requests to?
-   SERVERS=&quot;102.0.0.2&quot;
+   SERVERS="102.0.0.2"
    # On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
    # Always include the interface towards the DHCP server.
    # This variable requires a -i for each interface configured above.
    # This will be used in the actual dhcrelay command
-   # For example, &quot;-i eth0 -i eth1&quot;
-   INTF_CMD=&quot;-i swp2s2 -i swp2s3&quot;
+   # For example, "-i eth0 -i eth1"
+   INTF_CMD="-i swp2s2 -i swp2s3"
    # Additional options that are passed to the DHCP relay daemon?
-   OPTIONS=&quot;&quot;
+   OPTIONS=""
    ```
 
 2. Enable the DHCP relay:
@@ -1415,15 +1415,15 @@ cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcrelay -d -q -i /
    # This is a POSIX shell fragment
    #
    # What servers should the DHCP relay forward requests to?
-   #SERVERS=&quot;103.0.0.2&quot;
+   #SERVERS="103.0.0.2"
    # On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
    # Always include the interface towards the DHCP server.
    # This variable requires a -i for each interface configured above.
    # This will be used in the actual dhcrelay command
-   # For example, &quot;-i eth0 -i eth1&quot;
-   INTF_CMD=&quot;-l swp18s0 -u swp18s1&quot;
+   # For example, "-i eth0 -i eth1"
+   INTF_CMD="-l swp18s0 -u swp18s1"
    # Additional options that are passed to the DHCP relay daemon?
-   OPTIONS=&quot;-pf /var/run/dhcrelay6@turtle.pid&quot;
+   OPTIONS="-pf /var/run/dhcrelay6@turtle.pid"
    ```
 
 2. Enable the DHCP relay:

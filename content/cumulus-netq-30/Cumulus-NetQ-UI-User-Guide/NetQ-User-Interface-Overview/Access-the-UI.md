@@ -41,7 +41,7 @@ To log in to the UI:
 
 {{< /tab >}}
 
-{{< tab "Log In after First Time" >}}
+{{< tab "Log In After First Time" >}}
 
 1. Enter your username.
 

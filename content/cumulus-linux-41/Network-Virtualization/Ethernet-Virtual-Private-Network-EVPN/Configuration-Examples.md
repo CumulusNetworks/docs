@@ -3530,7 +3530,7 @@ iface swp6
 
 {{< /tab >}}
 
-{{< tab "border01 ">}}
+{{< tab "exit01 ">}}
 
 ```
 cumulus@border-leaf01:~$ cat /etc/network/interfaces
@@ -3686,10 +3686,10 @@ iface vni16002
 
 {{< /tab >}}
 
-{{< tab "border02 ">}}
+{{< tab "exit02 ">}}
 
 ```
-cumulus@border-leaf02:~$ cat /etc/network/interfaces
+cumulus@exit-leaf02:~$ cat /etc/network/interfaces
 
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).

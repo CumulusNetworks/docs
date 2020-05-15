@@ -414,9 +414,9 @@ monitored nodes and their configuration information, as follows:
 ## View the API
 
 For simplicity, all of the endpoint APIs are combined into a single
-json-formatted file. There have been no changes to the file in the NetQ 2.3.0 release.
+json-formatted file. There have been no changes to the file in the NetQ 3.0.0 release.
 
-<details><summary>netq-231.json</summary>
+{{< expand "netq-300.json"  >}}
 
 ```
 {
@@ -424,7 +424,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
   "info": {
     "description": "This API is used to gain access to data collected by the Cumulus NetQ Platform and Agents for integration with third-party monitoring and analytics  software. Integrators can pull data for daily monitoring of network protocols and services performance, inventory status, and system-wide events.",
     "version": "1.1",
-    "title": "Cumulus NetQ 2.3.1 API",
+    "title": "Cumulus NetQ 3.0.0 API",
     "termsOfService": "https://cumulusnetworks.com/legal/"
   },
   "host": "<netq-platform-or-appliance-ipaddress>:32708",
@@ -4095,3 +4095,5 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
 }
 
 ```
+
+{{< /expand >}}

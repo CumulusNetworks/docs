@@ -18,9 +18,9 @@ For servers running Ubuntu OS, you need to:
 - Install and configure network time server, if needed
 - Obtain NetQ software packages
 
-{{%notice note%}}
-If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so `apt-get` can access the agent package on the Cumulus Networks repository.
-{{%/notice%}}
+{{<notice note>}}
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the Cumulus Networks repository.
+{{</notice>}}
 
 ### Verify Service Package Versions
 
@@ -57,102 +57,122 @@ If NTP is not already installed and configured, follow these steps:
 
 2.  Configure the network time server.
 
-    <details><summary>Use NTP Configuration File</summary>
+    {{< tabs "TabID0" >}}
 
-    1. Open the `/etc/ntp.conf` file in your text editor of choice.
+{{< tab "Use NTP Configuration File" >}}
 
-    2. Under the *Server* section, specify the NTP server IP address or hostname.
+1. Open the `/etc/ntp.conf` file in your text editor of choice.
 
-    3. Enable and start the NTP service.
+2. Under the *Server* section, specify the NTP server IP address or hostname.
 
-           root@ubuntu:~# sudo systemctl enable ntp
-           root@ubuntu:~# sudo systemctl start ntp
+3. Enable and start the NTP service.
 
-    {{%notice tip%}}
-If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
-    {{%/notice%}}
+    ```
+    root@ubuntu:~# sudo systemctl enable ntp
+    root@ubuntu:~# sudo systemctl start ntp
+    ```
 
-    4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
+   {{<notice tip>}}
+If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
+   {{</notice>}}
 
-           root@ubuntu:~# ntpq -pn
-           remote           refid            st t when poll reach   delay   offset  jitter
-           ==============================================================================
-           +173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
-           +12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
-           2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
-           \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
+4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 
-    </details>
+    ```
+    root@ubuntu:~# ntpq -pn
+    remote           refid            st t when poll reach   delay   offset  jitter
+    ==============================================================================
+    +173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
+    +12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
+    2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
+    \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
-    <details>
-    <summary>Use Chrony (Ubuntu 18.04 only)</summary>
+{{< /tab >}}
+    
+{{< tab "Use Chrony (Ubuntu 18.04 only)" >}}
 
-    1. Install chrony if needed.
+1. Install chrony if needed.
 
-           root@ubuntu:~# sudo apt install chrony
+    ```
+    root@ubuntu:~# sudo apt install chrony
+    ```
 
-    2. Start the chrony service.
+2. Start the chrony service.
 
-           root@ubuntu:~# sudo /usr/local/sbin/chronyd
+    ```
+    root@ubuntu:~# sudo /usr/local/sbin/chronyd
+    ```
 
-    3. Verify it installed successfully.
+3. Verify it installed successfully.
 
-           root@ubuntu:~# chronyc activity
-           200 OK
-           8 sources online
-           0 sources offline
-           0 sources doing burst (return to online)
-           0 sources doing burst (return to offline)
-           0 sources with unknown address
+    ```
+    root@ubuntu:~# chronyc activity
+    200 OK
+    8 sources online
+    0 sources offline
+    0 sources doing burst (return to online)
+    0 sources doing burst (return to offline)
+    0 sources with unknown address
+    ```
 
-    4. View the time servers chrony is using.
+4. View the time servers chrony is using.
 
-           root@ubuntu:~# chronyc sources
-           210 Number of sources = 8
+    ```
+    root@ubuntu:~# chronyc sources
+    210 Number of sources = 8
 
-           MS Name/IP address         Stratum Poll Reach LastRx Last sample
-           ===============================================================================
-           ^+ golem.canonical.com           2   6   377    39  -1135us[-1135us] +/-   98ms
-           ^* clock.xmission.com            2   6   377    41  -4641ns[ +144us] +/-   41ms
-           ^+ ntp.ubuntu.net              2   7   377   106   -746us[ -573us] +/-   41ms
-           ...
+    MS Name/IP address         Stratum Poll Reach LastRx Last sample
+    ===============================================================================
+    ^+ golem.canonical.com           2   6   377    39  -1135us[-1135us] +/-   98ms
+    ^* clock.xmission.com            2   6   377    41  -4641ns[ +144us] +/-   41ms
+    ^+ ntp.ubuntu.net              2   7   377   106   -746us[ -573us] +/-   41ms
+    ...
+    ```
 
-       Open the *chrony.conf* configuration file (by default at */etc/chrony/*) and edit if needed.
+    Open the *chrony.conf* configuration file (by default at */etc/chrony/*) and edit if needed.
 
-       Example with individual servers specified:
+    Example with individual servers specified:
 
-           server golem.canonical.com iburst
-           server clock.xmission.com iburst
-           server ntp.ubuntu.com iburst
-           driftfile /var/lib/chrony/drift
-           makestep 1.0 3
-           rtcsync
+    ```
+    server golem.canonical.com iburst
+    server clock.xmission.com iburst
+    server ntp.ubuntu.com iburst
+    driftfile /var/lib/chrony/drift
+    makestep 1.0 3
+    rtcsync
+    ```
 
-       Example when using a pool of servers:
+    Example when using a pool of servers:
 
-           pool pool.ntp.org iburst
-           driftfile /var/lib/chrony/drift
-           makestep 1.0 3
-           rtcsync
+    ```
+    pool pool.ntp.org iburst
+    driftfile /var/lib/chrony/drift
+    makestep 1.0 3
+    rtcsync
+    ```
 
-    5. View the server chrony is currently tracking.
+5. View the server chrony is currently tracking.
 
-           root@ubuntu:~# chronyc tracking
-           Reference ID    : 5BBD59C7 (golem.canonical.com)
-           Stratum         : 3
-           Ref time (UTC)  : Mon Feb 10 14:35:18 2020
-           System time     : 0.0000046340 seconds slow of NTP time
-           Last offset     : -0.000123459 seconds
-           RMS offset      : 0.007654410 seconds
-           Frequency       : 8.342 ppm slow
-           Residual freq   : -0.000 ppm
-           Skew            : 26.846 ppm
-           Root delay      : 0.031207654 seconds
-           Root dispersion : 0.001234590 seconds
-           Update interval : 115.2 seconds
-           Leap status     : Normal
+    ```
+    root@ubuntu:~# chronyc tracking
+    Reference ID    : 5BBD59C7 (golem.canonical.com)
+    Stratum         : 3
+    Ref time (UTC)  : Mon Feb 10 14:35:18 2020
+    System time     : 0.0000046340 seconds slow of NTP time
+    Last offset     : -0.000123459 seconds
+    RMS offset      : 0.007654410 seconds
+    Frequency       : 8.342 ppm slow
+    Residual freq   : -0.000 ppm
+    Skew            : 26.846 ppm
+    Root delay      : 0.031207654 seconds
+    Root dispersion : 0.001234590 seconds
+    Update interval : 115.2 seconds
+    Leap status     : Normal
+    ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Obtain NetQ CLI Software Package
 
@@ -162,37 +182,45 @@ To obtain the NetQ CLI package:
 
 1. Reference and update the local `apt` repository.
 
-```
-root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
-```
+    ```
+    root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+    ```
 
 2. Add the Ubuntu repository:
 
-    <details><summary>Ubuntu 16.04</summary>
+    {{< tabs "TabID2" >}}
 
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
+{{< tab "Ubuntu 16.04" >}}
 
-    ```
-    root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
-    ...
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
-    ...
-    ```
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
 
-    </details>
-    <details><summary>Ubuntu 18.04</summary>
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
+...
+```
 
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
+{{< /tab >}}
 
-        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
-        ...
-        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
-        ...
-    </details>
+{{< tab "Ubuntu 18.04" >}}
 
-    {{%notice note%}}
-The use of `netq-latest` in these examples means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.4` - use that instead.
-    {{%/notice%}}
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
+
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+...
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+    {{<notice note>}}
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-2.4</code> - use that instead.
+    {{</notice>}}
 
 ## Install NetQ CLI on an Ubuntu Server
 
@@ -226,7 +254,8 @@ Two methods are available for configuring the NetQ CLI on a switch:
 
 The steps to configure the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment. Follow the instruction for your deployment type.
 
-<details><summary>On-premises Deployments</summary>
+{{< tabs "TabID4" >}}
+{{< tab "On-premises Deployments" >}}
 
 Use the following command to configure the CLI:
 
@@ -243,12 +272,13 @@ root@ubuntu:~# sudo netq config add cli server 192.168.1.0
 root@ubuntu:~# sudo netq config restart cli
 ```
 
-{{%notice tip%}}
+{{<notice tip>}}
 If you have a server cluster deployed, use the IP address of the master server.
-{{%/notice%}}
+{{</notice>}}
 
-</details>
-<details><summary>Cloud Deployments</summary>
+{{< /tab >}}
+
+{{< tab "Cloud Deployments" >}}
 
 To access and configure the CLI on your NetQ Platform or NetQ Cloud Appliance, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to Cumulus NetQ!*
 
@@ -268,13 +298,15 @@ To generate AuthKeys:
 
 6. Copy these keys to a safe place.
 
-    {{%notice info%}}
-The secret key is only shown once. If you don't copy these, you will need to regenerate them and reconfigure CLI access.
+    {{<notice info>}}
+The secret key is only shown once. If you do not copy these, you will need to regenerate them and reconfigure CLI access.
+    {{</notice>}}
 
+{{<notice tip>}}
 You can also save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
 
-- store the file wherever you like, for example in */home/cumulus/* or */etc/netq*
-- name the file whatever you like, for example *credentials.yml*, *creds.yml*, or *keys.yml*
+- store the file wherever you like, for example in <em>/home/cumulus/</em> or <em>/etc/netq</em>
+- name the file whatever you like, for example <em>credentials.yml</em>, <em>creds.yml</em>, or <em>keys.yml</em>
 
 BUT, the file must have the following format:
 
@@ -282,7 +314,8 @@ BUT, the file must have the following format:
 access-key: <user-access-key-value-here>
 secret-key: <user-secret-key-value-here>
 ```
-    {{%/notice%}}
+
+{{</notice>}}
 
 7. Now that you have your AuthKeys, use the following command to configure the CLI:
 
@@ -314,11 +347,13 @@ secret-key: <user-secret-key-value-here>
     Restarting NetQ CLI... Success!
     ```
 
-    {{%notice tip%}}
+    {{<notice tip>}}
 Rerun this command if you have multiple premises and want to query a different premises.
-    {{%/notice%}}
+    {{</notice>}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Configure NetQ CLI Using Configuration File
 
@@ -332,30 +367,48 @@ You can configure the NetQ CLI in the `netq.yml` configuration file contained in
 
 2. Locate the *netq-cli* section, or add it.
 
-3. Set the parameters for the CLI as follows:
+3. Set the parameters for the CLI.
 
-    | Parameter | On-premises | Cloud |
-    | ----| ---- | ---- |
-    | netq-user | User who can access the CLI | User who can access the CLI |
-    | server | IP address of the NetQ server or NetQ Appliance | api.netq.cumulusnetworks.com |
-    | port (default) | 32708 | 443 |
-    | premises | NA | Name of premises you want to query |
+    {{< tabs "TabID1" >}}
 
-    An on-premises configuration should be similar to this:
+{{< tab "On-premises Deployments" >}}
 
-    ```
-    netq-cli:
-    netq-user: admin@company.com
-    port: 32708
-    server: 192.168.0.254
-    ```
+Specify the following parameters:
 
-    A cloud configuration should be similar to this:
+- netq-user: User who can access the CLI
+- server: IP address of the NetQ server or NetQ Appliance
+- port (default): 32708
+<p> </p>
+Your YAML configuration file should be similar to this:
 
-    ```
-    netq-cli:
-    netq-user: admin@company.com
-    port: 443
-    premises: datacenterwest
-    server: api.netq.cumulusnetworks.com
-    ```
+```
+netq-cli:
+netq-user: admin@company.com
+port: 32708
+server: 192.168.0.254
+```
+
+{{< /tab >}}
+
+{{< tab "Cloud Deployments" >}}
+
+Specify the following parameters:
+
+- netq-user: User who can access the CLI
+- server: api.netq.cumulusnetworks.com
+- port (default): 443
+- premises: Name of premises you want to query
+<p> </p>
+Your YAML configuration file should be similar to this:
+
+```
+netq-cli:
+netq-user: admin@company.com
+port: 443
+premises: datacenterwest
+server: api.netq.cumulusnetworks.com
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}

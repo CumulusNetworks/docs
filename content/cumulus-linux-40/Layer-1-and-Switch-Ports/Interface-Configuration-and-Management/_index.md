@@ -1071,9 +1071,11 @@ You cannot purge existing addresses on interfaces with multiple `iface` stanzas.
 For `sysctl` commands in the `pre-up`, `up`, `post-up`, `pre-down`, `down`, and `post-down` lines that use the
 `$IFACE` variable, if the interface name contains a dot (.), `ifupdown2` does not change the name to work with `sysctl`. For example, the interface name `bridge.1` is not converted to `bridge/1`.
 
-### Long Interface Names
+### Interface Name Limitations
 
-Interface names can be a maximum of 15 characters in length and you cannot use a number as the first character. Longer interface names might result in errors. To resolve long interface name issues, remove the interface from the `/etc/network/interfaces` file, then restart `networking.service`.
+The Linux kernel limits interface names to 15 characters in length and the first character cannot be a number. In addition, any name that matches with the regular expression `.{0,13}\-v.*` is not supported.
+
+If you encounter issues, remove the interface name from the `/etc/network/interfaces` file, then restart the `networking.service`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces

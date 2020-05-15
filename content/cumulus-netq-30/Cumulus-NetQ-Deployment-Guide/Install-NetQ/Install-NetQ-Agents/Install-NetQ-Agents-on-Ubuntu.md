@@ -57,7 +57,9 @@ If NTP is not already installed and configured, follow these steps:
 
 2. Configure the network time server.
 
-   <details><summary>Use NTP Configuration File</summary>
+   {{< tabs "TabID0" >}}
+
+{{< tab "Use NTP Configuration File" >}}
 
    1. Open the `/etc/ntp.conf` file in your text editor of choice.
 
@@ -68,9 +70,9 @@ If NTP is not already installed and configured, follow these steps:
           root@ubuntu:~# sudo systemctl enable ntp
           root@ubuntu:~# sudo systemctl start ntp
 
-   {{%notice tip%}}
-If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
-   {{%/notice%}}
+   {{<notice tip>}}
+If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
+   {{</notice>}}
 
    4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 
@@ -82,8 +84,9 @@ If you are running NTP in your out-of-band management network with VRF, specify 
           2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
           \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
-   </details>
-   <details><summary>Use Chrony (Ubuntu 18.04 only)</summary>
+   {{< /tab >}}
+
+   {{< tab "Use Chrony (Ubuntu 18.04 only)" >}}
 
    1. Install chrony if needed.
 
@@ -149,7 +152,10 @@ If you are running NTP in your out-of-band management network with VRF, specify 
           Root dispersion : 0.001234590 seconds
           Update interval : 115.2 seconds
           Leap status     : Normal
-</details>
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Obtain NetQ Agent Software Package
 
@@ -165,31 +171,38 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
 
 2. Add the Ubuntu repository:
 
-    <details><summary>Ubuntu 16.04</summary>
+    {{< tabs "TabID2" >}}
+{{< tab "Ubuntu 16.04" >}}
 
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
 
-    ```
-    root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
-    ...
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
-    ...
-    ```
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
+...
+```
 
-    </details>
-    <details><summary>Ubuntu 18.04</summary>
+{{< /tab >}}
 
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
+{{< tab "Ubuntu 18.04" >}}
 
-        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
-        ...
-        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
-        ...
-    </details>
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
 
-    {{%notice note%}}
-The use of `netq-latest` in these examples means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.4` - use that instead.
-    {{%/notice%}}
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+...
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+    {{<notice note>}}
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-2.4</code> - use that instead.
+    {{</notice>}}
 
 ## Install NetQ Agent on an Ubuntu Server
 

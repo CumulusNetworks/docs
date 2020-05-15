@@ -70,9 +70,9 @@ If NTP is not already installed and configured, follow these steps:
           root@ubuntu:~# sudo systemctl enable ntp
           root@ubuntu:~# sudo systemctl start ntp
 
-   {{%notice tip%}}
-If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
-   {{%/notice%}}
+   {{<notice tip>}}
+If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
+   {{</notice>}}
 
    4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 
@@ -200,9 +200,9 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 
 {{< /tabs >}}
 
-    {{%notice note%}}
-The use of `netq-latest` in these examples means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.4` - use that instead.
-{{%/notice%}}
+    {{<notice note>}}
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-2.4</code> - use that instead.
+    {{</notice>}}
 
 ## Install NetQ Agent on an Ubuntu Server
 

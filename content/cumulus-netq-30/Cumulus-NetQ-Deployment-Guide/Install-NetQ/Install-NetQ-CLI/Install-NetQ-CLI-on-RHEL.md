@@ -18,9 +18,9 @@ For servers running RHEL or CentOS, you need to:
 - Install and configure NTP, if needed
 - Obtain NetQ software packages
 
-{{%notice note%}}
-If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so `apt-get` can access the software package in the Cumulus Networks repository.
-{{%/notice%}}
+{{<notice note>}}
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the Cumulus Networks repository.
+{{</notice>}}
 
 ### Verify Service Package Versions
 
@@ -68,9 +68,9 @@ If NTP is not already installed and configured, follow these steps:
     root@rhel7:~# sudo systemctl start ntp
     ```
 
-   {{%notice tip%}}
-If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
-   {{%/notice%}}
+   {{<notice tip>}}
+If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
+   {{</notice>}}
 
 4.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 
@@ -160,9 +160,9 @@ root@rhel7:~# sudo netq config add cli server 192.168.1.0
 root@rhel7:~# sudo netq config restart cli
 ```
 
-{{%notice tip%}}
+{{<notice note>}}
 If you have a server cluster deployed, use the IP address of the master server.
-{{%/notice%}}
+{{</notice>}}
 
 {{< /tab >}}
 
@@ -186,13 +186,15 @@ To generate AuthKeys:
 
 6. Copy these keys to a safe place.
 
-    {{%notice info%}}
-The secret key is only shown once. If you don't copy these, you will need to regenerate them and reconfigure CLI access.
+    {{<notice info>}}
+The secret key is only shown once. If you do not copy these, you will need to regenerate them and reconfigure CLI access.
+    {{</notice>}}
 
+{{<notice tip>}}
 You can also save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
 
-- store the file wherever you like, for example in */home/cumulus/* or */etc/netq*
-- name the file whatever you like, for example *credentials.yml*, *creds.yml*, or *keys.yml*
+- store the file wherever you like, for example in <em>/home/cumulus/</em> or <em>/etc/netq</em>
+- name the file whatever you like, for example <em>credentials.yml</em>, <em>creds.yml</em>, or <em>keys.yml</em>
 
 BUT, the file must have the following format:
 
@@ -200,7 +202,8 @@ BUT, the file must have the following format:
 access-key: <user-access-key-value-here>
 secret-key: <user-secret-key-value-here>
 ```
-    {{%/notice%}}
+
+{{</notice>}}
 
 7. Now that you have your AuthKeys, use the following command to configure the CLI:
 
@@ -232,9 +235,9 @@ secret-key: <user-secret-key-value-here>
     Restarting NetQ CLI... Success!
     ```
 
-    {{%notice tip%}}
+    {{<notice tip>}}
 Rerun this command if you have multiple premises and want to query a different premises.
-    {{%/notice%}}
+    {{</notice>}}
 
 {{< /tab >}}
 
@@ -252,30 +255,48 @@ You can configure the NetQ CLI in the `netq.yml` configuration file contained in
 
 2. Locate the *netq-cli* section, or add it.
 
-3. Set the parameters for the CLI as follows:
+3. Set the parameters for the CLI.
 
-    | Parameter | On-premises | Cloud |
-    | ----| ---- | ---- |
-    | netq-user | User who can access the CLI | User who can access the CLI |
-    | server | IP address of the NetQ server or NetQ Appliance | api.netq.cumulusnetworks.com |
-    | port (default) | 32708 | 443 |
-    | premises | NA | Name of premises you want to query |
+    {{< tabs "TabID1" >}}
 
-    An on-premises configuration should be similar to this:
+{{< tab "On-premises Deployments" >}}
 
-    ```
-    netq-cli:
-    netq-user: admin@company.com
-    port: 32708
-    server: 192.168.0.254
-    ```
+Specify the following parameters:
 
-    A cloud configuration should be similar to this:
+- netq-user: User who can access the CLI
+- server: IP address of the NetQ server or NetQ Appliance
+- port (default): 32708
+<p> </p>
+Your YAML configuration file should be similar to this:
 
-    ```
-    netq-cli:
-    netq-user: admin@company.com
-    port: 443
-    premises: datacenterwest
-    server: api.netq.cumulusnetworks.com
-    ```
+```
+netq-cli:
+netq-user: admin@company.com
+port: 32708
+server: 192.168.0.254
+```
+
+{{< /tab >}}
+
+{{< tab "Cloud Deployments" >}}
+
+Specify the following parameters:
+
+- netq-user: User who can access the CLI
+- server: api.netq.cumulusnetworks.com
+- port (default): 443
+- premises: Name of premises you want to query
+<p> </p>
+Your YAML configuration file should be similar to this:
+
+```
+netq-cli:
+netq-user: admin@company.com
+port: 443
+premises: datacenterwest
+server: api.netq.cumulusnetworks.com
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}

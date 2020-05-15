@@ -70,6 +70,7 @@ def request_pdf(product):
         "document_url": base_url + "{}/pdf/".format(product.lower()),
         "document_type": "pdf",
         "test": TEST,
+        "name": product,
         "javascript": True,
         "prince_options": {
             "http_user": http_user,

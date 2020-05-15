@@ -145,7 +145,9 @@ Two methods are available for configuring the NetQ CLI on a switch:
 
 The steps to configure the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment. Follow the instructions for your deployment type.
 
-<details><summary>Configure the CLI for On-premises Deployments</summary>
+{{< tabs "TabID0" >}}
+
+{{< tab "On-premises Deployments" >}}
 
 Use the following command to configure the CLI:
 
@@ -166,8 +168,9 @@ root@rhel7:~# sudo netq config restart cli
 If you have a server cluster deployed, use the IP address of the master server.
 {{%/notice%}}
 
-</details>
-<details><summary>Configure the CLI for Cloud Deployments</summary>
+{{< /tab >}}
+
+{{< tab "Cloud Deployments" >}}
 
 To access and configure the CLI on your NetQ Platform or NetQ Cloud Appliance, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to Cumulus NetQ!*
 
@@ -237,7 +240,9 @@ Restarting NetQ CLI... Success!
 Rerun this command if you have multiple premises and want to query a different premises.
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Configure NetQ CLI Using Configuration File
 

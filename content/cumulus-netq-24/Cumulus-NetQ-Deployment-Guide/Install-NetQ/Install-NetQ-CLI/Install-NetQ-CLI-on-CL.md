@@ -25,7 +25,9 @@ Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
 
 *Note that NetQ has a separate repository from Cumulus Linux.*
 
-<details><summary>Cumulus Linux 3.x</summary>
+{{< tabs "TabID0" >}}
+
+{{< tab "Cumulus Linux 3.x" >}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
@@ -38,8 +40,9 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.4
 The repository `deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
 {{%/notice%}}
 
-</details>
-<details><summary>Cumulus Linux 4.x</summary>
+{{< /tab >}}
+
+{{< tab "Cumulus Linux 4.x" >}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
@@ -51,7 +54,10 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-2.4
 {{%notice tip%}}
 The repository `deb http://apps3.cumulusnetworks.com/repos/deb     CumulusLinux-4 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
 {{%/notice%}}
-</details>
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 2. Update the local `apt` repository and install the software on the switch.
 
@@ -88,7 +94,9 @@ Two methods are available for configuring the NetQ CLI on a switch:
 
 The steps to configure the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment. Follow the instructions for your deployment type.
 
-<details><summary>Configuring the CLI for On-premises Deployments</summary>
+{{< tabs "TabID2" >}}
+
+{{< tab "On-premises Deployments" >}}
 
 Use the following command to configure the CLI:
 
@@ -109,8 +117,9 @@ cumulus@switch:~$ sudo netq config restart cli
 If you have a server cluster deployed, use the IP address of the master server.
 {{%/notice%}}
 
-</details>
-<details><summary>Configuring the CLI for Cloud Deployments</summary>
+{{< /tab >}}
+
+{{< tab "Cloud Deployments" >}}
 
 To access and configure the CLI on your NetQ Platform or NetQ Cloud Appliance, you must have your username and password to access the NetQ UI to generate AuthKeys. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were provided by Cumulus Networks via an email titled *Welcome to Cumulus NetQ!*
 
@@ -180,7 +189,9 @@ Restarting NetQ CLI... Success!
 If you have multiple premises and want to query data from a different premises than you originally configured, rerun the `netq config add cli server` command with the desired premises name. You can only view the data for one premises at a time with the CLI.
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Configure NetQ CLI Using a Configuration File
 

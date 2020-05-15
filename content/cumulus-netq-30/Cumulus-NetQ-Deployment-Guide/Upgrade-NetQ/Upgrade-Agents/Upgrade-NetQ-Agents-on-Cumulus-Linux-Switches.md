@@ -13,20 +13,22 @@ To upgrade the NetQ Agent:
 2. Update and install the new NetQ debian package.
 
     {{< tabs "TabID0" >}}
-{{< tab "For Switches and Hosts Running Cumulus Linux or Ubuntu" >}}
 
-    ```
-    sudo apt-get update
-    sudo apt-get install -y netq-agent
-    ```
+{{< tab "Cumulus Linux Switches or Ubuntu Hosts " >}}
 
-    {{< /tab >}}
-    {{< tab "For Hosts Running RHEL or CentOS" >}}
+```
+sudo apt-get update
+sudo apt-get install -y netq-agent
+```
 
-    ```
-    sudo yum update
-    sudo yum install netq-agent
-    ```
+{{< /tab >}}
+
+{{< tab "RHEL or CentOS Hosts" >}}
+
+```
+sudo yum update
+sudo yum install netq-agent
+```
 
 {{< /tab >}}
 

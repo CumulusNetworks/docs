@@ -174,31 +174,35 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
     {{< tabs "TabID2" >}}
 {{< tab "Ubuntu 16.04" >}}
 
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
 
-    ```
-    root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
-    ...
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
-    ...
-    ```
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
+...
+```
 
-    {{< /tab >}}
-    {{< tab "Ubuntu 18.04" >}}
+{{< /tab >}}
 
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
+{{< tab "Ubuntu 18.04" >}}
 
-        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
-        ...
-        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
-        ...
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
+
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+...
+```
+
 {{< /tab >}}
 
 {{< /tabs >}}
 
     {{%notice note%}}
 The use of `netq-latest` in these examples means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.4` - use that instead.
-    {{%/notice%}}
+{{%/notice%}}
 
 ## Install NetQ Agent on an Ubuntu Server
 

@@ -46,13 +46,20 @@
     }
 
     window.onload = function() {
-        (async () => {
-            expand_tabs();
-            replace_url();
-            // Auto expand all of the code folding "<details>" tags.
-            $( "details" ).attr("open", "true");
-            finished = true;
-        })();
+        expand_tabs();
+        replace_url();
+        // Auto expand all of the code folding "<details>" tags.
+        $( "details" ).attr("open", "true");
+        sleep(5000)
+        finished = true;
+    }
+
+    function sleep(milliseconds) {
+        const date = Date.now();
+        let currentDate = null;
+        do {
+            currentDate = Date.now();
+        } while (currentDate - date < milliseconds);
     }
 
     function docraptorJavaScriptFinished(){

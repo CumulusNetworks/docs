@@ -416,7 +416,7 @@ monitored nodes and their configuration information, as follows:
 For simplicity, all of the endpoint APIs are combined into a single
 json-formatted file. There have been no changes to the file in the NetQ 2.3.0 release.
 
-<details><summary>netq-231.json</summary>
+{{< expand "netq-231.json"  >}}
 
 ```
 {
@@ -4095,3 +4095,5 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
 }
 
 ```
+
+{{< /expand >}}

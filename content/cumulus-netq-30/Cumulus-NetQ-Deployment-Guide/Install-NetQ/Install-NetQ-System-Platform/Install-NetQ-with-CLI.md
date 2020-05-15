@@ -16,111 +16,126 @@ To install NetQ:
 
 2. Install the software.
 
-    <details><summary>For On-premises, Single Server Deployment</summary>
+    {{< tabs "TabID0" >}}
 
-    Run the following command on your NetQ platform server or NetQ Appliance:
+{{< tab "On-premises, Single Server Deployment" >}}
 
-    ```
-    cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-3.0.0.tgz
-    ```
+Run the following command on your NetQ platform server or NetQ Appliance:
+
+```
+cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-3.0.0.tgz
+```
 
     {{<notice tip>}}
 You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface &lt;ifname&gt;</code> above.
-    {{</notice>}}
+{{</notice>}}
 
-    Run the `netq show opta-health` command to verify all applications are operating properly. Please allow 10-15 minutes for all applications to come up and report their status.
+Run the `netq show opta-health` command to verify all applications are operating properly. Please allow 10-15 minutes for all applications to come up and report their status.
 
-    ```
-    cumulus@hostname:~$ netq show opta-health
-    Application                                            Status    Namespace      Restarts    Timestamp
-    -----------------------------------------------------  --------  -------------  ----------  ------------------------
-    cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2020
-    cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2020
-    kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2020
-    kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2020
-    ...
-    ```
-
-    {{<notice note>}}
-    If any of the applications or services display Status as DOWN after 30 minutes, open a support ticket and attach the output of the <code>opta-support</code> command.
-    {{</notice>}}
-    </details>
-    <details><summary>For On-premises, Server Cluster Deployment</summary>
-
-    Run the following commands on your *master* node, using the IP addresses of your worker nodes:
-
-    ```
-    cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-3.0.0.tgz workers <worker-1-ip> <worker-2-ip>
-    ```
-
-    {{<notice tip>}}
-You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface eth0</code> above.
-    {{</notice>}}
-
-    Run the `netq show opta-health` command to verify all applications are operating properly. Please allow 10-15 minutes for all applications to come up and report their status.
-
-    ```
-    cumulus@hostname:~$ netq show opta-health
-    Application                                            Status    Namespace      Restarts    Timestamp
-    -----------------------------------------------------  --------  -------------  ----------  ------------------------
-    cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2020
-    cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2020
-    kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2020
-    kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2020
-    netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2020
-    ...
-    ```
+```
+cumulus@hostname:~$ netq show opta-health
+Application                                            Status    Namespace      Restarts    Timestamp
+-----------------------------------------------------  --------  -------------  ----------  ------------------------
+cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2020
+cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2020
+kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2020
+kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2020
+netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2020
+...
+```
 
     {{<notice note>}}
-    If any of the applications or services display Status as DOWN after 30 minutes, open a support ticket and attach the output of the <code>opta-support</code> command.
-    {{</notice>}}
-    </details>
-    <details><summary>For Cloud, Single Server Deployment</summary>
+If any of the applications or services display Status as DOWN after 30 minutes, open a support ticket and attach the output of the <code>opta-support</code> command.
+{{</notice>}}
 
-    Run the following command on your NetQ Cloud Appliance with the `config-key` sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account."
+{{< /tab >}}
 
-    ```
-    cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-3.0.0-opta.tgz config-key <your-config-key-from-email> proxy-host <proxy-hostname> proxy-port <proxy-port>
-    ```
+{{< tab "On-premises, Server Cluster Deployment" >}}
 
-    {{<notice tip>}}
-You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface eth0</code> above.
-    {{</notice>}}
+Run the following commands on your *master* node, using the IP addresses of your worker nodes:
 
-    Run the `netq show opta-health` command to verify all applications are operating properly.
-
-    ```
-    cumulus@hostname:~$ netq show opta-health
-    OPTA is healthy
-    ```
-    </details>
-    <details><summary>For Cloud, Server Cluster Deployment</summary>
-
-    Run the following commands on your *master* NetQ Cloud Appliance with the `config-key` sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account."
-
-    ```
-    cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-3.0.0-opta.tgz config-key <your-config-key-from-email> workers <worker-1-ip> <worker-2-ip> proxy-host <proxy-hostname> proxy-port <proxy-port>
-    ```
+```
+cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-3.0.0.tgz workers <worker-1-ip> <worker-2-ip>
+```
 
     {{<notice tip>}}
 You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface eth0</code> above.
-    {{</notice>}}
+{{</notice>}}
 
-    Run the `netq show opta-health` command to verify all applications are operating properly.
+Run the `netq show opta-health` command to verify all applications are operating properly. Please allow 10-15 minutes for all applications to come up and report their status.
 
-    ```
-    cumulus@hostname:~$ netq show opta-health
-    OPTA is healthy
-    ```
-    </details>
+```
+cumulus@hostname:~$ netq show opta-health
+Application                                            Status    Namespace      Restarts    Timestamp
+-----------------------------------------------------  --------  -------------  ----------  ------------------------
+cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2020
+cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2020
+kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2020
+kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2020
+netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2020
+...
+```
+
+    {{<notice note>}}
+If any of the applications or services display Status as DOWN after 30 minutes, open a support ticket and attach the output of the <code>opta-support</code> command.
+{{</notice>}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+    {{< tabs "TabID01" >}}
+
+{{< tab "Cloud, Single Server Deployment" >}}
+
+Run the following command on your NetQ Cloud Appliance with the `config-key` sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account."
+
+```
+cumulus@<hostname>:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-3.0.0-opta.tgz config-key <your-config-key-from-email> proxy-host <proxy-hostname> proxy-port <proxy-port>
+```
+
+    {{<notice tip>}}
+You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface eth0</code> above.
+{{</notice>}}
+
+Run the `netq show opta-health` command to verify all applications are operating properly.
+
+```
+cumulus@hostname:~$ netq show opta-health
+OPTA is healthy
+```
+
+{{< /tab >}}
+
+{{< tab "Cloud, Server Cluster Deployment" >}}
+
+Run the following commands on your *master* NetQ Cloud Appliance with the `config-key` sent by Cumulus Networks in an email titled "A new site has been added to your Cumulus NetQ account."
+
+```
+cumulus@<hostname>:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-3.0.0-opta.tgz config-key <your-config-key-from-email> workers <worker-1-ip> <worker-2-ip> proxy-host <proxy-hostname> proxy-port <proxy-port>
+```
+
+    {{<notice tip>}}
+You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address&gt;</code> in place of <code>interface eth0</code> above.
+{{</notice>}}
+
+Run the `netq show opta-health` command to verify all applications are operating properly.
+
+```
+cumulus@hostname:~$ netq show opta-health
+OPTA is healthy
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}

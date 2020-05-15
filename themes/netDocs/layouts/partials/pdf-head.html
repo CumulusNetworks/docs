@@ -43,16 +43,16 @@
             $(this).find( $('.book-tabs .book-tabs-content') ).show();
             $(this).find( 'input[type="radio"]' ).attr('name', Math.floor(Math.random() * 100000000000000));
         });
-
-        finished = true;
     }
 
     window.onload = function() {
-        replace_url();
-        expand_tabs();
-
-        // Auto expand all of the code folding "<details>" tags.
-        $( "details" ).attr("open", "true");
+        (async () => {
+            expand_tabs();
+            replace_url();
+            // Auto expand all of the code folding "<details>" tags.
+            $( "details" ).attr("open", "true");
+            finished = true;
+        })();
     }
 
     function docraptorJavaScriptFinished(){

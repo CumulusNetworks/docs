@@ -198,12 +198,6 @@ iface mgmt
 <td></td>
 </tr>
 <tr>
-<td>CM-29409</td>
-<td><p>When PFC is configured, the control queue does not take priority over other classes and traffic gets dropped.</p></td>
-<td>4.1.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29385</td>
 <td><p>The following vulnerability affects the openssl package:<br/>
 CVE-2020-1967: Bernd Edlinger discovered that malformed data passed to the SSL_check_chain() function during or after a TLS 1.3 handshake could cause a NULL dereference, resulting in denial of service.<br/>

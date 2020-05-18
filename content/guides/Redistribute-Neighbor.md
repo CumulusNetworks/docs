@@ -5,28 +5,28 @@ product: Cumulus Networks Guides
 version: "1.0"
 draft: true
 ---
-If you are looking to modernise your campus network to make it more resilient and maximise utilisation, and to eliminate the use of the Spanning Tree Protocol (STP), consider using the Cumulus Linux {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-3/Redistribute-Neighbor/" text="Redistribute Neighbor">}} feature.
+If you are looking to modernise your campus network to make it more resilient and maximize utilisation, and to eliminate the use of the Spanning Tree Protocol (STP), consider using the Cumulus Linux layer 3 {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-3/Redistribute-Neighbor/" text="Redistribute Neighbor">}} feature.
 
-Redistribute neighbor redistributes the Address Resolution Protocol (ARP) table (IP Neighbor Table in Linux operating systems) into a dynamic routing protocol of your choice, such as OSPF or BGP. The host routes continue to be advertised into the routing domain as /32 prefix routes. Routing protocols can achieve reachability by routing on the Longest Prefix Match (LPM) based on these /32 host routes.
+Redistribute neighbor provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by redistributing the Address Resolution Protocol (ARP) table (Linux IP neighbor table) into a dynamic routing protocol, such as OSPF or BGP. The host routes continue to be advertised into the routing domain as /32 prefix routes. Routing protocols can achieve reachability by routing on the Longest Prefix Match (LPM) based on these /32 host routes.
 
-Redistribute neighbor provides the following advantages:
+Redistribute neighbor eliminates the requirement to stretch a layer 2 domain across the entire campus network or across more than one switch. Limiting your layer 2 domain between the access switch port and the directly-connected host eliminates STP from the entire network. Without a stretched layer 2 domain, BUM traffic is limited to the access switch port, where the host is directly connected.
 
-- Eliminates the requirement to stretch a layer 2 domain across the entire campus network or more than one switch. Limiting your layer 2 domain between the access switch port and the directly-connected host eliminates STP from the entire network. Without a stretched layer 2 domain, BUM traffic is limited to the access switch port, where the host is directly connected.
-- The access switch has multiple uplink ports. These uplink ports and the rest of the core network become layer 3, which provides faster convergence, greater resiliency, and packet forwarding intelligence. In addition, using Equal Cost Multipath (ECMP) on all layer 3 links takes advantage of the full available bandwidth. Coupling with features, such as BFD, provides essential sub-second failover and forwarding reconvergence on the core layer 3 links.
-- Using {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered-interfaces" text="BGP unnumbered ">}} for all layer 3 routing protocol links provides efficiency, IP address conservation and, reduces IP address management. Using BGP in the core enables you to achieve traffic engineering with route maps and prefix lists to manipulate routing and forwarding paths with the BGP attributes for certain prefixes and hosts.
+The multiple uplink ports on the access switch and the rest of the core network become layer 3, which provides faster convergence, greater resiliency, and packet forwarding intelligence. In addition, using Equal Cost Multipath (ECMP) on all layer 3 links lets you take advantage of the full available bandwidth. Coupling with features, such as BFD, helps you achieve essential sub-second failover and forwarding reconvergence on the core layer 3 links.
 
-To optimise performance, consider subnets. For example, when you have multiple buildings across the campus, you can allocate a /24 IP address block to a building, then another separate IP address block of /24 network addresses to another building, and so on. You can then perform route summarisation at the egress links of the building aggregation switches to summarise the subset /32 network prefixes and networks when advertising to the network Core.
+Using {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered-interfaces" text="BGP unnumbered ">}} for all layer 3 routing protocol links provides efficiency, IP address conservation, and reduces IP address management. Using BGP in the core enables you to achieve traffic engineering with route maps and prefix lists to manipulate routing and forwarding paths with the BGP attributes for certain prefixes and hosts.
 
-The following illustration shows a core network fabric with building A connected. The design closely reflects a multi data center spine and leaf fabric design in which there is a spine and leaf fabric for the network core and for each building:
+Using subnets optimises performance. For example, when you have multiple buildings across the campus, you can allocate a /24 IP address block to a building, then another separate IP address block of /24 network addresses to another building, and so on. You can then perform route summarisation at the egress links of the building aggregation switches to summarise the subset /32 network prefixes and networks when advertising to the network core.
+
+The following illustration shows a core network fabric with building A connected. The design closely reflects a multi data center spine and leaf fabric design where there is a spine and leaf fabric for the network core and for each building:
 
 {{<img src="/images/guides/redis-neighbor.png" >}}
 
 In the above illustrstion:
 
 - Four hosts are connected to four separate switches (these switches can be inside a closet or connecting hosts on a floor).
-- The switches then aggregate with separate layer 3 links to aggregation switches with BGP Unnumbered running between them. These aggregation switches aggregate to a core spine and leaf fabric.
+- The switches then aggregate with separate layer 3 links to aggregation switches with BGP unnumbered running between them. These aggregation switches aggregate to a core spine and leaf fabric.
 
-The routing configuration for the access swtiches Acc-Sw1 and Acc-Sw2 is shown here:
+The routing configuration for the access swtiches (Acc-Sw1 and Acc-Sw2) is shown here:
 
 {{< tabs "TABID01 ">}}
 
@@ -91,7 +91,7 @@ cumulus@host_C:~$ 10.1.3.101 show eth1
 
 In this design, Proxy ARP is configured on the VLAN attached to the host so that the switch responds to all ARP requests when a host sends an ARP request for anything it is trying to reach on its subnet.
 
-If you have many switches and need this VLAN across all the switches, you can specify a unique IP address on all the SVIs in the subnet, or you can use the anycast gateway with VRR. To conserve IP addresses, you can repeat physical IP addresses on a switch or switch pair (if you use MLAG).
+If you have many switches and need the VLAN across all the switches, you can specify a unique IP address on all the SVIs in the subnet, or you can use the anycast gateway with VRR. To conserve IP addresses, you can repeat physical IP addresses on a switch or switch pair (if you use MLAG).
 
 The IP neighbor table on the hosts and the switches look like this:
 
@@ -269,9 +269,7 @@ Larger floor or closet in a building with limited fiber runs:
 
 ILLUSTRATION
 
-## Segmentation
-
 In this deployment, you can perform segmentation in one of two ways:
 
 - Use VRF (depending on the scale and design)
-- Use 802.1x Dynamic ACL (DACL) with a NAC. This option is more suitable and scalable in this design). A host joining the network can be authenticated and policies pushed to the access switch through `iptable` rules or (access control list (ACL)) to restrict the network resource access of that particular host.
+- Use 802.1x Dynamic ACL (DACL) with a NAC. This option is more suitable and scalable in this design. A host joining the network can be authenticated and policies pushed to the access switch through `iptable` rules or (access control list (ACL) to restrict the network resource access of that particular host.

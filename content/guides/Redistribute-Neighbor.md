@@ -9,6 +9,8 @@ If you are looking to modernise your campus network to make it more resilient an
 
 Redistribute neighbor provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by redistributing the Address Resolution Protocol (ARP) table (Linux IP neighbor table) into a dynamic routing protocol, such as OSPF or BGP. The host routes continue to be advertised into the routing domain as /32 prefix routes. Routing protocols can achieve reachability by routing on the Longest Prefix Match (LPM) based on these /32 host routes.
 
+## Redistribute Neighbor Benefits
+
 Redistribute neighbor eliminates the requirement to stretch a layer 2 domain across the entire campus network or across more than one switch. Limiting your layer 2 domain between the access switch port and the directly-connected host eliminates STP from the entire network. Without a stretched layer 2 domain, BUM traffic is limited to the access switch port, where the host is directly connected.
 
 The multiple uplink ports on the access switch and the rest of the core network become layer 3, which provides faster convergence, greater resiliency, and packet forwarding intelligence. In addition, using Equal Cost Multipath (ECMP) on all layer 3 links lets you take advantage of the full available bandwidth. Coupling with features, such as BFD, helps you achieve essential sub-second failover and forwarding reconvergence on the core layer 3 links.
@@ -17,16 +19,18 @@ Using {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-3/B
 
 Using subnets optimises performance. For example, when you have multiple buildings across the campus, you can allocate a /24 IP address block to a building, then another separate IP address block of /24 network addresses to another building, and so on. You can then perform route summarisation at the egress links of the building aggregation switches to summarise the subset /32 network prefixes and networks when advertising to the network core.
 
+## Example Configuration
+
 The following illustration shows a core network fabric with building A connected. The design closely reflects a multi data center spine and leaf fabric design where there is a spine and leaf fabric for the network core and for each building:
 
-{{<img src="/images/guides/redis-neighbor.png" >}}
+{{<img src="/images/guides/campus-redis-neigh.png" >}}
 
 In the above illustrstion:
 
 - Four hosts are connected to four separate switches (these switches can be inside a closet or connecting hosts on a floor).
 - The switches then aggregate with separate layer 3 links to aggregation switches with BGP unnumbered running between them. These aggregation switches aggregate to a core spine and leaf fabric.
 
-The routing configuration for the access swtiches (Acc-Sw1 and Acc-Sw2) is shown here:
+The routing configuration for the access switches (Acc-Sw1 and Acc-Sw2) is shown here:
 
 {{< tabs "TABID01 ">}}
 
@@ -67,7 +71,11 @@ net add bgp ipv4 unicast redistribute table 10
 
 {{< /tabs >}}
 
-To verify connectivity between Host A (10.1.3.101) and Host C (10.1.3.103), which are on the same subnet, you can run these commands:
+To verify connectivity between Host A (10.1.3.101) and Host C (10.1.3.103), which are on the same subnet, run these commands:
+
+{{< tabs "TABID02 ">}}
+
+{{< tab "host_A ">}}
 
 ```
 cumulus@host_A:~$ 10.1.3.103 show eth1
@@ -79,6 +87,10 @@ cumulus@host_A:~$ 10.1.3.103 show eth1
        valid_lft forever preferred_lft forever
 ```
 
+{{< /tab >}}
+
+{{< tab "host_C ">}}
+
 ```
 cumulus@host_C:~$ 10.1.3.101 show eth1
 7: eth1: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 9000 qdisc noqueue state UP group default qlen 1000
@@ -89,27 +101,61 @@ cumulus@host_C:~$ 10.1.3.101 show eth1
        valid_lft forever preferred_lft forever
 ```
 
+{{< /tab >}}
+
+{{< /tabs >}}
+
 In this design, Proxy ARP is configured on the VLAN attached to the host so that the switch responds to all ARP requests when a host sends an ARP request for anything it is trying to reach on its subnet.
 
 If you have many switches and need the VLAN across all the switches, you can specify a unique IP address on all the SVIs in the subnet, or you can use the anycast gateway with VRR. To conserve IP addresses, you can repeat physical IP addresses on a switch or switch pair (if you use MLAG).
 
 The IP neighbor table on the hosts and the switches look like this:
 
+{{< tabs "TABID03 ">}}
+
+{{< tab "host_A ">}}
+
 ```
 cumulus@host_A:~$ sudo ip neighbor show | grep 10.1.3.103
 10.1.3.103 dev eth1 lladdr 44:39:39:ff:00:13 REACHABLE
+```
 
+{{< /tab >}}
+
+{{< tab "host_C ">}}
+
+```
 cumulus@host_C:~$ sudo ip neigh show | grep 10.1.3.101
 10.1.3.101 dev uplink lladdr 44:38:39:00:00:74 REACHABLE
+```
 
+{{< /tab >}}
+
+{{< tab "Acc-Sw1 ">}}
+
+```
 cumulus@Acc-Sw1:mgmt-vrf:~# sudo ip neigh show 10.1.3.101
 10.1.3.101 dev vlan13 lladdr 44:38:39:00:00:75 REACHABLE
+```
 
+{{< /tab >}}
+
+{{< tab "Acc-Sw3 ">}}
+
+```
 cumulus@Acc-Sw3:mgmt-vrf:~# sudo ip neigh show 10.1.3.103
 10.1.3.103 dev vlan13 lladdr 44:38:39:00:00:73 REACHABLE
 ```
 
+{{< /tab >}}
+
+{{< /tabs >}}
+
 The routing table on the access and aggregation switches look like this:
+
+{{< tabs "TABID04 ">}}
+
+{{< tab "Acc-Sw1 ">}}
 
 ```
 cumulus@Acc-Sw1:mgmt-vrf:~# net show bgp 10.1.3.103
@@ -147,7 +193,13 @@ FIB entry for 10.1.3.103
 10.1.3.103  proto bgp  metric 20
         nexthop via 169.254.0.1  dev swp19 weight 1 onlink
         nexthop via 169.254.0.1  dev swp20 weight 1 onlink
+```
 
+{{< /tab >}}
+
+{{< tab "BAagg-Sw1 ">}}
+
+```
 cumulus@BAagg-Sw1:mgmt-vrf:~$ net show bgp 10.1.3.101
 BGP routing table entry for 10.1.3.101/32
 Paths: (1 available, best #1, table default)
@@ -213,8 +265,11 @@ FIB entry for 10.1.3.103
 10.1.3.103  proto bgp  metric 20
         nexthop via 169.254.0.1  dev swp21 weight 1 onlink
         nexthop via 169.254.0.1  dev swp22 weight 1 onlink
-cumulus@BAagg-Sw1:mgmt-vrf:~$
 ```
+
+{{< /tab >}}
+
+{{< tab "Acc-Sw3 ">}}
 
 ```
 cumulus@Acc-Sw3:mgmt-vrf:~# net show bgp 10.1.3.101  
@@ -255,6 +310,10 @@ FIB entry for 10.1.3.101
         nexthop via 169.254.0.1  dev swp20 weight 1 onlink
 ```
 
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ## Restrictions and Limitations
 
 With existing campus networks, you need to consider current restrictions and limitations, such as switch stacking and limited fiber runs that make it difficult to transition to spine and leaf networks. If you have sufficient fiber runs, requirements for growth, scalability, redundancy, and resiliency with effective utilisation of uplinks, the spine and leaf architecture is ideal as packet forwarding is deterministic and predictable across the entire campus network.
@@ -263,11 +322,11 @@ If limitations exist, such as limited fiber runs available to a building, floor,
 
 Small floor or closet:
 
-ILLUSTRATION
+{{<img src="/images/guides/campus-small-closet.png" >}}
 
 Larger floor or closet in a building with limited fiber runs:
 
-ILLUSTRATION
+{{<img src="/images/guides/campus-large-floor.png" >}}
 
 In this deployment, you can perform segmentation in one of two ways:
 

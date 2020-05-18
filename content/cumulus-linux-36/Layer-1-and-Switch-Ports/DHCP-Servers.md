@@ -114,7 +114,7 @@ to assign an IP address through DHCP. The following provides an example:
 
     host myhost {
          ifname = "swp1" ;
-         fixed_address = 10.10.10.10 ;
+         fixed-address = 10.10.10.10 ;
     }
 
 ## Troubleshooting the Log from a DHCP Server

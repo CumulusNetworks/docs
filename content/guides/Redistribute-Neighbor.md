@@ -75,10 +75,10 @@ To verify connectivity between Host A (10.1.3.101) and Host C (10.1.3.103), whic
 
 {{< tabs "TABID02 ">}}
 
-{{< tab "host_A ">}}
+{{< tab "Host_A ">}}
 
 ```
-cumulus@host_A:~$ 10.1.3.103 show eth1
+cumulus@Host_A:~$ 10.1.3.103 show eth1
 4: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
     link/ether 44:38:39:00:00:75 brd ff:ff:ff:ff:ff:ff
     inet 10.1.3.101/24 scope global eth1
@@ -89,10 +89,10 @@ cumulus@host_A:~$ 10.1.3.103 show eth1
 
 {{< /tab >}}
 
-{{< tab "host_C ">}}
+{{< tab "Host_C ">}}
 
 ```
-cumulus@host_C:~$ 10.1.3.101 show eth1
+cumulus@Host_C:~$ 10.1.3.101 show eth1
 7: eth1: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 9000 qdisc noqueue state UP group default qlen 1000
     link/ether 44:38:39:00:00:73 brd ff:ff:ff:ff:ff:ff
     inet 10.1.3.103/24 brd 10.1.3.255 scope global eth1
@@ -113,19 +113,19 @@ The IP neighbor table on the hosts and the switches look like this:
 
 {{< tabs "TABID03 ">}}
 
-{{< tab "host_A ">}}
+{{< tab "Host_A ">}}
 
 ```
-cumulus@host_A:~$ sudo ip neighbor show | grep 10.1.3.103
+cumulus@Host_A:~$ sudo ip neighbor show | grep 10.1.3.103
 10.1.3.103 dev eth1 lladdr 44:39:39:ff:00:13 REACHABLE
 ```
 
 {{< /tab >}}
 
-{{< tab "host_C ">}}
+{{< tab "Host_C ">}}
 
 ```
-cumulus@host_C:~$ sudo ip neigh show | grep 10.1.3.101
+cumulus@Host_C:~$ sudo ip neigh show | grep 10.1.3.101
 10.1.3.101 dev uplink lladdr 44:38:39:00:00:74 REACHABLE
 ```
 

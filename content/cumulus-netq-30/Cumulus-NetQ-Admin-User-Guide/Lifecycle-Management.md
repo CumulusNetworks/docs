@@ -256,11 +256,17 @@ A count of the switches NetQ was able to discover and the Cumulus Linux versions
 
 {{<figure src="/images/netq/lcm-switches-card-300.png" width="400">}}
 
-To view the list of switches, click **Manage** on the Switches card.
+To view a list of all switches known to lifecycle management, click **Manage** on the Switches card.
 
 {{<figure src="/images/netq/lcm-switch-mgmt-list-300.png" width="700">}}
 
-Review the list, filtering as needed to determine if the switches you want to upgrade are included. If they are not listed, verify the switches have NetQ 2.4 or later Agents on them.
+Review the list, filtering as needed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}}) to determine if the switches you want to upgrade are included. 
+
+{{<notice tip>}}
+If you have more than one Cumulus Linux version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
+{{</notice>}}
+
+If the switches you are looking to upgrade are not present in the final list, verify the switches have NetQ 2.4 or later Agents on them.
 
 To verify the NetQ Agent version, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** in the **Network** section. Search for the switches of interest and confirm the applied version in the **Version** column. Upgrade any NetQ Agents if needed. Refer to {{<link title="Upgrade NetQ Agents">}} for instructions.
 
@@ -313,6 +319,24 @@ While role assignment is optional, using roles can prevent switches from becomin
 7. Continue selecting switches and assigning roles until most or all switches have roles assigned.
 
 A bonus of assigning roles to switches is that you can then filter the list of switches by their roles by clicking the appropriate tab.
+
+#### Change the Role of a Switch
+
+If you accidentally assign an incorrect role to a switch, it can easily be changed to the correct role.
+
+To change a switch role:
+
+1. Open the LCM dashboard.
+
+2. On the Switches card, click **Manage**.
+
+3. Select the switch with the incorrect role from the list.
+
+4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
+
+5. Select the correct role.
+
+6. Click **Assign**.
 
 ### Export List of Switches
 
@@ -483,7 +507,7 @@ To remove an existing snapshot:
 
 ## Cumulus Linux Upgrade
 
-The workflow for installation and upgrade of Cumulus Linux using LCM is to: select switches, choose options, run pre-checks, view job preview, begin job, monitor job, review snapshot comparison and analyze as needed.
+The workflow for installation and upgrade of Cumulus Linux using LCM is to: select switches, choose options, run pre-checks, view job preview, begin job, monitor job, review snapshot comparison and analyze as needed. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one of those jobs.
 
 {{<figure src="/images/netq/lcm-upgrade-workflow-300.png" width="700">}}
 
@@ -527,7 +551,7 @@ To install or upgrade switches:
 5. Give the upgrade job a name. This is required.
 
     {{<notice tip>}}
-    For best presentation, Cumulus Networks recommends keeping the name to a maximum of 20 characters when possible. The name can contain spaces and special characters. If you choose to use longer names, use the distinguishing part of the name at the beginning.
+    For best presentation, Cumulus Networks recommends keeping the name to a maximum of 22 characters when possible. The name can contain spaces and special characters. If you choose to use longer names, use the distinguishing part of the name at the beginning.
     {{</notice>}}
 
 6. Verify that the switches you selected are included, and that they have the correct IP address and roles assigned.

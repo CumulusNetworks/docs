@@ -96,9 +96,9 @@ In the example below, the front panel port interfaces swp1 thru swp4 are slaves 
 
 To create and configure a bond:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add bond` command. The example command below creates a bond called `bond0` with slaves swp1, swp2, swp3, and swp4:
 
@@ -108,11 +108,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file and add a stanza for the bond. The example below creates a bond called `bond0` with slaves swp1, swp2, swp3, and swp4:
 
@@ -131,7 +129,9 @@ Run the `ifreload -a` command to load the new configuration:
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -171,9 +171,9 @@ All slave interfaces within a bond have the same MAC address as the bond. Typica
 
 The configuration options for a bond are are described in the table below. To configure a bond:
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run `net add bond <bond-name> bond <option>`. The following example sets the bond mode for bond01 to `balance-xor`:
 
@@ -183,11 +183,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file and add the parameter to the bond stanza, then load the new configuration. The following example sets the bond mode for bond01 to `balance-xor`:
 
@@ -207,7 +205,9 @@ Run the `ifreload -a` command to load the new configuration:
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -231,9 +231,9 @@ Each bond configuration option, except for `bond slaves,` is set to the recommen
 
 To show information for a bond:
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net show interface <bond>` command:
 
@@ -276,11 +276,9 @@ swp4(P)  ====  swp2(p1c1h1)Routing
   Interface Type Other
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Run the `sudo cat /proc/net/bonding/<bond>` command:
 
@@ -305,7 +303,9 @@ Permanent HW addr: 44:38:39:00:00:03
 Slave queue ID: 0
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice info%}}
 The detailed output in `/proc/net/bonding/<filename>` includes the actor/partner LACP information. This information is not necessary and requires you to use `sudo` to view the file.

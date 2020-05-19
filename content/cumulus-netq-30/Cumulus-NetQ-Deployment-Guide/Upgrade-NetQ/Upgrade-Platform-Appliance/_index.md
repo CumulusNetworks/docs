@@ -154,7 +154,7 @@ The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Naviga
 
 After completing the preparation steps, upgrading your NetQ On-premises/Cloud Appliance(s) or VMs is simple using the NetQ CLI.
 
-To upgrade::
+To upgrade:
 
 1. Run the appropriate `netq upgrade` command.
 

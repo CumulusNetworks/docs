@@ -7,6 +7,61 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29740</td>
+<td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
+DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
+Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
+Fixed: 4.84.2-2+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command a second time.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29643</td>
+<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
+To work around this issue, flap the BGP peer.</p></td>
+<td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29594</td>
+<td><p>When you run an Ansible script to replace the /etc/network/interfaces file, then run the ifreload -a command, you see errors similar to the following:</p>
+
+error: swp1s1.2: netlink: cannot set link swp1s1.2 up: operation failed with 'Network is down' (100)
+warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLINK answers: Cannot assign requested address
+
+
+<p>To work around this issue,  run the ifreload -a command a second time.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29562</td>
+<td><p>If you have an SVI with multiple VRR IP addresses and try to delete one of the VRR configurations, net commit or ifreload -a returns an error.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29546</td>
 <td><p>In vtysh, if you configure, then remove a layer 3 VNI for a VRF, the VNI is removed from zebra even if the VNI interface still exists in the kernel.<br/>
 If you configure a layer 2 VNI as a layer 3 VNI by mistake, removing the layer 3 VNI binding removes it from zebra but EVPN-learned MACs and neighbors are not installed into the kernel.<br/>
@@ -51,6 +106,12 @@ asic-monitor[7389]: --------------
 <td></td>
 </tr>
 <tr>
+<td>CM-29519</td>
+<td><p>The JSON format output of the net show bgp l2vpn evpn summary command shows the incorrect neighbour state. </p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -92,6 +153,12 @@ Fixed: 1.8.14-4+deb8u1</p></td>
 <td>CM-29367</td>
 <td><p>On switches with the Trident3 ASIC, PFC is not working as expected. If you set the PFC for only one CoS,  pause frames are sent for all CoS traffic.</p></td>
 <td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29322</td>
+<td><p>When the BGP Multi-protocol Unreach NLRI attribute is received in a BGP update without a next hop attribute, the BGP session is brought down unexpectedly. RFC 4760 defines that the next-hop attribute is not required for updates containing MP_UNREACH_NLRI.</p></td>
+<td>3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -170,6 +237,20 @@ To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
 <td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29037</td>
+<td><p>Silent reboots sometimes occur on the switch with nothing that indicates a reboot reason in the syslog file. </p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28995</td>
+<td><p>After you flap an MLAG peerlink, a rare condition might occur where routes and neighbors for VXLAN-enabled VLANs are misprogrammed as non-VXLAN routes and neighbors due to VNI state transitions. This results in a forwarding failure for traffic destined to these misprogrammed routes and neighbors.<br/>
+<b>Note</b>: Do not flap a VNI interface manually. The only expected time for a VNI interface to go down is when the MLAG secondary switch brings the VNIs protodown during a peer link failure where the backup IP address is still active.<br/>
+To recover from this condition, restart switchd with the sudo systemctl restart switchd command.</p></td>
+<td>3.7.10-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -356,6 +437,12 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>CM-28442</td>
+<td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28441</td>
 <td><p>If a LLDP neighbor advertises a PortDescr that contains commas, ptmctl -d splits the string on the commas and misplaces its components in other columns.</p></td>
 <td>3.7.11-3.7.12</td>
@@ -376,7 +463,7 @@ To work around this issue, restart FRR.</p></td>
 </tr>
 <tr>
 <td>CM-28374</td>
-<td><p>When traffic from a double tag interface (facing a different site) is forwarded via VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
+<td><p>When traffic from a double tag interface (facing a different site) is forwarded through VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
 <td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
@@ -553,7 +640,7 @@ Fixed: 2.1.27+dfsg-1+deb10u1</p></td>
 </tr>
 <tr>
 <td>CM-27646</td>
-<td><p>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
+<td><p>Several vulnerabilities have been discovered in Git, a fast, scalable,<br/>
 distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
@@ -605,7 +692,7 @@ To work around this issue, you can do one of the following:</p>
 <tr>
 <td>CM-27581</td>
 <td><p>On the Delta AG-6248C PoE switch, when you run the apt upgrade command, the upgrade does not work. Cumulus Linux uses uboot directly instead of grub to boot the kernel. Uboot needs a special header to boot the kernel, which is not present. Without this header, when you use the apt upgrade command to upgrade Linux packages, uboot is unable to boot up the kernel. <br/>
-To work around this issue, upgrade Cumulus Linux by installing the disk image. Run the onie-select command to go into ONIE, and then use the nos-install command in ONIE to install a new binary image.<br/>
+To work around this issue, upgrade Cumulus Linux by installing the Cumulus Linux image. Run the onie-select command to go into ONIE, and then use the nos-install command in ONIE to install a new image.<br/>
 This workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.11-3.7.12</td>
 <td></td>
@@ -931,6 +1018,20 @@ To work around this issue, power cycle the switch. </p>
 <td></td>
 </tr>
 <tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
 <td>3.7.5-3.7.12</td>
@@ -938,14 +1039,14 @@ To work around this issue, power cycle the switch. </p>
 </tr>
 <tr>
 <td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
+<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
  
  
  cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
  cumulus@switch:~$ sudo reboot 
  
  
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new binary image. <br/>
+<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
 The workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.6-3.7.12</td>
 <td></td>
@@ -1034,8 +1135,7 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  &lt;ENTER&gt; 
  
  
-<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p>
-</td>
+<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
 <td>3.7.4-3.7.12</td>
 <td></td>
 </tr>
@@ -1549,6 +1649,12 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-18192</td>
+<td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-17934</td>
 <td><p>FRR tracks interface speed based on the value it learns from the Linux kernel for that interface. If the interface speed changes, FRR does not update its interface speed cache. This can lead to issues for routing protocols that derive metrics from interface speed as the cost can become out of sync with the interface speed.<br/>
 To work around this issue, manually define the routing protocol metric for these interfaces or restart FRR.</p></td>
@@ -1613,6 +1719,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
 </tr>
 <tr>
 <td>CM-28485</td>
@@ -1881,6 +1996,36 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29740</td>
+<td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
+DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
+Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
+Fixed: 4.84.2-2+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29643</td>
+<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
+To work around this issue, flap the BGP peer.</p></td>
+<td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29525</td>
 <td><p>The asic-monitor.service fails when you configure /etc/cumulus/datapath/monitor.conf with monitor.histogram_pg.collect.port_group_list  = <span class="error">&#91;all_packet_pg&#93;</span> and there is traffic passing through the buffer. When the service fails, you see the following traceback in journalctl:</p>
 
@@ -1996,6 +2141,14 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <td></td>
 </tr>
 <tr>
+<td>CM-28995</td>
+<td><p>After you flap an MLAG peerlink, a rare condition might occur where routes and neighbors for VXLAN-enabled VLANs are misprogrammed as non-VXLAN routes and neighbors due to VNI state transitions. This results in a forwarding failure for traffic destined to these misprogrammed routes and neighbors.<br/>
+<b>Note</b>: Do not flap a VNI interface manually. The only expected time for a VNI interface to go down is when the MLAG secondary switch brings the VNIs protodown during a peer link failure where the backup IP address is still active.<br/>
+To recover from this condition, restart switchd with the sudo systemctl restart switchd command.</p></td>
+<td>3.7.10-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28993</td>
 <td><p>The following security vulnerability has been announced that affects the libicu52 package:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.<br/>
@@ -2096,6 +2249,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -2141,6 +2304,12 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <td></td>
 </tr>
 <tr>
+<td>CM-28442</td>
+<td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28441</td>
 <td><p>If a LLDP neighbor advertises a PortDescr that contains commas, ptmctl -d splits the string on the commas and misplaces its components in other columns.</p></td>
 <td>3.7.11-3.7.12</td>
@@ -2161,7 +2330,7 @@ To work around this issue, restart FRR.</p></td>
 </tr>
 <tr>
 <td>CM-28374</td>
-<td><p>When traffic from a double tag interface (facing a different site) is forwarded via VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
+<td><p>When traffic from a double tag interface (facing a different site) is forwarded through VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
 <td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
@@ -2506,7 +2675,7 @@ CVE-2019-20054: In the Linux kernel before 5.0.6, there is a NULL pointer derefe
 </tr>
 <tr>
 <td>CM-27646</td>
-<td><p>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
+<td><p>Several vulnerabilities have been discovered in Git, a fast, scalable,<br/>
 distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
@@ -2565,7 +2734,7 @@ To work around this issue, you can do one of the following:</p>
 <tr>
 <td>CM-27581</td>
 <td><p>On the Delta AG-6248C PoE switch, when you run the apt upgrade command, the upgrade does not work. Cumulus Linux uses uboot directly instead of grub to boot the kernel. Uboot needs a special header to boot the kernel, which is not present. Without this header, when you use the apt upgrade command to upgrade Linux packages, uboot is unable to boot up the kernel. <br/>
-To work around this issue, upgrade Cumulus Linux by installing the disk image. Run the onie-select command to go into ONIE, and then use the nos-install command in ONIE to install a new binary image.<br/>
+To work around this issue, upgrade Cumulus Linux by installing the Cumulus Linux image. Run the onie-select command to go into ONIE, and then use the nos-install command in ONIE to install a new image.<br/>
 This workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.11-3.7.12</td>
 <td></td>
@@ -2971,6 +3140,20 @@ To work around this issue, power cycle the switch. </p>
 <td></td>
 </tr>
 <tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
 <td>3.7.5-3.7.12</td>
@@ -2978,14 +3161,14 @@ To work around this issue, power cycle the switch. </p>
 </tr>
 <tr>
 <td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
+<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
  
  
  cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
  cumulus@switch:~$ sudo reboot 
  
  
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new binary image. <br/>
+<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
 The workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.6-3.7.12</td>
 <td></td>
@@ -3074,8 +3257,7 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  &lt;ENTER&gt; 
  
  
-<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p>
-</td>
+<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
 <td>3.7.4-3.7.12</td>
 <td></td>
 </tr>
@@ -3600,6 +3782,12 @@ To work around this issue, correct the bridge VIDs and restart switchd or delete
 <td><p>When you use NCLU to bring a bond admin down (net add bond &lt;bond&gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.<br/>
 To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td>
 <td>3.5.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-18192</td>
+<td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
+<td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -3949,31 +4137,6 @@ See /var/log/netd.log for more details.
 <td>3.7.8-3.7.10</td>
 </tr>
 <tr>
-<td>CM-26147</td>
-<td><p>On the EdgeCore AS4610 switch, the ping command fails unless you run the command with sudo. <br/>
- To work around this issue, run the following commands: </p>
-
- cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping 
- cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping6
-
-
-<p> Run the following command to verify the workaround: </p>
- 
- 
- cumulus@switch:~$ getcap /usr/share/mgmt-vrf/bin/ping* 
- 
- 
-<p> You should see the following output: </p>
- 
- 
- /usr/share/mgmt-vrf/bin/ping = cap_net_raw+ep 
- /usr/share/mgmt-vrf/bin/ping6 = cap_net_raw+ep 
- 
- 
-</td>
-<td>3.7.6-3.7.10</td>
-</tr>
-<tr>
 <td>CM-26146</td>
 <td><p>clagd memory consumption increases under certain unknown conditions. </p>
 </td>
@@ -4199,6 +4362,36 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29740</td>
+<td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
+DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
+Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
+Fixed: 4.84.2-2+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29643</td>
+<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
+To work around this issue, flap the BGP peer.</p></td>
+<td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -4256,6 +4449,14 @@ Fixed: 2.1.5-2+deb8u9</p></td>
 <td><p>The following issue has been found in e2fsprogs, a package that contains ext2/ext3/ext4 file system utilities:<br/>
 CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds write on the stack, resulting in code execution. An attacker can corrupt a partition to trigger this vulnerability.</p></td>
 <td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28995</td>
+<td><p>After you flap an MLAG peerlink, a rare condition might occur where routes and neighbors for VXLAN-enabled VLANs are misprogrammed as non-VXLAN routes and neighbors due to VNI state transitions. This results in a forwarding failure for traffic destined to these misprogrammed routes and neighbors.<br/>
+<b>Note</b>: Do not flap a VNI interface manually. The only expected time for a VNI interface to go down is when the MLAG secondary switch brings the VNIs protodown during a peer link failure where the backup IP address is still active.<br/>
+To recover from this condition, restart switchd with the sudo systemctl restart switchd command.</p></td>
+<td>3.7.10-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -4353,6 +4554,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -4388,7 +4599,7 @@ To work around this issue, restart FRR.</p></td>
 </tr>
 <tr>
 <td>CM-28374</td>
-<td><p>When traffic from a double tag interface (facing a different site) is forwarded via VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
+<td><p>When traffic from a double tag interface (facing a different site) is forwarded through VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
 <td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
@@ -4595,7 +4806,7 @@ CVE-2019-20054: In the Linux kernel before 5.0.6, there is a NULL pointer derefe
 </tr>
 <tr>
 <td>CM-27646</td>
-<td><p>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
+<td><p>Several vulnerabilities have been discovered in Git, a fast, scalable,<br/>
 distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
@@ -5461,6 +5672,20 @@ route-map peerlink-add-asn permit 20
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
 <td>3.7.5-3.7.12</td>
@@ -5468,14 +5693,14 @@ route-map peerlink-add-asn permit 20
 </tr>
 <tr>
 <td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
+<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
  
  
  cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
  cumulus@switch:~$ sudo reboot 
  
  
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new binary image. <br/>
+<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
 The workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.6-3.7.12</td>
 <td></td>
@@ -5564,8 +5789,7 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  &lt;ENTER&gt; 
  
  
-<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p>
-</td>
+<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
 <td>3.7.4-3.7.12</td>
 <td></td>
 </tr>
@@ -6258,6 +6482,36 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29740</td>
+<td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
+DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
+Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
+Fixed: 4.84.2-2+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29643</td>
+<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
+To work around this issue, flap the BGP peer.</p></td>
+<td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -6412,6 +6666,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -6440,7 +6704,7 @@ To work around this issue, restart FRR.</p></td>
 </tr>
 <tr>
 <td>CM-28374</td>
-<td><p>When traffic from a double tag interface (facing a different site) is forwarded via VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
+<td><p>When traffic from a double tag interface (facing a different site) is forwarded through VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
 <td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
@@ -6583,7 +6847,7 @@ CVE-2019-20054: In the Linux kernel before 5.0.6, there is a NULL pointer derefe
 </tr>
 <tr>
 <td>CM-27646</td>
-<td><p>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
+<td><p>Several vulnerabilities have been discovered in Git, a fast, scalable,<br/>
 distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
@@ -7333,6 +7597,20 @@ route-map peerlink-add-asn permit 20
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
 <td>3.7.5-3.7.12</td>
@@ -7340,14 +7618,14 @@ route-map peerlink-add-asn permit 20
 </tr>
 <tr>
 <td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
+<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
  
  
  cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
  cumulus@switch:~$ sudo reboot 
  
  
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new binary image. <br/>
+<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
 The workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.6-3.7.12</td>
 <td></td>
@@ -7436,8 +7714,7 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  &lt;ENTER&gt; 
  
  
-<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p>
-</td>
+<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
 <td>3.7.4-3.7.12</td>
 <td></td>
 </tr>
@@ -8767,6 +9044,36 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29740</td>
+<td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
+DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
+Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
+Fixed: 4.84.2-2+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29643</td>
+<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
+To work around this issue, flap the BGP peer.</p></td>
+<td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -8921,6 +9228,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -8942,7 +9259,7 @@ Fixed: 0.7.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-28374</td>
-<td><p>When traffic from a double tag interface (facing a different site) is forwarded via VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
+<td><p>When traffic from a double tag interface (facing a different site) is forwarded through VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
 <td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
@@ -9073,7 +9390,7 @@ CVE-2019-20054: In the Linux kernel before 5.0.6, there is a NULL pointer derefe
 </tr>
 <tr>
 <td>CM-27646</td>
-<td><p>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
+<td><p>Several vulnerabilities have been discovered in Git, a fast, scalable,<br/>
 distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
@@ -10065,6 +10382,20 @@ route-map peerlink-add-asn permit 20
 <td>3.7.9-3.7.12</td>
 </tr>
 <tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-24963</td>
 <td><p>The following CVEs were announced in Debian Security Advisory DSA-4440-1. <br/>
  --------------------------------------------------------------------------------------- <br/>
@@ -10096,14 +10427,14 @@ route-map peerlink-add-asn permit 20
 </tr>
 <tr>
 <td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
+<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
  
  
  cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
  cumulus@switch:~$ sudo reboot 
  
  
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new binary image. <br/>
+<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
 The workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.6-3.7.12</td>
 <td></td>
@@ -10223,8 +10554,7 @@ To work around this issue, restart switchd.</p></td>
  &lt;ENTER&gt; 
  
  
-<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p>
-</td>
+<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
 <td>3.7.4-3.7.12</td>
 <td></td>
 </tr>
@@ -11148,6 +11478,36 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29740</td>
+<td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
+DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
+Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
+Fixed: 4.84.2-2+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29643</td>
+<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
+To work around this issue, flap the BGP peer.</p></td>
+<td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -11302,6 +11662,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -11448,7 +11818,7 @@ CVE-2019-20054: In the Linux kernel before 5.0.6, there is a NULL pointer derefe
 </tr>
 <tr>
 <td>CM-27646</td>
-<td><p>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
+<td><p>Several vulnerabilities have been discovered in Git, a fast, scalable,<br/>
 distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
@@ -12351,6 +12721,20 @@ route-map peerlink-add-asn permit 20
 <td>3.7.9-3.7.12</td>
 </tr>
 <tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-24963</td>
 <td><p>The following CVEs were announced in Debian Security Advisory DSA-4440-1. <br/>
  --------------------------------------------------------------------------------------- <br/>
@@ -12382,14 +12766,14 @@ route-map peerlink-add-asn permit 20
 </tr>
 <tr>
 <td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
+<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
  
  
  cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
  cumulus@switch:~$ sudo reboot 
  
  
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new binary image. <br/>
+<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
 The workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.6-3.7.12</td>
 <td></td>
@@ -12509,8 +12893,7 @@ To work around this issue, restart switchd.</p></td>
  &lt;ENTER&gt; 
  
  
-<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p>
-</td>
+<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
 <td>3.7.4-3.7.12</td>
 <td></td>
 </tr>
@@ -13890,6 +14273,29 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29740</td>
+<td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
+DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
+Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
+Fixed: 4.84.2-2+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -14044,6 +14450,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -14184,7 +14600,7 @@ CVE-2019-20054: In the Linux kernel before 5.0.6, there is a NULL pointer derefe
 </tr>
 <tr>
 <td>CM-27646</td>
-<td><p>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
+<td><p>Several vulnerabilities have been discovered in Git, a fast, scalable,<br/>
 distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
@@ -15059,6 +15475,20 @@ route-map peerlink-add-asn permit 20
 <td>3.7.7-3.7.12</td>
 </tr>
 <tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-24975</td>
 <td><p>The following CVEs were announced in Debian Security Advisory DSA-4442-1 and affect the ghostscript package.<br/>
  ---------------------------------------------------------------------------------------------- <br/>
@@ -15180,14 +15610,14 @@ To work around this issue, remove the --nl flag from the dhcrelay service. </p><
 </tr>
 <tr>
 <td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
+<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
  
  
  cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
  cumulus@switch:~$ sudo reboot 
  
  
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new binary image. <br/>
+<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
 The workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.6-3.7.12</td>
 <td></td>
@@ -15400,8 +15830,7 @@ To work around this issue, restart switchd.</p></td>
  &lt;ENTER&gt; 
  
  
-<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p>
-</td>
+<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
 <td>3.7.4-3.7.12</td>
 <td></td>
 </tr>
@@ -16601,6 +17030,29 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29740</td>
+<td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
+DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
+Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
+Fixed: 4.84.2-2+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -16748,6 +17200,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -16882,7 +17344,7 @@ CVE-2019-20054: In the Linux kernel before 5.0.6, there is a NULL pointer derefe
 </tr>
 <tr>
 <td>CM-27646</td>
-<td><p>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
+<td><p>Several vulnerabilities have been discovered in Git, a fast, scalable,<br/>
 distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
@@ -17399,6 +17861,20 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>3.7.7-3.7.12</td>
 </tr>
 <tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-24975</td>
 <td><p>The following CVEs were announced in Debian Security Advisory DSA-4442-1 and affect the ghostscript package.<br/>
  ---------------------------------------------------------------------------------------------- <br/>
@@ -17758,8 +18234,7 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
  &lt;ENTER&gt; 
  
  
-<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p>
-</td>
+<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
 <td>3.7.4-3.7.12</td>
 <td></td>
 </tr>
@@ -18981,6 +19456,29 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29740</td>
+<td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
+DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
+Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
+Fixed: 4.84.2-2+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -19122,6 +19620,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -19250,7 +19758,7 @@ CVE-2019-20054: In the Linux kernel before 5.0.6, there is a NULL pointer derefe
 </tr>
 <tr>
 <td>CM-27646</td>
-<td><p>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
+<td><p>Several vulnerabilities have been discovered in Git, a fast, scalable,<br/>
 distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
@@ -19700,6 +20208,20 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>3.7.7-3.7.12</td>
 </tr>
 <tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-24975</td>
 <td><p>The following CVEs were announced in Debian Security Advisory DSA-4442-1 and affect the ghostscript package.<br/>
  ---------------------------------------------------------------------------------------------- <br/>
@@ -20011,8 +20533,7 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
  &lt;ENTER&gt; 
  
  
-<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p>
-</td>
+<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
 <td>3.7.4-3.7.12</td>
 <td></td>
 </tr>
@@ -21419,6 +21940,29 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29740</td>
+<td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
+DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
+Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
+Fixed: 4.84.2-2+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -21560,6 +22104,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -21688,7 +22242,7 @@ CVE-2019-20054: In the Linux kernel before 5.0.6, there is a NULL pointer derefe
 </tr>
 <tr>
 <td>CM-27646</td>
-<td><p>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
+<td><p>Several vulnerabilities have been discovered in Git, a fast, scalable,<br/>
 distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
@@ -22116,6 +22670,20 @@ You can prevent EVPN next hops from not being removed when the contributing peer
  </td>
 <td>3.7.2-3.7.8</td>
 <td>3.7.9-3.7.12</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24975</td>
@@ -24021,6 +24589,29 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29740</td>
+<td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
+DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
+Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
+Fixed: 4.84.2-2+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -24156,6 +24747,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -24284,7 +24885,7 @@ CVE-2019-20054: In the Linux kernel before 5.0.6, there is a NULL pointer derefe
 </tr>
 <tr>
 <td>CM-27646</td>
-<td><p>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
+<td><p>Several vulnerabilities have been discovered in Git, a fast, scalable,<br/>
 distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
@@ -24666,6 +25267,20 @@ You can prevent EVPN next hops from not being removed when the contributing peer
  </td>
 <td>3.7.2-3.7.8</td>
 <td>3.7.9-3.7.12</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24975</td>
@@ -26753,6 +27368,29 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29740</td>
+<td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
+DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
+Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
+Fixed: 4.84.2-2+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -26888,6 +27526,16 @@ The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRu
 <td></td>
 </tr>
 <tr>
+<td>CM-28486</td>
+<td><p>The following vulnerability has been found in the libgcrypt20 cryptographic library.<br/>
+CVE-2019-13627: there was a ECDSA timing attack.<br/>
+For more information, see <a href="https://www.debian.org/lts/security/2020/dla-1931-2.en.html" class="external-link" rel="nofollow">https://www.debian.org/lts/security/2020/dla-1931-2.en.html</a><br/>
+Vulnerable: 1.6.3-2+deb8u7<br/>
+Fixed: 1.6.3-2+deb8u8</p></td>
+<td>3.0.0-3.7.11</td>
+<td>3.7.12</td>
+</tr>
+<tr>
 <td>CM-28485</td>
 <td><p>The following vulnerability affects libxml2:<br/>
 CVE-2019-19956: xmlParseBalancedChunkMemoryRecover in parser.c has a memory leak related to newDoc-&gt;oldNs.  This can lead to a denial of service.<br/>
@@ -27016,7 +27664,7 @@ CVE-2019-20054: In the Linux kernel before 5.0.6, there is a NULL pointer derefe
 </tr>
 <tr>
 <td>CM-27646</td>
-<td><p>Several vulnerabilities have been discovered in git, a fast, scalable,<br/>
+<td><p>Several vulnerabilities have been discovered in Git, a fast, scalable,<br/>
 distributed revision control system, which is available in the Cumulus Linux 3.x repositories for optional installation.<br/>
 CVE-2019-1348: export-marks is insecure, fix is to disable by default.<br/>
 CVE-2019-1349: .git / git~1 filename vulnerability on NTFS<br/>
@@ -27331,6 +27979,20 @@ For the detailed security status of ghostscript, refer to its security tracker p
  </td>
 <td>3.0.0-3.7.6</td>
 <td>3.7.7-3.7.12</td>
+</tr>
+<tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24975</td>

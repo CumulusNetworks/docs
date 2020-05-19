@@ -6,62 +6,61 @@ toc: 5
 ---
 This topic describes how to prepare a NetQ 2.4.x or earlier NetQ Appliance before installing NetQ 3.0.x. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ 3.0.x.
 
+The preparation workflow is summarized in this figure:
+
+{{<figure src="/images/netq/install-appl-prep-workflow-300.png" width="700">}}
+
 To prepare your appliance:
 
-Log in to your appliance, then follow these steps.
+1. Verify that your appliance is a supported hardware model.
 
-<details><summary>Verify that your appliance is a supported hardware model</summary>
+    - NetQ On-premises Appliance: SuperMicro SYS-6019P-WTR ({{<exlink url="https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf" text="user manual">}}, {{<exlink url="https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf" text="quick reference guide">}})
+    - NetQ Cloud Appliance: SuperMicro SYS-E300-9D ({{<exlink url="https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf" text="user manual">}})
 
-- NetQ On-premises Appliance: SuperMicro SYS-6019P-WTR ({{<exlink url="https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf" text="user manual">}}, {{<exlink url="https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf" text="quick reference guide">}})
-- NetQ Cloud Appliance: SuperMicro SYS-E300-9D ({{<exlink url="https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf" text="user manual">}})
+2. For on-premises solutions using the NetQ On-premises Appliance, optionally back up your NetQ data.
 
-</details>
+    1. Run the backup script to create a backup file in `/opt/<backup-directory>`.
 
-<details><summary>For on-premises solutions using the NetQ On-premises Appliance, optionally back up your NetQ data</summary>
+        {{<notice note>}}
+    Be sure to replace the <code>backup-directory</code> option with the name of the directory you want to use for the backup file. This location must be somewhere that is <em>off</em> of the appliance to avoid it being overwritten during these preparation steps.
+        {{</notice>}}
 
-1. Run the backup script to create a backup file in `/opt/<backup-directory>`.
+        ```
+        cumulus@<hostname>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
+        ```
 
-    {{<notice note>}}
-Be sure to replace the <code>backup-directory</code> option with the name of the directory you want to use for the backup file. This location must be somewhere that is <em>off</em> of the appliance to avoid it being overwritten during these preparation steps.
-    {{</notice>}}
+    2. Verify the backup file has been created.
 
-    ```
-    cumulus@<hostname>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
-    ```
+        ```
+        cumulus@<hostname>:~$ cd /opt/<backup-directory>
+        cumulus@<hostname>:~/opt/<backup-directory># ls
+        netq_master_snapshot_2020-01-09_07_24_50_UTC.tar.gz
+        ```
 
-2. Verify the backup file has been created.
+3. Install Ubuntu 18.04 LTS
 
-    ```
-    cumulus@<hostname>:~$ cd /opt/<backup-directory>
-    cumulus@<hostname>:~/opt/<backup-directory># ls
-    netq_master_snapshot_2020-01-09_07_24_50_UTC.tar.gz
-    ```
+    Follow the instructions {{<exlink url="https://www.fosslinux.com/6406/how-to-install-ubuntu-server-18-04-lts.htm" text="here">}} to install Ubuntu.
 
-</details>
+    Note these tips when installing:
 
-<details><summary>Install Ubuntu 18.04 LTS</summary>
+    - Ignore the instructions for MAAS.
+    - Ubuntu OS should be installed on the SSD disk. Select Micron SSD with ~900 GB at step#9 in the aforementioned instructions.
 
-Follow the instructions {{<exlink url="https://www.fosslinux.com/6406/how-to-install-ubuntu-server-18-04-lts.htm" text="here">}} to install Ubuntu.
+        {{<figure src="/images/netq/install-ubuntu-ssd-selection-240.png" width="700">}}
 
-Note these tips when installing:
+    - Set the default username to *cumulus* and password to *CumulusLinux!*.
 
-- Ignore the instructions for MAAS.
-- Ubuntu OS should be installed on the SSD disk. Select Micron SSD with ~900 GB at step#9 in the aforementioned instructions.
+        {{<figure src="/images/netq/install-ubuntu-set-creds-240.png" width="700">}}
 
-    {{<figure src="/images/netq/install-ubuntu-ssd-selection-240.png" width="700">}}
+    - When prompted, select *Install SSH server*.
 
-- Set the default username to *cumulus* and password to *CumulusLinux!*.
+4. Configure networking.
 
-    {{<figure src="/images/netq/install-ubuntu-set-creds-240.png" width="700">}}
+    Ubuntu uses Netplan for network configuration. You can give your appliance an IP address using DHCP or a static address.
 
-- When prompted, select *Install SSH server*.
-</details>
-
-<details><summary>Configure networking</summary>
-
-Ubuntu uses Netplan for network configuration. You can give your appliance an IP address using DHCP or a static address.
-
-### Configure an IP address allocation using DHCP
+    {{< tabs "TabID0" >}}
+    
+{{< tab "DHCP" >}}
 
 - Create and/or edit the  */etc/netplan/01-ethernet.yaml* Netplan configuration file.
 
@@ -82,7 +81,9 @@ Ubuntu uses Netplan for network configuration. You can give your appliance an IP
     $ sudo netplan apply
     ```
 
-### Configure a static IP address
+{{< /tab >}}
+
+{{< tab "Static IP" >}}
 
 - Create and/or edit the  */etc/netplan/01-ethernet.yaml* Netplan configuration file.
 
@@ -100,7 +101,7 @@ Ubuntu uses Netplan for network configuration. You can give your appliance an IP
                 addresses: [192.168.1.222/24]
                 gateway4: 192.168.1.1
                 nameservers:
-                    addresses: [8.8.8.8,8.8.4.4
+                    addresses: [8.8.8.8,8.8.4.4]
     ```
 
 - Apply the settings.
@@ -109,111 +110,105 @@ Ubuntu uses Netplan for network configuration. You can give your appliance an IP
     $ sudo netplan apply
     ```
 
-</details>
+{{< /tab >}}
 
-<details><summary>Update the Ubuntu repository</summary>
+{{< /tabs >}}
 
-1. Reference and update the local apt repository.
+5. Update the Ubuntu repository.
 
-    ```
-    root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
-    ```
+    1. Reference and update the local apt repository.
 
-2. Add the Ubuntu 18.04 repository.
+        ```
+        root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+        ```
 
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add
-the following line:
+    2. Add the Ubuntu 18.04 repository.
 
-    ```
-    root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
-    ...
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
-    ...
-    ```
+        Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add
+    the following line:
 
-    {{%notice note%}}
-The use of `netq-latest` in this example means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.2` - use that instead.
-    {{%/notice%}}
+        ```
+        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+        ...
+        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+        ...
+        ```
 
-</details>
+        {{<notice note>}}
+The use of <code>netq-latest</code> in this example means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-2.2</code> - use that instead.
+        {{</notice>}}
 
-<details><summary>Install Python</summary>
-Run the following commands:
+6. Install Python.
 
-```
-root@ubuntu:~# apt-get update
-root@ubuntu:~# apt-get install python python2.7 python-apt python3-lib2to3 python3-distutils
-```
-
-</details>
-
-<details><summary>Obtain the latest NetQ Agent and CLI package</summary>
-Run the following commands:
-
-```
-root@ubuntu:~# apt-get update
-root@ubuntu:~# apt-get install netq-agent netq-apps
-```
-
-</details>
-
-<details><summary>Download the bootstrap and NetQ installation tarballs</summary>
-
-Download the software from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page.
-
-1. Select *NetQ* from the **Product** list.
-
-2. Select *3.0* from the **Version** list, and then select *3.0.0* from the submenu.
-
-    {{< figure src="/images/netq/netq-30-bootstrap-download-300.png" width="500" >}}
-
-3. Select *Bootstrap* from the **Hypervisor/Platform** list.
-    Note that the bootstrap file is the same for both appliances.
-
-    {{< figure src="/images/netq/netq-300-download-bootstrap.png" width="200" >}}
-
-4. Scroll down and click **Download**.
-
-5. Select *Appliance* for the NetQ On-premises Appliance or *Appliance (Cloud)* for the NetQ Cloud Appliance from the **Hypervisor/Platform** list.
-
-    Make sure you select the right install choice based on whether you are preparing the on-premises or cloud version of the appliance.
-
-    {{< figure src="/images/netq/netq-30-appliance-onpremcld-dwnld-300.png" width="410" >}}
-
-6. Scroll down and click **Download**.
-
-7. Copy these two files, *netq-bootstrap-3.0.0.tgz* and either *NetQ-3.0.0.tgz* (on-premises) or *NetQ-3.0.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
-
-8. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-3.0.0-opta.tgz* instead of *NetQ-3.0.0.tgz*.
+    Run the following commands:
 
     ```
-    cumulus@<hostname>:~$ dpkg -l | grep netq
-    ii  netq-agent   3.0.0-ub18.04u27~1588242914.9fb5b87_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-    ii  netq-apps    3.0.0-ub18.04u27~1588242914.9fb5b87_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
-
-    cumulus@<hostname>:~$ cd /mnt/installables/
-    cumulus@<hostname>:/mnt/installables$ ls
-    NetQ-3.0.0.tgz  netq-bootstrap-3.0.0.tgz
+    root@ubuntu:~# apt-get update
+    root@ubuntu:~# apt-get install python python2.7 python-apt python3-lib2to3 python3-distutils
     ```
 
-9. Run the following commands.
+7. Obtain the latest NetQ Agent and CLI package.
+
+    Run the following commands:
 
     ```
-    sudo systemctl disable apt-{daily,daily-upgrade}.{service,timer}
-    sudo systemctl stop apt-{daily,daily-upgrade}.{service,timer}
-    sudo systemctl disable motd-news.{service,timer}
-    sudo systemctl stop motd-news.{service,timer}
+    root@ubuntu:~# apt-get update
+    root@ubuntu:~# apt-get install netq-agent netq-apps
     ```
 
-    </details>
+8. Download the bootstrap and NetQ installation tarballs.
 
-<details><summary>Run the Bootstrap CLI</summary>
+    Download the software from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page.
 
-Run the bootstrap CLI on your appliance. Be sure to replace the *eth0* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
+    1. Select *NetQ* from the **Product** list.
 
-{{<netq-install/bootstrap server="single" version="3.0.0">}}
+    2. Select *3.0* from the **Version** list, and then select *3.0.0* from the submenu.
 
-</details>
+        {{< figure src="/images/netq/netq-30-bootstrap-download-300.png" width="500" >}}
+
+    3. Select *Bootstrap* from the **Hypervisor/Platform** list.
+        Note that the bootstrap file is the same for both appliances.
+
+        {{< figure src="/images/netq/netq-300-download-bootstrap.png" width="200" >}}
+
+    4. Scroll down and click **Download**.
+
+    5. Select *Appliance* for the NetQ On-premises Appliance or *Appliance (Cloud)* for the NetQ Cloud Appliance from the **Hypervisor/Platform** list.
+
+        Make sure you select the right install choice based on whether you are preparing the on-premises or cloud version of the appliance.
+
+        {{< figure src="/images/netq/netq-30-appliance-onpremcld-dwnld-300.png" width="410" >}}
+
+    6. Scroll down and click **Download**.
+
+    7. Copy these two files, *netq-bootstrap-3.0.0.tgz* and either *NetQ-3.0.0.tgz* (on-premises) or *NetQ-3.0.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
+
+    8. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-3.0.0-opta.tgz* instead of *NetQ-3.0.0.tgz*.
+
+        ```
+        cumulus@<hostname>:~$ dpkg -l | grep netq
+        ii  netq-agent   3.0.0-ub18.04u27~1588242914.9fb5b87_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+        ii  netq-apps    3.0.0-ub18.04u27~1588242914.9fb5b87_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+
+        cumulus@<hostname>:~$ cd /mnt/installables/
+        cumulus@<hostname>:/mnt/installables$ ls
+        NetQ-3.0.0.tgz  netq-bootstrap-3.0.0.tgz
+        ```
+
+    9. Run the following commands.
+
+        ```
+        sudo systemctl disable apt-{daily,daily-upgrade}.{service,timer}
+        sudo systemctl stop apt-{daily,daily-upgrade}.{service,timer}
+        sudo systemctl disable motd-news.{service,timer}
+        sudo systemctl stop motd-news.{service,timer}
+        ```
+
+9. Run the Bootstrap CLI.
+
+    Run the bootstrap CLI on your appliance. Be sure to replace the *eth0* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
+
+    {{<netq-install/bootstrap server="single" version="3.0.0">}}
 
 {{<notice note>}}
 If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to {{<link title="Install NetQ System Platform">}} for a new appliance.

@@ -27,7 +27,7 @@ The scheduler is configured to use a hybrid scheduling algorithm. It applies str
 You can configure Quality of Service (QoS) for switches on the following platforms only:
 
 - Broadcom Tomahawk, Trident II, Trident II+ and Trident3
-- Mellanox Spectrum
+- Mellanox Spectrum and Spectrum-2
 
 {{%/notice%}}
 

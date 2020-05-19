@@ -26,9 +26,9 @@ Cumulus Linux supports IGMP/MLD snooping over VXLAN bridges, where VXLAN ports a
 
 To enable IGMP/MLD snooping over VXLAN:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bridge mybridge mcsnoop yes
@@ -36,11 +36,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -65,7 +63,9 @@ Run the `ifreload -a` command to reload the configuration:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 Cumulus Networks recommends that you also configure IGMP/MLD querier. See {{<link url="#configure-igmpmld-querier" text="Configure IGMP/MLD Querier">}}, below.
 
@@ -137,9 +137,9 @@ iface br0
 
 To disable IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bridge bridge mcsnoop no
@@ -147,11 +147,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file and set `bridge-mcsnoop to 0` in the bridge stanza:
 
@@ -175,7 +173,9 @@ Run the `ifreload -a` command to reload the configuration:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Troubleshooting
 

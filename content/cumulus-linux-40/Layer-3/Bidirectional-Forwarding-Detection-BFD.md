@@ -60,9 +60,9 @@ You can configure BFD for a peer group or for an individual neighbor.
 
 {{%/notice%}}
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following example configures BFD for swp1 and uses the default intervals.
 
@@ -80,11 +80,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 The following example configures BFD for swp1 and uses the default intervals:
 
@@ -116,7 +114,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -144,9 +144,9 @@ When you enable or disable BFD in OSPF, neighbors are registered and de-register
 
 To configure BFD in OSPF, run the following commands.
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following example configures BFD in OSPFv3 for interface swp1 and sets the the interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
@@ -156,11 +156,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 The following example configures BFD in OSPFv3 for interface swp1 and sets the the interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
@@ -177,7 +175,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 

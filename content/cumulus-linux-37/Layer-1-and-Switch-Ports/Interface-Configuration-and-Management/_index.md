@@ -882,15 +882,16 @@ For sysctl commands in the `pre-up` , `up`, `post-up`, `pre-down`, `down`, and `
 `$IFACE` variable, if the interface name contains a dot (.), `ifupdown2` does not change the name to work with sysctl. For example, the interface name `bridge.1` is not
 converted to `bridge/1`.
 
-### Long Interface Names
+### Interface Name Limitations
 
-The Linux kernel limits interface names to 15 characters in length and
-cannot have a number as the first character. Longer interface names can
-result in errors. To work around this issue, remove the interface from
-the `/etc/network/interfaces` file, then restart the networking.service.
+The Linux kernel limits interface names to 15 characters in length and the first character cannot be a number. In addition, any name that matches with the regular expression `.{0,13}\-v.*` is not supported.
 
-    cumulus@switch:~$ sudo vi /etc/network/interfaces
-    cumulus@switch:~$ sudo systemctl restart networking.service
+If you encounter issues, remove the interface name from the `/etc/network/interfaces` file, then restart the `networking.service`.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+cumulus@switch:~$ sudo systemctl restart networking.service
+```
 
 ## Related Information
 

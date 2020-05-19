@@ -6,8 +6,7 @@ weight: 10
 You can provide feedback about errors that are easy to fix, such as typographical errors, broken links, or simple grammar mistakes, using one of the following methods:
 
 - Use the **Edit this page** link in any web document
-- Post a comment on the Cumulus Forums
-- Post a message on Cumulus Community Slack channel
+- Post a message on [Cumulus Community Slack channel](http://slack.cumulusnetworks.com)
 
 Details for each are included here. All are easy and quick, so choose the method that is most comfortable for you!
 
@@ -49,31 +48,13 @@ Please do not open PRs against the master branch.
 
 You're done! You have now created a PR for the documentation team to review, and, if approved, they will publish your edits.
 
-## Post a Comment on Cumulus Forums
-
-This method is convenient when you find an error as you are reading a document, but do not have a GitHub account.
-
-To submit your feedback with this method:
-
-1. Access the Cumulus Forums in one of three ways:
-
-    - Open the document in the [Cumulus Docs site](https://docs.cumulusnetworks.com), then click the **Cumulus Forums** tab on the right side of the screen. This opens a pop-up dialog. Scroll to the bottom and click **Ask a question**.
-    - Open the document in the [Cumulus Docs site](https://docs.cumulusnetworks.com), then click **Forums** in the docs site header
-    - Enter *https://forums.cumulusnetworks.com/* into your web browser address field
-
-2. Click **Ask your question** near the top on the right.
-
-3. If you have a MyCumulus account, sign in with your credentials. Optionally, click **Create an account** to set up a new account, or click X to close the dialog.
-
-4. Fill out the **Create new topic** form, then click **Create**.
-
 ## Post a Message on Slack
 
 If you use Slack, you can post your comment on the Cumulus Community Slack channel.
 
 To submit feedback using this method:
 
-1. Add the Cumulus Community Slack channel (cumulusnetworks.slack.com) if you have not already done so.
+1. Add the Cumulus Community Slack channel (http://cumulusnetworks.slack.com) if you have not already done so.
 
 2. Select the **cumulus-content** channel, then enter your comment in the message box. Add this channel if needed.
 

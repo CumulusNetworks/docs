@@ -314,7 +314,7 @@ In this configuration, distribution layer switches only route IP packets between
 
 ### Redistribute Neighbor
 
-The Cumulus Linux layer 3 {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-3/Redistribute-Neighbor/" text="Redistribute Neighbor">}} feature helps modernise your campus network to make it more resilient, maximize utilisation, and to eliminate the use of the Spanning Tree Protocol (STP).
+The Cumulus Linux layer 3 {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-3/Redistribute-Neighbor/" text="Redistribute Neighbor">}} feature helps modernise your campus network to make it more resilient, maximize utilisation, and eliminate the use of the Spanning Tree Protocol (STP).
 
 Redistribute neighbor provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by redistributing the Address Resolution Protocol (ARP) table (Linux IP neighbor table) into a dynamic routing protocol, such as OSPF or BGP. The host routes continue to be advertised into the routing domain as /32 prefix routes. Routing protocols can achieve reachability by routing on the Longest Prefix Match (LPM) based on these /32 host routes.
 
@@ -415,7 +415,7 @@ In this design, Proxy ARP is configured on the VLAN attached to the host so that
 
 If you have many switches and need the VLAN across all the switches, you can specify a unique IP address on all the SVIs in the subnet, or you can use the anycast gateway with VRR. To conserve IP addresses, repeat physical IP addresses on a switch or switch pair (if you use MLAG).
 
-The IP neighbor table on the hosts and the switches look like this:
+The IP neighbor table on the hosts and the switches looks like this:
 
 {{< tabs "TABID03 ">}}
 
@@ -622,7 +622,7 @@ FIB entry for 10.1.3.101
 
 #### Limitations
 
-With existing campus networks, consider current restrictions and limitations, such as switch stacking and limited fiber runs that make it difficult to transition to spine and leaf networks. If you have sufficient fiber runs, requirements for growth, scalability, redundancy, and resiliency with effective utilisation of uplinks, the spine and leaf architecture is ideal as packet forwarding is deterministic and predictable across the entire campus network.
+With existing campus networks, switch stacking and limited fiber runs might make it difficult to transition to spine and leaf networks. If you have sufficient fiber runs, requirements for growth, scalability, redundancy, and resiliency with effective utilisation of uplinks, the spine and leaf architecture is ideal as packet forwarding is deterministic and predictable across the entire campus network.
 
 If limitations exist, such as limited fiber runs available to a building, floor, or closet, you can use a ring topology.
 

@@ -1,0 +1,15 @@
+name: 'URL Checker'
+
+on:
+  push:
+    branches:
+      - plumbis-stage
+
+jobs:
+  check_urls:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: jakejarvis/hugo-build-action@v0.65.3
+    - uses: urlstechie/urlchecker-action@0.2.1
+      with:
+        subfolder: "./public"

@@ -42,10 +42,10 @@
         <span>Docs</span>
         </a>
         <ul class="flex">
-          <li><a href="//cumulusnetworks.com">HOME</a></li>
+          <li><a href="//cumulusnetworks.com/">HOME</a></li>
           <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
           <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
-          <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+          <li><a href="//education.cumulusnetworks.com/">EDUCATION</a></li>
           <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
           <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
         </ul>
@@ -90,67 +90,33 @@
             </h3>
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
-            <a href="/cumulus-linux/"><img src="/home-products-cumulus-linux.jpg" alt="Cumulus Linux" class="mb-6"></a>
-            <h3>Cumulus Linux</h3>
-            <p class="small">An open network operating system designed for efficiency, automation and scale</p>
-            <ul>
-<<<<<<< HEAD
-              {{ if .Site.IsServer }}
-                <li><a href="/cumulus-linux-41/">User guide</a></li>
-                <li><a href="/cumulus-linux-41/Quick-Start-Guide/">Quick start guide</a></li>
-                <li><a href="/cumulus-linux-41/Whats-New/rn/">Release notes</a></li>
-                <li><a href="/cumulus-linux-41/Whats-New/">What's new in Cumulus Linux</a></li>
-              {{ else }}
-                <li><a href="/cumulus-linux/">User guide</a></li>
-                <li><a href="/cumulus-linux/Quick-Start-Guide/">Quick start guide</a></li>
-                <li><a href="/cumulus-linux/Whats-New/rn/">Release notes</a></li>
-                <li><a href="/cumulus-linux/Whats-New/">What's new in Cumulus Linux</a></li>
-              {{ end }}
-              <!-- <li><a href="/pdfs/cumulus-linux.pdf">User guide (PDF)</a></li> -->
-=======
-              {{ range where .Site.Menus.subnav "Title" "Cumulus Linux" }}
-                <li><a href="{{.URL}}">User guide</a></li>
-                <li><a href="{{.URL}}Quick-Start-Guide/">Quick start guide</a></li>
-                <li><a href="{{.URL}}Whats-New/rn/">Release notes</a></li>
-                <li><a href="{{.URL}}Whats-New/">What's new in Cumulus Linux</a></li>
-              {{ end }}
->>>>>>> origin/stage
-            </ul>
+            {{ range where .Site.Menus.subnav "Title" "Cumulus Linux" }}
+              <a href="{{.URL}}"><img src="/home-products-cumulus-linux.jpg" alt="Cumulus Linux" class="mb-6"></a>
+              <h3>Cumulus Linux</h3>
+              <p class="small">An open network operating system designed for efficiency, automation and scale</p>
+              <ul>
+                  <li><a href="{{.URL}}">User guide</a></li>
+                  <li><a href="{{.URL}}Quick-Start-Guide/">Quick start guide</a></li>
+                  <li><a href="{{.URL}}Whats-New/rn/">Release notes</a></li>
+                  <li><a href="{{.URL}}Whats-New/">What's new in Cumulus Linux</a></li>
+              </ul>
+            {{ end }}
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
-            <a href="/cumulus-netq/"><img src="/home-products-netq.jpg" alt="Cumulus NetQ" class="mb-6"> </a>
-            <h3>Cumulus NetQ</h3>
-            <p class="small">A highly-scalable, modern network operations tool set that provides visibility into your network</p>
-            <ul>
-<<<<<<< HEAD
-              {{ if .Site.IsServer }}
-                <li><a href="/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/">Deployment guide</a></li>
-                <li><a href="/cumulus-netq-30/Cumulus-NetQ-Integration-Guide/">Integration guide</a></li>
-                <li><a href="/cumulus-netq-30/Cumulus-NetQ-UI-User-Guide/">GUI user guide</a></li>
-                <li><a href="/cumulus-netq-30/Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
-                <li><a href="/cumulus-netq-30/Cumulus-NetQ-Admin-User-Guide/">Admin user guide</a></li>
-                <li><a href="/cumulus-netq-30/More-Documents/rn/">Release notes</a></li>
-                <li><a href="/cumulus-netq-30/More-Documents/Whats-New/">What's new in Cumulus NetQ</a></li>
-              {{ else }}
-                <li><a href="/cumulus-netq/Cumulus-NetQ-Deployment-Guide/">Deployment guide</a></li>
-                <li><a href="/cumulus-netq/Cumulus-NetQ-Integration-Guide/">Integration guide</a></li>
-                <li><a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/">GUI user guide</a></li>
-                <li><a href="/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
-                <li><a href="/cumulus-netq/Cumulus-NetQ-Admin-User-Guide/">Admin user guide</a></li>
-                <li><a href="/cumulus-netq/More-Documents/rn/">Release notes</a></li>
-                <li><a href="/cumulus-netq/More-Documents/Whats-New/">What's new in Cumulus NetQ</a></li>
-=======
-              {{ range where .Site.Menus.subnav "Title" "Cumulus NetQ" }}
-                <li><a href="{{.URL}}Cumulus-NetQ-Deployment-Guide/">Deployment guide</a></li>
-                <li><a href="{{.URL}}Cumulus-NetQ-Integration-Guide/">Integration guide</a></li>
-                <li><a href="{{.URL}}Cumulus-NetQ-UI-User-Guide/">GUI user guide</a></li>
-                <li><a href="{{.URL}}Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
-                <li><a href="{{.URL}}Cumulus-NetQ-Admin-User-Guide/">Admin user guide</a></li>
-                <li><a href="{{.URL}}More-Documents/rn/">Release notes</a></li>
-                <li><a href="{{.URL}}More-Documents/Whats-New/">What's new in Cumulus NetQ</a></li>
->>>>>>> origin/stage
-              {{ end }}
-            </ul>
+            {{ range where .Site.Menus.subnav "Title" "Cumulus NetQ" }}
+              <a href="{{.URL}}"><img src="/home-products-netq.jpg" alt="Cumulus NetQ" class="mb-6"> </a>
+              <h3>Cumulus NetQ</h3>
+              <p class="small">A highly-scalable, modern network operations tool set that provides visibility into your network</p>
+              <ul>
+                  <li><a href="{{.URL}}Cumulus-NetQ-Deployment-Guide/">Deployment guide</a></li>
+                  <li><a href="{{.URL}}Cumulus-NetQ-Integration-Guide/">Integration guide</a></li>
+                  <li><a href="{{.URL}}Cumulus-NetQ-UI-User-Guide/">GUI user guide</a></li>
+                  <li><a href="{{.URL}}Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
+                  <li><a href="{{.URL}}Cumulus-NetQ-Admin-User-Guide/">Admin user guide</a></li>
+                  <li><a href="{{.URL}}More-Documents/rn/">Release notes</a></li>
+                  <li><a href="{{.URL}}More-Documents/Whats-New/">What's new in Cumulus NetQ</a></li>
+              </ul>
+            {{ end }}
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
             <a href="/cumulus-vx/"><img src="/home-products-cumulus-express.jpg" alt="Cumulus Express" class="mb-6"></a>

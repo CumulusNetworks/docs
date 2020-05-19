@@ -45,12 +45,6 @@ disableKinds = ["RSS"]
     url = "/cumulus-rmp/"
     weight = 10
 
-  [[menu.dropnav]]
-    identifier = "chassis"
-    title = "Cumulus Chassis"
-    url = "/chassis/"
-    weight = 20
-
 
 
 [Params]

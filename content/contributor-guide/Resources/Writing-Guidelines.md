@@ -47,3 +47,13 @@ When we create our user documentation, we strive to provide easy-to-read, concis
     - Not so good: Configuring a switch -- Vrf route Leaking
 
 All edits and new content are reviewed by the Cumulus Networks documentation team before publication, so if you are not sure about particular style issues, leave it to us.
+
+## IP Addresses
+All unicast IP addresses used should be based on IPv4 [RFC 1918](https://tools.ietf.org/html/rfc1918) or [RFC 5737](https://tools.ietf.org/html/rfc5737) prefixes. Acceptable IPv4 address are between:
+
+- 10.0.0.0 - 10.255.255.255
+- 172.16.0.0 - 172.31.255.255
+- 192.168.0.0 - 192.168.255.255
+- 192.0.2.0 - 192.0.2.255
+- 198.51.100.0 - 192.51.255.255
+- 203.0.113.0 - 203.0.113.255

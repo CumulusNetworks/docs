@@ -99,26 +99,31 @@ To upgrade your NetQ software:
 
 1. Run the bootstrap CLI to upgrade the Admin UI itself.
 
-    <details><summary>On-premises Deployments</summary>
+    {{< tabs "TabID0" >}}
 
-    ```
-    cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-2.4.1.tgz
-    2020-02-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-2.4.1.tgz
-    2020-02-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
-    2020-02-28 15:47:35.667579: master-node-installer: Removing old images
-    -----------------------------------------------
-    Successfully bootstrap-upgraded the master node
-    ```
+{{< tab "On-premises Deployments" >}}
 
-    </details>
-    <details><summary>Cloud Deployments</summary>
+```
+cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-2.4.1.tgz
+2020-02-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-2.4.1.tgz
+2020-02-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
+2020-02-28 15:47:35.667579: master-node-installer: Removing old images
+-----------------------------------------------
+Successfully bootstrap-upgraded the master node
+```
 
-    ```
-    netq bootstrap master upgrade /mnt/installables/NetQ-2.4.1-opta.tgz
-    ```
-    </details>
+{{< /tab >}}
 
-2. Open the Admin UI by entering `http://<hostname-or-ipaddress>:8443` in your browser address field.
+{{< tab "Cloud Deployments" >}}
+
+```
+netq bootstrap master upgrade /mnt/installables/NetQ-2.4.1-opta.tgz
+```
+{{< /tab >}}
+
+{{< /tabs >}}
+
+2. Open the Admin UI by entering **http://\<hostname-or-ipaddress\>:8443** in your browser address field.
 
 3. Click **Upgrade**.
 
@@ -148,20 +153,25 @@ To upgrade your hardware:
 
 1. Run the appropriate `netq upgrade` command.
 
-    <details><summary>On-premises Deployments</summary>
+    {{< tabs "TabID2" >}}
 
-    ```
-    netq upgrade bundle /mnt/installables/NetQ-2.4.1.tgz
-    ```
+{{< tab "On-premises Deployments" >}}
 
-    </details>
-    <details><summary>Cloud Deployments</summary>
+```
+netq upgrade bundle /mnt/installables/NetQ-2.4.1.tgz
+```
 
-    ```
-    netq upgrade bundle /mnt/installables/NetQ-2.4.1-opta.tgz
-    ```
+{{< /tab >}}
 
-    </details>
+{{< tab "Cloud Deployments" >}}
+
+```
+netq upgrade bundle /mnt/installables/NetQ-2.4.1-opta.tgz
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 2. After the upgrade is completed, confirm the upgrade was successful.
 

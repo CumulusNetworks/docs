@@ -19,4 +19,4 @@ jobs:
     - run: ls
     - run: hugo server --baseURL localhost:1313 --disableLiveReload &
     - run: sleep 15
-    - run: blc http://localhost:1313 --exclude linkedin.com --exclude github.com --exclude .pdf --exclude .xls --exclude cumulus-vx --exclude cumulus-rmp --exclude /rn/ --exclude /cumulus-linux/ --exclude /cumulus-netq/ -r -e
+    - run: (set -o pipefail; blc http://localhost:1313 --exclude linkedin.com --exclude github.com --exclude .pdf --exclude .xls --exclude cumulus-vx --exclude cumulus-rmp --exclude /rn/ --exclude /cumulus-linux/ --exclude /cumulus-netq/ -r -e | grep --color='auto' "Getting links from\|BROKEN")

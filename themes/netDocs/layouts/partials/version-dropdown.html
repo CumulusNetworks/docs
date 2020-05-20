@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-{{ range where .Site.Pages "Params.title" .Page.Title  }}
-    {{  $.Scratch.SetInMap "found_pages" (string .Params.version) .Page.RelPermalink }}
-=======
 <!-- First, get a list of versions for this product and map it to the version landing page -->
 {{range where .Site.Sections "Params.product" .Page.Params.product }}
     {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
@@ -10,7 +6,6 @@
 <!-- Now check to see if this page exists for a version and update the map -->
 {{ range where (where .Site.Pages "Params.title" .Page.Title) ".Page.Params.product" .Page.Params.product  }}
     {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
->>>>>>> origin/stage
 {{ end }}
 
 <div id="product-nav" class="flex">
@@ -70,17 +65,10 @@
                 {{ range sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc"}}
                     <!-- The version is the key in version_links. Get the Permalink of the page stored as a value  -->
                     {{ $ver := "" }}
-<<<<<<< HEAD
-                    {{ if not ($.Scratch.Get "found_pages") }}
-                        <a class="dropdown-item" href="{{ .Page.RelPermalink }}">v{{.Page.Params.version}}</a>
-                    {{ else }}
-                        <a class="dropdown-item" href="{{index ($.Scratch.Get "found_pages") (string .Page.Params.version)}}">v{{.Page.Params.version}}</a>
-=======
                     {{ if not ($.Scratch.Get "version_page_map") }}
                         <a class="dropdown-item" href="{{ .Page.RelPermalink }}">v{{.Page.Params.version}}</a>
                     {{ else }}
                         <a class="dropdown-item" href="{{index ($.Scratch.Get "version_page_map") (string .Page.Params.version)}}">v{{.Page.Params.version}}</a>
->>>>>>> origin/stage
                     {{ end }}
                 {{ end }}
             </div>

@@ -4,6 +4,11 @@ author: Cumulus Networks
 weight: 50
 toc: 3
 ---
+{{%notice warning%}}
+
+In Cumulus Linux 4.2.0, the default password for the *cumulus* user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before you upgrade by installing the Cumulus Linux image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#additional-installation-options" text="Additional Installation Options">}}.
+
+{{%/notice%}}
 
 This topic describes how to upgrade Cumulus Linux on your switch.
 

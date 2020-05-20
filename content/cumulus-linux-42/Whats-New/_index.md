@@ -35,7 +35,7 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - Auto BGP
 - DHCP Snooping
 - Mandatory password change upon first login
-- Ability to set the default password in a Binary Image File
+- Ability to set the default password in a Cumulus Linux Image File
 - Ability to set the default password with an option in the ONIE-NOS-INSTALL command
 - BGP Graceful Restart helper mode in FRR??
 - New Ninja profile on Mellanox switches

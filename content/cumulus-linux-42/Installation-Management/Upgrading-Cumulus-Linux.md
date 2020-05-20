@@ -4,6 +4,11 @@ author: Cumulus Networks
 weight: 50
 toc: 3
 ---
+{{%notice warning%}}
+
+In Cumulus Linux 4.2.0, the default password for the *cumulus* user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before you upgrade by installing the Cumulus Linux image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#additional-installation-options" text="Additional Installation Options">}}.
+
+{{%/notice%}}
 
 This topic describes how to upgrade Cumulus Linux on your switch.
 
@@ -92,7 +97,7 @@ If you are using certain forms of network virtualization, including {{<link url=
 
 {{%notice note%}}
 
-You can check which files have changed since the last binary install with the following commands. Be sure to back up any changed files:
+You can check which files have changed since the last Cumulus Linux image install with the following commands. Be sure to back up any changed files:
 
 - Run the `sudo dpkg --verify` command to show a list of changed files.
 - Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changed.
@@ -103,7 +108,7 @@ You can check which files have changed since the last binary install with the fo
 
 You can upgrade Cumulus Linux in one of two ways:
 
-- Install a disk image of the new release, using ONIE.
+- Install a Cumulus Linux image of the new release, using ONIE.
 - Upgrade only the changed packages using the `sudo -E apt-get update` and `sudo -E apt-get upgrade` command.
 
 {{%notice note%}}
@@ -112,15 +117,15 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 
 {{%/notice%}}
 
-### Should I Install a Disk Image or Upgrade Packages?
+### Should I Install a Cumulus Linux Image or Upgrade Packages?
 
-The decision to upgrade Cumulus Linux by either installing a disk image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
+The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
 
-**Installing a disk image** is recommended if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 3.7.12 to 4.1.0).
+**Installing a Cumulus Linux image** is recommended if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 3.7.12 to 4.1.0).
 
-Be aware of the following when installing the disk image:
+Be aware of the following when installing the Cumulus Linux image:
 
-- Installing a disk image is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the disk image install.
+- Installing a Cumulus Linux image is destructive; any configuration files on the switch are not saved; copy them to a different server before you start the Cumulus Linux image install.
 - You must move configuration data to the new OS using ZTP or automation while the OS is first booted, or soon afterwards using out-of-band management.
 - Moving a configuration file might cause issues;
 - Identifying all the locations of configuration data is not always an easy task. See [Before You Upgrade Cumulus Linux](#before-you-upgrade-cumulus-linux) above.
@@ -128,7 +133,7 @@ Be aware of the following when installing the disk image:
 - If configuration files are not restored correctly, you might be unable to ssh to the switch from in-band management. Out-of-band connectivity (eth0 or console) is recommended.
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
-**Package upgrade** is recommended if you are upgrading from Cumulus Linux 4.0, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike disk image install).
+**Package upgrade** is recommended if you are upgrading from Cumulus Linux 4.0, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
 
 Be aware of the following when upgrading packages:
 
@@ -137,7 +142,7 @@ Be aware of the following when upgrading packages:
 - The `sudo -E apt-get upgrade` command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
 
-### Disk Image Install (ONIE)
+### Cumulus Linux Image Install (ONIE)
 
 ONIE is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
 
@@ -151,10 +156,10 @@ To upgrade the switch:
 
 1. Back up the configurations off the switch.
 2. Download the Cumulus Linux image.
-3. Install the disk image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
+3. Install the Cumulus Linux image with the `onie-install -a -i <image-location>` command, which boots the switch into ONIE. The following example command installs the image from a web server, then reboots the switch. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
-    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.1.0-mlx-amd64.bin &&   sudo reboot
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/cumulus-linux-4.1.0-mlx-amd64.bin && sudo reboot
     ```
 
 4. Restore the configuration files to the new release - ideally with automation.
@@ -246,8 +251,8 @@ To upgrade the switch using package upgrade:
 
 Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
 
-- The `/etc/os-release` and `/etc/lsb-release` files are updated to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *disk image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 4.1.0, these two files display the release as 4.1.0 after the upgrade.
-- The `/etc/image-release` file is updated **only** when you run a disk image install. Therefore, if you run a disk image install of Cumulus Linux 4.0.0, followed by a package upgrade to 4.1.0 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 4.0.0, which is the originally installed base image.
+- The `/etc/os-release` and `/etc/lsb-release` files are updated to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 4.1.0, these two files display the release as 4.1.0 after the upgrade.
+- The `/etc/image-release` file is updated **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 4.0.0, followed by a package upgrade to 4.1.0 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 4.0.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
 
@@ -278,7 +283,7 @@ For networks with MLAG deployments, Cumulus Networks only supports upgrading to 
     cumulus@switch:~$ sudo ip link set peerlink down
     ```
 
-4. Run the `onie-install -a -i <image-location>` command to boot the switch into ONIE. The following example command installs the image from a web server. There are additional ways to install the disk image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
+4. Run the `onie-install -a -i <image-location>` command to boot the switch into ONIE. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.1.0-mlx-amd64.bin
@@ -337,7 +342,7 @@ Third party packages in the *Linux host* world often use the same package system
 
 If you install any third party applications on a Cumulus Linux switch, configuration data is typically installed into the `/etc` directory, but it is not guaranteed. It is your responsibility to understand the behavior and configuration file information of any third party packages installed on the switch.
 
-After you upgrade using a full disk image install, you need to reinstall any third party packages or any Cumulus Linux add-on packages.
+After you upgrade using a full Cumulus Linux image install, you need to reinstall any third party packages or any Cumulus Linux add-on packages.
 
 ## Related Information
 

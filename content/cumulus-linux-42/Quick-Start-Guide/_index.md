@@ -56,16 +56,18 @@ When starting Cumulus Linux for the first time, the management port makes a DHCP
 The default installation includes the system account (root), with full system privileges and the user account (cumulus), with `sudo` privileges. The *root* account password is locked by default (which prohibits login). The *cumulus* account is configured with this default password:
 
 ```
-CumulusLinux!
+cumulus
 ```
 
-In this quick start guide, you use the *cumulus* account to configure Cumulus Linux.
+When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system.
 
-{{%notice warning%}}
+{{%notice note%}}
 
-For optimum security, change the default password with the `passwd` command *before* you configure Cumulus Linux on the switch.
+ONIE and ZTP options allow you to change the default password for the cumulus account during Cumulus Linux installation on the switch. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image">}} and {{<link url="Zero-Touch-Provisioning-ZTP">}}. If you change the password during installation with ONIE or ZTP, use the new password to log in.
 
 {{%/notice%}}
+
+In this quick start guide, you use the *cumulus* account to configure Cumulus Linux.
 
 All accounts except `root` are permitted remote SSH login; you can use `sudo` to grant a non-root account root-level access. Commands that change the system configuration require this elevated level of access.
 

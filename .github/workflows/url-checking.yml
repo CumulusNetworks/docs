@@ -9,14 +9,26 @@ jobs:
   check_urls:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: peaceiris/actions-hugo@v2
+    - name: Checkout git repo
+      uses: actions/checkout@v2
+    - name: Download and install Hugo
+      uses: peaceiris/actions-hugo@v2
       with:
         hugo-version: "0.65.3"
         extended: true
-    - uses: actions/setup-node@v1
-    - run: npm install broken-link-checker -g
-    - run: ls
-    - run: hugo server --baseURL localhost:1313 --disableLiveReload &
-    - run: sleep 15
-    - run: (set -o pipefail; blc http://localhost:1313 --exclude linkedin.com --exclude github.com --exclude .pdf --exclude .xls --exclude cumulus-vx --exclude cumulus-rmp --exclude /rn/ --exclude /cumulus-linux/ --exclude /cumulus-netq/ -r -e | grep --color='auto' "Getting links from\|BROKEN")
+    - name: Update link shortcode to error on broken links
+      run: sed -i 's/#ERROR/\<{{ errorf "broken link in %s" .Position }}\>/g' themes/netDocs/layouts/shortcodes/link.html
+    - name: Run Hugo
+      run: hugo
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+    - name: Install broken link checker
+      run: npm install broken-link-checker -g
+    - name: Run hugo server in background as local server instance
+      run: hugo server --baseURL localhost:1313 --disableLiveReload &
+    - name: Wait for hugo to compile the site
+      run: sleep 15
+    # The following line will run blc and ignore cumulus-vx, cumulus-rmp, release notes, xls and pdf files and links to the root cumulus-linux or cumulus-netq directories
+    # The awk statement captures the last isntance of the URL that blc checks and then prints out both the URL and the broken link.
+    - name: Run linkchecker
+      run: (set -o pipefail; --exclude .pdf --exclude .xls --exclude cumulus-vx --exclude cumulus-rmp --exclude /rn/ --exclude /cumulus-linux/ --exclude /cumulus-netq/ -e -r | awk '/Getting links/ {via_line=$0} /BROKEN/ {print via_line "\n" $0}')

@@ -63,7 +63,7 @@ When you log into Cumulus Linux for the first time, you must provide a new passw
 
 {{%notice note%}}
 
-ONIE and ZTP options allow you to change the default password for the cumulus account during Cumulus Linux installation on the switch. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image">}} and {{<link url="Zero-Touch-Provisioning-ZTP">}}. If you change the password during installation with ONIE or ZTP, use the new password to log in.
+Cumulus Linux provides options that allow you to change the default password for the *cumulus* account automatically during Cumulus Linux installation. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image" >}}. If the password is changed during installation, use the new password to log in.
 
 {{%/notice%}}
 
@@ -71,7 +71,7 @@ In this quick start guide, you use the *cumulus* account to configure Cumulus Li
 
 All accounts except `root` are permitted remote SSH login; you can use `sudo` to grant a non-root account root-level access. Commands that change the system configuration require this elevated level of access.
 
-For more information about `sudo`, read {{<link url="Using-sudo-to-Delegate-Privileges">}}.
+For more information about `sudo`, read {{<link url="Using-sudo-to-Delegate-Privileges" >}}.
 
 ### Serial Console Management
 

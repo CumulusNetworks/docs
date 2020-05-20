@@ -123,7 +123,7 @@ netq bootstrap master upgrade /mnt/installables/NetQ-2.4.1-opta.tgz
 
 {{< /tabs >}}
 
-2. Open the Admin UI by entering `http://<hostname-or-ipaddress>:8443` in your browser address field.
+2. Open the Admin UI by entering **http://\<hostname-or-ipaddress\>:8443** in your browser address field.
 
 3. Click **Upgrade**.
 

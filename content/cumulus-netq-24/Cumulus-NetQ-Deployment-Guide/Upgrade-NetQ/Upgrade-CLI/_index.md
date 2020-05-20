@@ -36,16 +36,12 @@ sudo yum install netq-apps
 
 3. Restart the CLI.
 
-```
-netq config restart cli
-```
+    ```
+    netq config restart cli
+    ```
 
 To complete the upgrade, refer to the relevant configuration topic:
 
 - {{<link title="Install and Configure the NetQ CLI on Cumulus Linux Switches">}}
 - {{<link title="Install and Configure the NetQ CLI on Ubuntu Servers">}}
 - {{<link title="Install and Configure the NetQ CLI on RHEL and CentOS Servers">}}
-
-<!-- - {{<link title="Configure the NetQ CLI on a Cumulus Linux Switch">}}
-- {{<link title="Configure the NetQ CLI on an Ubuntu Server">}}
-- {{<link title="Configure the NetQ CLI on a RHEL or CentOS Server">}} -->

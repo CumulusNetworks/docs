@@ -51,11 +51,11 @@ If NTP is not already installed and configured, follow these steps:
 
 1.  Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
-```
-root@ubuntu:~# sudo apt-get install ntp
-```
+    ```
+    root@ubuntu:~# sudo apt-get install ntp
+    ```
 
-2.  Configure the network time server.
+2. Configure the network time server.
 
     {{< tabs "TabID0" >}}
 
@@ -183,9 +183,9 @@ To obtain the NetQ CLI package:
 
 1. Reference and update the local `apt` repository.
 
-```
-root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
-```
+    ```
+    root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+    ```
 
 2. Add the Ubuntu repository:
 
@@ -229,23 +229,23 @@ A simple process installs the NetQ CLI on an Ubuntu server.
 
 1.  Install the CLI software on the server.
 
-```
-root@ubuntu:~# sudo apt-get update
-root@ubuntu:~# sudo apt-get install netq-apps
-```
+    ```
+    root@ubuntu:~# sudo apt-get update
+    root@ubuntu:~# sudo apt-get install netq-apps
+    ```
 
-4. Verify you have the correct version of the CLI.
+2. Verify you have the correct version of the CLI.
 
-```
-root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
-```
+    ```
+    root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
+    ```
 
     You should see version 2.4.1 and update 26 or later in the results. For example:
 
-    - netq-apps_**2.4.1**-ub18.04u**26**~1581351889.c5ec3e5_amd64.deb, or
-    - netq-apps_**2.4.1**-ub16.04u**26**~1581350451.c5ec3e5_amd64.deb. 
+    - netq-apps_2.4.1-ub18.04u26~1581351889.c5ec3e5_amd64.deb, or
+    - netq-apps_2.4.1-ub16.04u26~1581350451.c5ec3e5_amd64.deb.
 
-5. Continue with NetQ CLI configuration in the next section.
+3. Continue with NetQ CLI configuration in the next section.
 
 ## Configure the NetQ CLI on an Ubuntu Server
 
@@ -305,7 +305,9 @@ To generate AuthKeys:
 
     {{%notice info%}}
 The secret key is only shown once. If you don't copy these, you will need to regenerate them and reconfigure CLI access.
+    {{%/notice%}}
 
+    {{%notice tip%}}
 You can also save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
 
 - store the file wherever you like, for example in */home/cumulus/* or */etc/netq*
@@ -363,36 +365,36 @@ You can configure the NetQ CLI in the `netq.yml` configuration file contained in
 
 1. Open the `netq.yml` file using your text editor of choice. For example:
 
-```
-root@ubuntu:~# sudo nano /etc/netq/netq.yml
-```
+    ```
+    root@ubuntu:~# sudo nano /etc/netq/netq.yml
+    ```
 
 2. Locate the *netq-cli* section, or add it.
 
 3. Set the parameters for the CLI as follows:
 
-| Parameter | On-premises | Cloud |
-| ----| ---- | ---- |
-| netq-user | User who can access the CLI | User who can access the CLI |
-| server | IP address of the NetQ server or NetQ Appliance | api.netq.cumulusnetworks.com |
-| port (default) | 32708 | 443 |
-| premises | NA | Name of premises you want to query |
+    | Parameter | On-premises | Cloud |
+    | ----| ---- | ---- |
+    | netq-user | User who can access the CLI | User who can access the CLI |
+    | server | IP address of the NetQ server or NetQ Appliance | api.netq.cumulusnetworks.com |
+    | port (default) | 32708 | 443 |
+    | premises | NA | Name of premises you want to query |
 
-An on-premises configuration should be similar to this:
+    An on-premises configuration should be similar to this:
 
-```
-netq-cli:
-  netq-user: admin@company.com
-  port: 32708
-  server: 192.168.0.254
-  ```
+    ```
+    netq-cli:
+    netq-user: admin@company.com
+    port: 32708
+    server: 192.168.0.254
+    ```
 
-A cloud configuration should be similar to this:
+    A cloud configuration should be similar to this:
 
-```
-netq-cli:
-  netq-user: admin@company.com
-  port: 443
-  premises: datacenterwest
-  server: api.netq.cumulusnetworks.com
-```
+    ```
+    netq-cli:
+    netq-user: admin@company.com
+    port: 443
+    premises: datacenterwest
+    server: api.netq.cumulusnetworks.com
+    ```

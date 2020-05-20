@@ -67,8 +67,10 @@ root@ubuntu:~# sudo apt-get install ntp
 
    3. Enable and start the NTP service.
 
-          root@ubuntu:~# sudo systemctl enable ntp
-          root@ubuntu:~# sudo systemctl start ntp
+       ```
+       root@ubuntu:~# sudo systemctl enable ntp
+       root@ubuntu:~# sudo systemctl start ntp
+       ```
 
    {{%notice tip%}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
@@ -165,9 +167,9 @@ To obtain the NetQ Agent package:
 
 1. Reference and update the local `apt` repository.
 
-```
-root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
-```
+    ```
+    root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+    ```
 
 2. Add the Ubuntu repository:
 
@@ -211,31 +213,31 @@ After completing the preparation steps, you can successfully install the agent s
 
 To install the NetQ Agent:
 
-1.  Install the software packages on the server.
+1. Install the software packages on the server.
 
-```
-root@ubuntu:~# sudo apt-get update
-root@ubuntu:~# sudo apt-get install netq-agent
-```
+    ```
+    root@ubuntu:~# sudo apt-get update
+    root@ubuntu:~# sudo apt-get install netq-agent
+    ```
 
 2. Verify you have the correct version of the Agent.
 
-```
-root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
-```
+    ```
+    root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
 
     You should see version 2.4.1 and update 26 in the results. For example:
 
-    - netq-agent_**2.4.1**-ub18.04u**26**~1581351889.c5ec3e5_amd64.deb, or
-    - netq-agent_**2.4.1**-ub16.04u**26**~1581350451.c5ec3e5_amd64.deb
+    - netq-agent_2.4.1-ub18.04u26~1581351889.c5ec3e5_amd64.deb, or
+    - netq-agent_2.4.1-ub16.04u26~1581350451.c5ec3e5_amd64.deb
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
-```
-root@ubuntu:~# sudo systemctl restart rsyslog.service
-```
+    ```
+    root@ubuntu:~# sudo systemctl restart rsyslog.service
+    ```
 
-4.  Continue with NetQ Agent Configuration in the next section.
+4. Continue with NetQ Agent Configuration in the next section.
 
 ## Configure the NetQ Agent on an Ubuntu Server
 
@@ -250,25 +252,25 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 1. Open the `netq.yml` file using your text editor of choice. For example:
 
-```
-root@ubuntu:~# sudo nano /etc/netq/netq.yml
-```
+    ```
+    root@ubuntu:~# sudo nano /etc/netq/netq.yml
+    ```
 
 2. Locate the *netq-agent* section, or add it.
 
 3. Set the parameters for the agent as follows:
-  - port: 31980 (default) or one that you specify
-  - server: IP address of the NetQ server or appliance where the agent should send its collected data
-  - vrf: default (default) or one that you specify
+    - port: 31980 (default) or one that you specify
+    - server: IP address of the NetQ server or appliance where the agent should send its collected data
+    - vrf: default (default) or one that you specify
 
-Your configuration should be similar to this:
+    Your configuration should be similar to this:
 
-```
-netq-agent:
-    port: 31980
-    server: 127.0.0.1
-    vrf: default
-```
+    ```
+    netq-agent:
+        port: 31980
+        server: 127.0.0.1
+        vrf: default
+    ```
 
 ### Configure NetQ Agents Using the NetQ CLI
 

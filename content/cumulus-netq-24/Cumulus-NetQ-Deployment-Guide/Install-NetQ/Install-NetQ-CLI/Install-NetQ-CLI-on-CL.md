@@ -21,11 +21,11 @@ If your network uses a proxy server for external connections, you should first {
 
 To obtain the NetQ Agent package:
 
-Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
+1. Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
 
-*Note that NetQ has a separate repository from Cumulus Linux.*
+    *Note that NetQ has a separate repository from Cumulus Linux.*
 
-{{< tabs "TabID0" >}}
+    {{< tabs "TabID0" >}}
 
 {{< tab "Cumulus Linux 3.x" >}}
 
@@ -61,27 +61,27 @@ The repository `deb http://apps3.cumulusnetworks.com/repos/deb     CumulusLinux-
 
 2. Update the local `apt` repository and install the software on the switch.
 
-```
-cumulus@switch:~$ sudo apt-get update
-cumulus@switch:~$ sudo apt-get install netq-apps
-```
+    ```
+    cumulus@switch:~$ sudo apt-get update
+    cumulus@switch:~$ sudo apt-get install netq-apps
+    ```
 
 3. Verify you have the correct version of the CLI.
 
-```
-cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
-```
+    ```
+    cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
 
     You should see version 2.4.1 and update 26 or later in the results. For example:
 
     - For Cumulus Linux 3.3.2-3.7.x:  
-      - netq-apps_**2.4.1**-cl3u**26**~1581350572.c5ec3e5_armel.deb
-      - netq-apps_**2.4.1**-cl3u**26**~1581350537.c5ec3e5_amd64.deb
+      - netq-apps_2.4.1-cl3u26~1581350572.c5ec3e5_armel.deb
+      - netq-apps_2.4.1-cl3u26~1581350537.c5ec3e5_amd64.deb
     - For Cumulus Linux 4.0.0:
-      - netq-apps_**2.4.1**-cl4u**26**~1581350349.c5ec3e5a_armel.deb
-      - netq-apps_**2.4.1**-cl4u**26**~1581350238.c5ec3e5a_amd64.deb 
+      - netq-apps_2.4.1-cl4u26~1581350349.c5ec3e5a_armel.deb
+      - netq-apps_2.4.1-cl4u26~1581350238.c5ec3e5a_amd64.deb
 
-5. Continue with NetQ CLI configuration in the next section.
+4. Continue with NetQ CLI configuration in the next section.
 
 ## Configure the NetQ CLI on a Cumulus Linux Switch
 
@@ -141,7 +141,9 @@ To generate AuthKeys:
 
     {{%notice info%}}
 The secret key is only shown once. If you don't copy these, you will need to regenerate them and reconfigure CLI access.
+    {{%/notice%}}
 
+    {{%notice tip%}}
 You can also save these keys to a YAML file for easy reference, and to avoid having to type or copy the key values. You can:
 
 - store the file wherever you like, for example in */home/cumulus/* or */etc/netq*
@@ -199,36 +201,36 @@ You can configure the NetQ CLI in the `netq.yml` configuration file contained in
 
 1. Open the `netq.yml` file using your text editor of choice. For example:
 
-```
-root@rhel7:~# sudo nano /etc/netq/netq.yml
-```
+    ```
+    root@rhel7:~# sudo nano /etc/netq/netq.yml
+    ```
 
 2. Locate the *netq-cli* section, or add it.
 
 3. Set the parameters for the CLI as follows:
 
-| Parameter | On-premises | Cloud |
-| ----| ---- | ---- |
-| netq-user | User who can access the CLI | User who can access the CLI |
-| server | IP address of the NetQ server or NetQ Appliance | api.netq.cumulusnetworks.com |
-| port (default) | 32708 | 443 |
-| premises | NA | Name of premises you want to query |
+    | Parameter | On-premises | Cloud |
+    | ----| ---- | ---- |
+    | netq-user | User who can access the CLI | User who can access the CLI |
+    | server | IP address of the NetQ server or NetQ Appliance | api.netq.cumulusnetworks.com |
+    | port (default) | 32708 | 443 |
+    | premises | NA | Name of premises you want to query |
 
-An on-premises configuration should be similar to this:
+    An on-premises configuration should be similar to this:
 
-```
-netq-cli:
-  netq-user: admin@company.com
-  port: 32708
-  server: 192.168.0.254
-  ```
+    ```
+    netq-cli:
+    netq-user: admin@company.com
+    port: 32708
+    server: 192.168.0.254
+    ```
 
-A cloud configuration should be similar to this:
+    A cloud configuration should be similar to this:
 
-```
-netq-cli:
-  netq-user: admin@company.com
-  port: 443
-  premises: datacenterwest
-  server: api.netq.cumulusnetworks.com
-```
+    ```
+    netq-cli:
+    netq-user: admin@company.com
+    port: 443
+    premises: datacenterwest
+    server: api.netq.cumulusnetworks.com
+    ```

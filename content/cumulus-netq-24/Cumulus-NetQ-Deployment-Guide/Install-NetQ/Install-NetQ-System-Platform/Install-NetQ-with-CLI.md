@@ -51,7 +51,7 @@ netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        
 
     {{<notice note>}}
 If any of the applications or services display Status as DOWN after 30 minutes, open a support ticket and attach the output of the <code>opta-support</code> command.
-{{</notice>}}
+    {{</notice>}}
 
 {{< /tab >}}
     

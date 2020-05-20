@@ -16,5 +16,5 @@ jobs:
         extended: true
     - uses: actions/setup-node@v1
     - run: npm install broken-link-checker -g
-    - run: hugo --baseURL localhost:1313 --disableLiveReload &
+    - run: hugo server --baseURL localhost:1313 --disableLiveReload &
     - run: blc http://localhost:1313 --exclude linkedin.com --exclude github.com --exclude .pdf --exclude .xls --exclude cumulus-vx --exclude cumulus-rmp --exclude /rn/ --exclude /cumulus-linux/ --exclude /cumulus-netq/ -r -e

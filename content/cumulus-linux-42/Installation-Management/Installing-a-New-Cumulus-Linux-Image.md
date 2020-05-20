@@ -464,6 +464,119 @@ sudo mount /dev/sdb1 /mnt/usb
 
 {{< /tabs >}}
 
+## Additional Installation Options
+
+The Cumulus Linux image is a self-extracting executable file that includes several command line options you can use to perform basic switch configuration automatically after installation completes and Cumulus Linux boots for the first time. These command line parameters enable you to:
+
+- Set a unique password for the *cumulus* user
+- Apply a Cumulus Linux license
+- Provide an initial network configuration
+- Execute a script to perform necessary configuration
+
+### Set the cumulus User Password
+
+The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change is required.
+
+To avoid changing the *cumulus* user password during initial login, you can specify a new password from the command line of the installer with the `--password '<clear-text-password>'` option. For example, to change the default *cumulus* user password to `mypassword`:
+
+{{< tabs "TabID481 ">}}
+
+{{< tab "From ONIE ">}}
+
+```
+ONIE:/ #onie-nos-install /tmp/cumulus-linux-4.2.0-bcm-amd64.bin --password 'mypassword'
+```
+
+{{< /tab >}}
+
+{{< tab "From Cumulus Linux ">}}
+
+```
+cumulus@switch:~$ sudo onie-install -a -i /tmp/cumulus-linux-4.2.0-bcm-amd64.bin --password 'mypassword'
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+To provide a hashed password instead of a clear-text password, use the `--hashed-password '<hash>'` option. For example:
+
+{{< tabs "TabID503 ">}}
+
+{{< tab "From ONIE ">}}
+
+```
+ONIE:/ #onie-nos-install /tmp/cumulus-linux-4.2.0-bcm-amd64.bin --hashed-password '$6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq.'
+```
+
+{{< /tab >}}
+
+{{< tab "From Cumulus Linux ">}}
+
+```
+cumulus@switch:~$ sudo onie-install -a -i /tmp/cumulus-linux-4.2.0-bcm-amd64.bin --hashed-password '$6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq.'
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{%notice note%}}
+
+If you specify both the `--password` and `--hashed-password` options, the `--hashed-password` option takes precedence and the `--password` option is ignored.
+
+{{%/notice%}}
+
+### Apply a Cumulus Linux License
+
+You can apply a license and start the `switchd` service automatically just after Cumulus Linux boots for the first time after installation with the `--license <license-string>` command line option. For example:
+
+{{< tabs "TabID527 ">}}
+
+{{< tab "From ONIE ">}}
+
+```
+ONIE:/ #onie-nos-install /tmp/cumulus-linux-4.2.0-bcm-amd64.bin --license 'customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
+```
+
+{{< /tab >}}
+
+{{< tab "From Cumulus Linux ">}}
+
+```
+cumulus@switch:~$ sudo onie-install -a -i /tmp/cumulus-linux-4.2.0-bcm-amd64.bin --license 'customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Provide Initial Network Configuration
+
+You can provide initial network configuration with the `--interfaces-file <filename>` command line option. For example, to copy the contents of the `network.intf` file into the `/etc/network/interfaces` file and run the `ifreload -a` command automatically when Cumulus Linux boots for the first time after installation:
+
+{{< tabs "TabID551 ">}}
+
+{{< tab "From ONIE ">}}
+
+```
+ONIE:/ #onie-nos-install /tmp/cumulus-linux-4.2.0-bcm-amd64.bin --interfaces-file network.intf
+```
+
+{{< /tab >}}
+
+{{< tab "From Cumulus Linux ">}}
+
+```
+cumulus@switch:~$ sudo onie-install -a -i /tmp/cumulus-linux-4.2.0-bcm-amd64.bin --interfaces-file network.intf
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The file must reside on ONIE filesystem.
+
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}

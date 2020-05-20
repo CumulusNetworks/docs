@@ -4,31 +4,36 @@ author: Cumulus Networks
 weight: 40
 toc: 3
 ---
+{{%notice warning%}}
 
-You can install a new Cumulus Linux disk image using {{<exlink url="http://www.onie.org/" text="ONIE">}}, an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
+In Cumulus Linux 4.2.0, the default password for the *cumulus* user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before you upgrade by installing the Cumulus Linux image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to [Additional Installation Options](#additional-installation-options).
+
+{{%/notice%}}
+
+You can install a new Cumulus Linux image using {{<exlink url="http://www.onie.org/" text="ONIE">}}, an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on bare metal switches.
 
 Before you install Cumulus Linux, the switch can be in two different states:
 
 - No image is installed on the switch (the switch is only running ONIE).
 - Cumulus Linux is already installed on the switch but you want to use ONIE to reinstall Cumulus Linux or upgrade to a newer version.
 
-The sections below describe some of the different ways you can install the Cumulus Linux disk image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
+The sections below describe some of the different ways you can install the Cumulus Linux image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
 
 You can download a Cumulus Linux image from the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Networks Downloads">}} page.
 
 {{%notice warning%}}
 
-Installing the Cumulus Linux disk image is destructive; configuration files on the switch are not saved; copy them to a different server before installing.
+Installing the Cumulus Linux image is destructive; configuration files on the switch are not saved; copy them to a different server before installing.
 
 {{%/notice%}}
 
 In the following procedures:
 
-- You can name your Cumulus Linux installer disk image using any of the
+- You can name your Cumulus Linux image using any of the
 {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes">}} mentioned here.
 - In the example commands, `[PLATFORM]` can be any supported Cumulus Linux platform, such as *x86\_64*, or *arm*.
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
-- After you install the Cumulus Linux disk image, you need to install the license file. Refer to {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}.
+- After you install the Cumulus Linux image, you need to install the license file. Refer to {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}.
 
 ## Install Using a DHCP/Web Server with DHCP Options
 
@@ -36,7 +41,7 @@ To install Cumulus Linux using a DHCP/web server *with* DHCP options, set up a D
 
 1. The bare metal switch boots up and requests an IP address (DHCP request).
 2. The DHCP server acknowledges and responds with DHCP option 114 and the location of the installation image.
-3. ONIE downloads the Cumulus Linux disk image, installs, and reboots.
+3. ONIE downloads the Cumulus Linux image, installs, and reboots.
 4. Success\! You are now running Cumulus Linux.
 
 {{< img src = "/images/cumulus-linux/install-image-onie-dhcp.png" >}}
@@ -73,7 +78,7 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 
 {{< tab "Install from ONIE ">}}
 
-1. Place the Cumulus Linux disk image in a directory on the web server.
+1. Place the Cumulus Linux image in a directory on the web server.
 2. Run the `onie-nos-install` command:
 
     ```
@@ -84,7 +89,7 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
 
 {{< tab "Install from Cumulus Linux ">}}
 
-1. Place the Cumulus Linux disk image in a directory on the web server.
+1. Place the Cumulus Linux image in a directory on the web server.
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
@@ -128,7 +133,7 @@ You need a console connection to access the switch; you cannot perform this proc
     ONIE:/ #ip addr add 10.0.1.252/24 dev eth0
     ```
 
-3. Place the Cumulus Linux disk image in a directory on your web server.
+3. Place the Cumulus Linux image in a directory on your web server.
 
 4. Run the installer manually (because there are no DHCP options):
 
@@ -140,7 +145,7 @@ You need a console connection to access the switch; you cannot perform this proc
 
 {{< tab "Install from Cumulus Linux ">}}
 
-1. Place the Cumulus Linux disk image in a directory on your web server.
+1. Place the Cumulus Linux image in a directory on your web server.
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
@@ -178,7 +183,7 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
     onie# /etc/init.d/discover.sh stop
     ```
 
-3. Place the Cumulus Linux disk image into a TFTP or FTP directory.
+3. Place the Cumulus Linux image into a TFTP or FTP directory.
 
 4. If you are not using DHCP options, run one of the following commands (`tftp` for TFTP or `ftp` for FTP):
 
@@ -192,7 +197,7 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 
 {{< tab "Install from Cumulus Linux ">}}
 
-1. Place the Cumulus Linux disk image into a TFTP or FTP directory.
+1. Place the Cumulus Linux image into a TFTP or FTP directory.
 
 2. From the Cumulus Linux command prompt, run one of the following
     commands (`tftp` for TFTP or `ftp` for FTP), then reboot the switch.
@@ -209,7 +214,7 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 
 ## Install Using a Local File
 
-Follow the steps below to install the disk image referencing a local file.
+Follow the steps below to install the Cumulus Linux image referencing a local file.
 
 {{< tabs "TabID217 ">}}
 
@@ -233,7 +238,7 @@ Follow the steps below to install the disk image referencing a local file.
     onie# /etc/init.d/discover.sh stop
     ```
 
-3. Use {{<exlink url="http://en.wikipedia.org/wiki/Secure_copy" text="scp">}} to copy the Cumulus Linux disk image to the switch.
+3. Use {{<exlink url="http://en.wikipedia.org/wiki/Secure_copy" text="scp">}} to copy the Cumulus Linux image to the switch.
 
 4. Run the installer manually from ONIE:
 
@@ -245,7 +250,7 @@ Follow the steps below to install the disk image referencing a local file.
 
 {{< tab "Install from Cumulus Linux ">}}
 
-1. Copy the Cumulus Linux disk image to the switch.
+1. Copy the Cumulus Linux image to the switch.
 
 2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
 
@@ -259,7 +264,7 @@ Follow the steps below to install the disk image referencing a local file.
 
 ## Install Using a USB Drive
 
-Follow the steps below to install the Cumulus Linux disk image using a USB drive. Instructions are provided for x86 and ARM platforms.
+Follow the steps below to install the Cumulus Linux image using a USB drive. Instructions are provided for x86 and ARM platforms.
 
 {{%notice tip%}}
 
@@ -312,7 +317,7 @@ sudo mount /dev/sdb1 /mnt/usb
 
 {{< /expand >}}
 
-3. Copy the Cumulus Linux disk image to the USB drive, then rename the image file to:
+3. Copy the Cumulus Linux image to the USB drive, then rename the image file to:
 
     - `onie-installer-x86_64`, if installing on an x86 platform
     - `onie-installer-arm`, if installing on an ARM platform
@@ -463,6 +468,67 @@ sudo mount /dev/sdb1 /mnt/usb
 {{< /tab >}}
 
 {{< /tabs >}}
+
+## Additional Installation Options
+
+The Cumulus Linux image is a self-extracting executable file that includes several command line options you can use to perform basic switch configuration automatically after installation completes and Cumulus Linux boots for the first time. These command line options enable you to:
+
+- Set a unique password for the *cumulus* user
+- Apply a Cumulus Linux license
+- Provide an initial network configuration
+- Execute a ZTP script to perform necessary configuration
+
+{{%notice note%}}
+
+To start an installation with the command line parameters, you must install the installation image directly from the ONIE command line; Installing the image from Cumulus Linux with the `onie-nos-install` command is not supported. You must transfer an installation image to the switch, make the image executable, then initiate installation. See the examples below.
+
+{{%/notice%}}
+
+### Set the cumulus User Password
+
+The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change is **required** in Cumulus Linux 4.2 and later.
+
+To automate this process, you can specify a new password from the command line of the installer with the `--password '<clear-text-password>'` option. For example, to change the default *cumulus* user password to `mypassword`:
+
+```
+ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
+ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'mypassword'
+```
+
+To provide a hashed password instead of a clear-text password, use the `--hashed-password '<hash>'` option. For example:
+
+```
+ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
+ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '$6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq.'
+```
+
+{{%notice note%}}
+
+If you specify both the `--password` and `--hashed-password` options, the `--hashed-password` option takes precedence and the `--password` option is ignored.
+
+{{%/notice%}}
+
+### Apply a Cumulus Linux License
+
+You can apply a license and start the `switchd` service automatically after Cumulus Linux boots for the first time after installation with the `--license <license-string>` command line option. For example:
+
+```
+ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
+ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --license 'customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
+```
+
+### Provide Initial Network Configuration
+
+You can provide initial network configuration with the `--interfaces-file <filename>` command line option. For example, to copy the contents of the `network.intf` file into the `/etc/network/interfaces` file and run the `ifreload -a` command automatically when Cumulus Linux boots for the first time after installation:
+
+```
+ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
+ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --interfaces-file network.intf
+```
 
 ## Related Information
 

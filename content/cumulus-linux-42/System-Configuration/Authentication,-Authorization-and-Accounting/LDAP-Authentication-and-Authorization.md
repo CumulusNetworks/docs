@@ -29,7 +29,7 @@ To install the additional packages, run the following command:
 cumulus@switch:~$ sudo apt-get install libnss-ldapd libpam-ldapd ldap-utils nslcd
 ```
 
-You can also install these packages even if the switch is not connected to the internet, as they are contained in the `cumulus-local-apt-archive` repository that is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux disk image.
+You can also install these packages even if the switch is not connected to the internet, as they are contained in the `cumulus-local-apt-archive` repository that is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux image.
 
 Follow the interactive prompts to specify the LDAP URI, search base distinguished name (DN), and services that must have LDAP lookups enabled. You need to select at least the `passwd`, `group`, and `shadow` services (press space to select a service). When done, click OK. This creates a very basic LDAP configuration using anonymous bind and initiates user search under the base DN specified.
 

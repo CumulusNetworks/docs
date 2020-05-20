@@ -161,10 +161,8 @@ echo 0x3f &gt; ${master_cpld}/qsfp_30_25_modsel
 echo 0x3f &gt; ${master_cpld}/qsfp_30_25_reset
 
 
-<p>Reboot the switch and check that the switch port comes up.</p>
-
-<p>*Note: this change must be reversed before upgrading CL4.X<br/>
-with debian packages that contain a fix for this problem.*</p></td>
+<p>Reboot the switch and check that the switch port comes up.<br/>
+<b>Important</b>: Before upgrading Cumulus Linux 4.x with Debian packages that includes a fix for this problem, you must change the lpmode line back to 0x00.</p></td>
 <td>4.1.0-4.1.1</td>
 <td></td>
 </tr>
@@ -195,12 +193,6 @@ iface mgmt
 
 </td>
 <td>4.1.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29409</td>
-<td><p>When PFC is configured, the control queue does not take priority over other classes and traffic gets dropped.</p></td>
-<td>4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1694,10 +1686,8 @@ echo 0x3f &gt; ${master_cpld}/qsfp_30_25_modsel
 echo 0x3f &gt; ${master_cpld}/qsfp_30_25_reset
 
 
-<p>Reboot the switch and check that the switch port comes up.</p>
-
-<p>*Note: this change must be reversed before upgrading CL4.X<br/>
-with debian packages that contain a fix for this problem.*</p></td>
+<p>Reboot the switch and check that the switch port comes up.<br/>
+<b>Important</b>: Before upgrading Cumulus Linux 4.x with Debian packages that includes a fix for this problem, you must change the lpmode line back to 0x00.</p></td>
 <td>4.1.0-4.1.1</td>
 <td></td>
 </tr>

@@ -1,4 +1,4 @@
-languageCode = "en-us" 
+languageCode = "en-us"
 title = "Cumulus Networks Documentation"
 theme = "netDocs"
 baseURL = "/"
@@ -9,7 +9,7 @@ disablePathToLower = true
 enableGitInfo= false
 noChmod = true
 enableRobotsTXT = true
-disableKinds = ["RSS"]  
+disableKinds = ["RSS"]
 
 [markup]
   [markup.tableOfContents]
@@ -24,13 +24,13 @@ disableKinds = ["RSS"]
   [[menu.subnav]]
     identifier = "cumulus-linux"
     title = "Cumulus Linux"
-    url = "/cumulus-linux/"
+    url = "/cumulus-linux-41/"
     weight = 10
 
   [[menu.subnav]]
     identifier = "cumulus-netq"
     title = "Cumulus NetQ"
-    url = "/cumulus-netq/"
+    url = "/cumulus-netq-30/"
     weight = 20
 
   [[menu.subnav]]
@@ -44,12 +44,6 @@ disableKinds = ["RSS"]
     title = "Cumulus RMP"
     url = "/cumulus-rmp/"
     weight = 10
-
-  [[menu.dropnav]]
-    identifier = "chassis"
-    title = "Cumulus Chassis"
-    url = "/chassis/"
-    weight = 20
 
 
 

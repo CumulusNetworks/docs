@@ -7,9 +7,9 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-29643</td>
-<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
-To work around this issue, flap the BGP peer.</p></td>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command a second time.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -486,7 +486,7 @@ To work around this issue, restart FRR.</p></td>
 </tr>
 <tr>
 <td>CM-28374</td>
-<td><p>When traffic from a double tag interface (facing a different site) is forwarded via VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
+<td><p>When traffic from a double tag interface (facing a different site) is forwarded through VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
 <td>3.7.8-4.0.0</td>
 <td>4.1.0-4.1.1</td>
 </tr>
@@ -966,7 +966,7 @@ To work around this issue, you can do one of the following:</p>
 <tr>
 <td>CM-27581</td>
 <td><p>On the Delta AG-6248C PoE switch, when you run the apt upgrade command, the upgrade does not work. Cumulus Linux uses uboot directly instead of grub to boot the kernel. Uboot needs a special header to boot the kernel, which is not present. Without this header, when you use the apt upgrade command to upgrade Linux packages, uboot is unable to boot up the kernel. <br/>
-To work around this issue, upgrade Cumulus Linux by installing the disk image. Run the onie-select command to go into ONIE, and then use the nos-install command in ONIE to install a new binary image.<br/>
+To work around this issue, upgrade Cumulus Linux by installing the Cumulus Linux image. Run the onie-select command to go into ONIE, and then use the nos-install command in ONIE to install a new image.<br/>
 This workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
@@ -1127,6 +1127,19 @@ Running hypervisors for virtual guest operating systems is not supported on Cumu
 <td>CM-27094</td>
 <td><p>On the Delta AG9032v1 switch, smonctl and sensors report inaccurate PSU current and power.</p></td>
 <td>3.5.0-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-27049</td>
+<td><p>On the Mellanox switch with the Spectrum 2 ASIC, interfaces using 100G or 200G Direct Attach Cables (DACs) do not come up with the interface default configuration.<br/>
+To work around this issue and bring the interfaces up, perform the following configuration on both sides of the link:</p>
+<ul>
+	<li>Set the interface speed to the desired speed</li>
+	<li>Set link auto-negotiation to <em>off</em></li>
+	<li>Set link FEC to RS mode</li>
+</ul>
+</td>
+<td>4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1597,14 +1610,14 @@ cumulus@switch:~$ sudo timedatectl set-timezone US/Eastern
 </tr>
 <tr>
 <td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
+<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
  
  
  cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
  cumulus@switch:~$ sudo reboot 
  
  
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new binary image. <br/>
+<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
 The workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.6-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
@@ -1680,8 +1693,7 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  &lt;ENTER&gt; 
  
  
-<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p>
-</td>
+<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
 <td>3.7.4-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -2079,6 +2091,12 @@ To work around this issue, correct the bridge VIDs and restart switchd or delete
 <td><p>When you use NCLU to bring a bond admin down (net add bond &lt;bond&gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.<br/>
 To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td>
 <td>3.5.0-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-18192</td>
+<td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>

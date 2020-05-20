@@ -1,12 +1,12 @@
 ---
 title: Cumulus Linux 4.0 User Guide
-author: Cumulus Networks
 weight: -40
 subsection: true
 cascade:
     product: Cumulus Linux
     version: "4.0"
     old: true
+    author: Cumulus Networks
 toc: 1
 ---
 ## What is Cumulus Linux?

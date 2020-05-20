@@ -411,7 +411,7 @@ cumulus@Host_C:~$ 10.1.3.101 show eth1
 
 {{< /tabs >}}
 
-In this design, Proxy ARP is configured on the VLAN attached to the host so that the switch responds to all ARP requests when a host sends an ARP request to a system on its subnet.
+In this design, {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41/Layer-3/Address-Resolution-Protocol-ARP/#configure-proxy-arp" text="Proxy ARP ">}} is configured on the VLAN attached to the host so that the switch responds to all ARP requests when a host sends an ARP request to a system on its subnet.
 
 If you have many switches and need the VLAN across all the switches, you can specify a unique IP address on all the SVIs in the subnet, or you can use the anycast gateway with VRR. To conserve IP addresses, repeat physical IP addresses on a switch or switch pair (if you use MLAG).
 

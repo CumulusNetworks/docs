@@ -6,7 +6,7 @@ toc: 3
 ---
 {{%notice warning%}}
 
-In Cumulus Linux 4.2.0, the default password for the *cumulus* user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before you upgrade by installing the Cumulus Linux image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to [Additional Installation Options](#additional-installation-options).
+In Cumulus Linux 4.2.0, the default password for the *cumulus* user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before installing a new image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to [Additional Installation Options](#additional-installation-options).
 
 {{%/notice%}}
 
@@ -480,7 +480,7 @@ The Cumulus Linux image is a self-extracting executable file that includes sever
 
 {{%notice note%}}
 
-To start an installation with the command line parameters, you must install the installation image directly from the ONIE command line; Installing the image from Cumulus Linux with the `onie-nos-install` command is not supported. You must transfer an installation image to the switch, make the image executable, then initiate installation. See the examples below.
+To start an installation with the command line parameters, you must install the installation image directly from the ONIE command line. Installing the image from Cumulus Linux with the `onie-nos-install` command is not supported. You must transfer an installation image to the switch, make the image executable, then initiate installation. See the examples below.
 
 {{%/notice%}}
 
@@ -512,7 +512,7 @@ If you specify both the `--password` and `--hashed-password` options, the `--has
 
 ### Apply a Cumulus Linux License
 
-You can apply a license and start the `switchd` service automatically after Cumulus Linux boots for the first time after installation with the `--license <license-string>` command line option. For example:
+To apply a license and start the `switchd` service automatically after Cumulus Linux boots for the first time after installation, use the `--license <license-string>` option. For example:
 
 ```
 ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
@@ -522,13 +522,27 @@ ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --license 'customer@datacenter.com
 
 ### Provide Initial Network Configuration
 
-You can provide initial network configuration with the `--interfaces-file <filename>` command line option. For example, to copy the contents of the `network.intf` file into the `/etc/network/interfaces` file and run the `ifreload -a` command automatically when Cumulus Linux boots for the first time after installation:
+To provide initial network configuration automatically when Cumulus Linux boots for the first time after installation, use the `--interfaces-file <filename>` option. For example, to copy the contents of a file called `network.intf` into the `/etc/network/interfaces` file and run the `ifreload -a` command:
 
 ```
 ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
 ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
 ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --interfaces-file network.intf
 ```
+
+### Execute a ZTP Script
+
+To run a ZTP script that contains commands to execute shortly after Cumulus Linux boots for the first time, use the `--ztp <filename>` option. For example, to run a ZTP script called `initial-conf.ztp`:
+
+```
+ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
+ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --ztp initial-conf.ztp
+```
+
+The ZTP script must contain the `CUMULUS-AUTOPROVISIONING` string near the beginning of the file and must reside on ONIE filesystem. Refer to {{<link url="Zero-Touch-Provisioning-ZTP" text="Zero Touch Provisioning - ZTP">}}.
+
+If you use the `--ztp option` together with any of the other command line options, the ZTP script takes precedence and the other command line options areignored are ignored.
 
 ## Related Information
 

@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - plumbis-stage
+  pull_request:
+    branches:
+      - plumbis-stage
 
 jobs:
   check_urls:

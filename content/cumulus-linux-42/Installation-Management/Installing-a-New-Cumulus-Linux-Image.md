@@ -471,7 +471,7 @@ sudo mount /dev/sdb1 /mnt/usb
 
 ## ONIE Installation Options
 
-The Cumulus Linux image is a self-extracting executable file. You can run several installer command line options from ONIE to perform basic switch configuration automatically after installation completes and Cumulus Linux boots for the first time. These options enable you to:
+You can run several installer command line options from ONIE to perform basic switch configuration automatically after installation completes and Cumulus Linux boots for the first time. These options enable you to:
 
 - Set a unique password for the *cumulus* user
 - Apply a Cumulus Linux license
@@ -490,19 +490,19 @@ ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --<option>
 
 {{%/notice%}}
 
-You can run multipe options at the same time.
+You can run more than one option in the same command.
 
 ### Set the cumulus User Password
 
 The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change is **required** in Cumulus Linux 4.2 and later.
 
-To automate this process, you can specify a new password from the command line of the installer with the `--password '<clear-text-password>'` option. For example, to change the default *cumulus* user password to `mypassword`:
+To automate this process, you can specify a new password from the command line of the installer with the `--password '<clear text-password>'` option. For example, to change the default *cumulus* user password to `mypassword`:
 
 ```
 ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin   'mypassword'
 ```
 
-To provide a hashed password instead of a clear-text password, use the `--hashed-password '<hash>'` option. For example:
+To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. For example:
 
 ```
 ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '$6$6e1Ou.muPGUgbGxj$SfhDpP5 zEsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq.'
@@ -532,25 +532,25 @@ ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --interfaces-file network.intf
 
 ### Execute a ZTP Script
 
-To run a ZTP script that contains commands to execute after Cumulus Linux boots for the first time, use the `--ztp <filename>` option. For example, to run a ZTP script called `initial-conf.ztp`:
+To run a ZTP script that contains commands to execute after Cumulus Linux boots for the first time after installation, use the `--ztp <filename>` option. For example, to run a ZTP script called `initial-conf.ztp`:
 
 ```
 ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --ztp initial-conf.ztp
 ```
 
-The ZTP script must contain the `CUMULUS-AUTOPROVISIONING` string near the beginning of the file and must reside on ONIE filesystem. Refer to {{<link url="Zero-Touch-Provisioning-ZTP" text="Zero Touch Provisioning - ZTP">}}.
+The ZTP script must contain the `CUMULUS-AUTOPROVISIONING` string near the beginning of the file and must reside on the ONIE filesystem. Refer to {{<link url="Zero-Touch-Provisioning-ZTP" text="Zero Touch Provisioning - ZTP">}}.
 
-If you use the `--ztp option` together with any of the other command line options, the ZTP script takes precedence and the other command line options are ignored.
+If you use the `--ztp` option together with any of the other command line options, the ZTP script takes precedence and the other command line options are ignored.
 
-## Modify the Installation Image (Advanced)
+## Edit the Cumulus Linux Image (Advanced)
 
-The Cumulus Linux installation image file contains a BASH script that includes a set of variables. You can modify these variables so that you can install a fully-configured system with a single image file.
+The Cumulus Linux installation image file contains a BASH script that includes a set of variables. You can set these variables so that you can install a fully-configured system with a single image file.
 
 {{< expand "To modify the image"  >}}
 
 ### Example Image File
 
-This is an example of the BASH script in the image file that contains the variables you can modify:
+This is an example of the BASH script in the image file that contains variables you can set:
 
 ```
 #!/bin/sh
@@ -576,17 +576,17 @@ CL_INSTALLER_PAYLOAD_SHA256="72a8c3da28cda7a610e272b67fa1b3a54c50248bf6abf720f73
 ...
 ```
 
-The variables are described below:
+The variables to set are described below:
 
 | Variable | Description |
 | -------- | ----------- |
-| `CL_INSTALLER_PASSWORD` |This variable defines the clear-text password.<br>This variable is equivalent to the ONIE installer command line option `--password`.  |
-| `CL_INSTALLER_HASHED_PASSWORD` | This variable defines the hashed password.<br>This variable is equivalent to the ONIE installer command line option `--hashed-password`.<br>If you set both the `CL_INSTALLER_PASSWORD` and `CL_INSTALLER_HASHED_PASSWORD`, the `CL_INSTALLER_HASHED_PASSWORD` takes precedence. |
-| `CL_INSTALLER_LICENSE` | This variable defines the Cumulus Linux license you want to install.<br>This variable is equivalent to the ONIE installer command line option `--license`.|
-| `CL_INSTALLER_INTERFACES_FILENAME` | This variable defines the name of a file on the ONIE filesystem you want to use as the `/etc/network/interfaces` file. <br>This variable is equivalent to the ONIE installer command line option `--interfaces-file`.|
-| `CL_INSTALLER_INTERFACES_CONTENT` | This file describes the network interfaces available on your system and how to activate them. Setting this variable defines the contents of the `/etc/network/interfaces` file.<br>There is no equivalent ONIE installer command line option.<br>If you modify both the `CL_INSTALLER_INTERFACES_FILENAME` and `CL_INSTALLER_INTERFACES_CONTENT` variables, the `CL_INSTALLER_INTERFACES_FILENAME` takes precedence. |
-| `CL_INSTALLER_ZTP_FILENAME` | This variable defines the name of the ZTP file on the ONIE filesystem you want to execute at first boot after installation. <br>This variable is equivalent to the ONIE installer command line option `--ztp`|
-|`CL_INSTALLER_ZTP_CONTENT` | This variable defines the contents of the script that you want to execute at first boot after installation.<br>There is no equivalent ONIE installer command line option.<br>If you modify both the `CL_INSTALLER_ZTP_FILENAME` and `CL_INSTALLER_ZTP_CONTENT` variables, the `CL_INSTALLER_ZTP_FILENAME` takes precedence.|
+| `CL_INSTALLER_PASSWORD` |Defines the clear text password.<br>This variable is equivalent to the ONIE installer command line option `--password`.  |
+| `CL_INSTALLER_HASHED_PASSWORD` | Defines the hashed password.<br>This variable is equivalent to the ONIE installer command line option `--hashed-password`.<br>If you set both the `CL_INSTALLER_PASSWORD` and `CL_INSTALLER_HASHED_PASSWORD` variable, the `CL_INSTALLER_HASHED_PASSWORD` takes precedence. |
+| `CL_INSTALLER_LICENSE` | Defines the Cumulus Linux license you want to install.<br>This variable is equivalent to the ONIE installer command line option `--license`.|
+| `CL_INSTALLER_INTERFACES_FILENAME` | Defines the name of a file on the ONIE filesystem you want to use as the `/etc/network/interfaces` file. <br>This variable is equivalent to the ONIE installer command line option `--interfaces-file`.|
+| `CL_INSTALLER_INTERFACES_CONTENT` | Describes the network interfaces available on your system and how to activate them. Setting this variable defines the contents of the `/etc/network/interfaces` file.<br>There is no equivalent ONIE installer command line option.<br>If you set both the `CL_INSTALLER_INTERFACES_FILENAME` and `CL_INSTALLER_INTERFACES_CONTENT` variables, the `CL_INSTALLER_INTERFACES_FILENAME` takes precedence. |
+| `CL_INSTALLER_ZTP_FILENAME` | Defines the name of the ZTP file on the ONIE filesystem you want to execute at first boot after installation. <br>This variable is equivalent to the ONIE installer command line option `--ztp`|
+|`CL_INSTALLER_ZTP_CONTENT` | Defines the contents of the script that you want to execute at first boot after installation.<br>There is no equivalent ONIE installer command line option.<br>If you modify both the `CL_INSTALLER_ZTP_FILENAME` and `CL_INSTALLER_ZTP_CONTENT` variables, the `CL_INSTALLER_ZTP_FILENAME` takes precedence.|
 
 ### Edit the Image File
 

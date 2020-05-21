@@ -17,16 +17,10 @@ Fixed: 4.84.2-2+deb8u7</p></td>
 </tr>
 <tr>
 <td>CM-29667</td>
-<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
-To work around this issue, run the systemctl restart switchd command a second time.</p></td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.</p>
+
+<p>To work around this issue, run the systemctl restart switchd command.</p></td>
 <td>3.7.12</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29643</td>
-<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
-To work around this issue, flap the BGP peer.</p></td>
-<td>3.7.7-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -2002,13 +1996,6 @@ DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the 
 Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.12</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29643</td>
-<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
-To work around this issue, flap the BGP peer.</p></td>
-<td>3.7.7-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -4371,13 +4358,6 @@ Fixed: 4.84.2-2+deb8u7</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-29643</td>
-<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
-To work around this issue, flap the BGP peer.</p></td>
-<td>3.7.7-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29556</td>
 <td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
 This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
@@ -6488,13 +6468,6 @@ DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the 
 Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.12</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29643</td>
-<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
-To work around this issue, flap the BGP peer.</p></td>
-<td>3.7.7-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -9053,13 +9026,6 @@ Fixed: 4.84.2-2+deb8u7</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-29643</td>
-<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
-To work around this issue, flap the BGP peer.</p></td>
-<td>3.7.7-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29556</td>
 <td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
 This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
@@ -11484,13 +11450,6 @@ DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the 
 Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.12</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29643</td>
-<td><p>Routing entries appear in the BGP and Zebra tables, but are removed from the ASIC.<br/>
-To work around this issue, flap the BGP peer.</p></td>
-<td>3.7.7-3.7.12</td>
 <td></td>
 </tr>
 <tr>

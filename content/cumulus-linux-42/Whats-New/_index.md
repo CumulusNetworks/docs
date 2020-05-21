@@ -37,7 +37,6 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Quick-Start-Guide#login-credentials" text="Mandatory cumulus user default password change">}} upon first login
 - Ability to set the *cumulus* user default password, add a license, and provide initial network configuration with {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE command line options">}}
 - Ability to {{<link url="Installing-a-New-Cumulus-Linux-Image#edit-the-cumulus-linux-image-advanced" text="edit the Cumulus Linux image file">}}
-- BGP Graceful Restart helper mode in FRR??
 - New Ninja profile on Mellanox switches
 - Support 25g to 10g speed change without `switchd` restart
 - Ability to set the CPU/control plane as a SPAN destination interface

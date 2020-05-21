@@ -4,9 +4,9 @@ author: Cumulus Networks
 weight: 30
 toc: 3
 ---
-The Cumulus Linux operating system resides on a switch as a *disk image*. This section discusses how to manage the disk image.
+The Cumulus Linux operating system resides on a switch as a *disk image*. This section discusses how to manage the image.
 
-To install a new Cumulus Linux disk image, refer to {{<link title="Installing a New Cumulus Linux Image">}}. To upgrade Cumulus Linux, refer to {{<link title="Upgrading Cumulus Linux">}}.
+To install a new Cumulus Linux image, refer to {{<link title="Installing a New Cumulus Linux Image">}}. To upgrade Cumulus Linux, refer to {{<link title="Upgrading Cumulus Linux">}}.
 
 ## Determine the Switch Platform
 
@@ -140,7 +140,7 @@ Cancelling pending rescue at next reboot...done.
 
 ## Inspect the Image File
 
-The Cumulus Linux installation disk image file is executable. From a running switch, you can display, extract, and verify the contents of the image file.
+The Cumulus Linux image file is executable. From a running switch, you can display, extract, and verify the contents of the image file.
 
 To display the contents of the Cumulus Linux image file, pass the `info` option to the image file. For example, to display the contents of an image file called `onie-installer` located in the `/var/lib/cumulus/installer` directory:
 

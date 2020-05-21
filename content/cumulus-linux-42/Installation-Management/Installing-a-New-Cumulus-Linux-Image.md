@@ -6,7 +6,7 @@ toc: 3
 ---
 {{%notice warning%}}
 
-In Cumulus Linux 4.2.0, the default password for the *cumulus* user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before installing a new image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to [Additional Installation Options](#additional-installation-options).
+In Cumulus Linux 4.2.0, the default password for the *cumulus* user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before installing a new image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to [ONIE Installation Options](#onie-installation-options).
 
 {{%/notice%}}
 
@@ -469,9 +469,9 @@ sudo mount /dev/sdb1 /mnt/usb
 
 {{< /tabs >}}
 
-## Additional Installation Options
+## ONIE Installation Options
 
-The Cumulus Linux image is a self-extracting executable file that includes several command line options you can use to perform basic switch configuration automatically after installation completes and Cumulus Linux boots for the first time. These command line options enable you to:
+The Cumulus Linux image is a self-extracting executable file. You can run several installer command line options from ONIE to perform basic switch configuration automatically after installation completes and Cumulus Linux boots for the first time. These options enable you to:
 
 - Set a unique password for the *cumulus* user
 - Apply a Cumulus Linux license
@@ -480,9 +480,17 @@ The Cumulus Linux image is a self-extracting executable file that includes sever
 
 {{%notice note%}}
 
-To start an installation with the command line parameters, you must install the installation image directly from the ONIE command line. Installing the image from Cumulus Linux with the `onie-nos-install` command is not supported. You must transfer an installation image to the switch, make the image executable, then initiate installation. See the examples below.
+To start an installation with the command line options, you must install the installation image directly from the ONIE command line. Installing the image from Cumulus Linux with the `onie-nos-install` command is not supported. You must transfer an installation image to the switch, make the image executable, then initiate installation. For example:
+
+```
+ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
+ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --<option>
+```
 
 {{%/notice%}}
+
+You can run multipe options at the same time.
 
 ### Set the cumulus User Password
 
@@ -491,17 +499,13 @@ The default *cumulus* user account password is `cumulus`. When you log into Cumu
 To automate this process, you can specify a new password from the command line of the installer with the `--password '<clear-text-password>'` option. For example, to change the default *cumulus* user password to `mypassword`:
 
 ```
-ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
-ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'mypassword'
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin   'mypassword'
 ```
 
 To provide a hashed password instead of a clear-text password, use the `--hashed-password '<hash>'` option. For example:
 
 ```
-ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
-ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '$6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq.'
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '$6$6e1Ou.muPGUgbGxj$SfhDpP5 zEsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq.'
 ```
 
 {{%notice note%}}
@@ -515,8 +519,6 @@ If you specify both the `--password` and `--hashed-password` options, the `--has
 To apply a license and start the `switchd` service automatically after Cumulus Linux boots for the first time after installation, use the `--license <license-string>` option. For example:
 
 ```
-ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
-ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
 ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --license 'customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
 ```
 
@@ -525,24 +527,141 @@ ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --license 'customer@datacenter.com
 To provide initial network configuration automatically when Cumulus Linux boots for the first time after installation, use the `--interfaces-file <filename>` option. For example, to copy the contents of a file called `network.intf` into the `/etc/network/interfaces` file and run the `ifreload -a` command:
 
 ```
-ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
-ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
 ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --interfaces-file network.intf
 ```
 
 ### Execute a ZTP Script
 
-To run a ZTP script that contains commands to execute shortly after Cumulus Linux boots for the first time, use the `--ztp <filename>` option. For example, to run a ZTP script called `initial-conf.ztp`:
+To run a ZTP script that contains commands to execute after Cumulus Linux boots for the first time, use the `--ztp <filename>` option. For example, to run a ZTP script called `initial-conf.ztp`:
 
 ```
-ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
-ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
 ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --ztp initial-conf.ztp
 ```
 
 The ZTP script must contain the `CUMULUS-AUTOPROVISIONING` string near the beginning of the file and must reside on ONIE filesystem. Refer to {{<link url="Zero-Touch-Provisioning-ZTP" text="Zero Touch Provisioning - ZTP">}}.
 
-If you use the `--ztp option` together with any of the other command line options, the ZTP script takes precedence and the other command line options areignored are ignored.
+If you use the `--ztp option` together with any of the other command line options, the ZTP script takes precedence and the other command line options are ignored.
+
+## Modify the Installation Image (Advanced)
+
+The Cumulus Linux installation image file contains a BASH script that includes a set of variables. You can modify these variables so that you can install a fully-configured system with a single image file.
+
+{{< expand "To modify the image"  >}}
+
+### Example Image File
+
+This is an example of the BASH script in the image file that contains the variables you can modify:
+
+```
+#!/bin/sh
+#
+# Cumulus Self-extracting Binary Image
+#
+# Copyright 2015 Cumulus Networks, Inc.
+# All rights reserved.
+#
+
+CL_INSTALLER_PASSWORD=''
+CL_INSTALLER_HASHED_PASSWORD=''
+CL_INSTALLER_LICENSE=''
+CL_INSTALLER_INTERFACES_FILENAME=''
+CL_INSTALLER_INTERFACES_CONTENT=''
+CL_INSTALLER_ZTP_FILENAME=''
+CL_INSTALLER_ZTP_CONTENT=''
+CL_INSTALLER_QUIET=""
+CL_INSTALLER_FORCEINST=""
+CL_INSTALLER_INTERACTIVE=""
+CL_INSTALLER_EXTRACTDIR=""
+CL_INSTALLER_PAYLOAD_SHA256="72a8c3da28cda7a610e272b67fa1b3a54c50248bf6abf720f73ff3d10e79ae76"
+...
+```
+
+The variables are described below:
+
+| Variable | Description |
+| -------- | ----------- |
+| `CL_INSTALLER_PASSWORD` |This variable defines the clear-text password.<br>This variable is equivalent to the ONIE installer command line option `--password`.  |
+| `CL_INSTALLER_HASHED_PASSWORD` | This variable defines the hashed password.<br>This variable is equivalent to the ONIE installer command line option `--hashed-password`.<br>If you set both the `CL_INSTALLER_PASSWORD` and `CL_INSTALLER_HASHED_PASSWORD`, the `CL_INSTALLER_HASHED_PASSWORD` takes precedence. |
+| `CL_INSTALLER_LICENSE` | This variable defines the Cumulus Linux license you want to install.<br>This variable is equivalent to the ONIE installer command line option `--license`.|
+| `CL_INSTALLER_INTERFACES_FILENAME` | This variable defines the name of a file on the ONIE filesystem you want to use as the `/etc/network/interfaces` file. <br>This variable is equivalent to the ONIE installer command line option `--interfaces-file`.|
+| `CL_INSTALLER_INTERFACES_CONTENT` | This file describes the network interfaces available on your system and how to activate them. Setting this variable defines the contents of the `/etc/network/interfaces` file.<br>There is no equivalent ONIE installer command line option.<br>If you modify both the `CL_INSTALLER_INTERFACES_FILENAME` and `CL_INSTALLER_INTERFACES_CONTENT` variables, the `CL_INSTALLER_INTERFACES_FILENAME` takes precedence. |
+| `CL_INSTALLER_ZTP_FILENAME` | This variable defines the name of the ZTP file on the ONIE filesystem you want to execute at first boot after installation. <br>This variable is equivalent to the ONIE installer command line option `--ztp`|
+|`CL_INSTALLER_ZTP_CONTENT` | This variable defines the contents of the script that you want to execute at first boot after installation.<br>There is no equivalent ONIE installer command line option.<br>If you modify both the `CL_INSTALLER_ZTP_FILENAME` and `CL_INSTALLER_ZTP_CONTENT` variables, the `CL_INSTALLER_ZTP_FILENAME` takes precedence.|
+
+### Edit the Image File
+
+Because the Cumulus Linux image file is mostly a binary file, you cannot use standard text editors to edit the file directly. Instead, you must split the file into two parts, edit the first part, then put the two parts back together.
+
+1. Copy the first 20 lines to an empty file:
+
+   ```
+   head -20 cumulus-linux-4.1.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.1
+   ```
+
+2. Remove the first 20 lines, then put them into another empty file:
+
+   ```
+   sed -e ‘1,20d’ cumulus-linux-4.1.0-bcm-amd64.bin > `cumulus-linux-4.2.0-bcm-amd64.bin.2`
+   ```
+
+   The original file is now split, with the first 20 lines in `cumulus-linux-4.2.0-bcm-amd64.bin.1` and the remaining lines in `cumulus-linux-4.2.0-bcm-amd64.bin.2`.
+
+3. Use a text editor to change the variables in `cumulus-linux-4.2.0-bcm-amd64.bin.1`.
+
+4. Put the two pieces back together using cat:
+
+   ```
+   cat cumulus-linux-4.1.0-bcm-amd64.bin.1 cumulus-linux-4.1.0-bcm-amd64.bin.2 > cumulus-linux-4.1.0-bcm-amd64.bin.final
+   ```
+
+This is an example modified image file:
+
+```
+#!/bin/sh
+#
+# Cumulus Self-extracting Binary Image
+#
+# Copyright 2015 Cumulus Networks, Inc.
+# All rights reserved.
+#
+
+CL_INSTALLER_PASSWORD='MyP4$$word'
+CL_INSTALLER_HASHED_PASSWORD='$6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq.'
+CL_INSTALLER_LICENSE='customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
+CL_INSTALLER_INTERFACES_FILENAME='interfaces.conf'
+CL_INSTALLER_INTERFACES_CONTENT='# This file describes the network interfaces available on your system and how to activate them.
+
+source /etc/network/interfaces.d/*.intf
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+	vrf mgmt
+
+auto mgmt
+iface mgmt
+	address 127.0.0.1/8
+	address ::1/128
+	vrf-table auto
+'
+CL_INSTALLER_ZTP_FILENAME='initial-conf.ztp'
+CL_INSTALLER_ZTP_CONTENT='#!/bin/bash
+#CUMULUS-AUTOPROVISIONING
+passwd -x 99999 cumulus
+echo \'cumulus:MyP4$$word\' | chpasswd
+'
+...
+```
+
+You can install this edited image file using the ONIE install waterfall or the the `onie-nos-install` command.
+
+If you install the modified installation image and specify command line parameters, the command line parameters take precedence over the variables modified in the image.
+
+{{< /expand >}}
 
 ## Related Information
 

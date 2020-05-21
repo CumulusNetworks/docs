@@ -7,6 +7,29 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29760</td>
+<td><p>Several vulnerabilities were discovered in BIND, a DNS server implementation.  <br/>
+bind9-host (containing only /usr/bin/host) and some libraries from the bind9 source package are installed on the switch by default; the BIND server referred to in these vulnerabilities is not installed by default but is available in the repository for optional installation.<br/>
+CVE-2019-6477: It was discovered that TCP-pipelined queries can bypass tcp-client limits resulting in denial of service.<br/>
+CVE-2020-8616: It was discovered that BIND does not sufficiently limit the number of fetches performed when processing referrals. An attacker can take advantage of this flaw to cause a denial of service (performance degradation) or use the recursing server in a reflection attack with a high amplification factor.<br/>
+CVE-2020-8617: It was discovered that a logic error in the code which checks TSIG validity can be used to trigger an assertion failure, resulting in denial of service.<br/>
+Vulnerable: 9.11.5.P4+dfsg-5.1<br/>
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u1</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29667</td>
 <td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.</p>
 
@@ -1621,6 +1644,29 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-29760</td>
+<td><p>Several vulnerabilities were discovered in BIND, a DNS server implementation.  <br/>
+bind9-host (containing only /usr/bin/host) and some libraries from the bind9 source package are installed on the switch by default; the BIND server referred to in these vulnerabilities is not installed by default but is available in the repository for optional installation.<br/>
+CVE-2019-6477: It was discovered that TCP-pipelined queries can bypass tcp-client limits resulting in denial of service.<br/>
+CVE-2020-8616: It was discovered that BIND does not sufficiently limit the number of fetches performed when processing referrals. An attacker can take advantage of this flaw to cause a denial of service (performance degradation) or use the recursing server in a reflection attack with a high amplification factor.<br/>
+CVE-2020-8617: It was discovered that a logic error in the code which checks TSIG validity can be used to trigger an assertion failure, resulting in denial of service.<br/>
+Vulnerable: 9.11.5.P4+dfsg-5.1<br/>
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u1</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29667</td>

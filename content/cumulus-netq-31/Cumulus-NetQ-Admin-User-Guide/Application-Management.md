@@ -690,44 +690,36 @@ In summary:
 | leaf01, swp3 | Hostname, Interface | hostname=leaf01, ifname=swp1 | hostname ^ leaf, ifname=\* | hostname=\*, ifname=\* | Scope 2 |
 | spine01, swp1 | Hostname, Interface | hostname=leaf01, ifname=swp1 | hostname ^ leaf, ifname=\* | hostname=\*, ifname=\* | Scope 3 |
 
-## Manage Monitoring of Multiple Premises
+## Configure Multiple Premises
 
-The NetQ Management dashboard provides the ability to configure a single NetQ UI and  CLI for monitoring data from multiple external premises in addition to your local premises.
+The NetQ Management dashboard provides the ability to monitor data for multiple external premises in addition to your local premises.
 
-A complete NetQ deployment is required at each premises. The NetQ appliance or VM of one of the deployments acts as the primary (similar to a proxy) for the premises in the other deployments. A list of these external premises is stored with the primary deployment. After the multiple premises are configured, you can view this list of external premises, change the name of premises on the list, and delete premises from the list.
+To configure additional premises:
 
-{{<figure src="/images/netq/appmgmt-multisite-onprem-300.png" width="500">}}
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
 
-To configure monitoring of external premises:
+2. Select *Management* from the **Admin** column.
 
-1. Sign in to primary NetQ Appliance or VM.
-
-2. In the NetQ UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
-
-3. Select *Management* from the **Admin** column.
-
-4. Locate the External Premises card.
+3. Locate the External Premises card.
 
     {{<figure src="/images/netq/premises-card-300.png" width="200">}}
 
-5. Click **Manage**.
+4. Click **Manage**.
 
-6. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> to open the Add Premises dialog.
+5. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> to open the Add Premises dialog.
 
     {{<figure src="/images/netq/premises-add-300.png" width="300">}}
 
-7. Specify an external premises.
+6. Specify the point of access for the premises.
 
-    - Enter an IP address for the API gateway on the external NetQ Appliance or VM in the Hostname field (required)
-    - Enter the access credentials
+    - Enter an IP address for the switch in the Hostname field (required)
+    - Enter the access credentials for this switch
 
-8. Click **Next**.
+7. Click **Next**.
 
-9. Select from the available premises associated with this deployment by clicking on their names.
+8. Select from the available premises by clicking on its name.
 
-10. Click **Finish**.
-
-11. Add more external premises by repeating Steps 6-10.
+9. Click **Finish**.
 
 ## System Server Information
 

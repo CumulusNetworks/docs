@@ -16,10 +16,10 @@ body {
   }
 
   a {
-    color: $cn-jade;
+    color: $jade;
 
     &:hover {
-      color: $cn-fern;
+      color: $fern;
       text-decoration: none;
     }
   }
@@ -191,7 +191,7 @@ body {
     }
 
     span {
-      color: $cn-jade;
+      color: $jade;
       font-size: 13px;
       font-weight: 500;
       line-height: 24px;
@@ -238,7 +238,7 @@ body {
   //   }
 
   //   span {
-  //     color: $cn-jade;
+  //     color: $jade;
   //     font-size: 12px;
   //     font-weight: 500;
   //     letter-spacing: 1.25px;
@@ -313,7 +313,7 @@ body {
     letter-spacing: 3px;
     line-height: 24px;
     text-transform: uppercase;
-    color: #b5bdc9;
+    color: $cadet-gray;
 
     &:before,
     &:after {
@@ -587,7 +587,7 @@ body {
         font-size: 13px;
       }
       a, button {
-        color: $cn-limited-spruce;
+        color: $spruce-gray;
         font-size: 14px;
         font-weight: 400;
         letter-spacing: -0.1px;
@@ -597,7 +597,7 @@ body {
 
       &.active {
         &:after {
-          background-color: $cn-jade;
+          background-color: $jade;
           content: '';
           width: calc(100% - 26px);
           height: 2px;
@@ -668,9 +668,9 @@ body {
         padding-left: 6px;
         line-height: 30px;
         display: flex;
-        color: $cn-limited-spruce;
+        color: $spruce-gray;
         &.active {
-          color: $cn-fern;
+          color: $fern;
         }
         svg {
           width: 20px;
@@ -678,7 +678,7 @@ body {
 
           a {
             stroke {
-              color: $cn-limited-spruce;
+              color: $spruce-gray;
             }
           }
         }
@@ -761,7 +761,7 @@ body {
                 letter-spacing: -.1px;
                 line-height: 30px;
                 background-color: #fff;
-                color: $cn-limited-spruce;
+                color: $spruce-gray;
               }
             }
             &.multi-level {
@@ -801,7 +801,7 @@ body {
     .screen-layout {
       a {
         display: inline-block;
-        color: $cn-limited-spruce;
+        color: $spruce-gray;
         margin-right: 20px;
         &:last-child {
           margin-right: 0;
@@ -812,7 +812,7 @@ body {
           height: 40px;
         }
         &.active {
-          color: $cn-fern;
+          color: $fern;
         }
         &.default {
           display: none;
@@ -997,7 +997,7 @@ aside nav ul li {
 }
 
 aside nav .expand>li:not(.cn-book-section) {
-  border-left: solid $cn-jade;
+  border-left: solid $jade;
   border-width: 1px;
   margin: 0;
   padding:  0 0 1.3em;
@@ -1061,7 +1061,7 @@ aside nav ul .expand li>a {
 div.notices {
 
   li {
-    color: $cn-limited-spruce;
+    color: $spruce-gray;
     font-size: .882rem;
   }
 }
@@ -1074,7 +1074,7 @@ div.notices.info {
   padding: 1.764rem;
 
   p {
-    color: $cn-limited-spruce;
+    color: $spruce-gray;
     font-size: .882rem;
     line-height: 1.764rem;
     padding: 1.6rem 0 0;
@@ -1116,7 +1116,7 @@ div.notices.warning {
   padding: 1.764rem;
 
   p {
-    color: $cn-limited-spruce;
+    color: $spruce-gray;
     font-size: .882rem;
     line-height: 1.764rem;
     padding: 1.6rem 0 0;
@@ -1158,7 +1158,7 @@ div.notices.note {
   padding: 1.764rem;
 
   p {
-    color: $cn-limited-spruce;
+    color: $spruce-gray;
     font-size: .882rem;
     line-height: 1.764rem;
     padding: 1.6rem 0 0;
@@ -1201,7 +1201,7 @@ div.notices.tip {
 
 
   p {
-    color: $cn-limited-spruce;
+    color: $spruce-gray;
     font-size: .882rem;
     line-height: 1.764rem;
     padding: 1.6rem 0 0;
@@ -1263,7 +1263,7 @@ div.notices.tip>*:first-child:after {
 
   a {
     &:visited {
-      color: $cn-jade;
+      color: $jade;
     }
   }
 }
@@ -1275,7 +1275,7 @@ div.notices.tip>*:first-child:after {
   top: 278px;
 
   a.active {
-    color: $cn-jade;
+    color: $jade;
     font-weight: 500;
 
     &:before {
@@ -1285,7 +1285,7 @@ div.notices.tip>*:first-child:after {
       top: 0;
       width: 1px;
       height: 100%;
-      background-color: $cn-jade;
+      background-color: $jade;
     }
   }
 }
@@ -1398,7 +1398,7 @@ footer {
     padding: 0;
 
     h4 {
-      color: $cn-jade;
+      color: $jade;
       font-size: .764rem;
       font-weight: 600;
       letter-spacing: 1.25px;
@@ -1415,7 +1415,7 @@ footer {
       line-height: 1.764rem;
 
       &:hover {
-        color: $cn-jade;
+        color: $jade;
       }
     }
 
@@ -1465,7 +1465,7 @@ footer {
         rect,
         circle,
         ellipse {
-          stroke: $cn-jade;
+          stroke: $jade;
         }
 
         &:hover {
@@ -1473,7 +1473,7 @@ footer {
           rect,
           circle,
           ellipse {
-            stroke: $cn-fern;
+            stroke: $fern;
           }
         }
       }
@@ -1496,7 +1496,7 @@ footer {
           li {
             a {
               &:hover {
-                color: $cn-jade !important;
+                color: $jade !important;
               }
             }
           }
@@ -1687,11 +1687,11 @@ footer {
 
 .expand-sc {
   border-radius: $border-radius;
-  border: $padding-1 solid $cn-heather;
+  border: $padding-1 solid $heather-gray;
 }
 
 .expand-label {
-  color: $cn-jade;
+  color: $jade;
 }
 
 .expand-content {

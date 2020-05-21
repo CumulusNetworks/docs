@@ -3,13 +3,13 @@
 $block-border-radius: 0.15rem;
 
 .markdown {
-  color: $cn-nevada;
+  color: $nevada-gray;
   font-size: 0.882rem;
   line-height: 1.764rem;
   letter-spacing: -0.1px;
 
   h1 {
-    color: $cn-limited-spruce;
+    color: $spruce-gray;
     font-size: 2.235rem;
     font-weight: 300;
     letter-spacing: -0.7px;
@@ -56,7 +56,7 @@ $block-border-radius: 0.15rem;
   }
 
   summary {
-    color: $cn-jade;
+    color: $jade;
   }
 
   p {
@@ -87,7 +87,7 @@ $block-border-radius: 0.15rem;
 
     //  &:before {
     //  content: '';
-    //    background-color: $cn-limited-spruce;
+    //    background-color: $spruce-gray;
     //    border-radius: 50%;
     //    width: 6px;
     //    height: 6px;
@@ -115,7 +115,7 @@ $block-border-radius: 0.15rem;
     // }
 
     // h1,h2,h3,h4,h5 {
-    //   color: $cn-limited-spruce;
+    //   color: $spruce-gray;
     // }
 
 // nested lists
@@ -176,12 +176,12 @@ $block-border-radius: 0.15rem;
   }
 
   code {
-    color: $cn-nevada;
+    color: $nevada-gray;
     font-size: .882rem;
     //font-family: 'Oxygen Mono', monospace;
 
     padding: 0 0;
-  //  background: $cn-heather;
+  //  background: $heather-gray;
     border-radius: $block-border-radius;
   }
 
@@ -229,7 +229,7 @@ $block-border-radius: 0.15rem;
     padding: $padding-16;
     position: relative;
     background: $code-block-background;
-    border: 1px solid #b5bdc9;
+    border: 1px solid $cadet-gray;
     border-radius: 0;
     font-size: $font-size-14;
     margin: 1.99rem 0;
@@ -260,15 +260,15 @@ $block-border-radius: 0.15rem;
 
     tr th, tr td {
       :header{
-        background: $cn-heather;
+        background: $heather-gray;
       }
       padding: $padding-8 $padding-16;
       line-height: 1.5;
-      border: 1px solid $cn-rolling-stone;
+      border: 1px solid $rolling-stone;
     }
 
     th {
-      background: $cn-heather;
+      background: $heather-gray;
     }
 
     td { 
@@ -281,17 +281,17 @@ $block-border-radius: 0.15rem;
   }
 
   p code {
-    color: $cn-nevada;
+    color: $nevada-gray;
     background: $code-block-background;
   }
 
   li code {
-    color: $cn-nevada;
+    color: $nevada-gray;
     background: $code-block-background;
   }
 
   td code {
-    color: $cn-nevada;
+    color: $nevada-gray;
     background: $code-block-background;
   }
 
@@ -304,7 +304,7 @@ $block-border-radius: 0.15rem;
       padding: $padding-16;
       position: relative;
       background: $code-block-background;
-      border: 1px solid #b5bdc9;
+      border: 1px solid $cadet-gray;
       border-radius: 0;
       font-size: $font-size-14;
       margin: 1.99rem 0;

@@ -63,7 +63,7 @@ When you log into Cumulus Linux for the first time, you must provide a new passw
 
 {{%notice note%}}
 
-Cumulus Linux provides options that allow you to change the default password for the *cumulus* account automatically during Cumulus Linux installation. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image" >}}. If the password is changed during installation, use the new password to log in.
+ONIE includes options that allow you to change the default password for the *cumulus* account automatically during Cumulus Linux installation. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image" >}}. If the password is changed during installation, use the new password to log in.
 
 {{%/notice%}}
 

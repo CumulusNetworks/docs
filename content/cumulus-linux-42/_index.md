@@ -17,14 +17,14 @@ This user guide provides in-depth documentation on the Cumulus Linux installatio
 
 Cumulus Linux 4.2 includes the NetQ agent and CLI, which is installed by default on the Cumulus Linux switch. Use NetQ to monitor and manage your data center network infrastructure and operational health. Refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-netq/" text="NetQ documentation" >}} for details.
 
-For a list of the new features in this release, see {{<link url="Whats-New" text="What's New">}}. For bug fixes and known issues present in this release, refer to the {{<link url="Cumulus-Linux-4.1-Release-Notes" text="Cumulus Linux 4.2 Release Notes">}}.
+For a list of the new features in this release, see {{<link url="Whats-New" text="What's New">}}. For bug fixes and known issues present in this release, refer to the {{<link url="Cumulus-Linux-4.2-Release-Notes" text="Cumulus Linux 4.2 Release Notes">}}.
 
 ### Open Source Contributions
 
 To implement various Cumulus Linux features, Cumulus Networks has forked various software projects, like CFEngine `Netdev` and some Puppet Labs packages. Some of the forked code resides in the Cumulus Networks {{<exlink url="https://github.com/CumulusNetworks" text="GitHub repository" >}} and some is available as part of the Cumulus Linux repository as Debian source packages.
 
 <!--Cumulus Networks has also developed and released new applications as
-open source. The list of open source projects is on the {{<link title="Cumulus Linux 4.1 Open Source Packages" text="open source software" >}} page.  -->
+open source. The list of open source projects is on the {{<link title="Cumulus Linux 4.2 Open Source Packages" text="open source software" >}} page.  -->
 
 ### Hardware Compatibility List
 

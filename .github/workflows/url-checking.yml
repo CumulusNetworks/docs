@@ -1,6 +1,6 @@
 name: 'URL Checker'
 
-on: [push, pull_requst]
+on: [push, pull_request]
 
 jobs:
   check_urls:

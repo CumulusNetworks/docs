@@ -1,12 +1,6 @@
 name: 'URL Checker'
 
-on:
-  push:
-    branches:
-      - plumbis-stage
-  pull_request:
-    branches:
-      - plumbis-stage
+on: [push, pull_requst]
 
 jobs:
   check_urls:

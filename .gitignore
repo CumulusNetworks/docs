@@ -55,3 +55,9 @@ hugo
 # Common Python Venv #
 ######################
 venv/*
+
+
+# We ignore the link shortcode by default to prevent
+# accidental commit of bad link check code.
+# edits to the shortcode will require manual git add
+themes/netDocs/layouts/shortcodes/link.html

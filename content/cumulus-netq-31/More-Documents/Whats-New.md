@@ -27,4 +27,4 @@ You can upgrade from NetQ 2.4.x to NetQ 3.0.0. Upgrades from NetQ 2.3.x and earl
 LNV support has been removed as of this release.
 {{</notice>}}
 
-For information regarding bug fixes and known issues present in this release, refer to the {{<link title="Cumulus NetQ 3.0 Release Notes" text="release notes">}}.
+For information regarding bug fixes and known issues present in this release, refer to the {{<link title="Cumulus NetQ 3.1 Release Notes" text="release notes">}}.

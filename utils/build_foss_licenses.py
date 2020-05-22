@@ -225,7 +225,7 @@ def process_foss_tar(version):
 
     version - the version to capture foss tar files for
     '''
-
+    print("Downloading license file for {}".format(version))
     url = "https://d2whzysjlaya8k.cloudfront.net/cl/{}/FOSS-{}.tgz".format(version, version)
 
     response = requests.get(url, stream=True)
@@ -249,13 +249,34 @@ def process_foss_tar(version):
 
     return "{}/FOSS-{}.csv".format(license_dir, version)
 
+def get_products():
+    '''
+    Download the engineering provided JSON file detailing the list of products and releases.
+    Expects the key "release_notes" to exist at the top level.
+    Returns: a dict of product short name and versions. For example
+    { "cl":  ["3.7.1", "3.7.2"], "netq": ["2.4.0", "3.0.0"] }
+    '''
+    session = requests.Session()
+    url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"
+    response = session.get(url)
+    if response.status_code != 200:
+        print("Unable to download JSON releases file to determine products and versions for FOSS licenses.")
+        print('Received response {} from {}'.format(response.status_code, url))
+        exit(1)
+
+    if not "licenses" in response.json():
+        print("Unable to find licenses within JSON releases file. JSON dump:")
+        print(response.json())
+        exit(1)
+
+    return response.json()["licenses"]
+
 def main():
     '''
     Main function
     '''
-    products = {
-        "cl": ["3.7.12", "4.1.0", "4.1.1", "4.1.2"]
-    }
+    print("Fetching product and version list")
+    products = get_products()
 
     cvs_file_list = []
     for product in products:
@@ -264,8 +285,9 @@ def main():
 
         build_foss_license_markdown_files(product, products[product])
 
-        for file in cvs_file_list:
-            os.remove(file)
+    for file in cvs_file_list:
+        print(file)
+        os.remove(file)
 
     exit(0)
 

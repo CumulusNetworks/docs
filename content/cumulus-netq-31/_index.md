@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ 3.0
+title: Cumulus NetQ 3.1
 author: Cumulus Networks
 weight: -10
 subsection: true

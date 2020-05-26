@@ -295,10 +295,6 @@ iface vlan400
 
 {{< /tab >}}
 
-{{< /tabs >}}
-
-{{< tabs "TabID297 ">}}
-
 {{< tab "server01 ">}}
 
 Create a configuration like the following on an Ubuntu host:

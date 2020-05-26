@@ -48,8 +48,6 @@ events:
 
 *\* This type of event can only be viewed in the CLI with this release.*
 
-**\* This type of event is only visible when enabled in the CLI.*
-
 Refer to the {{<link title="Events Reference">}} for descriptions and examples of these events.
 
 ### Event Message Format
@@ -420,12 +418,12 @@ expressions and *vary according to your deployment*.
 <tr>
 <td>old_state</td>
 <td>Previous state of the BGP service</td>
-<td>Established, Failed</td>
+<td>Established, NotEstd</td>
 </tr>
 <tr>
 <td>new_state</td>
 <td>Current state of the BGP service</td>
-<td>Established, Failed</td>
+<td>Established, NotEstd</td>
 </tr>
 <tr>
 <td>old_last_reset_time</td>

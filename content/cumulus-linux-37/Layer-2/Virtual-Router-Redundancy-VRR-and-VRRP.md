@@ -163,7 +163,8 @@ mode for First Hop Redundancy Protocol.
 
 ### Example VRR Configuration with MLAG
 
-To create an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration that incorporates VRR, use a configuration like the following.
+To create an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
+configuration that incorporates VRR, use a configuration like the following.
 
 {{%notice note%}}
 

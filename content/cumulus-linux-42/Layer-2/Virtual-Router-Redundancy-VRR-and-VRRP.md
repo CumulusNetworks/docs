@@ -113,7 +113,7 @@ The following examples uses a single virtual MAC address for all VLANs. You can 
 
 {{< tabs "TabID111 ">}}
 
-{{< tab "leaf01 Configuration ">}}
+{{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:~$ net add interface eth0 ip address 192.168.0.21
@@ -204,7 +204,7 @@ iface vlan400
 
 {{< /tab >}}
 
-{{< tab "leaf02 Configuration ">}}
+{{< tab "leaf02 ">}}
 
 ```
 cumulus@leaf02:~$ net add interface eth0 ip address 192.168.0.22
@@ -295,11 +295,7 @@ iface vlan400
 
 {{< /tab >}}
 
-{{< /tabs >}}
-
-{{< tabs "TabID297 ">}}
-
-{{< tab "server01 Configuration ">}}
+{{< tab "server01 ">}}
 
 Create a configuration like the following on an Ubuntu host:
 
@@ -345,7 +341,7 @@ iface uplink:400 inet static
 
 {{< /tab >}}
 
-{{< tab "server02 Configuration ">}}
+{{< tab "server02 ">}}
 
 Create a configuration like the following on an Ubuntu host:
 

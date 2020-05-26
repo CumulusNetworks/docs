@@ -364,5 +364,5 @@ To enable the Supplemental Repository:
 
 ## Related Information
 
-  - [Debian GNU/Linux FAQ, Ch 8 Package management tools](http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html)
+  - [Debian GNU/Linux FAQ, Ch 8 Package management tools](https://www.debian.org/doc/manuals/debian-faq/pkgtools.en.html)
   - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`

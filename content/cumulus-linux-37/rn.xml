@@ -7,6 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29759</td>
 <td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
 To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
@@ -28,9 +37,8 @@ Fixed: 4.84.2-2+deb8u7</p></td>
 </tr>
 <tr>
 <td>CM-29667</td>
-<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.</p>
-
-<p>To work around this issue, run the systemctl restart switchd command.</p></td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
 <td>3.7.12</td>
 <td></td>
 </tr>
@@ -84,7 +92,6 @@ cumulus@switch:~$ sudo ifup vni10100
 <td>CM-29525</td>
 <td><p>The asic-monitor.service fails when you configure /etc/cumulus/datapath/monitor.conf with monitor.histogram_pg.collect.port_group_list  = <span class="error">&#91;all_packet_pg&#93;</span> and there is traffic passing through the buffer. When the service fails, you see the following traceback in journalctl:</p>
 
-
 asic-monitor[7389]: asic-monitor-module INFO: 2020-05-01 18:28:12.548734: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg
 asic-monitor[7389]: asic-monitor ERROR: ASIC monitor exception: sx_api_port_counter_tc_get failed: Parameter Error
 asic-monitor[7389]: File "/usr/bin/asic-monitor", line 139, in &lt;module&gt;
@@ -95,16 +102,7 @@ asic-monitor[7389]: Traceback (most recent call last):
 asic-monitor[7389]: File "/usr/bin/asic-monitor", line 117, in main
 asic-monitor[7389]: monitor.run()
 asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 158, in run
-asic-monitor[7389]: self.take_action(state_desc, results, state_desc_dict, depth=0)
-asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 89, in take_action
-asic-monitor[7389]: collect_results = self.asic_manager.read_state(collect_pg)
-asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/mlx_asic_manager.py", line 715, in read_state
-asic-monitor[7389]: packet_info[linux_port_label])
-asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/mlx_asic_manager.py", line 442, in read_packet_stats
-asic-monitor[7389]: raise RuntimeError('sx_api_port_counter_tc_get failed: %s' % sx_status_msg[rc])
-asic-monitor[7389]: RuntimeError: sx_api_port_counter_tc_get failed: Parameter Error
-asic-monitor[7389]: asic-monitor-module INFO: ASIC monitor stopping
-asic-monitor[7389]: --------------
+...
 
 </td>
 <td>3.7.11-3.7.12</td>
@@ -204,13 +202,13 @@ Fixed: 0.80.7-2+deb8u4</p></td>
 </tr>
 <tr>
 <td>CM-29165</td>
-<td><p>An inconsistent link-state advertisement may be seen with FRR/OSPF in some circumstances. For example, when you configure the OSPF default originate route as metric-type 1 with a specific metric, Cumulus Linux shows the default originate route as an external metric-type 2 route with the default metric in the database. This problem has been observed when there are both IPv4 and IPv6 default routes in the routing table.</p></td>
+<td><p>With FRR or OSPF, you might see an inconsistent link-state advertisement. For example, when you configure the OSPF default originate route as metric-type 1 with a specific metric, Cumulus Linux shows the default originate route as an external metric-type 2 route with the default metric in the database. This issue typically occurs when both IPv4 and IPv6 default routes exist in the routing table.</p></td>
 <td>3.7.12</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-29068</td>
-<td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
+<td><p>On the Broadcom switch with the Trident3 ASIC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
 <td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
@@ -601,7 +599,7 @@ kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142c
 bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 
-<p>To workaround this issue, either reduce the number of configured interfaces and/or VLANs or increase the systemd timeout for switchd.service.<br/>
+<p>To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the systemd timeout for switchd.service.<br/>
 To increase the systemd timeout:</p>
 <ol>
 	<li>Edit the /etc/systemd/system/switchd.service.d/override.conf file and increase the WatchdogSec parameter.</li>
@@ -775,7 +773,7 @@ sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' &
 </tr>
 <tr>
 <td>CM-26905</td>
-<td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old name.<br/>
+<td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old hostname.<br/>
 To work around this issue, run the sudo systemctl restart lldpd.service command.</p></td>
 <td>3.7.10-3.7.12</td>
 <td></td>
@@ -2001,6 +1999,15 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -2027,7 +2034,6 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 <td>CM-29525</td>
 <td><p>The asic-monitor.service fails when you configure /etc/cumulus/datapath/monitor.conf with monitor.histogram_pg.collect.port_group_list  = <span class="error">&#91;all_packet_pg&#93;</span> and there is traffic passing through the buffer. When the service fails, you see the following traceback in journalctl:</p>
 
-
 asic-monitor[7389]: asic-monitor-module INFO: 2020-05-01 18:28:12.548734: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg
 asic-monitor[7389]: asic-monitor ERROR: ASIC monitor exception: sx_api_port_counter_tc_get failed: Parameter Error
 asic-monitor[7389]: File "/usr/bin/asic-monitor", line 139, in &lt;module&gt;
@@ -2038,16 +2044,7 @@ asic-monitor[7389]: Traceback (most recent call last):
 asic-monitor[7389]: File "/usr/bin/asic-monitor", line 117, in main
 asic-monitor[7389]: monitor.run()
 asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 158, in run
-asic-monitor[7389]: self.take_action(state_desc, results, state_desc_dict, depth=0)
-asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 89, in take_action
-asic-monitor[7389]: collect_results = self.asic_manager.read_state(collect_pg)
-asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/mlx_asic_manager.py", line 715, in read_state
-asic-monitor[7389]: packet_info[linux_port_label])
-asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/mlx_asic_manager.py", line 442, in read_packet_stats
-asic-monitor[7389]: raise RuntimeError('sx_api_port_counter_tc_get failed: %s' % sx_status_msg[rc])
-asic-monitor[7389]: RuntimeError: sx_api_port_counter_tc_get failed: Parameter Error
-asic-monitor[7389]: asic-monitor-module INFO: ASIC monitor stopping
-asic-monitor[7389]: --------------
+...
 
 </td>
 <td>3.7.11-3.7.12</td>
@@ -2111,7 +2108,7 @@ Fixed: 0.80.7-2+deb8u4</p></td>
 </tr>
 <tr>
 <td>CM-29068</td>
-<td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
+<td><p>On the Broadcom switch with the Trident3 ASIC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
 <td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
@@ -2559,7 +2556,7 @@ kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142c
 bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 
-<p>To workaround this issue, either reduce the number of configured interfaces and/or VLANs or increase the systemd timeout for switchd.service.<br/>
+<p>To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the systemd timeout for switchd.service.<br/>
 To increase the systemd timeout:</p>
 <ol>
 	<li>Edit the /etc/systemd/system/switchd.service.d/override.conf file and increase the WatchdogSec parameter.</li>
@@ -2854,7 +2851,7 @@ sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' &
 </tr>
 <tr>
 <td>CM-26905</td>
-<td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old name.<br/>
+<td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old hostname.<br/>
 To work around this issue, run the sudo systemctl restart lldpd.service command.</p></td>
 <td>3.7.10-3.7.12</td>
 <td></td>
@@ -3997,7 +3994,7 @@ Fixed versions: &gt;= 2.4.40+dfsg-1+deb8u5</p></td>
 <tr>
 <td>CM-26691</td>
 <td><p>BGP is configured with soft reconfiguration-in for its peers, which is not working correctly and causes routes to have an unexpected label. As a result, transit traffic is not forwarded by the switch.</p></td>
-<td>3.7.8-3.7.10</td>
+<td>3.7.7-3.7.10</td>
 </tr>
 <tr>
 <td>CM-26657</td>
@@ -4358,6 +4355,15 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29740</td>
@@ -5025,7 +5031,7 @@ sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' &
 </tr>
 <tr>
 <td>CM-26905</td>
-<td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old name.<br/>
+<td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old hostname.<br/>
 To work around this issue, run the sudo systemctl restart lldpd.service command.</p></td>
 <td>3.7.10-3.7.12</td>
 <td></td>
@@ -5070,7 +5076,7 @@ To work around this issue, restart FRR after removing the IPv6 numbered configur
 <tr>
 <td>CM-26691</td>
 <td><p>BGP is configured with soft reconfiguration-in for its peers, which is not working correctly and causes routes to have an unexpected label. As a result, transit traffic is not forwarded by the switch.</p></td>
-<td>3.7.8-3.7.10</td>
+<td>3.7.7-3.7.10</td>
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
@@ -6473,6 +6479,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -7006,7 +7021,7 @@ To work around this issue, restart FRR after removing the IPv6 numbered configur
 <tr>
 <td>CM-26691</td>
 <td><p>BGP is configured with soft reconfiguration-in for its peers, which is not working correctly and causes routes to have an unexpected label. As a result, transit traffic is not forwarded by the switch.</p></td>
-<td>3.7.8-3.7.10</td>
+<td>3.7.7-3.7.10</td>
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
@@ -9028,6 +9043,15 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -9495,7 +9519,7 @@ Note: qemu is not installed by default, but is available in the repository for o
 <tr>
 <td>CM-26691</td>
 <td><p>BGP is configured with soft reconfiguration-in for its peers, which is not working correctly and causes routes to have an unexpected label. As a result, transit traffic is not forwarded by the switch.</p></td>
-<td>3.7.8-3.7.10</td>
+<td>3.7.7-3.7.10</td>
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
@@ -11455,6 +11479,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -11893,6 +11926,12 @@ Note: qemu is not installed by default, but is available in the repository for o
 <td>CM-26769</td>
 <td><p>Setting ProtoDown on ports populated with SFP modules providing RJ-45 1000BASE-T interfaces does not cause the carrier to be dropped. The kernel shows carrier down; however, the remote device still shows a link.</p></td>
 <td>3.7.6-3.7.10</td>
+<td>3.7.11-3.7.12</td>
+</tr>
+<tr>
+<td>CM-26691</td>
+<td><p>BGP is configured with soft reconfiguration-in for its peers, which is not working correctly and causes routes to have an unexpected label. As a result, transit traffic is not forwarded by the switch.</p></td>
+<td>3.7.7-3.7.10</td>
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
@@ -14241,6 +14280,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29740</td>
@@ -17000,6 +17048,15 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -19424,6 +19481,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29740</td>
@@ -21908,6 +21974,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29740</td>
@@ -24557,6 +24632,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29740</td>
@@ -27338,6 +27422,15 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -29631,6 +29724,15 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-29834</td>
+<td><p>The following security vulnerability has been announced:<br/>
+CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
+Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
+Fixed: 3.8.7.1-1+deb8u6</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29740</td>

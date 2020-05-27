@@ -144,7 +144,7 @@ For example, to send two sets of packets to TCP port 23 and 24, with source IP a
 ```
 cumulus@switch:~$ sudo mz swp1 -A 11.0.0.1 -B 11.0.0.2 -c 2 -v -t tcp "dp=23-24"
 
-Mausezahn 0.40 - (C) 2007-2010 by Herbert Haas - http://www.perihel.at/sec/mz/
+Mausezahn 0.40 - (C) 2007-2010 by Herbert Haas - https://packages.debian.org/unstable/mz
 Use at your own risk and responsibility!
 -- Verbose mode --
 

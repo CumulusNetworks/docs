@@ -226,7 +226,7 @@ Fixed: 1.1.1d-0+deb10u3</p></td>
 <tr>
 <td>CM-29319</td>
 <td><p>When you configure an RD or RT with NCLU, you see duplicate VNI stanzas in the /etc/frr/frr.conf file. <br/>
-To work around this issue, manually edit the etc/frr/frr.conf </code> file to define <code>advertise-all-vni before the RD or RT configuration within the l2vpn EVPN address family, then reload the FRR service with the sudo systemctl reload frr command.</p></td>
+To work around this issue, manually edit the etc/frr/frr.conf file to define advertise-all-vni before the RD or RT configuration within the l2vpn EVPN address family, then reload the FRR service with the sudo systemctl reload frr command.</p></td>
 <td>4.1.0-4.1.1</td>
 <td></td>
 </tr>
@@ -1801,7 +1801,7 @@ Fixed: 1.1.1d-0+deb10u3</p></td>
 <tr>
 <td>CM-29319</td>
 <td><p>When you configure an RD or RT with NCLU, you see duplicate VNI stanzas in the /etc/frr/frr.conf file. <br/>
-To work around this issue, manually edit the etc/frr/frr.conf </code> file to define <code>advertise-all-vni before the RD or RT configuration within the l2vpn EVPN address family, then reload the FRR service with the sudo systemctl reload frr command.</p></td>
+To work around this issue, manually edit the etc/frr/frr.conf file to define advertise-all-vni before the RD or RT configuration within the l2vpn EVPN address family, then reload the FRR service with the sudo systemctl reload frr command.</p></td>
 <td>4.1.0-4.1.1</td>
 <td></td>
 </tr>

@@ -404,7 +404,7 @@ between a pair of VRFs.
   (AS) or an AS that is not the same as the global AS.
 - Cumulus Networks recommends that you do not use the default VRF as a
   shared service VRF. Create another VRF for shared services.
-- Broadcom switches in an EVPN symmetric routing configuration have certain limitations when leaking routes between the default VRF and non-default VRFs. The default VRF has underlay routes (routes to VTEP addresses) that cannot be leaked to any tenant VRFs. If you need to leak routes between the default VRF and a non-defaut VRF, you must filter out routes to the VTEP addresses to prevent leaking these routes.
+- Broadcom switches in an EVPN symmetric routing configuration have certain limitations when leaking routes between the default VRF and non-default VRFs. The default VRF has underlay routes (routes to VTEP addresses) that cannot be leaked to any tenant VRFs. If you need to leak routes between the default VRF and a non-default VRF, you must filter out routes to the VTEP addresses to prevent leaking these routes.
 - On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, only leak the specific routes you need from the default VRF; do not include the VTEP routes or filter out the VTEP routes with a route filter.
 
 {{%/notice%}}

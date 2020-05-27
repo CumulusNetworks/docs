@@ -317,5 +317,4 @@ priority_group.service.weight = 16
 
 - {{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE introduction">}} - roceinitiative.org
 - {{<exlink url="https://community.mellanox.com/s/article/understanding-rocev2-congestion-management" text="RoCEv2 congestion management">}} - community.mellanox.com
-- {{<exlink url="https://community.mellanox.com/docs/DOC-3036" text="Configuring RoCE over a DSCP-based lossless network">}}
-  with a Mellanox Spectrum switch
+- {{<exlink url="https://community.mellanox.com/s/article/lossless-roce-configuration-for-spectrum-based-cumulus-switches-in-dscp-based-qos-mode" text="Configuring RoCE over a DSCP-based lossless network">}} with a Mellanox Spectrum switch

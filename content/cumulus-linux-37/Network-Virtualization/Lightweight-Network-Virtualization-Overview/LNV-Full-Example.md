@@ -61,7 +61,7 @@ Check out {{<exlink url="https://cumulusnetworks.com/cumulus-vx/" text="Cumulus 
 
 {{< img src="/images/old_doc_images/turtle_training.png" width="40">}}
 
-Feeling overwhelmed? Come join a {{<exlink url="https://education.cumulusnetworks.com/series/bootcamps/series/bootcamps/" text="Cumulus Boot Camp">}} and get instructor-led training\!
+Feeling overwhelmed? Come join a {{<exlink url="https://education.cumulusnetworks.com/series/bootcamps/" text="Cumulus Boot Camp">}} and get instructor-led training\!
 
 {{%/notice%}}
 

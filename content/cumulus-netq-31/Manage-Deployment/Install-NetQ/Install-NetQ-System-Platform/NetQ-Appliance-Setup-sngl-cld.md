@@ -1,7 +1,7 @@
 ---
 title: Install the NetQ Cloud Appliance
 author: Cumulus Networks
-weight: 81
+weight: 230
 toc: 5
 bookhidden: true
 ---

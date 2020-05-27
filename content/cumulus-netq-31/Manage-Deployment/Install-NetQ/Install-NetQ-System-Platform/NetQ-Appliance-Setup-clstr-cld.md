@@ -1,7 +1,7 @@
 ---
 title: Install a NetQ Cloud Appliance Cluster
 author: Cumulus Networks
-weight: 83
+weight: 232
 toc: 5
 bookhidden: true
 ---

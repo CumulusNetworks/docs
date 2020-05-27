@@ -1,7 +1,7 @@
 ---
 title: Set Up Your VMware Virtual Machine for a Cloud Server Cluster
 author: Cumulus Networks
-weight: 79
+weight: 224
 toc: 5
 bookhidden: true
 ---

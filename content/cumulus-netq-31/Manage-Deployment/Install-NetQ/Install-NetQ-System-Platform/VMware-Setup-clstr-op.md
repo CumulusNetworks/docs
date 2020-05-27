@@ -1,7 +1,7 @@
 ---
 title: Set Up Your VMware Virtual Machine for an On-premises Server Cluster
 author: Cumulus Networks
-weight: 78
+weight: 223
 toc: 5
 bookhidden: true
 ---

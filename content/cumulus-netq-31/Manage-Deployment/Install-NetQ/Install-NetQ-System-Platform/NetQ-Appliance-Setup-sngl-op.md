@@ -1,7 +1,7 @@
 ---
 title: Install the NetQ On-premises Appliance
 author: Cumulus Networks
-weight: 80
+weight: 229
 toc: 5
 bookhidden: true
 ---

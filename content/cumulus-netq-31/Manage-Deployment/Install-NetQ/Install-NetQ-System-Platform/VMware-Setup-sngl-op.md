@@ -1,7 +1,7 @@
 ---
 title: Set Up Your VMware Virtual Machine for a Single On-premises Server
 author: Cumulus Networks
-weight: 76
+weight: 221
 toc: 5
 bookhidden: true
 ---

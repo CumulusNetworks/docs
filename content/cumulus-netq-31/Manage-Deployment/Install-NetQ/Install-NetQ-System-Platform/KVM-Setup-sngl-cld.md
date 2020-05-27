@@ -1,7 +1,7 @@
 ---
 title: Set Up Your KVM Virtual Machine for a Single Cloud Server
 author: Cumulus Networks
-weight: 73
+weight: 226
 toc: 5
 bookhidden: true
 ---

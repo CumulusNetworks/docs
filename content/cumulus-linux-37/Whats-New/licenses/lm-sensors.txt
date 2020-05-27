@@ -1,7 +1,7 @@
 This package was debianized by Stephen Crowley crow@debian.org and is now
 maintained by Aurelien Jarno <aurel32@debian.org>.
 
-It was downloaded from http://www.lm-sensors.org/
+It was downloaded from http://www.https://github.com/lm-sensors/lm-sensors/
 
 Authors:
   Frodo Looijaard <frodol@dds.nl>
@@ -32,7 +32,7 @@ License:
 
   You should have received a copy of the GNU General Public License with
   the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 51 Franklin St, 
+  if not, write to the Free Software Foundation, Inc., 51 Franklin St,
   Fifth Floor, Boston, MA  02110-1301 USA
 
 On Debian systems, the complete text of the GNU General Public

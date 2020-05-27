@@ -4,22 +4,22 @@ author: Cumulus Networks
 weight: 100
 toc: 4
 ---
-Logging in to the NetQ UI is as easy as opening any web page.
+Signing in to the NetQ UI is as easy as opening any web page.
 
 To log in to the UI:
 
-1. Open a new Internet browser window or tab.
-2. Enter the following URL into the Address bar for the NetQ On-premises Appliance or VM, or the NetQ Cloud Appliance or VM:  
-    - On-premises: *https://\<hostname-or-ipaddress\>:443*  
-    - Cloud: *https://netq.cumulusnetworks.com*
+1. Open a new Chrome browser window or tab.
+2. Enter the following URL into the address bar:  
+    - NetQ On-premises Appliance or VM: *https://\<hostname-or-ipaddress\>:443*  
+    - NetQ Cloud Appliance or VM: *https://netq.cumulusnetworks.com*
 
     {{< figure src="/images/netq/access-ui-login-screen-230.png" width="700" >}}
 
-3. Login.
+3. Sign in.
 
     Default usernames and passwords for UI access:  
     - NetQ On-premises: *admin, admin*
-    - NetQ Cloud: Use credentials provided by Cumulus via email titled *Welcome to Cumulus NetQ\!*
+    - NetQ Cloud: Use credentials provided by Cumulus Networks via email titled *Welcome to Cumulus NetQ\!*
 
 {{< tabs "TabID24" >}}
 
@@ -57,7 +57,7 @@ Any workbench can be set as the home workbench. Click <img src="https://icons.cu
 
 {{< /tabs >}}
 
-To log out of the UI:
+To log out of the NetQ UI:
 
 1. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> at the top right of the application.
 

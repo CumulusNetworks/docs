@@ -7,11 +7,11 @@ toc: 3
 
 The NetQ CLI provides access to all of the network state and event information collected by the NetQ Agents. It behaves the same way most CLIs behave, with groups of commands used to display related information, the ability to use TAB completion when entering commands, and to get help for given commands and options. The commands are grouped into four categories: check, show, config, and trace.
 
-{{%notice note%}}
+{{<notice note>}}
 
-The NetQ command line interface only runs on switches and server  hosts implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the Cumulus {{<exlink url="https://cumulusnetworks.com/hcl" text="Hardware Compatibility List">}} and verify the value in the **Platforms** tab \> **CPU** column.
+The NetQ command line interface only runs on switches and server hosts implemented with Intel x86 or ARM-based architectures. If you are unsure what architecture your switch or server employs, check the Cumulus {{<exlink url="https://cumulusnetworks.com/hcl" text="Hardware Compatibility List">}} and verify the value in the <strong>Platforms</strong> tab > <strong>CPU</strong> column.
 
-{{%/notice%}}
+{{</notice>}}
 
 ## CLI Access
 
@@ -19,27 +19,32 @@ When NetQ is installed or upgraded, the CLI may also be installed  and enabled o
 
 To access the CLI from a switch or server:
 
-1.  Log in to the device. This example uses the default username of *cumulus* and a hostname of *switch*.
+1. Log in to the device. This example uses the default username of *cumulus* and a hostname of *switch*.
 
-        <computer>:~<username>$ ssh cumulus@switch
+    ```
+    <computer>:~<username>$ ssh cumulus@switch
+    ```
 
-2.  Enter your password to reach the command prompt. The default password is
-    *CumulusLinux\!* For example:
+2. Enter your password to reach the command prompt. The default password is     *CumulusLinux\!* For example:
 
-        Enter passphrase for key '/Users/<username>/.ssh/id_rsa': <enter CumulusLinux! here>
-        Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-112-generic x86_64)
-         * Documentation:  https://help.ubuntu.com
-         * Management:     https://landscape.canonical.com
-         * Support:        https://ubuntu.com/advantage
-        Last login: Tue Sep 15 09:28:12 2019 from 10.0.0.14
-        cumulus@switch:~$ 
+    ```
+    Enter passphrase for key '/Users/<username>/.ssh/id_rsa': <enter CumulusLinux! here>
+    Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-112-generic x86_64)
+        * Documentation:  https://help.ubuntu.com
+        * Management:     https://landscape.canonical.com
+        * Support:        https://ubuntu.com/advantage
+    Last login: Tue Sep 15 09:28:12 2019 from 10.0.0.14
+    cumulus@switch:~$
+    ```
 
 3.  Run commands. For example:
 
-        cumulus@switch:~$ netq show agents
-        cumulus@switch:~$ netq check bgp
+    ```
+    cumulus@switch:~$ netq show agents
+    cumulus@switch:~$ netq check bgp
+    ```
 
-### Command Line Basics
+## Command Line Basics
 
 This section describes the core structure and behavior of the NetQ CLI. It includes the following:
 
@@ -59,17 +64,19 @@ The Cumulus NetQ command line has a flat structure as opposed to a modal structu
 
 NetQ CLI commands all begin with `netq`. Cumulus NetQ commands fall into one of four syntax categories: validation (check), monitoring (show), configuration, and trace.
 
-    netq check <network-protocol-or-service> [options]
-    netq show <network-protocol-or-service> [options]
-    netq config <action> <object> [options]
-    netq trace <destination> from <source> [options]
+```
+netq check <network-protocol-or-service> [options]
+netq show <network-protocol-or-service> [options]
+netq config <action> <object> [options]
+netq trace <destination> from <source> [options]
+```
 
 | Symbols  | Meaning  |
 | -------- | -------- |
-| Parentheses ( )       | Grouping of required parameters. Choose one. |
+| Parentheses ( ) | Grouping of required parameters. Choose one. |
 | Square brackets \[ \] | Single or group of optional parameters. If more than one object or keyword is available, choose one. |
-| Angle brackets \< \>  | Required variable. Value for a keyword or option; enter according to your deployment nomenclature. |
-| Pipe \|                | Separates object and keyword options, also separates value options; enter one object or keyword and zero or one value. |
+| Angle brackets \< \> | Required variable. Value for a keyword or option; enter according to your deployment nomenclature. |
+| Pipe \| | Separates object and keyword options, also separates value options; enter one object or keyword and zero or one value. |
 
 For example, in the `netq check` command:
 
@@ -99,8 +106,9 @@ NetQ code examples use the following prompts:
 - `cumulus@switch:~$` Indicates the user *cumulus* is logged in to a switch to run the example command
 - `cumulus@host:~$` Indicates the user *cumulus* is logged in to a host to run the example command
 - `cumulus@netq-appliance:~$` Indicates the user *cumulus* is logged in to either the NetQ Appliance or NetQ Cloud Appliance to run the command
+- `cumulus@hostname:~$` Indicates the user *cumulus* is logged in to a switch, host or appliance to run the example command
 
-The switches must be running the Cumulus Linux operating system (OS), NetQ Platform software, and the NetQ Agent. The hosts must be running CentOS, RHEL, or Ubuntu OS and the NetQ Agent. Refer to the {{<link url="Install-NetQ">}} topic for details.
+To use the NetQ CLI, the switches must be running the Cumulus Linux operating system (OS), NetQ Platform or NetQ Collector software, the NetQ Agent, and the NetQ CLI. The hosts must be running CentOS, RHEL, or Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to the {{<link url="Install-NetQ">}} topic for details.
 
 ### Command Completion
 
@@ -115,27 +123,31 @@ cumulus@switch:~$ netq check <<press Tab>>
     evpn        :  EVPN
     interfaces  :  network interface port
     license     :  License information
+    mlag        :  Multi-chassis LAG (alias of clag)
     mtu         :  Link MTU
     ntp         :  NTP
     ospf        :  OSPF info
     sensors     :  Temperature/Fan/PSU sensors
     vlan        :  VLAN
     vxlan       :  VXLAN data path
-cumulus@switch:~$ netq check 
+cumulus@switch:~$ netq check
 ```
 
 ### Command Help
 
 As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out what options are available for a BGP check, enter `help` after entering a portion of the `netq check` command. In this example, you can see that there are no additional required parameters and two optional parameters, `vrf` and `around`, that can be used with a BGP check.
 
-    cumulus@switch:~$ netq check bgp help
-    Commands:
-       netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
-    cumulus@switch:~$
+```
+cumulus@switch:~$ netq check bgp help
+Commands:
+    netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
+```
 
 To see an exhaustive list of commands, run:
 
-    cumulus@switch:~$ netq help list verbose
+```
+cumulus@switch:~$ netq help list verbose
+```
 
 ### Command History
 
@@ -176,18 +188,101 @@ This example shows the output for the `netq check bgp` command, followed by the 
 
 ```
 cumulus@switch:~$ netq check bgp
-Total Nodes: 8, Failed Nodes: 0, Total Sessions: 30, Failed Sessions: 0
- 
+bgp check result summary:
+
+Checked nodes       : 8
+Total nodes         : 8
+Rotten nodes        : 0
+Failed nodes        : 0
+Warning nodes       : 0
+
+Additional summary:
+Total Sessions      : 30
+Failed Sessions     : 0
+
+Session Establishment Test   : passed
+Address Families Test        : passed
+Router ID Test               : passed
+
+```
+
+```
 cumulus@switch:~$ netq check bgp json
 {
-    "failedNodes":[
+    "tests":{
+        "Session Establishment":{
+            "suppressed_warnings":0,
+            "errors":[
+
+            ],
+            "suppressed_errors":0,
+            "passed":true,
+            "warnings":[
+
+            ],
+            "duration":0.0000853539,
+            "enabled":true,
+            "suppressed_unverified":0,
+            "unverified":[
+
+            ]
+        },
+        "Address Families":{
+            "suppressed_warnings":0,
+            "errors":[
+
+            ],
+            "suppressed_errors":0,
+            "passed":true,
+            "warnings":[
+
+            ],
+            "duration":0.0002634525,
+            "enabled":true,
+            "suppressed_unverified":0,
+            "unverified":[
+
+            ]
+        },
+        "Router ID":{
+            "suppressed_warnings":0,
+            "errors":[
+
+            ],
+            "suppressed_errors":0,
+            "passed":true,
+            "warnings":[
+
+            ],
+            "duration":0.0001821518,
+            "enabled":true,
+            "suppressed_unverified":0,
+            "unverified":[
+
+            ]
+        }
+    },
+    "failed_node_set":[
+
     ],
     "summary":{
-        "checkedNodeCount":8,
-        "failedSessionCount":0,
-        "failedNodeCount":0,
-        "totalSessionCount":30
-    }
+        "checked_cnt":8,
+        "total_cnt":8,
+        "rotten_node_cnt":0,
+        "failed_node_cnt":0,
+        "warn_node_cnt":0
+    },
+    "rotten_node_set":[
+
+    ],
+    "warn_node_set":[
+
+    ],
+    "additional_summary":{
+        "total_sessions":30,
+        "failed_sessions":0
+    },
+    "validation":"bgp"
 }
 ```
 
@@ -215,7 +310,7 @@ for the following:
 - **inventory**: hardware component information
 - **ip**: IPv4 status
 - **ipv6**: IPv6 status
-- **job-status**: status of jobs running on the OPTA
+- **job-status**: status of upgrade jobs running on the appliance or VM
 - **kubernetes**: Kubernetes cluster, daemon, pod, node, service and replication status
 - **lldp**: LLDP status
 - **mac-history**: Historical information for a MAC address
@@ -236,7 +331,7 @@ for the following:
 - **validation**: Schedule a validation check
 - **vlan**: VLAN status
 - **vxlan**: VXLAN data path status
-- **wjh-drop**: drop information from Mellanox What Just Happened
+- **wjh-drop**: dropped packet data from Mellanox What Just Happened
 
 The commands take the form of `netq [<hostname>] show <network-protocol-or-service> [options]`, where the options vary according to the protocol or service. The commands can be restricted from showing the information for *all* devices to showing information for a selected device using the `hostname` option.
 
@@ -247,52 +342,79 @@ cumulus@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-exit01            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:34m:15s               15h:34m:5s                15h:34m:5s                 Mon Sep 23 22:44:49 2019
-exit02            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:35m:57s               15h:35m:47s               15h:35m:47s                Mon Sep 23 22:43:09 2019
-leaf01            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:35m:10s               15h:35m:1s                15h:35m:1s                 Mon Sep 23 22:43:55 2019
-leaf02            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:35m:53s               15h:35m:43s               15h:35m:43s                Mon Sep 23 22:44:17 2019
-leaf03            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:35m:0s                15h:34m:51s               15h:34m:51s                Mon Sep 23 22:44:01 2019
-leaf04            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:36m:33s               15h:36m:24s               15h:36m:24s                Mon Sep 23 22:43:03 2019
-server01          Fresh            no       2.3.0-ub18.04u21~1569246309.30858c3  15h:14m:46s               15h:14m:34s               15h:14m:34s                Mon Sep 23 22:48:56 2019
-server02          Fresh            yes      2.3.0-ub18.04u21~1569246309.30858c3  15h:14m:46s               15h:14m:34s               15h:14m:34s                Mon Sep 23 22:49:24 2019
-server03          Fresh            yes      2.3.0-ub18.04u21~1569246309.30858c3  15h:14m:46s               15h:14m:34s               15h:14m:34s                Mon Sep 23 22:49:24 2019
-server04          Fresh            yes      2.3.0-ub18.04u21~1569246309.30858c3  15h:14m:45s               15h:14m:33s               15h:14m:33s                Mon Sep 23 22:49:24 2019
-spine01           Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:34m:6s                15h:33m:57s               15h:33m:57s                Mon Sep 23 22:44:27 2019
-spine02           Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:34m:12s               15h:34m:2s                15h:34m:2s                 Mon Sep 23 22:43:30 2019
+border01          Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:16:00 2020  Wed Apr 29 16:38:24 2020  Wed Apr 29 16:38:24 2020   Tue May 26 16:46:44 2020
+border02          Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:10:31 2020  Wed Apr 29 16:38:22 2020  Wed Apr 29 16:38:22 2020   Tue May 26 23:03:22 2020
+fw1               Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:20:18 2020  Wed Apr 29 16:38:35 2020  Wed Apr 29 16:38:35 2020   Tue May 26 16:46:12 2020
+fw2               Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:35:24 2020  Wed Apr 29 16:38:29 2020  Wed Apr 29 16:38:29 2020   Tue May 26 16:47:42 2020
+leaf01            Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:05:01 2020  Wed Apr 29 16:38:23 2020  Wed Apr 29 16:38:23 2020   Tue May 26 16:48:04 2020
+leaf02            Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:59:26 2020  Wed Apr 29 16:38:32 2020  Wed Apr 29 16:38:32 2020   Tue May 26 23:04:03 2020
+leaf03            Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:05:01 2020  Wed Apr 29 16:38:11 2020  Wed Apr 29 16:38:11 2020   Tue May 26 17:35:21 2020
+oob-mgmt-server   Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 00:31:08 2020  Fri Apr 24 00:31:20 2020  Wed Apr 29 16:39:15 2020   Tue May 26 16:47:09 2020
+server01          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Fri May 15 20:47:24 2020  Fri May 15 20:47:24 2020   Tue May 26 20:50:52 2020
+server02          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Fri May 15 20:47:25 2020  Fri May 15 20:47:25 2020   Tue May 26 20:50:07 2020
+server03          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Fri May 15 20:47:24 2020  Fri May 15 20:47:24 2020   Tue May 26 20:50:38 2020
+server04          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Fri May 15 20:47:25 2020  Fri May 15 20:47:25 2020   Tue May 26 20:50:03 2020
+server05          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Fri May 15 20:47:27 2020  Fri May 15 20:47:27 2020   Tue May 26 20:51:27 2020
+server06          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:12 2020  Fri May 15 20:47:30 2020  Fri May 15 20:47:30 2020   Tue May 26 20:50:59 2020
+server07          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 00:43:05 2020  Fri May 15 20:47:30 2020  Fri May 15 20:47:30 2020   Wed May 27 15:18:40 2020
+spine01           Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:54:53 2020  Wed Apr 29 16:38:18 2020  Wed Apr 29 16:38:18 2020   Wed May 27 12:51:22 2020
+spine02           Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:49:37 2020  Wed Apr 29 16:38:28 2020  Wed Apr 29 16:38:28 2020   Tue May 26 23:04:26 2020
+spine03           Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:49:40 2020  Wed Apr 29 16:38:12 2020  Wed Apr 29 16:38:12 2020   Tue May 26 23:04:49 2020
+spine04           Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:48:20 2020  Wed Apr 29 16:38:24 2020  Wed Apr 29 16:38:24 2020   Tue May 26 23:03:07 2020
 ```
 ```
 cumulus@switch:~$ netq show agents json
 {
     "agents":[
         {
+            "hostname":"border01",
             "status":"Fresh",
-            "lastChanged":1569278689.0,
-            "reinitializeTime":1569277757.0,
-            "hostname":"exit01",
-            "version":"2.3.0-cl3u21~1569246310.30858c3",
-            "sysUptime":1569277747.0,
             "ntpSync":"yes",
-            "agentUptime":1569277757.0
+            "version":"3.0.0-cl3u27~1587646213.c5bc079",
+            "sysUptime":1588011360.0,
+            "agentUptime":1588178304.0,
+            "reinitializeTime":1588178304.0,
+            "lastChanged":1590511604.0
         },
         {
+            "hostname":"border02",
             "status":"Fresh",
-            "lastChanged":1569278589.0,
-            "reinitializeTime":1569277655.0,
-            "hostname":"exit02",
-            "version":"2.3.0-cl3u21~1569246310.30858c3",
-            "sysUptime":1569277645.0,
             "ntpSync":"yes",
-            "agentUptime":1569277655.0
+            "version":"3.0.0-cl3u27~1587646213.c5bc079",
+            "sysUptime":1588011031.0,
+            "agentUptime":1588178302.0,
+            "reinitializeTime":1588178302.0,
+            "lastChanged":1590534202.0
         },
         {
+            "hostname":"fw1",
             "status":"Fresh",
-            "lastChanged":1569278635.0,
-            "reinitializeTime":1569277701.0,
+            "ntpSync":"yes",
+            "version":"3.0.0-cl3u27~1587646213.c5bc079",
+            "sysUptime":1588011618.0,
+            "agentUptime":1588178315.0,
+            "reinitializeTime":1588178315.0,
+            "lastChanged":1590511572.0
+        },
+        {
+            "hostname":"fw2",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.0.0-cl3u27~1587646213.c5bc079",
+            "sysUptime":1588012524.0,
+            "agentUptime":1588178309.0,
+            "reinitializeTime":1588178309.0,
+            "lastChanged":1590511662.0
+        },
+        {
             "hostname":"leaf01",
-            "version":"2.3.0-cl3u21~1569246310.30858c3",
-            "sysUptime":1569277692.0,
+            "status":"Fresh",
             "ntpSync":"yes",
-            "agentUptime":1569277701.0
+            "version":"3.0.0-cl3u27~1587646213.c5bc079",
+            "sysUptime":1588010701.0,
+            "agentUptime":1588178303.0,
+            "reinitializeTime":1588178303.0,
+            "lastChanged":1590511684.0
         },
 ...
 ```
@@ -301,7 +423,7 @@ cumulus@switch:~$ netq leaf01 show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-leaf01            Fresh            yes      2.3.0-cl3u21~1569246310.30858c3      15h:57m:24s               15h:57m:15s               15h:57m:15s                Mon Sep 23 22:43:55 2019
+leaf01            Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:05:01 2020  Wed Apr 29 16:38:23 2020  Wed Apr 29 16:38:23 2020   Tue May 26 16:48:04 2020
 ```
 
 ### Configuration Commands
@@ -312,59 +434,61 @@ The `netq config` and `netq notification` commands enable the network administra
 
 The agent commands enable the network administrator to configure individual NetQ Agents. Refer to {{<link title="Cumulus NetQ Components">}} for a description of NetQ Agents, to {{<link url="Manage-NetQ-Agents">}}, or to {{<link url="Install-NetQ-Agents">}} for more detailed usage examples.
 
-The agent configuration commands enable you to add and remove agents from switches and hosts, start and stop agent operations, add and remove Kubernetes container monitoring, add or remove sensors, debug the agent, and add or remove FRR (FRRouting).
+The agent configuration commands enable you to add and remove agents from switches and hosts, start and stop agent operations, debug the agent, specify default commands, and enable or disable a variety of monitoring features (including Kubernetes, sensors, FRR (FRRouting), CPU usage limit, and What Just Happened).
 
-{{%notice note%}}
-
+{{<notice note>}}
 Commands apply to one agent at a time, and are run from the switch or host where the NetQ Agent resides.
-
-{{%/notice%}}
+{{</notice>}}
 
 The agent configuration commands include:
 
-    netq config (add|del|show) agent
-    netq config (start|stop|status|restart) agent
+```
+netq config (add|del|show) agent
+netq config (start|stop|status|restart) agent
+```
 
 This example shows how to configure the agent to send sensor data.
 
-    cumulus@switch~:$ netq config add agent sensors
+```
+cumulus@switch~:$ netq config add agent sensors
+```
 
 This example shows how to start monitoring with Kubernetes.
 
-    cumulus@switch:~$ netq config add agent kubernetes-monitor poll-period 15
+```
+cumulus@switch:~$ netq config add agent kubernetes-monitor poll-period 15
+```
 
 This example shows how to view the NetQ Agent configuration.
 
-    cumulus@switch:~$ netq config show agent
-    netq-agent             value      default
-    ---------------------  ---------  ---------
-    enable-opta-discovery  True       True
-    exhibitport
-    agenturl
-    server                 127.0.0.1  127.0.0.1
-    exhibiturl
-    vrf                    default    default
-    agentport              8981       8981
-    port                   31980      31980
+```
+cumulus@switch:~$ netq config show agent
+netq-agent             value      default
+---------------------  ---------  ---------
+enable-opta-discovery  True       True
+exhibitport
+agenturl
+server                 127.0.0.1  127.0.0.1
+exhibiturl
+vrf                    default    default
+agentport              8981       8981
+port                   31980      31980
+```
 
-{{%notice note%}}
-
-After making configuration changes to your agents, you must restart the agent for the changes to take effect. Use the `netq config restart agent` command.
-
-{{%/notice%}}
+{{<notice note>}}
+After making configuration changes to your agents, you must restart the agent for the changes to take effect. Use the <code>netq config restart agent</code> command.
+{{</notice>}}
 
 #### CLI Configuration
 
-The CLI commands enable the network administrator to configure and
-manage the CLI component. These commands enable you to add or remove CLI (essentially enabling/disabling the service), start and restart it, and view the configuration of the service.
+The CLI commands enable the network administrator to configure and manage the CLI component. These commands enable you to add or remove CLI (essentially enabling/disabling the service), start and restart it, and view the configuration of the service.
 
-{{%notice note%}}
-
+{{<notice note>}}
 Commands apply to one device at a time, and are run from the switch or host where the CLI is run.
-
-{{%/notice%}}
+{{</notice>}}
 
 The CLI configuration commands include:
+
 ```
 netq config add cli server
 netq config del cli server
@@ -375,16 +499,21 @@ netq config (status|restart) cli
 
 This example shows how to restart the CLI instance.
 
-    cumulus@switch~:$ netq config restart cli
+```
+cumulus@switch~:$ netq config restart cli
+```
 
-This example shows how to enable the CLI on a NetQ Platform or NetQ
-Appliance.
+This example shows how to enable the CLI on a NetQ On-premises Appliance or Virtual Machine (VM).
 
-    cumulus@switch~:$ netq config add cli server 10.1.3.101
+```
+cumulus@switch~:$ netq config add cli server 10.1.3.101
+```
 
-This example shows how to enable the CLI on a NetQ Cloud Appliance with a single premise.
+This example shows how to enable the CLI on a NetQ Cloud Appliance or VM for the Chicago premises and the default port.
 
-    netq config add cli server api.netq.cumulusnetworks.com access-key <user-access-key> secret-key <user-secret-key> port 443
+```
+netq config add cli server api.netq.cumulusnetworks.com access-key <user-access-key> secret-key <user-secret-key> premises chicago port 443
+```
 
 #### Event Notification Commands
 
@@ -395,12 +524,14 @@ The notification configuration commands enable you to add, remove and show notif
     netq (add|del|show) notification filter
     netq (add|del|show) notification proxy
 
-An integration includes at least one channel (PagerDuty, Slack, or syslog), at least one filters (defined by rules you create), and at least one rule.
+An integration includes at least one channel (PagerDuty, Slack, or syslog), at least one filter (defined by rules you create), and at least one rule.
 
 This example shows how to configure a PagerDuty channel:
 
-    cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
-    Successfully added/updated channel pd-netq-events
+```
+cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
+Successfully added/updated channel pd-netq-events
+```
 
 Refer to {{<link url="Integrate-NetQ-with-Notification-Applications">}} for details about using these commands and additional examples.
 
@@ -410,74 +541,82 @@ The `trace` commands enable the network administrator to view the available path
 
 The trace command syntax is:
 
-    netq trace <mac> [vlan <1-4096>] from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
-    netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug] 
+```
+netq trace <mac> [vlan <1-4096>] from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
+netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
+```
 
-**Example** Running a trace based on the destination IP address, in *pretty* output with a small number of resulting paths:
+This example shows how to run a trace based on the destination IP address, in *pretty* output with a small number of resulting paths:
 
-    cumulus@switch:~$ netq trace 10.0.0.11 from 10.0.0.14 pretty
-    Number of Paths: 6
-      Inconsistent PMTU among paths
-    Number of Paths with Errors: 0
-    Number of Paths with Warnings: 0
-    Path MTU: 9000
-     leaf04 swp52 -- swp4 spine02 swp2 -- swp52 leaf02 peerlink.4094 -- peerlink.4094 leaf01 lo
-                                                       peerlink.4094 -- peerlink.4094 leaf01 lo
-     leaf04 swp51 -- swp4 spine01 swp2 -- swp51 leaf02 peerlink.4094 -- peerlink.4094 leaf01 lo
-                                                       peerlink.4094 -- peerlink.4094 leaf01 lo
-     leaf04 swp52 -- swp4 spine02 swp1 -- swp52 leaf01 lo
-     leaf04 swp51 -- swp4 spine01 swp1 -- swp51 leaf01 lo
+```
+cumulus@switch:~$ netq trace 10.0.0.11 from 10.0.0.14 pretty
+Number of Paths: 6
+    Inconsistent PMTU among paths
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9000
+    leaf04 swp52 -- swp4 spine02 swp2 -- swp52 leaf02 peerlink.4094 -- peerlink.4094 leaf01 lo
+                                                    peerlink.4094 -- peerlink.4094 leaf01 lo
+    leaf04 swp51 -- swp4 spine01 swp2 -- swp51 leaf02 peerlink.4094 -- peerlink.4094 leaf01 lo
+                                                    peerlink.4094 -- peerlink.4094 leaf01 lo
+    leaf04 swp52 -- swp4 spine02 swp1 -- swp52 leaf01 lo
+    leaf04 swp51 -- swp4 spine01 swp1 -- swp51 leaf01 lo
+```
 
-**Example** Running a trace based on the destination IP address, in *detail* output with a small number of resulting paths:
+This example shows how to run a trace based on the destination IP address, in *detail* output with a small number of resulting paths:
 
-    cumulus@switch:~$ netq trace 10.0.0.11 from 10.0.0.14 detail
-    Number of Paths: 6
-      Inconsistent PMTU among paths
-    Number of Paths with Errors: 0
-    Number of Paths with Warnings: 0
-    Path MTU: 9000
-    Id  Hop Hostname        InPort          InVlan InTunnel              InRtrIf         InVRF           OutRtrIf        OutVRF          OutTunnel             OutPort         OutVlan
-    --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
-    1   1   leaf04                                                                                       swp52           default                               swp52
-        2   spine02         swp4                                         swp4            default         swp2            default                               swp2
-        3   leaf02          swp52                                        swp52           default         peerlink.4094   default                               peerlink.4094
-        4   leaf01          peerlink.4094                                peerlink.4094   default                                                               lo
-    --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
-    2   1   leaf04                                                                                       swp52           default                               swp52
-        2   spine02         swp4                                         swp4            default         swp2            default                               swp2
-        3   leaf02          swp52                                        swp52           default         peerlink.4094   default                               peerlink.4094
-        4   leaf01          peerlink.4094                                peerlink.4094   default                                                               lo
-    --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
-    3   1   leaf04                                                                                       swp51           default                               swp51
-        2   spine01         swp4                                         swp4            default         swp2            default                               swp2
-        3   leaf02          swp51                                        swp51           default         peerlink.4094   default                               peerlink.4094
-        4   leaf01          peerlink.4094                                peerlink.4094   default                                                               lo
-    --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
-    4   1   leaf04                                                                                       swp51           default                               swp51
-        2   spine01         swp4                                         swp4            default         swp2            default                               swp2
-        3   leaf02          swp51                                        swp51           default         peerlink.4094   default                               peerlink.4094
-        4   leaf01          peerlink.4094                                peerlink.4094   default                                                               lo
-    --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
-    5   1   leaf04                                                                                       swp52           default                               swp52
-        2   spine02         swp4                                         swp4            default         swp1            default                               swp1
-        3   leaf01          swp52                                        swp52           default                                                               lo
-    --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
-    6   1   leaf04                                                                                       swp51           default                               swp51
-        2   spine01         swp4                                         swp4            default         swp1            default                               swp1
-        3   leaf01          swp51                                        swp51           default                                                               lo
-    --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+```
+cumulus@switch:~$ netq trace 10.0.0.11 from 10.0.0.14 detail
+Number of Paths: 6
+    Inconsistent PMTU among paths
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9000
+Id  Hop Hostname        InPort          InVlan InTunnel              InRtrIf         InVRF           OutRtrIf        OutVRF          OutTunnel             OutPort         OutVlan
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+1   1   leaf04                                                                                       swp52           default                               swp52
+    2   spine02         swp4                                         swp4            default         swp2            default                               swp2
+    3   leaf02          swp52                                        swp52           default         peerlink.4094   default                               peerlink.4094
+    4   leaf01          peerlink.4094                                peerlink.4094   default                                                               lo
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+2   1   leaf04                                                                                       swp52           default                               swp52
+    2   spine02         swp4                                         swp4            default         swp2            default                               swp2
+    3   leaf02          swp52                                        swp52           default         peerlink.4094   default                               peerlink.4094
+    4   leaf01          peerlink.4094                                peerlink.4094   default                                                               lo
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+3   1   leaf04                                                                                       swp51           default                               swp51
+    2   spine01         swp4                                         swp4            default         swp2            default                               swp2
+    3   leaf02          swp51                                        swp51           default         peerlink.4094   default                               peerlink.4094
+    4   leaf01          peerlink.4094                                peerlink.4094   default                                                               lo
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+4   1   leaf04                                                                                       swp51           default                               swp51
+    2   spine01         swp4                                         swp4            default         swp2            default                               swp2
+    3   leaf02          swp51                                        swp51           default         peerlink.4094   default                               peerlink.4094
+    4   leaf01          peerlink.4094                                peerlink.4094   default                                                               lo
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+5   1   leaf04                                                                                       swp52           default                               swp52
+    2   spine02         swp4                                         swp4            default         swp1            default                               swp1
+    3   leaf01          swp52                                        swp52           default                                                               lo
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+6   1   leaf04                                                                                       swp51           default                               swp51
+    2   spine01         swp4                                         swp4            default         swp1            default                               swp1
+    3   leaf01          swp51                                        swp51           default                                                               lo
+--- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
+```
 
-**Example** Running a trace based on the destination MAC address, in *pretty* output:
+This example shows how to run a trace based on the destination MAC address, in *pretty* output:
 
-    cumulus@switch:~$ netq trace A0:00:00:00:00:11 vlan 1001 from Server03 pretty
-    Number of Paths: 6
-    Number of Paths with Errors: 0
-    Number of Paths with Warnings: 0
-    Path MTU: 9152
-     
-     Server03 bond1.1001 -- swp7 <vlan1001> Leaf02 vni: 34 swp5 -- swp4 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
-                                                           swp4 -- swp4 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
-                                                           swp3 -- swp4 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
-              bond1.1001 -- swp7 <vlan1001> Leaf01 vni: 34 swp5 -- swp3 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
-                                                           swp4 -- swp3 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
-                                                           swp3 -- swp3 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+```
+cumulus@switch:~$ netq trace A0:00:00:00:00:11 vlan 1001 from Server03 pretty
+Number of Paths: 6
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9152
+    
+    Server03 bond1.1001 -- swp7 <vlan1001> Leaf02 vni: 34 swp5 -- swp4 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+                                                        swp4 -- swp4 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+                                                        swp3 -- swp4 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+            bond1.1001 -- swp7 <vlan1001> Leaf01 vni: 34 swp5 -- swp3 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+                                                        swp4 -- swp3 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+                                                        swp3 -- swp3 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+```

@@ -6,20 +6,22 @@ toc: 4
 ---
 The NetQ UI contains two main areas:
 
-- **Application Header** (1): Contains the main menu, recent actions history, search capabilities, NetQ version, quick health status chart, local time zone, premises list (cloud-only), and user account information.
+- **Application Header** (1): Contains the main menu, recent actions history, search capabilities, NetQ version, quick health status chart, local time zone, premises list, and user account information.
 - **Workbench** (2): Contains a task bar and content cards (with status and configuration information about your network and its various components).
 
 {{< figure src="/images/netq/app-layout-cumulus-wb-areas-highlighted-241.png" width="700" >}}
+
+<!-- Need to update figure -->
 
 ## Main Menu
 
 Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the main menu which provides navigation to:
 
-- **Favorites**: contains link to the user-defined favorite workbenches; Home is points to the Cumulus Workbench until reset by a user
+- **Favorites**: contains link to the user-defined favorite workbenches; *Home* points to the Cumulus Workbench until reset by a user
 - **NetQ**: contains links to all workbenches
 - **Network**: contains links to tabular data about various network elements and the What Just Happened feature
 - **Admin**: contains links to application management and lifecycle management features (only visible to users with Admin access role)
-- **Notifications**: contains link to threshold-based event rules and notification channels
+- **Notifications**: contains link to threshold-based event rules and notification channel specifications
 
 {{< figure src="/images/netq/main-menu-admin-300.png" width="600" >}}
 
@@ -33,7 +35,7 @@ To open Recent Actions, click <img src="https://icons.cumulusnetworks.com/05-Int
 
 ## Search
 
-The Global Search field in the UI header enables you to search for devices. It behaves like most searches and can help you quickly find device information. For more detail on creating and running searches, refer to {{<link title="Create and Run Searches">}}.
+The Global Search field in the UI header enables you to search for devices and cards. It behaves like most searches and can help you quickly find device information. For more detail on creating and running searches, refer to {{<link title="Create and Run Searches">}}.
 
 ## Cumulus Networks Logo
 
@@ -46,7 +48,7 @@ Found in the header, the graph and performance rating provide a view into the he
 {{< figure src="/images/netq/quick-ntwk-health-header-222.png" width="200" >}}
 
 {{<notice note>}}
-On initial start up of the application, it may take up to an hour to reach an accurate health indication as some processes run every 30 minutes.
+On initial start up of the application, it may take up to an hour to reach an accurate health indication as some processes only run every 30 minutes.
 {{</notice>}}
 
 ## Workbenches
@@ -65,15 +67,15 @@ Each user can customize the NetQ application display, change their account passw
 
 Color is used to indicate links, options, and status within the UI.
 
-| Item                                | Color  |
-| ----------------------------------- | ------ |
-| Hover on item                       | Blue   |
-| Clickable item                      | Black  |
-| Selected item                       | Green  |
-| Highlighted item                    | Blue   |
-| Link                                | Blue   |
-| Good/Successful results             | Green  |
-| Result with critical severity event | Pink   |
-| Result with high severity event     | Red    |
-| Result with medium severity event   | Orange |
-| Result with low severity event      | Yellow |
+| Item | Color |
+| ----- | ------ |
+| Hover on item | Blue |
+| Clickable item  | Black |
+| Selected item | Green |
+| Highlighted item | Blue |
+| Link | Blue |
+| Good/Successful results | Green |
+| Result with critical severity event | Pink |
+| Result with high severity event | Red |
+| Result with medium severity event | Orange |
+| Result with low severity event | Yellow |

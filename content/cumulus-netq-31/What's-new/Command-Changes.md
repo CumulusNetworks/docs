@@ -2,7 +2,7 @@
 title: NetQ CLI Changes
 author: Cumulus Networks
 weight: 20
-toc: 3
+toc: 4
 ---
 
 A number of commands have changed in this release to accommodate the addition of new options or to simplify their syntax. Additionally, new commands have been added and others have been removed. A summary of those changes is provided here.

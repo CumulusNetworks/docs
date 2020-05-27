@@ -4,7 +4,7 @@ on:
   schedule:
     # Run Mondays, 8:30am PDT/3:30pm UTC
     #- cron:  '30 15 * * 1'
-    - cron: '*/3 * * * *'
+    - cron:  '0 15 * * *'
 
 jobs:
   weekly-link-check:

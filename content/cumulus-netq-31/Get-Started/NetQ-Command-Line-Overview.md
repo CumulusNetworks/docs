@@ -135,18 +135,24 @@ cumulus@switch:~$ netq check
 
 ### Command Help
 
-As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out what options are available for a BGP check, enter `help` after entering a portion of the `netq check` command. In this example, you can see that there are no additional required parameters and two optional parameters, `vrf` and `around`, that can be used with a BGP check.
+As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out what options are available for a BGP check, enter `help` after entering a portion of the `netq check` command. In this example, you can see that there are no additional required parameters and three optional parameters, `hostnames`, `vrf` and `around`, that can be used with a BGP check.
 
 ```
 cumulus@switch:~$ netq check bgp help
 Commands:
-    netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
+    netq check bgp [hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
 ```
 
 To see an exhaustive list of commands, run:
 
 ```
 cumulus@switch:~$ netq help list verbose
+```
+
+To see a list of all NetQ commands and keyword help, run:
+
+```
+cumulus@switch:~$ netq help list
 ```
 
 ### Command History

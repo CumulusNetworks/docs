@@ -12,4 +12,4 @@ cascade:
     draft: true
 ---
 
-This topic provides an overview of NetQ components, architecture, and the CLI and UI interfaces.
+This topic provides overviews of NetQ components, architecture, and the CLI and UI interfaces. These provide the basis for understanding and following the instructions contained in the other topics.

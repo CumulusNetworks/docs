@@ -2436,7 +2436,7 @@ cumulus@switch:~$
 
 You can apply the community list to a route map to define the routing policy:
 
-{{< tabs "46 ">}}
+{{< tabs "56 ">}}
 
 {{< tab "NCLU Commands ">}} 
 
@@ -3174,7 +3174,7 @@ To work around this issue, only advertise the spine to leaf addresses from the s
 
 ### BGP `ttl-security` Configured on a Peer Group
 
-FRR does not add BGP `ttl-security` to either the running configuration or to the `/etc/frr/frr.conf` file when configured on a peer group instead of a specific neighbor. To work around this issue, add ``ttl-security` to individual neighbors instead of the peer group.
+FRR does not add BGP `ttl-security` to either the running configuration or to the `/etc/frr/frr.conf` file when configured on a peer group instead of a specific neighbor. To work around this issue, add `ttl-security` to individual neighbors instead of the peer group.
 
 ## Related Information
 

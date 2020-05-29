@@ -1,52 +1,46 @@
-<!-- {{- /* Set a variable to determine if we wrote a link */ -}} -->
-{{ .Scratch.Set "page_found" false }}
-
-{{ if .Get "title" }}
-    {{ $page := .Get "title" }}
-    {{ $anchor_set := split $page "#" }}
-    <!--{{- /* If they supplied a local, in-page, anchor. For example {{<link title='#blah' >}} then there will be nothing at index 0 */ -}}-->
-    {{ if (index $anchor_set 0) }}
-        <!-- {{- /* Match our version, our product and the given page title */ -}} -->
-        <!--{{- /* The use of "trim" handles links like {{<link title="blah/#abc" >}} */ -}}-->
+{{- /* Set a variable to determine if we wrote a link */ -}}
+{{- .Scratch.Set "page_found" false -}}
+{{- if .Get "title" -}}
+    {{- $page := .Get "title" -}}
+    {{- $anchor_set := split $page "#" -}}
+    {{- /* If they supplied a local, in-page, anchor. For example {{<link title='#blah' >}} then there will be nothing at index 0 */ -}}
+    {{- if (index $anchor_set 0) -}}
+        {{- /* Match our version, our product and the given page title */ -}}
+        {{- /* The use of "trim" handles links like {{<link title="blah/#abc" >}} */ -}}
         {{- range where (where (where .Site.Pages ".Page.Params.version" .Page.Params.version) ".Page.Params.product" .Page.Params.product) ".Page.Title" (trim (index $anchor_set 0) "/") -}}
-            <!-- {{- /* This is the same function chain used to create the ToC, ensuring our anchor links render properly */ -}} -->
+            {{- /* This is the same function chain used to create the ToC, ensuring our anchor links render properly */ -}}
             <a href="{{ .RelPermalink }}#{{((index $anchor_set 1) | plainify | htmlUnescape | anchorize) }}">{{- default .Page.Title ($.Get "text") -}}</a>
-            {{ $.Scratch.Set "page_found" true }}
-        {{ end }}
-    {{ else }}
-        <!-- {{- /* If it's a local page anchor, generate a full link to the current page */ -}} -->
+        {{- $.Scratch.Set "page_found" true -}}
+        {{- end -}}
+    {{- else -}}
+        {{- /* "If it's a local page anchor, generate a full link to the current page" */ -}}
         <a href="{{ .Page.RelPermalink }}#{{((index $anchor_set 1) | plainify | htmlUnescape | anchorize) }}">{{- default .Page.Title ($.Get "text") -}}</a>
-        {{ $.Scratch.Set "page_found" true }}
-    {{ end }}
-
-{{ else if .Get "url" }}
-    {{ $page := (trim (.Get "url") "/") }}
-    {{ $anchor_set := split $page "#" }}
-    <!--{{- /* If they supplied a local, in-page, anchor. For example {{<link title='#blah' >}} then there will be nothing at index 0*/ -}}-->
-    {{ if (index $anchor_set 0) }}
+        {{- $.Scratch.Set "page_found" true -}}
+    {{- end -}}
+{{- else if .Get "url" -}}
+    {{- $page := (trim (.Get "url") "/") -}}
+    {{- $anchor_set := split $page "#" -}}
+    {{- /* If they supplied a local, in-page, anchor. For example {{<link title='#blah' >}} then there will be nothing at index 0*/ -}}
+    {{- if (index $anchor_set 0) -}}
         {{- range where (where .Site.Pages ".Page.Params.version" .Page.Params.version) ".Page.Params.product" .Page.Params.product -}}
-            <!--{{- /* I don't see a way to apply 'urlize' as a transformation to the where statement, so it's a stand alone if */ -}}-->
-            {{ if eq (urlize .Page.Title) (trim (index $anchor_set 0) "/") }}
+            {{- /* I don't see a way to apply 'urlize' as a transformation to the where statement, so it's a stand alone if */ -}}
+            {{- if eq (urlize .Page.Title) (trim (index $anchor_set 0) "/") -}}
                 <a href="{{ .RelPermalink }}#{{((index $anchor_set 1) | plainify | htmlUnescape | anchorize) }}">{{- default .Page.Title ($.Get "text") -}}</a>
-                {{ $.Scratch.Set "page_found" true }}
-            {{ end }}
-        {{ end }}
-    {{ else }}
+                {{- $.Scratch.Set "page_found" true -}}
+            {{- end -}}
+        {{- end -}}
+    {{- else -}}
         <a href="{{ .Page.RelPermalink }}#{{((index $anchor_set 0) | plainify | htmlUnescape | anchorize) }}">{{- default .Page.Title ($.Get "text") -}}</a>
-        {{ $.Scratch.Set "page_found" true }}
-    {{ end }}
-{{ end }}
-
-
+        {{- $.Scratch.Set "page_found" true -}}
+    {{- end -}}
+{{- end -}}
 {{ if not (.Scratch.Get "page_found") }}
     <!-- #ERROR -->
     {{- if and (eq .Page.Params.product "Cumulus Linux") (eq .Page.Params.version "4.2") -}}
-        {{- /* errorf "broken link in %s" .Position */ -}}
+        {{- /* errorf "broken link in %s" .Position */ -}}
     {{- end -}}
-
     {{- if and (eq .Page.Params.product "Cumulus NetQ") (eq .Page.Params.version "3.0") -}}
-        {{- /* errorf "broken link in %s" .Position */ -}}
+        {{- /* errorf "broken link in %s" .Position */ -}}
     {{- end -}}
-
     <a href="{{(.Scratch.Get "title") | default (.Scratch.Get "url") }}.broken_link">UNABLE TO FIND LINK {{.Get 0}}</a>
 {{- end -}}

@@ -1,7 +1,7 @@
 ---
 title: Monitor Linux Hosts
 author: Cumulus Networks
-weight: 700
+weight: 860
 toc: 3
 ---
 Running NetQ on Linux hosts provides unprecedented network visibility,

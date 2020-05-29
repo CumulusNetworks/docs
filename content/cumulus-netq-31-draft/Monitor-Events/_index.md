@@ -1,7 +1,7 @@
 ---
 title: Monitor Events
 author: Cumulus Networks
-weight: 650
+weight: 660
 toc: 3
 ---
 Two event workflows, the Alarms card workflow and the Info card

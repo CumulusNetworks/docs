@@ -1,7 +1,7 @@
 ---
 title: Monitor Informational Events
 author: Cumulus Networks
-weight: 670
+weight: 680
 toc: 4
 ---
 You can easily monitor warning, info, and debug severity events occurring across your network using the Info card. You can determine the number of events for the various system, interface, and network

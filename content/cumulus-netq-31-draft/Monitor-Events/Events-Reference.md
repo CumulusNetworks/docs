@@ -1,7 +1,7 @@
 ---
 title: Events Reference
 author: Cumulus Networks
-weight: 680
+weight: 690
 toc: 4
 ---
 The following table lists all event messages organized by type.

@@ -1,7 +1,7 @@
 ---
 title: Monitor Physical Layer Components
 author: Cumulus Networks
-weight: 710
+weight: 700
 toc: 3
 ---
 With NetQ, a network administrator can monitor OSI Layer 1 physical

@@ -1,7 +1,7 @@
 ---
 title: Investigate NetQ Issues
 author: Cumulus Networks
-weight: 870
+weight: 890
 toc: 4
 ---
 Monitoring of systems inevitably leads to the need to troubleshoot and

@@ -1,7 +1,7 @@
 ---
-title: Monitor Virtual Network Overlays
+title: Monitor Virtual Network Overlays with UI
 author: Cumulus Networks
-weight: 820
+weight: 740
 toc: 3
 ---
 

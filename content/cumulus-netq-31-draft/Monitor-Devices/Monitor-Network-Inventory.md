@@ -1,7 +1,7 @@
 ---
 title: Monitor Network Inventory
 author: Cumulus Networks
-weight: 730
+weight: 660
 toc: 4
 ---
 With NetQ, a network administrator can monitor both the switch hardware and its operating system for misconfigurations or misbehaving services. The Devices Inventory card workflow provides a view into the switches and hosts installed in your network and their various hardware and software components. The workflow contains a small card with a count of each device type in your network, a medium card displaying the operating systems running on each set of devices, large cards with component information statistics, and full-screen cards displaying tables with attributes of all switches and all hosts in your network.

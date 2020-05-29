@@ -121,7 +121,9 @@ root@ubuntu:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb
 
 2. Add the Ubuntu repository.
 
-<details><summary>Ubuntu 16.04</summary>
+    {{< tabs "TabID0" >}}
+
+{{< tab "Ubuntu 16.04" >}}
 
 Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
 
@@ -131,17 +133,26 @@ root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
 deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
 ...
 ```
-</details>
-<details><summary>Ubuntu 18.04</summary>
+
+{{< /tab >}}
+
+{{< tab "Ubuntu 18.04" >}}
+
 Create the file
 `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add
 the following line:
 
-    root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
-    ...
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
-    ...
-</details>
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+...
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
     {{%notice note%}}
 
 The use of `netq-latest` in this example means that a `get` to the
@@ -155,17 +166,21 @@ The use of `netq-latest` in this example means that a `get` to the
 </details>
 
 <details><summary>Install Python.</summary>
+
 ```
 root@ubuntu:~# apt-get update
 root@ubuntu:~# apt-get install python python2.7 python-apt
 ```
+
 </details>
 
 <details><summary>Obtain the latest NetQ Agent and CLI package.</summary>
+
 ```
 root@ubuntu:~# apt-get update
 root@ubuntu:~# apt-get install netq-agent netq-apps
 ```
+
 </details>
 
 <details><summary>Download the bootstrap and NetQ installation tarballs.</summary>
@@ -229,7 +244,7 @@ Allow about five minutes for this to complete.
 </details>
 
 {{%notice note%}}
-If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to {{%link title="Prepare for NetQ On-premises Installation#prepare-your-cumulus-netq-appliance"%}} or {{%link title="Prepare for NetQ Cloud Installation#prepare-your-cumulus-netq-cloud-appliance"%}} for a new appliance.
+If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to {{%link title="Install the NetQ Appliance Cluster"%}} or {{%link title="Install the NetQ Cloud Appliance"%}} for a new appliance.
 {{%/notice%}}
 
 You are now ready to install the NetQ Software. Refer to {{<link title="Install NetQ Using the Admin UI">}} (recommended) or {{<link title="Install NetQ Using the CLI">}}.

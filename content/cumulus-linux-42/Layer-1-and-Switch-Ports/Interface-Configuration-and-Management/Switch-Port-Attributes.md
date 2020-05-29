@@ -1071,7 +1071,7 @@ iface swp26s3
 
 {{%notice tip%}}
 
-Refer to {{<exlink url="https://community.mellanox.com/docs/DOC-2685" text="this article">}} for an example of how to configure breakout cables for the Mellanox Spectrum SN2700 switch.
+Refer to {{<exlink url="https://community.mellanox.com/s/article/howto-configure-breakout-cables-40g---gt--4x10g-using-cumulus-linux" text="this article">}} for an example of how to configure breakout cables for the Mellanox Spectrum SN2700 switch.
 
 {{%/notice%}}
 

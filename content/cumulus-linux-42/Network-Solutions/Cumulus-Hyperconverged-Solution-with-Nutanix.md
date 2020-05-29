@@ -53,8 +53,7 @@ The method you choose for configuring Cumulus HCS and Nutanix depends upon wheth
 
 The following steps describe how to use zero touch provisioning to install Cumulus Linux and fully configure Cumulus HCS and Nutanix on your network.
 
-To do this, you need a {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick">}} disk image and a
-USB stick with at least 1GB of storage.
+To do this, you need a {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-stick/" text="Cumulus on a Stick">}} disk image and a USB stick with at least 1GB of storage.
 
 1. Insert the USB stick into your computer and copy the Cumulus on a Stick files onto it.
 

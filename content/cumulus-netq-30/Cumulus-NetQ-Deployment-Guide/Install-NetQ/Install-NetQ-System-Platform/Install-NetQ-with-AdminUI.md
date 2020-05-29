@@ -48,11 +48,7 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
 
     3. Select your server arrangement.
 
-        Select whether you want to deploy your infrastructure as a single stand-alone server or as a cluster of servers.
-
-        {{<notice note>}}
-With the NetQ 2.4.0 release, you must have one master and two worker nodes. With the NetQ 2.4.1 release and later, you can configure up to seven additional worker nodes, for a total of nine.
-        {{</notice>}}
+        Select whether you want to deploy your infrastructure as a single stand-alone server or as a cluster of servers. One master and two worker nodes are supported for the cluster deployment.
 
         {{<figure src="/images/netq/adminui-server-arrange-240.png" width="700" caption="Select arrangement">}}
 

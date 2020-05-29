@@ -7,7 +7,7 @@ toc: 2
 This document supports the Cumulus Linux 4.2 release and lists the new platforms and features.
 
 - For a list of all the platforms supported in Cumulus Linux 4.2, see the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
-- For a list of open and fixed issues in Cumulus Linux 4.2, see the {{<link title="Cumulus Linux 4.1 Release Notes" text="Cumulus Linux 4.1 Release Notes">}}.
+- For a list of open and fixed issues in Cumulus Linux 4.2, see the {{<link title="Cumulus Linux 4.2 Release Notes" text="Cumulus Linux 4.2 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.2, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
 ## What's New in Cumulus Linux 4.2.0
@@ -34,14 +34,13 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - EVPN Multihoming
 - Auto BGP
 - DHCP Snooping
-- Mandatory password change upon first login
-- Ability to set the default password in a Binary Image File
-- Ability to set the default password with an option in the ONIE-NOS-INSTALL command
-- BGP Graceful Restart helper mode in FRR??
+- {{<link url="Quick-Start-Guide#login-credentials" text="Mandatory cumulus user default password change">}} upon first login
+- Ability to set the *cumulus* user default password, add a license, and provide initial network configuration with {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE command line options">}}
+- Ability to {{<link url="Installing-a-New-Cumulus-Linux-Image#edit-the-cumulus-linux-image-advanced" text="edit the Cumulus Linux image file">}}
 - New Ninja profile on Mellanox switches
 - Support 25g to 10g speed change without `switchd` restart
-- Added all IPv6 router configuration variables per RFC 4861
-- Added numerical keywords for EVPN route types in the `show bgp l2vpn evpn route type' command
 - Ability to set the CPU/control plane as a SPAN destination interface
 - VXLAN flood suppression controls
 - QoS now supported on Maverick
+- Added all IPv6 router configuration variables per RFC 4861
+- Added numerical keywords for EVPN route types in the `show bgp l2vpn evpn route type' command

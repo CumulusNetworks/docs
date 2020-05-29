@@ -1,10 +1,10 @@
 ---
-title: Cumulus NetQ 3.0 Release Notes
+title: Cumulus NetQ 3.1 Release Notes
 author: Cumulus Networks
 weight: 30
 product: Cumulus NetQ
-version: "3.0"
-toc: 4
+version: "3.1"
+toc: 1
 type: rn
 pdfhidden: True
 ---

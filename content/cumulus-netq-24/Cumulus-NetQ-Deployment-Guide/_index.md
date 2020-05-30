@@ -8,6 +8,6 @@ This guide is intended for network administrators who are responsible for instal
 
 For information about monitoring and troubleshooting your network, refer to the {{<link url="Cumulus-NetQ-CLI-User-Guide">}} or the {{<link url="Cumulus-NetQ-UI-User-Guide">}}.
 
-{{%notice tip%}}
+{{<notice tip>}}
 Before you get started, you should review the {{<link title="Cumulus NetQ 2.4 Release Notes" text="release notes">}} for this version.
-{{%/notice%}}
+{{</notice>}}

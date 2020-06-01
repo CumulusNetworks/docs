@@ -1,9 +1,9 @@
 ---
-title: Cumulus Linux 4.1 Open Source Packages
+title: Cumulus Linux 4.2 Open Source Packages
 author: Cumulus Networks
 weight: -30
 product: Cumulus Linux
-version: "4.1"
+version: "4.2"
 toc: 1
 draft: true
 pdfhidden: True

@@ -355,7 +355,7 @@ You add these packages normally with `apt-get update && apt-get install`, as {{<
 
 ## Related Information
 
-- {{<exlink url="http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html" text="Debian GNU/Linux FAQ, Ch 8 Package management tools">}}
+- {{<exlink url="https://www.debian.org/doc/manuals/debian-faq/pkgtools.en.html" text="Debian GNU/Linux FAQ, Ch 8 Package management tools">}}
 - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
 
 ## Caveats and Errata

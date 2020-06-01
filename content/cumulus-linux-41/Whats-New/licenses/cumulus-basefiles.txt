@@ -1,10 +1,7 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: cumulus-basefiles
-Source: https://www.cumulusnetworks.com
+Source: http://www.cumulusnetworks.com
 
-Files: *
-Copyright: 2013 Cumulus Networks
-           2014, 2015, 2016, 2017, 2018, 2019, 2020 Cumulus Networks, Inc.
 License: GPL-2
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -21,3 +18,7 @@ License: GPL-2
  On Debian systems, the complete text of the GNU General
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
 
+Files: *
+Copyright: 2013 Cumulus Networks
+           2014, 2015, 2016, 2017, 2018, 2019 Cumulus Networks, Inc.
+License: GPL-2

@@ -318,6 +318,8 @@ The Cumulus Linux layer 3 {{<exlink url="https://docs.cumulusnetworks.com/cumulu
 
 Redistribute neighbor provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by redistributing the Address Resolution Protocol (ARP) table (Linux IP neighbor table) into a dynamic routing protocol, such as OSPF or BGP. The host routes continue to be advertised into the routing domain as /32 prefix routes. Routing protocols can achieve reachability by routing on the Longest Prefix Match (LPM) based on these /32 host routes.
 
+#### Benefits
+
 Using Redistribute neighbor provides the following benefits:
 
 - Eliminates the requirement to stretch a layer 2 domain across the entire campus network or across more than one switch. Limiting your layer 2 domain between the access switch port and the directly-connected host eliminates STP from the entire network. Without a stretched layer 2 domain, BUM traffic is limited to the access switch port, where the host is directly connected.
@@ -619,20 +621,6 @@ FIB entry for 10.1.3.101
 {{< /tab >}}
 
 {{< /tabs >}}
-
-#### Limitations
-
-With existing campus networks, switch stacking and limited fiber runs might make it difficult to transition to spine and leaf networks. If you have sufficient fiber runs, requirements for growth, scalability, redundancy, and resiliency with effective utilisation of uplinks, the spine and leaf architecture is ideal as packet forwarding is deterministic and predictable across the entire campus network.
-
-If limitations exist, such as limited fiber runs available to a building, floor, or closet, you can use a ring topology.
-
-The following example shows a small floor or closet configuration:
-
-{{<img src="/images/guides/campus-small-closet.png" >}}
-
-The following example shows a larger floor or closet configuration in a building with limited fiber runs:
-
-{{<img src="/images/guides/campus-large-floor.png" >}}
 
 In this deployment, you can perform segmentation in one of two ways:
 

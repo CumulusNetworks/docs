@@ -27,14 +27,14 @@ A PBR policy contains one or more policy maps. Each policy map:
 
 - Is identified with a unique map name and sequence number. The sequence number is used to determine the relative order of the map within the policy.
 - Contains a match source IP rule or a match destination IP rule, and a set rule.
-      - To match on a source and destination address, a policy map can contain both match source and match destination IP rules.
-      - A set rule determines the PBR next hop for the policy. The set rule can contain a single next hop IP address or it can contain a next hop group. A next hop group has more than one next hop IP address so that you can use multiple interfaces to forward traffic. To use ECMP, you configure a next hop group.
+   - To match on a source and destination address, a policy map can contain both match source and match destination IP rules.
+   - A set rule determines the PBR next hop for the policy. The set rule can contain a single next hop IP address or it can contain a next hop group. A next hop group has more than one next hop IP address so that you can use multiple interfaces to forward traffic. To use ECMP, you configure a next hop group.
 
 To use PBR in Cumulus linux, you define a PBR policy and apply it to the ingress interface (the interface must already have an IP address assigned). Traffic is matched against the match rules in sequential order and forwarded according to the set rule in the first match. Traffic that does not match any rule is passed onto the normal destination based routing mechanism.
 
 {{%notice note%}}
 
-For Tomahawk and Tomahawk+ platforms, you must configure the switch to operate in non-atomic mode, which offers better scaling as all TCAM resources are used to actively impact traffic. Add the line `acl.non_atomic_update_mode = TRUE` to the `/etc/cumulus/switchd.conf` file. For more information, see {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="Nonatomic Update Mode vs. Atomic Update Mode">}}.
+For Tomahawk and Tomahawk+ platforms, you must configure the switch to operate in non-atomic mode, which offers better scaling as all TCAM resources are used to actively impact traffic. Add the line `acl.non_atomic_update_mode = TRUE` to the `/etc/cumulus/switchd.conf` file.
 
 {{%/notice%}}
 

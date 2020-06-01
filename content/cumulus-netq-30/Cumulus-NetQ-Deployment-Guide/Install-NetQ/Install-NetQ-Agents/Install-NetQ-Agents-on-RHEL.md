@@ -24,7 +24,7 @@ If your network uses a proxy server for external connections, you should first {
 
 ### Verify Service Package Versions
 
-Before you install the NetQ Agent on a Red Hat or CentOS server, make sure the following packages are installed and running these minimum versions:
+For proper operation of the NetQ Agent on a Red Hat or CentOS server, make sure the following packages are installed and running these minimum versions:
 
 - iproute-3.10.0-54.el7\_2.1.x86\_64
 - lldpd-0.9.7-5.el7.x86\_64

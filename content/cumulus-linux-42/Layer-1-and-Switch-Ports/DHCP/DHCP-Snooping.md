@@ -4,15 +4,15 @@ author: Cumulus Networks
 weight: 355
 toc: 3
 ---
-DHCP snooping enables Cumulus Linux to act as a middle layer between the DHCP infrastructure and DHCP clients by scanning DHCP control packets to build an IP-MAC database, accept DHCP offers from only trusted interfaces, and rate limit packets.
+DHCP snooping enables Cumulus Linux to act as a middle layer between the DHCP infrastructure and DHCP clients by scanning DHCP control packets and building an IP-MAC database. Cumulus Linux accepts DHCP offers from only trusted interfaces and can rate limit packets.
 
 ## Configure DHCP Snooping
 
 To configure DHCP snooping, you need to:
 
-- Enable DHCP snooping on a VLAN with the `net add bridge <bridge-id> dhcp-snoop|dhcp-snoop6 vlan <vlan>` command.
-- Add a trusted interface with the `net add bridge <bridge-id> dhcp-snoop|dhcp-snoop6 vlan <vlan> trust <interface>` command. Cumulus Linux allows DHCP offers from only trusted interfaces to prevent malicious DHCP servers from assigning IP addresses inside the network. The interface must be a member of the bridge specified.
-- Set the rate limit for DHCP packets with the `net add bridge <bridge-id> dhcp-snoop|dhcp-snoop6 vlan <vlan> rate-limit <0-1000>` command. The default value is 10 packets per second.
+- Enable DHCP snooping on a VLAN.
+- Add a trusted interface. Cumulus Linux allows DHCP offers from only trusted interfaces to prevent malicious DHCP servers from assigning IP addresses inside the network. The interface must be a member of the bridge specified.
+- Set the rate limit for DHCP requests to avoid DoS attacks. The default value is 10 packets per minute.
 
 The following example commands show you how to configure DHCP snooping for IPv4 and IPv6.
 

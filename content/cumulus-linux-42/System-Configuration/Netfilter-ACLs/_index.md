@@ -747,9 +747,9 @@ INPUT FORWARD OUTPUT
 
 |Rule Element|Supported|Unsupported|
 |--- |--- |--- |
-|**Matches**|ether type<br>input interface/wildcard<br>output interface/wildcard<br>src/dst MAC<br>IP: src, dest, tos, proto, sport, dport<br>IPv6: tclass, icmp6: type, icmp6: code range, src/dst addr, sport, dport<br>802.1p (CoS)<br>VLAN|Inverse matches<br>Proto length|
-|**Standard Targets**|ACCEPT, DROP|Return, Continue, Jump, Fall Thru|
-|**Extended Targets**|Ulog<br>log<br>Unique to Cumulus Linux:<br>span<br>erspan<br>police<br>tricolorpolice<br>setclass|
+|**Matches**|ether type<br>input interface/wildcard<br>output interface/wildcard<br>Src/Dst MAC<br>IP: src, dest, tos, proto, sport, dport<br>IPv6: tclass, icmp6: type, icmp6: code range, src/dst addr, sport, dport<br>802.1p (CoS)<br>VLAN|Inverse matches<br>Proto length|
+|**Standard Targets**|ACCEPT, DROP|RETURN, CONTINUE, Jump, Fall Thru|
+|**Extended Targets**|ULOG<br>LOG<br>Unique to Cumulus Linux:<br>SPAN<br>ERSPAN<br>POLICE<br>TRICOLORPOLICE<br>SETCLASS|
 
 ### Other Unsupported Rules
 

@@ -879,48 +879,43 @@ Setting the default MTU also applies to the management interface. Be sure to add
 
 ## Breakout Ports
 
-Cumulus Linux provides the ability to:
+Cumulus Linux lets you:
 
-- Break out 100G switch ports into 2x50G, 2x40G, 4x25G, or 4x10G with breakout cables:
+- Break out 100G switch ports into 2x50G, 2x40G, 4x25G, or 4x10G with breakout cables.
 - Break out 40G switch ports into four separate 10G ports for use with breakout cables.
 - Combine (*aggregate* or *gang*) four 10G switch ports into one 40G port for use with a breakout cable ({{<link url="Bonding-Link-Aggregation" text="not to be confused with a bond">}}).
 
 {{%notice note%}}
 
-- For switches with ports that support 100G speeds, you can break out any 100G port into a variety of options: four 10G ports, four 25G ports, two 40G ports or two 50G ports. You *cannot* have more than 128 total logical ports on a Broadcom switch.
-- You can only use NCLU to configure a 4x25G breakout port. To configure other breakout ports, use Linux commands.
-- You cannot use NCLU to break out the uplink ports.
+- For Broadcom switches with ports that support 100G speeds, you *cannot* have more than 128 logical ports.
+
+- Mellanox switches with the Spectrum ASIC and 64-port Broadcom switches with the Tomahawk2 ASIC all have a limit of 64 total logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
+  - You can only break out odd-numbered ports into four logical ports.
+  - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
+
+  These restrictions do *not* apply to a 2x50G breakout configuration.
 
 {{%/notice%}}
 
-{{%notice note%}}
-
-The Mellanox SN2700, SN2700B, SN2410, and SN2410B switches all have a limit of 64 logical ports in total. However, if you want to break out to 4x25G or 4x10G, you must configure the logical ports as follows:
-
-- You can only break out odd-numbered ports into 4 logical ports.
-- You must disable the next even-numbered port. For example, if you break out port 11 into 4 logical ports, you must disable port 12.
-
-These restrictions do *not* apply to a 2x50G breakout configuration.
-
-{{%/notice%}}
+### Configure a Breakout Port
 
 To configure a breakout port:
 
-{{< tabs "TabID16" >}}
+{{< tabs "TabID903 ">}}
 
-{{< tab "NCLU Commands - 4x25G breakout ports only" >}}
+{{< tab "NCLU Commands ">}}
 
-Run the following commands to configure the port to break out and set the link speed. The following example command breaks out swp3 into four 25G ports:
+This example command breaks out swp3 into four 25G ports.
 
 ```
-cumulus@switch:~$ net add interface swp3 breakout 4x25G
+cumulus@switch:~$ net add interface swp3 breakout 4x
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-{{%notice note%}}
+To break out swp3 into four 10G ports, run the `net add interface swp3 breakout 4x10G` command.
 
-On Spectrum switches, you need to disable the next port. The following example command disables swp4.
+On Mellanox switches with the Spectrum ASIC and 64-port Broadcom switches, you need to disable the next port. The following example command disables swp4.
 
 ```
 cumulus@switch:~$ net add interface swp4 breakout disabled
@@ -928,9 +923,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-{{%/notice%}}
-
-These commands break out the 100G interfaces to 4x25G interfaces in the `/etc/cumulus/ports.conf` file, restart the `switchd` process to reconfigure the ports and create four interfaces in the `/etc/network/interfaces` file named as follows:
+These commands break out swp3 into four 25G interfaces in the `/etc/cumulus/ports.conf` file and create four interfaces in the `/etc/network/interfaces` file:
 
 ```
 cumulus@switch:~$ cat /etc/network/interfaces
@@ -949,136 +942,54 @@ iface swp3s3
 ...
 ```
 
-The breakout port configuration is stored in the `/etc/cumulus/ports.conf` file.
-
 {{%notice note%}}
 
-When you commit your change, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+When you commit your change on a Broadcom switch, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+When you commit your change on a Mellanox switch, `switchd` does not restart; there is no interruption to network services.
 
 {{%/notice%}}
 
 {{< /tab >}}
 
-{{< tab "Linux Commands" >}}
+{{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. See the examples below.
-2. Configure the breakout ports in the `/etc/network/interfaces` file. See the example below.
-3. {{<link url="Configuring-switchd/#restart-switchd" text="Restart switchd">}}.
+1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out swp3 into four 25G ports. On Mellanox witches with the Spectrum ASIC and 64-port Broadcom switches with the Tomahawk2 ASIC, you need to disable the next port. The example also disables swp4.
 
-The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on ({{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
+   ```
+   cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
+   ...
+   1=100G
+   2=100G
+   3=4x25G
+   4=disabled
+   ...
+   ```
 
-The following example shows a snippet from the `/etc/cumulus/ports.conf` file on a Dell Z9264F-ON switch (with a Tomahawk2 ASIC) where swp1 and swp63 are broken out into four 10G ports:
+   The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms in {{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
 
-```
-cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
-# ports.conf --
-#
-#   configure port speed, aggregation, and subdivision.
-#
-# The Dell Z9264F has:
-#      64 QSFP28 ports numbered 1-64
-#         These ports are configurable as 100G, 50G, 40G, or split into
-#         2x50G, 4x25G, or 4x10G ports.
-#
-# NOTE:  You must restart switchd for any changes to take effect.
-# Only "odd-numbered " port can be split into 4 interfaces and if an odd-numbered
-# port is split in a 4X configuration, the port adjacent to it (even-numbered port)
-# has to be set to "disabled " in this file. When splitting a port into two
-# interfaces, like 2x50G, it is NOT required that the adjacent port be
-# disabled. For example, when splitting port 11 into 4 10G interfaces, port
-# 12 must be configured as "disabled" like this:
-#
-#   11=4x10G
-#   12=disabled
-
-# QSFP28 ports
-#
-# <port label> = [100G|50G|40G|2x50G|4x25G|4x10G|disabled]
-
-1=4x10G
-2=disabled
-3=100G
-4=100G
-5=100G
-6=100G
-7=100G
-8=100G
-9=100G
-10=100G
-11=100G
-12=100G
-13=100G
-14=100G
-15=100G
-16=100G
-17=100G
-18=100G
-19=100G
-20=100G
-21=100G
-22=100G
-23=100G
-24=100G
-25=100G
-26=100G
-27=100G
-28=100G
-29=100G
-30=100G
-31=100G
-32=100G
-33=100G
-34=100G
-35=100G
-36=100G
-37=100G
-38=100G
-39=100G
-40=100G
-41=100G
-42=100G
-43=100G
-44=100G
-45=100G
-46=100G
-47=100G
-48=100G
-49=100G
-50=100G
-51=100G
-52=100G
-53=100G
-54=100G
-55=100G
-56=100G
-57=100G
-58=100G
-59=100G
-60=100G
-61=100G
-62=100G
-63=4x10G
-64=disabled
-```
-
-The following example shows the swp26 breakout ports (swp26s0, swp26s1, swp26s2, and swp26s3) in the `/etc/network/interfaces` file.
+2. Configure the breakout ports in the `/etc/network/interfaces` file. The following example shows the swp3 breakout ports (swp1s0, swp1s1, swp1s2, and swp1s3).
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
 ...
-auto swp26s0
-iface swp26s0
+auto swp3s0
+iface swp1s0
 
-auto swp26s1
-iface swp26s1
+auto swp3s1
+iface swp3s1
 
-auto swp26s2
-iface swp26s2
+auto swp3s2
+iface swp3s2
 
-auto swp26s3
-iface swp26s3
+auto swp3s3
+iface swp310s3
 ...
 ```
+
+3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 {{< /tab >}}
 
@@ -1086,74 +997,17 @@ iface swp26s3
 
 {{%notice tip%}}
 
-Refer to {{<exlink url="https://community.mellanox.com/docs/DOC-2685" text="this article">}} for an example of how to configure breakout cables for the Mellanox Spectrum SN2700 switch.
+For an example on how to configure breakout cables for the Mellanox Spectrum SN2700 switch, refer to {{<exlink url="https://community.mellanox.com/s/article/howto-configure-breakout-cables-40g---gt--4x10g-using-cumulus-linux" text="this article">}}.
 
 {{%/notice%}}
-
-### Break out a 100G Port to Four 10G Ports
-
-If you want to support 10G speed modules or cables on 100G ports you must set up the port in 10G mode first by configuring breakout ports on the 100G ports using the following commands:
-
-{{< tabs "TabID18" >}}
-
-{{< tab "NCLU Commands" >}}
-
-```
-cumulus@switch:~$ net add interface swp25 breakout 4x10G
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands" >}}
-
-1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout.
-
-    ```
-    cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
-    ...
-
-    25s0=10G
-    25s1=10G
-    25s2=10G
-    25s3=10G
-    ...
-    ```
-
-2. Configure the breakout ports in the `/etc/network/interfaces` file.
-
-    ```
-    cumulus@switch:~$ sudo nano /etc/network/interfaces
-    ...
-
-    auto swp25s0
-    iface swp25s0
-
-    auto swp25s1
-    iface swp25s1
-
-    auto swp25s2
-    iface swp25s2
-
-    auto swp25s3
-    iface swp25s3
-    ...
-    ```
-
-3. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
-
-{{< /tab >}}
-
-{{< /tabs >}}
 
 ### Remove a Breakout Port
 
 To remove a breakout port:
 
-{{< tabs "TabID20" >}}
+{{< tabs "TabID1007 ">}}
 
-{{< tab "NCLU Commands" >}}
+{{< tab "NCLU Commands ">}}
 
 1. Run the `net del interface <interface>` command. For example:
 
@@ -1172,17 +1026,20 @@ To remove a breakout port:
     cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
     ...
 
+    1=100G
     2=100G
     3=100G
     4=100G
     ...
     ```
 
-3. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
+3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 {{< /tab >}}
 
-{{< tab "Linux Commands" >}}
+{{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/cumulus/ports.conf` file to configure the interface for the original speed.
 
@@ -1190,13 +1047,16 @@ To remove a breakout port:
     cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
     ...
 
+    1=100G
     2=100G
     3=100G
     4=100G
     ...
     ```
 
-2. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
+2. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+
+    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 {{< /tab >}}
 

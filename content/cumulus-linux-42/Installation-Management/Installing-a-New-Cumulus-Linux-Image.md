@@ -485,7 +485,7 @@ To start an installation with the command line options, you must install the ins
 ```
 ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
 ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --<option>
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'mypassword'
 ```
 
 {{%/notice%}}
@@ -499,7 +499,7 @@ The default *cumulus* user account password is `cumulus`. When you log into Cumu
 To automate this process, you can specify a new password from the command line of the installer with the `--password '<clear text-password>'` option. For example, to change the default *cumulus* user password to `mypassword`:
 
 ```
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin   'mypassword'
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'mypassword'
 ```
 
 To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. For example:
@@ -544,9 +544,9 @@ If you use the `--ztp` option together with any of the other command line option
 
 ## Edit the Cumulus Linux Image (Advanced)
 
-The Cumulus Linux installation image file contains a BASH script that includes a set of variables. You can set these variables so that you can install a fully-configured system with a single image file.
+The Cumulus Linux installation image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully-configured system with a single image file.
 
-{{< expand "To modify the image"  >}}
+{{< expand "To edit the image"  >}}
 
 ### Example Image File
 
@@ -568,11 +568,6 @@ CL_INSTALLER_INTERFACES_FILENAME=''
 CL_INSTALLER_INTERFACES_CONTENT=''
 CL_INSTALLER_ZTP_FILENAME=''
 CL_INSTALLER_ZTP_CONTENT=''
-CL_INSTALLER_QUIET=""
-CL_INSTALLER_FORCEINST=""
-CL_INSTALLER_INTERACTIVE=""
-CL_INSTALLER_EXTRACTDIR=""
-CL_INSTALLER_PAYLOAD_SHA256="72a8c3da28cda7a610e272b67fa1b3a54c50248bf6abf720f73ff3d10e79ae76"
 ...
 ```
 
@@ -583,7 +578,7 @@ The variables to set are described below:
 | `CL_INSTALLER_PASSWORD` |Defines the clear text password.<br>This variable is equivalent to the ONIE installer command line option `--password`.  |
 | `CL_INSTALLER_HASHED_PASSWORD` | Defines the hashed password.<br>This variable is equivalent to the ONIE installer command line option `--hashed-password`.<br>If you set both the `CL_INSTALLER_PASSWORD` and `CL_INSTALLER_HASHED_PASSWORD` variable, the `CL_INSTALLER_HASHED_PASSWORD` takes precedence. |
 | `CL_INSTALLER_LICENSE` | Defines the Cumulus Linux license you want to install.<br>This variable is equivalent to the ONIE installer command line option `--license`.|
-| `CL_INSTALLER_INTERFACES_FILENAME` | Defines the name of a file on the ONIE filesystem you want to use as the `/etc/network/interfaces` file. <br>This variable is equivalent to the ONIE installer command line option `--interfaces-file`.|
+| `CL_INSTALLER_INTERFACES_FILENAME` | Defines the name of the file on the ONIE filesystem you want to use as the `/etc/network/interfaces` file. <br>This variable is equivalent to the ONIE installer command line option `--interfaces-file`.|
 | `CL_INSTALLER_INTERFACES_CONTENT` | Describes the network interfaces available on your system and how to activate them. Setting this variable defines the contents of the `/etc/network/interfaces` file.<br>There is no equivalent ONIE installer command line option.<br>If you set both the `CL_INSTALLER_INTERFACES_FILENAME` and `CL_INSTALLER_INTERFACES_CONTENT` variables, the `CL_INSTALLER_INTERFACES_FILENAME` takes precedence. |
 | `CL_INSTALLER_ZTP_FILENAME` | Defines the name of the ZTP file on the ONIE filesystem you want to execute at first boot after installation. <br>This variable is equivalent to the ONIE installer command line option `--ztp`|
 |`CL_INSTALLER_ZTP_CONTENT` | Defines the contents of the script that you want to execute at first boot after installation.<br>There is no equivalent ONIE installer command line option.<br>If you modify both the `CL_INSTALLER_ZTP_FILENAME` and `CL_INSTALLER_ZTP_CONTENT` variables, the `CL_INSTALLER_ZTP_FILENAME` takes precedence.|
@@ -594,25 +589,25 @@ Because the Cumulus Linux image file is mostly a binary file, you cannot use sta
 
 1. Copy the first 20 lines to an empty file:
 
-   ```
-   head -20 cumulus-linux-4.1.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.1
-   ```
+```
+head -20 cumulus-linux-4.1.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.1
+```
 
-2. Remove the first 20 lines, then put them into another empty file:
+2. Remove the first 20 lines of the image, then copy put the remaining lines into another empty file:
 
-   ```
-   sed -e ‘1,20d’ cumulus-linux-4.1.0-bcm-amd64.bin > `cumulus-linux-4.2.0-bcm-amd64.bin.2`
-   ```
+```
+sed -e ‘1,20d’ cumulus-linux-4.1.0-bcm-amd64.bin > `cumulus-linux-4.2.0-bcm-amd64.bin.2`
+```
 
-   The original file is now split, with the first 20 lines in `cumulus-linux-4.2.0-bcm-amd64.bin.1` and the remaining lines in `cumulus-linux-4.2.0-bcm-amd64.bin.2`.
+The original file is now split, with the first 20 lines in `cumulus-linux-4.2.0-bcm-amd64.bin.1` and the remaining lines in `cumulus-linux-4.2.0-bcm-amd64.bin.2`.
 
 3. Use a text editor to change the variables in `cumulus-linux-4.2.0-bcm-amd64.bin.1`.
 
-4. Put the two pieces back together using cat:
+4. Put the two pieces back together using `cat`:
 
-   ```
-   cat cumulus-linux-4.1.0-bcm-amd64.bin.1 cumulus-linux-4.1.0-bcm-amd64.bin.2 > cumulus-linux-4.1.0-bcm-amd64.bin.final
-   ```
+```
+cat cumulus-linux-4.1.0-bcm-amd64.bin.1 cumulus-linux-4.1.0-bcm-amd64.bin.2 > cumulus-linux-4.1.0-bcm-amd64.bin.final
+```
 
 This is an example modified image file:
 
@@ -657,9 +652,9 @@ echo \'cumulus:MyP4$$word\' | chpasswd
 ...
 ```
 
-You can install this edited image file using the ONIE install waterfall or the the `onie-nos-install` command.
+You can install this edited image file in the usual way; using the ONIE install waterfall or the `onie-nos-install` command.
 
-If you install the modified installation image and specify command line parameters, the command line parameters take precedence over the variables modified in the image.
+If you install the modified installation image and specify installer command line parameters, the command line parameters take precedence over the variables modified in the image.
 
 {{< /expand >}}
 

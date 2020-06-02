@@ -192,20 +192,16 @@ You can also enable/disable these Inner header fields:
 - Inner destination port
 - Inner IPv6 flow label
 
-To configure custom hashing, edit the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file:
+To configure custom hashing, edit the `/etc/cumulus/datapath/traffic.conf` file:
 
 1. To enable custom hashing, uncomment the `hash_config.enable = true` line.
 2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
-3. Restart the `switchd` service:
+3. Run the `echo 1 > /cumulus/switchd/config/traffic/reload` command:
 
-    ```
-    cumulus@switch:~$ sudo systemctl restart switchd.service
-    ```
-
-The following shows an example `datapath.conf` file:
+The following shows an example `/etc/cumulus/datapath/traffic.conf` file:
 
 ```
-cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 ...
 # HASH config for ECMP to enable custom fields
 # Fields will be applicable for ECMP hash

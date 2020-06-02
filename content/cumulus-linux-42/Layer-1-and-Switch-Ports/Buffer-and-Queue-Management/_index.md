@@ -223,6 +223,56 @@ dos_enable = false
 # Value Rang: {0..4294967295}
 #ecmp_hash_seed = 42
 
+# HASH config for  ECMP to enable custom fields
+# Fields will be applicable for ECMP hash
+# calculation
+#Note : Currently supported only for MLX platform
+# Uncomment to enable custom fields configured below
+#hash_config.enable = true
+
+#hash Fields available ( assign true to enable)
+#ip protocol
+hash_config.ip_prot = true
+#source ip
+hash_config.sip = true
+#destination ip
+hash_config.dip = true
+#source port
+hash_config.sport = true
+#destination port
+hash_config.dport = true
+#ipv6 flow label
+hash_config.ip6_label = true
+#ingress interface
+hash_config.ing_intf = false
+
+#inner fields for  IPv4-over-IPv6 and IPv6-over-IPv6
+hash_config.inner_ip_prot = false
+hash_config.inner_sip = false
+hash_config.inner_dip = false
+hash_config.inner_sport = false
+hash_config.inner_dport = false
+hash_config.inner_ip6_label = false
+# Hash config end #
+
+
+#LAG HASH config
+#HASH config for LACP to enable custom fields
+#Fields will be applicable for LAG hash
+#calculation
+#Uncomment to enable custom fields configured below
+#lag_hash_config.enable = true
+
+lag_hash_config.smac = true
+lag_hash_config.dmac = true
+lag_hash_config.sip  = true
+lag_hash_config.dip  = true
+lag_hash_config.ether_type = true
+lag_hash_config.vlan_id = true
+lag_hash_config.sport = true
+lag_hash_config.dport = true
+lag_hash_config.ip_prot = true
+
 # Specify the forwarding table resource allocation profile, applicable
 # only on platforms that support universal forwarding resources.
 #
@@ -269,6 +319,7 @@ On Mellanox switches with the Spectrum ASIC, the following options in the `/etc/
 - Priority flow control (PFC) settings (`pfc.*`)
 - Link Pause settings (`link_pause.*`)
 - Queue weight settings (`priority_group.*.weight`)
+- ECMP hash and LAG hash settings
 
 ## Syntax Checker
 

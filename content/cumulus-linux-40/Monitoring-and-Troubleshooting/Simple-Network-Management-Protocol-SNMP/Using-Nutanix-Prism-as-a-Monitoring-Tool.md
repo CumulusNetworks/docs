@@ -205,7 +205,7 @@ To help visualize the following diagram is provided:
     swp52         1G       NotConfigured  ====  swp1               spine02
     ```
 
-{{<exlink url="http://www.nutanix.com/products/acropolis/" text="Nutanix Acropolis">}} is an alternate hypervisor that Nutanix supports. **Acropolis Hypervisor** uses the yum packaging system and is capable of installing normal Linux lldp daemons to operating just like Cumulus Linux. LLDP should be enabled for each interface on the host. Refer to this article from Mellanox, {{<exlink url="https://community.mellanox.com/docs/DOC-1522" text="How to Enable LLDP on Linux Servers for Link Discovery">}}, for setup instructions.
+{{<exlink url="http://www.nutanix.com/products/acropolis/" text="Nutanix Acropolis">}} is an alternate hypervisor that Nutanix supports. **Acropolis Hypervisor** uses the yum packaging system and is capable of installing normal Linux lldp daemons to operating just like Cumulus Linux. LLDP should be enabled for each interface on the host. Refer to this article from Mellanox, {{<exlink url="https://portal.nutanix.com/page/documents/kbs/details/?targetId=kA032000000TVfiCAG" title="Nutanix Documentation" >}}, for setup instructions.
 
 ## Troubleshoot Connections without LLDP or CDP
 

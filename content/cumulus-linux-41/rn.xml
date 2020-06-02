@@ -7,10 +7,61 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-29667</td>
-<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.</p>
+<td>CM-29841</td>
+<td><p>The following vulnerabilities have been announced that affect Unbound:<br/>
+CVE-2020-12662 and CVE-2020-12663 have been discovered in Unbound, a recursive-only caching DNS server; a traffic amplification attack against third party authoritative name servers (NXNSAttack) and insufficient sanitisation of replies from upstream servers could result in denial of service via an infinite loop.<br/>
+Unbound is not provided for Cumulus Linux, but the libunbound8 library package is available for optional installation on Cumulus Linux.<br/>
+Vulnerable: &lt;= 1.9.0-2+deb10u1<br/>
+Fixed: 1.9.0-2+deb10u2</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29778</td>
+<td><p>If packets with an invalid checksum are received, the cumulus-poe service might restart and you see log messages similar to the following:<br/>
+May 20 10:48:04.665635 leaf01 poed<span class="error">&#91;8012&#93;</span>: ERROR : invalid checksum in response <span class="error">&#91;0xC2:0x00&#93;</span><br/>
+May 20 10:48:04.671299 leaf01 poed<span class="error">&#91;8012&#93;</span>: poed : ERROR : invalid checksum in response <span class="error">&#91;0xC2:0x00&#93;</span><br/>
+May 20 10:48:04.708620 leaf01 systemd<span class="error">&#91;1&#93;</span>: cumulus-poe.service: main process exited, code=exited, status=1/FAILURE<br/>
+The service starts automatically but there is an impact to POE devices momentarily.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29760</td>
+<td><p>Several vulnerabilities were discovered in BIND, a DNS server implementation.  <br/>
+bind9-host (containing only /usr/bin/host) and some libraries from the bind9 source package are installed on the switch by default; the BIND server referred to in these vulnerabilities is not installed by default but is available in the repository for optional installation.<br/>
+CVE-2019-6477: It was discovered that TCP-pipelined queries can bypass tcp-client limits resulting in denial of service.<br/>
+CVE-2020-8616: It was discovered that BIND does not sufficiently limit the number of fetches performed when processing referrals. An attacker can take advantage of this flaw to cause a denial of service (performance degradation) or use the recursing server in a reflection attack with a high amplification factor.<br/>
+CVE-2020-8617: It was discovered that a logic error in the code which checks TSIG validity can be used to trigger an assertion failure, resulting in denial of service.<br/>
+Vulnerable: 9.11.5.P4+dfsg-5.1<br/>
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u1</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
 
-<p>To work around this issue, run the systemctl restart switchd command.</p></td>
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29691</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.8.2<br/>
+Fixed: 1.8.2.1</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -58,7 +109,8 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 </tr>
 <tr>
 <td>CM-29556</td>
-<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+<td><p>The following vulnerability has been announced that affects ntp:<br/>
+CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
 This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
 The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
 <a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
@@ -88,7 +140,6 @@ cumulus@switch:~$ sudo ifup vni10100
 <td>CM-29525</td>
 <td><p>The asic-monitor.service fails when you configure /etc/cumulus/datapath/monitor.conf with monitor.histogram_pg.collect.port_group_list  = <span class="error">&#91;all_packet_pg&#93;</span> and there is traffic passing through the buffer. When the service fails, you see the following traceback in journalctl:</p>
 
-
 asic-monitor[7389]: asic-monitor-module INFO: 2020-05-01 18:28:12.548734: Egress queue(s) greater than 500 bytes in monitor port group histogram_pg
 asic-monitor[7389]: asic-monitor ERROR: ASIC monitor exception: sx_api_port_counter_tc_get failed: Parameter Error
 asic-monitor[7389]: File "/usr/bin/asic-monitor", line 139, in &lt;module&gt;
@@ -99,16 +150,7 @@ asic-monitor[7389]: Traceback (most recent call last):
 asic-monitor[7389]: File "/usr/bin/asic-monitor", line 117, in main
 asic-monitor[7389]: monitor.run()
 asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 158, in run
-asic-monitor[7389]: self.take_action(state_desc, results, state_desc_dict, depth=0)
-asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.py", line 89, in take_action
-asic-monitor[7389]: collect_results = self.asic_manager.read_state(collect_pg)
-asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/mlx_asic_manager.py", line 715, in read_state
-asic-monitor[7389]: packet_info[linux_port_label])
-asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/mlx_asic_manager.py", line 442, in read_packet_stats
-asic-monitor[7389]: raise RuntimeError('sx_api_port_counter_tc_get failed: %s' % sx_status_msg[rc])
-asic-monitor[7389]: RuntimeError: sx_api_port_counter_tc_get failed: Parameter Error
-asic-monitor[7389]: asic-monitor-module INFO: ASIC monitor stopping
-asic-monitor[7389]: --------------
+...
 
 </td>
 <td>3.7.11-3.7.12, 4.1.1</td>
@@ -181,7 +223,7 @@ Fixed: 3.1+dfsg-8+deb10u5</p></td>
 </tr>
 <tr>
 <td>CM-29420</td>
-<td><p>When you configure the mgmt interface class (as shown below), eth0 remains in an admin down state on subsequent reboots:</p>
+<td><p>When you configure the management interface class (as shown below), eth0 remains in an admin down state on subsequent reboots:</p>
 
 allow-mgmt eth0
 iface eth0 inet dhcp
@@ -213,14 +255,15 @@ Fixed: 1.1.1d-0+deb10u3</p></td>
 </tr>
 <tr>
 <td>CM-29319</td>
-<td><p>When you configure an RD or RT with NCLU, you see duplicate VNI stanzas in the /etc/frr/frr.conf file. To work around this issue, you must manually edit /etc/frr/frr.conf to have advertise-all-vni defined before the RD/RT config within the l2vpn EVPN address-family and then reload the FRR service with &apos;sudo systemctl reload frr&apos;</p></td>
+<td><p>When you configure an RD or RT with NCLU, you see duplicate VNI stanzas in the /etc/frr/frr.conf file. <br/>
+To work around this issue, manually edit the etc/frr/frr.conf file to define advertise-all-vni before the RD or RT configuration within the l2vpn EVPN address family, then reload the FRR service with the sudo systemctl reload frr command.</p></td>
 <td>4.1.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-29312</td>
-<td><p>FRR incorrectly orders advertise-all-vni to be later in the configuration than manual rd or route-target definitions. This causes the rd/route-target configuration to be misapplied or not applied at all.<br/>
-To work around this issue, when you manually configure the rd or route-target for a VNI, you must manually edit /etc/frr/frr.conf file to define advertise-all-vni before the rd or route-target configuration within the l2vpn evpn address family.</p></td>
+<td><p>FRR incorrectly orders advertise-all-vni to be later in the configuration than manual rd or route-target definitions. This causes the rd or route-target configuration to be misapplied or not applied at all.<br/>
+To work around this issue, when you manually configure the rd or route-target for a VNI, you must manually edit the /etc/frr/frr.conf file to define advertise-all-vni before the rd or route-target configuration within the l2vpn evpn address family.</p></td>
 <td>4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -297,14 +340,14 @@ cumulus@switch:~$ sudo echo 0 &gt; /var/run/hw-management/config/suspend
 </tr>
 <tr>
 <td>CM-29165</td>
-<td><p>An inconsistent link-state advertisement may be seen with FRR/OSPF in some circumstances. For example, when you configure the OSPF default originate route as metric-type 1 with a specific metric, Cumulus Linux shows the default originate route as an external metric-type 2 route with the default metric in the database. This problem has been observed when there are both IPv4 and IPv6 default routes in the routing table.</p></td>
+<td><p>With FRR or OSPF, you might see an inconsistent link-state advertisement. For example, when you configure the OSPF default originate route as metric-type 1 with a specific metric, Cumulus Linux shows the default originate route as an external metric-type 2 route with the default metric in the database. This issue typically occurs when both IPv4 and IPv6 default routes exist in the routing table.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-29145</td>
 <td><p>If you try to remove BFD configuration with a reload, the FRR service fails. The reload action results in a TypeError: expected string or bytes-like object error.<br/>
-This issue is only seen if there is default configuration, such as configuration in the /etc/frr/frr.conf file that is suppressed from view in the FRR running-configuration.<br/>
+You see this issue only if there is default configuration, such as configuration in the /etc/frr/frr.conf file that is suppressed from view in the FRR running configuration.<br/>
 To work around this issue, remove the default configuration lines; for example: </p>
 
 username cumulus nopassword
@@ -321,7 +364,7 @@ username cumulus nopassword
 </tr>
 <tr>
 <td>CM-29068</td>
-<td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
+<td><p>On the Broadcom switch with the Trident3 ASIC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -417,7 +460,7 @@ Note: A network restart is a disruptive operation. </p></td>
 </tr>
 <tr>
 <td>CM-28900</td>
-<td><p>You might see a core file in FRRouting related to OSPFv3 if the switch is configured as both an OSPFv3 ABR and ASBR, and other switches in the same area are also configured as both ABR and ASBR. This issue is not seen with a single ABR/ASBR in an area or if there are multiple ASBRs in an area not acting as ABRs. To work around this issue, do not perform redistribution on more than one ABR in the same area. </p></td>
+<td><p>You might see a core file in FRRouting related to OSPFv3 if the switch is configured as both an OSPFv3 ABR and ASBR, and other switches in the same area are also configured as both ABR and ASBR. This issue is not seen with a single ABR or ASBR in an area or if there are multiple ASBRs in an area not acting as ABRs. To work around this issue, do not perform redistribution on more than one ABR in the same area. </p></td>
 <td>4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -634,7 +677,7 @@ kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142c
 bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 
-<p>To workaround this issue, either reduce the number of configured interfaces and/or VLANs or increase the systemd timeout for switchd.service.<br/>
+<p>To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the systemd timeout for switchd.service.<br/>
 To increase the systemd timeout:</p>
 <ol>
 	<li>Edit the /etc/systemd/system/switchd.service.d/override.conf file and increase the WatchdogSec parameter.</li>
@@ -796,7 +839,7 @@ sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' &
 </tr>
 <tr>
 <td>CM-26905</td>
-<td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old name.<br/>
+<td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old hostname.<br/>
 To work around this issue, run the sudo systemctl restart lldpd.service command.</p></td>
 <td>3.7.10-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
@@ -1623,10 +1666,61 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-29667</td>
-<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.</p>
+<td>CM-29841</td>
+<td><p>The following vulnerabilities have been announced that affect Unbound:<br/>
+CVE-2020-12662 and CVE-2020-12663 have been discovered in Unbound, a recursive-only caching DNS server; a traffic amplification attack against third party authoritative name servers (NXNSAttack) and insufficient sanitisation of replies from upstream servers could result in denial of service via an infinite loop.<br/>
+Unbound is not provided for Cumulus Linux, but the libunbound8 library package is available for optional installation on Cumulus Linux.<br/>
+Vulnerable: &lt;= 1.9.0-2+deb10u1<br/>
+Fixed: 1.9.0-2+deb10u2</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29778</td>
+<td><p>If packets with an invalid checksum are received, the cumulus-poe service might restart and you see log messages similar to the following:<br/>
+May 20 10:48:04.665635 leaf01 poed<span class="error">&#91;8012&#93;</span>: ERROR : invalid checksum in response <span class="error">&#91;0xC2:0x00&#93;</span><br/>
+May 20 10:48:04.671299 leaf01 poed<span class="error">&#91;8012&#93;</span>: poed : ERROR : invalid checksum in response <span class="error">&#91;0xC2:0x00&#93;</span><br/>
+May 20 10:48:04.708620 leaf01 systemd<span class="error">&#91;1&#93;</span>: cumulus-poe.service: main process exited, code=exited, status=1/FAILURE<br/>
+The service starts automatically but there is an impact to POE devices momentarily.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29760</td>
+<td><p>Several vulnerabilities were discovered in BIND, a DNS server implementation.  <br/>
+bind9-host (containing only /usr/bin/host) and some libraries from the bind9 source package are installed on the switch by default; the BIND server referred to in these vulnerabilities is not installed by default but is available in the repository for optional installation.<br/>
+CVE-2019-6477: It was discovered that TCP-pipelined queries can bypass tcp-client limits resulting in denial of service.<br/>
+CVE-2020-8616: It was discovered that BIND does not sufficiently limit the number of fetches performed when processing referrals. An attacker can take advantage of this flaw to cause a denial of service (performance degradation) or use the recursing server in a reflection attack with a high amplification factor.<br/>
+CVE-2020-8617: It was discovered that a logic error in the code which checks TSIG validity can be used to trigger an assertion failure, resulting in denial of service.<br/>
+Vulnerable: 9.11.5.P4+dfsg-5.1<br/>
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u1</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
 
-<p>To work around this issue, run the systemctl restart switchd command.</p></td>
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29691</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.8.2<br/>
+Fixed: 1.8.2.1</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -1662,7 +1756,8 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 </tr>
 <tr>
 <td>CM-29556</td>
-<td><p>CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+<td><p>The following vulnerability has been announced that affects ntp:<br/>
+CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
 This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
 The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
 <a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
@@ -1733,7 +1828,7 @@ Fixed: 3.1+dfsg-8+deb10u5</p></td>
 </tr>
 <tr>
 <td>CM-29420</td>
-<td><p>When you configure the mgmt interface class (as shown below), eth0 remains in an admin down state on subsequent reboots:</p>
+<td><p>When you configure the management interface class (as shown below), eth0 remains in an admin down state on subsequent reboots:</p>
 
 allow-mgmt eth0
 iface eth0 inet dhcp
@@ -1765,14 +1860,15 @@ Fixed: 1.1.1d-0+deb10u3</p></td>
 </tr>
 <tr>
 <td>CM-29319</td>
-<td><p>When you configure an RD or RT with NCLU, you see duplicate VNI stanzas in the /etc/frr/frr.conf file. To work around this issue, you must manually edit /etc/frr/frr.conf to have advertise-all-vni defined before the RD/RT config within the l2vpn EVPN address-family and then reload the FRR service with &apos;sudo systemctl reload frr&apos;</p></td>
+<td><p>When you configure an RD or RT with NCLU, you see duplicate VNI stanzas in the /etc/frr/frr.conf file. <br/>
+To work around this issue, manually edit the etc/frr/frr.conf file to define advertise-all-vni before the RD or RT configuration within the l2vpn EVPN address family, then reload the FRR service with the sudo systemctl reload frr command.</p></td>
 <td>4.1.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
 <td>CM-29312</td>
-<td><p>FRR incorrectly orders advertise-all-vni to be later in the configuration than manual rd or route-target definitions. This causes the rd/route-target configuration to be misapplied or not applied at all.<br/>
-To work around this issue, when you manually configure the rd or route-target for a VNI, you must manually edit /etc/frr/frr.conf file to define advertise-all-vni before the rd or route-target configuration within the l2vpn evpn address family.</p></td>
+<td><p>FRR incorrectly orders advertise-all-vni to be later in the configuration than manual rd or route-target definitions. This causes the rd or route-target configuration to be misapplied or not applied at all.<br/>
+To work around this issue, when you manually configure the rd or route-target for a VNI, you must manually edit the /etc/frr/frr.conf file to define advertise-all-vni before the rd or route-target configuration within the l2vpn evpn address family.</p></td>
 <td>4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -1849,7 +1945,7 @@ cumulus@switch:~$ sudo echo 0 &gt; /var/run/hw-management/config/suspend
 </tr>
 <tr>
 <td>CM-29165</td>
-<td><p>An inconsistent link-state advertisement may be seen with FRR/OSPF in some circumstances. For example, when you configure the OSPF default originate route as metric-type 1 with a specific metric, Cumulus Linux shows the default originate route as an external metric-type 2 route with the default metric in the database. This problem has been observed when there are both IPv4 and IPv6 default routes in the routing table.</p></td>
+<td><p>With FRR or OSPF, you might see an inconsistent link-state advertisement. For example, when you configure the OSPF default originate route as metric-type 1 with a specific metric, Cumulus Linux shows the default originate route as an external metric-type 2 route with the default metric in the database. This issue typically occurs when both IPv4 and IPv6 default routes exist in the routing table.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -1865,7 +1961,7 @@ Not vulnerable: 3.6.7-4+deb10u3</p></td>
 <tr>
 <td>CM-29145</td>
 <td><p>If you try to remove BFD configuration with a reload, the FRR service fails. The reload action results in a TypeError: expected string or bytes-like object error.<br/>
-This issue is only seen if there is default configuration, such as configuration in the /etc/frr/frr.conf file that is suppressed from view in the FRR running-configuration.<br/>
+You see this issue only if there is default configuration, such as configuration in the /etc/frr/frr.conf file that is suppressed from view in the FRR running configuration.<br/>
 To work around this issue, remove the default configuration lines; for example: </p>
 
 username cumulus nopassword
@@ -1911,7 +2007,7 @@ cumulus@<span class="code-keyword">switch</span>:~$ sudo systemctl restart ssh
 </tr>
 <tr>
 <td>CM-29068</td>
-<td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
+<td><p>On the Broadcom switch with the Trident3 ASIC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -2040,7 +2136,7 @@ Note: A network restart is a disruptive operation. </p></td>
 </tr>
 <tr>
 <td>CM-28900</td>
-<td><p>You might see a core file in FRRouting related to OSPFv3 if the switch is configured as both an OSPFv3 ABR and ASBR, and other switches in the same area are also configured as both ABR and ASBR. This issue is not seen with a single ABR/ASBR in an area or if there are multiple ASBRs in an area not acting as ABRs. To work around this issue, do not perform redistribution on more than one ABR in the same area. </p></td>
+<td><p>You might see a core file in FRRouting related to OSPFv3 if the switch is configured as both an OSPFv3 ABR and ASBR, and other switches in the same area are also configured as both ABR and ASBR. This issue is not seen with a single ABR or ASBR in an area or if there are multiple ASBRs in an area not acting as ABRs. To work around this issue, do not perform redistribution on more than one ABR in the same area. </p></td>
 <td>4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -2257,7 +2353,7 @@ kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142c
 bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 
-<p>To workaround this issue, either reduce the number of configured interfaces and/or VLANs or increase the systemd timeout for switchd.service.<br/>
+<p>To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the systemd timeout for switchd.service.<br/>
 To increase the systemd timeout:</p>
 <ol>
 	<li>Edit the /etc/systemd/system/switchd.service.d/override.conf file and increase the WatchdogSec parameter.</li>
@@ -2419,7 +2515,7 @@ sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' &
 </tr>
 <tr>
 <td>CM-26905</td>
-<td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old name.<br/>
+<td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old hostname.<br/>
 To work around this issue, run the sudo systemctl restart lldpd.service command.</p></td>
 <td>3.7.10-3.7.12, 4.0.0-4.1.1</td>
 <td></td>

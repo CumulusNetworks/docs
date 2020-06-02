@@ -163,7 +163,7 @@ iface vm-br10 inet manual
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 |----------| --------|
-| No redundancy for ToR, uses single ToR as gateway.| {{<exlink url="https://cumulusnetworks.com/learn/resources/installation-guides/big-data-deployment-guide" text="Big Data validated design guide">}} uses single attached ToR.<br><br>For additional bandwidth, links between host and leaf can be bonded. |
+| No redundancy for ToR, uses single ToR as gateway.| For additional bandwidth, links between host and leaf can be bonded. |
 
 **Example Configuration**
 

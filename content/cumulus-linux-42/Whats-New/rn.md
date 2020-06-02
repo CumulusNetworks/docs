@@ -1,9 +1,9 @@
 ---
-title: Cumulus Linux 4.1 Release Notes
+title: Cumulus Linux 4.2 Release Notes
 author: Cumulus Networks
 weight: -30
 product: Cumulus Linux
-version: "4.1"
+version: "4.2"
 toc: 1
 type: rn
 pdfhidden: True

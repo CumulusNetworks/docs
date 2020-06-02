@@ -10,6 +10,6 @@ The UI is accessible in both on-site and in-cloud deployments. It is supported o
 
 {{%notice tip%}}
 
-Before you get started, you should refer to the {{<link title="Cumulus NetQ 3.0 Release Notes"text="release notes">}} for this version.
+Before you get started, you should refer to the {{<link title="Cumulus NetQ 3.1 Release Notes"text="release notes">}} for this version.
 
 {{%/notice%}}

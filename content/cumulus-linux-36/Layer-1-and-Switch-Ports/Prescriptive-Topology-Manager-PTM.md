@@ -120,7 +120,7 @@ the switch it's running on:
 {{%notice tip%}}
 
 It's a good idea to always wrap the hostname in double quotes, like
-*"www.example.com"*. Otherwise, `ptmd` can fail if you specify a
+`"www.example.com"`. Otherwise, `ptmd` can fail if you specify a
 fully-qualified domain name as the hostname and do not wrap it in double
 quotes.
 

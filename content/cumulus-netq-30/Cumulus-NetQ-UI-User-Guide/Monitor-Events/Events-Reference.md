@@ -77,14 +77,14 @@ For information about configuring threshold-based events (TCAs), refer to {{<lin
 <td>BGP Session state changed</td>
 <td>Critical</td>
 <td>BGP session with peer @peer @neighbor vrf @vrf state changed from @old_state to @new_state</td>
-<td>BGP session with peer leaf03 leaf04 vrf mgmt state changed from Established to Failed</td>
+<td>BGP session with peer leaf03 leaf04 vrf mgmt state changed from Established to NotEstd</td>
 </tr>
 <tr>
 <td>bgp</td>
 <td>BGP Session state changed from Failed to Established</td>
 <td>Info</td>
-<td>BGP session with peer @peer @peerhost @neighbor vrf @vrf session state changed from Failed to Established</td>
-<td>BGP session with peer swp5 spine02 spine03 vrf default session state changed from Failed to Established</td>
+<td>BGP session with peer @peer @peerhost @neighbor vrf @vrf session state changed from failed to Established</td>
+<td>BGP session with peer swp5 spine02 spine03 vrf default session state changed from failed to Established</td>
 </tr>
 <tr>
 <td>bgp</td>

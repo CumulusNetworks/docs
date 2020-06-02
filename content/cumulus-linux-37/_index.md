@@ -27,7 +27,7 @@ To implement various Cumulus Linux features, Cumulus Networks has forked various
 
 <!-- Cumulus Networks has also developed and released new applications as
 open source. The list of open source projects is on the
-{{<link title="Cumulus Linux 3.7 Open Source Packages" text="open source software" >}} page.-->
+{{ /* link title="Cumulus Linux 3.7 Open Source Packages" text="open source software" */}} page.-->
 
 ## Hardware Compatibility List
 

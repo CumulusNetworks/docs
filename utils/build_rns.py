@@ -171,6 +171,8 @@ def build_rn_markdown(json_file, version, file_type):
     file_type - one of "affects" or "fixed"
     '''
     output = []
+    if version == "4.1.2":
+        return []
 
     if file_type == "affects":
         output.append("### Open issues in {}".format(version))
@@ -272,6 +274,9 @@ def write_rns(output, file_type, product, version):
     type - xls or md
     version - the version to write to in hugo directory syntax. For example, cumulus-linux-40
     '''
+    if version == "4.1.2":
+        return []
+
     directory = get_hugo_folder(product, version)
     if file_type not in ["xls", "md"]:
         print("Incorrect filetype. Can not write release notes.")
@@ -338,6 +343,8 @@ def build_rn_markdown_files(product, version_list):
 
         # Loop over all the maintenance releases.
         for version in major_minor[major]:
+            if version == "4.1.2":
+                continue
             print("Building markdown for {} {}\n".format(product_string(product), version))
             version_output.append("## {} Release Notes\n".format(version))
 
@@ -451,17 +458,35 @@ def build_rn_xls_files(product, version_list):
         all_versions_xls.append("</tables>")
         write_rns(all_versions_xls, "xls", product, version)
 
+def get_products():
+    '''
+    Download the engineering provided JSON file detailing the list of products and releases.
+    Expects the key "release_notes" to exist at the top level.
+    Returns: a dict of product short name and versions. For example
+    { "cl":  ["3.7.1", "3.7.2"], "netq": ["2.4.0", "3.0.0"] }
+    '''
+    session = requests.Session()
+    url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"
+    response = session.get(url)
+    if response.status_code != 200:
+        print("Unable to download JSON releases file to determine products and versions for release notes.")
+        print('Received response {} from {}'.format(response.status_code, url))
+        exit(1)
+
+    if not "release_notes" in response.json():
+        print("Unable to find release notes within JSON releases file. JSON dump:")
+        print(response.json())
+        exit(1)
+
+    return response.json()["release_notes"]
+
 def main():
     """
     Main function.
-
-    Until eng provides a dynamic list of releases, this must be extended for every maintenance.
     """
-    products = {
-        "cl":  ["3.7.1", "3.7.2", "3.7.3", "3.7.4", "3.7.5", "3.7.6", "3.7.7", "3.7.8", "3.7.9", "3.7.10", "3.7.11", "3.7.12",
-                "4.0.0", "4.1.0", "4.1.1"],
-        "netq": ["2.4.0", "2.4.1", "3.0.0"]
-    }
+
+    print("Fetching product and version list")
+    products = get_products()
 
     for product in products:
         build_rn_markdown_files(product, products[product])

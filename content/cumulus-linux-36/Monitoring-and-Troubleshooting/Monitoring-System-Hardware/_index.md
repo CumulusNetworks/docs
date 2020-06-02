@@ -65,7 +65,7 @@ also retrieves hardware configuration information.
 
 The `sensors` command provides a method for monitoring the health of
 your switch hardware, such as power, temperature and fan speeds. This
-command executes [lm-sensors](http://lm-sensors.org).
+command executes [lm-sensors](https://github.com/lm-sensors/lm-sensors).
 
 For example:
 
@@ -215,5 +215,5 @@ and scheduler priority - in its configuration file,
 ## Related Information
 
   - [packages.debian.org/search?keywords=lshw](http://packages.debian.org/search?keywords=lshw)
-  - [lm-sensors.org](http://lm-sensors.org)
+  - [lm-sensors.org](https://github.com/lm-sensors/lm-sensors)
   - [Net-SNMP tutorials](http://net-snmp.sourceforge.net/wiki/index.php/Tutorials)

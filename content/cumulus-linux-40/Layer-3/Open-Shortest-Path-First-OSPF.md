@@ -499,44 +499,45 @@ To configure multi-instance OSPF:
 
 3. Assign and enable an OSPF interface for each instance:
 
-   {{< tabs "TabID12" >}}
-   {{< tab "NCLU Commands" >}}
+{{< tabs "TabID514 ">}}
 
-     ```
-     cumulus@switch:~$ net add interface swp1 ospf instance-id 11
-     cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
-     cumulus@switch:~$ net add ospf router-id 1.1.1.1
-     cumulus@switch:~$ net add interface swp2 ospf instance-id 22
-     cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
-     cumulus@switch:~$ net add ospf router-id 1.1.1.1
-     cumulus@switch:~$ net pending
-     cumulus@switch:~$ net commit
-     ```
-   {{< /tab >}}
-   
+  {{< tab "NCLU Commands ">}}
 
-   {{< tab "vtysh Commands" >}}
+  ```
+  cumulus@switch:~$ net add interface swp1 ospf instance-id 11
+  cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
+  cumulus@switch:~$ net add ospf router-id 1.1.1.1
+  cumulus@switch:~$ net add interface swp2 ospf instance-id 22
+  cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
+  cumulus@switch:~$ net add ospf router-id 1.1.1.1
+  cumulus@switch:~$ net pending
+  cumulus@switch:~$ net commit
+  ```
 
-   ```
-   cumulus@switch:~$ sudo vtysh
+  {{< /tab >}}
 
-   switch# configure terminal
-   switch(config)# interface swp1
-   switch(config-if)#  ip ospf 11 area 0.0.0.0
-   switch(config-if)# router ospf 11
-   switch(config-router)# ospf router-id 0.0.0.1
-   ...
-   switch(config)# interface swp2
-   switch(config-if)#  ip ospf 22 area 0.0.0.0
-   switch(config-if)# router ospf 22
-   switch(config-router)# ospf router-id 0.0.0.1
-   switch(config-router)# end
-   switch# write memory
-   switch# exit
-   cumulus@switch:~$
-   ```
+  {{< tab "vtysh Commands ">}}
 
-{{< /tab >}}
+  ```
+  cumulus@switch:~$ sudo vtysh
+
+  switch# configure terminal
+  switch(config)# interface swp1
+  switch(config-if)#  ip ospf 11 area 0.0.0.0
+  switch(config-if)# router ospf 11
+  switch(config-router)# ospf router-id 0.0.0.1
+  ...
+  switch(config)# interface swp2
+  switch(config-if)#  ip ospf 22 area 0.0.0.0
+  switch(config-if)# router ospf 22
+  switch(config-router)# ospf router-id 0.0.0.1
+  switch(config-router)# end
+  switch# write memory
+  switch# exit
+  cumulus@switch:~$
+  ```
+
+  {{< /tab >}}
 
 {{< /tabs >}}
 

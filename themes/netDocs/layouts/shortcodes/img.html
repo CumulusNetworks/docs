@@ -1,6 +1,10 @@
 
-{{ if .IsNamedParams }}
-  <img src="{{.Get "src" }}" alt="{{.Get "alt"}}" width = "{{.Get "width"}}" height = "{{.Get "height"}}" >
+{{ $src := ((.Get "src") | default (.Get 0)) }}
+
+{{- /* "Check if the file exists in the /static directory. Skip any external icons" */ -}}
+{{ if or (fileExists (print "static/" $src)) (in $src "icons.cumulusnetworks.com") }}
+  <img src={{$src}} alt="{{.Get "alt"}}" width="{{.Get "width"}}" height="{{.Get "height"}}" />
 {{ else }}
-  <img src="{{.Get 0}}" alt="">
+  {{- /* "If the file doesn't exist, print the .md file and image" */ -}}
+  {{- errorf "broken img tag in %s. %s" .Position $src -}}
 {{ end }}

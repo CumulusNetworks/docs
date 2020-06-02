@@ -1,28 +1,35 @@
-<figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
-    {{- if .Get "link" -}}
-        <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
-    {{- end }}
-    <img src="{{ .Get "src" }}"
-         {{- if or (.Get "alt") (.Get "caption") }}
-         alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
-         {{- end -}}
-         {{- with .Get "width" }} width="{{ . }}"{{ end -}}
-         {{- with .Get "height" }} height="{{ . }}"{{ end -}}
-    /> <!-- Closing img tag -->
-    {{- if .Get "link" }}</a>{{ end -}}
-    {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
-        <figcaption>
-            {{ with (.Get "title") -}}
-                <h4>{{ . }}</h4>
+{{ $src := (.Get "src") }}
+
+{{ if or (fileExists (print "static/" $src)) (in $src "icons.cumulusnetworks.com") }}
+    <figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+        {{- if .Get "link" -}}
+            <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
+        {{- end }}
+        <img src="{{ $src }}"
+            {{- if or (.Get "alt") (.Get "caption") }}
+            alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
             {{- end -}}
-            {{- if or (.Get "caption") (.Get "attr") -}}<p>
-                {{- .Get "caption" | markdownify -}}
-                {{- with .Get "attrlink" }}
-                    <a href="{{ . }}">
+            {{- with .Get "width" }} width="{{ . }}"{{ end -}}
+            {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+        /> <!-- Closing img tag -->
+        {{- if .Get "link" }}</a>{{ end -}}
+        {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+            <figcaption>
+                {{ with (.Get "title") -}}
+                    <h4>{{ . }}</h4>
                 {{- end -}}
-                {{- .Get "attr" | markdownify -}}
-                {{- if .Get "attrlink" }}</a>{{ end }}</p>
-            {{- end }}
-        </figcaption>
-    {{- end }}
-</figure>
+                {{- if or (.Get "caption") (.Get "attr") -}}<p>
+                    {{- .Get "caption" | markdownify -}}
+                    {{- with .Get "attrlink" }}
+                        <a href="{{ . }}">
+                    {{- end -}}
+                    {{- .Get "attr" | markdownify -}}
+                    {{- if .Get "attrlink" }}</a>{{ end }}</p>
+                {{- end }}
+            </figcaption>
+        {{- end }}
+    </figure>
+{{ else }}
+    {{- /* "If the file doesn't exist, print the .md file and image" */ -}}
+    {{- errorf "broken figure tag in %s. %s" .Position $src -}}
+{{ end }}

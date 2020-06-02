@@ -1117,7 +1117,7 @@ mode.
 {{%notice tip%}}
 
 Here is an example showing how to configure breakout cables for the
-[Mellanox Spectrum SN2700](https://community.mellanox.com/docs/DOC-2685).
+[Mellanox Spectrum SN2700](https://community.mellanox.com/s/article/howto-configure-breakout-cables-40g---gt--4x10g-using-cumulus-linux).
 
 {{%/notice%}}
 

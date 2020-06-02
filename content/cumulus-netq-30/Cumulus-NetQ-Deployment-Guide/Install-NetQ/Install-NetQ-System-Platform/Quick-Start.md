@@ -12,10 +12,10 @@ Do not skip the normal installation flow until you have performed this process m
 
 | Deployment Type | Server Arrangement | System | Hypervisor | Installation Instructions |
 | --- | --- | --- | --- | :---: |
-| On premises | Single server | Cumulus NetQ Appliance | NA | {{<link title="Install the NetQ Appliance" text="Start Install" >}} |
+| On premises | Single server | Cumulus NetQ Appliance | NA | {{<link title="Install the NetQ On-premises Appliance" text="Start Install" >}} |
 | On premises | Single server | Own Hardware plus VM | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Single On-premises Server" text="Start Install" >}} |
 | On premises | Single server | Own Hardware plus VM | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Single On-premises Server" text="Start Install" >}} |
-| On premises | Server cluster | Cumulus NetQ Appliance | NA | {{<link title="Install the NetQ Appliance Cluster" text="Start Install" >}} |
+| On premises | Server cluster | Cumulus NetQ Appliance | NA | {{<link title="Install a NetQ On-premises Appliance Cluster" text="Start Install" >}} |
 | On premises | Server cluster | Own Hardware plus VM | KVM | {{<link title="Set Up Your KVM Virtual Machine for an On-premises Server Cluster" text="Start Install" >}} |
 | On premises | Server cluster | Own Hardware plus VM | VMware | {{<link title="Set Up Your VMware Virtual Machine for an On-premises Server Cluster" text="Start Install" >}} |
 | Cloud | Single server | Cumulus NetQ Cloud Appliance | NA | {{<link title="Install the NetQ Cloud Appliance" text="Start Install" >}} |

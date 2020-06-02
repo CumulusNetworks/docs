@@ -8,28 +8,28 @@ With the NetQ CLI, a network administrator can monitor the key components of swi
 
 ## View a Summary of Your Network Inventory
 
-While the detail can be very helpful, sometimes a simple overview of the
-hardware inventory is better. This example shows the basic hardware
-information for all devices.
+While the detail can be very helpful, sometimes a simple overview of the hardware inventory is better. This example shows the basic hardware information for all devices.
 
-    cumulus@switch:~$ netq show inventory brief
-     
-    Matching inventory records:
-    Hostname          Switch               OS              CPU      ASIC            Ports
-    ----------------- -------------------- --------------- -------- --------------- -----------------------------------
-    edge01            N/A                  Ubuntu          x86_64   N/A             N/A
-    exit01            VX                   CL              x86_64   VX              N/A
-    exit02            VX                   CL              x86_64   VX              N/A
-    leaf01            VX                   CL              x86_64   VX              N/A
-    leaf02            VX                   CL              x86_64   VX              N/A
-    leaf03            VX                   CL              x86_64   VX              N/A
-    leaf04            VX                   CL              x86_64   VX              N/A
-    server01          N/A                  Ubuntu          x86_64   N/A             N/A
-    server02          N/A                  Ubuntu          x86_64   N/A             N/A
-    server03          N/A                  Ubuntu          x86_64   N/A             N/A
-    server04          N/A                  Ubuntu          x86_64   N/A             N/A
-    spine01           VX                   CL              x86_64   VX              N/A
-    spine02           VX                   CL              x86_64   VX              N/A
+```
+cumulus@switch:~$ netq show inventory brief
+    
+Matching inventory records:
+Hostname          Switch               OS              CPU      ASIC            Ports
+----------------- -------------------- --------------- -------- --------------- -----------------------------------
+edge01            N/A                  Ubuntu          x86_64   N/A             N/A
+exit01            VX                   CL              x86_64   VX              N/A
+exit02            VX                   CL              x86_64   VX              N/A
+leaf01            VX                   CL              x86_64   VX              N/A
+leaf02            VX                   CL              x86_64   VX              N/A
+leaf03            VX                   CL              x86_64   VX              N/A
+leaf04            VX                   CL              x86_64   VX              N/A
+server01          N/A                  Ubuntu          x86_64   N/A             N/A
+server02          N/A                  Ubuntu          x86_64   N/A             N/A
+server03          N/A                  Ubuntu          x86_64   N/A             N/A
+server04          N/A                  Ubuntu          x86_64   N/A             N/A
+spine01           VX                   CL              x86_64   VX              N/A
+spine02           VX                   CL              x86_64   VX              N/A
+```
 
 ## View Information about the ASIC on all Switches
 

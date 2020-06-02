@@ -28,6 +28,12 @@ The following commands and cards are used to monitor devices.
 
 NetQ uses {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP.
 
+The CLI supports hardware-, software-, and event-related commands:
+
+- {{<link title="#Hardware Commands" text="Hardware Commands">}}
+- {{<link title="#Software Commands" text="Software Commands">}}
+- {{<link title="#Events" text="Events">}}
+
 ### Hardware Commands
 
 The NetQ CLI provides a number of commands to monitor hardware inventory on switches. The syntax of these commands is:
@@ -104,7 +110,11 @@ For the <code>between</code> option, the start (<code>text-time</code>) and end 
 {{< /tab >}}
 
 {{< tab "NetQ UI" >}}
-Three card workflows are available for viewing network inventory and individual device inventory.
+Two card workflows are available for viewing network inventory (switches and hosts) and individual switch inventory: Inventory|Devices, Inventory|Switches. The Switch card workflow enables you to view performance for individual switches.
+
+- {{<link title="#Devices Inventory Card Workflow" text="Devices Inventory Card Workflow">}}
+- {{<link title="#Switch Inventory Card Workflow" text="Switch Inventory Card Workflow">}}
+- {{<link title="#Switch Performance Card Workflow" text="Switch Performance Card Workflow">}}
 
 ### Devices Inventory Card Workflow
 

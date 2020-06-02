@@ -55,7 +55,7 @@ To configure custom hash, edit the `/etc/cumulus/datapath/traffic.conf` file:
 The following shows an example `/etc/cumulus/datapath/traffic.conf` file:
 
 ```
-cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 ...
 #LAG HASH config
 #HASH config for LACP to enable custom fields

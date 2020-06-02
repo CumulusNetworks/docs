@@ -4,50 +4,7 @@ author: Cumulus Networks
 weight: 850
 toc: 3
 ---
-With NetQ, a network administrator can monitor the switch software components for misconfigurations. NetQ helps answer questions such as:
-
-- What software is installed on my switches?
-- Are all switches licensed correctly?
-- What is the ACL and forwarding resources usage?
-- Do all switches have NetQ Agents running?
-
-The NetQ CLI provides the `netq show inventory`, `netq show cl-<software-item>`, and `netq show events` commands to monitor switches.
-
-The syntax for these commands is:
-
-    netq [<hostname>] show agents
-    netq [<hostname>] show inventory brief [json]
-    netq [<hostname>] show inventory license [cumulus] [status ok|status missing] [around <text-time>] [json]
-    netq [<hostname>] show inventory os [version <os-version>|name <os-name>] [json]
-
-    netq [<hostname>] show cl-manifest [json]
-    netq [<hostname>] show cl-pkg-info [<text-package-name>] [around <text-time>] [json]
-    netq [<hostname>] show recommended-pkg-version [release-id <text-release-id>] [package-name <text-package-name>] [json]
-    netq [<hostname>] show cl-resource acl [ingress | egress] [around <text-time>] [json]
-    netq [<hostname>] show cl-resource forwarding [around <text-time>] [json]
-
-    netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] [type license|type os] [between <text-time> and <text-endtime>] [json]
-
-{{%notice note%}}
-The values for the `name` option are specific to your
-deployment. For example, if you have devices with only one type of OS,
-say Cumulus Linux, then that is the only option available for the
-`os-name` option value. If you have multiple OSs running, say you also
-have Ubuntu, then that would also be an option for you.
-{{%/notice%}}
-
-{{%notice note%}}
-When entering a time value, you must include a numeric value *and* the unit of measure:
-
-- **w**: week(s)
-- **d**: day(s)
-- **h**: hour(s)
-- **m**: minute(s)
-- **s**: second(s)
-- **now**
-
-For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
-{{%/notice%}}
+With the NetQ CLI, a network administrator can monitor the switch software components for misconfigurations.
 
 ### View OS Information for a Switch
 
@@ -727,4 +684,3 @@ In this example, we want to view changes to the bgpd service in the last
     leaf01            bgp          info     BGP session with peer spine-3 swp5. 1d:6h:55m:37s
                                             4 vrf DataVrf1082 state changed fro
                                             m failed to Established
-

@@ -4,65 +4,7 @@ author: Cumulus Networks
 weight: 840
 toc: 3
 ---
-With NetQ, a network administrator can monitor the key components of switch an NetQ Appliance hardware, including the motherboard, ASIC, microprocessor,
-disk, memory, fan and power supply information. You can also monitor temperature and SSD utilization information. With this data, NetQ helps you answer questions such as:
-
-- What switches do I have in the network?
-- What hardware is installed on my switches?
-- How many transmit and receive packets have been dropped?
-- How healthy are the fans and power supply?
-
-NetQ uses {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP.
-
-The NetQ CLI provides a number of `netq show` commands to monitor switches. The syntax of these commands is:
-
-```
-netq [<hostname>] show inventory brief [opta] [json]
-netq [<hostname>] show inventory asic [vendor <asic-vendor>|model <asic-model>|model-id <asic-model-id>] [opta] [json]
-netq [<hostname>] show inventory board [vendor <board-vendor>|model <board-model>] [opta] [json]
-netq [<hostname>] show inventory cpu [arch <cpu-arch>] [opta] [json]
-netq [<hostname>] show inventory disk [name <disk-name>|transport <disk-transport>|vendor <disk-vendor>] [opta] [json]
-netq [<hostname>] show inventory license [cumulus] [status ok|status missing] [around <text-time>] [opta] [json]
-netq [<hostname>] show inventory memory [type <memory-type>|vendor <memory-vendor>] [opta] [json]
-netq [<hostname>] show inventory os [version <os-version>|name <os-name>] [opta] [json]
-
-netq [<hostname>] show sensors all [around <text-time>] [json]
-netq [<hostname>] show sensors psu [<psu-name>] [around <text-time>] [json]
-netq [<hostname>] show sensors temp [<temp-name>] [around <text-time>] [json]
-netq [<hostname>] show sensors fan [<fan-name>] [around <text-time>] [json]
-
-netq [<hostname>] show interface-stats [errors|all] [<physical-port>] [around <text-time>] [json]
-netq [<hostname>] show interface-utilization [<text-port>] [tx|rx] [around <text-time>] [json]
-netq [<hostname>] show resource-util [cpu | memory] [around <text-time>] [json]
-netq [<hostname>] show resource-util disk [<text-diskname>] [around <text-time>] [json]
-netq [<hostname>] show cl-ssd-util [around <text-time>] [json]
-netq [<hostname>] show cl-btrfs-info [around <text-time>] [json]
-
-netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] [type interfaces-physical|type sensors|type btrfsinfo] [between <text-time> and <text-endtime>] [json]
-```
-
-{{%notice note%}}
-When entering a time value, you must include a numeric value *and* the unit of measure:
-
-- **w**: week(s)
-- **d**: day(s)
-- **h**: hour(s)
-- **m**: minute(s)
-- **s**: second(s)
-- **now**
-
-For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
-{{%/notice%}}
-
-{{%notice note%}}
-The keyword values for the `vendor`, `model`, `model-id`, `arch`,
-`name`, `transport`, `type`, `version`, `psu`, `temp`, and `fan`
-keywords are specific to your deployment. For example, if you have
-devices with CPU architectures of only one type, say Intel x86, then
-that is the only option available for the `cpu-arch` keyword value. If
-you have multiple CPU architectures, say you also have ARMv7, then that
-would also be an option for you.
-{{%/notice%}}
+With the NetQ CLI, a network administrator can monitor the key components of switch an NetQ Appliance hardware, including the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. You can also monitor temperature and SSD utilization information.
 
 ## View a Summary of Your Network Inventory
 

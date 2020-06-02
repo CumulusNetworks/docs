@@ -46,20 +46,16 @@ You can configure the following fields:
 - Destination port
 - Layer 3 protocol
 
-To configure custom hash, edit the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file:
+To configure custom hash, edit the `/etc/cumulus/datapath/traffic.conf` file:
 
 1. To enable custom hashing, uncomment the `lag_hash_config.enable = true` line.
 2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
-3. Restart the `switchd` service:
+3. Run the `echo 1 > /cumulus/switchd/config/traffic/reload` command.
+
+The following shows an example `/etc/cumulus/datapath/traffic.conf` file:
 
 ```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
-
-The following shows an example `datapath.conf` file:
-
-```
-cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 ...
 #LAG HASH config
 #HASH config for LACP to enable custom fields

@@ -1,12 +1,12 @@
 ---
-title: Cumulus NetQ 3.1 User Guide
+title: Cumulus NetQ 3.x User Guide
 author: Cumulus Networks
 weight: 1
 subsection: true
 toc: 1
 cascade:
     product: Cumulus NetQ
-    version: "3.1"
+    version: "3.2"
     imgData: cumulus-netq
     siteSlug: cumulus-netq
     draft: true

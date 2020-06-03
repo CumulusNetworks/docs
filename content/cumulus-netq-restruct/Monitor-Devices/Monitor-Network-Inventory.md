@@ -4,13 +4,17 @@ author: Cumulus Networks
 weight: 820
 toc: 4
 ---
-With NetQ, a network administrator can monitor both the switch hardware and its operating system for misconfigurations or misbehaving services. Refer to {{<link title="Monitor Devices">}} for related commands and cards.
+With NetQ, you can monitor the hardware and software components installed and running on the switches and hosts across the entire network at once. This is extremely useful for understanding the dependence on various vendors and versions, when planning upgrades or the scope of any other required changes.
 
-## View a Summary of Your Network Inventory
+You can still monitor the components on a per-switch basis when needed. Refer to {{<link title="Monitor Switch Inventory">}}.
+
+Refer to {{<link title="Monitor Devices">}} for related CLI commands and UI cards used in the tasks in this topic.
+
+## View Network Inventory Summary
 
 All of the devices in your network can be viewed from either the NetQ CLI or NetQ UI.
 
-{{< tabs "TabID15" >}}
+{{< tabs "TabID17" >}}
 
 {{< tab "NetQ CLI" >}}
 
@@ -20,7 +24,7 @@ To view a list of devices in your network, run:
 netq show inventory brief
 ```
 
-This example shows that we have four spine switches, three leaf switches, two border switches, two firewall switches, seven hosts (servers), and an out-of-band management server in this network.
+This example shows that we have four spine switches, three leaf switches, two border switches, two firewall switches, seven hosts (servers), and an out-of-band management server in this network. For each of these we see the type of switch, operating system, CPU and ASIC.
 
 ```
 cumulus@switch:~$ netq show inventory brief
@@ -81,7 +85,9 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 
 {{< /tabs >}}
 
-## View Hardware Inventory
+## View Hardware Inventory across the Network
+
+You can view all hardware components or narrow your view to specific hardware components for all of the switches in your network.
 
 ### View Switch Components
 
@@ -133,9 +139,9 @@ To view switch components:
 
 1. Locate the Inventory|Devices card on your workbench.
 
-2. Hover of the card, and change to the large size card using the size picker.
+2. Hover over the card, and change to the large size card using the size picker.
 
-    By default the Switches tab is shown displaying the total number of switches, ASIC vendors, OS versions, license status, NetQ Agent versions, and specific platforms deployed on all of your switches.
+    By default the Switches tab is shown displaying the total number of switches, ASIC vendors, OS versions, license status, NetQ Agent versions, and specific platforms deployed across all of your switches.
 
     {{< figure src="/images/netq/inventory-devices-large-switches-tab-230.png" width="500" >}}
 
@@ -143,7 +149,7 @@ You can hover over any of the segments in a component distribution chart to high
 
 - the name or value of the component type, such as the version number or status
 - the total number of switches with that type of component deployed compared to the total number of switches
-- percentage of this type with respect to all component types.  
+- percentage of this type with respect to all component types
 
     {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650" >}}
 
@@ -153,7 +159,7 @@ Additionally, sympathetic highlighting is used to show the related component typ
 
 {{< /tabs >}}
 
-### View Information about the ASIC on all Switches
+### View ASIC Information for all Switches
 
 ASIC information can be viewed from either the NetQ CLI or NetQ UI.
 
@@ -245,7 +251,7 @@ While the Device Inventory cards provide a network-wide view, you may want to se
 
 {{< /tabs >}}
 
-### View Information about the Motherboard in a Switch
+### View Motherboard Information for all Switches
 
 You can view the vendor, model, base MAC address, serial number, part
 number, revision, and manufacturing date for a switch motherboard on a
@@ -294,7 +300,7 @@ particular switch. This example shows the motherboard vendor for the
     ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
     st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
 
-### View Information about the CPU on a Switch
+### View CPU Information for all Switches
 
 You can view the architecture, model, operating frequency, and the
 number of cores for the CPU on a single device or for all devices. This
@@ -362,7 +368,7 @@ as shown here for *server02*.
     server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
 
-### View Information about the Disk on a Switch
+### View Disk Information for all Switches
 
 You can view the name or operating system, type, transport, size,
 vendor, and model of the disk on a single device or all devices. This
@@ -394,7 +400,7 @@ for a particular device. This example shows disk information for
     ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
     leaf03            vda             disk             N/A                6G         0x1af4               N/A
 
-### View Memory Information for a Switch
+### View Memory Information for all Switches
 
 You can view the name, type, size, speed, vendor, and serial number for
 the memory installed in a single device or all devices. This example
@@ -452,7 +458,7 @@ switch, as shown here for leaf01.
     ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
     leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
 
-### View a Summary of Physical Inventory for the NetQ or NetQ Cloud Appliance
+### View a Summary of Physical Inventory for the NetQ On-premises or NetQ Cloud Appliance
 
 Using the `opta` option lets you view inventory information for the NetQ or NetQ Cloud Appliance(s) rather than all network nodes. This example give you a summary of the inventory on the device.
 
@@ -968,7 +974,7 @@ Look for the **Rebalance Recommended** column. If the value in that column says 
 
 Optionally, use the `hostname` option to view the information for a given device, or use the `around` option to view the information for a particular time.
 
-## View Software Inventory
+## View Software Inventory across the Network
 
 ### View Which Operating Systems Are Running on Your Network Devices
 

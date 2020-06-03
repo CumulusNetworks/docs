@@ -45,6 +45,12 @@ Fixed: 1:9.9.5.dfsg-9+deb8u19</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29890</td>
+<td><p>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29872</td>
 <td><p>Tab completion for the net show rollback description command returns information about a snapshot instead of context help.<br/>
 To work around this issue, run the net show commit history command to find descriptions instead of the net show rollback description command.</p></td>
@@ -65,6 +71,13 @@ CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vap
 Vulnerable: &lt;= 3.8.7.1-1+deb8u5<br/>
 Fixed: 3.8.7.1-1+deb8u6</p></td>
 <td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29779</td>
+<td><p>In LLDP, the snmp subagent loses all subsequent lldpRemSysName (1.0.8802.1.1.2.1.4.1.1.9) entries after an entry with a missing SysName is added.<br/>
+All the information from lldpctl is correct. Only the entries after the entry that is missing a SysName in lldpRemSysName disappear from the snmp subagent.</p></td>
+<td>3.7.12</td>
 <td></td>
 </tr>
 <tr>

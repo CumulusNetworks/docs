@@ -551,7 +551,7 @@ To install or upgrade switches:
 5. Give the upgrade job a name. This is required.
 
     {{<notice tip>}}
-    For best presentation, Cumulus Networks recommends keeping the name to a maximum of 22 characters when possible. The name can contain spaces and special characters. If you choose to use longer names, use the distinguishing part of the name at the beginning.
+    The name can be a maximum of 22 characters and contain spaces and special characters.
     {{</notice>}}
 
 6. Verify that the switches you selected are included, and that they have the correct IP address and roles assigned.
@@ -562,7 +562,7 @@ To install or upgrade switches:
     In this example, some of the selected switches do not have roles assigned.
 
     {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-missing-roles-300.png" width="500">}}
-    
+
 7. When you are satisfied that the list of switches is accurate for the job, click **Next**.
 
 8. Verify that you want to use the default Cumulus Linux version for this upgrade job. If not, click **Custom** and select an alternate image from the list.
@@ -767,7 +767,9 @@ To install or upgrade switches:
 
 After starting the upgrade you can monitor the progress from the preview page or the Upgrade History page.
 
-From the preview page, a green circle with rotating arrows is shown above each step as it is working. Alternately, you can close the detail of the job and see a summary of all current and past upgrade jobs on the Upgrade History page. The job started most recently is shown at the bottom, and the data is refreshed every minute.
+From the preview page, a green circle with rotating arrows is shown above each step as it is working. Alternately, you can close the detail of the job and see a summary of all current and past upgrade jobs on the Upgrade History page. The job started most recently is shown at the top, and the data is refreshed periodically.
+
+Switches are displayed in the order of upgrade, by role/category and within roles/categories. Switches that are planned for upgrade first are listed first. You can scroll down within a role or category to see the additional switches to be upgraded.
 
 {{<notice tip>}}
 If you are disconnected while the job is in progress, it may appear as if nothing is happening. Try closing (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}) and reopening your view (click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}}), or refreshing the page.
@@ -780,6 +782,8 @@ Several viewing options are available for monitoring the upgrade job.
 - Monitor the job with full details open:
 
     {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-300.png" width="700">}}
+
+    Each switch goes through a number of steps. To view these steps, click {{<img src="https://icons.cumulusnetworks.com/52-arrows-diagrams/01-arrows/arrow-down-1.svg" height="18" width="18">}}.
 
 - Monitor the job with summary information only in the Upgrade History page. Open this view by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the full details view:
 

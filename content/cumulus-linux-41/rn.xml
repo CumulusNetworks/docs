@@ -7,6 +7,26 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29890</td>
+<td><p>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</p></td>
+<td>3.7.12, 4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29872</td>
+<td><p>Tab completion for the net show rollback description command returns information about a snapshot instead of context help.<br/>
+To work around this issue, run the net show commit history command to find descriptions instead of the net show rollback description command.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29871</td>
+<td><p>The net show rollback description &lt;string&gt; command returns an error even if the string matches a commit description.<br/>
+To work around this issue, look for your string in the output of the net show commit history command (or grep for it there) instead.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29841</td>
 <td><p>The following vulnerabilities have been announced that affect Unbound:<br/>
 CVE-2020-12662 and CVE-2020-12663 have been discovered in Unbound, a recursive-only caching DNS server; a traffic amplification attack against third party authoritative name servers (NXNSAttack) and insufficient sanitisation of replies from upstream servers could result in denial of service via an infinite loop.<br/>
@@ -14,6 +34,13 @@ Unbound is not provided for Cumulus Linux, but the libunbound8 library package i
 Vulnerable: &lt;= 1.9.0-2+deb10u1<br/>
 Fixed: 1.9.0-2+deb10u2</p></td>
 <td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29779</td>
+<td><p>In LLDP, the snmp subagent loses all subsequent lldpRemSysName (1.0.8802.1.1.2.1.4.1.1.9) entries after an entry with a missing SysName is added.<br/>
+All the information from lldpctl is correct. Only the entries after the entry that is missing a SysName in lldpRemSysName disappear from the snmp subagent.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -739,6 +766,13 @@ See the following for more information:<br/>
 To work around this issue, upgrade Cumulus Linux by installing the Cumulus Linux image. Run the onie-select command to go into ONIE, and then use the nos-install command in ONIE to install a new image.<br/>
 This workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-27489</td>
+<td><p>Mellanox switches might experience higher CPU usage from the sx_sdk service or when BFD is in use.<br/>
+To work around this issue, disable BFD to alleviate some of the CPU load.</p></td>
+<td>4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1666,6 +1700,20 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-29872</td>
+<td><p>Tab completion for the net show rollback description command returns information about a snapshot instead of context help.<br/>
+To work around this issue, run the net show commit history command to find descriptions instead of the net show rollback description command.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29871</td>
+<td><p>The net show rollback description &lt;string&gt; command returns an error even if the string matches a commit description.<br/>
+To work around this issue, look for your string in the output of the net show commit history command (or grep for it there) instead.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29841</td>
 <td><p>The following vulnerabilities have been announced that affect Unbound:<br/>
 CVE-2020-12662 and CVE-2020-12663 have been discovered in Unbound, a recursive-only caching DNS server; a traffic amplification attack against third party authoritative name servers (NXNSAttack) and insufficient sanitisation of replies from upstream servers could result in denial of service via an infinite loop.<br/>
@@ -1673,6 +1721,13 @@ Unbound is not provided for Cumulus Linux, but the libunbound8 library package i
 Vulnerable: &lt;= 1.9.0-2+deb10u1<br/>
 Fixed: 1.9.0-2+deb10u2</p></td>
 <td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29779</td>
+<td><p>In LLDP, the snmp subagent loses all subsequent lldpRemSysName (1.0.8802.1.1.2.1.4.1.1.9) entries after an entry with a missing SysName is added.<br/>
+All the information from lldpctl is correct. Only the entries after the entry that is missing a SysName in lldpRemSysName disappear from the snmp subagent.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2415,6 +2470,13 @@ See the following for more information:<br/>
 To work around this issue, upgrade Cumulus Linux by installing the Cumulus Linux image. Run the onie-select command to go into ONIE, and then use the nos-install command in ONIE to install a new image.<br/>
 This workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-27489</td>
+<td><p>Mellanox switches might experience higher CPU usage from the sx_sdk service or when BFD is in use.<br/>
+To work around this issue, disable BFD to alleviate some of the CPU load.</p></td>
+<td>4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>

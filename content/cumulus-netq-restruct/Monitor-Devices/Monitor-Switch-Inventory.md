@@ -58,4 +58,8 @@ netq <hostname> show inventory brief
 
 This example shows
 
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ## View Switch Software Inventory

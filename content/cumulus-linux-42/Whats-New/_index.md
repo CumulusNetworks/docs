@@ -17,7 +17,6 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 ### New Platforms
 
 - Dell S5224F-ON (25G Trident3 X5)
-- Dell N3248P-ON (1G Trident3 X3)
 - Delta AGV848v1 (25G Trident3 X5)
 - Edgecore AS5835-54T (10G Trident3 X5)
 - Edgecore AS5835-54X (10G Trident3 X5)
@@ -27,6 +26,7 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - GMS S422-SW (10G (Maverick))
 - Mellanox SN4700C: (400G Spectrum-3)
 - Mellanox SN4600C (100G Spectrum-3)
+- Mellanox SN3700C: (200G Spectrum-2)
 - Mellanox SN3420 (25G Spectrum-2)
 
 ### New Features and Enhancements

@@ -1054,19 +1054,11 @@ iface swp310s3
 ...
 ```
 
-3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
-
-    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+3. Restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
 {{< /tab >}}
 
 {{< /tabs >}}
-
-{{%notice tip%}}
-
-For an example on how to configure breakout cables for the Mellanox Spectrum SN2700 switch, refer to {{<exlink url="https://community.mellanox.com/s/article/howto-configure-breakout-cables-40g---gt--4x10g-using-cumulus-linux" text="this article">}}.
-
-{{%/notice%}}
 
 ### Remove a Breakout Port
 
@@ -1100,9 +1092,7 @@ To remove a breakout port:
     ...
     ```
 
-3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
-
-    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+3. Restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
 {{< /tab >}}
 
@@ -1121,9 +1111,7 @@ To remove a breakout port:
     ...
     ```
 
-2. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
-
-    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+2. Restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
 {{< /tab >}}
 

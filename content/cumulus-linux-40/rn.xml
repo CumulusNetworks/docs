@@ -668,8 +668,8 @@ Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing:
 </tr>
 <tr>
 <td>CM-28156</td>
-<td><p>NCLU crashes when you run the net add interface storage-optimized pfc command because non-ascii quotes exist in the datapath.conf file.<br/>
-To work around this issue, manually edit the /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf file and replace the non-ascii single quotes  with ascii single quotes (standard single quote on the keyboard).</p></td>
+<td><p>NCLU crashes when you run the net add interface storage-optimized pfc command because non-ASCII quotes exist in the datapath.conf file.<br/>
+To work around this issue, manually edit the /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf file and replace the non-ASCII single quotes with ASCII single quotes (standard single quote on the keyboard).</p></td>
 <td>4.0.0</td>
 <td>4.1.0-4.1.1</td>
 </tr>

@@ -3465,8 +3465,8 @@ Because this memory leak is in the kernel, you cannot clear it by restarting a s
 </tr>
 <tr>
 <td>CM-28156</td>
-<td><p>NCLU crashes when you run the net add interface storage-optimized pfc command because non-ascii quotes exist in the datapath.conf file.<br/>
-To work around this issue, manually edit the /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf file and replace the non-ascii single quotes  with ascii single quotes (standard single quote on the keyboard).</p></td>
+<td><p>NCLU crashes when you run the net add interface storage-optimized pfc command because non-ASCII quotes exist in the datapath.conf file.<br/>
+To work around this issue, manually edit the /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf file and replace the non-ASCII single quotes with ASCII single quotes (standard single quote on the keyboard).</p></td>
 <td>4.0.0</td>
 </tr>
 <tr>

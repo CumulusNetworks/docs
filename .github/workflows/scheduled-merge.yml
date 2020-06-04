@@ -3,8 +3,7 @@ name: 'Scheduled Merge'
 
 on:
   schedule:
-    - cron:  '0 19 * * *'
-    #- cron: '*/3 * * * *'
+    - cron:  '0 16,22 * * *'
 
 jobs:
   nightly-merge:

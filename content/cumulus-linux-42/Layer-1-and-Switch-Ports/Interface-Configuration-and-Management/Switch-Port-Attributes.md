@@ -928,7 +928,7 @@ iface swp3s3
 
 When you commit your change on a Broadcom switch, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-When you commit your change on a Mellanox switch, `switchd` does not restart; there is no interruption to network services.
+When you commit your change on a Mellanox switch, there is no interruption to network services.
 
 {{%/notice%}}
 
@@ -971,7 +971,12 @@ iface swp310s3
 
 3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+    On a Mellanox switch, you can run the following commands to avoid interrupting network services:
+
+    ```
+    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
+    cumulus@switch:~$ ifreload -a
+    ```
 
 {{< /tab >}}
 
@@ -1011,7 +1016,12 @@ To remove a breakout port:
 
 3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+    On a Mellanox switch, you can run the following commands to avoid interrupting network services:
+
+    ```
+    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
+    cumulus@switch:~$ ifreload -a
+    ```
 
 {{< /tab >}}
 
@@ -1032,7 +1042,12 @@ To remove a breakout port:
 
 2. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+    On a Mellanox switch, you can run the following commands to avoid interrupting network services:
+
+    ```
+    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
+    cumulus@switch:~$ ifreload -a
+    ```
 
 {{< /tab >}}
 

@@ -24,8 +24,7 @@ If your network uses a proxy server for external connections, you should first {
 
 ### Verify Service Package Versions
 
-Before you install the NetQ Agent on an Ubuntu server, make sure the
-following packages are installed and running these minimum versions:
+For proper operation of  the NetQ Agent on an Ubuntu server, make sure the following packages are installed and running these minimum versions:
 
 - iproute 1:4.3.0-1ubuntu3.16.04.1 all
 - iproute2 4.3.0-1ubuntu3 amd64

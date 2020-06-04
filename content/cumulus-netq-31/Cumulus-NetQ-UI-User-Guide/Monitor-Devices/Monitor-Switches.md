@@ -478,7 +478,7 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="even">
 <td>Sensors</td>
-<td>Displays all known sensors on the switch. This tab provides a table for each type of sensor. Select the sensor type using the filter above the table.
+<td>Displays all known sensors on the switch. This tab provides a table for each type of sensor. Select the sensor type using the filter above the table. SFP and QSFP digital optic module data is available when optical diagnostics support is enabled in Cumulus Linux. You can configure threshold-based events for the digital optic modules in {{<link url="/cumulus-netq-31/Cumulus-NetQ-Admin-User-Guide/Application-Management/#manage-threshold-crossing-rules" text="Manage Threshold Crossing Rules">}}.
 <ul>
 <li> <strong>Fan</strong>:<ul>
 <li>Hostname: Hostname where the fan sensor resides</li>
@@ -520,9 +520,20 @@ The full screen Switch card provides multiple tabs.
 <li>VIn: Input voltage (V) measured by sensor</li>
 <li>VOut: Output voltage (V) measured by sensor</li>
 </ul>
+<li> <strong>Digital Optical Modules</strong>:<ul>
+<li>Input power (Upper): Maximum input power (mW/dBm) seen in the designated time period (24 hrs, week, et
+<li>Input power (Lower): Minimum input power (mW/dBm) (seen over some timeframe)</li>
+<li>Laser output power (Upper): Maximum laser output power (mW/dBm) (seen over some timeframe)</li>
+<li>Laser output power (Lower): Minimum laser output power (mW/dBm) (seen over some timeframe)</li>
+<li>Laser bias current (Upper): Maximum laser bias current (mA) (seen over some timeframe)</li>
+<li>Laser bias current (Lower): Minimum laser bias current (mA) (seen over some timeframe)</li>
+<li>Module temperature (Upper): Maximum optic module temperature (&deg;C/&deg;F) (seen over some timeframe)</li>
+<li>Module temperature (Lower): Minimum optic module temperature (&deg;C/&deg;F) (seen over some timeframe)</li>
+<li>Transceiver voltage (Upper): Maximum transceiver voltage (V) (seen over some timeframe)</li>
+<li>Transceiver voltage (Lower): Minimum transceiver voltage (V) (seen over some timeframe)</li>
 </ul></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Table Actions</td>
 <td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
 </tr>

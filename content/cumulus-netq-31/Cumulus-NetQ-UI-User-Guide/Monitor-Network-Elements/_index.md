@@ -61,9 +61,10 @@ The IP Addresses view provides all available parameter data about all IP address
 
 ## View All Sensors
 
-The Sensors view provides all available parameter data provided by the power supply units (PSUs), fans, and temperature sensors in the system.
+The Sensors view provides all available parameter data provided by the power supply units (PSUs), fans, temperature and digital optical monitoring sensors in the system.
 
-{{<figure src="/images/netq/main-menu-ntwk-sensors-psu-241.png" width="700">}}
+<!-- Need new figure
+{{<figure src="/images/netq/main-menu-ntwk-sensors-psu-241.png" width="700">}} -->
 
 ## View What Just Happened
 

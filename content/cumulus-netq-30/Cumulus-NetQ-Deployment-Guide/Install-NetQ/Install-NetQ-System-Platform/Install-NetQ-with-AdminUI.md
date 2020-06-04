@@ -58,7 +58,7 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
 
     4. Install NetQ software.
 
-        You install the NetQ software using the installation files (`NetQ-3.0.0-tgz` for on-premises deployments or `NetQ-3.0.0-opta.tgz` for cloud deployments)  that you downloaded and stored previously.
+        You install the NetQ software using the installation files (`NetQ-3.0.0.tgz` for on-premises deployments or `NetQ-3.0.0-opta.tgz` for cloud deployments)  that you downloaded and stored previously.
 
         Enter the appropriate filename in the field provided.
 

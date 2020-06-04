@@ -871,7 +871,7 @@ Cumulus Linux lets you:
 
 - For Broadcom switches with ports that support 100G speeds, you *cannot* have more than 128 logical ports.
 
-- Mellanox switches with the Spectrum ASIC and 64-port Broadcom switches with the Tomahawk2 ASIC all have a limit of 64 total logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
+- Mellanox switches with the Spectrum ASIC have a limit of 64 logical ports. 64-port Broadcom switches with the Tomahawk2 ASIC have a limit of 128 total logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
 
@@ -887,7 +887,7 @@ To configure a breakout port:
 
 {{< tab "NCLU Commands ">}}
 
-This example command breaks out swp3 into four 25G ports.
+This example command breaks out the 100G port on swp3 into four 25G ports:
 
 ```
 cumulus@switch:~$ net add interface swp3 breakout 4x
@@ -936,7 +936,7 @@ When you commit your change on a Mellanox switch, `switchd` does not restart; th
 
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out swp3 into four 25G ports. On Mellanox witches with the Spectrum ASIC and 64-port Broadcom switches with the Tomahawk2 ASIC, you need to disable the next port. The example also disables swp4.
+1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out the 100G port on swp3 into four 25G ports. To break out swp3 into four 10G ports, use 3=4x10G. On Mellanox switches with the Spectrum ASIC and 64-port Broadcom switches with the Tomahawk2 ASIC, you need to disable the next port. The example also disables swp4.
 
    ```
    cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
@@ -976,12 +976,6 @@ iface swp310s3
 {{< /tab >}}
 
 {{< /tabs >}}
-
-{{%notice tip%}}
-
-For an example on how to configure breakout cables for the Mellanox Spectrum SN2700 switch, refer to {{<exlink url="https://community.mellanox.com/s/article/howto-configure-breakout-cables-40g---gt--4x10g-using-cumulus-linux" text="this article">}}.
-
-{{%/notice%}}
 
 ### Remove a Breakout Port
 

@@ -1571,7 +1571,7 @@ The following switches that use Serial over LAN technology (SOL) do not support 
 
 ### ethtool Shows Incorrect Port Speed on 100G Spectrum Switches
 
-After setting the interface speed to 40G by editing the `ports.conf`
+In Cumulus Linux 3.7.6 and earlier, after setting the interface speed to 40G by editing the `ports.conf`
 file on a Spectrum switch, `ethtool` still shows the speed as 100G.
 
 This is a known issue where `ethtool` does not update after restarting

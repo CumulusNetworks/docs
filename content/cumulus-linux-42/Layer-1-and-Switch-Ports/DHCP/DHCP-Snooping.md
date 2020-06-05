@@ -8,7 +8,8 @@ DHCP snooping enables Cumulus Linux to act as a middle layer between the DHCP in
 
 {{%notice note%}}
 
-DHCPv6 is not currently supported.
+- DHCP option 82 processing is not supported.
+- DHCPv6 is not supported.
 
 {{%/notice%}}
 
@@ -73,11 +74,19 @@ The NCLU commands save the configuration in the `/etc/dhcpsnoop/dhcp_snoop.json`
 }
 ```
 
+To remove all DHCP snooping configuration, run the `net del dhcp-snoop all` command. For example:
+
+```
+cumulus@leaf01:~$ net del dhcp-snoop all
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
 When DHCP snooping detects a violation, the packet is dropped and a message is logged to the `/var/log/dhcpsnoop.log` file.
 
 ## Show the DHCP Binding Table
 
-To show the DHCP binding table, run the `net show dhcp-snoop table` command:
+To show the DHCP binding table, run the `net show dhcp-snoop table` command for IPv4 or the `net show dhcp-snoop6 table` command for IPv6. The following example command shows the DHCP binding table for IPv4:
 
 ```
 cumulus@leaf01:~$ net show dhcp-snoop table

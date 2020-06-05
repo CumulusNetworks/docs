@@ -970,7 +970,7 @@ The backup IP address **must** be different than the peer link IP address (`clag
 
 {{%notice note%}}
 
-- The clagd-backup-ip is required.
+The `clagd-backup-ip` is required.
 
 {{%/notice%}}
 

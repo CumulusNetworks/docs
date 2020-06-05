@@ -148,7 +148,7 @@ The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Naviga
 
 7. You can verify that you are on the correct version by viewing what is listed under the Cumulus logo.
 
-## Upgrade Your Platform Using the NetQ CLI
+## Upgrade Using the NetQ CLI
 
 Upgrading your NetQ On-premises or Cloud Appliance(s) or VMs is simple using the NetQ CLI.
 

@@ -413,6 +413,13 @@ You can set CPU as a SPAN destination interface to mirror data plane traffic to 
 
 Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic does not overwhelm the CPU.
 
+{{%notice note%}}
+
+- Broadcom switches with the Trident3 ASIC only support ACL SPAN in non-atomic mode.
+- Egress Mirroring for control plane generated traffic to the CPU port is not supported.
+
+{{%/notice%}}
+
 To use the CPU port as the SPAN destination, create a file in the `/etc/cumulus/acl/policy.d/` directory and add the rules. The following example rule matches on swp1 ingress traffic that has the source IP Address 10.10.1.1. When a match occurs, the traffic is mirrored to the CPU:
 
 ```

@@ -88,7 +88,7 @@ The medium Trace Request card displays:
 
 The large Trace Request card displays:
 
-{{< figure src="/images/netq/trace-request-large-222.png" width="500" >}}
+{{< figure src="/images/netq/trace-request-large-310.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -254,7 +254,7 @@ To create the trace request:
 
 4. In the **VRF** field, enter the identifier for the VRF interface you want to use.
 
-    {{< figure src="/images/netq/trace-request-large-l3wVRF-example-222.png" width="500" >}}
+    {{< figure src="/images/netq/trace-request-large-l3wVRF-example-310.png" width="500" >}}
 
     In this example, we are starting our trace at *leaf01* and ending it at *10.1.3.103* using VRF *vrf1.*
 
@@ -278,7 +278,7 @@ Remember that if you choose a MAC address as the source, you must enter a MAC ad
 
 4. In the **VLAN ID** field, enter the identifier for the VLAN you want to use.
 
-    {{< figure src="/images/netq/trace-request-large-l2vlan-example-222.png" width="500" >}}
+    {{< figure src="/images/netq/trace-request-large-l2vlan-example-310.png" width="500" >}}
 
     In this example, we are starting our trace at *leaf01* and ending it at *00:03:00:33:33:01* using VLAN *13.*
 
@@ -302,7 +302,7 @@ Remember that if you choose a MAC address as the source, you must enter a MAC ad
 
 4. Enter a VLAN ID (layer 2 trace) or optionally a VRF interface (layer 3 trace).
 
-    {{< figure src="/images/netq/trace-request-large-l2vlan-ex.png" width="500" >}}
+    {{< figure src="/images/netq/trace-request-large-l2vlan-example-310.png" width="500" >}}
 
 5. Select a timeframe under **Schedule** to specify how often you want to run the trace.
 
@@ -340,9 +340,9 @@ To run a scheduled trace now:
 
     {{< figure src="/images/netq/trace-request-small-selection-230.png" width="200" >}}
 
-    {{< figure src="/images/netq/trace-request-medium-selection-230.png" width="200" >}}
+    {{< figure src="/images/netq/trace-request-medium-selection-310.png" width="200" >}}
 
-    {{< figure src="/images/netq/trace-request-large-selection-222.png" width="500" >}}
+    {{< figure src="/images/netq/trace-request-large-selection-310.png" width="500" >}}
 
 2. Select the scheduled trace from the **Select Trace** or **New Trace Request** list.
 

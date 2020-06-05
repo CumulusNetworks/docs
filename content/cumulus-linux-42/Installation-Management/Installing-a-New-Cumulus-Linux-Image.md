@@ -218,7 +218,7 @@ Follow the steps below to install the Cumulus Linux image referencing a local fi
 
 {{%notice note%}}
 
-Installing the Cumulus Linux image referencing a local file from ONIE is not supported on the Dell N3048EP-ON switch. Use one of the other installation methods, such as a web server, FTP or DHCP, or install the image from Cumulus Linux.
+Installing the Cumulus Linux image referencing a local file from ONIE is not supported on the Dell N3048EP-ON switch. Use one of the other installation methods, such as a web server or USB, or install the image from Cumulus Linux.
 
 {{%/notice%}}
 

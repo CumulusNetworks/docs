@@ -1431,39 +1431,6 @@ The following switches that use Serial over LAN technology (SOL) do not support 
 - Penguin Arctica NX3200c
 - Penguin Arctica NX4808xxv
 
-### ethtool Shows Incorrect Port Speed on 100G Spectrum Switches
-
-On a Spectrum switch, after you set the interface speed to 40G in the `ports.conf` file, `ethtool` still shows the speed as 100G. This is a known issue where `ethtool` does not update after restarting `switchd` and continues to display the outdated port speed.
-
-To correctly set the port speed, run the following commands.
-
-{{< tabs "TabID1571 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-Run the `net add interface <interface> link speed` command. The
-following example command sets the port speed to 40G:
-
-```
-cumulus@switch:~$ net add interface swp1 link speed 40000
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-Run the `ethtool -s <interface> speed` command. The following example command sets the port speed to 40G:
-
-```
-cumulus@switch:~$ sudo ethtool -s swp1 speed 40000
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
 ### Delay in Reporting Interface as Operational Down
 
 When you remove two transceivers simultaneously from a switch, both interfaces show the `carrier down` status immediately. However, it takes one second for the second interface to show the `operational down` status. In addition, the services on this interface also take an extra second to come down.

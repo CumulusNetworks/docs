@@ -120,13 +120,8 @@ Cumulus Networks recommends you use this range of MAC addresses when configuring
 {{%notice note%}}
 
 - You *cannot* use the same MAC address for different MLAG pairs. Make sure you specify a different `clagd-sys-mac` setting for each MLAG pair in the network.
+- You cannot use multicast MAC addresses as the `clagd-sys-mac`.
 - If you configure MLAG with NCLU commands, Cumulus Linux does not check against a possible collision with VLANs outside the default reserved range when creating the peer link interfaces, in case the reserved VLAN range has been modified.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-- Multicast MAC addresses cannot be used as the `clagd-sys-mac`. 
 
 {{%/notice%}}
 

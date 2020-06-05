@@ -41,8 +41,7 @@ MLAG has these requirements:
 
     {{%notice tip%}}
 
-If you cannot use LACP, you can also use 
-{{<link url="Bonding-Link-Aggregation" text="balance-xor mode">}} to dual-connect host-facing bonds in an MLAG environment. You must still configure the same `clag-id` parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the MLAG switch pair treats the bonds as if they are single-connected.
+If you cannot use LACP, you can also use {{<link url="Bonding-Link-Aggregation" text="balance-xor mode">}} to dual-connect host-facing bonds in an MLAG environment. You must still configure the same `clag-id` parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the MLAG switch pair treats the bonds as if they are single-connected.
 
 {{%/notice%}}
 
@@ -120,6 +119,7 @@ Cumulus Networks recommends you use this range of MAC addresses when configuring
 {{%notice note%}}
 
 - You *cannot* use the same MAC address for different MLAG pairs. Make sure you specify a different `clagd-sys-mac` setting for each MLAG pair in the network.
+- You cannot use multicast MAC addresses as the `clagd-sys-mac`.
 - If you configure MLAG with NCLU commands, Cumulus Linux does not check against a possible collision with VLANs outside the default reserved range when creating the peer link interfaces, in case the reserved VLAN range has been modified.
 
 {{%/notice%}}

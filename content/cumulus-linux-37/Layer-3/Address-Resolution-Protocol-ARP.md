@@ -250,14 +250,14 @@ The configuration above takes effect immediately but does not persist if you reb
 
 1. Create a new file called `/etc/cumulus/neighmgr.conf` and add the `setsrcipv4 <ipaddress>` option; for example:
 
-```
-cumulus@switch:~$  sudo nano /etc/cumulus/neighmgr.conf
+    ```
+    cumulus@switch:~$  sudo nano /etc/cumulus/neighmgr.conf
 
-setsrcipv4: 10.1.0.2
-```
+    setsrcipv4: 10.1.0.2
+    ```
 
-2. Reload the configuration file using `systemd`:
+2. Restart the `neighmgrd` service:
 
-```
-cumulus@switch:~$ sudo systemctl daemon-reload
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart neighmgrd
+    ```

@@ -277,8 +277,8 @@ The configuration above takes effect immediately but does not persist if you reb
     setsrcipv4: 10.1.0.2
     ```
 
-2. Reload the configuration file using `systemd`:
+2. Restart the `neighmgrd` service:
 
     ```
-    cumulus@switch:~$ sudo systemctl daemon-reload
+    cumulus@switch:~$ sudo systemctl restart neighmgrd
     ```

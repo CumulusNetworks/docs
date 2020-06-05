@@ -24,7 +24,7 @@ If your network uses a proxy server for external connections, you should first {
 
 ### Verify Service Package Versions
 
-For proper operation of the NetQ Agent on an Ubuntu server, make sure the following packages are installed and running these minimum versions:
+The following packages, while not required for installation of the NetQ Agent, must be installed and running for proper operation of the NetQ Agent on a Red Hat or CentOS server:
 
 - iproute 1:4.3.0-1ubuntu3.16.04.1 all
 - iproute2 4.3.0-1ubuntu3 amd64

@@ -4,14 +4,14 @@ author: Cumulus Networks
 weight: 141
 toc: 4
 ---
-The first step in upgrading your NetQ 2.4.x installation to NetQ 3.0.0 is to upgrade your NetQ appliance(s) or VM(s). This topic describes how to upgrade this for both on-premises and cloud deployments.
+The first step in upgrading your NetQ 2.4.x installation to NetQ 3.0.0 is to upgrade either the NetQ Platform software running on your NetQ On-premises Appliance(s) or VM(s), or the NetQ Collector software running on your NetQ Cloud Appliance(s) or VM(s).
 
 ## Prepare for Upgrade
 
-Two important steps are required to prepare for upgrade of your NetQ Platform:
+Two important steps are required to prepare for upgrade of your NetQ software:
 
 - Download the necessary software tarballs
-- Update the Debian packages on physical server and VMs
+- Update the Debian packages on Appliance(s) and VM(s)
 
 Optionally, you can choose to back up your NetQ Data before performing the upgrade.
 
@@ -27,11 +27,12 @@ To complete the preparation:
 
     3. Select the relevant software from the **HyperVisor/Platform** list:
 
-        If you are upgrading a NetQ On-premises Appliance or VM, select *Appliance*  to download the NetQ-3.0.0.tgz file. If you are upgrading a NetQ Cloud Appliance or VM, select *Appliance (Cloud)* to download the NetQ-3.0.0-opta.tgz file.
+        - If you are upgrading NetQ Platform software for a NetQ On-premises Appliance or VM, select *Appliance*  to download the NetQ-3.0.0.tgz file.
+        - If you are upgrading NetQ Collector software for a NetQ Cloud Appliance or VM, select *Appliance (Cloud)* to download the NetQ-3.0.0-opta.tgz file.
 
         {{< figure src="/images/netq/netq-30-download-options-300.png" width="500" >}}
 
-    4. Scroll down and click **Download**. For example: The NetQ Appliance images.
+    4. Scroll down and click **Download** on the relevant image card.
 
         {{< figure src="/images/netq/netq-30-appliance-onpremcld-dwnld-300.png" width="420" >}}
 
@@ -54,8 +55,8 @@ You can ignore the note on the image card because, unlike during installation, y
     cumulus@<hostname>:~$ sudo dpkg --remove --force-remove-reinstreq cumulus-netq netq-apps netq-agent 2>/dev/null
     [sudo] password for cumulus:
     (Reading database ... 71621 files and directories currently installed.)
-    Removing netq-apps (2.4.1-ub18.04u24~1577405296.fcf3c28) ...
-    Removing netq-agent (2.4.1-ub18.04u24~1577405296.fcf3c28) ...
+    Removing netq-apps (2.4.1-ub18.04u26~1581351889.c5ec3e5) ...
+    Removing netq-agent (2.4.1-ub18.04u26~1581351889.c5ec3e5) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
 
@@ -83,49 +84,45 @@ You can ignore the note on the image card because, unlike during installation, y
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (3.0.0-ub18.04u27~1588048540.0e20d33) ...
+    Unpacking netq-agent (3.0.0-ub18.04u27~1588242914.9fb5b87) ...
     ...
-    Unpacking netq-apps (3.0.0-ub18.04u27~1588048540.0e20d33) ...
-    Setting up netq-apps (3.0.0-ub18.04u27~1588048540.0e20d33) ...
-    Setting up netq-agent (3.0.0-ub18.04u27~1588048540.0e20d33) ...
+    Unpacking netq-apps (3.0.0-ub18.04u27~1588242914.9fb5b87) ...
+    Setting up netq-apps (3.0.0-ub18.04u27~1588242914.9fb5b87) ...
+    Setting up netq-agent (3.0.0-ub18.04u27~1588242914.9fb5b87) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
 
-You can now upgrade your appliance using the NetQ Admin UI, in the next section. Alternately, you can upgrade using the CLI here: {{<link title="#Upgrade Your Platform Using the NetQ CLI" text="Upgrade Your Platform Using the NetQ CLI">}}.
+Now that you have all of the software components prepared, you can upgrade your NetQ On-premises Appliance or VM, or your NetQ Cloud Appliance or VM, using the NetQ Admin UI, in the next section. Alternately, you can upgrade using the CLI here: {{<link title="#Upgrade Using the NetQ CLI" text="Upgrade Using the NetQ CLI">}}.
 
-## Upgrade Your Platform Using the NetQ Admin UI
+## Upgrade Using the NetQ Admin UI
 
-After completing the preparation steps, upgrading your NetQ On-premises or Cloud Appliance(s) or VMs is simple using the Admin UI.
+Upgrading your NetQ On-premises or Cloud Appliance(s) or VMs is simple using the Admin UI.
 
 To upgrade your NetQ software:
 
-1. Run the bootstrap CLI to upgrade the Admin UI application.
+1. Upgrade the Admin UI application.
 
-{{< tabs "TabID100" >}}
+    {{< tabs "TabID100" >}}
 
-{{< tab "On-premises Deployments" >}}
+    {{< tab "On-premises Deployments" >}}
 
-```
-cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.0.0.tgz
-2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.0.0.tgz
-2020-04-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
-2020-04-28 15:47:35.667579: master-node-installer: Removing old images
------------------------------------------------
-Successfully bootstrap-upgraded the master node
-```
+    cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.0.0.tgz
+    2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.0.0.tgz
+    2020-04-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
+    2020-04-28 15:47:35.667579: master-node-installer: Removing old images
+    -----------------------------------------------
+    Successfully bootstrap-upgraded the master node
 
-{{< /tab >}}
+    {{< /tab >}}
 
-{{< tab "Cloud Deployments" >}}
+    {{< tab "Cloud Deployments" >}}
 
-```
-netq bootstrap master upgrade /mnt/installables/NetQ-3.0.0-opta.tgz
-```
+    netq bootstrap master upgrade /mnt/installables/NetQ-3.0.0-opta.tgz
 
-{{< /tab >}}
+    {{< /tab >}}
 
-{{< /tabs >}}
+    {{< /tabs >}}
 
 2. Open the Admin UI by entering *http://\<hostname-or-ipaddress\>:8443* in your browser address field.
 
@@ -147,35 +144,33 @@ The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Naviga
 
     {{<figure src="/images/netq/adminui-upgrade-progress-241.png" width="700">}}
 
-5. When it completes, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> to be returned to the Health dashboard.
+6. When it completes, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> to be returned to the Health dashboard.
+
+7. You can verify that you are on the correct version by viewing what is listed under the Cumulus logo.
 
 ## Upgrade Your Platform Using the NetQ CLI
 
-After completing the preparation steps, upgrading your NetQ On-premises/Cloud Appliance(s) or VMs is simple using the NetQ CLI.
+Upgrading your NetQ On-premises or Cloud Appliance(s) or VMs is simple using the NetQ CLI.
 
 To upgrade:
 
 1. Run the appropriate `netq upgrade` command.
 
-{{< tabs "TabID155" >}}
+    {{< tabs "TabID155" >}}
 
-{{< tab "On-premises Deployments" >}}
+    {{< tab "On-premises Deployments" >}}
 
-```
-netq upgrade bundle /mnt/installables/NetQ-3.0.0.tgz
-```
+    netq upgrade bundle /mnt/installables/NetQ-3.0.0.tgz
 
-{{< /tab >}}
+    {{< /tab >}}
 
-{{< tab "Cloud Deployments" >}}
+    {{< tab "Cloud Deployments" >}}
 
-```
-netq upgrade bundle /mnt/installables/NetQ-3.0.0-opta.tgz
-```
+    netq upgrade bundle /mnt/installables/NetQ-3.0.0-opta.tgz
 
-{{< /tab >}}
+    {{< /tab >}}
 
-{{< /tabs >}}
+    {{< /tabs >}}
 
 2. After the upgrade is completed, confirm the upgrade was successful.
 

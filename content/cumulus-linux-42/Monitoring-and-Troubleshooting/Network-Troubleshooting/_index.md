@@ -428,10 +428,16 @@ When a match occurs, the traffic is is mirrored to the CPU:
      -A FORWARD -o swp1 -s 10.10.1.1 -j SPAN --dport cpu
 ```
 
+Install the rules:
+
+```
+cumulus@switch:~$ sudo cl-acltool -i
+```
+
 You can use tcpcdump to monitor traffic mirrored to the CPU on the switch. You can also use filters for tcpdump. To use `tcpcdump` to monitor traffic mirrored to the CPU, run the following command:
 
 ```
-tcpdump -i mirror
+cumulus@switch:~$ sudo tcpdump -i mirror
 ```
 
 ### Configure ERSPAN

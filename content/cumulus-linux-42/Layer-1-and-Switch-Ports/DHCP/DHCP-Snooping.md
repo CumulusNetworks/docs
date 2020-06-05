@@ -6,6 +6,12 @@ toc: 3
 ---
 DHCP snooping enables Cumulus Linux to act as a middle layer between the DHCP infrastructure and DHCP clients by scanning DHCP control packets and building an IP-MAC database. Cumulus Linux accepts DHCP offers from only trusted interfaces and can rate limit packets.
 
+{{%notice note%}}
+
+DHCPv6 is not currently supported.
+
+{{%/notice%}}
+
 ## Configure DHCP Snooping
 
 To configure DHCP snooping, you need to:

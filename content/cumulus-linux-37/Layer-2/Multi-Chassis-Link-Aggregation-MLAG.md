@@ -919,7 +919,7 @@ cumulus@switch:~$ net show bridge link swp1
 
 ### Specify a Backup Link
 
-You must specify a backup link for your peer links in case the peer link goes down. When this happens, the `clagd` service uses the backup link to check the health of the peer switch. The backup link is specified in the `clagd-backup-ip` parameter.
+You should specify a backup link for your peer links in case the peer link goes down. When this happens, the `clagd` service uses the backup link to check the health of the peer switch. The backup link is specified in the `clagd-backup-ip` parameter.
 
 In an anycast VTEP environment, if you do not specify the `clagd-backup-ip` parameter, large convergence times (around 5 minutes) can result when the primary MLAG switch is powered off. Then the secondary switch must wait until the reload delay timer expires (which defaults to 300 seconds, or 5 minutes) before bringing up a VNI with its unique loopback IP.
 
@@ -932,12 +932,6 @@ cumulus@spine01:~$ net commit
 ```
 
 The backup IP address must be different than the peer link IP address (`clagd-peer-ip`). It must be reachable by a route that does not use the peer link and it must be in the same network namespace as the peer link IP address.
-
-{{%notice note%}}
-
-The `clagd-backup-ip` is required.
-
-{{%/notice%}}
 
 Cumulus Networks recommends you use the switch's loopback or management IP address for this purpose. Which one should you choose?
 

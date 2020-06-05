@@ -203,17 +203,9 @@ The following shows an example `/etc/cumulus/datapath/traffic.conf` file:
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 ...
-# HASH config for ECMP to enable custom fields
-# Fields will be applicable for ECMP hash
-# calculation
-#Note: Hash seed can be configured in traffic.conf
-#/etc/cumulus/datapath/traffic.conf
-#
 # Uncomment to enable custom fields configured below
 hash_config.enable = true
 
-#symmetric hash will get disabled
-#if sip/dip or sport/dport are not enabled in pair
 #hash Fields available ( assign true to enable)
 #ip protocol
 hash_config.ip_prot = true

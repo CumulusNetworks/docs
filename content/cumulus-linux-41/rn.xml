@@ -513,6 +513,13 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-28810</td>
+<td><p>When the garbage collector does not release memory back to the operating system, clagd might consume a large amount of memory. As a result of low system memory, systemd might shut down services to reclaim memory.</p>
+</td>
+<td>3.7.11-3.7.12, 4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28770</td>
 <td><p>The net add routing route-map &lt;name&gt; permit &lt;seq&gt; set community &lt;comm&gt; command does not add the set statement into the /etc/frr/frr.conf file.</p></td>
 <td>4.0.0-4.1.1</td>
@@ -2214,6 +2221,13 @@ CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability<br/>
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use enable -f for runtime loading of a new builtin that calls setuid() to regain dropped privileges.<br/>
 To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <td>3.0.0-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28810</td>
+<td><p>When the garbage collector does not release memory back to the operating system, clagd might consume a large amount of memory. As a result of low system memory, systemd might shut down services to reclaim memory.</p>
+</td>
+<td>3.7.11-3.7.12, 4.1.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>

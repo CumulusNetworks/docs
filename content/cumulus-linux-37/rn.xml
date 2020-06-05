@@ -436,6 +436,13 @@ codecs.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-28810</td>
+<td><p>When the garbage collector does not release memory back to the operating system, clagd might consume a large amount of memory. As a result of low system memory, systemd might shut down services to reclaim memory.</p>
+</td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28754</td>
 <td><p>On switches with the Trident2+ ASIC, adding SPAN rules disables PBR rules.</p></td>
 <td>3.7.3-3.7.12</td>
@@ -2332,6 +2339,13 @@ CVE-2020-0034: It was discovered that there was an out-of-bounds buffer read<br/
 vulnerability in libvpx, a library implementing the VP8 &amp; VP9 video<br/>
 codecs.</p></td>
 <td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28810</td>
+<td><p>When the garbage collector does not release memory back to the operating system, clagd might consume a large amount of memory. As a result of low system memory, systemd might shut down services to reclaim memory.</p>
+</td>
+<td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
 <tr>

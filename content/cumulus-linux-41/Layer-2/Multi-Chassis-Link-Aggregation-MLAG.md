@@ -124,6 +124,12 @@ Cumulus Networks recommends you use this range of MAC addresses when configuring
 
 {{%/notice%}}
 
+{{%notice note%}}
+
+- Multicast MAC addresses cannot be used as the `clagd-sys-mac`. 
+
+{{%/notice%}}
+
 ### Configure the Host or Switch
 
 On your dual-connected device, create a bond that uses LACP. The method you use varies with the type of device you are configuring. The following image is a basic MLAG configuration, showing all the essential elements; a more detailed two-leaf/two-spine configuration is shown {{<link url="#example-mlag-configuration" text="below">}}.

@@ -319,6 +319,12 @@ Because Cumulus Linux is a collection of different Debian Linux packages, be awa
 
 If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} to dual connect two switches in your environment, follow the steps below according to the version of Cumulus Linux from which you are upgrading.
 
+{{%notice info%}}
+For Cumulus Linux 3.7.10 and later, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 3.7.12 and leaf02 is running 4.1.1.
+
+This is due to a change in the bonding driver regarding how the *actor port key* is derived, which causes the port key to have a different value for links with the same speed/duplex settings across different major releases. The port key received from the LACP partner must remain consistent between all bond members in order for all bonds to be synchronized. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch are in sync.
+{{%/notice%}}
+
 ### Upgrade from Cumulus Linux 3.y.z to a Later 3.y.z Release
 
 When you upgrade Cumulus Linux from 3.y.z to a later 3.y.z release, you can either install a disk image using ONIE or use package upgrade. Both methods are included below.

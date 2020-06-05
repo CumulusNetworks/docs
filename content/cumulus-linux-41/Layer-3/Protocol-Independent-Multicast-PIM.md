@@ -269,9 +269,11 @@ When the FHR receives a PIM (S,G) join, it continues encapsulating and sending P
 
 The RP then receives the multicast packet along the (S,G) tree and sends a PIM register stop to the FHR to end the register process.
 
-|   |   |
-|---|---|
-| {{< img src = "/images/cumulus-linux/pim-data.png" >}} | {{< img src = "/images/cumulus-linux/pim-register.png" >}} |
+<table border="0">
+<tr>
+<td> {{< img src = "/images/cumulus-linux/pim-data.png" >}} </td><td> {{< img src = "/images/cumulus-linux/pim-register.png" >}} </td>
+</tr>
+</table>
 
 ##### PIM SPT Switchover
 

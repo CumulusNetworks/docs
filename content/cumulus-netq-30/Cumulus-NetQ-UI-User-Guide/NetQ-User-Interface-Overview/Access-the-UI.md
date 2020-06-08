@@ -13,7 +13,7 @@ To log in to the UI:
     - On-premises: *https://\<hostname-or-ipaddress\>:443*  
     - Cloud: *https://netq.cumulusnetworks.com*
 
-    {{< figure src="/images/netq/access-ui-login-screen-230.png" width="700" >}}
+    {{< figure src="/images/netq/access-ui-login-screen-310.png" width="700" >}}
 
 3. Login.
 
@@ -29,11 +29,17 @@ To log in to the UI:
 
 2. Enter your password.
 
-3. Enter a new password.
+3. Click **Login**.
 
-4. Enter the new password again to confirm it.
+4. Change your password. Enter a new password.
 
-5. Click **Update and Accept** after reading the Terms of Use.
+5. Enter the new password again to confirm it.
+
+6. Click **Sign In**.
+
+7. Read the Terms of Use.
+
+8. Click the checkbox at the end and click **Accept**.
 
     The default Cumulus Workbench opens, with your username shown in the upper right corner of the application.
 

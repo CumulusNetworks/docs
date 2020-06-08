@@ -232,8 +232,9 @@ Use the following function to set the default *cumulus* user account password:
 function set_password(){
      # Set password
      passwd -x 99999 cumulus
-     echo \'cumulus:MyP4$$word\' | chpasswd'
+     echo 'cumulus:MyP4$$word' | chpasswd
 }
+set_password
 ```
 
 ### Install a License

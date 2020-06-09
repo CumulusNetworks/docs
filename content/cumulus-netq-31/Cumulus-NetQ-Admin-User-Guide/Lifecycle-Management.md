@@ -379,7 +379,7 @@ To create a snapshot:
 4. Choose the time for the snapshot:
 
     - To create for the current network state, click **Now**
-    - To create for the network state at a previous date and time, click **Past**, then use the calendar to select the time and date.
+    - To create for the network state at a previous date and time, click **Past**, then click in **Start Time** field to use the calendar to select the date and time.
 
 5. Choose the services to include in the snapshot.
 

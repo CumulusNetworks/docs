@@ -370,22 +370,35 @@ To create a snapshot:
 
 2. Click **Create Snapshot**.
 
-3. Enter a name for the snapshot.
-
     {{<figure src="/images/netq/snapshot-create-snap-modal-ex-300.png" width="450">}}
 
-4. Accept the time provided or enter a previous date and time.
+    <!-- Replace this image -->
 
-5. Optionally, add a descriptive note for the snapshot.
+3. Enter a name for the snapshot.
 
-6. Click **Finish**.
+4. Choose the time for the snapshot:
+
+    - To create for the current network state, click **Now**
+    - To create for the network state at a previous date and time, click **Past**, then use the calendar to select the time and date.
+
+5. Choose the services to include in the snapshot.
+
+    Click any service to remove that service from the snapshot. This would be appropriate if you do not support a particular service, or that you are concerned that including that service might cause the snapshot to take an excessive amount of time to complete if included. The check mark next to the service and the service itself is grayed out when the service is removed. Click any service again to re-include the service in the snapshot. The check mark is added next to the service and is no longer grayed out.
+
+    {{<notice note>}}
+If you remove services, be aware that snapshots taken in the past or future may not be equivalent when performing a network state comparison.
+    {{</notice>}}
+
+6. Optionally, add a descriptive note for the snapshot to remind you of its purpose. For example: This is taken before adding MLAG pairs, or Taken after removing the leaf36 switch.
+
+7. Click **Finish**.
 
     A medium Snapshot card appears on your desktop. Spinning arrows are visible while it works. When it finishes you can see the number of items that have been captured, and if any failed. This example shows a successful result.
 
     {{<figure src="/images/netq/snapshot-success-300.png" width="200">}}
 
     {{<notice note>}}
-If you have already created other snapshots, <strong>Compare</strong> is active. Otherwise it is inactive (grayed-out).
+If you have already created other snapshots, <strong>Compare</strong> is active. Otherwise it is inactive (grayed out).
     {{</notice>}}
 
 ### Compare Network Snapshots

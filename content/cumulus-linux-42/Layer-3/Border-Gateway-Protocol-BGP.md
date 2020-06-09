@@ -20,7 +20,7 @@ An {{<exlink url="https://en.wikipedia.org/wiki/Autonomous_System_%28Internet%29
 
 The ASN is central to how BGP builds a forwarding topology. A BGP route advertisement carries  with it not only the ASN of the originator, but also the list of ASNs that this route advertisement passes through. When forwarding a route advertisement, a BGP speaker adds itself to this list. This list of ASNs is called the *AS path*. BGP uses the AS path to detect and avoid loops.
 
-ASNs were originally 16-bit numbers, but were later modified to be 32-bit. FRRouting supports both 16-bit and 32-bit ASNs, but most implementations still run with 16-bit ASNs.
+ASNs were originally 16-bit numbers, but were later modified to be 32-bit. FRRouting supports both 16-bit and 32-bit ASNs, but many implementations still run with 16-bit ASNs.
 
 {{%notice note%}}
 
@@ -30,7 +30,7 @@ In a VRF-lite deployment (where multiple independent routing tables working simu
 
 ### Auto BGP
 
-In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit ASN numbers automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and network latency.
+In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit ASN numbers automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and network latency. Auto BGP makes no changes to standard BGP behavior or configuration.
 
 Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294. Each leaf is assigned a random and unique value in the range 4200000001 through 4294967294. Each spine is assigned 4200000000; the first number in the range. For information about configuring auto BGP, refer to {{<link url="#Configure-BGP" text="Configure BGP">}} below.
 
@@ -38,6 +38,8 @@ Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294.
 
 - Auto BGP is supported for NCL only.
 - It is not necessary to use auto BGP across all switches in your configuration. For example, you can use auto BGP to configure one switch but allocate ASN numbers manually to other switches.
+- Auto BGP is intended for use in two-tier spine and leaf networks. Using auto BGP in three-tier networks with superspines might result in incorrect ASN assignments.
+- The `leaf` keyword generates the ASN based on a hash of the switch MAC address. The ASN assigned might change after a switch replacement.
 
 {{%/notice%}}
 
@@ -93,10 +95,7 @@ When BGP multipath is in use, if multiple paths are equal, BGP still selects a s
 
 To configure BGP, you need to:
 
-- Assign an ASN to identify the BGP node.
-
-   In a two-tier leaf and spine environment, you can use {{<link url="#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically. Auto BGP is supported with NCLU only.
-
+- Assign an ASN to identify the BGP node. In a two-tier leaf and spine environment, you can use {{<link url="#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically. Auto BGP is supported with NCLU only.
 - Assign a router ID to the BGP node.
 - Specify where to disseminate routing information.
 - Set BGP session properties.
@@ -108,27 +107,27 @@ The following procedure provides example commands:
 
 {{< tab "NCLU Commands ">}}
 
-1. Identify the BGP node by assigning an ASN. Either use auto BGP to assign the ASN automatically or assign the ASN manually.
+1. Identify the BGP node by assigning an ASN. Either assign the ASN manually or use auto BGP to assign the ASN automatically.
 
-    - Use auto BGP to assign an ASN automatically on a leaf:
+    - To assign an ASN manually:
 
-    ```
-    cumulus@switch:~$ net add bgp auto leaf
-    ```
+      ```
+      cumulus@switch:~$ net add bgp autonomous-system 65000
+      ```
 
-    Use auto BGP to assign an ASN automatically on a spine:
+    - To use auto BGP to assign an ASN automatically on a leaf:
 
-    ```
-    cumulus@switch:~$ net add bgp auto spine
-    ```
+      ```
+      cumulus@switch:~$ net add bgp auto leaf
+      ```
+
+      To use auto BGP to assign an ASN automatically on a spine:
+
+      ```
+      cumulus@switch:~$ net add bgp auto spine
+      ```
 
     The auto BGP leaf and spine keywords are only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
-
-    - Assign an ASN manually:
-
-    ```
-    cumulus@switch:~$ net add bgp autonomous-system 65000
-    ```
 
 2. Assign the router ID:
 
@@ -157,7 +156,7 @@ The following procedure provides example commands:
     cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
     ```
 
-3. Specify BGP session properties:
+4. Specify BGP session properties:
 
     ```
     cumulus@switch:~$ net add bgp neighbor 10.0.0.2 next-hop-self
@@ -175,7 +174,7 @@ When configuring a router to be a route reflector client, you must specify the c
 
     {{%/notice%}}
 
-4. Specify which prefixes to originate:
+5. Specify which prefixes to originate:
 
     ```
     cumulus@switch:~$ net add bgp ipv4 unicast network 192.0.2.0/24
@@ -277,6 +276,12 @@ router bgp 65000
   exit-address-family
 ...
 ```
+
+{{%notice note%}}
+
+When using auto BGP, there are no references to `leaf` or `spine` in the configurations. Auto BGP determines the ASN for the system and configures it using standard vtysh commands.
+
+{{%/notice%}}
 
 ## ECMP with BGP
 

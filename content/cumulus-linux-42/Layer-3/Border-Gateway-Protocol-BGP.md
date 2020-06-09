@@ -30,9 +30,9 @@ In a VRF-lite deployment (where multiple independent routing tables working simu
 
 ### Auto BGP
 
-In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit, two byte private ASN numbers automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and network latency.
+In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit ASN numbers automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and network latency.
 
-Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294. Each leaf is assigned a random and unique value in the range 4200000001 through 4294967294. Each spine is assigned the first ASN number in the range (4200000000). For information about configuring auto BGP, refer to {{<link url="#Configure-BGP" text="Configure BGP">}} below.
+Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294. Each leaf is assigned a random and unique value in the range 4200000001 through 4294967294. Each spine is assigned 4200000000; the first number in the range. For information about configuring auto BGP, refer to {{<link url="#Configure-BGP" text="Configure BGP">}} below.
 
 {{%notice note%}}
 
@@ -95,7 +95,7 @@ To configure BGP, you need to:
 
 - Assign an ASN to identify the BGP node.
 
-   In a two-tier leaf and spine environment, you can configure {{<link url="#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically. Auto BGP is supported with NCLU only.
+   In a two-tier leaf and spine environment, you can use {{<link url="#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically. Auto BGP is supported with NCLU only.
 
 - Assign a router ID to the BGP node.
 - Specify where to disseminate routing information.
@@ -108,13 +108,7 @@ The following procedure provides example commands:
 
 {{< tab "NCLU Commands ">}}
 
-1. Identify the BGP node by assigning an ASN. Either assign the ASN manually or use auto BGP to assign the ASN automatically.
-
-   - Assign an ASN manually:
-
-    ```
-    cumulus@switch:~$ net add bgp autonomous-system 65000
-    ```
+1. Identify the BGP node by assigning an ASN. Either use auto BGP to assign the ASN automatically or assign the ASN manually.
 
     - Use auto BGP to assign an ASN automatically on a leaf:
 
@@ -129,6 +123,12 @@ The following procedure provides example commands:
     ```
 
     The auto BGP leaf and spine keywords are only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
+
+    - Assign an ASN manually:
+
+    ```
+    cumulus@switch:~$ net add bgp autonomous-system 65000
+    ```
 
 2. Assign the router ID:
 

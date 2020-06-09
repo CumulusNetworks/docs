@@ -31,7 +31,9 @@ To log in to the UI:
 
 3. Click **Login**.
 
-4. Change your password. Enter a new password.
+4. Change your password.
+
+    Enter a new password with a minimum of eight characters, including at least one uppercase letter, one lowercase letter, one special character, and one number.
 
 5. Enter the new password again to confirm it.
 

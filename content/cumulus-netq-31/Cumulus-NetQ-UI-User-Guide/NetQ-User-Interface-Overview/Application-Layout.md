@@ -7,7 +7,7 @@ toc: 4
 The NetQ UI contains two main areas:
 
 - **Application Header** (1): Contains the main menu, recent actions history, search capabilities, NetQ version, quick health status chart, local time zone, premises list (cloud-only), and user account information.
-- **Workbench** (2): Contains a task bar and content cards (with status and configuration information about your network and its various components).
+- **Workbench** (2): Contains a task bar, content cards (with status and configuration information about your network and its various components), and help menu.
 
 {{< figure src="/images/netq/app-layout-cumulus-wb-areas-highlighted-241.png" width="700" >}}
 
@@ -60,6 +60,35 @@ Cards present information about your network for monitoring and troubleshooting.
 ## User Settings
 
 Each user can customize the NetQ application display, change their account password, and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> > Profile & Preferences. For details, refer to {{<link title="Set User Preferences">}}.
+
+## Embedded Application Help
+
+The NetQ UI provides guided walk-throughs for selected tasks and links to additional resources.
+
+{{<notice note>}}
+You must have connection to the Internet to access this feature.
+{{</notice>}}
+
+Click **Need Help?** to open the menu of tasks and resources currently available.
+
+{{<figure src="/images/netq/walkme-player-300.png" width="150">}}
+
+{{<notice tip>}}
+<strong>Is the help button covering content that you want to see?</strong>
+The button can be dragged and dropped to various locations around the edge of the UI, so if you do not like it on the bottom left (default), you can move it to the bottom center, bottom right, right side bottom, etc. A green dashed border appears in the locations where it can be placed. Alternately, enlarge the NetQ UI application window or scroll within the window to view any hidden content.
+{{</notice>}}
+
+{{<figure src="/images/netq/walkme-menu-300.png" width="300">}}
+
+Within the help menu, topics are grouped by categories:
+
+- **General**: These items describe or walk you through high-level tasks or information about the NetQ UI.
+- **How to...**: These items walk you through how to perform common tasks.
+- **Tell me about...**: These items describe features of the application.
+- **Where Can I Find...**: These items help you find and use features that may be harder to find than others in the application.
+- **User Documentation**: This provides a link to the Cumulus NetQ user documentation. It opens in a separate window so you can have it open while working in the application.
+
+You can search for help items by collapsing and expanding categories or by searching. Click a category title to toggle between viewing and hiding the content. To search, begin entering text into the **Search** field to see suggested content.
 
 ## Format Cues
 

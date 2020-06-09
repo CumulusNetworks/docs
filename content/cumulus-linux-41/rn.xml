@@ -513,6 +513,13 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-28810</td>
+<td><p>When the garbage collector does not release memory back to the operating system, clagd might consume a large amount of memory. As a result of low system memory, systemd might shut down services to reclaim memory.</p>
+</td>
+<td>3.7.11-3.7.12, 4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28770</td>
 <td><p>The net add routing route-map &lt;name&gt; permit &lt;seq&gt; set community &lt;comm&gt; command does not add the set statement into the /etc/frr/frr.conf file.</p></td>
 <td>4.0.0-4.1.1</td>
@@ -2217,6 +2224,13 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-28810</td>
+<td><p>When the garbage collector does not release memory back to the operating system, clagd might consume a large amount of memory. As a result of low system memory, systemd might shut down services to reclaim memory.</p>
+</td>
+<td>3.7.11-3.7.12, 4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28770</td>
 <td><p>The net add routing route-map &lt;name&gt; permit &lt;seq&gt; set community &lt;comm&gt; command does not add the set statement into the /etc/frr/frr.conf file.</p></td>
 <td>4.0.0-4.1.1</td>
@@ -3465,8 +3479,8 @@ Because this memory leak is in the kernel, you cannot clear it by restarting a s
 </tr>
 <tr>
 <td>CM-28156</td>
-<td><p>NCLU crashes when you run the net add interface storage-optimized pfc command because non-ascii quotes exist in the datapath.conf file.<br/>
-To work around this issue, manually edit the /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf file and replace the non-ascii single quotes  with ascii single quotes (standard single quote on the keyboard).</p></td>
+<td><p>NCLU crashes when you run the net add interface storage-optimized pfc command because non-ASCII quotes exist in the datapath.conf file.<br/>
+To work around this issue, manually edit the /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf file and replace the non-ASCII single quotes with ASCII single quotes (standard single quote on the keyboard).</p></td>
 <td>4.0.0</td>
 </tr>
 <tr>

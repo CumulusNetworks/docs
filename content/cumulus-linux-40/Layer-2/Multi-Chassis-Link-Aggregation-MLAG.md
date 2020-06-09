@@ -41,8 +41,7 @@ MLAG has these requirements:
 
     {{%notice tip%}}
 
-If you cannot use LACP, you can also use 
-{{<link url="Bonding-Link-Aggregation" text="balance-xor mode">}} to dual-connect host-facing bonds in an MLAG environment. You must still configure the same `clag-id` parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the MLAG switch pair treats the bonds as if they are single-connected.
+If you cannot use LACP, you can also use {{<link url="Bonding-Link-Aggregation" text="balance-xor mode">}} to dual-connect host-facing bonds in an MLAG environment. You must still configure the same `clag-id` parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the MLAG switch pair treats the bonds as if they are single-connected.
 
 {{%/notice%}}
 
@@ -120,6 +119,7 @@ Cumulus Networks recommends you use this range of MAC addresses when configuring
 {{%notice note%}}
 
 - You *cannot* use the same MAC address for different MLAG pairs. Make sure you specify a different `clagd-sys-mac` setting for each MLAG pair in the network.
+- You cannot use multicast MAC addresses as the `clagd-sys-mac`.
 - If you configure MLAG with NCLU commands, Cumulus Linux does not check against a possible collision with VLANs outside the default reserved range when creating the peer link interfaces, in case the reserved VLAN range has been modified.
 
 {{%/notice%}}
@@ -967,11 +967,17 @@ cumulus@switch:~$ net show bridge link
 
 ### Specify a Backup Link
 
-You should specify a backup link for your peer links in case the peer link goes down. When this happens, the `clagd` service uses the backup link to check the health of the peer switch. The backup link is specified in the `clagd-backup-ip` parameter.
+You must specify a backup link for your peer links in case the peer link goes down. When this happens, the `clagd` service uses the backup link to check the health of the peer switch. The backup link is specified in the `clagd-backup-ip` parameter.
 
 In an anycast VTEP environment, if you do not specify the `clagd-backup-ip` parameter, large convergence times (around 5 minutes) can result when the primary MLAG switch is powered off. Then the secondary switch must wait until the reload delay timer expires (which defaults to 300 seconds, or 5 minutes) before bringing up a VNI with its unique loopback IP.
 
 The backup IP address **must** be different than the peer link IP address (`clagd-peer-ip`). It must be reachable by a route that does not use the peer link and it must be in the same network namespace as the peer link IP address.
+
+{{%notice note%}}
+
+The `clagd-backup-ip` is required.
+
+{{%/notice%}}
 
 Cumulus Networks recommends you use the switch's loopback or management IP address for this purpose. Which one should you choose?
 

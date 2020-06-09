@@ -222,6 +222,21 @@ Several ZTP example scripts are available in the {{<exlink url="https://github.c
 
 ZTP scripts come in different forms and frequently perform many of the same tasks. As BASH is the most common language used for ZTP scripts, the following BASH snippets are provided to accelerate your ability to perform common tasks with robust error checking.
 
+### Set the Default Cumulus User Password
+
+The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change is **required** in Cumulus Linux 4.2 and later.
+
+Use the following function to set the default *cumulus* user account password:
+
+```
+function set_password(){
+     # Set password
+     passwd -x 99999 cumulus
+     echo 'cumulus:MyP4$$word' | chpasswd
+}
+set_password
+```
+
 ### Install a License
 
 Use the following function to include error checking for license file installation.

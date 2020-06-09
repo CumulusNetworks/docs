@@ -161,6 +161,12 @@ You need a console connection to access the switch; you cannot perform this proc
 
 Follow the steps below if your laptop is on the same network as the switch eth0 interface but *no* DHCP server is available.
 
+{{%notice note%}}
+
+Installing the Cumulus Linux image using FTP from ONIE is not supported on the Dell N3048EP-ON switch. Use one of the other installation methods, such as a USB, or install the image from Cumulus Linux.
+
+{{%/notice%}}
+
 {{< tabs "TabID162 ">}}
 
 {{< tab "Install from ONIE ">}}
@@ -215,6 +221,12 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
 ## Install Using a Local File
 
 Follow the steps below to install the Cumulus Linux image referencing a local file.
+
+{{%notice note%}}
+
+Installing the Cumulus Linux image referencing a local file from ONIE is not supported on the Dell N3048EP-ON switch. Use one of the other installation methods, such as a web server or USB, or install the image from Cumulus Linux.
+
+{{%/notice%}}
 
 {{< tabs "TabID217 ">}}
 
@@ -480,12 +492,12 @@ You can run several installer command line options from ONIE to perform basic sw
 
 {{%notice note%}}
 
-To start an installation with the command line options, you must install the installation image directly from the ONIE command line. Installing the image from Cumulus Linux with the `onie-nos-install` command is not supported. You must transfer an installation image to the switch, make the image executable, then initiate installation. For example:
+To start an installation with the command line options, you must access the switch from the console and install the installation image directly from the ONIE command line. Installing the image from Cumulus Linux with the `onie-nos-install` command is not supported. You must transfer an installation image to the switch, make the image executable, then initiate installation. For example:
 
 ```
 ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
 ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'mypassword'
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'MyP4$$word'
 ```
 
 {{%/notice%}}
@@ -496,10 +508,10 @@ You can run more than one option in the same command.
 
 The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change is **required** in Cumulus Linux 4.2 and later.
 
-To automate this process, you can specify a new password from the command line of the installer with the `--password '<clear text-password>'` option. For example, to change the default *cumulus* user password to `mypassword`:
+To automate this process, you can specify a new password from the command line of the installer with the `--password '<clear text-password>'` option. For example, to change the default *cumulus* user password to `MyP4$$word`:
 
 ```
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'mypassword'
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'MyP4$$word'
 ```
 
 To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. For example:
@@ -571,7 +583,7 @@ CL_INSTALLER_ZTP_CONTENT=''
 ...
 ```
 
-The variables to set are described below:
+The variables you can set are described below:
 
 | Variable | Description |
 | -------- | ----------- |
@@ -593,7 +605,7 @@ Because the Cumulus Linux image file is mostly a binary file, you cannot use sta
 head -20 cumulus-linux-4.1.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.1
 ```
 
-2. Remove the first 20 lines of the image, then copy put the remaining lines into another empty file:
+2. Remove the first 20 lines of the image, then copy the remaining lines into another empty file:
 
 ```
 sed -e ‘1,20d’ cumulus-linux-4.1.0-bcm-amd64.bin > `cumulus-linux-4.2.0-bcm-amd64.bin.2`
@@ -636,6 +648,13 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
 	vrf mgmt
+
+auto bridge
+iface bridge
+    bridge-ports swp1 swp2
+    bridge-pvid 1
+    bridge-vids 10 11
+    bridge-vlan-aware yes
 
 auto mgmt
 iface mgmt

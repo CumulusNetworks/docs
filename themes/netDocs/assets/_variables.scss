@@ -14,7 +14,6 @@ $font-size-16: 0.941;
 $border-radius: $padding-4 !default;
 
 // Grayscale
-$white: #ffffff;
 $gray-100: #f8f9fa;
 $gray-200: #e9ecef;
 $gray-300: #dee2e6;
@@ -24,45 +23,54 @@ $gray-600: #868e96;
 $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
+
+// Primary color palette
+$jade: #00ad69;
+$white: #ffffff;
 $black: #000;
 
-$cn-jade: #00ad69;
-$cn-limited-spruce: #36424a;
-$cn-nevada:  #515d68;
-$cn-rolling-stone : #75828c;
-$cn-gray-chateau: #8c9aa6;
-$cn-heather :  #cbd4e0;
-$cn-athens-gray:  #eaedf2 ;
-$cn-mantis :  #7ccc6c ;
-$cn-fern:  #4bc05b ;
-$cn-observatory :  #009271 ;
-$cn-tropical-rain-forest :  #006c56 ;
-$cn-energy-yellow :  #ffc82e ;
-$cn-neon-carrot :  #ffa12d ;
-$cn-radical-red :  #f1446f ;
-$cn-rarity :  #83389b ;
-$cn-seagull :  #1eb5bd  ;
-$cn-halfbaked :  #78cdd1 ;
-$cn-aquahaze: #f6f8fa;
-$cn-raven: #75828C;
-$cn-mystic: #e0e4ec;
+//Secondary color palette
+$mantis: #7ccc6c;
+$fern: #4bc05b;
+$observatory: #009271;
+$tropical-rain-forest: #006c56;
+$te-papa-green: #1e5a4d;
+
+// Tertiary color palette
+$energy-yellow: #ffc82e;
+$neon-carrot: #ffa12d;
+$radical-pink: #f1446f;
+$error-red: $radical-pink;
+$rarity-violet: #83389b;
+$seagull-blue: #1eb5bd;
+$dark-olive: #364249;
+$wizard-blue: #78cdd1;
+
+// Cool grays
+$spruce-gray: #36424a;
+$rolling-stone: #75828c;
+$nevada-gray: #5f6a72;
+$cadet-gray: #b5bdc9;
+$athens-gray: #eaedf2;
+$aqua-haze: #f6f8fa;
+$heather-gray: #cbd4e0;
+$gray-chateau: #8c9aa6;
+$mystic: #e0e4ec;
 
 
-$color-link: $cn-jade;
-$color-visited-link: $cn-limited-spruce  ;
-$color-dark-link: $cn-limited-spruce;
+$color-link: $jade;
+$color-visited-link: $spruce-gray;
+$color-dark-link: $spruce-gray;
 
-$body-background: white;
-$body-font-color: $cn-limited-spruce;
+$body-background: $white;
+$body-font-color: $spruce-gray;
 $body-font-weight: 300;
 $body-min-width: 5rem;
 
-$code-block-background: $cn-athens-gray;
+$code-block-background: $athens-gray;
 
-
-
-$nav-background: $cn-aquahaze ;
-$nav-link-color: $cn-limited-spruce;
+$nav-background: $aqua-haze;
+$nav-link-color: $spruce-gray;
 
 $header-height: 3.5rem;
 $menu-width: 18.53rem;

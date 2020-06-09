@@ -17,7 +17,13 @@ Fixed: 3.6.7-4+deb10u4</p></td>
 </tr>
 <tr>
 <td>CM-30000</td>
-<td><p>When VRF route leaking is configured, iBGP sessions might reset with the peer reporting the error "UPDATE Message Error/Optional Attribute Error." The error is triggered by an UPDATE message that contains the EXTENDED_COMMUNITIES attribute with an empty list of extended communities.</p></td>
+<td><p>When VRF route leaking is configured, iBGP sessions might reset with the peer reporting:</p>
+
+UPDATE Message Error/Optional Attribute Error
+
+
+<p>The error is triggered by an UPDATE message that contains the EXTENDED_COMMUNITIES attribute with an empty list of extended communities.<br/>
+To work around this issue, apply an extended community with a route map using import &lt;vrf&gt; route-map &lt;name&gt; in the importing VRF address family. Make sure that the route map contains the set extended community rt &lt;value:vaue&gt; command; for example, set extended community rt 11:22.</p></td>
 <td>4.1.0-4.1.1</td>
 <td></td>
 </tr>
@@ -1732,7 +1738,13 @@ Fixed: 3.6.7-4+deb10u4</p></td>
 </tr>
 <tr>
 <td>CM-30000</td>
-<td><p>When VRF route leaking is configured, iBGP sessions might reset with the peer reporting the error "UPDATE Message Error/Optional Attribute Error." The error is triggered by an UPDATE message that contains the EXTENDED_COMMUNITIES attribute with an empty list of extended communities.</p></td>
+<td><p>When VRF route leaking is configured, iBGP sessions might reset with the peer reporting:</p>
+
+UPDATE Message Error/Optional Attribute Error
+
+
+<p>The error is triggered by an UPDATE message that contains the EXTENDED_COMMUNITIES attribute with an empty list of extended communities.<br/>
+To work around this issue, apply an extended community with a route map using import &lt;vrf&gt; route-map &lt;name&gt; in the importing VRF address family. Make sure that the route map contains the set extended community rt &lt;value:vaue&gt; command; for example, set extended community rt 11:22.</p></td>
 <td>4.1.0-4.1.1</td>
 <td></td>
 </tr>

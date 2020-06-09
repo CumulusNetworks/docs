@@ -106,7 +106,7 @@ Any time you enable auto-negotiation, Cumulus Linux restores the default configu
 
 {{%/notice%}}
 
-## 
+## Port Speed and Duplex Mode
 
 Cumulus Linux supports both half- and {{<exlink url="http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29" text="full-duplex">}} configurations. Half-duplex is supported only with speeds of less than 1G.
 

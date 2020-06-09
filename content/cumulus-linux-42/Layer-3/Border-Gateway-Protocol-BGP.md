@@ -28,6 +28,19 @@ In a VRF-lite deployment (where multiple independent routing tables working simu
 
 {{%/notice%}}
 
+### Auto BGP
+
+In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit, two byte private ASN numbers automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and network latency.
+
+Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294. Each leaf is assigned a random and unique value in the range 4200000001 through 4294967294. Each spine is assigned the first ASN number in the range (4200000000). For information about configuring auto BGP, refer to {{<link url="#Configure-BGP" text="Configure BGP">}} below.
+
+{{%notice note%}}
+
+- Auto BGP is supported for NCL only.
+- It is not necessary to use auto BGP across all switches in your configuration. For example, you can use auto BGP to configure one switch but allocate ASN numbers manually to other switches.
+
+{{%/notice%}}
+
 ## eBGP and iBGP
 
 When BGP is used to peer between autonomous systems, the peering is referred to as *external BGP* or eBGP. When BGP is used within an autonomous system, the peering used is referred to as *internal BGP* or iBGP. eBGP peers have different ASNs while iBGP peers have the same ASN.
@@ -80,25 +93,50 @@ When BGP multipath is in use, if multiple paths are equal, BGP still selects a s
 
 To configure BGP, you need to:
 
-- Identify the BGP node by assigning an ASN and router ID
-- Specify where to disseminate routing information
-- Set BGP session properties
-- Specify which prefixes to originate
+- Assign an ASN to identify the BGP node.
+
+   In a two-tier leaf and spine environment, you can configure {{<link url="#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically. Auto BGP is supported with NCLU only.
+
+- Assign a router ID to the BGP node.
+- Specify where to disseminate routing information.
+- Set BGP session properties.
+- Specify which prefixes to originate.
 
 The following procedure provides example commands:
 
 {{< tabs "10 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
-1. Identify the BGP node by assigning an ASN and the router ID:
+1. Identify the BGP node by assigning an ASN. Either assign the ASN manually or use auto BGP to assign the ASN automatically.
+
+   - Assign an ASN manually:
 
     ```
     cumulus@switch:~$ net add bgp autonomous-system 65000
+    ```
+
+    - Use auto BGP to assign an ASN automatically on a leaf:
+
+    ```
+    cumulus@switch:~$ net add bgp auto leaf
+    ```
+
+    Use auto BGP to assign an ASN automatically on a spine:
+
+    ```
+    cumulus@switch:~$ net add bgp auto spine
+    ```
+
+    The auto BGP leaf and spine keywords are only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
+
+2. Assign the router ID:
+
+    ```
     cumulus@switch:~$ net add bgp router-id 0.0.0.1
     ```
 
-2. Specify where to disseminate routing information:
+3. Specify where to disseminate routing information:
 
     ```
     cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as external
@@ -148,7 +186,7 @@ When configuring a router to be a route reflector client, you must specify the c
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 1. Enable the `bgpd` daemon as described in {{<link title="Configuring FRRouting">}}.
 
@@ -637,13 +675,13 @@ To enable advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 pe
 
 ```
 cumulus@switch:~$ net add bgp neighbor 2001:1:1::3 capability extended-nexthop 
-cumulus@switch:~$ net pending 
+cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -654,7 +692,7 @@ switch(config-router)# neighbor 2001:1:1::3 capability extended-nexthop
 switch(config-router)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -665,9 +703,9 @@ The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` fi
 
 ```
 ...
-router bgp 65002 
+router bgp 65002
   ...
-  neighbor 2001:1:1::3 capability extended-nexthop 
+  neighbor 2001:1:1::3 capability extended-nexthop
 ...
 ```
 
@@ -675,7 +713,7 @@ Ensure that the IPv6 peers are activated under the IPv4 unicast address family; 
 
 {{< tabs "20 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp neighbor 2001:1:1::3 capability extended-nexthop
@@ -686,7 +724,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -700,7 +738,7 @@ switch(config-router-af)# end
 switch(config)# exit
 switch# write memory
 switch# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -920,7 +958,7 @@ C>* 172.16.10.0/24 is directly connected, swp3, 3d00h26m
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 The following examples show an IPv4 prefix learned from a BGP peer over an IPv6 session using IPv6 global addresses, but where the next hop installed by BGP is a link-local IPv6 address. This occurs when the session is directly between peers and both link-local and global IPv6 addresses are included as next hops in the BGP update for the prefix. If both global and link-local next hops exist, BGP prefers the link-local address for route installation.
 
@@ -1126,7 +1164,7 @@ To view the existing capabilities, run the following commands. The existing capa
 
 {{< tabs "24 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@leaf01:~$ net show bgp neighbor
@@ -1157,7 +1195,7 @@ Hostname: spine01
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 switch# show ip bgp neighbors
@@ -1196,7 +1234,7 @@ To view the current additional paths, run the following commands.
 
 {{< tabs "26 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
 
@@ -1222,7 +1260,7 @@ Paths: (2 available, best #1, table Default-IP-Routing-Table)
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 The example output shows five additional paths that have been added by the TX node for receiving. All the paths have a unique AddPath ID.
 
@@ -1306,7 +1344,7 @@ In this topology:
 
 {{< tabs "28 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 The example below configures the r7 session to advertise the bestpath learned from each AS. In this case, a path from AS 100, a path from AS 300, and a path from AS 500. The `net show bgp 1.1.1.1/32` from r7 has `bestpath-from-AS 100` so you can see what the bestpath is from each AS:
 
@@ -1388,7 +1426,7 @@ Paths: (3 available, best #3, table Default-IP-Routing-Table)
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 The example below configures the r7 session to advertise the bestpath learned from each AS. In this case, a path from AS 100, a path from AS 300, and a path from AS 500. The `show ip bgp 1.1.1.1/32` from r7 has
 `bestpath-from-AS 100` so you can see what the bestpath is from each AS:
@@ -1399,7 +1437,7 @@ cumulus@switch:~$ sudo vtysh
 r7# configure terminal
 r7(config)# router bgp 700
 r7(config-router)# neighbor 192.0.2.2 addpath-tx-bestpath-per-AS
-r7(config-router)# 
+r7(config-router)#
 ```
 
 The output below shows the result on r8:
@@ -1514,7 +1552,7 @@ You create the above configuration with the following commands:
 
 {{< tabs "30 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp autonomous-system 65000
@@ -1529,7 +1567,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1556,7 +1594,7 @@ By default, Cumulus Linux sends IPv6 neighbor discovery router advertisements. C
 
 {{< tabs "32 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add interface swp1 ipv6 nd ra-interval 5
@@ -1566,7 +1604,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1595,7 +1633,7 @@ After you attach a peer to a peer group, you need to associate an IP address wit
 
 {{< tabs "34 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp neighbor tier-2 peer-group
@@ -1606,7 +1644,7 @@ cumulus@switch:~$ net add bgp neighbor 192.0.2.2 peer-group tier-2
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1639,7 +1677,7 @@ You configure dynamic neighbors using the `bgp listen range <ip-address> peer-gr
 
 {{< tabs "36 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp autonomous-system 65001
@@ -1666,7 +1704,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1714,7 +1752,7 @@ In general, use the following syntax with the `neighbor` command:
 
 {{< tabs "38 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 For example, to connect to **the same AS** using the `neighbor` command:
 
@@ -3178,6 +3216,7 @@ FRR does not add BGP `ttl-security` to either the running configuration or to th
 
 ## Related Information
 
+- {{<exlink url="https://cumulusnetworks.com/lp/bgp-ebook/" text="BGP in the Data Center by Dinesh G. Dutt">}} - a complete guide to Border Gateway Protocol for the modern data center
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="Bidirectional forwarding detection">}} (BFD) and BGP
 - {{<exlink url="http://en.wikipedia.org/wiki/Border_Gateway_Protocol" text="Wikipedia entry for BGP">}} (includes list of useful RFCs)
 - {{<exlink url="http://docs.frrouting.org/en/latest/bgp.html" text="FRR BGP documentation">}}

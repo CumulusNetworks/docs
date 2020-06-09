@@ -864,7 +864,7 @@ Setting the default MTU also applies to the management interface. Be sure to add
 Cumulus Linux lets you:
 
 - Break out 100G switch ports into 2x50G, 4x25G, or 4x10G with breakout cables.
-- Break out 40G switch ports into four separate 10G ports for use with breakout cables.
+- Break out 40G switch ports into four separate 10G ports (4x10G) for use with breakout cables.
 - Combine (*aggregate* or *gang*) four 10G switch ports into one 40G port for use with a breakout cable ({{<link url="Bonding-Link-Aggregation" text="not to be confused with a bond">}}).
 
 {{%notice note%}}

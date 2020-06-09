@@ -30,7 +30,7 @@
             {{- end -}}
         {{- end -}}
     {{- else -}}
-        <a href="{{ .Page.RelPermalink }}#{{((index $anchor_set 0) | plainify | htmlUnescape | anchorize) }}">{{- default .Page.Title ($.Get "text") -}}</a>
+        <a href="{{ .Page.RelPermalink }}#{{((index $anchor_set 1) | plainify | htmlUnescape | anchorize) }}">{{- default .Page.Title ($.Get "text") -}}</a>
         {{- $.Scratch.Set "page_found" true -}}
     {{- end -}}
 {{- end -}}

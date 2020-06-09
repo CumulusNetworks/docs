@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29922</td>
 <td><p>The python-httplib2 package, which is available in the repository for optional installation, has the following vulnerability:<br/>
 CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &apos;httplib2.Http.request()&apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.<br/>
@@ -2087,6 +2105,24 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -4525,6 +4561,24 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29922</td>
 <td><p>The python-httplib2 package, which is available in the repository for optional installation, has the following vulnerability:<br/>
 CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &apos;httplib2.Http.request()&apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.<br/>
@@ -6691,6 +6745,24 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -9303,6 +9375,24 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29922</td>
 <td><p>The python-httplib2 package, which is available in the repository for optional installation, has the following vulnerability:<br/>
 CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &apos;httplib2.Http.request()&apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.<br/>
@@ -11783,6 +11873,24 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -14634,6 +14742,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29922</td>
 <td><p>The python-httplib2 package, which is available in the repository for optional installation, has the following vulnerability:<br/>
 CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &apos;httplib2.Http.request()&apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.<br/>
@@ -17446,6 +17572,24 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29922</td>
 <td><p>The python-httplib2 package, which is available in the repository for optional installation, has the following vulnerability:<br/>
 CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &apos;httplib2.Http.request()&apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.<br/>
@@ -19918,6 +20062,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -22450,6 +22612,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -25147,6 +25327,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29922</td>
@@ -27976,6 +28174,24 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29922</td>
 <td><p>The python-httplib2 package, which is available in the repository for optional installation, has the following vulnerability:<br/>
 CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &apos;httplib2.Http.request()&apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.<br/>
@@ -30317,6 +30533,24 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30040</td>
+<td><p>The following vulnerabilities have been announced in the cups package:<br/>
+CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
+CVE-2020-3898: heap based buffer overflow in libcups's ppdFindOption() in ppd-mark.c<br/>
+Vulnerable: &lt;= 1.7.5-11+deb8u7<br/>
+Fixed: 1.7.5-11+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30009</td>
+<td><p>CVE-2020-12049: There was a file descriptor leak in the D-Bus message bus.  An unprivileged local attacker could use this to attack the system DBus daemon, leading to denial of service for all users of the machine.<br/>
+Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
+Fixed: 1.8.22-0+deb8u3</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29922</td>

@@ -109,17 +109,14 @@ you need to manually set the speed on a Broadcom-based switch, set it in
 terms of Mbps, where the setting for 1G is *1000*, 40G is *40000* and
 100G is *100000*, for example.
 
-You can configure ports to one speed less than their maximum speed.
+You can configure ports to the following speeds (unless there are restrictions in the `/etc/cumulus/ports.conf` file of a particular platform).
 
-| Switch Port Type | Lowest Configurable Speed                                 |
+| <div style="width:130px">Switch Port Type | Other Configurable Speeds                                |
 | ---------------- | --------------------------------------------------------- |
 | 1G               | 100 Mb                                                    |
 | 10G              | 1 Gigabit (1000 Mb)                                       |
-| 40G              | 10G\*                                                     |
-| 100G             | 50G\* & 40G (with or without breakout port), 25G\*, 10G\* |
-
-\*Requires the port to be converted into a breakout port. See
-{{<link url="#breakout-ports" text="Breakout Ports">}} below.
+| 40G              | 4x10G (10G lanes) creates four 1-lane ports each running at 10G |
+| 100G             | 50G or 2x50G (25G lanes) - 50G creates one 2-lane port running at 25G and 2x50G creates two 2-lane ports each running at 25G<br>40G (10G lanes) creates one 4-lane port running at 40G<br>4x25G (25G lanes) creates four 1-lane ports each running at 25G<br>4x10G (10G lanes) creates four 1-lane ports each running at 10G |
 
 The following NCLU commands configure the port speed for the swp1
 interface:
@@ -141,7 +138,7 @@ snippet:
 - For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform,
   you must edit the `/etc/cumulus/ports.conf` file and configure the
   four ports in the same core to be 10G. See {{<link url="#caveats-and-errata" text="Caveats and Errata">}} below.
-- A switch with the Maverick ASIC switch limits multicast traffic by the lowest speed
+- A switch with the Maverick ASIC limits multicast traffic by the lowest speed
   port that has joined a particular group. For example, if you are sending 100G
   multicast through and subscribe with one 100G and one 25G port, traffic on both
   egress ports is limited to 25Gbps. If you remove the 25G port from the group,

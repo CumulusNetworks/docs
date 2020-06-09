@@ -7,6 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30038</td>
+<td><p>The following vulnerability has been announced that affects GnuTLS:<br/>
+CVE-2020-13777: GnuTLS 3.6.x before 3.6.14 uses incorrect cryptography for encrypting a session ticket (a loss of confidentiality in TLS 1.2, and an authentication bypass in TLS 1.3). The earliest affected version is 3.6.4 (2018-09-24) because of an error in a 2018-09-18 commit. Until the first key rotation, the TLS server always uses wrong data in place of an encryption key derived from an application.<br/>
+Vulnerable: &lt;= 3.6.7-4+deb10u3<br/>
+Fixed: 3.6.7-4+deb10u4</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29872</td>
 <td><p>Tab completion for the net show rollback description command returns information about a snapshot instead of context help.<br/>
 To work around this issue, run the net show commit history command to find descriptions instead of the net show rollback description command.</p></td>

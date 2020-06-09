@@ -20,7 +20,7 @@ An {{<exlink url="https://en.wikipedia.org/wiki/Autonomous_System_%28Internet%29
 
 The ASN is central to how BGP builds a forwarding topology. A BGP route advertisement carries  with it not only the ASN of the originator, but also the list of ASNs that this route advertisement passes through. When forwarding a route advertisement, a BGP speaker adds itself to this list. This list of ASNs is called the *AS path*. BGP uses the AS path to detect and avoid loops.
 
-ASNs were originally 16-bit numbers, but were later modified to be 32-bit. FRRouting supports both 16-bit and 32-bit ASNs, but most implementations still run with 16-bit ASNs.
+ASNs were originally 16-bit numbers, but were later modified to be 32-bit. FRRouting supports both 16-bit and 32-bit ASNs, but many implementations still run with 16-bit ASNs.
 
 {{%notice note%}}
 
@@ -30,15 +30,16 @@ In a VRF-lite deployment (where multiple independent routing tables working simu
 
 ### Auto BGP
 
-In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit ASN numbers automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and network latency.
+In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit ASN numbers automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and network latency. Auto BGP makes no changes to standard BGP behavior or configuration.
 
 Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294. Each leaf is assigned a random and unique value in the range 4200000001 through 4294967294. Each spine is assigned 4200000000; the first number in the range. For information about configuring auto BGP, refer to {{<link url="#Configure-BGP" text="Configure BGP">}} below.
 
 {{%notice note%}}
 
-- Auto BGP is supported for NCL only.
+- Auto BGP is supported for NCLU only.
 - It is not necessary to use auto BGP across all switches in your configuration. For example, you can use auto BGP to configure one switch but allocate ASN numbers manually to other switches.
-
+- Auto BGP is intended for use in two-tier spine and leaf networks. Using auto BGP in three-tier networks with superspines may result in incorrect ASN assignments.
+- The `leaf` keyword generates the ASN based on a hash of the switch MAC address. The ASN assigned may change after a switch replacement.
 {{%/notice%}}
 
 ## eBGP and iBGP
@@ -123,7 +124,9 @@ The following procedure provides example commands:
     ```
 
     The auto BGP leaf and spine keywords are only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
-
+    
+    OR 
+    
     - Assign an ASN manually:
 
     ```
@@ -277,6 +280,10 @@ router bgp 65000
   exit-address-family
 ...
 ```
+
+{{%notice note %}}
+When using auto BGP there are no references to `leaf` or `spine` in the configurations. Auto BGP determines the ASN for the system and configures it using standard vtysh commands.
+{{% /notice %}}
 
 ## ECMP with BGP
 

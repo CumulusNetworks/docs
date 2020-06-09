@@ -9,14 +9,14 @@
 <tr>
 <td>NETQ-5529</td>
 <td><p>Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s).</p></td>
-<td>2.4.0-2.4.1</td>
+<td>2.4.0-2.4.1, 3.0.0</td>
 <td></td>
 </tr>
 <tr>
 <td>NETQ-5182</td>
 <td><p>When a switch or host reports its memory size in GB rather than MB, the NetQ Agent cannot parse the information and thus fails to register with the NetQ server. Contact customer support if you run into this issue.</p></td>
 <td>2.4.0-2.4.1</td>
-<td></td>
+<td>3.0.0</td>
 </tr>
 <tr>
 <td>NETQ-4927</td>

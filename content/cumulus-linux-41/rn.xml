@@ -7,6 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30038</td>
+<td><p>The following vulnerability has been announced that affects GnuTLS:<br/>
+CVE-2020-13777: GnuTLS 3.6.x before 3.6.14 uses incorrect cryptography for encrypting a session ticket (a loss of confidentiality in TLS 1.2, and an authentication bypass in TLS 1.3). The earliest affected version is 3.6.4 (2018-09-24) because of an error in a 2018-09-18 commit. Until the first key rotation, the TLS server always uses wrong data in place of an encryption key derived from an application.<br/>
+Vulnerable: &lt;= 3.6.7-4+deb10u3<br/>
+Fixed: 3.6.7-4+deb10u4</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30000</td>
+<td><p>When VRF route leaking is configured, iBGP sessions might reset with the peer reporting the error "UPDATE Message Error/Optional Attribute Error." The error is triggered by an UPDATE message that contains the EXTENDED_COMMUNITIES attribute with an empty list of extended communities.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29890</td>
 <td><p>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</p></td>
 <td>3.7.12, 4.1.1</td>
@@ -1705,6 +1720,21 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30038</td>
+<td><p>The following vulnerability has been announced that affects GnuTLS:<br/>
+CVE-2020-13777: GnuTLS 3.6.x before 3.6.14 uses incorrect cryptography for encrypting a session ticket (a loss of confidentiality in TLS 1.2, and an authentication bypass in TLS 1.3). The earliest affected version is 3.6.4 (2018-09-24) because of an error in a 2018-09-18 commit. Until the first key rotation, the TLS server always uses wrong data in place of an encryption key derived from an application.<br/>
+Vulnerable: &lt;= 3.6.7-4+deb10u3<br/>
+Fixed: 3.6.7-4+deb10u4</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30000</td>
+<td><p>When VRF route leaking is configured, iBGP sessions might reset with the peer reporting the error "UPDATE Message Error/Optional Attribute Error." The error is triggered by an UPDATE message that contains the EXTENDED_COMMUNITIES attribute with an empty list of extended communities.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29872</td>

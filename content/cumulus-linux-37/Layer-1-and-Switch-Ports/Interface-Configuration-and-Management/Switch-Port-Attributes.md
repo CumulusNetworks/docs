@@ -138,7 +138,7 @@ snippet:
 - For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform,
   you must edit the `/etc/cumulus/ports.conf` file and configure the
   four ports in the same core to be 10G. See {{<link url="#caveats-and-errata" text="Caveats and Errata">}} below.
-- A switch with the Maverick ASIC switch limits multicast traffic by the lowest speed
+- A switch with the Maverick ASIC limits multicast traffic by the lowest speed
   port that has joined a particular group. For example, if you are sending 100G
   multicast through and subscribe with one 100G and one 25G port, traffic on both
   egress ports is limited to 25Gbps. If you remove the 25G port from the group,

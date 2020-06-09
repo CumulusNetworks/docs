@@ -110,18 +110,16 @@ Any time you enable auto-negotiation, Cumulus Linux restores the default configu
 
 Cumulus Linux supports both half- and {{<exlink url="http://en.wikipedia.org/wiki/Duplex_%28telecommunications%29" text="full-duplex">}} configurations. Half-duplex is supported only with speeds of less than 1G.
 
-Supported port speeds include 100M, 1G, 10G, 25G, 40G, 50G and 100G. In Cumulus Linux, you set the speed on Broadcom-based switch in Mbps, where the setting for 1G is *1000*, 40G is *40000*, and 100G is *100000*.
+Supported port speeds include 100M, 1G, 10G, 25G, 40G, 50G and 100G. In Cumulus Linux, you set the speed on a Broadcom switch in Mbps, where the setting for 1G is *1000*, 40G is *40000*, and 100G is *100000*.
 
-You can configure ports to one speed less than their maximum speed.
+You can configure ports to the following speeds (unless there are restrictions in the `/etc/cumulus/ports.conf` file of a particular platform).
 
-| Switch Port Type | Lowest Configurable Speed                                 |
+| <div style="width:130px">Switch Port Type | Other Configurable Speeds                                |
 | ---------------- | --------------------------------------------------------- |
 | 1G               | 100 Mb                                                    |
 | 10G              | 1 Gigabit (1000 Mb)                                       |
-| 40G              | 10G\*                                                     |
-| 100G             | 50G\* & 40G (with or without breakout port), 25G\*, 10G\* |
-
-\* Requires the port to be converted into a breakout port. See {{<link url="#breakout-ports" text="Configure Breakout Ports">}} below.
+| 40G              | 4x10G (10G lanes) creates four 1-lane ports each running at 10G |
+| 100G             | 50G or 2x50G (25G lanes) - 50G creates one 2-lane port running at 25G and 2x50G creates two 2-lane ports each running at 25G<br>40G (10G lanes) creates one 4-lane port running at 10G<br>4x25G (25G lanes) creates four 1-lane ports each running at 25G<br>4x10G (10G lanes) creates four 1-lane ports each running at 10G |
 
 {{%notice note%}}
 

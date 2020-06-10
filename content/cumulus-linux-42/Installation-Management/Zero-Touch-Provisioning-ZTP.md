@@ -226,7 +226,7 @@ ZTP scripts come in different forms and frequently perform many of the same task
 
 The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change is **required** in Cumulus Linux 4.2 and later.
 
-Use the following function to set the default *cumulus* user account password:
+Use the following function to set the default *cumulus* user account password. The example sets the password to `MyP4$$word`:
 
 ```
 function set_password(){

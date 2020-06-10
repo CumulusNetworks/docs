@@ -24,9 +24,9 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - EdgeCore AS4610-30P (24 port POE+) support
 - Lenovo NE1064TO (10G Trident3 X5)
 - GMS S422-SW (10G (Maverick))
-- Mellanox SN4700C: (400G Spectrum-3)
+- Mellanox SN4700: (400G Spectrum-3)
 - Mellanox SN4600C (100G Spectrum-3)
-- Mellanox SN3700C: (200G Spectrum-2)
+- Mellanox SN3700: (200G Spectrum-2)
 - Mellanox SN3420 (25G Spectrum-2)
 
 ### New Features and Enhancements

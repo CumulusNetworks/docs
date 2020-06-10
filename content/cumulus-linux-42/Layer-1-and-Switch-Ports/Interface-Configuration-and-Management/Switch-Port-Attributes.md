@@ -1289,6 +1289,10 @@ The auto-negotiation setting must be the same on both sides of the connection. I
 
 {{%/notice%}}
 
+## Delta AGV848v1 Switch and Breakout Ports
+
+Breaking out the 100G ports to 4x10G and 4x25G is not supported on the Delta AGV848v1 switch.
+
 ### Timeout Error on Quanta LY8 and LY9 Switches
 
 On Quanta T5048-LY8 and T3048-LY9 switches, an *Operation timed out* error occurs when you remove and reinsert a QSFP module.

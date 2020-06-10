@@ -59,11 +59,11 @@ The default installation includes the system account (root), with full system pr
 cumulus
 ```
 
-When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system.
+When you log into Cumulus Linux for the first time with the cumulus account, you are prompted to change the default password. After you provide a new password, the system reboots.
 
 {{%notice note%}}
 
-ONIE includes options that allow you to change the default password for the *cumulus* account automatically during Cumulus Linux installation. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image" >}}. If the password is changed during installation, use the new password to log in.
+ONIE includes options that allow you to change the default password for the *cumulus* account automatically when you install a new Cumulus Linux image. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE Installation Options" >}}. You can also  {{<link url="Zero-Touch-Provisioning-ZTP/#set-the-default-cumulus-user-password" text="change the default password using a ZTP script">}}.
 
 {{%/notice%}}
 

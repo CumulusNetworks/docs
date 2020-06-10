@@ -36,9 +36,8 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Quick-Start-Guide#login-credentials" text="Mandatory cumulus user default password change">}} upon first login
 - New {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE command line options">}} to set the *cumulus* user default password, add a license, and provide initial network configuration
 - Ability to {{<link url="Installing-a-New-Cumulus-Linux-Image#edit-the-cumulus-linux-image-advanced" text="edit the Cumulus Linux image file">}}
-- Auto BGP
-- New Ninja profile on Mellanox switches
+- {{<link url="Border-Gateway-Protocol-BGP/#auto-bgp" text="Auto BGP">}}, which atomatically assigns ASNs to switches in a two-tier leaf and spine environment
 - Ability to set the {{<link title="Network Troubleshooting#use-the-cpu-port-as-the-span-destination" text="CPU as a SPAN destination interface">}}
 - {{<link url="Buffer-and-Queue-Management/" text="QoS">}} now supported on Maverick switches
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#ecmp-custom-hashing" text="ECMP">}} and {{<link url="Bonding-Link-Aggregation/#lag-custom-hashing" text="LAG">}} custom hash parameters have been moved to the `/etc/cumulus/datapath/traffic.conf` file and no longer require a `switchd` restart
-- New {{<link url="Policy-based-Routing" text="PBR rule setting">}} to set the VRF table you want to use for lookups
+- New {{<link url="Policy-based-Routing" text="PBR rule option">}} to set the VRF table you want to use for lookups

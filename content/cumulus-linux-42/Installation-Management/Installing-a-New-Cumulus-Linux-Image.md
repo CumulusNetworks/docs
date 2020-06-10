@@ -621,7 +621,7 @@ The original file is now split, with the first 20 lines in `cumulus-linux-4.2.0-
 cat cumulus-linux-4.1.0-bcm-amd64.bin.1 cumulus-linux-4.1.0-bcm-amd64.bin.2 > cumulus-linux-4.1.0-bcm-amd64.bin.final
 ```
 
-This is an example modified image file:
+This is an example of a modified image file:
 
 ```
 #!/bin/sh

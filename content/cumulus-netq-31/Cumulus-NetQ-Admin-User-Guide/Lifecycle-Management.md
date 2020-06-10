@@ -4,13 +4,13 @@ author: Cumulus Networks
 weight: 640
 toc: 4
 ---
-As an administrator, you want to manage the deployment of Cumulus Networks product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible. With this release, NetQ expands the lifecycle management (LCM) feature to include the discovery of switches that are not running NetQ, and a workflow for installation and upgrade of NetQ on switches in the LCM inventory.
+As an administrator, you want to manage the deployment of Cumulus Networks product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible. With this release, NetQ expands the lifecycle management (LCM) feature to include the discovery of Cumulus Linux switches that are not running NetQ, and a workflow for installation and upgrade of NetQ on switches in the LCM inventory.
 
 LCM enables you to:
 
 - Manage Cumulus Linux and Cumulus NetQ images in a local repository
 - Configure switch access credentials (required for installations and upgrades)
-- Discover and manage switches
+- Discover and manage Cumulus Linux switches
 - Perform snapshots of the network state
 - Upgrade Cumulus Linux NOS on switches
 - Install and upgrade Cumulus NetQ on switches
@@ -263,25 +263,78 @@ Refer to {{<link title="#Specify Switch Credentials" text="Specify Switch Creden
 
 ## Switch Management
 
-This lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ 3.0.0 and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
+This lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ and are available for software installation or upgrade through NetQ. This includes all Cumulus Linux switches with or without Cumulus NetQ Agent 2.4 or later installed in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
 
 A count of the switches NetQ was able to discover and the Cumulus Linux versions that are running on those switches is available from the LCM dashboard.
 
 {{<figure src="/images/netq/lcm-switches-card-300.png" width="400">}}
 
-To view a list of all switches known to lifecycle management, click **Manage** on the Switches card.
+To view a list of all switches known to LCM, click **Manage** on the Switches card.
 
 {{<figure src="/images/netq/lcm-switch-mgmt-list-300.png" width="700">}}
 
-Review the list, filtering as needed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}}) to determine if the switches you want to upgrade are included. 
+Review the list, filtering as needed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}}) to determine if the switches you want to upgrade are included.
 
-{{<notice tip>}}
-If you have more than one Cumulus Linux version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
-{{</notice>}}
+If the switches you are looking to upgrade are not present in the final list, you can use the Switch Discovery feature to locate them and include them in the LCM inventory.
 
-If the switches you are looking to upgrade are not present in the final list, verify the switches have NetQ 2.4 or later Agents on them.
+### Switch Discovery
 
-To verify the NetQ Agent version, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** in the **Network** section. Search for the switches of interest and confirm the applied version in the **Version** column. Upgrade any NetQ Agents if needed. Refer to {{<link title="Upgrade NetQ Agents">}} for instructions.
+<!-- MOVE to INSTALL/UPGRADE NETQ? -->
+
+You can add or import Cumulus Linux switches without Cumulus NetQ running on them to the LCM inventory. This makes upgrades across the network easier.
+
+To discover these switches:
+
+1. Return to or open the LCM dashboard.
+
+2. On the Switches card, click **Scan**.
+
+    <!-- insert modal image here -->
+
+3. Enter a name for the scan.
+
+4. Choose whether you want to scan for switches by entering IP address ranges OR import switches using a comma-separated values (CSV) file.
+
+    {{< tabs "TabID314" >}}
+
+{{< tab "IP Address Range" >}}
+
+1. Enter an IP address range in the **IP Range** field.
+
+    Ranges can be contiguous or non-contiguous within a subnet. For example, a range could be *192.168.0.24-64* or *192.168.0.24-64,128-190,235*.
+
+2. Optionally, enter another IP address range by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove:Add/add-circle.svg" height="18" width="18">}}.
+
+For example, *198.51.100.0-128* or *198.51.100.0-128,190,200-253*.
+
+Add additional ranges as needed, up to a total of three ranges. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove:add/subtract-circle.svg" height="18" width="18">}} to remove a range if needed.
+
+If you decide to use a CSV file instead, the ranges you entered will remain if you return to using IP ranges again.
+
+{{< /tab >}}
+
+{{< tab "CSV Import" >}}
+
+1. Click **Browse file**.
+
+2. Select the CSV file containing the list of switches.
+
+    {{%notice info%}}
+
+The CSV file must include a header containing *hostname*, *ip*, and *port*. They can be in any order you like, but the data must match that order. For example, a CSV file that represents the Cumulus reference topology could look like this:
+{{<figure src="/images/netq/lcm-import-switches-310.png" width="200">}}
+
+    {{%/notice%}}
+
+Click **Remove** if you decide to use a different file or want to use IP address ranges instead. If you had entered ranges prior to selecting the CSV file option, they will have been remained.
+
+{{< /tab >}}
+
+    {{< /tabs >}}
+
+5. Note that the switch access credentials defined in {{<link title="Lifecycle Management#Credentials Management" text="Credentials Management">}} are used to access these switches. If you have issues accessing the switches, you may need to update your credentials.
+
+6. Click **Next**.
 
 After all of the switches you want to upgrade are contained in the list, you can assign roles to them.
 
@@ -930,3 +983,7 @@ Some of the common reasons for upgrade failures and the errors they present:
 | Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: /etc/network/interfaces: No such file or directory |
 | Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |
+
+### Cumulus NetQ Agent Installation or Upgrade
+
+The LCM feature enables you to upgrade switches with older versions of NetQ Agent and to load NetQ onto switches that do not currently have NetQ installed.

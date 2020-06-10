@@ -514,11 +514,22 @@ To automate this process, you can specify a new password from the command line o
 ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'MyP4$$word'
 ```
 
-To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. For example:
+To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option.
 
-```
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '$6$6e1Ou.muPGUgbGxj$SfhDpP5 zEsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq.'
-```
+- First, generate a sha-512 password hash with the following python command. The example command generates a sha-512 password hash for the password `MySecretPassword`.
+
+   ```
+   user@host:~$ python -c "import random,string,crypt;
+   > randomsalt = ''.join(random.sample(string.ascii_letters,8));
+   > print crypt.crypt('MySecretPassword', '\$6\$%s\$' % randomsalt)"
+   $6$UhJroBAu$LDjrqRlLomPNNFnzsLFN3177DR5r69rpnLOkxM7X9WCZQAP6V0ieNkyvmTspTnzvuq2ZJ/vexCOO3MN07.WYi0
+   ```
+
+- Then, specify the new password from the command line of the installer with the `--hashed-password '<hash>'` command:
+
+   ```
+   ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password  '6$UhJroBAu$LDjrqRlLomPNNFnzsLFN3177DR5r69rpnLOkxM7X9WCZQAP6V0ieNkyvmTspTnzvuq2ZJ/vexCOO3MN07.WYi0'
+   ```
 
 {{%notice note%}}
 
@@ -602,13 +613,13 @@ Because the Cumulus Linux image file is mostly a binary file, you cannot use sta
 1. Copy the first 20 lines to an empty file:
 
 ```
-head -20 cumulus-linux-4.1.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.1
+head -20 cumulus-linux-4.2.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.1
 ```
 
 2. Remove the first 20 lines of the image, then copy the remaining lines into another empty file:
 
 ```
-sed -e ‘1,20d’ cumulus-linux-4.1.0-bcm-amd64.bin > `cumulus-linux-4.2.0-bcm-amd64.bin.2`
+sed -e ‘1,20d’ cumulus-linux-4.2.0-bcm-amd64.bin > `cumulus-linux-4.2.0-bcm-amd64.bin.2`
 ```
 
 The original file is now split, with the first 20 lines in `cumulus-linux-4.2.0-bcm-amd64.bin.1` and the remaining lines in `cumulus-linux-4.2.0-bcm-amd64.bin.2`.
@@ -618,7 +629,7 @@ The original file is now split, with the first 20 lines in `cumulus-linux-4.2.0-
 4. Put the two pieces back together using `cat`:
 
 ```
-cat cumulus-linux-4.1.0-bcm-amd64.bin.1 cumulus-linux-4.1.0-bcm-amd64.bin.2 > cumulus-linux-4.1.0-bcm-amd64.bin.final
+cat cumulus-linux-4.2.0-bcm-amd64.bin.1 cumulus-linux-4.2.0-bcm-amd64.bin.2 > cumulus-linux-4.2.0-bcm-amd64.bin.final
 ```
 
 This is an example of a modified image file:
@@ -633,9 +644,9 @@ This is an example of a modified image file:
 #
 
 CL_INSTALLER_PASSWORD='MyP4$$word'
-CL_INSTALLER_HASHED_PASSWORD='$6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq.'
+CL_INSTALLER_HASHED_PASSWORD=''
 CL_INSTALLER_LICENSE='customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
-CL_INSTALLER_INTERFACES_FILENAME='interfaces.conf'
+CL_INSTALLER_INTERFACES_FILENAME=''
 CL_INSTALLER_INTERFACES_CONTENT='# This file describes the network interfaces available on your system and how to activate them.
 
 source /etc/network/interfaces.d/*.intf
@@ -662,7 +673,7 @@ iface mgmt
 	address ::1/128
 	vrf-table auto
 '
-CL_INSTALLER_ZTP_FILENAME='initial-conf.ztp'
+CL_INSTALLER_ZTP_FILENAME=''
 CL_INSTALLER_ZTP_CONTENT='#!/bin/bash
 #CUMULUS-AUTOPROVISIONING
 passwd -x 99999 cumulus

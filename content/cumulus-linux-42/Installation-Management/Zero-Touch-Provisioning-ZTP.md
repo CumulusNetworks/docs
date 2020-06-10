@@ -226,16 +226,40 @@ ZTP scripts come in different forms and frequently perform many of the same task
 
 The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change is **required** in Cumulus Linux 4.2 and later.
 
-Use the following function to set the default *cumulus* user account password. The example sets the password to `MyP4$$word`:
+Add the following function to your ZTP script to change the default *cumulus* user account password to a clear-text password. The example changes the password `cumulus` to `MyP4$$word`.
 
 ```
 function set_password(){
-     # Set password
+     # Unexpire the cumulus account
      passwd -x 99999 cumulus
+     # Set the password
      echo 'cumulus:MyP4$$word' | chpasswd
 }
 set_password
 ```
+
+If you have an insecure management network, set the password with an encrypted hash instead of a clear-text password. Using an encrypted hash is recommended.
+
+- First, generate a sha-512 password hash with the following python commands. The example commands generate a sha-512 password hash for the password `MySecretPassword`.
+
+   ```
+   user@host:~$ python -c "import random,string,crypt;
+   > randomsalt = ''.join(random.sample(string.ascii_letters,8));
+   > print crypt.crypt('MySecretPassword', '\$6\$%s\$' % randomsalt)"
+   $6$UhJroBAu$LDjrqRlLomPNNFnzsLFN3177DR5r69rpnLOkxM7X9WCZQAP6V0ieNkyvmTspTnzvuq2ZJ/vexCOO3MN07.WYi0
+   ```
+
+- Then, add the following function to the ZTP script to change the default *cumulus* user account password:
+
+   ```
+   function set_password(){
+        # Unexpire the cumulus account
+        passwd -x 99999 cumulus
+        # Set the password
+        usermod -p '$6$UhJroBAu$LDjrqRlLomPNNFnzsLFN3177DR5r69rpnLOkxM7X9WCZQAP6V0ieNkyvmTspTnzvuq2ZJ/vexCOO3MN07.WYi0' cumulus
+   }
+   set_password
+   ```
 
 ### Install a License
 

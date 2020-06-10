@@ -619,7 +619,7 @@ head -20 cumulus-linux-4.2.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.1
 2. Remove the first 20 lines of the image, then copy the remaining lines into another empty file:
 
 ```
-sed -e ‘1,20d’ cumulus-linux-4.2.0-bcm-amd64.bin > `cumulus-linux-4.2.0-bcm-amd64.bin.2`
+sed -e '1,20d' cumulus-linux-4.2.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.2
 ```
 
 The original file is now split, with the first 20 lines in `cumulus-linux-4.2.0-bcm-amd64.bin.1` and the remaining lines in `cumulus-linux-4.2.0-bcm-amd64.bin.2`.

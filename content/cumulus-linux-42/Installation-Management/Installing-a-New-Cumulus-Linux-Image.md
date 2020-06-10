@@ -514,7 +514,7 @@ To automate this process, you can specify a new password from the command line o
 ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'MyP4$$word'
 ```
 
-To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option.
+To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. Using an encrypted hash is recommended to maintain a secure management network.
 
 - First, generate a sha-512 password hash with the following python command. The example command generates a sha-512 password hash for the password `MySecretPassword`.
 
@@ -528,7 +528,7 @@ To provide a hashed password instead of a clear text password, use the `--hashed
 - Then, specify the new password from the command line of the installer with the `--hashed-password '<hash>'` command:
 
    ```
-   ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password  '6$UhJroBAu$LDjrqRlLomPNNFnzsLFN3177DR5r69rpnLOkxM7X9WCZQAP6V0ieNkyvmTspTnzvuq2ZJ/vexCOO3MN07.WYi0'
+   ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '6$UhJroBAu$LDjrqRlLomPNNFnzsLFN3177DR5r69rpnLOkxM7X9WCZQAP6V0ieNkyvmTspTnzvuq2ZJ/vexCOO3MN07.WYi0'
    ```
 
 {{%notice note%}}

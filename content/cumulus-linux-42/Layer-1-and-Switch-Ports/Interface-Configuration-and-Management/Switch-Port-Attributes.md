@@ -1289,7 +1289,7 @@ The auto-negotiation setting must be the same on both sides of the connection. I
 
 {{%/notice%}}
 
-## Delta AGV848v1 Switch and Breakout Ports
+### Delta AGV848v1 Switch and Breakout Ports
 
 Breaking out the 100G ports to 4x10G and 4x25G is not supported on the Delta AGV848v1 switch.
 

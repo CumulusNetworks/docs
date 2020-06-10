@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 640
 toc: 4
 ---
-As an administrator, you want to manage the deployment of Cumulus Networks product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible. With this release, NetQ expands the lifecycle management (LCM) feature to include the discovery of Cumulus Linux switches that are not running NetQ, and a workflow for installation and upgrade of NetQ on switches in the LCM inventory.
+As an administrator, you want to manage the deployment of Cumulus Networks product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible. With this release, NetQ expands the lifecycle management (LCM) feature to include the discovery of switches that are not running NetQ, and a workflow for installation and upgrade of NetQ on switches in the LCM inventory.
 
 LCM enables you to:
 
@@ -12,11 +12,11 @@ LCM enables you to:
 - Configure switch access credentials (required for installations and upgrades)
 - Discover and manage switches
 - Perform snapshots of the network state
-- Install and upgrade Cumulus Linux on switches
-- Install and upgrade Cumulus NetQ on switches running Cumulus Linux
+- Upgrade Cumulus Linux NOS on switches
+- Install and upgrade Cumulus NetQ on switches
 
 {{<notice note>}}
-This feature is fully enabled for on-premises deployments. All features except upgrade of Cumulus Linux (and NetQ?) are enabled for cloud deployments. Contact your local Cumulus Networks sales representative or submit a support ticket to activate the upgrade feature.
+This feature is fully enabled for on-premises deployments and fully disabled for cloud deployments. Contact your local Cumulus Networks sales representative or submit a support ticket to activate LCM on cloud deployments.
 {{</notice>}}
 
 ## Access Lifecycle Management Features
@@ -534,8 +534,6 @@ To remove an existing snapshot:
 ## Cumulus Linux Upgrade
 
 The workflow for installation and upgrade of Cumulus Linux using LCM is to: select switches, choose options, run pre-checks, view job preview, begin job, monitor job, review snapshot comparison and analyze as needed. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
-
-For cloud deployments, contact your local Cumulus Networks sales representative or submit a support ticket to enable this function.
 
 {{<figure src="/images/netq/lcm-upgrade-workflow-300.png" width="700">}}
 

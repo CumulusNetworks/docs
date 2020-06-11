@@ -415,7 +415,7 @@ Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic
 
 {{%notice note%}}
 
-- Broadcom switches with the Trident3 ASIC only support ACL SPAN in non-atomic mode.
+- Broadcom switches with the Trident3 X5, Trident3, Trident2, Tomahawk+, and Tomahawk ASIC only support ACL SPAN in *non-atomic mode*.
 - Egress Mirroring for control plane generated traffic to the CPU port is not supported.
 
 {{%/notice%}}

@@ -27,7 +27,7 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Features and Enhancements
 
-- EVPN Multihoming
+- {{<link title="EVPN Multihoming">}}, a standards-based replacement for MLAG in data centers deploying Clos topologies.
 - {{<link url="DHCP-Snooping" text="DHCP Snooping">}}
 - {{<link url="Quick-Start-Guide#login-credentials" text="Mandatory cumulus user default password change">}} upon first login
 - New {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE command line options">}} to set the *cumulus* user default password, add a license, and provide initial network configuration

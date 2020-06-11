@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30089</td>
+<td><p>Cumulus Linux supports a maximum of 300 ACLs for use with 802.1X interfaces. This limit encompasses the default ACLs, pre-auth ACLs and dynamic ACLs. Exceeding this limit can affect the performance of the switch.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30038</td>
 <td><p>The following vulnerability has been announced that affects GnuTLS:<br/>
 CVE-2020-13777: GnuTLS 3.6.x before 3.6.14 uses incorrect cryptography for encrypting a session ticket (a loss of confidentiality in TLS 1.2, and an authentication bypass in TLS 1.3). The earliest affected version is 3.6.4 (2018-09-24) because of an error in a 2018-09-18 commit. Until the first key rotation, the TLS server always uses wrong data in place of an encryption key derived from an application.<br/>
@@ -25,6 +31,13 @@ UPDATE Message Error/Optional Attribute Error
 <p>The error is triggered by an UPDATE message that contains the EXTENDED_COMMUNITIES attribute with an empty list of extended communities.<br/>
 To work around this issue, apply an extended community with a route map using import &lt;vrf&gt; route-map &lt;name&gt; in the importing VRF address family. Make sure that the route map contains the set extended community rt &lt;value:vaue&gt; command; for example, set extended community rt 11:22.</p></td>
 <td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -427,6 +440,19 @@ To work around this issue, restart FRR.</p></td>
 <td>CM-29043</td>
 <td><p>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.<br/>
 To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29035</td>
+<td><p>When you upgrade Cumulus Linux on the EdgeCore AS7726-32X or AS7326-56X switch, you might see firmware errors similar to the following:</p>
+
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso5.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3.bin for module tg3
+
+
+<p>You can safely ignore these error messages.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -1728,6 +1754,12 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30089</td>
+<td><p>Cumulus Linux supports a maximum of 300 ACLs for use with 802.1X interfaces. This limit encompasses the default ACLs, pre-auth ACLs and dynamic ACLs. Exceeding this limit can affect the performance of the switch.</p></td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30038</td>
 <td><p>The following vulnerability has been announced that affects GnuTLS:<br/>
 CVE-2020-13777: GnuTLS 3.6.x before 3.6.14 uses incorrect cryptography for encrypting a session ticket (a loss of confidentiality in TLS 1.2, and an authentication bypass in TLS 1.3). The earliest affected version is 3.6.4 (2018-09-24) because of an error in a 2018-09-18 commit. Until the first key rotation, the TLS server always uses wrong data in place of an encryption key derived from an application.<br/>
@@ -1746,6 +1778,13 @@ UPDATE Message Error/Optional Attribute Error
 <p>The error is triggered by an UPDATE message that contains the EXTENDED_COMMUNITIES attribute with an empty list of extended communities.<br/>
 To work around this issue, apply an extended community with a route map using import &lt;vrf&gt; route-map &lt;name&gt; in the importing VRF address family. Make sure that the route map contains the set extended community rt &lt;value:vaue&gt; command; for example, set extended community rt 11:22.</p></td>
 <td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2138,6 +2177,19 @@ To work around this issue, restart FRR.</p></td>
 <td>CM-29043</td>
 <td><p>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.<br/>
 To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29035</td>
+<td><p>When you upgrade Cumulus Linux on the EdgeCore AS7726-32X or AS7326-56X switch, you might see firmware errors similar to the following:</p>
+
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso5.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3.bin for module tg3
+
+
+<p>You can safely ignore these error messages.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -4056,12 +4108,6 @@ To work around this issue, let the CPU bound IGMP packet hit the following rule 
  -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 <br/>
 Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IGMP control and data stream packets. However, this workaround cannot handle data stream multicast packets that are not TCP/UDP; this is not typically done. </p></td>
 <td>3.6.2-4.0.0</td>
-</tr>
-<tr>
-<td>CM-19788</td>
-<td><p>If you configure a VLAN under a VLAN-aware bridge and create a subinterface of the same VLAN on one of the bridge ports, the bridge and interface compete for the same VLAN and if the interface is flapped, it stops working. Correcting the configuration and running the ifreload command does not resolve the conflict. <br/>
-To work around this issue, correct the bridge VIDs and restart switchd or delete the subinterface. </p></td>
-<td>3.5.0-4.0.0</td>
 </tr>
 <tr>
 <td>CM-18727</td>

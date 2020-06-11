@@ -19,11 +19,10 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - Dell S5224F-ON (25G Trident3 X5)
 - Delta AGV848v1 (25G Trident3 X5)
 - Edgecore AS5835-54T (10G Trident3 X5)
-- EdgeCore AS4610-30P (1G Helix4) Cumulus Express
-- EdgeCore AS4610-30P (24 port POE+ support)
-- Mellanox SN4700: (400G Spectrum-3)
+- EdgeCore AS4610-30P (1G Helix4) - 24 port POE+ support
+- Mellanox SN4700 (400G Spectrum-3)
 - Mellanox SN4600C (100G Spectrum-3)
-- Mellanox SN3700: (200G Spectrum-2)
+- Mellanox SN3700 (200G Spectrum-2)
 - Mellanox SN3420 (25G Spectrum-2)
 
 ### New Features and Enhancements

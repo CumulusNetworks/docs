@@ -510,10 +510,10 @@ You can run more than one option in the same command.
 
 The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change is **required** in Cumulus Linux 4.2 and later.
 
-To automate this process, you can specify a new password from the command line of the installer with the `--password '<clear text-password>'` option. For example, to change the default *cumulus* user password to `MyP4$$word`:
+To automate this process, you can specify a new password from the command line of the installer with the `--password '<clear text-password>'` option. For example, to change the default *cumulus* user password to `MyPassword`:
 
 ```
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'MyP4$$word'
+ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'MyPassword'
 ```
 
 To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. Using an encrypted hash is recommended to maintain a secure management network.
@@ -528,7 +528,7 @@ To provide a hashed password instead of a clear text password, use the `--hashed
 - Then, specify the new password from the command line of the installer with the `--hashed-password '<hash>'` command:
 
    ```
-   ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '$6$0L7Dhe9e/LwK6R3k$1XrBOS3D5RfuzHBI6E3EDjx.aHtIDrxJGBIKa0sa7SLStFdpSkDkApQlgh9Puwj11UvoSLkUP3MKEYIuQwQzo/'
+   ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '$6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq'
    ```
 
 {{%notice note%}}

@@ -30,9 +30,9 @@ In a VRF-lite deployment (where multiple independent routing tables working simu
 
 ### Auto BGP
 
-In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit ASN numbers automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and network latency. Auto BGP makes no changes to standard BGP behavior or configuration.
+In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit ASN numbers automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid avoid suboptimal routing and path hunting, which occurs when you assign the wrong spine ASNs. Auto BGP makes no changes to standard BGP behavior or configuration.
 
-Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294. Each leaf is assigned a random and unique value in the range 4200000001 through 4294967294. Each spine is assigned 4200000000; the first number in the range. For information about configuring auto BGP, refer to {{<link url="#Configure-BGP" text="Configure BGP">}} below.
+Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294. This is the private space defined in {{<exlink url="https://tools.ietf.org/html/rfc6996" text="RFC 6996">}}. Each leaf is assigned a random and unique value in the range 4200000001 through 4294967294. Each spine is assigned 4200000000; the first number in the range. For information about configuring auto BGP, refer to {{<link url="#Configure-BGP" text="Configure BGP">}} below.
 
 {{%notice note%}}
 

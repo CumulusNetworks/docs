@@ -571,7 +571,7 @@ The Cumulus Linux disk image file contains a BASH script that includes a set of 
 
 ### Example Image File
 
-The Cumulus Linux disk image file is a self-extracting executable. The executable part of the file is a BASH script is located at the beginning of the file. Towards the beginning of this BASH script are a set of variables set to an empty string.
+The Cumulus Linux disk image file is a self-extracting executable. The executable part of the file is a BASH script and is located at the beginning of the file. Towards the beginning of this BASH script are a set of variables set to an empty string:
 
 ```
 #!/bin/sh

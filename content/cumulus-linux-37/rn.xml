@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30103</td>
+<td><p>On a Broadcom switch with the Trident2+ ASIC, ACL rules for VLANs are not applied after a reboot and the counters remain at zero.<br/>
+To work around this issue, either do not set acl.non_atomic_update_mode = TRUE in the /etc/cumulus/switchd.conf file or run the cl-acltool -i command after the reboot to install the  ACLs.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>

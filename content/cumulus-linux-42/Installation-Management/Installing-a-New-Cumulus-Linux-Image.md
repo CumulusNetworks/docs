@@ -492,7 +492,7 @@ You can run several installer command line options from ONIE to perform basic sw
 
 {{%notice note%}}
 
-To start an installation with the command line options, you must access the switch from the console and install the installation image directly from the ONIE command line. Installing the image from Cumulus Linux with the `onie-nos-install` command is not supported. You must transfer an installation image to the switch, make the image executable, then initiate installation. For example:
+The `onie-nos-install` command does *not* allow you specify command line parameters. You must access the switch from the console and transfer a disk image to the switch. You must then make the disk image executable and install the image directly from the ONIE command line with the options you want to use. The following example shows how to install the disk image and use the `--password` option to change the default cumulus user password:
 
 ```
 ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
@@ -516,19 +516,17 @@ ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'MyP4$$word'
 
 To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. Using an encrypted hash is recommended to maintain a secure management network.
 
-- First, generate a sha-512 password hash with the following python command. The example command generates a sha-512 password hash for the password `MySecretPassword`.
+- First, generate a sha-512 password hash with the following python command. The example command generates a sha-512 password hash for the password `MyPassword`.
 
    ```
-   user@host:~$ python -c "import random,string,crypt;
-   > randomsalt = ''.join(random.sample(string.ascii_letters,8));
-   > print crypt.crypt('MySecretPassword', '\$6\$%s\$' % randomsalt)"
-   $6$UhJroBAu$LDjrqRlLomPNNFnzsLFN3177DR5r69rpnLOkxM7X9WCZQAP6V0ieNkyvmTspTnzvuq2ZJ/vexCOO3MN07.WYi0
+   user@host:~$ python3 -c "import crypt; print(crypt.crypt('myPassword',salt=crypt.mksalt()))"
+   $6$0L7Dhe9e/LwK6R3k$1XrBOS3D5RfuzHBI6E3EDjx.aHtIDrxJGBIKa0sa7SLStFdpSkDkApQlgh9Puwj11UvoSLkUP3MKEYIuQwQzo/
    ```
 
 - Then, specify the new password from the command line of the installer with the `--hashed-password '<hash>'` command:
 
    ```
-   ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '6$UhJroBAu$LDjrqRlLomPNNFnzsLFN3177DR5r69rpnLOkxM7X9WCZQAP6V0ieNkyvmTspTnzvuq2ZJ/vexCOO3MN07.WYi0'
+   ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '$6$0L7Dhe9e/LwK6R3k$1XrBOS3D5RfuzHBI6E3EDjx.aHtIDrxJGBIKa0sa7SLStFdpSkDkApQlgh9Puwj11UvoSLkUP3MKEYIuQwQzo/'
    ```
 
 {{%notice note%}}
@@ -567,13 +565,13 @@ If you use the `--ztp` option together with any of the other command line option
 
 ## Edit the Cumulus Linux Image (Advanced)
 
-The Cumulus Linux installation image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully-configured system with a single image file.
+The Cumulus Linux disk image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully-configured system with a single image file.
 
 {{< expand "To edit the image"  >}}
 
 ### Example Image File
 
-This is an example of the BASH script in the image file that contains variables you can set:
+The Cumulus Linux disk image file is a self-extracting executable. The executable part of the file is a BASH script and is located at the beginning of the file. Towards the beginning of this BASH script are a set of variables set to an empty string:
 
 ```
 #!/bin/sh
@@ -591,7 +589,11 @@ CL_INSTALLER_INTERFACES_FILENAME=''
 CL_INSTALLER_INTERFACES_CONTENT=''
 CL_INSTALLER_ZTP_FILENAME=''
 CL_INSTALLER_ZTP_CONTENT=''
-...
+CL_INSTALLER_QUIET=""
+CL_INSTALLER_FORCEINST=""
+CL_INSTALLER_INTERACTIVE=""
+CL_INSTALLER_EXTRACTDIR=""
+CL_INSTALLER_PAYLOAD_SHA256="72a8c3da28cda7a610e272b67fa1b3a54c50248bf6abf720f73ff3d10e79ae76"
 ```
 
 The variables you can set are described below:

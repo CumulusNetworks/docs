@@ -1,8 +1,8 @@
 {{- if .Get "url" -}}
 {{- if or (in (.Get "url") "mailto:") (in (.Get "url")  "//")  -}}
-        <a rel="canonical" href="{{ (.Get "url") }}">{{- default (.Get "url") (.Get "text") -}}</a>
+        <a rel="canonical" href="{{ (.Get "url") }}" target="_blank">{{- default (.Get "url") (.Get "text") -}}</a>
     {{- else -}} 
-        <a rel="canonical" href="//{{ (.Get "url") }}">{{- default (.Get "url") (.Get "text") -}}</a>
+        <a rel="canonical" href="//{{ (.Get "url") }}" target="_blank">{{- default (.Get "url") (.Get "text") -}}</a>
     {{- end -}} 
 {{- else -}}
     {{ errorf "missing url in link %s" .Position}}

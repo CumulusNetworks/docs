@@ -240,13 +240,11 @@ set_password
 
 If you have an insecure management network, set the password with an encrypted hash instead of a clear-text password. Using an encrypted hash is recommended.
 
-- First, generate a sha-512 password hash with the following python commands. The example commands generate a sha-512 password hash for the password `MySecretPassword`.
+- First, generate a sha-512 password hash with the following python commands. The example commands generate a sha-512 password hash for the password `MyPassword`.
 
    ```
-   user@host:~$ python -c "import random,string,crypt;
-   > randomsalt = ''.join(random.sample(string.ascii_letters,8));
-   > print crypt.crypt('MySecretPassword', '\$6\$%s\$' % randomsalt)"
-   $6$UhJroBAu$LDjrqRlLomPNNFnzsLFN3177DR5r69rpnLOkxM7X9WCZQAP6V0ieNkyvmTspTnzvuq2ZJ/vexCOO3MN07.WYi0
+   user@host:~$ python3 -c "import crypt; print(crypt.crypt('myPassword',salt=crypt.mksalt()))"
+   $6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq
    ```
 
 - Then, add the following function to the ZTP script to change the default *cumulus* user account password:
@@ -256,7 +254,7 @@ If you have an insecure management network, set the password with an encrypted h
         # Unexpire the cumulus account
         passwd -x 99999 cumulus
         # Set the password
-        usermod -p '$6$UhJroBAu$LDjrqRlLomPNNFnzsLFN3177DR5r69rpnLOkxM7X9WCZQAP6V0ieNkyvmTspTnzvuq2ZJ/vexCOO3MN07.WYi0' cumulus
+        usermod -p '$6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq' cumulus
    }
    set_password
    ```

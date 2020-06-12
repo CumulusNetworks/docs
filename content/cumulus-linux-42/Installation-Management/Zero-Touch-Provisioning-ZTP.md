@@ -226,25 +226,25 @@ ZTP scripts come in different forms and frequently perform many of the same task
 
 The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change at first login is **required** in Cumulus Linux 4.2 and later.
 
-Add the following function to your ZTP script to change the default *cumulus* user account password to a clear-text password. The example changes the password `cumulus` to `MyPassword`.
+Add the following function to your ZTP script to change the default *cumulus* user account password to a clear-text password. The example changes the password `cumulus` to `MyP4$$word`.
 
 ```
 function set_password(){
      # Unexpire the cumulus account
      passwd -x 99999 cumulus
      # Set the password
-     echo 'cumulus:MyPassword' | chpasswd
+     echo 'cumulus:MyP4$$word' | chpasswd
 }
 set_password
 ```
 
 If you have an insecure management network, set the password with an encrypted hash instead of a clear-text password. Using an encrypted hash is recommended.
 
-- First, generate a sha-512 password hash with the following python commands. The example commands generate a sha-512 password hash for the password `MyPassword`.
+- First, generate a sha-512 password hash with the following python commands. The example commands generate a sha-512 password hash for the password `MyP4$$word`.
 
    ```
-   user@host:~$ python3 -c "import crypt; print(crypt.crypt('myPassword',salt=crypt.mksalt()))"
-   $6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq
+   user@host:~$ python3 -c "import crypt; print(crypt.crypt('MyP4$$word',salt=crypt.mksalt()))"
+   $6$hs7OPmnrfvLNKfoZ$iB3hy5N6Vv6koqDmxixpTO6lej6VaoKGvs5E8p5zNo4tPec0KKqyQnrFMII3jGxVEYWntG9e7Z7DORdylG5aR/
    ```
 
 - Then, add the following function to the ZTP script to change the default *cumulus* user account password:
@@ -254,7 +254,7 @@ If you have an insecure management network, set the password with an encrypted h
         # Unexpire the cumulus account
         passwd -x 99999 cumulus
         # Set the password
-        usermod -p '$6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq' cumulus
+        usermod -p '$6$hs7OPmnrfvLNKfoZ$iB3hy5N6Vv6koqDmxixpTO6lej6VaoKGvs5E8p5zNo4tPec0KKqyQnrFMII3jGxVEYWntG9e7Z7DORdylG5aR/' cumulus
    }
    set_password
    ```

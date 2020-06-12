@@ -59,7 +59,7 @@ The default installation includes the system account (root), with full system pr
 cumulus
 ```
 
-When you log into Cumulus Linux for the first time with the cumulus account, you are prompted to change the default password. After you provide a new password, the system reboots.
+When you log into Cumulus Linux for the first time with the cumulus account, you are prompted to change the default password. After you provide a new password, the SSH session disconnects and you have to reconnect with the new password.
 
 {{%notice note%}}
 

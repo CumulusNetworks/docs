@@ -522,7 +522,7 @@ To provide a hashed password instead of a clear text password, use the `--hashed
 
    ```
    user@host:~$ python3 -c "import crypt; print(crypt.crypt('myPassword',salt=crypt.mksalt()))"
-   $6$0L7Dhe9e/LwK6R3k$1XrBOS3D5RfuzHBI6E3EDjx.aHtIDrxJGBIKa0sa7SLStFdpSkDkApQlgh9Puwj11UvoSLkUP3MKEYIuQwQzo/
+   $6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq
    ```
 
 - Then, specify the new password from the command line of the installer with the `--hashed-password '<hash>'` command:

@@ -409,7 +409,7 @@ cumulus@switch:~$ sudo iptables -L -v | grep SPAN
 
 ### Use the CPU port as the SPAN Destination
 
-You can set CPU as a SPAN destination interface to mirror data plane traffic to the CPU. The SPAN traffic is sent to a separate network interface mirror where you can analyze it with `tcpdump`. This is a useful feature if you do not have any free external ports  on the switch for monitoring purposes. SPAN traffic does not appear on switch ports.
+You can set the CPU port as a SPAN destination interface to mirror data plane traffic to the CPU. The SPAN traffic is sent to a separate network interface mirror where you can analyze it with `tcpdump`. This is a useful feature if you do not have any free external ports  on the switch for monitoring purposes. SPAN traffic does not appear on switch ports.
 
 Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic does not overwhelm the CPU.
 
@@ -441,7 +441,7 @@ Install the rules:
 cumulus@switch:~$ sudo cl-acltool -i
 ```
 
-You can use tcpcdump to monitor traffic mirrored to the CPU on the switch. You can also use filters for tcpdump. To use `tcpcdump` to monitor traffic mirrored to the CPU, run the following command:
+You can use `tcpcdump` to monitor traffic mirrored to the CPU on the switch. You can also use filters for `tcpdump`. To use `tcpcdump` to monitor traffic mirrored to the CPU, run the following command:
 
 ```
 cumulus@switch:~$ sudo tcpdump -i mirror

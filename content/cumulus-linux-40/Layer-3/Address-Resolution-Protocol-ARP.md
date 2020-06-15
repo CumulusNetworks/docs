@@ -274,6 +274,7 @@ The configuration above takes effect immediately but does not persist if you reb
     ```
     cumulus@switch:~$  sudo nano /etc/cumulus/neighmgr.conf
 
+    [main]
     setsrcipv4: 10.1.0.2
     ```
 

@@ -116,9 +116,5 @@ This command updates both the `/etc/hostname` and `/etc/hosts` files.
 Check out these community articles and the rest of the Cumulus Linux
 documentation:
 
-  - [Automation: Network automation with Cumulus VX](https://forums.cumulusnetworks.com/cumulus-vx-230884/testing-network-automation-with-cumulus-vx-6727777)
-  - [Routing protocols: Unnumbered OSPF/BGP with Cumulus VX](https://forums.cumulusnetworks.com/cumulus-vx-230884/unnumbered-ospf-bgp-configuration-on-vmware-esxi-with-cumulus-vx-6728629)
-  - [Network redundancy: Multi-chassis Link Aggregation (MLAG) with Cumulus VX](https://forums.cumulusnetworks.com/cumulus-vx-230884/spinning-up-a-virtual-mlag-environment-6722798)
-  - [Network virtualization: Cumulus VX with VMware NSX](https://forums.cumulusnetworks.com/cumulus-vx-230884/integrating-cumulus-vx-with-vmware-nsx-using-vmware-esxi-6732766)
   - [Cumulus Linux documentation](/cumulus-linux)
   - [Cumulus Networks knowledge base](https://support.cumulusnetworks.com/hc/en-us/)

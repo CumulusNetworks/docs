@@ -34,10 +34,4 @@ Cumulus Networks does *not* provide support for the following:
   - Performance or scalability issues related to network traffic running
     through Cumulus VX instances.
 
-For non-customers, Cumulus VX remains a community-supported product,
-with no formal support obligations from Cumulus Networks. You can submit
-questions to the 
-[Cumulus Networks community forums](https://forums.cumulusnetworks.com) 
-(hosted and moderated by Cumulus Networks) or to the 
-[community Slack channel](https://slack.cumulusnetworks.com/) to engage with 
-the forums and wider community.
+For non-customers, Cumulus VX remains a community-supported product, with no formal support obligations from Cumulus Networks. You can submit questions to the [community Slack channel](https://slack.cumulusnetworks.com/) to engage with the wider community.

@@ -784,7 +784,7 @@ Apply all rules and policies included in
 In addition to ensuring that the rules and policies referenced by
 `/etc/cumulus/acl/policy.conf` are installed, this will remove any
 currently active rules and policies that are not contained in the
-files referenced by `/etc/cumulus/acl/policy.conf`.  
+files referenced by `/etc/cumulus/acl/policy.conf`. 
 
 ## Specify the Policy Files to Install
 

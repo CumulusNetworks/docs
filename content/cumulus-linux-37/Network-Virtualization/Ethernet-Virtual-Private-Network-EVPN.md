@@ -2186,6 +2186,34 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
     separate from the underlay, which resides in the default VRF. A
     layer 3 VNI mapping for the default VRF is not supported.
 - In an EVPN deployment, Cumulus Linux supports a single BGP ASN which represents the ASN of the core as well as the ASN for any tenant VRFs if they have BGP peerings. If you need to change the ASN, you must first remove the layer 3 VNI in the `/etc/frr/frr.conf` file, modify the BGP ASN, then add back the layer 3 VNI in the `/etc/frr/frr.conf` file.
+- When you run the `ping -I ` command and specify an interface, you don't get an ICMP echo reply. However, when you run the `ping` command without the `-I` option, everything works as expected.
+
+   `ping -I` command example:
+
+   ```
+   cumulus@switch:default:~:# ping -I swp2 10.0.10.1
+   PING 10.0.10.1 (10.0.10.1) from 10.0.0.2 swp1.5: 56(84) bytes of data.
+   ```
+
+   `ping` command example:
+
+   ```
+   cumulus@switch:default:~:# ping 10.0.10.1
+   PING 10.0.10.1 (10.0.10.1) 56(84) bytes of data.
+   64 bytes from 10.0.10.1: icmp_req=1 ttl=63 time=4.00 ms
+   64 bytes from 10.0.10.1: icmp_req=2 ttl=63 time=0.000 ms
+   64 bytes from 10.0.10.1: icmp_req=3 ttl=63 time=0.000 ms
+   64 bytes from 10.0.10.1: icmp_req=4 ttl=63 time=0.000 ms
+   ^C
+   --- 10.0.10.1 ping statistics ---
+   4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+   rtt min/avg/max/mdev = 0.000/1.000/4.001/1.732 ms
+   ```
+
+   This is expected behavior with Cumulus Linux; when you send an ICMP echo request to an IP address that is not in the same subnet using the `ping -I` command, Cumulus Linux creates a failed ARP entry for the destination IP address.
+
+   For more information, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/203403316-ICMP-Ping-Doesn-t-Work-when-Specifying-the-Interface-I-Option" text="this KB article">}}.
+
 - On Broadcom Trident II+ and Maverick-based switches,
   when a lookup is done after VXLAN decapsulation on the
   external-facing switch (exit/border leaf), the switch does not
@@ -2278,7 +2306,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
   the same temporary VNIs on both switches of the MLAG pair.
 
   - EVPN is not supported when {{<link title="Redistribute Neighbor" >}} is also configured. Enabling both features simultaneously causes instability in IPv4 and IPv6 neighbor entries.
-  
+
 ## Example Configurations
 
 - Basic Clos (4x2) for bridging

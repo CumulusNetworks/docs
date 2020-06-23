@@ -851,6 +851,8 @@ This command creates the following snippet in the
         vlan-raw-device bridge
         vrf turtle
 
+When configuring third party networking devices using MLAG and EVPN for interoperability, you must configure and announce a single shared router MAC value per advertised next hop IP address.
+
 {{%/notice%}}
 
 #### VRF to Layer 3 VNI Mapping

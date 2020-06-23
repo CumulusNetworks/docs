@@ -596,7 +596,7 @@ Storm control is *not* supported on a switch with the Tomahawk2 ASIC.
 
 You configure storm control for each physical port by editing the `/etc/cumulus/switchd.conf` file.
 
-For example, to enable broadcast storm control for swp1 at 400 packets per second (pps) and multicast storm control at 3000 pps, edit the `/etc/cumulus/switchd.conf` file and uncomment the `storm_control.broadcast` and `storm_control.multicast` lines:
+For example, to enable broadcast storm control for swp1 at 400 packets per second (pps) and multicast storm control at 3000 pps and unknown unicast at 500 pps, edit the `/etc/cumulus/switchd.conf` file and uncomment the `storm_control.broadcast` and `storm_control.multicast` lines:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
@@ -604,17 +604,18 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 # Storm Control setting on a port, in pps, 0 means disable
 interface.swp1.storm_control.broadcast = 400
 interface.swp1.storm_control.multicast = 3000
+interface.swp1.storm_control.unknown_unicast = 500
 ...
 ```
 
 When you update the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect. Run the `sudo systemctl restart switchd.service` command.
 
-Alternatively, you can run the following commands. The configuration below takes effect immediately, but does not persist if you reboot the switch.
+Alternatively, you can run the following commands. The configuration below takes effect immediately, but does not persist if you reboot the switch. For a persistent configuration, edit the `/etc/cumulus/switchd.conf` file, as described above.
 
 ```
-cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
+cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/broadcast'
 cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
-cumulus@switch:~$ sudo systemctl restart switchd.service
+cumulus@switch:~$ sudo sh -c 'echo 500 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
 ```
 
 ### Spanning Tree Parameter List

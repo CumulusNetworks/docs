@@ -7,6 +7,22 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30103</td>
+<td><p>On a Broadcom switch with the Trident2+ ASIC, ACL rules for VLANs are not applied after a reboot and the counters remain at zero.<br/>
+To work around this issue, either do not set acl.non_atomic_update_mode = TRUE in the /etc/cumulus/switchd.conf file or run the cl-acltool -i command after the reboot to install the  ACLs.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30040</td>
 <td><p>The following vulnerabilities have been announced in the cups package:<br/>
 CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
@@ -22,6 +38,13 @@ Fixed: 1.7.5-11+deb8u8</p></td>
 Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -339,6 +362,19 @@ CVE-2019-5188: A specially crafted ext4 directory can cause an out-of-bounds wri
 <tr>
 <td>CM-29037</td>
 <td><p>Silent reboots sometimes occur on the switch with nothing that indicates a reboot reason in the syslog file. </p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29035</td>
+<td><p>When you upgrade Cumulus Linux on the EdgeCore AS7726-32X or AS7326-56X switch, you might see firmware errors similar to the following:</p>
+
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso5.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3.bin for module tg3
+
+
+<p>You can safely ignore these error messages.</p></td>
 <td>3.7.12</td>
 <td></td>
 </tr>
@@ -2107,6 +2143,15 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30040</td>
 <td><p>The following vulnerabilities have been announced in the cups package:<br/>
 CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
@@ -2122,6 +2167,13 @@ Fixed: 1.7.5-11+deb8u8</p></td>
 Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -4561,6 +4613,15 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30040</td>
 <td><p>The following vulnerabilities have been announced in the cups package:<br/>
 CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
@@ -4576,6 +4637,13 @@ Fixed: 1.7.5-11+deb8u8</p></td>
 Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -6747,6 +6815,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30040</td>
 <td><p>The following vulnerabilities have been announced in the cups package:<br/>
 CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
@@ -6762,6 +6839,13 @@ Fixed: 1.7.5-11+deb8u8</p></td>
 Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -9375,6 +9459,15 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30040</td>
 <td><p>The following vulnerabilities have been announced in the cups package:<br/>
 CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
@@ -9390,6 +9483,13 @@ Fixed: 1.7.5-11+deb8u8</p></td>
 Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -11873,6 +11973,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30040</td>
@@ -14742,6 +14851,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30040</td>
 <td><p>The following vulnerabilities have been announced in the cups package:<br/>
 CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
@@ -17572,6 +17690,15 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30040</td>
 <td><p>The following vulnerabilities have been announced in the cups package:<br/>
 CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
@@ -20062,6 +20189,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30040</td>
@@ -22612,6 +22748,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30040</td>
@@ -25327,6 +25472,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30040</td>
@@ -28174,6 +28328,15 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30040</td>
 <td><p>The following vulnerabilities have been announced in the cups package:<br/>
 CVE-2019-8842: The &apos;ippReadIO&apos; function may under-read an extension field<br/>
@@ -30533,6 +30696,15 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30064</td>
+<td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
+CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
+Vulnerable: &lt;= 5.23-2+deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30040</td>

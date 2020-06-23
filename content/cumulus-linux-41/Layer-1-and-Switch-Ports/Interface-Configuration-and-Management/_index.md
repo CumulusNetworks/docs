@@ -1198,7 +1198,7 @@ up ip route add default via 172.16.3.2
 
 ### Interface Name Limitations
 
-The Linux kernel limits interface names to 15 characters in length and the first character cannot be a number. In addition, any name that matches with the regular expression `.{0,13}\-v.*` is not supported.
+Interface names are limited to 15 characters in length, the first character cannot be a number and the name cannot include a dash (-). In addition, any name that matches with the regular expression `.{0,13}\-v.*` is not supported.
 
 If you encounter issues, remove the interface name from the `/etc/network/interfaces` file, then restart the `networking.service`.
 

@@ -3,13 +3,14 @@ title: DHCP Snooping
 author: Cumulus Networks
 weight: 355
 toc: 3
+draft: true
 ---
 DHCP snooping enables Cumulus Linux to act as a middle layer between the DHCP infrastructure and DHCP clients by scanning DHCP control packets and building an IP-MAC database. Cumulus Linux accepts DHCP offers from only trusted interfaces and can rate limit packets.
 
 {{%notice note%}}
 
 - DHCP option 82 processing is not supported.
-- DHCPv6 is not supported.
+- DHCPv6 is supported on Broadcom switches only.
 
 {{%/notice%}}
 
@@ -19,7 +20,7 @@ To configure DHCP snooping, you need to:
 
 - Enable DHCP snooping on a VLAN.
 - Add a trusted interface. Cumulus Linux allows DHCP offers from only trusted interfaces to prevent malicious DHCP servers from assigning IP addresses inside the network. The interface must be a member of the bridge specified.
-- Set the rate limit for DHCP requests to avoid DoS attacks. The default value is 10 packets per minute.
+- Set the rate limit for DHCP requests to avoid DoS attacks. The default value is 100 packets per second.
 
 The following example commands show you how to configure DHCP snooping for IPv4 and IPv6.
 
@@ -30,7 +31,7 @@ The following example commands show you how to configure DHCP snooping for IPv4 
 ```
 cumulus@leaf01:~$ net add bridge br0 dhcp-snoop vlan 100
 cumulus@leaf01:~$ net add bridge br0 dhcp-snoop vlan 100 trust swp6
-cumulus@leaf01:~$ net add bridge br0 dhcp-snoop vlan 100 rate-limit 100
+cumulus@leaf01:~$ net add bridge br0 dhcp-snoop vlan 100 rate-limit 50
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -42,7 +43,7 @@ cumulus@leaf01:~$ net commit
 ```
 cumulus@leaf01:~$ net add bridge br0 dhcp-snoop6 vlan 100
 cumulus@leaf01:~$ net add bridge br0 dhcp-snoop6 vlan 100 trust swp6
-cumulus@leaf01:~$ net add bridge br0 dhcp-snoop6 vlan 100 rate-limit 100
+cumulus@leaf01:~$ net add bridge br0 dhcp-snoop6 vlan 100 rate-limit 50
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -62,7 +63,7 @@ The NCLU commands save the configuration in the `/etc/dhcpsnoop/dhcp_snoop.json`
         {
           "vlan_id": 100,
           "snooping": 1,
-          "rate_limit": 100,
+          "rate_limit": 50,
           "ip_version": 6,
           "trusted_interface": [
             "swp6"

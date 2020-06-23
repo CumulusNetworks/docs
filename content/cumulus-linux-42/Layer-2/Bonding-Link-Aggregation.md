@@ -50,7 +50,7 @@ To configure custom hash, edit the `/etc/cumulus/datapath/traffic.conf` file:
 
 1. To enable custom hashing, uncomment the `lag_hash_config.enable = true` line.
 2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
-3. Run the `echo 1 > /cumulus/switchd/config/traffic/reload` command.
+3. Run the `echo 1 > /cumulus/switchd/ctrl/hash_config_reload` command. This command does not cause any traffic interruptions.
 
 The following shows an example `/etc/cumulus/datapath/traffic.conf` file:
 

@@ -1,13 +1,12 @@
 ---
 title: Zero Touch Provisioning - ZTP
 author: Cumulus Networks
-weight: 90
-toc: 3
+weight: 51
+pageID: 8362632
 ---
 *Zero touch provisioning* (ZTP) enables you to deploy network devices quickly in large-scale environments. On first boot, Cumulus Linux invokes ZTP, which executes the provisioning automation used to deploy the device for its intended role in the network.
 
-The provisioning framework allows for a one-time, user-provided script to be executed. You can develop this script using a variety of automation tools and scripting languages, providing ample flexibility
-for you to design the provisioning scheme to meet your needs. You can also use it to add the switch to a configuration management (CM) platform such as {{<exlink url="http://puppet.com/" text="Puppet">}}, {{<exlink url="https://www.chef.io" text="Chef">}}, {{<exlink url="https://cfengine.com" text="CFEngine">}} or possibly a custom, proprietary tool.
+The provisioning framework allows for a one-time, user-provided script to be executed. You can develop this script using a variety of automation tools and scripting languages, providing ample flexibility for you to design the provisioning scheme to meet your needs. You can also use it to add the switch to a configuration management (CM) platform such as {{<exlink url="http://puppetlabs.com/puppet/what-is-puppet" text="Puppet">}}, {{<exlink url="http://www.opscode.com" text="Chef">}}, {{<exlink url="https://cfengine.com" text="CFEngine">}} or possibly a custom, proprietary tool.
 
 While developing and testing the provisioning logic, you can use the `ztp` command in Cumulus Linux to manually invoke your provisioning script on a device.
 
@@ -19,7 +18,7 @@ ZTP in Cumulus Linux can occur automatically in one of the following ways, in th
 
 Each method is discussed in greater detail below.
 
-## Use a Local File
+## Zero Touch Provisioning Using a Local File
 
 ZTP only looks once for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="http://onie.org" text="ONIE">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
 
@@ -41,7 +40,7 @@ cumulus-ztp
 
 You can also trigger the ZTP process manually by running the `ztp --run <URL>` command, where the URL is the path to the ZTP script.
 
-## Use a USB Drive
+## Zero Touch Provisioning Using a USB Drive (ZTP-USB)
 
 {{%notice note%}}
 
@@ -57,13 +56,14 @@ At minimum, the script must:
 
 - Install the Cumulus Linux operating system and license.
 - Copy over a basic configuration to the switch.
-- Restart the switch or the relevant services to get `switchd` up and running with that configuration.
+- Restart the switch or the relevant serves to get `switchd` up and
+  running with that configuration.
 
-Follow these steps to perform ZTP using a USB drive:
+Follow these steps to perform zero touch provisioning using a USB drive:
 
 1. Copy the Cumulus Linux license and installation image to the USB drive.
-2. The `ztp` process searches the root filesystem of the newly mounted drive for filenames matching an {{<exlink url="https://opencomputeproject.github.io/onie/user-guide/index.html#directly-connected-scenario" text="ONIE-style waterfall">}} (see the patterns and examples above), looking for the most specific name first, and ending at the most generic.
-3. The contents of the script are parsed to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag (see {{<link url="#write-ztp-scripts" text="example scripts">}}).
+2. The `ztp` process searches the root filesystem of the newly mounted drive for filenames matching an {{<exlink url="https://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" text="ONIE-style waterfall">}} (see the patterns and examples above), looking for the most specific name first, and ending at the most generic.
+3. The contents of the script are parsed to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag.
 
 {{%notice note%}}
 
@@ -71,25 +71,25 @@ The USB drive is mounted to a temporary directory under `/tmp` (for example, `/t
 
 {{%/notice%}}
 
-## ZTP over DHCP
+## Zero Touch Provisioning over DHCP
 
 If the `ztp` process does not discover a local/ONIE script or applicable USB drive, it checks DHCP every ten seconds for up to five minutes for the presence of a ZTP URL specified in `/var/run/ztp.dhcp`. The URL can be any of HTTP, HTTPS, FTP or TFTP.
 
 For ZTP using DHCP, provisioning initially takes place over the management network and is initiated through a DHCP hook. A DHCP option is used to specify a configuration script. This script is then requested from the Web server and executed locally on the switch.
 
-The ZTP process over DHCP follows these steps:
+The zero touch provisioning process over DHCP follows these steps:
 
 1. The first time you boot Cumulus Linux, eth0 is configured for DHCP and makes a DHCP request.
 2. The DHCP server offers a lease to the switch.
-3. If option 239 is present in the response, the ZTP process starts.
-4. The ZTP process requests the contents of the script from the URL, sending additional {{<link url="#inspect-http-headers" text="HTTP headers">}} containing details about the switch.
+3. If option 239 is present in the response, the zero touch provisioning process starts.
+4. The zero touch provisioning process requests the contents of the script from the URL, sending additional {{<link url="#inspect-http-headers" text="HTTP headers">}} containing details about the switch.
 5. The contents of the script are parsed to ensure it contains the `CUMULUS-AUTOPROVISIONING` flag (see {{<link url="#write-ztp-scripts" text="example scripts">}}).
 6. If provisioning is necessary, the script executes locally on the switch with root privileges.
 7. The return code of the script is examined. If it is 0, the provisioning state is marked as complete in the autoprovisioning configuration file.
 
 ### Trigger ZTP over DHCP
 
-If provisioning has not already occurred, it is possible to trigger the ZTP process over DHCP when eth0 is set to use DHCP and one of the following events occur:
+If provisioning has not already occurred, it is possible to trigger the zero touch provisioning process over DHCP when eth0 is set to use DHCP and one of the following events occur:
 
 - The switch boots.
 - You plug a cable into or unplug a cable from the eth0 port.
@@ -106,9 +106,9 @@ For example, the `/etc/dhcp/dhcpd.conf` file for an ISC DHCP server looks like:
 ```
 option cumulus-provision-url code 239 = text;
 
-  subnet 192.0.2.0 netmask 255.255.255.0 {
-  range 192.0.2.100 192.168.0.200;
-  option cumulus-provision-url "http://192.0.2.1/demo.sh";
+subnet 192.0.2.0 netmask 255.255.255.0 {
+ range 192.0.2.100 192.168.0.200;
+ option cumulus-provision-url "http://192.0.2.1/demo.sh";
 }
 ```
 
@@ -116,17 +116,11 @@ Additionally, you can specify the hostname of the switch with the `host-name` op
 
 ```
 subnet 192.168.0.0 netmask 255.255.255.0 {
-  range 192.168.0.100 192.168.0.200;
-  option cumulus-provision-url "http://192.0.2.1/demo.sh";
-  host dc1-tor-sw1 { hardware ethernet 44:38:39:00:1a:6b; fixed-address 192.168.0.101; option host-name "dc1-tor-sw1"; }
+ range 192.168.0.100 192.168.0.200;
+ option cumulus-provision-url "http://192.0.2.1/demo.sh";
+ host dc1-tor-sw1 { hardware ethernet 44:38:39:00:1a:6b; fixed-address 192.168.0.101; option host-name "dc1-tor-sw1"; }
 }
 ```
-
-{{%notice note%}}
-
-Do not use an underscore (\_) in the hostname; underscores are not permitted in hostnames.
-
-{{%/notice%}}
 
 ### Inspect HTTP Headers
 
@@ -137,14 +131,14 @@ Header                        Value                 Example
 ------                        -----                 -------
 User-Agent                                          CumulusLinux-AutoProvision/0.4
 CUMULUS-ARCH                  CPU architecture      x86_64
-CUMULUS-BUILD                                       4.1.0
+CUMULUS-BUILD                                       3.7.3-5c6829a-201309251712-final
 CUMULUS-LICENSE-INSTALLED     Either 0 or 1         1
 CUMULUS-MANUFACTURER                                odm
 CUMULUS-PRODUCTNAME                                 switch_model
 CUMULUS-SERIAL                                      XYZ123004
 CUMULUS-BASE-MAC                                    44:38:39:FF:40:94
 CUMULUS-MGMT-MAC                                    44:38:39:FF:00:00
-CUMULUS-VERSION                                     4.1.0
+CUMULUS-VERSION                                     3.7.3
 CUMULUS-PROV-COUNT                                  0
 CUMULUS-PROV-MAX                                    32
 ```
@@ -179,10 +173,9 @@ The following script installs Cumulus Linux and its license from a USB drive and
 ```
 #!/bin/bash
 function error() {
-  echo -e "\e[0;33mERROR: The ZTP script failed while running the command $BASH_COMMAND at line $BASH_LINENO.\e[0m" >&2
-  exit 1
+    echo -e "\e[0;33mERROR: The Zero Touch Provisioning script failed while running the command $BASH_COMMAND at line $BASH_LINENO.\e[0m" >&2
+    exit 1
 }
-
 # Log all output from this script
 exec >> /var/log/autoprovision 2>&1
 date "+%FT%T ztp starting script $0"
@@ -190,8 +183,8 @@ date "+%FT%T ztp starting script $0"
 trap error ERR
 
 #Add Debian Repositories
-echo "deb http://http.us.debian.org/debian buster main" >> /etc/apt/sources.list
-echo "deb http://security.debian.org/ buster/updates main" >> /etc/apt/sources.list
+echo "deb http://http.us.debian.org/debian jessie main" >> /etc/apt/sources.list
+echo "deb http://security.debian.org/ jessie/updates main" >> /etc/apt/sources.list
 
 #Update Package Cache
 apt-get update -y
@@ -218,46 +211,9 @@ exit 0
 
 Several ZTP example scripts are available in the {{<exlink url="https://github.com/CumulusNetworks/example-ztp-scripts" text="Cumulus GitHub repository">}}.
 
-## Best Practices
+## Best Practices for ZTP Scripts
 
 ZTP scripts come in different forms and frequently perform many of the same tasks. As BASH is the most common language used for ZTP scripts, the following BASH snippets are provided to accelerate your ability to perform common tasks with robust error checking.
-
-### Set the Default Cumulus User Password
-
-The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change at first login is **required** in Cumulus Linux 4.2 and later.
-
-Add the following function to your ZTP script to change the default *cumulus* user account password to a clear-text password. The example changes the password `cumulus` to `MyP4$$word`.
-
-```
-function set_password(){
-     # Unexpire the cumulus account
-     passwd -x 99999 cumulus
-     # Set the password
-     echo 'cumulus:MyP4$$word' | chpasswd
-}
-set_password
-```
-
-If you have an insecure management network, set the password with an encrypted hash instead of a clear-text password. Using an encrypted hash is recommended.
-
-- First, generate a sha-512 password hash with the following python commands. The example commands generate a sha-512 password hash for the password `MyP4$$word`.
-
-   ```
-   user@host:~$ python3 -c "import crypt; print(crypt.crypt('MyP4$$word',salt=crypt.mksalt()))"
-   $6$hs7OPmnrfvLNKfoZ$iB3hy5N6Vv6koqDmxixpTO6lej6VaoKGvs5E8p5zNo4tPec0KKqyQnrFMII3jGxVEYWntG9e7Z7DORdylG5aR/
-   ```
-
-- Then, add the following function to the ZTP script to change the default *cumulus* user account password:
-
-   ```
-   function set_password(){
-        # Unexpire the cumulus account
-        passwd -x 99999 cumulus
-        # Set the password
-        usermod -p '$6$hs7OPmnrfvLNKfoZ$iB3hy5N6Vv6koqDmxixpTO6lej6VaoKGvs5E8p5zNo4tPec0KKqyQnrFMII3jGxVEYWntG9e7Z7DORdylG5aR/' cumulus
-   }
-   set_password
-   ```
 
 ### Install a License
 
@@ -265,17 +221,17 @@ Use the following function to include error checking for license file installati
 
 ```
 function install_license(){
-     # Install license
-     echo "$(date) INFO: Installing License..."
-     echo $1 | /usr/cumulus/bin/cl-license -i
-     return_code=$?
-     if [ "$return_code" == "0" ]; then
-         echo "$(date) INFO: License Installed."
-     else
-         echo "$(date) ERROR: License not installed. Return code was: $return_code"
+    # Install license
+    echo "$(date) INFO: Installing License..."
+    echo $1 | /usr/cumulus/bin/cl-license -i
+    return_code=$?
+    if [ "$return_code" == "0" ]; then
+        echo "$(date) INFO: License Installed."
+    else
+        echo "$(date) ERROR: License not installed. Return code was: $return_code"
          /usr/cumulus/bin/cl-license
          exit 1
-     fi
+    fi
 }
 ```
 
@@ -320,8 +276,8 @@ IMAGE_SERVER= "http:// "$IMAGE_SERVER_HOSTNAME "/ "$CUMULUS_TARGET_RELEASE ".bin
 ZTP_URL= "http:// "$IMAGE_SERVER_HOSTNAME "/ztp.sh "
 
 if [ "$CUMULUS_TARGET_RELEASE" != "$CUMULUS_CURRENT_RELEASE" ]; then
-    ping_until_reachable $IMAGE_SERVER_HOSTNAME
-    /usr/cumulus/bin/onie-install -fa -i $IMAGE_SERVER -z $ZTP_URL && reboot
+ping_until_reachable $IMAGE_SERVER_HOSTNAME
+/usr/cumulus/bin/onie-install -fa -i $IMAGE_SERVER -z $ZTP_URL && reboot
 else
     init_ztp && reboot
 fi
@@ -342,7 +298,7 @@ After initially configuring a node with ZTP, use {{<exlink url="http://docs.ansi
 
 ### Disable the DHCP Hostname Override Setting
 
-Make sure to disable the DHCP hostname override setting in your script (NCLU does this automatically).
+Make sure to disable the DHCP hostname override setting in your script (NCLU does this for in Cumulus Linux 3.5 and above).
 
 ```
 function set_hostname(){
@@ -354,9 +310,11 @@ function set_hostname(){
 
 ### NCLU in ZTP Scripts
 
-{{%notice note%}}
+{{%notice info%}}
 
 Not all aspects of NCLU are supported when running during ZTP. Use traditional Linux methods of providing configuration to the switch during ZTP.
+
+Most notably, using the `net del all` command in a ZTP script sets `zebra=yes` in `/etc/frr/daemons`. This causes ZTP to fail.
 
 {{%/notice%}}
 
@@ -380,13 +338,13 @@ net commit
 
 There are a few commands you can use to test and debug your ZTP scripts.
 
-You can use verbose mode to debug your script and see where your script failed. Include the `-v` option when you run ZTP:
+You can use verbose mode to debug your script and see where your script failed. Include the `-v` option when you run `ztp`:
 
 ```
 cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh
 Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
 
-Broadcast message from root@dell-s6010-01 (ttyS0) (Tue May 10 22:44:17 2016):  
+Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2016):  
 
 ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
 ZTP Manual: URL response code 200
@@ -405,7 +363,7 @@ ZTP INFO:
 State              enabled
 Version            1.0
 Result             Script Failure
-Date               Mon 20 May 2019 09:31:27 PM UTC
+Date               Tue May 10 22:42:09 2016 UTC
 Method             ZTP DHCP
 URL                http://192.0.2.1/demo.sh
 ```
@@ -415,22 +373,22 @@ If ZTP runs when the switch boots and not manually, you can run the `systemctl -
 ```
 cumulus@switch:~$ sudo systemctl -l status ztp.service
 ● ztp.service - Cumulus Linux ZTP
-    Loaded: loaded (/lib/systemd/system/ztp.service; enabled)
+     Loaded: loaded (/lib/systemd/system/ztp.service; enabled)
     Active: failed (Result: exit-code) since Wed 2016-05-11 16:38:45 UTC; 1min 47s ago
-        Docs: man:ztp(8)
+     Docs: man:ztp(8)
     Process: 400 ExecStart=/usr/sbin/ztp -b (code=exited, status=1/FAILURE)
     Main PID: 400 (code=exited, status=1/FAILURE)
 
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Device not found
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: URL response code 200
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Payload returned code 1
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: Script returned failure
-May 11 16:38:45 dell-s6010-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
-May 11 16:38:45 dell-s6010-01 systemd[1]: Unit ztp.service entered failed state.
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: URL response code 200
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Payload returned code 1
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Script returned failure
+May 11 16:38:45 dell-s6000-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
+May 11 16:38:45 dell-s6000-01 systemd[1]: Unit ztp.service entered failed state.
 cumulus@switch:~$
 cumulus@switch:~$ sudo journalctl -l -u ztp.service --no-pager
 -- Logs begin at Wed 2016-05-11 16:37:42 UTC, end at Wed 2016-05-11 16:40:39 UTC. --
@@ -438,23 +396,23 @@ May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/lib/cumulus/ztp: Sate Director
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/run/ztp.lock: Lock File does not exist. Creating it...
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: /var/lib/cumulus/ztp/ztp_state.log: State File does not exist. Creating it...
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Looking for ZTP local Script
-May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6010_s1220-rUNKNOWN
-May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6010_s1220
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220-rUNKNOWN
+May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64
-May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp
+    May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Looking for unmounted USB devices
 May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Parsing partitions
-May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Device not found
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: URL response code 200
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: ZTP DHCP: Payload returned code 1
-May 11 16:38:45 dell-s6010-01 ztp[400]: ztp [400]: Script returned failure
-May 11 16:38:45 dell-s6010-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
-May 11 16:38:45 dell-s6010-01 systemd[1]: Unit ztp.service entered failed state.
+ May 11 16:37:45 cumulus ztp[400]: ztp [400]: ZTP USB: Device not found
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Looking for ZTP Script provided by DHCP
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Attempting to provision via ZTP DHCP from http://192.0.2.1/demo.sh
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: URL response code 200
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Found Marker CUMULUS-AUTOPROVISIONING
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Executing http://192.0.2.1/demo.sh
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: ZTP DHCP: Payload returned code 1
+May 11 16:38:45 dell-s6000-01 ztp[400]: ztp [400]: Script returned failure
+May 11 16:38:45 dell-s6000-01 systemd[1]: ztp.service: main process exited, code=exited, status=1/FAILURE
+May 11 16:38:45 dell-s6000-01 systemd[1]: Unit ztp.service entered failed state.
 ```
 
 Instead of running `journalctl`, you can see the log history by running:
@@ -465,8 +423,8 @@ cumulus@switch:~$ cat /var/log/syslog | grep ztp
 2016-05-11T16:37:45.134081+00:00 cumulus ztp [400]: /var/run/ztp.lock: Lock File does not exist. Creating it...
 2016-05-11T16:37:45.135360+00:00 cumulus ztp [400]: /var/lib/cumulus/ztp/ztp_state.log: State File does not exist. Creating it...
 2016-05-11T16:37:45.185598+00:00 cumulus ztp [400]: ZTP LOCAL: Looking for ZTP local Script
-2016-05-11T16:37:45.485084+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6010_s1220-rUNKNOWN
-2016-05-11T16:37:45.486394+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6010_s1220
+2016-05-11T16:37:45.485084+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220-rUNKNOWN
+ 2016-05-11T16:37:45.486394+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell_s6000_s1220
 2016-05-11T16:37:45.488385+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64-dell
 2016-05-11T16:37:45.489665+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp-x86_64
 2016-05-11T16:37:45.490854+00:00 cumulus ztp [400]: ZTP LOCAL: Waterfall search for /var/lib/cumulus/ztp/cumulus-ztp
@@ -485,13 +443,13 @@ cumulus@switch:~$ cat /var/log/syslog | grep ztp
 2016-05-11T16:38:45.879410+00:00 cumulus systemd[1]: Unit ztp.service entered failed state.
 ```
 
-If you see that the issue is a script failure, you can modify the script and then run ZTP manually using `ztp -v -r <URL/path to that script>`, as above.
+If you see that the issue is a script failure, you can modify the script and then run `ztp` manually using `ztp -v -r <URL/path to that script>`, as above.
 
 ```
 cumulus@switch:~$ sudo ztp -v -r http://192.0.2.1/demo.sh
 Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
 
-Broadcast message from root@dell-s6010-01 (ttyS0) (Tue May 10 22:44:17 2019):  
+Broadcast message from root@dell-s6000-01 (ttyS0) (Tue May 10 22:44:17 2016):  
 
 ZTP: Attempting to provision via ZTP Manual from http://192.0.2.1/demo.sh
 ZTP Manual: URL response code 200
@@ -500,12 +458,12 @@ ZTP Manual: Executing http://192.0.2.1/demo.sh
 error: ZTP Manual: Payload returned code 1
 error: Script returned failure
 cumulus@switch:~$ sudo ztp -s
-State         enabled
-Version       1.0
-Result        Script Failure
-Date          Mon 20 May 2019 09:31:27 PM UTC
-Method        ZTP Manual
-URL           http://192.0.2.1/demo.sh
+State      enabled
+Version    1.0
+Result     Script Failure
+Date       Tue May 10 22:44:17 2016 UTC
+Method     ZTP Manual
+URL        http://192.0.2.1/demo.sh
 ```
 
 Use the following command to check `syslog` for information about ZTP:
@@ -516,7 +474,7 @@ cumulus@switch:~$ sudo grep -i ztp /var/log/syslog
 
 ## Common ZTP Script Errors
 
-### Could not find referenced script/interpreter in downloaded payload
+*Could not find referenced script/interpreter in downloaded payload.*
 
 ```
 cumulus@leaf01:~$ sudo cat /var/log/syslog | grep ztp
@@ -545,7 +503,7 @@ Errors in syslog for ZTP like those shown above often occur if the script is cre
 Use the `cat -v ztp.sh` command to view the contents of the script and search for any hidden characters.
 
 ```
-root@oob-mgmt-server:/var/www/html# cat -v ./ztp_oob_windows.sh 
+root@oob-mgmt-server:/var/www/html# cat -v ./ztp_oob_windows.sh
 #!/bin/bash^M
 ^M
 ###################^M
@@ -570,7 +528,7 @@ Use the translate (`tr`) command on any Linux system to remove the `'\r'` charac
 
 ```
 root@oob-mgmt-server:/var/www/html# tr -d '\r' < ztp_oob_windows.sh > ztp_oob_unix.sh
-root@oob-mgmt-server:/var/www/html# cat -v ./ztp_oob_unix.sh 
+root@oob-mgmt-server:/var/www/html# cat -v ./ztp_oob_unix.sh
 #!/bin/bash
 ###################
 #   ZTP Script
@@ -586,7 +544,7 @@ root@oob-mgmt-server:/var/www/html#
 
 ## Manually Use the ztp Command
 
-To enable ZTP, use the `-e` option:
+To enable zero touch provisioning, use the `-e` option:
 
 ```
 cumulus@switch:~$ sudo ztp -e
@@ -594,7 +552,7 @@ cumulus@switch:~$ sudo ztp -e
 
 {{%notice note%}}
 
-Enabling ZTP means that ZTP tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if a manual configuration has been found, ZTP will just exit without trying to look for any script.
+Enabling `ztp` means that `ztp` tries to run the next time the switch boots. However, if ZTP already ran on a previous boot up or if a manual configuration has been found, ZTP will just exit without trying to look for any script.
 
 ZTP checks for these manual configurations during bootup:
 
@@ -608,13 +566,14 @@ When the switch is booted for the very first time, ZTP records the state of impo
 
 {{%/notice%}}
 
-To reset ZTP to its original state, use the `-R` option. This removes the `ztp` directory and ZTP runs the next time the switch reboots.
+To reset `ztp` to its original state, use the `-R` option and the -i option. This removes the `ztp` directory and `ztp` runs the next time the switch reboots.
 
 ```
 cumulus@switch:~$ sudo ztp -R
+cumulus@switch:~$ sudo ztp -i
 ```
 
-To disable ZTP, use the `-d` option:
+To disable zero touch provisioning, use the `-d` option:
 
 ```
 cumulus@switch:~$ sudo ztp -d
@@ -626,20 +585,20 @@ To force provisioning to occur and ignore the status listed in the configuration
 cumulus@switch:~$ sudo ztp -r cumulus-ztp.sh
 ```
 
-To see the current ZTP state, use the `-s` option:
+To see the current `ztp` state, use the `-s` option:
 
 ```
 cumulus@switch:~$ sudo ztp -s
 ZTP INFO:
-State          disabled
-Version        1.0
-Result         success
-Date           Mon May 20 21:51:04 2019 UTC
-Method         Switch manually configured  
-URL            None
+State disabled
+Version 1.0
+Result success
+Date Thu May 5 16:49:33 2016 UTC
+Method Switch manually configured  
+URL None
 ```
 
-You can run the NCLU `net show system ztp script` or `net show system ztp json` command to see the current `ztp` state.
+In Cumulus Linux 3.7.11 and later, you can run the NCLU `net show system ztp script` or `net show system ztp json` command to see the current `ztp` state.
 
 ## Notes
 

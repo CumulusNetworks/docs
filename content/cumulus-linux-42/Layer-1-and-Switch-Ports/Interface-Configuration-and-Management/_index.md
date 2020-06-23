@@ -1196,9 +1196,11 @@ address 172.16.3.3/24
 up ip route add default via 172.16.3.2
 ```
 
-### Long Interface Names
+### Interface Name Limitations
 
-Interface names can be a maximum of 15 characters in length and you cannot use a number as the first character. Longer interface names might result in errors. To resolve long interface name issues, remove the interface from the `/etc/network/interfaces` file, then restart `networking.service`.
+Interface names are limited to 15 characters in length, the first character cannot be a number and the name cannot include a dash (-). In addition, any name that matches with the regular expression `.{0,13}\-v.*` is not supported.
+
+If you encounter issues, remove the interface name from the `/etc/network/interfaces` file, then restart the `networking.service`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces

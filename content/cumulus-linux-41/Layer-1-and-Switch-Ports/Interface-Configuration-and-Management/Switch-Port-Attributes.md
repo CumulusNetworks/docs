@@ -112,16 +112,14 @@ Cumulus Linux supports both half- and {{<exlink url="http://en.wikipedia.org/wik
 
 Supported port speeds include 100M, 1G, 10G, 25G, 40G, 50G and 100G. In Cumulus Linux, you set the speed on Broadcom-based switch in Mbps, where the setting for 1G is *1000*, 40G is *40000*, and 100G is *100000*.
 
-You can configure ports to one speed less than their maximum speed.
+You can configure ports to the following speeds (unless there are restrictions in the `/etc/cumulus/ports.conf` file of a particular platform).
 
-| Switch Port Type | Lowest Configurable Speed                                 |
+| <div style="width:130px">Switch Port Type | Other Configurable Speeds                                |
 | ---------------- | --------------------------------------------------------- |
 | 1G               | 100 Mb                                                    |
 | 10G              | 1 Gigabit (1000 Mb)                                       |
-| 40G              | 10G\*                                                     |
-| 100G             | 50G\* & 40G (with or without breakout port), 25G\*, 10G\* |
-
-\* Requires the port to be converted into a breakout port. See {{<link url="#breakout-ports" text="Configure Breakout Ports">}} below.
+| 40G              | 4x10G (10G lanes) creates four 1-lane ports each running at 10G |
+| 100G             | 50G or 2x50G (25G lanes) - 50G creates one 2-lane port running at 25G and 2x50G creates two 2-lane ports each running at 25G<br>40G (10G lanes) creates one 4-lane port running at 40G<br>4x25G (25G lanes) creates four 1-lane ports each running at 25G<br>4x10G (10G lanes) creates four 1-lane ports each running at 10G |
 
 {{%notice note%}}
 
@@ -129,7 +127,7 @@ You can configure ports to one speed less than their maximum speed.
 
 - On Lenovo NE2572O switches, swp1 through swp8 only support 25G speed.
 - For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must edit the `/etc/cumulus/ports.conf` file and configure the four ports in the same core to be 10G. See {{<link url="#caveats-and-errata" text="Caveats and Errata">}}.
-- A switch with the Maverick ASIC switch limits multicast traffic by the lowest speed port that has joined a particular group. For example, if you are sending 100G multicast through and subscribe with one 100G and one 25G port, traffic on both egress ports is limited to 25Gbps. If you remove the 25G port from the group, traffic correctly forwards at 100Gbps.
+- A switch with the Maverick ASIC limits multicast traffic by the lowest speed port that has joined a particular group. For example, if you are sending 100G multicast through and subscribe with one 100G and one 25G port, traffic on both egress ports is limited to 25Gbps. If you remove the 25G port from the group, traffic correctly forwards at 100Gbps.
 
 {{%/notice%}}
 
@@ -863,7 +861,7 @@ Setting the default MTU also applies to the management interface. Be sure to add
 
 Cumulus Linux lets you:
 
-- Break out 100G switch ports into 2x50G, 2x40G, 4x25G, or 4x10G with breakout cables.
+- Break out 100G switch ports into 2x50G, 4x25G, or 4x10G with breakout cables.
 - Break out 40G switch ports into four separate 10G ports for use with breakout cables.
 - Combine (*aggregate* or *gang*) four 10G switch ports into one 40G port for use with a breakout cable ({{<link url="Bonding-Link-Aggregation" text="not to be confused with a bond">}}).
 

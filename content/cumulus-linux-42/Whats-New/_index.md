@@ -16,19 +16,11 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Platforms
 
-- Dell S5224F-ON (25G Trident3 X5)
-- Delta AGV848v1 (25G Trident3 X5)
-- Edgecore AS5835-54T (10G Trident3 X5)
-- EdgeCore AS4610-30P (1G Helix4) - 24 port POE+ support
-- Mellanox SN4700 (400G Spectrum-3)
 - Mellanox SN4600C (100G Spectrum-3)
-- Mellanox SN3700 (200G Spectrum-2)
-- Mellanox SN3420 (25G Spectrum-2)
+- Mellanox SN3420 (10G Spectrum-2)
 
 ### New Features and Enhancements
 
-- {{<link title="EVPN Multihoming">}}, a standards-based replacement for MLAG in data centers deploying Clos topologies.
-- {{<link url="DHCP-Snooping" text="DHCP Snooping">}}
 - {{<link url="Quick-Start-Guide#login-credentials" text="Mandatory cumulus user default password change">}} upon first login
 - New {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE command line options">}} to set the *cumulus* user default password, add a license, and provide initial network configuration
 - Ability to {{<link url="Installing-a-New-Cumulus-Linux-Image#edit-the-cumulus-linux-image-advanced" text="edit the Cumulus Linux image file">}}

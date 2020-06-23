@@ -610,7 +610,7 @@ interface.swp1.storm_control.unknown_unicast = 500
 
 When you update the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect. Run the `sudo systemctl restart switchd.service` command.
 
-Alternatively, you can run the following commands. The configuration below takes effect immediately, but does not persist if you reboot the switch.
+Alternatively, you can run the following commands. The configuration below takes effect immediately, but does not persist if you reboot the switch. For a persistent configuration, edit the `/etc/cumulus/switchd.conf` file, as described above.
 
 ```
 cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/broadcast'

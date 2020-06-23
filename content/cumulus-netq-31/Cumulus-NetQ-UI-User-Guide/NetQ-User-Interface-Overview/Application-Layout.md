@@ -6,7 +6,7 @@ toc: 4
 ---
 The NetQ UI contains two main areas:
 
-- **Application Header** (1): Contains the main menu, recent actions history, search capabilities, NetQ version, quick health status chart, local time zone, premises list (cloud-only), and user account information.
+- **Application Header** (1): Contains the main menu, recent actions history, search capabilities, NetQ version, quick health status chart, local time zone, premises list, and user account information.
 - **Workbench** (2): Contains a task bar, content cards (with status and configuration information about your network and its various components), and help menu.
 
 {{< figure src="/images/netq/app-layout-cumulus-wb-areas-highlighted-241.png" width="700" >}}
@@ -48,6 +48,16 @@ Found in the header, the graph and performance rating provide a view into the he
 {{<notice note>}}
 On initial start up of the application, it may take up to an hour to reach an accurate health indication as some processes run every 30 minutes.
 {{</notice>}}
+
+## Local Time
+
+By default, the time zone is set to the user's local time zone. If a time zone has not been selected, NetQ defaults to the current local time zone where NetQ is installed.  Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="18" width="18">}} to change the time zone or refer to {{<link title="Set User Preferences#configure-display-settings" text="Set User Preferences">}} for additional details.
+
+## Premises Listing
+
+The name of the location you are monitoring is presented in the Premises field of the application header. If you have more than one premises configured, you can select the premises for the data you want to see.  Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="18" width="18">}}, then select the desired premises. If you have a large number of premises, you can search for a premises by name. Simply start typing the name in the search box and suggestions are provided.
+
+<!-- NetQ-6121: Add a figure src="/images/netq/app-layout-premises-list-310.png" width="200">}} -->
 
 ## Workbenches
 

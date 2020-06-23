@@ -3,6 +3,7 @@ title: DHCP Snooping
 author: Cumulus Networks
 weight: 355
 toc: 3
+draft: true
 ---
 DHCP snooping enables Cumulus Linux to act as a middle layer between the DHCP infrastructure and DHCP clients by scanning DHCP control packets and building an IP-MAC database. Cumulus Linux accepts DHCP offers from only trusted interfaces and can rate limit packets.
 

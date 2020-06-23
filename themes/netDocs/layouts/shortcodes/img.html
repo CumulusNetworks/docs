@@ -1,10 +1,8 @@
-
-{{ $src := ((.Get "src") | default (.Get 0)) }}
-
+{{- $src := ((.Get "src") | default (.Get 0)) -}}
 {{- /* "Check if the file exists in the /static directory. Skip any external icons" */ -}}
-{{ if or (fileExists (print "static/" $src)) (in $src "icons.cumulusnetworks.com") }}
-  <img src={{$src}} alt="{{.Get "alt"}}" width="{{.Get "width"}}" height="{{.Get "height"}}" />
-{{ else }}
-  {{- /* "If the file doesn't exist, print the .md file and image" */ -}}
-  {{- errorf "broken img tag in %s. %s" .Position $src -}}
-{{ end }}
+{{- if or (fileExists (print "static/" $src)) (in $src "icons.cumulusnetworks.com") -}}
+<img src={{$src}} alt="{{.Get "alt"}}" width="{{.Get "width"}}" height="{{.Get "height"}}" />
+{{- else -}}
+{{- /* "If the file doesn't exist, print the .md file and image" */ -}}
+{{- errorf "broken img tag in %s. %s" .Position $src -}}
+{{- end -}}

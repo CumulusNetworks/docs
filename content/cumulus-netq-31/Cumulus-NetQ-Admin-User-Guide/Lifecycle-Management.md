@@ -10,20 +10,23 @@ LCM enables you to:
 
 - Manage Cumulus Linux and Cumulus NetQ images in a local repository
 - Configure switch access credentials (required for installations and upgrades)
-- Discover and manage Cumulus Linux switches
+- Manage Cumulus Linux switches
 - Perform snapshots of the network state
-- Upgrade Cumulus Linux NOS on switches
-- Install and upgrade Cumulus NetQ on switches
+- Discover Cumulus Linux switches with and without Cumulus NetQ Agents
+- Install and upgrade Cumulus NetQ (Agents and CLI) on switches
+- Upgrade Cumulus Linux on switches
+
+LCM provides
 
 {{<notice note>}}
-This feature is fully enabled for on-premises deployments and fully disabled for cloud deployments. Contact your local Cumulus Networks sales representative or submit a support ticket to activate LCM on cloud deployments.
+This feature is fully enabled for on-premises deployments and fully disabled for cloud deployments. Contact your local Cumulus Networks sales representative or {{<exlink url="https://support.cumulusnetworks.com/hc/en-us" text="submit a support ticket">}} to activate LCM on cloud deployments.
 {{</notice>}}
 
 ## Access Lifecycle Management Features
 
 To manage the various lifecycle management features, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**.
 
-The Manage Switch Assets view provides a summary card for switch inventory, uploaded images, and switch access settings.
+The first time you open the Manage Switch Assets view, it provides a summary card for switch inventory, uploaded images, and switch access settings. Additional cards may appear after that based on your activity.
 
 {{<figure src="/images/netq/lcm-dashboard-300.png" width="700">}}
 
@@ -33,29 +36,77 @@ If you have a workbench open, you can also access this view by clicking <img src
 
 ## Image Management
 
-Cumulus Linux binary images can be uploaded to a local LCM repository for use with installation and upgrade of your switches. You can upload images from an external drive. When NetQ discovers Cumulus Linux switches running NetQ 2.4 or later in your network, it extracts the meta data needed to select the appropriate image for a given switch; including the software version (x.y.z), the CPU architecture (ARM, x86), platform (based on ASIC vendor, Broadcom or Mellanox) and SHA Checksum.
+You can manage both Cumulus Linux and Cumulus NetQ images with LCM. They are managed in a similar manner.
 
-The Cumulus Linux Images card provides a summary of image status in NetQ. It shows the total number of images in the repository, a count of missing images (refer to {{<link title="#Lifecycle Management" text="Missing Images">}}), and the starting points for adding and managing your images.
+Cumulus Linux binary images can be uploaded to a local LCM repository for upgrade of your switches. Cumulus NetQ binary images can be uploaded to the local LCM repository for installation or upgrade. You can upload images from an external drive.
 
-### Default Cumulus Linux Version Assignment
+The Linux and NetQ images are distinct based on the software version (x.y.z), the CPU architecture (ARM, x86), platform (based on ASIC vendor, Broadcom or Mellanox) and SHA Checksum. When LCM discovers Cumulus Linux switches running NetQ 2.x or later in your network, it extracts the meta data needed to select the appropriate image for a given switch.  Similarly, LCM discovers and extracts the meta data from NetQ images.
 
-You can assign a specific Cumulus Linux version as the default version to use during installation or upgrade of switches. Choosing the version that is desired for the largest number of your switches is recommended. The default selection can be overridden during upgrade job creation if an alternate version is needed for a set of switches.
+The Cumulus Linux Images and Cumulus NetQ Images cards provide a summary of image status in LCM. They show the total number of images in the repository, a count of missing images (refer to {{<link title="#Lifecycle Management" text="Missing Images">}}), and the starting points for adding and managing your images.
+
+### Default Cumulus Linux or Cumulus NetQ Version Assignment
+
+You can assign a specific Cumulus Linux or Cumulus NetQ version as the default version to use during installation or upgrade of switches. It is recommended that you choose the  newest version that you intend to install or upgrade on all or the majority of your switches. The default selection can be overridden during individual installation and upgrade job creation if an alternate version is needed for a given set of switches.
 
 ### Missing Images
 
-You should upload images for each variant of Cumulus Linux currently installed on your switch inventory if you want to support rolling back to a known good version should an installation or upgrade fail. NetQ prompts you to upload any missing images to the repository. For example, if you have both Cumulus Linux 3.7.3 and 3.7.11 versions, some running on ARM and some on x86 architectures, then NetQ would verify the presence of each of these images. If only the 3.7.3 x86, 3.7.3 ARM, and 3.7.11 x86 images are in the repository, NetQ would list the 3.7.11 ARM image as missing.
+You should upload images for each variant of Cumulus Linux and Cumulus NetQ currently installed on the switches in your inventory if you want to support rolling back to a known good version should an installation or upgrade fail. LCM prompts you to upload any missing images to the repository.
 
-If you have specified a default Cumulus Linux version, NetQ also verifies that the necessary images are available based on the known switch inventory, and if not, lists those that are missing.
+For example, if you have both Cumulus Linux 3.7.3 and 3.7.11 versions, some running on ARM and some on x86 architectures, then LCM verifies the presence of each of these images. If only the 3.7.3 x86, 3.7.3 ARM, and 3.7.11 x86 images are in the repository, LCM would list the 3.7.11 ARM image as missing.
+
+If you have specified a default Cumulus Linux and/or Cumulus NetQ version, LCM also verifies that the necessary versions of the default image are available based on the known switch inventory, and if not, lists those that are missing.
 
 ### Upload Images
 
-On installation of NetQ 3.0, no images have yet been uploaded to the LCM repository. Begin by adding images that match your current inventory. Then add the image you want to use for upgrading. And finally specify a default image for upgrades, if desired.
+On installation of NetQ 3.x, no images have yet been uploaded to the LCM repository. Begin by adding images that match your current inventory. Then add the image you want to use for upgrading. And finally specify a default image for upgrades, if desired.
 
 #### Upload Missing Images
 
-To upload missing images:
+To upload missing images, follow the instructions in the relevant tab:
+
+{{< tabs "TabID65" >}}
+
+{{< tab "Cumulus Linux" >}}
 
 1. On the Cumulus Linux Images card, click the *View missing CL images* link to see what images you need. This opens the list of missing images.
+
+  {{<figure src="/images/netq/lcm-linux-images-card-at-install-missinglink-300.png" width="200">}}
+
+2. Select one of the missing images and make note of the version, ASIC Vendor, and CPU architecture.
+
+  {{<figure src="/images/netq/lcm-images-missing-list-300.png" width="700">}}
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Image) above the table.
+
+  {{<figure src="/images/netq/lcm-import-image-dialog-300.png" width="250">}}
+
+4. Provide the *.bin* file from an external drive that matches the criteria for the selected image, either by dragging and dropping it onto the dialog or by selecting it from a directory.
+
+5. Click **Import**.
+
+    {{<figure src="/images/netq/lcm-import-image-in-process-300.png" width="250">}}
+
+<div style="padding-left: 18px;">On successful completion, you receive confirmation of the upload.</div>
+
+    {{<figure src="/images/netq/lcm-import-image-success-300.png" width="250">}}
+
+<div style="padding-left: 18px;">If the upload was not successful, an <em>Image Import Failed</em> message is shown. Close the Import Image dialog and try uploading the file again.</div>
+
+6. Click **Done**.
+
+7. Click **Uploaded** tab to verify the image is in the repository.
+
+8. Repeat Steps 1-7 until all of the missing images are uploaded to the repository. When all of the missing images have been uploaded, the Missing list will be empty.
+
+9. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
+
+    The Cumulus Linux Images card now shows the number of images you uploaded.
+
+{{< /tab >}}
+
+{{< tab "Cumulus NetQ" >}}
+
+1. On the Cumulus NetQ Images card, click the *View missing NetQ images* link to see what images you need. This opens the list of missing images.
 
     {{<figure src="/images/netq/lcm-linux-images-card-at-install-missinglink-300.png" width="200">}}
 
@@ -73,11 +124,11 @@ To upload missing images:
 
     {{<figure src="/images/netq/lcm-import-image-in-process-300.png" width="250">}}
 
-    On successful completion, you receive confirmation of the upload.
+<div style="padding-left: 18px;">On successful completion, you receive confirmation of the upload.</div>
 
     {{<figure src="/images/netq/lcm-import-image-success-300.png" width="250">}}
 
-    If the upload was not successful, an *Image Import Failed* message is shown. Close the Import Image dialog and try uploading the file again.
+<div style="padding-left: 18px;">If the upload was not successful, an <em>Image Import Failed</em> message is shown. Close the Import Image dialog and try uploading the file again.</div>
 
 6. Click **Done**.
 
@@ -87,15 +138,21 @@ To upload missing images:
 
 9. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
 
-    The Cumulus Linux Images card now shows the number of images you uploaded.
+    The Cumulus NetQ Images card now shows the number of images you uploaded.
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 #### Upload Upgrade Images
 
-To upload the Cumulus Linux images that you want to use for upgrade:
+To upload the Cumulus Linux or Cumulus NetQ images that you want to use for upgrade:
 
-1. Click **Add Image** on the Cumulus Linux Images card.
+1. Click **Add Image** on the Cumulus Linux Images or Cumulus NetQ Images card.
 
     {{<figure src="/images/netq/lcm-linux-images-card-at-install-addimage-300.png" width="200">}}
+
+    <!-- add netq card -->
 
 2. Provide an image from an external drive, either by dragging and dropping it onto the dialog or by selecting it from a directory.
 
@@ -109,27 +166,31 @@ To upload the Cumulus Linux images that you want to use for upgrade:
 
 #### Specify a Default Image for Upgrade
 
-Lifecycle management does not have a default Cumulus Linux image specified automatically. You must specify the image that is appropriate for your network.
+Lifecycle management does not have a default Cumulus Linux Cumulus NetQ image specified automatically. You must specify the image that is appropriate for your network.
 
-To specify a default Cumulus Linux image:
+To specify a default Cumulus Linux or Cumulus NetQ image:
 
-1. Click the *Click here to set the default CL version* link in the middle of the Cumulus Linux Images card.
+1. Click the *Click here to set the default CL version* link in the middle of the Cumulus Linux Images card, or click the *Click here to set the default NetQ version* link in the middle of the Cumulus NetQ Images card.
 
     {{<figure src="/images/netq/lcm-images-card-spec-default-cl-300.png" width="200">}}
 
+    <!-- insert netq card -->
+
 2. Select the image you want to use as the default image for switch upgrades.
 
-3. Click **Save**. The default version is now displayed on the Cumulus Linux Images card.
+3. Click **Save**. The default version is now displayed on the relevant Images card.
 
     {{<figure src="/images/netq/lcm-images-card-default-assigned-300.png" width="200">}}
 
+    <!-- insert netq card -->
+
 After you have specified a default image, you have the option to change it.
 
-To change the default Cumulus Linux image:
+To change the default Cumulus Linux or Cumulus NetQ image:
 
-1. Click **change** next to the currently identified default image on the Cumulus Linux Images card.
+1. Click **change** next to the currently identified default image on the Cumulus Linux Images or Cumulus NetQ Images card.
 
-2. Select the image you want to use as the default image for switch upgrades.
+2. Select the image you want to use as the default image for upgrades.
 
 3. Click **Save**.
 
@@ -141,11 +202,13 @@ To export images:
 
 1. Open the LCM dashboard.
 
-2. Click **Manage** on the Cumulus Linux Images card.
+2. Click **Manage** on the Cumulus Linux Images or Cumulus NetQ Images card.
 
 3. Select the images you want to export from the **Uploaded** tab. Use the filter option above the table to narrow down a large listing of images.
 
     {{<figure src="/images/netq/lcm-images-uploaded-tab-300.png" width="700">}}
+
+    <!-- add netq image or narrow focus of this one -->
 
 4. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> above the table.
 
@@ -161,17 +224,19 @@ To remove images:
 
 1. Open the LCM dashboard.
 
-2. Click **Manage** on the Cumulus Linux Images card.
+2. Click **Manage** on the Cumulus Linux Images or Cumulus NetQ Images card.
 
 3. On the **Uploaded** tab, select the images you want to remove. Use the filter option above the table to narrow down a large listing of images.
 
     {{<figure src="/images/netq/lcm-images-uploaded-tab-300.png" width="700">}}
 
+    <!-- add netq image or narrow focus of this one -->
+
 4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
 
 ## Credential Management
 
-Switch access credentials are needed for performing upgrades. You can choose between basic authentication (SSH password) and SSH (Public/Private key) authentication. These credentials apply to all switches.
+Switch access credentials are needed for performing upgrades. You can choose between basic authentication (SSH password) and SSH (Public/Private key) authentication. These credentials apply to all switches. If you have switches with varying access credentials you will have to work with one set at a time and change the credentials as needed.
 
 ### Specify Switch Credentials
 
@@ -211,7 +276,9 @@ To specify access credentials:
 You must have sudoer permission to properly configure switches when using the SSH Key method.
 {{</notice>}}
 
-1. Create a pair of SSH private and public keys.
+1. Enter the username of the user(s) that have access to switches for configuration.
+
+2. Create a pair of SSH private and public keys.
 
     ```
     ssh-keygen -t rsa -C "<USER>"
@@ -226,11 +293,12 @@ You must have sudoer permission to properly configure switches when using the SS
 
     {{<figure src="/images/netq/lcm-access-create-SSH-300.png" width="250">}}
 
-    {{<notice note>}}
+<div style="padding-left: 18px;">
+{{<notice note>}}
 For security, your private key is stored in an encrypted format, and only provided to internal processes while encrypted.
-    {{</notice>}}
+{{</notice>}}
 
-The Access card now indicates your credential configuration.
+The Access card now indicates your credential configuration.</div>
 
 {{<figure src="/images/netq/lcm-access-ssh-configured-300.png" width="200">}}
 
@@ -277,64 +345,6 @@ Review the list, filtering as needed (click {{<img src="https://icons.cumulusnet
 
 If the switches you are looking to upgrade are not present in the final list, you can use the Switch Discovery feature to locate them and include them in the LCM inventory.
 
-### Switch Discovery
-
-<!-- MOVE to INSTALL/UPGRADE NETQ? -->
-
-You can add or import Cumulus Linux switches without Cumulus NetQ running on them to the LCM inventory. This makes upgrades across the network easier.
-
-To discover these switches:
-
-1. Return to or open the LCM dashboard.
-
-2. On the Switches card, click **Scan**.
-
-    <!-- insert modal image here -->
-
-3. Enter a name for the scan.
-
-4. Choose whether you want to scan for switches by entering IP address ranges OR import switches using a comma-separated values (CSV) file.
-
-    {{< tabs "TabID314" >}}
-
-{{< tab "IP Address Range" >}}
-
-1. Enter an IP address range in the **IP Range** field.
-
-    Ranges can be contiguous or non-contiguous within a subnet. For example, a range could be *192.168.0.24-64* or *192.168.0.24-64,128-190,235*.
-
-2. Optionally, enter another IP address range by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove:Add/add-circle.svg" height="18" width="18">}}.
-
-For example, *198.51.100.0-128* or *198.51.100.0-128,190,200-253*.
-
-Add additional ranges as needed, up to a total of three ranges. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove:add/subtract-circle.svg" height="18" width="18">}} to remove a range if needed.
-
-If you decide to use a CSV file instead, the ranges you entered will remain if you return to using IP ranges again.
-
-{{< /tab >}}
-
-{{< tab "CSV Import" >}}
-
-1. Click **Browse file**.
-
-2. Select the CSV file containing the list of switches.
-
-    {{%notice info%}}
-
-The CSV file must include a header containing *hostname*, *ip*, and *port*. They can be in any order you like, but the data must match that order. For example, a CSV file that represents the Cumulus reference topology could look like this:
-{{<figure src="/images/netq/lcm-import-switches-310.png" width="200">}}
-
-    {{%/notice%}}
-
-Click **Remove** if you decide to use a different file or want to use IP address ranges instead. If you had entered ranges prior to selecting the CSV file option, they will have been remained.
-
-{{< /tab >}}
-
-    {{< /tabs >}}
-
-5. Note that the switch access credentials defined in {{<link title="Lifecycle Management#Credentials Management" text="Credentials Management">}} are used to access these switches. If you have issues accessing the switches, you may need to update your credentials.
-
-6. Click **Next**.
 
 After all of the switches you want to upgrade are contained in the list, you can assign roles to them.
 
@@ -583,6 +593,74 @@ To remove an existing snapshot:
 4. Click one or more snapshots you want to remove, then click **Finish**.
 
     Click **Back** or **Choose Action** to cancel the deletion of your selected snapshot(s).
+
+## Cumulus NetQ Installation or Upgrade
+
+The LCM feature enables you to upgrade switches with older versions of NetQ Agent and to load NetQ onto switches that do not currently have NetQ installed.
+
+### Switch Discovery
+
+Switch discovery browses your network of Cumulus Linux switches and determines what version of Cumulus Linux is running and if the NetQ Agent is installed. When it finds switches that are missing the NetQ Agent, it makes it easy to install it. This makes upgrades across the network easier.
+
+To discover Cumulus Linux switches:
+
+1. Return to or open the LCM dashboard.
+
+2. On the Switches card, click **Scan**.
+
+    <!-- insert modal image here -->
+
+3. Enter a name for the scan.
+
+4. Choose whether you want to scan for switches by entering IP address ranges OR import switches using a comma-separated values (CSV) file.
+
+    {{< tabs "TabID314" >}}
+
+{{< tab "IP Address Range" >}}
+
+1. Enter an IP address range in the **IP Range** field.
+
+    Ranges can be contiguous or non-contiguous within a subnet. For example, a range could be *192.168.0.24-64* or *192.168.0.24-64,128-190,235*.
+
+2. Optionally, enter another IP address range by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove:Add/add-circle.svg" height="18" width="18">}}.
+
+For example, *198.51.100.0-128* or *198.51.100.0-128,190,200-253*.
+
+Add additional ranges as needed, up to a total of three ranges. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove:add/subtract-circle.svg" height="18" width="18">}} to remove a range if needed.
+
+If you decide to use a CSV file instead, the ranges you entered will remain if you return to using IP ranges again.
+
+{{< /tab >}}
+
+{{< tab "CSV Import" >}}
+
+1. Click **Browse file**.
+
+2. Select the CSV file containing the list of switches.
+
+The CSV file must include a header containing *hostname*, *ip*, and *port*. They can be in any order you like, but the data must match that order. For example, a CSV file that represents the Cumulus reference topology could look like this:
+
+{{<figure src="/images/netq/lcm-import-switches-310.png" width="200">}}
+
+or this:
+
+{{<figure src="/images/netq/lcm-import-switches-2-310.png" width="200">}}
+
+{{<notice note>}}
+You must have an IP address in your file, but the hostname is optional and if the port is blank, NetQ uses switch port 22 by default.
+{{</notice>}}
+
+Click **Remove** if you decide to use a different file or want to use IP address ranges instead. If you had entered ranges prior to selecting the CSV file option, they will have  remained.
+
+{{< /tab >}}
+
+    {{< /tabs >}}
+
+5. Note that the switch access credentials defined in {{<link title="Lifecycle Management#Credentials Management" text="Credentials Management">}} are used to access these switches. If you have issues accessing the switches, you may need to update your credentials.
+
+6. Click **Next**.
+
+After all of the switches you want to upgrade are contained in the list, you can assign roles to them.
 
 ## Cumulus Linux Upgrade
 
@@ -984,6 +1062,4 @@ Some of the common reasons for upgrade failures and the errors they present:
 | Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |
 
-### Cumulus NetQ Agent Installation or Upgrade
 
-The LCM feature enables you to upgrade switches with older versions of NetQ Agent and to load NetQ onto switches that do not currently have NetQ installed.

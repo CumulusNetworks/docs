@@ -600,9 +600,9 @@ The LCM feature enables you to upgrade switches with older versions of NetQ Agen
 
 ### Switch Discovery
 
-You can add or import Cumulus Linux switches without Cumulus NetQ running on them to the LCM inventory. This makes upgrades across the network easier.
+Switch discovery browses your network of Cumulus Linux switches and determines what version of Cumulus Linux is running and if the NetQ Agent is installed. When it finds switches that are missing the NetQ Agent, it makes it easy to install it. This makes upgrades across the network easier.
 
-To discover these switches:
+To discover Cumulus Linux switches:
 
 1. Return to or open the LCM dashboard.
 
@@ -647,7 +647,7 @@ or this:
 {{<figure src="/images/netq/lcm-import-switches-2-310.png" width="200">}}
 
 {{<notice note>}}
-You must have an IP address in your file, but the hostname is optional and if the port is blank, NetQ uses the default switch port.
+You must have an IP address in your file, but the hostname is optional and if the port is blank, NetQ uses switch port 22 by default.
 {{</notice>}}
 
 Click **Remove** if you decide to use a different file or want to use IP address ranges instead. If you had entered ranges prior to selecting the CSV file option, they will have  remained.

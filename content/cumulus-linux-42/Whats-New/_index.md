@@ -17,7 +17,7 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 ### New Platforms
 
 - Mellanox SN4600C (100G Spectrum-3)
-- Mellanox SN3420 (10G Spectrum-2)
+- Mellanox SN3420 (25G Spectrum-2)
 
 ### New Features and Enhancements
 
@@ -28,4 +28,3 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - Ability to set the {{<link title="Network Troubleshooting#use-the-cpu-port-as-the-span-destination" text="CPU as a SPAN destination interface">}}
 - {{<link url="Buffer-and-Queue-Management/" text="QoS">}} now supported on Maverick switches
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#ecmp-custom-hashing" text="ECMP">}} and {{<link url="Bonding-Link-Aggregation/#lag-custom-hashing" text="LAG">}} custom hash parameters have been moved to the `/etc/cumulus/datapath/traffic.conf` file and no longer require a `switchd` restart
-- New {{<link url="Policy-based-Routing" text="PBR rule option">}} to set the VRF table you want to use for lookups

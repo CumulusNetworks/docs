@@ -96,7 +96,7 @@ Install Docker:
 6.  In a text editor, create a file called `/etc/docker/daemon.json`, add
     the following line to it, then save the file:
 
-        cumulus@switch:$ sudo nano /etc/systemd/system/docker.service.d/noiptables-mgmt-vrf.conf
+        cumulus@switch:$ sudo nano /etc/docker/daemon.json
 
         {"exec-opts": ["native.cgroupdriver=systemd"]}
 

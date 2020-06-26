@@ -30,20 +30,29 @@ instructions for Docker.
 
         cumulus@switch:$ sudo nano /etc/apt/sources.list.d/docker.list
          
-        deb https://apt.dockerproject.org/repo debian-jessie main
+        deb https://download.docker.com/linux/debian jessie stable
 
 ### Install the Authentication Key
 
 Install the authentication key for Docker:
 
-        cumulus@switch:$ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+        cumulus@switch:$ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+
+Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
+
+        cumulus@switch:$ sudo apt-key finger
+        ...
+        pub   4096R/0EBFCD88 2017-02-22
+              Key fingerprint = 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+        uid                  Docker Release (CE deb) <docker@docker.com>
+        sub   4096R/F273FCD8 2017-02-22
 
 ### Install the docker-engine Package
 
 Install Docker:
 
         cumulus@switch:$ sudo -E apt-get update -y
-        cumulus@switch:$ sudo -E apt-get install docker-engine -qy
+        cumulus@switch:$ sudo -E apt-get install docker-ce -qy
 
 ### Configure systemd for Docker
 
@@ -56,9 +65,9 @@ Install Docker:
          
         docker
 
-2.  Create a directory for the `systemd` configuration file for Docker:
+2.  Create the directories for the `systemd` configuration files for Docker:
 
-        cumulus@switch:$ sudo mkdir -p /etc/systemd/system/docker.service.d/
+        cumulus@switch:$ sudo mkdir -p /etc/systemd/system/docker.service.d/ /etc/systemd/system/docker@.service.d/
 
 3.  In a text editor, create a file called
     `/etc/systemd/system/docker.service.d/noiptables-mgmt-vrf.conf`, add
@@ -68,17 +77,36 @@ Install Docker:
          
         [Service]
         ExecStart=
-        ExecStart=/usr/bin/docker daemon --iptables=false --ip-masq=false --ip-forward=false
+        ExecStart=/bin/ip vrf exec %i /usr/bin/dockerd --iptables=false --ip-masq=false --ip-forward=false
+        
+4.  Copy noiptables-mgmt-vrf.conf into the `docker@` directory we created in step 2:
+    
+        cumulus@switch:$ sudo cp /etc/systemd/system/docker.service.d/noiptables-mgmt-vrf.conf /etc/systemd/system/docker@.service.d/noiptables-mgmt-vrf.conf
+
+5.  In a text editor, edit a file called `/lib/systemd/system/docker.service`,
+    and comment out the line starting with `Delegate`:
+
+        cumulus@switch:$ sudo nano /lib/systemd/system/docker.service
+        
+        [Service]
+        ...
+        #Delegate=yes
+        ...
+
+6.  In a text editor, create a file called `/etc/docker/daemon.json`, add
+    the following line to it, then save the file:
+
+        cumulus@switch:$ sudo nano /etc/systemd/system/docker.service.d/noiptables-mgmt-vrf.conf
+
+        {"exec-opts": ["native.cgroupdriver=systemd"]}
 
 ### Stop/Disable the Docker Services
 
 Stop the various Docker services:
 
         cumulus@switch:$ sudo systemctl daemon-reload
-        cumulus@switch:$ sudo systemctl stop docker.socket
-        cumulus@switch:$ sudo systemctl disable docker.socket
-        cumulus@switch:$ sudo systemctl stop docker.service
-        cumulus@switch:$ sudo systemctl disable docker.service
+        cumulus@switch:$ sudo systemctl stop docker.service docker.socket
+        cumulus@switch:$ sudo systemctl disable docker.service docker.socket
 
 ### Launch Docker and the Ubuntu Container
 

@@ -28,6 +28,23 @@ more download locations and steps, refer to the
 
 {{%notice note%}}
 
+You may encounter an issue if the wrong storage interface type is selected (SATA vs IDE). For example this log message indicates the filesystem cannot be found. Configure ESXi to use the SATA controller. 
+
+```
+Info: Fetching http://192.168.100.1/onie-installer-cumulus_vx ...
+ONIE: Executing installer: http://192.168.100.1/onie-installer-cumulus_vx
+Verifying image checksum ...OK.
+Preparing image archive ... OK.
+Verifying image compatibility ...OK.
+Verifying system ram ...OK.
+Setting up installer ...Failure: Unable to find storage device for file system with label 'ONIE-BOOT'
+Info: Check the output of 'blkid'. 
+```
+
+{{%/notice%}}
+
+{{%notice note%}}
+
 This configuration was tested using vSphere ESXi 5.5 and a Windows
 vSphere client; however, the VM is configured to support ESXi 4.0 and higher.
 

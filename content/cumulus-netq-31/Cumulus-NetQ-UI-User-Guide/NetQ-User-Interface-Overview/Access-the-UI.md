@@ -71,7 +71,7 @@ To log in to the UI:
 
 3. Click **Login**.
 
-    The user-specified home workbench is displayed. If a home workbench is not specified, then the Cumulus Default workbench is displayed.
+    The user-specified home workbench is displayed. If a home workbench is not specified, then the default Cumulus Workbench is displayed.
 
     {{<notice tip>}}
 Any workbench can be set as the home workbench. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> (User Settings), click <strong>Profiles and Preferences</strong>, then on the Workbenches card click to the left of the workbench name you want to be your home workbench.

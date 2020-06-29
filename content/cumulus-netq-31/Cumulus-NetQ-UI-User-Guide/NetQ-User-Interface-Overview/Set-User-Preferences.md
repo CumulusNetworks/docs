@@ -114,6 +114,8 @@ To change your password:
 5.  Enter your current password.
 6.  Enter and confirm a new password.
 
+    *Passwords must contain a minimum of eight characters, including at least one uppercase letter, one lowercase letter, one special character, and one number.* If you do not enter a strong enough password, when you try to save the change, you are reminded of these requirements.
+
     {{<figure src="/images/netq/change-passwd-modal-222.png" width="200">}}
 
 7.  Click **Save** to change to the new password, or click **Cancel** to
@@ -123,28 +125,60 @@ To change your password:
 ## Manage Your Workbenches
 
 You can view all of your workbenches in a list form, making it possible
-to manage various aspects of them. There are public and private
-workbenches. Public workbenches are visible by all users. Private
-workbenches are visible only by the user who created the workbench. From
+to manage various aspects of them. Only workbenches created and shared by your administrator are visible to all users. This includes the Cumulus Workbench by default. All other workbenches are visible only by the user who created the workbench. From
 the Workbenches card, you can:
 
 - **Specify a home workbench**: This tells NetQ to open with that workbench when you log in instead of the default Cumulus Workbench.
-- **Search for a workbench**: If you have a large number of workbenches, you can search for a particular workbench by name, or sort workbenches by their access type or cards that reside on them.
-- **Delete a workbench:** Perhaps there is one that you no longer use. You can remove workbenches that you have created (private workbenches). An administrative role is required to remove workbenches that are common to all users (public workbenches).
+- **Search for a workbench**: If you have a large number of workbenches, you can search for a particular workbench by name.
+- **Sort the workbench list**: If you have a large number of workbenches, you can sort workbenches in an A to Z or Z to A order.
+- **Delete a workbench**: Perhaps there is one that you no longer use. You can remove workbenches that you have created. An administrative role is required to remove workbenches that are common to all users. The Cumulus Workbench cannot be removed.
 
 To manage your workbenches:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
+1. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
 
     {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
 
-2.  Click **Profile & Preferences**.
-3.  Locate the Workbenches card.
+2. Click **Profile & Preferences**.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-wbs-card-222.png" width="500">}}
+3. Locate the Workbenches card.
 
-4.  To specify a home workbench, click to the left of the desired workbench name. <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg" height="18" width="18"/> is placed there to indicate its status as your favorite workbench.
-5.  To search the workbench list by name, access type, and cards present on the workbench, click the relevant header and begin typing your search criteria.
-6. To sort the workbench list, click the relevant header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg" height="18" width="18"/>.
-7.  To delete a workbench, hover over the workbench name to view the **Delete** button. As an administrator, you can delete both private and public workbenches.
-8.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.
+    {{<figure src="/images/netq/user-settings-profile-prefs-wbs-card-310.png" width="500">}}
+
+### Specify a Home Workbench
+
+On the Workbenches card, click to the left of the desired workbench name. <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg" height="18" width="18"/> is placed there to indicate its status as your home workbench.
+
+This example shows the selection of the NOC-Monitor workbench as the home workbench.
+
+{{<figure src="/images/netq/user-settings-profile-prefs-homewb-310.png" width="500">}}
+
+Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.
+
+### Search for a Workbench
+
+When you have more workbenches than can be easily scrolled through, you can search for a workbench by name. Click the Workbench Name header and begin typing your search criteria. It filters the list by your search criteria.
+
+{{<figure src="/images/netq/user-settings-profile-prefs-searchbyname-310.png" width="500">}}
+
+You can then sort the resulting list or remove the filter by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18"/>.
+
+{{<figure src="/images/netq/user-settings-profile-prefs-column-actions-310.png" width="250">}}
+
+Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.
+
+### Sort the Workbench List
+
+When you have a large number of workbenches, it is useful to sort the workbench list so you can find a desired workbench. You can sort by either the workbench name or by the name of the first card on the workbench. Hover over the right side of the relevant header and then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg" height="18" width="18"/>. Click again to toggle between an alphabetical A to Z and Z to A sort.
+
+{{<figure src="/images/netq/user-settings-profile-prefs-sorting-310.png" width="500">}}
+
+Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.
+
+### Delete a Workbench
+
+To delete a workbench, hover over the workbench name until **Delete** is visible. Click the button to remove the workbench.
+
+{{<figure src="/images/netq/user-settings-profile-prefs-delete-310.png" width="500">}}
+
+Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.

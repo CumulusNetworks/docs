@@ -53,21 +53,33 @@ You can assign a specific Cumulus Linux or Cumulus NetQ version as the default v
 
 You should upload images for each variant of Cumulus Linux and Cumulus NetQ currently installed on the switches in your inventory if you want to support rolling back to a known good version should an installation or upgrade fail. LCM prompts you to upload any missing images to the repository.
 
-For example, if you have both Cumulus Linux 3.7.3 and 3.7.11 versions, some running on ARM and some on x86 architectures, then LCM verifies the presence of each of these images. If only the 3.7.3 x86, 3.7.3 ARM, and 3.7.11 x86 images are in the repository, LCM would list the 3.7.11 ARM image as missing. For Cumulus NetQ, you need both the `netq-apps` and `netq-agent` packages for each release.
+For example, if you have both Cumulus Linux 3.7.3 and 3.7.11 versions, some running on ARM and some on x86 architectures, then LCM verifies the presence of each of these images. If only the 3.7.3 x86, 3.7.3 ARM, and 3.7.11 x86 images are in the repository, LCM would list the 3.7.11 ARM image as missing. For Cumulus NetQ, you need both the `netq-apps` and `netq-agent` packages for each release variant.
 
 If you have specified a default Cumulus Linux and/or Cumulus NetQ version, LCM also verifies that the necessary versions of the default image are available based on the known switch inventory, and if not, lists those that are missing.
 
 ### Upload Images
 
-On installation of NetQ 3.x, no images have yet been uploaded to the LCM repository. If you are upgrading from NetQ 3.0.0, the images you have previously added are still present. In general, the flow is:
+For fresh installations of NetQ 3.x, no images have yet been uploaded to the LCM repository. If you are upgrading from NetQ 3.0.0, the images you have previously added are still present.
 
-- For a new install, begin by adding images that match your current inventory
-- Then for either an  install or upgrade, add the images you want to use
-- And finally specify a default image for upgrades, if desired
+In preparation for Cumulus Linux upgrades, the recommended image upload flow is:
+
+| Step | Task | Instructions |
+| :----: | ---- | ---- |
+| 1 | In a fresh NetQ install, add images that match your current inventory | {{<link url="Lifecycle-Management/#upload-missing-images" text="Upload Missing Images">}} |
+| 2 | Add images you want to use for upgrade | {{<link url="Lifecycle-Management/#upload-upgrade-images" text="Upload Upgrade Images">}} |
+| 3 | Optionally specify a default image for upgrades | {{<link url="Lifecycle-Management/#specify-a-default-upgrade-image" text="Specify a Default Upgrade Image">}} |
+
+In preparation for Cumulus NetQ installation or upgrade, the recommended image upload flow is:
+
+| Step | Task | Instructions |
+| :----: | ---- | ---- |
+| 1 | Add images you want to use for installation or upgrade | {{<link url="Lifecycle-Management/#upload-missing-images" text="Upload Upgrade Images">}} |
+| 2 | Add any missing images based on NetQ discovery | {{<link url="Lifecycle-Management/#upload-upgrade-images" text="Upload Missing Images">}} |
+| 3 | Optionally specify a default image for installation or upgrade | {{<link url="Lifecycle-Management/#specify-a-default-upgrade-image" text="Specify a Default Upgrade Image">}} |
 
 #### Upload Missing Images
 
-To upload missing images, follow the instructions in the relevant tab:
+Use the following instructions to upload missing images:
 
 {{< tabs "TabID65" >}}
 
@@ -75,25 +87,29 @@ To upload missing images, follow the instructions in the relevant tab:
 
 1. On the Cumulus Linux Images card, click the *View missing CL images* link to see what images you need. This opens the list of missing images.
 
-  {{<figure src="/images/netq/lcm-linux-images-card-at-install-missinglink-300.png" width="200">}}
+    {{<figure src="/images/netq/lcm-linux-images-card-at-install-missinglink-300.png" width="200">}}
+
+<div style="padding-left: 18px;">{{<notice tip>}}
+If you have already specified a default image, you must click <strong>Manage</strong> and then <strong>Missing</strong> to see the missing images.
+    {{</notice>}}</div>
 
 2. Select one of the missing images and make note of the version, ASIC Vendor, and CPU architecture.
 
-  {{<figure src="/images/netq/lcm-images-missing-list-300.png" width="700">}}
+  {{<figure src="/images/netq/lcm-linux-images-missing-list-300.png" width="700">}}
 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Image) above the table.
 
-  {{<figure src="/images/netq/lcm-import-climage-dialog-310.png" width="250">}}
+  {{<figure src="/images/netq/lcm-import-linux-image-dialog-310.png" width="250">}}
 
 4. Provide the *.bin* file from an external drive that matches the criteria for the selected image, either by dragging and dropping it onto the dialog or by selecting it from a directory.
 
 5. Click **Import**.
 
-    {{<figure src="/images/netq/lcm-import-climage-in-process-310.png" width="250">}}
+    {{<figure src="/images/netq/lcm-import-linux-image-in-process-310.png" width="250">}}
 
 <div style="padding-left: 18px;">On successful completion, you receive confirmation of the upload.</div>
 
-    {{<figure src="/images/netq/lcm-import-climage-success-310.png" width="250">}}
+    {{<figure src="/images/netq/lcm-import-linux-image-success-310.png" width="250">}}
 
 <div style="padding-left: 18px;">If the upload was not successful, an <em>Image Import Failed</em> message is shown. Close the Import Image dialog and try uploading the file again.</div>
 
@@ -113,25 +129,29 @@ To upload missing images, follow the instructions in the relevant tab:
 
 1. On the NetQ Images card, click the *View missing NetQ images* link to see what images you need. This opens the list of missing images.
 
-    {{<figure src="/images/netq/lcm-linux-images-card-at-install-missinglink-300.png" width="200">}}
+    {{<figure src="/images/netq/lcm-netq-images-missinglink-310.png" width="200">}}
 
-2. Select one of the missing images and make note of the version, ASIC Vendor, and CPU architecture.
+<div style="padding-left: 18px;">{{<notice tip>}}
+If you have already specified a default image, you must click <strong>Manage</strong> and then <strong>Missing</strong> to see the missing images.
+    {{</notice>}}</div>
 
-    {{<figure src="/images/netq/lcm-images-missing-list-300.png" width="700">}}
+2. Select one of the missing images and make note of the OS version, CPU architecture, and image type. Remember that you need both image types for NetQ to perform the installation or upgrade.
+
+    {{<figure src="/images/netq/lcm-netq-images-missing-list-310.png" width="700">}}
 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Image) above the table.
 
-    {{<figure src="/images/netq/lcm-import-climage-dialog-310.png" width="250">}}
+    {{<figure src="/images/netq/lcm-import-netq-image-dialog-310.png" width="250">}}
 
-4. Provide the *.bin* file from an external drive that matches the criteria for the selected image, either by dragging and dropping it onto the dialog or by selecting it from a directory.
+4. Provide the *.deb* file from an external drive that matches the criteria for the selected image, either by dragging and dropping it onto the dialog or by selecting it from a directory.
 
 5. Click **Import**.
 
-    {{<figure src="/images/netq/lcm-import-image-in-process-300.png" width="250">}}
+    {{<figure src="/images/netq/lcm-import-netq-image-in-process-310.png" width="250">}}
 
 <div style="padding-left: 18px;">On successful completion, you receive confirmation of the upload.</div>
 
-    {{<figure src="/images/netq/lcm-import-image-success-300.png" width="250">}}
+    {{<figure src="/images/netq/lcm-import-netq-image-success-310.png" width="250">}}
 
 <div style="padding-left: 18px;">If the upload was not successful, an <em>Image Import Failed</em> message is shown. Close the Import Image dialog and try uploading the file again.</div>
 
@@ -155,11 +175,11 @@ To upload the Cumulus Linux or Cumulus NetQ images that you want to use for upgr
 
 1. Click **Add Image** on the Cumulus Linux Images or NetQ Images card.
 
-    {{<img src="/images/netq/lcm-linux-images-card-at-install-addimage-300.png" width="200">}}    {{<img src="/images/netq/lcm-netq-images-card-at-install-addimage-310.png" width="200">}}
+    {{<img src="/images/netq/lcm-linux-images-card-at-install-addimage-300.png" width="200">}} {{<img src="/images/netq/lcm-netq-images-card-at-install-addimage-310.png" width="200">}}
 
 2. Provide an image from an external drive, either by dragging and dropping it onto the dialog or by selecting it from a directory.
 
-    {{<img src="/images/netq/lcm-import-climage-dialog-310.png" width="250">}}    {{<img src="/images/netq/lcm-import-netqimage-dialog-310.png" width="250">}}
+    {{<img src="/images/netq/lcm-import-linux-image-dialog-310.png" width="250">}} {{<img src="/images/netq/lcm-import-netq-image-dialog-310.png" width="250">}}
 
 3. Click **Import**.
 
@@ -171,29 +191,25 @@ To upload the Cumulus Linux or Cumulus NetQ images that you want to use for upgr
 
 #### Specify a Default Upgrade Image
 
-Lifecycle management does not have a default Cumulus Linux Cumulus NetQ image specified automatically. You must specify the image that is appropriate for your network.
+Lifecycle management does not have a default Cumulus Linux or Cumulus NetQ upgrade image specified automatically. You must specify the image that is appropriate for your network.
 
 To specify a default Cumulus Linux or Cumulus NetQ image:
 
 1. Click the *Click here to set the default CL version* link in the middle of the Cumulus Linux Images card, or click the *Click here to set the default NetQ version* link in the middle of the Cumulus NetQ Images card.
 
-    {{<figure src="/images/netq/lcm-images-card-spec-default-cl-300.png" width="200">}}
-
-    <!-- insert netq card -->
+    {{<img src="/images/netq/lcm-images-card-spec-default-cl-300.png" width="200">}} {{<img src="/images/netq/lcm-images-card-spec-default-netq-310.png" width="200">}}
 
 2. Select the image you want to use as the default image for switch upgrades.
 
 3. Click **Save**. The default version is now displayed on the relevant Images card.
 
-    {{<figure src="/images/netq/lcm-images-card-default-assigned-300.png" width="200">}}
-
-    <!-- insert netq card -->
+    {{<img src="/images/netq/lcm-images-card-default-assigned-300.png" width="200">}}    {{<img src="/images/netq/lcm-netq-images-default-assigned-310.png" width="200">}}
 
 After you have specified a default image, you have the option to change it.
 
 To change the default Cumulus Linux or Cumulus NetQ image:
 
-1. Click **change** next to the currently identified default image on the Cumulus Linux Images or Cumulus NetQ Images card.
+1. Click **change** next to the currently identified default image on the Cumulus Linux Images or NetQ Images card.
 
 2. Select the image you want to use as the default image for upgrades.
 
@@ -207,13 +223,13 @@ To export images:
 
 1. Open the LCM dashboard.
 
-2. Click **Manage** on the Cumulus Linux Images or Cumulus NetQ Images card.
+2. Click **Manage** on the Cumulus Linux Images or NetQ Images card.
 
 3. Select the images you want to export from the **Uploaded** tab. Use the filter option above the table to narrow down a large listing of images.
 
     {{<figure src="/images/netq/lcm-images-uploaded-tab-300.png" width="700">}}
 
-    <!-- add netq image or narrow focus of this one -->
+    {{<figure src="/images/netq/lcm-netq-images-uploaded-tab-310.png" width="700">}}
 
 4. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> above the table.
 
@@ -229,13 +245,13 @@ To remove images:
 
 1. Open the LCM dashboard.
 
-2. Click **Manage** on the Cumulus Linux Images or Cumulus NetQ Images card.
+2. Click **Manage** on the Cumulus Linux Images or NetQ Images card.
 
 3. On the **Uploaded** tab, select the images you want to remove. Use the filter option above the table to narrow down a large listing of images.
 
     {{<figure src="/images/netq/lcm-images-uploaded-tab-300.png" width="700">}}
 
-    <!-- add netq image or narrow focus of this one -->
+    {{<figure src="/images/netq/lcm-netq-images-uploaded-tab-310.png" width="700">}}
 
 4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
 
@@ -278,10 +294,10 @@ To specify access credentials:
 {{< tab "SSH" >}}
 
 {{<notice info>}}
-You must have sudoer permission to properly configure switches when using the SSH Key method.
+You must have sudoer permission to properly configure switch access for the SSH Key method.
 {{</notice>}}
 
-1. Enter the username of the user(s) that have access to switches for configuration.
+1. Enter the username of the user(s) that has access to switches for configuration.
 
 2. Create a pair of SSH private and public keys.
 
@@ -289,14 +305,14 @@ You must have sudoer permission to properly configure switches when using the SS
     ssh-keygen -t rsa -C "<USER>"
     ```
 
-2. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
+3. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
-    - Manually copy the the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switches, or
+    - Manually copy the the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where the SSH key pair was generated for each switch
 
-3. Copy the SSH *private* key into the text box in the Create Switch Access card.
+4. Copy the SSH *private* key into the text box in the Create Switch Access card.
 
-    {{<figure src="/images/netq/lcm-access-create-SSH-300.png" width="250">}}
+    {{<figure src="/images/netq/lcm-access-create-SSH-310.png" width="250">}}
 
 <div style="padding-left: 18px;">
 {{<notice note>}}
@@ -326,7 +342,7 @@ To change your access credentials:
 4. Based on your selection:
 
     - **Basic**: Enter a new username and/or password
-    - **SSH**: Copy and paste a new SSH private key
+    - **SSH**: Enter a new username and/or SSH private key
 
     {{<notice tip>}}
 Refer to {{<link title="#Specify Switch Credentials" text="Specify Switch Credentials">}} for details.
@@ -348,13 +364,18 @@ To view a list of all switches known to LCM, click **Manage** on the Switches ca
 
 Review the list, filtering as needed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}}) to determine if the switches you want to upgrade are included.
 
-If the switches you are looking to upgrade are not present in the final list, you can use the Switch Discovery feature to locate them and include them in the LCM inventory.
+If the switches you are looking to upgrade are not present in the final list, you can:
+
+- Work with the list you have
+- Verify the missing switches are reachable using `ping`
+- Verify NetQ Agent is fresh for switches that already have the agent installed using `netq show agents`
+- Run the Switch Discovery feature to install NetQ Agent and upgrade Cumulus Linux on the switches (refer to {{<link title="Lifecycle Management#Install or Upgrade Cumulus NetQ" text="Install or Upgrade Cumulus NetQ">}})
 
 After all of the switches you want to upgrade are contained in the list, you can assign roles to them.
 
 ### Role Management
 
-Four pre-defined switch roles are available based on the CLOS architecture:
+Four pre-defined switch roles are available based on a CLOS architecture:
 
 - Superspine
 - Spine
@@ -370,7 +391,7 @@ Switch roles are used to:
 
 When roles are assigned, the upgrade process begins with switches having the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally switches with no role assigned. All switches with a given role must be successfully upgraded before the switches with the closest dependent role can be upgraded.
 
-For example, a group of seven switches are selected for upgrade. Three are spine switches and four are leaf switches. After all of the spine switches are successfully upgraded, then the leaf switches are upgraded. If one of the spine switches were to fail the upgrade, the other two spine switches are upgraded, but the upgrade process stops after that, leaving the leaf switches untouched, and the upgrade job fails.
+For example, a group of seven switches are selected for upgrade. Three are spine switches and four are leaf switches. After all of the spine switches are successfully upgraded, then the leaf switches are upgraded. If one of the spine switches were to fail the upgrade, the other two spine switches are upgraded, but the upgrade process stops after that, leaving the leaf switches untouched, and the upgrade job fails. The spine switch that failed to upgrade is rolled back to its original release if that option is chosen in the upgrade job.
 
 When only some of the selected switches have roles assigned in an upgrade job, the switches with roles are upgraded first and then all the switches with no roles assigned are upgraded.
 
@@ -394,7 +415,7 @@ While role assignment is optional, using roles can prevent switches from becomin
 
     Note that the **Role** column is updated with the role assigned to the selected switch(es).
 
-    {{<figure src="/images/netq/lcm-switches-listing-300.png" width="700">}}
+    {{<figure src="/images/netq/lcm-switches-listing-310.png" width="700">}}
 
 7. Continue selecting switches and assigning roles until most or all switches have roles assigned.
 
@@ -410,7 +431,7 @@ To change a switch role:
 
 2. On the Switches card, click **Manage**.
 
-3. Select the switch with the incorrect role from the list.
+3. Select the switch(es) with the incorrect role from the list.
 
 4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
 
@@ -436,171 +457,9 @@ To export the switch listing:
 
     {{<figure src="/images/netq/export-data-dialog-300.png" width="250">}}
 
-## Create and Compare Network Snapshots
+## Install Cumulus NetQ
 
-Creating and comparing network snapshots can be used at various times; typically when you are upgrading or changing the configuration of your switches in some way. The instructions here describe how to create and compare network snapshots at any time. Refer to {{<link title="#Image Installation and Upgrade" text="Image Installation and Upgrade">}} to see how snapshots are automatically created in that workflow to validate that the network state has not changed after an upgrade.
-
-### Create a Network Snapshot
-
-It is simple to capture the state of your network currently or for a time in the past using the snapshot feature.
-
-To create a snapshot:
-
-1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
-
-2. Click **Create Snapshot**.
-
-    {{<figure src="/images/netq/snapshot-create-snap-modal-ex-300.png" width="450">}}
-
-    <!-- Replace this image -->
-
-3. Enter a name for the snapshot.
-
-4. Choose the time for the snapshot:
-
-    - To create for the current network state, click **Now**
-    - To create for the network state at a previous date and time, click **Past**, then click in **Start Time** field to use the calendar to select the date and time.
-
-5. Choose the services to include in the snapshot.
-
-    Click any service to remove that service from the snapshot. This would be appropriate if you do not support a particular service, or that you are concerned that including that service might cause the snapshot to take an excessive amount of time to complete if included. The check mark next to the service and the service itself is grayed out when the service is removed. Click any service again to re-include the service in the snapshot. The check mark is added next to the service and is no longer grayed out.
-
-    {{<notice note>}}
-If you remove services, be aware that snapshots taken in the past or future may not be equivalent when performing a network state comparison.
-    {{</notice>}}
-
-6. Optionally, add a descriptive note for the snapshot to remind you of its purpose. For example: This is taken before adding MLAG pairs, or Taken after removing the leaf36 switch.
-
-7. Click **Finish**.
-
-    A medium Snapshot card appears on your desktop. Spinning arrows are visible while it works. When it finishes you can see the number of items that have been captured, and if any failed. This example shows a successful result.
-
-    {{<figure src="/images/netq/snapshot-success-300.png" width="200">}}
-
-    {{<notice note>}}
-If you have already created other snapshots, <strong>Compare</strong> is active. Otherwise it is inactive (grayed out).
-    {{</notice>}}
-
-### Compare Network Snapshots
-
-You can compare the state of your network before and after an upgrade or other configuration change to validate the changes.
-
-To compare network snapshots:
-
-1. Create a snapshot (as described in previous section) *before* you make any changes.
-
-2. Make your changes.
-
-3. Create a second snapshot.
-
-4. Compare the results of the two snapshots. Depending on what, if any, cards are open on your workbench:
-
-    - If you have the two desired snapshot cards open:
-        - Simply put them next to each other to view a high-level comparison.
-        - Scroll down to see all of the items.
-        - To view a more detailed comparison, click **Compare** on one of the cards. Select the other snapshot from the list.
-
-        {{<figure src="/images/netq/snapshot-compare-snap-results-300.png" width="425">}}
-
-    - If you have only one of the cards open:
-        - Click **Compare** on the open card.
-        - Select the other snapshot to compare.
-
-        {{<figure src="/images/netq/snapshot-compare-select-fr-open-card-300.png" width="250">}}
-
-    - If no snapshot cards are open (you may have created them some time before):
-        - Click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}}.
-        - Click **Compare Snapshots**.
-        - Click on the two snapshots you want to compare.
-        - Click **Finish**. Note that two snapshots must be selected before **Finish** is active.
-
-        {{<figure src="/images/netq/snapshot-compare-selection-modal-300.png" width="500">}}
-
-    In the latter two cases, the large Snapshot card opens. The only difference is in the card title. If you opened the comparison card from a snapshot on your workbench, the title includes the name of that card. If you open the comparison card through the Snapshot menu, the title is generic, indicating a comparison only. Functionally, you have reached the same point.
-
-    {{<figure src="/images/netq/snapshot-large-compare-titles-230.png" width="200">}}
-
-    {{<figure src="/images/netq/snapshot-large-compare-from-modal-300.png" width="500">}}
-
-    Scroll down to view all element comparisons.
-
-#### Interpreting the Comparison Data
-
-For each network element that is compared, count values and changes are shown:
-
-{{<figure src="/images/netq/snapshot-large-compare-data-interpretation-300.png" width="300">}}
-
-In this example, a change was made to the VLAN. The snapshot taken before the change (17Apr2020) had a total count of 765 neighbors. The snapshot taken after the change (20Apr2020) had a total count of 771 neighbors. Between the two totals you can see the number of neighbors added and removed from one time to the next, resulting in six new neighbors after the change.
-
-{{<notice note>}}
-The red and green coloring indicates only that items were removed (red) or added (green). The coloring does not indicate whether the removal or addition of these items is bad or good.
-{{</notice>}}
-
-{{<notice tip>}}
-From this card, you can also change which snapshots to compare. Select an alternate snapshot from one of the two snapshot dropdowns and then click <strong>Compare</strong>.
-{{</notice>}}
-
-##### View Change Details
-
-You can view additional details about the changes that have occurred between the two snapshots by clicking **View Details**. This opens the full screen Detailed Snapshot Comparison card.
-
-From this card you can:
-
-- View changes for each of the elements that had added and/or removed items, and various information about each; only elements with changes are presented
-- Filter the added and removed items by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}}
-- Export all differences in JSON file format by clicking {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">}}
-
-{{<figure src="/images/netq/snapshot-fullscr-change-details-300.png" width="700">}}
-
-The following table describes the information provided for each element type when changes are present:
-
-| Element | Data Descriptions |
-| ------- | ----------------- |
-| BGP | <ul><li><strong>Hostname</strong>: Name of the host running the BGP session</li><li><strong>VRF</strong>: Virtual route forwarding interface if used</li><li><strong>BGP Session</strong>: Session that was removed or added</li><li><strong>ASN</strong>: Autonomous system number</li></ul> |
-| CLAG | <ul><li><strong>Hostname</strong>: Name of the host running the CLAG session</li><li><strong>CLAG Sysmac</strong>: MAC address for a bond interface pair that was removed or added</li></ul> |
-| Interface | <ul><li><strong>Hostname</strong>: Name of the host where the interface resides</li><li><strong>IF Name</strong>: Name of the interface that was removed or added</li></ul> |
-| IP Address | <ul><li><strong>Hostname</strong>: Name of the host where address was removed or added</li><li><strong>Prefix</strong>: IP address prefix</li><li><strong>Mask</strong>: IP address mask</li><li><strong>IF Name</strong>: Name of the interface that owns the address</li></ul> |
-| Links | <ul><li><strong>Hostname</strong>: Name of the host where the link was removed or added</li><li><strong>IF Name</strong>: Name of the link</li><li><strong>Kind</strong>: Bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan</li></ul> |
-| LLDP | <ul><li><strong>Hostname</strong>: Name of the discovered host that was removed or added</li><li><strong>IF Name</strong>: Name of the interface</li></ul> |
-| MAC Address | <ul><li><strong>Hostname</strong>: Name of the host where MAC address resides</li><li><strong>MAC address</strong>: MAC address that was removed or added</li><li><strong>VLAN</strong>: VLAN associated with the MAC address</li></ul> |
-| Neighbor | <ul><li><strong>Hostname</strong>: Name of the neighbor peer that was removed or added</li><li><strong>VRF</strong>: Virtual route forwarding interface if used</li><li><strong>IF Name</strong>: Name of the neighbor interface</li><li><strong>IP address</strong>: Neighbor IP address</li></ul> |
-| Node | <ul><li><strong>Hostname</strong>: Name of the network node that was removed or added</li></ul> |
-| OSPF | <ul><li><strong>Hostname</strong>: Name of the host running the OSPF session</li><li><strong>IF Name</strong>: Name of the associated interface that was removed or added</li><li><strong>Area</strong>: Routing domain for this host device</li><li><strong>Peer ID</strong>: Network subnet address of router with access to the peer device</li></ul> |
-| Route | <ul><li><strong>Hostname</strong>: Name of the host running the route that was removed or added</li><li><strong>VRF</strong>: Virtual route forwarding interface associated with route</li><li><strong>Prefix</strong>: IP address prefix</li></ul> |
-| Sensors | <ul><li><strong>Hostname</strong>: Name of the host where sensor resides</li><li><strong>Kind</strong>: Power supply unit, fan, or temperature</li><li><strong>Name</strong>: Name of the sensor that was removed or added</li></ul> |
-| Services | <ul><li><strong>Hostname</strong>: Name of the host where service is running</li><li><strong>Name</strong>: Name of the service that was removed or added</li><li><strong>VRF</strong>: Virtual route forwarding interface associated with service</li></ul> |
-
-### Manage Network Snapshots
-
-You can create as many snapshots as you like and view them at any time. When a snapshot becomes old and no longer useful, you can remove it.
-
-To view an existing snapshot:
-
-1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
-
-2. Click **View/Delete Snapshots**.
-
-3. Click **View**.
-
-4. Click one or more snapshots you want to view, then click **Finish**.
-
-    Click **Back** or **Choose Action** to cancel viewing of your selected snapshot(s).
-
-To remove an existing snapshot:
-
-1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
-
-2. Click **View/Delete Snapshots**.
-
-3. Click **Delete**.
-
-4. Click one or more snapshots you want to remove, then click **Finish**.
-
-    Click **Back** or **Choose Action** to cancel the deletion of your selected snapshot(s).
-
-## Install or Upgrade Cumulus NetQ
-
-The LCM feature enables you to upgrade switches with older versions of NetQ Agent and to load NetQ onto switches that do not currently have NetQ installed.
+LCM enables you to install NetQ onto switches that do not currently have NetQ installed.
 
 ### Switch Discovery
 
@@ -665,6 +524,10 @@ Click **Remove** if you decide to use a different file or want to use IP address
 6. Click **Next**.
 
 After all of the switches you want to upgrade are contained in the list, you can assign roles to them.
+
+## Upgrade Cumulus NetQ
+
+LCM enables you to upgrade switches with NetQ Agent 2.x and 3.0.0 with .
 
 ## Upgrade Cumulus Linux
 
@@ -1066,4 +929,182 @@ Some of the common reasons for upgrade failures and the errors they present:
 | Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |
 
+## Create and Compare Network Snapshots
 
+Creating and comparing network snapshots can be useful to validate that the network state has not changed. Snapshots are typically created when you upgrade or change the configuration of your switches in some way.  This section describes the Snapshot card and content, as well as how to create and compare network snapshots at any time. Snapshots can be automatically created during the upgrade process for Cumulus Linux or NetQ. Refer to {{<link title="#Image Installation and Upgrade" text="Image Installation and Upgrade">}}.
+
+<!-- Add additional links here for netq upgrade/install? -->
+
+### Create a Network Snapshot
+
+It is simple to capture the state of your network currently or for a time in the past using the snapshot feature.
+
+To create a network snapshot:
+
+1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
+
+2. Click **Create Snapshot**.
+
+    {{<figure src="/images/netq/snapshot-create-snap-dialog-310.png" width="450">}}
+
+    <!-- Needs update with next RC or final build -->
+
+3. Enter a name for the snapshot.
+
+4. Choose the time for the snapshot:
+
+    - For the current network state, click **Now**.
+
+        {{<figure src="/images/netq/snapshot-create-snap-dialog-now-310.png" width="400">}}
+
+    - For the network state at a previous date and time, click **Past**, then click in **Start Time** field to use the calendar to step through selection of the date and time. You may need to scroll down to see the entire calendar.
+
+        {{<figure src="/images/netq/snapshot-create-snap-dialog-past-310.png" width="400">}}
+
+5. Choose the services to include in the snapshot.
+
+    In the **Options** field, click any service name to remove that service from the snapshot. This would be appropriate if you do not support a particular service, or you are concerned that including that service might cause the snapshot to take an excessive amount of time to complete if included. The check mark next to the service and the service itself is grayed out when the service is removed. Click any service again to re-include the service in the snapshot. The check mark is highlighted in green next to the service name and is no longer grayed out.
+
+    {{<notice note>}}
+The Node and Services options are required, and cannot be selected or unselected.
+    {{</notice>}}
+    {{<notice info>}}
+If you remove services, be aware that snapshots taken in the past or future may not be equivalent when performing a network state comparison.
+    {{</notice>}}
+
+    This example removes the OSPF and Route services from the snapshot being created.
+
+<!-- insert fig here -->
+
+6. Optionally, scroll down and click in the **Notes** field to add descriptive text for the snapshot to remind you of its purpose. For example: "This was taken before adding MLAG pairs," or "Taken after removing the leaf36 switch."
+
+7. Click **Finish**.
+
+    A medium Snapshot card appears on your desktop. Spinning arrows are visible while it works. When it finishes you can see the number of items that have been captured, and if any failed. This example shows a successful result.
+
+    {{<figure src="/images/netq/snapshot-success-300.png" width="200">}}
+
+    {{<notice note>}}
+If you have already created other snapshots, <strong>Compare</strong> is active. Otherwise it is inactive (grayed out).
+    {{</notice>}}
+
+Click **Dismiss** to close the snapshot. The snapshot is not deleted, merely removed from the workbench.
+
+### Compare Network Snapshots
+
+You can compare the state of your network before and after an upgrade or other configuration change to validate that the changes have not created an unwanted change in your network state.
+
+To compare network snapshots:
+
+1. Create a snapshot (as described in previous section) *before* you make any changes.
+
+2. Make your changes.
+
+3. Create a second snapshot.
+
+4. Compare the results of the two snapshots.
+
+    Depending on what, if any, cards are open on your workbench:
+
+    - If you have the two desired snapshot cards open:
+        - Simply put them next to each other to view a high-level comparison.
+        - Scroll down to see all of the items.
+        - To view a more detailed comparison, click **Compare** on one of the cards. Select the other snapshot from the list.
+
+        {{<figure src="/images/netq/snapshot-compare-snap-results-300.png" width="425">}}
+
+    - If you have only one of the cards open:
+        - Click **Compare** on the open card.
+        - Select the other snapshot to compare.
+
+        {{<figure src="/images/netq/snapshot-compare-select-fr-open-card-300.png" width="250">}}
+
+    - If no snapshot cards are open (you may have created them some time before):
+        - Click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}}.
+        - Click **Compare Snapshots**.
+        - Click on the two snapshots you want to compare.
+        - Click **Finish**. Note that two snapshots must be selected before **Finish** is active.
+
+        {{<figure src="/images/netq/snapshot-compare-selection-modal-300.png" width="500">}}
+
+    In the latter two cases, the large Snapshot card opens. The only difference is in the card title. If you opened the comparison card from a snapshot on your workbench, the title includes the name of that card. If you open the comparison card through the Snapshot menu, the title is generic, indicating a comparison only. Functionally, you have reached the same point.
+
+    {{<figure src="/images/netq/snapshot-large-compare-titles-230.png" width="200">}}
+
+    {{<figure src="/images/netq/snapshot-large-compare-from-modal-300.png" width="500">}}
+
+    Scroll down to view all element comparisons.
+
+#### Interpreting the Comparison Data
+
+For each network element that is compared, count values and changes are shown:
+
+{{<figure src="/images/netq/snapshot-large-compare-data-interpretation-300.png" width="300">}}
+
+In this example, a change was made to the VLAN. The snapshot taken before the change (17Apr2020) had a total count of 765 neighbors. The snapshot taken after the change (20Apr2020) had a total count of 771 neighbors. Between the two totals you can see the number of neighbors added and removed from one time to the next, resulting in six new neighbors after the change.
+
+{{<notice note>}}
+The red and green coloring indicates only that items were removed (red) or added (green). The coloring does not indicate whether the removal or addition of these items is bad or good.
+{{</notice>}}
+
+{{<notice tip>}}
+From this card, you can also change which snapshots to compare. Select an alternate snapshot from one of the two snapshot dropdowns and then click <strong>Compare</strong>.
+{{</notice>}}
+
+##### View Change Details
+
+You can view additional details about the changes that have occurred between the two snapshots by clicking **View Details**. This opens the full screen Detailed Snapshot Comparison card.
+
+From this card you can:
+
+- View changes for each of the elements that had added and/or removed items, and various information about each; only elements with changes are presented
+- Filter the added and removed items by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}}
+- Export all differences in JSON file format by clicking {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">}}
+
+{{<figure src="/images/netq/snapshot-fullscr-change-details-300.png" width="700">}}
+
+The following table describes the information provided for each element type when changes are present:
+
+| Element | Data Descriptions |
+| ------- | ----------------- |
+| BGP | <ul><li><strong>Hostname</strong>: Name of the host running the BGP session</li><li><strong>VRF</strong>: Virtual route forwarding interface if used</li><li><strong>BGP Session</strong>: Session that was removed or added</li><li><strong>ASN</strong>: Autonomous system number</li></ul> |
+| CLAG | <ul><li><strong>Hostname</strong>: Name of the host running the CLAG session</li><li><strong>CLAG Sysmac</strong>: MAC address for a bond interface pair that was removed or added</li></ul> |
+| Interface | <ul><li><strong>Hostname</strong>: Name of the host where the interface resides</li><li><strong>IF Name</strong>: Name of the interface that was removed or added</li></ul> |
+| IP Address | <ul><li><strong>Hostname</strong>: Name of the host where address was removed or added</li><li><strong>Prefix</strong>: IP address prefix</li><li><strong>Mask</strong>: IP address mask</li><li><strong>IF Name</strong>: Name of the interface that owns the address</li></ul> |
+| Links | <ul><li><strong>Hostname</strong>: Name of the host where the link was removed or added</li><li><strong>IF Name</strong>: Name of the link</li><li><strong>Kind</strong>: Bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan</li></ul> |
+| LLDP | <ul><li><strong>Hostname</strong>: Name of the discovered host that was removed or added</li><li><strong>IF Name</strong>: Name of the interface</li></ul> |
+| MAC Address | <ul><li><strong>Hostname</strong>: Name of the host where MAC address resides</li><li><strong>MAC address</strong>: MAC address that was removed or added</li><li><strong>VLAN</strong>: VLAN associated with the MAC address</li></ul> |
+| Neighbor | <ul><li><strong>Hostname</strong>: Name of the neighbor peer that was removed or added</li><li><strong>VRF</strong>: Virtual route forwarding interface if used</li><li><strong>IF Name</strong>: Name of the neighbor interface</li><li><strong>IP address</strong>: Neighbor IP address</li></ul> |
+| Node | <ul><li><strong>Hostname</strong>: Name of the network node that was removed or added</li></ul> |
+| OSPF | <ul><li><strong>Hostname</strong>: Name of the host running the OSPF session</li><li><strong>IF Name</strong>: Name of the associated interface that was removed or added</li><li><strong>Area</strong>: Routing domain for this host device</li><li><strong>Peer ID</strong>: Network subnet address of router with access to the peer device</li></ul> |
+| Route | <ul><li><strong>Hostname</strong>: Name of the host running the route that was removed or added</li><li><strong>VRF</strong>: Virtual route forwarding interface associated with route</li><li><strong>Prefix</strong>: IP address prefix</li></ul> |
+| Sensors | <ul><li><strong>Hostname</strong>: Name of the host where sensor resides</li><li><strong>Kind</strong>: Power supply unit, fan, or temperature</li><li><strong>Name</strong>: Name of the sensor that was removed or added</li></ul> |
+| Services | <ul><li><strong>Hostname</strong>: Name of the host where service is running</li><li><strong>Name</strong>: Name of the service that was removed or added</li><li><strong>VRF</strong>: Virtual route forwarding interface associated with service</li></ul> |
+
+### Manage Network Snapshots
+
+You can create as many snapshots as you like and view them at any time. When a snapshot becomes old and no longer useful, you can remove it.
+
+To view an existing snapshot:
+
+1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
+
+2. Click **View/Delete Snapshots**.
+
+3. Click **View**.
+
+4. Click one or more snapshots you want to view, then click **Finish**.
+
+    Click **Back** or **Choose Action** to cancel viewing of your selected snapshot(s).
+
+To remove an existing snapshot:
+
+1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
+
+2. Click **View/Delete Snapshots**.
+
+3. Click **Delete**.
+
+4. Click one or more snapshots you want to remove, then click **Finish**.
+
+    Click **Back** or **Choose Action** to cancel the deletion of your selected snapshot(s).

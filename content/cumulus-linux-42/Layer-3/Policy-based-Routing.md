@@ -14,7 +14,7 @@ Policy-based routing is applied to incoming packets. All packets received on a P
 
 - You can create a *maximum* of 255 PBR match rules and 256 next hop groups (this is the ECMP limit).
 - You can apply only one PBR policy per input interface.
-- You can match on *source* and *destination* IP address, or match on DSCP or ECN values within a packet.
+- You can match on *source* and *destination* IP address, or match on Differentiated Services Code Point (DSCP) or Explicit Congestion Notification (ECN) values within a packet.
 - PBR is not supported for GRE or VXLAN tunneling.
 - PBR is not supported on management interfaces, such as eth0.
 - A PBR rule cannot contain both IPv4 and IPv6 addresses.
@@ -26,7 +26,7 @@ Policy-based routing is applied to incoming packets. All packets received on a P
 A PBR policy contains one or more policy maps. Each policy map:
 
 - Is identified with a unique map name and sequence number. The sequence number is used to determine the relative order of the map within the policy.
-- Contains a match source IP rule and (or) a match destination IP rule and a set rule, or a match Differentiated Services Code Point (DSCP) or an Explicit Congestion Notification (ECN) rule and a set rule.
+- Contains a match source IP rule and (or) a match destination IP rule and a set rule, or a match DSCP or ECN rule and a set rule.
    - To match on a source and destination address, a policy map can contain both match source and match destination IP rules.
    - A set rule determines the PBR next hop for the policy. The set rule can contain a single next hop IP address or it can contain a next hop group. A next hop group has more than one next hop IP address so that you can use multiple interfaces to forward traffic. To use ECMP, you configure a next hop group.
 

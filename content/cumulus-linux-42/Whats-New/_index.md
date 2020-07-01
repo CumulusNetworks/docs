@@ -28,3 +28,4 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - Ability to set the {{<link title="Network Troubleshooting#use-the-cpu-port-as-the-span-destination" text="CPU as a SPAN destination interface">}}
 - {{<link url="Buffer-and-Queue-Management/" text="QoS">}} now supported on Maverick switches
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#ecmp-custom-hashing" text="ECMP">}} and {{<link url="Bonding-Link-Aggregation/#lag-custom-hashing" text="LAG">}} custom hash parameters have been moved to the `/etc/cumulus/datapath/traffic.conf` file and no longer require a `switchd` restart
+- DSCP field based packet matching in PBR rules

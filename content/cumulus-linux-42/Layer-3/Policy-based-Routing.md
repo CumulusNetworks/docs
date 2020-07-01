@@ -14,7 +14,7 @@ Policy-based routing is applied to incoming packets. All packets received on a P
 
 - You can create a *maximum* of 255 PBR match rules and 256 next hop groups (this is the ECMP limit).
 - You can apply only one PBR policy per input interface.
-- You can match on *source* and *destination* IP address only.
+- You can match on *source* and *destination* IP address, or match on DSCP or ECN values within a packet.
 - PBR is not supported for GRE or VXLAN tunneling.
 - PBR is not supported on management interfaces, such as eth0.
 - A PBR rule cannot contain both IPv4 and IPv6 addresses.
@@ -26,7 +26,7 @@ Policy-based routing is applied to incoming packets. All packets received on a P
 A PBR policy contains one or more policy maps. Each policy map:
 
 - Is identified with a unique map name and sequence number. The sequence number is used to determine the relative order of the map within the policy.
-- Contains a match source IP rule or a match destination IP rule, and a set rule.
+- Contains a match source IP rule and (or) a match destination IP rule and a set rule, or a match Differentiated Services Code Point (DSCP) or an Explicit Congestion Notification (ECN) rule and a set rule.
    - To match on a source and destination address, a policy map can contain both match source and match destination IP rules.
    - A set rule determines the PBR next hop for the policy. The set rule can contain a single next hop IP address or it can contain a next hop group. A next hop group has more than one next hop IP address so that you can use multiple interfaces to forward traffic. To use ECMP, you configure a next hop group.
 
@@ -44,13 +44,27 @@ To configure a PBR policy:
 
 {{< tab "NCLU Commands ">}}
 
-1. Configure the policy map. The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
+1. Configure the policy map.
+
+    The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
 
     If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
 
     ```
     cumulus@switch:~$ net add pbr-map map1 seq 1 match dst-ip 10.1.2.0/24
     cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 10.1.4.1/24
+    ```
+
+    Instead of matching on IP address, you can match packets according to the DSCP or ECN field in the IP header. The DSCP value can be an integer between 0 and 63 or the DSCP codepoint name. The ECN value can be an integer between 0 and 3. The following example command configures a policy map called `map1` with sequence number 1 that matches on packets with the DSCP value 10:
+
+    ```
+    cumulus@switch:~$ net add pbr-map map1 seq 1 match dscp 10
+    ```
+
+    The following example command configures a policy map called `map1` with sequence number 1 that matches on packets with the ECN value 2:
+
+    ```
+    cumulus@switch:~$ net add pbr-map map1 seq 1 match ecn 2
     ```
 
 2. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
@@ -115,7 +129,9 @@ You can only set one policy per interface.
     ...
     ```
 
-2. Configure the policy map. The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
+2. Configure the policy map.
+
+    The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
 
     ```
     cumulus@switch:~$ sudo vtysh
@@ -127,6 +143,22 @@ You can only set one policy per interface.
     ```
 
     If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
+
+    Instead of matching on IP address, you can match packets according to the DSCP or ECN field in the IP header. The DSCP value can be an integer between 0 and 63 or the DSCP codepoint name. The ECN value can be an integer between 0 and 3. The following example command configures a policy map called `map1` with sequence number 1 that matches on packets with the DSCP value 10:
+
+    ```
+    switch# configure terminal
+    switch(config)# pbr-map map1 seq 1
+    switch(config-pbr-map)# match dscp 10
+    ```
+
+    The following example command configures a policy map called `map1` with sequence number 1 that matches on packets with the ECN value 2:
+
+    ```
+    switch# configure terminal
+    switch(config)# pbr-map map1 seq 1
+    switch(config-pbr-map)# match ecn 2
+    ```
 
 3. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
 

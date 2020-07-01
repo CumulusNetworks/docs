@@ -134,7 +134,24 @@ The interaction of tagged and un-tagged frames on the same trunk often leads to 
 
 {{< img src = "/images/cumulus-linux/ethernet-bridging-trunk.png" >}}
 
-To create the above example, add the following configuration to the `/etc/network/interfaces` file:
+To create the above example:
+
+{{< tabs "TabID138 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bridge br-VLAN100 ports swp1.100,swp2.100
+cumulus@switch:~$ net add bridge br-VLAN200 ports swp1.200,swp2.200
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "Linux Commands ">}}
+
+Add the following configuration to the `/etc/network/interfaces` file:
 
 ```
 ...
@@ -147,6 +164,10 @@ iface br-VLAN200
    bridge-ports swp1.200 swp2.200
 ...
 ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### VLAN Tagging Examples
 

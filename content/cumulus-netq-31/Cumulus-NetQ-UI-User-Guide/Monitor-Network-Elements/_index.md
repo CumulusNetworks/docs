@@ -197,7 +197,7 @@ Using *wjh_dump.py* on a Mellanox platform that is running Cumulus Linux 4.0 and
 
 The What Just Happened view displays events based on conditions detected in the data plane. The most recent 1000 events from the last 24 hours are presented for each drop category.
 
-{{<figure src="/images/netq/main-menu-ntwk-wjh-l1-240.png" width="700">}}
+{{<figure src="/images/netq/main-menu-ntwk-wjh-l1-310.png" width="700">}}
 
 <table>
 <colgroup>
@@ -393,6 +393,8 @@ The Sensors view provides all available parameter data provided by the power sup
 The Digital Optics view provides all available parameter data provided by any digital optics modules in the system. View Laser power and bias current for a given interface and channel on a switch, and temperature and voltage for a given module. Select the relevant tab to view the data.
 
 {{<figure src="/images/netq/main-menu-ntwk-dom-laserrx-power-310.png" width="700">}}
+
+<!-- Need to replace pic with latest RC -->
 
 | Laser Parameter | Description |
 | --- | --- |

@@ -14,7 +14,7 @@ Cumulus VX is a free virtual environment designed for cloud and network administ
 
 ## Virtual Machines
 
-Cumulus VX runs in a virtual machine (VM) on a standard x86 environment. The VM is a 64-bit operating system, built on the same foundation as {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux">}}, that runs Debian Linux with `virtio` drivers for network and HDD interfaces as well as the logical volume manager (LVM).
+Cumulus VX runs in a virtual machine (VM) on a standard x86 environment. The VM is a 64-bit operating system, built on the same foundation as {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux">}}, and runs Debian Linux with `virtio` drivers for network and HDD interfaces as well as the logical volume manager (LVM).
 
 Five versions of the virtual disk image are available for use across various hypervisors:
 
@@ -39,7 +39,7 @@ You can use Cumulus VX with the following development environments:
 
 ## Support Policy
 
-As a Cumulus Linux customer, you can now receive formal GSS support for Cumulus VX instances used to:
+As a Cumulus Linux customer, you can receive formal GSS support for Cumulus VX instances to:
 
   - Test and stage network topologies before deploying to production.
   - Analyze, troubleshoot, and correct issues with configurations and software bugs in Cumulus VX that might also apply to Cumulus Linux running on physical devices.

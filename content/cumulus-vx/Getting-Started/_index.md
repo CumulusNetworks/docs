@@ -39,9 +39,7 @@ instructions are available on the download websites:
 
 | Hypervisor                | Download Location     |
 | ------------------------- | ------------------------------------ |
-| VMware vSphere - ESXi 5.5 | <http://www.vmware.com/products/vsphere.html>  |
-| VMware Fusion             | <http://www.vmware.com/products/fusion.html>    |
-| VMware Workstation        | <http://www.vmware.com/products/workstation.html>  |
+| VMware vSphere - ESXi     | <http://www.vmware.com/products/vsphere.html>  |
 | VirtualBox                | <https://www.virtualbox.org/wiki/Downloads> |
 | KVM                       | For package installation instructions, refer to <http://www.qemu-project.org/download/> |
 
@@ -58,6 +56,6 @@ After you have downloaded the hypervisor or development environment and
 the Cumulus VX image, follow the relevant link below for detailed setup
 instructions:
 
-  - [VMware vSphere - ESXi 5.5](VMware-vSphere-ESXi-5.5/)
+  - [VMware vSphere - ESXi](VMware-vSphere-ESXi-5.5/)
   - [VirtualBox](VirtualBox/)
   - [Libvirt and KVM - QEMU](Libvirt-and-KVM-QEMU/)

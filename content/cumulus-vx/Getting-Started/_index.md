@@ -59,14 +59,5 @@ the Cumulus VX image, follow the relevant link below for detailed setup
 instructions:
 
   - [VMware vSphere - ESXi 5.5](VMware-vSphere-ESXi-5.5/)
-  - [VMware Fusion](VMware-Fusion/)
-  - [VMware Workstation](VMware-Workstation/)
   - [VirtualBox](VirtualBox/)
   - [Libvirt and KVM - QEMU](Libvirt-and-KVM-QEMU/)
-
-## Log in to the VM
-
-The Cumulus VX VM has these default login credentials:
-
-  - **User name:** cumulus
-  - **Password:** CumulusLinux\!

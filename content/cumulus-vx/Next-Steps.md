@@ -8,113 +8,102 @@ version: '3.7'
 imgData: cumulus-vx
 siteSlug: cumulus-vx
 ---
-This section provides some additional configuration specific to Cumulus
-VX and shows some basic commands you can try to get started with Cumulus
-Linux. Additional resources for further reading and more advanced
-configuration are also provided.
+This section provides some additional configuration specific to Cumulus VX and shows some basic commands you can try to get started with Cumulus Linux.
 
-## Perform Additional Configuration
+## Send Output to the Serial Console
 
-To provide easier access in video-focused hypervisors (such as
-VirtualBox), Cumulus VX is configured by default to redirect the grub
-menu and the kernel output to the video console. Follow the steps below
-to send both the grub menu and the kernel output back to the serial
-console.
+To provide easier access in video-focused hypervisors (such as VirtualBox), Cumulus VX is configured to redirect the grub menu and the kernel output to the video console. To send both the grub menu and the kernel output back to the serial console, follow these steps:
 
-If the VM has **not** been booted:
+{{< tabs "TabID01 ">}}
 
-1.  Interrupt the boot process at the GRUB prompt.
+{{< tab "If the VM is not booted ">}}
 
-2.  Modify the Linux command line directly, removing all references to
-    the console entries:
+1. Interrupt the boot process at the GRUB prompt.
 
-    **Original Version:**
+2. Modify the Linux command line directly, removing all references to the console entries:
 
-    {{% imgOld 0 %}}
+   **Original Version**:
 
-    **Configured Version:**
+   {{< img src = "/images/cumulus-vx/grub1.png" >}}
 
-    {{% imgOld 1 %}}
+   **Configured Version**:
 
-    {{%notice note%}}
+   {{< img src = "/images/cumulus-vx/grub1.png" >}}
 
-The example images above are for the ONIE-RESCUE entry, not the
-    standard boot entry. The configuration process is the same for both
-    entries.
+   The example images above are for the ONIE-RESCUE entry, not the standard boot entry. The configuration process is the same for both entries.
 
-    {{%/notice%}}
+3. Start the VM.
 
-3.  Start the VM.
+{{< /tab >}}
 
-If the VM is already running:
+{{< tab "If the VM is already running ">}}
 
-1.  Run the following commands as the sudo user:
+1. Run the following commands as the sudo user:
 
-        cumulus@switch:~$ sed -i 's/^#//' /etc/default/grub.d/00-installer-defaults.cfg
-        cumulus@switch:~$ sed -r -i '/^GRUB_CMDLINE_LINUX=/ s/(console=ttyS0,115200n8) (console=tty0)/\2 \1/' /etc/default/grub
-        cumulus@switch:~$ update-grub 
+    ```
+    cumulus@switch:~$ sed -i 's/^#//' /etc/default/grub.d/00-installer-defaults.cfg
+    cumulus@switch:~$ sed -r -i '/^GRUB_CMDLINE_LINUX=/ s/(console=ttyS0,115200n8) (console=tty0)/\2 \1/' /etc/default/grub
+    cumulus@switch:~$ update-grub
+    ```
 
-2.  Restart the VM to implement the change.
+2. Restart the VM to implement the change.
 
-## Try Basic Commands
+    {{< /tab >}}
 
-After you have configured the Cumulus VX instances and performed
-additional configuration, use the wider Cumulus Linux documentation
-suite to help you configure and test features, and fine tune the network
-topology.
+    {{< /tabs >}}
 
-This section provides some basic commands to get you started. You can
-run the commands on each VM to see system information, as well as
-interface and LLDP details and to change the hostname of a switch.
+## Basic Commands
 
-To get information about the switch itself, run the `net show system`
-command:
+After you configure the Cumulus VX instances and perform the configuration above, use the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41" text="Cumulus Linux documentation suite">}} to configure and test features, and fine tune the network topology.
 
-    cumulus@switch:~$ net show system
-    Cumulus VX
-    Cumulus Linux 3.5.0
-    Build: Cumulus Linux 3.5.0
-    Uptime: 4:29:09.270000
+Use the following basic commands to get started. You can run the commands on each VM to see system information and interface and LLDP details, and to change the hostname of the switch.
 
-To show every available interface that is physically UP, run the `net
-show interface` command:
+To obtain information about the switch, run the `net show system` command:
 
-    cumulus@switch:~$ net show interface
-           Name    Master    Speed    MTU    Mode           Remote Host       Remote Port    Summary
-    -----  ------  --------  -------  -----  -------------  ----------------  -------------  -------------------------------------
-    UP     lo                N/A      65536  Loopback                                        IP: 127.0.0.1/8, 10.2.1.1/32, ::1/128
-    UP     eth0              1G       1500   Mgmt                                            IP: 10.0.2.15/24(DHCP)
-    UP     swp1              1G       1500   Interface/L3   CumulusVX-spine1  swp1           IP: 10.2.1.1/32
-    UP     swp2              1G       1500   Interface/L3   CumulusVX-spine2  swp1           IP: 10.2.1.1/32
-    UP     swp3              1G       1500   Interface/L3                                    IP: 10.4.1.1/24
-    ADMDN  swp4              N/A      1500   NotConfigured
-    ADMDN  swp5              N/A      1500   NotConfigured
-    ADMDN  swp6              N/A      1500   NotConfigured
-    ADMDN  swp7              N/A      1500   NotConfigured 
+```
+cumulus@switch:~$ net show system
+Cumulus VX
+Cumulus Linux 3.5.0
+Build: Cumulus Linux 3.5.0
+Uptime: 4:29:09.270000
+```
 
-To get topology verification, run the `net show lldp` command.
+To show every available interface that is physically UP, run the `net show interface` command:
 
-The example output below shows the two-leaf/two-spine Cumulus VX network
-topology from CumulusVX-leaf1, where local port **swp1** is connected to
-remote port **swp1** on **CumulusVX-spine1** and local port **swp2** is
-connected to remote port **swp1** on **CumulusVX-spine2**.
+```
+cumulus@switch:~$ net show interface
+        Name    Master    Speed    MTU    Mode           Remote Host       Remote Port    Summary
+-----  ------  --------  -------  -----  -------------  ----------------  -------------  -------------------------------------
+UP     lo                N/A      65536  Loopback                                        IP: 127.0.0.1/8, 10.2.1.1/32, ::1/128
+UP     eth0              1G       1500   Mgmt                                            IP: 10.0.2.15/24(DHCP)
+UP     swp1              1G       1500   Interface/L3   CumulusVX-spine1  swp1           IP: 10.2.1.1/32
+UP     swp2              1G       1500   Interface/L3   CumulusVX-spine2  swp1           IP: 10.2.1.1/32
+UP     swp3              1G       1500   Interface/L3                                    IP: 10.4.1.1/24
+ADMDN  swp4              N/A      1500   NotConfigured
+ADMDN  swp5              N/A      1500   NotConfigured
+ADMDN  swp6              N/A      1500   NotConfigured
+ADMDN  swp7              N/A      1500   NotConfigured
+```
 
-    cumulus@switch:~$ net show lldp
-    LocalPort    Speed    Mode          RemotePort    RemoteHost        Summary
-    -----------  -------  ------------  ------------  ----------------  ---------------
-    swp1         1G       Interface/L3  swp1          CumulusVX-spine1  IP: 10.2.1.1/32
-    swp2         1G       Interface/L3  swp1          CumulusVX-spine2  IP: 10.2.1.1/32
+To show topology verification, run the `net show lldp` command.
 
-To change the hostname, run the `net add hostname` command.
+The example output below shows the two-leaf, two-spine Cumulus VX network topology from CumulusVX-leaf1, where local port **swp1** is connected to remote port **swp1** on **CumulusVX-spine1** and local port **swp2** is connected to remote port **swp1** on **CumulusVX-spine2**.
 
-This command updates both the `/etc/hostname` and `/etc/hosts` files.
+```
+cumulus@switch:~$ net show lldp
+LocalPort    Speed    Mode          RemotePort    RemoteHost        Summary
+-----------  -------  ------------  ------------  ----------------  ---------------
+swp1         1G       Interface/L3  swp1          CumulusVX-spine1  IP: 10.2.1.1/32
+swp2         1G       Interface/L3  swp1          CumulusVX-spine2  IP: 10.2.1.1/32
+```
 
-    cumulus@switch:~$ net add hostname <hostname>
+To change the hostname, run the `net add hostname` command. This command updates both the `/etc/hostname` and `/etc/hosts` files.
 
-## Further Information
+```
+cumulus@switch:~$ net add hostname <hostname>
+```
 
-Check out these community articles and the rest of the Cumulus Linux
-documentation:
+## Related Information
 
-  - [Cumulus Linux documentation](/cumulus-linux)
-  - [Cumulus Networks knowledge base](https://support.cumulusnetworks.com/hc/en-us/)
+- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41" text="Cumulus Linux documentation">}}
+- {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/" text="Cumulus Networks knowledge base">}}

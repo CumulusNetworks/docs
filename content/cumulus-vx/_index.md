@@ -1,5 +1,5 @@
 ---
-title: Cumulus VX Documentation
+title: Cumulus VX
 author: Cumulus Networks
 weight: -34
 pageID: 5126686
@@ -10,73 +10,56 @@ cascade:
   imgData: cumulus-vx
   siteSlug: cumulus-vx
 ---
-Cumulus VX is a free virtual environment designed for cloud and network
-administrators that introduces you to open networking and lets you learn
-and test the latest technology from Cumulus Networks in your own time,
-at your own pace, and within your own environment without organizational
-and economic barriers. Use Cumulus VX to produce sandbox environments
-for prototype assessment, pre-production rollouts, and script
-development.
+Cumulus VX is a free virtual environment designed for cloud and network administrators that introduces you to open networking where you can learn and test the latest technology from Cumulus Networks in your own time, at your own pace, and within your own environment, without organizational and economic barriers. Use Cumulus VX to produce sandbox environments for prototype assessment, pre-production rollouts, and script development.
 
-## About the Virtual Machine
+## Virtual Machines
 
-Cumulus VX runs in a virtual machine (VM) on a standard x86 environment.
-The VM is a 64-bit operating system, built on the same foundation as
-[Cumulus Linux](/cumulus-linux), running Debian Linux Jessie 4.1, using `virtio`
-drivers for network and HDD interfaces as well as the logical volume manager (LVM).
+Cumulus VX runs in a virtual machine (VM) on a standard x86 environment. The VM is a 64-bit operating system, built on the same foundation as {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux">}}, that runs Debian Linux with `virtio` drivers for network and HDD interfaces as well as the logical volume manager (LVM).
 
-Five versions of the virtual disk image are available for use across
-various hypervisors:
+Five versions of the virtual disk image are available for use across various hypervisors:
 
-- An OVA disk image for use with VirtualBox.
-- A VMware-specific OVA disk image.
-- A qcow2 disk image for use with KVM.
-- A Box image for use with Vagrant.
-- A binary image for ONIE installations.
+- OVA disk image for use with VirtualBox
+- VMware-specific OVA disk image
+- qcow2 disk image for use with KVM
+- Box image for use with Vagrant
+- Binary image for ONIE installations
 
 ## Supported Platforms
 
 Cumulus VX integrates with the following hypervisors:
 
-- VMware
-  - vSphere - ESXi 5.5
-  - VMware Fusion
-  - VMware Workstation
+- VMware vSphere ESXi
 - VirtualBox
 - KVM
 
-In addition, you can use Cumulus VX with the following development environments:
+You can use Cumulus VX with the following development environments:
 
 - Vagrant
 - GNS3
 
-## Documentation
+## Support Policy
 
-- [What's New in Cumulus VX](/cumulus-vx/Whats-New-in-Cumulus-VX/)
-- [Cumulus VX Support Policy](/cumulus-vx/Cumulus-VX-Support-Policy)
-- [Comparing Cumulus VX to other Cumulus Networks Products](/cumulus-vx/Comparing-Cumulus-VX-to-other-Cumulus-Networks-Products)
-- [Getting Started](/cumulus-vx/Getting-Started/)
-- [Development Environments](/cumulus-vx/Development-Environments/)
+As a Cumulus Linux customer, you can now receive formal GSS support for Cumulus VX instances used to:
 
-## Related Links
+  - Test and stage network topologies before deploying to production.
+  - Analyze, troubleshoot, and correct issues with configurations and software bugs in Cumulus VX that might also apply to Cumulus Linux running on physical devices.
+  - Analyze, troubleshoot, and correct issues with Cumulus VX if behaving differently than physical devices. This does not apply in scenarios where it is not possible to emulate physical hardware with virtualization.
 
-For more information about Cumulus VX, Cumulus Linux and supported
-environments, visit these links:
+Cumulus Networks does *not* provide support for:
 
-- [Cumulus Linux 4.0 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360038927193-Cumulus-Linux-4-0-Release-Notes/)
-- [Cumulus Linux 3.7 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360007793174-Cumulus-Linux-3-7-Release-Notes)
-- [Cumulus Linux 3.6 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003039873-Cumulus-Linux-3-6-Release-Notes)
-    (Cumulus VX known issues are now included in the Cumulus Linux release notes)
-- [Cumulus VX 3.5 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115015782767)
-- [Cumulus VX 3.4.3 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115014868628-Cumulus-VX-3-4-3-Release-Notes)
-- [Cumulus VX 3.4.2 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115013055568)
-- [Cumulus VX 3.4.1 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115012374488-Cumulus-VX-3-4-1-Release-Notes)
-- [Cumulus VX 3.4.0 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115011842507-Cumulus-VX-3-4-0-Release-Notes)
-- [Cumulus VX 3.3.2 release notes](https://support.cumulusnetworks.com/hc/en-us/articles/115009425847-Cumulus-VX-3-3-2-Release-Notes)
-- [Cumulus Linux documentation](/cumulus-linux)
-- [Cumulus Networks knowledge base](https://support.cumulusnetworks.com/hc/en-us/)
-- [VMware documentation](https://www.vmware.com/support/pubs/)
-- [VirtualBox documentation](https://www.virtualbox.org/wiki/Documentation)
-- [KVM documentation](http://www.linux-kvm.org/page/Documents)
-- [Vagrant documentation](https://docs.vagrantup.com/v2/)
-- [GNS3 documentation](http://docs.gns3.com/appliances/cumulus-vx.html)
+  - Cumulus VX instances used in a production environment.
+  - Virtualization environments, including installation, setup, and configuration.
+  - Automation tool playbooks, including creation and troubleshooting.
+  - Performance or scalability issues related to network traffic running through Cumulus VX instances.
+
+For non-customers, Cumulus VX remains a community-supported product, with no formal support obligations from Cumulus Networks. You can submit questions to the {{<exlink url="https://slack.cumulusnetworks.com/" text="community Slack channel">}} to engage with the wider community.
+
+## Related Information
+
+- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux documentation">}}
+- {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/" text="Cumulus Networks knowledge base">}}
+- {{<exlink url="https://www.vmware.com/support/pubs/" text="VMware documentation">}}
+- {{<exlink url="https://www.virtualbox.org/wiki/Documentation" text="VirtualBox documentation">}}
+- {{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM documentation">}}
+- {{<exlink url="https://docs.vagrantup.com/v2/" text="Vagrant documentation">}}
+- {{<exlink url="(http://docs.gns3.com/appliances/cumulus-vx.html" text="GNS3 documentation">}}

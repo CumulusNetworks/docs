@@ -1,7 +1,7 @@
 ---
 title: Vagrant and VirtualBox
 author: Cumulus Networks
-weight: 59
+weight: 40
 pageID: 5126719
 ---
 This document describes how to install and set up Cumulus Linux within a

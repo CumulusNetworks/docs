@@ -1,12 +1,12 @@
 ---
 title: GNS3 and QEMU - KVM
 author: Cumulus Networks
-weight: 65
+weight: 50
 ---
 Before you run your virtual network under GNS3, make sure you:
 
   - Download and install [KVM](http://www.linux-kvm.org/page/Downloads).
-  - Download the the [Cumulus VX QCOW2 image](https://cumulusnetworks.com/cumulus-vx/download/).
+  - Download the the [Cum60ulus VX QCOW2 image](https://cumulusnetworks.com/cumulus-vx/download/).
   - Download and install
     [GNS3](https://community.gns3.com/login.jspa?referer=/community/software/download).
 

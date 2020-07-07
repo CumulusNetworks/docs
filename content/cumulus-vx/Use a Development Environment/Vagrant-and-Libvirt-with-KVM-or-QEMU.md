@@ -1,7 +1,7 @@
 ---
 title: Vagrant and Libvirt with KVM or QEMU
 author: Cumulus Networks
-weight: 61
+weight: 44
 pageID: 5126718
 ---
 The solution described in this chapter requires four components:

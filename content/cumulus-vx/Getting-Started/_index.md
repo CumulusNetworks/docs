@@ -1,7 +1,7 @@
 ---
 title: Getting Started
 author: Cumulus Networks
-weight: 17
+weight: 15
 pageID: 5126687
 ---
 This section provides an installation process overview with next step links for each supported hypervisor or development environment.

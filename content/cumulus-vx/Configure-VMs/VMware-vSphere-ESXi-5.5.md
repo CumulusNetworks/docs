@@ -1,7 +1,7 @@
 ---
 title: VMware vSphere ESXi
 author: Cumulus Networks
-weight: 37
+weight: 18
 pageID: 5126689
 ---
 The following sections describe how to import and set up a two-leaf and two-spine Cumulus VX topology with VMware vSphere. These sections assume a basic level of VMware vSphere experience. For detailed instructions, refer to the {{<exlink url="https://docs.vmware.com/en/VMware-vSphere/index.html" text="VMware vSphere documentation">}}.

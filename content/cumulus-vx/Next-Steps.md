@@ -1,7 +1,7 @@
 ---
 title: Next Steps
 author: Cumulus Networks
-weight: 23
+weight: 50
 pageID: 5126707
 product: Cumulus VX
 version: '3.7'

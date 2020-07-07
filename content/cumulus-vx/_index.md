@@ -54,7 +54,7 @@ Cumulus Networks does *not* provide support for:
 
 For non-customers, Cumulus VX remains a community-supported product, with no formal support obligations from Cumulus Networks. You can submit questions to the {{<exlink url="https://slack.cumulusnetworks.com/" text="community Slack channel">}} to engage with the wider community.
 
-## Comparing Cumulus VX to Other Cumulus Networks Products
+## Cumulus VX Compared with Other Cumulus Networks Products
 
 Cumulus VX is not a production-ready virtual switch or router. It has the same foundation as Cumulus Linux, including all the control plane elements, but without an actual ASIC or NPU for line rate performance or hardware acceleration.
 

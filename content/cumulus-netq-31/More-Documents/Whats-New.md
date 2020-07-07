@@ -18,16 +18,20 @@ Upgrades from NetQ 2.3.x and earlier require a fresh installation.
 - {{<link url="Lifecycle-Management" text="Lifecycle Management">}}
     - Simple NetQ UI workflow to install or upgrade Cumulus NetQ (Agent and CLI) on monitored switches
     - Discover or import Cumulus Linux switches without NetQ running for NetQ installation and Cumulus Linux upgrade
-    - Feature available for cloud deployments on request
-- NetQ Agent installation from Admin UI
+    - Create NetQ configuration profile
+    - Select protocols and services to include in network snapshot
+    - Software upgrade available for cloud deployments on request
 - Events
-    - Digital optical monitoring (DOM) support
-    - Email notification of user-selected events
-    - Event suppression for user-selected message types
+    - Digital optics module monitoring support
+    - Email notification of user-selected events configurable through NetQ CLI
+    - Event suppression for user-selected message types configurable through NetQ CLI
 - Access
-    - Password change required on first login to NetQ UI
+    - Password change required on first login to NetQ UI and Admin UI
     - Login required for Admin UI
-    - Password policy implemented
+    - Password policy implemented and enforced for NetQ UI and Admin UI
     - User lockout after three failed login attempts
+- NetQ Agent CPU usage limitation support extended to all Cumulus Linux 3.6 and 3.7 releases
+- APIs
+    - Validation and trace support
 
 For information regarding bug fixes and known issues present in this release, refer to the {{<link title="Cumulus NetQ 3.1 Release Notes" text="release notes">}}.

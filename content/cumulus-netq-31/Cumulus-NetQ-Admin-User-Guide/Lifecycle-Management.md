@@ -1086,9 +1086,13 @@ To upgrade switches:
 
     - When some of your switches have roles assigned, any switches without roles are upgraded last and are grouped under the label *Stage1*.
 
-        {{<figure src="/images/netq/lcm-upgrade-switches-preview-job-someroles-300.png" width="700" caption="Some roles assigned">}}
+        {{<figure src="/images/netq/lcm-upgrade-switches-preview-job-someroles-310.png" width="700" caption="Some roles assigned">}}
 
 15. When you are happy with the job specifications, click **Start Upgrade**.
+
+16. Confirm the upgrade request.
+
+    {{<figure src="/images/netq/lcm-upgrade-confirmation-310.png" width="250">}}
 
 ### Analyze Cumulus Linux Results
 
@@ -1108,7 +1112,9 @@ Several viewing options are available for monitoring the upgrade job.
 
 - Monitor the job with full details open:
 
-    {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-310.png" width="700">}}
+    {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-310.png" width="700" caption="Single role or no roles">}}
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-2-310.png" width="700" caption="Multiple roles and some without roles">}}
 
     Each switch goes through a number of steps. To view these steps, click {{<img src="https://icons.cumulusnetworks.com/52-arrows-diagrams/01-arrows/arrow-down-1.svg" height="18" width="18">}} and scroll down as needed. Click {{<img src="https://icons.cumulusnetworks.com/52-arrows-diagrams/01-arrows/arrow-up-1.svg" height="18" width="18">}} to close the detail.
 
@@ -1122,9 +1128,9 @@ Several viewing options are available for monitoring the upgrade job.
 
     Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}} to view the detailed view.
 
-- Monitor the job through the CL Upgrade History card on the LCM dashboard. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} twice to return to the LCM dashboard.
+- Monitor the job through the CL Upgrade History card on the LCM dashboard. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} twice to return to the LCM dashboard. As you perform more upgrades the graph displays the success and failure of each job.
 
-    {{<figure src="/images/netq/lcm-cl-upgrade-history-card-inprogress-310.png" width="200">}}
+    {{<figure src="/images/netq/lcm-cl-upgrade-history-card-inprogress-310.png" width="450">}}
 
     Click **View** to return to the Upgrade History page as needed.
 
@@ -1238,8 +1244,6 @@ Some of the common reasons for upgrade failures and the errors they present:
 | Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |
 
-
-
 ## Create and Compare Network Snapshots
 
 Creating and comparing network snapshots can be useful to validate that the network state has not changed. Snapshots are typically created when you upgrade or change the configuration of your switches in some way.  This section describes the Snapshot card and content, as well as how to create and compare network snapshots at any time. Snapshots can be automatically created during the upgrade process for Cumulus Linux or NetQ. Refer to {{<link title="#Image Installation and Upgrade" text="Image Installation and Upgrade">}}.
@@ -1258,8 +1262,6 @@ To create a network snapshot:
 
     {{<figure src="/images/netq/snapshot-create-snap-dialog-310.png" width="450">}}
 
-    <!-- Needs update with next RC or final build -->
-
 3. Enter a name for the snapshot.
 
 4. Choose the time for the snapshot:
@@ -1274,10 +1276,10 @@ To create a network snapshot:
 
 5. Choose the services to include in the snapshot.
 
-    In the **Options** field, click any service name to remove that service from the snapshot. This would be appropriate if you do not support a particular service, or you are concerned that including that service might cause the snapshot to take an excessive amount of time to complete if included. The check mark next to the service and the service itself is grayed out when the service is removed. Click any service again to re-include the service in the snapshot. The check mark is highlighted in green next to the service name and is no longer grayed out.
+    In the **Choose options** field, click any service name to remove that service from the snapshot. This would be appropriate if you do not support a particular service, or you are concerned that including that service might cause the snapshot to take an excessive amount of time to complete if included. The checkmark next to the service and the service itself is grayed out when the service is removed. Click any service again to re-include the service in the snapshot. The checkmark is highlighted in green next to the service name and is no longer grayed out.
 
     {{<notice note>}}
-The Node and Services options are required, and cannot be selected or unselected.
+The Node and Services options are mandatory, and cannot be selected or unselected.
     {{</notice>}}
     {{<notice info>}}
 If you remove services, be aware that snapshots taken in the past or future may not be equivalent when performing a network state comparison.
@@ -1285,7 +1287,7 @@ If you remove services, be aware that snapshots taken in the past or future may 
 
     This example removes the OSPF and Route services from the snapshot being created.
 
-<!-- insert fig here -->
+    {{<figure src="/images/netq/snapshot-create-snap-dialog-svcs-removed-310.png" width="400">}}
 
 6. Optionally, scroll down and click in the **Notes** field to add descriptive text for the snapshot to remind you of its purpose. For example: "This was taken before adding MLAG pairs," or "Taken after removing the leaf36 switch."
 

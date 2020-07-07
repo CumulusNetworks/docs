@@ -31,6 +31,14 @@ To download and install the preferred hypervisor or development environment, fol
 
 Cumulus VX images for all supported platforms are available from the [Cumulus Networks website](https://cumulusnetworks.com/products/cumulus-vx/download/). Each disk image contains a single VM for a standalone switch. You can clone the image to build the test network.
 
+Five versions of the virtual disk image are available for use across various hypervisors:
+
+- OVA disk image for use with VirtualBox
+- VMware-specific OVA disk image
+- qcow2 disk image for use with KVM
+- Box image for use with Vagrant
+- Binary image for ONIE installations
+
 ## Configure the VMs
 
 After you have downloaded the hypervisor or development environment and the Cumulus VX image, follow the relevant link below to configure the VMs:

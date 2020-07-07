@@ -594,11 +594,16 @@ Installing acl policy ...
 Done.
 ```
 
-Install all rules and policies included in `/etc/cumulus/acl/policy.conf`:
+Apply all rules and policies included in `/etc/cumulus/acl/policy.conf`:
 
 ```
 cumulus@switch:~$ sudo cl-acltool -i
 ```
+
+In addition to ensuring that the rules and policies referenced by
+`/etc/cumulus/acl/policy.conf` are installed, this will remove any
+currently active rules and policies that are not contained in the
+files referenced by `/etc/cumulus/acl/policy.conf`.
 
 ## Specify the Policy Files to Install
 
@@ -1221,7 +1226,7 @@ On Broadcom-based switches, LOG actions can only be done on inbound interfaces (
 
 ### SPAN Sessions that Reference an Outgoing Interface
 
-SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. For an example, see the {{<link url="Network-Troubleshooting#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} in the Network Troubleshooting chapter.
+SPAN sessions that reference an outgoing interface create mirrored packets based on the ingress interface before the routing/switching decision. See {{<link url="Network-Troubleshooting#span-sessions-that-reference-an-outgoing-interface" text="SPAN Sessions that Reference an Outgoing Interface">}} and {{<link url="Network-Troubleshooting/#use-the-cpu-port-as-the-span-destination" text="Use the CPU Port as the SPAN Destination">}} in the Network Troubleshooting section.
 
 ### Tomahawk Hardware Limitations
 

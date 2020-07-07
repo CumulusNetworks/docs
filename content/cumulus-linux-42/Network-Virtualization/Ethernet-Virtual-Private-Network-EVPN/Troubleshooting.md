@@ -242,7 +242,7 @@ VNI: 104001
   SVI-If: vlan4001
   State: Up
   Router MAC: 00:01:00:00:11:00
-  L2 VNIs: 10100 10200 
+  L2 VNIs: 10100 10200
 ```
 
 ## Examine Local and Remote MAC Addresses for a VNI
@@ -252,7 +252,7 @@ Run the NCLU `net show evpn mac vni <vni>` command or the vtysh `show evpn mac v
 ```
 cumulus@leaf01:~$ net show evpn mac vni 10100
 Number of MACs (local and remote) known for this VNI: 8
-MAC               Type   Intf/Remote VTEP      VLAN 
+MAC               Type   Intf/Remote VTEP      VLAN
 00:02:00:00:00:0e remote 10.0.0.4            
 00:02:00:00:00:06 remote 10.0.0.2            
 00:02:00:00:00:05 remote 10.0.0.2            
@@ -280,10 +280,10 @@ cumulus@leaf01:~$ net show evpn mac vni 10100 mac 00:02:00:00:00:05
 MAC: 00:02:00:00:00:05
   Remote VTEP: 10.0.0.2
   Neighbors:
-    172.16.120.21 
+    172.16.120.21
 cumulus@leaf01:~$ net show evpn mac vni 10100 vtep 10.0.0.3
 VNI 10100
-MAC               Type   Intf/Remote VTEP      VLAN 
+MAC               Type   Intf/Remote VTEP      VLAN
 00:02:00:00:00:09 remote 10.0.0.3            
 00:02:00:00:00:0a remote 10.0.0.3
 ```
@@ -649,3 +649,33 @@ To troubleshoot EVPN, enable FRR debug logs. The relevant debug options are:
 | `debug zebra kernel` | Traces actual netlink messages exchanged with the kernel, which includes everything, not just EVPN.|
 |`debug bgp updates` | Traces BGP update exchanges, including all  updates. Output is extended to show EVPN specific information. |
 | `debug bgp zebra` | Traces interactions between BGP and zebra for EVPN (and other) routes. |
+
+## ICMP echo Replies and the ping Command
+
+When you run the `ping -I ` command and specify an interface, you don't get an ICMP echo reply. However, when you run the `ping` command without the `-I` option, everything works as expected.
+
+`ping -I` command example:
+
+```
+cumulus@switch:default:~:# ping -I swp2 10.0.10.1
+PING 10.0.10.1 (10.0.10.1) from 10.0.0.2 swp1.5: 56(84) bytes of data.
+```
+
+`ping` command example:
+
+```
+cumulus@switch:default:~:# ping 10.0.10.1
+PING 10.0.10.1 (10.0.10.1) 56(84) bytes of data.
+64 bytes from 10.0.10.1: icmp_req=1 ttl=63 time=4.00 ms
+64 bytes from 10.0.10.1: icmp_req=2 ttl=63 time=0.000 ms
+64 bytes from 10.0.10.1: icmp_req=3 ttl=63 time=0.000 ms
+64 bytes from 10.0.10.1: icmp_req=4 ttl=63 time=0.000 ms
+^C
+--- 10.0.10.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 0.000/1.000/4.001/1.732 ms
+```
+
+This is expected behavior with Cumulus Linux; when you send an ICMP echo request to an IP address that is not in the same subnet using the `ping -I` command, Cumulus Linux creates a failed ARP entry for the destination IP address.
+
+For more information, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/203403316-ICMP-Ping-Doesn-t-Work-when-Specifying-the-Interface-I-Option" text="this KB article">}}.

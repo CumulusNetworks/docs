@@ -1498,7 +1498,7 @@ The following events are supported:
 
 {{< /tab >}}
 
-{{< tab "Digital Optics" >}}
+<!-- {{< tab "Digital Optics" >}}
 
 | Event ID | Description |
 | ---------- | -------------- |
@@ -1513,7 +1513,7 @@ The following events are supported:
 | TCA_TRANSCEIVER_VOLTAGE_UPPER | Transceiver voltage (mV) on a given switch or host is greater than maximum threshold |
 | TCA_TRANSCEIVER_VOLTAGE_LOWER | Transceiver voltage (mV) on a given switch or host is less than minimum threshold |
 
-{{< /tab >}}
+{{< /tab >}} -->
 
 {{< tab "Forwarding Resources" >}}
 

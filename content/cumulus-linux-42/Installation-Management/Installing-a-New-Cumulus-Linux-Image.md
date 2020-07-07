@@ -492,7 +492,9 @@ You can run several installer command line options from ONIE to perform basic sw
 
 {{%notice note%}}
 
-To start an installation with the command line options, you must access the switch from the console and install the installation image directly from the ONIE command line. Installing the image from Cumulus Linux with the `onie-nos-install` command is not supported. You must transfer an installation image to the switch, make the image executable, then initiate installation. For example:
+The `onie-nos-install` command does *not* allow you specify command line parameters. You must access the switch from the console and transfer a disk image to the switch. You must then make the disk image executable and install the image directly from the ONIE command line with the options you want to use.
+
+The following example commands transfer a disk image to the switch, make the image executable, and install the image with the `--password` option to change the default cumulus user password:
 
 ```
 ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
@@ -514,11 +516,20 @@ To automate this process, you can specify a new password from the command line o
 ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'MyP4$$word'
 ```
 
-To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. For example:
+To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. Using an encrypted hash is recommended to maintain a secure management network.
 
-```
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '$6$6e1Ou.muPGUgbGxj$SfhDpP5 zEsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq.'
-```
+- First, generate a sha-512 password hash with the following python command. The example command generates a sha-512 password hash for the password `MyP4$$word`.
+
+   ```
+   user@host:~$ python3 -c "import crypt; print(crypt.crypt('MyP4$$word',salt=crypt.mksalt()))"
+   $6$hs7OPmnrfvLNKfoZ$iB3hy5N6Vv6koqDmxixpTO6lej6VaoKGvs5E8p5zNo4tPec0KKqyQnrFMII3jGxVEYWntG9e7Z7DORdylG5aR/
+   ```
+
+- Then, specify the new password from the command line of the installer with the `--hashed-password '<hash>'` command:
+
+   ```
+   ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '$6$hs7OPmnrfvLNKfoZ$iB3hy5N6Vv6koqDmxixpTO6lej6VaoKGvs5E8p5zNo4tPec0KKqyQnrFMII3jGxVEYWntG9e7Z7DORdylG5aR/'
+   ```
 
 {{%notice note%}}
 
@@ -556,13 +567,13 @@ If you use the `--ztp` option together with any of the other command line option
 
 ## Edit the Cumulus Linux Image (Advanced)
 
-The Cumulus Linux installation image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully-configured system with a single image file.
+The Cumulus Linux disk image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully-configured system with a single image file.
 
 {{< expand "To edit the image"  >}}
 
 ### Example Image File
 
-This is an example of the BASH script in the image file that contains variables you can set:
+The Cumulus Linux disk image file is a self-extracting executable. The executable part of the file is a BASH script and is located at the beginning of the file. Towards the beginning of this BASH script are a set of variables set to an empty string:
 
 ```
 #!/bin/sh
@@ -580,7 +591,11 @@ CL_INSTALLER_INTERFACES_FILENAME=''
 CL_INSTALLER_INTERFACES_CONTENT=''
 CL_INSTALLER_ZTP_FILENAME=''
 CL_INSTALLER_ZTP_CONTENT=''
-...
+CL_INSTALLER_QUIET=""
+CL_INSTALLER_FORCEINST=""
+CL_INSTALLER_INTERACTIVE=""
+CL_INSTALLER_EXTRACTDIR=""
+CL_INSTALLER_PAYLOAD_SHA256="72a8c3da28cda7a610e272b67fa1b3a54c50248bf6abf720f73ff3d10e79ae76"
 ```
 
 The variables you can set are described below:
@@ -602,13 +617,13 @@ Because the Cumulus Linux image file is mostly a binary file, you cannot use sta
 1. Copy the first 20 lines to an empty file:
 
 ```
-head -20 cumulus-linux-4.1.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.1
+head -20 cumulus-linux-4.2.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.1
 ```
 
 2. Remove the first 20 lines of the image, then copy the remaining lines into another empty file:
 
 ```
-sed -e ‘1,20d’ cumulus-linux-4.1.0-bcm-amd64.bin > `cumulus-linux-4.2.0-bcm-amd64.bin.2`
+sed -e '1,20d' cumulus-linux-4.2.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.2
 ```
 
 The original file is now split, with the first 20 lines in `cumulus-linux-4.2.0-bcm-amd64.bin.1` and the remaining lines in `cumulus-linux-4.2.0-bcm-amd64.bin.2`.
@@ -618,10 +633,10 @@ The original file is now split, with the first 20 lines in `cumulus-linux-4.2.0-
 4. Put the two pieces back together using `cat`:
 
 ```
-cat cumulus-linux-4.1.0-bcm-amd64.bin.1 cumulus-linux-4.1.0-bcm-amd64.bin.2 > cumulus-linux-4.1.0-bcm-amd64.bin.final
+cat cumulus-linux-4.2.0-bcm-amd64.bin.1 cumulus-linux-4.2.0-bcm-amd64.bin.2 > cumulus-linux-4.2.0-bcm-amd64.bin.final
 ```
 
-This is an example modified image file:
+This is an example of a modified image file:
 
 ```
 #!/bin/sh
@@ -633,9 +648,9 @@ This is an example modified image file:
 #
 
 CL_INSTALLER_PASSWORD='MyP4$$word'
-CL_INSTALLER_HASHED_PASSWORD='$6$6e1Ou.muPGUgbGxj$SfhDpP5/EsK4JcpxX4sIfwiYbxl5OXRRmwLvKwCBIseV12bUi24G2SWmdgcc6S/bIaYe1UTmTtxhz82KM2bEq.'
+CL_INSTALLER_HASHED_PASSWORD=''
 CL_INSTALLER_LICENSE='customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
-CL_INSTALLER_INTERFACES_FILENAME='interfaces.conf'
+CL_INSTALLER_INTERFACES_FILENAME=''
 CL_INSTALLER_INTERFACES_CONTENT='# This file describes the network interfaces available on your system and how to activate them.
 
 source /etc/network/interfaces.d/*.intf
@@ -662,7 +677,7 @@ iface mgmt
 	address ::1/128
 	vrf-table auto
 '
-CL_INSTALLER_ZTP_FILENAME='initial-conf.ztp'
+CL_INSTALLER_ZTP_FILENAME=''
 CL_INSTALLER_ZTP_CONTENT='#!/bin/bash
 #CUMULUS-AUTOPROVISIONING
 passwd -x 99999 cumulus

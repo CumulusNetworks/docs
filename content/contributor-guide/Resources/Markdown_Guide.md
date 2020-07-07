@@ -25,7 +25,7 @@ This type of link is used to reference content outside of the documentation site
 
 | Inline Markdown | Example |
 | -------------------- | ---------- |
-| \[Display Text\](\<site-address\>) | \[Cumulus Forums\](http://forums.cumulusnetworks.com) |
+| \[Display Text\](\<site-address\>) | \[Cumulus docs\](http://docs.cumulusnetworks.com) |
 
 {{% notice note %}}
 Do not use traditional markdown links to link between pages in the documentation. Use the custom `link` shortcode to to link between internal documentation pages.

@@ -6,7 +6,7 @@ toc: 4
 ---
 The NetQ UI contains two main areas:
 
-- **Application Header** (1): Contains the main menu, recent actions history, search capabilities, NetQ version, quick health status chart, local time zone, premises list (cloud-only), and user account information.
+- **Application Header** (1): Contains the main menu, recent actions history, search capabilities, NetQ version, quick health status chart, local time zone, premises list, and user account information.
 - **Workbench** (2): Contains a task bar, content cards (with status and configuration information about your network and its various components), and help menu.
 
 {{< figure src="/images/netq/app-layout-cumulus-wb-areas-highlighted-241.png" width="700" >}}
@@ -49,6 +49,16 @@ Found in the header, the graph and performance rating provide a view into the he
 On initial start up of the application, it may take up to an hour to reach an accurate health indication as some processes run every 30 minutes.
 {{</notice>}}
 
+## Local Time
+
+By default, the time zone is set to the user's local time zone. If a time zone has not been selected, NetQ defaults to the current local time zone where NetQ is installed.  Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="18" width="18">}} to change the time zone or refer to {{<link title="Set User Preferences#configure-display-settings" text="Set User Preferences">}} for additional details.
+
+## Premises Listing
+
+The name of the location you are monitoring is presented in the Premises field of the application header. If you have more than one premises configured, you can select the premises for the data you want to see.  Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="18" width="18">}}, then select the desired premises. If you have a large number of premises, you can search for a premises by name. Simply start typing the name in the search box and suggestions are provided.
+
+<!-- NetQ-6121: Add a figure src="/images/netq/app-layout-premises-list-310.png" width="200">}} -->
+
 ## Workbenches
 
 A workbench is comprised of a given set of cards. A pre-configured default workbench, Cumulus Workbench, is available to get you started. It contains Device Inventory, Switch Inventory, Alarm and Info Events, and Network Health cards. On initial login, this workbench is opened. You can create your own workbenches and add or remove cards to meet your particular needs. For more detail about managing your data using workbenches, refer to {{<link title="Focus Your Monitoring Using Workbenches">}}.
@@ -73,13 +83,6 @@ Click **Need Help?** to open the menu of tasks and resources currently available
 
 {{<figure src="/images/netq/walkme-player-300.png" width="150">}}
 
-{{<notice tip>}}
-<strong>Is the help button covering content that you want to see?</strong>
-The button can be dragged and dropped to various locations around the edge of the UI, so if you do not like it on the bottom left (default), you can move it to the bottom center, bottom right, right side bottom, etc. A green dashed border appears in the locations where it can be placed. Alternately, enlarge the NetQ UI application window or scroll within the window to view any hidden content.
-{{</notice>}}
-
-{{<figure src="/images/netq/walkme-menu-300.png" width="300">}}
-
 Within the help menu, topics are grouped by categories:
 
 - **General**: These items describe or walk you through high-level tasks or information about the NetQ UI.
@@ -88,7 +91,14 @@ Within the help menu, topics are grouped by categories:
 - **Where Can I Find...**: These items help you find and use features that may be harder to find than others in the application.
 - **User Documentation**: This provides a link to the Cumulus NetQ user documentation. It opens in a separate window so you can have it open while working in the application.
 
+{{<figure src="/images/netq/walkme-menu-300.png" width="300">}}
+
 You can search for help items by collapsing and expanding categories or by searching. Click a category title to toggle between viewing and hiding the content. To search, begin entering text into the **Search** field to see suggested content.
+
+{{<notice tip>}}
+<strong>Is the help button covering content that you want to see?</strong>
+The button can be dragged and dropped to various locations around the edge of the UI, so if you do not like it on the bottom left (default), you can move it to the bottom center, bottom right, right side bottom, etc. A green dashed border appears in the locations where it can be placed. Alternately, enlarge the NetQ UI application window or scroll within the window to view any hidden content.
+{{</notice>}}
 
 ## Format Cues
 

@@ -13,7 +13,7 @@ To log in to the UI:
     - On-premises: *https://\<hostname-or-ipaddress\>:443*  
     - Cloud: *https://netq.cumulusnetworks.com*
 
-    {{< figure src="/images/netq/access-ui-login-screen-310.png" width="600" >}}
+    {{<figure src="/images/netq/access-ui-login-screen-310.png" width="600" >}}
 
 3. Login.
 
@@ -29,23 +29,37 @@ To log in to the UI:
 
 2. Enter your password.
 
+    *Passwords must contain a minimum of eight characters, including at least one uppercase letter, one lowercase letter, one special character, and one number.* If you do not enter a strong enough password, you are reminded of these requirements.
+
+    The following error message appears if you enter incorrect credentials:
+
+    {{<figure src="/images/netq/access-ui-cred-error-310.png" width="250">}}
+
 3. Click **Login**.
 
-4. Change your password.
+    This opens the Reset Password dialog.
 
-    Enter a new password with a minimum of eight characters, including at least one uppercase letter, one lowercase letter, one special character, and one number.
+    {{<figure src="/images/netq/access-ui-reset-pswd-310.png" width="250">}}
 
-5. Enter the new password again to confirm it.
+4. Enter your current password.
 
-6. Click **Sign In**.
+5. Enter a new password.
 
-7. Read the Terms of Use.
+6. Enter the new password again to confirm it.
 
-8. Click the checkbox at the end and click **Accept**.
+7. Click **Reset**.
+
+    This opens the Terms of Use notice.
+
+     {{<figure src="/images/netq/access-ui-terms-310.png" width="350">}}
+
+8. Read the Terms of Use.
+
+9. Click the checkbox and click **Accept**.
 
     The default Cumulus Workbench opens, with your username shown in the upper right corner of the application.
 
-    {{< figure src="/images/netq/access-ui-cumulus-wb-300.png" width="700" >}}
+    {{<figure src="/images/netq/access-ui-cumulus-wb-310.png" width="700">}}
 
 {{< /tab >}}
 
@@ -55,7 +69,9 @@ To log in to the UI:
 
 2. Enter your password.
 
-    The user-specified home workbench is displayed. If a home workbench is not specified, then the Cumulus Default workbench is displayed.
+3. Click **Login**.
+
+    The user-specified home workbench is displayed. If a home workbench is not specified, then the default Cumulus Workbench is displayed.
 
     {{<notice tip>}}
 Any workbench can be set as the home workbench. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> (User Settings), click <strong>Profiles and Preferences</strong>, then on the Workbenches card click to the left of the workbench name you want to be your home workbench.

@@ -3,7 +3,6 @@ title: EVPN Multihoming
 author: Cumulus Networks
 weight: 555
 toc: 4
-draft: true
 ---
 {{%notice warning%}}
 

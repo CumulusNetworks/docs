@@ -5387,7 +5387,3 @@ line vty
 {{</tab>}}
 
 {{</tabs>}}
-
-<!-- 
-- Any Linux show commands or just the FRR?
--->

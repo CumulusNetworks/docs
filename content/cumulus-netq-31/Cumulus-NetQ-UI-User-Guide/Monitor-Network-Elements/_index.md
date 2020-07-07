@@ -394,8 +394,6 @@ The Digital Optics view provides all available parameter data provided by any di
 
 {{<figure src="/images/netq/main-menu-ntwk-dom-laserrx-power-310.png" width="700">}}
 
-<!-- Need to replace pic with latest RC -->
-
 | Laser Parameter | Description |
 | --- | --- |
 | Hostname | Name of the switch or host where the digital optics module resides |

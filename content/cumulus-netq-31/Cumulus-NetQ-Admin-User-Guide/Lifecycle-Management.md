@@ -1244,8 +1244,6 @@ Some of the common reasons for upgrade failures and the errors they present:
 | Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |
 
-
-
 ## Create and Compare Network Snapshots
 
 Creating and comparing network snapshots can be useful to validate that the network state has not changed. Snapshots are typically created when you upgrade or change the configuration of your switches in some way.  This section describes the Snapshot card and content, as well as how to create and compare network snapshots at any time. Snapshots can be automatically created during the upgrade process for Cumulus Linux or NetQ. Refer to {{<link title="#Image Installation and Upgrade" text="Image Installation and Upgrade">}}.
@@ -1264,8 +1262,6 @@ To create a network snapshot:
 
     {{<figure src="/images/netq/snapshot-create-snap-dialog-310.png" width="450">}}
 
-    <!-- Needs update with next RC or final build -->
-
 3. Enter a name for the snapshot.
 
 4. Choose the time for the snapshot:
@@ -1280,10 +1276,10 @@ To create a network snapshot:
 
 5. Choose the services to include in the snapshot.
 
-    In the **Options** field, click any service name to remove that service from the snapshot. This would be appropriate if you do not support a particular service, or you are concerned that including that service might cause the snapshot to take an excessive amount of time to complete if included. The check mark next to the service and the service itself is grayed out when the service is removed. Click any service again to re-include the service in the snapshot. The check mark is highlighted in green next to the service name and is no longer grayed out.
+    In the **Choose options** field, click any service name to remove that service from the snapshot. This would be appropriate if you do not support a particular service, or you are concerned that including that service might cause the snapshot to take an excessive amount of time to complete if included. The checkmark next to the service and the service itself is grayed out when the service is removed. Click any service again to re-include the service in the snapshot. The checkmark is highlighted in green next to the service name and is no longer grayed out.
 
     {{<notice note>}}
-The Node and Services options are required, and cannot be selected or unselected.
+The Node and Services options are mandatory, and cannot be selected or unselected.
     {{</notice>}}
     {{<notice info>}}
 If you remove services, be aware that snapshots taken in the past or future may not be equivalent when performing a network state comparison.
@@ -1291,7 +1287,7 @@ If you remove services, be aware that snapshots taken in the past or future may 
 
     This example removes the OSPF and Route services from the snapshot being created.
 
-<!-- insert fig here -->
+    {{<figure src="/images/netq/snapshot-create-snap-dialog-svcs-removed-310.png" width="400">}}
 
 6. Optionally, scroll down and click in the **Notes** field to add descriptive text for the snapshot to remind you of its purpose. For example: "This was taken before adding MLAG pairs," or "Taken after removing the leaf36 switch."
 

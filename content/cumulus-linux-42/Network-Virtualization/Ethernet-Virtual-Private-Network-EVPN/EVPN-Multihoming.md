@@ -5,6 +5,11 @@ weight: 555
 toc: 4
 draft: true
 ---
+{{%notice warning%}}
+
+EVPN multihoming is an {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202933878" text="early access feature">}}.
+
+{{%/notice%}}
 
 *EVPN multihoming* (EVPN-MH) is standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG removes the final dependency on a layer 2 topology, allowing for:
 

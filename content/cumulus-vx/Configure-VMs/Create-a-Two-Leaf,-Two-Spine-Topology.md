@@ -10,7 +10,7 @@ The following sections describe how to configure network interfaces and FRRoutin
 - Two spine VMs that represent two spine (aggregation layer) switches on the network.
 - Two leaf VMs that represent two leaf (access layer) switches on the network.
 
-{{< img src = "/images/cumulus-vx/network-topology.png  >}}
+{{< img src = "/images/cumulus-vx/network-topology.png" >}}
 
 These instructions assume that you have installed the relevant images and hypervisors, created four VMs with appropriate names, and that the VMs are running. Refer to {{<link url="Getting-Started" text="Getting Started">}}.
 
@@ -312,13 +312,13 @@ Make sure that the VM is powered off.
 
 5. From the **Attached to** list, select **Internal Network**.  
 
-    {{< img src = "/images/cumulus-vx/adapterSettings.png >}}
+    {{< img src = "/images/cumulus-vx/adapterSettings.png" >}}
 
 6. In the **Name** field, type a name for the internal network, then click **OK**. The internal network name must match the internal network name on the corresponding network adapter on the VM to be connected to this VM. For example, in the two-leaf/two-spine Cumulus VX network topology, Adapter 2 (swp1) on CumulusVX-leaf1 is connected to Adapter 2 (swp1) on CumulusVX-spine1; the name must be the same for Adapter 2 on both VMs. Use the internal network names and the connections shown in the illustration and table below.
 
 7. Click **Adapter 3** and repeat steps 4 thru 6. Use the internal network names and the connections shown in the illustration and table below.
 
-{{< img src = "/images/cumulus-vx/mapping.png >}}
+{{< img src = "/images/cumulus-vx/mapping.png" >}}
 
 | Switch           | swp  | VirtualBox Interface | VirtualBox Network Type | Name     |
 | ---------------- | ---- | -------------------- | ----------------------- | -------- |

@@ -33,7 +33,7 @@ To run your virtual network under GNS3:
 4.  From the left pane, select **VirtualBox VMs**, then click **New**.
     The **VM list** shows the VirtualBox VMs you set up earlier.
     
-    {{% imgOld 0 %}}
+    {{< img src = "/images/cumulus-vx/VX_GNS3_new_VBox_VM.png" >}}
 
 5.  From the **VM list**, select the VM that you want to run in GNS3,
     then click **Finish**. The VM you selected appears in the center
@@ -41,7 +41,7 @@ To run your virtual network under GNS3:
     run in GNS3. For the example topology above, the VMs are: Cumulus
     VX-spine1, Cumulus VX-spine2, Cumulus VX-leaf1 and Cumulus VX-leaf2.
     
-    {{% imgOld 1 %}}
+    {{< img src = "/images/cumulus-vx/VX_GNS3_VBox_VMs.png" >}}
 
 6.  Enable GNS3 to work with the network interfaces of the VirtualBox
     VMs. Configure the network settings for each VM using the GNS3
@@ -52,7 +52,7 @@ To run your virtual network under GNS3:
       - In the VirtualBox VM configuration dialog, click the **Network**
         tab.
         
-        {{% imgOld 2 %}}
+        {{< img src = "/images/cumulus-vx/VX_GNS3_VBox_VM_nwconfig.png" >}}
     
       - Increase the number of **Adapters** to *4*.
     

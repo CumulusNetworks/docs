@@ -24,8 +24,6 @@ The solution described in this chapter requires four components:
     Vagrant also allows Cumulus VX VMs to be interconnected with other
     VMs (such as Ubuntu or CentOS) to emulate real world networks.
 
-{{% imgOld 0 %}}
-
 The following sections describe how to install `libvirt`, KVM/QEMU, and
 Vagrant on a Linux server.
 

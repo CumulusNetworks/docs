@@ -39,8 +39,6 @@ You can also add a VM to one or more internal virtual networks in VirtualBox by 
 - When you clone the VM, save the new VM on disk storage by referring to the original disk image, instead of copying it to the new VM.
 - Always reset MAC addresses on the virtual NICs, unless a critical reason not to exists.
 
-{{%/notice%}}
-
 ## VirtualBox Caveats and Errata
 
 Consider the following caveats and expected behaviors when using Cumulus VX with VirtualBox:
@@ -59,7 +57,7 @@ By default, the VirtualBox Manager only displays the first 8 virtual NICs, and y
 
 3. On the **Motherboard** tab, in the **Chipset** list, select `ICH9`, then check **Enable I/O APIC**.  
 
-   {{< img src = "/images/cumulus-vx/VX_virtualbox_ioapic_settings" >}}
+   {{< img src = "/images/cumulus-vx/VX_virtualbox_ioapic_settings.png" >}}
 
 4. Click **OK** to save the settings.
 

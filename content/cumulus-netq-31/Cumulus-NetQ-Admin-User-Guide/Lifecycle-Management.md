@@ -99,7 +99,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 2. Select one of the missing images and make note of the version, ASIC Vendor, and CPU architecture.
 
-  {{<figure src="/images/netq/lcm-linux-images-missing-list-300.png" width="700">}}
+  {{<figure src="/images/netq/lcm-images-missing-list-300.png" width="700">}}
 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Image) above the table.
 

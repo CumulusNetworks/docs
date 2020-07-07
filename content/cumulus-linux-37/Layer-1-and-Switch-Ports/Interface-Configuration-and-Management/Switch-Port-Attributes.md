@@ -795,14 +795,23 @@ iface swp1
 <td><p>RS</p></td>
 <td><pre>$ net add interface swp1 link speed 25000
 $ net add interface swp1 link autoneg off
+$ net add interface swp1 link fec rs</pre>
+<pre>auto swp1
+iface swp1
+  link-autoneg off
+  link-speed 25000
+  link-fec rs</pre></td>
+<td><ul>
+<p>Tomahawk predates 802.3by and does not support RS FEC on a 25G port or subport; however it does support Base-R FEC. The configuration for Base-R FEC is as follows:</p>
+<pre>$ net add interface swp1 link speed 25000
+$ net add interface swp1 link autoneg off
 $ net add interface swp1 link fec baser</pre>
 <pre>auto swp1
 iface swp1
   link-autoneg off
   link-speed 25000
-  link-fec baser</pre></td>
-<td><ul>
-<li><p>Tomahawk predates 802.3by. It does not support RS FEC on a 25G port or subport. It does support Base-R FEC.</p></li>
+  link-fec baser</pre>
+  <p>Cumulus Networks recommends that you configure FEC to the setting that the cable requires.</p>
 </ul></td>
 </tr>
 <tr>

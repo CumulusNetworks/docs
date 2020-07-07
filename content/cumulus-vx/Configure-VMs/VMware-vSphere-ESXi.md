@@ -8,23 +8,6 @@ The following sections describe how to import and set up a two-leaf and two-spin
 
 This section assumes that you have downloaded the Cumulus VX disk image for VMware hypervisors and that the VMware vSphere is installed. For more download locations and steps, refer to the {{<link url="Getting-Started" text="Getting Started">}}.
 
-{{%notice note%}}
-
-You might encounter an issue if the wrong storage interface type is selected (SATA or IDE). For example this log message indicates the filesystem cannot be found. Configure ESXi to use the SATA controller.
-
-```
-Info: Fetching http://192.168.100.1/onie-installer-cumulus_vx ...
-ONIE: Executing installer: http://192.168.100.1/onie-installer-cumulus_vx
-Verifying image checksum ...OK.
-Preparing image archive ... OK.
-Verifying image compatibility ...OK.
-Verifying system ram ...OK.
-Setting up installer ...Failure: Unable to find storage device for file system with label 'ONIE-BOOT'
-Info: Check the output of 'blkid'.
-```
-
-{{%/notice%}}
-
 This configuration was tested using vSphere ESXi 5.5 and a Windows vSphere client; however, the VM is configured to support ESXi 4.0 and higher.
 
 1. Download the VMware OVFtools utility from the {{<exlink url="https://my.vmware.com/web/vmware/details?productId=352&downloadGroup=OVFTOOL350" text="VMware downloads page">}} and install it on the client. You can view installation instructions on the VMware website.
@@ -58,3 +41,18 @@ This configuration was tested using vSphere ESXi 5.5 and a Windows vSphere clien
    - `CumulusVX-spine2`
 
 10. After you have created all four VMs, follow the steps detailed in {{<link url="Create-a-Two-Leaf-Two-Spine-Topology" text="Create a Two-Leaf, Two-Spine Topology">}} to configure the network interfaces and routing.
+
+## Caveats and Errata
+
+You might encounter an issue if the wrong storage interface type is selected (SATA or IDE). For example this log message indicates the filesystem cannot be found. Configure ESXi to use the SATA controller.
+
+```
+Info: Fetching http://192.168.100.1/onie-installer-cumulus_vx ...
+ONIE: Executing installer: http://192.168.100.1/onie-installer-cumulus_vx
+Verifying image checksum ...OK.
+Preparing image archive ... OK.
+Verifying image compatibility ...OK.
+Verifying system ram ...OK.
+Setting up installer ...Failure: Unable to find storage device for file system with label 'ONIE-BOOT'
+Info: Check the output of 'blkid'.
+```

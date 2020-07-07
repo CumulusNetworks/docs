@@ -39,7 +39,7 @@ You can also add a VM to one or more internal virtual networks in VirtualBox by 
 - When you clone the VM, save the new VM on disk storage by referring to the original disk image, instead of copying it to the new VM.
 - Always reset MAC addresses on the virtual NICs, unless a critical reason not to exists.
 
-## VirtualBox Caveats and Errata
+## Caveats and Errata
 
 Consider the following caveats and expected behaviors when using Cumulus VX with VirtualBox:
 

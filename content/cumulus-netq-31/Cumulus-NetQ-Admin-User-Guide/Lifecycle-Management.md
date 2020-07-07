@@ -1086,9 +1086,13 @@ To upgrade switches:
 
     - When some of your switches have roles assigned, any switches without roles are upgraded last and are grouped under the label *Stage1*.
 
-        {{<figure src="/images/netq/lcm-upgrade-switches-preview-job-someroles-300.png" width="700" caption="Some roles assigned">}}
+        {{<figure src="/images/netq/lcm-upgrade-switches-preview-job-someroles-310.png" width="700" caption="Some roles assigned">}}
 
 15. When you are happy with the job specifications, click **Start Upgrade**.
+
+16. Confirm the upgrade request.
+
+    {{<figure src="/images/netq/lcm-upgrade-confirmation-310.png" width="250">}}
 
 ### Analyze Cumulus Linux Results
 
@@ -1108,7 +1112,9 @@ Several viewing options are available for monitoring the upgrade job.
 
 - Monitor the job with full details open:
 
-    {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-310.png" width="700">}}
+    {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-310.png" width="700" caption="Single role or no roles">}}
+
+    {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-2-310.png" width="700" caption="Multiple roles and some without roles">}}
 
     Each switch goes through a number of steps. To view these steps, click {{<img src="https://icons.cumulusnetworks.com/52-arrows-diagrams/01-arrows/arrow-down-1.svg" height="18" width="18">}} and scroll down as needed. Click {{<img src="https://icons.cumulusnetworks.com/52-arrows-diagrams/01-arrows/arrow-up-1.svg" height="18" width="18">}} to close the detail.
 
@@ -1122,9 +1128,9 @@ Several viewing options are available for monitoring the upgrade job.
 
     Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}} to view the detailed view.
 
-- Monitor the job through the CL Upgrade History card on the LCM dashboard. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} twice to return to the LCM dashboard.
+- Monitor the job through the CL Upgrade History card on the LCM dashboard. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} twice to return to the LCM dashboard. As you perform more upgrades the graph displays the success and failure of each job.
 
-    {{<figure src="/images/netq/lcm-cl-upgrade-history-card-inprogress-310.png" width="200">}}
+    {{<figure src="/images/netq/lcm-cl-upgrade-history-card-inprogress-310.png" width="450">}}
 
     Click **View** to return to the Upgrade History page as needed.
 

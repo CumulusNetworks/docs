@@ -2,14 +2,11 @@
 title: Development Environments
 author: Cumulus Networks
 weight: 38
+toc: 2
 ---
-You can use Cumulus VX within both Vagrant and GNS3 development
-environments, running on either VirtualBox or KVM hypervisors. This
-chapter provides setup instructions for each of the available
-environments:
+You can use Cumulus VX within both Vagrant and GNS3 development environments, running on either VirtualBox or KVM hypervisors. This section provides setup instructions for each of the available environments:
 
-  - [Vagrant and VirtualBox](/cumulus-vx/Development-Environments/Vagrant-and-VirtualBox)
-  - [Vagrant and Libvirt with KVM or QEMU](/cumulus-vx/Development-Environments/Vagrant-and-Libvirt-with-KVM-or-QEMU)
-  - [GNS3 and VirtualBox](/cumulus-vx/Development-Environments/GNS3-and-VirtualBox)
-  - [GNS3 and QEMU - KVM](/cumulus-vx/Development-Environments/GNS3-and-QEMU-KVM)
-
+- {{<link url="Vagrant-and-VirtualBox" text="Vagrant and VirtualBox">}}
+- {{<link url="Vagrant-and-Libvirt-with-KVM-or-QEMU" text="Vagrant and Libvirt with KVM or QEMU">}}
+- {{<link url="GNS3-and-VirtualBox" text="GNS3 and VirtualBox">}}
+- {{<link url="GNS3-and-QEMU-KVM" text="GNS3 and QEMU - KVM">}}

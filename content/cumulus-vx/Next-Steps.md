@@ -2,11 +2,9 @@
 title: Next Steps
 author: Cumulus Networks
 weight: 60
-pageID: 5126707
 product: Cumulus VX
 version: '3.7'
-imgData: cumulus-vx
-siteSlug: cumulus-vx
+toc: 1
 ---
 This section provides some additional configuration specific to Cumulus VX and shows some basic commands you can try to get started with Cumulus Linux.
 

@@ -2,7 +2,7 @@
 title: Vagrant and VirtualBox
 author: Cumulus Networks
 weight: 40
-pageID: 5126719
+toc: 2
 ---
 This document describes how to install and set up Cumulus Linux within a
 Vagrant environment, using VirtualBox as the hypervisor.

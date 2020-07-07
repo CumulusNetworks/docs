@@ -2,7 +2,7 @@
 title: VMware vSphere ESXi
 author: Cumulus Networks
 weight: 18
-pageID: 5126689
+toc: 2
 ---
 The following sections describe how to import and set up a two-leaf and two-spine Cumulus VX topology with VMware vSphere. These sections assume a basic level of VMware vSphere experience. For detailed instructions, refer to the {{<exlink url="https://docs.vmware.com/en/VMware-vSphere/index.html" text="VMware vSphere documentation">}}.
 
@@ -47,9 +47,9 @@ This configuration was tested using vSphere ESXi 5.5 and a Windows vSphere clien
 
 8. If you want the VM to start immediately after the import process is complete, select the `Power on after deployment` option, then click **Finish**.
 
-The Cumulus VX OVA image is imported into vSphere ESXi and deployed as a VM. The length of the import process depends on the system configuration. You can view the progress in the `Recent Tasks` pane at the bottom of the client window. After the deployment process is complete, the newly created VM appears in the list of VMs in the left pane.
+   The Cumulus VX OVA image is imported into vSphere ESXi and deployed as a VM. The length of the import process depends on the system configuration. You can view the progress in the `Recent Tasks` pane at the bottom of the client window. After the deployment process is complete, the newly created VM appears in the list of VMs in the left pane.
 
-{{< img src = "/images/cumulus-vx/VX_esxi_deploy5_deploying.png" >}}
+   {{< img src = "/images/cumulus-vx/VX_esxi_deploy5_deploying.png" >}}
 
 9. The two-leaf and two-spine network topology requires you to create four VMs. Repeat the previous steps to create three additional VMs. Replace the name `CumulusVX-leaf1` with:
 
@@ -57,4 +57,4 @@ The Cumulus VX OVA image is imported into vSphere ESXi and deployed as a VM. The
    - `CumulusVX-spine1`
    - `CumulusVX-spine2`
 
-2. After you have created all four VMs, follow the steps detailed in [Create a Two-Leaf, Two-Spine Topology](/cumulus-vx/Create-a-Two-Leaf-Two-Spine-Topology) to configure the network interfaces and routing.
+10. After you have created all four VMs, follow the steps detailed in {{<link url="Create-a-Two-Leaf-Two-Spine-Topology" text="Create a Two-Leaf, Two-Spine Topology">}} to configure the network interfaces and routing.

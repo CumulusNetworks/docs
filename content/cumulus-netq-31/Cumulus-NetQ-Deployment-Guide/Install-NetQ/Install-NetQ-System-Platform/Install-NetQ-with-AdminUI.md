@@ -26,10 +26,6 @@ Default credentials are no longer valid. You must use the new password created o
 
 4. Click **Sign In**.
 
-    {{< /tab >}}
-
-    {{< /tabs >}}
-
     A Welcome screen is presented on first login and on subsequent logins the NetQ Health dashboard is displayed.
 
     {{<figure src="/images/netq/adminui-main-page-241.png" width="700">}}

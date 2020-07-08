@@ -52,6 +52,5 @@ If you are *not* using a development environment, follow the relevant link below
 If you are using a development environment, follow the relevant link below to configure the VMs:
 
 - {{<link url="Vagrant-and-VirtualBox" text="Vagrant and VirtualBox">}}
-- {{<link url="Vagrant-and-Libvirt-with-KVM-or-QEMU" text="Vagrant and Libvirt with KVM or QEMU">}}
+- {{<link url="Vagrant-and-KVM" text="Vagrant and KVM">}}
 - {{<link url="GNS3-and-VirtualBox" text="GNS3 and VirtualBox">}}
-- {{<link url="GNS3-and-QEMU-KVM" text="GNS3 and QEMU-KVM">}}

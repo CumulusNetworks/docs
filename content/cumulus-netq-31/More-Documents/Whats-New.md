@@ -22,9 +22,9 @@ Upgrades from NetQ 2.3.x and earlier require a fresh installation.
     - Select protocols and services to include in network snapshot
     - Software upgrade available for cloud deployments on request
 - Events
-    - Digital optics module monitoring support
-    - Email notification of user-selected events configurable through NetQ CLI
-    - Event suppression for user-selected message types configurable through NetQ CLI
+    - Digital optics module monitoring support ({{<link url="Monitor-Network-Elements/#view-digital-optics" text="NetQ UI">}}, {{<link url="Monitor-Physical-Layer-Components/#view-digital-optics" text="NetQ CLI">}})
+    - {{<link url="Integrate-NetQ-with-Notification-Applications/#create-an-email-channel" text="Email notification">}} of user-selected events configurable through NetQ CLI
+    - {{<link url="Integrate-NetQ-with-Notification-Applications/#suppress-events" text="Event suppression">}} for user-selected message types configurable through NetQ CLI
 - Access
     - Password change required on first login to NetQ UI and Admin UI
     - Login required for Admin UI

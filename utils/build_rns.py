@@ -463,7 +463,7 @@ def get_products():
     Download the engineering provided JSON file detailing the list of products and releases.
     Expects the key "release_notes" to exist at the top level.
     Returns: a dict of product short name and versions. For example
-    { "cl":  ["3.7.1", "3.7.2"], "netq": ["2.4.0", "3.0.0"] }
+    { "cl":  ["3.7.1", "3.7.2"], "netq": ["2.4.0", "3.0.0", "3.1.0"] }
     '''
     session = requests.Session()
     url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"

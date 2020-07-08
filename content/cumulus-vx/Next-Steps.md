@@ -52,7 +52,7 @@ To provide easier access in video-focused hypervisors (such as VirtualBox), Cumu
 
 ## Basic Commands
 
-After you configure the Cumulus VX instances and perform the configuration above, use the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41" text="Cumulus Linux documentation suite">}} to configure and test features, and fine tune the network topology.
+After you configure the Cumulus VX instances and perform the configuration above, use the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux documentation suite">}} to configure and test features, and fine tune the network topology.
 
 Use the following basic commands to get started. You can run the commands on each VM to see system information and interface and LLDP details, and to change the hostname of the switch.
 

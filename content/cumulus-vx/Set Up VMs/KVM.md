@@ -1,5 +1,5 @@
 ---
-title: Libvirt and KVM - QEMU
+title: KVM
 author: Cumulus Networks
 weight: 24
 toc: 2

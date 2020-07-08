@@ -1,5 +1,5 @@
 ---
-title: Vagrant and Libvirt with KVM or QEMU
+title: Vagrant and KVM
 author: Cumulus Networks
 weight: 44
 toc: 2

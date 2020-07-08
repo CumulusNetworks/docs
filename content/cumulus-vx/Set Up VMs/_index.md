@@ -13,3 +13,4 @@ This section provides set up instructions for each platform:
 - {{<link url="Vagrant-and-VirtualBox" text="Vagrant and VirtualBox">}}
 - {{<link url="Vagrant-and-KVM" text="Vagrant and KVM">}}
 - {{<link url="GNS3-and-VirtualBox" text="GNS3 and VirtualBox">}}
+- {{<link url="ONIE-Virtual-Machine" text="ONIE Virtual Machine">}}

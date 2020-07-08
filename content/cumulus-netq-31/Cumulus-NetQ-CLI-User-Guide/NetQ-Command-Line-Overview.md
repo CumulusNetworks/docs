@@ -411,7 +411,8 @@ The `trace` commands enable the network administrator to view the available path
 The trace command syntax is:
 
     netq trace <mac> [vlan <1-4096>] from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
-    netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug] 
+    netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
+    netq trace (<mac> vlan <1-4096>) from <mac-src> [around <text-time>] [json|detail|pretty]
 
 **Example** Running a trace based on the destination IP address, in *pretty* output with a small number of resulting paths:
 
@@ -481,3 +482,20 @@ The trace command syntax is:
               bond1.1001 -- swp7 <vlan1001> Leaf01 vni: 34 swp5 -- swp3 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
                                                            swp4 -- swp3 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
                                                            swp3 -- swp3 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+
+This example shows how to run a trace based on the source MAC address, in *pretty* output:
+
+```
+cumulus@switch:~$ netq trace 44:38:39:00:00:59 vlan 10 from 44:38:39:00:04:60 pretty
+Number of Paths: 3
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 3
+  Path: 1 Underlay mtu 9216 at leaf04:swp54 not enough encap headroom
+  Path: 2 Underlay mtu 9216 at leaf04:swp54 not enough encap headroom
+  Path: 2 Underlay mtu 9216 at leaf04:swp54 not enough encap headroom
+  Path: 3 Underlay mtu 9216 at leaf04:swp54 not enough encap headroom
+Path MTU: 9216
+
+ leaf04 vni: 30010 swp54 -- swp4 spine04 swp2 -- swp54 vni: 30010 leaf02 peerlink -- swp49 leaf01  
+                                                                         peerlink -- swp50 leaf01  
+                   swp54 -- swp4 spine04 swp1 -- swp54 vni: 30010 leaf01  

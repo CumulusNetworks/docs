@@ -19,15 +19,17 @@ You can read more about LCM in the {{<link url="Lifecycle-Management" text="NetQ
 
 The NetQ CLI provides a number of `netq lcm` commands to perform LCM. The syntax of these commands is:
 
-    netq lcm upgrade name <text-job-name> image-id <text-image-id> license <text-cumulus-license> hostnames <text-switch-hostnames> [order <text-upgrade-order>] [run-before-after]
-    netq lcm add credentials (username <text-switch-username> password <text-switch-password> | ssh-key <text-ssh-key>)
+    netq lcm upgrade name <text-job-name> cl-version <text-cumulus-linux-version> netq-version <text-netq-version> hostnames <text-switch-hostnames> [run-restore-on-failure] [run-before-after]
+    netq lcm add credentials username <text-switch-username> (password <text-switch-password> | ssh-key <text-ssh-key>)
     netq lcm add role (superspine | spine | leaf | exit) switches <text-switch-hostnames>
     netq lcm del credentials
     netq lcm show credentials [json]
     netq lcm show switches [version <text-cumulus-linux-version>] [json]
     netq lcm show status <text-lcm-job-id> [json]
-    netq lcm add image <text-image-path>
-    netq lcm del image <text-image-id>
+    netq lcm add cl-image <text-image-path>
+    netq lcm del cl-image <text-image-id>
+    netq lcm add netq-image <text-image-path>
+    netq lcm del netq-image <text-image-path>
     netq lcm show images [<text-image-id>] [json]
     netq lcm show upgrade-jobs [json]
 
@@ -133,7 +135,7 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 
 ## Upload Cumulus Linux Install Images
 
-After installing NetQ 3.0, there are no Cumulus Linux images in the LCM repository. You can upload Cumulus Linux binary images to a local LCM repository for use with installation and upgrade of your switches.
+After installing NetQ, there are no Cumulus Linux images in the LCM repository. You can upload Cumulus Linux binary images to a local LCM repository for use with installation and upgrade of your switches.
 
 For more information about Cumulus Linux images and LCM, read {{<link url="Lifecycle-Management/#image-management" text="Image Management">}}.
 
@@ -141,7 +143,23 @@ For more information about Cumulus Linux images and LCM, read {{<link url="Lifec
 
 1. Upload the image onto an accessible part of your network. The following example uses the Cumulus Linux 3.7.12 disk image, named `cumulus-linux-3.7.12-bcm-amd64.bin`.
 
-       cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-3.7.12-bcm-amd64.bin
+       cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-3.7.12-bcm-amd64.bin
+
+## Upload Cumulus NetQ Install Images
+
+After installing NetQ, there are no Cumulus NetQ images in the LCM repository. You can upload Cumulus NetQ binary images to a local LCM repository for use with installation and upgrade of your switches.
+
+For more information about Cumulus NetQ images and LCM, read {{<link url="Lifecycle-Management/#image-management" text="Image Management">}}.
+
+1. Download the version of Cumulus NetQ you plan to use to upgrade the switches from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Networks web site">}}.
+
+1. Upload the Cumulus NetQ image onto an accessible part of your network. The following example uses the Cumulus NetQ 3.1.0 appliance disk image, named `netq-apps_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb`.
+
+       cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb
+
+1. Upload the Cumulus NetQ agent image onto an accessible part of your network. The following example uses the Cumulus NetQ 3.1.0 appliance disk image, named `netq-agent_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb`.
+
+       cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb
 
 ## Upgrade Cumulus Linux on a Switch
 
@@ -168,17 +186,21 @@ To upgrade one or more switches:
 
 1. Perform the upgrade:
 
-       cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 license LICENSE hostnames spine01,spine02 order spine
+       cumulus@switch:~$ netq lcm upgrade name upgrade-3712 cl-version 3.7.12 netq-version 3.1.0 hostnames spine01,spine02 order spine
 
 You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:
 
-    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 license LICENSE hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
+    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 cl-version 3.7.12 netq-version 3.1.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
 
 If the switches have not been assigned a role, then do not use the `order` option. So in this example, if switches spine01 and spine02 have not been assigned the _spine_ role, then do not specify the `order spine` option.
 
-You can also decide to run LCM before and after the upgrade by adding the `run-before-after` option to the command:
+You can decide to run LCM before and after the upgrade by adding the `run-before-after` option to the command:
 
-    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 license LICENSE hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-before-after
+    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 cl-version 3.7.12 netq-version 3.1.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-before-after
+
+You can decide to restore LCM when a failure occurs by adding the `run-restore-on-failure` option to the command:
+
+    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 cl-version 3.7.12 netq-version 3.1.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-restore-on-failure
 
 ## Running an Upgrade Job Again
 

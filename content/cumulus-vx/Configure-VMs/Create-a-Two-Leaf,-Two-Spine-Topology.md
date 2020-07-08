@@ -43,6 +43,10 @@ To configure CumulusVX-leaf1:
 
 3. Run the following commands to configure the switch:
 
+   {{< tabs "TabID01 ">}}
+
+   {{< tab "NCLU Commands ">}}
+
    ```
    cumulus@switch:~$ net add loopback lo ip address 10.2.1.1/32
    cumulus@switch:~$ net add interface swp1 ip address 10.2.1.1/32
@@ -57,15 +61,17 @@ To configure CumulusVX-leaf1:
    cumulus@switch:~$ net commit
    ```
 
-   These commands configure both `/etc/network/interfaces` and `/etc/frr/frr.conf`. The output of each file is shown below.
+   These commands configure both `/etc/network/interfaces` and `/etc/frr/frr.conf`.
 
-   {{%notice note%}}
+   {{< /tab >}}
 
-To edit the configuration files directly as the sudo user, copy the configurations below.
+   {{< tab "Edit the Configuration Files Manually ">}}
 
-{{%/notice%}}
+   As the sudo user, edit the `/etc/network/interfaces` and the `/etc/frr/frr.conf` files. Copy the configurations below.
 
    ```
+   cumulus@switch:~$ sudo nano /etc/network/interfaces
+
    # The loopback network interface
    auto lo
    iface lo inet loopback
@@ -86,6 +92,10 @@ To edit the configuration files directly as the sudo user, copy the configuratio
    auto swp3
    iface swp3
       address 10.4.1.1/24
+   ```
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/frr/frr.conf
 
    service integrated-vtysh-config
 
@@ -103,6 +113,10 @@ To edit the configuration files directly as the sudo user, copy the configuratio
           network 10.4.1.0/24 area 0.0.0.0
    ```
 
+    {{< /tab >}}
+
+    {{< /tabs >}}
+
 4. Restart the networking service:
 
    ```
@@ -119,9 +133,11 @@ To edit the configuration files directly as the sudo user, copy the configuratio
 
 The configuration steps for CumulusVX-leaf2, CumulusVX-spine1, and CumulusVX-spine2 are the same as CumulusVX-leaf1; however, the file configurations are different. Listed below are the configurations for each additional VM:
 
-{{< tabs "TabID01 ">}}
+{{< tabs "TabID02 ">}}
 
 {{< tab "CumulusVX-leaf2 ">}}
+
+NCLU Commands:
 
 ```
 cumulus@switch:~$ net add loopback lo ip address 10.2.1.2/32
@@ -135,7 +151,11 @@ cumulus@switch:~$ net add ospf network 10.2.1.2/32 area 0.0.0.0
 cumulus@switch:~$ net add ospf network 10.4.2.0/24 area 0.0.0.0
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
 
+`etc/network/interfaces` File:
+
+```
 # The loopback network interface
 auto lo
 iface lo inet loopback
@@ -155,7 +175,11 @@ iface swp2
 auto swp3
 iface swp3
     address 10.4.2.1/24
+```
 
+`/etc/frr/frr.conf` File:
+
+```
 service integrated-vtysh-config
 
 interface swp1
@@ -176,6 +200,8 @@ interface swp2
 
 {{< tab "CumulusVX-spine1 ">}}
 
+NCLU Commands:
+
 ```
 cumulus@switch:~$ net add loopback lo ip address 10.2.1.3/32
 cumulus@switch:~$ net add interface swp1 ip address 10.2.1.3/32
@@ -188,7 +214,11 @@ cumulus@switch:~$ net add ospf network 10.2.1.3/32 area 0.0.0.0
 cumulus@switch:~$ net add ospf network 10.4.3.0/24 area 0.0.0.0
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
 
+`/etc/network/interfaces` File:
+
+```
 # The loopback network interface
 auto lo
 iface lo inet loopback
@@ -209,7 +239,11 @@ iface swp2
 auto swp3
 iface swp3
     address 10.4.3.1/24
+```
 
+`/etc/frr/frr.conf` File:
+
+```
 service integrated-vtysh-config
 
 interface swp1
@@ -230,6 +264,8 @@ router ospf
 
 {{< tab "CumulusVX-spine2 ">}}
 
+NCLU Commands:
+
 ```
 cumulus@switch:~$ net add loopback lo ip address 10.2.1.4/32
 cumulus@switch:~$ net add interface swp1 ip address 10.2.1.4/32
@@ -242,7 +278,11 @@ cumulus@switch:~$ net add ospf network 10.2.1.4/32 area 0.0.0.0
 cumulus@switch:~$ net add ospf network 10.4.4.0/24 area 0.0.0.0
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
+```
 
+`/etc/network/interfaces` File:
+
+```
 # The loopback network interface
 auto lo
 iface lo inet loopback
@@ -263,7 +303,11 @@ iface swp2
 auto swp3
 iface swp3
     address 10.4.4.1/24
+```
 
+`/etc/frr/frr.conf` File:
+
+```
 service integrated-vtysh-config
 
 interface swp1
@@ -292,7 +336,7 @@ Restart the networking and FRRouting services on all VMs before continuing.
 
 ## Create Point-to-Point Connections Between VMs
 
-To use the two-leaf/two-spine Cumulus VX network topology you configured above, you need to configure the network adapter settings for each VM to create point-to-point connections. The following example shows how to create point-to-point connections between each VM in VirtualBox. If you are not using VirtualBox, refer to your hypervisor documentation to configure network adapter settings.
+To use the two-leaf and two-spine Cumulus VX network topology you configured above, you need to configure the network adapter settings for each VM to create point-to-point connections. The following example shows how to create point-to-point connections between each VM in VirtualBox. If you are not using VirtualBox, refer to your hypervisor documentation to configure network adapter settings.
 
 Follow these steps for each of the four VMs.
 
@@ -314,7 +358,9 @@ Make sure that the VM is powered off.
 
     {{< img src = "/images/cumulus-vx/adapterSettings.png" >}}
 
-6. In the **Name** field, type a name for the internal network, then click **OK**. The internal network name must match the internal network name on the corresponding network adapter on the VM to be connected to this VM. For example, in the two-leaf/two-spine Cumulus VX network topology, Adapter 2 (swp1) on CumulusVX-leaf1 is connected to Adapter 2 (swp1) on CumulusVX-spine1; the name must be the same for Adapter 2 on both VMs. Use the internal network names and the connections shown in the illustration and table below.
+6. In the **Name** field, type a name for the internal network, then click **OK**. 
+
+   The internal network name must match the internal network name on the corresponding network adapter on the VM to be connected to this VM. For example, in the two-leaf and two-spine Cumulus VX network topology, Adapter 2 (swp1) on CumulusVX-leaf1 is connected to Adapter 2 (swp1) on CumulusVX-spine1; the name must be the same for Adapter 2 on both VMs. Use the internal network names and the connections shown in the illustration and table below.
 
 7. Click **Adapter 3** and repeat steps 4 thru 6. Use the internal network names and the connections shown in the illustration and table below.
 

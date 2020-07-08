@@ -21,6 +21,10 @@ To log in to the UI:
     - NetQ On-premises: *admin, admin*
     - NetQ Cloud: Use credentials provided by Cumulus via email titled *Welcome to Cumulus NetQ\!*
 
+    {{<notice tip>}}
+For cloud deployments, after three failed attempts to log in, the user is locked out for 15 minutes.
+    {{</notice>}}
+
 {{< tabs "TabID24" >}}
 
 {{< tab "First Time Log In" >}}

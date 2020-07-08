@@ -82,10 +82,10 @@ This configuration is tested on a server running Debian 3.2.60-1+deb7u3 x86\_64 
 
 After you follow the steps below, the interfaces will be connected as follows:
 
-- leaf1:swp1---\>spine1:swp1
-- leaf1:swp2---\>spine2:swp1
-- leaf2:swp1---\>spine1:swp2
-- leaf2:swp2---\>spine2:swp2
+- leaf1:swp1--->spine1:swp1
+- leaf1:swp2--->spine2:swp1
+- leaf2:swp1--->spine1:swp2
+- leaf2:swp2--->spine2:swp2
 
 1. Copy the `qcow2` image onto a Linux server four times to create the four VMs, then name them as follows:
 

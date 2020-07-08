@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 122
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the NetQ 3.0.0 Agents on each server you want to monitor. NetQ Agents can be installed on servers running:
+After installing your Cumulus NetQ software, you should install the NetQ 3.1.0 Agents on each server you want to monitor. NetQ Agents can be installed on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7
@@ -102,14 +102,14 @@ To obtain the NetQ Agent package:
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-3.0]
+    [cumulus-arch-netq-3.1]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.1/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-3.0]
+    [cumulus-noarch-netq-3.1]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.1/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -134,7 +134,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -q -netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.0.0" opsys="rh">}}
+    {{<netq-install/agent-version version="3.1.0" opsys="rh">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

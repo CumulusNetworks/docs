@@ -1,5 +1,5 @@
 ---
-title: Prepare Your Existing NetQ Appliances for a NetQ 3.0 Deployment
+title: Prepare Your Existing NetQ Appliances for a NetQ 3.1 Deployment
 author: Cumulus Networks
 weight: 90
 toc: 5
@@ -164,12 +164,12 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     2. Select *3.1* from the **Version** list, and then select *3.1.0* from the submenu.
 
-        {{< figure src="/images/netq/netq-30-bootstrap-download-300.png" width="500" >}}
+        {{< figure src="/images/netq/netq-31-bootstrap-download-310.png" width="500" >}}
 
     3. Select *Bootstrap* from the **Hypervisor/Platform** list.
         Note that the bootstrap file is the same for both appliances.
 
-        {{< figure src="/images/netq/netq-300-download-bootstrap.png" width="200" >}}
+        {{< figure src="/images/netq/netq-310-download-bootstrap.png" width="200" >}}
 
     4. Scroll down and click **Download**.
 
@@ -177,7 +177,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
         Make sure you select the right install choice based on whether you are preparing the on-premises or cloud version of the appliance.
 
-        {{< figure src="/images/netq/netq-30-appliance-onpremcld-dwnld-300.png" width="410" >}}
+        {{< figure src="/images/netq/netq-31-appliance-onpremcld-dwnld-310.png" width="410" >}}
 
     6. Scroll down and click **Download**.
 
@@ -187,8 +187,8 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
         ```
         cumulus@<hostname>:~$ dpkg -l | grep netq
-        ii  netq-agent   3.1.0-ub18.04u28~1588242914.9fb5b87_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-        ii  netq-apps    3.1.0-ub18.04u28~1588242914.9fb5b87_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+        ii  netq-agent   3.1.0-ub18.04u28~1594095612.8f00ba1_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+        ii  netq-apps    3.1.0-ub18.04u28~1594095612.8f00ba1_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
 
         cumulus@<hostname>:~$ cd /mnt/installables/
         cumulus@<hostname>:/mnt/installables$ ls

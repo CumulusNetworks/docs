@@ -5,22 +5,22 @@ weight: 34
 product: Cumulus VX
 version: '3.7'
 ---
-The following sections describe how to configure network interfaces and FRRouting for a two-leaf/two-spine Cumulus VX network topology:
+The following sections describe how to configure network interfaces and FRRouting for a two-leaf and two-spine Cumulus VX network topology:
 
 - Two spine VMs that represent two spine (aggregation layer) switches on the network.
 - Two leaf VMs that represent two leaf (access layer) switches on the network.
 
 {{< img src = "/images/cumulus-vx/network-topology.png" >}}
 
-These instructions assume that you have installed the relevant images and hypervisors, created four VMs with appropriate names, and that the VMs are running. Refer to {{<link url="Getting-Started" text="Getting Started">}}.
+These instructions assume that you have installed the relevant hypervisors and Cumulus VX images, created four VMs with appropriate names, and that the VMs are running. Refer to {{<link url="Getting-Started" text="Getting Started">}}.
 
 ## Configure CumulusVX-leaf1
 
 You can configure each of the VMs using the Network Command Line Utility (NCLU) or by editing the `/etc/network/interfaces` and `/etc/frr/frr.conf` files as the sudo user.
 
-{{%notice tip%}}
+{{%notice note%}}
 
-The following configuration uses unnumbered IP addressing, where you use the same /32 IPv4 address on multiple ports. OSPF unnumbered does not have an equivalent to RFC-5549, so you need to use an IPv4 address to bring up the adjacent OSPF neighbors, allowing you to reuse the same IP address. You can see some example
+The following configuration uses unnumbered IP addressing, with the same /32 IPv4 address on multiple ports. OSPF unnumbered does not have an equivalent to RFC-5549, so you need to use an IPv4 address to bring up the adjacent OSPF neighbors, allowing you to reuse the same IP address. You can see some example
 {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202796476-OSPF-Unnumbered-Sample-Configurations" text="unnumbered OSPF configurations">}} in the knowledge base.
 
 {{%/notice%}}
@@ -30,7 +30,7 @@ To configure CumulusVX-leaf1:
 1. Log into the CumulusVX-leaf1 VM using the default credentials:
 
    - username: cumulus
-   - password: CumulusLinux\!
+   - password: CumulusLinux!
 
 2. As the sudo user, edit the `/etc/frr/daemons` file in a text editor. Set `zebra`, `bgpd`, and `ospfd` to **yes**, and save the file.
 

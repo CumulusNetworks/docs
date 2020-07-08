@@ -72,7 +72,7 @@
 
 {{- if  eq (.Get "server") "cluster" -}}
 
-    <pre>cumulus@<hostname>:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap-2.4.1.tgz master-ip &lt;master-ip></pre>
+    <pre>cumulus@<hostname>:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap-2.4.1.tgz master-ip &lt;master-ip> [password &lt;text-password>]</pre>
 
     <p>Allow about five to ten minutes for this to complete,  and only then continue to the next step.</p>
 
@@ -167,7 +167,7 @@
 
 {{- if  eq (.Get "server") "cluster" -}}
 
-    <pre>cumulus@<hostname>:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap-3.0.0.tgz master-ip &lt;master-ip></pre>
+    <pre>cumulus@<hostname>:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap-3.0.0.tgz master-ip &lt;master-ip> [password &lt;text-password>]</pre>
 
     <p>Allow about five to ten minutes for this to complete,  and only then continue to the next step.</p>
 

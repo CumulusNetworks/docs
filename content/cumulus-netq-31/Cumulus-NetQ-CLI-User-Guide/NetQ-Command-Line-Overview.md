@@ -486,16 +486,17 @@ The trace command syntax is:
 This example shows how to run a trace based on the source MAC address, in *pretty* output:
 
 ```
-cumulus@switch:~$ netq trace 44:38:39:00:00:59 vlan 10 from 44:38:39:00:04:60 pretty
-Number of Paths: 3
+cumulus@leaf04:~$ netq trace 00:02:00:00:00:13 vlan 1009 from 00:02:00:00:00:0f pretty
+Number of Paths: 8
 Number of Paths with Errors: 0
-Number of Paths with Warnings: 3
-  Path: 1 Underlay mtu 9216 at leaf04:swp54 not enough encap headroom
-  Path: 2 Underlay mtu 9216 at leaf04:swp54 not enough encap headroom
-  Path: 2 Underlay mtu 9216 at leaf04:swp54 not enough encap headroom
-  Path: 3 Underlay mtu 9216 at leaf04:swp54 not enough encap headroom
-Path MTU: 9216
-
- leaf04 vni: 30010 swp54 -- swp4 spine04 swp2 -- swp54 vni: 30010 leaf02 peerlink -- swp49 leaf01  
-                                                                         peerlink -- swp50 leaf01  
-                   swp54 -- swp4 spine04 swp1 -- swp54 vni: 30010 leaf01  
+Number of Paths with Warnings: 0
+Path MTU: 9000
+ host03 swp2 -- swp6 edge02 sw_clag200 -- swp3s2 leaf04 sw_clag200 -- mac:a8:2b:b5:f6:ca:85 leaf07 dual_host1 -- swp1 host01  
+                                                        sw_clag200 -- mac:44:38:39:00:99:0e leaf08 dual_host1 -- swp2 host01  
+                              sw_clag200 -- swp7 leaf07 sw_clag200 -- mac:a8:2b:b5:f6:ca:84 leaf07 dual_host1 -- swp1 host01  
+                                                        sw_clag200 -- mac:44:38:39:00:99:0d leaf08 dual_host1 -- swp2 host01  
+ host03 swp1 -- swp6 edge01 sw_clag200 -- swp3s1 leaf04 sw_clag200 -- mac:a8:2b:b5:f6:ca:85 leaf07 dual_host1 -- swp1 host01  
+                                                        sw_clag200 -- mac:44:38:39:00:99:0e leaf08 dual_host1 -- swp2 host01  
+                              sw_clag200 -- swp6 leaf07 sw_clag200 -- mac:a8:2b:b5:f6:ca:84 leaf07 dual_host1 -- swp1 host01  
+                                                        sw_clag200 -- mac:44:38:39:00:99:0d leaf08 dual_host1 -- swp2 host01  
+```

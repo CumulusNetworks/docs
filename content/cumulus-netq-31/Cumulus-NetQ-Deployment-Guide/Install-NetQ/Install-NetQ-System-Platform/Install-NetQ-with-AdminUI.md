@@ -16,45 +16,25 @@ To install NetQ:
 
     In your browser address field, enter *https://\<hostname-or-ipaddr\>:8443*.
 
-    {{< tabs "TabID24" >}}
+2. Enter your username.
 
-    {{< tab "First Time Log In" >}}
-
-1. Enter the default username *admin* and password *netq*.
-
-2. Click **Sign In**.
-
-3. Change your password.
-
-    Enter a new password with a minimum of eight characters, including at least one uppercase letter, one lowercase letter, one special character, and one number.
-
-4. Enter the new password again to confirm it.
-
-5. Click **Reset**.
-
-    {{< /tab >}}
-
-    {{< tab "Log In After First Time" >}}
-
-1. Enter your username.
-
-2. Enter your password.
+3. Enter your password.
 
     {{<notice tip>}}
 Default credentials are no longer valid. You must use the new password created on your first login.
     {{</notice>}}
 
-3. Click **Sign In**.
+4. Click **Sign In**.
 
     {{< /tab >}}
 
     {{< /tabs >}}
 
-    The NetQ Health dashboard opens.
+    A Welcome screen is presented on first login and on subsequent logins the NetQ Health dashboard is displayed.
 
     {{<figure src="/images/netq/adminui-main-page-241.png" width="700">}}
 
-2. Step through the UI.
+5. Step through the UI.
 
     Having made your installation choices during the preparation steps, you can quickly select the correct path through the UI.
 

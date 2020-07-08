@@ -58,9 +58,9 @@ e3<->e0 PC1 (VPCS)
 
    {{< tab "Cumulus VX-leaf2 ">}}
 
-e1\<-\>e2 Cumulus VX-spine1  
-e2\<-\>e2 Cumulus VX-spine2  
-e3\<-\>e0 PC2 (VPCS)
+e1<->e2 Cumulus VX-spine1  
+e2<->e2 Cumulus VX-spine2  
+e3<->e0 PC2 (VPCS)
 
    {{< /tab >}}
 

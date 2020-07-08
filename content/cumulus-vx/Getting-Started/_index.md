@@ -29,7 +29,7 @@ To download and install the preferred hypervisor or development environment, fol
 
 ## Download the Cumulus VX Image
 
-Cumulus VX images for all supported platforms are available from the [Cumulus Networks website](https://cumulusnetworks.com/products/cumulus-vx/download/). Each disk image contains a single VM for a standalone switch. You can clone the image to build the test network.
+Cumulus VX images for all supported platforms are available from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}. Each disk image contains a single VM for a standalone switch. You can clone the image to build the test network.
 
 Five versions of the virtual disk image are available for use across various hypervisors:
 
@@ -43,6 +43,6 @@ Five versions of the virtual disk image are available for use across various hyp
 
 After you have downloaded the hypervisor or development environment and the Cumulus VX image, follow the relevant link below to configure the VMs:
 
-- [VMware vSphere ESXi](VMware-vSphere-ESXi-5.5/)
-- [VirtualBox](VirtualBox/)
-- [Libvirt and KVM - QEMU](Libvirt-and-KVM-QEMU/)
+- {{<link url="VMware-vSphere-ESXi" text="VMware vSphere ESXi">}}
+- {{<link url="VirtualBox/" text="VirtualBox">}}
+- {{<link url="Libvirt-and-KVM-QEMU/" text="Libvirt and KVM - QEMU">}}

@@ -11,8 +11,6 @@ toc: 1
 ---
 Cumulus VX is a free virtual environment designed for cloud and network administrators that introduces you to open networking where you can learn and test the latest technology from Cumulus Networks in your own time, at your own pace, and within your own environment, without organizational and economic barriers. Use Cumulus VX to produce sandbox environments for prototype assessment, pre-production rollouts, and script development.
 
-## Virtual Machines
-
 Cumulus VX runs in a virtual machine (VM) on a standard x86 environment. The VM is a 64-bit operating system, built on the same foundation as {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux">}}, and runs Debian Linux with `virtio` drivers for network and HDD interfaces as well as the logical volume manager (LVM).
 
 ## Supported Platforms

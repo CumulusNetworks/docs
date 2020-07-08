@@ -14,13 +14,15 @@ To install Cumulus VX:
 
 ## Download and Install the Hypervisor and Developer Environment
 
-To download and install the preferred hypervisor or development environment, follow the relevant links below. Detailed installation instructions are available on the download websites:
+To download and install the preferred hypervisor, follow the relevant links below. Detailed installation instructions are available on the download websites:
 
 | <div style="width:150px">Hypervisor | Download Location |
 | ------------------- | --------------------------------------------------------------- |
 | VMware vSphere ESXi | {{<exlink url="http://www.vmware.com/products/vsphere.html" >}} |
 | VirtualBox          | {{<exlink url="https://www.virtualbox.org/wiki/Downloads" >}}   |
 | KVM                 | {{<exlink url="http://www.qemu-project.org/download/" >}}       |
+
+If you want to use a development environment (optional), download and install the necessary files. Detailed installation instructions are available on the download websites:
 
 | <div style="width:150px">Development Environment | Download Location | Supported Hypervisors |
 | ---------| ---------------------------------------------------------------| --------------- |
@@ -41,8 +43,15 @@ Five versions of the virtual disk image are available for use across various hyp
 
 ## Configure the VMs
 
-After you have downloaded the hypervisor or development environment and the Cumulus VX image, follow the relevant link below to configure the VMs:
+If you are *not* using a development environment, follow the relevant link below to configure the VMs:
 
 - {{<link url="VMware-vSphere-ESXi" text="VMware vSphere ESXi">}}
 - {{<link url="VirtualBox/" text="VirtualBox">}}
 - {{<link url="Libvirt-and-KVM-QEMU/" text="Libvirt and KVM - QEMU">}}
+
+If you are using a development environment, follow the relevant link below to configure the VMs:
+
+- {{<link url="Vagrant-and-VirtualBox" text="Vagrant and VirtualBox">}}
+- {{<link url="Vagrant-and-Libvirt-with-KVM-or-QEMU" text="Vagrant and Libvirt with KVM or QEMU">}}
+- {{<link url="GNS3-and-VirtualBox" text="GNS3 and VirtualBox">}}
+- {{<link url="GNS3-and-QEMU-KVM" text="GNS3 and QEMU-KVM">}}

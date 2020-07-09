@@ -5,10 +5,10 @@ weight: 26
 product: Cumulus VX
 version: '3.7'
 ---
-The following sections describe how to configure network interfaces and FRRouting for a two-leaf and two-spine Cumulus VX network topology:
+After you have set up Cumulus VX on your preferred platform, you can follow these steps to configure network interfaces and FRRouting for a two-leaf and two-spine Cumulus VX network topology:
 
-- Two spine VMs that represent two spine (aggregation layer) switches on the network.
-- Two leaf VMs that represent two leaf (access layer) switches on the network.
+- Two spine VMs represent the spine (aggregation layer) switches on the network
+- Two leaf VMs represent the leaf (access layer) switches on the network
 
 {{< img src = "/images/cumulus-vx/network-topology.png" >}}
 
@@ -16,7 +16,7 @@ These instructions assume that you have installed the relevant hypervisors and C
 
 ## Configure CumulusVX-leaf1
 
-You can configure each of the VMs using the Network Command Line Utility (NCLU) or by editing the `/etc/network/interfaces` and `/etc/frr/frr.conf` files as the sudo user.
+You can configure each of the VMs with the Network Command Line Utility (NCLU) or by editing the `/etc/network/interfaces` and `/etc/frr/frr.conf` files.
 
 {{%notice note%}}
 
@@ -35,6 +35,8 @@ To configure CumulusVX-leaf1:
 2. As the sudo user, edit the `/etc/frr/daemons` file in a text editor. Set `zebra`, `bgpd`, and `ospfd` to **yes**, and save the file.
 
    ```
+   cumulus@switch:~$ sudo nano /etc/frr/daemons
+
    zebra=yes
    bgpd=yes
    ospfd=yes
@@ -358,7 +360,7 @@ Make sure that the VM is powered off.
 
     {{< img src = "/images/cumulus-vx/adapterSettings.png" >}}
 
-6. In the **Name** field, type a name for the internal network, then click **OK**. 
+6. In the **Name** field, type a name for the internal network, then click **OK**.
 
    The internal network name must match the internal network name on the corresponding network adapter on the VM to be connected to this VM. For example, in the two-leaf and two-spine Cumulus VX network topology, Adapter 2 (swp1) on CumulusVX-leaf1 is connected to Adapter 2 (swp1) on CumulusVX-spine1; the name must be the same for Adapter 2 on both VMs. Use the internal network names and the connections shown in the illustration and table below.
 

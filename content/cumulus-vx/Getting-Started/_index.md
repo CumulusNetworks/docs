@@ -4,11 +4,11 @@ author: Cumulus Networks
 weight: 15
 toc: 2
 ---
-This section provides an installation process overview with next step links for each supported hypervisor or development environment.
+This section provides an installation process overview with next step links for each supported platform.
 
 To install Cumulus VX:
 
-1. Download and install the preferred hypervisor platform.
+1. Download and install the preferred platform.
 2. Download the appropriate Cumulus VX image from the Cumulus website.
 3. Configure the VMs.
 
@@ -34,9 +34,8 @@ All virtual disk images are available for use across various platforms:
 
 - OVA disk image for use with VirtualBox
 - VMware-specific OVA disk image
-- qcow2 disk image for use with KVM
-- Box image for use with Vagrant
-- GNS3 appliance for use with VirtualBox
+- Qcow2 disk image for use with KVM
+- Box image for use with Vagrant and VirtualBox
 - Binary image for ONIE installations
 
 ## Configure the VMs

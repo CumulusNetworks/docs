@@ -18,11 +18,17 @@ Cumulus VX runs in a virtual machine (VM) on a standard x86 environment. The VM 
 Cumulus VX is supported on:
 
 - VirtualBox
-- VMware vSphere ESXi
+- VMware Fusion, Worksation, and vSphere ESXi
 - KVM
 - Vagrant and VirtualBox
 - Vagrant and KVM
 - GNS3 and VirtualBox
+
+{{%notice note%}}
+
+Even though Cumulus VX is supported on VMware Fusion, Workstation, and vSphere ESXi, this document only provides setup instructions for VMware vSphere ESXi.
+
+{{%/notice%}}
 
 ## Cumulus VX Compared with Other Cumulus Networks Products
 

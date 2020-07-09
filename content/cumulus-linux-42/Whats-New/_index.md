@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 5
 toc: 2
 ---
-This document supports the Cumulus Linux 4.2 release and lists new platforms and features.
+This document supports the Cumulus Linux 4.2 release, and lists new platforms and features.
 
 - For a list of all the platforms supported in Cumulus Linux 4.2, see the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 4.2, see the {{<link title="Cumulus Linux 4.2 Release Notes" text="Cumulus Linux 4.2 Release Notes">}}.

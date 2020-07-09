@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 5
 toc: 2
 ---
-This document supports the Cumulus Linux 4.0 release and lists the new platforms and features.
+This document supports the Cumulus Linux 4.0 release, and lists new platforms and features.
 
 - For complete details on the differences between Cumulus Linux 4.0 and Cumulus Linux 3.7, see the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360038231814" text="this article">}}.
 - For a list of all the platforms supported in Cumulus Linux 4.0, see the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.

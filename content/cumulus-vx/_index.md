@@ -15,33 +15,14 @@ Cumulus VX runs in a virtual machine (VM) on a standard x86 environment. The VM 
 
 ## Supported Platforms
 
-Cumulus VX integrates with the following hypervisors:
+Cumulus VX is supported on:
 
-- VMware vSphere ESXi
 - VirtualBox
+- VMware vSphere ESXi
 - KVM
-
-You can use Cumulus VX with the following development environments:
-
-- Vagrant
-- GNS3
-
-## Support Policy
-
-As a Cumulus Linux customer, you can receive formal GSS support for Cumulus VX instances to:
-
-- Test and stage network topologies before deploying to production.
-- Analyze, troubleshoot, and correct issues with configurations and software bugs in Cumulus VX that might also apply to Cumulus Linux running on physical devices.
-- Analyze, troubleshoot, and correct issues with Cumulus VX if behaving differently than physical devices. This does not apply in scenarios where it is not possible to emulate physical hardware with virtualization.
-
-Cumulus Networks does *not* provide support for:
-
-- Cumulus VX instances used in a production environment.
-- Virtualization environments, including installation, setup, and configuration.
-- Automation tool playbooks, including creation and troubleshooting.
-- Performance or scalability issues related to network traffic running through Cumulus VX instances.
-
-For non-customers, Cumulus VX remains a community-supported product, with no formal support obligations from Cumulus Networks. You can submit questions to the {{<exlink url="https://slack.cumulusnetworks.com/" text="community Slack channel">}} to engage with the wider community.
+- Vagrant and VirtualBox
+- Vagrant and KVM
+- GNS3 and VirtualBox
 
 ## Cumulus VX Compared with Other Cumulus Networks Products
 
@@ -66,6 +47,23 @@ The following table outlines the similarities and differences between Cumulus VX
 | Automation, monitoring, troubleshooting | Yes |
 | Security                 | Yes |
 | QoS                      | Yes |
+
+## Support Policy
+
+As a Cumulus Linux customer, you can receive formal GSS support for Cumulus VX instances to:
+
+- Test and stage network topologies before deploying to production.
+- Analyze, troubleshoot, and correct issues with configurations and software bugs in Cumulus VX that might also apply to Cumulus Linux running on physical devices.
+- Analyze, troubleshoot, and correct issues with Cumulus VX if behaving differently than physical devices. This does not apply in scenarios where it is not possible to emulate physical hardware with virtualization.
+
+Cumulus Networks does *not* provide support for:
+
+- Cumulus VX instances used in a production environment.
+- Virtualization environments, including installation, setup, and configuration.
+- Automation tool playbooks, including creation and troubleshooting.
+- Performance or scalability issues related to network traffic running through Cumulus VX instances.
+
+For non-customers, Cumulus VX remains a community-supported product, with no formal support obligations from Cumulus Networks. You can submit questions to the {{<exlink url="https://slack.cumulusnetworks.com/" text="community Slack channel">}} to engage with the wider community.
 
 ## Related Information
 

@@ -48,7 +48,7 @@ To prepare your appliance:
 
         {{<figure src="/images/netq/install-ubuntu-ssd-selection-240.png" width="700">}}
 
-    - Set the default username to *cumulus* and password to *CumulusLinux!*.
+    - Set the default username to *cumulus* and password to *cumulus*.
 
         {{<figure src="/images/netq/install-ubuntu-set-creds-240.png" width="700">}}
 

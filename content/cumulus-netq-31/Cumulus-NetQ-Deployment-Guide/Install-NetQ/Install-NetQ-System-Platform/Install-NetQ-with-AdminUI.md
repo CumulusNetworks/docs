@@ -16,13 +16,9 @@ To install NetQ:
 
     In your browser address field, enter *https://\<hostname-or-ipaddr\>:8443*.
 
-2. Enter your username.
+2. Enter your username. Default is *admin*.
 
-3. Enter your password.
-
-    {{<notice tip>}}
-Default credentials are no longer valid. You must use the new password created on your first login.
-    {{</notice>}}
+3. Enter your password. Default is *admin*.
 
 4. Click **Sign In**.
 

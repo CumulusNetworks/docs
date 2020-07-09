@@ -67,7 +67,7 @@ To configure a PBR policy:
     cumulus@switch:~$ net add pbr-map map1 seq 1 match ecn 2
     ```
 
-2. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
+2. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
 
     ```
     cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
@@ -160,7 +160,7 @@ You can only set one policy per interface.
     switch(config-pbr-map)# match ecn 2
     ```
 
-3. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
+3. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
 
     ```
     switch(config-pbr-map)# set nexthop 192.168.0.31 swp2 nexthop-vrf rocket

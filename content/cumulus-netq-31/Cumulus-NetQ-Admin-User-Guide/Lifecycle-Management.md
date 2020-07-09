@@ -373,7 +373,7 @@ If the switches you are looking to upgrade are not present in the final list, yo
 - Work with the list you have and add them later
 - Verify the missing switches are reachable using `ping`
 - Verify NetQ Agent is fresh for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** or run `netq show agents`)
-- Install NetQ on the switch (refer to {{<link url="">}})
+- Install NetQ on the switch (refer to {{<link url="Lifecycle-Management/#use-switch-discovery-to-install-and-upgrade-netq" text="Install NetQ">}})
 
 After all of the switches you want to upgrade are contained in the list, you can assign roles to them.
 

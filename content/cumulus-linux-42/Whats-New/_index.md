@@ -10,9 +10,9 @@ This document supports the Cumulus Linux 4.2 release and lists new platforms and
 - For a list of open and fixed issues in Cumulus Linux 4.2, see the {{<link title="Cumulus Linux 4.2 Release Notes" text="Cumulus Linux 4.2 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.2, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
-## What's New in Cumulus Linux 4.2
+## What's New in Cumulus Linux 4.2.0
 
-Cumulus Linux 4.2 supports new platforms, provides bug fixes, and contains several new features and improvements.
+Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms
 

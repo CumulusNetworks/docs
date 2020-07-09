@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 5
 toc: 2
 ---
-This document supports the Cumulus Linux 4.1 release and lists the new platforms and features.
+This document supports the Cumulus Linux 4.1 release and lists new platforms and features.
 
 - For a list of all the platforms supported in Cumulus Linux 4.1, see the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 4.1, see the {{<link url="Cumulus-Linux-4.1-Release-Notes" text="Cumulus Linux 4.1 Release Notes">}}.
@@ -23,7 +23,7 @@ Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains sev
 - Dell 5212F-ON (25G Trident3 X5)
 - Mellanox SN2010 with 32G RAM (25G Spectrum)
 
-The following platforms are supported in Cumulus Linux 3.7 and are now supported in Cumulus Linux 4.1.0 and later:
+The following platforms are supported in Cumulus Linux 3.7 and are now supported in Cumulus Linux 4.1:
 
 - Dell S4128F-ON
 - Dell S4128T-ON
@@ -79,7 +79,7 @@ Cumulus Networks does not support these platforms in Cumulus Linux 4.1. They are
 - Facebook Backpack (100G Tomahawk)
 - Facebook Voyager (100G Tomahawk)
 
-The following platforms are supported in Cumulus Linux 3.7 but are not yet supported in Cumulus Linux 4.1. Support for these platforms will be added in a future Cumulus Linux release.
+The following platforms are supported in Cumulus Linux 3.7 but are not yet supported in Cumulus Linux 4.1. Cumulus Networks will add support for these platforms in a future Cumulus Linux release.
 
 - Dell N3048EP-ON
 - Delta AG7648

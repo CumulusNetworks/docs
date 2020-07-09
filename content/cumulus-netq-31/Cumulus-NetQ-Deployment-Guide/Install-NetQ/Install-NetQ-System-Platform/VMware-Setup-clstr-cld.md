@@ -19,11 +19,11 @@ Follow these steps to setup and configure your VM on a cluster of servers in a c
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/vmw-platform-image deployment="cloud" version="3.0.0">}}
+    {{<netq-install/vmw-platform-image deployment="cloud" version="3.1.0">}}
 
 4. Setup and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="3.0.0">}}
+    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="3.1.0">}}
 
 5. Verify the master node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -31,7 +31,7 @@ Follow these steps to setup and configure your VM on a cluster of servers in a c
 
 6. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.0.0" deployment="cloud" platform="vm">}}
+    {{<netq-install/bootstrap server="single" version="3.1.0" deployment="cloud" platform="vm">}}
 
 7. Verify that your first worker node meets the VM requirements, as described in Step 1.
 
@@ -49,7 +49,7 @@ Make a note of the private IP address you assign to the worker node. It is neede
 
 11. Run the Bootstrap CLI on the worker node.
 
-    {{<netq-install/bootstrap server="cluster" version="3.0.0" deployment="cloud" platform="vm">}}
+    {{<netq-install/bootstrap server="cluster" version="3.1.0" deployment="cloud" platform="vm">}}
 
 12. Repeat Steps 7 through 11 for each additional worker node you want in your cluster.
 

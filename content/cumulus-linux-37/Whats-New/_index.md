@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 3
 toc: 2
 ---
-This document supports the Cumulus Linux 3.7 releases and lists the new platforms and features.
+This document supports the Cumulus Linux 3.7 releases, and lists new platforms and features.
 
 - For a list of all the platforms supported in a Cumulus Linux 3.7 release, see the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 3.7, see the {{<link url="Cumulus-Linux-3.7-Release-Notes" text="Cumulus Linux 3.7 Release Notes">}}.

@@ -9,7 +9,11 @@ Some of these views provide data that is also available through the card workflo
 
 Access these tables through the Main Menu (<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>), under the **Network** heading.
 
-{{<figure src="/images/netq/main-menu-admin-ntwk-choices-selected-300.png" width="600">}}
+{{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
+
+{{<notice tip>}}
+If you do not have administrative rights, the Admin menu options are not available to you.
+{{</notice>}}
 
 Tables can be manipulated using the settings above the tables, shown here and described in {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.
 
@@ -23,11 +27,30 @@ The Agents view provides all available parameter data about all NetQ Agents in t
 
 {{<figure src="/images/netq/main-menu-ntwk-agents-241.png" width="700">}}
 
+| Parameter | Description |
+| --- | --- |
+| Hostname | Name of the switch or host |
+| Timestamp | Date and time the data was captured |
+| Last Reinit | Date and time that the switch or host was reinitialized |
+| Last Update Time | Date and time that the switch or host was updated |
+| Lastboot | Date and time that the switch or host was last booted up |
+| NTP State | Status of NTP synchronization on the switch or host; yes = in synchronization, no = out of synchronization |
+| Sys Uptime | Amount of time the switch or host has been continuously up and running |
+| Version | NetQ version running on the switch or host |
+
 ## View All Events
 
 The Events view provides all available parameter data about all events in the system.
 
 {{<figure src="/images/netq/main-menu-ntwk-events-241.png" width="700">}}
+
+| Parameter | Description |
+| --- | --- |
+| Hostname | Name of the switch or host that experienced the event |
+| Timestamp | Date and time the event was captured |
+| Message | Description of the event |
+| Message Type | Network service or protocol that generated the event |
+| Severity | Importance of the event. Values include critical, warning, info, and debug. |
 
 ## View All MACs
 
@@ -35,35 +58,90 @@ The MACs (media access control addresses) view provides all available parameter 
 
 {{<figure src="/images/netq/main-menu-ntwk-macs-241.png" width="700">}}
 
+| Parameter | Description |
+| --- | --- |
+| Hostname | Name of the switch or host where the MAC address resides |
+| Timestamp | Date and time the data was captured |
+| Egress Port | Port where traffic exits the switch or host |
+| Is Remote | Indicates if the address is |
+| Is Static | Indicates if the address is a static (*true*) or dynamic assignment (*false*) |
+| MAC Address | MAC address |
+| Nexthop | Next hop for traffic hitting this MAC address on this switch or host |
+| Origin | Indicates if address is owned by this switch or host (*true*) or by a peer (*false*) |
+| VLAN | VLAN associated with the MAC address, if any |
+
 ## View All VLANs
 
 The VLANs (virtual local area networks) view provides all available parameter data about all VLANs in the system.
 
-{{<figure src="/images/netq/main-menu-ntwk-vlans-241.png" width="700">}}
+{{<figure src="/images/netq/main-menu-ntwk-vlans-310.png" width="700">}}
 
-## View All IP Routes
+| Parameter | Description |
+| --- | --- |
+| Hostname | Name of the switch or host where the VLAN(s) reside(s) |
+| Timestamp | Date and time the data was captured |
+| If Name | Name of interface used by the VLAN(s) |
+| Last Changed | Date and time when this information was last updated |
+| Ports | Ports on the switch or host associated with the VLAN(s) |
+| SVI | Switch virtual interface associated with a bridge interface |
+| VLANs | VLANs associated with the switch or host |
 
-The IP Routes view provides all available parameter data about all IP routes, all IPv4 routes, and all IPv6 routes in the system.
+## View IP Routes
 
-{{<figure src="/images/netq/main-menu-ntwk-iproutes-all-241.png" width="700">}}
+The IP Routes view provides all available parameter data about all IP routes. The list of routes can be filtered to view only the IPv4 or IPv6 routes by selecting the relevant tab.
 
-## View All IP Neighbors
+{{<figure src="/images/netq/main-menu-ntwk-iproutes-all-310.png" width="700">}}
 
-The IP Neighbors view provides all available parameter data about all IP neighbors, all IPv4 neighbors, and all IPv6 neighbors in the system.
+| Parameter | Description |
+| --- | --- |
+| Hostname | Name of the switch or host where the VLAN(s) reside(s) |
+| Timestamp | Date and time the data was captured |
+| Is IPv6 | Indicates if the address is an IPv6 (*true*) or IPv4 (*false*) address |
+| Message Type | Network service or protocol; always *Route* in this table |
+| Nexthops | Possible ports/interfaces where traffic can be routed to next |
+| Origin | Indicates if this switch or host is the source of this route  (*true*) or not (*false*) |
+| Prefix | IPv4 or IPv6 address prefix |
+| Priority | Rank of this route to be used before another, where the lower the number, less likely is to be used; value determined by routing protocol |
+| Protocol | Protocol responsible for this route |
+| Route Type | Type of route |
+| Rt Table ID | The routing table identifier where the route resides |
+| Src | Prefix of the address where the route is coming from (the previous hop) |
+| VRF | Associated virtual route interface associated with this route |
 
-{{<figure src="/images/netq/main-menu-ntwk-ipnbrs-all-241.png" width="700">}}
+## View IP Neighbors
 
-## View All IP Addresses
+The IP Neighbors view provides all available parameter data about all IP neighbors. The list of neighbors can be filtered to view only the IPv4 or IPv6 neighbors by selecting the relevant tab.
 
-The IP Addresses view provides all available parameter data about all IP addresses, all IPv4 addresses, and all IPv6 addresses in the system.
+{{<figure src="/images/netq/main-menu-ntwk-ipnbrs-all-310.png" width="700">}}
 
-{{<figure src="/images/netq/main-menu-ntwk-ipaddrs-all-241.png" width="700">}}
+| Parameter | Description |
+| --- | --- |
+| Hostname | Name of the neighboring switch or host |
+| Timestamp | Date and time the data was captured |
+| IF Index | Index of interface used to communicate with this neighbor |
+| If Name | Name of interface used to communicate with this neighbor |
+| IP Address | IPv4 or IPv6 address of the neighbor switch or host |
+| Is IPv6 | Indicates if the address is an IPv6 (*true*) or IPv4 (*false*) address |
+| Is Remote | Indicates if the address is |
+| MAC Address | MAC address of the neighbor switch or host |
+| Message Type | Network service or protocol; always *Neighbor* in this table |
+| VRF | Associated virtual route interface associated with this neighbor |
 
-## View All Sensors
+## View IP Addresses
 
-The Sensors view provides all available parameter data provided by the power supply units (PSUs), fans, and temperature sensors in the system.
+The IP Addresses view provides all available parameter data about all IP addresses. The list of addresses can be filtered to view only the IPv4 or IPv6 addresses by selecting the relevant tab.
 
-{{<figure src="/images/netq/main-menu-ntwk-sensors-psu-241.png" width="700">}}
+{{<figure src="/images/netq/main-menu-ntwk-ipaddrs-all-310.png" width="700">}}
+
+| Parameter | Description |
+| --- | --- |
+| Hostname | Name of the neighboring switch or host |
+| Timestamp | Date and time the data was captured |
+| If Name | Name of interface used to communicate with this neighbor |
+| Is IPv6 | Indicates if the address is an IPv6 (*true*) or IPv4 (*false*) address |
+| Mask | Host portion of the address  |
+| Prefix | Network portion of the address |
+| VRF | Virtual route interface associated with this address prefix and interface on this switch or host |
 
 ## View What Just Happened
 
@@ -79,7 +157,7 @@ When WJH capabilities are combined with Cumulus NetQ, you have the ability to ho
 - Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network
 
 {{%notice info%}}
-By default, Cumulus Linux 4.0.0 provides the NetQ 2.3.1 Agent and CLI. If you installed Cumulus Linux 4.0.0 on your Mellanox switch, you need to upgrade the NetQ Agent and optionally the CLI to release 2.4.0 or later.
+By default, Cumulus Linux 4.0.0 provides the NetQ 2.3.1 Agent and CLI. If you installed Cumulus Linux 4.0.0 on your Mellanox switch, you need to upgrade the NetQ Agent and optionally the CLI to release 2.4.0 or later (preferably the latest release).
 
 ```
 cumulus@<hostname>:~$ sudo apt-get update
@@ -119,7 +197,7 @@ Using *wjh_dump.py* on a Mellanox platform that is running Cumulus Linux 4.0 and
 
 The What Just Happened view displays events based on conditions detected in the data plane. The most recent 1000 events from the last 24 hours are presented for each drop category.
 
-{{<figure src="/images/netq/main-menu-ntwk-wjh-l1-240.png" width="700">}}
+{{<figure src="/images/netq/main-menu-ntwk-wjh-l1-310.png" width="700">}}
 
 <table>
 <colgroup>
@@ -128,25 +206,13 @@ The What Just Happened view displays events based on conditions detected in the 
 </colgroup>
 <thead>
 <tr class="header">
-<th>Item</th>
+<th>Tab</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>Title</td>
-<td>What Just Happened</td>
-</tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
-</tr>
-<tr class="odd">
-<td>Results</td>
-<td>Number of results found for the selected tab</td>
-</tr>
-<tr class="even">
-<td>L1 Drops tab</td>
+<td>L1 Drops</td>
 <td>Displays the reason why a port is in the down state. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server</li>
@@ -174,7 +240,7 @@ The What Just Happened view displays events based on conditions detected in the 
 <li><strong>Is Port Up</strong>: Indicates whether the port is in an Up (true) or Down (false) state</li>
 </ul></td>
 <tr class="even">
-<td>L2 Drops tab</td>
+<td>L2 Drops</td>
 <td>Displays the reason for a link to be down. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server</li>
@@ -204,7 +270,7 @@ The What Just Happened view displays events based on conditions detected in the 
 </ul></td>
 </tr>
 <tr class="even">
-<td>Router Drops tab</td>
+<td>Router Drops</td>
 <td>Displays the reason why the server is unable to route a packet. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server</li>
@@ -238,7 +304,7 @@ The What Just Happened view displays events based on conditions detected in the 
 </ul></li>
 </ul></td>
 <tr class="even">
-<td>Tunnel Drops tab</td>
+<td>Tunnel Drops</td>
 <td>Displays the reason for a tunnel to be down. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server</li>
@@ -249,7 +315,7 @@ The What Just Happened view displays events based on conditions detected in the 
 </ul></li>
 </ul></td>
 <tr class="even">
-<td>Buffer Drops tab</td>
+<td>Buffer Drops</td>
 <td>Displays the reason for the server buffer to be drop packets. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server</li>
@@ -259,7 +325,7 @@ The What Just Happened view displays events based on conditions detected in the 
 </ul></li>
 </ul></td>
 <tr class="even">
-<td>ACL Drops tab</td>
+<td>ACL Drops</td>
 <td>Displays the reason for an ACL to drop packets. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server</li>
@@ -270,9 +336,78 @@ The What Just Happened view displays events based on conditions detected in the 
 <li>Egress router ACL: ACL action set to deny on the egress router interface</li>
 </ul></li>
 </ul></td>
-<tr class="even">
-<td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
-</tr>
 </tbody>
 </table>
+
+## View Sensors
+
+The Sensors view provides all available parameter data provided by the power supply units (PSUs), fans, and temperature sensors in the system. Select the relevant tab to view the data.
+
+{{<figure src="/images/netq/main-menu-ntwk-sensors-psu-310.png" width="700">}}
+
+| PSU Parameter | Description |
+| --- | --- |
+| Hostname | Name of the switch or host where the power supply is installed |
+| Timestamp | Date and time the data was captured |
+| Message Type | Type of sensor message; always *PSU* in this table |
+| PIn(W) | Input power (Watts) for the PSU on the switch or host |
+| POut(W) | Output power (Watts) for the PSU on the switch or host |
+| Sensor Name | User-defined name for the PSU |
+| Previous State | State of the PSU when data was captured in previous window |
+| State | State of the PSU when data was last captured |
+| VIn(V) | Input voltage (Volts) for the PSU on the switch or host |
+| VOut(V) | Output voltage (Volts) for the PSU on the switch or host |
+
+| Fan Parameter | Description |
+| --- | --- |
+| Hostname | Name of the switch or host where the fan is installed |
+| Timestamp | Date and time the data was captured |
+| Message Type | Type of sensor message; always *Fan* in this table |
+| Description | User specified description of the fan |
+| Speed (RPM) | Revolution rate of the fan (revolutions per minute) |
+| Max | Maximum speed (RPM) |
+| Min | Minimum speed (RPM) |
+| Message | Message |
+| Sensor Name | User-defined name for the fan |
+| Previous State | State of the fan when data was captured in previous window |
+| State | State of the fan when data was last captured |
+
+| Temperature Parameter | Description |
+| --- | --- |
+| Hostname | Name of the switch or host where the temperature sensor is installed |
+| Timestamp | Date and time the data was captured |
+| Message Type | Type of sensor message; always *Temp* in this table |
+| Critical | Current critical maximum temperature (&deg;C) threshold setting|
+| Description | User specified description of the temperature sensor |
+| Lower Critical | Current critical minimum temperature (&deg;C) threshold setting |
+| Max | Maximum temperature threshold setting |
+| Min | Minimum temperature threshold setting |
+| Message | Message |
+| Sensor Name | User-defined name for the temperature sensor |
+| Previous State | State of the fan when data was captured in previous window |
+| State | State of the fan when data was last captured |
+| Temperature(Celsius) | Current temperature (&deg;C) measured by sensor |
+
+## View Digital Optics
+
+The Digital Optics view provides all available parameter data provided by any digital optics modules in the system. View Laser power and bias current for a given interface and channel on a switch, and temperature and voltage for a given module. Select the relevant tab to view the data.
+
+{{<figure src="/images/netq/main-menu-ntwk-dom-laserrx-power-310.png" width="700">}}
+
+| Laser Parameter | Description |
+| --- | --- |
+| Hostname | Name of the switch or host where the digital optics module resides |
+| Timestamp | Date and time the data was captured |
+| If Name | Name of interface where the digital optics module is installed |
+| Units | Measurement unit for the power (mW) or current (mA) |
+| Channel 1&ndash;8 | Value of the power or current on each channel where the digital optics module is transmitting |
+
+| Module Parameter | Description |
+| --- | --- |
+| Hostname | Name of the switch or host where the digital optics module resides |
+| Timestamp | Date and time the data was captured |
+| If Name | Name of interface where the digital optics module is installed |
+| Degree C | Current module temperature, measured in degrees Celsius |
+| Degree F | Current module temperature, measured in degrees Fahrenheit |
+| Units | Measurement unit for module voltage; Volts |
+| Value | Current module voltage |

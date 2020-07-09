@@ -17,11 +17,11 @@ Follow these steps to setup and configure your VM for a cloud deployment:
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/vmw-platform-image deployment="cloud" version="3.0.0">}}
+    {{<netq-install/vmw-platform-image deployment="cloud" version="3.1.0">}}
 
 4. Setup and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="3.0.0">}}
+    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="3.1.0">}}
 
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -29,7 +29,7 @@ Follow these steps to setup and configure your VM for a cloud deployment:
 
 6. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.0.0" deployment="cloud" platform="vm">}}
+    {{<netq-install/bootstrap server="single" version="3.1.0" deployment="cloud" platform="vm">}}
 
 The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the CLI.
 

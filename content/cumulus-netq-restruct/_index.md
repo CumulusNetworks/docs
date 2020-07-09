@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ 3.x User Guide
+title: Cumulus NetQ 3.2 User Guide
 author: Cumulus Networks
 weight: 1
 subsection: true

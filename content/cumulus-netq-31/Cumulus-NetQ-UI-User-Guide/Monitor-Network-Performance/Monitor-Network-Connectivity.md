@@ -88,7 +88,7 @@ The medium Trace Request card displays:
 
 The large Trace Request card displays:
 
-{{< figure src="/images/netq/trace-request-large-222.png" width="500" >}}
+{{< figure src="/images/netq/trace-request-large-310.png" width="500" >}}
 
 <table>
 <colgroup>
@@ -116,11 +116,11 @@ The large Trace Request card displays:
 </tr>
 <tr class="even">
 <td>Source</td>
-<td>(Required) Hostname or IP address of device where to begin the trace.</td>
+<td>(Required) Hostname, IP address, or MAC address of device where to begin the trace.</td>
 </tr>
 <tr class="odd">
 <td>Destination</td>
-<td>(Required) Ending point for the trace. For layer 2 traces, value must be a MAC address. For layer 3 traces, value must be an IP address.</td>
+<td>(Required) Ending point for the trace.</td>
 </tr>
 <tr class="even">
 <td>VRF</td>
@@ -204,9 +204,19 @@ The full screen Trace Request card displays:
 </tbody>
 </table>
 
+### Source and Destination Options
+
+The layer you are performing the trace at and the type of source that you select determines the destination type that can be used. The valid source and destination options are shown in this table.
+
+| Layer | Source | Destination |
+| --- | --- | --- |
+| 2 | MAC address | MAC address |
+| 2, 3 | Hostname | IP address, MAC address |
+| 3 | IP address | IP address, MAC address |
+
 ### Create a Layer 3 On-demand Trace Request
 
-It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. It you cannot find a path through a layer 3 path, you might also try checking connectivity through a layer 2 path.
+It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. If you cannot find a path through layer 3, you might try checking for connectivity through a layer 2 path.
 
 To create a layer 3 trace request:
 
@@ -216,15 +226,17 @@ To create a layer 3 trace request:
 
 2. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
 
-3. In the **Destination** field, enter the IP address of the device where you want to end the trace.  
+3. In the **Destination** field, enter the IP or MAC address of the device where you want to end the trace.  
 
     {{<figure src="/images/netq/trace-request-medium-l3-example-222.png" width="200">}}
 
     In this example, we are starting our trace at *server02* and ending it at *10.1.3.103*.
 
-    {{%notice tip%}}
+    {{<notice tip>}}
+
  If you mistype an address, you must double-click it, or backspace over the error, and retype the address. You cannot select the address by dragging over it as this action attempts to move the card to another location.
-    {{%/notice%}}
+
+    {{</notice>}}
 
 4. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
 
@@ -238,11 +250,11 @@ To create the trace request:
 
 2. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
 
-3. In the **Destination** field, enter the IP address of the device where you want to end the trace.
+3. In the **Destination** field, enter the IP or MAC address of the device where you want to end the trace.
 
 4. In the **VRF** field, enter the identifier for the VRF interface you want to use.
 
-    {{< figure src="/images/netq/trace-request-large-l3wVRF-example-222.png" width="500" >}}
+    {{< figure src="/images/netq/trace-request-large-l3wVRF-example-310.png" width="500" >}}
 
     In this example, we are starting our trace at *leaf01* and ending it at *10.1.3.103* using VRF *vrf1.*
 
@@ -250,19 +262,23 @@ To create the trace request:
 
 ### Create a Layer 2 Trace
 
-It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. It you cannot find a path through a layer 2 path, you might also try checking connectivity through a layer 3 path.
+It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. If you cannot find a path through layer 2, you might try checking for connectivity through a layer 3 path.
 
 To create a layer 2 trace request:
 
 1. Open the large Trace Request card.
 
-2. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
+2. In the **Source** field, enter the hostname or MAC address of the device where you want to start the trace.
 
-3. In the **Destination** field, enter the MAC address for where you want to end the trace.
+3. In the **Destination** field, enter the IP or MAC address for where you want to end the trace.
+
+    {{<notice tip>}}
+Remember that if you choose a MAC address as the source, you must enter a MAC address for the destination as well.
+    {{</notice>}}
 
 4. In the **VLAN ID** field, enter the identifier for the VLAN you want to use.
 
-    {{< figure src="/images/netq/trace-request-large-l2vlan-example-222.png" width="500" >}}
+    {{< figure src="/images/netq/trace-request-large-l2vlan-example-310.png" width="500" >}}
 
     In this example, we are starting our trace at *leaf01* and ending it at *00:03:00:33:33:01* using VLAN *13.*
 
@@ -276,13 +292,17 @@ To schedule a trace:
 
 1. Open the large Trace Request card.
 
-2. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
+2. In the **Source** field, enter the hostname, IP address, or MAC address of the device where you want to start the trace.
 
-3. In the **Destination** field, enter the MAC address (layer 2) or IP address (layer 3) of the device where you want to end the trace.
+3. In the **Destination** field, enter the IP or MAC address of the device wehre you want to end the trace.
 
-4. Optionally, enter a VLAN ID (layer 2) or VRF interface (layer 3).
+    {{<notice tip>}}
+Remember that if you choose a MAC address as the source, you must enter a MAC address for the destination as well.
+    {{</notice>}}
 
-    {{< figure src="/images/netq/trace-request-large-l2vlan-ex.png" width="500" >}}
+4. Enter a VLAN ID (layer 2 trace) or optionally a VRF interface (layer 3 trace).
+
+    {{< figure src="/images/netq/trace-request-large-l2vlan-example-310.png" width="500" >}}
 
 5. Select a timeframe under **Schedule** to specify how often you want to run the trace.
 
@@ -306,7 +326,9 @@ To schedule a trace:
 
     {{< figure src="/images/netq/save-trace-name-modal.png" width="250" >}}
 
-12. Click **Save**. You can now run this trace on demand by selecting it from the dropdown list, or wait for it to run on its defined schedule.
+12. Click **Save**.
+
+    You can now run this trace on demand by selecting it from the dropdown list, or wait for it to run on its defined schedule.
 
 ### Run a Scheduled Trace on Demand
 
@@ -318,22 +340,23 @@ To run a scheduled trace now:
 
     {{< figure src="/images/netq/trace-request-small-selection-230.png" width="200" >}}
 
-    {{< figure src="/images/netq/trace-request-medium-selection-230.png" width="200" >}}
+    {{< figure src="/images/netq/trace-request-medium-selection-310.png" width="200" >}}
 
-    {{< figure src="/images/netq/trace-request-large-selection-222.png" width="500" >}}
+    {{< figure src="/images/netq/trace-request-large-selection-310.png" width="500" >}}
 
-2. Select the scheduled trace from the **Select Trace** or **New Trace Request** list. **Note**: In the medium and large cards, the trace details are filled in on selection of the scheduled trace.
+2. Select the scheduled trace from the **Select Trace** or **New Trace Request** list.
+
+    **Note**: In the medium and large cards, the trace details are filled in on selection of the scheduled trace.
 
 3. Click **Go** or **Run Now**. A corresponding Trace Results card is opened on your workbench.
 
 ## View On-demand Trace Results
 
-Once you have started an on-demand trace, the results are displayed in the medium Trace Results card by default. You may view the results in more or less detail by switching to the large or small Trace Results card, respectively.
+Once you have started an on-demand trace, the results are displayed in the medium Trace Results card by default. You may view the results in more or less detail by changing to the large or small Trace Results card, respectively.
 
 ### On-demand Trace Results Card Workflow Summary
 
-The small On-demand Trace Results card
-displays:
+The small On-demand Trace Results card displays:
 
 {{< figure src="/images/netq/od-trace-result-small-230.png" width="200" >}}
 

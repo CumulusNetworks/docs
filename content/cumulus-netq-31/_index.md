@@ -1,5 +1,5 @@
 ---
-title: Cumulus NetQ 3.1 User Guide
+title: Cumulus NetQ 3.1
 author: Cumulus Networks
 weight: 1
 subsection: true
@@ -9,7 +9,6 @@ cascade:
     version: "3.1"
     imgData: cumulus-netq
     siteSlug: cumulus-netq
-    draft: true
 ---
 Cumulus® NetQ is a highly-scalable, modern network operations tool set that utilizes telemetry data for deep troubleshooting, visibility, and automated workflows, to reduce maintenance and network downtimes. It combines the ability to easily upgrade, configure and deploy network elements with a full suite of operations capabilities, such as visibility, troubleshooting, validation, trace and comparative look-back functionality.
 

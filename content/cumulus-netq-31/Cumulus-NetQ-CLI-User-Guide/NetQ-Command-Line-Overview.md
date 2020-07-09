@@ -411,7 +411,8 @@ The `trace` commands enable the network administrator to view the available path
 The trace command syntax is:
 
     netq trace <mac> [vlan <1-4096>] from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
-    netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug] 
+    netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
+    netq trace (<mac> vlan <1-4096>) from <mac-src> [around <text-time>] [json|detail|pretty]
 
 **Example** Running a trace based on the destination IP address, in *pretty* output with a small number of resulting paths:
 
@@ -481,3 +482,21 @@ The trace command syntax is:
               bond1.1001 -- swp7 <vlan1001> Leaf01 vni: 34 swp5 -- swp3 Spine03 swp7 -- swp5 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
                                                            swp4 -- swp3 Spine02 swp7 -- swp4 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
                                                            swp3 -- swp3 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
+
+This example shows how to run a trace based on the source MAC address, in *pretty* output:
+
+```
+cumulus@leaf04:~$ netq trace 00:02:00:00:00:13 vlan 1009 from 00:02:00:00:00:0f pretty
+Number of Paths: 8
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9000
+ host03 swp2 -- swp6 edge02 sw_clag200 -- swp3s2 leaf04 sw_clag200 -- mac:a8:2b:b5:f6:ca:85 leaf07 dual_host1 -- swp1 host01  
+                                                        sw_clag200 -- mac:44:38:39:00:99:0e leaf08 dual_host1 -- swp2 host01  
+                              sw_clag200 -- swp7 leaf07 sw_clag200 -- mac:a8:2b:b5:f6:ca:84 leaf07 dual_host1 -- swp1 host01  
+                                                        sw_clag200 -- mac:44:38:39:00:99:0d leaf08 dual_host1 -- swp2 host01  
+ host03 swp1 -- swp6 edge01 sw_clag200 -- swp3s1 leaf04 sw_clag200 -- mac:a8:2b:b5:f6:ca:85 leaf07 dual_host1 -- swp1 host01  
+                                                        sw_clag200 -- mac:44:38:39:00:99:0e leaf08 dual_host1 -- swp2 host01  
+                              sw_clag200 -- swp6 leaf07 sw_clag200 -- mac:a8:2b:b5:f6:ca:84 leaf07 dual_host1 -- swp1 host01  
+                                                        sw_clag200 -- mac:44:38:39:00:99:0d leaf08 dual_host1 -- swp2 host01  
+```

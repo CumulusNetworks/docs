@@ -1721,111 +1721,240 @@ A notification configuration must contain one rule. Each rule must contain a sco
 
 The following events are supported:
 
-| Category | Event ID | Description |
-| ----------- | ---------- | -------------- |
-| Interface Statistics | TCA_RXBROADCAST_UPPER  |  rx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_RXBYTES_UPPER |  rx_bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_RXMULTICAST_UPPER |  rx_multicast per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_TXBROADCAST_UPPER |  tx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_TXBYTES_UPPER     |  tx_bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_TXMULTICAST_UPPER |  tx_multicast bytes per second on a given switch or host is greater than maximum threshold |
-| Resource Utilization | TCA_CPU_UTILIZATION_UPPER | CPU utilization (%) on a given switch or host is greater than maximum threshold |
-| Resource Utilization | TCA_DISK_UTILIZATION_UPPER  |  Disk utilization (%) on a given switch or host is greater than maximum threshold |
-| Resource Utilization | TCA_MEMORY_UTILIZATION_UPPER  |  Memory utilization (%) on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_FAN_UPPER  |  Switch sensor reported fan speed on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_POWER_UPPER|  Switch sensor reported power (Watts) on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_TEMPERATURE_UPPER  |  Switch sensor reported temperature (&deg;C) on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_VOLTAGE_UPPER  |  Switch sensor reported voltage (Volts) on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Number of routes on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Number of multicast routes on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_MAC_ENTRIES_UPPER | Number of MAC addresses on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV4_ROUTE_UPPER | Number of IPv4 routes on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV4_HOST_UPPER | Number of IPv4 hosts on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV6_ROUTE_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV6_HOST_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_ECMP_NEXTHOPS_UPPER | Number of equal cost multi-path (ECMP) next hop entries on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Number of ingress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Number of egress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Number of ingress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Number of egress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Number of ingress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Number of egress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Number of ingress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Number of egress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Number of ingress ACL 802.1 filters on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Number of ACL port range checkers on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_REGIONS_UPPER | Number of ACL regions on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_MIRROR_UPPER | Number of ingress ACL mirrors on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_18B_RULES_UPPER | Number of ACL 18B rules on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_32B_RULES_UPPER | Number of ACL 32B rules on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_54B_RULES_UPPER | Number of ACL 54B rules on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
+{{< tabs "TabID1475" >}}
+
+{{< tab "ACL Resources" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Number of ingress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Number of egress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Number of ingress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Number of egress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Number of ingress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Number of egress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Number of ingress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Number of egress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Number of ingress ACL 802.1 filters on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Number of ACL port range checkers on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_REGIONS_UPPER | Number of ACL regions on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_MIRROR_UPPER | Number of ingress ACL mirrors on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_18B_RULES_UPPER | Number of ACL 18B rules on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_32B_RULES_UPPER | Number of ACL 32B rules on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_54B_RULES_UPPER | Number of ACL 54B rules on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+<!-- {{< tab "Digital Optics" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_INPUT_POWER_UPPER | Transceiver Input power (mW) for the digital optical module on a given switch or host is greater than maximum threshold |
+| TCA_INPUT_POWER_LOWER | Transceiver Input power (mW) for the digital optical module on a given switch or host is less than minimum threshold |
+| TCA_LASER_BIAS_UPPER | Laser bias current (mA) for the digital optical module on a given switch or host is greater than maximum threshold |
+| TCA_LASER_BIAS_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host is less than minimum threshold |
+| TCA_LASER_OUTPUT_POWER_UPPER | Laser output power (mW) for the digital optical module on a given switch or host is greater than maximum threshold |
+| TCA_LASER_OUTPUT_POWER_LOWER | Laser output power (mW) for the digital optical module on a given switch or host is less than minimum threshold |
+| TCA_MODULE_TEMPERATURE_UPPER | Digital optical module temperature (&deg;C) on a given switch or host is greater than maximum threshold |
+| TCA_MODULE_TEMPERATURE_LOWER | Digital optical module temperature (&deg;C) on a given switch or host is less than minimum threshold |
+| TCA_TRANSCEIVER_VOLTAGE_UPPER | Transceiver voltage (mV) on a given switch or host is greater than maximum threshold |
+| TCA_TRANSCEIVER_VOLTAGE_LOWER | Transceiver voltage (mV) on a given switch or host is less than minimum threshold |
+
+{{< /tab >}} -->
+
+{{< tab "Forwarding Resources" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Number of routes on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Number of multicast routes on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_MAC_ENTRIES_UPPER | Number of MAC addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IPV4_ROUTE_UPPER | Number of IPv4 routes on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IPV4_HOST_UPPER | Number of IPv4 hosts on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IPV6_ROUTE_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IPV6_HOST_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ECMP_NEXTHOPS_UPPER | Number of equal cost multi-path (ECMP) next hop entries on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< tab "Interface Statistics" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_RXBROADCAST_UPPER  |  rx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
+| TCA_RXBYTES_UPPER |  rx_bytes per second on a given switch or host is greater than maximum threshold |
+| TCA_RXMULTICAST_UPPER |  rx_multicast per second on a given switch or host is greater than maximum threshold |
+| TCA_TXBROADCAST_UPPER |  tx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
+| TCA_TXBYTES_UPPER     |  tx_bytes per second on a given switch or host is greater than maximum threshold |
+| TCA_TXMULTICAST_UPPER |  tx_multicast bytes per second on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< tab "Resource Utilization" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_CPU_UTILIZATION_UPPER | CPU utilization (%) on a given switch or host is greater than maximum threshold |
+| TCA_DISK_UTILIZATION_UPPER  |  Disk utilization (%) on a given switch or host is greater than maximum threshold |
+| TCA_MEMORY_UTILIZATION_UPPER  |  Memory utilization (%) on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< tab "Sensors" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_SENSOR_FAN_UPPER  |  Switch sensor reported fan speed on a given switch or host is greater than maximum threshold |
+| TCA_SENSOR_POWER_UPPER|  Switch sensor reported power (Watts) on a given switch or host is greater than maximum threshold |
+| TCA_SENSOR_TEMPERATURE_UPPER  |  Switch sensor reported temperature (&deg;C) on a given switch or host is greater than maximum threshold |
+| TCA_SENSOR_VOLTAGE_UPPER  |  Switch sensor reported voltage (Volts) on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Define a Scope
 
 A scope is used to filter the events generated by a given rule. Scope values are set on a per TCA rule basis. All rules can be filtered on Hostname. Some rules can also be filtered by other parameters, as shown in this table. *Note*: Scope parameters must be entered in the order defined.
 
-| Category | Event ID | Scope Parameters |
-| ------------ | ---------- | -------------- |
-| Interface Statistics | TCA_RXBROADCAST_UPPER  |  Hostname, Interface |
-| Interface Statistics | TCA_RXBYTES_UPPER |  Hostname, Interface |
-| Interface Statistics | TCA_RXMULTICAST_UPPER |  Hostname, Interface |
-| Interface Statistics | TCA_TXBROADCAST_UPPER | Hostname, Interface |
-| Interface Statistics | TCA_TXBYTES_UPPER | Hostname, Interface |
-| Interface Statistics | TCA_TXMULTICAST_UPPER | Hostname, Interface |
-| Resource Utilization | TCA_CPU_UTILIZATION_UPPER | Hostname |
-| Resource Utilization | TCA_DISK_UTILIZATION_UPPER  |  Hostname |
-| Resource Utilization | TCA_MEMORY_UTILIZATION_UPPER  |  Hostname |
-| Sensors | TCA_SENSOR_FAN_UPPER  |  Hostname, Sensor Name |
-| Sensors | TCA_SENSOR_POWER_UPPER|  Hostname, Sensor Name |
-| Sensors | TCA_SENSOR_TEMPERATURE_UPPER  |  Hostname, Sensor Name |
-| Sensors | TCA_SENSOR_VOLTAGE_UPPER  |  Hostname, Sensor Name |
-| Forwarding Resources | TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_MAC_ENTRIES_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_ECMP_NEXTHOPS_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV4_ROUTE_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV4_HOST_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV6_ROUTE_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV6_HOST_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_REGIONS_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_MIRROR_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_18B_RULES_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_32B_RULES_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_54B_RULES_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Hostname |
+{{< tabs "TabID373" >}}
+
+{{< tab "ACL Resources" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Hostname |
+| TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Hostname |
+| TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Hostname |
+| TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Hostname |
+| TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Hostname |
+| TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Hostname |
+| TCA_TCAM_ACL_REGIONS_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_MIRROR_UPPER | Hostname |
+| TCA_TCAM_ACL_18B_RULES_UPPER | Hostname |
+| TCA_TCAM_ACL_32B_RULES_UPPER | Hostname |
+| TCA_TCAM_ACL_54B_RULES_UPPER | Hostname |
+| TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Hostname |
+| TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Hostname |
+
+{{< /tab >}}
+
+{{< tab "Digital Optics" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_INPUT_POWER_UPPER  |  xxx |
+| TCA_INPUT_POWER_LOWER  |  xxx |
+| TCA_LASER_BIAS_UPPER  |  xxx |
+| TCA_LASER_BIAS_LOWER  |  xxx |
+| TCA_LASER_OUTPUT_POWER_UPPER  |  xxx |
+| TCA_LASER_OUTPUT_POWER_LOWER  |  xxx |
+| TCA_MODULE_TEMPERATURE_UPPER  |  xxx |
+| TCA_MODULE_TEMPERATURE_LOWER  |  xxx |
+| TCA_TRANSCEIVER_VOLTAGE_UPPER  |  xxx |
+| TCA_TRANSCEIVER_VOLTAGE_LOWER  |  xxx |
+
+{{< /tab >}}
+
+{{< tab "Forwarding Resources" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Hostname |
+| TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Hostname |
+| TCA_TCAM_MAC_ENTRIES_UPPER | Hostname |
+| TCA_TCAM_ECMP_NEXTHOPS_UPPER | Hostname |
+| TCA_TCAM_IPV4_ROUTE_UPPER | Hostname |
+| TCA_TCAM_IPV4_HOST_UPPER | Hostname |
+| TCA_TCAM_IPV6_ROUTE_UPPER | Hostname |
+| TCA_TCAM_IPV6_HOST_UPPER | Hostname |
+
+{{< /tab >}}
+
+{{< tab "Interface Statistics" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_RXBROADCAST_UPPER  | Hostname, Interface |
+| TCA_RXBYTES_UPPER | Hostname, Interface |
+| TCA_RXMULTICAST_UPPER | Hostname, Interface |
+| TCA_TXBROADCAST_UPPER | Hostname, Interface |
+| TCA_TXBYTES_UPPER | Hostname, Interface |
+| TCA_TXMULTICAST_UPPER | Hostname, Interface |
+
+{{< /tab >}}
+
+{{< tab "Resource Utilization" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_CPU_UTILIZATION_UPPER | Hostname |
+| TCA_DISK_UTILIZATION_UPPER  | Hostname |
+| TCA_MEMORY_UTILIZATION_UPPER  | Hostname |
+
+{{< /tab >}}
+
+{{< tab "Sensors" >}}
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_SENSOR_FAN_UPPER  | Hostname, Sensor Name |
+| TCA_SENSOR_POWER_UPPER| Hostname, Sensor Name |
+| TCA_SENSOR_TEMPERATURE_UPPER  | Hostname, Sensor Name |
+| TCA_SENSOR_VOLTAGE_UPPER  | Hostname, Sensor Name |
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 Scopes are defined with regular expressions, as follows. When two paramaters are used, they are separated by a comma, but no space. When as asterisk (*) is used alone, it must be entered inside either single or double quotes. Single quotes are used here.
 
-| Parameters | Scope Value | Example | Result |
-| -------------- | --------------- | ---------- | -------- |
-| Hostname | \<hostname> | leaf01 | Deliver events for the specified device |
-| Hostname | \<partial-hostname>\* | leaf\* | Deliver events for devices with hostnames starting with specified text (*leaf*) |
-| Hostname | \'\*\' | \'\*\' | Deliver events for all devices |
-| Hostname, Interface | \<hostname>,\<interface> | leaf01,swp9 | Deliver events for the specified interface (*swp9*) on the specified device (*leaf01*) |
-| Hostname, Interface | \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all interfaces on the specified device (*leaf01*) |
-| Hostname, Interface | \'\*\',\<interface> | \'\*\',swp9 | Deliver events for the specified interface (*swp9*) on all devices |
-| Hostname, Interface | \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all devices and all interfaces |
-| Hostname, Interface | \<partial-hostname>\*,\<interface> | leaf*,swp9 | Deliver events for the specified interface (*swp9*) on all devices with hostnames starting with the specified text (*leaf*) |
-| Hostname, Interface | \<hostname>,\<partial-interface>\* | leaf01,swp* | Deliver events for all interface with names starting with the specified text (*swp*) on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \<hostname>,\<sensorname> | leaf01,fan1 | Deliver events for the specified sensor (*fan1*) on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \'\*\',\<sensorname> | \'\*\',fan1 | Deliver events for the specified sensor (*fan1*) for all devices |
-| Hostname, Sensor Name |  \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all sensors on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \<partial-hostname>\*,\<interface> | leaf*,fan1 | Deliver events for the specified sensor (*fan1*) on all devices with hostnames starting with the specified text (*leaf*) |
-| Hostname, Sensor Name | \<hostname>,\<partial-sensorname>\* | leaf01,fan* | Deliver events for all sensors with names starting with the specified text (*fan*) on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all sensors on all devices |
+{{< tabs "TabID1668" >}}
+
+{{< tab "Hostname" >}}
+
+| Scope Value | Example | Result |
+| --------------- | ---------- | -------- |
+| \<hostname> | leaf01 | Deliver events for the specified device |
+| \<partial-hostname>\* | leaf\* | Deliver events for devices with hostnames starting with specified text (*leaf*) |
+| \'\*\' | \'\*\' | Deliver events for all devices |
+
+{{< /tab >}}
+
+{{< tab "Hostname, Interface">}}
+
+| Scope Value | Example | Result |
+| --------------- | ---------- | -------- |
+| \<hostname>,\<interface> | leaf01,swp9 | Deliver events for the specified interface (*swp9*) on the specified device (*leaf01*) |
+| \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all interfaces on the specified device (*leaf01*) |
+| \'\*\',\<interface> | \'\*\',swp9 | Deliver events for the specified interface (*swp9*) on all devices |
+| \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all devices and all interfaces |
+| \<partial-hostname>\*,\<interface> | leaf*,swp9 | Deliver events for the specified interface (*swp9*) on all devices with hostnames starting with the specified text (*leaf*) |
+| \<hostname>,\<partial-interface>\* | leaf01,swp* | Deliver events for all interface with names starting with the specified text (*swp*) on the specified device (*leaf01*) |
+
+{{< /tab >}}
+
+{{< tab "Hostname, Sensor Name">}}
+
+| Scope Value | Example | Result |
+| --------------- | ---------- | -------- |
+| \<hostname>,\<sensorname> | leaf01,fan1 | Deliver events for the specified sensor (*fan1*) on the specified device (*leaf01*) |
+| \'\*\',\<sensorname> | \'\*\',fan1 | Deliver events for the specified sensor (*fan1*) for all devices |
+|  \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all sensors on the specified device (*leaf01*) |
+| \<partial-hostname>\*,\<interface> | leaf*,fan1 | Deliver events for the specified sensor (*fan1*) on all devices with hostnames starting with the specified text (*leaf*) |
+| \<hostname>,\<partial-sensorname>\* | leaf01,fan* | Deliver events for all sensors with names starting with the specified text (*fan*) on the specified device (*leaf01*) |
+| \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all sensors on all devices |
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+<!-- ADD New params for acl and forwarding resources, dom? -->
 
 ### Create a TCA Rule
 

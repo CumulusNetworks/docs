@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 130
 toc: 5
 ---
-After installing your Cumulus NetQ software and the  NetQ 3.0.0 Agents on each switch you want to monitor, you can also install the NetQ CLI on servers running:
+After installing your Cumulus NetQ software and the  NetQ 3.1.0 Agents on each switch you want to monitor, you can also install the NetQ CLI on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7
@@ -100,14 +100,14 @@ A simple process installs the NetQ CLI on a RHEL or CentOS server.
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-3.0]
+    [cumulus-arch-netq-3.1]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.1/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-3.0]
+    [cumulus-noarch-netq-3.1]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.1/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -126,7 +126,7 @@ A simple process installs the NetQ CLI on a RHEL or CentOS server.
     root@rhel7:~# rpm -q -netq-apps
     ```
 
-    {{<netq-install/cli-version version="3.0.0" opsys="rh">}}
+    {{<netq-install/cli-version version="3.1.0" opsys="rh">}}
 
 5. Continue with the next section.
 

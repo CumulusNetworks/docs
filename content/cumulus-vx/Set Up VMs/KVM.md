@@ -1,7 +1,7 @@
 ---
 title: KVM
 author: Cumulus Networks
-weight: 24
+weight: 22
 toc: 2
 ---
 The following sections describe how to set up a two-leaf and two-spine Cumulus VX topology with QEMU/KVM on a Linux server.

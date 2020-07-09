@@ -1,7 +1,7 @@
 ---
 title: VMware vSphere ESXi
 author: Cumulus Networks
-weight: 18
+weight: 20
 toc: 2
 ---
 The following sections describe how to import and set up a two-leaf and two-spine Cumulus VX topology with VMware vSphere. These sections assume a basic level of VMware vSphere experience. For detailed instructions, refer to the {{<exlink url="https://docs.vmware.com/en/VMware-vSphere/index.html" text="VMware vSphere documentation">}}.
@@ -42,7 +42,7 @@ This configuration was tested using vSphere ESXi 5.5 and a Windows vSphere clien
 
 10. After you have created all four VMs, follow the steps detailed in {{<link url="Create-a-Two-Leaf-Two-Spine-Topology" text="Create a Two-Leaf, Two-Spine Topology">}} to configure the network interfaces and routing.
 
-## Caveats and Errata
+{{%notice note%}}
 
 You might encounter an issue if the wrong storage interface type is selected (SATA or IDE). For example this log message indicates the filesystem cannot be found. Configure ESXi to use the SATA controller.
 
@@ -56,3 +56,5 @@ Verifying system ram ...OK.
 Setting up installer ...Failure: Unable to find storage device for file system with label 'ONIE-BOOT'
 Info: Check the output of 'blkid'.
 ```
+
+{{%/notice%}}

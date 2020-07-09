@@ -1,7 +1,7 @@
 ---
 title: ONIE Virtual Machine
 author: Cumulus Networks
-weight: 30
+weight: 24
 toc: 2
 ---
 Cumulus VX images now include the GRUB boot loader and {{<exlink url="(http://onie.org/" text="Open Network Install Environment (ONIE)">}} preinstalled. You can install Cumulus Linux on switch hardware using a binary image. You can test this process by installing a Cumulus VX binary image with ONIE in a virtual environment.

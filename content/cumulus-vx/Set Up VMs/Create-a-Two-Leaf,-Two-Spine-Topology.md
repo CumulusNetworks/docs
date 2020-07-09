@@ -1,7 +1,7 @@
 ---
 title: 'Create a Two-Leaf, Two-Spine Topology'
 author: Cumulus Networks
-weight: 34
+weight: 26
 product: Cumulus VX
 version: '3.7'
 ---

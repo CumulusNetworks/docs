@@ -19,6 +19,9 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - Mellanox SN4600C (100G Spectrum-3) - available for Early Access
 - Mellanox SN3420 (25G Spectrum-2)
 
+The following platforms are supported in Cumulus Linux 3.7 and are now supported in Cumulus Linux 4.2.
+- Dell N3048EP-ON
+
 ### New Features and Enhancements
 
 - {{<link url="Quick-Start-Guide#login-credentials" text="Mandatory cumulus user default password change">}} upon first login
@@ -29,3 +32,25 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - Ability to set the {{<link title="Network Troubleshooting#use-the-cpu-port-as-the-span-destination" text="CPU as a SPAN destination interface">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#ecmp-custom-hashing" text="ECMP">}} and {{<link url="Bonding-Link-Aggregation/#lag-custom-hashing" text="LAG">}} custom hash parameters have been moved to the `/etc/cumulus/datapath/traffic.conf` file and no longer require a `switchd` restart
 - {{<link url="Policy-based-Routing" text="DSCP-based packet matching">}} in PBR rules
+
+### Unsupported Platforms
+
+Cumulus Networks will not support these platforms in Cumulus Linux 4.1. They are still supported in Cumulus Linux 3.7 until that version reaches its end of life.
+
+* Cumulus Express CX-10256-S/Edgecore OMP-800 (100G Tomahawk)
+* Dell S6000-ON (40G Trident2)
+* EdgeCore Wedge-100 (100G Tomahawk)
+* Facebook Backpack (100G Tomahawk)
+* Facebook Voyager (100G Tomahawk)
+
+The following platforms are supported in Cumulus Linux 3.7 but are not yet supported in Cumulus Linux 4.1. Support for these platforms will be added in a future Cumulus Linux release.
+
+#### Delta Platforms
+* Delta AG7648
+
+#### Edgecore Platforms
+* Edgecore AS4610-54T-B
+
+#### Quanta Platforms
+* QCT QuantaMesh BMS T3048-LY8
+* QCT QuantaMesh BMS T3048-LY9

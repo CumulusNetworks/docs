@@ -23,6 +23,36 @@ Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains sev
 - Dell 5212F-ON (25G Trident3 X5)
 - Mellanox SN2010 with 32G RAM (25G Spectrum)
 
+The following platforms are supported in Cumulus Linux 3.7 and are now supported in Cumulus Linux 4.1.
+
+- Dell S4128F-ON
+- Dell S4128T-ON
+- Dell S4148F-ON
+- Dell S4148T-ON
+- Dell Z9100-ON
+- Dell S5048F-ON
+- Delta AG9032v1
+- Delta AG9032v2
+- Edgecore AS4610-54P
+- Edgecore AS4610-54T
+- Edgecore AS5712-54X
+- Edgecore AS7312-54XS
+- Edgecore AS7712-32X
+- Mellanox SN2010
+- Mellanox SN2100
+- Penguin Arctica 3200xlp
+- Penguin Arctica 4804ip
+- Penguin Arctica 4804iq
+- Penguin Arctica 4806xp
+- QCT QuantaMesh BMS T4048-IX2
+- QCT QuantaMesh T1048-LY4R
+- QCT QuantaMesh BMS T5032-LY6-x86
+- QCT QuantaMesh BMS T3048-LY7
+- SuperMicro SSE-C3632S
+- SuperMicro SSE-G3648B
+- SuperMicro SSE-X3648S
+
+
 ### New Features and Enhancements
 
 - {{<link url="Network-Address-Translation-NAT" text="Static and dynamic NAT">}}
@@ -39,3 +69,29 @@ Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="Default reserved VLAN range">}} reduced to 3600-3999
 - The default {{<link url="Switch-Port-Attributes/#mtu" text="MTU">}} has changed to 9216 from 1500
 - New NCLU commands: `net show neighbors`, `net show sensor output`, `net show system leds` `net show system asic`, `net show system ztp`
+
+### Unsupported Platforms
+
+Cumulus Networks will not support these platforms in Cumulus Linux 4.1. They are still supported in Cumulus Linux 3.7 until that version reaches its end of life.
+
+* Cumulus Express CX-10256-S/Edgecore OMP-800 (100G Tomahawk)
+* Dell S6000-ON (40G Trident2)
+* EdgeCore Wedge-100 (100G Tomahawk)
+* Facebook Backpack (100G Tomahawk)
+* Facebook Voyager (100G Tomahawk)
+
+
+The following platforms are supported in Cumulus Linux 3.7 but are not yet supported in Cumulus Linux 4.1. Support for these platforms will be added in a future Cumulus Linux release.
+
+#### Dell Platforms
+* Dell N3048EP-ON
+
+#### Delta Platforms
+* Delta AG7648
+
+#### Edgecore Platforms
+* Edgecore AS4610-54T-B
+
+#### Quanta Platforms
+* QCT QuantaMesh BMS T3048-LY8
+* QCT QuantaMesh BMS T3048-LY9

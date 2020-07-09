@@ -23,7 +23,7 @@ Cumulus Linux 4.1.0 supports new platforms, provides bug fixes, and contains sev
 - Dell 5212F-ON (25G Trident3 X5)
 - Mellanox SN2010 with 32G RAM (25G Spectrum)
 
-The following platforms are supported in Cumulus Linux 3.7 and are now supported in Cumulus Linux 4.1.
+The following platforms are supported in Cumulus Linux 3.7 and are now supported in Cumulus Linux 4.1.0 and later:
 
 - Dell S4128F-ON
 - Dell S4128T-ON
@@ -52,7 +52,6 @@ The following platforms are supported in Cumulus Linux 3.7 and are now supported
 - SuperMicro SSE-G3648B
 - SuperMicro SSE-X3648S
 
-
 ### New Features and Enhancements
 
 - {{<link url="Network-Address-Translation-NAT" text="Static and dynamic NAT">}}
@@ -72,26 +71,18 @@ The following platforms are supported in Cumulus Linux 3.7 and are now supported
 
 ### Unsupported Platforms
 
-Cumulus Networks will not support these platforms in Cumulus Linux 4.1. They are still supported in Cumulus Linux 3.7 until that version reaches its end of life.
+Cumulus Networks does not support these platforms in Cumulus Linux 4.1. They are supported in Cumulus Linux 3.7 until that release reaches its end of life.
 
-* Cumulus Express CX-10256-S/Edgecore OMP-800 (100G Tomahawk)
-* Dell S6000-ON (40G Trident2)
-* EdgeCore Wedge-100 (100G Tomahawk)
-* Facebook Backpack (100G Tomahawk)
-* Facebook Voyager (100G Tomahawk)
-
+- Cumulus Express CX-10256-S/Edgecore OMP-800 (100G Tomahawk)
+- Dell S6000-ON (40G Trident2)
+- EdgeCore Wedge-100 (100G Tomahawk)
+- Facebook Backpack (100G Tomahawk)
+- Facebook Voyager (100G Tomahawk)
 
 The following platforms are supported in Cumulus Linux 3.7 but are not yet supported in Cumulus Linux 4.1. Support for these platforms will be added in a future Cumulus Linux release.
 
-#### Dell Platforms
-* Dell N3048EP-ON
-
-#### Delta Platforms
-* Delta AG7648
-
-#### Edgecore Platforms
-* Edgecore AS4610-54T-B
-
-#### Quanta Platforms
-* QCT QuantaMesh BMS T3048-LY8
-* QCT QuantaMesh BMS T3048-LY9
+- Dell N3048EP-ON
+- Delta AG7648
+- Edgecore AS4610-54T-B
+- QCT QuantaMesh BMS T3048-LY8
+- QCT QuantaMesh BMS T3048-LY9

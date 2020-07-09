@@ -17,7 +17,7 @@ endpoint and model parameter are contained in the API .json files.
 
 For information regarding new features, improvements, bug fixes, and
 known issues present in this release, refer to the
-{{<link title="Cumulus NetQ 3.1 Release Notes" text="release notes">}}.
+{{<link title="Cumulus NetQ 3.2 Release Notes" text="release notes">}}.
 
 ## API Organization
 

@@ -4,15 +4,15 @@ author: Cumulus Networks
 weight: 5
 toc: 2
 ---
-This document supports the Cumulus Linux 4.2 release and lists the new platforms and features.
+This document supports the Cumulus Linux 4.2 release and lists new platforms and features.
 
 - For a list of all the platforms supported in Cumulus Linux 4.2, see the {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 4.2, see the {{<link title="Cumulus Linux 4.2 Release Notes" text="Cumulus Linux 4.2 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.2, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
-## What's New in Cumulus Linux 4.2.0
+## What's New in Cumulus Linux 4.2
 
-Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
+Cumulus Linux 4.2 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### New Platforms
 
@@ -20,6 +20,7 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - Mellanox SN3420 (25G Spectrum-2)
 
 The following platforms are supported in Cumulus Linux 3.7 and are now supported in Cumulus Linux 4.2.
+
 - Dell N3048EP-ON
 
 ### New Features and Enhancements
@@ -35,22 +36,17 @@ The following platforms are supported in Cumulus Linux 3.7 and are now supported
 
 ### Unsupported Platforms
 
-Cumulus Networks will not support these platforms in Cumulus Linux 4.1. They are still supported in Cumulus Linux 3.7 until that version reaches its end of life.
+Cumulus Networks does not support these platforms in Cumulus Linux 4.2. They are supported in Cumulus Linux 3.7, until that release reaches its end of life.
 
-* Cumulus Express CX-10256-S/Edgecore OMP-800 (100G Tomahawk)
-* Dell S6000-ON (40G Trident2)
-* EdgeCore Wedge-100 (100G Tomahawk)
-* Facebook Backpack (100G Tomahawk)
-* Facebook Voyager (100G Tomahawk)
+- Cumulus Express CX-10256-S/Edgecore OMP-800 (100G Tomahawk)
+- Dell S6000-ON (40G Trident2)
+- EdgeCore Wedge-100 (100G Tomahawk)
+- Facebook Backpack (100G Tomahawk)
+- Facebook Voyager (100G Tomahawk)
 
-The following platforms are supported in Cumulus Linux 3.7 but are not yet supported in Cumulus Linux 4.1. Support for these platforms will be added in a future Cumulus Linux release.
+The following platforms are supported in Cumulus Linux 3.7 but are not yet supported in Cumulus Linux 4.2. Cumulus Networks will add support for these platforms in a future Cumulus Linux release.
 
-#### Delta Platforms
-* Delta AG7648
-
-#### Edgecore Platforms
-* Edgecore AS4610-54T-B
-
-#### Quanta Platforms
-* QCT QuantaMesh BMS T3048-LY8
-* QCT QuantaMesh BMS T3048-LY9
+- Delta AG7648
+- Edgecore AS4610-54T-B
+- QCT QuantaMesh BMS T3048-LY8
+- QCT QuantaMesh BMS T3048-LY9

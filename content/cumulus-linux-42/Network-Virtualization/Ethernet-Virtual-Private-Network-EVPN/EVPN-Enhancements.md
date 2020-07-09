@@ -345,7 +345,7 @@ By default, when a duplicate address is detected, Cumulus Linux flags the addres
 
 {{%notice note%}}
 
-If a MAC address is flagged as a duplicate, all IP addresses associated with that MAC are flagged as duplicates.
+If a MAC address is flagged as a duplicate, all IP addresses associated with that MAC are flagged as duplicates. However, in an MLAG configuration, only one of the MLAG peers might flag the associated IP addresses as duplicates.
 
 {{%/notice%}}
 

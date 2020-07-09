@@ -478,7 +478,7 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="even">
 <td>Sensors</td>
-<td>Displays all known sensors on the switch. This tab provides a table for each type of sensor. Select the sensor type using the filter above the table. SFP and QSFP digital optic module data is available when optical diagnostics support is enabled in Cumulus Linux. You can configure threshold-based events for the digital optic modules in {{<link url="/cumulus-netq-31/Cumulus-NetQ-Admin-User-Guide/Application-Management/#manage-threshold-crossing-rules" text="Manage Threshold Crossing Rules">}}.
+<td>Displays all known sensors on the switch. This tab provides a table for each type of sensor. Select the sensor type using the filter above the table. SFP and QSFP digital optic module data is available when optical diagnostics support is enabled in Cumulus Linux.</td>
 <ul>
 <li> <strong>Fan</strong>:<ul>
 <li>Hostname: Hostname where the fan sensor resides</li>

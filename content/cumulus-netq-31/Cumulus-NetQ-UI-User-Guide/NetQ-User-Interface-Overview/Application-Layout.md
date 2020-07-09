@@ -9,7 +9,7 @@ The NetQ UI contains two main areas:
 - **Application Header** (1): Contains the main menu, recent actions history, search capabilities, NetQ version, quick health status chart, local time zone, premises list, and user account information.
 - **Workbench** (2): Contains a task bar, content cards (with status and configuration information about your network and its various components), and help menu.
 
-{{< figure src="/images/netq/app-layout-cumulus-wb-areas-highlighted-241.png" width="700" >}}
+{{<figure src="/images/netq/app-layout-cumulus-wb-areas-highlighted-310.png" width="700" >}}
 
 ## Main Menu
 
@@ -21,7 +21,7 @@ Found in the application header, click <img src="https://icons.cumulusnetworks.c
 - **Admin**: contains links to application management and lifecycle management features (only visible to users with Admin access role)
 - **Notifications**: contains link to threshold-based event rules and notification channels
 
-{{< figure src="/images/netq/main-menu-admin-300.png" width="600" >}}
+{{<figure src="/images/netq/main-menu-admin-310.png" width="600" >}}
 
 ## Recent Actions
 
@@ -29,7 +29,7 @@ Found in the header, Recent Actions keeps track of every action you take on your
 
 To open Recent Actions, click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg" height="18" width="18"/>. Click on any of the actions to perform that action again.
 
-{{< figure src="/images/netq/recent-actions-222.png" width="250" >}}
+{{<figure src="/images/netq/recent-actions-222.png" width="250" >}}
 
 ## Search
 

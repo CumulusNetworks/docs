@@ -63,7 +63,7 @@ The MACs (media access control addresses) view provides all available parameter 
 | Hostname | Name of the switch or host where the MAC address resides |
 | Timestamp | Date and time the data was captured |
 | Egress Port | Port where traffic exits the switch or host |
-| Is Remote | Indicates if the address is xxx (*true*) or yyy (*false*) |
+| Is Remote | Indicates if the address is |
 | Is Static | Indicates if the address is a static (*true*) or dynamic assignment (*false*) |
 | MAC Address | MAC address |
 | Nexthop | Next hop for traffic hitting this MAC address on this switch or host |
@@ -103,7 +103,7 @@ The IP Routes view provides all available parameter data about all IP routes. Th
 | Prefix | IPv4 or IPv6 address prefix |
 | Priority | Rank of this route to be used before another, where the lower the number, less likely is to be used; value determined by routing protocol |
 | Protocol | Protocol responsible for this route |
-| Route Type | xxx |
+| Route Type | Type of route |
 | Rt Table ID | The routing table identifier where the route resides |
 | Src | Prefix of the address where the route is coming from (the previous hop) |
 | VRF | Associated virtual route interface associated with this route |
@@ -122,7 +122,7 @@ The IP Neighbors view provides all available parameter data about all IP neighbo
 | If Name | Name of interface used to communicate with this neighbor |
 | IP Address | IPv4 or IPv6 address of the neighbor switch or host |
 | Is IPv6 | Indicates if the address is an IPv6 (*true*) or IPv4 (*false*) address |
-| Is Remote | Indicates if the address is xxx (*true*) or yyy (*false*) |
+| Is Remote | Indicates if the address is |
 | MAC Address | MAC address of the neighbor switch or host |
 | Message Type | Network service or protocol; always *Neighbor* in this table |
 | VRF | Associated virtual route interface associated with this neighbor |
@@ -365,9 +365,9 @@ The Sensors view provides all available parameter data provided by the power sup
 | Message Type | Type of sensor message; always *Fan* in this table |
 | Description | User specified description of the fan |
 | Speed (RPM) | Revolution rate of the fan (revolutions per minute) |
-| Max | Maximum speed (RPM) (allowed or captured during the window or ever?) |
-| Min | Minimum speed (RPM) (allowed or captured during the window or ever?) |
-| Message | xxx |
+| Max | Maximum speed (RPM) |
+| Min | Minimum speed (RPM) |
+| Message | Message |
 | Sensor Name | User-defined name for the fan |
 | Previous State | State of the fan when data was captured in previous window |
 | State | State of the fan when data was last captured |
@@ -382,7 +382,7 @@ The Sensors view provides all available parameter data provided by the power sup
 | Lower Critical | Current critical minimum temperature (&deg;C) threshold setting |
 | Max | Maximum temperature threshold setting |
 | Min | Minimum temperature threshold setting |
-| Message | xxx |
+| Message | Message |
 | Sensor Name | User-defined name for the temperature sensor |
 | Previous State | State of the fan when data was captured in previous window |
 | State | State of the fan when data was last captured |

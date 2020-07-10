@@ -1,5 +1,5 @@
 ---
-title: Configure VMs
+title: Set Up VMs
 author: Cumulus Networks
 weight: 16
 toc: 2

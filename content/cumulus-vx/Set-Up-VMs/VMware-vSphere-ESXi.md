@@ -4,9 +4,10 @@ author: Cumulus Networks
 weight: 20
 toc: 2
 ---
-The following sections describe how to import and set up a two-leaf and two-spine Cumulus VX topology with VMware vSphere. These sections assume a basic level of VMware vSphere experience. For detailed instructions, refer to the {{<exlink url="https://docs.vmware.com/en/VMware-vSphere/index.html" text="VMware vSphere documentation">}}.
 
-This section assumes that you have downloaded the Cumulus VX disk image for VMware hypervisors and that the VMware vSphere is installed.
+ADD INTRO
+
+The following procedure describes how to create a Cumulus VX VM with VMWare vSphere ESXi. This section assumes a basic level of VMware vSphere experience. For detailed instructions, refer to the {{<exlink url="https://docs.vmware.com/en/VMware-vSphere/index.html" text="VMware vSphere documentation">}}.
 
 This configuration was tested using vSphere ESXi 5.5 and a Windows vSphere client; however, the VM is configured to support ESXi 4.0 and higher.
 

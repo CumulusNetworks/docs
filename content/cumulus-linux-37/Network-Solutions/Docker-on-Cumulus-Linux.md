@@ -65,9 +65,9 @@ Install Docker:
          
         docker
 
-2.  Create the directories for the `systemd` configuration files for Docker:
+2.  Create the directory for the `systemd` configuration file for Docker:
 
-        cumulus@switch:$ sudo mkdir -p /etc/systemd/system/docker.service.d/ /etc/systemd/system/docker@.service.d/
+        cumulus@switch:$ sudo mkdir -p /etc/systemd/system/docker.service.d/
 
 3.  In a text editor, create a file called
     `/etc/systemd/system/docker.service.d/noiptables-mgmt-vrf.conf`, add
@@ -77,13 +77,9 @@ Install Docker:
          
         [Service]
         ExecStart=
-        ExecStart=/bin/ip vrf exec %i /usr/bin/dockerd --iptables=false --ip-masq=false --ip-forward=false
-        
-4.  Copy noiptables-mgmt-vrf.conf into the `docker@` directory we created in step 2:
-    
-        cumulus@switch:$ sudo cp /etc/systemd/system/docker.service.d/noiptables-mgmt-vrf.conf /etc/systemd/system/docker@.service.d/noiptables-mgmt-vrf.conf
+        ExecStart=/usr/bin/dockerd --iptables=false --ip-masq=false --ip-forward=false
 
-5.  In a text editor, edit a file called `/lib/systemd/system/docker.service`,
+4.  In a text editor, edit a file called `/lib/systemd/system/docker.service`,
     and comment out the line starting with `Delegate`:
 
         cumulus@switch:$ sudo nano /lib/systemd/system/docker.service
@@ -93,7 +89,7 @@ Install Docker:
         #Delegate=yes
         ...
 
-6.  In a text editor, create a file called `/etc/docker/daemon.json`, add
+5.  In a text editor, create a file called `/etc/docker/daemon.json`, add
     the following line to it, then save the file:
 
         cumulus@switch:$ sudo nano /etc/docker/daemon.json

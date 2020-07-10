@@ -6,7 +6,7 @@ toc: 2
 ---
 ADD INTRO
 
-## Create a Cumulus VX VM with VirtualBox
+## Create a VM with VirtualBox
 
 The following procedure describes how to create a Cumulus VX VM with VirtualBox. This section assumes a basic level of VirtualBox experience.
 
@@ -33,7 +33,78 @@ The following procedure describes how to create a Cumulus VX VM with VirtualBox.
    - `spine01`
    - `spine02`
 
-10. After you have created all four VMs, follow the steps in {{<link url="Create-a-Two-Leaf-Two-Spine-Topology" text="Create a Two-Leaf, Two-Spine Topology">}} to configure the network interfaces and routing.
+## Create Point-to-Point Connections Between VMs
+
+To use the network topology you configured above, you need to configure the network adapter settings for each VM to create point-to-point connections. The following example shows how to create point-to-point connections between each VM in VirtualBox. Follow these steps for each of the four VMs.
+
+{{%notice note%}}
+
+Make sure that the VM is powered off.
+
+{{%/notice%}}
+
+1. In the VirtualBox Manager window, select the VM.
+
+2. Click **Settings**, then click **Network**.
+
+3. Click **Adapter 2**.
+
+4. Click the **Enable Network Adapter** check box.
+
+5. From the **Attached to** list, select **Internal Network**.  
+
+    {{< img src = "/images/cumulus-vx/adapterSettings.png" >}}
+
+6. In the **Name** field, type a name for the internal network, then click **OK**.
+
+   The internal network name must match the internal network name on the corresponding network adapter on the VM to be connected to this VM. For example, in the two-leaf and two-spine Cumulus VX network topology, Adapter 2 (swp1) on CumulusVX-leaf1 is connected to Adapter 2 (swp1) on CumulusVX-spine1; the name must be the same for Adapter 2 on both VMs. Use the internal network names and the connections shown in the illustration and table below.
+
+7. Click **Adapter 3** and repeat steps 4 thru 6. Use the internal network names and the connections shown in the illustration and table below.
+
+{{< img src = "/images/cumulus-vx/mapping.png" >}}
+
+| Switch           | swp  | VirtualBox Interface | VirtualBox Network Type | Name     |
+| ---------------- | ---- | -------------------- | ----------------------- | -------- |
+| CumulusVX-leaf1  |      | Adapter 1            | NAT                     |          |
+|                  | swp1 | Adapter 2            | Internal                | Intnet-1 |
+|                  | swp2 | Adapter 3            | Internal                | Intnet-3 |
+|                  | swp3 | Adapter 4            | Internal                | Intnet-5 |
+| CumulusVX-leaf2  |      | Adapter 1            | NAT                     |          |
+|                  | swp1 | Adapter 2            | Internal                | Intnet-2 |
+|                  | swp2 | Adapter 3            | Internal                | Intnet-4 |
+|                  | swp3 | Adapter 4            | Internal                | Intnet-6 |
+| CumulusVX-spine1 |      | Adapter 1            | NAT                     |          |
+|                  | swp1 | Adapter 2            | Internal                | Intnet-1 |
+|                  | swp2 | Adapter 3            | Internal                | Intnet-2 |
+|                  | swp3 | Adapter 4 (disabled) |                         |          |
+| CumulusVX-spine2 |      | Adapter 1            | NAT                     |          |
+|                  | swp1 | Adapter 2            | Internal                | Intnet-3 |
+|                  | swp2 | Adapter 3            | Internal                | Intnet-4 |
+|                  | swp3 | Adapter 4 (disabled) |                         |          |
+
+## Test the Network Topology Connections
+
+After you restart the VMs, ping across VMs to test the connections:
+
+1. Run the following commands from leaf01:
+
+   - Ping leaf02:
+
+   ```
+   cumulus@Cumulusleaf01:~$ ping 10.2.1.2
+   ```
+
+   - Ping spine01:
+
+   ```
+   cumulus@leaf01:~$ ping 10.2.1.3
+   ```
+
+   - Ping spine02:
+
+   ```
+   cumulus@leaf01:~$ ping 10.2.1.4
+   ```
 
 You can also add a VM to one or more internal virtual networks in VirtualBox by cloning the VM. However, consider the following if you prefer to clone VMs:
 
@@ -51,7 +122,7 @@ Consider the following caveats and expected behaviors when using Cumulus VX with
 
 ### Network Interface Limitations
 
-By default, the VirtualBox Manager only displays the first 8 virtual NICs, and you can only modify the first 4. However, if you plan on using more than 8 virtual network interfaces, you can run the `VBoxManage` command to configure and use up to 36 virtual NICs:
+By default, the VirtualBox Manager only displays the first eight virtual NICs, and you can only modify the first four. However, if you plan on using more than 8 virtual network interfaces, you can run the `VBoxManage` command to configure and use up to 36 virtual NICs:
 
 1. With the VM powered off, edit the VM settings.
 

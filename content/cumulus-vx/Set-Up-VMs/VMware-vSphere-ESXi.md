@@ -7,6 +7,8 @@ toc: 2
 
 ADD INTRO
 
+## Create a VM with VMWare vSphere
+
 The following procedure describes how to create a Cumulus VX VM with VMWare vSphere ESXi. This section assumes a basic level of VMware vSphere experience. For detailed instructions, refer to the {{<exlink url="https://docs.vmware.com/en/VMware-vSphere/index.html" text="VMware vSphere documentation">}}.
 
 This configuration was tested using vSphere ESXi 5.5 and a Windows vSphere client; however, the VM is configured to support ESXi 4.0 and higher.
@@ -59,3 +61,31 @@ Info: Check the output of 'blkid'.
 ```
 
 {{%/notice%}}
+
+## Create Point-to-Point Connections Between VMs
+
+Add section here
+
+## Test the Network Topology Connections
+
+After you restart the VMs, ping across VMs to test the connections:
+
+1. Run the following commands from leaf01:
+
+   - Ping leaf02:
+
+   ```
+   cumulus@Cumulusleaf01:~$ ping 10.2.1.2
+   ```
+
+   - Ping spine01:
+
+   ```
+   cumulus@leaf01:~$ ping 10.2.1.3
+   ```
+
+   - Ping spine02:
+
+   ```
+   cumulus@leaf01:~$ ping 10.2.1.4
+   ```

@@ -6,7 +6,7 @@ toc: 2
 ---
 ADD INTRO
 
-## Create a VM with VirtualBox
+## Create VMs with VirtualBox
 
 The following procedure describes how to create a Cumulus VX VM with VirtualBox. This section assumes a basic level of VirtualBox experience.
 

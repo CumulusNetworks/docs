@@ -4,21 +4,15 @@ author: Cumulus Networks
 weight: 28
 toc: 2
 ---
-This document describes how to install and set up Cumulus Linux within a Vagrant environment, using VirtualBox as the hypervisor.
+This document describes how to install and set up Cumulus Linux within a Vagrant environment, using VirtualBox as the hypervisor. These sections assume a basic level of Vagrant, VirtualBox, and Linux experience.
 
-These sections assume a basic level of Vagrant, VirtualBox, and Linux experience. For detailed instructions, refer to the {{<exlink url="https://www.vagrantup.com/docs/" text="Vagrant documentation">}} and the {{<exlink url="https://www.vagrantup.com/intro/getting-started/index.html" text="getting started guide">}}.
+## Create the VMs
 
-## Configure the Vagrant Environment
-
-This section assumes that you have installed the VirtualBox hypervisor. For detailed instructions, refer to the {{<link url="VirtualBox" text="VirtualBox">}} installation section. Cumulus VX requires Vagrant version 1.7 or later. The installation steps below use Vagrant version 1.9.4 for the example commands.
-
-To set up the Vagrant environment:
-
-1. 1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
+1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
 
 2. Download the Box image for use with Vagrant and VirtualBox from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}.
 
-3. Download and install {{<exlink url="https://www.vagrantup.com/downloads.html" text="Vagrant">}}.
+3. Download and install {{<exlink url="https://www.vagrantup.com/downloads.html" text="Vagrant">}}. Cumulus VX requires Vagrant version 1.7 or later. The installation steps below use Vagrant version 1.9.4 for the example commands.
 
 4. In a terminal, add the Cumulus VX Vagrant box image. Ensure option `2` is specified. Vagrant downloads and installs the latest Cumulus VX VirtualBox image.
 
@@ -35,8 +29,6 @@ To set up the Vagrant environment:
    ==> box: Adding box 'CumulusCommunity/cumulus-vx' (v3.3.0) for provider: virtual box
    ...
    ```
-
-Cumulus Networks provides several preconfigured demos to run with Vagrant using Ansible to configure the VMs. To run these demos, download and install {{<exlink url="https://pypi.python.org/pypi/ansible" text="Ansible 1.7 or newer">}}.
 
 5. In a terminal, create a folder to contain the Vagrant environment, then change directories into that folder.
 
@@ -111,11 +103,7 @@ To shut down the VM, use the `destroy` command:
 
 For more information on configuring VMs with Vagrant, refer to the {{<exlink url="https://docs.vagrantup.com/v2/" text="Vagrant documentation">}}.
 
-You can explore the various demos available as part of the cldemo-vagrant family of repositories located {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant#available-demos" text="here">}}.
-
-## Additional Configuration Options
-
-### Add Switch Port Interfaces to a Cumulus VX VM
+## Add Switch Port Interfaces to a Cumulus VX VM
 
 By default Vagrant only configures the first network interface (eth0) for its own use. You must configure additional network interfaces, such as the Cumulus Linux switch port interfaces, in the `Vagrantfile`. Normally, you configure these interfaces to use a private network. By default, Vagrant provides one preconfigured private network, although you can choose to create additional private networks. You can connect one or more network interfaces to a private network.
 
@@ -170,20 +158,7 @@ When you run `vagrant up`, both VMs are created. You can log in to each VM and c
 
 ## Limitations
 
-At this time, there are some limitations to using Vagrant with Cumulus VX:
+When using Vagrant with Cumulus VX:
 
-- VirtualBox can only support a maximum of 36 network interfaces.
+- VirtualBox can support a maximum of 36 network interfaces.
 - The first network interface (eth0) is always managed by Vagrant and must be connected to a NAT network.
-
-## Test Configuration
-
-Cumulus VX for Vagrant has been tested in the following environments:
-
-|Host OS|Vagrant Version(s)|VirtualBox Version(s)|Notes|
-|--- |--- |--- |--- |
-|OS X 10.10|1.7.3
-1.7.4|4.3
-5.0||
-|Ubuntu 14.04|1.7.4|4.3||
-|Ubuntu 16.04|1.8.5<br>1.8.6<br>1.8.7<br>1.9.1|5.0.26||
-|Windows 7|1.7.3|5.0|While both VirtualBox and Vagrant are fully supported on Windows hosts, Vagrant provisioning with Ansible is not.<br>Cumulus VX demos that use Ansible do not work on Windows.|

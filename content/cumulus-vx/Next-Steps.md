@@ -133,3 +133,7 @@ This section assumes that you have downloaded and installed a hypervisor, {{<exl
 During the ONIE boot sequence, ONIE attempts to start DHCP and timeout on every configured interface. If the VM has numerous configured interfaces, this can take a while to complete.
 
 After the installation process is complete, GRUB redirects you to the installed Cumulus VX instance.
+
+
+
+Cumulus Networks provides several preconfigured demos to run with Vagrant using Ansible to configure the VMs. To run these demos, download and install {{<exlink url="https://pypi.python.org/pypi/ansible" text="Ansible 1.7 or newer">}}.

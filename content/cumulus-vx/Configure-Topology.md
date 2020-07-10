@@ -10,7 +10,7 @@ After you have set up the Cumulus VX on your preferred platform (installed the r
 - The spine VM represents the spine (aggregation layer) switch on the network
 - The two leaf VMs represent the leaf (access layer) switches on the network
 
-{{< img src = "/images/cumulus-vx/network-topology.png" >}}
+{{< figure src = "/images/cumulus-vx/network-topology.png" >}}
 
 The following configuration uses unnumbered IP addressing, with the same /32 IPv4 address on multiple ports. OSPF unnumbered does not have an equivalent to RFC-5549, so you need to use an IPv4 address to bring up the adjacent OSPF neighbors, allowing you to reuse the same IP address. You can see some example
 {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202796476-OSPF-Unnumbered-Sample-Configurations" text="unnumbered OSPF configurations">}} in the knowledge base.

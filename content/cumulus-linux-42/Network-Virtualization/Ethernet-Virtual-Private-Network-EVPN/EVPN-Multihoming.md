@@ -10,21 +10,20 @@ EVPN multihoming is an {{<exlink url="https://support.cumulusnetworks.com/hc/en-
 
 {{%/notice%}}
 
-*EVPN multihoming* (EVPN-MH) is standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG removes the final dependency on a layer 2 topology, allowing for:
+*EVPN multihoming* (EVPN-MH) provides support for active-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG -
 
-- Layer 3 virtualization
-- Removing complexity
-- Increasing scale
-- Providing a single control plane
-- Multi-vendor interoperability
+- Eliminates the need for peerlinks or interswitch links between the top of rack switches
+- Allows more than two TOR switches to participate in a redundancy group
+- Provides a single BGP-EVPN control plane
+- Allows multi-vendor interoperability
 
-EVPN-MH routes traffic using BGP-EVPN type-1, type-2 and type-4 routes, and the FDB, MDB and neighbor databases all sync between the Ethernet segment peers via these routes as well. The VTEPs connect to each other over an *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}*. An Ethernet segment is a group of switch or server links that share a unique Ethernet segment ID (ESI).
+EVPN-MH uses BGP-EVPN Type-1, Type-2 and Type-4 routes for discovering Ethernet Segments and for forwarding traffic to those ESs. The MAC and neighbor databases are synced between the Ethernet segment peers via these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that are attached to the same server. Each Ethernet Segment has an unique Ethernet segment ID (ESI) across the entire POD.
 
-Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es-sys-mac`) and an Ethernet segment ID (`es-id`) on a static or LACP bond. The `es-id` must be globally unique for all the nodes on the segment. However, if your specific topology does not require a system MAC address for each Ethernet segment, you can configure a global system MAC address that is inherited into all the Ethernet segments. You do this by configuring the same `es-sys-mac` for each interface.
+Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es-sys-mac`) and a local Ethernet segment ID (`local-es-id`) on a static or LACP bond. The `es-sys-mac` and `local-es-id` are used to build a Type-3-ESI. This ESI must be globally unique across all the EVPN PEs. The same `es-sys-mac` can be configured on multiple interfaces.
 
 {{%notice note%}}
 
-An Ethernet segment can span more than two switches, unlike MLAG, where the `clag-id` is shared between two switches only. Further, a peerlink is not required to connect the systems on an Ethernet segment. Each Ethernet segment is a distinct redundancy group.
+An Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group.
 
 {{%/notice%}}
 
@@ -35,12 +34,11 @@ An Ethernet segment can span more than two switches, unlike MLAG, where the `cla
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} only.
 - {{<link url="Inter-subnet-Routing/#symmetric-routing" text="Distributed symmetric routing">}}.
 - {{<link url="Basic-Configuration/#arp-and-nd-suppression" text="ARP suppression">}} must be enabled.
-- EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
-- Supported RIOT-capable {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Broadcom Trident3, Trident II+ and Maverick, and Mellanox Spectrum and Spectrum 2.
+- Supported RIOT-capable {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Mellanox Spectrum, Spectrum 2 and Spectrum 3.
 
 {{%notice info%}}
 
-EVPN-MH is incompatible with MLAG. In order to use EVPN-MH, you must remove any MLAG configuration. This entails:
+In order to use EVPN-MH, you must remove any MLAG configuration on the switch. This entails:
 
 - Removing the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
 - Removing the peerlink interfaces in the `/etc/network/interfaces` file.
@@ -65,13 +63,10 @@ An Ethernet segment configuration has these characteristics:
 - The `es-id` is a 24-bit integer (1-16777215).
 - Each interface (bond) needs its own `es-id`.
 - Static and LACP bonds can be associated with an `es-id`.
-- FRRouting does not prevent association of a switch port with an `es-id`.
-- One `es-id` can only be associated with one device. You cannot have swp1->ES-1:1 and swp2->ES-1:1. To allow swp1 and swp2 to be a part of a single Ethernet segment, they would need to be LAG-bonded and then associate the bond with ES-1:1.
-- Each rack can have a maximum of 128 Ethernet segments.
 
-You can also specify a *designated forwarder* (`df-pref`) to maximize the load balancing between the VTEPs on an Ethernet segment. The VTEP with the highest `df-pref` setting becomes the designated forwarder. VTEPs that are *not* the DF block BUM traffic received on the VXLAN overlay to the Ethernet segment.
+A Designated Forwarder is elected per-ES. The DF is reponsible for forwarding flooded traffic received via the VxLAN overlay to the locally attached Ethernet Segment. You can specify a preference for (`df-pref`) on an Ethernet segment for the DF election. The EVPN-PE with the highest `df-pref` setting becomes the DF.
 
-`ifupdown2` generates the FRR EVPN-MH configuration and reloads FRR. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
+NLCU generates the EVPN-MH configuration and reloads FRR and ifupdown2. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
 
 ### Configure the EVPN-MH Bonds
 
@@ -179,9 +174,9 @@ interface hostbond3
 
 There are a few global settings for EVPN multihoming you can set, including:
 
-- `mac-holdtime`: MAC hold time, in seconds. This is the duration for which a switch maintains SYNC MAC entries after the Ethernet segment peer's EVPN route is deleted. During this time, the switch attempts to independently establish reachability of the MAC on the local Ethernet segment. The hold time can be between 0 and 86400 seconds.
-- `neigh-holdtime`:  Neighbor entry hold time, in seconds. The duration for which a switch maintains SYNC neigh entries after the Ethernet segment peer's EVPN route is deleted. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds.
-- `redirect-off`: **Cumulus VX only.** Disables fast failover of traffic destined to the access port via the VXLAN overlay. This knob only applies to Cumulus VX, since fast failover is not supported.
+- `mac-holdtime`: MAC hold time, in seconds. This is the duration for which a switch maintains SYNC MAC entries after the Ethernet segment peer's EVPN Type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the MAC on the local Ethernet segment. The hold time can be between 0 and 86400 seconds.
+- `neigh-holdtime`:  Neighbor entry hold time, in seconds. The duration for which a switch maintains SYNC neigh entries after the Ethernet segment peer's EVPN Type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds.
+- `redirect-off`: **Cumulus VX only.** Disables fast failover of traffic destined to the access port via the VXLAN overlay. This knob only applies to Cumulus VX, since fast failover is only supported on the ASIC.
 - `startup-delay`:  Startup delay. The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. The delay can be between 0 and 216000 seconds.
 
 To configure a MAC hold time for 1000 seconds, run the following commands:
@@ -279,7 +274,7 @@ evpn mh startup-delay 1800
 
 ### Enable Uplink Tracking
 
-You can enable uplink tracking on a multihomed bond or switch port. When all uplinks are down, the Ethernet segment bonds on the switch are put into a proto-down or error-disabled state.
+When all the uplinks go down the VTEP loses connectivity to the VxLAN overlay. To prevent traffic loss in this state the uplinks oper-state is tracked. When all the uplinks are down, the Ethernet segment bonds on the switch are put into a proto-down or error-disabled state. You can configure a link as an MH uplink to enable this tracking.
 
 {{<tabs "upink tracking">}}
 
@@ -424,7 +419,6 @@ When an Ethernet segment link goes down, the attached VTEP notifies all other VT
 
 Fast failover is also triggered by:
 
-- Failure of an access port &mdash; the link between a leaf switch and host.
 - Rebooting a leaf switch or VTEP.
 - Uplink failure. When all uplinks are down, the Ethernet segment bonds on the switch are proto-downed or error disabled.
 

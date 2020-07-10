@@ -6,8 +6,8 @@ toc: 2
 ---
 This section provides set up instructions for each platform:
 
-- {{<link url="VMware-vSphere-ESXi" text="VMware vSphere ESXi">}}
 - {{<link url="VirtualBox" text="VirtualBox">}}
+- {{<link url="VMware-vSphere-ESXi" text="VMware vSphere ESXi">}}
 - {{<link url="KVM" text="KVM">}}
 - {{<link url="Vagrant-and-VirtualBox" text="Vagrant and VirtualBox">}}
 - {{<link url="Vagrant-and-KVM" text="Vagrant and KVM">}}

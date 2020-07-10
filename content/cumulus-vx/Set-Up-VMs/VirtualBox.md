@@ -4,34 +4,38 @@ author: Cumulus Networks
 weight: 18
 toc: 2
 ---
-The following procedures describe how to import and set up a two-leaf and two-spine Cumulus VX topology with VirtualBox.
+ADD INTRO
 
-These sections assume a basic level of VirtualBox experience. For detailed instructions, refer to the {{<exlink url="https://www.virtualbox.org/wiki/Documentation" text="VirtualBox documentation">}}.
+Follow these steps to
 
 ## Create a Cumulus VX VM with VirtualBox
 
-This section assumes that you have downloaded the Cumulus VX disk image for VirtualBox and that VirtualBox is installed. For download locations and steps, refer to {{<link url="Getting-Started" text="Getting Started">}}.
+The following procedure describes how to create a Cumulus VX VM with VirtualBox. This section assumes a basic level of VirtualBox experience.
 
-1. Open VirtualBox and click **File \> Import Appliance**.
+1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
 
-2. Browse for the downloaded VirtualBox image, click the **Open** button, then click **Continue**.
+2. Download the OVA disk image for use with VirtualBox from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}.
 
-3. Review the Appliance settings. Change the name of the VM to `CumulusVX-leaf1`, then click **Import** to begin the import process.  
+3. Open VirtualBox and click **File \> Import Appliance**.
+
+4. Browse for the downloaded VirtualBox image, click the **Open** button, then click **Continue**.
+
+5. Review the Appliance settings. Change the name of the VM to `leaf01`, then click **Import** to begin the import process.  
 
    {{< img src = "/images/cumulus-vx/VirtualBox-review.png" >}}
 
-4. Right click the created `CumulusVX-leaf1` VM, then select **Clone**.
+6. Right click the created `leaf01` VM, then select **Clone**.
 
-5. Change the name of the VM to `CumulusVX-leaf2`, then click **Continue**.
+7. Change the name of the VM to `leaf02`, then click **Continue**.
 
-6. Select **Full Clone** and click **Clone**.
+8. Select **Full Clone** and click **Clone**.
 
-7. Repeat steps 1-3 for two additional VMs:
+9. Repeat steps 6-8 for two additional VMs:
 
-   - `CumulusVX-spine1`
-   - `CumulusVX-spine2`
+   - `spine01`
+   - `spine02`
 
-8. After you have created all four VMs, follow the steps in {{<link url="Create-a-Two-Leaf-Two-Spine-Topology" text="Create a Two-Leaf, Two-Spine Topology">}} to configure the network interfaces and routing.
+10. After you have created all four VMs, follow the steps in {{<link url="Create-a-Two-Leaf-Two-Spine-Topology" text="Create a Two-Leaf, Two-Spine Topology">}} to configure the network interfaces and routing.
 
 You can also add a VM to one or more internal virtual networks in VirtualBox by cloning the VM. However, consider the following if you prefer to clone VMs:
 

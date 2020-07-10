@@ -8,23 +8,27 @@ This section provides an installation process overview with next step links for 
 
 To install Cumulus VX:
 
-1. Download and install the preferred platform.
+1. Download and install the hypervisor you want to use.
 2. Download the appropriate Cumulus VX image from the Cumulus website.
 3. Configure the VMs.
 
-## Download and Install the Hypervisor Platform
+## Download and Install The Hypervisor
 
-To download and install the preferred hypervisor platform, follow the relevant links below. Detailed installation instructions are available on the download websites:
+To download and install the hypevisor you want to use, follow the relevant links below. Detailed installation instructions are available on the download websites:
 
 | Hypervisor          | Download Location |
 | ------------------- | ---------------------------------------------------------------  |
 | VMware vSphere ESXi | {{<exlink url="http://www.vmware.com/products/vsphere.html" >}}  |
 | VirtualBox          | {{<exlink url="https://www.virtualbox.org/wiki/Downloads" >}}    |
 | KVM                 | {{<exlink url="http://www.qemu-project.org/download/" >}}        |
-| Vagrant             | {{<exlink url="https://www.vagrantup.com/downloads.html" >}}     |
-| GNS3                | {{<exlink url="https://community.gns3.com/software" >}}          |
 
-Vagrant is supported with VirtualBox and KVM. GNS3 is supported with VirtualBox.
+Cumulus VX supports:
+
+- Vagrant and VirtualBox
+- Vagrant and KVM
+- GNS3 and VirtualBox
+
+Steps to download and install
 
 ## Download the Cumulus VX Image
 

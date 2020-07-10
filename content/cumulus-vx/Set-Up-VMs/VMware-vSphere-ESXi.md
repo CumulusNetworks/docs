@@ -6,41 +6,41 @@ toc: 2
 ---
 The following sections describe how to import and set up a two-leaf and two-spine Cumulus VX topology with VMware vSphere. These sections assume a basic level of VMware vSphere experience. For detailed instructions, refer to the {{<exlink url="https://docs.vmware.com/en/VMware-vSphere/index.html" text="VMware vSphere documentation">}}.
 
-This section assumes that you have downloaded the Cumulus VX disk image for VMware hypervisors and that the VMware vSphere is installed. For more download locations and steps, refer to the {{<link url="Getting-Started" text="Getting Started">}}.
+This section assumes that you have downloaded the Cumulus VX disk image for VMware hypervisors and that the VMware vSphere is installed.
 
 This configuration was tested using vSphere ESXi 5.5 and a Windows vSphere client; however, the VM is configured to support ESXi 4.0 and higher.
 
-1. Download the VMware OVFtools utility from the {{<exlink url="https://my.vmware.com/web/vmware/details?productId=352&downloadGroup=OVFTOOL350" text="VMware downloads page">}} and install it on the client. You can view installation instructions on the VMware website.
+1. Download and install the VMWare vSphere ESXi hypervisor. Refer to the {{<exlink url="http://www.vmware.com/products/vsphere.html" text="VMWare vSphere documentation">}}.
 
-2. Connect the vSphere client to the vSphere ESXi server using the IP address and user credentials of the ESXi server.
+2. Download the OVA disk image for use with VMware from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}.
 
-3. In the vSphere client window, click **File \> Deploy OVF Template** to open the import window.
+3. Download the VMware OVFtools utility from the {{<exlink url="https://my.vmware.com/web/vmware/details?productId=352&downloadGroup=OVFTOOL350" text="VMware downloads page">}} and install it on the client. You can view installation instructions on the VMware website.
 
-4. Select **Browse**, locate the Cumulus VX OVA file, then click **Next** to continue.
+4. Connect the vSphere client to the vSphere ESXi server using the IP address and user credentials of the ESXi server.
 
-5. Review the template details, then click **Next**.
+5. In the vSphere client window, click **File > Deploy OVF Template** to open the import window.
 
-6. In the text box, edit the name of the VM to `CumulusVX-leaf1`, then click **Next**.
+6. Select **Browse**, locate the Cumulus VX OVA file, then click **Next** to continue.
+
+7. Review the template details, then click **Next**.
+
+8. In the text box, edit the name of the VM to `leaf01`, then click **Next**.
 
     {{< img src = "/images/cumulus-vx/VX_esxi_deploy3_name.png" >}}
 
-7. As the Cumulus VX image is preconfigured, no more set up options are required. Click **Next** through the next few windows until you see the `Ready to Complete` window:
+9. As the Cumulus VX image is preconfigured, no more set up options are required. Click **Next** through the next few windows until you see the `Ready to Complete` window:
 
     {{< img src = "/images/cumulus-vx/VX_esxi_deploy4_ready.png" >}}
 
-8. If you want the VM to start immediately after the import process is complete, select the `Power on after deployment` option, then click **Finish**.
+10. If you want the VM to start immediately after the import process is complete, select the `Power on after deployment` option, then click **Finish**.
 
    The Cumulus VX OVA image is imported into vSphere ESXi and deployed as a VM. The length of the import process depends on the system configuration. You can view the progress in the `Recent Tasks` pane at the bottom of the client window. After the deployment process is complete, the newly created VM appears in the list of VMs in the left pane.
 
    {{< img src = "/images/cumulus-vx/VX_esxi_deploy5_deploying.png" >}}
 
-9. The two-leaf and two-spine network topology requires you to create four VMs. Repeat the previous steps to create three additional VMs. Replace the name `CumulusVX-leaf1` with:
+11. Repeat the previous steps to create three additional VMs: `leaf02`, `spine01`, and `spine02`
 
-   - `CumulusVX-leaf2`
-   - `CumulusVX-spine1`
-   - `CumulusVX-spine2`
-
-10. After you have created all four VMs, follow the steps detailed in {{<link url="Create-a-Two-Leaf-Two-Spine-Topology" text="Create a Two-Leaf, Two-Spine Topology">}} to configure the network interfaces and routing.
+12. After you have created all four VMs, follow the steps detailed in {{<link url="Create-a-Two-Leaf-Two-Spine-Topology" text="Create a Two-Leaf, Two-Spine Topology">}} to configure the network interfaces and routing.
 
 {{%notice note%}}
 

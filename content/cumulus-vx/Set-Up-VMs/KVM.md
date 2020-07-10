@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 22
 toc: 2
 ---
-The following sections describe how to set up a two-leaf and two-spine Cumulus VX topology with QEMU/KVM on a Linux server.
+The following sections describe how to set up a two-leaf and one spine Cumulus VX topology with QEMU/KVM on a Linux server.
 
 These sections assume a basic level of Linux and KVM experience. For detailed instructions, refer to the {{<exlink url="http://wiki.qemu.org/Main_Page" text="QEMU">}} and {{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM">}} documentation.
 

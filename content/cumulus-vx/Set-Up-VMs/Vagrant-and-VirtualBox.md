@@ -14,9 +14,13 @@ This section assumes that you have installed the VirtualBox hypervisor. For deta
 
 To set up the Vagrant environment:
 
-1. Download and install {{<exlink url="https://www.vagrantup.com/downloads.html" text="Vagrant">}}.
+1. 1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
 
-2. In a terminal, add the Cumulus VX Vagrant box image. Ensure option `2` is specified. Vagrant downloads and installs the latest Cumulus VX VirtualBox image.
+2. Download the Box image for use with Vagrant and VirtualBox from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}.
+
+3. Download and install {{<exlink url="https://www.vagrantup.com/downloads.html" text="Vagrant">}}.
+
+4. In a terminal, add the Cumulus VX Vagrant box image. Ensure option `2` is specified. Vagrant downloads and installs the latest Cumulus VX VirtualBox image.
 
    ```
    local@host:~$ vagrant box add cumuluscommunity/cumulus-vx
@@ -34,22 +38,20 @@ To set up the Vagrant environment:
 
 Cumulus Networks provides several preconfigured demos to run with Vagrant using Ansible to configure the VMs. To run these demos, download and install {{<exlink url="https://pypi.python.org/pypi/ansible" text="Ansible 1.7 or newer">}}.
 
-## Configure a Cumulus VX VM with Vagrant
-
-1. In a terminal, create a folder to contain the Vagrant environment, then change directories into that folder.
+5. In a terminal, create a folder to contain the Vagrant environment, then change directories into that folder.
 
    ```
    local@host:~$ mkdir vagrant
    local@host:~$ cd vagrant
    ```
 
-2. Initialize the Vagrant environment so you can provision your VMs. This creates a file called `Vagrantfile` within the folder you just created.
+6. Initialize the Vagrant environment so you can provision your VMs. This creates a file called `Vagrantfile` within the folder you just created.
 
    ```
    local@host:~/vagrant$ vagrant init
    ```
 
-3. Configure Vagrant to spin up a Cumulus VX VM. Modify the newly created `Vagrantfile` to configure the VMs, then save the file:
+7. Configure Vagrant to spin up a Cumulus VX VM. Modify the newly created `Vagrantfile` to configure the VMs, then save the file:
 
    ```
    local@host:~/vagrant$ sudo vi Vagrantfile
@@ -61,7 +63,7 @@ Cumulus Networks provides several preconfigured demos to run with Vagrant using 
 
    Cumulus VX 3.y.z images require at least 512MB to be fully functional. The default Vagrant memory size is 512MB. If performance issues exist, increase the amount of memory by setting the `v.memory` variable in the `Vagrantfile` to *512* or more. You can also adjust the memory size in the VirtualBox UI when the VM is powered off.
 
-4. Run `vagrant up` to start the VM:
+8. Run `vagrant up` to start the VM:
 
    ```
    local@host:~/vagrant$ vagrant up

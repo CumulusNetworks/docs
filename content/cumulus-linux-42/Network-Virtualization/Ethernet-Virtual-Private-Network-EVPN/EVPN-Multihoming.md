@@ -45,7 +45,7 @@ EVPN-MH is incompatible with MLAG. In order to use EVPN-MH, you must remove any 
 - Removing the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
 - Removing the peerlink interfaces in the `/etc/network/interfaces` file.
 - Stopping and disabling the `clagd` service.
-      
+
       cumulus@switch:~$ sudo systemctl stop clagd.service
       cumulus@switch:~$ sudo systemctl disable clagd.service
 
@@ -1743,7 +1743,7 @@ leaf01(config-router-af)# neighbor swp1 activate
 leaf01(config-router-af)# neighbor swp2 activate
 leaf01(config-router-af)# neighbor swp3 activate
 leaf01(config-router-af)# neighbor swp4 activate
-leaf01(config-router-af)#  advertise-all-vni
+leaf01(config-router-af)# advertise-all-vni
 leaf01(config-router-af)# advertise-svi-ip
 leaf01(config-router-af)# exit-address-family
 leaf01(config-router)# exit
@@ -1818,11 +1818,11 @@ net add bgp ipv6 unicast neighbor swp1 activate
 net add bgp ipv6 unicast neighbor swp2 activate
 net add bgp ipv6 unicast neighbor swp3 activate
 net add bgp ipv6 unicast neighbor swp4 activate
-net add bgp l2vpn evpn  neighbor swp1 activate
-net add bgp l2vpn evpn  neighbor swp2 activate
-net add bgp l2vpn evpn  neighbor swp3 activate
-net add bgp l2vpn evpn  neighbor swp4 activate
-net add bgp l2vpn evpn  advertise-all-vni
+net add bgp l2vpn evpn neighbor swp1 activate
+net add bgp l2vpn evpn neighbor swp2 activate
+net add bgp l2vpn evpn neighbor swp3 activate
+net add bgp l2vpn evpn neighbor swp4 activate
+net add bgp l2vpn evpn advertise-all-vni
 net add bgp l2vpn evpn  advertise-svi-ip
 net add time zone Etc/UTC
 net add ptp global slave-only no
@@ -1861,6 +1861,7 @@ net add bond hostbond2 bridge pvid 1001
 net add bond hostbond3 alias Local Node/s leaf02 and Ports swp7 <==> Remote Node/s hostd-13 and Ports swp2
 net add bond hostbond3 bridge pvid 1002
 net add bond hostbond4 alias Local Node/s leaf02 and Ports swp8 <==> Remote Node/s hosts-m2-14 and Ports swp1
+net add bond hostbond1-4 bond lacp-rate 1
 net add bridge bridge ports vx-1000,vx-1001,vx-1002,vx-1003,vx-1004,vx-1005,vx-1006,vx-1007,vx-1008,vx-1009,vx-4001,vx-4002,vx-4003,hostbond4,hostbond1,hostbond2,hostbond3
 net add bridge bridge pvid 1
 net add bridge bridge vids 1000-1009
@@ -1996,43 +1997,141 @@ net add dot1x default-dacl-preauth-filename default_preauth_dacl.rules
 net add dot1x radius authentication-port 1812
 net add dot1x mab-activation-delay 30
 net commit
-
-# There are some configuration commands that are not yet supported by nclu.
-# The following will append those commands to the appropriate files.
-# ========================================================================
-sudo sh -c "printf 'debug zebra mlag\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'debug zebra evpn mh es\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'debug zebra evpn mh mac\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'debug zebra evpn mh neigh\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'debug zebra evpn mh nh\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'ip forwarding\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'debug pim vxlan\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'debug pim mlag\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'debug pim nht\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug zebra kernel\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug zebra events\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug bgp updates\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug pim events\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug pim zebra\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug pim packets register\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug pim packets joins\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug pim vxlan\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug pim mlag\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug pim nht\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug pim trace\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug mroute\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug mroute detail\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug zebra mlag\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'no debug msdp events\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'evpn mh startup-delay 30\n  interface swp1\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'evpn mh startup-delay 30\n  evpn mh uplink\n' >> /etc/frr/frr.conf"
-net add bond hostbond1-4 bond lacp-rate 1
-net add bond hostbond1-3 es-sys-mac 44:38:39:ff:ff:01
 ```
 
 **vtysh Commands**
 
+Use `vtysh` to configure FRRouting:
 
+```
+cumulus@leaf02:~$ sudo vtysh
+
+Hello, this is FRRouting (version 7.4+cl4u1).
+Copyright 1996-2005 Kunihiro Ishiguro, et al.
+
+leaf02# configure terminal
+leaf02(config)# hostname leaf02
+leaf02(config)# log file /var/log/frr/bgpd.log
+leaf02(config)# log timestamp precision 6
+leaf02(config)# evpn mh startup-delay 30
+leaf02(config)# ip forwarding
+leaf02(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+leaf02(config)# ip pim spt-switchover infinity-and-beyond
+leaf02(config)# debug bgp evpn mh es
+leaf02(config)# debug bgp evpn mh route
+leaf02(config)# debug bgp zebra
+leaf02(config)# debug bgp updates
+leaf02(config)# debug zebra evpn mh es
+leaf02(config)# debug zebra evpn mh mac
+leaf02(config)# debug zebra evpn mh neigh
+leaf02(config)# debug zebra evpn mh nh
+leaf02(config)# debug zebra mlag
+leaf02(config)# debug zebra vxlan
+leaf02(config)# debug zebra kernel
+leaf02(config)# debug zebra events
+leaf02(config)# debug pim vxlan
+leaf02(config)# debug pim mlag
+leaf02(config)# debug pim nht
+leaf02(config)# debug pim events
+leaf02(config)# debug pim zebra
+leaf02(config)# debug pim packets register
+leaf02(config)# debug pim packets joins
+leaf02(config)# debug pim trace
+leaf02(config)# debug mroute
+leaf02(config)# debug mroute detail
+leaf02(config)# debug msdp events
+leaf02(config)# no debug zebra kernel
+leaf02(config)# no debug zebra events
+leaf02(config)# no debug bgp updates
+leaf02(config)# no debug pim events
+leaf02(config)# no debug pim zebra
+leaf02(config)# no debug pim packets register
+leaf02(config)# no debug pim packets joins
+leaf02(config)# no debug pim vxlan
+leaf02(config)# no debug pim mlag
+leaf02(config)# no debug pim nht
+leaf02(config)# no debug pim trace
+leaf02(config)# no debug mroute
+leaf02(config)# no debug mroute detail
+leaf02(config)# no debug zebra mlag
+leaf02(config)# no debug msdp events
+leaf02(config)# enable password cn321
+leaf02(config)# password cn321
+leaf02(config)# vrf vrf1
+leaf02(config-vrf)# vni 4001
+leaf02(config-vrf)# exit-vrf
+leaf02(config)# vrf vrf2
+leaf02(config-vrf)# vni 4002
+leaf02(config-vrf)# exit-vrf
+leaf02(config)# vrf vrf3
+leaf02(config-vrf)# vni 4003
+leaf02(config-vrf)# exit-vrf
+leaf02(config)# interface hostbond1
+leaf02(config-if)# evpn mh es-id 1
+leaf02(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf02(config-if)# exit
+leaf02(config)# interface hostbond2
+leaf02(config-if)# evpn mh es-id 2
+leaf02(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf02(config-if)# exit
+leaf02(config)# interface hostbond3
+leaf02(config-if)# evpn mh es-id 3
+leaf02(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf02(config-if)# exit
+leaf02(config)# interface lo
+leaf02(config-if)# ip igmp
+leaf02(config-if)# ip pim sm
+leaf02(config-if)# exit
+leaf02(config)# interface swp1
+leaf02(config-if)# evpn mh uplink
+leaf02(config-if)# ip pim sm
+leaf02(config-if)# exit
+leaf02(config)# interface swp2
+leaf02(config-if)# evpn mh uplink
+leaf02(config-if)# ip pim sm
+leaf02(config-if)# exit
+leaf02(config)# interface swp3
+leaf02(config-if)# evpn mh uplink
+leaf02(config-if)# ip pim sm
+leaf02(config-if)# exit
+leaf02(config)# interface swp4
+leaf02(config-if)# evpn mh uplink
+leaf02(config-if)# ip pim sm
+leaf02(config-if)# exit
+leaf02(config)# router bgp 5557
+leaf02(config-router)# bgp router-id 172.16.0.22
+leaf02(config-router)# bgp bestpath as-path multipath-relax
+leaf02(config-router)# neighbor swp1 interface v6only remote-as external
+leaf02(config-router)# neighbor swp2 interface v6only remote-as external
+leaf02(config-router)# neighbor swp3 interface v6only remote-as external
+leaf02(config-router)# neighbor swp4 interface v6only remote-as external
+leaf02(config-router)# address-family ipv4 unicast
+leaf02(config-router-af)# address-family ipv4 unicast
+leaf02(config-router-af)# exit-address-family
+leaf02(config-router)# address-family ipv6 unicast
+leaf02(config-router-af)# redistribute connected
+leaf02(config-router-af)# neighbor swp1 activate
+leaf02(config-router-af)# neighbor swp2 activate
+leaf02(config-router-af)# neighbor swp3 activate
+leaf02(config-router-af)# neighbor swp4 activate
+leaf02(config-router-af)# exit-address-family
+leaf02(config-router)# address-family l2vpn evpn
+leaf02(config-router-af)# neighbor swp1 activate
+leaf02(config-router-af)# neighbor swp2 activate
+leaf02(config-router-af)# neighbor swp3 activate
+leaf02(config-router-af)# neighbor swp4 activate
+leaf02(config-router-af)# advertise-all-vni
+leaf02(config-router-af)# advertise-svi-ip
+leaf02(config-router-af)# exit-address-family
+leaf02(config-router)# exit
+leaf02(config)# line vty
+leaf02(config-line)# exec-timeout 0 0
+leaf02(config-line)# exit
+leaf02(config)# write memory
+leaf02(config)# exit
+leaf02# exit
+cumulus@leaf02:~$
+```
 
 {{</tab>}}
 
@@ -2311,6 +2410,140 @@ cumulus@leaf03:~$
 
 **vtysh Commands**
 
+Use `vtysh` to configure FRRouting:
+
+```
+cumulus@leaf03:~$ sudo vtysh
+
+Hello, this is FRRouting (version 7.4+cl4u1).
+Copyright 1996-2005 Kunihiro Ishiguro, et al.
+
+leaf03# configure terminal
+leaf03(config)# hostname leaf03
+leaf03(config)# log file /var/log/frr/zebra.log
+leaf03(config)# log file /var/log/frr/bgpd.log
+leaf03(config)# log timestamp precision 6
+leaf03(config)# evpn mh startup-delay 30
+leaf03(config)# ip forwarding
+leaf03(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+leaf03(config)# ip pim spt-switchover infinity-and-beyond
+leaf03(config)# debug bgp zebra
+leaf03(config)# debug zebra vxlan
+leaf03(config)# debug zebra kernel
+leaf03(config)# debug zebra events
+leaf03(config)# debug bgp updates
+leaf03(config)# debug pim vxlan
+leaf03(config)# debug pim mlag
+leaf03(config)# debug pim nht
+leaf03(config)# debug pim events
+leaf03(config)# debug pim zebra
+leaf03(config)# debug pim packets register
+leaf03(config)# debug pim packets joins
+leaf03(config)# debug pim trace
+leaf03(config)# debug mroute
+leaf03(config)# debug mroute detail
+leaf03(config)# debug zebra mlag
+leaf03(config)# debug msdp events
+leaf03(config)# debug bgp evpn mh es
+leaf03(config)# debug bgp evpn mh route
+leaf03(config)# debug zebra evpn mh es
+leaf03(config)# debug zebra evpn mh mac
+leaf03(config)# debug zebra evpn mh neigh
+leaf03(config)# debug zebra evpn mh nh
+leaf03(config)# no debug zebra kernel
+leaf03(config)# no debug zebra events
+leaf03(config)# no debug bgp updates
+leaf03(config)# no debug pim events
+leaf03(config)# no debug pim zebra
+leaf03(config)# no debug pim packets register
+leaf03(config)# no debug pim packets joins
+leaf03(config)# no debug pim vxlan
+leaf03(config)# no debug pim mlag
+leaf03(config)# no debug pim nht
+leaf03(config)# no debug pim trace
+leaf03(config)# no debug mroute
+leaf03(config)# no debug mroute detail
+leaf03(config)# no debug zebra mlag
+leaf03(config)# no debug msdp events
+leaf03(config)# enable password cn321
+leaf03(config)# password cn321
+leaf03(config)# vrf vrf1
+leaf03(config-vrf)# vni 4001
+leaf03(config-vrf)# exit-vrf
+leaf03(config)# vrf vrf2
+leaf03(config-vrf)# vni 4002
+leaf03(config-vrf)# exit-vrf
+leaf03(config)# vrf vrf3
+leaf03(config-vrf)# vni 4003
+leaf03(config-vrf)# exit-vrf
+leaf03(config)# interface hostbond1
+leaf03(config-if)# evpn mh es-id 1
+leaf03(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf03(config-if)# exit
+leaf03(config)# interface hostbond2
+leaf03(config-if)# evpn mh es-id 2
+leaf03(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf03(config-if)# exit
+leaf03(config)# interface hostbond3
+leaf03(config-if)# evpn mh es-id 3
+leaf03(config-if)# evpn mh es-sys-mac 44:38:39:ff:ff:01
+leaf03(config-if)# exit
+leaf03(config)# interface lo
+leaf03(config-if)# ip igmp
+leaf03(config-if)# ip pim sm
+leaf03(config-if)# exit
+leaf03(config)# interface swp1
+leaf03(config-if)# evpn mh uplink
+leaf03(config-if)# ip pim sm
+leaf03(config-if)# exit
+leaf03(config)# interface swp2
+leaf03(config-if)# evpn mh uplink
+leaf03(config-if)# ip pim sm
+leaf03(config-if)# exit
+leaf03(config)# interface swp3
+leaf03(config-if)# evpn mh uplink
+leaf03(config-if)# ip pim sm
+leaf03(config-if)# exit
+leaf03(config)# interface swp4
+leaf03(config-if)# evpn mh uplink
+leaf03(config-if)# ip pim sm
+leaf03(config-if)# exit
+leaf03(config)# router bgp 5557
+leaf03(config-router)# bgp router-id 172.16.0.22
+leaf03(config-router)# bgp bestpath as-path multipath-relax
+leaf03(config-router)# neighbor swp1 interface v6only remote-as external
+leaf03(config-router)# neighbor swp2 interface v6only remote-as external
+leaf03(config-router)# neighbor swp3 interface v6only remote-as external
+leaf03(config-router)# neighbor swp4 interface v6only remote-as external
+leaf03(config-router)# address-family ipv4 unicast
+leaf03(config-router-af)# address-family ipv4 unicast
+leaf03(config-router-af)# redistribute connected
+leaf03(config-router-af)# exit-address-family
+leaf03(config-router)# address-family ipv6 unicast
+leaf03(config-router-af)# redistribute connected
+leaf03(config-router-af)# neighbor swp1 activate
+leaf03(config-router-af)# neighbor swp2 activate
+leaf03(config-router-af)# neighbor swp3 activate
+leaf03(config-router-af)# neighbor swp4 activate
+leaf03(config-router-af)# exit-address-family
+leaf03(config-router)# address-family l2vpn evpn
+leaf03(config-router-af)# neighbor swp1 activate
+leaf03(config-router-af)# neighbor swp2 activate
+leaf03(config-router-af)# neighbor swp3 activate
+leaf03(config-router-af)# neighbor swp4 activate
+leaf03(config-router-af)# advertise-all-vni
+leaf03(config-router-af)# advertise-svi-ip
+leaf03(config-router-af)# exit-address-family
+leaf03(config-router)# exit
+leaf03(config)# line vty
+leaf03(config-line)# exec-timeout 0 0
+leaf03(config-line)# exit
+leaf03(config)# write memory
+leaf03(config)# exit
+leaf03# exit
+cumulus@leaf03:~$
+```
+
 {{</tab>}}
 
 {{<tab "spine01">}}
@@ -2464,19 +2697,192 @@ net add dot1x default-dacl-preauth-filename default_preauth_dacl.rules
 net add dot1x radius authentication-port 1812
 net add dot1x mab-activation-delay 30
 net commit
-
-# There are some configuration commands that are not yet supported by nclu.
-# The following will append those commands to the appropriate files.
-# ========================================================================
-sudo sh -c "printf 'debug zebra mlag\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'ip forwarding\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'debug pim vxlan\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'debug pim mlag\n' >> /etc/frr/frr.conf"
-sudo sh -c "printf 'debug pim nht\n' >> /etc/frr/frr.conf"
-cumulus@spine01:~$
 ```
 
 **vtysh Commands**
+
+Use `vtysh` to configure FRRouting:
+
+```
+cumulus@spine01:~$ sudo vtysh
+
+Hello, this is FRRouting (version 7.4+cl4u1).
+Copyright 1996-2005 Kunihiro Ishiguro, et al.
+
+spine01# configure terminal
+spine01(config)# hostname spine01
+spine01(config)# log file /var/log/frr/zebra.log
+spine01(config)# log file /var/log/frr/bgpd.log
+spine01(config)# log timestamp precision 6
+spine01(config)# ip forwarding
+spine01(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+spine01(config)# ip pim spt-switchover infinity-and-beyond
+spine01(config)# debug bgp zebra
+spine01(config)# debug zebra vxlan
+spine01(config)# debug zebra kernel
+spine01(config)# debug zebra events
+spine01(config)# debug bgp updates
+spine01(config)# debug pim events
+spine01(config)# debug pim zebra
+spine01(config)# debug pim packets register
+spine01(config)# debug pim packets joins
+spine01(config)# debug pim vxlan
+spine01(config)# debug pim mlag
+spine01(config)# debug pim nht
+spine01(config)# debug pim trace
+spine01(config)# debug mroute
+spine01(config)# debug mroute detail
+spine01(config)# debug zebra mlag
+spine01(config)# debug msdp events
+spine01(config)# enable password cn321
+spine01(config)# password cn321
+spine01(config)# vrf vrf1
+spine01(config-vrf)# vni 4001
+spine01(config-vrf)# exit-vrf
+spine01(config)# vrf vrf2
+spine01(config-vrf)# vni 4002
+spine01(config-vrf)# exit-vrf
+spine01(config)# vrf vrf3
+spine01(config-vrf)# vni 4003
+spine01(config-vrf)# exit-vrf
+spine01(config)# interface lo
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp1
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp2
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp3
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp4
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp5
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp6
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp7
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp8
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp9
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp10
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp11
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp12
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp13
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp14
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp15
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# interface swp16
+spine01(config-if)# ip pim sm
+spine01(config-if)# exit
+spine01(config)# router bgp 4435
+spine01(config-router)# bgp router-id 172.16.0.17
+spine01(config-router)# bgp bestpath as-path multipath-relax
+spine01(config-router)# neighbor swp1 interface v6only remote-as external
+spine01(config-router)# neighbor swp2 interface v6only remote-as external
+spine01(config-router)# neighbor swp3 interface v6only remote-as external
+spine01(config-router)# neighbor swp4 interface v6only remote-as external
+spine01(config-router)# neighbor swp5 interface v6only remote-as external
+spine01(config-router)# neighbor swp6 interface v6only remote-as external
+spine01(config-router)# neighbor swp7 interface v6only remote-as external
+spine01(config-router)# neighbor swp8 interface v6only remote-as external
+spine01(config-router)# neighbor swp9 interface v6only remote-as external
+spine01(config-router)# neighbor swp10 interface v6only remote-as external
+spine01(config-router)# neighbor swp11 interface v6only remote-as external
+spine01(config-router)# neighbor swp12 interface v6only remote-as external
+spine01(config-router)# neighbor swp13 interface v6only remote-as external
+spine01(config-router)# neighbor swp14 interface v6only remote-as external
+spine01(config-router)# neighbor swp15 interface v6only remote-as external
+spine01(config-router)# neighbor swp16 interface v6only remote-as external
+spine01(config-router)# address-family ipv4 unicast
+spine01(config-router-af)# address-family ipv4 unicast
+spine01(config-router-af)# redistribute connected
+spine01(config-router-af)# neighbor swp1 allowas-in origin
+spine01(config-router-af)# neighbor swp2 allowas-in origin
+spine01(config-router-af)# neighbor swp3 allowas-in origin
+spine01(config-router-af)# neighbor swp4 allowas-in origin
+spine01(config-router-af)# neighbor swp5 allowas-in origin
+spine01(config-router-af)# neighbor swp6 allowas-in origin
+spine01(config-router-af)# neighbor swp7 allowas-in origin
+spine01(config-router-af)# neighbor swp8 allowas-in origin
+spine01(config-router-af)# neighbor swp9 allowas-in origin
+spine01(config-router-af)# neighbor swp10 allowas-in origin
+spine01(config-router-af)# neighbor swp11 allowas-in origin
+spine01(config-router-af)# neighbor swp12 allowas-in origin
+spine01(config-router-af)# neighbor swp13 allowas-in origin
+spine01(config-router-af)# neighbor swp14 allowas-in origin
+spine01(config-router-af)# neighbor swp15 allowas-in origin
+spine01(config-router-af)# neighbor swp16 allowas-in origin
+spine01(config-router-af)# exit-address-family
+spine01(config-router)# address-family ipv6 unicast
+spine01(config-router-af)# redistribute connected
+spine01(config-router-af)# neighbor swp1 activate
+spine01(config-router-af)# neighbor swp2 activate
+spine01(config-router-af)# neighbor swp3 activate
+spine01(config-router-af)# neighbor swp4 activate
+spine01(config-router-af)# neighbor swp5 activate
+spine01(config-router-af)# neighbor swp6 activate
+spine01(config-router-af)# neighbor swp7 activate
+spine01(config-router-af)# neighbor swp8 activate
+spine01(config-router-af)# neighbor swp9 activate
+spine01(config-router-af)# neighbor swp10 activate
+spine01(config-router-af)# neighbor swp11 activate
+spine01(config-router-af)# neighbor swp12 activate
+spine01(config-router-af)# neighbor swp13 activate
+spine01(config-router-af)# neighbor swp14 activate
+spine01(config-router-af)# neighbor swp15 activate
+spine01(config-router-af)# neighbor swp16 activate
+spine01(config-router-af)# exit-address-family
+spine01(config-router)# address-family l2vpn evpn
+spine01(config-router-af)# neighbor swp1 activate
+spine01(config-router-af)# neighbor swp2 activate
+spine01(config-router-af)# neighbor swp3 activate
+spine01(config-router-af)# neighbor swp4 activate
+spine01(config-router-af)# neighbor swp5 activate
+spine01(config-router-af)# neighbor swp6 activate
+spine01(config-router-af)# neighbor swp7 activate
+spine01(config-router-af)# neighbor swp8 activate
+spine01(config-router-af)# neighbor swp9 activate
+spine01(config-router-af)# neighbor swp10 activate
+spine01(config-router-af)# neighbor swp11 activate
+spine01(config-router-af)# neighbor swp12 activate
+spine01(config-router-af)# neighbor swp13 activate
+spine01(config-router-af)# neighbor swp14 activate
+spine01(config-router-af)# neighbor swp15 activate
+spine01(config-router-af)# neighbor swp16 activate
+spine01(config-router-af)# advertise-all-vni
+spine01(config-router-af)# advertise-svi-ip
+spine01(config-router-af)# exit-address-family
+spine01(config-router)# exit
+spine01(config)# line vty
+spine01(config-line)# exec-timeout 0 0
+spine01(config-line)# exit
+spine01(config)# write memory
+spine01(config)# exit
+spine01# exit
+cumulus@spine01:~$
+```
 
 {{</tab>}}
 
@@ -2645,6 +3051,188 @@ cumulus@spine02:~$
 
 **vtysh Commands**
 
+Use `vtysh` to configure FRRouting:
+
+```
+cumulus@spine02:~$ sudo vtysh
+
+Hello, this is FRRouting (version 7.4+cl4u1).
+Copyright 1996-2005 Kunihiro Ishiguro, et al.
+
+spine02# configure terminal
+spine02(config)# hostname spine02
+spine02(config)# log file /var/log/frr/zebra.log
+spine02(config)# log file /var/log/frr/bgpd.log
+spine02(config)# log timestamp precision 6
+spine02(config)# ip forwarding
+spine02(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+spine02(config)# ip pim spt-switchover infinity-and-beyond
+spine02(config)# debug bgp zebra
+spine02(config)# debug zebra vxlan
+spine02(config)# debug zebra kernel
+spine02(config)# debug zebra events
+spine02(config)# debug bgp updates
+spine02(config)# debug pim events
+spine02(config)# debug pim zebra
+spine02(config)# debug pim packets register
+spine02(config)# debug pim packets joins
+spine02(config)# debug pim vxlan
+spine02(config)# debug pim mlag
+spine02(config)# debug pim nht
+spine02(config)# debug pim trace
+spine02(config)# debug mroute
+spine02(config)# debug mroute detail
+spine02(config)# debug zebra mlag
+spine02(config)# debug msdp events
+spine02(config)# enable password cn321
+spine02(config)# password cn321
+spine02(config)# vrf vrf1
+spine02(config-vrf)# vni 4001
+spine02(config-vrf)# exit-vrf
+spine02(config)# vrf vrf2
+spine02(config-vrf)# vni 4002
+spine02(config-vrf)# exit-vrf
+spine02(config)# vrf vrf3
+spine02(config-vrf)# vni 4003
+spine02(config-vrf)# exit-vrf
+spine02(config)# interface lo
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp1
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp2
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp3
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp4
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp5
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp6
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp7
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp8
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp9
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp10
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp11
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp12
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp13
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp14
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp15
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# interface swp16
+spine02(config-if)# ip pim sm
+spine02(config-if)# exit
+spine02(config)# router bgp 4435
+spine02(config-router)# bgp router-id 172.16.0.18
+spine02(config-router)# bgp bestpath as-path multipath-relax
+spine02(config-router)# neighbor swp1 interface v6only remote-as external
+spine02(config-router)# neighbor swp2 interface v6only remote-as external
+spine02(config-router)# neighbor swp3 interface v6only remote-as external
+spine02(config-router)# neighbor swp4 interface v6only remote-as external
+spine02(config-router)# neighbor swp5 interface v6only remote-as external
+spine02(config-router)# neighbor swp6 interface v6only remote-as external
+spine02(config-router)# neighbor swp7 interface v6only remote-as external
+spine02(config-router)# neighbor swp8 interface v6only remote-as external
+spine02(config-router)# neighbor swp9 interface v6only remote-as external
+spine02(config-router)# neighbor swp10 interface v6only remote-as external
+spine02(config-router)# neighbor swp11 interface v6only remote-as external
+spine02(config-router)# neighbor swp12 interface v6only remote-as external
+spine02(config-router)# neighbor swp13 interface v6only remote-as external
+spine02(config-router)# neighbor swp14 interface v6only remote-as external
+spine02(config-router)# neighbor swp15 interface v6only remote-as external
+spine02(config-router)# neighbor swp16 interface v6only remote-as external
+spine02(config-router)# address-family ipv4 unicast
+spine02(config-router-af)# address-family ipv4 unicast
+spine02(config-router-af)# redistribute connected
+spine02(config-router-af)# neighbor swp1 allowas-in origin
+spine02(config-router-af)# neighbor swp2 allowas-in origin
+spine02(config-router-af)# neighbor swp3 allowas-in origin
+spine02(config-router-af)# neighbor swp4 allowas-in origin
+spine02(config-router-af)# neighbor swp5 allowas-in origin
+spine02(config-router-af)# neighbor swp6 allowas-in origin
+spine02(config-router-af)# neighbor swp7 allowas-in origin
+spine02(config-router-af)# neighbor swp8 allowas-in origin
+spine02(config-router-af)# neighbor swp9 allowas-in origin
+spine02(config-router-af)# neighbor swp10 allowas-in origin
+spine02(config-router-af)# neighbor swp11 allowas-in origin
+spine02(config-router-af)# neighbor swp12 allowas-in origin
+spine02(config-router-af)# neighbor swp13 allowas-in origin
+spine02(config-router-af)# neighbor swp14 allowas-in origin
+spine02(config-router-af)# neighbor swp15 allowas-in origin
+spine02(config-router-af)# neighbor swp16 allowas-in origin
+spine02(config-router-af)# exit-address-family
+spine02(config-router)# address-family ipv6 unicast
+spine02(config-router-af)# redistribute connected
+spine02(config-router-af)# neighbor swp1 activate
+spine02(config-router-af)# neighbor swp2 activate
+spine02(config-router-af)# neighbor swp3 activate
+spine02(config-router-af)# neighbor swp4 activate
+spine02(config-router-af)# neighbor swp5 activate
+spine02(config-router-af)# neighbor swp6 activate
+spine02(config-router-af)# neighbor swp7 activate
+spine02(config-router-af)# neighbor swp8 activate
+spine02(config-router-af)# neighbor swp9 activate
+spine02(config-router-af)# neighbor swp10 activate
+spine02(config-router-af)# neighbor swp11 activate
+spine02(config-router-af)# neighbor swp12 activate
+spine02(config-router-af)# neighbor swp13 activate
+spine02(config-router-af)# neighbor swp14 activate
+spine02(config-router-af)# neighbor swp15 activate
+spine02(config-router-af)# neighbor swp16 activate
+spine02(config-router-af)# exit-address-family
+spine02(config-router)# address-family l2vpn evpn
+spine02(config-router-af)# neighbor swp1 activate
+spine02(config-router-af)# neighbor swp2 activate
+spine02(config-router-af)# neighbor swp3 activate
+spine02(config-router-af)# neighbor swp4 activate
+spine02(config-router-af)# neighbor swp5 activate
+spine02(config-router-af)# neighbor swp6 activate
+spine02(config-router-af)# neighbor swp7 activate
+spine02(config-router-af)# neighbor swp8 activate
+spine02(config-router-af)# neighbor swp9 activate
+spine02(config-router-af)# neighbor swp10 activate
+spine02(config-router-af)# neighbor swp11 activate
+spine02(config-router-af)# neighbor swp12 activate
+spine02(config-router-af)# neighbor swp13 activate
+spine02(config-router-af)# neighbor swp14 activate
+spine02(config-router-af)# neighbor swp15 activate
+spine02(config-router-af)# neighbor swp16 activate
+spine02(config-router-af)# advertise-all-vni
+spine02(config-router-af)# advertise-svi-ip
+spine02(config-router-af)# exit-address-family
+spine02(config-router)# exit
+spine02(config)# line vty
+spine02(config-line)# exec-timeout 0 0
+spine02(config-line)# exit
+spine02(config)# write memory
+spine02(config)# exit
+spine02# exit
+cumulus@spine02:~$
+```
 
 {{</tab>}}
 
@@ -2685,6 +3273,7 @@ auto lo
 iface lo
     address 172.16.0.21/32
     alias BGP un-numbered Use for Vxlan Src Tunnel
+
 auto swp1
 iface swp1
     link-speed 10000
@@ -5033,7 +5622,6 @@ ip pim rp 192.0.2.5 203.0.113.0/24
 ip pim spt-switchover infinity-and-beyond
 !
 !
-
 log file /var/log/frr/bgpd.log
 !
 router bgp 4435
@@ -5112,9 +5700,7 @@ router bgp 4435
  neighbor swp16 activate
  exit-address-family
 !
-
 !
-
 !
 interface swp1
  ip pim sm
@@ -5234,7 +5820,6 @@ ip pim spt-switchover infinity-and-beyond
 !
 !
 !
-
 log file /var/log/frr/bgpd.log
 !
 router bgp 4435
@@ -5313,9 +5898,7 @@ router bgp 4435
  neighbor swp16 activate
  exit-address-family
 !
-
 !
-
 !
 interface swp1
  ip pim sm

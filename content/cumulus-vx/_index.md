@@ -26,7 +26,7 @@ Cumulus VX is supported on:
 
 {{%notice note%}}
 
-Even though Cumulus VX is supported on VMware Fusion, Workstation, and vSphere ESXi, this document only provides setup instructions for VMware vSphere ESXi.
+Cumulus VX is supported on VMware Fusion, Workstation, and vSphere ESXi. This document provides setup instructions for VMware vSphere ESXi.
 
 {{%/notice%}}
 

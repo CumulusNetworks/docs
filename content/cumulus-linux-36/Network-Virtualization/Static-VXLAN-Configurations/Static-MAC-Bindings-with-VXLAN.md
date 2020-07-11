@@ -2,9 +2,6 @@
 title: Static MAC Bindings with VXLAN
 author: Cumulus Networks
 weight: 383
-aliases:
- - /display/CL36/Static+MAC+Bindings+with+VXLAN
- - /pages/viewpage.action?pageId=8362282
 pageID: 8362282
 ---
 Cumulus Linux includes native Linux VXLAN kernel support.

@@ -2,10 +2,6 @@
 title: ONIE Virtual Machine
 author: Cumulus Networks
 weight: 47
-aliases:
- - /display/VX/ONIE-Virtual-Machine
- - /display/VX/ONIE+Virtual+Machine
- - /pages/viewpage.action?pageId=5126699
 pageID: 5126699
 ---
 Cumulus VX images now include the GRUB boot loader and 

@@ -2,9 +2,6 @@
 title: IGMP and MLD Snooping
 author: Cumulus Networks
 weight: 510
-aliases:
- - /display/DOCS/IGMP+and+MLD+Snooping
- - /pages/viewpage.action?pageId=8366419
 toc: 3
 ---
 IGMP (Internet Group Management Protocol) and MLD (Multicast Listener Discovery) snooping are implemented in the bridge driver in the Cumulus Linux kernel and are enabled by default. IGMP snooping processes IGMP v1/v2/v3 reports received on a bridge port in a bridge to identify the hosts which would like to receive multicast traffic destined to that group.
@@ -34,7 +31,7 @@ To enable IGMP/MLD snooping over VXLAN:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bridge mybridge mcsnoop yes
+cumulus@switch:~$ net add bridge bridge mcsnoop yes
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -46,17 +43,13 @@ cumulus@switch:~$ net commit
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge.100
-vlan bridge.100
-  bridge-igmp-querier-src 123.1.1.1
-
 auto bridge
 iface bridge
   bridge-ports swp1 swp2 swp3
   bridge-vlan-aware yes
   bridge-vids 100 200
   bridge-pvid 1
-  bridge-mcquerier 1
+  bridge-mcsnoop yes
 ...
 ```
 
@@ -88,7 +81,7 @@ Add the following lines to the `/etc/cumulus/acl/policy.d/23_acl_test.rules` fil
 
 ## Configure IGMP/MLD Querier
 
-If no multicast router is sending queries to configure IGMP/MLD querier on the switch, you can add a configuration similar to the following in the `/etc/network/interfaces` file. To enable IGMP and MLD snooping for a bridge, set `bridge-mcquerier` to *1* in the bridge stanza. By default, the source IP address of IGMP queries is 0.0.0.0. To set the source IP address of the queries to be the bridge IP address, configure `bridge-mcqifaddr 1`.
+If no multicast router is sending queries to configure IGMP/MLD querier on the switch, you can add a configuration similar to the following in the `/etc/network/interfaces` file. To enable IGMP and MLD snooping for a bridge, set `bridge-mcquerier` to *1* in the bridge stanza. By default, the source IP address of IGMP queries is 0.0.0.0. 
 
 For an explanation of the relevant parameters, see the `ifupdown-addons-interfaces` man page.
 
@@ -110,7 +103,7 @@ iface bridge
 ...
 ```
 
-For a VLAN-aware bridge, like *bridge* in the above example, to enable querier functionality for VLAN 100 in the bridge, set `bridge-mcquerier` to *1* in the bridge stanza and set `bridge-igmp-querier-src` to *123.1.1.1* in the bridge.100 stanza.
+For a VLAN-aware bridge, like *bridge* in the above example, to enable querier functionality for VLAN 100 in the bridge, set `bridge-mcquerier` to *1* in the bridge stanza and set `bridge-igmp-querier-src` to *123.1.1.1* in the bridge.100 stanza. 123.1.1.1 would typically be a loopback IP address.
 
 You can specify a range of VLANs as well. For example:
 
@@ -122,7 +115,7 @@ vlan bridge.[1-200]
 ...
 ```
 
-For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, use a configuration like the following:
+For a bridge in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, you can set the source IP address of the queries to be the bridge IP address, configure `bridge-mcqifaddr 1`. Use a configuration like the following:
 
 ```
 ...

@@ -2,9 +2,6 @@
 title: Configuration Examples
 author: Cumulus Networks
 weight: 580
-aliases:
- - /display/DOCS/EVPN+Configuration+Examples
- - /pages/viewpage.action?pageId=12910740
 toc: 4
 ---
 This section shows the following configuration examples:
@@ -20,11 +17,11 @@ The following example configuration shows a basic Clos topology for bridging.
 
 {{< img src = "/images/cumulus-linux/evpn-basic-clos.png" >}}
 
-### leaf01 and leaf02 Configurations
+### /etc/network/interfaces
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>leaf01 /etc/network/interfaces </summary>
+{{< tab "leaf01" >}}
 
 ```
 cumulus@leaf01:~$ cat /etc/network/interfaces
@@ -128,11 +125,9 @@ iface vlan1001
     ip-forward off
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf02 /etc/network/interfaces </summary>
+{{< tab "leaf02" >}}
 
 ```
 cumulus@leaf02:~$ cat /etc/network/interfaces
@@ -236,123 +231,9 @@ iface vlan1001
     ip-forward off
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf01 /etc/frr/frr.conf </summary>
-
-```
-cumulus@leaf01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65542
- bgp router-id 10.0.0.7
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-<details>
-
-<summary>leaf02 /etc/frr/frr.conf </summary>
-
-```
-cumulus@leaf02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65543
- bgp router-id 10.0.0.8
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-### leaf03 and leaf04 Configurations
-
-<details>
-
-<summary>leaf03 /etc/network/interfaces </summary>
+{{< tab "leaf03" >}}
 
 ```
 cumulus@leaf03:~$ cat /etc/network/interfaces
@@ -457,11 +338,9 @@ iface vlan1001
     ip-forward off
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf04 /etc/network/interfaces </summary>
+{{< tab "leaf04" >}}
 
 ```
 cumulus@leaf04:~$ cat /etc/network/interfaces
@@ -566,11 +445,207 @@ iface vlan1001
     ip-forward off
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
+{{< tab "spine01" >}}
 
-<summary>leaf03 /etc/frr/frr.conf </summary>
+```
+cumulus@spine01:~$ cat /etc/network/interfaces
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5)
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+# Include any platform-specific interface configuration
+#source /etc/network/interfaces.d/*.if
+
+auto lo
+iface lo
+    address 10.0.0.5/32
+    alias BGP un-numbered Use for Vxlan Src Tunnel
+
+auto downlink-1
+iface downlink-1
+    bond-slaves swp1 swp2
+    mtu  9202
+
+auto downlink-2
+iface downlink-2
+    bond-slaves swp3 swp4
+    mtu  9202
+
+auto downlink-3
+iface downlink-3
+    bond-slaves swp5 swp6
+    mtu  9202
+auto downlink-4
+iface downlink-4
+    bond-slaves swp7 swp8
+    mtu  9202
+
+```
+
+{{< /tab >}}
+
+{{< tab "spine02" >}}
+
+```
+cumulus@spine02:~$ cat /etc/network/interfaces
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5)
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+# Include any platform-specific interface configuration
+#source /etc/network/interfaces.d/*.if
+
+auto lo
+iface lo
+    address 10.0.0.6/32
+    alias BGP un-numbered Use for Vxlan Src Tunnel
+
+auto downlink-1
+iface downlink-1
+    bond-slaves swp1 swp2
+    mtu  9202
+
+auto downlink-2
+iface downlink-2
+    bond-slaves swp3 swp4
+    mtu  9202
+
+auto downlink-3
+iface downlink-3
+    bond-slaves swp5 swp6
+    mtu  9202
+
+auto downlink-4
+iface downlink-4
+    bond-slaves swp7 swp8
+    mtu  9202
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### /etc/frr/frr.conf
+
+{{< tabs "TabID02" >}}
+
+{{< tab "leaf01" >}}
+
+```
+cumulus@leaf01:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface peerlink-3.4094
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 65542
+ bgp router-id 10.0.0.7
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink-3.4094 interface v6only remote-as external
+ neighbor uplink-1 interface v6only remote-as external
+ neighbor uplink-2 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor peerlink-3.4094 activate
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf02" >}}
+
+```
+cumulus@leaf02:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface peerlink-3.4094
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 65543
+ bgp router-id 10.0.0.8
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink-3.4094 interface v6only remote-as external
+ neighbor uplink-1 interface v6only remote-as external
+ neighbor uplink-2 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor peerlink-3.4094 activate
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf03" >}}
 
 ```
 cumulus@leaf03:~$ cat /etc/frr/frr.conf
@@ -621,11 +696,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf04 /etc/frr/frr.conf </summary>
+{{< tab "leaf04" >}}
 
 ```
 cumulus@leaf04:~$ cat /etc/frr/frr.conf
@@ -676,103 +749,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-### spine01 and spine02 Configurations
-
-<details>
-
-<summary>spine01 /etc/network/interfaces </summary>
-
-```
-cumulus@spine01:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.5/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-
-auto downlink-1
-iface downlink-1
-    bond-slaves swp1 swp2
-    mtu  9202
-
-auto downlink-2
-iface downlink-2
-    bond-slaves swp3 swp4
-    mtu  9202
-
-auto downlink-3
-iface downlink-3
-    bond-slaves swp5 swp6
-    mtu  9202
-auto downlink-4
-iface downlink-4
-    bond-slaves swp7 swp8
-    mtu  9202
-
-```
-
-</details>
-
-<details>
-
-<summary>spine02 /etc/network/interfaces </summary>
-
-```
-cumulus@spine02:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.6/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-
-auto downlink-1
-iface downlink-1
-    bond-slaves swp1 swp2
-    mtu  9202
-
-auto downlink-2
-iface downlink-2
-    bond-slaves swp3 swp4
-    mtu  9202
-
-auto downlink-3
-iface downlink-3
-    bond-slaves swp5 swp6
-    mtu  9202
-
-auto downlink-4
-iface downlink-4
-    bond-slaves swp7 swp8
-    mtu  9202
-```
-
-</details>
-
-<details>
-
-<summary>spine01 /etc/frr/frr.conf </summary>
+{{< tab "spine01" >}}
 
 ```
 cumulus@spine01:~$ cat /etc/frr/frr.conf
@@ -834,11 +813,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>spine02 /etc/frr/frr.conf </summary>
+{{< tab "spine02" >}}
 
 ```
 cumulus@spine02:~$ cat /etc/frr/frr.conf
@@ -900,20 +877,22 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-## Clos Configuration with MLAG and Centralized Routing
+{{< /tabs >}}
+
+## EVPN Centralized Routing
 
 The following example configuration shows a basic Clos topology with
 centralized routing. MLAG is configured between leaf switches.
 
 {{< img src = "/images/cumulus-linux/evpn-centralized.png" >}}
 
-### leaf01 and leaf02 Configurations
+### /etc/network/interfaces
 
-<details>
+{{< tabs "TabID12" >}}
 
-<summary>leaf01 /etc/network/interfaces </summary>
+{{< tab "leaf01" >}}
 
 ```
 cumulus@leaf01:~$ cat /etc/network/interfaces
@@ -1062,11 +1041,9 @@ iface vlan1003
     vrf vrf2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf02 /etc/network/interfaces </summary>
+{{< tab "leaf02" >}}
 
 ```
 cumulus@leaf02:~$ cat /etc/network/interfaces
@@ -1215,124 +1192,9 @@ iface vlan1003
     vrf vrf2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-<summary>leaf01 /etc/frr/frr.conf </summary>
-
-```
-cumulus@leaf01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65542
- bgp router-id 10.0.0.7
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-default-gw
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-<details>
-
-<summary>leaf02 /etc/frr/frr.conf </summary>
-
-```
-cumulus@leaf02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65543
- bgp router-id 10.0.0.8
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-default-gw
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-### leaf03 and leaf04 Configurations
-
-<details>
-
-<summary>leaf03 /etc/network/interfaces </summary>
+{{< tab "leaf03" >}}
 
 ```
 cumulus@leaf03:~$ cat /etc/network/interfaces
@@ -1470,11 +1332,9 @@ iface vlan1003
 
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf04 /etc/network/interfaces </summary>
+{{< tab "leaf04" >}}
 
 ```
 cumulus@leaf04:~$ cat /etc/network/interfaces
@@ -1611,123 +1471,9 @@ iface vlan1003
     ip-forward off
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf03 /etc/frr/frr.conf </summary>
-
-```
-cumulus@leaf03:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65544
- bgp router-id 10.0.0.9
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-<details>
-
-<summary>leaf04 /etc/frr/frr.conf </summary>
-
-```
-cumulus@leaf04:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65545
- bgp router-id 10.0.0.10
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-### spine01 and spine02 Configurations
-
-<details>
-
-<summary>spine01 /etc/network/interfaces </summary>
+{{< tab "spine01" >}}
 
 ```
 cumulus@spine01:~$ cat /etc/network/interfaces
@@ -1768,11 +1514,9 @@ iface downlink-4
     mtu  9202<
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>spine02 /etc/network/interfaces </summary>
+{{< tab "spine02" >}}
 
 ```
 cumulus@spine02:~$ cat /etc/network/interfaces
@@ -1814,11 +1558,229 @@ iface downlink-4
 
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
+{{< /tabs >}}
 
-<summary>spine01 /etc/frr/frr.conf </summary>
+### /etc/frr/frr.conf
+
+{{< tabs "TabID03" >}}
+
+{{< tab "leaf01" >}}
+
+```
+cumulus@leaf01:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface peerlink-3.4094
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 65542
+ bgp router-id 10.0.0.7
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink-3.4094 interface v6only remote-as external
+ neighbor uplink-1 interface v6only remote-as external
+ neighbor uplink-2 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor peerlink-3.4094 activate
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+  advertise-default-gw
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf02" >}}
+
+```
+cumulus@leaf02:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface peerlink-3.4094
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 65543
+ bgp router-id 10.0.0.8
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink-3.4094 interface v6only remote-as external
+ neighbor uplink-1 interface v6only remote-as external
+ neighbor uplink-2 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor peerlink-3.4094 activate
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+  advertise-default-gw
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf03" >}}
+
+```
+cumulus@leaf03:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface peerlink-3.4094
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 65544
+ bgp router-id 10.0.0.9
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink-3.4094 interface v6only remote-as external
+ neighbor uplink-1 interface v6only remote-as external
+ neighbor uplink-2 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor peerlink-3.4094 activate
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf04" >}}
+
+```
+cumulus@leaf04:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface peerlink-3.4094
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 65545
+ bgp router-id 10.0.0.10
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink-3.4094 interface v6only remote-as external
+ neighbor uplink-1 interface v6only remote-as external
+ neighbor uplink-2 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor peerlink-3.4094 activate
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "spine01" >}}
 
 ```
 cumulus@spine01:~$ cat /etc/frr/frr.conf
@@ -1880,11 +1842,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>spine02 /etc/frr/frr.conf </summary>
+{{< tab "spine02" >}}
 
 ```
 cumulus@spine02:~$ cat /etc/frr/frr.conf
@@ -1946,19 +1906,21 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-## Clos Configuration with MLAG and EVPN Asymetric Routing
+{{< /tabs >}}
+
+## EVPN Asymmetric Routing
 
 The following example configuration is a basic Clos topology with EVPN asymmetric routing. MLAG is configured between leaf switches.
 
 {{< img src = "/images/cumulus-linux/evpn-asymmetric.png" >}}
 
-### leaf01 and leaf02 Configurations
+### /etc/network/interfaces
 
-<details>
+{{< tabs "TabID24" >}}
 
-<summary>leaf01 /etc/network/interfaces </summary>
+{{< tab "leaf01" >}}
 
 ```
 cumulus@leaf01:~$ cat /etc/network/interfaces
@@ -2107,11 +2069,9 @@ iface vlan1003
     vrf vrf2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf02 /etc/network/interfaces </summary>
+{{< tab "leaf02" >}}
 
 ```
 cumulus@leaf02:~$ cat /etc/network/interfaces
@@ -2260,123 +2220,9 @@ iface vlan1003
     vrf vrf2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf01 /etc/frr/frr.conf </summary>
-
-```
-cumulus@leaf01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65542
- bgp router-id 10.0.0.7
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-<details>
-
-<summary>leaf02 /etc/frr/frr.conf </summary>
-
-```
-cumulus@leaf02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65543
- bgp router-id 10.0.0.8
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-### leaf03 and leaf04 Configurations
-
-<details>
-
-<summary>leaf03 /etc/network/interfaces </summary>
+{{< tab "leaf03" >}}
 
 ```
 cumulus@leaf03:~$ cat /etc/network/interfaces
@@ -2525,11 +2371,9 @@ iface vlan1003
     vrf vrf2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf04 /etc/network/interfaces </summary>
+{{< tab "leaf04" >}}
 
 ```
 cumulus@leaf04:~$ cat /etc/network/interfaces
@@ -2678,11 +2522,206 @@ iface vlan1003
     vrf vrf2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
+{{< tab "spine01" >}}
 
-<summary>leaf03 /etc/frr/frr.conf </summary>
+```
+cumulus@spine01:~$ cat /etc/network/interfaces
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5)
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+# Include any platform-specific interface configuration
+#source /etc/network/interfaces.d/*.if
+
+auto lo
+iface lo
+    address 10.0.0.5/32
+    alias BGP un-numbered Use for Vxlan Src Tunnel
+
+auto downlink-1
+iface downlink-1
+    bond-slaves swp1 swp2
+    mtu  9202
+
+auto downlink-2
+iface downlink-2
+    bond-slaves swp3 swp4
+    mtu  9202
+
+auto downlink-3
+iface downlink-3
+    bond-slaves swp5 swp6
+    mtu  9202
+auto downlink-4
+iface downlink-4
+    bond-slaves swp7 swp8
+    mtu  9202
+```
+
+{{< /tab >}}
+
+{{< tab "spine02" >}}
+
+```
+cumulus@spine02:~$ cat /etc/network/interfaces
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5)
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+# Include any platform-specific interface configuration
+#source /etc/network/interfaces.d/*.if
+
+auto lo
+iface lo
+    address 10.0.0.6/32
+    alias BGP un-numbered Use for Vxlan Src Tunnel
+
+auto downlink-1
+iface downlink-1
+    bond-slaves swp1 swp2
+    mtu  9202
+
+auto downlink-2
+iface downlink-2
+    bond-slaves swp3 swp4
+    mtu  9202
+
+auto downlink-3
+iface downlink-3
+    bond-slaves swp5 swp6
+    mtu  9202
+
+auto downlink-4
+iface downlink-4
+    bond-slaves swp7 swp8
+    mtu  9202
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### /etc/frr/frr.conf
+
+{{< tabs "TabID28" >}}
+
+{{< tab "leaf01" >}}
+
+```
+cumulus@leaf01:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface peerlink-3.4094
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 65542
+ bgp router-id 10.0.0.7
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink-3.4094 interface v6only remote-as external
+ neighbor uplink-1 interface v6only remote-as external
+ neighbor uplink-2 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor peerlink-3.4094 activate
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf02" >}}
+
+```
+cumulus@leaf02:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface peerlink-3.4094
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 65543
+ bgp router-id 10.0.0.8
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink-3.4094 interface v6only remote-as external
+ neighbor uplink-1 interface v6only remote-as external
+ neighbor uplink-2 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor peerlink-3.4094 activate
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf03" >}}
 
 ```
 cumulus@leaf03:~$ cat /etc/frr/frr.conf
@@ -2733,11 +2772,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf04 /etc/frr/frr.conf </summary>
+{{< tab "leaf04" >}}
 
 ```
 cumulus@leaf04:~$ cat /etc/frr/frr.conf
@@ -2788,102 +2825,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-### spine01 and spine02 Configurations
-
-<details>
-
-<summary>spine01 /etc/network/interfaces </summary>
-
-```
-cumulus@spine01:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.5/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-
-auto downlink-1
-iface downlink-1
-    bond-slaves swp1 swp2
-    mtu  9202
-
-auto downlink-2
-iface downlink-2
-    bond-slaves swp3 swp4
-    mtu  9202
-
-auto downlink-3
-iface downlink-3
-    bond-slaves swp5 swp6
-    mtu  9202
-auto downlink-4
-iface downlink-4
-    bond-slaves swp7 swp8
-    mtu  9202
-```
-
-</details>
-
-<details>
-
-<summary>spine02 /etc/network/interfaces </summary>
-
-```
-cumulus@spine02:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.6/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-
-auto downlink-1
-iface downlink-1
-    bond-slaves swp1 swp2
-    mtu  9202
-
-auto downlink-2
-iface downlink-2
-    bond-slaves swp3 swp4
-    mtu  9202
-
-auto downlink-3
-iface downlink-3
-    bond-slaves swp5 swp6
-    mtu  9202
-
-auto downlink-4
-iface downlink-4
-    bond-slaves swp7 swp8
-    mtu  9202
-```
-
-</details>
-
-<details>
-
-<summary>spine01 /etc/frr/frr.conf </summary>
+{{< tab "spine01" >}}
 
 ```
 cumulus@spine01:~$ cat /etc/frr/frr.conf
@@ -2945,11 +2889,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>spine02 /etc/frr/frr.conf </summary>
+{{< tab "spine02" >}}
 
 ```
 cumulus@spine02:~$ cat /etc/frr/frr.conf
@@ -3011,9 +2953,11 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-## Basic Clos Configuration with EVPN Symmetric Routing
+{{< /tabs >}}
+
+## EVPN Symmetric Routing
 
 The following example configuration is a basic Clos topology with EVPN
 symmetric routing with external prefix (type-5) routing via dual,
@@ -3022,11 +2966,11 @@ diagram:
 
 {{< img src = "/images/cumulus-linux/evpn-symmetric.png" >}}
 
-### leaf01 and leaf02 Configurations
+### /etc/network/interfaces
 
-<details>
+{{< tabs "TabID36" >}}
 
-<summary>leaf01 /etc/network/interfaces </summary>
+{{< tab "leaf01" >}}
 
 ```
 cumulus@leaf01:~$ cat /etc/network/interfaces
@@ -3144,11 +3088,9 @@ iface vlan4002
     vrf vrf2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf02 /etc/network/interfaces </summary>
+{{< tab "leaf02" >}}
 
 ```
 cumulus@leaf02:~$ cat /etc/network/interfaces
@@ -3265,113 +3207,9 @@ iface vlan4002
     vrf vrf2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf01 /etc/frr/frr.conf </summary>
-
-```
-cumulus@leaf01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
-!
-password CumulusLinux!
-enable password CumulusLinux!
-!
-vrf vrf1
- vni 104001
-vrf vrf2
- vni 104002
-!
-interface swp1
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-interface swp2
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-router bgp 65001
- bgp router-id 10.0.0.1
- neighbor SPINE peer-group
- neighbor SPINE remote-as external
- neighbor SPINE timers 10 30
- neighbor swp1 interface peer-group SPINE
- neighbor swp2 interface peer-group SPINE
- !
- address-family ipv4 unicast
-  network 10.0.0.1/32
- exit-address-family
-!
- address-family l2vpn evpn
-  neighbor SPINE activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-<details>
-
-<summary>leaf02 /etc/frr/frr.conf </summary>
-
-```
-cumulus@leaf02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
-!
-password CumulusLinux!
-enable password CumulusLinux!
-!
-vrf vrf1
- vni 104001
-vrf vrf2
- vni 104002
-!
-interface swp1
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-interface swp2
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-router bgp 65002
- bgp router-id 10.0.0.2
- neighbor SPINE peer-group
- neighbor SPINE remote-as external
- neighbor SPINE timers 10 30
- neighbor swp1 interface peer-group SPINE
- neighbor swp2 interface peer-group SPINE
- !
- address-family ipv4 unicast
-  network 10.0.0.2/32
- exit-address-family
-!
- address-family l2vpn evpn
-  neighbor SPINE activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-### leaf03 and leaf04 Configurations
-
-<details>
-
-<summary>leaf03 /etc/network/interfaces </summary>
+{{< tab "leaf03" >}}
 
 ```
 cumulus@leaf03:~$ cat /etc/network/interfaces
@@ -3489,11 +3327,9 @@ iface vlan4002
     vrf vrf2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf04 /etc/network/interfaces </summary>
+{{< tab "leaf04" >}}
 
 ```
 cumulus@leaf04:~$ cat /etc/network/interfaces
@@ -3611,127 +3447,9 @@ iface vlan4002
     vrf vrf2
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>leaf03 /etc/frr/frr.conf </summary>
-
-```
-cumulus@leaf03:~$ cat /etc/frr/frr.conf 
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
-!
-password CumulusLinux!
-enable password CumulusLinux!
-!
-vrf vrf1
- vni 104001
-vrf vrf2
- vni 104002
-!
-interface swp1
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-interface swp2
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-router bgp 65003
- bgp router-id 10.0.0.3
- neighbor SPINE peer-group
- neighbor SPINE remote-as external
- neighbor SPINE timers 10 30
- neighbor swp1 interface peer-group SPINE
- neighbor swp2 interface peer-group SPINE
- !
- address-family ipv4 unicast
-  network 10.0.0.3/32
- exit-address-family
-!
- address-family l2vpn evpn
-  neighbor SPINE activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-<details>
-
-<summary>leaf04 /etc/frr/frr.conf </summary>
-
-```
-cumulus@leaf04:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
-!
-password CumulusLinux!
-enable password CumulusLinux!
-!
-vrf vrf1
- vni 104001
-vrf vrf2
- vni 104002
-!
-interface swp1
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-interface swp2
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-router bgp 65004
- bgp router-id 10.0.0.4
- neighbor SPINE peer-group
- neighbor SPINE remote-as external
- neighbor SPINE timers 10 30
- neighbor swp1 interface peer-group SPINE
- neighbor swp2 interface peer-group SPINE
- !
- address-family ipv4 unicast
-  network 10.0.0.4/32
- exit-address-family
-!
- address-family l2vpn evpn
-  neighbor SPINE activate
-  advertise-all-vni
- exit-address-family
-!
-router bgp 65004 vrf vrf1
- bgp router-id 172.16.120.4
- neighbor 172.16.120.100 remote-as external
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
-!
-router bgp 65004 vrf vrf2
- bgp router-id 172.16.130.4
- neighbor 172.16.130.100 remote-as external
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-### spine01 and spine02 Configurations
-
-<details>
-
-<summary>spine01 /etc/network/interfaces </summary>
+{{< tab "spine01" >}}
 
 ```
 cumulus@spine01:~$ cat /etc/network/interfaces
@@ -3771,11 +3489,9 @@ auto swp6
 iface swp6
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>spine02 /etc/network/interfaces </summary>
+{{< tab "spine02" >}}
 
 ```
 cumulus@spine02:~$ cat /etc/network/interfaces
@@ -3815,113 +3531,9 @@ auto swp6
 iface swp6
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>spine01 /etc/frr/frr.conf </summary>
-
-```
-cumulus@spine01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
-!
-password CumulusLinux!
-enable password CumulusLinux!
-!
-router bgp 65100
- bgp router-id 172.16.110.1
- neighbor LEAF peer-group
- neighbor LEAF remote-as external
- neighbor LEAF timers 10 30
- neighbor swp1 interface peer-group LEAF
- neighbor swp2 interface peer-group LEAF
- neighbor swp3 interface peer-group LEAF
- neighbor swp4 interface peer-group LEAF
- neighbor BORDER-LEAF peer-group
- neighbor BORDER-LEAF remote-as external
- neighbor BORDER-LEAF timers 10 30
- neighbor swp5 interface peer-group BORDER-LEAF
- neighbor swp6 interface peer-group BORDER-LEAF
- !
- address-family ipv4 unicast
-  network 172.16.110.1/24
-  neighbor LEAF activate
-  neighbor BORDER-LEAF activate
-  neighbor LEAF route-reflector-client
-  neighbor BORDER-LEAF route-reflector-client
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor LEAF activate
-  neighbor BORDER-LEAF activate
-  neighbor LEAF route-reflector-client
-  neighbor BORDER-LEAF route-reflector-client
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-<details>
-
-<summary>spine02 /etc/frr/frr.conf </summary>
-
-```
-cumulus@spine02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
-!
-password CumulusLinux!
-enable password CumulusLinux!
-!
-router bgp 65100
- bgp router-id 172.16.110.2
- neighbor LEAF peer-group
- neighbor LEAF remote-as external
- neighbor LEAF timers 10 30
- neighbor swp1 interface peer-group LEAF
- neighbor swp2 interface peer-group LEAF
- neighbor swp3 interface peer-group LEAF
- neighbor swp4 interface peer-group LEAF
- neighbor BORDER-LEAF peer-group
- neighbor BORDER-LEAF remote-as external
- neighbor BORDER-LEAF timers 10 30
- neighbor swp5 interface peer-group BORDER-LEAF
- neighbor swp6 interface peer-group BORDER-LEAF
- !
- address-family ipv4 unicast
-  network 172.16.110.2/24
-  neighbor LEAF activate
-  neighbor BORDER-LEAF activate
-  neighbor LEAF route-reflector-client
-  neighbor BORDER-LEAF route-reflector-client
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor LEAF activate
-  neighbor BORDER-LEAF activate
-  neighbor LEAF route-reflector-client
-  neighbor BORDER-LEAF route-reflector-client
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-</details>
-
-### border-leaf01 and border-leaf02 Configurations
-
-<details>
-
-<summary>border-leaf01 /etc/network/interfaces </summary>
+{{< tab "border-leaf01" >}}
 
 ```
 cumulus@border-leaf01:~$ cat /etc/network/interfaces
@@ -4075,11 +3687,9 @@ iface vni16002
     bridge-access 2002
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>border-leaf02 /etc/network/interfaces </summary>
+{{< tab "border-leaf02" >}}
 
 ```
 cumulus@border-leaf02:~$ cat /etc/network/interfaces
@@ -4234,11 +3844,381 @@ iface vni16002
     bridge-access 2002
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
+{{< tab "router01" >}}
 
-<summary>border-leaf01 /etc/frr/frr.conf </summary>
+```
+cumulus@router01:~$ cat /etc/network/interfaces
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0
+    address 192.168.0.15/24
+    gateway 192.168.0.2
+
+auto lo:1
+iface lo:1
+    address 120.0.0.1/32
+    #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
+    #pre-up sysctl -w net.ipv4.route.gc_timeout=60
+    #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
+
+auto swp1
+iface swp1
+
+auto swp1.2001
+iface swp1.2001
+    address 172.16.100.1/24
+
+auto swp1.2002
+iface swp1.2002
+    address 172.16.100.5/24
+
+auto swp2
+iface swp2
+
+auto swp2.2001
+iface swp2.2001
+    address 172.16.101.1/24
+
+auto swp2.2002
+iface swp2.2002
+    address 172.16.101.5/24
+
+auto swp3
+iface swp3
+    address 81.1.1.1/24
+
+auto swp4
+iface swp4
+    address 81.1.2.1/24
+
+auto swp5
+iface swp5
+    address 81.1.3.1/24
+
+auto swp6
+iface swp6
+    address 81.1.4.1/24
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### /etc/frr/frr.conf
+
+{{< tabs "TabID40" >}}
+
+{{< tab "leaf01" >}}
+
+```
+cumulus@leaf01:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/frr.log
+log timestamp precision 6
+!
+password CumulusLinux!
+enable password CumulusLinux!
+!
+vrf vrf1
+ vni 104001
+vrf vrf2
+ vni 104002
+!
+interface swp1
+ no ipv6 nd suppress-ra
+ ipv6 nd ra-interval 10
+!
+interface swp2
+ no ipv6 nd suppress-ra
+ ipv6 nd ra-interval 10
+!
+router bgp 65001
+ bgp router-id 10.0.0.1
+ neighbor SPINE peer-group
+ neighbor SPINE remote-as external
+ neighbor SPINE timers 10 30
+ neighbor swp1 interface peer-group SPINE
+ neighbor swp2 interface peer-group SPINE
+ !
+ address-family ipv4 unicast
+  network 10.0.0.1/32
+ exit-address-family
+!
+ address-family l2vpn evpn
+  neighbor SPINE activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf02" >}}
+
+```
+cumulus@leaf02:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/frr.log
+log timestamp precision 6
+!
+password CumulusLinux!
+enable password CumulusLinux!
+!
+vrf vrf1
+ vni 104001
+vrf vrf2
+ vni 104002
+!
+interface swp1
+ no ipv6 nd suppress-ra
+ ipv6 nd ra-interval 10
+!
+interface swp2
+ no ipv6 nd suppress-ra
+ ipv6 nd ra-interval 10
+!
+router bgp 65002
+ bgp router-id 10.0.0.2
+ neighbor SPINE peer-group
+ neighbor SPINE remote-as external
+ neighbor SPINE timers 10 30
+ neighbor swp1 interface peer-group SPINE
+ neighbor swp2 interface peer-group SPINE
+ !
+ address-family ipv4 unicast
+  network 10.0.0.2/32
+ exit-address-family
+!
+ address-family l2vpn evpn
+  neighbor SPINE activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf03" >}}
+
+```
+cumulus@leaf03:~$ cat /etc/frr/frr.conf 
+
+log file /var/log/frr/frr.log
+log timestamp precision 6
+!
+password CumulusLinux!
+enable password CumulusLinux!
+!
+vrf vrf1
+ vni 104001
+vrf vrf2
+ vni 104002
+!
+interface swp1
+ no ipv6 nd suppress-ra
+ ipv6 nd ra-interval 10
+!
+interface swp2
+ no ipv6 nd suppress-ra
+ ipv6 nd ra-interval 10
+!
+router bgp 65003
+ bgp router-id 10.0.0.3
+ neighbor SPINE peer-group
+ neighbor SPINE remote-as external
+ neighbor SPINE timers 10 30
+ neighbor swp1 interface peer-group SPINE
+ neighbor swp2 interface peer-group SPINE
+ !
+ address-family ipv4 unicast
+  network 10.0.0.3/32
+ exit-address-family
+!
+ address-family l2vpn evpn
+  neighbor SPINE activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf04" >}}
+
+```
+cumulus@leaf04:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/frr.log
+log timestamp precision 6
+!
+password CumulusLinux!
+enable password CumulusLinux!
+!
+vrf vrf1
+ vni 104001
+vrf vrf2
+ vni 104002
+!
+interface swp1
+ no ipv6 nd suppress-ra
+ ipv6 nd ra-interval 10
+!
+interface swp2
+ no ipv6 nd suppress-ra
+ ipv6 nd ra-interval 10
+!
+router bgp 65004
+ bgp router-id 10.0.0.4
+ neighbor SPINE peer-group
+ neighbor SPINE remote-as external
+ neighbor SPINE timers 10 30
+ neighbor swp1 interface peer-group SPINE
+ neighbor swp2 interface peer-group SPINE
+ !
+ address-family ipv4 unicast
+  network 10.0.0.4/32
+ exit-address-family
+!
+ address-family l2vpn evpn
+  neighbor SPINE activate
+  advertise-all-vni
+ exit-address-family
+!
+router bgp 65004 vrf vrf1
+ bgp router-id 172.16.120.4
+ neighbor 172.16.120.100 remote-as external
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+!
+router bgp 65004 vrf vrf2
+ bgp router-id 172.16.130.4
+ neighbor 172.16.130.100 remote-as external
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+{{< /tab >}}
+
+{{< tab "spine01" >}}
+
+```
+cumulus@spine01:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/frr.log
+log timestamp precision 6
+!
+password CumulusLinux!
+enable password CumulusLinux!
+!
+router bgp 65100
+ bgp router-id 172.16.110.1
+ neighbor LEAF peer-group
+ neighbor LEAF remote-as external
+ neighbor LEAF timers 10 30
+ neighbor swp1 interface peer-group LEAF
+ neighbor swp2 interface peer-group LEAF
+ neighbor swp3 interface peer-group LEAF
+ neighbor swp4 interface peer-group LEAF
+ neighbor BORDER-LEAF peer-group
+ neighbor BORDER-LEAF remote-as external
+ neighbor BORDER-LEAF timers 10 30
+ neighbor swp5 interface peer-group BORDER-LEAF
+ neighbor swp6 interface peer-group BORDER-LEAF
+ !
+ address-family ipv4 unicast
+  network 172.16.110.1/24
+  neighbor LEAF activate
+  neighbor BORDER-LEAF activate
+  neighbor LEAF route-reflector-client
+  neighbor BORDER-LEAF route-reflector-client
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor LEAF activate
+  neighbor BORDER-LEAF activate
+  neighbor LEAF route-reflector-client
+  neighbor BORDER-LEAF route-reflector-client
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "spine02" >}}
+
+```
+cumulus@spine02:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/frr.log
+log timestamp precision 6
+!
+password CumulusLinux!
+enable password CumulusLinux!
+!
+router bgp 65100
+ bgp router-id 172.16.110.2
+ neighbor LEAF peer-group
+ neighbor LEAF remote-as external
+ neighbor LEAF timers 10 30
+ neighbor swp1 interface peer-group LEAF
+ neighbor swp2 interface peer-group LEAF
+ neighbor swp3 interface peer-group LEAF
+ neighbor swp4 interface peer-group LEAF
+ neighbor BORDER-LEAF peer-group
+ neighbor BORDER-LEAF remote-as external
+ neighbor BORDER-LEAF timers 10 30
+ neighbor swp5 interface peer-group BORDER-LEAF
+ neighbor swp6 interface peer-group BORDER-LEAF
+ !
+ address-family ipv4 unicast
+  network 172.16.110.2/24
+  neighbor LEAF activate
+  neighbor BORDER-LEAF activate
+  neighbor LEAF route-reflector-client
+  neighbor BORDER-LEAF route-reflector-client
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor LEAF activate
+  neighbor BORDER-LEAF activate
+  neighbor LEAF route-reflector-client
+  neighbor BORDER-LEAF route-reflector-client
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "border-leaf01" >}}
 
 ```
 cumulus@border-leaf01:~$ cat /etc/frr/frr.conf
@@ -4310,14 +4290,12 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>border-leaf02 /etc/frr/frr.conf </summary>
+{{< tab "border-leaf02" >}}
 
 ```
-cumulus@border-leaf02:~$ cat /etc/frr/frr.conf 
+cumulus@border-leaf02:~$ cat /etc/frr/frr.conf
 
 log file /var/log/frr/frr.log
 log timestamp precision 6
@@ -4386,80 +4364,9 @@ line vty
 !
 ```
 
-</details>
+{{< /tab >}}
 
-### router01 Configurations
-
-<details>
-
-<summary>router01 /etc/network/interfaces </summary>
-
-```
-cumulus@router01:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-# The loopback network interface
-auto lo
-iface lo inet loopback
-
-auto eth0
-iface eth0
-    address 192.168.0.15/24
-    gateway 192.168.0.2
-
-auto lo:1
-iface lo:1
-    address 120.0.0.1/32
-    #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
-    #pre-up sysctl -w net.ipv4.route.gc_timeout=60
-    #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
-
-auto swp1
-iface swp1
-
-auto swp1.2001
-iface swp1.2001
-    address 172.16.100.1/24
-
-auto swp1.2002
-iface swp1.2002
-    address 172.16.100.5/24
-
-auto swp2
-iface swp2
-
-auto swp2.2001
-iface swp2.2001
-    address 172.16.101.1/24
-
-auto swp2.2002
-iface swp2.2002
-    address 172.16.101.5/24
-
-auto swp3
-iface swp3
-    address 81.1.1.1/24
-
-auto swp4
-iface swp4
-    address 81.1.2.1/24
-
-auto swp5
-iface swp5
-    address 81.1.3.1/24
-
-auto swp6
-iface swp6
-    address 81.1.4.1/24
-```
-
-</details>
-
-<details>
-
-<summary>router01 /etc/frr/frr.conf </summary>
+{{< tab "router01" >}}
 
 ```
 cumulus@router01:~$ cat /etc/frr/frr.conf
@@ -4495,3 +4402,7 @@ line vty
  exec-timeout 0 0
 !
 ```
+
+{{< /tab >}}
+
+{{< /tabs >}}

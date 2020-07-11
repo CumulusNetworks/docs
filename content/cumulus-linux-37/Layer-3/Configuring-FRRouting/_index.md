@@ -2,9 +2,6 @@
 title: Configuring FRRouting
 author: Cumulus Networks
 weight: 177
-aliases:
- - /display/DOCS/Configuring+FRRouting
- - /pages/viewpage.action?pageId=8362919
 pageID: 8362919
 ---
 This section provides an overview of configuring FRRouting, the routing software package that provides a suite of routing protocols so you can configure routing on your switch.

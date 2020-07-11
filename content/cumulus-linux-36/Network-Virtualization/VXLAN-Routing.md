@@ -2,9 +2,6 @@
 title: VXLAN Routing
 author: Cumulus Networks
 weight: 147
-aliases:
- - /display/CL36/VXLAN+Routing
- - /pages/viewpage.action?pageId=8362239
 pageID: 8362239
 ---
 VXLAN routing, sometimes referred to as *inter-VXLAN routing*, provides

@@ -2,9 +2,6 @@
 title: Introduction to Routing Protocols
 author: Cumulus Networks
 weight: 171
-aliases:
- - /display/DOCS/Introduction+to+Routing+Protocols
- - /pages/viewpage.action?pageId=8362913
 pageID: 8362913
 ---
 This chapter discusses the various routing protocols, and how to configure them.

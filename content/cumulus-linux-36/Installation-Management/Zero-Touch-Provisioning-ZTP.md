@@ -2,11 +2,6 @@
 title: Zero Touch Provisioning - ZTP
 author: Cumulus Networks
 weight: 51
-aliases:
- - /display/CL36/Zero+Touch+Provisioning+++ZTP
- - /display/CL36/Zero+Touch+Provisioning+-+ZTP
- - /display/CL36/Zero+Touch+Provisioning+ZTP
- - /pages/viewpage.action?pageId=8362127
 pageID: 8362127
 ---
 *Zero touch provisioning* (ZTP) enables you to deploy network devices

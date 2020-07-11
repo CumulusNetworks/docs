@@ -2,9 +2,6 @@
 title: Facebook Voyager Optical Interfaces
 author: Cumulus Networks
 weight: 99
-aliases:
- - /display/DOCS/Facebook+Voyager+Optical+Interfaces
- - /pages/viewpage.action?pageId=8363049
 pageID: 8363049
 ---
 Facebook Voyager is a Broadcom Tomahawk-based switch with added Dense

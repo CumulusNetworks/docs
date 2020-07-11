@@ -2,9 +2,6 @@
 title: Upgrading Cumulus Linux
 author: Cumulus Networks
 weight: 50
-aliases:
- - /display/DOCS/Upgrading+Cumulus+Linux
- - /pages/viewpage.action?pageId=8366370
 toc: 3
 ---
 
@@ -23,9 +20,9 @@ Be sure to read the knowledge base article
 
 Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Cumulus Networks recommends you consider making the following files and directories part of a backup strategy.
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>Network Configuration Files </summary>
+{{< tab "Network Configuration Files" >}}
 
 | File Name and Location | Explanation| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | ----------------------------| -------------------- |
@@ -38,11 +35,9 @@ Understanding the location of configuration data is required for successful upgr
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Additional Commonly Used Files </summary>
+{{< tab "Commonly Used Files" >}}
 
 | File Name and Location | Explanation| Cumulus Linux Documentation | Debian Documentation |
 | ---------------------- | ---------- | --------------------------- | -------------------- |
@@ -56,19 +51,9 @@ Understanding the location of configuration data is required for successful upgr
 |`/etc/ssh/` | SSH configuration files | {{<link title="SSH for Remote Access">}} | {{<exlink url="https://wiki.debian.org/SSH">}} |
 | `/etc/sudoers`, `/etc/sudoers.d` | Best practice is to place changes in `/etc/sudoers.d/` instead of `/etc/sudoers`; changes in the `/etc/sudoers.d/` directory are not lost during upgrade. | {{<link title="Using sudo to Delegate Privileges">}} |
 
-</details>
+{{< /tab >}}
 
-{{%notice note%}}
-
-- If you are using the root user account, consider including `/root/`.
-- If you have custom user accounts, consider including `/home/<username>/`.
-- Cumulus Networks recommends you run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
-
-{{%/notice%}}
-
-<details>
-
-<summary>Never Migrate these Files between Versions or Switches</summary>
+{{< tab "Never Migrate Files" >}}
 
 | File Name and Location  | Explanation |
 | ----------------------- | ----------- |
@@ -91,9 +76,11 @@ Understanding the location of configuration data is required for successful upgr
 | `/root/.ansible` | Ansible `tmp` files. Do not copy. |
 | `/home/cumulus/.ansible` | Ansible `tmp` files. Do not copy.|
 
-</details>
+{{< /tab >}}
 
-If you are using certain forms of network virtualization, including {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}} or {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}}, you might have updated the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you made to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
+{{< /tabs >}}
+
+If you are using certain forms of network virtualization, including {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}} or {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}}, it is possible that there are updates to the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you made to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
 
 {{%notice note%}}
 
@@ -101,6 +88,9 @@ You can check which files have changed since the last binary install with the fo
 
 - Run the `sudo dpkg --verify` command to show a list of changed files.
 - Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changed.
+- If you are using the root user account, consider including `/root/`.
+- If you have custom user accounts, consider including `/home/<username>/`.
+- Cumulus Networks recommends you run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
 
 {{%/notice%}}
 
@@ -150,11 +140,19 @@ To upgrade the switch:
 
 If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} to dual connect two switches in your environment, follow the steps below to upgrade the switches.
 
+You must upgrade both switches in the MLAG pair to the same release of Cumulus Linux.
+
 {{%notice warning%}}
 
 For networks with MLAG deployments, Cumulus Networks only supports upgrading to Cumulus Linux 4.0 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.0. Version 3.7.10 is available on the 
 {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux&version=3.7.10" text="downloads page">}} on our website.
 
+{{%/notice%}}
+
+{{%notice info%}}
+During upgrade, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 3.7.12 and leaf02 is running 4.1.1.
+
+This is due to a change in the bonding driver regarding how the *actor port key* is derived, which causes the port key to have a different value for links with the same speed/duplex settings across different major releases. The port key received from the LACP partner must remain consistent between all bond members in order for all bonds to be synchronized. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch are in sync.
 {{%/notice%}}
 
 1. Verify the switch is in the secondary role:

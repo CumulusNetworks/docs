@@ -2,12 +2,6 @@
 title: Bonding - Link Aggregation
 author: Cumulus Networks
 weight: 430
-aliases:
- - /display/DOCS/Bonding+++Link+Aggregation
- - /pages/viewpage.action?pageId=8366376
- - /display/DOCS/Bonding+Link+Aggregation
- - /display/DOCS/Bonding+-+Link+Aggregation
- - /pages/viewpage.action?pageId=8362653
 toc: 3
 ---
 Linux bonding provides a method for aggregating multiple network interfaces (*slaves*) into a single logical bonded interface (*bond*). Link aggregation is useful for linear scaling of bandwidth, load balancing, and failover protection.
@@ -36,6 +30,64 @@ In a failover event, the hash calculation is adjusted to steer traffic over avai
 
 {{%/notice%}}
 
+### LAG Custom Hashing
+
+On Mellanox switches, you can configure which fields are used in the LAG hash calculation. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
+
+You can configure the following fields:  
+
+- Source MAC
+- Destination
+- Source IP
+- Destination IP
+- Ether type
+- VLAN ID
+- Source port
+- Destination port
+- Layer 3 protocol
+
+To configure custom hash, edit the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file:
+
+1. To enable custom hashing, uncomment the `lag_hash_config.enable = true` line.
+2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
+3. Restart the `switchd` service:
+
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
+The following shows an example `datapath.conf` file:
+
+```
+cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf
+...
+#LAG HASH config
+#HASH config for LACP to enable custom fields
+#Fields will be applicable for LAG hash
+#calculation
+#Uncomment to enable custom fields configured below
+lag_hash_config.enable = true
+
+lag_hash_config.smac = true
+lag_hash_config.dmac = true
+lag_hash_config.sip  = true
+lag_hash_config.dip  = true
+lag_hash_config.ether_type = true
+lag_hash_config.vlan_id = true
+lag_hash_config.sport = false
+lag_hash_config.dport = false
+lag_hash_config.ip_prot = true
+...
+```
+
+{{%notice note%}}
+
+Symmetric hashing is enabled by default on Mellanox switches. Make sure that the settings for the source IP (`lag_hash_config.sip`) and destination IP (`lag_hash_config.dip`) fields match, and that the settings for  the source port (`lag_hash_config.sport`) and destination port (`lag_hash_config.dport`) fields match; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+
+{{%/notice%}}
+
+You can set a unique hash seed for each switch to help avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#configure-a-hash-seed-to-avoid-hash-polarization" text="Configure a Hash Seed to Avoid Hash Polarization">}}.
+
 ## Create a Bond
 
 In the example below, the front panel port interfaces swp1 thru swp4 are slaves in bond0, while swp5 and swp6 are not part of bond0.
@@ -44,9 +96,9 @@ In the example below, the front panel port interfaces swp1 thru swp4 are slaves 
 
 To create and configure a bond:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add bond` command. The example command below creates a bond called `bond0` with slaves swp1, swp2, swp3, and swp4:
 
@@ -56,11 +108,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file and add a stanza for the bond. The example below creates a bond called `bond0` with slaves swp1, swp2, swp3, and swp4:
 
@@ -79,7 +129,9 @@ Run the `ifreload -a` command to load the new configuration:
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -119,9 +171,9 @@ All slave interfaces within a bond have the same MAC address as the bond. Typica
 
 The configuration options for a bond are are described in the table below. To configure a bond:
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run `net add bond <bond-name> bond <option>`. The following example sets the bond mode for bond01 to `balance-xor`:
 
@@ -131,11 +183,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file and add the parameter to the bond stanza, then load the new configuration. The following example sets the bond mode for bond01 to `balance-xor`:
 
@@ -155,7 +205,9 @@ Run the `ifreload -a` command to load the new configuration:
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -179,9 +231,9 @@ Each bond configuration option, except for `bond slaves,` is set to the recommen
 
 To show information for a bond:
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net show interface <bond>` command:
 
@@ -224,11 +276,9 @@ swp4(P)  ====  swp2(p1c1h1)Routing
   Interface Type Other
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Run the `sudo cat /proc/net/bonding/<bond>` command:
 
@@ -253,7 +303,9 @@ Permanent HW addr: 44:38:39:00:00:03
 Slave queue ID: 0
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice info%}}
 The detailed output in `/proc/net/bonding/<filename>` includes the actor/partner LACP information. This information is not necessary and requires you to use `sudo` to view the file.

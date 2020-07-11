@@ -2,9 +2,6 @@
 title: Netfilter - ACLs
 author: Cumulus Networks
 weight: 69
-aliases:
- - /display/CL36/Netfilter+++ACLs
- - /pages/viewpage.action?pageId=8362058
 pageID: 8362058
 ---
 [Netfilter](http://www.netfilter.org/) is the packet filtering framework
@@ -340,9 +337,7 @@ mapped into the following tables and are updated in this order:
 
 {{%notice warning%}}
 
-Only Broadcom-based switches support incremental nonatomic updates.
-Mellanox-based switches do **not** support incremental updates;
-therefore traffic **is** affected and gets stopped.
+Only switches with the Broadcom ASIC support *incremental* nonataomic updates. Mellanox switches with the Spectrum-based ASIC only support *standard* nonatomic updates; using nonatomic mode on Spectrum-based ASICs impacts traffic on ACL updates.
 
 {{%/notice%}}
 
@@ -1152,7 +1147,7 @@ of packets.
 
 To verify the counters using the above example rules, first send test
 traffic matching the patterns through the network. The following example
-generates traffic with [mz](http://www.perihel.at/sec/mz/), which can be
+generates traffic with [mz](https://packages.debian.org/unstable/mz), which can be
 installed on host servers or even on Cumulus Linux switches. After
 traffic is sent to validate the counters, they are matched on switch1
 use `cl-acltool`.

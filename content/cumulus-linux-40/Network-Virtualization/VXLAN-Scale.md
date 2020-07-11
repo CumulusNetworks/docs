@@ -2,9 +2,6 @@
 title: VXLAN Scale
 author: Cumulus Networks
 weight: 630
-aliases:
- - /display/DOCS/VXLAN+Scale
- - /pages/viewpage.action?pageId=8366492
 toc: 3
 ---
 On Broadcom Trident II and Tomahawk switches running Cumulus Linux, there is a limit to the number of VXLANs you can configure simultaneously. The limit most often given is 2000 VXLANs, but you might want to get more specific and know exactly the limit for your specific design.

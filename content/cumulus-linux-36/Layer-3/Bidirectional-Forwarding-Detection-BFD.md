@@ -2,11 +2,6 @@
 title: Bidirectional Forwarding Detection - BFD
 author: Cumulus Networks
 weight: 185
-aliases:
- - /display/CL36/Bidirectional+Forwarding+Detection+++BFD
- - /display/CL36/Bidirectional+Forwarding+Detection+-+BFD
- - /display/CL36/Bidirectional+Forwarding+Detection+BFD
- - /pages/viewpage.action?pageId=8362408
 pageID: 8362408
 ---
 *Bidirectional Forwarding Detection* (BFD) provides low overhead and

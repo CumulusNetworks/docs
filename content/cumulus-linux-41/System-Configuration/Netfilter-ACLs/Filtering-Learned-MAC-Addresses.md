@@ -2,9 +2,6 @@
 title: Filtering Learned MAC Addresses
 author: Cumulus Networks
 weight: 220
-aliases:
- - /display/DOCS/Filtering+Learned+MAC+Addresses
- - /pages/viewpage.action?pageId=8366296
 toc: 4
 ---
 On Broadcom switches, a MAC address is learned on a bridge regardless of whether or not a received packet is dropped by an {{<link url="Netfilter-ACLs" text="ACL">}}. This is due to how the hardware learns MAC addresses and occurs before the ACL lookup. This can be a security or resource problem as the MAC address table has the potential to get filled with bogus MAC addresses; a malfunctioning host, network error, loop, or malicious attack on a shared layer 2 platform can create an outage for other hosts if the same MAC address is learned on another port.

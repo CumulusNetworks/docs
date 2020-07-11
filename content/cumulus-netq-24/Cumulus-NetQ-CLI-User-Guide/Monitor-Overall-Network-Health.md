@@ -2,10 +2,6 @@
 title: Monitor Overall Network Health
 author: Cumulus Networks
 weight: 500
-aliases:
- - /display/NETQ/Monitor+Overall+Network+Health
- - /pages/viewpage.action?pageId=12321047
-pageID: 12321047
 toc: 3
 ---
 NetQ provides the information you need to monitor the health of your network fabric, devices, and interfaces. You are able to easily validate the operation and view the configuration across the entire network from switches to hosts to containers. For example, you can monitor the operation of routing protocols and virtual network configurations, the status of NetQ Agents and hardware components, and the operation and efficiency of interfaces. When issues are present, NetQ makes it easy to identify and resolve them. You can also see when changes have occurred to the network, devices, and interfaces by viewing their operation, configuration, and status at an earlier point in time.

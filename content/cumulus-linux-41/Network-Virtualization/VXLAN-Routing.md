@@ -2,9 +2,6 @@
 title: VXLAN Routing
 author: Cumulus Networks
 weight: 610
-aliases:
- - /display/DOCS/VXLAN+Routing
- - /pages/viewpage.action?pageId=8366471
 toc: 3
 ---
 VXLAN routing, sometimes referred to as *inter-VXLAN routing*, provides IP routing between VXLAN VNIs in overlay networks. The routing of traffic is based on the inner header or the overlay tenant IP address.

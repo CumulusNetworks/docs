@@ -2,12 +2,6 @@
 title: Network Command Line Utility - NCLU
 author: Cumulus Networks
 weight: 110
-aliases:
- - /display/DOCS/Network+Command+Line+Utility+NCLU
- - /display/DOCS/Network+Command+Line+Utility+-+NCLU
- - /display/DOCS/Network+Command+Line+Utility
- - /display/DOCS/Network+Command+Line+Utility+++NCLU
- - /pages/viewpage.action?pageId=8366301
 toc: 3
 ---
 The Network Command Line Utility (NCLU) is a command line interface for

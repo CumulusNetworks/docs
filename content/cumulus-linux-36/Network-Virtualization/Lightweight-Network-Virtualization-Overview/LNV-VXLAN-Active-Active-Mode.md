@@ -2,9 +2,6 @@
 title: LNV VXLAN Active-Active Mode
 author: Cumulus Networks
 weight: 395
-aliases:
- - /display/CL36/LNV+VXLAN+Active+Active+Mode
- - /pages/viewpage.action?pageId=8362217
 pageID: 8362217
 ---
 *LNV active-active mode* allows a pair of
@@ -44,7 +41,7 @@ for bare metal as well as virtualized workloads.
 </tr>
 <tr class="odd">
 <td><p>Spine</p></td>
-<td><p>The aggregation switch for multiple leafs. Specifically used when a data center is using a <a href="https://en.wikipedia.org/wiki/Clos_network" class="external-link">Clos network architecture.</a> Read more about spine-leaf architecture in this <a href="http://go.cumulusnetworks.com/scalable-dcnetworks?utm_source=homepageslider&amp;utm_medium=search&amp;utm_campaign=Whitepaper-Building+Scalable+Datacenter+Networks" class="external-link">white paper</a>.</p></td>
+<td><p>The aggregation switch for multiple leafs. Specifically used when a data center is using a <a href="https://en.wikipedia.org/wiki/Clos_network" class="external-link">Clos network architecture.</a></p></td>
 </tr>
 <tr class="even">
 <td><p>vxsnd</p></td>

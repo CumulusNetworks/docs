@@ -2,9 +2,6 @@
 title: Network Troubleshooting
 author: Cumulus Networks
 weight: 225
-aliases:
- - /display/CL36/Network+Troubleshooting
- - /pages/viewpage.action?pageId=8362091
 pageID: 8362091
 ---
 Cumulus Linux contains a number of command line and analytical tools to
@@ -114,7 +111,7 @@ source IP 11.0.0.1 and destination 11.0.0.2, do the following:
 
     cumulus@switch:~$ sudo mz swp1 -A 11.0.0.1 -B 11.0.0.2 -c 2 -v -t tcp "dp=23-24"
      
-    Mausezahn 0.40 - (C) 2007-2010 by Herbert Haas - http://www.perihel.at/sec/mz/
+    Mausezahn 0.40 - (C) 2007-2010 by Herbert Haas - https://packages.debian.org/unstable/mz
     Use at your own risk and responsibility!
     -- Verbose mode --
      
@@ -594,7 +591,7 @@ The following example incorporates a few `tcpdump` options:
 
 ## Related Information
 
-  - [www.perihel.at/sec/mz/mzguide.html](http://www.perihel.at/sec/mz/mzguide.html)
+  - [www.perihel.at/sec/mz/mzguide.html](https://packages.debian.org/unstable/mzmzguide.html)
   - [en.wikipedia.org/wiki/Ping](http://en.wikipedia.org/wiki/Ping)
   - [www.tcpdump.org](http://www.tcpdump.org)
   - [en.wikipedia.org/wiki/Traceroute](https://en.wikipedia.org/wiki/Traceroute)

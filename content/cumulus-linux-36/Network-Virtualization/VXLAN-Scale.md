@@ -2,9 +2,6 @@
 title: VXLAN Scale
 author: Cumulus Networks
 weight: 151
-aliases:
- - /display/CL36/VXLAN+Scale
- - /pages/viewpage.action?pageId=8362260
 pageID: 8362260
 ---
 On Broadcom Trident II and Tomahawk switches running Cumulus Linux,

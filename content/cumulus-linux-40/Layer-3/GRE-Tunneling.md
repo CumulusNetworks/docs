@@ -2,9 +2,6 @@
 title: GRE Tunneling
 author: Cumulus Networks
 weight: 880
-aliases:
- - /display/DOCS/GRE+Tunneling
- - /pages/viewpage.action?pageId=8366690
 toc: 3
 ---
 {{%notice warning%}}

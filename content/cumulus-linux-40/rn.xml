@@ -7,8 +7,172 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30038</td>
+<td><p>The following vulnerability has been announced that affects GnuTLS:<br/>
+CVE-2020-13777: GnuTLS 3.6.x before 3.6.14 uses incorrect cryptography for encrypting a session ticket (a loss of confidentiality in TLS 1.2, and an authentication bypass in TLS 1.3). The earliest affected version is 3.6.4 (2018-09-24) because of an error in a 2018-09-18 commit. Until the first key rotation, the TLS server always uses wrong data in place of an encryption key derived from an application.<br/>
+Vulnerable: &lt;= 3.6.7-4+deb10u3<br/>
+Fixed: 3.6.7-4+deb10u4</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29872</td>
+<td><p>Tab completion for the net show rollback description command returns information about a snapshot instead of context help.<br/>
+To work around this issue, run the net show commit history command to find descriptions instead of the net show rollback description command.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29871</td>
+<td><p>The net show rollback description &lt;string&gt; command returns an error even if the string matches a commit description.<br/>
+To work around this issue, look for your string in the output of the net show commit history command (or grep for it there) instead.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29841</td>
+<td><p>The following vulnerabilities have been announced that affect Unbound:<br/>
+CVE-2020-12662 and CVE-2020-12663 have been discovered in Unbound, a recursive-only caching DNS server; a traffic amplification attack against third party authoritative name servers (NXNSAttack) and insufficient sanitisation of replies from upstream servers could result in denial of service via an infinite loop.<br/>
+Unbound is not provided for Cumulus Linux, but the libunbound8 library package is available for optional installation on Cumulus Linux.<br/>
+Vulnerable: &lt;= 1.9.0-2+deb10u1<br/>
+Fixed: 1.9.0-2+deb10u2</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29779</td>
+<td><p>In LLDP, the snmp subagent loses all subsequent lldpRemSysName (1.0.8802.1.1.2.1.4.1.1.9) entries after an entry with a missing SysName is added.<br/>
+All the information from lldpctl is correct. Only the entries after the entry that is missing a SysName in lldpRemSysName disappear from the snmp subagent.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29778</td>
+<td><p>If packets with an invalid checksum are received, the cumulus-poe service might restart and you see log messages similar to the following:<br/>
+May 20 10:48:04.665635 leaf01 poed<span class="error">&#91;8012&#93;</span>: ERROR : invalid checksum in response <span class="error">&#91;0xC2:0x00&#93;</span><br/>
+May 20 10:48:04.671299 leaf01 poed<span class="error">&#91;8012&#93;</span>: poed : ERROR : invalid checksum in response <span class="error">&#91;0xC2:0x00&#93;</span><br/>
+May 20 10:48:04.708620 leaf01 systemd<span class="error">&#91;1&#93;</span>: cumulus-poe.service: main process exited, code=exited, status=1/FAILURE<br/>
+The service starts automatically but there is an impact to POE devices momentarily.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29760</td>
+<td><p>Several vulnerabilities were discovered in BIND, a DNS server implementation.  <br/>
+bind9-host (containing only /usr/bin/host) and some libraries from the bind9 source package are installed on the switch by default; the BIND server referred to in these vulnerabilities is not installed by default but is available in the repository for optional installation.<br/>
+CVE-2019-6477: It was discovered that TCP-pipelined queries can bypass tcp-client limits resulting in denial of service.<br/>
+CVE-2020-8616: It was discovered that BIND does not sufficiently limit the number of fetches performed when processing referrals. An attacker can take advantage of this flaw to cause a denial of service (performance degradation) or use the recursing server in a reflection attack with a high amplification factor.<br/>
+CVE-2020-8617: It was discovered that a logic error in the code which checks TSIG validity can be used to trigger an assertion failure, resulting in denial of service.<br/>
+Vulnerable: 9.11.5.P4+dfsg-5.1<br/>
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u1</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29759</td>
+<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
+To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
+
+#Requires=nginx.service restserver.socket
+
+</td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29691</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.8.2<br/>
+Fixed: 1.8.2.1</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29667</td>
+<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
+To work around this issue, run the systemctl restart switchd command.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29594</td>
+<td><p>When you run an Ansible script to replace the /etc/network/interfaces file, then run the ifreload -a command, you see errors similar to the following:</p>
+
+error: swp1s1.2: netlink: cannot set link swp1s1.2 up: operation failed with 'Network is down' (100)
+warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLINK answers: Cannot assign requested address
+
+
+<p>To work around this issue,  run the ifreload -a command a second time.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29556</td>
+<td><p>The following vulnerability has been announced that affects ntp:<br/>
+CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
+This affects: ntp-4.2.8p12 (possibly earlier) and ntp-4.2.8p13<br/>
+The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofollow">https://bugs.ntp.org/3445</a> introduced a bug whereby a system that is running ntp-4.2.8p12 or p13 that only has one unauthenticated time source can be attacked in a way that causes the victim's next poll to its source to be delayed, for as long as the attack is maintained.<br/>
+<a href="http://support.ntp.org/bin/view/Main/NtpBug3592" class="external-link" rel="nofollow">http://support.ntp.org/bin/view/Main/NtpBug3592</a> gives the following mitigations if it is not possible to upgrade to a version with the fix:</p>
+<ul>
+	<li>Use authentication with symmetric peers.</li>
+	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
+</ul>
+</td>
+<td>3.0.0-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29546</td>
+<td><p>In vtysh, if you configure, then remove a layer 3 VNI for a VRF, the VNI is removed from zebra even if the VNI interface still exists in the kernel.<br/>
+If you configure a layer 2 VNI as a layer 3 VNI by mistake, removing the layer 3 VNI binding removes it from zebra but EVPN-learned MACs and neighbors are not installed into the kernel.<br/>
+To work around this issue, delete, then re-add the missing VNI. For example:</p>
+
+cumulus@switch:~$ sudo ifdown vni10100
+cumulus@switch:~$ sudo ifup vni10100
+
+
+<p>If you flap the link with the ip link set vni10100 down; ip link set vni10100 up commands, zebra does not re-add the VNI.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29519</td>
+<td><p>The JSON format output of the net show bgp l2vpn evpn summary command shows the incorrect neighbour state. </p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29485</td>
+<td><p>The following vulnerability affects the openldap package:<br/>
+CVE-2020-12243: A vulnerability was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. LDAP search filters with nested boolean expressions can result in denial of service (slapd daemon crash).<br/>
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u1<br/>
+Fixed: 2.4.47+dfsg-3+deb10u2</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29460</td>
+<td><p>The following security vulnerabilities affect qemu packages, which are available for optional installation on Cumulus Linux:<br/>
+CVE-2019-12068: In QEMU 1:4.1-1, 1:2.1+dfsg-12+deb8u6, 1:2.8+dfsg-6+deb9u8, 1:3.1+dfsg-8~deb10u1, 1:3.1+dfsg-8+deb10u2, and 1:2.1+dfsg-12+deb8u12 (fixed), when executing script in lsi_execute_script(), the LSI scsi adapter emulator advances 's-&gt;dsp' index to read next opcode. This can lead to an infinite loop if the next opcode is empty. Move the existing loop exit after 10k iterations so that it covers no-op opcodes as well.<br/>
+CVE-2019-15034: hw/display/bochs-display.c in QEMU 4.0.0 does not ensure a sufficient PCI config space allocation, leading to a buffer overflow involving the PCIe extended config space.<br/>
+CVE-2019-20382: QEMU 4.1.0 has a memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
+CVE-2020-1983: A use after free vulnerability in ip_reass() in ip_input.c of libslirp 4.2.0 and prior releases allows crafted packets to cause a denial of service.<br/>
+Vulnerable: &lt;= 3.1+dfsg-8+deb10u4<br/>
+Fixed: 3.1+dfsg-8+deb10u5</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29385</td>
-<td><p>The following vulnerability has been announced in the openssl package:<br/>
+<td><p>The following vulnerability affects the openssl package:<br/>
 CVE-2020-1967: Bernd Edlinger discovered that malformed data passed to the SSL_check_chain() function during or after a TLS 1.3 handshake could cause a NULL dereference, resulting in denial of service.<br/>
 Vulnerable: &lt;= 1.1.1d-0+deb10u2<br/>
 Fixed: 1.1.1d-0+deb10u3</p></td>
@@ -23,8 +187,8 @@ Fixed: 1.1.1d-0+deb10u3</p></td>
 </tr>
 <tr>
 <td>CM-29312</td>
-<td><p>FRR incorrectly orders advertise-all-vni to be later in the configuration than manual rd or route-target definitions. This causes the rd/route-target configuration to be misapplied or not applied at all.<br/>
-To work around this issue, when you manually configure the rd or route-target for a VNI, you must manually edit /etc/frr/frr.conf file to define advertise-all-vni before the rd or route-target configuration within the l2vpn evpn address family.</p></td>
+<td><p>FRR incorrectly orders advertise-all-vni to be later in the configuration than manual rd or route-target definitions. This causes the rd or route-target configuration to be misapplied or not applied at all.<br/>
+To work around this issue, when you manually configure the rd or route-target for a VNI, you must manually edit the /etc/frr/frr.conf file to define advertise-all-vni before the rd or route-target configuration within the l2vpn evpn address family.</p></td>
 <td>4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -46,7 +210,7 @@ Fixed: 2.20.1-2+deb10u3</p></td>
 </tr>
 <tr>
 <td>CM-29284</td>
-<td><p>The following vulnerabilities has been announced in git, which is available in the repository for optional installation:<br/>
+<td><p>The following vulnerabilities affect git, which is available in the repository for optional installation:<br/>
 CVE-2020-5260: Felix Wilhelm of Google Project Zero discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline, the credential helper machinery can be fooled to return credential information for a wrong host.<br/>
 CVE-2020-11008: Carlo Arenas discovered a flaw in git, a fast, scalable, distributed revision control system. With a crafted URL that contains a newline or empty host, or lacks a scheme, the credential helper machinery can be fooled into providing credential information that is not appropriate for the protocol in use and host being contacted.</p></td>
 <td>3.0.0-3.7.12, 4.0.0-4.1.1</td>
@@ -82,7 +246,7 @@ cumulus@switch:~$ sudo echo 0 &gt; /var/run/hw-management/config/suspend
 </tr>
 <tr>
 <td>CM-29165</td>
-<td><p>An inconsistent link-state advertisement may be seen with FRR/OSPF in some circumstances. For example, when you configure the OSPF default originate route as metric-type 1 with a specific metric, Cumulus Linux shows the default originate route as an external metric-type 2 route with the default metric in the database. This problem has been observed when there are both IPv4 and IPv6 default routes in the routing table.</p></td>
+<td><p>With FRR or OSPF, you might see an inconsistent link-state advertisement. For example, when you configure the OSPF default originate route as metric-type 1 with a specific metric, Cumulus Linux shows the default originate route as an external metric-type 2 route with the default metric in the database. This issue typically occurs when both IPv4 and IPv6 default routes exist in the routing table.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -126,7 +290,7 @@ cumulus@<span class="code-keyword">switch</span>:~$ sudo systemctl restart ssh
 </tr>
 <tr>
 <td>CM-29068</td>
-<td><p>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
+<td><p>On the Broadcom switch with the Trident3 ASIC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -150,11 +314,51 @@ To work around this issue, restart FRR.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29043</td>
+<td><p>When a multipath route that contains an EVPN path exists together with an IPv4 BGP path in the VRF, the RMAC to VTEP binding is incorrect. This invalid entry occurs because Cumulus Linux treats IPv4 routes received over the eBGP IPv4 peering incorrectly in the VRF.<br/>
+To work around this issue, remove the unnecessary eBGP IPv4 peering.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29035</td>
+<td><p>When you upgrade Cumulus Linux on the EdgeCore AS7726-32X or AS7326-56X switch, you might see firmware errors similar to the following:</p>
+
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso5.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3.bin for module tg3
+
+
+<p>You can safely ignore these error messages.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29033</td>
+<td><p>When using apt-get update &amp;&amp; apt-get upgrade to upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later, a message similar to the following may appear. </p>
+
+Reading package lists... Done
+E: Repository 'http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Label' value from 'cumulus-repository-4.0.0' to 'cumulus-repository-4.1.0'
+E: Repository 'http://apt.cumulusnetworks.com/repo CumulusLinux-4-latest InRelease' changed its 'Codename' value from 'CumulusLinux-4.0.0' to 'CumulusLinux-4.1.0'
+N: This must be accepted explicitly before updates for this repository can be applied. See apt-secure(8) manpage for details.
+
+
+<p>To work around this issue and proceed with the upgrade, run apt-get update --allow-releaseinfo-change. </p></td>
+<td>4.0.0-4.1.0</td>
+<td>4.1.1</td>
+</tr>
+<tr>
 <td>CM-28992</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-10531: An issue was discovered in International Components for Unicode (ICU) for C/C++ through 66.1. An integer overflow, leading to a heap-based buffer overflow, exists in the UnicodeString::doAppend() function in common/unistr.cpp.</p></td>
 <td>3.0.0-4.1.0</td>
 <td>4.1.1</td>
+</tr>
+<tr>
+<td>CM-28982</td>
+<td><p>On the EdgeCore Minipack-AS8000, when you try to configure ROCEv2, you see errors indicating that PFC is not working properly.</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28944</td>
@@ -206,7 +410,7 @@ To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself 
 </tr>
 <tr>
 <td>CM-28900</td>
-<td><p>You might see a core file in FRRouting related to OSPFv3 if the switch is configured as both an OSPFv3 ABR and ASBR, and other switches in the same area are also configured as both ABR and ASBR. This issue is not seen with a single ABR/ASBR in an area or if there are multiple ASBRs in an area not acting as ABRs. To work around this issue, do not perform redistribution on more than one ABR in the same area. </p></td>
+<td><p>You might see a core file in FRRouting related to OSPFv3 if the switch is configured as both an OSPFv3 ABR and ASBR, and other switches in the same area are also configured as both ABR and ASBR. This issue is not seen with a single ABR or ASBR in an area or if there are multiple ASBRs in an area not acting as ABRs. To work around this issue, do not perform redistribution on more than one ABR in the same area. </p></td>
 <td>4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -359,6 +563,12 @@ Port security is not supported on bond/MLAG interfaces.</p></td>
 <td>4.1.0-4.1.1</td>
 </tr>
 <tr>
+<td>CM-28442</td>
+<td><p>PTM mis-detects incorrect hostnames of LLDP neighbors and does not fail them as expected. Instead they end up in an N/A cabling status.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28441</td>
 <td><p>If a LLDP neighbor advertises a PortDescr that contains commas, ptmctl -d splits the string on the commas and misplaces its components in other columns.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
@@ -379,7 +589,7 @@ To work around this issue, restart FRR.</p></td>
 </tr>
 <tr>
 <td>CM-28374</td>
-<td><p>When traffic from a double tag interface (facing a different site) is forwarded via VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
+<td><p>When traffic from a double tag interface (facing a different site) is forwarded through VXLAN, the inner tag is not removed. The destination does not know this tag, so it discards it.</p></td>
 <td>3.7.8-4.0.0</td>
 <td>4.1.0-4.1.1</td>
 </tr>
@@ -474,22 +684,6 @@ Jan 30 19:22:53 switch123 snmpd[23172]: Cannot statfs /sys/kernel/debug/tracing:
 <td></td>
 </tr>
 <tr>
-<td>CM-28184</td>
-<td><p>TACACS users are unable to execute sudo commands.<br/>
-To work around this issue, add the tacacs0 user to the sudo group; for example:</p>
-
-cumulus@switch:~$  usermod -a -G sudo tacacs0
-
-
-<p>Alternatively, run the following command:</p>
-
-ip vrf exec default sudo -i
-
-</td>
-<td>4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28169</td>
 <td><p>On the Dell Z9264F-ON switch, the CPU core temperature sensors report ABSENT.</p></td>
 <td>3.7.11, 4.0.0</td>
@@ -503,8 +697,8 @@ ip vrf exec default sudo -i
 </tr>
 <tr>
 <td>CM-28156</td>
-<td><p>NCLU crashes when you run the net add interface storage-optimized pfc command because non-ascii quotes exist in the datapath.conf file.<br/>
-To work around this issue, manually edit the /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf file and replace the non-ascii single quotes  with ascii single quotes (standard single quote on the keyboard).</p></td>
+<td><p>NCLU crashes when you run the net add interface storage-optimized pfc command because non-ASCII quotes exist in the datapath.conf file.<br/>
+To work around this issue, manually edit the /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf file and replace the non-ASCII single quotes with ASCII single quotes (standard single quote on the keyboard).</p></td>
 <td>4.0.0</td>
 <td>4.1.0-4.1.1</td>
 </tr>
@@ -677,7 +871,7 @@ kernel: [159400.526241] switchd[21374]: segfault at 1229cdd84 ip 00000000004142c
 bq. systemd[1]: switchd.service watchdog timeout (limit 2min)!
 
 
-<p>To workaround this issue, either reduce the number of configured interfaces and/or VLANs or increase the systemd timeout for switchd.service.<br/>
+<p>To workaround this issue, either reduce the number of configured interfaces and, or VLANs, or increase the systemd timeout for switchd.service.<br/>
 To increase the systemd timeout:</p>
 <ol>
 	<li>Edit the /etc/systemd/system/switchd.service.d/override.conf file and increase the WatchdogSec parameter.</li>
@@ -875,7 +1069,7 @@ To work around this issue, you can do one of the following:</p>
 <tr>
 <td>CM-27581</td>
 <td><p>On the Delta AG-6248C PoE switch, when you run the apt upgrade command, the upgrade does not work. Cumulus Linux uses uboot directly instead of grub to boot the kernel. Uboot needs a special header to boot the kernel, which is not present. Without this header, when you use the apt upgrade command to upgrade Linux packages, uboot is unable to boot up the kernel. <br/>
-To work around this issue, upgrade Cumulus Linux by installing the disk image. Run the onie-select command to go into ONIE, and then use the nos-install command in ONIE to install a new binary image.<br/>
+To work around this issue, upgrade Cumulus Linux by installing the Cumulus Linux image. Run the onie-select command to go into ONIE, and then use the nos-install command in ONIE to install a new image.<br/>
 This workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
@@ -909,6 +1103,13 @@ echo CR &gt; /cumulus/switchd/config/interface/swp${port}/interface_mode ; done
 To work around this issue, downgrade the Broadcom ASIC firmware to an earlier version.</p></td>
 <td>3.7.11, 4.0.0</td>
 <td>3.7.12, 4.1.0-4.1.1</td>
+</tr>
+<tr>
+<td>CM-27489</td>
+<td><p>Mellanox switches might experience higher CPU usage from the sx_sdk service or when BFD is in use.<br/>
+To work around this issue, disable BFD to alleviate some of the CPU load.</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-27457</td>
@@ -1039,6 +1240,19 @@ Running hypervisors for virtual guest operating systems is not supported on Cumu
 <td></td>
 </tr>
 <tr>
+<td>CM-27049</td>
+<td><p>On the Mellanox switch with the Spectrum 2 ASIC, interfaces using 100G or 200G Direct Attach Cables (DACs) do not come up with the interface default configuration.<br/>
+To work around this issue and bring the interfaces up, perform the following configuration on both sides of the link:</p>
+<ul>
+	<li>Set the interface speed to the desired speed</li>
+	<li>Set link auto-negotiation to <em>off</em></li>
+	<li>Set link FEC to RS mode</li>
+</ul>
+</td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-27025</td>
 <td><p>On the Mellanox switch, ACL lookups are performed for VLAN matches when no rules with UNTAGGED match are present.</p></td>
 <td>3.7.2-3.7.10, 4.0.0</td>
@@ -1104,7 +1318,7 @@ sudo sh -c "printf 'interface 50 vrf TEST\ndescription L3 routing interface\n' &
 </tr>
 <tr>
 <td>CM-26905</td>
-<td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old name.<br/>
+<td><p>When you update the hostname of a switch with the NCLU net add hostname &lt;hostname&gt; command, then run net commit, the lldpd service does not restart and other devices still see the old hostname.<br/>
 To work around this issue, run the sudo systemctl restart lldpd.service command.</p></td>
 <td>3.7.10-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
@@ -1366,6 +1580,13 @@ To work around this issue, wait up to 15 seconds on 40G interfaces and 30 second
 <td></td>
 </tr>
 <tr>
+<td>CM-25923</td>
+<td><p>The default route injected through OSPF when you configure default-information originate always is unreliable and might age out unexpectedly.<br/>
+To work around this issue, rely on a different source of default route other than injection with default-information originate.</p></td>
+<td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-25890</td>
 <td><p>In some cases, the switchd service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).</p></td>
 <td>3.7.0-3.7.12, 4.0.0-4.1.1</td>
@@ -1499,14 +1720,14 @@ cumulus@switch:~$ sudo timedatectl set-timezone US/Eastern
 </tr>
 <tr>
 <td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
+<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
  
  
  cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
  cumulus@switch:~$ sudo reboot 
  
  
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new binary image. <br/>
+<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
 The workaround only works when an out-of-band network is present.</p></td>
 <td>3.7.6-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
@@ -1518,13 +1739,6 @@ This issue only affects QinQ configurations. </p>
 </td>
 <td>3.7.5-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
-</tr>
-<tr>
-<td>CM-24762</td>
-<td><p>On the EdgeCore AS7326 switch, the 1000BASE-T SFP RJ-45 on a 25G port does not work at 1G. </p>
-</td>
-<td>3.7.3-3.7.10, 4.0.0-4.1.1</td>
-<td>3.7.11-3.7.12</td>
 </tr>
 <tr>
 <td>CM-24751</td>
@@ -1589,8 +1803,7 @@ This issue does not affect a pure distributed routing (symmetric or asymmetric) 
  &lt;ENTER&gt; 
  
  
-<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p>
-</td>
+<p> Tab completion for the net add vrf &lt;name&gt; ip address &lt;address&gt; command works correctly. </p></td>
 <td>3.7.4-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -1991,6 +2204,12 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-18192</td>
+<td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-17934</td>
 <td><p>FRR tracks interface speed based on the value it learns from the Linux kernel for that interface. If the interface speed changes, FRR does not update its interface speed cache. This can lead to issues for routing protocols that derive metrics from interface speed as the cost can become out of sync with the interface speed.<br/>
 To work around this issue, manually define the routing protocol metric for these interfaces or restart FRR.</p></td>
@@ -2024,6 +2243,17 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Affects </th>
 </tr>
 <tr>
+<td>CM-29322</td>
+<td><p>When the BGP Multi-protocol Unreach NLRI attribute is received in a BGP update without a next hop attribute, the BGP session is brought down unexpectedly. RFC 4760 defines that the next-hop attribute is not required for updates containing MP_UNREACH_NLRI.</p></td>
+<td>3.7.12</td>
+</tr>
+<tr>
+<td>CM-28932</td>
+<td><p>After you add a new VNI and a layer 3 SVI to a set of leafs, certain leafs might not be able to communicate on the layer 3 VNI. <br/>
+To work around this issue, reboot the leaf switch or restart switchd.</p></td>
+<td>3.7.6-3.7.12</td>
+</tr>
+<tr>
 <td>CM-27269</td>
 <td><p>The following Linux kernel security vulnerabilities do not affect Cumulus Linux in supported configurations:<br/>
 CVE-2018-12207 CVE-2019-0154 CVE-2019-0155 CVE-2019-11135<br/>
@@ -2043,7 +2273,7 @@ For the detailed security status of linux, refer to its security tracker page at
 <tr>
 <td>CM-26691</td>
 <td><p>BGP is configured with soft reconfiguration-in for its peers, which is not working correctly and causes routes to have an unexpected label. As a result, transit traffic is not forwarded by the switch.</p></td>
-<td>3.7.8-3.7.10</td>
+<td>3.7.7-3.7.10</td>
 </tr>
 <tr>
 <td>CM-26657</td>
@@ -2089,31 +2319,6 @@ Fixed version: 1:2.8.0-cl4u3</p></td>
 <td><p>Cumulus Linux does not map QinQ packets to VXLANs in a configuration with a VLAN-aware bridge and MLAG on the Trident3 platform. </p>
 </td>
 <td>3.7.9-3.7.10</td>
-</tr>
-<tr>
-<td>CM-26147</td>
-<td><p>On the EdgeCore AS4610 switch, the ping command fails unless you run the command with sudo. <br/>
- To work around this issue, run the following commands: </p>
-
- cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping 
- cumulus@switch:~$ sudo setcap cap_net_raw+ep /usr/share/mgmt-vrf/bin/ping6
-
-
-<p> Run the following command to verify the workaround: </p>
- 
- 
- cumulus@switch:~$ getcap /usr/share/mgmt-vrf/bin/ping* 
- 
- 
-<p> You should see the following output: </p>
- 
- 
- /usr/share/mgmt-vrf/bin/ping = cap_net_raw+ep 
- /usr/share/mgmt-vrf/bin/ping6 = cap_net_raw+ep 
- 
- 
-</td>
-<td>3.7.6-3.7.10</td>
 </tr>
 <tr>
 <td>CM-26146</td>
@@ -2238,6 +2443,19 @@ You can prevent EVPN next hops from not being removed when the contributing peer
 <td>3.7.6-3.7.10</td>
 </tr>
 <tr>
+<td>CM-25001</td>
+<td><p>The following CVEs were announced in Debian Security Advisory DSA-444-1, DSA-4447-1 and affect the linux kernel and microcode. <br/>
+Package: linux <br/>
+CVE ID: CVE-2018-12126 CVE-2018-12127 CVE-2018-12130 CVE-2019-11091 <br/>
+Multiple researchers have discovered vulnerabilities in the way the Intel processor designs have implemented speculative forwarding of data filled into temporary microarchitectural structures (buffers). <br/>
+This flaw could allow an attacker controlling an unprivileged process to read sensitive information, including from the kernel and all other processes running on the system or cross guest/host boundaries to read host memory. <br/>
+See <a href="https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html" class="external-link" rel="nofollow">https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html</a> for more details. <br/>
+To fully resolve these vulnerabilities it is also necessary to install updated CPU microcode. Contact your hardware ndor for microcode uppdates.<br/>
+In addition, this update includes a fix for a regression causing deadlocks inside the loopback driver. <br/>
+Fixed in version 4.19.76-1+cl4u1</p></td>
+<td>3.0.0-3.7.12</td>
+</tr>
+<tr>
 <td>CM-24784</td>
 <td><p>NCLU is unable to delete a BGP neighbor configuration if there is a VRF VNI mapping in the /etc/frr/frr.conf file. For example, the following NCLU command produces an error: </p>
  
@@ -2278,6 +2496,12 @@ To work around this issue, restart switchd.</p></td>
  To work around this issue, do not use default-originate ipv4; instead configure the network statements (recommended for small scale deployments). </p>
 </td>
 <td>3.7.2</td>
+</tr>
+<tr>
+<td>CM-23123</td>
+<td><p>When you enable FEC (RS or BaseR) on an interface, removing the configuration from that interface does not revert the FEC status to off/none. </p>
+</td>
+<td>3.7.2-3.7.12</td>
 </tr>
 <tr>
 <td>CM-23016</td>

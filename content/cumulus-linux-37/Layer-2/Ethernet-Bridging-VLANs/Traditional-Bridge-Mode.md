@@ -2,9 +2,6 @@
 title: Traditional Bridge Mode
 author: Cumulus Networks
 weight: 349
-aliases:
- - /display/DOCS/Traditional+Bridge+Mode
- - /pages/viewpage.action?pageId=8362670
 pageID: 8362670
 ---
 Cumulus Networks recommends you use a
@@ -245,18 +242,28 @@ native VLAN, thus merging those two VLANs and their spanning tree state.
 
 {{% imgOld 1 %}}
 
-To create the above example, add the following configuration to the
-`/etc/network/interfaces` file:
+To create the above example:
 
-    auto br-VLAN100
-    iface br-VLAN100
-     bridge-ports swp1.100 swp2.100
-     bridge-stp on
+```
+cumulus@switch:~$ net add bridge br-VLAN100 ports swp1.100,swp2.100
+cumulus@switch:~$ net add bridge br-VLAN200 ports swp1.200,swp2.200
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
-    auto br-VLAN200
-    iface br-VLAN200
-     bridge-ports swp1.200 swp2.200
-     bridge-stp on
+These commands create the following configuration snippet in the `/etc/network/interfaces` file:
+
+```
+auto br-VLAN100
+iface br-VLAN100
+    bridge-ports swp1.100 swp2.100
+    bridge-stp on
+
+auto br-VLAN200
+iface br-VLAN200
+    bridge-ports swp1.200 swp2.200
+    bridge-stp on
+```
 
 ### VLAN Tagging Examples
 

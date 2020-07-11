@@ -31,32 +31,7 @@ There are several choices that you must make to determine what steps you need to
 
 No matter how you answer the questions above, the installation workflow can be summarized as follows:
 
-1. Install the NetQ Platform.
-2. Install and configure NetQ Agents on switches and hosts.
-3. Install and configure NetQ CLI on switches and hosts (optional, but useful).
-
-<!-- ## Get Started
-
-Follow the instructions contained in the section identified in these tables based on your answers to the installation choices you have made.
-
-### Single Server
-
-| On Prem/ Cloud | VM + Your HW/ Cumulus NetQ HW | Get Started Here |
-| ---- | ---- | ---- |
-| On premises | VM + your hardware | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your Hardware and VM for a NetQ On-premises Deployment">}} |
-| On premises | NetQ 2.4 Appliance | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your New NetQ Appliance for a NetQ On-premises Deployment">}} |
-| Cloud | VM + your hardware | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your Hardware and VM for a NetQ Cloud Deployment">}} |
-| Cloud | NetQ 2.4 Cloud Appliance | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your New NetQ Cloud Appliance for a NetQ Cloud Deployment">}} |
-| On premises, cloud | NetQ 2.3 and earlier Appliances | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your Existing NetQ Appliances for a NetQ 2.4 Deployment">}} |
-
-### Server Cluster
-
-| On Prem/ Cloud | VM + Your HW/ Cumulus NetQ HW | Get Started Here |
-| ---- | ---- | ---- |
-| On premises | VM + your hardware | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your Hardware and VM for a NetQ On-premises Cluster Deployment">}} |
-| On premises | NetQ Appliance | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your New NetQ Appliances for a NetQ On-premises Cluster Deployment">}} |
-| Cloud | VM + your hardware | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your Hardware and VM for a NetQ Cloud Cluster Deployment">}} |
-| Cloud | NetQ Cloud Appliance | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your New NetQ Cloud Appliance for a NetQ Cloud Cluster Deployment">}} |
-| On premises, cloud | NetQ 2.3 and earlier Appliances | {{<link url="Cumulus-NetQ-Deployment-Guide" text="Prepare Your Existing NetQ Appliances for a NetQ 2.4 Cluster Deployment">}} |
-
-After you have completed the necessary preparations, you can install the NetQ software and Agents. -->
+1. Prepare physical server or virtual machine.
+2. Install the NetQ Platform or NetQ Collector.
+3. Install and configure NetQ Agents on switches and hosts.
+4. Install and configure NetQ CLI on switches and hosts (optional, but useful).

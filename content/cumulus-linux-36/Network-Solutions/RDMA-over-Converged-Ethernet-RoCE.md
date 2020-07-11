@@ -2,11 +2,6 @@
 title: RDMA over Converged Ethernet - RoCE
 author: Cumulus Networks
 weight: 255
-aliases:
- - /display/CL36/RDMA+over+Converged+Ethernet+++RoCE
- - /display/CL36/RDMA+over+Converged+Ethernet+-+RoCE
- - /display/CL36/RDMA+over+Converged+Ethernet+RoCE
- - /pages/viewpage.action?pageId=8362484
 pageID: 8362484
 ---
 *RDMA over Converged Ethernet*
@@ -156,7 +151,7 @@ packet to **not** be ECT-capable.
 
   - [RoCE introduction](http://www.roceinitiative.org/roce-introduction/) -
     roceinitiative.org
-  - [RoCEv2 congestion management](https://community.mellanox.com/docs/DOC-2321) -
+  - [RoCEv2 congestion management](https://community.mellanox.com/s/article/understanding-rocev2-congestion-management) -
     community.mellanox.com
   - [Configuring RoCE over a DSCP-based lossless network](https://community.mellanox.com/docs/DOC-2884) 
     with a Mellanox Spectrum switch

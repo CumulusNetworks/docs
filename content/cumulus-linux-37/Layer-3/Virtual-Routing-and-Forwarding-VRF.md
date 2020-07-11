@@ -2,10 +2,6 @@
 title: Virtual Routing and Forwarding - VRF
 author: Cumulus Networks
 weight: 195
-aliases:
- - /display/DOCS/Virtual+Routing+and+Forwarding+-+VRF
- - /display/DOCS/Virtual-Routing-and-Forwarding-VRF
- - /pages/viewpage.action?pageId=8362942
 pageID: 8362942
 ---
 Cumulus Linux provides *virtual* *routing and forwarding* (VRF) to allow
@@ -408,9 +404,7 @@ between a pair of VRFs.
   (AS) or an AS that is not the same as the global AS.
 - Cumulus Networks recommends that you do not use the default VRF as a
   shared service VRF. Create another VRF for shared services.
-- Broadcom switches have certain limitations when leaking routes
-  between the default VRF and non-default VRFs.
-- On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, only leak the specific routes you need from the default VRF; do not include the VTEP routes or filter out the VTEP routes with a route filter.
+- An EVPN symmetric routing configuration on a Mellanox switch with a {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASIC">}} or a Broadcom switch has certain limitations when leaking routes between the default VRF and non-default VRFs. The default VRF has underlay routes (routes to VTEP addresses) that cannot be leaked to any tenant VRFs. If you need to leak routes between the default VRF and a non-default VRF, you must filter out routes to the VTEP addresses to prevent leaking these routes. Use caution with such a configuration. Cumulus Networks recommends you run common services in a separate VRF (service VRF) instead of the default VRF to simplify configuration and avoid using route-maps for filtering.
 
 {{%/notice%}}
 

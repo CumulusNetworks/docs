@@ -2,9 +2,6 @@
 title: DHCP Relays
 author: Cumulus Networks
 weight: 340
-aliases:
- - /display/DOCS/DHCP+Relays
- - /pages/viewpage.action?pageId=8366758
 toc: 3
 ---
 DHCP is a client/server protocol that automatically provides IP hosts with IP addresses and other related  configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers. DHCP relays forward requests and replies between clients and servers that are not on the same physical subnet.
@@ -23,9 +20,9 @@ The `dhcpd` and `dhcrelay` services are disabled by default. After you finish co
 
 To configure IPv4 DHCP relays, run the following commands.
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 {{%notice warning%}}
 
@@ -59,11 +56,9 @@ cumulus@switch:~$ sudo systemctl enable dhcrelay.service
 cumulus@switch:~$ sudo systemctl restart dhcrelay.service
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and both interfaces participating in DHCP relay (facing the server and facing the client). In the example below, the DHCP server IP address is 172.16.1.102, VLAN 1 (the SVI is vlan1) and the uplinks are swp51 and swp52. If the client-facing interface is a bridge port, specify the switch virtual interface (SVI) name if using a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}} (for example, bridge.100), or the bridge name if using traditional bridging (for example, br100).
 
@@ -81,7 +76,9 @@ cumulus@switch:~$ sudo systemctl restart dhcrelay.service
    cumulus@switch:~$ sudo systemctl restart dhcrelay.service
    ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To see the DHCP relay status, use the `systemctl status dhcrelay.service` command:
 
@@ -164,9 +161,9 @@ The following illustration demonstrates how you can control the giaddr with RFC 
 
 To enable RFC 3527 support and control the giaddr, run the following commands.
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 1. Run the `net add dhcp relay giaddr-interface` command with the interface/IP address you want to use. The  following example uses the first IP address on the loopback interface as the giaddr:
 
@@ -232,11 +229,9 @@ To enable RFC 3527 support and control the giaddr, run the following commands.
    cumulus@switch:~$ sudo systemctl restart dhcrelay.service
    ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1. Edit the `/etc/default/isc-dhcp-relay` file and provide the `-U` option with the interface or IP address you want to use as the giaddr. The following example uses the first IP address on the loopback interface as the giaddr:
 
@@ -286,7 +281,9 @@ The first IP address on the loopback interface is typically the 127.0.0.1 addres
    cumulus@switch:~$ sudo systemctl restart dhcrelay.service
    ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
 
@@ -300,9 +297,9 @@ This option impacts all relayed IPv4 packets globally.
 
 To use the gateway IP address as the source IP address:
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run these commands:
 
@@ -312,11 +309,9 @@ cumulus@leaf:~$ net pending
 cumulus@leaf:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1. Edit the `/etc/default/isc-dhcp-relay` file to add `--giaddr-src` to the `OPTIONS` line. An example is shown below.
 
@@ -333,7 +328,9 @@ cumulus@leaf:~$ net commit
    cumulus@switch:~$ sudo systemctl restart dhcrelay.service
    ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Configure IPv6 DHCP Relays
 

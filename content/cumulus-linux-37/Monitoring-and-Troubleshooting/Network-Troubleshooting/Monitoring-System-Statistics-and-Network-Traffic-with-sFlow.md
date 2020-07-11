@@ -2,9 +2,6 @@
 title: Monitoring System Statistics and Network Traffic with sFlow
 author: Cumulus Networks
 weight: 473
-aliases:
- - /display/DOCS/Monitoring+System+Statistics+and+Network+Traffic+with+sFlow
- - /pages/viewpage.action?pageId=8362597
 pageID: 8362597
 ---
 {{<exlink url="http://www.sflow.org/index.php" text="sFlow">}} is a monitoring protocol that
@@ -20,13 +17,9 @@ automatically when the switch boots up.
 
 {{%notice note%}}
 
-The `hsflowd` service does not sample interfaces that are up but not configured.
-
-If you intend to run this service within a
-{{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}},
-including the {{<link url="Management-VRF" text="management VRF">}}, follow
-{{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}
-for configuring the service.
+- sFlow is not supported on Broadcom switches with the Hurricane2 ASIC.
+- The `hsflowd` service does not sample interfaces that are up but not configured.
+- If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}} for configuring the service.
 
 {{%/notice%}}
 
@@ -93,6 +86,7 @@ Edit the `/etc/hsflowd.conf` file to set up your collectors and sampling
 rates in `/etc/hsflowd.conf`. For example:
 
 ```
+sflow {
 # ====== Sampling/Polling/Collectors ======
   # EITHER: automatic (DNS SRV+TXT from _sflow._udp):
   #   DNS-SD { }
@@ -113,6 +107,7 @@ rates in `/etc/hsflowd.conf`. For example:
   #   collectors:
   collector { ip=192.0.2.100 udpport=6343 }
   collector { ip=192.0.2.200 udpport=6344 }
+}
 ```
 
 This configuration polls the counters every 20 seconds, samples 1 of every 40000 packets for 40G interfaces, and sends this information to a collector at 192.0.2.100 on port 6343 and to another collector at 192.0.2.200 on port 6344.

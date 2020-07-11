@@ -2,9 +2,6 @@
 title: Redistribute Neighbor
 author: Cumulus Networks
 weight: 193
-aliases:
- - /display/DOCS/Redistribute+Neighbor
- - /pages/viewpage.action?pageId=8362959
 pageID: 8362959
 ---
 *Redistribute neighbor* provides a mechanism for IP subnets to span racks without forcing the end hosts to run a routing protocol.
@@ -234,6 +231,11 @@ This release of redistribute neighbor does not support {{<link url="Virtual-Rout
 ### Only 1024 Interfaces Supported
 
 Redistribute neighbor does not work with more than 1024 interfaces. Doing so can cause the `rdnbrd` service to crash.
+
+### Unsupported with EVPN
+
+Redistribute neighbor is unsupported when the BGP EVPN Address Family is enabled. Enabling both redistribute neighbor and EVPN will lead to unreachable IPv4 ARP and IPv6 neighbor entries.
+
 
 ## Troubleshooting
 

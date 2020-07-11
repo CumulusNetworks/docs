@@ -2,9 +2,6 @@
 title: Policy-based Routing
 author: Cumulus Networks
 weight: 820
-aliases:
- - /display/DOCS/Policy+based+Routing
- - /pages/viewpage.action?pageId=8366698
 toc: 3
 ---
 Typical routing systems and protocols forward traffic based on the destination address in the packet, which is used to look up an entry in a routing table. However, sometimes the traffic on your network requires a more hands-on approach. You might need to forward a packet based on the source address, the packet size, or other information in the packet header.
@@ -19,7 +16,7 @@ Policy-based routing is applied to incoming packets. All packets received on a P
 - You can apply only one PBR policy per input interface.
 - You can match on *source* and *destination* IP address only.
 - PBR is not supported for GRE or VXLAN tunneling.
-- PBR is not supported on ethernet interfaces.
+- PBR is not supported on management interfaces, such as eth0.
 - A PBR rule cannot contain both IPv4 and IPv6 addresses.
 
 {{%/notice%}}
@@ -30,30 +27,26 @@ A PBR policy contains one or more policy maps. Each policy map:
 
 - Is identified with a unique map name and sequence number. The sequence number is used to determine the relative order of the map within the policy.
 - Contains a match source IP rule or a match destination IP rule, and a set rule.
-      - To match on a source and destination address, a policy map can contain both match source and match destination IP rules.
-      - A set rule determines the PBR next hop for the policy. The set rule can contain a single next hop IP address or it can contain a next hop group. A next hop group has more than one next hop IP address so that you can use multiple interfaces to forward traffic. To use ECMP, you configure a next hop group.
+   - To match on a source and destination address, a policy map can contain both match source and match destination IP rules.
+   - A set rule determines the PBR next hop for the policy. The set rule can contain a single next hop IP address or it can contain a next hop group. A next hop group has more than one next hop IP address so that you can use multiple interfaces to forward traffic. To use ECMP, you configure a next hop group.
 
 To use PBR in Cumulus linux, you define a PBR policy and apply it to the ingress interface (the interface must already have an IP address assigned). Traffic is matched against the match rules in sequential order and forwarded according to the set rule in the first match. Traffic that does not match any rule is passed onto the normal destination based routing mechanism.
 
 {{%notice note%}}
 
-For Tomahawk and Tomahawk+ platforms, you must configure the switch to operate in non-atomic mode, which offers better scaling as all TCAM resources are used to actively impact traffic. Add the line `acl.non_atomic_update_mode = TRUE` to the `/etc/cumulus/switchd.conf` file. For more information, see {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="Nonatomic Update Mode vs. Atomic Update Mode">}}.
+For Tomahawk and Tomahawk+ platforms, you must configure the switch to operate in non-atomic mode, which offers better scaling as all TCAM resources are used to actively impact traffic. Add the line `acl.non_atomic_update_mode = TRUE` to the `/etc/cumulus/switchd.conf` file.
 
 {{%/notice%}}
 
 To configure a PBR policy:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 1. Configure the policy map. The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
 
-    {{%notice note%}}
-
-If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
-
-    {{%/notice%}}
+    If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
 
     ```
     cumulus@switch:~$ net add pbr-map map1 seq 1 match dst-ip 10.1.2.0/24
@@ -68,11 +61,7 @@ If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match.
 
     To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `rocket`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
 
-    {{%notice note%}}
-
-The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
-
-    {{%/notice%}}
+    The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
 
     ```
     cumulus@switch:~$ net add nexthop-group group1 nexthop 192.168.0.21 swp1 nexthop-vrf rocket
@@ -94,11 +83,9 @@ You can only set one policy per interface.
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 1. Before you run the vtysh commands, you need to enable the `pbrd` service in the `/etc/frr/daemons` file, then restart FRR with the `systemctl restart frr.service` command.
 
@@ -133,11 +120,7 @@ You can only set one policy per interface.
     switch(config-pbr-map)# match src-ip 10.1.4.1/24 
     ```
 
-    {{%notice note%}}
-
-If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
-
-    {{%/notice%}}
+    If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.
 
 2.  Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
 
@@ -149,11 +132,7 @@ If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match.
 
     To apply a next hop group (for ECMP) to the policy map, first create the next hop group, then apply the group to the policy map. The example commands below create a next hop group called `group1` that contains the next hop 192.168.0.21 on output interface swp1 and VRF `rocket`, and the next hop 192.168.0.22, then applies the next hop group `group1` to the `map1` policy map.
 
-    {{%notice note%}}
-
-The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
-
-    {{%/notice%}}
+    The output interface and VRF are optional. However, you must specify the VRF if the next hop is not in the default VRF.
 
     ```
     switch(config)# nexthop-group group1
@@ -183,7 +162,9 @@ You can only set one policy per interface.
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -211,9 +192,9 @@ In the following example, the PBR-enabled switch has a PBR policy to route all t
 
 The configuration for the example above is:
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 0.0.0.0/0
@@ -223,11 +204,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -245,7 +224,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -320,9 +301,9 @@ A new Linux routing table ID is used for each next hop and next hop group.
 
 When you want to change or extend an existing PBR rule, you must first delete the conditions in the rule, then add the rule back with the modification or addition.
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary> Modify an existing match/set condition </summary>
+{{< tab "Modify an existing match/set condition" >}}
 
 The example below shows an existing configuration.
 
@@ -388,11 +369,9 @@ cumulus@switch:~$ sudo cat /cumulus/switchd/run/iprule/show | grep 303 -A 1
      [hwstatus: unit: 0, installed: yes, route-present: yes, resolved: yes, nh-valid: yes, nh-type: nh, ecmp/rif: 0x1, action: route,  hitcount: 0]
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Add a match condition to an existing rule </summary>
+{{< tab "Add a match condition to an existing rule" >}}
 
 The example below shows an existing configuration, where only one source IP match is configured:
 
@@ -451,7 +430,9 @@ cumulus@mlx-2400-91:~$ cat /cumulus/switchd/run/iprule/show | grep 302 -A 1
      [hwstatus: unit: 0, installed: yes, route-present: yes, resolved: yes, nh-valid: yes, nh-type: nh, ecmp/rif: 0x1, action: route,  hitcount: 0]
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Delete PBR Rules and Policies
 
@@ -463,9 +444,9 @@ Use caution when deleting PBR rules and next hop groups, as you might create an 
 
 {{%/notice%}}
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following examples show how to delete a PBR rule match:
 
@@ -507,11 +488,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 The following examples show how to delete a PBR rule match:
 
@@ -576,15 +555,13 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
 If a PBR rule has multiple conditions (for example, a source IP match and a destination IP match), but you only want to delete one condition, you have to delete all conditions first, then re-add the ones you want to keep.
-
-<details>
-
-<summary>Example configuration </summary>
 
 The example below shows an existing configuration that has a source IP match and a destination IP match.
 
@@ -620,7 +597,5 @@ net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
 net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
 net commit
 ```
-
-</details>
 
 {{%/notice%}}

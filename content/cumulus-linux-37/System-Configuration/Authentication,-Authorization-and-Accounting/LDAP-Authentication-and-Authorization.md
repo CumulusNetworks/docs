@@ -2,9 +2,6 @@
 title: LDAP Authentication and Authorization
 author: Cumulus Networks
 weight: 279
-aliases:
- - /display/DOCS/LDAP+Authentication+and+Authorization
- - /pages/viewpage.action?pageId=8362556
 pageID: 8362556
 ---
 Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name

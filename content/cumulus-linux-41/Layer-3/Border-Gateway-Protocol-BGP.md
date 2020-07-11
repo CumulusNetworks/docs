@@ -2,11 +2,6 @@
 title: Border Gateway Protocol - BGP
 author: Cumulus Networks
 weight: 810
-aliases:
- - /display/DOCS/Border+Gateway+Protocol+++BGP
- - /display/DOCS/Border+Gateway+Protocol+BGP
- - /display/DOCS/Border+Gateway+Protocol+-+BGP
- - /pages/viewpage.action?pageId=8366650
 toc: 3
 ---
 BGP is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. Specifically, BGP:
@@ -257,7 +252,7 @@ To enable ECMP in BGP, run the following command:
 
 {{< tabs "12 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp bestpath as-path multipath-relax
@@ -267,7 +262,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -294,6 +289,12 @@ router bgp 65000
   bgp bestpath as-path multipath-relax
 ...
 ```
+
+{{%notice note%}}
+
+When you disable the `bgp bestpath as-path multipath relax` option, EVPN type-5 routes do not use the updated configuration. Type-5 routes will continue to use all available ECMP paths in the underlay fabric, regardless of ASN.
+
+{{%/notice%}}
 
 ## Route Reflectors
 
@@ -583,9 +584,7 @@ Assigning an IP address to the loopback device is essential.
 
 ### Advanced: How Next Hop Fields Are Set
 
-<details>
-
-<summary>Click to expand... </summary>
+{{< expand "Click to expand... "  >}}
 
 This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ({{<exlink url="https://www.ietf.org/rfc/rfc2858.txt" text="multiprotocol reachable NLRI">}}) initiated by the system, which applies whether IPv6 prefixes or IPv4 prefixes are exchanged with ENHE. There are two main aspects to determine: how many IPv6 next hops are included in the MP\_REACH\_NLRI (the RFC allows either one or two next hops) and the values of the next hops. This section also describes how a received MP\_REACH\_NLRI is handled as far as processing IPv6 next hops.
 
@@ -614,7 +613,7 @@ If this address is a link-local IPv6 address, it is reset so that the link-local
 
 The above rules imply that there are scenarios where a generated update has two IPv6 next hops, and both of them are the IPv6 link-local address of the peering interface on the local system. If you are peering with a switch or router that is not running Cumulus Linux and expects the first next hop to be a global IPv6 address, a route map can be used on the sender to specify a global IPv6 address. This conforms with the recommendations in the Internet draft {{<exlink url="https://tools.ietf.org/html/draft-kato-bgp-ipv6-link-local-00" text="draft-kato-bgp-ipv6-link-local-00.txt">}}, "BGP4+ Peering Using IPv6 Link-local Address."
 
-</details>
+{{< /expand >}}
 
 ### Limitations
 
@@ -2437,7 +2436,7 @@ cumulus@switch:~$
 
 You can apply the community list to a route map to define the routing policy:
 
-{{< tabs "46 ">}}
+{{< tabs "56 ">}}
 
 {{< tab "NCLU Commands ">}} 
 
@@ -3175,7 +3174,7 @@ To work around this issue, only advertise the spine to leaf addresses from the s
 
 ### BGP `ttl-security` Configured on a Peer Group
 
-FRR does not add BGP `ttl-security` to either the running configuration or to the `/etc/frr/frr.conf` file when configured on a peer group instead of a specific neighbor. To work around this issue, add ``ttl-security` to individual neighbors instead of the peer group.
+FRR does not add BGP `ttl-security` to either the running configuration or to the `/etc/frr/frr.conf` file when configured on a peer group instead of a specific neighbor. To work around this issue, add `ttl-security` to individual neighbors instead of the peer group.
 
 ## Related Information
 

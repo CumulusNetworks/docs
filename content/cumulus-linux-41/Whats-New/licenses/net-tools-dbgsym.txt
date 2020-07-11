@@ -1,0 +1,1 @@
+net-tools-dbgsym has no debian/copyright file

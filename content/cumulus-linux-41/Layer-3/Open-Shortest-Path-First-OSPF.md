@@ -2,13 +2,6 @@
 title: Open Shortest Path First - OSPF
 author: Cumulus Networks
 weight: 790
-aliases:
- - /display/DOCS/Open+Shortest+Path+First+++OSPF
- - /display/DOCS/Open+Shortest+Path+First+OSPF
- - /display/DOCS/Open+Shortest+Path+First+-+OSPF
- - /display/DOCS/Open+Shortest+Path+First+-+OSPF+-+Protocol
- - /display/DOCS/Open+Shortest+Path+First+++OSPF+++Protocol
- - /pages/viewpage.action?pageId=8366646
 toc: 3
 ---
 OSPF maintains the view of the network topology conceptually as a directed graph. Each router represents a vertex in the graph. Each link between neighboring routers represents a unidirectional edge and has an associated weight (called cost) that is either automatically derived from its bandwidth or administratively assigned. Using the weighted topology graph, each router computes a shortest path tree (SPT) with itself as the root, and applies the results to build its forwarding table. The computation is generally referred to as *SPF computation* and the resultant tree as the *SPF tree*.
@@ -506,47 +499,47 @@ To configure multi-instance OSPF:
 
 3. Assign and enable an OSPF interface for each instance:
 
-    {{< tabs "TabID514 ">}}
+{{< tabs "TabID514 ">}}
 
-    {{< tab "NCLU Commands ">}}
+  {{< tab "NCLU Commands ">}}
 
-    ```
-    cumulus@switch:~$ net add interface swp1 ospf instance-id 11
-    cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
-    cumulus@switch:~$ net add ospf router-id 1.1.1.1
-    cumulus@switch:~$ net add interface swp2 ospf instance-id 22
-    cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
-    cumulus@switch:~$ net add ospf router-id 1.1.1.1
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
-    ```
+  ```
+  cumulus@switch:~$ net add interface swp1 ospf instance-id 11
+  cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
+  cumulus@switch:~$ net add ospf router-id 1.1.1.1
+  cumulus@switch:~$ net add interface swp2 ospf instance-id 22
+  cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
+  cumulus@switch:~$ net add ospf router-id 1.1.1.1
+  cumulus@switch:~$ net pending
+  cumulus@switch:~$ net commit
+  ```
 
-    {{< /tab >}}
+  {{< /tab >}}
 
-    {{< tab "vtysh Commands ">}}
+  {{< tab "vtysh Commands ">}}
 
-    ```
-    cumulus@switch:~$ sudo vtysh
+  ```
+  cumulus@switch:~$ sudo vtysh
 
-    switch# configure terminal
-    switch(config)# interface swp1
-    switch(config-if)#  ip ospf 11 area 0.0.0.0
-    switch(config-if)# router ospf 11
-    switch(config-router)# ospf router-id 0.0.0.1
-    ...
-    switch(config)# interface swp2
-    switch(config-if)#  ip ospf 22 area 0.0.0.0
-    switch(config-if)# router ospf 22
-    switch(config-router)# ospf router-id 0.0.0.1
-    switch(config-router)# end
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$
-    ```
+  switch# configure terminal
+  switch(config)# interface swp1
+  switch(config-if)#  ip ospf 11 area 0.0.0.0
+  switch(config-if)# router ospf 11
+  switch(config-router)# ospf router-id 0.0.0.1
+  ...
+  switch(config)# interface swp2
+  switch(config-if)#  ip ospf 22 area 0.0.0.0
+  switch(config-if)# router ospf 22
+  switch(config-router)# ospf router-id 0.0.0.1
+  switch(config-router)# end
+  switch# write memory
+  switch# exit
+  cumulus@switch:~$
+  ```
 
-    {{< /tab >}}
+  {{< /tab >}}
 
-    {{< /tabs >}}
+{{< /tabs >}}
 
 To confirm that all the OSPF instances are running:
 

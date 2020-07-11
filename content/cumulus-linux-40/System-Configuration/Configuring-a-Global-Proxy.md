@@ -2,9 +2,6 @@
 title: Configuring a Global Proxy
 author: Cumulus Networks
 weight: 260
-aliases:
- - /display/DOCS/Configuring+a+Global+Proxy
- - /pages/viewpage.action?pageId=8366298
 toc: 3
 ---
 You configure {{<exlink url="https://wiki.archlinux.org/index.php/proxy_settings" text="global HTTP and HTTPS proxies">}} in the `/etc/profile.d/` directory of Cumulus Linux. To do so, set the `http_proxy` and `https_proxy` variables, which tells the switch the address of the proxy server to use to fetch URLs on the command line. This is useful for programs such as `apt`/`apt-get`, `curl` and `wget`, which can all use this proxy.

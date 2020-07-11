@@ -4,62 +4,67 @@ author: Cumulus Networks
 weight: 100
 ---
 Now that you have installed Hugo, cloned the GitHub repository, and run the local server,
-you can add new content to the Docs site. If you came here first without performing these setup tasks, refer to [Make a Larger Contribution](../) and then return here.
+you can add new content to the Docs site. If you came here first without performing these setup tasks, refer to {{% link title="Make a Larger Contribution" %}} and then return here.
 
-You can submit new paragraphs, images, sections and whole topics for inclusion into the documentation. The first step is to understand how the documentation is organized so you can add information in the proper place. Secondly, you need to be, or become, familiar with editing in Markdown format. The basics are included here. To learn more, refer to  [Resources](../../Resources).
+You can submit new paragraphs, images, sections and whole topics for inclusion into the documentation. The first step is to understand how the documentation is organized so you can add information in the proper place. Secondly, you need to be, or become, familiar with editing in Markdown format. The basics are included here. To learn more, refer to  {{% link title="Resources" %}}.
 
 ## Documentation Site Structure
 
-You can view the documentation site structure through your file manager or through a text-based editor. We use VS Code to develop the documentation, but you may use Atom, BBEdit, or any other text editor of your choice.
+You can view the documentation site structure through your file manager or through a text-based editor. We use [VS Code](https://code.visualstudio.com/) to develop the documentation, but you may use any text editor of your choice.
 
 There are two directories in the Cumulus Networks documentation site that are particularly important for authoring new content:
 
 - **content/**: Contains product documentation directories and files
 - **static/images/**: Contains referenced images
 
-The other directories are primarily used to generate the website, but if you are interested in knowing what they contain and their purpose, refer to [Hugo Constructs](../../Resources/Hugo-Constructs).
+The other directories are primarily used to generate the website, but if you are interested in knowing what they contain and their purpose, refer to {{% link title="Hugo Constructs" %}}.
 
 ## Add a New Page
 
-New pages are added into the `/content` directory using `hugo new` which relies on Hugo archetypes; Markdown templates which contain the needed front matter and default values. They are specific to each product and create a new .md (Markdown) file.
+New pages are added into the `/content` directory using `hugo new` which relies on Hugo archetypes; Markdown templates which contain the needed front matter (meta data) and default values. They are specific to each product and create a new .md (Markdown) file.
 
-1. Press Ctrl+c to quit the docs server in your terminal window.
+1. If `hugo server` is currently running, press Ctrl+c to quit the docs server in your terminal window.
 
 2. Add the page:
 
-    - To add a new page, named `test_post`, to Cumulus Linux, run `hugo new cumulus-linux/test_post.md`.
-    - To add a new page, named `test_post` to Cumulus NetQ, run `hugo new cumulus-netq/test_post.md`.
-    - To add a file within a subtopic, include the full path to the location. For example, run `hugo new cumulus-linux/Layer-2/test_post.md`.
+    - To add a new page, named `test_post`, to Cumulus Linux 4.1, run `hugo new cumulus-linux-41/test_post.md`.
+    - To add a new page, named `test_post` to Cumulus NetQ 3.0, run `hugo new cumulus-netq-30/test_post.md`.
+    - To add a file within a subtopic, include the full path to the location. For example, run `hugo new cumulus-linux-41/Layer-2/test_post.md`.
 
-    {{%notice tip%}}
+    {{% notice tip %}}
 Don't forget to use the `.md` file extension.
-    {{%/notice%}}
+    {{% /notice %}}
 
 3.  Change the front matter `title` to reflect the new content.
+    {{% notice tip %}}
+For more detail about the front matter parameters, refer to the {{% link title="Hugo Constructs" %}}.
+    {{% /notice %}}
 
-    For more detail about the front matter parameters, refer to the [Hugo Constructs](../../Resources/Hugo-Constructs/).
+4.  Change the `weight` value to determine the order of the page in the left hand menu. Lower values are listed higher in the section list.
 
-4. Add your content.
+5. Change the `toc` value to match the file directory depth. Your page's `toc` value should be 1 greater than the `toc` of the `_index.md` file in the same directory.
 
-{{%notice note%}}
-New pages created with `hugo new` have `draft` set to *true* by default. This ensures that the draft page is not automatically published. To view the new page when running your local hugo server, change this value to *false*.
-{{%/notice%}}
+6. Add your content.
 
 You can also create new pages by copying and pasting an existing file from within some editors. Just be sure to supply a new name for the file and a new title. Some editors let you drag and drop the newly created page within the directory tree in the event that you placed it incorrectly.
 
+{{% notice note %}}
+A unqiue page `title` is required to ensure the `link` shortcode works correctly.
+{{% /notice %}}
+
 ## Add a New Section
 
-In Hugo terminology, a section is essentially the same as a folder. Hugo defines sections by their location within the `/content` folder, and the name of the .md file. Adding a section is as simple as adding a new subdirectory, and creating a `_index.md` file within that subdirectory. This can be done using archetypes and the `hugo new` command. Press Ctrl+c to quit the docs server in your terminal window before running the command.
+In Hugo terminology, a section is the same as a folder. Hugo defines sections by their location within the `/content` folder, and the name of the .md file. Adding a section is as simple as adding a new subdirectory, and creating a `_index.md` file within that subdirectory. This can be done using the `hugo new` command.
 
-For example, to create a new section "Test Section," at `/content/cumulus-linux/`, run `hugo new cumulus-linux/Test_Section/_index.md`.
+For example, to create a new section "Test Section," at `/content/cumulus-linux-41/`, run `hugo new cumulus-linux-41/Test_Section/_index.md`.
 
-To create a section under another section (nested section), include the full path to the location. For example, run `hugo new cumulus-linux/Layer-2/Test_Section/_index.md`.
+To create a section under another section (nested section), include the full path to the location. For example, run `hugo new cumulus-linux-41/Layer-2/Test_Section/_index.md`.
 
 You can also create new sections by copying and pasting an existing folder from within some editors. Just be sure to supply a new name for the section. Some editors let you drag and drop the newly created section within the directory tree in the event that you placed it incorrectly.
 
 ## Edit Content
 
-These guidelines cover the most common formatting tasks you will encounter during your new content creation. For more details about these items and other formatting issues, refer to the [Cumulus Networks Markdown Guide](../../Resources/Markdown_Guide).
+These guidelines cover the most common formatting tasks you will encounter during your new content creation. For more details about these items and other formatting issues, refer to the {{< link title="Markdown Guide" >}}.
 
 ### Add Text
 
@@ -84,7 +89,7 @@ To add or modify text in an existing file:
 
 If you want to add a new section within a document, then you can add a new header and then enter the text. To create the correct level of header, use two pound signs (#) for a second-level heading (the file title is the only first-level heading) or three pound signs for a third-level heading.
 
-For example: \## New Topic or \### New Subtopic
+For example: `## New Topic` or `### New Subtopic`
 
 {{%notice tip%}}
 If possible, do not use special characters, such as dashes and parentheses, in the titles as these can be problematic to creating links or references to these topics.
@@ -205,3 +210,14 @@ Session Establishment Test   : passed
 Address Families Test        : passed
 Router ID Test               : passed
 ```
+### Add a Link
+
+To preserve portability of pages, a [Hugo shortcode](https://gohugo.io/content-management/shortcodes/#what-a-shortcode-is) is used for all pages within the same section.
+
+The `link` shortcode is used with the `title` argument. Use the `Title` value in the front matter of the page being linked. For example, to link to the "Give Simple Feedback" chapter use the shortcode `{{</* link title="Give Simple Feedback" */>}}`. By default the link title is the link text used. The text can be specified with the `text` attribute. For example, `{{</* link title="Give Simple Feedback" text="How to give feedback"*/>}}` generates the link {{< link title="Give Simple Feedback" text="How to give feedback" >}}.
+
+For external links standard markdown link syntax can be used. The link text is placed in brackets `[]`, followed by the full URL in parenthesis `()`. For example `[Link to Cumulus](https://www.cumulusnetworks.com)` generates the link [Link to Cumulus](https://www.cumulusnetworks.com). 
+
+{{% notice note %}}
+Do not put a space between the brackets and parenthesis.
+{{% /notice %}}

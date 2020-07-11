@@ -2,9 +2,6 @@
 title: Troubleshooting Network Interfaces
 author: Cumulus Networks
 weight: 1020
-aliases:
- - /display/DOCS/Troubleshooting+Network+Interfaces
- - /pages/viewpage.action?pageId=8366324
 toc: 3
 ---
 The following sections describe various ways you can troubleshoot `ifupdown2`.

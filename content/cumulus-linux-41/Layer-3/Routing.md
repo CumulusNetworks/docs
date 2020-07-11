@@ -2,9 +2,6 @@
 title: Routing
 author: Cumulus Networks
 weight: 720
-aliases:
- - /display/DOCS/Routing
- - /pages/viewpage.action?pageId=8366636
 toc: 3
 ---
 This chapter discusses routing on switches running Cumulus Linux.
@@ -410,16 +407,17 @@ The values in the following tables reflect results from testing on the different
 
 #### Mellanox Spectrum Switches
 
-| Profile              | MAC Addresses | L3 Neighbors              | Longest Prefix Match (LPM)     |
-| --------------       | ------------- | ------------------------- | ------------------------------ |
-| default              | 40k           | 32k (IPv4) and 16k (IPv6) | 64k (IPv4) and 28k (IPv6-long) |
-| l2-heavy             | 88k           | 48k (IPv4) and 40k (IPv6) | 8k (IPv4) and 8k (IPv6-long)   |
-| l2-heavy-1           | 180k          | 8k (IPv4) and 8k (IPv6)   | 8k (IPv4) and 8k (IPv6-long)   |
-| v4-lpm-heavy         | 8k            | 8k (IPv4) and 16k (IPv6)  | 80k (IPv4) and 16k (IPv6-long) |
-| v4-lpm-heavy-1       | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
-| v6-lpm-heavy         | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4) and 64k (IPv6-long)  |
-| rash-custom-profile1 | 20k           | 8k (IPv4) and 1k (IPv6)   | 8k (IPv4) and 1k (IPv6-long)   |
-| rash-custom-profile2 | 2k            | 16k (IPv4) and 8k (IPv6)  | 64k (IPv4) and 16k (IPv6-long) |
+| <div style="width:135px">Profile  | MAC Addresses | <div style="width:170px">L3 Neighbors | <div style="width:200px">Longest Prefix Match (LPM)  |
+| --------------       | ---------- | ------------------------- | ------------------------------ |
+| default              | 40k        | 32k (IPv4) and 16k (IPv6) | 64k (IPv4) and 28k (IPv6-long) |
+| l2-heavy             | 88k        | 48k (IPv4) and 40k (IPv6) | 8k (IPv4) and 8k (IPv6-long)   |
+| l2-heavy-1           | 180k       | 8k (IPv4) and 8k (IPv6)   | 8k (IPv4) and 8k (IPv6-long)   |
+| v4-lpm-heavy         | 8k         | 8k (IPv4) and 16k (IPv6)  | 80k (IPv4) and 16k (IPv6-long) |
+| v4-lpm-heavy-1       | 8k         | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
+| v6-lpm-heavy         | 40k        | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4) and 64k (IPv6-long)  |
+| lpm-balanced         | 8k         | 8k (IPv4) and 8k (IPv6)   | 60k (IPv4) and 60k (IPv6-long) |
+| rash-custom-profile1 | 20k        | 8k (IPv4) and 1k (IPv6)   | 8k (IPv4) and 1k (IPv6-long)   |
+| rash-custom-profile2 | 2k         | 16k (IPv4) and 8k (IPv6)  | 64k (IPv4) and 16k (IPv6-long) |
 
 #### Broadcom Tomahawk/Tomahawk+ Switches
 
@@ -427,7 +425,7 @@ The values in the following tables reflect results from testing on the different
 | -------------------------- | ------------- | ------------ | ------------------------------ |
 | default                    | 40k           | 40k          | 64k (IPv4) or 8k (IPv6-long)   |
 | l2-heavy                   | 72k           | 72k          | 8k (IPv4) or 2k (IPv6-long)    |
-| v4-lpm-heavy, v6-lpm-heavy | 8k            | 8k           | 128k (IPv4) or 20k (IPv6-long) |
+| v4-lpm-heavy<br>v6-lpm-heavy | 8k            | 8k           | 128k (IPv4) or 20k (IPv6-long) |
 
 #### Broadcom Trident II/Trident II+/Trident3 Switches
 
@@ -435,7 +433,7 @@ The values in the following tables reflect results from testing on the different
 | -------------------------- | ------------- | ------------ | ------------------------------ |
 | default                    | 32k           | 16k          | 128k (IPv4) or 20k (IPv6-long) |
 | l2-heavy                   | 160k          | 96k          | 8k (IPv4) or 2k (IPv6-long)    |
-| v4-lpm-heavy, v6-lpm-heavy | 32k           | 16k          | 128k (IPv4) or 20k (IPv6-long) |
+| v4-lpm-heavy<br>v6-lpm-heavy | 32k           | 16k          | 128k (IPv4) or 20k (IPv6-long) |
 
 #### Broadcom Helix4 Switches
 

@@ -2,9 +2,6 @@
 title: OpenStack Neutron ML2 and Cumulus Linux
 author: Cumulus Networks
 weight: 255
-aliases:
- - /display/DOCS/OpenStack+Neutron+ML2+and+Cumulus+Linux
- - /pages/viewpage.action?pageId=8362989
 pageID: 8362989
 ---
 The Modular Layer 2 (ML2) plugin is a framework that allows OpenStack

@@ -2,11 +2,6 @@
 title: Ethernet Bridging - VLANs
 author: Cumulus Networks
 weight: 440
-aliases:
- - /display/DOCS/Ethernet+Bridging+++VLANs
- - /display/DOCS/Ethernet+Bridging+VLANs
- - /display/DOCS/Ethernet+Bridging+-+VLANs
- - /pages/viewpage.action?pageId=8366378
 toc: 3
 ---
 Ethernet bridges enable hosts to communicate through layer 2 by connecting all of the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} (maximum transmission unit). The bridge MTU is the minimum MTU among all its members. By default, the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360005695794" text="bridge's MAC address">}} is the MAC address of the first port in the `bridge-ports` list. The bridge can also be assigned an IP address, as discussed {{<link url="#bridge-mac-addresses" text="below">}}.
@@ -65,9 +60,9 @@ The bridge ageing option is in the {{<link url="Network-Command-Line-Utility-NCL
 
 To configure bridge ageing:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add bridge bridge ageing` command. The following example commands set MAC address ageing to 600 seconds:
 
@@ -77,11 +72,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file and add `bridge-ageing` to the bridge stanza. The following example sets MAC address ageing to 600 seconds.
 
@@ -100,7 +93,9 @@ Run the `ifreload -a` command to load the new configuration:
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Configure an SVI (Switch VLAN Interface)
 
@@ -114,9 +109,9 @@ When you add an interface to a bridge, it ceases to function as a router interfa
 
 To configure the SVI:
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add bridge` and `net add vlan` commands. The following example commands configure an SVI using swp1 and swp2, and VLAN ID 10.
 
@@ -127,11 +122,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file to add the interfaces and VLAN ID you want to use. The following configures an SVI using swp1 and swp2, and VLAN ID 10. The `bridge-vlan-aware` parameter associates the SVI with the VLAN-aware bridge.
 
@@ -156,15 +149,15 @@ Run the `ifreload -a` command to load the new configuration:
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 When you configure a switch initially, all southbound bridge ports might be down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking, which leaves the SVI in the UP state always, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
 
 To keep the SVI perpetually UP, create a dummy interface, then make the dummy interface a member of the bridge.
 
-<details>
-
-<summary>Example Configuration </summary>
+{{< expand "Example Configuration "  >}}
 
 Consider the following configuration, without a dummy interface in the bridge:
 
@@ -240,7 +233,7 @@ cumulus@switch:~$ ip link show bridge
     link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
 ```
 
-</details>
+{{< /expand >}}
 
 ## IPv6 Link-local Address Generation
 
@@ -248,9 +241,9 @@ By default, Cumulus Linux automatically generates IPv6 {{<exlink url="https://en
 
 To disable automatic address generation for a regular IPv6 address on a VLAN:
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add vlan <vlan> ipv6-addrgen off` command. The following example command disables automatic address generation for a regular IPv6 address on a VLAN 100.
 
@@ -260,11 +253,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file and add the line `ipv6-addrgen off` to the VLAN stanza. The following example disables automatic address generation for a regular IPv6 address on VLAN 100.
 
@@ -285,13 +276,15 @@ Run the `ifreload -a` command to load the new configuration:
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To re-enable automatic link-local address generation for a VLAN:
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net del vlan <vlan> ipv6-addrgen off` command. The following example command re-enables automatic address generation for a regular IPv6 address on VLAN 100.
 
@@ -301,11 +294,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 1.  Edit the `/etc/network/interfaces` file and **remove** the line `ipv6-addrgen off` from the VLAN stanza. The following example re-enables automatic address generation for a regular IPv6 address on a VLAN 100.
 
@@ -315,7 +306,9 @@ cumulus@switch:~$ net commit
     cumulus@switch:~$ ifreload -a
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## bridge fdb Command Output
 
@@ -325,14 +318,14 @@ The `bridge fdb` command in Linux interacts with the forwarding database table (
 |--- |--- |
 | self | The Linux kernel FDB entry flag that indicates the FDB entry belongs to the FDB on the device referenced by the device.<br>For example, this FDB entry belongs to the VXLAN device `vx-1000`: `00:02:00:00:00:08 dev vx-1000 dst 27.0.0.10 self` |
 | master |The Linux kernel FDB entry flag that indicates the FDB entry belongs to the FDB on the device's master and the FDB entry is pointing to a master's port.<br>For example, this FDB entry is from the master device named bridge and is pointing to the VXLAN bridge port `vx-1001`: `02:02:00:00:00:08 dev vx-1001 vlan 1001 master bridge` |
-| offload | The Linux kernel FDB entry flag that indicates the FDB entry is managed (or offloaded) by an external control plane, such as the BGP control plane for EVPN.|
+| extern_learn | The Linux kernel FDB entry flag that indicates the FDB entry is managed (or offloaded) by an external control plane, such as the BGP control plane for EVPN.|
 
 The following example shows the `bridge fdb show` command output:
 
 ```
 cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
-02:02:00:00:00:08 dev vx-1001 vlan 1001 offload master bridge 
-02:02:00:00:00:08 dev vx-1001 dst 27.0.0.10 self offload
+02:02:00:00:00:08 dev vx-1001 vlan 1001 extern_learn master bridge
+02:02:00:00:00:08 dev vx-1001 dst 27.0.0.10 self extern_learn
 ```
 
 {{%notice note%}}

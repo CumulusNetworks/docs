@@ -1,0 +1,21 @@
+name: 'Weekly Link Check'
+
+on:
+  schedule:
+    # Run Mondays, 8:30am PDT/3:30pm UTC
+    #- cron:  '30 15 * * 1'
+    - cron:  '0 15 * * *'
+
+jobs:
+  weekly-link-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-blc
+
+    - uses: actions/setup-node@v1
+    - run: npm install broken-link-checker -g
+    - run: blc https://docs.cumulusnetworks.com --exclude ntp.org --exclude /search/ --exclude linkedin.com --exclude cfengine.com --exclude community.mellanox.com --exclude debian.org --exclude github.com --exclude linuxfoundation.org --exclude .pdf --exclude .xls --exclude cumulus-vx --exclude cumulus-rmp --exclude /rn/ --exclude /cumulus-linux/ --exclude /cumulus-netq/ -r  | awk '/Getting links/ {via_line=$0} /BROKEN/ {print via_line "\n\n" $0}'

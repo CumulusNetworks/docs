@@ -2,10 +2,6 @@
 title: Monitor Network Connectivity
 author: Cumulus Networks
 weight: 420
-aliases:
- - /display/NETQ/Monitor+Network+Connectivity
- - /pages/viewpage.action?pageId=12321680
-pageID: 12321680
 toc: 4
 ---
 It is helpful to verify that communications are freely flowing between the various devices in your network. You can verify the connectivity between two devices in both an adhoc fashion and by defining connectivity checks to occur on a scheduled basis. There are three card workflows which enable you to view connectivity, the Trace Request, On-demand Trace Results, and Scheduled Trace Results.

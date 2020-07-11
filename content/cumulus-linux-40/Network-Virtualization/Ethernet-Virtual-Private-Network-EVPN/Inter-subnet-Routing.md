@@ -2,8 +2,6 @@
 title: Inter-subnet Routing
 author: Cumulus Networks
 weight: 560
-aliases:
- - /pages/viewpage.action?pageId=12910740
 toc: 4
 ---
 There are multiple models in EVPN for routing between different subnets (VLANs), also known as inter-VLAN routing. The model you choose depends if every VTEP acts as a layer 3 gateway and performs routing or if only specific VTEPs perform routing, and if routing is performed only at the ingress of the VXLAN tunnel or both the ingress and the egress of the VXLAN tunnel.
@@ -24,9 +22,9 @@ In centralized routing, you configure a specific VTEP to act as the default gate
 
 To enable centralized routing, you must configure the gateway VTEPs to advertise their IP/MAC address. Use the `advertise-default-gw` command:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@leaf01:~$ net add bgp autonomous-system 65000
@@ -35,26 +33,26 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp 65011
-switch(config-router)# address-family l2vpn evpn 
+switch(config-router)# address-family l2vpn evpn
 switch(config-router-af)# advertise-default-gw
 switch(config-router-af)# end
 switch)# write memory
 switch)# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 These commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
@@ -111,9 +109,9 @@ Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenan
 
 ### Configure a Per-tenant VXLAN Interface
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@leaf01:~$ net add vxlan vni104001 vxlan id 104001
@@ -124,11 +122,9 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file. For example:
 
@@ -148,13 +144,15 @@ auto bridge
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Configure an SVI for the Layer 3 VNI
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@leaf01:~$ net add vlan 4001 vrf turtle
@@ -162,11 +160,9 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file. For example:
 
@@ -181,7 +177,9 @@ iface vlan4001
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -191,9 +189,9 @@ When two VTEPs are operating in **VXLAN active-active** mode and performing **sy
 
 ### Configure the VRF to Layer 3 VNI Mapping
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@leaf01:~$ net add vrf turtle vni 104001
@@ -201,11 +199,9 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/frr/frr.conf` file. For example:
 
@@ -218,15 +214,17 @@ vrf turtle
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Configure RD and RTs for the Tenant VRF
 
 If you do not want the RD and RTs (layer 3 RTs) for the tenant VRF to be derived automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.
 
-<details>
+{{< tabs "TabID8" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp vrf tenant1 l2vpn evpn rd 172.16.100.1:20
@@ -235,11 +233,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -255,7 +251,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 These commands create the following configuration snippet in the `/etc/frr/frr.conf` file:
 
@@ -315,9 +313,9 @@ For a switch to be able to install EVPN type-5 routes into the routing table, yo
 
 The following configuration is required in the tenant VRF to announce IP prefixes in the BGP RIB as EVPN type-5 routes.
 
-<details>
+{{< tabs "TabID10" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp vrf vrf1 l2vpn evpn advertise ipv4 unicast
@@ -325,11 +323,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -344,7 +340,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 These commands create the following snippet in the `/etc/frr/frr.conf` file:
 
@@ -366,9 +364,9 @@ Cumulus Linux supports EVPN type-5 routes for prefix-based routing in asymmetric
 
 The following example commands show how to use the layer 3 VNI for type-5 routes only:
 
-<details>
+{{< tabs "TabID12" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@leaf01:~$ net add vrf turtle vni 104001 prefix-routes-only
@@ -382,11 +380,9 @@ There is no command to delete the `prefix-routes-only` option. The `net del vrf 
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/frr/frr.conf` file. For example:
 
@@ -398,7 +394,9 @@ vrf turtle
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Control RIB Routes
 
@@ -406,9 +404,9 @@ By default, when announcing IP prefixes in the BGP RIB as EVPN type-5 routes, al
 
 The following commands add a route map filter to IPv4 EVPN type-5 route advertisement:
 
-<details>
+{{< tabs "TabID14" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp vrf turtle l2vpn evpn advertise ipv4 unicast route-map map1
@@ -416,11 +414,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -435,7 +431,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Originate Default EVPN Type-5 Routes
 
@@ -470,9 +468,9 @@ See {{<link url="Basic-Configuration#evpn-and-vxlan-active-active-mode" text="EV
 
 Run the `address-virtual <anycast-mac>` command under the SVI, where `<anycast-mac>` is the MLAG system MAC address ({{<link url="Multi-Chassis-Link-Aggregation-MLAG#reserved-mac-address-range" text="clagd-sys-mac">}}). Run these commands on both switches in the MLAG pair.
 
-<details>
+{{< tabs "TabID16" >}}
 
-<summary> NCLU commands</summary>
+{{< tab "NCLU commands" >}}
 
 Run the `net add vlan <vlan> address-virtual <anycast-mac>` command. For example:
 
@@ -482,11 +480,9 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary> Linux commands</summary>
+{{< tab "Linux commands" >}}
 
 Edit the `/etc/network/interfaces` file and add `address-virtual <anycast-mac>` under the SVI. For example:
 
@@ -502,11 +498,14 @@ iface vlan4001
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
-In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 and have a previous symmetric routing with VXLAN active-active configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
+- In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 and have a previous symmetric routing with VXLAN active-active configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
+- When configuring third party networking devices using MLAG and EVPN for interoperability, you must configure and announce a single shared router MAC value per advertised next hop IP address.
 
 {{%/notice%}}
 
@@ -518,9 +517,9 @@ The system MAC address must be the layer 3 SVI MAC address (not the `clad-sys-ma
 
 The following example commands add the system IP address 10.0.0.11 and the system MAC address 44:38:39:ff:00:00:
 
-<details>
+{{< tabs "TabID18" >}}
 
-<summary> NCLU commands</summary>
+{{< tab "NCLU commands" >}}
 
 ```
 cumulus@switch:~$ net add vlan 4001 hwaddress 44:38:39:ff:00:00
@@ -529,11 +528,9 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary> vtysh commands</summary>
+{{< tab "vtysh commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -548,7 +545,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The system IP address and system MAC address you provide take precedence over the addresses that Cumulus Linux derives automatically.
 
@@ -558,9 +557,9 @@ Each switch in the MLAG pair advertises type-5 routes with its own system IP, wh
 
 To disable Advertise Primary IP Address under each tenant VRF BGP instance:
 
-<details>
+{{< tabs "TabID20" >}}
 
-<summary> NCLU commands</summary>
+{{< tab "NCLU commands" >}}
 
 ```
 cumulus@leaf01:~$ net del bgp vrf vrf1 l2vpn evpn advertise-pip
@@ -568,11 +567,9 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary> vtysh commands</summary>
+{{< tab "vtysh commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -586,7 +583,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 #### Show Advertise Primary IP Address Information
 
@@ -645,9 +644,7 @@ cumulus@switch:~$ net show bgp vrf <vrf> ipv4 unicast
 
 On the Broadcom Trident II+ and Maverick-based switch, when a lookup is done after VXLAN decapsulation on the external-facing switch (the exit or border leaf), the switch does not rewrite the MAC addresses or TTL. For through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (such as the Internet). This applies to all forms of VXLAN routing (centralized, asymmetric, and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit or border leaf. This includes traffic destined to external networks (through traffic) and traffic destined to the exit leaf SVI address. To work around this issue, modify the external-facing interface for each VLAN sub-interface on the exit leaf by creating a temporary VNI and associating it with the existing VLAN ID.
 
-<details>
-
-<summary>Example Workaround </summary>
+{{< expand "Example Workaround " >}}
 
 For example, if the expected interface configuration is:
 
@@ -727,7 +724,7 @@ iface vlan4001
 
 If you use an MLAG pair instead of a single exit/border leaf, add the same temporary VNIs on both switches of the MLAG pair.
 
-</details>
+{{< /expand >}}
 
 ### Centralized Routing with ARP Suppression Enabled on the Gateway
 
@@ -737,3 +734,12 @@ In an EVPN centralized routing configuration, where the layer 2 network extends 
 
 For VXLAN type-5 routes, ECMP does not work when the VTEP is directly connected to remote VTEPs.
 To work around this issue, add an additional device in the VXLAN fabric between the local and remote VTEPs, so that local and remote VTEPs are not directly connected.
+
+### Symmetric Routing and the Same SVI IP Address Across Racks
+
+In EVPN symmetric routing, if you use the same SVI IP address across racks; for example, if the SVI IP address for a specific VLAN interface (such as vlan100) is the same on all VTEPs where this SVI is present, be aware of the following:
+
+- You cannot use ping between SVI IP adresses to verify connectivity between VTEPs because either the local rack itself uses the ping destination IP address or many remote racks use the ping destination IP address.
+- If you use ping from a host to the SVI IP address, the local VTEP (gateway) might not reply if the host has an ARP entry from a remote gateway.
+
+There are no issues with host-to-host traffic.

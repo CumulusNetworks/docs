@@ -2,9 +2,6 @@
 title: LACP Bypass
 author: Cumulus Networks
 weight: 490
-aliases:
- - /display/DOCS/LACP+Bypass
- - /pages/viewpage.action?pageId=8366417
 toc: 3
 ---
 On Cumulus Linux, *LACP Bypass* allows a {{<link url="Bonding-Link-Aggregation" text="bond">}} configured in 802.3ad mode to become active and forward traffic even when there is no LACP partner. For example, you can enable a host that does not have the capability to run LACP to PXE boot while connected to a switch on a bond configured in 802.3ad mode. After the pre-boot process completes and the host is capable of running LACP, the normal 802.3ad link aggregation operation takes over.
@@ -26,9 +23,9 @@ In *all-active* mode, when a bond has multiple slave interfaces, each bond slave
 
 To enable LACP bypass on the host-facing bond, set `bond-lacp-bypass-allow` to *yes*.
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following commands create a VLAN-aware bridge with LACP bypass enabled:
 
@@ -43,11 +40,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file to add the set `bond-lacp-bypass-allow` to yes option. The following configuration creates a VLAN-aware bridge with LACP bypass enabled:
 
@@ -75,13 +70,15 @@ Run the `ifreload -a` command to reload the configuration:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To check the status of the configuration, run the following commands.
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net show interface <bond>` command on the bond and its slave interfaces:
 
@@ -126,17 +123,15 @@ swp51s2(P) ==== swp1(spine01)
 swp51s3(P) ==== swp1(spine02)
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Run the `ip link show` command on the bond and its slave interfaces:
 
 ```
 cumulus@switch:~$ ip link show bond1
-164: bond1: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue master br0 state UP mode DORMANT group default 
+164: bond1: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue master br0 state UP mode DORMANT group default
     link/ether c4:54:44:f6:44:5a brd ff:ff:ff:ff:ff:ff
 cumulus@switch:~$ ip link show swp51s2
 55: swp51s2: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast master bond1 state UP mode DEFAULT group default qlen 1000
@@ -146,7 +141,9 @@ cumulus@switch:~$ ip link show swp52s3
     link/ether c4:54:44:f6:44:5a brd ff:ff:ff:ff:ff:ff
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To verify that LACP bypass is enabled on a bond and its slave interfaces, use the `cat` command:
 
@@ -168,7 +165,7 @@ The following configuration shows LACP bypass enabled for multiple active interf
 ```
 ...
 auto bond1
-iface bond1 
+iface bond1
     bond-slaves swp3 swp4
     bond-lacp-bypass-allow 1
 

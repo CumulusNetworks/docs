@@ -2,12 +2,6 @@
 title: Interface Configuration and Management
 author: Cumulus Networks
 weight: 290
-aliases:
- - /display/DOCS/Simple+Network+Management+Protocol+(SNMP)+Monitoring
- - /display/DOCS/SNMP+Monitoring
- - /pages/viewpage.action?pageId=8362608
- - /display/DOCS/Interface+Configuration+and+Management
- - /pages/viewpage.action?pageId=8366747
 toc: 3
 ---
 `ifupdown` is the network interface manager for Cumulus Linux. Cumulus Linux uses an updated version of this tool, `ifupdown2`.
@@ -40,9 +34,9 @@ To administratively bring the interface up or down; for example, to bring down a
 
 When you put an interface into an admin down state, the interface *remains down* after any future reboots or configuration changes with `ifreload -a`.
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 To put an interface into an admin *down* state, run the `net add interface <interface> link down` command.
 
@@ -68,11 +62,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 To put an interface into an *admin* *down* state, run the `sudo ifdown <interface> --admin-state` command:
 
@@ -94,7 +86,9 @@ To bring the interface back *up*, run the `sudo ifup <interface> --admin-state` 
 cumulus@switch:~$ sudo ifup swp1 --admin-state
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To see the link and administrative state, use the `ip link show` command. In the following example, swp1 is administratively UP and the physical link is UP (LOWER\_UP flag).
 
@@ -443,9 +437,9 @@ Although specifying a subinterface like swp1.100 and then running `ifup swp1.100
 
 To configure IP addresses, run the following commands.
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following commands configure three IP addresses for swp1: two IPv4 addresses, and one IPv6 address.
 
@@ -491,11 +485,9 @@ iface lo inet loopback
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 In the `/etc/network/interfaces` file, list all IP addresses under the `iface` section. The following command example adds IP address 10.0.0.1/30 and 10.0.0.2/30 to swp1.
 
@@ -545,7 +537,9 @@ cumulus@switch:~$ sudo ip addr del 2001:DB8::1/126 dev swp1
 
 For more details on the options available to manage and query interfaces, see `man ip`.
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To show the assigned IP address on an interface, run the `ip addr show` command. The following example command shows the assigned IP address on swp1.
 
@@ -587,9 +581,9 @@ valid_lft forever preferred_lft forever
 
 To work around this issue, configure the IP address scope:
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the following commands:
 
@@ -607,11 +601,9 @@ iface swp6
     post-up ip address add 71.21.21.20/32 dev swp6 scope site
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 In the `/etc/network/interfaces` file, configure the IP address scope using `post-up ip address add <address> dev <interface> scope <scope>`. For example:
 
@@ -623,7 +615,9 @@ iface swp6
 
 Then run the `ifreload -a` command on this configuration.
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The following configuration shows the correct scope:
 
@@ -641,9 +635,9 @@ valid_lft forever preferred_lft forever
 
 By default, `ifupdown2` purges existing IP addresses on an interface. If you have other processes that manage IP addresses for an interface, you can disable this feature.
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 To disable IP address purge on an interface, run the following commands:
 
@@ -661,11 +655,9 @@ iface swp1
     address-purge no
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 In the `/etc/network/interfaces` file, add `address-purge no` to the interface configuration. The following example command disables IP address purge on swp1.
 
@@ -677,7 +669,9 @@ iface swp1
     address-purge no
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -689,9 +683,9 @@ Purging existing addresses on interfaces with multiple `iface` stanzas is not su
 
 You can specify additional user commands in the `/etc/network/interfaces` file. The interface stanzas in `/etc/network/interfaces` can have a command that runs at pre-up, up, post-up, pre-down, down, and post-down:
 
-<details>
+{{< tabs "TabID8" >}}
 
-<summary>NCLU commands </summary>
+{{< tab "NCLU commands" >}}
 
 To add a command to an interface stanza, run the following commands:
 
@@ -736,11 +730,9 @@ iface vlan100
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 To add a command to an interface stanza, add the command in the `/etc/network/interfaces` file. For example:
 
@@ -765,7 +757,9 @@ iface bridge.100
 
 {{%/notice%}}
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 You can add any valid command in the sequence to bring an interface up
 or down; however, limit the scope to network-related commands associated
@@ -805,9 +799,9 @@ iface bond0
 
 Globs define a range of ports.
 
-<details>
+{{< tabs "TabID10" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 NCLU supports globs to define port lists (a range of ports). You must use commas to separate different ranges of ports in the NCLU command; for example:
 
@@ -851,11 +845,9 @@ auto swp12
 iface swp12
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Use the `glob` keyword to specify bridge ports and bond slaves:
 
@@ -869,7 +861,9 @@ iface br1
     bridge-ports glob swp7-9.100  swp11.100 glob swp15-18.100
 ```
 
- </details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Mako Templates
 
@@ -940,9 +934,9 @@ addon_scripts_support=1
 
 You can add descriptions to interfaces configured in the `/etc/network/interfaces` file by using the *alias* keyword.
 
-<details>
+{{< tabs "TabID12" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following commands create an alias for swp1:
 
@@ -960,11 +954,9 @@ iface swp1
     alias hypervisor_port_1
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 In the `/etc/network/interfaces` file, add a description using the *alias* keyword:
 
@@ -976,13 +968,15 @@ iface swp1
     alias swp1 hypervisor_port_1
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 You can query the interface description.
 
-<details>
+{{< tabs "TabID14" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 To show the description (alias) for an interface, run the `net show interface <interface>` command. The following example command shows the description for swp1:
 
@@ -1017,11 +1011,9 @@ UP       swp2            BondMember        to Server02
 
 To show the interface description for all interfaces on the switch in JSON format, run the `net show interface alias json` command.
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 To show the description (alias) for an interface, run the `ip link show` command. The alias appears on the `alias` line:
 
@@ -1032,7 +1024,9 @@ cumulus@switch$ ip link show swp1
     alias hypervisor_port_1
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 Interface descriptions also appear in the {{<link url="Simple-Network-Management-Protocol-SNMP" text="SNMP">}} OID {{<exlink url="https://cumulusnetworks.com/static/mibs/IF-MIB.txt" text="IF-MIB::ifAlias">}}.
 
@@ -1077,9 +1071,11 @@ You cannot purge existing addresses on interfaces with multiple `iface` stanzas.
 For `sysctl` commands in the `pre-up`, `up`, `post-up`, `pre-down`, `down`, and `post-down` lines that use the
 `$IFACE` variable, if the interface name contains a dot (.), `ifupdown2` does not change the name to work with `sysctl`. For example, the interface name `bridge.1` is not converted to `bridge/1`.
 
-### Long Interface Names
+### Interface Name Limitations
 
-Interface names can be a maximum of 15 characters in length and you cannot use a number as the first character. Longer interface names might result in errors. To resolve long interface name issues, remove the interface from the `/etc/network/interfaces` file, then restart `networking.service`.
+Interface names are limited to 15 characters in length, the first character cannot be a number and the name cannot include a dash (-). In addition, any name that matches with the regular expression `.{0,13}\-v.*` is not supported.
+
+If you encounter issues, remove the interface name from the `/etc/network/interfaces` file, then restart the `networking.service`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces

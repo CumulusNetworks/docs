@@ -2,9 +2,6 @@
 title: TACACS+
 author: Cumulus Networks
 weight: 180
-aliases:
- - /display/DOCS/TACACS+Plus
- - /pages/viewpage.action?pageId=8366279
 toc: 4
 ---
 Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication, and Authorization) in a transparent way with minimal configuration. The client implements the TACACS+ protocol as described in {{<exlink url="https://tools.ietf.org/html/draft-grant-tacacs-02" text="this IETF document">}}. There is no need to create accounts or directories on the switch. Accounting records are sent to all configured TACACS+ servers by default. Use of per-command authorization requires additional setup on the switch.
@@ -47,7 +44,7 @@ You can also configure the IP address used as the source IP address when communi
 
 Following is the complete list of the TACACS+ client configuration files, and their use.
 
-| Filename | Description |
+| <div style="width:250px">Filename | Description |
 |----------|-------------|
 | `/etc/tacplus_servers` | This is the primary file that requires configuration after installation. The file is used by all packages with `include=/etc/tacplus_servers` parameters in the other configuration files that are installed. Typically, this file contains the shared secrets; make sure that the Linux file mode is 600. |
 | `/etc/nsswitch.conf` | When the `libnss_tacplus` package is installed, this file is configured to enable tacplus lookups via `libnss_tacplus`. If you replace this file by automation or other means, you need to add tacplus as the first lookup method for the *passwd* database line. |
@@ -55,7 +52,7 @@ Following is the complete list of the TACACS+ client configuration files, and th
 | `/usr/share/pam-configs/tacplus` | This is the configuration file for `pam-auth-update` to generate the files in the next row. These configurations are used at `login`, by `su`, and by `ssh`. |
 | `/etc/pam.d/common-*` | The `/etc/pam.d/common-*` files are updated for `tacplus` authentication. The files are updated with `pam-auth-update`, when `libpam-tacplus` is installed or removed. |
 | `/etc/sudoers.d/tacplus` | This file allows TACACS+ privilege level 15 users to run commands with `sudo`. The file includes an example (commented out) of how to enable privilege level 15 TACACS users to use `sudo` without having to enter a password and provides an example of how to enable all TACACS users to run specific commands with sudo. Only edit this file with the `visudo -f /etc/sudoers.d/tacplus` command. |
-| `audisp-tacplus.conf` | This is the `audisp` plugin configuration file. Typically, no modifications are required. |
+| `/etc/audisp/plugins.d/audisp-tacplus.conf` | This is the `audisp` plugin configuration file. Typically, no modifications are required. |
 | `/etc/audisp/audisp-tac_plus.conf` | This is the TACACS+ server configuration file for accounting. Typically, no modifications are required. You can use this configuration file when you only want to debug TACACS+ accounting issues, not all TACACS+ users. |
 | `/etc/audit/rules.d/audisp-tacplus.rules` | The `auditd` rules for TACACS+ accounting. The `augenrules` command uses all rule files to generate the rules file (described below). |
 | `/etc/audit/audit.rules`|This is the audit rules file generated when `auditd` is installed. |

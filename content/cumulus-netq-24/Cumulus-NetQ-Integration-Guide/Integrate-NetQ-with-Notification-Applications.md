@@ -2,9 +2,6 @@
 title: Integrate NetQ with Notification Applications
 author: Cumulus Networks
 weight: 200
-aliases:
- - /display/NETQ/Integrate+with+Third-party+Software+and+Hardware
- - /pages/viewpage.action?pageId=12320911
 toc: 3
 ---
 After you have installed the NetQ applications package and the NetQ Agents,
@@ -1578,7 +1575,7 @@ Scopes are defined with regular expressions, as follows. When two paramaters are
 | -------------- | --------------- | ---------- | -------- |
 | Hostname | \<hostname> | leaf01 | Deliver events for the specified device |
 | Hostname | \<partial-hostname>\* | leaf\* | Deliver events for devices with hostnames starting with specified text (*leaf*) |
-| Hostname | \* | \* | Deliver events for all devices |
+| Hostname | \"&#42;\" | \"&#42;\" | Deliver events for all devices |
 | Hostname, Interface | \<hostname>,\<interface> | leaf01,swp9 | Deliver events for the specified interface (*swp9*) on the specified device (*leaf01*) |
 | Hostname, Interface | \<hostname>,\* | leaf01,\* | Deliver events for all interfaces on the specified device (*leaf01*) |
 | Hostname, Interface | \*,\<interface> | \*,swp9 | Deliver events for the specified interface (*swp9*) on all devices |

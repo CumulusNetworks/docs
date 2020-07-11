@@ -2,9 +2,6 @@
 title: LNV Full Example
 author: Cumulus Networks
 weight: 397
-aliases:
- - /display/CL36/LNV+Full+Example
- - /pages/viewpage.action?pageId=8362207
 pageID: 8362207
 ---
 Lightweight Network Virtualization (LNV) is a technique for deploying

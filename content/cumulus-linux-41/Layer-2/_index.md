@@ -2,12 +2,6 @@
 title: Layer 2
 author: Cumulus Networks
 weight: 390
-aliases:
- - /display/DOCS/Layer+2
- - /pages/viewpage.action?pageId=8366372
- - /display/DOCS/Ethernet+Bridging+VLANs
- - /display/DOCS/Ethernet+Bridging+-+VLANs
- - /pages/viewpage.action?pageId=8362655
 toc: 2
 ---
 

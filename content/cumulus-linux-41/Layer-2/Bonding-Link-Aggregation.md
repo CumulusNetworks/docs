@@ -2,12 +2,6 @@
 title: Bonding - Link Aggregation
 author: Cumulus Networks
 weight: 430
-aliases:
- - /display/DOCS/Bonding+++Link+Aggregation
- - /pages/viewpage.action?pageId=8366376
- - /display/DOCS/Bonding+Link+Aggregation
- - /display/DOCS/Bonding+-+Link+Aggregation
- - /pages/viewpage.action?pageId=8362653
 toc: 3
 ---
 Linux bonding provides a method for aggregating multiple network interfaces (*slaves*) into a single logical bonded interface (*bond*). Link aggregation is useful for linear scaling of bandwidth, load balancing, and failover protection.
@@ -35,6 +29,64 @@ The hash calculation uses packet header data to choose to which slave to transmi
 In a failover event, the hash calculation is adjusted to steer traffic over available slaves.
 
 {{%/notice%}}
+
+### LAG Custom Hashing
+
+On Mellanox switches, you can configure which fields are used in the LAG hash calculation. For example, if you do not want to use source or destination port numbers in the hash calculation, you can disable the source port and destination port fields.
+
+You can configure the following fields:  
+
+- Source MAC
+- Destination
+- Source IP
+- Destination IP
+- Ether type
+- VLAN ID
+- Source port
+- Destination port
+- Layer 3 protocol
+
+To configure custom hash, edit the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf` file:
+
+1. To enable custom hashing, uncomment the `lag_hash_config.enable = true` line.
+2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
+3. Restart the `switchd` service:
+
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
+The following shows an example `datapath.conf` file:
+
+```
+cumulus@switch:~$ sudo nano /usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf
+...
+#LAG HASH config
+#HASH config for LACP to enable custom fields
+#Fields will be applicable for LAG hash
+#calculation
+#Uncomment to enable custom fields configured below
+lag_hash_config.enable = true
+
+lag_hash_config.smac = true
+lag_hash_config.dmac = true
+lag_hash_config.sip  = true
+lag_hash_config.dip  = true
+lag_hash_config.ether_type = true
+lag_hash_config.vlan_id = true
+lag_hash_config.sport = false
+lag_hash_config.dport = false
+lag_hash_config.ip_prot = true
+...
+```
+
+{{%notice note%}}
+
+Symmetric hashing is enabled by default on Mellanox switches. Make sure that the settings for the source IP (`lag_hash_config.sip`) and destination IP (`lag_hash_config.dip`) fields match, and that the settings for  the source port (`lag_hash_config.sport`) and destination port (`lag_hash_config.dport`) fields match; otherwise symmetric hashing is disabled automatically. You can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+
+{{%/notice%}}
+
+You can set a unique hash seed for each switch to help avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#configure-a-hash-seed-to-avoid-hash-polarization" text="Configure a Hash Seed to Avoid Hash Polarization">}}.
 
 ## Create a Bond
 

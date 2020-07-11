@@ -2,10 +2,6 @@
 title: NetQ Management
 author: Cumulus Networks
 weight: 300
-aliases:
- - /display/NETQ/NetQ+Management
- - /pages/viewpage.action?pageId=12321950
-pageID: 12321950
 toc: 3
 ---
 As an administrator, you have two major tasks related to managing Cumulus NetQ:

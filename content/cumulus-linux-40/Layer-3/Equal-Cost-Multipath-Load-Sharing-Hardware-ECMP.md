@@ -2,11 +2,6 @@
 title: Equal Cost Multipath Load Sharing - Hardware ECMP
 author: Cumulus Networks
 weight: 840
-aliases:
- - /display/DOCS/Equal+Cost+Multipath+Load+Sharing+++Hardware+ECMP
- - /display/DOCS/Equal+Cost+Multipath+Load+Sharing+Hardware+ECMP
- - /display/DOCS/Equal+Cost+Multipath+Load+Sharing+-+Hardware+ECMP
- - /pages/viewpage.action?pageId=8366653
 toc: 3
 ---
 Cumulus Linux supports hardware-based {{<exlink url="http://en.wikipedia.org/wiki/Equal-cost_multi-path_routing" text="equal cost multipath">}} (ECMP) load sharing. ECMP is enabled by default in Cumulus Linux. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
@@ -136,9 +131,9 @@ The hash seed is set by the `ecmp_hash_seed` parameter in the `/etc/cumulus/data
 
 For example, to set the hash seed to *50*, run the following commands:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add forwarding ecmp hash-seed 50
@@ -146,11 +141,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the the `/etc/cumulus/datapath/traffic.conf` file. For example:
 
@@ -168,7 +161,9 @@ ecmp_hash_seed = 50
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### ECMP Custom Hashing
 

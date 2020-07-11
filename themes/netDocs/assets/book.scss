@@ -70,7 +70,7 @@ aside nav ul {
   .expand{
     display: block;
     visibility: visible;
-    border-left: solid $cn-jade;
+    border-left: solid $jade;
     border-width: 1px;
     li>a{
       padding-left: 12px;
@@ -90,7 +90,7 @@ aside nav ul {
 
   }
   a:active{
-    color: $cn-jade
+    color: $jade
   }
   a:hover {
     opacity: .5;
@@ -181,7 +181,7 @@ ul.pagination {
 }
 
 .book-toc {
-  border-left: 1px solid $cn-mystic;
+  border-left: 1px solid $mystic;
   flex: 0 0 $toc-width;
   font-size: $font-size-12;
   background-color: $white ;
@@ -204,13 +204,13 @@ ul.pagination {
     // overflow-y: scroll;
 
     a {
-      color: $cn-rolling-stone;
+      color: $rolling-stone;
       font-weight: 400;
       line-height: 22px;
     }
 
     >ul>li>a:first-of-type{
-      color: $cn-jade;
+      color: $jade;
       font-weight: 600;
     }
   }
@@ -297,7 +297,7 @@ ul.pagination {
   float: left;
   padding-right: 5px;
   padding-bottom: 5px;
-  color: $cn-limited-spruce;
+  color: $spruce-gray;
   position: relative;
   top: -9px;
 }

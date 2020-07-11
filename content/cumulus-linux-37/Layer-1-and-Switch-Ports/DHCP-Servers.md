@@ -2,9 +2,6 @@
 title: DHCP Servers
 author: Cumulus Networks
 weight: 97
-aliases:
- - /display/DOCS/DHCP+Servers
- - /pages/viewpage.action?pageId=8363042
 pageID: 8363042
 ---
 To run DHCP for both IPv4 and IPv6, you need to initiate the DHCP server
@@ -122,8 +119,8 @@ Edit the `/etc/dhcp/dhcpd.conf` file and add the interface name `ifname`
 to assign an IP address through DHCP. The following provides an example:
 
     host myhost {
-         ifname = "swp1" ;
-         fixed_address = 10.10.10.10 ;
+         ifname "swp1" ;
+         fixed-address 10.10.10.10 ;
     }
 
 ## Troubleshooting

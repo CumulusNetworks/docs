@@ -2,11 +2,6 @@
 title: Prescriptive Topology Manager - PTM
 author: Cumulus Networks
 weight: 370
-aliases:
- - /display/DOCS/Prescriptive+Topology+Manager+PTM
- - /display/DOCS/Prescriptive+Topology+Manager+-+PTM
- - /display/DOCS/Prescriptive+Topology+Manager+++PTM
- - /pages/viewpage.action?pageId=8366745
 toc: 3
 ---
 In data center topologies, right cabling is a time-consuming endeavor and is error prone. Prescriptive Topology Manager (PTM) is a dynamic cabling verification tool to help detect and eliminate such errors. It takes a Graphviz-DOT specified network cabling plan (something many operators already generate), stored in a `topology.dot` file, and couples it with runtime information derived from LLDP to verify that the cabling matches the specification. The check is performed on every link transition on each node in the network.
@@ -227,14 +222,14 @@ switch(config)# ptm-enable
 switch(config)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 To disable the checks, delete the `ptm-enable` parameter from the interface:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net del interface swp51 ptm-enable
@@ -242,11 +237,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>FRR Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -259,13 +252,15 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 If you need to re-enable PTM for that interface:
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add interface swp51 ptm-enable
@@ -273,11 +268,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>FRR Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -291,13 +284,15 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 With PTM enabled on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`:
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net show interface swp1
@@ -312,11 +307,9 @@ Interface swp1 is up, line protocol is up
   HWaddr: c4:54:44:bd:01:41
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>FRR Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 switch# show interface swp1
@@ -331,7 +324,9 @@ Interface swp1 is up, line protocol is up
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## ptmd Service Commands
 

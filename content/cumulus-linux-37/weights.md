@@ -5,6 +5,6 @@ bookhidden: true
 weight: 999
 product: Cumulus Linux
 version: "3.7"
-pdfprint: false
+pdfhidden: true
 ---
 

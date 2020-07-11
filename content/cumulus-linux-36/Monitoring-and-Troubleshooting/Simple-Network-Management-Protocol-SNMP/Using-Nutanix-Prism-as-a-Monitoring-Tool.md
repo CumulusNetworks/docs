@@ -2,9 +2,6 @@
 title: Using Nutanix Prism as a Monitoring Tool
 author: Cumulus Networks
 weight: 501
-aliases:
- - /display/CL36/Using+Nutanix+Prism+as+a+Monitoring+Tool
- - /pages/viewpage.action?pageId=8362113
 pageID: 8362113
 ---
 Nutanix Prism is a graphical user interface (GUI) for managing
@@ -238,8 +235,7 @@ To help visualize the following diagram is provided:
 alternate hypervisor that Nutanix supports. Acropolis Hypervisor uses
 the yum packaging system and is capable of installing normal Linux lldp
 daemons to operating just like Cumulus Linux. LLDP should be enabled for
-each interface on the host. Refer to
-<https://community.mellanox.com/docs/DOC-1522> for setup instructions.
+each interface on the host. Refer to {{<exlink url="https://portal.nutanix.com/page/documents/kbs/details/?targetId=kA032000000TVfiCAG" title="Nutanix Documentation" >}} for setup instructions.
 
 ## Troubleshooting Connections without LLDP or CDP
 

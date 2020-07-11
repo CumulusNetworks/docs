@@ -2,9 +2,6 @@
 title: Integrate NetQ with Notification Applications
 author: Cumulus Networks
 weight: 200
-aliases:
- - /display/NETQ/Integrate+with+Third-party+Software+and+Hardware
- - /pages/viewpage.action?pageId=12320911
 toc: 3
 ---
 After you have installed the NetQ applications package and the NetQ Agents,
@@ -24,9 +21,9 @@ to the Notification function. Notification then stores, filters and
 sends messages to any configured notification applications. Filters are
 based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold.
 
-{{<figure src="/images/netq/event-notif-arch-222.png">}}
+{{<figure src="/images/netq/event-notif-arch-300.png">}}
 
-{{%notice note%}}
+{{<notice note>}}
 
 You may choose to implement a proxy server (that sits between the NetQ
 Platform and the integration channels) that receives, processes and
@@ -34,24 +31,22 @@ distributes the notifications rather than having them sent directly to
 the integration channel. If you use such a proxy, you must configure
 NetQ with the proxy information.
 
-{{%/notice%}}
+{{</notice>}}
 
 In either case, notifications are generated for the following types of
 events:
 
 | Category | Events |
 | --- | --- | 
-| Network Protocols | <ul><li>BGP status and session state</li><li>CLAG (MLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>LNV status and session state \*\*</li><li>OSPF status and session state </li><li>VLAN status and session state \*</li><li>VXLAN status and session state \*</li></ul> |
+| Network Protocols | <ul><li>BGP status and session state</li><li>CLAG (MLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>OSPF status and session state </li><li>VLAN status and session state \*</li><li>VXLAN status and session state \*</li></ul> |
 | Interfaces | <ul><li>Link status</li><li>Ports and cables status</li><li>MTU status</li></ul> |
-| Services | <ul><li>NetQ Agent status</li><li>PTM</li><li>SSH \*</li><li>NTP status \*</li></ul> |
+| Services | <ul><li>NetQ Agent status</li><li>PTM</li><li>SSH \*</li><li>NTP status\*</li></ul> |
 | Traces | <ul><li>On-demand trace status</li><li>Scheduled trace status</li></ul> |
 | Sensors | <ul><li>Fan status</li><li>PSU (power supply unit) status</li><li>Temperature status</li></ul> |
 | System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux License status</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li></ul> |
 | System Hardware | <ul><li>Physical resources status</li><li>BTRFS status</li><li>SSD utilization status</li><li>Threshold Crossing Alerts (TCAs)</li></ul> |
 
 *\* This type of event can only be viewed in the CLI with this release.*
-
-**\* This type of event is only visible when enabled in the CLI.*
 
 Refer to the {{<link title="Events Reference">}} for descriptions and examples of these events.
 
@@ -62,7 +57,7 @@ Messages have the following structure:
 
 | Element  | Description  |
 | ----------- | -------------- |
-| message type | Category of event; *agent*, *bgp*, *clag*, *clsupport*, *configdiff*, *evpn*, *license*, *link*, *lldp*, *lnv*, *mtu*, *node*, *ntp*, *ospf*, *packageinfo*, *ptm*, *resource*, *runningconfigdiff*, *sensor*, *services*, *ssdutil*, *tca*, *trace*, *version*, *vlan* or *vxlan* |
+| message type | Category of event; *agent*, *bgp*, *clag*, *clsupport*, *configdiff*, *evpn*, *license*, *link*, *lldp*, *mtu*, *node*, *ntp*, *ospf*, *packageinfo*, *ptm*, *resource*, *runningconfigdiff*, *sensor*, *services*, *ssdutil*, *tca*, *trace*, *version*, *vlan* or *vxlan* |
 | timestamp    | Date and time event occurred  |
 | opid         | Identifier of the service or process that generated the event |
 | hostname     | Hostname of network device where event occurred |
@@ -423,12 +418,12 @@ expressions and *vary according to your deployment*.
 <tr>
 <td>old_state</td>
 <td>Previous state of the BGP service</td>
-<td>Established, Failed</td>
+<td>Established, NotEstd</td>
 </tr>
 <tr>
 <td>new_state</td>
 <td>Current state of the BGP service</td>
-<td>Established, Failed</td>
+<td>Established, NotEstd</td>
 </tr>
 <tr>
 <td>old_last_reset_time</td>
@@ -825,8 +820,7 @@ PSU: up, down</td>
 </tr>
 </table>
 
-{{%notice note%}}
-
+{{<notice note>}}
 Rule names are case sensitive, and no wildcards are permitted. Rule
 names may contain spaces, but must be enclosed with single quotes in
 commands. It is easier to use dashes in place of spaces or mixed case
@@ -834,8 +828,7 @@ for better readability. For example, use bgpSessionChanges or
 BGP-session-changes or BGPsessions, instead of 'BGP Session Changes'.
 
 Use Tab completion to view the command options syntax.
-
-{{%/notice%}}
+{{</notice>}}
 
 #### Example Rules
 
@@ -922,15 +915,13 @@ output results.
 
 {{<figure src="/images/netq/NQ-2x-Filter-Process-Flow.png">}}
 
-{{%notice note%}}
-
-Filter names may contain spaces, but *must* be enclosed with single
+{{<notice note>}}
+Filter names may contain spaces, but <em>must</em> be enclosed with single
 quotes in commands. It is easier to use dashes in place of spaces or
 mixed case for better readability. For example, use bgpSessionChanges or
 BGP-session-changes or BGPsessions, instead of 'BGP Session Changes'.
 Filter names are also case sensitive.
-
-{{%/notice%}}
+{{</notice>}}
 
 #### Example Filters
 
@@ -1009,13 +1000,11 @@ the drop filter:
     cumulus@switch:~$ netq add notification filter svcDown before bgpSpine
     Successfully added/updated filter svcDown
 
-{{%notice tip%}}
-
+{{<notice tip>}}
 You do not need to reenter all the severity, channel, and rule
 information for existing rules if you only want to change their
 processing order.
-
-{{%/notice%}}
+{{</notice>}}
 
 Run the `netq show notification` command again to verify the changes:
 
@@ -1569,25 +1558,25 @@ A scope is used to filter the events generated by a given rule. Scope values are
 | ACL Resources | TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Hostname |
 | ACL Resources | TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Hostname |
 
-Scopes are defined with regular expressions, as follows. When two paramaters are used, they are separated by a comma, but no space.
+Scopes are defined with regular expressions, as follows. When two paramaters are used, they are separated by a comma, but no space. When as asterisk (*) is used alone, it must be entered inside either single or double quotes. Single quotes are used here.
 
 | Parameters | Scope Value | Example | Result |
 | -------------- | --------------- | ---------- | -------- |
 | Hostname | \<hostname> | leaf01 | Deliver events for the specified device |
 | Hostname | \<partial-hostname>\* | leaf\* | Deliver events for devices with hostnames starting with specified text (*leaf*) |
-| Hostname | \* | \* | Deliver events for all devices |
+| Hostname | \'\*\' | \'\*\' | Deliver events for all devices |
 | Hostname, Interface | \<hostname>,\<interface> | leaf01,swp9 | Deliver events for the specified interface (*swp9*) on the specified device (*leaf01*) |
-| Hostname, Interface | \<hostname>,\* | leaf01,\* | Deliver events for all interfaces on the specified device (*leaf01*) |
-| Hostname, Interface | \*,\<interface> | \*,swp9 | Deliver events for the specified interface (*swp9*) on all devices |
-| Hostname, Interface | \*,\* | \*,\* | Deliver events for all devices and all interfaces |
+| Hostname, Interface | \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all interfaces on the specified device (*leaf01*) |
+| Hostname, Interface | \'\*\',\<interface> | \'\*\',swp9 | Deliver events for the specified interface (*swp9*) on all devices |
+| Hostname, Interface | \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all devices and all interfaces |
 | Hostname, Interface | \<partial-hostname>\*,\<interface> | leaf*,swp9 | Deliver events for the specified interface (*swp9*) on all devices with hostnames starting with the specified text (*leaf*) |
 | Hostname, Interface | \<hostname>,\<partial-interface>\* | leaf01,swp* | Deliver events for all interface with names starting with the specified text (*swp*) on the specified device (*leaf01*) |
 | Hostname, Sensor Name | \<hostname>,\<sensorname> | leaf01,fan1 | Deliver events for the specified sensor (*fan1*) on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \*,\<sensorname> | \*,fan1 | Deliver events for the specified sensor (*fan1*) for all devices |
-| Hostname, Sensor Name |  \<hostname>,\* | leaf01,* | Deliver events for all sensors on the specified device (*leaf01*) |
+| Hostname, Sensor Name | \'\*\',\<sensorname> | \'\*\',fan1 | Deliver events for the specified sensor (*fan1*) for all devices |
+| Hostname, Sensor Name |  \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all sensors on the specified device (*leaf01*) |
 | Hostname, Sensor Name | \<partial-hostname>\*,\<interface> | leaf*,fan1 | Deliver events for the specified sensor (*fan1*) on all devices with hostnames starting with the specified text (*leaf*) |
 | Hostname, Sensor Name | \<hostname>,\<partial-sensorname>\* | leaf01,fan* | Deliver events for all sensors with names starting with the specified text (*fan*) on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \*,\* | \*,\* | Deliver events for all sensors on all devices |
+| Hostname, Sensor Name | \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all sensors on all devices |
 
 ### Create a TCA Rule
 
@@ -1596,13 +1585,13 @@ Now that you know which events are supported and how to set the scope, you can c
 For example, this rule tells NetQ to deliver an event notification to the *tca_slack_ifstats*  pre-configured Slack channel when the CPU utilization exceeds 95% of its capacity on any monitored switch:
 
 ```
-netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope * channel tca_slack_ifstats threshold 95
+netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' channel tca_slack_ifstats threshold 95
 ```
 
 This rule tells NetQ to deliver an event notification to the *tca_pd_ifstats* PagerDuty channel when the number of transmit bytes per second (Bps) on the *leaf12* switch exceeds 20,000 Bps on any interface:
 
 ```
-netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,* channel tca_pd_ifstats threshold 20000
+netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' channel tca_pd_ifstats threshold 20000
 ```
 
 This rule tells NetQ to deliver an event notification to the *syslog-netq* syslog channel when the temperature on sensor *temp1* on the *leaf12* switch exceeds 32 degrees Celcius:
@@ -1622,13 +1611,13 @@ In addition to defining a scope for TCA rule, you can also set a severity of eit
 For example, if you want add a critical severity to the CPU utilization rule you created earlier:
 
 ```
-netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope * severity critical channel tca_slack_resources threshold 95
+netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' severity critical channel tca_slack_resources threshold 95
 ```
 
 Or if an event is important, but not critical. Set the `severity` to *info*:
 
 ```
-netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,* severity info channel tca_pd_ifstats threshold 20000
+netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' severity info channel tca_pd_ifstats threshold 20000
 ```
 
 ### Create Multiple Rules for a TCA Event
@@ -1643,7 +1632,7 @@ You are likely to want more than one rule around a particular event. For example
 ```
 netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf*,temp1 channel syslog-netq threshold 32
 
-netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope *,temp1 channel tca_sensors,tca_pd_sensors threshold 32
+netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope '*',temp1 channel tca_sensors,tca_pd_sensors threshold 32
 
 netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf03,temp1 channel syslog-netq threshold 29
 ```
@@ -1760,6 +1749,6 @@ In summary:
 
 | Input Event | Scope Parameters | TCA Scope 1 | TCA Scope 2 | TCA Scope 3 | Scope Applied |
 | --- | --- | --- | --- | --- | --- |
- leaf01,swp1 | Hostname, Interface | \*,\* | leaf\*,\* | leaf01,swp1 || Scope 3 |
-| leaf01,swp3 | Hostname, Interface | \*,\* | leaf\*,\* | leaf01,swp1 | Scope 2 |
-| spine01,swp1 | Hostname, Interface | \*,\* | leaf\*,\* | leaf01,swp1 | Scope 1 |
+ leaf01,swp1 | Hostname, Interface | \'\*\',\'\*\' | leaf\*,\'\*\' | leaf01,swp1 | Scope 3 |
+| leaf01,swp3 | Hostname, Interface | \'\*\',\'\*\' | leaf\*,\'\*\' | leaf01,swp1 | Scope 2 |
+| spine01,swp1 | Hostname, Interface | \'\*\',\'\*\' | leaf\*,\'\*\' | leaf01,swp1 | Scope 1 |

@@ -2,9 +2,6 @@
 title: DHCP Relays
 author: Cumulus Networks
 weight: 95
-aliases:
- - /display/CL36/DHCP+Relays
- - /pages/viewpage.action?pageId=8362502
 pageID: 8362502
 ---
 You can configure DHCP relays for IPv4 and IPv6.

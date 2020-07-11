@@ -2,9 +2,6 @@
 title: IGMP and MLD Snooping
 author: Cumulus Networks
 weight: 510
-aliases:
- - /display/DOCS/IGMP+and+MLD+Snooping
- - /pages/viewpage.action?pageId=8366419
 toc: 3
 ---
 IGMP (Internet Group Management Protocol) and MLD (Multicast Listener Discovery) snooping are implemented in the bridge driver in the Cumulus Linux kernel and are enabled by default. IGMP snooping processes IGMP v1/v2/v3 reports received on a bridge port in a bridge to identify the hosts which would like to receive multicast traffic destined to that group.
@@ -29,9 +26,9 @@ Cumulus Linux supports IGMP/MLD snooping over VXLAN bridges, where VXLAN ports a
 
 To enable IGMP/MLD snooping over VXLAN:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bridge mybridge mcsnoop yes
@@ -39,11 +36,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -68,7 +63,9 @@ Run the `ifreload -a` command to reload the configuration:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 Cumulus Networks recommends that you also configure IGMP/MLD querier. See {{<link url="#configure-igmpmld-querier" text="Configure IGMP/MLD Querier">}}, below.
 
@@ -140,9 +137,9 @@ iface br0
 
 To disable IGMP and MLD snooping, set the `bridge-mcsnoop` value to *0*.
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bridge bridge mcsnoop no
@@ -150,11 +147,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file and set `bridge-mcsnoop to 0` in the bridge stanza:
 
@@ -178,7 +173,9 @@ Run the `ifreload -a` command to reload the configuration:
 cumulus@switch:~$ sudo ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Troubleshooting
 

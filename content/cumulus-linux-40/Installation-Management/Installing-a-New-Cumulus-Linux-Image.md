@@ -2,9 +2,6 @@
 title: Installing a New Cumulus Linux Image
 author: Cumulus Networks
 weight: 40
-aliases:
- - /display/DOCS/Installing+a+New+Cumulus+Linux+Image
- - /pages/viewpage.action?pageId=8366364
 toc: 3
 ---
 
@@ -73,9 +70,9 @@ If you do not have a web server, you can use {{<exlink url="https://www.apachefr
 
 Follow the steps below if you can log into the switch on a serial console (ONIE), or log in on the console or with ssh (Install from Cumulus Linux).
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>Install from ONIE </summary>
+{{< tab "Install from ONIE" >}}
 
 1. Place the Cumulus Linux disk image in a directory on the web server.
 2. Run the `onie-nos-install` command:
@@ -84,11 +81,9 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
     ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Install from Cumulus Linux </summary>
+{{< tab "Install from Cumulus Linux" >}}
 
 1. Place the Cumulus Linux disk image in a directory on the web server.
 
@@ -98,7 +93,9 @@ Follow the steps below if you can log into the switch on a serial console (ONIE)
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Install Using a Web Server with no DHCP
 
@@ -110,9 +107,9 @@ You need a console connection to access the switch; you cannot perform this proc
 
 {{%/notice%}}
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>Install from ONIE </summary>
+{{< tab "Install from ONIE" >}}
 
 1. ONIE is in *{{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#installer-discovery-methods" text="discovery mode">}}*. You must disable discovery mode with the following command:
 
@@ -140,11 +137,9 @@ You need a console connection to access the switch; you cannot perform this proc
     ONIE:/ #onie-nos-install http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Install from Cumulus Linux </summary>
+{{< tab "Install from Cumulus Linux" >}}
 
 1. Place the Cumulus Linux disk image in a directory on your web server.
 
@@ -154,15 +149,17 @@ You need a console connection to access the switch; you cannot perform this proc
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/path/to/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Install Using FTP Without a Web Server
 
 Follow the steps below if your laptop is on the same network as the switch eth0 interface but *no* DHCP server is available.
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>Install from ONIE </summary>
+{{< tab "Install from ONIE" >}}
 
 1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
@@ -192,11 +189,9 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
     ONIE# onie-nos-install tftp://local-tftp-server/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Install from Cumulus Linux </summary>
+{{< tab "Install from Cumulus Linux" >}}
 
 1. Place the Cumulus Linux disk image into a TFTP or FTP directory.
 
@@ -208,15 +203,17 @@ Follow the steps below if your laptop is on the same network as the switch eth0 
     cumulus@switch:~$ sudo onie-install -a -i tftp://local-ftp-server/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Install Using a Local File
 
 Follow the steps below to install the disk image referencing a local file.
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>Install from ONIE </summary>
+{{< tab "Install from ONIE" >}}
 
 1. Set up DHCP or static addressing for eth0. The following example assigns a static address to eth0:
 
@@ -244,11 +241,9 @@ Follow the steps below to install the disk image referencing a local file.
     ONIE:/ #onie-nos-install /path/to/local/file/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Install from Cumulus Linux </summary>
+{{< tab "Install from Cumulus Linux" >}}
 
 1. Copy the Cumulus Linux disk image to the switch.
 
@@ -258,7 +253,9 @@ Follow the steps below to install the disk image referencing a local file.
     cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-[PLATFORM].bin
     ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Install Using a USB Drive
 
@@ -276,91 +273,81 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 1. From the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Networks Downloads page">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
 2.  From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
-    <details>
+    {{< expand "Optional: Prepare a USB Drive inside Cumulus Linux"  >}}
 
-    <summary>Optional: Prepare a USB Drive inside Cumulus Linux</summary>
+    {{%notice note%}}
 
-    {{%notice warning%}}
+Use caution when performing these actions; it is possible to severely damage your system with the following utilities.
 
-Use caution when performing the actions below; it is possible to severely damage your system with the following utilities.
+{{%/notice%}}
 
-    {{%/notice%}}
+1. Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch. Examine output from `cat /proc/partitions` and `sudo fdisk -l [device]` to determine on which device your USB drive can be found. For example, `sudo fdisk -l /dev/sdb`.
 
-    1. Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch. Examine output from `cat /proc/partitions` and `sudo fdisk -l [device]` to determine on which device your USB drive can be found. For example, `sudo fdisk -l /dev/sdb`.
+    These instructions assume your USB drive is the `/dev/sdb` device, which is typical if you insert the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the `/dev/sda` device. Make sure to modify the commands below to use the proper device for your USB drive.
 
-        These instructions assume your USB drive is the `/dev/sdb` device, which is typical if you insert the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the `/dev/sda` device. Make sure to modify the commands below to use the proper device for your USB drive.
+2. Create a new partition table on the USB drive. (The `parted` utility should already be installed. However, if it is not, install it with `sudo -E apt-get install parted`.)
 
-    2. Create a new partition table on the USB drive. (The `parted` utility should already be installed. However, if it is not, install it with `sudo -E apt-get install parted`.)
+    ```
+    sudo parted /dev/sdb mklabel msdos
+    ```
 
-        ```
-        sudo parted /dev/sdb mklabel msdos
-        ```
+3. Create a new partition on the USB drive:
 
-    3. Create a new partition on the USB drive:
+    ```
+    sudo parted /dev/sdb -a optimal mkpart primary 0% 100%
+    ```
 
-        ```
-        sudo parted /dev/sdb -a optimal mkpart primary 0% 100%
-        ```
+4. Format the partition to your filesystem of choice using *one* of the examples below:
 
-    4. Format the partition to your filesystem of choice using *one* of the examples below:
+    ```
+    sudo mkfs.ext2 /dev/sdb1
+    sudo mkfs.msdos -F 32 /dev/sdb1
+    sudo mkfs.vfat /dev/sdb1
+    ```
 
-        ```
-        sudo mkfs.ext2 /dev/sdb1
-        sudo mkfs.msdos -F 32 /dev/sdb1
-        sudo mkfs.vfat /dev/sdb1
-        ```
+    To use `mkfs.msdos` or `mkfs.vfat`, you need to install the `dosfstools` package from the 
+    {{<link url="Adding-and-Updating-Packages" text="Debian software repositories">}}, as they are not included by default.
 
-       To use `mkfs.msdos` or `mkfs.vfat`, you need to install the `dosfstools` package from the 
-       {{<link url="Adding-and-Updating-Packages" text="Debian software repositories">}}, as they are not included by default.
+5. To continue installing Cumulus Linux, mount the USB drive to move files
 
-    5. To continue installing Cumulus Linux, mount the USB drive to move files
+    ```
+    sudo mkdir /mnt/usb
+    sudo mount /dev/sdb1 /mnt/usb
+    ```
 
-        ```
-        sudo mkdir /mnt/usb
-        sudo mount /dev/sdb1 /mnt/usb
-        ```
-
-    </details>
+{{< /expand >}}
 
 3. Copy the Cumulus Linux disk image to the USB drive, then rename the image file to:
 
     - `onie-installer-x86_64`, if installing on an x86 platform
     - `onie-installer-arm`, if installing on an ARM platform
 
-    You can also use any of the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html#default-file-name-search-order" text="ONIE naming schemes mentioned here">}}.
-
     {{%notice warning%}}
 
 When using a Mac or Windows computer to rename the installation file, the file extension might still be present. Make sure to remove the file extension otherwise ONIE is not able to detect the file.
 
-    {{%/notice%}}
+{{%/notice%}}
 
 4. Insert the USB drive into the switch, then continue with the appropriate instructions below for your x86 or ARM platform.
 
-### Instructions for x86 Platforms
+{{< tabs "TabID00" >}}
 
-<details>
-
-<summary>Click to expand x86 instructions... </summary>
+{{< tab "x86 Platforms" >}}
 
 1. Prepare the switch for installation:
 
     - If the switch is offline, connect to the console and power on the switch.
     - If the switch is already online in ONIE, use the `reboot` command.
 
-    {{%notice note%}}
-
-SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
-
-    {{%/notice%}}
+    SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
 
 2. Monitor the console and select the ONIE option from the first GRUB screen shown below.
 
-    {{< img src = "/images/cumulus-linux/install-image-GNUx86-1.png" >}}
+    {{< figure src = "/images/cumulus-linux/install-image-GNUx86-1.png" >}}
 
 3. Cumulus Linux on x86 uses GRUB chainloading to present a second GRUB menu specific to the ONIE partition. No action is necessary in this menu to select the default option *ONIE: Install OS*.
 
-    {{< img src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
+    {{< figure src = "/images/cumulus-linux/install-image-GNUx86-2.png" >}}
 
 4. The USB drive is recognized and mounted automatically. The image file is located and automatic installation of Cumulus Linux begins. Here is some sample output:
 
@@ -398,24 +385,16 @@ SSH sessions to the switch get dropped after this step. To complete the remainin
 
 5. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 
-</details>
+{{< /tab >}}
 
-### Instructions for ARM Platforms
-
-<details>
-
-<summary>Click to expand ARM instructions... </summary>
+{{< tab "ARM Platforms" >}}
 
 1. Prepare the switch for installation:
 
     - If the switch is offline, connect to the console and power on the switch.
     - If the switch is already online in ONIE, use the `reboot` command.
 
-    {{%notice note%}}
-
-SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
-
-    {{%/notice%}}
+    SSH sessions to the switch get dropped after this step. To complete the remaining instructions, connect to the console of the switch. Cumulus Linux switches display their boot process to the console; you need to monitor the console specifically to complete the next step.
 
 2. Interrupt the normal boot process before the countdown (shown below) completes. Press any key to stop the autoboot.
 
@@ -430,7 +409,6 @@ SSH sessions to the switch get dropped after this step. To complete the remainin
         DDR:400 MHz (800 MT/s data rate) (Asynchronous), LBC:37.500 MHz
     L1: D-cache 32 kB enabled
     I-cache 32 kB enabled
-
     ...
 
     USB: USB2513 hub OK
@@ -487,7 +465,9 @@ SSH sessions to the switch get dropped after this step. To complete the remainin
 
 5. After installation completes, the switch automatically reboots into the newly installed instance of Cumulus Linux.
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Related Information
 

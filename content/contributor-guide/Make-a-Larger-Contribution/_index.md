@@ -17,23 +17,27 @@ To get started:
 
 The first step is to install Hugo:
 
-1. Go to *https://github.com/gohugoio/hugo/releases/tag/v0.55.6*.
+1. Go to *https://github.com/gohugoio/hugo/releases/tag/v0.65.3*.
 
 2. Select the relevant **extended** package based on your operating system:
-    - hugo_extended_0.55.6_Linux-64bit.deb
-    - hugo_extended_0.55.6_Linux-64bit.tar.gz
-    - hugo_extended_0.55.6_macOS-64bit.tar.gz
-    - hugo_extended_0.55.6_Windows-64bit.zip
+    - hugo_extended_0.65.3_Linux-64bit.deb
+    - hugo_extended_0.65.3_Linux-64bit.tar.gz
+    - hugo_extended_0.65.3_macOS-64bit.tar.gz
+    - hugo_extended_0.65.3_Windows-64bit.zip
+
+{{%notice note%}}
+You must use the **extended** version of Hugo to support our use of SCSS stylesheets.
+{{% /notice %}}
 
 3. Decompress and install Hugo from the download.
 
-4. Verify Hugo is installed and running. 
+4. Verify Hugo is installed and running.
     
     From a terminal window, run `hugo version`:
 
     ```
     <computer>:<username>$ hugo server
-    Hugo Static Site Generator v0.55.6/extended darwin/amd64 BuildDate: unknown
+    Hugo Static Site Generator v0.65.3-211BA42A/extended darwin/amd64
     ```
 
 ## Clone the Documentation Repository
@@ -44,7 +48,7 @@ The next step is to obtain a local copy of the Cumulus Networks Documentation Re
 
 2. Navigate to *https://github.com/CumulusNetworks/docs*.
 
-3. Make sure the **Branch** is on *master*, and then click **Clone or download**.
+3. Make sure the **Branch** is on *stage*, and then click **Clone or download**.
 
     {{<figure src="/images/old_doc_images/contrib-gde-clone-docs-repo.png" width="700">}}
 
@@ -66,7 +70,7 @@ And the final setup step is to validate that you can view your local copy of the
 
 1. From your terminal window, navigate to the `docs` subdirectory.
 
-2. Start the hugo server by running `hugo server`.
+2. Start the hugo server by running `hugo server --baseURL localhost:1313`.
 
     You should see output similar to this:
 
@@ -74,24 +78,24 @@ And the final setup step is to validate that you can view your local copy of the
     <computer>:docs <username>$ hugo server
     Building sites...
 
-                    |  EN   
-    +------------------+------+
-    Pages            | 1977  
-    Paginator pages  |    0  
-    Non-page files   |    1  
-    Static files     | 2848  
-    Processed images |    0  
-    Aliases          | 3071  
-    Sitemaps         |    1  
-    Cleaned          |    0  
-
-    Total in 11779 ms
+                       |  EN
+    -------------------+-------
+      Pages            |  769
+      Paginator pages  |    0
+      Non-page files   | 2003
+      Static files     | 1925
+      Processed images |    0
+      Aliases          |    0
+      Sitemaps         |    1
+      Cleaned          |    0
+    
+    Built in 6294 ms   
     Watching for changes in /Users/<username>/<cndocs-repo>/docs/{content,data,static,themes}
     Watching for config changes in /Users/<username>/<cndocs-repo>docs/config.toml
     Environment: "development"
     Serving pages from memory
     Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
-    Web Server is available at //localhost:1313/ (bind address 10.10.0.1)
+    Web Server is available at //localhost:1313/ (bind address 127.0.0.1)
     Press Ctrl+C to stop
     ```
 
@@ -100,7 +104,7 @@ And the final setup step is to validate that you can view your local copy of the
     When you make and then save changes to the source Markdown files, the updates are shown here.
 
     {{%notice tip%}}
-If the page does not appear to be updating, you may need to stop the Hugo server (press Ctrl+c) and restart it using `hugo server --gc` to rebuild the site without using cached data.
+If the page does not appear to be updating, you may need to stop the Hugo server (press Ctrl+c) and restart it using `hugo server --baseURL localhost:1313 --gc` to rebuild the site without using cached data.
     {{%/notice%}}
 
 You are now ready to edit the documentation or create a new topic. Refer to [Adding New Content](Adding_New_Content).

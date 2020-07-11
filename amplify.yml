@@ -8,26 +8,9 @@ frontend:
         - tar -xf hugo_extended_0.65.3_Linux-64bit.tar.gz hugo
         - mv hugo /usr/bin/hugo
         - rm -rf hugo_extended_0.65.3_Linux-64bit.tar.gz
-        - echo Successfully installed Hugo 
+        - echo Successfully installed Hugo
     build:
       commands:
-        # Install pre-reqs for linkchecker
-        # - if [ "${AWS_BRANCH}" = "master" ]; then yum -y -q install python-devel ; fi
-        # - if [ "${AWS_BRANCH}" = "master" ]; then yum -y -q install python-pip ; fi
-        # Pip install linkchecker from github for the latest version since the project lost access to pypi
-        # - if [ "${AWS_BRANCH}" = "master" ]; then pip -q install https://github.com/linkchecker/linkchecker/archive/master.zip ; fi
-        # Linkchecker has a bug where it can't pass an auth file
-        # https://github.com/linkchecker/linkchecker/issues/343
-        # Older versions have an issue parsing robots.txt on https pages
-        # There is currently no version that fixes both.
-        # This is the main linkchecker file from https://github.com/linkchecker/linkchecker/blob/a83754a6c8aa7178009fc2d358ab9c17278e4178/linkchecker
-        # But patched to allow for a password to be passed via CLI
-        # - if [ "${AWS_BRANCH}" = "master" ]; then cp utils/linkchecker /usr/bin/linkchecker ; fi
-        # Run linkchecker with 16 threads and ignore the PDF chapter (until all PDF links are moved to shortcodes)
-        # This is specifically the stage branch because we need to generate the PDF from what's already published,
-        # Meaning we can't generate it from the results of /this/ build. 
-        # This only runs in the master branch, and assumes that stage was merged into master to trigger the build
-        # - if [ "${AWS_BRANCH}" = "master" ]; then linkchecker -t 20 -a -u cumulus -p $PASSWORD https://stage.docs.cumulusnetworks.com/ --ignore-url=".xls" --ignore-url=pdf --ignore-url="\/cumulus-linux-3[0-6]+" --ignore-url="\/cumulus-netq-1*" --ignore-url="\/cumulus-netq-2[1-3]" --ignore-url="\/cumulus-linux-25esr" --ignore-url="\/cumulus-rmp" --ignore-url="\/cumulus-vx-25"; fi
         # Embed the git commit ID into the PDF for future troubleshooting
         - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
         #- echo Building PDFs...
@@ -35,9 +18,9 @@ frontend:
         - if [ "${AWS_BRANCH}" = "master" ]; then pip3 install --upgrade docraptor requests ; fi
         # Tell docraptor to build PDFs and XLS and wait for a response
         # This is specifically the stage branch because we need to generate the files from what's already published,
-        # Meaning we can't generate it from the results of /this/ build. 
+        # Meaning we can't generate it from the results of /this/ build.
         # This only runs in the master branch, and assumes that stage was merged into master to trigger the build
-        # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS> 
+        # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL> <HTTP_AUTH_NAME> <HTTP_AUTH_PASS>
         # If PDF/XLS generation is failing, comment out the following line to build the site.
         - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://stage.d1w082ag5m7upl.amplifyapp.com/ $USERNAME $PASSWORD ; fi
         - echo Building docs ...

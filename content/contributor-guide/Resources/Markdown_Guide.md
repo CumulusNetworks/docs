@@ -3,7 +3,7 @@ title: Markdown Guide
 author: Cumulus Networks
 weight: 210
 ---
-This topic provides additional Markdown usage guidelines and more detail about selected Markdown editing capabilities already covered in the [Make a Larger Contribution](../../Make-a-Larger-Contribution/) topic.
+This topic provides additional Markdown usage guidelines and more detail about selected Markdown editing capabilities already covered in the {{< link title="Make a Larger Contribution" >}} topic.
 
 ## Inline Styling
 
@@ -25,7 +25,12 @@ This type of link is used to reference content outside of the documentation site
 
 | Inline Markdown | Example |
 | -------------------- | ---------- |
-| \[Display Text\](\<site-address\>) | \[Cumulus Forums\](http://forums.cumulusnetworks.com) |
+| \[Display Text\](\<site-address\>) | \[Cumulus docs\](http://docs.cumulusnetworks.com) |
+
+{{% notice note %}}
+Do not use traditional markdown links to link between pages in the documentation. Use the custom `link` shortcode to to link between internal documentation pages.
+{{% /notice %}} 
+
 
 ### In-page Anchor
 
@@ -39,29 +44,6 @@ This type of link is used to reference content in another section within the sam
 The \<section-title\> must be in all lower case, and dashes must be used to replace any spaces, regardless of the formatting of the actual title.
 {{%/notice%}}
 
-### Internal Absolute Reference
-
-This type of link is used to reference content within the document site, but outside of the current file, using an exact directory path.
-
-| Inline Markdown | Example |
-| -------------------- | ---------- |
-| \[Display Text\](/\<full-path\>/) | \[Routing\](/cumulus-linux/Layer-3/Routing/) |
-
-Begin the path at the product-level directory. Be sure to start *and* end the path with a forward slash (/).
-
-{{%notice note%}}
-While this is type of reference is acceptable, we strongly recommend using the [Internal Relative Reference](#internal-relative-reference) instead. This simplifies the transition of documents into the *version* directory when they are no longer the newest available version.
-{{%/notice%}}
-
-### Internal Relative Reference
-
-This type of link is used to reference content within the document site, but outside of the current file, using a relative directory path. This is the preferred type to be used for internal references.
-
-| Inline Markdown | Example |
-| -------------------- | ---------- |
-| \[Display Text\](../\<section-title\>/) | \[Adding New Content\](../../Make-a-Larger-Contribution/Adding_New_Content/) |
-
-Use ../ for each step up the tree, and then the section title names for each step down the tree to the file. Be sure to end the path with a forward slash (/).
 
 ## Image References
 

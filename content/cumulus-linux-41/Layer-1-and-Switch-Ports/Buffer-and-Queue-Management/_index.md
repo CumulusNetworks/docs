@@ -2,9 +2,6 @@
 title: Buffer and Queue Management
 author: Cumulus Networks
 weight: 320
-aliases:
- - /display/DOCS/Buffer+and+Queue+Management
- - /pages/viewpage.action?pageId=8366755
 toc: 3
 ---
 Hardware datapath configuration manages packet buffering, queueing and scheduling in hardware. To configure priority groups, and assign the scheduling alogorithm and weights, you edit the `/etc/cumulus/datapath/traffic.conf`.
@@ -30,7 +27,7 @@ The scheduler is configured to use a hybrid scheduling algorithm. It applies str
 You can configure Quality of Service (QoS) for switches on the following platforms only:
 
 - Broadcom Tomahawk, Trident II, Trident II+ and Trident3
-- Mellanox Spectrum
+- Mellanox Spectrum and Spectrum-2
 
 {{%/notice%}}
 
@@ -43,9 +40,7 @@ The following example `/etc/cumulus/datapath/traffic.conf` datapath configuratio
 - Per-port source packet fields and mapping apply to the designated set of ports.
 - Per-port remark packet fields and mapping apply to the designated set of ports.
 
-<details>
-
-<summary>Click to see the traffic.conf file</summary>
+{{< expand "Click to see the traffic.conf file"  >}}
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
@@ -242,7 +237,7 @@ dos_enable = false
 #forwarding_table.profile = default
 ```
 
-</details>
+{{< /expand >}}
 
 {{%notice note%}}
 
@@ -569,9 +564,7 @@ The downstream switches with ECN enabled perform the same actions as the traffic
 
 ECN is supported on {{<exlink url="https://cumulusnetworks.com/hcl" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum ASICs">}}.
 
-<details>
-
-<summary>Click to learn how to configure ECN </summary>
+{{< expand "Click to learn how to configure ECN "  >}}
 
 ECN is disabled by default in Cumulus Linux. You can enable ECN for individual switch priorities on specific switch ports in the `/etc/cumulus/datapath/traffic.conf` file:
 
@@ -601,7 +594,7 @@ The following configuration example shows ECN configured for ports swp1 through 
 
 On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.
 
-</details>
+{{< /expand >}}
 
 ## Check Interface Buffer Status
 

@@ -56,7 +56,9 @@ Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
 
 *Note that NetQ has a separate repository from Cumulus Linux.*
 
-<details><summary>Cumulus Linux 3.x</summary>
+{{< tabs "TabID0" >}}
+
+{{< tab "Cumulus Linux 3.x" >}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
@@ -68,8 +70,10 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-2.4
 {{%notice tip%}}
 The repository `deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
 {{%/notice%}}
-</details>
-<details><summary>Cumulus Linux 4.x</summary>
+
+{{< /tab >}}
+
+{{< tab "Cumulus Linux 4.x" >}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
@@ -81,7 +85,10 @@ deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-2.4
 {{%notice tip%}}
 The repository `deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest` can be used if you want to always retrieve the latest posted version of NetQ.
 {{%/notice%}}
-</details>
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Add the Apt Repository Key (Cumulus Linux 4.0 Only)
 
@@ -99,16 +106,16 @@ To install the NetQ Agent:
 
 1. Update the local `apt` repository, then install the NetQ software on the switch.
 
-```
-cumulus@switch:~$ sudo apt-get update
-cumulus@switch:~$ sudo apt-get install netq-agent
-```
+    ```
+    cumulus@switch:~$ sudo apt-get update
+    cumulus@switch:~$ sudo apt-get install netq-agent
+    ```
 
 2. Verify you have the correct version of the Agent.
 
-```
-cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
-```
+    ```
+    cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
 
     You should see version 2.4.1 and update 26 or later in the results. For example:
 
@@ -122,9 +129,9 @@ cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
-```
-cumulus@switch:~$ sudo systemctl restart rsyslog.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart rsyslog.service
+    ```
 
 4. Continue with NetQ Agent configuration in the next section.
 
@@ -141,9 +148,9 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 1. Open the `netq.yml` file using your text editor of choice. For example:
 
-```
-root@rhel7:~# sudo nano /etc/netq/netq.yml
-```
+    ```
+    root@rhel7:~# sudo nano /etc/netq/netq.yml
+    ```
 
 2. Locate the *netq-agent* section, or add it.
 
@@ -152,14 +159,14 @@ root@rhel7:~# sudo nano /etc/netq/netq.yml
     - server: IP address of the NetQ Platform or NetQ Appliance where the agent should send its collected data
     - vrf: default (default) or one that you specify
 
-Your configuration should be similar to this:
+    Your configuration should be similar to this:
 
-```
-netq-agent:
-  port: 31980
-  server: 127.0.0.1
-  vrf: default
-```
+    ```
+    netq-agent:
+    port: 31980
+    server: 127.0.0.1
+    vrf: default
+    ```
 
 ### Configure NetQ Agents Using the NetQ CLI
 

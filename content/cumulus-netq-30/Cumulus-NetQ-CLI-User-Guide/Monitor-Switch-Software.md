@@ -2,10 +2,6 @@
 title: Monitor Switch Software
 author: Cumulus Networks
 weight: 520
-aliases:
- - /display/NETQ/Monitor+Switch+Hardware+and+Software
- - /pages/viewpage.action?pageId=12321058
-pageID: 12321058
 toc: 3
 ---
 With NetQ, a network administrator can monitor the switch software components for misconfigurations. NetQ helps answer questions such as:

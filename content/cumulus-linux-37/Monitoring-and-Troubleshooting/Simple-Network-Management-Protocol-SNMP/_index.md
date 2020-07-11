@@ -2,10 +2,6 @@
 title: Simple Network Management Protocol - SNMP
 author: Cumulus Networks
 weight: 231
-aliases:
- - /display/DOCS/Simple+Network+Management+Protocol+(SNMP)+Monitoring
- - /display/DOCS/SNMP+Monitoring
- - /pages/viewpage.action?pageId=8362608
 pageID: 8362608
 ---
 Cumulus Linux uses the open source Net-SNMP agent `snmpd` version 5.8,
@@ -1438,8 +1434,8 @@ for them. The overall Cumulus Linux MIB is defined in the
 <td><p>Users, storage, interfaces, process info, run parameters</p></td>
 </tr>
 <tr>
-<td><p><a href="https://cumulusnetworks.com/static/mibs/IEEE8021-BRIDGE-MIB.txt">IEEE8021-BRIDGE-MIB</a></p>
-<p><a href="https://cumulusnetworks.com/static/mibs/IEEE8021-Q-BRIDGE-MIB.txt">IEEE8021-Q-BRIDGE-MIB</a></p></td>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/BRIDGE-MIB.txt">BRIDGE-MIB</a></p>
+<p><a href="https://cumulusnetworks.com/static/mibs/Q-BRIDGE-MIB.txt">Q-BRIDGE-MIB</a></p></td>
 <td><p>The <code>dot1dBasePortEntry</code> and <code>dot1dBasePortIfIndex</code> tables in the BRIDGE-MIB and <code>dot1qBase</code>, <code>dot1qFdbEntry</code>, <code>dot1qTpFdbEntry</code>, <code>dot1qTpFdbStatus</code>, and <code>dot1qVlanStaticName</code> tables in the Q-BRIDGE-MIB tables. You must uncomment the <code>bridge_pp.py pass_persist</code> script in <code>/etc/snmp/snmpd.conf</code>.</p></td>
 </tr>
 <tr>

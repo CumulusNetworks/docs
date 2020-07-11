@@ -2,10 +2,6 @@
 title: Cumulus VX Documentation
 author: Cumulus Networks
 weight: -34
-aliases:
- - /display/VX/Cumulus-VX-Documentation
- - /display/VX/
- - /pages/viewpage.action?pageId=5126686
 pageID: 5126686
 subsection: true
 cascade:

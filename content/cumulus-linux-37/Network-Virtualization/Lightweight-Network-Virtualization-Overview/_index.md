@@ -2,9 +2,6 @@
 title: Lightweight Network Virtualization Overview
 author: Cumulus Networks
 weight: 145
-aliases:
- - /display/DOCS/Lightweight+Network+Virtualization+Overview
- - /pages/viewpage.action?pageId=8362706
 pageID: 8362706
 ---
 {{%notice warning%}}

@@ -2,9 +2,6 @@
 title: Management VRF
 author: Cumulus Networks
 weight: 193
-aliases:
- - /display/CL36/Management+VRF
- - /pages/viewpage.action?pageId=8362410
 pageID: 8362410
 ---
 *Management VRF* is a subset of

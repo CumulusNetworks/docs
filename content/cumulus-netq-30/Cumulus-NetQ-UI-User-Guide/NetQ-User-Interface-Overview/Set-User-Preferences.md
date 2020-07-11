@@ -2,10 +2,6 @@
 title: Set User Preferences
 author: Cumulus Networks
 weight: 290
-aliases:
- - /display/NETQ22/NetQ-User-Interface-Overview
- - /pages/viewpage.action?pageId=12321856
-pageID: 12321856
 toc: 4
 ---
 Each user can customize the NetQ application display, change his account
@@ -132,15 +128,9 @@ workbenches. Public workbenches are visible by all users. Private
 workbenches are visible only by the user who created the workbench. From
 the Workbenches card, you can:
 
-  - **Specify a favorite workbench**: This tells NetQ to open with that
-    workbench when you log in instead of the default Cumulus Workbench.
-  - **Search for a workbench**: If you have a large number of
-    workbenches, you can search for a particular workbench by name, or
-    sort workbenches by their access type or cards that reside on them.
-  - **Delete a workbench:** Perhaps there is one that you no longer use.
-    You can remove workbenches that you have created (private
-    workbenches). An administrative role is required to remove
-    workbenches that are common to all users (public workbenches).
+- **Specify a home workbench**: This tells NetQ to open with that workbench when you log in instead of the default Cumulus Workbench.
+- **Search for a workbench**: If you have a large number of workbenches, you can search for a particular workbench by name, or sort workbenches by their access type or cards that reside on them.
+- **Delete a workbench:** Perhaps there is one that you no longer use. You can remove workbenches that you have created (private workbenches). An administrative role is required to remove workbenches that are common to all users (public workbenches).
 
 To manage your workbenches:
 
@@ -153,12 +143,8 @@ To manage your workbenches:
 
     {{<figure src="/images/netq/user-settings-profile-prefs-wbs-card-222.png" width="500">}}
 
-4.  To specify a favorite workbench, click to the left of the desired workbench name.  <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg" height="18" width="18"/> is placed there to indicate its status as your favorite workbench.
-5.  To search the workbench list by name, access type, and
-    cards present on the workbench, click the relevant header and begin
-    typing your search criteria.
+4.  To specify a home workbench, click to the left of the desired workbench name. <img src="https://icons.cumulusnetworks.com/49-Building-Construction/01-Houses/house-heart.svg" height="18" width="18"/> is placed there to indicate its status as your favorite workbench.
+5.  To search the workbench list by name, access type, and cards present on the workbench, click the relevant header and begin typing your search criteria.
 6. To sort the workbench list, click the relevant header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/35-Text-Options/arrange-letter.svg" height="18" width="18"/>.
-7.  To delete a workbench, hover over the workbench name to view the
-    **Delete** button. As an administrator, you can delete both private
-    and public workbenches.
+7.  To delete a workbench, hover over the workbench name to view the **Delete** button. As an administrator, you can delete both private and public workbenches.
 8.  Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and selecting a workbench from the NetQ list.

@@ -2,9 +2,6 @@
 title: Voice VLAN
 author: Cumulus Networks
 weight: 335
-aliases:
- - /display/DOCS/Voice+VLAN
- - /pages/viewpage.action?pageId=8362651
 pageID: 8362651
 ---
 In Cumulus Linux, a *voice VLAN* is a VLAN dedicated to voice traffic on a switch port. However, the term can mean different things to different vendors.

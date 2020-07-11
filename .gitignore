@@ -1,3 +1,7 @@
+# Doc files we should never directly commit #
+content/cumulus-linux/*
+content/cumulus-netq/*
+
 # Compiled source #
 ###################
 *.class
@@ -44,10 +48,16 @@ resources/_gen/assets/*
 public/*
 hugo
 
-# VSCode Related # 
+# VSCode Related #
 ##################
 .vscode/*
 
-# Common Python Venv # 
+# Common Python Venv #
 ######################
 venv/*
+
+
+# We ignore the link shortcode by default to prevent
+# accidental commit of bad link check code.
+# edits to the shortcode will require manual git add
+themes/netDocs/layouts/shortcodes/link.html

@@ -2,11 +2,6 @@
 title: Power over Ethernet - PoE
 author: Cumulus Networks
 weight: 250
-aliases:
- - /display/DOCS/Power+over+Ethernet+++PoE
- - /display/DOCS/Power+over+Ethernet+-+PoE
- - /display/DOCS/Power+over+Ethernet+PoE
- - /pages/viewpage.action?pageId=8366297
 toc: 3
 ---
 Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain Cumulus Linux switches can supply power from Ethernet switch ports to enabled devices over the Ethernet cables that connect them. PoE is capable of powering devices up to 15W, while PoE+ can power devices up to 30W. Configuration for power negotiation is done over {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}}.
@@ -55,8 +50,7 @@ You use the `poectl` command utility to configure PoE on a {{<exlink url="https:
 
 The PoE configuration resides in `/etc/cumulus/poe.conf`. The file lists all the switch ports, whether PoE is enabled for those ports and the priority for each port.
 
-<details>
-<summary>Sample poe.conf file ... </summary>
+{{< expand "Sample poe.conf File ... "  >}}
 
 ```
 [enable]
@@ -160,7 +154,7 @@ swp47 = low
 swp48 = low
 ```
 
-</details>
+{{< /expand >}}
 
 By default, PoE and PoE+ are enabled on all Ethernet/1G switch ports, and these ports are set with a low priority. Switch ports can have low, high or critical priority.
 

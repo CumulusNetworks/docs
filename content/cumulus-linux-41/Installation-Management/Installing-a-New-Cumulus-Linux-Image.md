@@ -2,9 +2,6 @@
 title: Installing a New Cumulus Linux Image
 author: Cumulus Networks
 weight: 40
-aliases:
- - /display/DOCS/Installing+a+New+Cumulus+Linux+Image
- - /pages/viewpage.action?pageId=8366364
 toc: 3
 ---
 
@@ -59,8 +56,7 @@ subnet 172.0.24.0 netmask 255.255.255.0 {
 }
 ```
 
-Here is an example DHCP configuration with {{<exlink url="http://www.thekelleys.org.uk/dnsmasq/doc.html" text="dnsmasq">}} (static address
-assignment):
+Here is an example DHCP configuration with {{<exlink url="http://www.thekelleys.org.uk/dnsmasq/doc.html" text="dnsmasq">}} (static address assignment):
 
 ```
 dhcp-host=sw4,192.168.100.14,6c:64:1a:00:03:ba,set:sw4
@@ -110,7 +106,7 @@ You need a console connection to access the switch; you cannot perform this proc
 
 {{%/notice%}}
 
-{{< tabs "TabID112 ">}}
+{{< tabs "TabID111 ">}}
 
 {{< tab "Install from ONIE ">}}
 
@@ -277,45 +273,44 @@ Follow the steps below to install the Cumulus Linux disk image using a USB drive
 1. From the {{<exlink url="http://cumulusnetworks.com/downloads/" text="Cumulus Networks Downloads page">}}, download the appropriate Cumulus Linux image for your x86 or ARM platform.
 2.  From a computer, prepare your USB drive by formatting it using one of the supported formats: FAT32, vFAT or EXT2.
 
-    <details>
+    {{< expand "Optional: Prepare a USB Drive inside Cumulus Linux"  >}}
 
-    <summary>Optional: Prepare a USB Drive inside Cumulus Linux</summary>
+1. Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch. Examine output from `cat /proc/partitions` and `sudo fdisk -l [device]` to determine on which device your USB drive can be found. For example, `sudo fdisk -l /dev/sdb`.
 
-    1. Insert your USB drive into the USB port on the switch running Cumulus Linux and log in to the switch. Examine output from `cat /proc/partitions` and `sudo fdisk -l [device]` to determine on which device your USB drive can be found. For example, `sudo fdisk -l /dev/sdb`.
+    These instructions assume your USB drive is the `/dev/sdb` device, which is typical if you insert
+ the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the `/dev/sda` device. Make sure to modify the commands below to use the proper device for your USB drive.
 
-        These instructions assume your USB drive is the `/dev/sdb` device, which is typical if you insert the USB drive after the machine is already booted. However, if you insert the USB drive during the boot process, it is possible that your USB drive is the `/dev/sda` device. Make sure to modify the commands below to use the proper device for your USB drive.
+2. Create a new partition table on the USB drive. (The `parted` utility should already be installed. However, if it is not, install it with `sudo -E apt-get install parted`.)
 
-    2. Create a new partition table on the USB drive. (The `parted` utility should already be installed. However, if it is not, install it with `sudo -E apt-get install parted`.)
+    ```
+    sudo parted /dev/sdb mklabel msdos
+    ```
 
-        ```
-        sudo parted /dev/sdb mklabel msdos
-        ```
+3. Create a new partition on the USB drive:
 
-    3. Create a new partition on the USB drive:
+    ```
+    sudo parted /dev/sdb -a optimal mkpart primary 0% 100%
+    ```
 
-        ```
-        sudo parted /dev/sdb -a optimal mkpart primary 0% 100%
-        ```
+4. Format the partition to your filesystem of choice using *one* of the examples below:
 
-    4. Format the partition to your filesystem of choice using *one* of the examples below:
+    ```
+    sudo mkfs.ext2 /dev/sdb1
+    sudo mkfs.msdos -F 32 /dev/sdb1
+    sudo mkfs.vfat /dev/sdb1
+    ```
 
-        ```
-        sudo mkfs.ext2 /dev/sdb1
-        sudo mkfs.msdos -F 32 /dev/sdb1
-        sudo mkfs.vfat /dev/sdb1
-        ```
+    To use `mkfs.msdos` or `mkfs.vfat`, you need to install the `dosfstools` package from the
+{{<link url="Adding-and-Updating-Packages" text="Debian software repositories">}}, as they are not included by default.
 
-       To use `mkfs.msdos` or `mkfs.vfat`, you need to install the `dosfstools` package from the
-       {{<link url="Adding-and-Updating-Packages" text="Debian software repositories">}}, as they are not included by default.
+5. To continue installing Cumulus Linux, mount the USB drive to move files
 
-    5. To continue installing Cumulus Linux, mount the USB drive to move files
+```
+sudo mkdir /mnt/usb
+sudo mount /dev/sdb1 /mnt/usb
+```
 
-        ```
-        sudo mkdir /mnt/usb
-        sudo mount /dev/sdb1 /mnt/usb
-        ```
-
-    </details>
+{{< /expand >}}
 
 3. Copy the Cumulus Linux disk image to the USB drive, then rename the image file to:
 

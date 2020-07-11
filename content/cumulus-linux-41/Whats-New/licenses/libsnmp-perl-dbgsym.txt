@@ -1,0 +1,1 @@
+libsnmp-perl-dbgsym has no debian/copyright file

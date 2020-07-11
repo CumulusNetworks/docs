@@ -2,10 +2,6 @@
 title: Monitor Physical Layer Components
 author: Cumulus Networks
 weight: 530
-aliases:
- - /display/NETQ/Monitor+Physical+Layer+Components
- - /pages/viewpage.action?pageId=12321045
-pageID: 12321045
 toc: 3
 ---
 With NetQ, a network administrator can monitor OSI Layer 1 physical
@@ -295,89 +291,156 @@ scenarios for all devices in the network.
 
 ### View Interface Statistics
 
-The `ethtool` command provides a wealth of statistics about network interfaces.
-The `netq show ethtool-stats` command returns statistics about a given node and
-interface, including frame errors, ACL drops, buffer drops and more.
+The `ethtool` command provides a wealth of statistics about network interfaces. The `netq show ethtool-stats` command returns statistics about a given node and interface, including frame errors, ACL drops, buffer drops and more.
 
-You can use the `around` option to view the information for a particular time.
-If no changes are found, a "No matching ethtool_stats records found" message is
-displayed. This example illustrates the statistics for switch port swp1 on a
-specific switch in the network.
+You can use the `around` option to view the information for a particular time. If no changes are found, a "No matching ethtool_stats records found" message is displayed. This example illustrates the statistics for switch port swp1 on a specific switch in the network.
 
 ```
-cumulus@switch:~$ netq myswitch show ethtool-stats swp1
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 tx
+
 Matching ethtool_stats records:
-Hostname          Interface                 HwIfInOctets         HwIfInUcastPkts      HwIfInBcastPkts      HwIfInMcastPkts      HwIfInDiscards       HwIfInL3Drops        HwIfInBufferDrops    HwIfInAclDrops       HwIfInDot3LengthErro HwIfInErrors         SoftInErrors         SoftInDrops          SoftInFrameErrors    HwIfInDot3FrameError HwIfInPausePkt       HwIfInPfc0Pkt        HwIfInPfc1Pkt        HwIfInPfc2Pkt        HwIfInPfc3Pkt        HwIfInPfc4Pkt        HwIfInPfc5Pkt        HwIfInPfc6Pkt        HwIfInPfc7Pkt        HwIfOutOctets        HwIfOutUcastPkts     HwIfOutMcastPkts     HwIfOutBcastPkts     HwIfOutDiscards      HwIfOutErrors        HwIfOutQDrops        HwIfOutNonQDrops     SoftOutErrors        SoftOutDrops         SoftOutTxFifoFull    HwIfOutQLen          HwIfOutPausePkt      HwIfOutPfc0Pkt       HwIfOutPfc1Pkt       HwIfOutPfc2Pkt       HwIfOutPfc3Pkt       HwIfOutPfc4Pkt       HwIfOutPfc5Pkt       HwIfOutPfc6Pkt       HwIfOutPfc7Pkt       HwIfOutWredDrops     HwIfOutQ0WredDrops   HwIfOutQ1WredDrops   HwIfOutQ2WredDrops   HwIfOutQ3WredDrops   HwIfOutQ4WredDrops   HwIfOutQ5WredDrops   HwIfOutQ6WredDrops   HwIfOutQ7WredDrops   HwIfOutQ8WredDrops   HwIfOutQ9WredDrops   Last Updated
-                                                                                                                                                                                                                    rs                                                                                                       s
------------------ ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-myswitch          swp1                      779659596            6679291              0                    1883805              4                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    733672563            6650334              1268403              0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Wed Feb 12 00:50:12 2020
+Hostname          Interface                 HwIfOutOctets        HwIfOutUcastPkts     HwIfOutMcastPkts     HwIfOutBcastPkts     HwIfOutDiscards      HwIfOutErrors        HwIfOutQDrops        HwIfOutNonQDrops     HwIfOutQLen          HwIfOutPausePkt      SoftOutErrors        SoftOutDrops         SoftOutTxFifoFull    Last Updated
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            swp50s3                   8749                 0                    44                   0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:57 2020
 ```
 
-You can generate the output in JSON format:
+```
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 rx
+
+Matching ethtool_stats records:
+Hostname          Interface                 HwIfInOctets         HwIfInUcastPkts      HwIfInBcastPkts      HwIfInMcastPkts      HwIfInDiscards       HwIfInL3Drops        HwIfInBufferDrops    HwIfInAclDrops       HwIfInDot3LengthErro HwIfInErrors         HwIfInDot3FrameError HwIfInPausePkt       SoftInErrors         SoftInDrops          SoftInFrameErrors    Last Updated
+                                                                                                                                                                                                                    rs                                        s
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            swp50s3                   9131                 0                    0                    23                   0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:25 2020
+```
+
+Use the `extended` keyword to provide even more statistics:
 
 ```
-cumulus@switch:~$ netq myswitch show ethtool-stats swp1 json
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 tx extended
+
+Matching ethtool_stats records:
+Hostname          Interface                 HwIfOutPfc0Pkt       HwIfOutPfc1Pkt       HwIfOutPfc2Pkt       HwIfOutPfc3Pkt       HwIfOutPfc4Pkt       HwIfOutPfc5Pkt       HwIfOutPfc6Pkt       HwIfOutPfc7Pkt       HwIfOutWredDrops     HwIfOutQ0WredDrops   HwIfOutQ1WredDrops   HwIfOutQ2WredDrops   HwIfOutQ3WredDrops   HwIfOutQ4WredDrops   HwIfOutQ5WredDrops   HwIfOutQ6WredDrops   HwIfOutQ7WredDrops   HwIfOutQ8WredDrops   HwIfOutQ9WredDrops   Last Updated
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            swp50s3                   0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:57 2020
+```
+
+```
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 rx extended
+
+Matching ethtool_stats records:
+Hostname          Interface                 HwIfInPfc0Pkt        HwIfInPfc1Pkt        HwIfInPfc2Pkt        HwIfInPfc3Pkt        HwIfInPfc4Pkt        HwIfInPfc5Pkt        HwIfInPfc6Pkt        HwIfInPfc7Pkt        Last Updated
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            swp50s3                   0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:25 2020
+```
+
+JSON output is also available for these commands:
+
+```
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 tx json
 {
     "ethtool_stats":[
         {
-            "hwifoutpfc4pkt":0,
-            "hwifoutq7wreddrops":0,
-            "softinerrors":0,
-            "hwifoutpfc6pkt":0,
-            "hwifoutmcastpkts":1268403,
-            "hwifoutpfc5pkt":0,
-            "interface":"swp1",
-            "hwifinpausepkt":0,
-            "hwifoutq9wreddrops":0,
-            "hwifinucastpkts":6679291,
-            "hwifoutq0wreddrops":0,
-            "hwifindot3lengtherrors":0,
-            "hwifinbcastpkts":0,
-            "hwifinpfc2pkt":0,
-            "hwifinpfc0pkt":0,
-            "softindrops":0,
-            "hwifoutpfc3pkt":0,
-            "hwifoutq4wreddrops":0,
-            "hostname":"act-4610-54t-08",
-            "hwifoutq3wreddrops":0,
-            "hwifinpfc5pkt":0,
-            "hwifoutdiscards":0,
-            "hwifouterrors":0,
-            "hwifoutqdrops":0,
-            "hwifoutucastpkts":6650334,
-            "hwifinpfc7pkt":0,
-            "hwifinbufferdrops":0,
-            "hwifoutbcastpkts":0,
-            "hwifoutpfc2pkt":0,
-            "hwifinl3drops":0,
-            "hwifinpfc4pkt":0,
+            "hwifoutoctets":12571,
+            "hwifoutucastpkts":0,
             "hwifoutpausepkt":0,
-            "hwifoutq6wreddrops":0,
-            "hwifoutnonqdrops":0,
-            "hwifoutpfc1pkt":0,
-            "hwifoutpfc0pkt":0,
-            "lastUpdated":1581468612.0,
-            "hwifoutoctets":733672563,
-            "softinframeerrors":0,
-            "hwifoutq5wreddrops":0,
-            "hwifinerrors":0,
-            "hwifoutpfc7pkt":0,
-            "hwifoutq1wreddrops":0,
-            "hwifinpfc6pkt":0,
-            "hwifinpfc1pkt":0,
-            "softouterrors":0,
-            "softoutdrops":0,
-            "hwifoutwreddrops":0,
-            "hwifinacldrops":0,
             "softouttxfifofull":0,
-            "hwifinmcastpkts":1883805,
+            "hwifoutmcastpkts":58,
+            "hwifoutbcastpkts":0,
+            "softouterrors":0,
+            "interface":"swp50s3",
+            "lastUpdated":1588112216.0,
+            "softoutdrops":0,
+            "hwifoutdiscards":0,
             "hwifoutqlen":0,
-            "hwifoutq8wreddrops":0,
-            "hwifinpfc3pkt":0,
+            "hwifoutnonqdrops":0,
+            "hostname":"leaf01",
+            "hwifouterrors":0,
+            "hwifoutqdrops":0
+	}
+    ],
+    "truncatedResult":false
+}
+```
+
+```
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 rx json
+{
+    "ethtool_stats":[
+        {
+            "hwifindot3frameerrors":0,
+            "hwifinpausepkt":0,
+            "hwifinbufferdrops":0,
+            "interface":"swp50s3",
+            "hwifinucastpkts":0,
+            "hwifinbcastpkts":0,
+            "hwifindiscards":0,
+            "softinframeerrors":0,
+            "softinerrors":0,
+            "hwifinoctets":15086,
+            "hwifinacldrops":0,
+            "hwifinl3drops":0,
+            "hostname":"leaf01",
+            "hwifinerrors":0,
+            "softindrops":0,
+            "hwifinmcastpkts":38,
+            "lastUpdated":1588112216.0,
+            "hwifindot3lengtherrors":0
+	}
+    ],
+    "truncatedResult":false
+}
+```
+
+```
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 tx extended json
+{
+    "ethtool_stats":[
+        {
+            "hostname":"leaf01",
+            "hwifoutq5wreddrops":0,
+            "hwifoutq3wreddrops":0,
+            "hwifoutpfc3pkt":0,
+            "hwifoutq6wreddrops":0,
+            "hwifoutq9wreddrops":0,
             "hwifoutq2wreddrops":0,
-            "hwifindiscards":4,
-            "hwifinoctets":779659596,
-            "hwifindot3frameerrors":0
+            "hwifoutq8wreddrops":0,
+            "hwifoutpfc7pkt":0,
+            "hwifoutpfc4pkt":0,
+            "hwifoutpfc6pkt":0,
+            "hwifoutq7wreddrops":0,
+            "hwifoutpfc0pkt":0,
+            "hwifoutpfc1pkt":0,
+            "interface":"swp50s3",
+            "hwifoutq0wreddrops":0,
+            "hwifoutq4wreddrops":0,
+            "hwifoutpfc2pkt":0,
+            "lastUpdated":1588112216.0,
+            "hwifoutwreddrops":0,
+            "hwifoutpfc5pkt":0,
+            "hwifoutq1wreddrops":0
+	}
+    ],
+    "truncatedResult":false
+}
+```
+
+```
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50s3 rx extended json
+{
+    "ethtool_stats":[
+        {
+            "hwifinpfc5pkt":0,
+            "hwifinpfc0pkt":0,
+            "hwifinpfc1pkt":0,
+            "interface":"swp50s3",
+            "hwifinpfc4pkt":0,
+            "lastUpdated":1588112216.0,
+            "hwifinpfc3pkt":0,
+            "hwifinpfc6pkt":0,
+            "hostname":"leaf01",
+            "hwifinpfc7pkt":0,
+            "hwifinpfc2pkt":0
 	}
     ],
     "truncatedResult":false

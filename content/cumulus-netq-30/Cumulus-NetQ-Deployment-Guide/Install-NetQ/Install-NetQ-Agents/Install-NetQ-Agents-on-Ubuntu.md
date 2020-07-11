@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 120
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the  NetQ 2.4.1 Agents on each server you want to monitor. NetQ 2.4 Agents can be installed on servers running:
+After installing your Cumulus NetQ software, you should install the  NetQ 3.0.0 Agent on each server you want to monitor. NetQ Agents can be installed on servers running:
 
 - Ubuntu 16.04
 - Ubuntu 18.04 (NetQ 2.2.2 and later)
@@ -18,14 +18,13 @@ For servers running Ubuntu OS, you need to:
 - Install and configure network time server, if needed
 - Obtain NetQ software packages
 
-{{%notice note%}}
-If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so `apt-get` can access the agent package on the Cumulus Networks repository.
-{{%/notice%}}
+{{<notice note>}}
+If your network uses a proxy server for external connections, you should first {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Configuring-a-Global-Proxy/" text="configure a global proxy">}} so <code>apt-get</code> can access the agent package on the Cumulus Networks repository.
+{{</notice>}}
 
 ### Verify Service Package Versions
 
-Before you install the NetQ Agent on an Ubuntu server, make sure the
-following packages are installed and running these minimum versions:
+The following packages, while not required for installation of the NetQ Agent, must be installed and running for proper operation of the NetQ Agent on an Ubuntu server:
 
 - iproute 1:4.3.0-1ubuntu3.16.04.1 all
 - iproute2 4.3.0-1ubuntu3 amd64
@@ -51,13 +50,15 @@ If NTP is not already installed and configured, follow these steps:
 
 1. Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
-```
-root@ubuntu:~# sudo apt-get install ntp
-```
+    ```
+    root@ubuntu:~# sudo apt-get install ntp
+    ```
 
 2. Configure the network time server.
 
-   <details><summary>Use NTP Configuration File</summary>
+   {{< tabs "TabID0" >}}
+
+{{< tab "Use NTP Configuration File" >}}
 
    1. Open the `/etc/ntp.conf` file in your text editor of choice.
 
@@ -68,9 +69,9 @@ root@ubuntu:~# sudo apt-get install ntp
           root@ubuntu:~# sudo systemctl enable ntp
           root@ubuntu:~# sudo systemctl start ntp
 
-   {{%notice tip%}}
-If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
-   {{%/notice%}}
+   {{<notice tip>}}
+If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
+   {{</notice>}}
 
    4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 
@@ -82,8 +83,9 @@ If you are running NTP in your out-of-band management network with VRF, specify 
           2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
           \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
-   </details>
-   <details><summary>Use Chrony (Ubuntu 18.04 only)</summary>
+   {{< /tab >}}
+
+   {{< tab "Use Chrony (Ubuntu 18.04 only)" >}}
 
    1. Install chrony if needed.
 
@@ -149,7 +151,10 @@ If you are running NTP in your out-of-band management network with VRF, specify 
           Root dispersion : 0.001234590 seconds
           Update interval : 115.2 seconds
           Leap status     : Normal
-</details>
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Obtain NetQ Agent Software Package
 
@@ -165,31 +170,38 @@ root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-app
 
 2. Add the Ubuntu repository:
 
-    <details><summary>Ubuntu 16.04</summary>
+    {{< tabs "TabID2" >}}
+{{< tab "Ubuntu 16.04" >}}
 
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
 
-    ```
-    root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
-    ...
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
-    ...
-    ```
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
+...
+```
 
-    </details>
-    <details><summary>Ubuntu 18.04</summary>
+{{< /tab >}}
 
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
+{{< tab "Ubuntu 18.04" >}}
 
-        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
-        ...
-        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
-        ...
-    </details>
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
 
-    {{%notice note%}}
-The use of `netq-latest` in these examples means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.3` - use that instead.
-    {{%/notice%}}
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+...
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+    {{<notice note>}}
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-2.4</code> - use that instead.
+    {{</notice>}}
 
 ## Install NetQ Agent on an Ubuntu Server
 
@@ -199,21 +211,18 @@ To install the NetQ Agent:
 
 1.  Install the software packages on the server.
 
-```
-root@ubuntu:~# sudo apt-get update
-root@ubuntu:~# sudo apt-get install netq-agent
-```
+    ```
+    root@ubuntu:~# sudo apt-get update
+    root@ubuntu:~# sudo apt-get install netq-agent
+    ```
 
 2. Verify you have the correct version of the Agent.
 
-```
-root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
-```
+    ```
+    root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
 
-    You should see version 2.4.1 and update 26 in the results. For example:
-
-    - netq-agent_**2.4.1**-ub18.04u**26**~1581351889.c5ec3e5_amd64.deb, or
-    - netq-agent_**2.4.1**-ub16.04u**26**~1581350451.c5ec3e5_amd64.deb
+    {{<netq-install/agent-version version="3.0.0" opsys="ub">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

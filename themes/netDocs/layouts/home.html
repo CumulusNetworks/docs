@@ -42,12 +42,12 @@
         <span>Docs</span>
         </a>
         <ul class="flex">
-          <li><a href="//cumulusnetworks.com">HOME</a></li>
+          <li><a href="//cumulusnetworks.com/">HOME</a></li>
           <li><a href="//support.cumulusnetworks.com/">SUPPORT</a></li>
           <li><a href="//docs.cumulusnetworks.com/">DOCS</a></li>
-          <li><a href="//education.cumulusnetworks.com">EDUCATION</a></li>
+          <li><a href="//education.cumulusnetworks.com/">EDUCATION</a></li>
           <li><a href="//cumulusnetworks.com/blog/">BLOG</a></li>
-          <li><a href="//forums.cumulusnetworks.com/">FORUMS</a></li>
+          <li><a href="//slack.cumulusnetworks.com/">COMMUNITY</a></li>
         </ul>
         <div class="burger-menu">
           <span></span>
@@ -70,41 +70,53 @@
         <div class="row">
           <div class="col-12 text-center">
             <h3 class="header-fancy">
-              <span>Get Started</span>
+              <span>Search the Docs</span>
+            </h3>
+          </div>
+          <div class="col-12 text-center pb-5">
+          <!--  <div class="resources-search"> -->
+          <!-- <input type="text" class="resources-search-input" placeholder="Search the documentation" value="">
+          <button type="submit">Search</button> -->
+
+          <script async src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script>
+          <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl="/search/"></div>
+          <!-- </div> -->
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <h3 class="header-fancy">
+              <span>Read the Docs</span>
             </h3>
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
-            <a href="/cumulus-linux/"><img src="/home-products-cumulus-linux.jpg" alt="Cumulus Linux" class="mb-6"></a>
-            <h3>Cumulus Linux</h3>
-            <p class="small">An open network operating system designed for efficiency, automation and scale</p>
-            <ul>
-              {{ if .Site.IsServer }} 
-                <li><a href="/cumulus-linux-41/">User guide</a></li>
-                <li><a href="/cumulus-linux-41/Quick-Start-Guide/">Quick start guide</a></li>
-              {{ else }} 
-                <li><a href="/cumulus-linux/">User guide</a></li>
-                <li><a href="/cumulus-linux/Quick-Start-Guide/">Quick start guide</a></li>
-              {{ end }} 
-              <!-- <li><a href="/pdfs/cumulus-linux.pdf">User guide (PDF)</a></li> -->
-            </ul>
+            {{ range where .Site.Menus.subnav "Title" "Cumulus Linux" }}
+              <a href="{{.URL}}"><img src="/home-products-cumulus-linux.jpg" alt="Cumulus Linux" class="mb-6"></a>
+              <h3>Cumulus Linux</h3>
+              <p class="small">An open network operating system designed for efficiency, automation and scale</p>
+              <ul>
+                  <li><a href="{{.URL}}">User guide</a></li>
+                  <li><a href="{{.URL}}Quick-Start-Guide/">Quick start guide</a></li>
+                  <li><a href="{{.URL}}Whats-New/rn/">Release notes</a></li>
+                  <li><a href="{{.URL}}Whats-New/">What's new in Cumulus Linux</a></li>
+              </ul>
+            {{ end }}
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
-            <a href="/cumulus-netq/"><img src="/home-products-netq.jpg" alt="Cumulus NetQ" class="mb-6"> </a>
-            <h3>Cumulus NetQ</h3>
-            <p class="small">A highly-scalable, modern network operations tool set that provides visibility into your network</p>
-            <ul>
-              {{ if .Site.IsServer }}
-                <li><a href="/cumulus-netq-24/Cumulus-NetQ-Deployment-Guide/">Deployment guide</a></li>
-                <li><a href="/cumulus-netq-24/Cumulus-NetQ-Integration-Guide/">Integration guide</a></li>
-                <li><a href="/cumulus-netq-24/Cumulus-NetQ-UI-User-Guide/">GUI user guide</a></li>
-                <li><a href="/cumulus-netq-24/Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
-              {{ else }} 
-                <li><a href="/cumulus-netq/Cumulus-NetQ-Deployment-Guide/">Deployment guide</a></li>
-                <li><a href="/cumulus-netq/Cumulus-NetQ-Integration-Guide/">Integration guide</a></li>
-                <li><a href="/cumulus-netq/Cumulus-NetQ-UI-User-Guide/">GUI user guide</a></li>
-                <li><a href="/cumulus-netq/Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
-              {{ end }} 
-            </ul>
+            {{ range where .Site.Menus.subnav "Title" "Cumulus NetQ" }}
+              <a href="{{.URL}}"><img src="/home-products-netq.jpg" alt="Cumulus NetQ" class="mb-6"> </a>
+              <h3>Cumulus NetQ</h3>
+              <p class="small">A highly-scalable, modern network operations tool set that provides visibility into your network</p>
+              <ul>
+                  <li><a href="{{.URL}}Cumulus-NetQ-Deployment-Guide/">Deployment guide</a></li>
+                  <li><a href="{{.URL}}Cumulus-NetQ-Integration-Guide/">Integration guide</a></li>
+                  <li><a href="{{.URL}}Cumulus-NetQ-UI-User-Guide/">GUI user guide</a></li>
+                  <li><a href="{{.URL}}Cumulus-NetQ-CLI-User-Guide/">CLI user guide</a></li>
+                  <li><a href="{{.URL}}Cumulus-NetQ-Admin-User-Guide/">Admin user guide</a></li>
+                  <li><a href="{{.URL}}More-Documents/rn/">Release notes</a></li>
+                  <li><a href="{{.URL}}More-Documents/Whats-New/">What's new in Cumulus NetQ</a></li>
+              </ul>
+            {{ end }}
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
             <a href="/cumulus-vx/"><img src="/home-products-cumulus-express.jpg" alt="Cumulus Express" class="mb-6"></a>
@@ -122,52 +134,48 @@
     <section class="bg-athens-gray-white pb-5">
         <div class="container">
           <div class="row">
-            <div class="col-12 text-center">
-              <h3 class="header-fancy">
-                <span>Search the Docs</span>
-              </h3>
-            </div>
-            <div class="col-12 text-center pb-5">
-            <!--  <div class="resources-search"> -->
-            <!-- <input type="text" class="resources-search-input" placeholder="Search the documentation" value="">
-            <button type="submit">Search</button> -->
-    
-            <script async src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script>
-            <div class="gcse-searchbox-only" enableAutoComplete="true" data-resultsUrl="/search/"></div>
-            <!-- </div> -->
-          </div>
-        </div><div class="row">
           <div class="col-12 text-center">
             <h3 class="header-fancy">
               <span>Additional Resources</span>
             </h3>
           </div>
           <div class="col-12 mb-3">
-            <div class="card-deck">
+            <div class="card-deck four-across">
               <div class="card">
                 <a href="https://cumulusnetworks.com/hcl/"></a>
-                <h3><img src="/server.svg">Hardware Compatibility List</h3>
-                <p>See all the platforms that Cumulus Linux and Cumulus RMP support.</p>
-                <span>View our HCL <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
+                <div class="card__background" style="background-image: url('/Tech-Doc-01-HCL.jpg')"></div>
+                <div class="card__content">
+                  <h3>Hardware Compatibility List</h3>
+                  <p>See all the platforms that Cumulus Linux and Cumulus RMP support.</p>
+                  <span>View our HCL</span>
+                </div>
               </div>
               <div class="card">
-                <a href="https://cumulusnetworks.com/support/"></a>
-                <h3><img src="/headphones-customer-support.svg">Support</h3>
-                <p>View our various support offerings, including submitting tickets, participating in the community, reading the knowledge base and keeping up with security announcements.</p>
-              <span> See support items <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
+                <a href="/guides/"></a>
+                <div class="card__background" style="background-image: url('/Tech-Doc-02-Support.jpg')"></div>
+                <div class="card__content">
+                  <h3>Technical Guides</h3>
+                  <p>Read long form technical guides that provide deep dives into various features.</p>
+                  <span>Read the guides</span>
+                </div>
               </div>
-              <div class="w-100 d-none d-sm-block d-xl-none mb-4"><!-- wrap every 2 on sm--></div>
               <div class="card">
-                <a href="https://support.cumulusnetworks.com/hc/en-us/sections/200398876-Release-Notes"></a>
-                <h3><img src="/book-open.svg">Release notes</h3>
-                <p>Release notes provide information on all the new features, fixed and new known issues for every product release.</p>
-                <span>View release notes <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
+                <a href="https://support.cumulusnetworks.com/hc/en-us/"></a>
+                <div class="card__background" style="background-image: url('/Tech-Doc-03-release-notes.jpg')"></div>
+                <div class="card__content">
+                  <h3>Help Center</h3>
+                  <p>A knowledge base comprising various technical articles and troubleshooting tips.</p>
+                  <span>View KB articles</span>
+                </div>
               </div>
               <div class="card">
                 <a href="/contributor-guide/"></a>
-                <h3><img src="/check-double.svg">Contribute</h3>
-                <p>Add or update content in the Cumulus Networks technical documentation. </p>
-                <span>Learn more <svg width="15" height="8" viewBox="0 0 15 8"><g stroke="#00AD69" stroke-width=".75" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M10.931.361l2.79 3.637-2.79 3.636M13.721 3.998H.888"/></g></svg></span>
+                <div class="card__background" style="background-image: url('/Tech-Doc-04-Contribute.png')"></div>
+                <div class="card__content">
+                  <h3>Contribute</h3>
+                  <p>Add or update content in the Cumulus Networks technical documentation.</p>
+                  <span>Learn More</span>
+                </div>
               </div>
             </div>
           </div>
@@ -190,20 +198,19 @@
               </ul>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-4">
-              <h3>Chassis<br />(Cumulus Linux 3.x only)</h3>
+              <h3>Cumulus Linux PDF Archive</h3>
               <ul>
-                <li><a href="/chassis/">Overview</a></li>
-                <li><a href="/chassis/Chassis-Default-Configurations/">Default configurations</a></li>
+                <li><a href="/pdfs/#cumulus-linux-pdf-archive">Cumulus Linux PDFs</a></li>
+                <li><a href="/pdfs/#cumulus-chassis-pdf-archive">Cumulus Chassis PDF</a></li>
               </ul>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <h3>Other Resources</h3>
-                <ul>
-                  <li><a href="/contributor-guide/">Contributor guide</a></li>
-                  <li><a href="/guides/">Technical guides</a></li>
-                </ul>
-            </div>
           </div>
+          <div class="col-sm-12 col-md-6 col-lg-4">
+            <h3>Cumulus NetQ PDF Archive</h3>
+            <ul>
+              <li><a href="/pdfs/#cumulus-netq-pdf-archive">Cumulus NetQ PDFs</a></li>
+            </ul>
+        </div>
+        </div>
         </div>
       </section>
     <!-- <div class="book-home markdown">
@@ -385,7 +392,7 @@
    <script>
       var siteNav = document.getElementById('site-nav');
       var burgerMenu = document.querySelector('.burger-menu');
- 
+
       burgerMenu.addEventListener('click', function() {
         siteNav.classList.toggle('menu-opened');
       });

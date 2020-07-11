@@ -2,10 +2,6 @@
 title: Monitor Container Environments Using Kubernetes API Server
 author: Cumulus Networks
 weight: 580
-aliases:
- - /display/NETQ/Monitor+Container+Environments
- - /pages/viewpage.action?pageId=12321042
-pageID: 12321042
 ---
 The NetQ Agent monitors many aspects of containers on your network by integrating with the Kubernetes API server. In particular, the NetQ Agent tracks:
 

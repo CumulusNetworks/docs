@@ -2,9 +2,6 @@
 title: Hybrid Cloud Connectivity with QinQ and VXLANs
 author: Cumulus Networks
 weight: 650
-aliases:
- - /display/DOCS/Hybrid+Cloud+Connectivity+with+QinQ+and+VXLANs
- - /pages/viewpage.action?pageId=8366508
 toc: 3
 ---
 *QinQ* is an amendment to the {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text="IEEE 802.1Q specification">}} that provides the capability for multiple {{<link url="VLAN-Tagging" text="VLAN tags">}} to be inserted into a single Ethernet frame.
@@ -49,9 +46,9 @@ For the switch facing the public cloud:
 
 To configure the public cloud-facing switch:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add vxlan vni-1000 vxlan id 1000
@@ -66,10 +63,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file to add the following configuration:
 
@@ -103,7 +99,9 @@ Run the `ifreload -a` command to load the new configuration:
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Configure the Customer-facing Edge Switch
 
@@ -115,9 +113,9 @@ For the switch facing the customer:
 
 To configure the customer-facing switch:
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add interface swp3 bridge access 100
@@ -134,11 +132,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file to add the following configuration:
 
@@ -213,15 +209,15 @@ cumulus@switch:~$ sudo ip -d link show bridge
     bridge forward_delay 1500 hello_time 200 max_age 2000 ageing_time 30000 stp_state 2 priority 32768 vlan_filtering 1 vlan_protocol 802.1ad bridge_id 8000.6:a2:ae:de:e3:43 designated_root 8000.6:a2:ae:de:e3:43 root_port 0 root_path_cost 0 topology_change 0 topology_change_detected 0 hello_timer    0.00 tcn_timer    0.00 topology_change_timer    0.00 gc_timer   64.29 vlan_default_pvid 1 vlan_stats_enabled 1 group_fwd_mask 0 group_address 01:80:c2:00:00:08 mcast_snooping 0 mcast_router 1 mcast_query_use_ifaddr 0 mcast_querier 0 mcast_hash_elasticity 4096 mcast_hash_max 4096 mcast_last_member_count 2 mcast_startup_query_count 2 mcast_last_member_interval 100 mcast_membership_interval 26000 mcast_querier_interval 25500 mcast_query_interval 12500 mcast_query_response_interval 1000 mcast_startup_query_interval 3125 mcast_stats_enabled 1 mcast_igmp_version 2 mcast_mld_version 1 nf_call_iptables 0 nf_call_ip6tables 0 nf_call_arptables 0 addrgenmode eui64
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Example Configuration in Traditional Bridge Mode
 
 An example configuration for single tag translation in traditional bridge mode on a leaf switch is shown below.
 
-<details>
-
-<summary>Example /etc/network/interfaces File </summary>
+{{< expand "Example /etc/network/interfaces File " >}}
 
 ```
 auto swp3.11
@@ -238,7 +234,7 @@ iface br11
     bridge-ports swp3.11 vxlan1000101
 ```
 
-</details>
+{{< /expand >}}
 
 ## Configure Double Tag Translation
 

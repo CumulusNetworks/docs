@@ -2,11 +2,6 @@
 title: Power over Ethernet - PoE
 author: Cumulus Networks
 weight: 75
-aliases:
- - /display/CL36/Power+over+Ethernet+++PoE
- - /display/CL36/Power+over+Ethernet+-+PoE
- - /display/CL36/Power+over+Ethernet+PoE
- - /pages/viewpage.action?pageId=8362071
 pageID: 8362071
 ---
 Cumulus Linux supports Power over Ethernet (PoE) and PoE+, so certain

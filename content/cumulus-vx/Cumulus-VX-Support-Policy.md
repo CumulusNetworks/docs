@@ -2,10 +2,6 @@
 title: Cumulus VX Support Policy
 author: Cumulus Networks
 weight: 15
-aliases:
- - /display/VX/Cumulus-VX-Support-Policy
- - /display/VX/Cumulus+VX+Support+Policy
- - /pages/viewpage.action?pageId=5126708
 pageID: 5126708
 product: Cumulus VX
 version: '3.7'
@@ -38,10 +34,4 @@ Cumulus Networks does *not* provide support for the following:
   - Performance or scalability issues related to network traffic running
     through Cumulus VX instances.
 
-For non-customers, Cumulus VX remains a community-supported product,
-with no formal support obligations from Cumulus Networks. You can submit
-questions to the 
-[Cumulus Networks community forums](https://forums.cumulusnetworks.com) 
-(hosted and moderated by Cumulus Networks) or to the 
-[community Slack channel](https://slack.cumulusnetworks.com/) to engage with 
-the forums and wider community.
+For non-customers, Cumulus VX remains a community-supported product, with no formal support obligations from Cumulus Networks. You can submit questions to the [community Slack channel](https://slack.cumulusnetworks.com/) to engage with the wider community.

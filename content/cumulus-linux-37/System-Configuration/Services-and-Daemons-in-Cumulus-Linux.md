@@ -2,9 +2,6 @@
 title: Services and Daemons in Cumulus Linux
 author: Cumulus Networks
 weight: 71
-aliases:
- - /display/DOCS/Services+and+Daemons+in+Cumulus+Linux
- - /pages/viewpage.action?pageId=8362578
 pageID: 8362578
 ---
 *Services* (also known as *daemons*) and *processes* are at the heart of

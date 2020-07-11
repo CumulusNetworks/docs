@@ -2,9 +2,6 @@
 title: Monitoring System Statistics and Network Traffic with sFlow
 author: Cumulus Networks
 weight: 489
-aliases:
- - /display/CL36/Monitoring+System+Statistics+and+Network+Traffic+with+sFlow
- - /pages/viewpage.action?pageId=8362092
 pageID: 8362092
 ---
 [sFlow](http://www.sflow.org/index.php) is a monitoring protocol that

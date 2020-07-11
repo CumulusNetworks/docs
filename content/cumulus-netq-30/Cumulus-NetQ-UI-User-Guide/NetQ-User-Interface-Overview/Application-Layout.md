@@ -2,10 +2,6 @@
 title: Application Layout
 author: Cumulus Networks
 weight: 250
-aliases:
- - /display/NETQ22/NetQ-User-Interface-Overview
- - /pages/viewpage.action?pageId=12321856
-pageID: 12321856
 toc: 4
 ---
 The NetQ UI contains two main areas:
@@ -19,13 +15,13 @@ The NetQ UI contains two main areas:
 
 Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the main menu which provides navigation to:
 
-- **Favorites**: contains link to the user-defined favorite workbenche; Home is listed by default and points to the Cumulus Workbench
+- **Favorites**: contains link to the user-defined favorite workbenches; Home is points to the Cumulus Workbench until reset by a user
 - **NetQ**: contains links to all workbenches
 - **Network**: contains links to tabular data about various network elements and the What Just Happened feature
-- **Admin**: contains link to user documentation and application management features
-- **Notifications**: contains link to event notification configuration
+- **Admin**: contains links to application management and lifecycle management features (only visible to users with Admin access role)
+- **Notifications**: contains link to threshold-based event rules and notification channels
 
-{{< figure src="/images/netq/main-menu-241.png" width="500" >}}
+{{< figure src="/images/netq/main-menu-admin-300.png" width="600" >}}
 
 ## Recent Actions
 
@@ -49,9 +45,9 @@ Found in the header, the graph and performance rating provide a view into the he
 
 {{< figure src="/images/netq/quick-ntwk-health-header-222.png" width="200" >}}
 
-{{%notice note%}}
+{{<notice note>}}
 On initial start up of the application, it may take up to an hour to reach an accurate health indication as some processes run every 30 minutes.
-{{%/notice%}}
+{{</notice>}}
 
 ## Workbenches
 
@@ -64,6 +60,35 @@ Cards present information about your network for monitoring and troubleshooting.
 ## User Settings
 
 Each user can customize the NetQ application display, change their account password, and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> > Profile & Preferences. For details, refer to {{<link title="Set User Preferences">}}.
+
+## Embedded Application Help
+
+The NetQ UI provides guided walk-throughs for selected tasks and links to additional resources.
+
+{{<notice note>}}
+You must have connection to the Internet to access this feature.
+{{</notice>}}
+
+Click **Need Help?** to open the menu of tasks and resources currently available.
+
+{{<figure src="/images/netq/walkme-player-300.png" width="150">}}
+
+{{<notice tip>}}
+<strong>Is the help button covering content that you want to see?</strong>
+The button can be dragged and dropped to various locations around the edge of the UI, so if you do not like it on the bottom left (default), you can move it to the bottom center, bottom right, right side bottom, etc. A green dashed border appears in the locations where it can be placed. Alternately, enlarge the NetQ UI application window or scroll within the window to view any hidden content.
+{{</notice>}}
+
+{{<figure src="/images/netq/walkme-menu-300.png" width="300">}}
+
+Within the help menu, topics are grouped by categories:
+
+- **General**: These items describe or walk you through high-level tasks or information about the NetQ UI.
+- **How to...**: These items walk you through how to perform common tasks.
+- **Tell me about...**: These items describe features of the application.
+- **Where Can I Find...**: These items help you find and use features that may be harder to find than others in the application.
+- **User Documentation**: This provides a link to the Cumulus NetQ user documentation. It opens in a separate window so you can have it open while working in the application.
+
+You can search for help items by collapsing and expanding categories or by searching. Click a category title to toggle between viewing and hiding the content. To search, begin entering text into the **Search** field to see suggested content.
 
 ## Format Cues
 

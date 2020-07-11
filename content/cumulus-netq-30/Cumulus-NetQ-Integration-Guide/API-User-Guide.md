@@ -2,10 +2,6 @@
 title: Cumulus NetQ API User Guide
 author: Cumulus Networks
 weight: 205
-aliases:
- - /display/NETQ/Cumulus+NetQ+API+User+Guide
- - /pages/viewpage.action?pageId=12321983
-pageID: 12321983
 toc: 3
 ---
 The NetQ API provides access to key telemetry and system monitoring data
@@ -21,22 +17,18 @@ endpoint and model parameter are contained in the API .json files.
 
 For information regarding new features, improvements, bug fixes, and
 known issues present in this release, refer to the
-{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360041040413-Cumulus-NetQ-2-4-Release-Notes" text="release notes">}}.
-
-
+{{<link title="Cumulus NetQ 3.0 Release Notes" text="release notes">}}.
 
 ## API Organization
 
 The Cumulus NetQ API provides endpoints for:
 
-  - **Network routing protocols**: BGP, EVPN, LLDP, CLAG, MSTP,
-    Neighbors, NTP, Routes
-  - **Virtual networks**: VLAN
-  - **Services**: Services
-  - **Interfaces**: Interface, Port
-  - **Inventory and Devices**: Address, Inventory, MAC Address tables,
-    Node, Sensors
-  - **Events**: Events
+- **Network routing protocols**: BGP, EVPN, LLDP, CLAG, MSTP, Neighbors, NTP, Routes
+- **Virtual networks**: VLAN
+- **Services**: Services
+- **Interfaces**: Interface, Port
+- **Inventory and Devices**: Address, Inventory, MAC Address tables, Node, Sensors
+- **Events**: Events
 
 Each endpoint has its own API. You can make requests for all data and
 all devices or you can filter the request by a given hostname.
@@ -72,10 +64,10 @@ We will use curl to execute our requests. Each request contains an API
 method (GET, POST, etc.), the address and API object to query, a variety
 of headers, and sometimes a body. In the log in step you used above:
 
-  - API method = POST
-  - Address and API object = "https://\<netq.domain\>:32708/netq/auth/v1/login"
-  - Headers = -H "Content-Type: application/json"
-  - Body = -d '{"username":"admin","password":"admin"}'
+- API method = POST
+- Address and API object = "https://\<netq.domain\>:32708/netq/auth/v1/login"
+- Headers = -H "Content-Type: application/json"
+- Body = -d '{"username":"admin","password":"admin"}'
 
 {{%notice note%}}
 
@@ -422,9 +414,9 @@ monitored nodes and their configuration information, as follows:
 ## View the API
 
 For simplicity, all of the endpoint APIs are combined into a single
-json-formatted file. There have been no changes to the file in the NetQ 2.3.0 release.
+json-formatted file. There have been no changes to the file in the NetQ 3.0.0 release.
 
-<details><summary>netq-231.json</summary>
+{{< expand "netq-300.json"  >}}
 
 ```
 {
@@ -432,7 +424,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
   "info": {
     "description": "This API is used to gain access to data collected by the Cumulus NetQ Platform and Agents for integration with third-party monitoring and analytics  software. Integrators can pull data for daily monitoring of network protocols and services performance, inventory status, and system-wide events.",
     "version": "1.1",
-    "title": "Cumulus NetQ 2.3.1 API",
+    "title": "Cumulus NetQ 3.0.0 API",
     "termsOfService": "https://cumulusnetworks.com/legal/"
   },
   "host": "<netq-platform-or-appliance-ipaddress>:32708",
@@ -2847,7 +2839,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
         },
         "details": {
           "type": "string",
-          "description": "???"
+          "description": ""
         }
       }
     },
@@ -3452,7 +3444,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
         },
         "is_remote": {
           "type": "boolean",
-          "description": "Indicates if the neighbor is reachable through a local interface (false) or remotely through a ??? (true)"
+          "description": "Indicates if the neighbor is reachable through a local interface (false) or remotely (true)"
         },
         "ifindex": {
           "type": "integer",
@@ -3503,25 +3495,25 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
         "sys_uptime": {
           "type": "integer",
           "format": "int64",
-          "description": "Amount of time, in seconds???, this device has been powered up"
+          "description": "Amount of time this device has been powered up"
         },
         "lastboot": {
           "type": "integer",
           "format": "int64",
-          "description": "Date and time, in EPOCH format???, this device was last booted"
+          "description": "Date and time this device was last booted"
         },
         "last_reinit": {
           "type": "integer",
           "format": "int64",
-          "description": "Date and time, in xxx????, this device was last initialized"
+          "description": "Date and time this device was last initialized"
         },
         "active": {
           "type": "boolean",
-          "description": "Indicates whether this device is active(???) (true) or not (false)"
+          "description": "Indicates whether this device is active (true) or not (false)"
         },
         "version": {
           "type": "string",
-          "description": "????"
+          "description": ""
         },
         "ntp_state": {
           "type": "string",
@@ -3574,11 +3566,11 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
         "stratum": {
           "type": "integer",
           "format": "int32",
-          "description": "????"
+          "description": ""
         },
         "ntp_app": {
           "type": "string",
-          "description": "Name/release? of the NTP service????"
+          "description": "Name of the NTP service
         },
         "message_type": {
           "type": "string",
@@ -3600,7 +3592,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
     },
     "Number": {
       "type": "object",
-      "description": "????"
+      "description": " "
     },
     "Port": {
       "description": "This model contains descriptions of the data collected and returned by the Port endpoint.",
@@ -3668,7 +3660,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
         },
         "length": {
           "type": "string",
-          "description": "Length of cable connected (or length the transceiver can transmit or ????). Example values include 1m, 2m, n/a."
+          "description": "Length of cable connected. Example values include 1m, 2m, n/a."
         },
         "supported_fec": {
           "type": "string",
@@ -3680,7 +3672,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
         },
         "fec": {
           "type": "string",
-          "description": "????"
+          "description": "Forward error correction"
         },
         "message_type": {
           "type": "string",
@@ -3756,24 +3748,24 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
         },
         "src": {
           "type": "string",
-          "description": "Hostname?? of device where this route originated"
+          "description": "Hostname of device where this route originated"
         },
         "nexthops": {
           "type": "string",
-          "description": "List of hostnames/interfaces/ports remaining to reach destination????"
+          "description": "List of hops remaining to reach destination"
         },
         "route_type": {
           "type": "integer",
           "format": "int32",
-          "description": "????"
+          "description": ""
         },
         "origin": {
           "type": "boolean",
-          "description": "Indicates whether the source of this route is on the  device indicated by 'hostname'????"
+          "description": "Indicates whether the source of this route is on the  device indicated by 'hostname'"
         },
         "protocol": {
           "type": "string",
-          "description": "Protocol used for routing. Example values include BGP, ????"
+          "description": "Protocol used for routing. Example values include BGP, OSPF."
         },
         "prefix": {
           "type": "string",
@@ -3931,7 +3923,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
         },
         "s_name": {
           "type": "string",
-          "description": "Type of sensor. Values include fan, psu, temp.????"
+          "description": "Type of sensor. Values include fan, psu, temp."
         },
         "s_state": {
           "type": "string",
@@ -3940,7 +3932,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
         "s_input": {
           "type": "number",
           "format": "float",
-          "description": "????"
+          "description": "Sensor input"
         },
         "message_type": {
           "type": "string",
@@ -3948,11 +3940,11 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
         },
         "s_msg": {
           "type": "string",
-          "description": "Sensor message????"
+          "description": "Sensor message"
         },
         "s_desc": {
           "type": "string",
-          "description": "User-defined name of sensor. Example values include fan1, fan-2, psu1, psu02, psu1temp1, temp2. ????"
+          "description": "User-defined name of sensor. Example values include fan1, fan-2, psu1, psu02, psu1temp1, temp2."
         },
         "s_max": {
           "type": "integer",
@@ -3984,7 +3976,7 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
         },
         "deleted": {
           "type": "boolean",
-          "description": "Indicates whether the sensor ???? has been deleted (true) or not (false)"
+          "description": "Indicates whether the sensor has been deleted (true) or not (false)"
         }
       }
     },
@@ -4079,11 +4071,11 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
         "last_changed": {
           "type": "integer",
           "format": "int64",
-          "description": "Date and time the VLAN configuration was changed (updated, deleted,???)"
+          "description": "Date and time the VLAN configuration was changed (updated, deleted)"
         },
         "vlans": {
           "type": "string",
-          "description": "List of other VLANs known to this VLAN or on this device????"
+          "description": "List of other VLANs known to this VLAN or on this device"
         },
         "svi": {
           "type": "string",
@@ -4103,3 +4095,5 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
 }
 
 ```
+
+{{< /expand >}}

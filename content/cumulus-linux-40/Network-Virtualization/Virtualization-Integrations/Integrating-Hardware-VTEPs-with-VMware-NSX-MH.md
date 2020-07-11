@@ -2,9 +2,6 @@
 title: Integrating Hardware VTEPs with VMware NSX-MH
 author: Cumulus Networks
 weight: 690
-aliases:
- - /display/DOCS/Integrating+Hardware+VTEPs+with+VMware+NSX+MH
- - /pages/viewpage.action?pageId=8366520
 toc: 4
 ---
 Switches running Cumulus Linux can integrate with VMware NSX Multi-Hypervisor (MH) to act as hardware VTEP gateways. The VMware NSX-MH controller provides consistent provisioning across virtual and physical server infrastructures.
@@ -196,14 +193,14 @@ After you create a certificate, connect to NSX Manager in a browser to configure
 
 1. In NSX Manager, add a new gateway. Click the **Network Components** tab, then the **Transport Layer** category. Under **Transport Node**, click **Add**, then select **Manually Enter All Fields**. The Create Gateway wizard opens.
 
-    <!-- Missing image. {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-netcomponents.png" >}} -->
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-netcomponents.png" >}}
 
 2. In the Create Gateway dialog, select *Gateway* for the **Transport Node Type**, then click **Next**.
 3. In the **Display Name** field, provide a name for the gateway, then click **Next**.
 4. Enable the VTEP service. Select the **VTEP Enabled** checkbox, then click **Next**.
 5. From the terminal session connected to the switch where you generated the certificate, copy the certificate and paste it into the **Security Certificate** text field. Copy only the bottom portion, including the `BEGIN CERTIFICATE` and `END CERTIFICATE` lines. For example, copy all the highlighted text in the terminal:
 
-    <!-- Missing image {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-cert-term.png" >}} -->
+    {{< img src = "/images/cumulus-linux/virtualization-integrations-nsx-cert-term.png" >}}
 
     Paste it into NSX Manager, then click **Next**:
 

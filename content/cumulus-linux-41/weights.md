@@ -6,6 +6,6 @@ weight: 999
 product: Cumulus Linux
 version: "4.1"
 bookhidden: true
-pdfprint: false
+pdfhidden: true
 ---
 

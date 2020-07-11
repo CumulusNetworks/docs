@@ -24,8 +24,7 @@ If your network uses a proxy server for external connections, you should first {
 
 ### Verify Service Package Versions
 
-Before you install the NetQ Agent on an Ubuntu server, make sure the
-following packages are installed and running these minimum versions:
+For proper operation of  the NetQ Agent on an Ubuntu server, make sure the following packages are installed and running these minimum versions:
 
 - iproute 1:4.3.0-1ubuntu3.16.04.1 all
 - iproute2 4.3.0-1ubuntu3 amd64
@@ -57,7 +56,9 @@ root@ubuntu:~# sudo apt-get install ntp
 
 2. Configure the network time server.
 
-   <details><summary>Use NTP Configuration File</summary>
+   {{< tabs "TabID0" >}}
+
+{{< tab "Use NTP Configuration File" >}}
 
    1. Open the `/etc/ntp.conf` file in your text editor of choice.
 
@@ -65,8 +66,10 @@ root@ubuntu:~# sudo apt-get install ntp
 
    3. Enable and start the NTP service.
 
-          root@ubuntu:~# sudo systemctl enable ntp
-          root@ubuntu:~# sudo systemctl start ntp
+       ```
+       root@ubuntu:~# sudo systemctl enable ntp
+       root@ubuntu:~# sudo systemctl start ntp
+       ```
 
    {{%notice tip%}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
@@ -82,8 +85,9 @@ If you are running NTP in your out-of-band management network with VRF, specify 
           2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
           \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
 
-   </details>
-   <details><summary>Use Chrony (Ubuntu 18.04 only)</summary>
+   {{< /tab >}}
+
+   {{< tab "Use Chrony (Ubuntu 18.04 only)" >}}
 
    1. Install chrony if needed.
 
@@ -149,7 +153,10 @@ If you are running NTP in your out-of-band management network with VRF, specify 
           Root dispersion : 0.001234590 seconds
           Update interval : 115.2 seconds
           Leap status     : Normal
-</details>
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Obtain NetQ Agent Software Package
 
@@ -159,37 +166,45 @@ To obtain the NetQ Agent package:
 
 1. Reference and update the local `apt` repository.
 
-```
-root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
-```
+    ```
+    root@ubuntu:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | apt-key add -
+    ```
 
 2. Add the Ubuntu repository:
 
-    <details><summary>Ubuntu 16.04</summary>
+    {{< tabs "TabID2" >}}
 
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
+{{< tab "Ubuntu 16.04" >}}
 
-    ```
-    root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
-    ...
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
-    ...
-    ```
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-xenial.list` and add the following line:
 
-    </details>
-    <details><summary>Ubuntu 18.04</summary>
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-xenial.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb xenial netq-latest
+...
+```
 
-    Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
+{{< /tab >}}
 
-        root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
-        ...
-        deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
-        ...
-    </details>
+{{< tab "Ubuntu 18.04" >}}
+
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and add the following line:
+
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+...
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
     {{%notice note%}}
 The use of `netq-latest` in these examples means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.3` - use that instead.
-    {{%/notice%}}
+{{%/notice%}}
 
 ## Install NetQ Agent on an Ubuntu Server
 
@@ -197,31 +212,31 @@ After completing the preparation steps, you can successfully install the agent s
 
 To install the NetQ Agent:
 
-1.  Install the software packages on the server.
+1. Install the software packages on the server.
 
-```
-root@ubuntu:~# sudo apt-get update
-root@ubuntu:~# sudo apt-get install netq-agent
-```
+    ```
+    root@ubuntu:~# sudo apt-get update
+    root@ubuntu:~# sudo apt-get install netq-agent
+    ```
 
 2. Verify you have the correct version of the Agent.
 
-```
-root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
-```
+    ```
+    root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    ```
 
     You should see version 2.4.1 and update 26 in the results. For example:
 
-    - netq-agent_**2.4.1**-ub18.04u**26**~1581351889.c5ec3e5_amd64.deb, or
-    - netq-agent_**2.4.1**-ub16.04u**26**~1581350451.c5ec3e5_amd64.deb
+    - netq-agent_2.4.1-ub18.04u26~1581351889.c5ec3e5_amd64.deb, or
+    - netq-agent_2.4.1-ub16.04u26~1581350451.c5ec3e5_amd64.deb
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
-```
-root@ubuntu:~# sudo systemctl restart rsyslog.service
-```
+    ```
+    root@ubuntu:~# sudo systemctl restart rsyslog.service
+    ```
 
-4.  Continue with NetQ Agent Configuration in the next section.
+4. Continue with NetQ Agent Configuration in the next section.
 
 ## Configure the NetQ Agent on an Ubuntu Server
 
@@ -236,25 +251,25 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 1. Open the `netq.yml` file using your text editor of choice. For example:
 
-```
-root@ubuntu:~# sudo nano /etc/netq/netq.yml
-```
+    ```
+    root@ubuntu:~# sudo nano /etc/netq/netq.yml
+    ```
 
 2. Locate the *netq-agent* section, or add it.
 
 3. Set the parameters for the agent as follows:
-  - port: 31980 (default) or one that you specify
-  - server: IP address of the NetQ server or appliance where the agent should send its collected data
-  - vrf: default (default) or one that you specify
+    - port: 31980 (default) or one that you specify
+    - server: IP address of the NetQ server or appliance where the agent should send its collected data
+    - vrf: default (default) or one that you specify
 
-Your configuration should be similar to this:
+    Your configuration should be similar to this:
 
-```
-netq-agent:
-    port: 31980
-    server: 127.0.0.1
-    vrf: default
-```
+    ```
+    netq-agent:
+        port: 31980
+        server: 127.0.0.1
+        vrf: default
+    ```
 
 ### Configure NetQ Agents Using the NetQ CLI
 

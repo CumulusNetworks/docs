@@ -2,9 +2,6 @@
 title: TACACS Plus
 author: Cumulus Networks
 weight: 287
-aliases:
- - /display/CL36/TACACS+Plus
- - /pages/viewpage.action?pageId=8362053
 pageID: 8362053
 ---
 Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication,

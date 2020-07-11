@@ -2,9 +2,6 @@
 title: Cumulus Hyperconverged Solution with Nutanix
 author: Cumulus Networks
 weight: 1210
-aliases:
- - /display/DOCS/Cumulus+Hyperconverged+Solution+with+Nutanix
- - /pages/viewpage.action?pageId=9012700
 toc: 3
 ---
 The Cumulus Hyperconverged Solution (HCS) in Cumulus Linux supports automated integration with the Nutanix Prism Management solution and the Nutanix AHV hypervisor. Cumulus HCS automatically configures ports attached to Nutanix nodes, provisions networking and manages VLANs with Nutanix Prism and Nutanix AHV.
@@ -95,63 +92,58 @@ If Cumulus Linux is already installed on your switches, follow the steps below t
 
 1. Configure MLAG on both the leaf01 and leaf02 nodes. The `sys-mac` is a MAC address from the Cumulus Networks reserved MAC address space and must be the same on both MLAG peers. If you are deploying more than one pair of switches with MLAG, the `sys-mac` must be unique for each pair of MLAG-configured switches.
 
-    <details>
+    {{< tabs "TabID0" >}}
+    {{< tab "leaf01" >}}
 
-    <summary>Configure MLAG for leaf01 </summary>
+```
+cumulus@leaf01:~$ net add interface swp49,swp50 mtu 9216
+cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:FF:40:00 interface swp49,swp50 primary
+cumulus@leaf01:~$ net commit
+```
 
-    ```
-    cumulus@leaf01:~$ net add interface swp49,swp50 mtu 9216
-    cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:FF:40:00 interface swp49,swp50 primary
-    cumulus@leaf01:~$ net commit
-    ```
+{{< /tab >}}
 
-    </details>
+{{< tab "leaf02" >}}
 
-    <details>
+```
+cumulus@leaf02:~$ net add interface swp49,swp50 mtu 9216
+cumulus@leaf02:~$ net add clag peer sys-mac 44:38:39:FF:40:00 interface swp49,swp50 secondary
+cumulus@leaf02:~$ net commit
+```
 
-    <summary>Configure MLAG for leaf01 </summary>
+{{< /tab >}}
 
-    ```
-    cumulus@leaf02:~$ net add interface swp49,swp50 mtu 9216
-    cumulus@leaf02:~$ net add clag peer sys-mac 44:38:39:FF:40:00 interface swp49,swp50 secondary
-    cumulus@leaf02:~$ net commit
-    ```
-
-    </details>
+{{< /tabs >}}
 
 2. Configure the default layer 2 bridge. Add a unique IP address to each leaf in the same subnet as the CVM.
 
-    <details>
+    {{< tabs "TabID2" >}}
 
-    <summary>Configure Bridge for leaf01 </summary>
+    {{< tab "leaf01" >}}
 
-    ```
-    cumulus@leaf01:~$ net add bridge bridge ports peerlink
-    cumulus@leaf01:~$ net add bridge bridge pvid 1
-    cumulus@leaf01:~$ net add vlan 1 ip address 10.1.1.201/24
-    cumulus@leaf01:~$ net commit
-    ```
+```
+cumulus@leaf01:~$ net add bridge bridge ports peerlink
+cumulus@leaf01:~$ net add bridge bridge pvid 1
+cumulus@leaf01:~$ net add vlan 1 ip address 10.1.1.201/24
+cumulus@leaf01:~$ net commit
+```
 
-    </details>
+{{< /tab >}}
 
-    <details>
+{{< tab "leaf02" >}}
 
-    <summary>Configure Bridge for leaf02</summary>
+```
+cumulus@leaf02:~$ net add bridge bridge ports peerlink
+cumulus@leaf02:~$ net add bridge bridge pvid 1
+cumulus@leaf02:~$ net add vlan 1 ip address 10.1.1.202/24
+cumulus@leaf02:~$ net commit
+```
 
-    ```
-    cumulus@leaf02:~$ net add bridge bridge ports peerlink
-    cumulus@leaf02:~$ net add bridge bridge pvid 1
-    cumulus@leaf02:~$ net add vlan 1 ip address 10.1.1.202/24
-    cumulus@leaf02:~$ net commit
-    ```
+{{< /tab >}}
 
-    </details>
+{{< /tabs >}}
 
-    {{%notice note%}}
-
-In both configurations the `pvid` value of *1* indicates the native VLAN ID. If you do not know the value for the native VLAN ID, use *1*.
-
-    {{%/notice%}}
+    In both configurations the `pvid` value of *1* indicates the native VLAN ID. If you do not know the value for the native VLAN ID, use *1*.
 
 3. Edit the `/etc/default/cumulus-hyperconverged` file and set the Nutanix username, password and server IP address. Do this on both switches (leaf01 and leaf02). Cumulus Linux uses the settings in this file to authenticate and communicate with the Nutanix cluster.
 
@@ -185,7 +177,7 @@ In both configurations the `pvid` value of *1* indicates the native VLAN ID. If 
 
 The server IP address may be a specific Nutanix CVM address or the virtual cluster IP address.
 
-    {{%/notice%}}
+{{%/notice%}}
 
 4. Enable and start Cumulus HCS on leaf01 and leaf02.
 
@@ -223,11 +215,7 @@ The server IP address may be a specific Nutanix CVM address or the virtual clust
                     └─4300 /usr/sbin/lldpcli -f json watch
     ```
 
-   {{%notice tip%}}
-
-If the service fails to start, you may find more information in the service's log file. View the log with `sudo journalctl -u cumulus-hyperconverged`.
-
-    {{%/notice%}}
+    If the service fails to start, you might find more information in the service's log file. View the log with `sudo journalctl -u cumulus-hyperconverged`.
 
 6. Enable the server-facing ports to accept inbound LLDP frames and configure jumbo MTU on both leaf01 and leaf02.
 
@@ -289,9 +277,9 @@ You can add one or more local default gateways on both switches to provide a red
 To provide redundant gateways for the dual-attached Nutanix servers, Cumulus Linux relies on {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="Virtual Router Redundancy (VRR)">}}. VRR enables hosts to communicate with any redundant router without reconfiguration, running dynamic routing protocols, or running router redundancy protocols. This means that redundant routers will respond to {{<link url="Address-Resolution-Protocol-ARP" text="Address Resolution Protocol">}} (ARP) requests from hosts. Routers are configured to respond in an
 identical manner, but if one fails, the other redundant routers will continue to respond, leaving the hosts with the impression that nothing has changed.
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>Configure leaf01 </summary>
+{{< tab "leaf01" >}}
 
 ```
 cumulus@leaf01:~$ net add vlan 1 ip address 10.1.1.11/24
@@ -299,11 +287,9 @@ cumulus@leaf01:~$ net add vlan 1 ip address-virtual 00:00:5e:00:01:01 10.1.1.1/2
 cumulus@leaf01:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Configure leaf02 </summary>
+{{< tab "leaf02" >}}
 
 ```
 cumulus@leaf02:~$ net add vlan 1 ip address 10.1.1.12/24
@@ -311,7 +297,9 @@ cumulus@leaf02:~$ net add vlan 1 ip address-virtual 00:00:5e:00:01:01 10.1.1.1/2
 cumulus@leaf02:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The first configuration line defines the IP address assigned to each switch, which is required and must be unique. On leaf01, this IP address is *10.1.1.11/24*; on leaf02, it is *10.1.1.12/24*.
 

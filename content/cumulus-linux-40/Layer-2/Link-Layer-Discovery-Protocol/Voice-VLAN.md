@@ -2,9 +2,6 @@
 title: Voice VLAN
 author: Cumulus Networks
 weight: 420
-aliases:
- - /display/DOCS/Voice+VLAN
- - /pages/viewpage.action?pageId=8366374
 toc: 4
 ---
 In Cumulus Linux, a *voice VLAN* is a VLAN dedicated to voice traffic on a switch port. However, the term can mean different things to different vendors.
@@ -30,9 +27,9 @@ In this example configuration:
 
 To configure the topology shown above:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bridge bridge ports swp1-3
@@ -45,11 +42,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file and add the following configuration:
 
@@ -83,7 +78,9 @@ iface bridge
   bridge-vlan-aware yes
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Configure LLDP
 
@@ -102,9 +99,9 @@ You can also use the `lldpcli` command to configure an LLDP-MED network policy. 
 
 To show the `bridge-vids:`
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net show bridge vlan` command:
 
@@ -123,11 +120,9 @@ swp3            1  PVID, Egress Untagged
               300
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Run the `bridge fdb` `show` command:
 
@@ -139,13 +134,15 @@ cumulus@switch:~$ bridge fdb show
 44:38:39:00:12:9d dev swp3 VLAN 0 master bridge-B permanent
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To obtain MAC address information:
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net show bridge macs` command:
 
@@ -160,11 +157,9 @@ untagged  bridge    swp2         08:00:27:e3:0c:a7                 permanent    
 untagged  bridge    swp3         08:00:27:9e:98:86                 permanent           00:13:54
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Run the `sudo brctl showmacs <bridge>` command:
 
@@ -183,7 +178,9 @@ cumulus@switch:~$ sudo brctl showmacs my_bridge
   swp2      a2:84:fe:fc:bf:cd     no                 9.43
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To capture LLDP information, check `syslog` or use `tcpdump` on an interface.
 

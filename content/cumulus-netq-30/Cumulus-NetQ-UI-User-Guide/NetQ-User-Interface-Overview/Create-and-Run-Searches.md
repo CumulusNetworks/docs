@@ -2,10 +2,6 @@
 title: Create and Run Searches
 author: Cumulus Networks
 weight: 260
-aliases:
- - /display/NETQ22/NetQ-User-Interface-Overview
- - /pages/viewpage.action?pageId=12321856
-pageID: 12321856
 toc: 4
 ---
 The Global Search field in the UI header enables you to search for

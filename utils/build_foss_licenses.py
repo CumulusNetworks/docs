@@ -60,6 +60,25 @@ def get_hugo_folder(product, version):
         print("ERROR: Unknown product {}".format(product))
         exit(1)
 
+def format_license_string(license_string):
+    '''
+    Modify the license string to work around any special characters for HTML, markdown or CSS needs.
+
+    license_string - string to format
+
+    Returns:
+    Formatted string that can be placed into a markdown page
+    '''
+
+    # Remove extra white space
+    modified_string = license_string.strip()
+    # Replace * character with HTML escape to not mess up markdown
+    modified_string = modified_string.replace("*", "&#42;")
+    # Add a space after license semi-colon to allow CSS to auto line break.
+    modified_string = modified_string.replace(";", "; ")
+
+    return modified_string
+
 def build_foss_license_markdown(csv_file, version):
     '''
     Builds a list of lines that contain the entire formatted foss licenses in markdown table format.
@@ -73,10 +92,12 @@ def build_foss_license_markdown(csv_file, version):
     f = open(csv_file, "r")
     for line in f:
         split_line = line.split(",")
+        license_string = format_license_string(split_line[2])
+
         if header:
-            output.append("| {} | {} | {} |\n".format(split_line[0], split_line[1].strip(), split_line[2].strip()))
+            output.append("| {} | {} | {} |\n".format(split_line[0], split_line[1].strip(), license_string))
         else:
-            output.append("| [{}](/cumulus-linux-{}/Whats-New/licenses/{}.txt) | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), split_line[2].strip()))
+            output.append("| [{}](/cumulus-linux-{}/Whats-New/licenses/{}.txt) | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), license_string))
         if header:
             output.append("|---	        |---	        |---	    |\n")
             header = False
@@ -204,7 +225,7 @@ def process_foss_tar(version):
 
     version - the version to capture foss tar files for
     '''
-
+    print("Downloading license file for {}".format(version))
     url = "https://d2whzysjlaya8k.cloudfront.net/cl/{}/FOSS-{}.tgz".format(version, version)
 
     response = requests.get(url, stream=True)
@@ -228,13 +249,34 @@ def process_foss_tar(version):
 
     return "{}/FOSS-{}.csv".format(license_dir, version)
 
+def get_products():
+    '''
+    Download the engineering provided JSON file detailing the list of products and releases.
+    Expects the key "release_notes" to exist at the top level.
+    Returns: a dict of product short name and versions. For example
+    { "cl":  ["3.7.1", "3.7.2"], "netq": ["2.4.0", "3.0.0"] }
+    '''
+    session = requests.Session()
+    url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"
+    response = session.get(url)
+    if response.status_code != 200:
+        print("Unable to download JSON releases file to determine products and versions for FOSS licenses.")
+        print('Received response {} from {}'.format(response.status_code, url))
+        exit(1)
+
+    if not "licenses" in response.json():
+        print("Unable to find licenses within JSON releases file. JSON dump:")
+        print(response.json())
+        exit(1)
+
+    return response.json()["licenses"]
+
 def main():
     '''
     Main function
     '''
-    products = {
-        "cl": ["3.7.12", "4.1.0"]
-    }
+    print("Fetching product and version list")
+    products = get_products()
 
     cvs_file_list = []
     for product in products:
@@ -243,8 +285,9 @@ def main():
 
         build_foss_license_markdown_files(product, products[product])
 
-        for file in cvs_file_list:
-            os.remove(file)
+    for file in cvs_file_list:
+        print(file)
+        os.remove(file)
 
     exit(0)
 

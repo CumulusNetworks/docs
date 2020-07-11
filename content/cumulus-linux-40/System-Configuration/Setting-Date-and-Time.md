@@ -2,9 +2,6 @@
 title: Setting Date and Time
 author: Cumulus Networks
 weight: 120
-aliases:
- - /display/DOCS/Setting+Date+and+Time
- - /pages/viewpage.action?pageId=8366266
 toc: 3
 ---
 Setting the time zone, date and time requires root privileges; use `sudo`.
@@ -100,9 +97,9 @@ The default NTP configuration comprises the following servers, which are listed 
 
 To add the NTP server or servers you want to use:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the following commands. Include the `iburst` option to increase the sync speed.
 
@@ -125,11 +122,9 @@ server 3.cumulusnetworks.pool.ntp.org iburst
 server 4.cumulusnetworks.pool.ntp.org iburst
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/ntp.conf` file to add or update NTP server information:
 
@@ -145,7 +140,9 @@ server 3.cumulusnetworks.pool.ntp.org iburst
 server 4.cumulusnetworks.pool.ntp.org iburst
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -164,9 +161,9 @@ ntp       4074     1  0 Jun20 ?        00:00:33 /usr/sbin/ntpd -p /var/run/ntpd.
 
 To check the NTP peer status:
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net show time ntp servers` command:
 
@@ -180,11 +177,9 @@ cumulus@switch:~$ net show time ntp servers
 +vps3.drown.org  17.253.2.125     2 u  743 1024  377   39.319   -0.316   1.384
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Run the `ntpq -p` command:
 
@@ -198,13 +193,15 @@ cumulus@switch:~$ ntpq -p
 -2.time.dbsinet. 198.60.22.240    2 u 1057 1024  377   63.973    2.182   2.692
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To remove one or more NTP servers:
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net del time ntp <server> iburst` command. The following example commands remove some of the default NTP servers.
 
@@ -217,11 +214,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the ` /etc/ntp.conf  `file to delete the NTP servers.
 
@@ -235,15 +230,17 @@ server 4.cumulusnetworks.pool.ntp.org iburst
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Specify the NTP Source Interface
 
 By default, the source interface that NTP uses is eth0. To change the source interface:
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net add time ntp source <interface>` command. The following command example changes the NTP source interface to swp10.
 
@@ -262,11 +259,9 @@ interface listen swp10
 ...
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/ntp.conf` file and modify the entry under the **\# Specify interfaces** comment. The following example shows that the NTP source interface is swp10.
 
@@ -278,7 +273,9 @@ interface listen swp10
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Use NTP in a DHCP Environment
 
@@ -460,7 +457,7 @@ To configure a boundary clock:
 - PTP *is* supported on BGP unnumbered interfaces.
 - PTP is *not* supported on switched virtual interfaces (SVIs).
 
-    {{%/notice%}}
+{{%/notice%}}
 
     ```   
     cumulus@switch:~$ net add interface swp13s0 ip address 10.0.0.9/32
@@ -485,7 +482,7 @@ To configure a boundary clock:
     cumulus@switch:~$ net commit
     ```
 
-The `ptp4l` man page describes all the configuration parameters.
+    The `ptp4l` man page describes all the configuration parameters.
 
 3. Restart the `ptp4l` and `phc2sys` daemons:
 

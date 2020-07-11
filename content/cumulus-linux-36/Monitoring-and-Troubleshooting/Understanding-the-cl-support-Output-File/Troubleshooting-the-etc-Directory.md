@@ -2,9 +2,6 @@
 title: Troubleshooting the etc Directory
 author: Cumulus Networks
 weight: 463
-aliases:
- - /display/CL36/Troubleshooting+the+etc+Directory
- - /pages/viewpage.action?pageId=8362096
 pageID: 8362096
 ---
 The

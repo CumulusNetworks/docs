@@ -2,12 +2,6 @@
 title: Open Shortest Path First - OSPF
 author: Cumulus Networks
 weight: 181
-aliases:
- - /display/DOCS/Open+Shortest+Path+First+OSPF
- - /display/DOCS/Open+Shortest+Path+First+-+OSPF
- - /display/DOCS/Open+Shortest+Path+First+-+OSPF+-+Protocol
- - /display/DOCS/Open+Shortest+Path+First+++OSPF+++Protocol
- - /pages/viewpage.action?pageId=8362922
 pageID: 8362922
 ---
 OSPF maintains the view of the network topology conceptually as a directed graph. Each router represents a vertex in the graph. Each link between neighboring routers represents a unidirectional edge and each link has an associated weight (called cost) that is either automatically derived from its bandwidth or administratively assigned. Using the weighted topology graph, each router computes a shortest path tree (SPT) with itself as the root, and applies the results to build its forwarding table. The computation is generally referred to as *SPF computation* and the resultant tree as the *SPF tree*.

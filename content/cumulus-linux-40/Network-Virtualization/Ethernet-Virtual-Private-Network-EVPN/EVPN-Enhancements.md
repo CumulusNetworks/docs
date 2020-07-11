@@ -2,7 +2,6 @@
 title: EVPN Enhancements
 author: Cumulus Networks
 weight: 550
-aliases:
 toc: 4
 ---
 This section describes EVPN enhancements.
@@ -11,9 +10,9 @@ This section describes EVPN enhancements.
 
 MAC addresses that are intended to be pinned to a particular VTEP can be provisioned on the VTEP as a static bridge FDB entry. EVPN picks up these MAC addresses and advertises them to peers as remote static MACs. You configure static bridge FDB entries for MACs under the bridge configuration:
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bridge post-up bridge fdb add 00:11:22:33:44:55 dev swp1 vlan 101 master static
@@ -33,11 +32,9 @@ iface br101
 ...
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/network/interfaces` file. For example:
 
@@ -53,7 +50,9 @@ iface bridge
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Filter EVPN Routes
 
@@ -61,9 +60,9 @@ A common deployment scenario for large data centers is to sub divide the data ce
 
 To filter EVPN routes based on the route-type and allow only certain types of EVPN routes to be advertised in the fabric:
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Use the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn default-route` command or the `net add routing route-map <route_map_name> (deny|permit) <1-65535> match evpn route-type (macip|prefix|multicast)` command.
 
@@ -75,11 +74,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 The following example configures EVPN to advertise type-5 routes only:
 
@@ -95,7 +92,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Advertise SVI IP Addresses
 
@@ -110,9 +109,9 @@ In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multi
 
 To advertise *all* SVI IP/MAC addresses on the switch, run these commands:
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn advertise-svi-ip
@@ -120,11 +119,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -146,13 +143,15 @@ exit-address-family
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To advertise a *specific* SVI IP/MAC address, run these commands:
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn vni 10 advertise-svi-ip
@@ -160,11 +159,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -180,7 +177,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -257,19 +256,17 @@ To change the threshold for MAC and IP address moves, run the `net add bgp l2vpn
 
 The following example command sets the maximum number of address moves allowed to 10 and the duplicate address detection time interval to 1200 seconds.
 
-<details>
+{{< tabs "TabID8" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection max-moves 10 time 1200 
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -284,7 +281,9 @@ switch)# exit
 cumulus@switch:~$ 
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To disable duplicate address detection, see {{<link url="#disable-duplicate-address-detection" text="Disable Duplicate Address Detection">}} below.
 
@@ -327,19 +326,17 @@ To enable Cumulus Linux to *freeze* detected duplicate addresses, run the `net a
 
 The following example command freezes duplicate addresses for a period of 1000 seconds, after which it is cleared automatically:
 
-<details>
+{{< tabs "TabID10" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze 1000
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -354,7 +351,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -364,19 +363,17 @@ Cumulus Networks recommends you set the freeze timer to be three times the dupli
 
 The following example command freezes duplicate addresses permanently (until you issue the {{<link url="#clear-duplicate-addresses" text="clear command">}}):
 
-<details>
+{{< tabs "TabID12" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add bgp l2vpn evpn dup-addr-detection freeze permanent
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -391,25 +388,25 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Clear Duplicate Addresses
 
 You can clear a duplicate MAC or IP address (and unfreeze a frozen address). The following example command clears IP address 10.0.0.9 for VNI 101.
 
-<details>
+{{< tabs "TabID14" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net clear evpn dup-addr vni 101 ip 10.0.0.9
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -419,23 +416,23 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 To clear duplicate addresses for all VNIs, run the following command:
 
-<details>
+{{< tabs "TabID16" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net clear evpn dup-addr vni all
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -445,7 +442,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -463,19 +462,17 @@ When you clear a duplicate MAC address, all its associated IP addresses are also
 
 By default, duplicate address detection is enabled and a syslog error is generated when a duplicate address is detected. To disable duplicate address detection, run the following command.
 
-<details>
+{{< tabs "TabID18" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net del bgp l2vpn evpn dup-addr-detection
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -490,7 +487,9 @@ switch)# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 When you disable duplicate address detection, Cumulus Linux clears the configuration and all existing duplicate addresses.
 

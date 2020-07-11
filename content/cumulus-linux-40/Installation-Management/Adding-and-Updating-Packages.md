@@ -2,9 +2,6 @@
 title: Adding and Updating Packages
 author: Cumulus Networks
 weight: 80
-aliases:
- - /display/DOCS/Adding+and+Updating+Packages
- - /pages/viewpage.action?pageId=8366352
 toc: 3
 ---
 
@@ -141,9 +138,9 @@ The search commands look for the search terms not only in the package name but i
 
 The the `apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system with their versions, run the following commands.
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net show package version` command:
 
@@ -163,11 +160,9 @@ atftpd                             0.7.git20120829-3.1
 ...
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Run the `dpkg -l` command:
 
@@ -190,7 +185,9 @@ ii  atftpd              0.7.git20120829-3.1       amd64        advanced TFTP ser
 ...
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 The apps repository was removed in Cumulus Linux 4.0.0.
@@ -200,9 +197,9 @@ The apps repository was removed in Cumulus Linux 4.0.0.
 
 To show the version of a specific package installed on the system:
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 Run the `net show package version <package>` command. For example, the following command shows which version of the `vrf` package is installed on the system:
 
@@ -211,11 +208,9 @@ cumulus@switch:~$ net show package version vrf
 1.0-cl4u1
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Run the Linux `dpkg -l <package_name>` command. For example, the following command shows which version of the `vrf` package is installed on the system:
 
@@ -229,7 +224,9 @@ Desired=Unknown/Install/Remove/Purge/Hold
 ii  vrf        1.0-cl4u1    amd64        Linux tools for VRF
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Upgrade Packages
 
@@ -379,7 +376,7 @@ You add these packages normally with `apt-get update && apt-get install`, as {{<
 
 ## Related Information
 
-- {{<exlink url="http://www.debian.org/doc/manuals/debian-faq/ch-pkgtools.en.html" text="Debian GNU/Linux FAQ, Ch 8 Package management tools">}}
+- {{<exlink url="https://www.debian.org/doc/manuals/debian-faq/pkgtools.en.html" text="Debian GNU/Linux FAQ, Ch 8 Package management tools">}}
 - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
 
 ## Caveats and Errata

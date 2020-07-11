@@ -2,10 +2,6 @@
 title: Access Data with Cards
 author: Cumulus Networks
 weight: 280
-aliases:
- - /display/NETQ22/NetQ-User-Interface-Overview
- - /pages/viewpage.action?pageId=12321856
-pageID: 12321856
 toc: 4
 ---
 Cards present information about your network for monitoring and
@@ -40,7 +36,7 @@ content items may be present. Some examples include a Devices Inventory
 card, a Switch Inventory card, an Alarm Events card, an Info Events
 card, and a Network Health card, as shown here:
 
-{{< figure src="/images/netq/access-data-small-group-230.png" width="700" >}}
+{{<figure src="/images/netq/access-data-small-group-230.png" width="700">}}
 
 ### Medium Cards
 
@@ -53,7 +49,7 @@ Devices Inventory card, a Switch Inventory card, an Alarm Events card,
 an Info Events card, and a Network Health card, as shown here. Compare
 these with their related small- and large-sized cards.
 
-{{< figure src="/images/netq/access-data-medium-group-230.png" width="700" >}}
+{{<figure src="/images/netq/access-data-medium-group-230.png" width="700">}}
 
 ### Large Cards
 
@@ -67,7 +63,7 @@ examples include a Devices Inventory card, an Alarm Events card, and a
 Network Health card, as shown here. Compare these with their related
 small- and medium-sized cards.
 
-{{< figure src="/images/netq/access-data-large-group-230.png" width="500" >}}
+{{<figure src="/images/netq/access-data-large-group-300.png" width="500">}}
 
 ### Full-Screen Cards
 
@@ -78,9 +74,9 @@ full-screen card. Most full-screen cards display data in a grid, or
 table; however, some contain visualizations. Some examples include All
 Events card and All Switches card, as shown here.
 
-{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab.png" width="700" >}}
+{{<figure src="/images/netq/events-alarms-fullscr-allevents-tab.png" width="700">}}
 
-{{< figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-230.png" width="700" >}}
+{{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-230.png" width="700">}}
 
 ### Card Size Summary
 
@@ -132,39 +128,29 @@ particular aspect of your network and are a linked set of each size
 card-a small card, a medium card, one or more large cards, and one or
 more full screen cards. The following card workflows are available:
 
-  - **Network Health**: network-wide view of network health
-  - **Devices|Switches**: health of a given switch
-  - **Inventory|Devices**: information about all switches and hosts in
-    the network
-  - **Inventory|Switches**: information about the components on a given
-    switch
-  - **Events|Alarms**: information about all critical severity events in
-    the system
-  - **Events|Info**: information about all warning, info, and debug
-    events in the system
-  - **Network Services**: information about the network services and
-    sessions
-  - **Validation Request** (and Results): network-wide validation of
-    network protocols and services
-  - **Trace Request** (and Results): find available paths between two
-    devices in the network fabric
+- **Network Health**: network-wide view of network health
+- **Devices|Switches**: health of a given switch
+- **Inventory|Devices**: information about all switches and hosts in the network
+- **Inventory|Switches**: information about the components on a given switch
+- **Events|Alarms**: information about all critical severity events in the system
+- **Events|Info**: information about all warning, info, and debug events in the system
+- **Network Services**: information about the network services and sessions
+- **Validation Request** (and Results): network-wide validation of network protocols and services
+- **Trace Request** (and Results): find available paths between two devices in the network fabric
 
 ### Access a Card Workflow
 
 You can access a card workflow in multiple ways:
 
-  - For workbenches available from the main menu, open the workbench
-    that contains the card flow
-  - Open a prior search
-  - Add it to a workbench
-  - Search for it
+- For workbenches available from the main menu, open the workbench that contains the card flow
+- Open a prior search
+- Add it to a workbench
+- Search for it
 
-{{%notice tip%}}
-
+{{<notice tip>}}
 If you have multiple cards open on your workbench already, you might
 need to scroll down to see the card you have just added.
-
-{{%/notice%}}
+{{</notice>}}
 
 To open the card workflow through an existing workbench:
 
@@ -172,7 +158,7 @@ To open the card workflow through an existing workbench:
 
 2.  Select the relevant workbench.
 
-    {{< figure src="/images/netq/workbench-selection-from-wb-hdr-222.png" width="200" >}}
+    {{< figure src="/images/netq/workbench-selection-from-wb-hdr-300.png" width="200" >}}
 
     The workbench opens, hiding your previous workbench.
 
@@ -197,7 +183,7 @@ To access the card workflow by searching for the card:
 2.  Begin typing the name of the card.
 3.  Select it from the list.
 
-    {{< figure src="/images/netq/add-card-thru-search-222.png" width="350" >}}
+    {{< figure src="/images/netq/add-card-thru-search-300.png" width="350" >}}
 
     The card appears on a current workbench, at the bottom.
 
@@ -223,25 +209,27 @@ You can add one or more cards to a workbench at any time. To add Devices|Switche
 
 To add one or more cards:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open the **Cards** modal.
+1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open the **Cards** modal.
 
-    {{< figure src="/images/netq/add-card-modal-all-cards-222.png" width="700" >}}
+    {{< figure src="/images/netq/add-card-modal-all-cards-300.png" width="700" >}}
 
-2.  Scroll down until you find the card you want to add, or select the category of cards to find the card you want to add.
+2. Scroll down until you find the card you want to add, select the category of cards, or use **Search** to find the card you want to add.
 
-      {{< figure src="/images/netq/add-card-modal-ntwk-svcs-222.png" width="700" >}}
+    This example uses the category tab to narrow the search for a card.
+
+    {{< figure src="/images/netq/add-card-modal-ntwk-svcs-300.png" width="700" >}}
 
 3. Click on each card you want to add.
 
       As you select each card, it is grayed out and a <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> appears on top of it. If you have selected one or more cards using the category option, you can selected another category without losing your current selection. Note that the total number of cards selected for addition to your workbench is noted at the bottom.
 
-      {{< figure src="/images/netq/add-card-2-selected-222.png" width="700" >}}
+      {{< figure src="/images/netq/add-card-2-selected-300.png" width="700" >}}
 
       Also note that if you change your mind and do not want to add a particular card you have selected, simply click on it again to remove it from the cards to be added. Note the total number of cards selected decreases with each card you remove.
 
 4. When you have selected all of the cards you want to add to your workbench, you can confirm which cards have been selected by clicking the **Cards Selected** link. Modify your selection as needed.
 
-      {{< figure src="/images/netq/add-card-confirm-selection-222.png" width="700" >}}
+      {{<figure src="/images/netq/add-card-confirm-selection-300.png" width="700">}}
 
 5. Click **Open Cards** to add the selected cards, or **Cancel** to return to your workbench without adding any cards.
 
@@ -251,29 +239,37 @@ medium size of the card is added to your workbench for all except the Validation
 
 ### Add Switch Cards to Your Workbench
 
-You can add switch cards to a workbench at any time. For all other cards, follow the steps in {{<link url="#add-cards-to-your-workbench" text="Add Cards to Your Workbench">}}.
+You can add switch cards to a workbench at any time. For all other cards, follow the steps in {{<link url="#add-cards-to-your-workbench" text="Add Cards to Your Workbench">}}. You can either add the card through the Switches icon on a workbench header or by searching for it through Global Search.
 
-To add a switch card:
+To add a switch card using the icon:
 
 1.  Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> to open the Add Switch Card modal.
 
-    {{< figure src="/images/netq/add-switch-card-modal-222.png" width="250" >}}
+    {{<figure src="/images/netq/add-switch-card-modal-222.png" width="250">}}
 
 2. Begin entering the hostname of the switch you want to monitor.
 
 3. Select the device from the suggestions that appear.
 
-      {{< figure src="/images/netq/add-switch-card-auto-suggest-222.png" width="250" >}}
+      {{<figure src="/images/netq/add-switch-card-auto-suggest-222.png" width="250">}}
 
-      {{%notice tip%}}
-
-If you attempt to enter a hostname that is unknown to NetQ, a pink border appears around the entry field and you are unable to select **Add**. Try checking for spelling errors. If you feel your entry is valid, but not an available choice, consult with your network administrator.
-
-      {{%/notice%}}
+      {{<notice tip>}}
+If you attempt to enter a hostname that is unknown to NetQ, a pink border appears around the entry field and you are unable to select <strong>Add</strong>. Try checking for spelling errors. If you feel your entry is valid, but not an available choice, consult with your network administrator.
+      {{</notice>}}
 
 4. Optionally select the small or large size to display instead of the medium size.
 
 5. Click **Add** to add the switch card to your workbench, or **Cancel** to return to your workbench without adding the switch card.
+
+To open the switch card by searching:
+
+1. Click in **Global Search**.
+
+2. Begin typing the name of a switch.
+
+    {{<figure src="/images/netq/add-switch-card-thru-search-300.png" width="300">}}
+
+3. Select it from the options that appear.
 
 ### Remove Cards from Your Workbench
 
@@ -304,12 +300,10 @@ To change the time period for a card:
 
     {{< figure src="/images/netq/time-picker-popup-222.png" width="200" >}}
 
-{{%notice tip%}}
-
+{{<notice tip>}}
 Changing the time period in this manner only changes the time period for
 the given card.
-
-{{%/notice%}}
+{{</notice>}}
 
 ### Switch to a Different Card Size
 
@@ -364,11 +358,13 @@ You can manipulate the data in a data grid in a full-screen card in several ways
 | ---- | ---- | ---- |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> | Select All | Selects all items in the list |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/subtract-circle.svg" height="18" width="18"/> | Clear All | Clears all existing selections in the list. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> | Add item to the list |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> | Edit | Edits the selected item |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> | Delete | Removes the selected items |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18"/> | Filter | Filters the list using available parameters. Refer to {{<link url="#filter-table-data" text="Filter Table Data">}} for more detail.  |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/>, <img src="/images/netq/netq-mgmt-delete-keys-icon.png" height="18" width="18"/> | Generate/Delete AuthKeys | Creates or removes NetQ CLI authorization keys |
 | <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> | Open Cards | Opens the corresponding validation or trace card(s) |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18"/> | Assign role | Opens role assignment options for switches |
 | <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. Refer to {{<link url="#export-data" text="Export Data">}} for more detail. |
 
 When there are numerous items in a table, NetQ loads the first 25 by default and provides the rest in additional table pages. In this case, pagination is shown under the table.

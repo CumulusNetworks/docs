@@ -273,7 +273,7 @@ The What Just Happened view displays events based on conditions detected in the 
 <li><strong>Hostname</strong>: Name of the Mellanox server</li>
 <li><strong>Reason</strong>: Reason why the buffer dropped packet
 <ul><li>Tail drop: Tail drop is enabled, and buffer queue is filled to maximum capacity</li>
-<li>WRED: Weighted Random Early Detection is enabled, and buffer queue is filled to maximum</li>
+<li>WRED: Weighted Random Early Detection is enabled, and buffer queue is filled to maximum capacity or the RED engine dropped the packet as of random congestion prevention.</li>
 </ul></li>
 </ul></td>
 <tr class="even">

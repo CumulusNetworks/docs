@@ -1,3 +1,5 @@
+{{- if  eq (.Get "version") "2.4.1" -}}
+
 {{- if eq (.Get "deployment") "onprem" -}}
 <pre>cumulus@hostname:~$ cd /mnt/installables/
 cumulus@hostname:/mnt/installables$ ls
@@ -8,4 +10,38 @@ NetQ-2.4.1.tgz  netq-bootstrap-2.4.1.tgz</pre>
 <pre>cumulus@hostname:~$ cd /mnt/installables/
 cumulus@hostname:/mnt/installables$ ls
 NetQ-2.4.1-opta.tgz  netq-bootstrap-2.4.1.tgz</pre>
+{{ end }}
+
+{{ end }}
+
+{{- if  eq (.Get "version") "3.0.0" -}}
+
+{{- if eq (.Get "deployment") "onprem" -}}
+<pre>cumulus@hostname:~$ cd /mnt/installables/
+cumulus@hostname:/mnt/installables$ ls
+NetQ-3.0.0.tgz  netq-bootstrap-3.0.0.tgz</pre>
+{{ end }}
+
+{{- if eq (.Get "deployment") "cloud" -}}
+<pre>cumulus@hostname:~$ cd /mnt/installables/
+cumulus@hostname:/mnt/installables$ ls
+NetQ-3.0.0-opta.tgz  netq-bootstrap-3.0.0.tgz</pre>
+{{ end }}
+
+{{ end }}
+
+{{- if  eq (.Get "version") "3.1.0" -}}
+
+{{- if eq (.Get "deployment") "onprem" -}}
+<pre>cumulus@hostname:~$ cd /mnt/installables/
+cumulus@hostname:/mnt/installables$ ls
+NetQ-3.1.0.tgz  netq-bootstrap-3.1.0.tgz</pre>
+{{ end }}
+
+{{- if eq (.Get "deployment") "cloud" -}}
+<pre>cumulus@hostname:~$ cd /mnt/installables/
+cumulus@hostname:/mnt/installables$ ls
+NetQ-3.1.0-opta.tgz  netq-bootstrap-3.1.0.tgz</pre>
+{{ end }}
+
 {{ end }}

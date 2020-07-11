@@ -6,9 +6,9 @@ title: "Cumulus Networks Documentation Home"
 
 ## Products
 
-[Cumulus Linux 4.0](/cumulus-linux-40/)
+[Cumulus Linux 4.1](/cumulus-linux-41/)
 
-[Cumulus NetQ 2.4](/cumulus-netq-24/)
+[Cumulus NetQ 3.0](/cumulus-netq-30/)
 
 [Cumulus VX](/cumulus-vx/)
 
@@ -16,6 +16,8 @@ title: "Cumulus Networks Documentation Home"
 
 
 ## Old Versions
+
+[Cumulus Linux 4.0](/cumulus-linux-40/)
 
 [Cumulus Linux 3.7](/cumulus-linux-37/)
 
@@ -36,6 +38,8 @@ title: "Cumulus Networks Documentation Home"
 [Cumulus Linux 3.0](/cumulus-linux-301/)
 
 [Cumulus Linux 2.5.12 ESR](/cumulus-linux-2512-esr/)
+
+[Cumulus NetQ 2.4](/cumulus-netq-24/)
 
 [Cumulus VX 3.0](/cumulus-vx-30)
 

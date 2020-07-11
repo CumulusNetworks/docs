@@ -2,9 +2,6 @@
 title: Cumulus Hyperconverged Solution with Nutanix
 author: Cumulus Networks
 weight: 261
-aliases:
- - /display/DOCS/Cumulus+Hyperconverged+Solution+with+Nutanix
- - /pages/viewpage.action?pageId=9012165
 pageID: 9012165
 ---
 The Cumulus Hyperconverged Solution (HCS) in Cumulus Linux supports

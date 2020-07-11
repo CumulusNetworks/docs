@@ -2,9 +2,6 @@
 title: Layer 3
 author: Cumulus Networks
 weight: 710
-aliases:
- - /display/DOCS/Layer+3
- - /pages/viewpage.action?pageId=8366621
 toc: 2
 ---
 This section describes layer 3 configuration. Read this section to understand routing protocols and learn how to configure routing on the Cumulus Linux switch.

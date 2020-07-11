@@ -2,10 +2,6 @@
 title: VMware Fusion
 author: Cumulus Networks
 weight: 39
-aliases:
- - /display/VX/VMware-Fusion
- - /display/VX/VMware+Fusion
- - /pages/viewpage.action?pageId=5126696
 pageID: 5126696
 ---
 The following sections describe how to import and set up a

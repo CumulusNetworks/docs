@@ -2,9 +2,6 @@
 title: Resource Diagnostics Using cl-resource-query
 author: Cumulus Networks
 weight: 217
-aliases:
- - /display/DOCS/Resource+Diagnostics+Using+cl+resource+query
- - /pages/viewpage.action?pageId=8362593
 pageID: 8362593
 ---
 You can use the `cl-resource-query` command to retrieve information

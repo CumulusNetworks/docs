@@ -1,8 +1,8 @@
-User-Agent: LinkChecker
-Allow: /
-Disallow: /version
+User-Agent: *
+Disallow: */pdf
 Sitemap: {{.Site.BaseURL}}/sitemap.xml
 
 User-Agent: *
-Disallow: 
+Disallow:
+Allow: /
 Sitemap: {{.Site.BaseURL}}/sitemap.xml

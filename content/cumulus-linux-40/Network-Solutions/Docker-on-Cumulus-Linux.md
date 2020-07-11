@@ -2,9 +2,6 @@
 title: Docker on Cumulus Linux
 author: Cumulus Networks
 weight: 1170
-aliases:
- - /display/DOCS/Docker+on+Cumulus+Linux
- - /pages/viewpage.action?pageId=8366704
 toc: 3
 ---
 Cumulus Linux can be used to run the {{<exlink url="https://www.docker.com/" text="Docker">}} container platform. You can install Docker Engine directly on a Cumulus Linux switch and run Docker containers natively on the switch.

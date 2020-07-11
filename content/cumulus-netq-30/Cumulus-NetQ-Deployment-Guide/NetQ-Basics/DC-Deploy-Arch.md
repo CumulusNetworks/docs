@@ -2,7 +2,6 @@
 title: Data Center Network Deployments
 author: Cumulus Networks
 weight: 40
-pageID: 12320801
 toc: 4
 ---
 

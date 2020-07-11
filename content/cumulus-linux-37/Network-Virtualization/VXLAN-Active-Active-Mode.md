@@ -2,9 +2,6 @@
 title: VXLAN Active-Active Mode
 author: Cumulus Networks
 weight: 147
-aliases:
- - /display/DOCS/VXLAN+Active+Active+Mode
- - /pages/viewpage.action?pageId=8362725
 pageID: 8362725
 ---
 *VXLAN active-active mode* allows a pair of

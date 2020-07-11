@@ -2,10 +2,6 @@
 title: Monitor Data Link Layer Devices and Protocols
 author: Cumulus Networks
 weight: 540
-aliases:
- - /display/NETQ/Monitor+Data+Link+Layer+Devices+and+Protocols
- - /pages/viewpage.action?pageId=12321048
-pageID: 12321048
 toc: 3
 ---
 With NetQ, a network administrator can monitor OSI Layer 2 devices and

@@ -2,9 +2,6 @@
 title: Management VRF
 author: Cumulus Networks
 weight: 870
-aliases:
- - /display/DOCS/Management+VRF
- - /pages/viewpage.action?pageId=8366664
 toc: 3
 ---
 {{%notice note%}}
@@ -163,7 +160,7 @@ The message `Duplicate IPv4 address detected, some interfaces may not be visible
 By default, when you issue a `ping` or `traceroute`, the packet is sent to the dataplane network (the main routing table). To use `ping` or `traceroute` on the management network, use `ping -I mgmt` or `traceroute -i mgmt`. To select a source address within the management VRF, use the `-s` flag for `traceroute`.
 
 ```
-cumulus@switch:~$ ping -I <destination-ip>
+cumulus@switch:~$ ping -I mgmt <destination-ip>
 ```
 
 Or:
@@ -221,20 +218,18 @@ This also creates a route on the neighbor device to the management network throu
 
 Cumulus Networks recommends you always use route maps to control the advertised networks redistributed by the `redistribute connected` command. For example, you can specify a route map to redistribute routes in this way (for both BGP and OSPF):
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED deny 100 match interface eth0
 cumulus@switch:~$ net add routing route-map REDISTRIBUTE-CONNECTED permit 1000
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:$ sudo vtysh
@@ -249,7 +244,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -275,9 +272,9 @@ cumulus@switch:~$ sudo ip vrf exec default ssh 10.23.23.2 10.3.3.3
 
 ## View the Routing Tables
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The `ip route show` command shows the switch port (*main*) table. You can see the dataplane routing table with the `net show route vrf main` command.
 
@@ -308,11 +305,9 @@ To show the route for any VRF, run the `net show route vrf <vrf-name> <ip-addres
 cumulus@switch:~$ net show route vrf mgmt <ip-address>
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 When you use `ip route get` to return information about a single route, the command resolves over the *mgmt* table by default. To show information about the route in the switching silicon, run this command:
 
@@ -332,7 +327,9 @@ To get the route for any VRF, run the `ip route get <ip-address> oif <vrf-name>`
 cumulus@switch:~$ ip route get <ip-address> oif mgmt
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## mgmt Interface Class
 
@@ -387,8 +384,8 @@ For DNS to use the management VRF, the static DNS entries must reference the man
 
 For example, to specify DNS servers and associate some of them with the management VRF, run the following commands:
 
-<details>
-<summary>NCLU Commands </summary>
+{{< tabs "TabID4" >}}
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add dns nameserver ipv4 192.0.2.1
@@ -398,10 +395,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-<summary>Linux Commands </summary>
+{{< tab "Linux Commands" >}}
 
 Edit the `/etc/resolv.conf` file to add the DNS servers and associate some of them with the management VRF. For example:
 
@@ -418,7 +414,9 @@ Run the `ifreload -a` command to load the new configuration:
 cumulus@switch:~$ ifreload -a
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 

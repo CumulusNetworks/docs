@@ -1,0 +1,1 @@
+vrf-dbgsym has no debian/copyright file

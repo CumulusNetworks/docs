@@ -2,9 +2,6 @@
 title: Configuring FRRouting
 author: Cumulus Networks
 weight: 760
-aliases:
- - /display/DOCS/Configuring+FRRouting
- - /pages/viewpage.action?pageId=8366643
 toc: 3
 ---
 This section discusses FRRouting configuration.
@@ -308,9 +305,7 @@ cumulus@switch:~$
 
 To view the current state of the configuration, run the `show running-config` command:
 
-<details>
-
-<summary>Example command </summary>
+{{< expand "Example command " >}}
 
 ```
 switch# show running-config
@@ -405,7 +400,7 @@ line vty
 end
 ```
 
-</details>
+{{< /expand >}}
 
 {{%notice note%}}
 

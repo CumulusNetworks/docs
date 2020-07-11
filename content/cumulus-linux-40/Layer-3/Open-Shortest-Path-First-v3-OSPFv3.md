@@ -2,12 +2,6 @@
 title: Open Shortest Path First v3 - OSPFv3
 author: Cumulus Networks
 weight: 800
-aliases:
- - /display/DOCS/Open+Shortest+Path+First+v3+++OSPFv3
- - /display/DOCS/Open+Shortest+Path+First+v3+OSPFv3
- - /display/DOCS/Open+Shortest+Path+First+v3+-+OSPFv3
- - /display/DOCS/Open+Shortest+Path+First+v3+-+OSPFv3+-+Protocol
- - /pages/viewpage.action?pageId=8366648
 toc: 3
 ---
 OSPFv3 is a revised version of OSPFv2 and supports the IPv6 address family. Refer to {{<link url="Open-Shortest-Path-First-OSPF">}} for a discussion on the basic concepts, which remain the same between the two versions.
@@ -24,9 +18,9 @@ IETF has defined extensions to OSPFv3 to support multiple address families (both
 
 To configure OSPFv3, you need to specify the router ID and map interfaces to areas. The following commands provide examples.
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add ospf6 router-id 0.0.0.1
@@ -36,11 +30,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 1. Enable the `ospf6` daemon, then start the FRRouting service. See {{<link url="Configuring-FRRouting">}}.
 2. From the vtysh shell, configure OSPFv3:
@@ -60,7 +52,9 @@ cumulus@switch:~$ net commit
    cumulus@switch:~$
    ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -79,9 +73,9 @@ You can define additional custom parameters for OSPFv3, such as such as the netw
 
 The following command example sets the network type to point-to-point and the hello interval to 5 seconds. The hello interval can be any value between 1 and 65535 seconds.
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 ```
 cumulus@switch:~$ net add interface swp1 ospf6 network point-to-point
@@ -90,11 +84,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -109,7 +101,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -136,9 +130,9 @@ You can use different areas to control routing. You can:
 
 The following section provides command examples.
 
-<details>
+{{< tabs "TabID4" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following example command removes the `3:3::/64` route from the routing table. Without a route in the table, any destinations in that network are not reachable.
 
@@ -164,11 +158,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 The following example command removes the `3:3::/64` route from the routing table. Without a route in the table, any destinations in that network are not reachable.
 
@@ -212,7 +204,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -229,9 +223,9 @@ router ospf6
 
 Cumulus Linux provides several commands to change the administrative distance for OSPF routes.
 
-<details>
+{{< tabs "TabID6" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 This example command sets the distance for an entire group of routes, rather than a specific route.
 
@@ -265,11 +259,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 This example command sets the distance for an entire group of routes, rather than a specific route.
 
@@ -327,7 +319,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration to the `/etc/frr/frr.conf` file. For example:
 
@@ -342,9 +336,9 @@ router ospf6
 
 You can configure an interface, a bond interface, or a VLAN with an existing advertise prefix list. The prefix list defines the outbound route filter.
 
-<details>
+{{< tabs "TabID8" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following example command configures interface swp3s1 with the IPv6 advertise prefix list named `filter`:
 
@@ -362,11 +356,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 The following example command configures interface swp3s1 with the IPv6 advertise prefix-list named `filter`.
 
@@ -396,7 +388,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 

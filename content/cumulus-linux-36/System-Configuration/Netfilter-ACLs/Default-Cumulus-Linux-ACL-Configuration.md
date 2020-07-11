@@ -2,9 +2,6 @@
 title: Default Cumulus Linux ACL Configuration
 author: Cumulus Networks
 weight: 301
-aliases:
- - /display/CL36/Default+Cumulus+Linux+ACL+Configuration
- - /pages/viewpage.action?pageId=8362069
 pageID: 8362069
 ---
 The Cumulus Linux default ACL configuration is split into three parts,

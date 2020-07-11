@@ -2,9 +2,6 @@
 title: Installation Management
 author: Cumulus Networks
 weight: 13
-aliases:
- - /display/CL36/Installation+Management
- - /pages/viewpage.action?pageId=8362125
 pageID: 8362125
 ---
 You can only install one image of the operating system on a Cumulus

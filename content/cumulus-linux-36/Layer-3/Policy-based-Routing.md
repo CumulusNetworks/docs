@@ -2,9 +2,6 @@
 title: Policy-based Routing
 author: Cumulus Networks
 weight: 183
-aliases:
- - /display/CL36/Policy+based+Routing
- - /pages/viewpage.action?pageId=8362440
 pageID: 8362440
 ---
 Typical routing systems and protocols forward traffic based on the

@@ -2,9 +2,6 @@
 title: IGMP and MLD Snooping
 author: Cumulus Networks
 weight: 129
-aliases:
- - /display/DOCS/IGMP+and+MLD+Snooping
- - /pages/viewpage.action?pageId=8362696
 pageID: 8362696
 ---
 IGMP (Internet Group Management Protocol) and MLD (Multicast Listener

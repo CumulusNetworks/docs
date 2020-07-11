@@ -2,10 +2,6 @@
 title: Monitor Informational Events
 author: Cumulus Networks
 weight: 325
-aliases:
- - /display/NETQ/Monitor+Events
- - /pages/viewpage.action?pageId=12321771
-pageID: 12321771
 toc: 4
 ---
 You can easily monitor warning, info, and debug severity events occurring across your network using the Info card. You can determine the number of events for the various system, interface, and network

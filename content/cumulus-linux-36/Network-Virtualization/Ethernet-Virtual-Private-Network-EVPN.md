@@ -2,11 +2,6 @@
 title: Ethernet Virtual Private Network - EVPN
 author: Cumulus Networks
 weight: 145
-aliases:
- - /display/CL36/Ethernet+Virtual+Private+Network+++EVPN
- - /display/CL36/Ethernet+Virtual+Private+Network+-+EVPN
- - /display/CL36/Ethernet+Virtual+Private+Network+EVPN
- - /pages/viewpage.action?pageId=8362224
 pageID: 8362224
 ---
 VXLAN is the de facto technology for implementing network virtualization
@@ -1813,6 +1808,8 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
   - You must configure the overlay (tenants) in a specific VRF(s) and
     separate from the underlay, which resides in the default VRF. A
     layer 3 VNI mapping for the default VRF is not supported.
+
+  - EVPN is not supported when {{<link title="Redistribute Neighbor" >}} is also configured. Enabling both features simultaneously causes instability in IPv4 and IPv6 neighbor entries.
 
 ## Example Configurations
 

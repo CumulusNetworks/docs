@@ -2,9 +2,6 @@
 title: Link Layer Discovery Protocol
 author: Cumulus Networks
 weight: 410
-aliases:
- - /display/DOCS/Link+Layer+Discovery+Protocol
- - /pages/viewpage.action?pageId=8366373
 toc: 3
 ---
 The `lldpd` daemon implements the IEEE802.1AB (Link Layer Discovery Protocol, or LLDP) standard. LLDP shows you which ports are neighbors of a given port. By default, `lldpd` runs as a daemon and starts at system boot. `lldpd` command line arguments are placed in `/etc/default/lldpd`. All `lldpd` configuration options are saved in `/etc/lldpd.conf` or under `/etc/lldpd.d/`.
@@ -246,9 +243,7 @@ Configuration:
 --------------------------------------------------------------------
 ```
 
-<details>
-
-<summary>Runtime Configuration (Advanced) </summary>
+{{< expand "Runtime Configuration (Advanced) " >}}
 
 {{%notice warning%}}
 
@@ -280,7 +275,7 @@ To reset any interface list to none:
 cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
 ```
 
-</details>
+{{< /expand >}}
 
 ## Enable the SNMP Subagent in LLDP
 

@@ -2,9 +2,6 @@
 title: LDAP Authentication and Authorization
 author: Cumulus Networks
 weight: 170
-aliases:
- - /display/DOCS/LDAP+Authentication+and+Authorization
- - /pages/viewpage.action?pageId=8366277
 toc: 4
 ---
 Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switch (NSS) for user authentication. NSS enables PAM to use LDAP to provide user authentication, group mapping, and information for other services on the system.
@@ -65,9 +62,7 @@ Entering incorrect information during the installation process might produce con
 
 Be sure to restart `netd` after editing the files.
 
-<details>
-
-<summary>Alternative Installation Method Using debconf-utils </summary>
+{{< expand "Alternative Installation Method Using debconf-utils "  >}}
 
 Instead of running the installer and following the interactive prompts, as described above, you can pre-seed the installer parameters using `debconf-utils`.
 
@@ -128,7 +123,7 @@ Instead of running the installer and following the interactive prompts, as descr
    zzzEndOfFilezzz
    ```
 
-</details>
+{{< /expand >}}
 
 ## Update the nslcd.conf File
 
@@ -466,9 +461,7 @@ The `ldapsearch` command performs LDAP operations directly on the LDAP server. T
 cumulus@switch:~$ ldapsearch -H ldap://ldap.example.com -b dc=example,dc=com -x uid=myuser
 ```
 
-<details>
-
-<summary>Click to expand the command output ... </summary>
+{{< expand "Click to expand the command output ... " >}}
 
 ```
 # extended LDIF
@@ -510,7 +503,7 @@ result: 0 Success
 # numEntries: 1
 ```
 
-</details>
+{{< /expand >}}
 
 ### NCLU
 

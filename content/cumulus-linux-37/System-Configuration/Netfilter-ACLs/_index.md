@@ -2,10 +2,6 @@
 title: Netfilter - ACLs
 author: Cumulus Networks
 weight: 69
-aliases:
- - /display/DOCS/Netfilter+ACLs
- - /display/DOCS/Netfilter+-+ACLs
- - /pages/viewpage.action?pageId=8362563
 pageID: 8362563
 ---
 {{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework
@@ -348,9 +344,7 @@ mapped into the following tables and are updated in this order:
 
 {{%notice warning%}}
 
-Only Broadcom-based switches support incremental nonatomic updates.
-Mellanox-based switches do **not** support incremental updates;
-therefore traffic **is** affected and gets stopped.
+Only switches with the Broadcom ASIC support *incremental* nonataomic updates. Mellanox switches with the Spectrum-based ASIC only support *standard* nonatomic updates; using nonatomic mode on Spectrum-based ASICs impacts traffic on ACL updates.
 
 {{%/notice%}}
 
@@ -782,10 +776,15 @@ Install all ACL policies under a directory:
     Installing acl policy ...
     Done.
 
-Install all rules and policies included in
+Apply all rules and policies included in
 `/etc/cumulus/acl/policy.conf`:
 
     cumulus@switch:~$ sudo cl-acltool -i
+
+In addition to ensuring that the rules and policies referenced by
+`/etc/cumulus/acl/policy.conf` are installed, this will remove any
+currently active rules and policies that are not contained in the
+files referenced by `/etc/cumulus/acl/policy.conf`. 
 
 ## Specify the Policy Files to Install
 

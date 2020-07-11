@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 122
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the NetQ 2.4.1 Agents on each server you want to monitor. NetQ 2.4 Agents can be installed on servers running:
+After installing your Cumulus NetQ software, you should install the NetQ 3.0.0 Agents on each server you want to monitor. NetQ Agents can be installed on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7
@@ -24,7 +24,7 @@ If your network uses a proxy server for external connections, you should first {
 
 ### Verify Service Package Versions
 
-Before you install the NetQ Agent on a Red Hat or CentOS server, make sure the following packages are installed and running these minimum versions:
+The following packages, while not required for installation of the NetQ Agent, must be installed and running for proper operation of the NetQ Agent on a Red Hat or CentOS server:
 
 - iproute-3.10.0-54.el7\_2.1.x86\_64
 - lldpd-0.9.7-5.el7.x86\_64
@@ -51,9 +51,9 @@ If NTP is not already installed and configured, follow these steps:
 
 1. Install {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
 
-```
-root@rhel7:~# sudo yum install ntp
-```
+    ```
+    root@rhel7:~# sudo yum install ntp
+    ```
 
 2. Configure the NTP server.
 
@@ -63,10 +63,10 @@ root@rhel7:~# sudo yum install ntp
 
 3. Enable and start the NTP service.
 
-```
-root@rhel7:~# sudo systemctl enable ntp
-root@rhel7:~# sudo systemctl start ntp
-```
+    ```
+    root@rhel7:~# sudo systemctl enable ntp
+    root@rhel7:~# sudo systemctl start ntp
+    ```
 
    {{%notice tip%}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
@@ -74,15 +74,15 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 4.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock is synchronized.
 
-```
-root@rhel7:~# ntpq -pn
-remote           refid            st t when poll reach   delay   offset  jitter
-==============================================================================
-+173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
-+12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
-2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
-\*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
-```
+    ```
+    root@rhel7:~# ntpq -pn
+    remote           refid            st t when poll reach   delay   offset  jitter
+    ==============================================================================
+    +173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
+    +12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
+    2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
+    \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
+    ```
 
 ### Obtain NetQ Agent Software Package
 
@@ -92,28 +92,28 @@ To obtain the NetQ Agent package:
 
 1.  Reference and update the local `yum` repository.
 
-```
-root@rhel7:~# sudo rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
-root@rhel7:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
-```
+    ```
+    root@rhel7:~# sudo rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
+    root@rhel7:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
+    ```
 
 2.  Edit `/etc/yum.repos.d/cumulus-host-el.repo` to set the `enabled=1` flag for the two NetQ repositories.
 
-```
-root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
-...
-[cumulus-arch-netq-2.4]
-name=Cumulus netq packages
-baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.4/$basearch
-gpgcheck=1
-enabled=1
-[cumulus-noarch-netq-2.4]
-name=Cumulus netq architecture-independent packages
-baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-2.4/noarch
-gpgcheck=1
-enabled=1
-...
-```
+    ```
+    root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
+    ...
+    [cumulus-arch-netq-3.0]
+    name=Cumulus netq packages
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/$basearch
+    gpgcheck=1
+    enabled=1
+    [cumulus-noarch-netq-3.0]
+    name=Cumulus netq architecture-independent packages
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/noarch
+    gpgcheck=1
+    enabled=1
+    ...
+    ```
 
 ## Install NetQ Agent on a RHEL or CentOS Server
 
@@ -123,26 +123,24 @@ To install the NetQ Agent:
 
 1.  Install the Bash completion and NetQ packages on the server.
 
-```
-root@rhel7:~# sudo yum -y install bash-completion
-root@rhel7:~# sudo yum install netq-agent
-```
+    ```
+    root@rhel7:~# sudo yum -y install bash-completion
+    root@rhel7:~# sudo yum install netq-agent
+    ```
 
 2. Verify you have the correct version of the Agent.
 
-```
-root@rhel7:~# rpm -q -netq-agent
-```
+    ```
+    root@rhel7:~# rpm -q -netq-agent
+    ```
 
-    You should see version 2.4.1 and update 26 or later in the results. For example: 
-    
-    netq-agent-**2.4.1**-rh7u**26**~1581350236.c5ec3e5.x86_64.rpm
+    {{<netq-install/agent-version version="3.0.0" opsys="rh">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 
-```
-root@rhel7:~# sudo systemctl restart rsyslog
-```
+    ```
+    root@rhel7:~# sudo systemctl restart rsyslog
+    ```
 
 4.  Continue with NetQ Agent Configuration in the next section.
 
@@ -159,25 +157,25 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 1. Open the `netq.yml` file using your text editor of choice. For example:
 
-```
-root@rhel7:~# sudo nano /etc/netq/netq.yml
-```
+    ```
+    root@rhel7:~# sudo nano /etc/netq/netq.yml
+    ```
 
 2. Locate the *netq-agent* section, or add it.
 
 3. Set the parameters for the agent as follows:
-  - port: 31980 (default) or one that you specify
-  - server: IP address of the NetQ server or appliance where the agent should send its collected data
-  - vrf: default (default) or one that you specify
+    - port: 31980 (default) or one that you specify
+    - server: IP address of the NetQ server or appliance where the agent should send its collected data
+    - vrf: default (default) or one that you specify
 
-Your configuration should be similar to this:
+    Your configuration should be similar to this:
 
-```
-netq-agent:
-  port: 31980
-  server: 127.0.0.1
-  vrf: default
-```
+    ```
+    netq-agent:
+    port: 31980
+    server: 127.0.0.1
+    vrf: default
+    ```
 
 ### Configure NetQ Agents Using the NetQ CLI
 

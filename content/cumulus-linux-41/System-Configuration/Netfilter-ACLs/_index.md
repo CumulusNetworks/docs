@@ -2,11 +2,6 @@
 title: Netfilter - ACLs
 author: Cumulus Networks
 weight: 200
-aliases:
- - /display/DOCS/Netfilter+++ACLs
- - /display/DOCS/Netfilter+ACLs
- - /display/DOCS/Netfilter+-+ACLs
- - /pages/viewpage.action?pageId=8366284
 toc: 3
 ---
 {{<exlink url="http://www.netfilter.org/" text="Netfilter">}} is the packet filtering framework in Cumulus Linux as well as most other Linux distributions. There are a number of tools available for configuring ACLs in Cumulus Linux:
@@ -21,9 +16,7 @@ In many instances, you can use NCLU to configure ACLs; however, in some cases, y
 
 If you need help to configure ACLs, run `net example acl` to see a basic configuration:
 
-<details>
-
-<summary>Example </summary>
+{{< expand "Example "  >}}
 
 ```
 cumulus@leaf01:~$ net example acl
@@ -74,7 +67,7 @@ Verification
 switch# net show configuration acl
 ```
 
-</details>
+{{< /expand >}}
 
 ## Traffic Rules In Cumulus Linux
 
@@ -236,7 +229,7 @@ You can enable nonatomic updates for `switchd`, which offer better scaling becau
 
 {{%notice warning%}}
 
-Only Broadcom-based ASICs support incremental nonatomic updates. Mellanox Spectrum-based ASICs do **not** support incremental updates; therefore traffic **is** affected and gets stopped.
+Only switches with the Broadcom ASIC support *incremental* nonataomic updates. Mellanox switches with the Spectrum-based ASIC only support *standard* nonatomic updates; using nonatomic mode on Spectrum-based ASICs impacts traffic on ACL updates.
 
 {{%/notice%}}
 
@@ -601,11 +594,16 @@ Installing acl policy ...
 Done.
 ```
 
-Install all rules and policies included in `/etc/cumulus/acl/policy.conf`:
+Apply all rules and policies included in `/etc/cumulus/acl/policy.conf`:
 
 ```
 cumulus@switch:~$ sudo cl-acltool -i
 ```
+
+In addition to ensuring that the rules and policies referenced by
+`/etc/cumulus/acl/policy.conf` are installed, this will remove any
+currently active rules and policies that are not contained in the
+files referenced by `/etc/cumulus/acl/policy.conf`.
 
 ## Specify the Policy Files to Install
 
@@ -723,10 +721,6 @@ The `iptables`/`ip6tables`/`ebtables` construct tries to layer the Linux impleme
 
 To learn more about any of the options shown in the tables below, run `iptables -h [name of option]`. The same help syntax works for options for `ip6tables` and `ebtables`.
 
-<details>
-
-<summary>Click to see an example of help syntax for an ebtables target</summary>
-
 ```
 root@leaf1# ebtables -h tricolorpolice
 <...snip...>
@@ -743,8 +737,6 @@ tricolorpolice option:
 Supported chains for the filter table:
 INPUT FORWARD OUTPUT
 ```
-
-</details>
 
 {{%/notice%}}
 
@@ -870,9 +862,7 @@ For example, to rate limit the incoming traffic on swp1 to 400 packets per secon
 
 Here is another example of control plane ACL rules to lock down the switch. You specify them in `/etc/cumulus/acl/policy.d/00control_plane.rules`:
 
-<details>
-
-<summary>View the contents of the file ... </summary>
+{{< expand "View the contents of the file ... "  >}}
 
 ```
 INGRESS_INTF = swp+
@@ -909,7 +899,7 @@ SNMP_SERVERS_4 = "192.168.0.1/32"
 -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -j DROP
 ```
 
-</details>
+{{< /expand >}}
 
 ### Set DSCP on Transit Traffic
 

@@ -2,9 +2,6 @@
 title: Anycast Design Guide
 author: Cumulus Networks
 weight: 257
-aliases:
- - /display/DOCS/Anycast+Design+Guide
- - /pages/viewpage.action?pageId=8363010
 pageID: 8363010
 ---
 {{<exlink url="https://frrouting.org/" text="FRRouting">}} provides the ability to run

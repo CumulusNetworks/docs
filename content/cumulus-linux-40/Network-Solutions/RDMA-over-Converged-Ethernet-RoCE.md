@@ -2,11 +2,6 @@
 title: RDMA over Converged Ethernet - RoCE
 author: Cumulus Networks
 weight: 1200
-aliases:
- - /display/DOCS/RDMA+over+Converged+Ethernet+++RoCE
- - /display/DOCS/RDMA+over+Converged+Ethernet+RoCE
- - /display/DOCS/RDMA+over+Converged+Ethernet+-+RoCE
- - /pages/viewpage.action?pageId=8366742
 toc: 3
 ---
 *RDMA over Converged Ethernet* ({{<exlink url="https://en.wikipedia.org/wiki/RDMA_over_Converged_Ethernet" text="RoCE">}}) provides the ability to write to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux supports features that can enable lossless Ethernet for RoCE environments. 
@@ -107,5 +102,5 @@ The  `storage-optimized` command also enables drop behaviors and Random Early De
 ## Related Information
 
 - {{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE introduction">}} - roceinitiative.org
-- {{<exlink url="https://community.mellanox.com/docs/DOC-2321" text="RoCEv2 congestion management">}} - community.mellanox.com
-- {{<exlink url="https://community.mellanox.com/docs/DOC-3036" text="Configuring RoCE over a DSCP-based lossless network">}} on a switch with a Mellanox Spectrum ASIC
+- {{<exlink url="https://community.mellanox.com/s/article/understanding-rocev2-congestion-management" text="RoCEv2 congestion management">}} - community.mellanox.com
+- {{<exlink url="https://community.mellanox.com/s/article/lossless-roce-configuration-for-spectrum-based-cumulus-switches-in-dscp-based-qos-mode" text="Configuring RoCE over a DSCP-based lossless network">}} on a switch with a Mellanox Spectrum ASIC

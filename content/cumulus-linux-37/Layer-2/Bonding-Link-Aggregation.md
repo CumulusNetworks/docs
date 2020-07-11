@@ -2,10 +2,6 @@
 title: Bonding - Link Aggregation
 author: Cumulus Networks
 weight: 119
-aliases:
- - /display/DOCS/Bonding+Link+Aggregation
- - /display/DOCS/Bonding+-+Link+Aggregation
- - /pages/viewpage.action?pageId=8362653
 pageID: 8362653
 ---
 Linux bonding provides a method for aggregating multiple network

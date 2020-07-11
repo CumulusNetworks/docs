@@ -2,9 +2,6 @@
 title: Management VRF
 author: Cumulus Networks
 weight: 197
-aliases:
- - /display/DOCS/Management+VRF
- - /pages/viewpage.action?pageId=8362940
 pageID: 8362940
 ---
 *Management VRF* is a subset of {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}} (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For all VRFs, the *main* routing table is the default table for all of the data plane switch ports. With management VRF, a second table, *mgmt*, is used for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF. FIB rules are installed for DNS servers because this is the typical deployment case.
@@ -169,7 +166,7 @@ The message `Duplicate IPv4 address detected, some interfaces may not be visible
 By default, when you issue a `ping` or `traceroute`, the packet is sent to the dataplane network (the main routing table). To use `ping` or `traceroute` on the management network, use `ping -I mgmt` or `traceroute -i mgmt`. To select a source address within the management VRF, use the `-s` flag for `traceroute`.
 
 ```
-cumulus@switch:~$ ping -I <destination-ip>
+cumulus@switch:~$ ping -I mgmt <destination-ip>
 ```
 
 Or:

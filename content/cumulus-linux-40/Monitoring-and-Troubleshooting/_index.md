@@ -2,9 +2,6 @@
 title: Monitoring and Troubleshooting
 author: Cumulus Networks
 weight: 910
-aliases:
- - /display/DOCS/Monitoring+and+Troubleshooting
- - /pages/viewpage.action?pageId=8366313
 toc: 2
 ---
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
@@ -293,10 +290,7 @@ module(load="imuxsock"
       SysSock.RateLimit.Interval="2" SysSock.RateLimit.Burst="50")
 ```
 
-<details>
-
-<summary>The following test script shows an example of rate-limit output
-in Cumulus Linux ... </summary>
+{{< expand "Example rate-limit Output " >}}
 
 ```
 root@leaf1:mgmt-vrf:/home/cumulus# cat ./syslog.py 
@@ -328,7 +322,7 @@ root@leaf1:mgmt-vrf:/home/cumulus# tail -n 60 /var/log/syslog
 2017-02-22T19:59:50.058324+00:00 leaf1 rsyslogd-2177: imuxsock[pid 22830]: begin to drop messages due to rate-limiting
 ```
 
-</details>
+{{< /expand >}}
 
 ### Harmless syslog Error: Failed to reset devices.list
 

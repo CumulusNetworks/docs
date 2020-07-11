@@ -2,10 +2,6 @@
 title: Cumulus NetQ API User Guide
 author: Cumulus Networks
 weight: 205
-aliases:
- - /display/NETQ/Cumulus+NetQ+API+User+Guide
- - /pages/viewpage.action?pageId=12321983
-pageID: 12321983
 toc: 3
 ---
 The NetQ API provides access to key telemetry and system monitoring data
@@ -21,9 +17,7 @@ endpoint and model parameter are contained in the API .json files.
 
 For information regarding new features, improvements, bug fixes, and
 known issues present in this release, refer to the
-{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360041040413-Cumulus-NetQ-2-4-Release-Notes" text="release notes">}}.
-
-
+{{<link title="Cumulus NetQ 2.4 Release Notes" text="release notes">}}.
 
 ## API Organization
 
@@ -424,7 +418,7 @@ monitored nodes and their configuration information, as follows:
 For simplicity, all of the endpoint APIs are combined into a single
 json-formatted file. There have been no changes to the file in the NetQ 2.3.0 release.
 
-<details><summary>netq-231.json</summary>
+{{< expand "netq-231.json"  >}}
 
 ```
 {
@@ -4103,3 +4097,5 @@ json-formatted file. There have been no changes to the file in the NetQ 2.3.0 re
 }
 
 ```
+
+{{< /expand >}}

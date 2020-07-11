@@ -2,10 +2,6 @@
 title: Bidirectional Forwarding Detection - BFD
 author: Cumulus Networks
 weight: 830
-aliases:
- - /display/DOCS/Bidirectional+Forwarding+Detection+++BFD
- - /display/DOCS/Bidirectional+Forwarding+Detection+-+BFD
- - /pages/viewpage.action?pageId=8366662
 toc: 3
 ---
 *Bidirectional Forwarding Detection* (BFD) provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection.
@@ -64,9 +60,9 @@ You can configure BFD for a peer group or for an individual neighbor.
 
 {{%/notice%}}
 
-<details>
+{{< tabs "TabID0" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following example configures BFD for swp1 and uses the default intervals.
 
@@ -84,11 +80,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 The following example configures BFD for swp1 and uses the default intervals:
 
@@ -120,7 +114,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -148,9 +144,9 @@ When you enable or disable BFD in OSPF, neighbors are registered and de-register
 
 To configure BFD in OSPF, run the following commands.
 
-<details>
+{{< tabs "TabID2" >}}
 
-<summary>NCLU Commands </summary>
+{{< tab "NCLU Commands" >}}
 
 The following example configures BFD in OSPFv3 for interface swp1 and sets the the interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
@@ -160,11 +156,9 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-</details>
+{{< /tab >}}
 
-<details>
-
-<summary>vtysh Commands </summary>
+{{< tab "vtysh Commands" >}}
 
 The following example configures BFD in OSPFv3 for interface swp1 and sets the the interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
@@ -181,7 +175,9 @@ switch# exit
 cumulus@switch:~$
 ```
 
-</details>
+{{< /tab >}}
+
+{{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 

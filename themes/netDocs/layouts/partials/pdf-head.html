@@ -13,7 +13,7 @@
             if(path_parts[path_parts.length - 1] == ""){
                 elems[i]["href"] = "#" + path_parts[path_parts.length - 2];
             }
-            else { 
+            else {
                 if(path_parts[path_parts.length - 1].charAt(0) == "#"){
                     elems[i]["href"] = path_parts[path_parts.length - 1]
                 }
@@ -21,12 +21,33 @@
                     elems[i]["href"] = "#" + path_parts[path_parts.length - 1]
                 }
             }
-            
+
         }
     }
+
+    function expand_tabs() {
+        // Break tabs into separate sections
+        $.each( $('.book-tabs'), function() {
+            var html = $(this).html();
+            var htmlDelimited = html.replace('</div><input type="radio"', '</div>§<input type="radio"');
+            var htmlSeparated = htmlDelimited.split('§');
+            for (let i in htmlSeparated) {
+            htmlSeparated[i] = '<div class="book-tabs">' + htmlSeparated[i] + '</div>';
+            }
+            $(this).replaceWith(htmlSeparated);
+        });
+        // Loop through .book-tabs again; adjust CSS where needed and replace input.name attribute values with a random hash
+        $.each( $('.book-tabs'), function() {
+            $(this).find('input[type=radio]:checked+label').css('border-bottom', '0');
+            $(this).find('.book-tabs-content').show();
+            $(this).find('input[type="radio"]').attr('name', Math.floor(Math.random() * 100000000000000));
+        });
+    }
+
     window.onload = function() {
         replace_url();
-        
+        expand_tabs();
+
         // Auto expand all of the code folding "<details>" tags.
         $( "details" ).attr("open", "true");
     }
@@ -36,14 +57,14 @@
 
 <style type="text/css">
     @page {
-      /* NetQ docs contain long outputs. 
+      /* NetQ docs contain long outputs.
       Use landscape style to help fit */
       {{ if eq .Page.Params.product "Cumulus NetQ" }}
           size: A4 landscape;
       {{ else }}
           size: A4 portrait;
       {{ end }}
-      
+
       @bottom {
           padding-top: 0;
           margin: 10pt 0 30pt 0;
@@ -52,7 +73,7 @@
       @top-right {
         border-bottom: .25pt solid #36424a;
       }
-      
+
   }
 
   @page:right {
@@ -107,7 +128,7 @@
       }
 
       @top-right {
-          padding-bottom: 0;  
+          padding-bottom: 0;
           margin: 10pt 0 30pt 0;
           border-bottom: .25pt solid #36424a;
           content: string(chapter-title);
@@ -123,22 +144,22 @@
   }
 
   @page:first {
-      @bottom-right { 
+      @bottom-right {
           content: normal;
       }
-      @bottom-left { 
+      @bottom-left {
           content: normal;
       }
-      @bottom { 
+      @bottom {
           content: normal;
       }
-      @top-right { 
+      @top-right {
           content: normal;
       }
-      @top-left { 
+      @top-left {
           content: normal;
       }
-      @top { 
+      @top {
           content: normal;
       }
   }
@@ -177,7 +198,7 @@
       margin: auto;
   }
 
-  img { 
+  img {
     padding-bottom: 30px;
   }
 
@@ -185,7 +206,7 @@
       page-break-after: always;
   }
 
-  .markdown code { 
+  .markdown code {
     font-size: .8rem;
   }
 

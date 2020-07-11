@@ -2,9 +2,6 @@
 title: Quick Start Guide
 author: Cumulus Networks
 weight: 5
-aliases:
- - /display/DOCS/Quick+Start+Guide
- - /pages/viewpage.action?pageId=8362542
 pageID: 8362542
 ---
 This quick start guide provides an end-to-end setup process for

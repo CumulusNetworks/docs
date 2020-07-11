@@ -2,10 +2,6 @@
 title: NetQ Command Line Overview
 author: Cumulus Networks
 weight: 480
-aliases:
- - /display/NETQ/NetQ+Command+Line+Overview
- - /pages/viewpage.action?pageId=12321059
-pageID: 12321059
 toc: 3
 ---
 
@@ -134,7 +130,7 @@ As you enter commands, you can get help with command syntax by entering `help` a
 
     cumulus@switch:~$ netq check bgp help
     Commands:
-       netq check bgp [vrf <vrf>] [around <text-time>] [json]
+       netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
     cumulus@switch:~$
 
 To see an exhaustive list of commands, run:
@@ -209,12 +205,12 @@ for the following:
 - **cl-pkg-info**: Information about software packages installed on monitored switches
 - **cl-resource**: ACL and forwarding information
 - **cl-ssd-util**: SSD utilization information
-- **clag**: CLAG status
+- **clag**: CLAG/MLAG status
 - **ethtool-stats**: Interface statistics
 - **events**: Display changes over time
 - **evpn**: EVPN status
 - **interface-stats**: Interface statistics
-- **interface-utils**: Interface statistics plus utilization
+- **interface-utilization**: Interface statistics plus utilization
 - **interfaces**: network interface port status
 - **inventory**: hardware component information
 - **ip**: IPv4 status
@@ -224,7 +220,7 @@ for the following:
 - **lldp**: LLDP status
 - **mac-history**: Historical information for a MAC address
 - **macs**: MAC table or address information
-- **mlag**: MLAG status
+- **mlag**: MLAG status (an alias for CLAG)
 - **notification**: Slack or PagerDuty notification configurations
 - **ntp**: NTP status
 - **opta-health**: Display health of apps on the OPTA

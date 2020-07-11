@@ -2,10 +2,6 @@
 title: VMware vSphere - ESXi 5.5
 author: Cumulus Networks
 weight: 37
-aliases:
- - /display/VX/VMware-vSphere-ESXi-5.5
- - /display/VX/VMware+vSphere+ESXi+5.5
- - /pages/viewpage.action?pageId=5126689
 pageID: 5126689
 ---
 The following sections describe how to import and set up a
@@ -27,6 +23,23 @@ This section assumes that you have downloaded the Cumulus VX disk image
 for VMware hypervisors and that the VMware vSphere is installed. For
 more download locations and steps, refer to the
 [Getting Started](/cumulus-vx/Getting-Started/) page.
+
+{{%/notice%}}
+
+{{%notice note%}}
+
+You may encounter an issue if the wrong storage interface type is selected (SATA vs IDE). For example this log message indicates the filesystem cannot be found. Configure ESXi to use the SATA controller. 
+
+```
+Info: Fetching http://192.168.100.1/onie-installer-cumulus_vx ...
+ONIE: Executing installer: http://192.168.100.1/onie-installer-cumulus_vx
+Verifying image checksum ...OK.
+Preparing image archive ... OK.
+Verifying image compatibility ...OK.
+Verifying system ram ...OK.
+Setting up installer ...Failure: Unable to find storage device for file system with label 'ONIE-BOOT'
+Info: Check the output of 'blkid'. 
+```
 
 {{%/notice%}}
 

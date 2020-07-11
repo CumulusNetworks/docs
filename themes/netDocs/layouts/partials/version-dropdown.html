@@ -1,46 +1,12 @@
-{{if ne .Params.Product nil}}
-<!-- The slice MUST be initalized with an int or it can not use the `uniq` function due to golang typing -->
-{{ $.Scratch.Set "versions" (slice 1) }} 
-{{ $.Scratch.Set "product_pages" (slice) }} 
+<!-- First, get a list of versions for this product and map it to the version landing page -->
+{{range where .Site.Sections "Params.product" .Page.Params.product }}
+    {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
+{{ end }}
 
-<!-- Create an array of all the versions of this product -->
-{{ range where .Site.Pages "Params.product" .Page.Params.product  }} 
-    {{ $.Scratch.Add "versions" .Params.version }}
-    {{ $.Scratch.Add "product_pages" . }} 
-{{ end }} 
-
-<!-- Filter it to the unique versions -->
-{{ $.Scratch.Set "versions" ($.Scratch.Get "versions" | uniq) }} 
-
-<!-- Delete the 1 we started the slice with now that we've got a unique set --> 
-{{ $.Scratch.Set "versions" (after 1 ($.Scratch.Get "versions")) }} 
-
-{{ $.Scratch.Set "version_links" (dict) }} 
-
-<!-- Loop over our set of versions --> 
-{{ range ($.Scratch.Get "versions") }} 
-    {{ $.Scratch.Set "found" false }} 
-    <!-- Loop over every page in that version --> 
-    <!-- NEEDS DOUBLE WHERE, but current filter is wrong -->
-    {{ range where ($.Scratch.Get "product_pages") "Params.version" . }}
-        {{ if eq .Params.product $.Page.Params.product }} 
-            <!-- If the version has a page title that matches ours, then assume it's the same page --> 
-            {{ if and (eq .Title $.Page.Title) (ne .Page.Params.type "pdf") }}
-                <!-- Set the flag that we found our page --> 
-                {{ $.Scratch.Set "found" true }}
-                <!-- Map the version to the page --> 
-                {{ $.Scratch.SetInMap "version_links" .Params.version . }}
-            {{ else }}
-                <!-- If we haven't found our page yet, see if we are the main version index (subsection == true) -->
-                {{ if (and .Params.subsection (ne ($.Scratch.Get "found"))) }} 
-                    <!-- If so, then map the version to the index page -->
-                    <!-- If our page doesn't exist in the other version then we just link to the main index --> 
-                    {{ $.Scratch.SetInMap "version_links" .Params.version . }}
-                {{ end }} 
-            {{ end }}
-        {{ end }} 
-    {{ end }}
-{{ end }} 
+<!-- Now check to see if this page exists for a version and update the map -->
+{{ range where (where .Site.Pages "Params.title" .Page.Title) ".Page.Params.product" .Page.Params.product  }}
+    {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
+{{ end }}
 
 <div id="product-nav" class="flex">
     <div class="menu-container">
@@ -70,7 +36,7 @@
                     </li>
                 </ul>
             </div>
-        </div> 
+        </div>
     </div>
 
     <div class="search-container">
@@ -95,13 +61,17 @@
                 v{{.Page.Params.version}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <!-- Sort our list of versions so it's high to low --> 
-                {{ range sort ($.Scratch.Get "versions") "value" "desc" }}
+                <!-- Sort our list of versions so it's high to low -->
+                {{ range sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc"}}
                     <!-- The version is the key in version_links. Get the Permalink of the page stored as a value  -->
-                    <a class="dropdown-item" href="{{(index ($.Scratch.Get "version_links") .).Permalink }}">v{{.}}</a> 
-                {{ end }} 
+                    {{ $ver := "" }}
+                    {{ if not ($.Scratch.Get "version_page_map") }}
+                        <a class="dropdown-item" href="{{ .Page.RelPermalink }}">v{{.Page.Params.version}}</a>
+                    {{ else }}
+                        <a class="dropdown-item" href="{{index ($.Scratch.Get "version_page_map") (string .Page.Params.version)}}">v{{.Page.Params.version}}</a>
+                    {{ end }}
+                {{ end }}
             </div>
         </div>
     </div>
 </div>
-{{ end }} 

@@ -2,9 +2,6 @@
 title: Back up and Restore
 author: Cumulus Networks
 weight: 70
-aliases:
- - /display/DOCS/Back+up+and+Restore
- - /pages/viewpage.action?pageId=10453301
 toc: 3
 ---
 You can back up the current configuration on a switch and restore the configuration on the same switch or on another Cumulus Linux switch of the same type and release. The backup is a compressed tar file that includes all configuration files installed by Debian packages and marked as configuration files. In addition, the backup contains files in the `/etc` directory that are not installed by a Debian package but are modified when you install a new image or enable/disable certain services (such as the Cumulus license file).

@@ -2,9 +2,6 @@
 title: Switch Port Attributes
 author: Cumulus Networks
 weight: 315
-aliases:
- - /display/CL36/Switch+Port+Attributes
- - /pages/viewpage.action?pageId=8362492
 pageID: 8362492
 ---
 This chapter discusses the various network interfaces on a switch
@@ -1120,7 +1117,7 @@ mode.
 {{%notice tip%}}
 
 Here is an example showing how to configure breakout cables for the
-[Mellanox Spectrum SN2700](https://community.mellanox.com/docs/DOC-2685).
+[Mellanox Spectrum SN2700](https://community.mellanox.com/s/article/howto-configure-breakout-cables-40g---gt--4x10g-using-cumulus-linux).
 
 {{%/notice%}}
 

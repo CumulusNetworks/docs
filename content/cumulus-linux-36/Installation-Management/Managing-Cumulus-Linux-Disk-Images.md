@@ -2,9 +2,6 @@
 title: Managing Cumulus Linux Disk Images
 author: Cumulus Networks
 weight: 41
-aliases:
- - /display/CL36/Managing+Cumulus+Linux+Disk+Images
- - /pages/viewpage.action?pageId=8362129
 pageID: 8362129
 ---
 The Cumulus Linux operating system resides on a switch as a *disk

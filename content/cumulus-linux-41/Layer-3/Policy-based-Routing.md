@@ -2,9 +2,6 @@
 title: Policy-based Routing
 author: Cumulus Networks
 weight: 820
-aliases:
- - /display/DOCS/Policy+based+Routing
- - /pages/viewpage.action?pageId=8366698
 toc: 3
 ---
 Typical routing systems and protocols forward traffic based on the destination address in the packet, which is used to look up an entry in a routing table. However, sometimes the traffic on your network requires a more hands-on approach. You might need to forward a packet based on the source address, the packet size, or other information in the packet header.
@@ -19,7 +16,7 @@ Policy-based routing is applied to incoming packets. All packets received on a P
 - You can apply only one PBR policy per input interface.
 - You can match on *source* and *destination* IP address only.
 - PBR is not supported for GRE or VXLAN tunneling.
-- PBR is not supported on ethernet interfaces.
+- PBR is not supported on management interfaces, such as eth0.
 - A PBR rule cannot contain both IPv4 and IPv6 addresses.
 
 {{%/notice%}}
@@ -30,14 +27,14 @@ A PBR policy contains one or more policy maps. Each policy map:
 
 - Is identified with a unique map name and sequence number. The sequence number is used to determine the relative order of the map within the policy.
 - Contains a match source IP rule or a match destination IP rule, and a set rule.
-      - To match on a source and destination address, a policy map can contain both match source and match destination IP rules.
-      - A set rule determines the PBR next hop for the policy. The set rule can contain a single next hop IP address or it can contain a next hop group. A next hop group has more than one next hop IP address so that you can use multiple interfaces to forward traffic. To use ECMP, you configure a next hop group.
+   - To match on a source and destination address, a policy map can contain both match source and match destination IP rules.
+   - A set rule determines the PBR next hop for the policy. The set rule can contain a single next hop IP address or it can contain a next hop group. A next hop group has more than one next hop IP address so that you can use multiple interfaces to forward traffic. To use ECMP, you configure a next hop group.
 
 To use PBR in Cumulus linux, you define a PBR policy and apply it to the ingress interface (the interface must already have an IP address assigned). Traffic is matched against the match rules in sequential order and forwarded according to the set rule in the first match. Traffic that does not match any rule is passed onto the normal destination based routing mechanism.
 
 {{%notice note%}}
 
-For Tomahawk and Tomahawk+ platforms, you must configure the switch to operate in non-atomic mode, which offers better scaling as all TCAM resources are used to actively impact traffic. Add the line `acl.non_atomic_update_mode = TRUE` to the `/etc/cumulus/switchd.conf` file. For more information, see {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="Nonatomic Update Mode vs. Atomic Update Mode">}}.
+For Tomahawk and Tomahawk+ platforms, you must configure the switch to operate in non-atomic mode, which offers better scaling as all TCAM resources are used to actively impact traffic. Add the line `acl.non_atomic_update_mode = TRUE` to the `/etc/cumulus/switchd.conf` file.
 
 {{%/notice%}}
 
@@ -304,9 +301,7 @@ A new Linux routing table ID is used for each next hop and next hop group.
 
 When you want to change or extend an existing PBR rule, you must first delete the conditions in the rule, then add the rule back with the modification or addition.
 
-<details>
-
-<summary> Modify an existing match/set condition</summary>
+{{< expand " Modify an existing match/set condition"  >}}
 
 The example below shows an existing configuration.
 
@@ -372,11 +367,9 @@ cumulus@switch:~$ sudo cat /cumulus/switchd/run/iprule/show | grep 303 -A 1
      [hwstatus: unit: 0, installed: yes, route-present: yes, resolved: yes, nh-valid: yes, nh-type: nh, ecmp/rif: 0x1, action: route,  hitcount: 0]
 ```
 
-</details>
+{{< /expand >}}
 
-<details>
-
-<summary>Add a match condition to an existing rule</summary>
+{{< expand "Add a match condition to an existing rule"  >}}
 
 The example below shows an existing configuration, where only one source IP match is configured:
 
@@ -435,7 +428,7 @@ cumulus@mlx-2400-91:~$ cat /cumulus/switchd/run/iprule/show | grep 302 -A 1
      [hwstatus: unit: 0, installed: yes, route-present: yes, resolved: yes, nh-valid: yes, nh-type: nh, ecmp/rif: 0x1, action: route,  hitcount: 0]
 ```
 
-</details>
+{{< /expand >}}
 
 ## Delete PBR Rules and Policies
 
@@ -566,10 +559,6 @@ cumulus@switch:~$
 
 If a PBR rule has multiple conditions (for example, a source IP match and a destination IP match), but you only want to delete one condition, you have to delete all conditions first, then re-add the ones you want to keep.
 
-<details>
-
-<summary>Example configuration</summary>
-
 The example below shows an existing configuration that has a source IP match and a destination IP match.
 
 ```
@@ -604,7 +593,5 @@ net add pbr-map pbr-policy seq 6 match src-ip 10.1.4.1/24
 net add pbr-map pbr-policy seq 6 set nexthop 192.168.0.21
 net commit
 ```
-
-</details>
 
 {{%/notice%}}

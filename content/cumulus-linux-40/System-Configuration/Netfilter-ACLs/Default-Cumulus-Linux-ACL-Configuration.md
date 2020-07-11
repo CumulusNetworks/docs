@@ -2,16 +2,11 @@
 title: Default Cumulus Linux ACL Configuration
 author: Cumulus Networks
 weight: 210
-aliases:
- - /display/DOCS/Default+Cumulus+Linux+ACL+Configuration
- - /pages/viewpage.action?pageId=8366295
 toc: 4
 ---
 The Cumulus Linux default ACL configuration is split into three parts: IP tables, IPv6 tables, and EB tables. The sections below describe the default configurations for each part. You can see the default file by clicking the Default ACL Configuration link:
 
-<details>
-
-<summary>Default ACL Configuration </summary>
+{{< expand "Default ACL Configuration " >}}
 
 ```
 cumulus@switch:~$ sudo cl-acltool -L all
@@ -187,7 +182,7 @@ Bridge chain: FORWARD, entries: 0, policy: ACCEPT
 Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 ```
 
-</details>
+{{< /expand >}}
 
 ## IP Tables
 

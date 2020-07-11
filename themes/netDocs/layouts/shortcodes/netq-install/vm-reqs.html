@@ -14,7 +14,12 @@ When using a VM, the following system resources must be allocated:
 <tbody>
 <tr class="even">
 <td>Processor</td>
+{{- if eq (.Get "deployment") "onprem" -}}
 <td>Eight (8) virtual CPUs</td>
+{{ end }}
+{{- if eq (.Get "deployment") "cloud" -}}
+<td>Four (4) virtual CPUs</td>
+{{ end }}
 </tr>
 <tr class="odd">
 <td>Memory</td>
@@ -28,7 +33,7 @@ When using a VM, the following system resources must be allocated:
 <tr class="even">
 <td>Local disk storage</td>
 {{- if eq (.Get "deployment") "onprem" -}}
-<td>256 GB SSD <br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
+<td>256 GB SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
 {{ end }}
 {{- if eq (.Get "deployment") "cloud" -}}
 <td>32 GB</td>

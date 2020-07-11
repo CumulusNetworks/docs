@@ -2,10 +2,6 @@
 title: Set User Preferences
 author: Cumulus Networks
 weight: 290
-aliases:
- - /display/NETQ22/NetQ-User-Interface-Overview
- - /pages/viewpage.action?pageId=12321856
-pageID: 12321856
 toc: 4
 ---
 Each user can customize the NetQ application display, change his account

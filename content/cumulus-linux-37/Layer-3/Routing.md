@@ -2,9 +2,6 @@
 title: Routing
 author: Cumulus Networks
 weight: 169
-aliases:
- - /display/DOCS/Routing
- - /pages/viewpage.action?pageId=8362912
 pageID: 8362912
 ---
 This chapter discusses routing on switches running Cumulus Linux.
@@ -214,18 +211,19 @@ The values in the following tables reflect results from our testing on the diffe
 
 #### Mellanox Spectrum Switches
 
-| Profile        | MAC Addresses | L3 Neighbors              | Longest Prefix Match (LPM)     |
+| <div style="width:120px">Profile| MAC Addresses | <div style="width:150px">L3 Neighbors| Longest Prefix Match (LPM)  |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
-| default        | 40k           | 32k (IPv4) and 16k (IPv6) | 64k (IPv4) and 28k (IPv6-long)  |
+| default        | 40k           | 32k (IPv4) and 16k (IPv6) | 64k (IPv4) and 28k (IPv6-long) |
 | l2-heavy       | 88k           | 48k (IPv4) and 40k (IPv6) | 8k (IPv4) and 8k (IPv6-long)   |
 | l2-heavy-1     | 180K          | 8k (IPv4) and 8k (IPv6)   | 8k (IPv4) and 8k (IPv6-long)   |
 | v4-lpm-heavy   | 8k            | 8k (IPv4) and 16k (IPv6)  | 80k (IPv4) and 16k (IPv6-long) |
 | v4-lpm-heavy-1 | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
 | v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4) and 32k (IPv6-long) and 32K (IPv6/64)  |
+| lpm-balanced<br>(3.7.12 and later)    | 8k           | 8k (IPv4) and 8k (IPv6)   | 60k (IPv4) and 60k (IPv6-long) |
 
 #### Broadcom Tomahawk/Tomahawk+ Switches
 
-| Profile           | MAC Addresses | L3 Neighbors | Longest Prefix Match (LPM)     |
+| <div style="width:190px">Profile  | MAC Addresses | L3 Neighbors | <div style="width:200px">Longest Prefix Match (LPM) |
 | ----------------- | ------------- | ------------ | ------------------------------ |
 | default           | 40k           | 40k          | 64k (IPv4) or 8k (IPv6-long)   |
 | l2-heavy          | 72k           | 72k          | 8k (IPv4) or 2k (IPv6-long)    |
@@ -233,7 +231,7 @@ The values in the following tables reflect results from our testing on the diffe
 
 #### Broadcom Trident II/Trident II+/Trident3 Switches
 
-| Profile             | MAC Addresses | L3 Neighbors | Longest Prefix Match (LPM)     |
+| <div style="width:190px">Profile | MAC Addresses | L3 Neighbors | <div style="width:200px">Longest Prefix Match (LPM)     |
 | ------------------- | ------------- | ------------ | ------------------------------ |
 | default             | 32k           | 16k          | 128k (IPv4) or 20k (IPv6-long) |
 | l2-heavy            | 160k          | 96k          | 8k (IPv4) or 2k (IPv6-long)    |
@@ -275,7 +273,6 @@ When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-update-mode" text="no
 | ipmc-heavy   | 8500           | 1000 (IPv6) or 1500 (IPv4) |
 | acl-heavy    | 450            | 2000 (IPv6) or 3500 (IPv4) |
 | ipmc-max     | 13000          | 1000 (IPv6) or 2000 (IPv4) |
-| ip-acl-heavy | | |
 
 When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-update-mode" text="nonatomic updates">}} are disabled (that is, the `acl.non_atomic_update_mode` is set to *FALSE* in `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are as follows:
 
@@ -284,8 +281,7 @@ When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-update-mode" text="no
 | default      | 1000           | 250 (IPv6) or 500 (IPv4)   |
 | ipmc-heavy   | 8500           | 500 (IPv6) or 750 (IPv4)   |
 | acl-heavy    | 450            | 1000 (IPv6) or 1750 (IPv4) |
-| ipmc-max     | 13000          | 500 (IPv6) or 1000 (IPv4)  |
-| ip-acl-heavy | | |
+| ipmc-max     | 13000          | 500 (IPv6) or 1000 (IPv4)  35
 
 ## Caveats and Errata
 

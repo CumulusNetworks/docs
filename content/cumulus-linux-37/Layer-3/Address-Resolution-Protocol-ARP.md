@@ -2,10 +2,6 @@
 title: Address Resolution Protocol - ARP
 author: Cumulus Networks
 weight: 179
-aliases:
- - /display/DOCS/Address+Resolution+Protocol+ARP
- - /display/DOCS/Address+Resolution+Protocol+-+ARP
- - /pages/viewpage.action?pageId=8362976
 pageID: 8362976
 ---
 Address Resolution Protocol (ARP) is a communication protocol used for discovering the link layer  address, such as a MAC address, associated with a given network layer  address. ARP is defined by {{<exlink url="https://tools.ietf.org/html/rfc826" text="RFC 826">}}.
@@ -79,7 +75,6 @@ The ARP tunable parameters are set to the following values by default in Cumulus
 </tr>
 <tr class="even">
 <td><p><code>arp_ignore</code></p></td>
-<!-- 4.0B4 default is 2 -->
 <td><p>1</p></td>
 <td><p>INT</p></td>
 <td><p>Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:</p>
@@ -255,14 +250,15 @@ The configuration above takes effect immediately but does not persist if you reb
 
 1. Create a new file called `/etc/cumulus/neighmgr.conf` and add the `setsrcipv4 <ipaddress>` option; for example:
 
-```
-cumulus@switch:~$  sudo nano /etc/cumulus/neighmgr.conf
+    ```
+    cumulus@switch:~$  sudo nano /etc/cumulus/neighmgr.conf
 
-setsrcipv4: 10.1.0.2
-```
+    [main]
+    setsrcipv4: 10.1.0.2
+    ```
 
-2. Reload the configuration file using `systemd`:
+2. Restart the `neighmgrd` service:
 
-```
-cumulus@switch:~$ sudo systemctl daemon-reload
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart neighmgrd
+    ```

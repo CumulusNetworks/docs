@@ -4,7 +4,12 @@ author: Cumulus Networks
 weight: 25
 toc: 2
 ---
-ADD INTRO
+To use Cumulus VX with KVM, you need to perform the following configuration:
+
+- Create the VMs
+- Create connections between the VMs ???
+- Test the connections
+- Configure OSPF and FRRouting
 
 Follow these steps to create a Cumulus VX VM with KVM on a Linux server. These sections assume a basic level of Linux and KVM experience. For detailed instructions, refer to the {{<exlink url="http://wiki.qemu.org/Main_Page" text="QEMU">}} and {{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM">}} documentation.
 
@@ -13,8 +18,6 @@ Performing virtualization in Linux requires three components:
 - **Libvirt** provides an abstraction language to define a VM. It uses XML to represent and define the VM.
 - **KVM** works exclusively with QEMU and performs hardware acceleration for x86 VMs with Intel and AMD CPUs. The pair is often called KVM/QEMU or just KVM.
 - **QEMU** is a machine emulator that allows the host machine to emulate the CPU architecture of the guest machine. Because QEMU does not provide hardware acceleration, it works well with KVM.
-
-This configuration is tested on a server running Debian 3.2.60-1+deb7u3 x86\_64 GNU/Linux with 3.2.0-4-amd64 \#1 SMP processors.
 
 1. Install QEMU/KVM. Refer to the {{<exlink url="http://www.qemu-project.org/download/" text="KVM documentation">}}  
 
@@ -73,10 +76,9 @@ This configuration is tested on a server running Debian 3.2.60-1+deb7u3 x86\_64 
 
 5. Copy the `qcow2` image onto a Linux server four times to create the four VMs. Name them as follows:
 
-   - leaf01.qcow2
-   - leaf02.qcow2
-   - spine01.qcow2
-   - spine02.qcow2
+   - Leaf01.qcow2
+   - Leaf02.qcow2
+   - Spine01.qcow2
 
 6. Power on each VX and configure each one as follows:
 
@@ -145,27 +147,6 @@ sudo /usr/bin/kvm   -curses                             \
 
 {{< /tab >}}
 
-{{< tab "spine02.qcow2 ">}}
-
-```
-sudo /usr/bin/kvm   -curses                             \
-                    -name spine02                       \
-                    -pidfile spine02.pid                \
-                    -smp 1                              \
-                    -m 256                              \
-                    -net nic,vlan=10,macaddr=00:01:00:00:04:00,model=virtio \
-                    -net user,vlan=10,net=192.168.0.0/24,hostfwd=tcp::1404-:22 \
-                    -netdev socket,udp=127.0.0.1:1605,localaddr=127.0.0.1:1606,id=dev0 \
-                    -device virtio-net-pci,mac=00:02:00:00:00:07,addr=6.0,multifunction=on,netdev=dev0,id=swp1 \
-                    -netdev socket,udp=127.0.0.1:1607,localaddr=127.0.0.1:1608,id=dev1 \
-                    -device virtio-net-pci,mac=00:02:00:00:00:08,addr=6.1,multifunction=off,netdev=dev1,id=swp2 \
-                    -netdev socket,udp=127.0.0.1:1611,localaddr=127.0.0.1:1612,id=dev2 \
-                    -device virtio-net-pci,mac=00:02:00:00:00:12,addr=6.2,multifunction=off,netdev=dev2,id=swp3 \
-                    spine02.qcow2
-```
-
-{{< /tab >}}
-
 {{< /tabs >}}
 
 The QEMU/KVM commands used here are minimal. You can add more parameters, such as `-enable-kvm`, `-serial` or `-monitor`, as needed.
@@ -180,4 +161,18 @@ br0: received package on swp1 with own address as source address
 
 {{%/notice%}}
 
-Follow the steps in {{<link url="Create-a-Two-Leaf-Two-Spine-Topology" text="Create a Two-Leaf, Two-Spine Topology">}} to configure the network interfaces and routing.
+## Test Connections between VMs
+
+After you restart the VMs, ping across VMs to test the connections:
+
+Run the following commands from leaf01 to ping Leaf02 and Spine01:
+
+```
+cumulus@Cumulusleaf01:~$ ping 10.2.1.2
+
+cumulus@leaf01:~$ ping 10.2.1.3
+```
+
+## Configure OSPF and FRRouting
+
+ADD SHORTCODE

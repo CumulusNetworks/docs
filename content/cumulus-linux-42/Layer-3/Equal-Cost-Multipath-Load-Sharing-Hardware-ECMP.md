@@ -405,7 +405,7 @@ To enable the IPv6 route replacement option:
     cumulus@switch:~$ sudo nano /etc/frr/daemons
     ...
     vtysh_enable=yes
-    zebra_options=" -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
+    zebra_options=" -M cumulus_mlag -M snmp -A 127.0.0.1 --v6-rr-semantics -s 90000000"
     bgpd_options=" -M snmp  -A 127.0.0.1"
     ospfd_options=" -M snmp -A 127.0.0.1"
       ...

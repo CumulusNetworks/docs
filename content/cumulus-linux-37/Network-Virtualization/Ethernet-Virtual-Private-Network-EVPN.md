@@ -2350,7 +2350,7 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  920
+    mtu  9202
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4

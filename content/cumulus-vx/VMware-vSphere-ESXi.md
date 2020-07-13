@@ -5,13 +5,16 @@ weight: 20
 toc: 2
 ---
 
-ADD INTRO
+To use Cumulus VX with VMWare vSphere, you need to perform the following configuration:
 
-## Create a VM with VMWare vSphere
+- Create the VMs
+- Create connections between the VMs
+- Test the connections
+- Configure OSPF and FRRouting
 
-The following procedure describes how to create a Cumulus VX VM with VMWare vSphere ESXi. This section assumes a basic level of VMware vSphere experience. For detailed instructions, refer to the {{<exlink url="https://docs.vmware.com/en/VMware-vSphere/index.html" text="VMware vSphere documentation">}}.
+## Create VMs with VMWare vSphere
 
-This configuration was tested using vSphere ESXi 5.5 and a Windows vSphere client; however, the VM is configured to support ESXi 4.0 and higher.
+The following procedure describes how to create a VM in VMWare vSphere for each switch in the example topology (Leaf01, Leaf02, and Spine01). This section assumes a basic level of VMWare vSphere experience.
 
 1. Download and install the VMWare vSphere ESXi hypervisor. Refer to the {{<exlink url="http://www.vmware.com/products/vsphere.html" text="VMWare vSphere documentation">}}.
 
@@ -27,7 +30,7 @@ This configuration was tested using vSphere ESXi 5.5 and a Windows vSphere clien
 
 7. Review the template details, then click **Next**.
 
-8. In the text box, edit the name of the VM to `leaf01`, then click **Next**.
+8. In the text box, edit the name of the VM to `Leaf01`, then click **Next**.
 
     {{< img src = "/images/cumulus-vx/VX_esxi_deploy3_name.png" >}}
 
@@ -41,9 +44,7 @@ This configuration was tested using vSphere ESXi 5.5 and a Windows vSphere clien
 
    {{< img src = "/images/cumulus-vx/VX_esxi_deploy5_deploying.png" >}}
 
-11. Repeat the previous steps to create three additional VMs: `leaf02`, `spine01`, and `spine02`
-
-12. After you have created all four VMs, follow the steps detailed in {{<link url="Create-a-Two-Leaf-Two-Spine-Topology" text="Create a Two-Leaf, Two-Spine Topology">}} to configure the network interfaces and routing.
+11. Repeat the previous steps to create two additional VMs: `Leaf02` and `Spine01`.
 
 {{%notice note%}}
 
@@ -62,30 +63,22 @@ Info: Check the output of 'blkid'.
 
 {{%/notice%}}
 
-## Create Point-to-Point Connections Between VMs
+## Create Connections Between VMs
 
 Add section here
 
-## Test the Network Topology Connections
+## Test the Network Connections
 
-After you restart the VMs, ping across VMs to test the connections:
+After you restart the VMs, ping across VMs to test the connections.
 
-1. Run the following commands from leaf01:
+Run the following commands from leaf01 to ping Leaf02 and Spine01:
 
-   - Ping leaf02:
+```
+cumulus@Cumulusleaf01:~$ ping 10.2.1.2
 
-   ```
-   cumulus@Cumulusleaf01:~$ ping 10.2.1.2
-   ```
+cumulus@leaf01:~$ ping 10.2.1.3
+```
 
-   - Ping spine01:
+## Configure OSPF and FRRouting
 
-   ```
-   cumulus@leaf01:~$ ping 10.2.1.3
-   ```
-
-   - Ping spine02:
-
-   ```
-   cumulus@leaf01:~$ ping 10.2.1.4
-   ```
+   ADD shortcode

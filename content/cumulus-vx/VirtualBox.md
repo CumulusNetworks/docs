@@ -4,7 +4,12 @@ author: Cumulus Networks
 weight: 15
 toc: 2
 ---
-ADD INTRO
+To use Cumulus VX with VirtualBox, you need to perform the following configuration:
+
+- Create the VMs
+- Create connections between the VMs
+- Test the connections
+- Configure OSPF and FRRouting
 
 ## Create VMs with VirtualBox
 
@@ -62,32 +67,27 @@ Follow these steps for each VM:
 
 {{< img src = "/images/cumulus-vx/mapping.png" >}}
 
-| Switch           | swp  | VirtualBox Interface | VirtualBox Network Type | Name     |
-| ---------------- | ---- | -------------------- | ----------------------- | -------- |
-| Leaf01  |      | Adapter 1            | NAT                     |          |
-|                  | swp1 | Adapter 2            | Internal                | Intnet-1 |
-|                  | swp2 | Adapter 3            | Internal                | Intnet-3 |
-|                  | swp3 | Adapter 4            | Internal                | Intnet-5 |
-| Leaf02  |      | Adapter 1            | NAT                     |          |
-|                  | swp1 | Adapter 2            | Internal                | Intnet-2 |
-|                  | swp2 | Adapter 3            | Internal                | Intnet-4 |
-|                  | swp3 | Adapter 4            | Internal                | Intnet-6 |
-| Spine01 |      | Adapter 1            | NAT                     |          |
-|                  | swp1 | Adapter 2            | Internal                | Intnet-1 |
-|                  | swp2 | Adapter 3            | Internal                | Intnet-2 |
-|                  | swp3 | Adapter 4 (disabled) |                         |          |
+| Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Name     |
+| --------- | ----     | -------------------- | ----------------------- | -------- |
+| Leaf01    |          | Adapter 1            | NAT                     |          |
+|           | swp51    | Adapter 2            | Internal                | Intnet-1 |
+| Leaf02    |          | Adapter 1            | NAT                     |          |
+|           | swp51    | Adapter 2            | Internal                | Intnet-2 |
+| Spine01   |          | Adapter 1            | NAT                     |          |
+|           | swp1     | Adapter 2            | Internal                | Intnet-1 |
+|           | swp2     | Adapter 3            | Internal                | Intnet-2 |
 
 ## Test Network Connections
 
 After you restart the VMs, ping across VMs to test the connections:
 
-1. Run the following commands from leaf01 to ping Leaf01 and Spine01:
+Run the following commands from leaf01 to ping Leaf02 and Spine01:
 
-   ```
-   cumulus@Cumulusleaf01:~$ ping 10.2.1.2
+```
+cumulus@Cumulusleaf01:~$ ping 10.2.1.2
 
-   cumulus@leaf01:~$ ping 10.2.1.3
-   ```
+cumulus@leaf01:~$ ping 10.2.1.3
+```
 
 You can also add a VM to one or more internal virtual networks in VirtualBox by cloning the VM. However, consider the following if you prefer to clone VMs:
 
@@ -97,7 +97,7 @@ You can also add a VM to one or more internal virtual networks in VirtualBox by 
 
 ## Configure OSPF and FRRouting
 
-The following configuration uses unnumbered IP addressing, with the same /32 IPv4 address on multiple ports. OSPF unnumbered does not have an equivalent to RFC-5549, so you need to use an IPv4 address to bring up the adjacent OSPF neighbors, allowing you to reuse the same IP address. You can see some example
+The following configuration uses unnumbered IP addressing with the same /32 IPv4 address on multiple ports. OSPF unnumbered does not have an equivalent to RFC-5549, so you need to use an IPv4 address to bring up the adjacent OSPF neighbors, allowing you to reuse the same IP address. You can see some example
 {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202796476-OSPF-Unnumbered-Sample-Configurations" text="unnumbered OSPF configurations">}} in the knowledge base.
 
 Follow these steps on each switch:

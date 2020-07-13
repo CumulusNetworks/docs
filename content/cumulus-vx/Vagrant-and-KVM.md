@@ -157,26 +157,9 @@ You must install Vagrant **after** you install libvirt. Vagrant might not detect
    default running (libvirt)
    ```
 
-7. To show all running KVM/libvirt VMs:  
+7. To show all running KVM/libvirt VMs, run the `virsh list --all` command.
 
-   ```
-   user@ubuntubox:~/testdir$ virsh list --all
-
-   Id    Name                           State
-   ----------------------------------------------------
-   2     test_default                   running
-
-   #Look at the libvirt XML definition of the VM used to create the VM:
-   user@ubuntubox:~/testdir$ virsh dumpxml [name of domain]
-   ```
-
-8. The `libvirt` domain is running. To stop this machine, you can run `vagrant halt`. To destroy the machine, you can run `vagrant destroy`.
-
-   ```
-   user@ubuntubox:~/testdir$ vagrant destroy -f
-   ```
-
-After completing these steps, Vagrant is now set up.
+The `libvirt` domain is running. To stop this machine, you can run `vagrant halt`. To destroy the machine, you can run `vagrant destroy`.
 
 ## Create the Vagrantfile and Launch KVM Instances
 
@@ -220,7 +203,7 @@ After completing these steps, Vagrant is now set up.
    VM, run `vagrant status NAME`.
    ```
 
-   You must run all Vagrant commands performed against a simulation, such as `vagrant up` or `vagrant destroy, from the directory that contains the Vagrantfile.
+   You must run all Vagrant commands performed against a simulation, such as `vagrant up` or `vagrant destroy`, from the directory that contains the Vagrantfile.
 
 5. Bring up all the images with `--provider libvirt`:
 
@@ -244,7 +227,7 @@ After completing these steps, Vagrant is now set up.
    Bringing machine 'internet' up with 'libvirt' provider...
    ```
 
-6. After you comolete all the steps above, the VMs are created and accessible. Issue the following command to access the out-of-band management server VM:
+6. After you complete all the steps above, the VMs are created and accessible. Issue the following command to access the out-of-band management server VM:
 
    ```
    user@ubuntubox:~/cldemo-vagrant$ vagrant ssh oob-mgmt-server

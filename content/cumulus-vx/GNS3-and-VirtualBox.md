@@ -48,32 +48,23 @@ To run your virtual network under GNS3:
 
    {{< tabs "TabID01 ">}}
 
-{{< tab "Cumulus VX-spine1 ">}}
+{{< tab "Spine01 ">}}
 
-e1<->e1 Cumulus leaf01  
-e2<->e1 Cumulus leaf02
-
-{{< /tab >}}
-
-{{< tab "Cumulus spine02 ">}}
-
-e1<->e2 Cumulus leaf01  
-e2<->e2 Cumulus leaf02
+e1<->e1 Cumulus Leaf01  
+e2<->e1 Cumulus Leaf02
 
 {{< /tab >}}
 
-{{< tab "Cumulus leaf01 ">}}
+{{< tab "Cumulus Leaf01 ">}}
 
-e1<->e1 Cumulus spine01  
-e2<->e1 Cumulus spine02  
+e1<->e1 Cumulus Spine01  
 e3<->e0 PC1 (VPCS)
 
 {{< /tab >}}
 
-{{< tab "Cumulus leaf02 ">}}
+{{< tab "Cumulus Leaf02 ">}}
 
 e1<->e2 Cumulus spine01  
-e2<->e2 Cumulus spine02  
 e3<->e0 PC2 (VPCS)
 
 {{< /tab >}}
@@ -82,28 +73,16 @@ e3<->e0 PC2 (VPCS)
 
    You can also drag and drop virtual PCs (VPCS) and connect them to the Cumulus VX switch. To open a console to a virtual PC, right click on the VPCS icon and select **Console**. In the console, configure the IP address and default gateway for the VPCS (for example: `ip 10.4.1.101/25 10.4.1.1`).
 
-## Test the Network Topology Connections
+## Test the Network Connections
 
-After you restart the VMs, ping across VMs to test the connections:
-
-1. Run the following commands from leaf01:
-
-   - Ping leaf02:
+After you restart the VMs, ping across VMs to test the connections. Run the following commands from leaf01:
 
    ```
    cumulus@Cumulusleaf01:~$ ping 10.2.1.2
-   ```
 
-   - Ping spine01:
-
-   ```
    cumulus@leaf01:~$ ping 10.2.1.3
    ```
 
-   - Ping spine02:
+## Configure OSPF and FRRouting
 
-   ```
-   cumulus@leaf01:~$ ping 10.2.1.4
-   ```
-
-   Start all the VMs. You can now ping between the VMs and between the virtual PCs.
+ADD SHORTCODE

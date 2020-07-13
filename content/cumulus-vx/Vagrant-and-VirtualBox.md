@@ -103,7 +103,7 @@ To shut down the VM, use the `destroy` command:
 
 For more information on configuring VMs with Vagrant, refer to the {{<exlink url="https://docs.vagrantup.com/v2/" text="Vagrant documentation">}}.
 
-## Add Switch Port Interfaces to a Cumulus VX VM
+## Add Switch Port Interfaces
 
 By default Vagrant only configures the first network interface (eth0) for its own use. You must configure additional network interfaces, such as the Cumulus Linux switch port interfaces, in the `Vagrantfile`. Normally, you configure these interfaces to use a private network. By default, Vagrant provides one preconfigured private network, although you can choose to create additional private networks. You can connect one or more network interfaces to a private network.
 
@@ -122,7 +122,7 @@ The following example creates a Cumulus VX VM where the interfaces swp1 through 
 
 For more information on creating and using private networks, refer to the {{<exlink url="https://docs.vagrantup.com/v2/networking/private_network.html" text="Vagrant documentation">}}.
 
-### Create Multiple Cumulus VX VMs
+### Create Multiple VMs
 
 Vagrant can create and configure multiple VMs with a single command. For example, you can use Vagrant to create multiple Cumulus VX VMs and then connect the network interfaces of those VMs together.
 
@@ -131,24 +131,24 @@ The following example creates two Cumulus VX VMs, leaf1 and leaf2, where the int
    ```
    Vagrant.configure(2) do |config|
 
-   config.vm.define "leaf1" do |leaf1|
+   config.vm.define "Leaf01" do |Leaf01|
       leaf1.vm.box = "CumulusCommunity/cumulus-vx"
 
       # Internal network for swp* interfaces.
-      leaf1.vm.network "private_network", virtualbox__intnet: "swp1", auto_config: false
-      leaf1.vm.network "private_network", virtualbox__intnet: "swp2", auto_config: false
-      leaf1.vm.network "private_network", virtualbox__intnet: "swp3", auto_config: false
-      leaf1.vm.network "private_network", virtualbox__intnet: "swp4", auto_config: false
+      Leaf01.vm.network "private_network", virtualbox__intnet: "swp1", auto_config: false
+      Leaf01.vm.network "private_network", virtualbox__intnet: "swp2", auto_config: false
+      Leaf01.vm.network "private_network", virtualbox__intnet: "swp3", auto_config: false
+      Leaf01.vm.network "private_network", virtualbox__intnet: "swp4", auto_config: false
    end
 
-   config.vm.define "leaf2" do |leaf2|
-      leaf2.vm.box = "CumulusCommunity/cumulus-vx"
+   config.vm.define "Leaf02" do |Leaf02|
+      Leaf02.vm.box = "CumulusCommunity/cumulus-vx"
 
       # Internal network for swp* interfaces.
-      leaf2.vm.network "private_network", virtualbox__intnet: "swp1", auto_config: false
-      leaf2.vm.network "private_network", virtualbox__intnet: "swp2", auto_config: false
-      leaf2.vm.network "private_network", virtualbox__intnet: "swp3", auto_config: false
-      leaf2.vm.network "private_network", virtualbox__intnet: "swp4", auto_config: false
+      Leaf02.vm.network "private_network", virtualbox__intnet: "swp1", auto_config: false
+      Leaf02.vm.network "private_network", virtualbox__intnet: "swp2", auto_config: false
+      Leaf02.vm.network "private_network", virtualbox__intnet: "swp3", auto_config: false
+      Leaf02.vm.network "private_network", virtualbox__intnet: "swp4", auto_config: false
    end
 
    end
@@ -156,7 +156,11 @@ The following example creates two Cumulus VX VMs, leaf1 and leaf2, where the int
 
 When you run `vagrant up`, both VMs are created. You can log in to each VM and configure the interfaces as you want; the interfaces will pass traffic between themselves as if they are two physical switches connected together by four cables.
 
-## Limitations
+## Configure OSPF and FRRouting
+
+ADD SHORTCODE
+
+## Caveats and Limitations
 
 When using Vagrant with Cumulus VX:
 

@@ -1,7 +1,7 @@
 ---
 title: Vagrant and KVM
 author: Cumulus Networks
-weight: 30
+weight: 35
 toc: 2
 ---
 The solution described in this chapter requires four components:

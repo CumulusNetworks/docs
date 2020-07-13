@@ -1,7 +1,7 @@
 ---
 title: 'Configure the Topology'
 author: Cumulus Networks
-weight: 26
+weight: 50
 product: Cumulus VX
 version: '3.7'
 ---

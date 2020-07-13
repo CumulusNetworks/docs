@@ -7,9 +7,94 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30464</td>
+<td><p>The net show dot1x interface summary command output shows a MAC address with all zeros associated with a port.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30296</td>
+<td><p>The net show configuration command provides the wrong net add command for ACL under the VLAN interface.</p>
+</td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30286</td>
+<td><p>When you remove BFD configuration by editing the /etc/frr/frr.conf file and restarting FRR, you see a traceback.<br/>
+To work around this issue, either use NCLU or vtysh commands to remove the BFD configuration, or restart FRR with the new /etc/frr/frr.conf file.</p></td>
+<td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30195</td>
+<td><p>On the Dell S3000 switch, after installing the Cumulus Linux 4.1.1 disk image without a license, the switch sends a link beat if a remote host port is configured.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30178</td>
+<td><p>NCLU tab completion for net show displays the text add help text instead of system Information for the system option.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30165</td>
+<td><p>When you use a phone with EAP and voice VLAN is configured (<b>and MAB is not configured</b>), after the phone authenticates, all tagged traffic from the phone is dropped.<br/>
+To work around this issue, enable MAB on the interface.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30103</td>
 <td><p>On a Broadcom switch with the Trident2+ ASIC, ACL rules for VLANs are not applied after a reboot and the counters remain at zero.<br/>
 To work around this issue, either do not set acl.non_atomic_update_mode = TRUE in the /etc/cumulus/switchd.conf file or run the cl-acltool -i command after the reboot to install the  ACLs.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30101</td>
+<td><p>The NCLU net show bridge spanning-tree command displays the aging timer incorrectly. </p></td>
 <td>3.7.12</td>
 <td></td>
 </tr>
@@ -115,6 +200,21 @@ Fixed: 3.8.7.1-1+deb8u6</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29830</td>
+<td><p>Unicast traffic from downlink hosts is flooded to multiple remote VTEPs, which might also cause high HwIfOutQDrops/TX_DRP on the uplink ports.<br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.10-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29807</td>
+<td><p>After a neighbor is removed, the redistributed neighbor entry is withdrawn from the BGP table, but the prefix might still be selected as the bestpath when the host's originated prefix is not advertised.<br/>
+To work around this issue, recreate the neighbor entry and flap the interface to the host. <br/>
+Or, if the host is already down, manually create a neighbor entry with an invalid MAC address, which forces redistribute neighbor to re-withdraw the entry.</p></td>
+<td>3.7.3-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29779</td>
 <td><p>In LLDP, the snmp subagent loses all subsequent lldpRemSysName (1.0.8802.1.1.2.1.4.1.1.9) entries after an entry with a missing SysName is added.<br/>
 All the information from lldpctl is correct. Only the entries after the entry that is missing a SysName in lldpRemSysName disappear from the snmp subagent.</p></td>
@@ -159,6 +259,17 @@ To work around this issue, run the systemctl restart switchd command.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29652</td>
+<td><p>The ACCTON-DIAG option under the Cumulus Linux GRUB menu does not work. When you select this option, you see the following error:</p>
+
+error: invalid signature.
+Press any key to continue...
+
+</td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29594</td>
 <td><p>When you run an Ansible script to replace the /etc/network/interfaces file, then run the ifreload -a command, you see errors similar to the following:</p>
 
@@ -187,7 +298,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -283,7 +396,7 @@ Fixed: 1.8.14-4+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-29309</td>
-<td><p>When Optimized Multicast Flooding (OMF) is enabled with the bridge.optimized_mcast_flood = TRUE setting in the /etc/cumulus/swichd.conf file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</p></td>
+<td><p>When Optimized Multicast Flooding (OMF) is enabled with the bridge.optimized_mcast_flood = TRUE setting in the /etc/cumulus/switchd.conf file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</p></td>
 <td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
@@ -321,6 +434,12 @@ Fixed: 0.80.7-2+deb8u4</p></td>
 <td>CM-29165</td>
 <td><p>With FRR or OSPF, you might see an inconsistent link-state advertisement. For example, when you configure the OSPF default originate route as metric-type 1 with a specific metric, Cumulus Linux shows the default originate route as an external metric-type 2 route with the default metric in the database. This issue typically occurs when both IPv4 and IPv6 default routes exist in the routing table.</p></td>
 <td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29148</td>
+<td><p>On MLX switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</p></td>
+<td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -452,13 +571,6 @@ s&gt; 50.0.0.1/32      0.0.0.0                  0         32768 i
 <td></td>
 </tr>
 <tr>
-<td>CM-28938</td>
-<td><p>When you install an ACL LOG/DROP rule on a layer 3 ingress interface that is a member of a VRF, traffic that matches this rule is not logged and is still forwarded.<br/>
-To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself or to the layer 2 VNI.</p></td>
-<td>3.7.6-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28932</td>
 <td><p>After you add a new VNI and a layer 3 SVI to a set of leafs, certain leafs might not be able to communicate on the layer 3 VNI. <br/>
 To work around this issue, reboot the leaf switch or restart switchd.</p></td>
@@ -469,6 +581,12 @@ To work around this issue, reboot the leaf switch or restart switchd.</p></td>
 <td>CM-28867</td>
 <td><p>The QuantaMesh BMS T3048-LY8 switch shows a low fan RPM in syslog.</p></td>
 <td>3.7.5-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28862</td>
+<td><p>On the Edgecore AS5812 switch, the Innodisk DIMM causes a DIMM temperature sensor absent alert.</p></td>
+<td>3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -544,7 +662,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -554,7 +675,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -592,6 +716,12 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <tr>
 <td>CM-28441</td>
 <td><p>If a LLDP neighbor advertises a PortDescr that contains commas, ptmctl -d splits the string on the commas and misplaces its components in other columns.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28437</td>
+<td><p>syslog might report a high load average with the CPU running a later microcode revision.</p></td>
 <td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
@@ -2143,6 +2273,65 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30286</td>
+<td><p>When you remove BFD configuration by editing the /etc/frr/frr.conf file and restarting FRR, you see a traceback.<br/>
+To work around this issue, either use NCLU or vtysh commands to remove the BFD configuration, or restart FRR with the new /etc/frr/frr.conf file.</p></td>
+<td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30195</td>
+<td><p>On the Dell S3000 switch, after installing the Cumulus Linux 4.1.1 disk image without a license, the switch sends a link beat if a remote host port is configured.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30178</td>
+<td><p>NCLU tab completion for net show displays the text add help text instead of system Information for the system option.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -2224,6 +2413,21 @@ Fixed: 3.8.7.1-1+deb8u6</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29830</td>
+<td><p>Unicast traffic from downlink hosts is flooded to multiple remote VTEPs, which might also cause high HwIfOutQDrops/TX_DRP on the uplink ports.<br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.10-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29807</td>
+<td><p>After a neighbor is removed, the redistributed neighbor entry is withdrawn from the BGP table, but the prefix might still be selected as the bestpath when the host's originated prefix is not advertised.<br/>
+To work around this issue, recreate the neighbor entry and flap the interface to the host. <br/>
+Or, if the host is already down, manually create a neighbor entry with an invalid MAC address, which forces redistribute neighbor to re-withdraw the entry.</p></td>
+<td>3.7.3-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -2243,7 +2447,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -2302,7 +2508,7 @@ Fixed: 1.8.14-4+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-29309</td>
-<td><p>When Optimized Multicast Flooding (OMF) is enabled with the bridge.optimized_mcast_flood = TRUE setting in the /etc/cumulus/swichd.conf file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</p></td>
+<td><p>When Optimized Multicast Flooding (OMF) is enabled with the bridge.optimized_mcast_flood = TRUE setting in the /etc/cumulus/switchd.conf file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</p></td>
 <td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
@@ -2321,6 +2527,12 @@ CVE-2020-1760: It was discovered that there was a header-splitting vulnerability
 Vulnerable: &lt;= 0.80.7-2+deb8u2<br/>
 Fixed: 0.80.7-2+deb8u4</p></td>
 <td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29148</td>
+<td><p>On MLX switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</p></td>
+<td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -2392,13 +2604,6 @@ To work around this issue, reenter the redistribute &lt;connected|static&gt; rou
 <td></td>
 </tr>
 <tr>
-<td>CM-28938</td>
-<td><p>When you install an ACL LOG/DROP rule on a layer 3 ingress interface that is a member of a VRF, traffic that matches this rule is not logged and is still forwarded.<br/>
-To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself or to the layer 2 VNI.</p></td>
-<td>3.7.6-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28932</td>
 <td><p>After you add a new VNI and a layer 3 SVI to a set of leafs, certain leafs might not be able to communicate on the layer 3 VNI. <br/>
 To work around this issue, reboot the leaf switch or restart switchd.</p></td>
@@ -2460,7 +2665,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -2470,7 +2678,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -2538,6 +2749,12 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <tr>
 <td>CM-28441</td>
 <td><p>If a LLDP neighbor advertises a PortDescr that contains commas, ptmctl -d splits the string on the commas and misplaces its components in other columns.</p></td>
+<td>3.7.11-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28437</td>
+<td><p>syslog might report a high load average with the CPU running a later microcode revision.</p></td>
 <td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
@@ -4613,6 +4830,53 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30286</td>
+<td><p>When you remove BFD configuration by editing the /etc/frr/frr.conf file and restarting FRR, you see a traceback.<br/>
+To work around this issue, either use NCLU or vtysh commands to remove the BFD configuration, or restart FRR with the new /etc/frr/frr.conf file.</p></td>
+<td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -4694,6 +4958,21 @@ Fixed: 3.8.7.1-1+deb8u6</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29830</td>
+<td><p>Unicast traffic from downlink hosts is flooded to multiple remote VTEPs, which might also cause high HwIfOutQDrops/TX_DRP on the uplink ports.<br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.10-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29807</td>
+<td><p>After a neighbor is removed, the redistributed neighbor entry is withdrawn from the BGP table, but the prefix might still be selected as the bestpath when the host's originated prefix is not advertised.<br/>
+To work around this issue, recreate the neighbor entry and flap the interface to the host. <br/>
+Or, if the host is already down, manually create a neighbor entry with an invalid MAC address, which forces redistribute neighbor to re-withdraw the entry.</p></td>
+<td>3.7.3-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -4713,7 +4992,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -4817,13 +5098,6 @@ To work around this issue, reenter the redistribute &lt;connected|static&gt; rou
 <td></td>
 </tr>
 <tr>
-<td>CM-28938</td>
-<td><p>When you install an ACL LOG/DROP rule on a layer 3 ingress interface that is a member of a VRF, traffic that matches this rule is not logged and is still forwarded.<br/>
-To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself or to the layer 2 VNI.</p></td>
-<td>3.7.6-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28932</td>
 <td><p>After you add a new VNI and a layer 3 SVI to a set of leafs, certain leafs might not be able to communicate on the layer 3 VNI. <br/>
 To work around this issue, reboot the leaf switch or restart switchd.</p></td>
@@ -4872,7 +5146,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -4882,7 +5159,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -6815,6 +7095,53 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30286</td>
+<td><p>When you remove BFD configuration by editing the /etc/frr/frr.conf file and restarting FRR, you see a traceback.<br/>
+To work around this issue, either use NCLU or vtysh commands to remove the BFD configuration, or restart FRR with the new /etc/frr/frr.conf file.</p></td>
+<td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -6896,6 +7223,14 @@ Fixed: 3.8.7.1-1+deb8u6</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29807</td>
+<td><p>After a neighbor is removed, the redistributed neighbor entry is withdrawn from the BGP table, but the prefix might still be selected as the bestpath when the host's originated prefix is not advertised.<br/>
+To work around this issue, recreate the neighbor entry and flap the interface to the host. <br/>
+Or, if the host is already down, manually create a neighbor entry with an invalid MAC address, which forces redistribute neighbor to re-withdraw the entry.</p></td>
+<td>3.7.3-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -6915,7 +7250,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -7011,13 +7348,6 @@ To work around this issue, reenter the redistribute &lt;connected|static&gt; rou
 <td></td>
 </tr>
 <tr>
-<td>CM-28938</td>
-<td><p>When you install an ACL LOG/DROP rule on a layer 3 ingress interface that is a member of a VRF, traffic that matches this rule is not logged and is still forwarded.<br/>
-To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself or to the layer 2 VNI.</p></td>
-<td>3.7.6-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28932</td>
 <td><p>After you add a new VNI and a layer 3 SVI to a set of leafs, certain leafs might not be able to communicate on the layer 3 VNI. <br/>
 To work around this issue, reboot the leaf switch or restart switchd.</p></td>
@@ -7066,7 +7396,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -7076,7 +7409,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -9459,6 +9795,53 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30286</td>
+<td><p>When you remove BFD configuration by editing the /etc/frr/frr.conf file and restarting FRR, you see a traceback.<br/>
+To work around this issue, either use NCLU or vtysh commands to remove the BFD configuration, or restart FRR with the new /etc/frr/frr.conf file.</p></td>
+<td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -9540,6 +9923,14 @@ Fixed: 3.8.7.1-1+deb8u6</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29807</td>
+<td><p>After a neighbor is removed, the redistributed neighbor entry is withdrawn from the BGP table, but the prefix might still be selected as the bestpath when the host's originated prefix is not advertised.<br/>
+To work around this issue, recreate the neighbor entry and flap the interface to the host. <br/>
+Or, if the host is already down, manually create a neighbor entry with an invalid MAC address, which forces redistribute neighbor to re-withdraw the entry.</p></td>
+<td>3.7.3-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -9559,7 +9950,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -9655,13 +10048,6 @@ To work around this issue, reenter the redistribute &lt;connected|static&gt; rou
 <td></td>
 </tr>
 <tr>
-<td>CM-28938</td>
-<td><p>When you install an ACL LOG/DROP rule on a layer 3 ingress interface that is a member of a VRF, traffic that matches this rule is not logged and is still forwarded.<br/>
-To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself or to the layer 2 VNI.</p></td>
-<td>3.7.6-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28932</td>
 <td><p>After you add a new VNI and a layer 3 SVI to a set of leafs, certain leafs might not be able to communicate on the layer 3 VNI. <br/>
 To work around this issue, reboot the leaf switch or restart switchd.</p></td>
@@ -9710,7 +10096,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -9720,7 +10109,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -11975,6 +12367,53 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30286</td>
+<td><p>When you remove BFD configuration by editing the /etc/frr/frr.conf file and restarting FRR, you see a traceback.<br/>
+To work around this issue, either use NCLU or vtysh commands to remove the BFD configuration, or restart FRR with the new /etc/frr/frr.conf file.</p></td>
+<td>3.7.7-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -12049,6 +12488,14 @@ Fixed: 3.8.7.1-1+deb8u6</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29807</td>
+<td><p>After a neighbor is removed, the redistributed neighbor entry is withdrawn from the BGP table, but the prefix might still be selected as the bestpath when the host's originated prefix is not advertised.<br/>
+To work around this issue, recreate the neighbor entry and flap the interface to the host. <br/>
+Or, if the host is already down, manually create a neighbor entry with an invalid MAC address, which forces redistribute neighbor to re-withdraw the entry.</p></td>
+<td>3.7.3-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -12068,7 +12515,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -12164,13 +12613,6 @@ To work around this issue, reenter the redistribute &lt;connected|static&gt; rou
 <td></td>
 </tr>
 <tr>
-<td>CM-28938</td>
-<td><p>When you install an ACL LOG/DROP rule on a layer 3 ingress interface that is a member of a VRF, traffic that matches this rule is not logged and is still forwarded.<br/>
-To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself or to the layer 2 VNI.</p></td>
-<td>3.7.6-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28932</td>
 <td><p>After you add a new VNI and a layer 3 SVI to a set of leafs, certain leafs might not be able to communicate on the layer 3 VNI. <br/>
 To work around this issue, reboot the leaf switch or restart switchd.</p></td>
@@ -12219,7 +12661,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -12229,7 +12674,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -14851,6 +15299,46 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -14925,6 +15413,14 @@ Fixed: 3.8.7.1-1+deb8u6</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29807</td>
+<td><p>After a neighbor is removed, the redistributed neighbor entry is withdrawn from the BGP table, but the prefix might still be selected as the bestpath when the host's originated prefix is not advertised.<br/>
+To work around this issue, recreate the neighbor entry and flap the interface to the host. <br/>
+Or, if the host is already down, manually create a neighbor entry with an invalid MAC address, which forces redistribute neighbor to re-withdraw the entry.</p></td>
+<td>3.7.3-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -14944,7 +15440,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -15040,13 +15538,6 @@ To work around this issue, reenter the redistribute &lt;connected|static&gt; rou
 <td></td>
 </tr>
 <tr>
-<td>CM-28938</td>
-<td><p>When you install an ACL LOG/DROP rule on a layer 3 ingress interface that is a member of a VRF, traffic that matches this rule is not logged and is still forwarded.<br/>
-To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself or to the layer 2 VNI.</p></td>
-<td>3.7.6-3.7.12</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28932</td>
 <td><p>After you add a new VNI and a layer 3 SVI to a set of leafs, certain leafs might not be able to communicate on the layer 3 VNI. <br/>
 To work around this issue, reboot the leaf switch or restart switchd.</p></td>
@@ -15095,7 +15586,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -15105,7 +15599,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -17690,6 +18187,46 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -17764,6 +18301,14 @@ Fixed: 3.8.7.1-1+deb8u6</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29807</td>
+<td><p>After a neighbor is removed, the redistributed neighbor entry is withdrawn from the BGP table, but the prefix might still be selected as the bestpath when the host's originated prefix is not advertised.<br/>
+To work around this issue, recreate the neighbor entry and flap the interface to the host. <br/>
+Or, if the host is already down, manually create a neighbor entry with an invalid MAC address, which forces redistribute neighbor to re-withdraw the entry.</p></td>
+<td>3.7.3-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -17783,7 +18328,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -17920,7 +18467,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -17930,7 +18480,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -20191,6 +20744,46 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -20265,6 +20858,14 @@ Fixed: 3.8.7.1-1+deb8u6</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29807</td>
+<td><p>After a neighbor is removed, the redistributed neighbor entry is withdrawn from the BGP table, but the prefix might still be selected as the bestpath when the host's originated prefix is not advertised.<br/>
+To work around this issue, recreate the neighbor entry and flap the interface to the host. <br/>
+Or, if the host is already down, manually create a neighbor entry with an invalid MAC address, which forces redistribute neighbor to re-withdraw the entry.</p></td>
+<td>3.7.3-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -20284,7 +20885,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -20415,7 +21018,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -20425,7 +21031,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -22750,6 +23359,46 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -22824,6 +23473,14 @@ Fixed: 3.8.7.1-1+deb8u6</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29807</td>
+<td><p>After a neighbor is removed, the redistributed neighbor entry is withdrawn from the BGP table, but the prefix might still be selected as the bestpath when the host's originated prefix is not advertised.<br/>
+To work around this issue, recreate the neighbor entry and flap the interface to the host. <br/>
+Or, if the host is already down, manually create a neighbor entry with an invalid MAC address, which forces redistribute neighbor to re-withdraw the entry.</p></td>
+<td>3.7.3-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -22843,7 +23500,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -22974,7 +23633,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -22984,7 +23646,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -25474,6 +26139,46 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -25567,7 +26272,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -25692,7 +26399,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -25702,7 +26412,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -28328,6 +29041,46 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -28421,7 +29174,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -28546,7 +29301,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -28556,7 +29314,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -30698,6 +31459,46 @@ To work around this issue, remove the matching network statement. </p></td>
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30343</td>
+<td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
+CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
+CVE-2020-12402: Side channel vulnerabilities during RSA key generation.<br/>
+Vulnerable: &lt;= 3.26-1+deb8u10<br/>
+Fixed: 3.26-1+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30325</td>
+<td><p>The following vulnerabilities have been announced in the qemu package, which is available in the repository for optional installation on Cumulus Linux:<br/>
+CVE-2020-1983: slirp: Fix use-after-free in ip_reass().<br/>
+CVE-2020-13361: es1370_transfer_audio in hw/audio/es1370.c allowed guest OS users to trigger an out-of-bounds access during an es1370_write() operation.<br/>
+CVE-2020-13362: megasas_lookup_frame in hw/scsi/megasas.c had an out-of-bounds read via a crafted reply_queue_head field from a guest OS user.<br/>
+CVE-2020-13765: hw/core/loader: Fix possible crash in rom_copy().<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u14<br/>
+Fixed: 2.1+dfsg-12+deb8u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30321</td>
+<td><p>CVE-2018-6381 CVE-2018-6484 CVE-2018-6540 CVE-2018-6541 CVE-2018-6869 CVE-2018-7725 CVE-2018-7726 CVE-2018-16548<br/>
+Several issues have been fixed in zziplib, a library providing read access on ZIP-archives. They are all related to invalid memory access and resulting crash or memory leak.<br/>
+libzzip-0-13 is not installed by default on Cumulus Linux, but is available in the repository for optional installation.<br/>
+Vulnerable: &lt;= 0.13.62-3+deb8u1<br/>
+Fixed: 0.13.62-3+deb8u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30320</td>
+<td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
+Vulnerable: &lt;= 4.2-3+deb8u3<br/>
+Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -30791,7 +31592,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -30916,7 +31719,10 @@ codecs.</p></td>
 
 <p>CVE-2017-9525 is a local user privilege escalation attack: In the cron package through 3.0pl1-128 on Debian, and through 3.0pl1-128ubuntu2 on Ubuntu, the postinst maintainer script allows for group-crontab-to-root privilege escalation via symlink attacks against unsafe usage of the chown and chmod programs.<br/>
 CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service attacks.  Note: the fix for CVE-2019-9705 imposes a limitation on the length of a crontab file (the vulnerability was that an unlimited size crontab file could cause excessive memory consumption).<br/>
-<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p></td>
+<a href="https://security-tracker.debian.org/tracker/DLA-1723-1" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/DLA-1723-1</a></p>
+
+<p>Vulnerable: &lt;= 3.0pl1-cl3u1<br/>
+Fixed: 3.0pl1-cl3u2</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>
@@ -30926,7 +31732,10 @@ CVE-2019-9704, CVE-2019-9705, CVE-2019-9706 are local user denial of service att
 CVE-2019-17041 CVE-2019-17042<br/>
 rsyslogd, when receiving remote log messages and using optional pmaixforwardedfrom or pmcisconames parser modules (not enabled by default on Cumulus Linux), is vulnerable to CVE-2019-17041 and CVE-2019-17042 where malicious messages that appear to be from AIX or Cisco respectively may be caused to skip sanity checks, resulting in incorrect negative lengths causing heap overflows.<br/>
 Do not enable (with $UDPServerRun or $InputTCPServerRun) receiving syslog messages from other hosts by the network. Also, do not enable (with $ModLoad) the vulnerable parsers pmaixforwardedfrom or pmcisconames.\<br/>
-The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p></td>
+The default /etc/rsyslog.conf file on Cumulus Linux does NOT enable $UDPServerRun or $InputTCPServerRun, so the vulnerability is not network exploitable in the default configuration. In addition, the vulnerable parsers are not enabled in the default configuration.</p>
+
+<p>Vulnerable: &lt;= 8.4.2-1-cl3u5<br/>
+Fixed: 8.4.2-1-cl3u6</p></td>
 <td>3.0.0-3.7.12</td>
 <td></td>
 </tr>

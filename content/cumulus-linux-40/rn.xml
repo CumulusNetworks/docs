@@ -7,19 +7,107 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30464</td>
+<td><p>The net show dot1x interface summary command output shows a MAC address with all zeros associated with a port.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30447</td>
+<td><p>The following vulnerabilities have been announced in ruby2.5, which is not installed on the switch by default, but is available in the repository for optional installation:<br/>
+CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.4 through 2.4.9, 2.5 through 2.5.7, and 2.6 through 2.6.5, has an Unsafe Object Creation Vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
+CVE-2020-10933: An issue was discovered in Ruby 2.5.x through 2.5.7, 2.6.x through 2.6.5, and 2.7.0. If a victim calls BasicSocket#read_nonblock(requested_size, buffer, exception: false), the method resizes the buffer to fit the requested size, but no data is copied. Thus, the buffer string provides the previous value of the heap. This may expose possibly sensitive data from the interpreter.<br/>
+Vulnerable: &lt;= 2.5.5-3+deb10u1<br/>
+Fixed: 2.5.5-3+deb10u2</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30231</td>
+<td><p>When the dynamic or static flag on a bridge fdb (MAC) entry is changed to the opposite state, the new flag is not set appropriately in hardware. This can allow a static fdb entry to be unexpectedly learned dynamically on a different interface, or can prevent a dynamic entry from being updated or learned elsewhere.<br/>
+This condition can occur during a manual replacement of a local MAC address or when EVPN updates a dynamic MAC address to add or remove the Sticky Mac flag. Either situation results in the MAC address keeping the original flag in hardware.<br/>
+To work around this issue, delete or withdraw the fdb entry, then add the static MAC address directly. For example:</p>
+
+bridge fdb del 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master
+bridge fdb add 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master [ static | dynamic ]
+
+
+<p>If you are unable to delete an EVPN-learned remote MAC address, you can replace the dynamic MAC address with a local static one, then delete the static MAC address. For example:</p>
+
+bridge fdb replace 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master static
+bridge fdb del 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master
+bridge fdb add 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master [ static | dynamic ]
+
+</td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30230</td>
+<td><p>If a remote EVPN Sticky MAC <span class="error">&#91;Static MAC address&#93;</span> is unexpectedly learned dynamically on a local interface, the selected entries in zebra and BGP are in an inconsistent state.<br/>
+zebra increments the local MAC mobility sequence number and considers the MAC address to be local, but BGP maintains the remote Sticky MAC as the best path selected. This results in zebra installing the local MAC address and BGP not updating the route for the MAC address.</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30224</td>
+<td><p>The show evpn mac vni &lt;vni&gt; mac &lt;mac-address&gt; command stops displaying "Sticky MAC" if that MAC address is seen on a local bridge port. The following example shows the command output <b>before</b> the MAC address is seen on a local bridge:</p>
+
+cumulus@switch:~$ net show evpn mac vni 24 mac 50:6b:4b:aa:aa:aa                                
+MAC: 50:6b:4b:aa:aa:aa                                                                              
+ Remote VTEP: 10.0.0.41 Sticky Mac                                                                  
+ Local Seq: 0 Remote Seq: 0                                                                         
+ Neighbors:                                                                                         
+    No Neighbors
+
+
+<p>The following example shows the command output <b>after</b> the MAC address is seen on a local bridge::</p>
+
+cumulus@switch:~$ net show evpn mac vni 24 mac 50:6b:4b:aa:aa:aa                                
+MAC: 50:6b:4b:aa:aa:aa                                                                              
+ Remote VTEP: 10.0.0.41                                                                             
+ Local Seq: 1 Remote Seq: 0                                                                         
+ Neighbors:                                                                                         
+    10.2.4.14 Inactive 
+
+</td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30165</td>
+<td><p>When you use a phone with EAP and voice VLAN is configured (<b>and MAB is not configured</b>), after the phone authenticates, all tagged traffic from the phone is dropped.<br/>
+To work around this issue, enable MAB on the interface.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30164</td>
+<td><p>The /usr/share/zoneinfo/leap-seconds.list file expires periodically and results in log messages being generated about that expiration.<br/>
+To work around this issue, you must update the file from <a href="https://www.ietf.org/timezones/data/leap-seconds.list" class="external-link" rel="nofollow">https://www.ietf.org/timezones/data/leap-seconds.list</a> or upgrade the tzdata package to the newest version.</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30103</td>
+<td><p>On a Broadcom switch with the Trident2+ ASIC, ACL rules for VLANs are not applied after a reboot and the counters remain at zero.<br/>
+To work around this issue, either do not set acl.non_atomic_update_mode = TRUE in the /etc/cumulus/switchd.conf file or run the cl-acltool -i command after the reboot to install the  ACLs.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30101</td>
+<td><p>The NCLU net show bridge spanning-tree command displays the aging timer incorrectly. </p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30038</td>
 <td><p>The following vulnerability has been announced that affects GnuTLS:<br/>
 CVE-2020-13777: GnuTLS 3.6.x before 3.6.14 uses incorrect cryptography for encrypting a session ticket (a loss of confidentiality in TLS 1.2, and an authentication bypass in TLS 1.3). The earliest affected version is 3.6.4 (2018-09-24) because of an error in a 2018-09-18 commit. Until the first key rotation, the TLS server always uses wrong data in place of an encryption key derived from an application.<br/>
 Vulnerable: &lt;= 3.6.7-4+deb10u3<br/>
 Fixed: 3.6.7-4+deb10u4</p></td>
 <td>4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -44,6 +132,13 @@ Unbound is not provided for Cumulus Linux, but the libunbound8 library package i
 Vulnerable: &lt;= 1.9.0-2+deb10u1<br/>
 Fixed: 1.9.0-2+deb10u2</p></td>
 <td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29830</td>
+<td><p>Unicast traffic from downlink hosts is flooded to multiple remote VTEPs, which might also cause high HwIfOutQDrops/TX_DRP on the uplink ports.<br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.10-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -125,7 +220,9 @@ The fix for <a href="https://bugs.ntp.org/3445" class="external-link" rel="nofol
 	<li>Use authentication with symmetric peers.</li>
 	<li>Have enough sources of time.  The default NTP configuration in Cumulus Linux has four time sources.</li>
 </ul>
-</td>
+
+
+<p>Fixed: 4.2.8p12+dfsg-4+cl4u13</p></td>
 <td>3.0.0-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -194,7 +291,7 @@ To work around this issue, when you manually configure the rd or route-target fo
 </tr>
 <tr>
 <td>CM-29309</td>
-<td><p>When Optimized Multicast Flooding (OMF) is enabled with the bridge.optimized_mcast_flood = TRUE setting in the /etc/cumulus/swichd.conf file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</p></td>
+<td><p>When Optimized Multicast Flooding (OMF) is enabled with the bridge.optimized_mcast_flood = TRUE setting in the /etc/cumulus/switchd.conf file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
@@ -258,6 +355,12 @@ Vulnerable: &lt;= 3.6.7-4+deb10u2<br/>
 Not vulnerable: 3.6.7-4+deb10u3</p></td>
 <td>4.0.0-4.1.0</td>
 <td>4.1.1</td>
+</tr>
+<tr>
+<td>CM-29148</td>
+<td><p>On MLX switches that contain an OSPF IP unnumbered neighborship with a high scale of prefixes being learned, a link flap might cause the neighbor entry to not be programmed in hardware.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29111</td>
@@ -402,13 +505,6 @@ s&gt; 50.0.0.1/32      0.0.0.0                  0         32768 i
 <td></td>
 </tr>
 <tr>
-<td>CM-28938</td>
-<td><p>When you install an ACL LOG/DROP rule on a layer 3 ingress interface that is a member of a VRF, traffic that matches this rule is not logged and is still forwarded.<br/>
-To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself or to the layer 2 VNI.</p></td>
-<td>3.7.6-3.7.12, 4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-28900</td>
 <td><p>You might see a core file in FRRouting related to OSPFv3 if the switch is configured as both an OSPFv3 ABR and ASBR, and other switches in the same area are also configured as both ABR and ASBR. This issue is not seen with a single ABR or ASBR in an area or if there are multiple ASBRs in an area not acting as ABRs. To work around this issue, do not perform redistribution on more than one ABR in the same area. </p></td>
 <td>4.0.0-4.1.1</td>
@@ -418,6 +514,12 @@ To work around this issue, apply the ACL LOG/DROP rule to the VRF device itself 
 <td>CM-28867</td>
 <td><p>The QuantaMesh BMS T3048-LY8 switch shows a low fan RPM in syslog.</p></td>
 <td>3.7.5-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28862</td>
+<td><p>On the Edgecore AS5812 switch, the Innodisk DIMM causes a DIMM temperature sensor absent alert.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1361,12 +1463,6 @@ To work around this issue, restart FRR after removing the IPv6 numbered configur
 <td>3.7.11-3.7.12</td>
 </tr>
 <tr>
-<td>CM-26702</td>
-<td><p>On the Mellanox switch with the Spectrum-2 ASIC, policy-based routing (PBR) is not currently supported.</p></td>
-<td>4.0.0-4.1.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-26655</td>
 <td><p>If you reconfigure an NTP server with NCLU using different trailing options after the IP address (such as iburst), an invalid configuration is added to the /etc/ntp.conf file. For example:</p>
 
@@ -2241,6 +2337,13 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>CM-29807</td>
+<td><p>After a neighbor is removed, the redistributed neighbor entry is withdrawn from the BGP table, but the prefix might still be selected as the bestpath when the host's originated prefix is not advertised.<br/>
+To work around this issue, recreate the neighbor entry and flap the interface to the host. <br/>
+Or, if the host is already down, manually create a neighbor entry with an invalid MAC address, which forces redistribute neighbor to re-withdraw the entry.</p></td>
+<td>3.7.3-3.7.12</td>
 </tr>
 <tr>
 <td>CM-29322</td>

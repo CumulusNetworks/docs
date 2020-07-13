@@ -7,4 +7,4 @@ python:
 install:
   - pip install requests
 script:
-  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./utils/travis-ci.sh; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./utils/travis-ci.sh; fi'

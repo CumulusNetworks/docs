@@ -133,6 +133,12 @@ To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
+<td>3.7.8-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29922</td>
 <td><p>The python-httplib2 package, which is available in the repository for optional installation, has the following vulnerability:<br/>
 CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &apos;httplib2.Http.request()&apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.<br/>
@@ -648,6 +654,14 @@ codecs.</p></td>
 <td>CM-28611</td>
 <td><p>In an EVPN Active-Active (MLAG) environment, sometimes a local-to-remote MAC mobility event results in the local sequence number appearing higher than the remote sequence number in zebra. This issue is cosmetic only, as BGP does not advertise the incorrect sequence number and forwarding entries correctly point to the remote VTEP where the MAC is now located.</p></td>
 <td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28596</td>
+<td><p>On the Dell Z9100 switch, 100G-SR4 modules might not link up reliably in certain ports. <br/>
+swp1, 2, 3, 9, 10, 23, 24, 30, 31, and 32 might be affected<br/>
+To work around this issue, move 100G SR4 modules to one of the ports not affected by this issue.</p></td>
+<td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -2366,6 +2380,12 @@ To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
+<td>3.7.8-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29922</td>
 <td><p>The python-httplib2 package, which is available in the repository for optional installation, has the following vulnerability:<br/>
 CVE-2020-11078: In httplib2 before version 0.18.0, an attacker controlling unescaped part of uri for &apos;httplib2.Http.request()&apos; could change request headers and body, send additional hidden requests to same server. This vulnerability impacts software that uses httplib2 with uri constructed by string concatenation, as opposed to proper urllib building with escaping. This has been fixed in 0.18.0.<br/>
@@ -2651,6 +2671,14 @@ codecs.</p></td>
 <td>CM-28655</td>
 <td><p>When you remove, then re-add an NSX VTEP binding, the VXLAN VTEP interface is not recreated.</p></td>
 <td>3.6.1-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28596</td>
+<td><p>On the Dell Z9100 switch, 100G-SR4 modules might not link up reliably in certain ports. <br/>
+swp1, 2, 3, 9, 10, 23, 24, 30, 31, and 32 might be affected<br/>
+To work around this issue, move 100G SR4 modules to one of the ports not affected by this issue.</p></td>
+<td>3.7.11-3.7.12</td>
 <td></td>
 </tr>
 <tr>
@@ -4907,6 +4935,12 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <td>CM-29993</td>
 <td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
 To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
@@ -7172,6 +7206,12 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <td>CM-29993</td>
 <td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
 To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.12</td>
 <td></td>
 </tr>
@@ -9872,6 +9912,12 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <td>CM-29993</td>
 <td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
 To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.12</td>
 <td></td>
 </tr>

@@ -23,6 +23,12 @@ Fixed: 2.5.5-3+deb10u2</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-30312</td>
+<td><p>When TACACS+ is configured and the management VRF is enabled, users with privilege level 13 are prevented from running ip and cat commands.</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30231</td>
 <td><p>When the dynamic or static flag on a bridge fdb (MAC) entry is changed to the opposite state, the new flag is not set appropriately in hardware. This can allow a static fdb entry to be unexpectedly learned dynamically on a different interface, or can prevent a dynamic entry from being updated or learned elsewhere.<br/>
 This condition can occur during a manual replacement of a local MAC address or when EVPN updates a dynamic MAC address to add or remove the Sticky Mac flag. Either situation results in the MAC address keeping the original flag in hardware.<br/>
@@ -108,6 +114,12 @@ CVE-2020-13777: GnuTLS 3.6.x before 3.6.14 uses incorrect cryptography for encry
 Vulnerable: &lt;= 3.6.7-4+deb10u3<br/>
 Fixed: 3.6.7-4+deb10u4</p></td>
 <td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
+<td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -607,6 +619,14 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <td>CM-28611</td>
 <td><p>In an EVPN Active-Active (MLAG) environment, sometimes a local-to-remote MAC mobility event results in the local sequence number appearing higher than the remote sequence number in zebra. This issue is cosmetic only, as BGP does not advertise the incorrect sequence number and forwarding entries correctly point to the remote VTEP where the MAC is now located.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28596</td>
+<td><p>On the Dell Z9100 switch, 100G-SR4 modules might not link up reliably in certain ports. <br/>
+swp1, 2, 3, 9, 10, 23, 24, 30, 31, and 32 might be affected<br/>
+To work around this issue, move 100G SR4 modules to one of the ports not affected by this issue.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>

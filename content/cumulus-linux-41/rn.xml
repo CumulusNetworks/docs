@@ -35,6 +35,12 @@ Fixed: 2.5.5-3+deb10u2</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-30312</td>
+<td><p>When TACACS+ is configured and the management VRF is enabled, users with privilege level 13 are prevented from running ip and cat commands.</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30296</td>
 <td><p>The net show configuration command provides the wrong net add command for ACL under the VLAN interface.</p>
 </td>
@@ -205,6 +211,12 @@ To work around this issue, apply an extended community with a route map using im
 <td></td>
 </tr>
 <tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
+<td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29890</td>
 <td><p>Multiple paths to identical EVPN prefixes are either not displayed or not accepted into the l2vpn evpn table if they are received from a different AS.</p></td>
 <td>3.7.12, 4.1.1</td>
@@ -239,6 +251,12 @@ Fixed: 1.9.0-2+deb10u2</p></td>
 <td><p>Unicast traffic from downlink hosts is flooded to multiple remote VTEPs, which might also cause high HwIfOutQDrops/TX_DRP on the uplink ports.<br/>
 To work around this issue, restart switchd.</p></td>
 <td>3.7.10-3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29808</td>
+<td><p>On the Mellanox switches with BFD configured, you might see high load averages.</p></td>
+<td>4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -807,6 +825,14 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <td>CM-28611</td>
 <td><p>In an EVPN Active-Active (MLAG) environment, sometimes a local-to-remote MAC mobility event results in the local sequence number appearing higher than the remote sequence number in zebra. This issue is cosmetic only, as BGP does not advertise the incorrect sequence number and forwarding entries correctly point to the remote VTEP where the MAC is now located.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28596</td>
+<td><p>On the Dell Z9100 switch, 100G-SR4 modules might not link up reliably in certain ports. <br/>
+swp1, 2, 3, 9, 10, 23, 24, 30, 31, and 32 might be affected<br/>
+To work around this issue, move 100G SR4 modules to one of the ports not affected by this issue.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1971,6 +1997,12 @@ Fixed: 2.5.5-3+deb10u2</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-30312</td>
+<td><p>When TACACS+ is configured and the management VRF is enabled, users with privilege level 13 are prevented from running ip and cat commands.</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30296</td>
 <td><p>The net show configuration command provides the wrong net add command for ACL under the VLAN interface.</p>
 </td>
@@ -2087,6 +2119,12 @@ UPDATE Message Error/Optional Attribute Error
 <p>The error is triggered by an UPDATE message that contains the EXTENDED_COMMUNITIES attribute with an empty list of extended communities.<br/>
 To work around this issue, apply an extended community with a route map using import &lt;vrf&gt; route-map &lt;name&gt; in the importing VRF address family. Make sure that the route map contains the set extended community rt &lt;value:vaue&gt; command; for example, set extended community rt 11:22.</p></td>
 <td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29978</td>
+<td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
+<td>3.7.8-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2686,6 +2724,14 @@ To work around this issue, do not make bash or bash scripts setuid.</p></td>
 <td>CM-28611</td>
 <td><p>In an EVPN Active-Active (MLAG) environment, sometimes a local-to-remote MAC mobility event results in the local sequence number appearing higher than the remote sequence number in zebra. This issue is cosmetic only, as BGP does not advertise the incorrect sequence number and forwarding entries correctly point to the remote VTEP where the MAC is now located.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28596</td>
+<td><p>On the Dell Z9100 switch, 100G-SR4 modules might not link up reliably in certain ports. <br/>
+swp1, 2, 3, 9, 10, 23, 24, 30, 31, and 32 might be affected<br/>
+To work around this issue, move 100G SR4 modules to one of the ports not affected by this issue.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>

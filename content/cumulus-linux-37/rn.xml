@@ -7,8 +7,33 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30486</td>
+<td><p>A host migrated to an 802.1X MAB port within the same broadcast domain fails to have the correct FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.<br/>
+To work around this issue, manually delete the dynamic FDB entry that is associated with the uplink trunk port.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30464</td>
 <td><p>The net show dot1x interface summary command output shows a MAC address with all zeros associated with a port.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30422</td>
+<td><p>When you configure a bridge in the /etc/network/interfaces file, then try to reconfigure the bridge to be a VRF interface with the same name, ifreload/ifup commands fail with an invalid table id or unable to get vrf table id error.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30403</td>
+<td><p>switchd might crash if more than 16 IPv6 default route next hops are installed in the kernel routing table and those 16 next hops recurse to MAC address table entries reachable over VXLAN VNI interfaces. This can occur when many IPv6 router advertisements (RAs) are received across VLAN interfaces that have IPv6 forwarding disabled.<br/>
+To work around this issue, add the following parameters to the /etc/sysctl.conf file to disable IPv6 default route installation from received router advertisements, then run the sudo sysctl -p --system command.</p>
+
+net.ipv6.conf.all.accept_ra_defrtr = 0 
+net.ipv6.conf.default.accept_ra_defrtr = 0
+
+</td>
 <td>3.7.12</td>
 <td></td>
 </tr>

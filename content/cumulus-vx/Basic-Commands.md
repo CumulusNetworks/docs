@@ -1,5 +1,5 @@
 ---
-title: Next Steps
+title: Basic Commands
 author: Cumulus Networks
 weight: 60
 product: Cumulus VX

@@ -20,7 +20,7 @@ EVPN multihoming is an {{<exlink url="https://support.cumulusnetworks.com/hc/en-
 
 EVPN-MH routes traffic using BGP-EVPN type-1, type-2 and type-4 routes, and the FDB, MDB and neighbor databases all sync between the Ethernet segment peers via these routes as well. The VTEPs connect to each other over an *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}*. An Ethernet segment is a group of switch or server links that share a unique Ethernet segment ID (ESI).
 
-Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es-sys-mac`) and an Ethernet segment ID (`es-id`) on a static or LACP bond. The `es-id` must be globally unique for all the nodes on the segment. However, if your specific topology does not require a system MAC address for each Ethernet segment, you can configure a global system MAC address that is inherited into all the Ethernet segments. You do this by configuring the same `es-sys-mac` for each interface.
+Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es-sys-mac`) and an Ethernet segment ID (`es-id`) on a static or LACP bond. The `es-sys-mac` and the `es-id` must be globally unique for all the nodes on the segment.
 
 {{%notice note%}}
 
@@ -36,7 +36,7 @@ An Ethernet segment can span more than two switches, unlike MLAG, where the `cla
 - {{<link url="Inter-subnet-Routing/#symmetric-routing" text="Distributed symmetric routing">}}.
 - {{<link url="Basic-Configuration/#arp-and-nd-suppression" text="ARP suppression">}} must be enabled.
 - EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
-- Supported RIOT-capable {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Broadcom Trident3, Trident II+ and Maverick, and Mellanox Spectrum and Spectrum 2.
+- Supported RIOT-capable {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Mellanox Spectrum A1, Spectrum 2 and Spectrum 3.
 
 {{%notice info%}}
 
@@ -44,9 +44,7 @@ EVPN-MH is incompatible with MLAG. In order to use EVPN-MH, you must remove any 
 
 - Removing the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
 - Removing the peerlink interfaces in the `/etc/network/interfaces` file.
-- Then run `ifreload` to reload the configuration
-
-      cumulus@switch:~$ sudo ifreload
+- Then run `ifreload` to reload the configuration:<pre>cumulus@switch:~$ sudo ifreload</pre>
 
 {{%/notice%}}
 
@@ -430,53 +428,6 @@ Fast failover is also triggered by:
 ## Troubleshooting
 
 You can use the following `net show` commands to troubleshoot your EVPN multihoming configuration.
-
-### Show the Ethernet Segment MAC and IP Addresses
-
-The `net show bgp l2vpn evpn route mac-ip-es` command displays the MAC address and IP address for each Ethernet segment.
-
-```
-cumulus@switch:~$ net show bgp l2vpn evpn route mac-ip-es
-BGP table version is 0, local router ID is 172.16.0.21
-Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
-Origin codes: i - IGP, e - EGP, ? - incomplete
-EVPN type-1 prefix: [4]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
-EVPN type-2 prefix: [2]:[EthTag]:[MAClen]:[MAC]:[IPlen]:[IP]
-EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
-EVPN type-4 prefix: [4]:[ESI]:[IPlen]:[OrigIP]
-EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
-
-   Network          Next Hop            Metric LocPrf Weight Path
-*  [2]:[0]:[48]:[00:02:00:00:00:09]
-                    172.16.0.23                              0 4435 5558 i
-                    ESI:03:44:38:39:ff:ff:01:00:00:01 VNI: 1001
-                    RT:5558:1001 RT:5558:4001 ET:8 Rmac:00:02:00:00:00:68
-*  [2]:[0]:[48]:[00:02:00:00:00:09]
-                    172.16.0.23                              0 4435 5558 i
-                    ESI:03:44:38:39:ff:ff:01:00:00:01 VNI: 1001
-                    RT:5558:1001 RT:5558:4001 ET:8 Rmac:00:02:00:00:00:68
-*  [2]:[0]:[48]:[00:02:00:00:00:09]
-                    172.16.0.23                              0 4435 5558 i
-                    ESI:03:44:38:39:ff:ff:01:00:00:01 VNI: 1001
-                    RT:5558:1001 RT:5558:4001 ET:8 Rmac:00:02:00:00:00:68
-*  [2]:[0]:[48]:[00:02:00:00:00:09]
-                    172.16.0.23                              0 4435 5558 i
-                    ESI:03:44:38:39:ff:ff:01:00:00:01 VNI: 1001
-                    RT:5558:1001 RT:5558:4001 ET:8 Rmac:00:02:00:00:00:68
-*> [2]:[0]:[48]:[00:02:00:00:00:09]
-                    172.16.0.21                          32768 i
-                    ESI:03:44:38:39:ff:ff:01:00:00:01 VNI: 1001
-                    ET:8 RT:5556:1001 RT:5556:4001 Rmac:00:02:00:00:00:58
-*> [2]:[0]:[48]:[00:02:00:00:00:09]
-                    172.16.0.21                          32768 i
-                    ESI:03:44:38:39:ff:ff:01:00:00:01 VNI: 1007
-                    ET:8 RT:5556:1007 RT:5556:4002 Rmac:00:02:00:00:00:58
-
-...
-
-Displayed 2079 paths
-cumulus@switch:~$
-```
 
 ### Show Ethernet Segment Information
 

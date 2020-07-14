@@ -1,5 +1,5 @@
 ---
-title: Cumulus VX Overview
+title: Overview
 author: Cumulus Networks
 weight: 5
 product: Cumulus VX

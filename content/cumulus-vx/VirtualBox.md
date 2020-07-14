@@ -390,3 +390,43 @@ NIC 36:           disabled
 The above output shows that `NIC 1` corresponds to the `eth0` management interface, while `NICs 2-36` correspond to the `swp1-35` switch port interfaces. You can configure the interfaces with the `VBoxManage modifyvm` commands. See the {{<exlink url="https://www.virtualbox.org/manual/ch06.html" text="VirtualBox networking documentation">}} and the {{<exlink url="https://www.virtualbox.org/manual/ch08.html#idp104314528" text="VBoxManage command reference">}} for more information on configuring virtual NICs.
 
 {{< /expand >}}
+
+- To provide easier access in video-focused hypervisors (such as VirtualBox), Cumulus VX is configured to redirect the grub menu and the kernel output to the video console. To send both the grub menu and the kernel output back to the serial console, follow these steps:
+
+   {{< tabs "TabID05 ">}}
+
+{{< tab "If the VM is already running ">}}
+
+1. Run the following commands as the sudo user:
+
+```
+cumulus@switch:~$ sed -i 's/^#//' /etc/default/grub.d/00-installer-defaults.cfg
+cumulus@switch:~$ sed -r -i '/^GRUB_CMDLINE_LINUX=/ s/(console=ttyS0,115200n8) (console=tty0)/\2 \1/' /etc/default/grub
+cumulus@switch:~$ update-grub
+```
+
+2. Restart the VM to implement the change.
+
+{{< /tab >}}
+
+{{< tab "If the VM is not booted ">}}
+
+1. Interrupt the boot process at the GRUB prompt.
+
+2. Modify the Linux command line directly, removing all references to the console entries:
+
+   **Original Version**:
+
+   {{< img src = "/images/cumulus-vx/grub1.png" >}}
+
+   **Configured Version**:
+
+   {{< img src = "/images/cumulus-vx/grub1.png" >}}
+
+   The example images above are for the ONIE-RESCUE entry, not the standard boot entry. The configuration process is the same for both entries.
+
+3. Start the VM.
+
+    {{< /tab >}}
+
+    {{< /tabs >}}

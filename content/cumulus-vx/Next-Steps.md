@@ -6,57 +6,12 @@ product: Cumulus VX
 version: '3.7'
 toc: 1
 ---
-This section provides some additional configuration specific to Cumulus VX and shows some basic commands you can try to get started with Cumulus Linux.
+This section shows some basic commands you can try to get started with Cumulus Linux.
 
-## Send Output to the Serial Console
 
-To provide easier access in video-focused hypervisors (such as VirtualBox), Cumulus VX is configured to redirect the grub menu and the kernel output to the video console. To send both the grub menu and the kernel output back to the serial console, follow these steps:
+## Basic Show Commands
 
-{{< tabs "TabID01 ">}}
-
-{{< tab "If the VM is not booted ">}}
-
-1. Interrupt the boot process at the GRUB prompt.
-
-2. Modify the Linux command line directly, removing all references to the console entries:
-
-   **Original Version**:
-
-   {{< img src = "/images/cumulus-vx/grub1.png" >}}
-
-   **Configured Version**:
-
-   {{< img src = "/images/cumulus-vx/grub1.png" >}}
-
-   The example images above are for the ONIE-RESCUE entry, not the standard boot entry. The configuration process is the same for both entries.
-
-3. Start the VM.
-
-{{< /tab >}}
-
-{{< tab "If the VM is already running ">}}
-
-1. Run the following commands as the sudo user:
-
-    ```
-    cumulus@switch:~$ sed -i 's/^#//' /etc/default/grub.d/00-installer-defaults.cfg
-    cumulus@switch:~$ sed -r -i '/^GRUB_CMDLINE_LINUX=/ s/(console=ttyS0,115200n8) (console=tty0)/\2 \1/' /etc/default/grub
-    cumulus@switch:~$ update-grub
-    ```
-
-2. Restart the VM to implement the change.
-
-    {{< /tab >}}
-
-    {{< /tabs >}}
-
-## Basic Commands
-
-After you configure the Cumulus VX instances and perform the configuration above, use the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux documentation suite">}} to configure and test features, and fine tune the network topology.
-
-Use the following basic commands to get started. You can run the commands on each VM to see system information and interface and LLDP details, and to change the hostname of the switch.
-
-To obtain information about the switch, run the `net show system` command:
+To obtain information about a switch, run the `net show system` command:
 
 ```
 cumulus@switch:~$ net show system
@@ -85,15 +40,16 @@ ADMDN  swp7              N/A      1500   NotConfigured
 
 To show topology verification, run the `net show lldp` command.
 
-The example output below shows the two-leaf, two-spine Cumulus VX network topology from CumulusVX-leaf1, where local port **swp1** is connected to remote port **swp1** on **CumulusVX-spine1** and local port **swp2** is connected to remote port **swp1** on **CumulusVX-spine2**.
+The example output below shows the two-leaf and one spine topology from Leaf01, where local port **swp1** is connected to remote port **swp1** on **Spine01**.
 
 ```
 cumulus@switch:~$ net show lldp
 LocalPort    Speed    Mode          RemotePort    RemoteHost        Summary
 -----------  -------  ------------  ------------  ----------------  ---------------
 swp1         1G       Interface/L3  swp1          CumulusVX-spine1  IP: 10.2.1.1/32
-swp2         1G       Interface/L3  swp1          CumulusVX-spine2  IP: 10.2.1.1/32
 ```
+
+## Change the hostname
 
 To change the hostname, run the `net add hostname` command. This command updates both the `/etc/hostname` and `/etc/hosts` files.
 
@@ -101,20 +57,9 @@ To change the hostname, run the `net add hostname` command. This command updates
 cumulus@switch:~$ net add hostname <hostname>
 ```
 
-## Related Information
+## Install a Binary Image with ONIE
 
-- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41" text="Cumulus Linux documentation">}}
-- {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/" text="Cumulus Networks knowledge base">}}
-
-Cumulus VX images now include the GRUB boot loader and {{<exlink url="(http://onie.org/" text="Open Network Install Environment (ONIE)">}} preinstalled. You can install Cumulus Linux on switch hardware using a binary image. You can test this process by installing a Cumulus VX binary image with ONIE in a virtual environment.
-
-{{%notice note%}}
-
-Installation via ONIE is supported in Cumulus VX 3.x and later.
-
-{{%/notice%}}
-
-This section assumes that you have downloaded and installed a hypervisor, {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="downloaded the Cumulus VX binary image" >}}, and configured the VM.
+Cumulus VX images include the GRUB boot loader and {{<exlink url="(http://onie.org/" text="Open Network Install Environment (ONIE)">}} preinstalled. You can install Cumulus Linux on switch hardware using a binary image. You can test this process by installing a Cumulus VX binary image with ONIE in a virtual environment.
 
 1. After booting the VM, reboot into ONIE Rescue mode using one of two methods:
    - Select ONIE Rescue mode on next reboot and reboot the VM with the `cumulus@switch:$ sudo onie-select -rf && sudo reboot` command.
@@ -126,11 +71,13 @@ This section assumes that you have downloaded and installed a hypervisor, {{<exl
    cumulus@switch:~$ onie-nos-install <URL to cumulus-linux-vx-amd64.bin>
    ```
 
-   Refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Installing-a-New-Cumulus-Linux-Image" text="Installing a New Cumulus Linux Image">}} or the
-   {{<exlink url="https://github.com/opencomputeproject/onie/wiki/Quick-Start-Guide" text="ONIE Quick Start Guide">}} for more specific instructions.
-
 During the ONIE boot sequence, ONIE attempts to start DHCP and timeout on every configured interface. If the VM has numerous configured interfaces, this can take a while to complete.
 
 After the installation process is complete, GRUB redirects you to the installed Cumulus VX instance.
 
 Cumulus Networks provides several preconfigured demos to run with Vagrant using Ansible to configure the VMs. To run these demos, download and install {{<exlink url="https://pypi.python.org/pypi/ansible" text="Ansible 1.7 or newer">}}.
+
+## Related Information
+
+- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41" text="Cumulus Linux documentation">}}
+- {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/" text="Cumulus Networks knowledge base">}}

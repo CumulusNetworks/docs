@@ -24,10 +24,6 @@ Cumulus VX is supported on VMware Fusion, Workstation, and vSphere ESXi. This do
 
 {{%/notice%}}
 
-## Tested Versions
-
-- KVM: tested on a server running Debian 3.2.60-1+deb7u3 x86\_64 GNU/Linux with 3.2.0-4-amd64 \#1 SMP processors.
-
 ## Cumulus VX Compared with Other Cumulus Networks Products
 
 Cumulus VX is not a production-ready virtual switch or router. It has the same foundation as Cumulus Linux, including all the control plane elements, but without an actual ASIC or NPU for line rate performance or hardware acceleration.

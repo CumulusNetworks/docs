@@ -64,7 +64,7 @@ Follow these steps for each VM:
 
 7. Click **Adapter 3** and repeat steps 4 thru 6. Use the internal network names and the connections shown in the illustration and table below.
 
-{{< img src = "/images/cumulus-vx/mapping.png" >}}
+{{< img src = "/images/cumulus-vx/VX-Connections.png" >}}
 
 | Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Name     |
 | --------- | ----     | -------------------- | ----------------------- | -------- |
@@ -76,9 +76,9 @@ Follow these steps for each VM:
 |           | swp1     | Adapter 2            | Internal                | Intnet-1 |
 |           | swp2     | Adapter 3            | Internal                | Intnet-2 |
 
-You can also add a VM to one or more internal virtual networks in VirtualBox by cloning the VM. However, consider the following if you prefer to clone VMs:
-
 {{%notice note%}}
+
+You can also add a VM to one or more internal virtual networks in VirtualBox by cloning the VM. However, consider the following if you prefer to clone VMs:
 
 - To set up configurations quickly across multiple nodes, configure the settings for the original VM, then clone it using **Machine \> Clone**. For example, if a management VM is being created for the new topology, set the `eth0` port to be on a virtual network that the management VM is on. When you clone the new VM, the port will be duplicated, creating an out-of-band (OOB) network.
 - When you clone the VM, save the new VM on disk storage by referring to the original disk image, instead of copying it to the new VM.

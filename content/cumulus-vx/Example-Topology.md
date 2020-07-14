@@ -7,7 +7,7 @@ version: '3.7'
 ---
 The Cumulus VX documentation uses the following two leaf and one spine tolopolgy to configure Cumulus VX. This topology is intended to be a blank slate with minimal configuration that you can build on, if desired.
 
-{{< img src = "/images/cumulus-vx/vx-topology.png" >}}
+{{< img src = "/images/cumulus-vx/VX-Topology.png" >}}
 
 In this topology:
 

@@ -6155,7 +6155,7 @@ line vty
 </tbody>
 </table>
 
-#### border-leaf01 and border-leaf02 Configurations
+#### exit01 and exit02 Configurations
 
 <table>
 <colgroup>
@@ -6165,8 +6165,8 @@ line vty
 <tbody>
 <tr class="odd">
 <td><details>
-<summary>border-leaf01 /etc/network/interfaces </summary>
-<pre><code>cumulus@border-leaf01:~$ cat /etc/network/interfaces
+<summary>exit01 /etc/network/interfaces </summary>
+<pre><code>cumulus@exit01:~$ cat /etc/network/interfaces
 
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
@@ -6319,8 +6319,8 @@ iface vni16002
     bridge-access 2002</code></pre>
 </details></td>
 <td><details>
-<summary>border-leaf02 /etc/network/interfaces </summary>
-<pre><code>cumulus@border-leaf02:~$ cat /etc/network/interfaces
+<summary>exit02 /etc/network/interfaces </summary>
+<pre><code>cumulus@exit02:~$ cat /etc/network/interfaces
 
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
@@ -6477,8 +6477,8 @@ iface vni16002
 </tr>
 <tr class="even">
 <td><details>
-<summary>border-leaf01 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@border-leaf01:~$ cat /etc/frr/frr.conf
+<summary>exit01 /etc/frr/frr.conf </summary>
+<pre><code>cumulus@exit01:~$ cat /etc/frr/frr.conf
 
 log file /var/log/frr/frr.log
 log timestamp precision 6
@@ -6545,8 +6545,8 @@ line vty
 !</code></pre>
 </details></td>
 <td><details>
-<summary>border-leaf02 /etc/frr/frr.conf </summary>
-<pre><code>cumulus@border-leaf02:~$ cat /etc/frr/frr.conf
+<summary>exit02 /etc/frr/frr.conf </summary>
+<pre><code>cumulus@exit02:~$ cat /etc/frr/frr.conf
 
 log file /var/log/frr/frr.log
 log timestamp precision 6

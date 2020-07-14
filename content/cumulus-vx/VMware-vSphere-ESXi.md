@@ -80,4 +80,6 @@ cumulus@leaf01:~$ ping 10.2.1.3
 
 ## Configure OSPF and FRRouting
 
-   ADD shortcode
+{{% vx-conf-routing %}}
+
+## Next Steps

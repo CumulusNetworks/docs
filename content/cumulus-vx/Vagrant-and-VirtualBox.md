@@ -157,7 +157,9 @@ When you run `vagrant up`, both VMs are created. You can log in to each VM and c
 
 ## Configure OSPF and FRRouting
 
-ADD SHORTCODE
+{{% vx-conf-routing %}}
+
+## Next Steps
 
 ## Caveats and Limitations
 

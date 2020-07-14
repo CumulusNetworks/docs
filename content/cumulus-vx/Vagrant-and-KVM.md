@@ -3,7 +3,7 @@ title: Vagrant and KVM
 author: Cumulus Networks
 weight: 35
 ---
-The solution described in this chapter requires four components:
+Running Cumulus VX with Vagrant and KVM requires four components:
 
 - **libvirt** provides an abstraction language to define and launch VMs, but is normally used just to launch single VMs. It uses XML to represent and define the VM.
 - **KVM** works exclusively with QEMU and performs hardware acceleration for x86 VMs with Intel and AMD CPUs. KVM and QEMU arehypervisors that emulate the VMs; the pair is often called KVM/QEMU or just KVM.
@@ -246,12 +246,8 @@ The `libvirt` domain is running. To stop this machine, you can run `vagrant halt
    cumulus@oob-mgmt-server:~$
    ```
 
-7. Experiment with your simulation.
+## Configure OSPF and FRRouting
 
-8. Explore the various demos available as part of the cldemo-vagrant family of repositories located {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant#available-demos" text="here">}}.
+{{% vx-conf-routing %}}
 
-9. Destroy the simulation when you finish:
-
-   ```
-   user@ubuntubox:~/cldemo-vagrant$ vagrant destroy -f
-   ```
+## Next Steps

@@ -84,4 +84,6 @@ After you restart the VMs, ping across VMs to test the connections. Run the foll
 
 ## Configure OSPF and FRRouting
 
-ADD SHORTCODE
+{{% vx-conf-routing %}}
+
+## Next Steps

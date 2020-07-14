@@ -8,7 +8,6 @@ toc: 1
 ---
 This section shows some basic commands you can try to get started with Cumulus Linux.
 
-
 ## Basic Show Commands
 
 To obtain information about a switch, run the `net show system` command:
@@ -49,7 +48,7 @@ LocalPort    Speed    Mode          RemotePort    RemoteHost        Summary
 swp1         1G       Interface/L3  swp1          CumulusVX-spine1  IP: 10.2.1.1/32
 ```
 
-## Change the hostname
+## Change the Hostname
 
 To change the hostname, run the `net add hostname` command. This command updates both the `/etc/hostname` and `/etc/hosts` files.
 
@@ -62,7 +61,7 @@ cumulus@switch:~$ net add hostname <hostname>
 Cumulus VX images include the GRUB boot loader and {{<exlink url="(http://onie.org/" text="Open Network Install Environment (ONIE)">}} preinstalled. You can install Cumulus Linux on switch hardware using a binary image. You can test this process by installing a Cumulus VX binary image with ONIE in a virtual environment.
 
 1. After booting the VM, reboot into ONIE Rescue mode using one of two methods:
-   - Select ONIE Rescue mode on next reboot and reboot the VM with the `cumulus@switch:$ sudo onie-select -rf && sudo reboot` command.
+   - Select ONIE Rescue mode on next reboot and reboot the VM with the `sudo onie-select -rf && sudo reboot` command.
    - Reboot and during the first 5 seconds on the GRUB menu, change the boot image to `ONIE`, then select `ONIE Rescue Mode` using the GRUB menu.
 
 2. To install Cumulus VX, run the following command:
@@ -75,9 +74,8 @@ During the ONIE boot sequence, ONIE attempts to start DHCP and timeout on every 
 
 After the installation process is complete, GRUB redirects you to the installed Cumulus VX instance.
 
-Cumulus Networks provides several preconfigured demos to run with Vagrant using Ansible to configure the VMs. To run these demos, download and install {{<exlink url="https://pypi.python.org/pypi/ansible" text="Ansible 1.7 or newer">}}.
-
 ## Related Information
 
 - {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41" text="Cumulus Linux documentation">}}
 - {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/" text="Cumulus Networks knowledge base">}}
+- {{<exlink url="https://pypi.python.org/pypi/ansible" text="Ansible 1.7 or newer">}}

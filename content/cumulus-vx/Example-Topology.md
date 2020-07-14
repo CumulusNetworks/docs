@@ -1,7 +1,7 @@
 ---
 title: 'Example Topology'
 author: Cumulus Networks
-weight: 5
+weight: 8
 product: Cumulus VX
 version: '3.7'
 ---

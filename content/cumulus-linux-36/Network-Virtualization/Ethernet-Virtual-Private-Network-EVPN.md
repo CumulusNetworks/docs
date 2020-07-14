@@ -1852,21 +1852,21 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  920
+    mtu  9216
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.9/30
-    mtu 9202
+    mtu 9216
     clagd-priority 4096
     clagd-sys-mac 44:38:39:ff:ff:01
     clagd-peer-ip 169.254.0.10
@@ -1960,21 +1960,21 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.10/30
-    mtu 9202
+    mtu 9216
     clagd-priority 8192
     clagd-sys-mac 44:38:39:ff:ff:01
     clagd-peer-ip 169.254.0.9
@@ -2180,21 +2180,21 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.9/30
-    mtu 9202
+    mtu 9216
     alias clag and vxlan communication primary path
     clagd-priority 4096
     clagd-sys-mac 44:38:39:ff:ff:02
@@ -2289,21 +2289,21 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.10/30
-    mtu 9202
+    mtu 9216
     alias clag and vxlan communication primary path
     clagd-priority 8192
     clagd-sys-mac 44:38:39:ff:ff:02
@@ -2509,21 +2509,21 @@ iface lo
 auto downlink-1
 iface downlink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto downlink-2
 iface downlink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto downlink-3
 iface downlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 auto downlink-4
 iface downlink-4
     bond-slaves swp7 swp8
-    mtu  9202
+    mtu  9216
 
 ```
 
@@ -2554,22 +2554,22 @@ iface lo
 auto downlink-1
 iface downlink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto downlink-2
 iface downlink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto downlink-3
 iface downlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto downlink-4
 iface downlink-4
     bond-slaves swp7 swp8
-    mtu  9202
+    mtu  9216
 ```
 
 </details>
@@ -2741,22 +2741,22 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.9/30
-    mtu 9202
+    mtu 9216
     alias clag and vxlan communication primary path
     clagd-priority 4096
     clagd-sys-mac 44:38:39:ff:ff:01
@@ -2894,22 +2894,22 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.10/30
-    mtu 9202
+    mtu 9216
     alias clag and vxlan communication primary path
     clagd-priority 8192
     clagd-sys-mac 44:38:39:ff:ff:01
@@ -3160,22 +3160,22 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.9/30
-    mtu 9202
+    mtu 9216
     alias clag and vxlan communication primary path
     clagd-priority 4096
     clagd-sys-mac 44:38:39:ff:ff:02
@@ -3302,22 +3302,22 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.10/30
-    mtu 9202
+    mtu 9216
     alias clag and vxlan communication primary path
     clagd-priority 8192
     clagd-sys-mac 44:38:39:ff:ff:02
@@ -3554,22 +3554,22 @@ iface lo
 auto downlink-1
 iface downlink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto downlink-2
 iface downlink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto downlink-3
 iface downlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto downlink-4
 iface downlink-4
     bond-slaves swp7 swp8
-    mtu  9202<
+    mtu  9216<
 ```
 
 </details>
@@ -3599,22 +3599,22 @@ iface lo
 auto downlink-1
 iface downlink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto downlink-2
 iface downlink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto downlink-3
 iface downlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto downlink-4
 iface downlink-4
     bond-slaves swp7 swp8
-    mtu  9202
+    mtu  9216
 
 ```
 
@@ -3786,22 +3786,22 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.9/30
-    mtu 9202
+    mtu 9216
     alias clag and vxlan communication primary path
     clagd-priority 4096
     clagd-sys-mac 44:38:39:ff:ff:01
@@ -3939,22 +3939,22 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.10/30
-    mtu 9202
+    mtu 9216
     alias clag and vxlan communication primary path
     clagd-priority 8192
     clagd-sys-mac 44:38:39:ff:ff:01
@@ -4204,22 +4204,22 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.9/30
-    mtu 9202
+    mtu 9216
     alias clag and vxlan communication primary path
     clagd-priority 4096
     clagd-sys-mac 44:38:39:ff:ff:02
@@ -4357,22 +4357,22 @@ iface lo
 auto uplink-1
 iface uplink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto uplink-2
 iface uplink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3
 iface peerlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto peerlink-3.4094
 iface peerlink-3.4094
     address 169.254.0.10/30
-    mtu 9202
+    mtu 9216
     alias clag and vxlan communication primary path
     clagd-priority 8192
     clagd-sys-mac 44:38:39:ff:ff:02
@@ -4621,21 +4621,21 @@ iface lo
 auto downlink-1
 iface downlink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto downlink-2
 iface downlink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto downlink-3
 iface downlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 auto downlink-4
 iface downlink-4
     bond-slaves swp7 swp8
-    mtu  9202
+    mtu  9216
 ```
 
 </details>
@@ -4665,22 +4665,22 @@ iface lo
 auto downlink-1
 iface downlink-1
     bond-slaves swp1 swp2
-    mtu  9202
+    mtu  9216
 
 auto downlink-2
 iface downlink-2
     bond-slaves swp3 swp4
-    mtu  9202
+    mtu  9216
 
 auto downlink-3
 iface downlink-3
     bond-slaves swp5 swp6
-    mtu  9202
+    mtu  9216
 
 auto downlink-4
 iface downlink-4
     bond-slaves swp7 swp8
-    mtu  9202
+    mtu  9216
 ```
 
 </details>

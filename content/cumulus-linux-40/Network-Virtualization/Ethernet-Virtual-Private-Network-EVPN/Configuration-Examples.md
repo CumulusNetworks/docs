@@ -3533,10 +3533,10 @@ iface swp6
 
 {{< /tab >}}
 
-{{< tab "border-leaf01" >}}
+{{< tab "exit01" >}}
 
 ```
-cumulus@border-leaf01:~$ cat /etc/network/interfaces
+cumulus@exit01:~$ cat /etc/network/interfaces
 
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
@@ -3689,10 +3689,10 @@ iface vni16002
 
 {{< /tab >}}
 
-{{< tab "border-leaf02" >}}
+{{< tab "exit02" >}}
 
 ```
-cumulus@border-leaf02:~$ cat /etc/network/interfaces
+cumulus@exit02:~$ cat /etc/network/interfaces
 
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
@@ -4218,10 +4218,10 @@ line vty
 
 {{< /tab >}}
 
-{{< tab "border-leaf01" >}}
+{{< tab "exit01" >}}
 
 ```
-cumulus@border-leaf01:~$ cat /etc/frr/frr.conf
+cumulus@exit01:~$ cat /etc/frr/frr.conf
 
 log file /var/log/frr/frr.log
 log timestamp precision 6
@@ -4292,10 +4292,10 @@ line vty
 
 {{< /tab >}}
 
-{{< tab "border-leaf02" >}}
+{{< tab "exit02" >}}
 
 ```
-cumulus@border-leaf02:~$ cat /etc/frr/frr.conf
+cumulus@exit02:~$ cat /etc/frr/frr.conf
 
 log file /var/log/frr/frr.log
 log timestamp precision 6

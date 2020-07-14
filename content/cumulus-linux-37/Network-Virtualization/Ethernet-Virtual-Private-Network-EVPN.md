@@ -6608,11 +6608,11 @@ line vty
 
 </details>
 
-### Exit 01 and Exit 02 Configurations
+### Exit01 and Exit02 Configurations
 
 <details>
 
-<summary>Exit 01 /etc/network/interfaces </summary>
+<summary>Exit01 /etc/network/interfaces </summary>
 
 ```
 cumulus@Exit01:~$ cat /etc/network/interfaces
@@ -6822,7 +6822,7 @@ iface vlan30
 
 <details>
 
-<summary>Exit 02 /etc/network/interfaces </summary>
+<summary>Exit02 /etc/network/interfaces </summary>
 
 ```
 cumulus@Exit02:~$ cat /etc/network/interfaces
@@ -7028,7 +7028,7 @@ iface vlan30
 
 <details>
 
-<summary>Exit 01 /etc/frr/frr.conf </summary>
+<summary>Exit01 /etc/frr/frr.conf </summary>
 
 ```
 cumulus@Exit01:~$ cat /etc/frr/frr.conf
@@ -7092,7 +7092,7 @@ line vty
 
 <details>
 
-<summary>Exit 02 /etc/frr/frr.conf </summary>
+<summary>Exit02 /etc/frr/frr.conf </summary>
 
 ```
 cumulus@Exit02:~$ cat /etc/frr/frr.conf

@@ -18,6 +18,8 @@ Performing virtualization in Linux requires three components:
 - **KVM** works exclusively with QEMU and performs hardware acceleration for x86 VMs with Intel and AMD CPUs. The pair is often called KVM/QEMU or just KVM.
 - **QEMU** is a machine emulator that allows the host machine to emulate the CPU architecture of the guest machine. Because QEMU does not provide hardware acceleration, it works well with KVM.
 
+## Create VMs with KVM, QEMU, and Libvirt
+
 1. Install QEMU/KVM. Refer to the {{<exlink url="http://www.qemu-project.org/download/" text="KVM documentation">}}  
 
 2. Download Cumulus VX disk image for KVM from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}.
@@ -162,15 +164,7 @@ br0: received package on swp1 with own address as source address
 
 ## Test Connections between VMs
 
-After you restart the VMs, ping across VMs to test the connections:
-
-Run the following commands from leaf01 to ping Leaf02 and Spine01:
-
-```
-cumulus@Cumulusleaf01:~$ ping 10.2.1.2
-
-cumulus@leaf01:~$ ping 10.2.1.3
-```
+{{% vx-test-connections %}}
 
 ## Configure OSPF and FRRouting
 

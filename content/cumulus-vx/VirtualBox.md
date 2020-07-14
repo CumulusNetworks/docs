@@ -76,23 +76,19 @@ Follow these steps for each VM:
 |           | swp1     | Adapter 2            | Internal                | Intnet-1 |
 |           | swp2     | Adapter 3            | Internal                | Intnet-2 |
 
-## Test Network Connections
-
-After you restart the VMs, ping across VMs to test the connections:
-
-Run the following commands from leaf01 to ping Leaf02 and Spine01:
-
-```
-cumulus@Cumulusleaf01:~$ ping 10.2.1.2
-
-cumulus@leaf01:~$ ping 10.2.1.3
-```
-
 You can also add a VM to one or more internal virtual networks in VirtualBox by cloning the VM. However, consider the following if you prefer to clone VMs:
+
+{{%notice note%}}
 
 - To set up configurations quickly across multiple nodes, configure the settings for the original VM, then clone it using **Machine \> Clone**. For example, if a management VM is being created for the new topology, set the `eth0` port to be on a virtual network that the management VM is on. When you clone the new VM, the port will be duplicated, creating an out-of-band (OOB) network.
 - When you clone the VM, save the new VM on disk storage by referring to the original disk image, instead of copying it to the new VM.
 - Always reset MAC addresses on the virtual NICs, unless a critical reason not to exists.
+
+{{%/notice%}}
+
+## Test Network Connections
+
+{{% vx-test-connections %}}
 
 ## Configure OSPF and FRRouting
 

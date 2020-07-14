@@ -68,15 +68,7 @@ Add section here
 
 ## Test the Network Connections
 
-After you restart the VMs, ping across VMs to test the connections.
-
-Run the following commands from leaf01 to ping Leaf02 and Spine01:
-
-```
-cumulus@Cumulusleaf01:~$ ping 10.2.1.2
-
-cumulus@leaf01:~$ ping 10.2.1.3
-```
+{{% vx-test-connections %}}
 
 ## Configure OSPF and FRRouting
 

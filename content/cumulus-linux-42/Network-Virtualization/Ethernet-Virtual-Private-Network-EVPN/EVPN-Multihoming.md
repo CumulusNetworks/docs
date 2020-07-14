@@ -183,7 +183,7 @@ To configure a MAC hold time for 1000 seconds, run the following commands:
 
 {{<tab "NCLU Commands">}}
 
-    cumulus@switch:~$ net add evpn mh mac-holdtime 1200
+    cumulus@switch:~$ net add evpn mh mac-holdtime 1000
     cumulus@switch:~$ net commit
 
 {{</tab>}}
@@ -193,7 +193,7 @@ To configure a MAC hold time for 1000 seconds, run the following commands:
 ```
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
-switch(config)# evpn mh mac-holdtime 1200
+switch(config)# evpn mh mac-holdtime 1000
 switch(config)# exit
 switch# write memory
 ```

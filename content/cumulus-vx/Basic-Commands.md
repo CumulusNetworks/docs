@@ -7,7 +7,7 @@ version: '3.7'
 ---
 This section shows some basic commands you can try to get started with Cumulus Linux.
 
-## Basic Show Commands
+## Run Basic Show Commands
 
 To obtain information about a switch, run the `net show system` command:
 

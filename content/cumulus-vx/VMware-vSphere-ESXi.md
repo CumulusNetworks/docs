@@ -4,14 +4,14 @@ author: Cumulus Networks
 weight: 20
 ---
 
-To use Cumulus VX with VMWare vSphere, you need to perform the following configuration:
+To use Cumulus VX with VMWare vSphere, perform the following configuration:
 
 - Create the VMs
 - Create connections between the VMs
 - Test the connections
 - Configure OSPF and FRRouting
 
-## Create VMs with VMWare vSphere
+## Create the VMs
 
 The following procedure describes how to create a VM in VMWare vSphere for each switch in the example topology (Leaf01, Leaf02, and Spine01). This section assumes a basic level of VMWare vSphere experience.
 

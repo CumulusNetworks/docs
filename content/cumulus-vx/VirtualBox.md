@@ -3,14 +3,14 @@ title: VirtualBox
 author: Cumulus Networks
 weight: 15
 ---
-To use Cumulus VX with VirtualBox, you need to perform the following configuration:
+To use Cumulus VX with VirtualBox, perform the following configuration:
 
 - Create the VMs
 - Create connections between the VMs
 - Test the connections
 - Configure OSPF and FRRouting
 
-## Create VMs with VirtualBox
+## Create the VMs
 
 The following procedure describes how to create a VM in VirtualBox for each switch in the example topology (Leaf01, Leaf02, and Spine01). This section assumes a basic level of VirtualBox experience.
 

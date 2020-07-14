@@ -5,6 +5,12 @@ weight: 30
 ---
 This document describes how to install and set up Cumulus Linux within a Vagrant environment, using VirtualBox as the hypervisor. These sections assume a basic level of Vagrant, VirtualBox, and Linux experience.
 
+To use Cumulus VX within a Vagrant environment, perform the following configuration:
+
+- Create the VMs and the connections between them
+- Test the connections
+- Configure OSPF and FRRouting
+
 ## Create the VMs
 
 1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
@@ -155,15 +161,17 @@ The following example creates two Cumulus VX VMs, leaf1 and leaf2, where the int
 
 When you run `vagrant up`, both VMs are created. You can log in to each VM and configure the interfaces as you want; the interfaces will pass traffic between themselves as if they are two physical switches connected together by four cables.
 
-## Configure OSPF and FRRouting
-
-{{% vx-conf-routing %}}
-
-## Next Steps
-
-## Caveats and Limitations
+{{%notice note%}}
 
 When using Vagrant with Cumulus VX:
 
 - VirtualBox can support a maximum of 36 network interfaces.
 - The first network interface (eth0) is always managed by Vagrant and must be connected to a NAT network.
+
+{{%/notice%}}
+
+## Configure OSPF and FRRouting
+
+{{% vx-conf-routing %}}
+
+## Next Steps

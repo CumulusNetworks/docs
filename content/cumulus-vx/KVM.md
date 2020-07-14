@@ -2,7 +2,6 @@
 title: KVM
 author: Cumulus Networks
 weight: 25
-toc: 2
 ---
 To use Cumulus VX with KVM, you need to perform the following configuration:
 

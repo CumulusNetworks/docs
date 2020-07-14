@@ -2,7 +2,6 @@
 title: GNS3 and VirtualBox
 author: Cumulus Networks
 weight: 40
-toc: 2
 ---
 
 INTRO

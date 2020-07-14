@@ -2,7 +2,6 @@
 title: VirtualBox
 author: Cumulus Networks
 weight: 15
-toc: 2
 ---
 To use Cumulus VX with VirtualBox, you need to perform the following configuration:
 

@@ -4,7 +4,6 @@ author: Cumulus Networks
 weight: 60
 product: Cumulus VX
 version: '3.7'
-toc: 1
 ---
 This section shows some basic commands you can try to get started with Cumulus Linux.
 

@@ -2,7 +2,6 @@
 title: VMware vSphere ESXi
 author: Cumulus Networks
 weight: 20
-toc: 2
 ---
 
 To use Cumulus VX with VMWare vSphere, you need to perform the following configuration:

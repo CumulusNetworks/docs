@@ -18,7 +18,7 @@ Performing virtualization in Linux requires three components:
 - **KVM** works exclusively with QEMU and performs hardware acceleration for x86 VMs with Intel and AMD CPUs. The pair is often called KVM/QEMU or just KVM.
 - **QEMU** is a machine emulator that allows the host machine to emulate the CPU architecture of the guest machine. Because QEMU does not provide hardware acceleration, it works well with KVM.
 
-## Create VMs with KVM, QEMU, and Libvirt
+## Create the VMs
 
 1. Install QEMU/KVM. Refer to the {{<exlink url="http://www.qemu-project.org/download/" text="KVM documentation">}}  
 

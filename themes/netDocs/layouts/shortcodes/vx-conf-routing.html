@@ -2,9 +2,8 @@
 <p>Follow these steps on each switch:</p>
     <ol>
     <li><p>Log into the switch as the cumulus user with the password <code>CumulusLinux!</code>:</p></li>
-    <li><p>As the sudo user, edit the <code>/etc/frr/daemons</code> file in a text editor. Set <code>zebra</code>, <code>bgpd</code>, and <code>ospfd</code> to <strong>yes</strong>, and save the file.</p>
+    <li><p>As the sudo user, edit the <code>/etc/frr/daemons</code> file in a text editor. Set <code>zebra</code>, <code>bgpd</code>, and <code>ospfd</code> to <strong>yes</strong>, and save the file. Run the <code>sudo systemctl start frr.service</code> command to restart FRR.</p>
     <pre>cumulus@switch:~$ sudo nano /etc/frr/daemons
-    zebra=yes
     bgpd=yes
     ospfd=yes
     ...
@@ -13,19 +12,19 @@
 <details>
 <summary>Leaf01</summary>
 <pre>cumulus@switch:~$ net add loopback lo ip address 10.2.1.1/32
-cumulus@switch:~$ net add interface swp1 ip address 10.2.1.1/32
-cumulus@switch:~$ net add interface swp2 ip address 10.2.1.1/32
-cumulus@switch:~$ net add interface swp3 ip address 10.4.1.1/24
-cumulus@switch:~$ net add interface swp1 ospf network point-to-point
-cumulus@switch:~$ net add interface swp2 ospf network point-to-point
-cumulus@switch:~$ net add ospf router-id 10.2.1.1
-cumulus@switch:~$ net add ospf network 10.2.1.1/32 area 0.0.0.0
-cumulus@switch:~$ net add ospf network 10.4.1.0/24 area 0.0.0.0
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@Leaf01:~$ net add interface swp1 ip address 10.2.1.1/32
+cumulus@Leaf01:~$ net add interface swp2 ip address 10.2.1.1/32
+cumulus@Leaf01:~$ net add interface swp3 ip address 10.4.1.1/24
+cumulus@Leaf01:~$ net add interface swp1 ospf network point-to-point
+cumulus@Leaf01:~$ net add interface swp2 ospf network point-to-point
+cumulus@Leaf01:~$ net add ospf router-id 10.2.1.1
+cumulus@Leaf01:~$ net add ospf network 10.2.1.1/32 area 0.0.0.0
+cumulus@Leaf01:~$ net add ospf network 10.4.1.0/24 area 0.0.0.0
+cumulus@Leaf01:~$ net pending
+cumulus@Leaf01:~$ net commit
 </pre>
 <p>These commands configure both the <code>/etc/network/interfaces</code> file and the <code>/etc/frr/frr.conf</code> file, as shown below. Instead of running the NCLU commands, you can edit the <code>/etc/network/interfaces</code> and the <code>/etc/frr/frr.conf</code> files manually.</p>
-<pre>cumulus@switch:~$ sudo nano /etc/network/interfaces
+<pre>cumulus@Leaf01:~$ sudo nano /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
@@ -47,7 +46,7 @@ iface swp3
     address 10.4.1.1/24
 </pre>
 <pre>
-cumulus@switch:~$ sudo nano /etc/frr/frr.conf
+cumulus@Leaf01:~$ sudo nano /etc/frr/frr.conf
     
 service integrated-vtysh-config
     
@@ -68,20 +67,20 @@ interface swp2
 
 <details>
 <summary>Leaf02</summary>
-<pre>cumulus@switch:~$ net add loopback lo ip address 10.2.1.2/32
-cumulus@switch:~$ net add interface swp1 ip address 10.2.1.2/32
-cumulus@switch:~$ net add interface swp2 ip address 10.2.1.2/32
-cumulus@switch:~$ net add interface swp3 ip address 10.4.2.1/24
-cumulus@switch:~$ net add interface swp1 ospf network point-to-point
-cumulus@switch:~$ net add interface swp2 ospf network point-to-point
-cumulus@switch:~$ net add ospf router-id 10.2.1.2
-cumulus@switch:~$ net add ospf network 10.2.1.2/32 area 0.0.0.0
-cumulus@switch:~$ net add ospf network 10.4.2.0/24 area 0.0.0.0
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+<pre>cumulus@Leaf02:~$ net add loopback lo ip address 10.2.1.2/32
+cumulus@Leaf02:~$ net add interface swp1 ip address 10.2.1.2/32
+cumulus@Leaf02:~$ net add interface swp2 ip address 10.2.1.2/32
+cumulus@Leaf02:~$ net add interface swp3 ip address 10.4.2.1/24
+cumulus@Leaf02:~$ net add interface swp1 ospf network point-to-point
+cumulus@Leaf02:~$ net add interface swp2 ospf network point-to-point
+cumulus@Leaf02:~$ net add ospf router-id 10.2.1.2
+cumulus@Leaf02:~$ net add ospf network 10.2.1.2/32 area 0.0.0.0
+cumulus@Leaf02:~$ net add ospf network 10.4.2.0/24 area 0.0.0.0
+cumulus@Leaf02:~$ net pending
+cumulus@Leaf02:~$ net commit
 </pre>
 <p>These commands configure both the <code>/etc/network/interfaces</code> file and the <code>/etc/frr/frr.conf</code> file, as shown below. Instead of running the NCLU commands, you can edit the <code>/etc/network/interfaces</code> and the <code>/etc/frr/frr.conf</code> files manually.</p>
-<pre>cumulus@switch:~$ sudo nano /etc/network/interfaces
+<pre>cumulus@Leaf02:~$ sudo nano /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
@@ -101,7 +100,7 @@ auto swp3
 iface swp3
     address 10.4.2.1/24
 </pre>
-<pre>cumulus@switch:~$ sudo nano /etc/frr/frr.conf
+<pre>cumulus@Leaf02:~$ sudo nano /etc/frr/frr.conf
 
 service integrated-vtysh-config
 
@@ -123,19 +122,19 @@ ip ospf network point-to-point
 <details> 
 <summary>Spine01</summary>
 <pre>cumulus@switch:~$ net add loopback lo ip address 10.2.1.3/32
-cumulus@switch:~$ net add interface swp1 ip address 10.2.1.3/32
-cumulus@switch:~$ net add interface swp2 ip address 10.2.1.3/32
-cumulus@switch:~$ net add interface swp3 ip address 10.4.3.1/24
-cumulus@switch:~$ net add interface swp1 ospf network point-to-point
-cumulus@switch:~$ net add interface swp2 ospf network point-to-point
-cumulus@switch:~$ net add ospf router-id 10.2.1.3
-cumulus@switch:~$ net add ospf network 10.2.1.3/32 area 0.0.0.0
-cumulus@switch:~$ net add ospf network 10.4.3.0/24 area 0.0.0.0
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@Spine01:~$ net add interface swp1 ip address 10.2.1.3/32
+cumulus@Spine01:~$ net add interface swp2 ip address 10.2.1.3/32
+cumulus@Spine01:~$ net add interface swp3 ip address 10.4.3.1/24
+cumulus@Spine01:~$ net add interface swp1 ospf network point-to-point
+cumulus@Spine01:~$ net add interface swp2 ospf network point-to-point
+cumulus@Spine01:~$ net add ospf router-id 10.2.1.3
+cumulus@Spine01:~$ net add ospf network 10.2.1.3/32 area 0.0.0.0
+cumulus@Spine01:~$ net add ospf network 10.4.3.0/24 area 0.0.0.0
+cumulus@Spine01:~$ net pending
+cumulus@Spine01:~$ net commit
 </pre>
 <p>These commands configure both the <code>/etc/network/interfaces</code> file and the <code>/etc/frr/frr.conf</code> file, as shown below. Instead of running the NCLU commands, you can edit the <code>/etc/network/interfaces</code> and the <code>/etc/frr/frr.conf</code> files manually.</p>
-<pre>cumulus@switch:~$ sudo nano /etc/network/interfaces
+<pre>cumulus@Spine01:~$ sudo nano /etc/network/interfaces
 # The loopback network interface
 auto lo
 iface lo inet loopback
@@ -157,7 +156,7 @@ iface swp3
     address 10.4.3.1/24
 </pre>
 <pre>   
-cumulus@switch:~$ sudo nano /etc/frr/frr.conf
+cumulus@Spine01:~$ sudo nano /etc/frr/frr.conf
     
 service integrated-vtysh-config
     

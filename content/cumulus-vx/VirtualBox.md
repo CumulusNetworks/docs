@@ -7,8 +7,7 @@ To use Cumulus VX with VirtualBox, perform the following configuration:
 
 - Create the VMs
 - Create connections between the VMs
-- Test the connections
-- Configure OSPF and FRRouting
+- Test the network connections
 
 The following steps were tested with VirtualBox-6.0.24.
 
@@ -71,9 +70,9 @@ Follow these steps for each VM (Leaf01, Leaf02, and Spine01):
 | Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Name     |
 | --------- | ----     | -------------------- | ----------------------- | -------- |
 | Leaf01    |          | Adapter 1            | NAT                     |          |
-|           | swp51    | Adapter 2            | Internal                | intnet-1 |
+|           | swp1     | Adapter 2            | Internal                | intnet-1 |
 | Leaf02    |          | Adapter 1            | NAT                     |          |
-|           | swp51    | Adapter 2            | Internal                | intnet-2 |
+|           | swp1    |  Adapter 2            | Internal                | intnet-2 |
 | Spine01   |          | Adapter 1            | NAT                     |          |
 |           | swp1     | Adapter 2            | Internal                | intnet-1 |
 |           | swp2     | Adapter 3            | Internal                | intnet-2 |
@@ -90,10 +89,5 @@ You can also add a VM to one or more internal virtual networks in VirtualBox by 
 
 ## Test Network Connections
 
-{{% vx-test-connections %}}
-
-## Configure OSPF and FRRouting
-
-{{% vx-conf-routing %}}
-
 ## Next Steps
+

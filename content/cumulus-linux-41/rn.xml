@@ -14,6 +14,16 @@ To work around this issue, manually delete the dynamic FDB entry that is associa
 <td></td>
 </tr>
 <tr>
+<td>CM-30473</td>
+<td><p>If you modify an interface name, then reuse the previous interface name for a different VLAN, the ifreload -a command generates an error similar to the following:</p>
+
+warning: &lt;interface-name&gt;: interface not recognized - please check interface configuration
+
+</td>
+<td>4.1.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30472</td>
 <td><p>On the QuantaMesh T1048-LY4 switch, pluggables inserted into SFP+ ports are not detected.<br/>
 To workaround this issue, downgrade to Cumulus Linux 3.7 ESR.</p></td>
@@ -1999,6 +2009,16 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30473</td>
+<td><p>If you modify an interface name, then reuse the previous interface name for a different VLAN, the ifreload -a command generates an error similar to the following:</p>
+
+warning: &lt;interface-name&gt;: interface not recognized - please check interface configuration
+
+</td>
+<td>4.1.0-4.1.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30472</td>

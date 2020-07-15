@@ -6,6 +6,7 @@ product: Cumulus VX
 version: '3.7'
 ---
 This section shows some basic commands you can try to get started with Cumulus Linux.
+For more detailed information about using Cumulus Linux, refer to the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41" text="Cumulus Linux documentation">}}.
 
 ## Run Basic Show Commands
 
@@ -72,9 +73,3 @@ Cumulus VX images include the GRUB boot loader and {{<exlink url="(http://onie.o
 During the ONIE boot sequence, ONIE attempts to start DHCP and timeout on every configured interface. If the VM has numerous configured interfaces, this can take a while to complete.
 
 After the installation process is complete, GRUB redirects you to the installed Cumulus VX instance.
-
-## Related Information
-
-- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-41" text="Cumulus Linux documentation">}}
-- {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/" text="Cumulus Networks knowledge base">}}
-- {{<exlink url="https://pypi.python.org/pypi/ansible" text="Ansible 1.7 or newer">}}

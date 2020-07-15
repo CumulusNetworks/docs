@@ -617,7 +617,7 @@ cumulus@switch:~$
 
 ## Example Configuration
 
-The following example uses the topology illustrated here.
+The following example uses the topology illustrated here. It shows one rack for simplicity, but multiple racks can be added to this topology.
 
 {{<img src="/images/cumulus-linux/EVPN-MH-example-config.png">}}
 

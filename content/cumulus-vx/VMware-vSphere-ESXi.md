@@ -47,18 +47,11 @@ The following procedure describes how to create a VM in VMWare vSphere for each 
 
 {{%notice note%}}
 
-You might encounter an issue if the wrong storage interface type is selected (SATA or IDE). For example this log message indicates the filesystem cannot be found. Configure ESXi to use the SATA controller.
+If the wrong storage interface type is selected, you might see an error similar to:
 
-```
-Info: Fetching http://192.168.100.1/onie-installer-cumulus_vx ...
-ONIE: Executing installer: http://192.168.100.1/onie-installer-cumulus_vx
-Verifying image checksum ...OK.
-Preparing image archive ... OK.
-Verifying image compatibility ...OK.
-Verifying system ram ...OK.
-Setting up installer ...Failure: Unable to find storage device for file system with label 'ONIE-BOOT'
-Info: Check the output of 'blkid'.
-```
+`Setting up installer ...Failure: Unable to find storage device for file system with label 'ONIE-BOOT'`
+
+Configure ESXi to use the SATA controller.
 
 {{%/notice%}}
 

@@ -661,7 +661,7 @@ cumulus@switch:~$ net show bgp evpn route type ead
 BGP table version is 30, local router ID is 172.16.0.21
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete
-EVPN type-1 prefix: [4]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
+EVPN type-1 prefix: [1]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
 EVPN type-2 prefix: [2]:[EthTag]:[MAClen]:[MAC]:[IPlen]:[IP]
 EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
 EVPN type-4 prefix: [4]:[ESI]:[IPlen]:[OrigIP]

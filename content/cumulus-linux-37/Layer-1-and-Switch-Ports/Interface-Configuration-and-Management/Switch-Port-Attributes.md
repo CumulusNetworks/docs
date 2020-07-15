@@ -1504,18 +1504,15 @@ comment out the lines as this prevents `switchd` from restarting.
 
 {{%/notice%}}
 
-### 1000BASE-T Modules Not Supported on Certain Edgecore and Cumulus Express Switches
+### 1000BASE-T SFP Modules Not Supported on Certain 25G and All 100G Platforms
 
-1000BASE-T modules are not supported on the following switches:
+1000BASE-T SFP modules are not supported on 25G or 100G platforms, with two exceptions for 25G: the Cumulus Express CX-5148-S and Edgecore AS7326-56X switches are supported in Cumulus Linux 3.7.13 and later releases of version 3.7, provided the switch has board revision R01D.
 
-- Cumulus Express CX-5148-S
-- Cumulus Express CX-8132-S
-- Edgecore AS7326-56X
-- Edgecore AS7726-32X
+To determine the revision of the board, look for the output in the `label revision` field when you run `decode-syseeprom`.
 
 ### Mellanox SN2100 Switch and eth0 Link Speed
 
-After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
+After rebooting the Mellanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
 
 To work around this issue, add the following commands to the `/etc/rc.local` file to flap the interface automatically when the switch boots:
 

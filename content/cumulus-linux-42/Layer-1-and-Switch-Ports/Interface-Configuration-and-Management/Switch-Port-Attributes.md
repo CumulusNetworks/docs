@@ -1381,6 +1381,12 @@ To disable the QSFP+ ports, you must set the ports to `disabled`. Do not comment
 
 {{%/notice%}}
 
+### 1000BASE-T SFP Modules Not Supported on Certain 25G and All 100G Platforms
+
+1000BASE-T SFP modules are not supported on 25G or 100G platforms, with two exceptions for 25G: the Cumulus Express CX-5148-S and Edgecore AS7326-56X switches are supported in Cumulus Linux 4.2.0 and later releases, provided the switch has board revision R01D.
+
+To determine the revision of the board, look for the output in the `label revision` field when you run `decode-syseeprom`.
+
 ### Mellanox SN2100 Switch and eth0 Link Speed
 
 After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.

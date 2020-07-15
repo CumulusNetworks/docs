@@ -10,33 +10,35 @@ To use Cumulus VX with VirtualBox, perform the following configuration:
 - Test the connections
 - Configure OSPF and FRRouting
 
+The following steps were tested with VirtualBox-6.0.24.
+
 ## Create the VMs
 
 The following procedure describes how to create a VM in VirtualBox for each switch in the example topology (Leaf01, Leaf02, and Spine01). This section assumes a basic level of VirtualBox experience.
 
 1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
 
-2. Download the OVA disk image for use with VirtualBox from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}.
+2. From the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}, download the OVA disk image to run Cumulus VX within VirtualBox.
 
-3. Open VirtualBox and click **File \> Import Appliance**.
+3. Open the VirtualBox application and select **Import Appliance** from the **File** menu.
 
-4. Browse for the downloaded VirtualBox image, click the **Open** button, then click **Continue**.
+4. Browse for the OVA disk image you installed in the previous step, click the **Open** button, then click **Continue**.
 
-5. Review the Appliance settings. Change the name of the VM to `Leaf01`, then click **Import** to begin the import process.  
+5. In the Appliance settings, change the name of the VM to `Leaf01`, then click **Import** to begin the import process.  
 
    {{< img src = "/images/cumulus-vx/VirtualBox-review.png" >}}
 
-6. Right click the created `Leaf01` VM, then select **Clone**.
+6. In the VirtualBox Manager window, right click the created `Leaf01` VM, then select **Clone**.
 
 7. Change the name of the VM to `Leaf02`, then click **Continue**.
 
 8. Select **Full Clone** and click **Clone**.
 
-9. Repeat steps 6-8 for Spine01:
+9. Repeat steps 6 through 8 to create `Spine01`.
 
 ## Create Connections Between VMs
 
-To use the network topology you configured above, you need to configure the network adapter settings for each VM to create point-to-point connections. The following example shows how to create point-to-point connections between each VM in VirtualBox.
+Configure the network adapter settings for Leaf01, Leaf02, and Spine01 to create point-to-point connections.
 
 {{%notice note%}}
 
@@ -44,37 +46,37 @@ Make sure that the VM is powered off.
 
 {{%/notice%}}
 
-Follow these steps for each VM:
+Follow these steps for each VM (Leaf01, Leaf02, and Spine01):
 
-1. In the VirtualBox Manager window, select the VM.
+1. In the VirtualBox Manager window, select Leaf01.
 
 2. Click **Settings**, then click **Network**.
 
 3. Click **Adapter 2**.
 
-4. Click the **Enable Network Adapter** check box.
+4. Make sure the **Enable Network Adapter** check box is selected.
 
 5. From the **Attached to** list, select **Internal Network**.  
 
-    {{< img src = "/images/cumulus-vx/adapterSettings.png" >}}
-
-6. In the **Name** field, type a name for the internal network, then click **OK**.
+6. In the **Name** field, enter a name for the internal network, then click **OK**. The example below uses `intnet-1`.
 
    The internal network name must match the internal network name on the corresponding network adapter on the VM to be connected to this VM. For example, in the two-leaf and one spine topology, Adapter 2 (swp1) on Leaf01 is connected to Adapter 2 (swp1) on Spine01; the name must be the same for Adapter 2 on both VMs. Use the internal network names and the connections shown in the illustration and table below.
 
-7. Click **Adapter 3** and repeat steps 4 thru 6. Use the internal network names and the connections shown in the illustration and table below.
+   {{< img src = "/images/cumulus-vx/adapterSettings.png" >}}
+
+7. Repeat steps 2 through 6 for Leaf02 and Spine02 using the internal network names and the connections shown in the illustration and table below.
 
 {{< img src = "/images/cumulus-vx/VX-Connections.png" >}}
 
 | Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Name     |
 | --------- | ----     | -------------------- | ----------------------- | -------- |
 | Leaf01    |          | Adapter 1            | NAT                     |          |
-|           | swp51    | Adapter 2            | Internal                | Intnet-1 |
+|           | swp51    | Adapter 2            | Internal                | intnet-1 |
 | Leaf02    |          | Adapter 1            | NAT                     |          |
-|           | swp51    | Adapter 2            | Internal                | Intnet-2 |
+|           | swp51    | Adapter 2            | Internal                | intnet-2 |
 | Spine01   |          | Adapter 1            | NAT                     |          |
-|           | swp1     | Adapter 2            | Internal                | Intnet-1 |
-|           | swp2     | Adapter 3            | Internal                | Intnet-2 |
+|           | swp1     | Adapter 2            | Internal                | intnet-1 |
+|           | swp2     | Adapter 3            | Internal                | intnet-2 |
 
 {{%notice note%}}
 

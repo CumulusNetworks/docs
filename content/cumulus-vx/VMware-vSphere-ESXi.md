@@ -59,12 +59,8 @@ Configure ESXi to use the SATA controller.
 
 Add section here
 
-## Test the Network Connections
+## Basic Switch Configuration
 
-{{% vx-test-connections %}}
-
-## Configure OSPF and FRRouting
-
-{{% vx-conf-routing %}}
+{{% vx-basic-config %}}
 
 ## Next Steps

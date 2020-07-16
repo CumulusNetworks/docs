@@ -170,8 +170,8 @@ When using Vagrant with Cumulus VX:
 
 {{%/notice%}}
 
-## Configure OSPF and FRRouting
+## Basic Switch Configuration
 
-{{% vx-conf-routing %}}
+{{% vx-basic-config %}}
 
 ## Next Steps

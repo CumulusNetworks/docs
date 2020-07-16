@@ -162,12 +162,8 @@ br0: received package on swp1 with own address as source address
 
 {{%/notice%}}
 
-## Test Connections between VMs
+## Basic Switch Configuration
 
-{{% vx-test-connections %}}
-
-## Configure OSPF and FRRouting
-
-{{% vx-conf-routing %}}
+{{% vx-basic-config %}}
 
 ## Next Steps

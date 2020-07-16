@@ -9,7 +9,7 @@ To use Cumulus VX with VirtualBox, perform the following configuration:
 - Create connections between the VMs
 - Perform basic switch configuration
 
-The following steps were tested with VirtualBox-6.0.24.
+The following steps were tested with VirtualBox-6.0.24 on macOS 10.14.6.
 
 ## Create the VMs
 
@@ -79,42 +79,6 @@ Follow these steps for each VM (Leaf01, Leaf02, and Spine01):
 
 ## Basic Switch Configuration
 
-After you have created the three VMs: Leaf01, Leaf02, and Spine 01, log into each one with the `cumulus` account and default password `CumulusLinux!`, then perform the following basic configuration:
-
-- Change the hostname
-- Bring up swp1 and swp2
-- Check the connections
-
-### Change the Hostname
-
-On each VM, run the following command, reboot the switch, then log back in:
-
-```
-cumulus@cumulus:mgmt:~$ net add hostname <name>
-cumulus@cumulus:mgmt:~$ net commit
-cumulus@cumulus:mgmt:~$ sudo reboot
-```
-
-### Bring up the Interfaces
-
-On each VM, run the following command to bring up swp1 and swp2:
-
-```
-cumulus@leaf01:mgmt:~$ net add interface swp1, swp2
-cumulus@leaf01:mgmt:~$ net commit
-```
-
-### Check the Connections
-
-On each VM, check the network connections and see which ports are neighbors of a given port:
-
-```
-cumulus@leaf01:mgmt:~$ net show lldp
-
-LocalPort    Speed    Mode          RemoteHost     RemotePort  
------------  -------  ------------  ------------   ------------
-swp1         1G       Interface/L3  spine01        swp1
-swp2         1G       Interface/L3  leaf02         swp2
-```
+{{% vx-basic-config %}}
 
 ## Next Steps

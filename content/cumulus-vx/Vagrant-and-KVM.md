@@ -246,8 +246,8 @@ The `libvirt` domain is running. To stop this machine, you can run `vagrant halt
    cumulus@oob-mgmt-server:~$
    ```
 
-## Configure OSPF and FRRouting
+## Basic Switch Configuration
 
-{{% vx-conf-routing %}}
+{{% vx-basic-config %}}
 
 ## Next Steps

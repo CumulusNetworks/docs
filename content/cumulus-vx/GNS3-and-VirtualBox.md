@@ -72,12 +72,8 @@ e3<->e0 PC2 (VPCS)
 
    You can also drag and drop virtual PCs (VPCS) and connect them to the Cumulus VX switch. To open a console to a virtual PC, right click on the VPCS icon and select **Console**. In the console, configure the IP address and default gateway for the VPCS (for example: `ip 10.4.1.101/25 10.4.1.1`).
 
-## Test the Network Connections
+## Basic Switch Configuration
 
-{{% vx-test-connections %}}
-
-## Configure OSPF and FRRouting
-
-{{% vx-conf-routing %}}
+{{% vx-basic-config %}}
 
 ## Next Steps

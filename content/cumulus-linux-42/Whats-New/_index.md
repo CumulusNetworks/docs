@@ -44,9 +44,6 @@ Cumulus Networks does not support these platforms in Cumulus Linux 4.2. They are
 - EdgeCore Wedge-100 (100G Tomahawk)
 - Facebook Backpack (100G Tomahawk)
 - Facebook Voyager (100G Tomahawk)
-
-The following platforms are supported in Cumulus Linux 3.7 but are not yet supported in Cumulus Linux 4.2. Cumulus Networks will add support for these platforms in a future Cumulus Linux release.
-
 - Delta AG7648
 - Edgecore AS4610-54T-B
 - QCT QuantaMesh BMS T3048-LY8

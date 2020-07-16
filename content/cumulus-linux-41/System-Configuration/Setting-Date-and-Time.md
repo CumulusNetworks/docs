@@ -24,6 +24,12 @@ US/Eastern
 
 Edit the file to add your desired time zone. A list of valid time zones can be found {{<exlink url="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" text="here">}}.
 
+Use the following command to change the /etc/localtime to reflect your current timezone. Use the same value as the previous step.
+
+```
+sudo ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
+```
+
 Use the following command to apply the new time zone immediately.
 
 ```

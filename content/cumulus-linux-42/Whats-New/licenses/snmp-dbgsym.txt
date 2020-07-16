@@ -1,1 +1,1 @@
-snmp-dbgsym has no debian/copyright file
+snmp-dbgsym has no copyright file

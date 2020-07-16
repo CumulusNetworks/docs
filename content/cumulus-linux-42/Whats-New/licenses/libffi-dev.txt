@@ -1,1 +1,1 @@
-libffi-dev has no debian/copyright file
+libffi-dev has no copyright file

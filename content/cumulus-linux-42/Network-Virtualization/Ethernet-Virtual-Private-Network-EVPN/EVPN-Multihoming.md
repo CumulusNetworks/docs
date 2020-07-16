@@ -37,7 +37,7 @@ An Ethernet segment can span more than two switches. Each Ethernet segment is a 
 - EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
 - Supported RIOT-capable {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Mellanox Spectrum A1, Spectrum 2 and Spectrum 3.
 
-{{%notice info%}}
+{{%notice warning%}}
 
 In order to use EVPN-MH, you must remove any MLAG configuration on the switch. This entails:
 
@@ -62,9 +62,15 @@ An Ethernet segment configuration has these characteristics:
 - Each interface (bond) needs its own `es-id`.
 - Static and LACP bonds can be associated with an `es-id`.
 
-A *designated forwarder* (DF) is elected for each Ethernet segment. The DF is responsible for forwarding flooded traffic received via the VXLAN overlay to the locally attached Ethernet segment. You can specify a preference (using the `df-pref` option) on an Ethernet segment for the DF election. The EVPN VTEP with the highest `df-pref` setting becomes the DF.
+A *designated forwarder* (DF) is elected for each Ethernet segment. The DF is responsible for forwarding flooded traffic received via the VXLAN overlay to the locally attached Ethernet segment. You can specify a preference (using the `es-df-pref` option) on an Ethernet segment for the DF election. The EVPN VTEP with the highest `es-df-pref` setting becomes the DF.
 
 NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
+
+{{%notice info%}}
+
+In addition to the `es-id` and the `es-sys-mac`, you need to specify a unique SVI IP address for each VTEP across the racks. These IP addresses must be reachable from remote VTEPs. You enable these IP addresses using the `advertise-svi-ip` option. See the leaf configurations in the {{<link title="#Example Configuration" text="example configuration">}} below.
+
+{{%/notice%}}
 
 ### Configure the EVPN-MH Bonds
 
@@ -126,23 +132,14 @@ The NCLU commands create the following configuration in the `/etc/network/interf
 
 ```
 interface hostbond1
-  evpn mh es-df-pref 50000
-  evpn mh es-id 1
-  evpn mh es-sys-mac 44:38:39:ff:ff:01
   bond-slaves swp5
   es-sys-mac 44:38:39:ff:ff:01
 
 interface hostbond2
-  evpn mh es-df-pref 50000
-  evpn mh es-id 2
-  evpn mh es-sys-mac 44:38:39:ff:ff:01
   bond-slaves swp6
   es-sys-mac 44:38:39:ff:ff:01
 
 interface hostbond3
-  evpn mh es-df-pref 50000
-  evpn mh es-id 3
-  evpn mh es-sys-mac 44:38:39:ff:ff:01
   bond-slaves swp7
   es-sys-mac 44:38:39:ff:ff:01
 ```
@@ -183,7 +180,7 @@ To configure a MAC hold time for 1000 seconds, run the following commands:
 
 {{<tab "NCLU Commands">}}
 
-    cumulus@switch:~$ net add evpn mh mac-holdtime 1200
+    cumulus@switch:~$ net add evpn mh mac-holdtime 1000
     cumulus@switch:~$ net commit
 
 {{</tab>}}
@@ -193,7 +190,7 @@ To configure a MAC hold time for 1000 seconds, run the following commands:
 ```
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
-switch(config)# evpn mh mac-holdtime 1200
+switch(config)# evpn mh mac-holdtime 1000
 switch(config)# exit
 switch# write memory
 ```
@@ -426,242 +423,92 @@ You can use the following `net show` commands to troubleshoot your EVPN multihom
 
 ### Show Ethernet Segment Information
 
-The `net show bgp l2vpn evpn es` command displays route information for the Ethernet segments (type-4 routes).
-
-```
-cumulus@switch:~$ net show bgp evpn es
-Flags: L local, R remote, I inconsistent
-VTEP-Flags: E EAD-per-ES, V EAD-per-EVI
-VNI      ESI                            Flags VTEPs
-1005     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1005     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1005     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1005     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1005     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1005     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1002     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1002     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1002     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1002     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1001     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1001     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1001     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1001     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1006     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1006     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1006     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1006     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1006     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1006     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1000     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1000     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1000     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1000     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1000     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1000     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1003     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1003     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1003     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1003     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1003     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1003     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1004     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1004     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1004     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1004     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1004     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1004     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1007     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1007     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1007     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1007     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1007     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1007     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1008     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1008     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1008     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1008     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1008     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1008     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1009     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1009     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1009     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1009     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-cumulus@switch:~$
-```
-
-### Show Ethernet Segment Interfaces
-
-The `net show evpn es` command displays the interfaces and VTEPs associated with each Ethernet segment.
+The `net show evpn es` command displays the Ethernet segments across all VNIs.
 
 ```
 cumulus@switch:~$ net show evpn es
 Type: L local, R remote, N non-DF
 ESI                            Type ES-IF                 VTEPs
-03:44:38:39:ff:ff:01:00:00:01  R    -                     27.0.0.22,27.0.0.23
-03:44:38:39:ff:ff:01:00:00:02  LR   hostbond2             27.0.0.22,27.0.0.23
-03:44:38:39:ff:ff:01:00:00:03  LR   hostbond3             27.0.0.22,27.0.0.23
+03:44:38:39:ff:ff:01:00:00:01  R    -                     172.0.0.22,172.0.0.23
+03:44:38:39:ff:ff:01:00:00:02  LR   hostbond2             172.0.0.22,172.0.0.23
+03:44:38:39:ff:ff:01:00:00:03  LR   hostbond3             172.0.0.22,172.0.0.23
 03:44:38:39:ff:ff:01:00:00:05  L    hostbond1
-03:44:38:39:ff:ff:02:00:00:01  R    -                     27.0.0.24,27.0.0.25,27.0.0.26
-03:44:38:39:ff:ff:02:00:00:02  R    -                     27.0.0.24,27.0.0.25,27.0.0.26
-03:44:38:39:ff:ff:02:00:00:03  R    -                     27.0.0.24,27.0.0.25,27.0.0.26
+03:44:38:39:ff:ff:02:00:00:01  R    -                     172.0.0.24,172.0.0.25,172.0.0.26
+03:44:38:39:ff:ff:02:00:00:02  R    -                     172.0.0.24,172.0.0.25,172.0.0.26
+03:44:38:39:ff:ff:02:00:00:03  R    -                     172.0.0.24,172.0.0.25,172.0.0.26
 ```
 
-### Show VNIs for each Ethernet Segment
+### Show Ethernet Segment per VNI Information
 
-To see the VNIs associated with each Ethernet segment, run:
+The `net show evpn es-evi` command displays the Ethernet segments learned for each VNI.
 
 ```
 cumulus@switch:~$ net show evpn es-evi
 Type: L local, R remote
 VNI      ESI                            Type
-1005     03:44:38:39:ff:ff:01:00:00:02  L
-1005     03:44:38:39:ff:ff:01:00:00:03  L
-1005     03:44:38:39:ff:ff:01:00:00:05  L
+...
 1002     03:44:38:39:ff:ff:01:00:00:02  L
 1002     03:44:38:39:ff:ff:01:00:00:03  L
 1002     03:44:38:39:ff:ff:01:00:00:05  L
 1001     03:44:38:39:ff:ff:01:00:00:02  L
 1001     03:44:38:39:ff:ff:01:00:00:03  L
 1001     03:44:38:39:ff:ff:01:00:00:05  L
-1006     03:44:38:39:ff:ff:01:00:00:02  L
-1006     03:44:38:39:ff:ff:01:00:00:03  L
-1006     03:44:38:39:ff:ff:01:00:00:05  L
-1000     03:44:38:39:ff:ff:01:00:00:02  L
-1000     03:44:38:39:ff:ff:01:00:00:03  L
-1000     03:44:38:39:ff:ff:01:00:00:05  L
-1003     03:44:38:39:ff:ff:01:00:00:02  L
-1003     03:44:38:39:ff:ff:01:00:00:03  L
-1003     03:44:38:39:ff:ff:01:00:00:05  L
-1004     03:44:38:39:ff:ff:01:00:00:02  L
-1004     03:44:38:39:ff:ff:01:00:00:03  L
-1004     03:44:38:39:ff:ff:01:00:00:05  L
-1007     03:44:38:39:ff:ff:01:00:00:02  L
-1007     03:44:38:39:ff:ff:01:00:00:03  L
-1007     03:44:38:39:ff:ff:01:00:00:05  L
-1008     03:44:38:39:ff:ff:01:00:00:02  L
-1008     03:44:38:39:ff:ff:01:00:00:03  L
-1008     03:44:38:39:ff:ff:01:00:00:05  L
-1009     03:44:38:39:ff:ff:01:00:00:02  L
-1009     03:44:38:39:ff:ff:01:00:00:03  L
-1009     03:44:38:39:ff:ff:01:00:00:05  L
+...
 ```
 
-### Show VTEPs in Ethernet Segments
+### Show BGP Ethernet Segment Information
 
-To show VTEPs for all Ethernet segments for all VNIs, run `net show bgp evpn es-evi`:
+The `net show bgp l2vpn evpn es` command displays the Ethernet segments across all VNIs learned via type-1 and type-4 routes.
 
 ```
-cumulus@switch:~$ net show bgp evpn es-evi
-Flags: L local, R remote, I inconsistent
-VTEP-Flags: E EAD-per-ES, V EAD-per-EVI
-VNI      ESI                            Flags VTEPs
-1005     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1005     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1005     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1005     03:44:38:39:ff:ff:01:00:00:05  L  
-1005     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1005     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1005     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1002     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:05  L  
-1002     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1002     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1002     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1001     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:05  L  
-1001     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1001     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1001     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1006     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1006     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1006     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1006     03:44:38:39:ff:ff:01:00:00:05  L  
-1006     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1006     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1006     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1000     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1000     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1000     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1000     03:44:38:39:ff:ff:01:00:00:05  L  
-1000     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1000     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1000     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1003     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1003     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1003     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1003     03:44:38:39:ff:ff:01:00:00:05  L  
-1003     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1003     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1003     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1004     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1004     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1004     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1004     03:44:38:39:ff:ff:01:00:00:05  L  
-1004     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1004     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1004     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1007     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1007     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1007     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1007     03:44:38:39:ff:ff:01:00:00:05  L  
-1007     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1007     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1007     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1008     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1008     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1008     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1008     03:44:38:39:ff:ff:01:00:00:05  L  
-1008     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1008     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1008     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1009     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:05  L  
-1009     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1009     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1009     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
+cumulus@switch:~$ net show bgp l2vpn evpn es
+ES Flags: L local, R remote, I inconsistent
+VTEP Flags: E ESR/Type-4, A active nexthop
+ESI                            Flags RD                    #VNIs    VTEPs
+03:44:38:39:ff:ff:01:00:00:01  LR    172.0.0.9:3            10       172.0.0.10(EA),172.0.0.11(EA)
+03:44:38:39:ff:ff:01:00:00:02  LR    172.0.0.9:4            10       172.0.0.10(EA),172.0.0.11(EA)
+03:44:38:39:ff:ff:01:00:00:03  LR    172.0.0.9:5            10       172.0.0.10(EA),172.0.0.11(EA)
 cumulus@switch:~$
 ```
 
-To see the VTEPs for a specific VNI, run `net show bgp evpn es-evi vni`.
+### Show BGP Ethernet Segment per VNI Information
+
+The `net show bgp l2vpn evpn es-evi` command displays the Ethernet segments per VNI learned via type-1 and type-4 routes.
 
 ```
-cumulus@switch:~$ net show bgp evpn es-evi vni 1009
+cumulus@switch:~$ net show bgp l2vpn evpn es-evi
 Flags: L local, R remote, I inconsistent
 VTEP-Flags: E EAD-per-ES, V EAD-per-EVI
 VNI      ESI                            Flags VTEPs
-1009     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:05  L
-1009     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1009     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1009     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
+...
+1002     03:44:38:39:ff:ff:01:00:00:01  R     172.0.0.22(EV),172.0.0.23(EV)
+1002     03:44:38:39:ff:ff:01:00:00:02  LR    172.0.0.22(EV),172.0.0.23(EV)
+1002     03:44:38:39:ff:ff:01:00:00:03  LR    172.0.0.22(EV),172.0.0.23(EV)
+1002     03:44:38:39:ff:ff:01:00:00:05  L  
+1002     03:44:38:39:ff:ff:02:00:00:01  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
+1002     03:44:38:39:ff:ff:02:00:00:02  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
+1002     03:44:38:39:ff:ff:02:00:00:03  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
+1001     03:44:38:39:ff:ff:01:00:00:01  R     172.0.0.22(EV),172.0.0.23(EV)
+1001     03:44:38:39:ff:ff:01:00:00:02  LR    172.0.0.22(EV),172.0.0.23(EV)
+1001     03:44:38:39:ff:ff:01:00:00:03  LR    172.0.0.22(EV),172.0.0.23(EV)
+1001     03:44:38:39:ff:ff:01:00:00:05  L  
+1001     03:44:38:39:ff:ff:02:00:00:01  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
+1001     03:44:38:39:ff:ff:02:00:00:02  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
+1001     03:44:38:39:ff:ff:02:00:00:03  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
+...
 cumulus@switch:~$
 ```
 
 ### Show EAD Route Types
 
-You can use the `net show bgp evpn route` command to view type-1 EAD routes. Just include the `ead` route type option.
+You can use the `net show bgp l2vpn evpn route` command to view type-1 EAD routes. Just include the `ead` route type option.
 
 ```
-cumulus@switch:~$ net show bgp evpn route type ead
+cumulus@switch:~$ net show bgp evpn l2vpn route type ead
 BGP table version is 30, local router ID is 172.16.0.21
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete
-EVPN type-1 prefix: [4]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
+EVPN type-1 prefix: [1]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
 EVPN type-2 prefix: [2]:[EthTag]:[MAClen]:[MAC]:[IPlen]:[IP]
 EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
 EVPN type-4 prefix: [4]:[ESI]:[IPlen]:[OrigIP]
@@ -688,7 +535,7 @@ cumulus@switch:~$
 
 ## Example Configuration
 
-The following example uses the topology illustrated here.
+The following example uses the topology illustrated here. It shows one rack for simplicity, but multiple racks can be added to this topology.
 
 {{<img src="/images/cumulus-linux/EVPN-MH-example-config.png">}}
 

@@ -1,1 +1,1 @@
-iptables-dbgsym has no debian/copyright file
+iptables-dbgsym has no copyright file

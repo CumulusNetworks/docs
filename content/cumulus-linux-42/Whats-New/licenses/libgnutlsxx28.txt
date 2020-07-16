@@ -1,1 +1,1 @@
-libgnutlsxx28 has no debian/copyright file
+libgnutlsxx28 has no copyright file

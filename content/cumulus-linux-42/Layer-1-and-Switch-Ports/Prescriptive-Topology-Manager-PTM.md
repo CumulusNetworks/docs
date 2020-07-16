@@ -497,9 +497,15 @@ If you edit `topology.dot` file from a Windows system, be sure to double check t
 
 ## Caveats and Errata
 
-When PTMD is incorrectly in a failure state and the Zebra interface is enabled, PIF BGP sessions do not establish the route, but the subinterface on top of it does establish routes.
+### ptmd in Incorrect Failure State while Zebra Interface Is Enabled
+
+When `ptmd` is incorrectly in a failure state and the Zebra interface is enabled, PIF BGP sessions do not establish the route, but the subinterface on top of it does establish routes.
 
 If the subinterface is configured on the physical interface and the physical interface is incorrectly marked as being in a PTM FAIL state, routes on the physical interface are not processed in FRR, but the subinterface is working.
+
+### Cannot Use Commas in PortDescr
+
+If an LLDP neighbor advertises a `PortDescr` that contains commas, `ptmctl -d` splits the string on the commas and misplaces its components in other columns. Do not use commas in your port descriptions.
 
 ## Related Information
 

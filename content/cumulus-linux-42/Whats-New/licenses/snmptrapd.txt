@@ -1,1 +1,1 @@
-snmptrapd has no debian/copyright file
+snmptrapd has no copyright file

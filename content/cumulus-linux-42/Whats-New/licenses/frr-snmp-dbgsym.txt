@@ -1,1 +1,1 @@
-frr-snmp-dbgsym has no debian/copyright file
+frr-snmp-dbgsym has no copyright file

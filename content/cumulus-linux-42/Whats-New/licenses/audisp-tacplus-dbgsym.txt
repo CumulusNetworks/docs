@@ -1,1 +1,1 @@
-audisp-tacplus-dbgsym has no debian/copyright file
+audisp-tacplus-dbgsym has no copyright file

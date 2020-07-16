@@ -1,1 +1,1 @@
-python-netsnmp has no debian/copyright file
+python-netsnmp has no copyright file

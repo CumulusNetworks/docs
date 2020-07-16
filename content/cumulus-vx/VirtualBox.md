@@ -7,7 +7,7 @@ To use Cumulus VX with VirtualBox, perform the following configuration:
 
 - Create the VMs
 - Create connections between the VMs
-- Test the network connections
+- Perform basic switch configuration
 
 The following steps were tested with VirtualBox-6.0.24.
 
@@ -77,19 +77,9 @@ Follow these steps for each VM (Leaf01, Leaf02, and Spine01):
 |           | swp1     | Adapter 2            | Internal                | intnet-1 |
 |           | swp2     | Adapter 3            | Internal                | intnet-2 |
 
-{{%notice note%}}
-
-You can also add a VM to one or more internal virtual networks in VirtualBox by cloning the VM. However, consider the following if you prefer to clone VMs:
-
-- To set up configurations quickly across multiple nodes, configure the settings for the original VM, then clone it using **Machine \> Clone**. For example, if a management VM is being created for the new topology, set the `eth0` port to be on a virtual network that the management VM is on. When you clone the new VM, the port will be duplicated, creating an out-of-band (OOB) network.
-- When you clone the VM, save the new VM on disk storage by referring to the original disk image, instead of copying it to the new VM.
-- Always reset MAC addresses on the virtual NICs, unless a critical reason not to exists.
-
-{{%/notice%}}
-
 ## Basic Switch Configuration
 
-After you have created the three VMs, log into Leaf01, Leaf02, and Spine 01 with the `cumulus` account and default password `CumulusLinux!` and then perform the following basic configuration:
+After you have created the three VMs: Leaf01, Leaf02, and Spine 01, log into each one with the `cumulus` account and default password `CumulusLinux!`, then perform the following basic configuration:
 
 - Change the hostname
 - Bring up swp1 and swp2
@@ -97,23 +87,34 @@ After you have created the three VMs, log into Leaf01, Leaf02, and Spine 01 with
 
 ### Change the Hostname
 
-Run the following command on each VM:
+On each VM, run the following command, reboot the switch, then log back in:
 
 ```
-net add hostname <name>
-net commit
+cumulus@cumulus:mgmt:~$ net add hostname <name>
+cumulus@cumulus:mgmt:~$ net commit
+cumulus@cumulus:mgmt:~$ sudo reboot
 ```
 
 ### Bring up the Interfaces
 
-Run the following command to bring up swp1 and swp2 on each VM:
+On each VM, run the following command to bring up swp1 and swp2:
 
-   ```
-   net add interface swp1, swp2
-   net commit
-   ```
+```
+cumulus@leaf01:mgmt:~$ net add interface swp1, swp2
+cumulus@leaf01:mgmt:~$ net commit
+```
 
+### Check the Connections
 
+On each VM, check the network connections and see which ports are neighbors of a given port:
 
+```
+cumulus@leaf01:mgmt:~$ net show lldp
+
+LocalPort    Speed    Mode          RemoteHost     RemotePort  
+-----------  -------  ------------  ------------   ------------
+swp1         1G       Interface/L3  spine01        swp1
+swp2         1G       Interface/L3  leaf02         swp2
+```
 
 ## Next Steps

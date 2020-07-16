@@ -214,16 +214,17 @@ details how to do this.
 
 In Cumulus Linux, the following services work with VRF instances:
 
-  - chef-client
-  - collectd
-  - dhcpd
-  - dhcrelay
-  - hsflowd
-  - netq-agent
-  - ntp
-  - puppet
-  - ssh
-  - zabbix-agent
+- `chef-client`
+- `collectd`
+- `dhcpd`
+- `dhcrelay`
+- `hsflowd`
+- `netq-agent`
+- `ntp`
+- `puppet`
+- `snmptrapd`
+- `ssh`
+- `zabbix-agent`
 
 {{%notice note%}}
 

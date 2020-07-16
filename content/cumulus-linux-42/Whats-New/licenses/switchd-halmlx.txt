@@ -1,7 +1,23 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: switchd
-Source: http://www.cumulusnetworks.com
+Source: https://www.cumulusnetworks.com
+Disclaimer: Not part of Debian distributions.
 
+Files: *
+Copyright: 2013 Cumulus Networks
+           2014, 2015, 2016, 2017, 2018, 2019, 2020 Cumulus Networks, Inc.
+License: Cumulus Networks Proprietary
+ All Rights reserved.
+ .
+ The Cumulus Networks End User License Agreement can be found at the
+ following locations.
+ .
+ Internet: https://cumulusnetworks.com/downloads/eula/latest/view/
+ Cumulus Linux systems: /usr/share/cumulus/EULA.txt
+
+Files: debian/*
+Copyright: 2013 Cumulus Networks
+           2014, 2015, 2016, 2017, 2018, 2019, 2020 Cumulus Networks, Inc.
 License: GPL-2
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -17,16 +33,3 @@ License: GPL-2
  .
  On Debian systems, the complete text of the GNU General
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
-
-License: Cumulus Proprietary
-  The Cumulus Proprietary license text is at this URL
-     https://cumulusnetworks.com/downloads/eula/latest/view/
-
-Files: *
-Copyright: 2013, 2014, 2015, 2016, 2017, 2018, 2019 Cumulus Networks, Inc
-License: Cumulus Proprietary
-
-Files: debian/*
-Copyright: 2013, 2016, 2017, 2018, 2019 Cumulus Networks, Inc
-License: GPL-2
-

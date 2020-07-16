@@ -1,1 +1,1 @@
-libgomp1 has no debian/copyright file
+libgomp1 has no copyright file

@@ -1,1 +1,1 @@
-dnsmasq has no debian/copyright file
+dnsmasq has no copyright file

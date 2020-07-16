@@ -1,1 +1,1 @@
-linuxptp-dbgsym has no debian/copyright file
+linuxptp-dbgsym has no copyright file

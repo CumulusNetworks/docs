@@ -1,1 +1,1 @@
-python3-dev has no debian/copyright file
+python3-dev has no copyright file

@@ -1,1 +1,1 @@
-isc-dhcp-client-udeb has no debian/copyright file
+isc-dhcp-client-udeb has no copyright file

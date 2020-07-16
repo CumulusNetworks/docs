@@ -1,1 +1,1 @@
-hsflowd-dbgsym has no debian/copyright file
+hsflowd-dbgsym has no copyright file

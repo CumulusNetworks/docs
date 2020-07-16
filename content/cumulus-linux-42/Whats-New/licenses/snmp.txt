@@ -1,1 +1,1 @@
-snmp has no debian/copyright file
+snmp has no copyright file

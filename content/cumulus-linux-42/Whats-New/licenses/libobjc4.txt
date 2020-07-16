@@ -1,1 +1,1 @@
-libobjc4 has no debian/copyright file
+libobjc4 has no copyright file

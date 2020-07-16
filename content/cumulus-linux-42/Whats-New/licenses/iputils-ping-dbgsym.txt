@@ -1,1 +1,1 @@
-iputils-ping-dbgsym has no debian/copyright file
+iputils-ping-dbgsym has no copyright file

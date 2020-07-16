@@ -1,1 +1,1 @@
-groff has no debian/copyright file
+groff has no copyright file

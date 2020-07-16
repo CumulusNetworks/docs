@@ -1,1 +1,1 @@
-ebtables-dbgsym has no debian/copyright file
+ebtables-dbgsym has no copyright file

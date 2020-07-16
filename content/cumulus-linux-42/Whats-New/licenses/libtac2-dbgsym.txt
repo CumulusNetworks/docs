@@ -1,1 +1,1 @@
-libtac2-dbgsym has no debian/copyright file
+libtac2-dbgsym has no copyright file

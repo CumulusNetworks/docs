@@ -1,1 +1,1 @@
-openssh-sftp-server has no debian/copyright file
+openssh-sftp-server has no copyright file

@@ -1,1 +1,1 @@
-libpam-tacplus-dbgsym has no debian/copyright file
+libpam-tacplus-dbgsym has no copyright file

@@ -1,1 +1,1 @@
-python-all-dev has no debian/copyright file
+python-all-dev has no copyright file

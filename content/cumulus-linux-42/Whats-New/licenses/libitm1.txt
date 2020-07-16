@@ -1,1 +1,1 @@
-libitm1 has no debian/copyright file
+libitm1 has no copyright file

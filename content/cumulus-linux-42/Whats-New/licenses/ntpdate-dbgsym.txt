@@ -1,1 +1,1 @@
-ntpdate-dbgsym has no debian/copyright file
+ntpdate-dbgsym has no copyright file

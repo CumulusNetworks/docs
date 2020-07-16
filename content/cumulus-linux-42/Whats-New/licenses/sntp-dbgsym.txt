@@ -1,1 +1,1 @@
-sntp-dbgsym has no debian/copyright file
+sntp-dbgsym has no copyright file

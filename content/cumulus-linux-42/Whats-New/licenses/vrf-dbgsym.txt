@@ -1,1 +1,1 @@
-vrf-dbgsym has no debian/copyright file
+vrf-dbgsym has no copyright file

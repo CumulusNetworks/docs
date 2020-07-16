@@ -1,1 +1,1 @@
-libasan5 has no debian/copyright file
+libasan5 has no copyright file

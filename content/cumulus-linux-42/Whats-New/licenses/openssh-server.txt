@@ -1,1 +1,1 @@
-openssh-server has no debian/copyright file
+openssh-server has no copyright file

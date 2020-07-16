@@ -1,1 +1,1 @@
-libatomic1 has no debian/copyright file
+libatomic1 has no copyright file

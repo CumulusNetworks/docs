@@ -1,1 +1,1 @@
-perl has no debian/copyright file
+perl has no copyright file

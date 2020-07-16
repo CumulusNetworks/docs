@@ -1,1 +1,1 @@
-libip4tc0-dbgsym has no debian/copyright file
+libip4tc0-dbgsym has no copyright file

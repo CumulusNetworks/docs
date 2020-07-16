@@ -924,9 +924,7 @@ iface swp3s3
 
 {{%notice note%}}
 
-When you commit your change on a Broadcom switch, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
-
-When you commit your change on a Mellanox switch, there is no interruption to network services.
+When you commit your change on a Broadcom switch, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}. When you commit your change on a Mellanox switch, `switchd` reloads and there is no interruption to network services.
 
 {{%/notice%}}
 

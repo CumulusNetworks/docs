@@ -126,7 +126,7 @@ You can configure ports to the following speeds (unless there are restrictions i
 **Platform Limitations**
 
 - On Lenovo NE2572O switches, swp1 through swp8 only support 25G speed.
-- For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must edit the `/etc/cumulus/ports.conf` file and configure the four ports in the same core to be 10G. See {{<link url="#caveats-and-errata" text="Caveats and Errata">}}.
+- For 10G and 1G SFPs inserted in a 25G port on a Broadcom switch, you must edit the `/etc/cumulus/ports.conf` file and configure the four ports in the same core to be 10G. See {{<link url="#caveats-and-errata" text="Caveats and Errata">}}.
 - A switch with the Maverick ASIC limits multicast traffic by the lowest speed port that has joined a particular group. For example, if you are sending 100G multicast through and subscribe with one 100G and one 25G port, traffic on both egress ports is limited to 25Gbps. If you remove the 25G port from the group, traffic correctly forwards at 100Gbps.
 
 {{%/notice%}}
@@ -969,12 +969,7 @@ iface swp310s3
 
 3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, you can run the following commands to avoid interrupting network services:
-
-    ```
-    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
-    cumulus@switch:~$ ifreload -a
-    ```
+   On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 {{< /tab >}}
 
@@ -1014,12 +1009,7 @@ To remove a breakout port:
 
 3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, you can run the following commands to avoid interrupting network services:
-
-    ```
-    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
-    cumulus@switch:~$ ifreload -a
-    ```
+   On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 {{< /tab >}}
 
@@ -1040,12 +1030,7 @@ To remove a breakout port:
 
 2. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, you can run the following commands to avoid interrupting network services:
-
-    ```
-    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
-    cumulus@switch:~$ ifreload -a
-    ```
+   On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 {{< /tab >}}
 
@@ -1241,7 +1226,7 @@ If you change the port speed in the `/etc/cumulus/ports.conf` file but the speed
 
 ### 10G and 1G SFPs Inserted in a 25G Port
 
-For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must configure the four ports in the same core to be 10G. Each set of four 25G ports are controlled by a single core; therefore, each core must run at the same clock speed. The four ports must be in sequential order; for example, swp1, swp2, swp3, and swp4, unless a particular core grouping is specified in the `/etc/cumulus/ports.conf` file.
+For 10G and 1G SFPs inserted in a 25G port on a Broadcom switch, you must configure the four ports in the same core to be 10G. Each set of four 25G ports are controlled by a single core; therefore, each core must run at the same clock speed. The four ports must be in sequential order; for example, swp1, swp2, swp3, and swp4, unless a particular core grouping is specified in the `/etc/cumulus/ports.conf` file.
 
 1. Edit the `/etc/cumulus/ports.conf` file and configure the four ports to be 10G. 1G SFPs are clocked at 10G speeds; therefore, for 1G SFPs, the `/etc/cumulus/ports.conf` file entry must also specify 10G. Currently you cannot use NCLU commands for this step.
 

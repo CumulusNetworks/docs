@@ -251,3 +251,5 @@ The `libvirt` domain is running. To stop this machine, you can run `vagrant halt
 {{% vx-basic-config %}}
 
 ## Next Steps
+
+{{% vx-next-steps %}}

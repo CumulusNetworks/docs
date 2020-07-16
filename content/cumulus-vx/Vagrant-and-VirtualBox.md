@@ -175,3 +175,5 @@ When using Vagrant with Cumulus VX:
 {{% vx-basic-config %}}
 
 ## Next Steps
+
+{{% vx-next-steps %}}

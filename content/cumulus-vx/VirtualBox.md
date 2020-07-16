@@ -82,3 +82,5 @@ Follow these steps for each VM (Leaf01, Leaf02, and Spine01):
 {{% vx-basic-config %}}
 
 ## Next Steps
+
+{{% vx-next-steps %}}

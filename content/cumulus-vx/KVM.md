@@ -167,3 +167,5 @@ br0: received package on swp1 with own address as source address
 {{% vx-basic-config %}}
 
 ## Next Steps
+
+{{% vx-next-steps %}}

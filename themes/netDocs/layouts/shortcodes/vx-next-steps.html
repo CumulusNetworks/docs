@@ -1,0 +1,45 @@
+<p>This section shows some basic commands you can try to get started with Cumulus Linux. For more detailed information about using Cumulus Linux, refer to the Cumulus Linux documentation.</p>
+
+<h3 id="Runbasicshowcommands">Run Show Commands</h3>
+
+<p>To obtain information about a switch, run the <code>net show system</code> command:</p>
+<pre>
+cumulus@switch:~$ net show system
+Cumulus VX
+Cumulus Linux 3.5.0
+Build: Cumulus Linux 3.5.0
+Uptime: 4:29:09.270000
+</pre>
+<p>To show every available interface that is physically UP, run the <code>net show interface</code> command:</p>
+
+<pre>
+cumulus@switch:~$ net show interface
+        Name    Master    Speed    MTU    Mode           Remote Host       Remote Port    Summary
+-----  ------  --------  -------  -----  -------------  ----------------  -------------  -------------------------------------
+UP     lo                N/A      65536  Loopback                                        IP: 127.0.0.1/8, 10.2.1.1/32, ::1/128
+UP     eth0              1G       1500   Mgmt                                            IP: 10.0.2.15/24(DHCP)
+UP     swp1              1G       1500   Interface/L3   CumulusVX-spine1  swp1           IP: 10.2.1.1/32
+UP     swp2              1G       1500   Interface/L3   CumulusVX-spine2  swp1           IP: 10.2.1.1/32
+UP     swp3              1G       1500   Interface/L3                                    IP: 10.4.1.1/24
+ADMDN  swp4              N/A      1500   NotConfigured
+ADMDN  swp5              N/A      1500   NotConfigured
+ADMDN  swp6              N/A      1500   NotConfigured
+ADMDN  swp7              N/A      1500   NotConfigured
+</pre>
+
+<h3 id="installabinaryimagewithonie">Install a Binary Image with ONIE</h3>
+
+<p>Cumulus VX images include the GRUB boot loader and Open Network Install Environment (ONIE) preinstalled. You can install Cumulus Linux on switch hardware using a binary image. You can test this process by installing a Cumulus VX binary image with ONIE in a virtual environment.</p>
+<ol>
+<li><p>After booting the VM, reboot into ONIE Rescue mode using one of two methods:</p>
+<ul>
+<li>Select ONIE Rescue mode on next reboot and reboot the VM with the <code>sudo onie-select -rf &amp;&amp; sudo reboot</code> command.</li>
+<li>Reboot and during the first 5 seconds on the GRUB menu, change the boot image to <code>ONIE</code>, then select <code>ONIE Rescue Mode</code> using the GRUB menu.</li></ul></li>
+<li><p>To install Cumulus VX, run the following command:</p>
+
+<pre>cumulus@switch:~$ onie-nos-install &lt;URL to cumulus-linux-vx-amd64.bin&gt;
+</pre></li>
+</ol>
+
+<p>During the ONIE boot sequence, ONIE attempts to start DHCP and timeout on every configured interface. If the VM has numerous configured interfaces, this can take a while to complete.</p>
+<p>After the installation process is complete, GRUB redirects you to the installed Cumulus VX instance.</p>

@@ -211,6 +211,7 @@ The following services work with VRF instances:
 - `netq-agent`
 - `ntp`
 - `puppet`
+- `snmptrapd`
 - `ssh`
 - `zabbix-agent`
 

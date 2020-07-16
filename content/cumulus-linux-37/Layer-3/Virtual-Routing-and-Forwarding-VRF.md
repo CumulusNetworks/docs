@@ -223,8 +223,6 @@ In Cumulus Linux, the following services work with VRF instances:
 - netq-agent
 - ntp
 - puppet
-- snmpd
-- snmptrapd
 - ssh
 - zabbix-agent
 
@@ -1238,7 +1236,7 @@ non-default VRF table using the `dhcpd` and `dhcrelay` services,
 respectively. These services must be managed by `systemd` in order to
 run in a VRF context; in addition, the services must be listed in
 `/etc/vrf/systemd.conf`. By default, this file already lists these two
-services, as well as others like `ntp` and `snmpd`. You can add more
+services, as well as others like `ntp`. You can add more
 services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
 
 If you edit `/etc/vrf/systemd.conf`, run `sudo systemctl daemon-reload`

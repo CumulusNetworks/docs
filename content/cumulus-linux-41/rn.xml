@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30486</td>
+<td><p>A host migrated to an 802.1X MAB port within the same broadcast domain fails to have the correct FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.<br/>
+To work around this issue, manually delete the dynamic FDB entry that is associated with the uplink trunk port.</p></td>
+<td>3.7.12, 4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30472</td>
+<td><p>On the QuantaMesh T1048-LY4 switch, pluggables inserted into SFP+ ports are not detected.<br/>
+To workaround this issue, downgrade to Cumulus Linux 3.7 ESR.</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30464</td>
 <td><p>The net show dot1x interface summary command output shows a MAC address with all zeros associated with a port.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
@@ -20,6 +34,12 @@ CVE-2020-10933: An issue was discovered in Ruby 2.5.x through 2.5.7, 2.6.x throu
 Vulnerable: &lt;= 2.5.5-3+deb10u1<br/>
 Fixed: 2.5.5-3+deb10u2</p></td>
 <td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30422</td>
+<td><p>When you configure a bridge in the /etc/network/interfaces file, then try to reconfigure the bridge to be a VRF interface with the same name, ifreload/ifup commands fail with an invalid table id or unable to get vrf table id error.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1981,6 +2001,13 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30472</td>
+<td><p>On the QuantaMesh T1048-LY4 switch, pluggables inserted into SFP+ ports are not detected.<br/>
+To workaround this issue, downgrade to Cumulus Linux 3.7 ESR.</p></td>
+<td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30464</td>
 <td><p>The net show dot1x interface summary command output shows a MAC address with all zeros associated with a port.</p></td>
 <td>3.7.12, 4.0.0-4.1.1</td>
@@ -1994,6 +2021,12 @@ CVE-2020-10933: An issue was discovered in Ruby 2.5.x through 2.5.7, 2.6.x throu
 Vulnerable: &lt;= 2.5.5-3+deb10u1<br/>
 Fixed: 2.5.5-3+deb10u2</p></td>
 <td>4.0.0-4.1.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30422</td>
+<td><p>When you configure a bridge in the /etc/network/interfaces file, then try to reconfigure the bridge to be a VRF interface with the same name, ifreload/ifup commands fail with an invalid table id or unable to get vrf table id error.</p></td>
+<td>3.7.12, 4.0.0-4.1.1</td>
 <td></td>
 </tr>
 <tr>

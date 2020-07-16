@@ -2,8 +2,7 @@
 title: Cumulus Linux
 layout: pdf
 product: Cumulus Linux
-version: "4.1"
+version: "4.2"
 type: pdf
 bookhidden: true
-draft: true
 ---

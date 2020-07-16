@@ -87,7 +87,33 @@ You can also add a VM to one or more internal virtual networks in VirtualBox by 
 
 {{%/notice%}}
 
-## Test Network Connections
+## Basic Switch Configuration
+
+After you have created the three VMs, log into Leaf01, Leaf02, and Spine 01 with the `cumulus` account and default password `CumulusLinux!` and then perform the following basic configuration:
+
+- Change the hostname
+- Bring up swp1 and swp2
+- Check the connections
+
+### Change the Hostname
+
+Run the following command on each VM:
+
+```
+net add hostname <name>
+net commit
+```
+
+### Bring up the Interfaces
+
+Run the following command to bring up swp1 and swp2 on each VM:
+
+   ```
+   net add interface swp1, swp2
+   net commit
+   ```
+
+
+
 
 ## Next Steps
-

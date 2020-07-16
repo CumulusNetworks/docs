@@ -1,5 +1,5 @@
-title: EVPN Multihoming
 ---
+title: EVPN Multihoming
 author: Cumulus Networks
 weight: 555
 toc: 4
@@ -37,7 +37,7 @@ An Ethernet segment can span more than two switches. Each Ethernet segment is a 
 - EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
 - Supported RIOT-capable {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Mellanox Spectrum A1, Spectrum 2 and Spectrum 3.
 
-{{%notice info%}}
+{{%notice warning%}}
 
 In order to use EVPN-MH, you must remove any MLAG configuration on the switch. This entails:
 
@@ -49,11 +49,10 @@ In order to use EVPN-MH, you must remove any MLAG configuration on the switch. T
 
 ## Configure EVPN-MH
 
-There are three required settings for an EVPN multihoming configuration:
+There are two required settings for an EVPN multihoming configuration:
 
 - The Ethernet segment ID (`es-id`)
 - The Ethernet segment system MAC address (`es-sys-mac`)
-- A unique SVI IP address is required for each VTEP across the racks. These IP addresses must be reachable from remote VTEPs. You enable these IP addresses using the `advertise-svi-ip` option. See the leaf configurations in the {{<link title="#Example Configuration" text="example configuration">}} below.
 
 These settings are applied to interfaces, typically bonds.
 
@@ -66,6 +65,12 @@ An Ethernet segment configuration has these characteristics:
 A *designated forwarder* (DF) is elected for each Ethernet segment. The DF is responsible for forwarding flooded traffic received via the VXLAN overlay to the locally attached Ethernet segment. You can specify a preference (using the `es-df-pref` option) on an Ethernet segment for the DF election. The EVPN VTEP with the highest `es-df-pref` setting becomes the DF.
 
 NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
+
+{{%notice info%}}
+
+In addition to the `es-id` and the `es-sys-mac`, you need to specify a unique SVI IP address for each VTEP across the racks. These IP addresses must be reachable from remote VTEPs. You enable these IP addresses using the `advertise-svi-ip` option. See the leaf configurations in the {{<link title="#Example Configuration" text="example configuration">}} below.
+
+{{%/notice%}}
 
 ### Configure the EVPN-MH Bonds
 
@@ -441,36 +446,14 @@ The `net show evpn es-evi` command displays the Ethernet segments learned for ea
 cumulus@switch:~$ net show evpn es-evi
 Type: L local, R remote
 VNI      ESI                            Type
-1005     03:44:38:39:ff:ff:01:00:00:02  L
-1005     03:44:38:39:ff:ff:01:00:00:03  L
-1005     03:44:38:39:ff:ff:01:00:00:05  L
+...
 1002     03:44:38:39:ff:ff:01:00:00:02  L
 1002     03:44:38:39:ff:ff:01:00:00:03  L
 1002     03:44:38:39:ff:ff:01:00:00:05  L
 1001     03:44:38:39:ff:ff:01:00:00:02  L
 1001     03:44:38:39:ff:ff:01:00:00:03  L
 1001     03:44:38:39:ff:ff:01:00:00:05  L
-1006     03:44:38:39:ff:ff:01:00:00:02  L
-1006     03:44:38:39:ff:ff:01:00:00:03  L
-1006     03:44:38:39:ff:ff:01:00:00:05  L
-1000     03:44:38:39:ff:ff:01:00:00:02  L
-1000     03:44:38:39:ff:ff:01:00:00:03  L
-1000     03:44:38:39:ff:ff:01:00:00:05  L
-1003     03:44:38:39:ff:ff:01:00:00:02  L
-1003     03:44:38:39:ff:ff:01:00:00:03  L
-1003     03:44:38:39:ff:ff:01:00:00:05  L
-1004     03:44:38:39:ff:ff:01:00:00:02  L
-1004     03:44:38:39:ff:ff:01:00:00:03  L
-1004     03:44:38:39:ff:ff:01:00:00:05  L
-1007     03:44:38:39:ff:ff:01:00:00:02  L
-1007     03:44:38:39:ff:ff:01:00:00:03  L
-1007     03:44:38:39:ff:ff:01:00:00:05  L
-1008     03:44:38:39:ff:ff:01:00:00:02  L
-1008     03:44:38:39:ff:ff:01:00:00:03  L
-1008     03:44:38:39:ff:ff:01:00:00:05  L
-1009     03:44:38:39:ff:ff:01:00:00:02  L
-1009     03:44:38:39:ff:ff:01:00:00:03  L
-1009     03:44:38:39:ff:ff:01:00:00:05  L
+...
 ```
 
 ### Show BGP Ethernet Segment Information
@@ -518,10 +501,10 @@ cumulus@switch:~$
 
 ### Show EAD Route Types
 
-You can use the `net show bgp evpn route` command to view type-1 EAD routes. Just include the `ead` route type option.
+You can use the `net show bgp l2vpn evpn route` command to view type-1 EAD routes. Just include the `ead` route type option.
 
 ```
-cumulus@switch:~$ net show bgp evpn route type ead
+cumulus@switch:~$ net show bgp evpn l2vpn route type ead
 BGP table version is 30, local router ID is 172.16.0.21
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete

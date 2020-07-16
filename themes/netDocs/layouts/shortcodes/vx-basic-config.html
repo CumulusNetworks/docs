@@ -7,10 +7,10 @@
 </ul>
 <h3 id="changethehostname">Change the Hostname</h3>
 
-<p>On each VM, run the following command, reboot the switch, then log back in:</p>
+<p>On each VM, run the following command, then exit the switch, and log back in:</p>
 <pre>cumulus@cumulus:mgmt:~$ net add hostname &lt;name&gt;
 cumulus@cumulus:mgmt:~$ net commit
-cumulus@cumulus:mgmt:~$ sudo reboot
+cumulus@cumulus:mgmt:~$ exit
 </pre>
 
 <h3 id="bringuptheinterfaces">Bring up the Interfaces</h3>

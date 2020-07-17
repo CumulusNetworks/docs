@@ -3,13 +3,19 @@ title: VirtualBox
 author: Cumulus Networks
 weight: 15
 ---
-To use Cumulus VX with VirtualBox, perform the following configuration:
+This section describes how to download Cumulus VX and create a VM in VirtualBox for each switch in the two-leaf and one spine topology shown below.
 
-- Create the VMs
+{{< figure src = "/images/cumulus-vx/VX-Connections.png" >}}
+
+In the toplogy, **Leaf01** and **Leaf02** are the access layer switches on the network. They are MLAG peers that appear as a single device, providing greater redundancy and greater system throughput. **Leaf01** and **Leaf02** connect to **Spine01**, which is the aggregation layer switch on the network.
+
+Follow the steps below to:
+
+- Create three VMs (Leaf01, Leaf02, and Spine01)
 - Create connections between the VMs
 - Perform basic switch configuration
 
-The following steps were tested with VirtualBox-6.0.24 on macOS 10.14.6.
+These steps were tested with VirtualBox version 6.0.24 on macOS version 10.14.6.
 
 ## Create the VMs
 
@@ -45,8 +51,6 @@ Make sure that the VM is powered off.
 
 {{%/notice%}}
 
-Follow these steps for each VM (Leaf01, Leaf02, and Spine01):
-
 1. In the VirtualBox Manager window, select Leaf01.
 
 2. Click **Settings**, then click **Network**.
@@ -63,7 +67,7 @@ Follow these steps for each VM (Leaf01, Leaf02, and Spine01):
 
    {{< img src = "/images/cumulus-vx/adapterSettings.png" >}}
 
-7. Repeat steps 2 through 6 for Leaf02 and Spine02 using the internal network names and the connections shown in the illustration and table below.
+7. Repeat the steps 1 through 6 for Leaf02 and Spine02 using the internal network names and the connections shown in the illustration and table below.
 
 {{< img src = "/images/cumulus-vx/VX-Connections.png" >}}
 

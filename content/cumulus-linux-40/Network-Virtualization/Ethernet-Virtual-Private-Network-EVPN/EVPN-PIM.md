@@ -101,20 +101,20 @@ vrf vrf2
  exit-vrf
 !
 interface swp1
- description swp1 -&gt; leaf-11&#39;s swp3
+ description swp1 > leaf-11's swp3
  ip ospf network point-to-point
  ip pim
 !
 interface swp2
- description swp2 -&gt; leaf-12&#39;s swp3
+ description swp2 > leaf-12's swp3
  ip ospf network point-to-point
  ip pim
 !
 interface swp3
- description swp3 -&gt; host-111&#39;s swp1
+ description swp3 > host-111's swp1
 !
 interface swp6
- description swp6 -&gt; host-112&#39;s swp1
+ description swp6 > host-112's swp1
 !
 #auto-generated interface
 interface ipmr-lo

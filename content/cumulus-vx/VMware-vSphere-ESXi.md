@@ -3,13 +3,11 @@ title: VMware vSphere ESXi
 author: Cumulus Networks
 weight: 20
 ---
+This section describes how to download Cumulus VX and create a VM in VMWare vSphere for each switch in the two-leaf and one spine topology shown below.
 
-To use Cumulus VX with VMWare vSphere, perform the following configuration:
+{{% vx-intro %}}
 
-- Create the VMs
-- Create connections between the VMs
-- Test the connections
-- Configure OSPF and FRRouting
+These steps were tested with VMware vSphere (ESXi) version 7.0b on macOS version 10.14.6.
 
 ## Create the VMs
 

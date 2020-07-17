@@ -1,13 +1,20 @@
-<p>After you have created the three VMs: Leaf01, Leaf02, and Spine 01, log into each one with the <code>cumulus</code> account and default password <code>CumulusLinux!</code>, then perform the following basic configuration:</p>
+<p>After you have created the three VMs: Leaf01, Leaf02, and Spine 01, power on the VMs, then perform the following basic configuration:</p>
 
 <ul>
+<li>Log into each switch</li>
 <li>Change the hostname</li>
 <li>Bring up swp1 and swp2</li>
 <li>Check the connections</li>
 </ul>
+
+<h3 id="logintotheswitch">Log in to Each Switch</h3>
+<p> Log into each switch with the <code>cumulus</code> account and default password <code>cumulus</code>.</p> <p>When you log in for the first time with the <code>cumulus</code> account, you are prompted to change the default password.</p>
+
+<b>Note:</b> If you are using Cumulus VX 4.1.1 or earlier, the default password is <code>CumulusLinux!</code>. You are <b>not</b> prompted to change the default password.</p>
+
 <h3 id="changethehostname">Change the Hostname</h3>
 
-<p>On each VM, run the following command, then exit the switch, and log back in:</p>
+<p>On each VM, run the following command, where <code>&#60;name&#62;</code> is leaf01, Leaf02, or Spin01, then exit the switch and log back in:</p>
 <pre>cumulus@cumulus:mgmt:~$ net add hostname &lt;name&gt;
 cumulus@cumulus:mgmt:~$ net commit
 cumulus@cumulus:mgmt:~$ exit
@@ -15,18 +22,31 @@ cumulus@cumulus:mgmt:~$ exit
 
 <h3 id="bringuptheinterfaces">Bring up the Interfaces</h3>
 
-<p>On each VM, run the following command to bring up swp1 and swp2, swp3, and swp4:</p>
-<pre>cumulus@leaf01:mgmt:~$ net add interface swp1, swp2, swp3, swp4
+<p>On each VM, run the following command to bring up swp1, swp2, and swp3:</p>
+<pre>cumulus@leaf01:mgmt:~$ net add interface swp1,swp2,swp3
 cumulus@leaf01:mgmt:~$ net commit
 </pre>
 
 <h3 id="checktheconnections">Check the Connections</h3>
 
 <p>On each VM, check the network connections and see which ports are neighbors of a given port:</p>
-<pre>cumulus@leaf01:mgmt:~$ net show lldp
-
+<pre>cumulus@Leaf01:mgmt:~$ net show lldp
 LocalPort    Speed    Mode          RemoteHost     RemotePort  
 -----------  -------  ------------  ------------   ------------
-swp1         1G       Interface/L3  spine01        swp1
-swp2         1G       Interface/L3  leaf02         swp2
+swp1         1G       Default       Spine01        swp1
+swp2         1G       Default       Leaf02         swp2
+swp3         1G       Default       Leaf02         swp3
+</pre>
+<pre>cumulus@Leaf02:mgmt:~$ net show lldp
+LocalPort    Speed    Mode          RemoteHost     RemotePort  
+-----------  -------  ------------  ------------   ------------
+swp1         1G       Default       Spine01        swp2
+swp2         1G       Default       Leaf01         swp2
+swp3         1G       Default       Leaf01         swp3
+</pre>
+<pre>cumulus@Spine01:mgmt:~$ net show lldp
+LocalPort    Speed    Mode          RemoteHost     RemotePort  
+-----------  -------  ------------  ------------   ------------
+swp1         1G       Default       Leaf01         swp1
+swp2         1G       Default       Leaf02         swp1
 </pre>

@@ -7,7 +7,7 @@ This section describes how to download Cumulus VX and create a VM in VirtualBox 
 
 {{% vx-intro %}}
 
-These steps were tested with VirtualBox version 6.0.24 on macOS version 10.14.6.
+These steps were tested with VirtualBox version 6.1.12 on macOS version 10.14.6.
 
 ## Create the VMs
 
@@ -23,7 +23,7 @@ The following procedure describes how to create a VM in VirtualBox for each swit
 
 5. In the Appliance settings, change the name of the VM to `Leaf01`, then click **Import** to begin the import process.  
 
-   {{< img src = "/images/cumulus-vx/VirtualBox-review.png" >}}
+   {{< figure src="/images/cumulus-vx/VirtualBox-review.png" width="500" >}}
 
 6. In the VirtualBox Manager window, right click the `Leaf01` VM, then select **Clone**.
 
@@ -67,8 +67,12 @@ Make sure that the VM is powered off.
 | --------- | ----     | -------------------- | ----------------------- | -------- |
 |Leaf01     |          | Adapter 1            | NAT                     |          |
 |           | swp1     | Adapter 2            | Internal                | intnet-1 |
+|           | swp2     | Adapter 3            | Internal                | intnet-3 |
+|           | swp3     | Adapter 4            | Internal                | intnet-4 |
 |Leaf02     |          | Adapter 1            | NAT                     |          |
 |           | swp1     | Adapter 2            | Internal                | intnet-2 |
+|           | swp2     | Adapter 3            | Internal                | intnet-3 |
+|           | swp3     | Adapter 4            | Internal                | intnet-4 |
 |Spine01    |          | Adapter 1            | NAT                     |          |
 |           | swp1     | Adapter 2            | Internal                | intnet-1 |
 |           | swp2     | Adapter 3            | Internal                | intnet-2 |

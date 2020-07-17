@@ -5,15 +5,7 @@ weight: 15
 ---
 This section describes how to download Cumulus VX and create a VM in VirtualBox for each switch in the two-leaf and one spine topology shown below.
 
-{{< figure src = "/images/cumulus-vx/VX-Connections.png" >}}
-
-In the toplogy, **Leaf01** and **Leaf02** are the access layer switches on the network. They are MLAG peers that appear as a single device, providing greater redundancy and greater system throughput. **Leaf01** and **Leaf02** connect to **Spine01**, which is the aggregation layer switch on the network.
-
-Follow the steps below to:
-
-- Create three VMs (Leaf01, Leaf02, and Spine01)
-- Create connections between the VMs
-- Perform basic switch configuration
+{{% vx-intro %}}
 
 These steps were tested with VirtualBox version 6.0.24 on macOS version 10.14.6.
 
@@ -33,7 +25,7 @@ The following procedure describes how to create a VM in VirtualBox for each swit
 
    {{< img src = "/images/cumulus-vx/VirtualBox-review.png" >}}
 
-6. In the VirtualBox Manager window, right click the created `Leaf01` VM, then select **Clone**.
+6. In the VirtualBox Manager window, right click the `Leaf01` VM, then select **Clone**.
 
 7. Change the name of the VM to `Leaf02`, then click **Continue**.
 
@@ -67,17 +59,17 @@ Make sure that the VM is powered off.
 
    {{< img src = "/images/cumulus-vx/adapterSettings.png" >}}
 
-7. Repeat the steps 1 through 6 for Leaf02 and Spine02 using the internal network names and the connections shown in the illustration and table below.
+7. Repeat the steps 1 through 6 for Leaf02 and Spine01 using the internal network names and the connections shown in the illustration and table below.
 
-{{< img src = "/images/cumulus-vx/VX-Connections.png" >}}
+{{< figure src = "/images/cumulus-vx/VX-Connections.png" >}}
 
 | Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Name     |
 | --------- | ----     | -------------------- | ----------------------- | -------- |
-| Leaf01    |          | Adapter 1            | NAT                     |          |
+|Leaf01     |          | Adapter 1            | NAT                     |          |
 |           | swp1     | Adapter 2            | Internal                | intnet-1 |
-| Leaf02    |          | Adapter 1            | NAT                     |          |
-|           | swp1    |  Adapter 2            | Internal                | intnet-2 |
-| Spine01   |          | Adapter 1            | NAT                     |          |
+|Leaf02     |          | Adapter 1            | NAT                     |          |
+|           | swp1     | Adapter 2            | Internal                | intnet-2 |
+|Spine01    |          | Adapter 1            | NAT                     |          |
 |           | swp1     | Adapter 2            | Internal                | intnet-1 |
 |           | swp2     | Adapter 3            | Internal                | intnet-2 |
 

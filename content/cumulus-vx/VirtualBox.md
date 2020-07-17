@@ -59,7 +59,7 @@ Make sure that the VM is powered off.
 
 7. Repeat the steps 1 through 6 for Leaf02 and Spine01. Use the internal network names and the connections shown in the illustration and table below.
 
-   The internal network name must match the internal network name on the corresponding network adapter on the VM to be connected to the VM. For example, in the two-leaf and one spine topology, Adapter 2 (swp1) on Leaf01 is connected to Adapter 2 (swp1) on Spine01; the name (intnet-1) must be the same for Adapter 2 on both VMs.
+   The internal network name for an adapter on a VM must match the internal network name on the corresponding network adapter on the VM to which it connects. For example, in the two-leaf and one spine topology, Adapter 2 (swp1) on Leaf01 is connected to Adapter 2 (swp1) on Spine01; the name (intnet-1) must be the same for Adapter 2 on both VMs.
 
 {{< figure src = "/images/cumulus-vx/VX-Connections.png" >}}
 

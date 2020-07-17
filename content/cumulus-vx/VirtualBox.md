@@ -55,27 +55,27 @@ Make sure that the VM is powered off.
 
 6. In the **Name** field, enter a name for the internal network, then click **OK**. The example below uses `intnet-1`.
 
-   The internal network name must match the internal network name on the corresponding network adapter on the VM to be connected to this VM. For example, in the two-leaf and one spine topology, Adapter 2 (swp1) on Leaf01 is connected to Adapter 2 (swp1) on Spine01; the name must be the same for Adapter 2 on both VMs. Use the internal network names and the connections shown in the illustration and table below.
+   {{< figure src="/images/cumulus-vx/adapterSettings.png" width="400" >}}
 
-   {{< img src = "/images/cumulus-vx/adapterSettings.png" >}}
+7. Repeat the steps 1 through 6 for Leaf02 and Spine01. Use the internal network names and the connections shown in the illustration and table below.
 
-7. Repeat the steps 1 through 6 for Leaf02 and Spine01 using the internal network names and the connections shown in the illustration and table below.
+   The internal network name must match the internal network name on the corresponding network adapter on the VM to be connected to the VM. For example, in the two-leaf and one spine topology, Adapter 2 (swp1) on Leaf01 is connected to Adapter 2 (swp1) on Spine01; the name (intnet-1) must be the same for Adapter 2 on both VMs.
 
 {{< figure src = "/images/cumulus-vx/VX-Connections.png" >}}
 
-| Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Name     |
-| --------- | ----     | -------------------- | ----------------------- | -------- |
-|Leaf01     |          | Adapter 1            | NAT                     |          |
-|           | swp1     | Adapter 2            | Internal                | intnet-1 |
-|           | swp2     | Adapter 3            | Internal                | intnet-3 |
-|           | swp3     | Adapter 4            | Internal                | intnet-4 |
-|Leaf02     |          | Adapter 1            | NAT                     |          |
-|           | swp1     | Adapter 2            | Internal                | intnet-2 |
-|           | swp2     | Adapter 3            | Internal                | intnet-3 |
-|           | swp3     | Adapter 4            | Internal                | intnet-4 |
-|Spine01    |          | Adapter 1            | NAT                     |          |
-|           | swp1     | Adapter 2            | Internal                | intnet-1 |
-|           | swp2     | Adapter 3            | Internal                | intnet-2 |
+| Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Internal Network Name |
+| --------- | ----     | -------------------- | ----------------------- | --------------------- |
+|Leaf01     |          | Adapter 1            | NAT                     |                       |
+|           | swp1     | Adapter 2            | Internal                | intnet-1              |
+|           | swp2     | Adapter 3            | Internal                | intnet-3              |
+|           | swp3     | Adapter 4            | Internal                | intnet-4              |
+|Leaf02     |          | Adapter 1            | NAT                     |                       |
+|           | swp1     | Adapter 2            | Internal                | intnet-2              |
+|           | swp2     | Adapter 3            | Internal                | intnet-3              |
+|           | swp3     | Adapter 4            | Internal                | intnet-4              |
+|Spine01    |          | Adapter 1            | NAT                     |                       |
+|           | swp1     | Adapter 2            | Internal                | intnet-1              |
+|           | swp2     | Adapter 3            | Internal                | intnet-2              |
 
 ## Basic Switch Configuration
 

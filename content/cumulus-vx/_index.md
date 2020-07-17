@@ -17,4 +17,4 @@ Cumulus VX is a free virtual environment designed for cloud and network administ
 
 ## How do I use Cumulus VX?
 
-This document describes how to install Cumulus VX on the {{<link url="Overview" text="supported platforms">}} and configure the VMs using a simple {{<link url="Example-Topology" text="two leaf and one spine topology">}}. After you successfully install and configure the VMs, you can run {{<link url="Basic-Commands" text="basic commands">}} to get up and running. You can then use the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux documentation set">}} to explore further.
+This document describes how to install Cumulus VX on the {{<link url="Overview" text="supported platforms">}} and configure the VMs using a simple two leaf and one spine topology. After you successfully install and configure the VMs, you can run Basic Commands to get up and running. You can then use the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux documentation set">}} to explore further.

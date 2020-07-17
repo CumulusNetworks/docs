@@ -122,7 +122,6 @@ def build_markdown_header(product, version):
     output.append("product: {}\n".format(product))
     output.append("version: \"{}\"\n".format(version))
     output.append("toc: 1\n")
-    output.append("draft: true\n")
     output.append("pdfhidden: True\n")
     output.append("---\n")
     output.append("\n\n")
@@ -147,6 +146,9 @@ def read_markdown_header(product, version):
         input_file = "content/{}/Whats-New/foss.md".format(directory)
     elif product == "netq":
         input_file = "content/{}/More-Documents/foss.md".format(directory)
+    else:
+        print("Unknown product {}. Exiting".format(product))
+        exit(1)
 
     look_for_end_of_header = True
     header_lines = []
@@ -256,6 +258,11 @@ def get_products():
     Returns: a dict of product short name and versions. For example
     { "cl":  ["3.7.1", "3.7.2"], "netq": ["2.4.0", "3.0.0"] }
     '''
+    # Some versions are included in the JSON file that don't have correct licenses
+    # This is the list of versions to exclude from processing
+    cl_exclude_list = ["3.7.12", "4.1.0", "4.1.1"]
+    netq_exclude_list = []
+
     session = requests.Session()
     url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"
     response = session.get(url)
@@ -269,7 +276,20 @@ def get_products():
         print(response.json())
         exit(1)
 
-    return response.json()["licenses"]
+    licenses = response.json()["licenses"]
+    valid_cl_versions = []
+    valid_netq_versions = []
+
+    for version in licenses["cl"]:
+        if version not in cl_exclude_list:
+            valid_cl_versions.append(version)
+
+    for version in licenses["netq"]:
+        if version not in netq_exclude_list:
+            valid_netq_versions.append(version)
+
+    return {"cl": valid_cl_versions, "netq": valid_netq_versions}
+
 
 def main():
     '''

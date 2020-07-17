@@ -7,7 +7,7 @@ This section describes how to download Cumulus VX and create a VM in VMWare vSph
 
 {{% vx-intro %}}
 
-These steps were tested with VMware vSphere (ESXi) version 7.0b on macOS version 10.14.6.
+These steps were tested with VMware vSphere (ESXi) Standard version 7.0b on macOS version 10.14.6.
 
 ## Create the VMs
 

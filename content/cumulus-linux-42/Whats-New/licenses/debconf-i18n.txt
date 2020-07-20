@@ -1,1 +1,1 @@
-debconf-i18n has no debian/copyright file
+debconf-i18n has no copyright file

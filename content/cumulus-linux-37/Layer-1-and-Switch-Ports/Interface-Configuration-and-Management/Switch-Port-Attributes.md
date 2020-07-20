@@ -146,168 +146,128 @@ snippet:
 
 ## MTU
 
-Interface MTU ({{<exlink url="https://en.wikipedia.org/wiki/Maximum_transmission_unit" text="maximum transmission unit">}})
-applies to traffic traversing the management port, front panel/switch ports,
-bridge, VLAN subinterfaces and bonds - in other words, both physical and
-logical interfaces.
+Interface MTU applies to traffic traversing the management port, front panel or switch ports, bridge, VLAN subinterfaces, and bonds (both physical and logical interfaces). MTU is the only interface setting that you must set manually.
 
-MTU is the only interface setting that you must set manually.
+In Cumulus Linux, `ifupdown2` assigns 1500 as the default MTU setting. On a Mellanox switch, the initial MTU value set by the driver is 9238. After you configure the interface, the default MTU setting is 1500.
 
-In Cumulus Linux, `ifupdown2` assigns 1500 as the default MTU setting.
-To change the setting, run:
+To change the setting, run the `net add interface <interface> mtu` command. The following example command sets the MTU to 9000 for the swp1 interface.
 
-    cumulus@switch:~$ net add interface swp1 mtu 9000
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface swp1 mtu 9000
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 {{%notice note%}}
 
-Some switches might not support the same maximum MTU setting in hardware
-for both the management interface (eth0) and the data plane ports.
+Some switches might not support the same maximum MTU setting in hardware for both the management interface (eth0) and the data plane ports.
 
 {{%/notice%}}
 
 ### Set a Policy for Global System MTU
 
-For a global policy to set MTU, create a policy document (called
-`mtu.json` here) like the following:
+For a global policy to set MTU, create a policy document (called `mtu.json` here) like the following:
 
-    cat /etc/network/ifupdown2/policy.d/mtu.json
-    {
-     "address": {"defaults": { "mtu": "9216" }
-                }
-    }
+```
+cat /etc/network/ifupdown2/policy.d/mtu.json
+{
+  "address": {"defaults": { "mtu": "9216" }
+             }
+}
+```
 
-{{%notice note%}}
-
-After making the edits to the policy file above, the changed policy will need to be applied to the system by issuing the `ifreload -a` command. NCLU may also apply the policy if an `ifreload -a` is issued as part of the next commit operation.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-If your platform does not support a high MTU on eth0, you can set a
-lower MTU with the following command:
-
-    cumulus@switch:~$ net add interface eth0 mtu 1500
-    cumulus@switch:~$ net commit
-
-{{%/notice%}}
+After making the edits to the policy file above, apply the changed policy with the `ifreload -a` command. NCLU applies the policy if an `ifreload -a` is issued as part of the next commit operation.
 
 {{%notice warning%}}
 
-The policies and attributes in any file in
-`/etc/network/ifupdown2/policy.d/` override the default policies and
-attributes in `/var/lib/ifupdown2/policy.d/`.
+The policies and attributes in any file in `/etc/network/ifupdown2/policy.d/` override the default policies and attributes in `/var/lib/ifupdown2/policy.d/`.
 
 {{%/notice%}}
 
 ### MTU for a Bridge
 
-The MTU setting is the lowest MTU setting of any interface that is a
-member of that bridge (every interface specified in `bridge-ports` in
-the bridge configuration in the `interfaces` file), even if another
-bridge member has a higher MTU value. There is **no** need to specify an
-MTU on the bridge. Consider this bridge configuration:
+The MTU setting is the lowest MTU setting of any interface that is a member of that bridge (every interface specified in `bridge-ports` in the bridge configuration in the `interfaces` file), even if another bridge member has a higher MTU value. There is **no** need to specify an MTU on the bridge. Consider this bridge configuration:
 
-    auto bridge
-    iface bridge
-        bridge-ports bond1 bond2 bond3 bond4 peer5
-        bridge-vids 100-110
-        bridge-vlan-aware yes
+```
+auto bridge
+iface bridge
+    bridge-ports bond1 bond2 bond3 bond4 peer5
+    bridge-vids 100-110
+    bridge-vlan-aware yes
+```
 
-For *bridge* to have an MTU of 9000, set the MTU for each of the member
-interfaces (bond1 to bond 4, and peer5), to 9000 at minimum.
+For *bridge* to have an MTU of 9000, set the MTU for each of the member interfaces (bond1 to bond 4, and peer5), to 9000 at minimum.
 
 {{%notice tip%}}
 
 **Use MTU 9216 for a bridge**
 
-Two common MTUs for jumbo frames are 9216 and 9000 bytes. The
-corresponding MTUs for the VNIs would be 9166 and 8950. 
+Two common MTUs for jumbo frames are 9216 and 9000 bytes. The corresponding MTUs for the VNIs would be 9166 and 8950.
 
 {{%/notice%}}
 
-When configuring MTU for a bond, configure the MTU value directly under
-the bond interface; the configured value is inherited by member
-links/slave interfaces. If you need a different MTU on the bond, set it
-on the bond interface, as this ensures the slave interfaces pick it up.
-There is no need to specify MTU on the slave interfaces.
+When configuring MTU for a bond, configure the MTU value directly under the bond interface; the configured value is inherited by member links/slave interfaces. If you need a different MTU on the bond, set it on the bond interface, as this ensures the slave interfaces pick it up. There is no need to specify MTU on the  slave interfaces.
 
-VLAN interfaces inherit their MTU settings from their physical devices
-or their lower interface; for example, swp1.100 inherits its MTU setting
-from swp1. Therefore, specifying an MTU on swp1 ensures that swp1.100
-inherits the MTU setting for swp1.
+VLAN interfaces inherit their MTU settings from their physical devices or their lower interface; for example, swp1.100 inherits its MTU setting from swp1. Therefore, specifying an MTU on swp1 ensures that swp1.100 inherits the MTU setting for swp1.
 
-If you are
-working with {{<link url="Network-Virtualization" text="VXLANs">}}, the MTU
-for a virtual network interface (VNI) must be 50 bytes smaller than the
-MTU of the physical interfaces on the switch, as those 50 bytes are
-required for various headers and other data. Also, consider setting the
-MTU much higher than the default 1500.
+If you are working with {{<link url="Network-Virtualization" text="VXLANs">}}, the MTU for a virtual network interface (VNI) must be 50 bytes smaller than the MTU of the physical interfaces on the switch, as those 50 bytes are required for various headers and other data. Also, consider setting the MTU much higher than the default 1500.
 
-In general, the policy file specified above handles default MTU settings
-for all interfaces on the switch. If you need to configure a different
-MTU setting for a subset of interfaces, use
-{{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}.
+In general, the policy file specified above handles default MTU settings for all interfaces on the switch. If you need to configure a different MTU setting for a subset of interfaces, use {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}.
 
 The following commands configure an MTU minimum value of 9000 on swp1:
 
-    cumulus@switch:~$ net add interface swp1 mtu 9000
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
+```
+cumulus@switch:~$ net add interface swp1 mtu 9000
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
 These commands create the following code snippet:
 
-    auto swp1
-    iface swp1
-       mtu 9000
+```
+auto swp1
+iface swp1
+    mtu 9000
+```
 
-You must take care to ensure there are no MTU mismatches in the
-conversation path. MTU mismatches result in dropped or truncated
-packets, degrading or blocking network performance.
+You must take care to ensure there are no MTU mismatches in the conversation path. MTU mismatches result in dropped or truncated packets, degrading or blocking network performance.
 
 {{%notice note%}}
 
-The MTU for an SVI interface, such as vlan100, is derived from the
-bridge. When you use NCLU to change the MTU for an SVI and the MTU
-setting is higher than it is for the other bridge member interfaces, the
-MTU for all bridge member interfaces changes to the new setting. If you
-need to use a mixed MTU configuration for SVIs, for example, if some
-SVIs have a higher MTU and some lower, then set the MTU for all member
-interfaces to the maximum value, then set the MTU on the specific SVIs
-that need to run at a lower MTU.
+The MTU for an SVI interface, such as vlan100, is derived from the bridge. When you use NCLU to change the MTU for an SVI and the MTU setting is higher than it is for the other bridge member interfaces, the MTU for all bridge member interfaces changes to the new setting. If you need to use a mixed MTU configuration for SVIs, for example, if some SVIs have a higher MTU and some lower, then set the MTU for all member interfaces to the maximum value, then set the MTU on the specific SVIs that need to run at a lower MTU.
 
 {{%/notice%}}
 
 To view the MTU setting, run the `net show interface <interface>` command:
 
-    cumulus@switch:~$ net show interface swp1
-        Name    MAC                Speed      MTU  Mode
-    --  ------  -----------------  -------  -----  ---------
-    UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
+```
+cumulus@switch:~$ net show interface swp1
+    Name    MAC                Speed      MTU  Mode
+--  ------  -----------------  -------  -----  ---------
+UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
+```
 
 ### Bring Down an Interface for a Bridge Member
 
-When you bring down an interface for a bridge member, the MTU for the
-interface and the MTU for the bridge are both set to the default value
-of 1500. To work around this, run `ifdown` on the interface, then run
-the `sudo ip link set dev <interface> mtu <mtu>` command.
+In Cumulus Linux 3.7.11 and earlier, when you bring down an interface for a bridge member, the MTU for the
+interface and the MTU for the bridge are both set to the default value of 1500, which might cause issues if you take a port down for maintenance. To work around this issue, run `ifdown` on the interface, then run the `sudo ip link set dev <interface> mtu <mtu>` command.
 
 For example:
 
-    sudo ifdown swp3
-    sudo ip link set dev swp3 mtu 9192
+```
+sudo ifdown swp3
+sudo ip link set dev swp3 mtu 9192
+```
 
-As an alternative, add a `post-down` command in the
-`/etc/network/interfaces` file to reset the MTU of the interface. For
-example:
+As an alternative, you can add a `post-down` command in the `/etc/network/interfaces` file to reset the MTU of the interface. For example:
 
-    auto swp3
-    iface swp3
-        bridge-vids 106 109 119 141 150-151
-        mtu 9192
-        post-down /sbin/ip link set dev swp3 mtu 9192
+```
+auto swp3
+iface swp3
+    bridge-vids 106 109 119 141 150-151
+    mtu 9192
+    post-down /sbin/ip link set dev swp3 mtu 9192
+```
 
 ## FEC
 
@@ -795,14 +755,23 @@ iface swp1
 <td><p>RS</p></td>
 <td><pre>$ net add interface swp1 link speed 25000
 $ net add interface swp1 link autoneg off
+$ net add interface swp1 link fec rs</pre>
+<pre>auto swp1
+iface swp1
+  link-autoneg off
+  link-speed 25000
+  link-fec rs</pre></td>
+<td><ul>
+<p>Tomahawk predates 802.3by and does not support RS FEC on a 25G port or subport; however it does support Base-R FEC. The configuration for Base-R FEC is as follows:</p>
+<pre>$ net add interface swp1 link speed 25000
+$ net add interface swp1 link autoneg off
 $ net add interface swp1 link fec baser</pre>
 <pre>auto swp1
 iface swp1
   link-autoneg off
   link-speed 25000
-  link-fec baser</pre></td>
-<td><ul>
-<li><p>Tomahawk predates 802.3by. It does not support RS FEC on a 25G port or subport. It does support Base-R FEC.</p></li>
+  link-fec baser</pre>
+  <p>Cumulus Networks recommends that you configure FEC to the setting that the cable requires.</p>
 </ul></td>
 </tr>
 <tr>
@@ -1495,18 +1464,15 @@ comment out the lines as this prevents `switchd` from restarting.
 
 {{%/notice%}}
 
-### 1000BASE-T Modules Not Supported on Certain Edgecore and Cumulus Express Switches
+### 1000BASE-T SFP Modules Not Supported on Certain 25G and All 100G Platforms
 
-1000BASE-T modules are not supported on the following switches:
+1000BASE-T SFP modules are not supported on 25G or 100G platforms, with two exceptions for 25G: the Cumulus Express CX-5148-S and Edgecore AS7326-56X switches are supported in Cumulus Linux 3.7.13 and later releases of version 3.7, provided the switch has board revision R01D.
 
-- Cumulus Express CX-5148-S
-- Cumulus Express CX-8132-S
-- Edgecore AS7326-56X
-- Edgecore AS7726-32X
+To determine the revision of the board, look for the output in the `label revision` field when you run `decode-syseeprom`.
 
 ### Mellanox SN2100 Switch and eth0 Link Speed
 
-After rebooting the Melllanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
+After rebooting the Mellanox SN2100 switch, eth0 always has a speed of 100Mb/s. If you bring the interface down and then back up again, the interface negotiates 1000Mb. This only occurs the first time the interface comes up.
 
 To work around this issue, add the following commands to the `/etc/rc.local` file to flap the interface automatically when the switch boots:
 

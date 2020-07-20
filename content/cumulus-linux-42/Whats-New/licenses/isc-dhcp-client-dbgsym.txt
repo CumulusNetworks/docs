@@ -1,1 +1,1 @@
-isc-dhcp-client-dbgsym has no debian/copyright file
+isc-dhcp-client-dbgsym has no copyright file

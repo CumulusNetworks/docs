@@ -171,8 +171,6 @@ def build_rn_markdown(json_file, version, file_type):
     file_type - one of "affects" or "fixed"
     '''
     output = []
-    if version == "4.1.2":
-        return []
 
     if file_type == "affects":
         output.append("### Open issues in {}".format(version))
@@ -274,8 +272,6 @@ def write_rns(output, file_type, product, version):
     type - xls or md
     version - the version to write to in hugo directory syntax. For example, cumulus-linux-40
     '''
-    if version == "4.1.2":
-        return []
 
     directory = get_hugo_folder(product, version)
     if file_type not in ["xls", "md"]:
@@ -463,7 +459,7 @@ def get_products():
     Download the engineering provided JSON file detailing the list of products and releases.
     Expects the key "release_notes" to exist at the top level.
     Returns: a dict of product short name and versions. For example
-    { "cl":  ["3.7.1", "3.7.2"], "netq": ["2.4.0", "3.0.0"] }
+    { "cl":  ["3.7.1", "3.7.2"], "netq": ["2.4.0", "2.4.1", "3.0.0", "3.1.0"] }
     '''
     session = requests.Session()
     url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"

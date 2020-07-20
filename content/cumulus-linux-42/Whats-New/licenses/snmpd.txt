@@ -1,1 +1,1 @@
-snmpd has no debian/copyright file
+snmpd has no copyright file

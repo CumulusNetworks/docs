@@ -1,1 +1,1 @@
-libnss-tacplus-dbgsym has no debian/copyright file
+libnss-tacplus-dbgsym has no copyright file

@@ -231,15 +231,9 @@ and then those devices with a part number of QSFP-H40G-CU1M installed.
 
 ### View Changes to Physical Components
 
-Because components are often changed, NetQ enables you to determine
-what, if any, changes have been made to the physical components on your
-devices. This can be helpful during deployments or upgrades.
+Because components are often changed, NetQ enables you to determine what, if any, changes have been made to the physical components on your devices. This can be helpful during deployments or upgrades.
 
-You can select how far back in time you want to go, or select a time
-range using the between keyword. Note that time values must include
-units to be valid. If no changes are found, a "No matching cable records
-found" message is displayed. This example illustrates each of these
-scenarios for all devices in the network.
+You can select how far back in time you want to go, or select a time range using the between keyword. Note that time values must include units to be valid. If no changes are found, a "No matching cable records found" message is displayed. This example illustrates each of these scenarios for all devices in the network.
 
     cumulus@switch:~$ netq show events type interfaces-physical between now and 30d
     Matching cables records:
@@ -288,6 +282,56 @@ scenarios for all devices in the network.
      
     cumulus@switch:~$ netq show events type interfaces-physical between 0s and 5h
     No matching cables records found
+
+### View Digital Optics
+
+You can view data provided by any digital optics modules in the system. View laser power and bias current for a given interface and channel on a switch, and temperature and voltage for a given module.
+
+```
+cumulus@switch:~$ netq spine01 show dom type module_temperature
+Matching dom records:
+Hostname          Interface  type                 high_alarm_threshold low_alarm_threshold  high_warning_thresho low_warning_threshol value                Last Updated
+                                                                                            ld                   d
+----------------- ---------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+spine01           swp53s0    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp35      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 27.82,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 82.08}
+spine01           swp55      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 26.29,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 79.32}
+spine01           swp9       module_temperature   {‘degree_c’: 78,     {‘degree_c’: -13,    {‘degree_c’: 73,     {‘degree_c’: -8,     {‘degree_c’: 25.57,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 8.6}     ‘degree_f’: 163.4}   ‘degree_f’: 17.6}    ‘degree_f’: 78.02}
+spine01           swp56      module_temperature   {‘degree_c’: 78,     {‘degree_c’: -10,    {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 29.43,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 14}      ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 84.97}
+spine01           swp53s2    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp6       module_temperature   {‘degree_c’: 80,     {‘degree_c’: -10,    {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 25.04,  Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 176}     ‘degree_f’: 14}      ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 77.07}
+spine01           swp7       module_temperature   {‘degree_c’: 85,     {‘degree_c’: -5,     {‘degree_c’: 80,     {‘degree_c’: 0,      {‘degree_c’: 24.14,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 23}      ‘degree_f’: 176}     ‘degree_f’: 32}      ‘degree_f’: 75.45}
+spine01           swp53s3    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp11      module_temperature   {‘degree_c’: 95,     {‘degree_c’: -50,    {‘degree_c’: 93,     {‘degree_c’: -48,    {‘degree_c’: 23.75,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 203}     ‘degree_f’: -58}     ‘degree_f’: 199.4}   ‘degree_f’: -54.4}   ‘degree_f’: 74.75}
+spine01           swp49      module_temperature   {‘degree_c’: 65,     {‘degree_c’: 10,     {‘degree_c’: 60,     {‘degree_c’: 15,     {‘degree_c’: 23.18,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 149}     ‘degree_f’: 50}      ‘degree_f’: 140}     ‘degree_f’: 59}      ‘degree_f’: 73.72}
+spine01           swp12      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32.31,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 90.16}
+spine01           swp53s1    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp34      module_temperature   {‘degree_c’: 80,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 24.93,  Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 176}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 76.87}
+spine01           swp3       module_temperature   {‘degree_c’: 90,     {‘degree_c’: -40,    {‘degree_c’: 85,     {‘degree_c’: -40,    {‘degree_c’: 25.15,  Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 194}     ‘degree_f’: -40}     ‘degree_f’: 185}     ‘degree_f’: -40}     ‘degree_f’: 77.27}
+spine01           swp8       module_temperature   {‘degree_c’: 78,     {‘degree_c’: -13,    {‘degree_c’: 73,     {‘degree_c’: -8,     {‘degree_c’: 24.1,   Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 8.6}     ‘degree_f’: 163.4}   ‘degree_f’: 17.6}    ‘degree_f’: 75.38}
+spine01           swp52      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 20.55,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 68.98}
+spine01           swp10      module_temperature   {‘degree_c’: 78,     {‘degree_c’: -13,    {‘degree_c’: 73,     {‘degree_c’: -8,     {‘degree_c’: 25.39,  Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 8.6}     ‘degree_f’: 163.4}   ‘degree_f’: 17.6}    ‘degree_f’: 77.7}
+spine01           swp31      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 27.05,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 80.69}
+```
 
 ### View Interface Statistics
 

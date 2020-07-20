@@ -16,11 +16,17 @@ To install NetQ:
 
     In your browser address field, enter *https://\<hostname-or-ipaddr\>:8443*.
 
-    This opens the Admin UI.
+2. Enter your username. Default is *admin*.
+
+3. Enter your password. Default is *admin*.
+
+4. Click **Sign In**.
+
+    A Welcome screen is presented on first login and on subsequent logins the NetQ Health dashboard is displayed.
 
     {{<figure src="/images/netq/adminui-main-page-241.png" width="700">}}
 
-2. Step through the UI.
+5. Step through the UI.
 
     Having made your installation choices during the preparation steps, you can quickly select the correct path through the UI.
 

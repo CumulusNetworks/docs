@@ -1,1 +1,1 @@
-cron-dbgsym has no debian/copyright file
+cron-dbgsym has no copyright file

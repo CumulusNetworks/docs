@@ -6,8 +6,10 @@ subsection: true
 cascade:
     product: Cumulus Linux
     version: "4.1"
+    old: true
 toc: 1
 ---
+
 ## What is Cumulus Linux?
 
 Cumulus Linux is the first full-featured Linux operating system for the networking industry. The {{<exlink url="https://www.debian.org/releases/buster/" text="Debian Buster" >}}-based, networking-focused distribution runs on hardware produced by a {{<exlink url="https://cumulusnetworks.com/hcl/" text="broad partner ecosystem" >}}, ensuring unmatched customer choice regarding silicon, optics, cables, and systems.

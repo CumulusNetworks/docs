@@ -126,7 +126,7 @@ You can configure ports to the following speeds (unless there are restrictions i
 **Platform Limitations**
 
 - On Lenovo NE2572O switches, swp1 through swp8 only support 25G speed.
-- For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must edit the `/etc/cumulus/ports.conf` file and configure the four ports in the same core to be 10G. See {{<link url="#caveats-and-errata" text="Caveats and Errata">}}.
+- For 10G and 1G SFPs inserted in a 25G port on a Broadcom switch, you must edit the `/etc/cumulus/ports.conf` file and configure the four ports in the same core to be 10G. See {{<link url="#caveats-and-errata" text="Caveats and Errata">}}.
 - A switch with the Maverick ASIC limits multicast traffic by the lowest speed port that has joined a particular group. For example, if you are sending 100G multicast through and subscribe with one 100G and one 25G port, traffic on both egress ports is limited to 25Gbps. If you remove the 25G port from the group, traffic correctly forwards at 100Gbps.
 
 {{%/notice%}}
@@ -217,15 +217,17 @@ A runtime configuration is non-persistent, which means the configuration you cre
 
 ## MTU
 
-Interface MTU applies to traffic traversing the management port, front panel/switch ports, bridge, VLAN subinterfaces, and bonds (both physical and logical interfaces). MTU is the only interface setting that you must set manually.
+Interface MTU applies to traffic traversing the management port, front panel or switch ports, bridge, VLAN subinterfaces, and bonds (both physical and logical interfaces). MTU is the only interface setting that you must set manually.
 
-The default MTU setting is 9216 in Cumulus Linux. To change the setting, run the following commands:
+In Cumulus Linux, `ifupdown2` assigns 9216 as the default MTU setting. On a Mellanox switch, the initial MTU value set by the driver is 9238. After you configure the interface, the default MTU setting is 9216.
+
+To change the MTU setting, run the following commands:
 
 {{< tabs "TabID227 ">}}
 
 {{< tab "NCLU Commands ">}}
 
-Run the `net add interface <interface> mtu` command. The following example command sets MTU to 1500 for the swp1 interface.
+Run the `net add interface <interface> mtu` command. The following example command sets the MTU to 1500 for the swp1 interface.
 
 ```
 cumulus@switch:~$ net add interface swp1 mtu 1500
@@ -245,7 +247,7 @@ iface swp1
 
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example sets MTU to 1500 for the swp1 interface.
+Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example sets the MTU to 1500 for the swp1 interface.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -261,7 +263,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 **Runtime Configuration (Advanced)**
 
-Run the `ip link set` command. The following example command sets the swp1 interface to Jumbo Frame MTU=1500.
+Run the `ip link set` command. The following example command sets the swp1 interface MTU to 1500.
 
 ```
 cumulus@switch:~$ sudo ip link set dev swp1 mtu 1500
@@ -294,17 +296,6 @@ cumulus@switch:~$ sudo cat /etc/network/ifupdown2/policy.d/mtu.json
             }
 }
 ```
-
-{{%notice note%}}
-
-If your platform does not support a high MTU on eth0, you can set a lower MTU with the following command:
-
-```
-cumulus@switch:~$ net add interface eth0 mtu 1500
-cumulus@switch:~$ net commit
-```
-
-{{%/notice%}}
 
 {{%notice warning%}}
 
@@ -376,27 +367,6 @@ cumulus@switch:~$ ip link show dev swp1
 {{< /tab >}}
 
 {{< /tabs >}}
-
-### Bring Down an Interface for a Bridge Member
-
-When you bring down an interface for a bridge member, the MTU for the interface and the MTU for the bridge are both set to the default value of 9216. To work around this, run `ifdown` on the interface, then run the `sudo ip link set dev <interface> mtu` command.
-
-For example:
-
-```
-sudo ifdown swp3
-sudo ip link set dev swp3 mtu 1500
-```
-
-As an alternative, add a `post-down` command in the `/etc/network/interfaces` file to reset the MTU of the interface. For example:
-
-```
-auto swp3
-iface swp3
-    bridge-vids 106 109 119 141 150-151
-    mtu 1500
-    post-down /sbin/ip link set dev swp3 mtu 1500
-```
 
 ## FEC
 
@@ -812,7 +782,7 @@ Spectrum switches automatically configure these settings following a predefined 
 | 100GBASE-SR4<br>100G AOC | Off | RS | **NCLU commands**<pre>$ net add interface swp1 link speed 100000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec rs</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 100000<br>&nbsp; &nbsp;link-fec rs</pre> | |
 | 100GBASE-LR4 | Off | None | **NCLU commands**<pre>$ net add interface swp1 link speed 100000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec off</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 100000<br>&nbsp; &nbsp;link-fec off</pre> | |
 | 25GBASE-CR | On | auto-negotiated | **NCLU commands**<pre>$ net add interface swp1 link speed 25000<br>$ net add interface swp1 link autoneg on</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg on<br>&nbsp; &nbsp;link-speed 25000</pre> | Tomahawk predates 802.3by. It does not support RS FEC or auto-negotiation of RS FEC on a 25G port or subport. It does support Base-R FEC.|
-| 25GBASE-SR | Off | RS | **NCLU commands**<pre>$ net add interface swp1 link speed 25000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec baser</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 25000<br>&nbsp; &nbsp;link-fec baser</pre> | Tomahawk predates 802.3by. It does not support RS FEC on a 25G port or subport. It does support Base-R FEC. |
+| 25GBASE-SR | Off | RS | **NCLU commands**<pre>$ net add interface swp1 link speed 25000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec rs</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 25000<br>&nbsp; &nbsp;link-fec rs</pre> | Tomahawk predates 802.3by and does not support RS FEC on a 25G port or subport; however it does support Base-R FEC. The configuration for Base-R FEC is as follows:<br>**NCLU commands**<br><pre>$ net add interface swp1 link speed 25000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec baser</pre><br>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp;link-speed 25000<br>&nbsp; &nbsp;link-fec baser</pre> <br>Cumulus Networks recommends that you configure FEC to the setting that the cable requires.|
 | 25GBASE-LR | Off | None | **NCLU commands**<pre>$ net add interface swp1 link speed 25000<br>$ net add interface swp1 link autoneg off<br>$ net add interface swp1 link fec off</pre>**Configuration in /etc/network/interfaces**<pre>auto swp1<br>iface swp1<br>&nbsp; &nbsp;link-autoneg off<br>&nbsp; &nbsp; link-speed 25000<br>&nbsp; &nbsp;link-fec off</pre> | |
 
 ## Default Policies for Interface Settings
@@ -924,9 +894,7 @@ iface swp3s3
 
 {{%notice note%}}
 
-When you commit your change on a Broadcom switch, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
-
-When you commit your change on a Mellanox switch, there is no interruption to network services.
+When you commit your change on a Broadcom switch, `switchd` restarts to apply the changes. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}. When you commit your change on a Mellanox switch, `switchd` reloads and there is no interruption to network services.
 
 {{%/notice%}}
 
@@ -969,12 +937,7 @@ iface swp310s3
 
 3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, you can run the following commands to avoid interrupting network services:
-
-    ```
-    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
-    cumulus@switch:~$ ifreload -a
-    ```
+   On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 {{< /tab >}}
 
@@ -1014,12 +977,7 @@ To remove a breakout port:
 
 3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, you can run the following commands to avoid interrupting network services:
-
-    ```
-    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
-    cumulus@switch:~$ ifreload -a
-    ```
+   On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 {{< /tab >}}
 
@@ -1040,12 +998,7 @@ To remove a breakout port:
 
 2. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
-    On a Mellanox switch, you can run the following commands to avoid interrupting network services:
-
-    ```
-    cumulus@switch:~$ /usr/lib/cumulus/update-ports -f --warm
-    cumulus@switch:~$ ifreload -a
-    ```
+   On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
 {{< /tab >}}
 
@@ -1241,7 +1194,7 @@ If you change the port speed in the `/etc/cumulus/ports.conf` file but the speed
 
 ### 10G and 1G SFPs Inserted in a 25G Port
 
-For 10G and 1G SFPs inserted in a 25G port on a Broadcom platform, you must configure the four ports in the same core to be 10G. Each set of four 25G ports are controlled by a single core; therefore, each core must run at the same clock speed. The four ports must be in sequential order; for example, swp1, swp2, swp3, and swp4, unless a particular core grouping is specified in the `/etc/cumulus/ports.conf` file.
+For 10G and 1G SFPs inserted in a 25G port on a Broadcom switch, you must configure the four ports in the same core to be 10G. Each set of four 25G ports are controlled by a single core; therefore, each core must run at the same clock speed. The four ports must be in sequential order; for example, swp1, swp2, swp3, and swp4, unless a particular core grouping is specified in the `/etc/cumulus/ports.conf` file.
 
 1. Edit the `/etc/cumulus/ports.conf` file and configure the four ports to be 10G. 1G SFPs are clocked at 10G speeds; therefore, for 1G SFPs, the `/etc/cumulus/ports.conf` file entry must also specify 10G. Currently you cannot use NCLU commands for this step.
 
@@ -1380,6 +1333,12 @@ cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
 To disable the QSFP+ ports, you must set the ports to `disabled`. Do not comment out the lines as this prevents `switchd` from restarting.
 
 {{%/notice%}}
+
+### 1000BASE-T SFP Modules Not Supported on Certain 25G and All 100G Platforms
+
+1000BASE-T SFP modules are not supported on 25G or 100G platforms, with two exceptions for 25G: the Cumulus Express CX-5148-S and Edgecore AS7326-56X switches are supported in Cumulus Linux 4.2.0 and later releases, provided the switch has board revision R01D.
+
+To determine the revision of the board, look for the output in the `label revision` field when you run `decode-syseeprom`.
 
 ### Mellanox SN2100 Switch and eth0 Link Speed
 

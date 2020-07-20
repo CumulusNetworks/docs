@@ -30,4 +30,4 @@ You can upgrade from NetQ 2.4.x and NetQ 3.0.0 to NetQ 3.1.0. Upgrades from NetQ
 - View additional statistics from `netq <hostname> show ethtool-status` command
 - Ported Python 2 codebase to Python 3
 
-For information regarding bug fixes and known issues present in this release, refer to the {{<link title="Cumulus NetQ 3.1 Release Notes" text="release notes">}}.
+For information regarding bug fixes and known issues present in this release, refer to the {{<link title="Cumulus NetQ 3.2 Release Notes" text="release notes">}}.

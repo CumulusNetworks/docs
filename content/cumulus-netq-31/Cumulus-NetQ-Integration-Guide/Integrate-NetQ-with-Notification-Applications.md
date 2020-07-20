@@ -81,6 +81,8 @@ The command syntax for standard events is:
     ##Channels
     netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
     netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
+    netq add notification channel syslog <text-channel-name> hostname <text-syslog-hostname> port <text-syslog-port> [severity info | severity warning | severity error | severity debug]
+    netq add notification channel email <text-channel-name> to <text-email-toids>  [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity warning | severity error | severity debug]
      
     ##Rules and Filters
     netq add notification rule <text-rule-name> key <text-rule-key> value <text-rule-value>
@@ -118,15 +120,15 @@ The simplest configuration you can create is one that sends all events generated
 
 A notification configuration must contain one channel, one rule, and one filter. Creation of the configuration follows this same path:
 
-1. Add a channel (slack, pagerduty, syslog)
+1. Add a channel (Slack, Pagerduty, syslog, email)
 2. Add a rule that accepts all interface events
 3. Add a filter that associates this rule with the newly created channel
 
 ### Create Your Channel
 
-For Pager Duty:
+#### Create a PagerDuty Channel
 
-Configure a channel using the integration key for your Pager Duty setup. Verify the configuration.
+Configure a channel using the integration key for your PagerDuty setup. Verify the configuration.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
     Successfully added/updated channel pd-netq-events
@@ -138,7 +140,7 @@ Configure a channel using the integration key for your Pager Duty setup. Verify 
     pd-netq-events  pagerduty        info             integration-key: c6d666e
                                                     210a8425298ef7abde0d1998      
 
-For Slack:
+#### Create a Slack Channel
 
 Create an *incoming webhook* as described in the documentation for your version of Slack. Verify the configuration.
 
@@ -153,7 +155,7 @@ Create an *incoming webhook* as described in the documentation for your version 
                                             lack.com/services/text/
                                             moretext/evenmoretext
 
-For Syslog:
+#### Create a syslog Channel
 
 Create the channel using the syslog server hostname (or IP address) and port. Verify the configuration.
 
@@ -166,6 +168,30 @@ Create the channel using the syslog server hostname (or IP address) and port. Ve
     --------------- ---------------- -------- ----------------------
     syslog-netq-eve syslog            info     host:syslog-server
     nts                                        port: 514
+
+#### Create an Email Channel
+
+The configuration is different depending on whether you are using the on-prem or cloud version of NetQ. 
+
+For an **on-prem** deployment, do the following:
+
+1. Set up an SMTP server. The server can be internal or public.
+1. Create a user account (login and password) on the SMTP server. Notifications are sent to this address.
+1. Configure the notification channel using the following command format:
+
+       netq add notification channel email <text-channel-name> to <text-email-toids>  [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity warning | severity error | severity debug]
+
+For example:
+
+    cumulus@switch:~$ netq add notification channel email onprem-email to netq-notifications@domain.com smtpserver smtp.domain.com smtpport 587 login smtphostlogin@domain.com password MyPassword123 
+
+For a **cloud** deployment, no SMTP configuration is required as the NetQ cloud uses the NETQ SMTP server to push email notifications. Use the following format:
+
+    netq add notification channel email <text-channel-name> to <text-email-toids>
+
+For example:
+
+    cumulus@switch:~$ netq add notification channel email cloud-email to netq-cloud-notifications@domain.com
 
 ### Create a Rule
 
@@ -1022,6 +1048,229 @@ Run the `netq show notification` command again to verify the changes:
     configChange    6          info             slk-netq-events  sysconf
     newFEC          7          info             slk-netq-events  fecSupport
 
+### Suppress Events
+
+Cumulus NetQ can generate many network events. You can configure whether to suppress any events from appearing in NetQ output. By default, all events are delivered.
+
+You can suppress an event until a certain period of time; otherwise, the event is suppressed for 2 years. Providing an end time eliminates the generation of messages for a short period of time, which is useful when you are testing a new network configuration and the switch may be generating many messages.
+
+You can suppress events for the following types of messages:
+
+- agent: NetQ Agent messages
+- bgp: BGP-related messages
+- btrfsinfo: Messages related to the BTRFS file system in Cumulus Linux
+- clag: MLAG-related messages
+- clsupport: Messages generated when creating the `cl-support script`
+- configdiff: Messages related to the difference between two configurations
+- evpn: EVPN-related messages
+- link: Messages related to links, including state and interface name
+- ntp: NTP-related messages
+- ospf: OSPF-related messages
+- sensor: Messages related to various sensors
+- services: Service-related information, including whether a service is active or inactive
+- ssdutil: Messages related to the storage on the switch
+
+#### Add an Event Suppression Configuration
+
+When you add a new configuration, you can specify a scope, which limits the suppression in the following order:
+
+1. Hostname.
+1. Severity.
+1. Message type-specific filters. For example, the target VNI for EVPN messages, or the interface name for a link message.
+
+NetQ has a predefined set of filter conditions. To see these conditions, run `netq show events-config show-filter-conditions`:
+
+```
+cumulus@leaf01:~$ netq show events-config show-filter-conditions
+
+Matching config_events records:
+Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
+------------------------ ------------------------------------------ ---------------------------------------------------- --------------------------------------------------------
+evpn                     vni                                        3                                                    Target VNI
+evpn                     severity                                   2                                                    Severity critical/info
+evpn                     hostname                                   1                                                    Target Hostname
+clsupport                fileAbsName                                3                                                    Target File Absolute Name
+clsupport                severity                                   2                                                    Severity critical/info
+clsupport                hostname                                   1                                                    Target Hostname
+link                     new_state                                  4                                                    up / down
+link                     ifname                                     3                                                    Target Ifname
+link                     severity                                   2                                                    Severity critical/info
+link                     hostname                                   1                                                    Target Hostname
+ospf                     ifname                                     3                                                    Target Ifname
+ospf                     severity                                   2                                                    Severity critical/info
+ospf                     hostname                                   1                                                    Target Hostname
+sensor                   new_s_state                                4                                                    New Sensor State Eg. ok
+sensor                   sensor                                     3                                                    Target Sensor Name Eg. Fan, Temp
+sensor                   severity                                   2                                                    Severity critical/info
+sensor                   hostname                                   1                                                    Target Hostname
+configdiff               old_state                                  5                                                    Old State
+configdiff               new_state                                  4                                                    New State
+configdiff               type                                       3                                                    File Name
+configdiff               severity                                   2                                                    Severity critical/info
+configdiff               hostname                                   1                                                    Target Hostname
+ssdutil                  info                                       3                                                    low health / significant health drop
+ssdutil                  severity                                   2                                                    Severity critical/info
+ssdutil                  hostname                                   1                                                    Target Hostname
+agent                    db_state                                   3                                                    Database State
+agent                    severity                                   2                                                    Severity critical/info
+agent                    hostname                                   1                                                    Target Hostname
+ntp                      new_state                                  3                                                    yes / no
+ntp                      severity                                   2                                                    Severity critical/info
+ntp                      hostname                                   1                                                    Target Hostname
+bgp                      vrf                                        4                                                    Target VRF
+bgp                      peer                                       3                                                    Target Peer
+bgp                      severity                                   2                                                    Severity critical/info
+bgp                      hostname                                   1                                                    Target Hostname
+services                 new_status                                 4                                                    active / inactive
+services                 name                                       3                                                    Target Service Name Eg.netqd, mstpd, zebra
+services                 severity                                   2                                                    Severity critical/info
+services                 hostname                                   1                                                    Target Hostname
+btrfsinfo                info                                       3                                                    high btrfs allocation space / data storage efficiency
+btrfsinfo                severity                                   2                                                    Severity critical/info
+btrfsinfo                hostname                                   1                                                    Target Hostname
+clag                     severity                                   2                                                    Severity critical/info
+clag                     hostname                                   1                                                    Target Hostname
+cumulus@leaf01:~$
+```
+
+For example, to create a configuration called `mybtrfs` that suppresses OSPF-related events on leaf01 for the next 10 minutes, run:
+
+```
+netq add events-config events_config_name mybtrfs message_type ospf scope '[{"scope_name":"hostname","scope_value":"leaf01"},{"scope_name":"severity","scope_value":"*"}]' suppress_until 600
+```
+
+#### Remove an Event Suppression Configuration
+
+To remove an event suppression configuration, run `netq del events-config events_config_id <text-events-config-id-anchor>`.
+
+```
+cumulus@leaf01:~$ netq del events-config events_config_id eventsconfig_10
+Successfully deleted Events Config eventsconfig_10
+cumulus@leaf01:~$
+```
+
+#### Show Event Suppression Configurations
+
+You can view all event suppression configurations, or you can filter by a specific configuration or message type.
+
+```
+cumulus@leaf01:~$ netq show events-config events_config_id eventsconfig_1
+
+Matching config_events records:
+Events Config ID     Events Config Name   Message Type         Scope                                                        Active Suppress Until
+-------------------- -------------------- -------------------- ------------------------------------------------------------ ------ --------------------
+eventsconfig_1       job_cl_upgrade_2d89c agent                {"db_state":"*","hostname":"spine02","severity":"*"}         True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine02
+eventsconfig_1       job_cl_upgrade_2d89c bgp                  {"vrf":"*","peer":"*","hostname":"spine04","severity":"*"}   True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c btrfsinfo            {"hostname":"spine04","info":"*","severity":"*"}             True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c clag                 {"hostname":"spine04","severity":"*"}                        True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c clsupport            {"fileAbsName":"*","hostname":"spine04","severity":"*"}      True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c configdiff           {"new_state":"*","old_state":"*","type":"*","hostname":"spin True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                      e04","severity":"*"}                                                2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c evpn                 {"hostname":"spine04","vni":"*","severity":"*"}              True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c link                 {"ifname":"*","new_state":"*","hostname":"spine04","severity True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                      ":"*"}                                                              2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c ntp                  {"new_state":"*","hostname":"spine04","severity":"*"}        True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c ospf                 {"ifname":"*","hostname":"spine04","severity":"*"}           True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c sensor               {"sensor":"*","new_s_state":"*","hostname":"spine04","severi True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                      ty":"*"}                                                            2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c services             {"new_status":"*","name":"*","hostname":"spine04","severity" True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                      :"*"}                                                               2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c ssdutil              {"hostname":"spine04","info":"*","severity":"*"}             True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_10      job_cl_upgrade_2d89c btrfsinfo            {"hostname":"fw2","info":"*","severity":"*"}                 True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c clag                 {"hostname":"fw2","severity":"*"}                            True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c clsupport            {"fileAbsName":"*","hostname":"fw2","severity":"*"}          True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c link                 {"ifname":"*","new_state":"*","hostname":"fw2","severity":"* True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                      "}                                                                  2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c ospf                 {"ifname":"*","hostname":"fw2","severity":"*"}               True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c sensor               {"sensor":"*","new_s_state":"*","hostname":"fw2","severity": True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                      "*"}                                                                2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+cumulus@leaf01:~$
+```
+
+If you are filtering for a message type, you must include the `show-filter-conditions` keyword to show the conditions associated with that message type and the hierarchy in which they're processed.
+
+```
+cumulus@leaf01:~$ netq show events-config message_type evpn show-filter-conditions
+
+Matching config_events records:
+Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
+------------------------ ------------------------------------------ ---------------------------------------------------- --------------------------------------------------------
+evpn                     vni                                        3                                                    Target VNI
+evpn                     severity                                   2                                                    Severity critical/info
+evpn                     hostname                                   1                                                    Target Hostname
+cumulus@leaf01:~$
+```
+
 ## Examples of Advanced Notification Configurations
 
 Putting all of these channel, rule, and filter definitions together you
@@ -1472,111 +1721,240 @@ A notification configuration must contain one rule. Each rule must contain a sco
 
 The following events are supported:
 
-| Category | Event ID | Description |
-| ----------- | ---------- | -------------- |
-| Interface Statistics | TCA_RXBROADCAST_UPPER  |  rx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_RXBYTES_UPPER |  rx_bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_RXMULTICAST_UPPER |  rx_multicast per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_TXBROADCAST_UPPER |  tx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_TXBYTES_UPPER     |  tx_bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_TXMULTICAST_UPPER |  tx_multicast bytes per second on a given switch or host is greater than maximum threshold |
-| Resource Utilization | TCA_CPU_UTILIZATION_UPPER | CPU utilization (%) on a given switch or host is greater than maximum threshold |
-| Resource Utilization | TCA_DISK_UTILIZATION_UPPER  |  Disk utilization (%) on a given switch or host is greater than maximum threshold |
-| Resource Utilization | TCA_MEMORY_UTILIZATION_UPPER  |  Memory utilization (%) on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_FAN_UPPER  |  Switch sensor reported fan speed on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_POWER_UPPER|  Switch sensor reported power (Watts) on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_TEMPERATURE_UPPER  |  Switch sensor reported temperature (&deg;C) on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_VOLTAGE_UPPER  |  Switch sensor reported voltage (Volts) on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Number of routes on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Number of multicast routes on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_MAC_ENTRIES_UPPER | Number of MAC addresses on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV4_ROUTE_UPPER | Number of IPv4 routes on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV4_HOST_UPPER | Number of IPv4 hosts on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV6_ROUTE_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV6_HOST_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_ECMP_NEXTHOPS_UPPER | Number of equal cost multi-path (ECMP) next hop entries on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Number of ingress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Number of egress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Number of ingress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Number of egress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Number of ingress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Number of egress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Number of ingress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Number of egress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Number of ingress ACL 802.1 filters on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Number of ACL port range checkers on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_REGIONS_UPPER | Number of ACL regions on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_MIRROR_UPPER | Number of ingress ACL mirrors on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_18B_RULES_UPPER | Number of ACL 18B rules on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_32B_RULES_UPPER | Number of ACL 32B rules on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_54B_RULES_UPPER | Number of ACL 54B rules on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
+{{< tabs "TabID1475" >}}
+
+{{< tab "ACL Resources" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Number of ingress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Number of egress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Number of ingress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Number of egress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Number of ingress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Number of egress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Number of ingress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Number of egress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Number of ingress ACL 802.1 filters on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Number of ACL port range checkers on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_REGIONS_UPPER | Number of ACL regions on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_MIRROR_UPPER | Number of ingress ACL mirrors on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_18B_RULES_UPPER | Number of ACL 18B rules on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_32B_RULES_UPPER | Number of ACL 32B rules on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_54B_RULES_UPPER | Number of ACL 54B rules on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+<!-- {{< tab "Digital Optics" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_INPUT_POWER_UPPER | Transceiver Input power (mW) for the digital optical module on a given switch or host is greater than maximum threshold |
+| TCA_INPUT_POWER_LOWER | Transceiver Input power (mW) for the digital optical module on a given switch or host is less than minimum threshold |
+| TCA_LASER_BIAS_UPPER | Laser bias current (mA) for the digital optical module on a given switch or host is greater than maximum threshold |
+| TCA_LASER_BIAS_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host is less than minimum threshold |
+| TCA_LASER_OUTPUT_POWER_UPPER | Laser output power (mW) for the digital optical module on a given switch or host is greater than maximum threshold |
+| TCA_LASER_OUTPUT_POWER_LOWER | Laser output power (mW) for the digital optical module on a given switch or host is less than minimum threshold |
+| TCA_MODULE_TEMPERATURE_UPPER | Digital optical module temperature (&deg;C) on a given switch or host is greater than maximum threshold |
+| TCA_MODULE_TEMPERATURE_LOWER | Digital optical module temperature (&deg;C) on a given switch or host is less than minimum threshold |
+| TCA_TRANSCEIVER_VOLTAGE_UPPER | Transceiver voltage (mV) on a given switch or host is greater than maximum threshold |
+| TCA_TRANSCEIVER_VOLTAGE_LOWER | Transceiver voltage (mV) on a given switch or host is less than minimum threshold |
+
+{{< /tab >}} -->
+
+{{< tab "Forwarding Resources" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Number of routes on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Number of multicast routes on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_MAC_ENTRIES_UPPER | Number of MAC addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IPV4_ROUTE_UPPER | Number of IPv4 routes on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IPV4_HOST_UPPER | Number of IPv4 hosts on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IPV6_ROUTE_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IPV6_HOST_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ECMP_NEXTHOPS_UPPER | Number of equal cost multi-path (ECMP) next hop entries on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< tab "Interface Statistics" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_RXBROADCAST_UPPER  |  rx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
+| TCA_RXBYTES_UPPER |  rx_bytes per second on a given switch or host is greater than maximum threshold |
+| TCA_RXMULTICAST_UPPER |  rx_multicast per second on a given switch or host is greater than maximum threshold |
+| TCA_TXBROADCAST_UPPER |  tx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
+| TCA_TXBYTES_UPPER     |  tx_bytes per second on a given switch or host is greater than maximum threshold |
+| TCA_TXMULTICAST_UPPER |  tx_multicast bytes per second on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< tab "Resource Utilization" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_CPU_UTILIZATION_UPPER | CPU utilization (%) on a given switch or host is greater than maximum threshold |
+| TCA_DISK_UTILIZATION_UPPER  |  Disk utilization (%) on a given switch or host is greater than maximum threshold |
+| TCA_MEMORY_UTILIZATION_UPPER  |  Memory utilization (%) on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< tab "Sensors" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_SENSOR_FAN_UPPER  |  Switch sensor reported fan speed on a given switch or host is greater than maximum threshold |
+| TCA_SENSOR_POWER_UPPER|  Switch sensor reported power (Watts) on a given switch or host is greater than maximum threshold |
+| TCA_SENSOR_TEMPERATURE_UPPER  |  Switch sensor reported temperature (&deg;C) on a given switch or host is greater than maximum threshold |
+| TCA_SENSOR_VOLTAGE_UPPER  |  Switch sensor reported voltage (Volts) on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Define a Scope
 
 A scope is used to filter the events generated by a given rule. Scope values are set on a per TCA rule basis. All rules can be filtered on Hostname. Some rules can also be filtered by other parameters, as shown in this table. *Note*: Scope parameters must be entered in the order defined.
 
-| Category | Event ID | Scope Parameters |
-| ------------ | ---------- | -------------- |
-| Interface Statistics | TCA_RXBROADCAST_UPPER  |  Hostname, Interface |
-| Interface Statistics | TCA_RXBYTES_UPPER |  Hostname, Interface |
-| Interface Statistics | TCA_RXMULTICAST_UPPER |  Hostname, Interface |
-| Interface Statistics | TCA_TXBROADCAST_UPPER | Hostname, Interface |
-| Interface Statistics | TCA_TXBYTES_UPPER | Hostname, Interface |
-| Interface Statistics | TCA_TXMULTICAST_UPPER | Hostname, Interface |
-| Resource Utilization | TCA_CPU_UTILIZATION_UPPER | Hostname |
-| Resource Utilization | TCA_DISK_UTILIZATION_UPPER  |  Hostname |
-| Resource Utilization | TCA_MEMORY_UTILIZATION_UPPER  |  Hostname |
-| Sensors | TCA_SENSOR_FAN_UPPER  |  Hostname, Sensor Name |
-| Sensors | TCA_SENSOR_POWER_UPPER|  Hostname, Sensor Name |
-| Sensors | TCA_SENSOR_TEMPERATURE_UPPER  |  Hostname, Sensor Name |
-| Sensors | TCA_SENSOR_VOLTAGE_UPPER  |  Hostname, Sensor Name |
-| Forwarding Resources | TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_MAC_ENTRIES_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_ECMP_NEXTHOPS_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV4_ROUTE_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV4_HOST_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV6_ROUTE_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV6_HOST_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_REGIONS_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_MIRROR_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_18B_RULES_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_32B_RULES_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_54B_RULES_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Hostname |
+{{< tabs "TabID373" >}}
+
+{{< tab "ACL Resources" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Hostname |
+| TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Hostname |
+| TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Hostname |
+| TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Hostname |
+| TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Hostname |
+| TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Hostname |
+| TCA_TCAM_ACL_REGIONS_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_MIRROR_UPPER | Hostname |
+| TCA_TCAM_ACL_18B_RULES_UPPER | Hostname |
+| TCA_TCAM_ACL_32B_RULES_UPPER | Hostname |
+| TCA_TCAM_ACL_54B_RULES_UPPER | Hostname |
+| TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Hostname |
+| TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Hostname |
+
+{{< /tab >}}
+
+{{< tab "Digital Optics" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_INPUT_POWER_UPPER  |  xxx |
+| TCA_INPUT_POWER_LOWER  |  xxx |
+| TCA_LASER_BIAS_UPPER  |  xxx |
+| TCA_LASER_BIAS_LOWER  |  xxx |
+| TCA_LASER_OUTPUT_POWER_UPPER  |  xxx |
+| TCA_LASER_OUTPUT_POWER_LOWER  |  xxx |
+| TCA_MODULE_TEMPERATURE_UPPER  |  xxx |
+| TCA_MODULE_TEMPERATURE_LOWER  |  xxx |
+| TCA_TRANSCEIVER_VOLTAGE_UPPER  |  xxx |
+| TCA_TRANSCEIVER_VOLTAGE_LOWER  |  xxx |
+
+{{< /tab >}}
+
+{{< tab "Forwarding Resources" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Hostname |
+| TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Hostname |
+| TCA_TCAM_MAC_ENTRIES_UPPER | Hostname |
+| TCA_TCAM_ECMP_NEXTHOPS_UPPER | Hostname |
+| TCA_TCAM_IPV4_ROUTE_UPPER | Hostname |
+| TCA_TCAM_IPV4_HOST_UPPER | Hostname |
+| TCA_TCAM_IPV6_ROUTE_UPPER | Hostname |
+| TCA_TCAM_IPV6_HOST_UPPER | Hostname |
+
+{{< /tab >}}
+
+{{< tab "Interface Statistics" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_RXBROADCAST_UPPER  | Hostname, Interface |
+| TCA_RXBYTES_UPPER | Hostname, Interface |
+| TCA_RXMULTICAST_UPPER | Hostname, Interface |
+| TCA_TXBROADCAST_UPPER | Hostname, Interface |
+| TCA_TXBYTES_UPPER | Hostname, Interface |
+| TCA_TXMULTICAST_UPPER | Hostname, Interface |
+
+{{< /tab >}}
+
+{{< tab "Resource Utilization" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_CPU_UTILIZATION_UPPER | Hostname |
+| TCA_DISK_UTILIZATION_UPPER  | Hostname |
+| TCA_MEMORY_UTILIZATION_UPPER  | Hostname |
+
+{{< /tab >}}
+
+{{< tab "Sensors" >}}
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_SENSOR_FAN_UPPER  | Hostname, Sensor Name |
+| TCA_SENSOR_POWER_UPPER| Hostname, Sensor Name |
+| TCA_SENSOR_TEMPERATURE_UPPER  | Hostname, Sensor Name |
+| TCA_SENSOR_VOLTAGE_UPPER  | Hostname, Sensor Name |
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 Scopes are defined with regular expressions, as follows. When two paramaters are used, they are separated by a comma, but no space. When as asterisk (*) is used alone, it must be entered inside either single or double quotes. Single quotes are used here.
 
-| Parameters | Scope Value | Example | Result |
-| -------------- | --------------- | ---------- | -------- |
-| Hostname | \<hostname> | leaf01 | Deliver events for the specified device |
-| Hostname | \<partial-hostname>\* | leaf\* | Deliver events for devices with hostnames starting with specified text (*leaf*) |
-| Hostname | \'\*\' | \'\*\' | Deliver events for all devices |
-| Hostname, Interface | \<hostname>,\<interface> | leaf01,swp9 | Deliver events for the specified interface (*swp9*) on the specified device (*leaf01*) |
-| Hostname, Interface | \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all interfaces on the specified device (*leaf01*) |
-| Hostname, Interface | \'\*\',\<interface> | \'\*\',swp9 | Deliver events for the specified interface (*swp9*) on all devices |
-| Hostname, Interface | \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all devices and all interfaces |
-| Hostname, Interface | \<partial-hostname>\*,\<interface> | leaf*,swp9 | Deliver events for the specified interface (*swp9*) on all devices with hostnames starting with the specified text (*leaf*) |
-| Hostname, Interface | \<hostname>,\<partial-interface>\* | leaf01,swp* | Deliver events for all interface with names starting with the specified text (*swp*) on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \<hostname>,\<sensorname> | leaf01,fan1 | Deliver events for the specified sensor (*fan1*) on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \'\*\',\<sensorname> | \'\*\',fan1 | Deliver events for the specified sensor (*fan1*) for all devices |
-| Hostname, Sensor Name |  \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all sensors on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \<partial-hostname>\*,\<interface> | leaf*,fan1 | Deliver events for the specified sensor (*fan1*) on all devices with hostnames starting with the specified text (*leaf*) |
-| Hostname, Sensor Name | \<hostname>,\<partial-sensorname>\* | leaf01,fan* | Deliver events for all sensors with names starting with the specified text (*fan*) on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all sensors on all devices |
+{{< tabs "TabID1668" >}}
+
+{{< tab "Hostname" >}}
+
+| Scope Value | Example | Result |
+| --------------- | ---------- | -------- |
+| \<hostname> | leaf01 | Deliver events for the specified device |
+| \<partial-hostname>\* | leaf\* | Deliver events for devices with hostnames starting with specified text (*leaf*) |
+| \'\*\' | \'\*\' | Deliver events for all devices |
+
+{{< /tab >}}
+
+{{< tab "Hostname, Interface">}}
+
+| Scope Value | Example | Result |
+| --------------- | ---------- | -------- |
+| \<hostname>,\<interface> | leaf01,swp9 | Deliver events for the specified interface (*swp9*) on the specified device (*leaf01*) |
+| \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all interfaces on the specified device (*leaf01*) |
+| \'\*\',\<interface> | \'\*\',swp9 | Deliver events for the specified interface (*swp9*) on all devices |
+| \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all devices and all interfaces |
+| \<partial-hostname>\*,\<interface> | leaf*,swp9 | Deliver events for the specified interface (*swp9*) on all devices with hostnames starting with the specified text (*leaf*) |
+| \<hostname>,\<partial-interface>\* | leaf01,swp* | Deliver events for all interface with names starting with the specified text (*swp*) on the specified device (*leaf01*) |
+
+{{< /tab >}}
+
+{{< tab "Hostname, Sensor Name">}}
+
+| Scope Value | Example | Result |
+| --------------- | ---------- | -------- |
+| \<hostname>,\<sensorname> | leaf01,fan1 | Deliver events for the specified sensor (*fan1*) on the specified device (*leaf01*) |
+| \'\*\',\<sensorname> | \'\*\',fan1 | Deliver events for the specified sensor (*fan1*) for all devices |
+|  \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all sensors on the specified device (*leaf01*) |
+| \<partial-hostname>\*,\<interface> | leaf*,fan1 | Deliver events for the specified sensor (*fan1*) on all devices with hostnames starting with the specified text (*leaf*) |
+| \<hostname>,\<partial-sensorname>\* | leaf01,fan* | Deliver events for all sensors with names starting with the specified text (*fan*) on the specified device (*leaf01*) |
+| \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all sensors on all devices |
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+<!-- ADD New params for acl and forwarding resources, dom? -->
 
 ### Create a TCA Rule
 

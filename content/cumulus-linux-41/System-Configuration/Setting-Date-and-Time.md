@@ -29,6 +29,11 @@ Use the following command to apply the new time zone immediately.
 ```
 cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
 ```
+Use the following command to change the /etc/localtime to reflect your current timezone. Use the same value as the previous step.
+
+```
+sudo ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
+```
 
 ### Use the Guided Wizard
 

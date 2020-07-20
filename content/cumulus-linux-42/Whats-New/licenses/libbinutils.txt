@@ -1,1 +1,1 @@
-libbinutils has no debian/copyright file
+libbinutils has no copyright file

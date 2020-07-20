@@ -1,1 +1,1 @@
-libsnmp35-dbg has no debian/copyright file
+libsnmp35-dbg has no copyright file

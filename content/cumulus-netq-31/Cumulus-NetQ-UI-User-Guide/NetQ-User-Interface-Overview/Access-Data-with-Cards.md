@@ -90,32 +90,32 @@ Events card and All Switches card, as shown here.
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><p>Card Size</p></td>
-<td><p>Small</p></td>
-<td><p>Medium</p></td>
-<td><p>Large</p></td>
-<td><p>Full Screen</p></td>
+<th>Card Size</th>
+<th>Small</th>
+<th>Medium</th>
+<th>Large</th>
+<th>Full Screen</th>
 </tr>
 <tr class="even">
-<td><p>Primary Purpose</p></td>
+<td>Primary Purpose</td>
 <td><ul>
-<li><p>Quick view of status, typically at the level of good or bad</p></li>
-<li><p>Enable quick actions, run a validation or trace for example</p></li>
+<li>Quick view of status, typically at the level of good or bad</li>
+<li>Enable quick actions, run a validation or trace for example</li>
 </ul></td>
 <td><ul>
-<li><p>View key performance parameters or statistics</p></li>
-<li><p>Perform an action</p></li>
-<li><p>Look for potential issues</p></li>
+<li>View key performance parameters or statistics</li>
+<li>Perform an action</li>
+<li>Look for potential issues</li>
 </ul></td>
 <td><ul>
-<li><p>View detailed performance and statistics</p></li>
-<li><p>Perform actions</p></li>
-<li><p>Compare and review related information</p></li>
+<li>View detailed performance and statistics</li>
+<li>Perform actions</li>
+<li>Compare and review related information</li>
 </ul></td>
 <td><ul>
-<li><p>View all attributes for given network aspect</p></li>
-<li><p>Free-form data analysis and visualization</p></li>
-<li><p>Export data to third-party tools</p></li>
+<li>View all attributes for given network aspect</li>
+<li>Free-form data analysis and visualization</li>
+<li>Export data to third-party tools</li>
 </ul></td>
 </tr>
 </tbody>
@@ -142,50 +142,62 @@ more full screen cards. The following card workflows are available:
 
 You can access a card workflow in multiple ways:
 
-- For workbenches available from the main menu, open the workbench that contains the card flow
-- Open a prior search
-- Add it to a workbench
+- Open a workbench
 - Search for it
+- Open a prior search
 
 {{<notice tip>}}
 If you have multiple cards open on your workbench already, you might
 need to scroll down to see the card you have just added.
 {{</notice>}}
 
-To open the card workflow through an existing workbench:
+{{< tabs "TabID155" >}}
 
-1.  Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/> in the workbench task bar.
+{{< tab "From Workbench" >}}
 
-2.  Select the relevant workbench.
+*For switch cards:*
 
-    {{< figure src="/images/netq/workbench-selection-from-wb-hdr-300.png" width="200" >}}
+1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> in the workbench task bar.
 
-    The workbench opens, hiding your previous workbench.
+2. Follow the instructions in {{<link url="#add-switch-cards-to-your-workbench" text="Add Switch Cards to Your Workbench">}}.
 
-To open the card workflow from Recent Actions:
+*For all other cards:*
 
-1.  Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg" height="18" width="18"/> in the application header.
-2.  Look for an "Add: \<card name\>" item.
-3.  If it is still available, click the item.
+1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> in the workbench task bar.
 
-    The card appears on the current workbench, at the bottom.
+2. Follow the instructions in {{<link url="#add-cards-to-your-workbench" text="Add Cards to Your Workbench">}}.
 
-To access the card workflow by adding the card:
+In both cases the card appears on the current workbench in the first place large enough for the card, typically at the bottom.
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> in the workbench task bar.
-2.  Follow the instructions in {{<link url="#add-cards-to-your-workbench" text="Add Cards to Your Workbench">}} or {{<link url="#add-switch-cards-to-your-workbench" text="Add Switch Cards to Your Workbench">}}.
+{{< /tab >}}
 
-    The card appears on the current workbench, at the bottom.
+{{< tab "From New Search" >}}
 
-To access the card workflow by searching for the card:
+1. Click in the **Global Search** field.
 
-1.  Click in the **Global Search** field.
-2.  Begin typing the name of the card.
-3.  Select it from the list.
+2. Begin typing the name of the card.
 
-    {{< figure src="/images/netq/add-card-thru-search-300.png" width="350" >}}
+3. Select it from the list.
 
-    The card appears on a current workbench, at the bottom.
+    {{<figure src="/images/netq/add-card-thru-search-300.png" width="350">}}
+
+The card appears on the current workbench in the first place large enough for the card, typically at the bottom.
+
+{{< /tab >}}
+
+{{< tab "From Prior Search" >}}
+
+1. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-clock.svg" height="18" width="18"/> in the application header.
+
+2. Look for an "Add: \<card name\>" item.
+
+3. If it is still available, click the item.
+
+The card appears on the current workbench in the first place large enough for the card, typically at the bottom.
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Card Interactions
 
@@ -209,13 +221,13 @@ You can add one or more cards to a workbench at any time. To add Devices|Switche
 
 To add one or more cards:
 
-1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open the **Cards** modal.
+1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open the **Cards** dialog.
 
     {{< figure src="/images/netq/add-card-modal-all-cards-300.png" width="700" >}}
 
 2. Scroll down until you find the card you want to add, select the category of cards, or use **Search** to find the card you want to add.
 
-    This example uses the category tab to narrow the search for a card.
+    This example uses the **Network Services** category tab to narrow the search for a card.
 
     {{< figure src="/images/netq/add-card-modal-ntwk-svcs-300.png" width="700" >}}
 
@@ -241,25 +253,9 @@ medium size of the card is added to your workbench for all except the Validation
 
 You can add switch cards to a workbench at any time. For all other cards, follow the steps in {{<link url="#add-cards-to-your-workbench" text="Add Cards to Your Workbench">}}. You can either add the card through the Switches icon on a workbench header or by searching for it through Global Search.
 
-To add a switch card using the icon:
+{{< tabs "TabID256" >}}
 
-1.  Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> to open the Add Switch Card modal.
-
-    {{<figure src="/images/netq/add-switch-card-modal-222.png" width="250">}}
-
-2. Begin entering the hostname of the switch you want to monitor.
-
-3. Select the device from the suggestions that appear.
-
-      {{<figure src="/images/netq/add-switch-card-auto-suggest-222.png" width="250">}}
-
-      {{<notice tip>}}
-If you attempt to enter a hostname that is unknown to NetQ, a pink border appears around the entry field and you are unable to select <strong>Add</strong>. Try checking for spelling errors. If you feel your entry is valid, but not an available choice, consult with your network administrator.
-      {{</notice>}}
-
-4. Optionally select the small or large size to display instead of the medium size.
-
-5. Click **Add** to add the switch card to your workbench, or **Cancel** to return to your workbench without adding the switch card.
+{{< tab "Global Search" >}}
 
 To open the switch card by searching:
 
@@ -270,6 +266,40 @@ To open the switch card by searching:
     {{<figure src="/images/netq/add-switch-card-thru-search-300.png" width="300">}}
 
 3. Select it from the options that appear.
+
+{{< /tab >}}
+
+{{< tab "Switch Icon">}}
+
+To add a switch card using the icon:
+
+1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches).
+
+2. If lifecycle management is enabled, click **Open a switch card**.
+
+    {{<figure src="/images/netq/add-switch-lcm-enabled-310.png" width="200">}}
+
+<div style="padding-left: 18px;">If it is disabled, continue to the next step.</div>
+
+3. After the Open Switch Card dialog is visible, begin entering the hostname of the switch you want to monitor.
+
+    {{<figure src="/images/netq/add-switch-card-modal-310.png" width="250">}}
+
+4. Select the device from the suggestions that appear.
+
+      {{<figure src="/images/netq/add-switch-card-auto-suggest-310.png" width="250">}}
+
+      {{<notice tip>}}
+If you attempt to enter a hostname that is unknown to NetQ, a pink border appears around the entry field and you are unable to select <strong>Add</strong>. Try checking for spelling errors. If you feel your entry is valid, but not an available choice, consult with your network administrator.
+      {{</notice>}}
+
+5. Optionally select the small or large size to display instead of the medium size.
+
+6. Click **Add** to add the switch card to your workbench, or **Cancel** to return to your workbench without adding the switch card.
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Remove Cards from Your Workbench
 
@@ -363,7 +393,7 @@ You can manipulate the data in a data grid in a full-screen card in several ways
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> | Delete | Removes the selected items |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18"/> | Filter | Filters the list using available parameters. Refer to {{<link url="#filter-table-data" text="Filter Table Data">}} for more detail.  |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/>, <img src="/images/netq/netq-mgmt-delete-keys-icon.png" height="18" width="18"/> | Generate/Delete AuthKeys | Creates or removes NetQ CLI authorization keys |
-| <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> | Open Cards | Opens the corresponding validation or trace card(s) |
+| <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> | Open Cards | Opens the corresponding validation or trace card(s) |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18"/> | Assign role | Opens role assignment options for switches |
 | <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. Refer to {{<link url="#export-data" text="Export Data">}} for more detail. |
 
@@ -386,9 +416,11 @@ You can rearrange the columns within a table. Click and hold on a column header,
 
 The filter option associated with tables on full-screen cards can be used to filter the data by any parameter (column name). The parameters available vary according to the table you are viewing. Some tables offer the ability to filter on more than one parameter.
 
-*Tables that Support a Single Filter*
+{{< tabs "TabID419" >}}
 
-Tables that allow a single filter to be applied let you select the parameter and set the value. You can use partial values.
+{{< tab "Single Parameter" >}}
+
+Tables that allow a single filter to be applied let you select the parameter and set the value. You can enter partial values.
 
 For example, to set the filter to show only BGP sessions using a particular VRF:
 
@@ -416,9 +448,11 @@ For example, to set the filter to show only BGP sessions using a particular VRF:
 
 9. Close the **Filters** dialog by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/>.
 
-*Tables that Support Multiple Filters*
+{{< /tab >}}
 
-For tables that offer filtering by multiple parameters, the Filter dialog is slightly different. For example, to filter the list of IP Addresses in your system by hostname and interface:
+{{< tab "Multiple Parameters" >}}
+
+For tables that offer filtering by multiple parameters, the Filters dialog is slightly different. For example, to filter the list of IP Addresses in your system by hostname and interface:
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>.
 
@@ -438,18 +472,30 @@ For tables that offer filtering by multiple parameters, the Filter dialog is sli
 
 6. To remove a filter, simply click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> on the filter, or to remove all filters at once, click **Clear All Filters**.
 
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### Export Data
 
 You can export tabular data from a full-screen card to a CSV- or
 JSON-formatted file.
 
-To export the *all* data:
+{{< tabs "TabId484" >}}
+
+{{< tab "Export All Data">}}
+
+To export *all* data:
 
 1. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> above the table.
 
 2. Select the export format.
 
 3. Click **Export** to save the file to your downloads directory.
+
+{{< /tab >}}
+
+{{< tab "Export Selected Data" >}}
 
 To export *selected* data:
 
@@ -460,3 +506,7 @@ To export *selected* data:
 3. Select the export format.
 
 4. Click **Export** to save the file to your downloads directory.
+
+{{< /tab >}}
+
+{{< /tabs >}}

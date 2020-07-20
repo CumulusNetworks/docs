@@ -1,1 +1,1 @@
-libfreeipmi17 has no debian/copyright file
+libfreeipmi17 has no copyright file

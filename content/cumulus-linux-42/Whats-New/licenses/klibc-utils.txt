@@ -1,1 +1,1 @@
-klibc-utils has no debian/copyright file
+klibc-utils has no copyright file

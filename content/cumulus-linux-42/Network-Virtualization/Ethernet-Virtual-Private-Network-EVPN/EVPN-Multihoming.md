@@ -732,7 +732,7 @@ net add vrf mgmt ip address 172.16.0.1/8
 net add vrf mgmt ipv6 address ::1/128
 net add vrf mgmt,vrf1-3 vrf-table auto
 net add vxlan vx-1000 bridge access 1000
-net add vxlan vx-1000 vxlan mcastgrp 203.0.113.100
+net add vxlan vx-1000 vxlan mcastgrp 239.1.1.100
 net add vxlan vx-1000-1009,4001-4003 bridge arp-nd-suppress on
 net add vxlan vx-1000-1009,4001-4003 bridge learning off
 net add vxlan vx-1000-1009,4001-4003 mtu 9152
@@ -740,29 +740,26 @@ net add vxlan vx-1000-1009,4001-4003 stp bpduguard
 net add vxlan vx-1000-1009,4001-4003 stp portbpdufilter
 net add vxlan vx-1000-1009,4001-4003 vxlan local-tunnelip 172.16.0.21
 net add vxlan vx-1001 bridge access 1001
-net add vxlan vx-1001 vxlan mcastgrp 203.0.113.101
+net add vxlan vx-1001 vxlan mcastgrp 239.1.1.101
 net add vxlan vx-1002 bridge access 1002
-net add vxlan vx-1002 vxlan mcastgrp 203.0.113.102
+net add vxlan vx-1002 vxlan mcastgrp 239.1.1.102
 net add vxlan vx-1003 bridge access 1003
-net add vxlan vx-1003 vxlan mcastgrp 203.0.113.103
+net add vxlan vx-1003 vxlan mcastgrp 239.1.1.103
 net add vxlan vx-1004 bridge access 1004
-net add vxlan vx-1004 vxlan mcastgrp 203.0.113.104
+net add vxlan vx-1004 vxlan mcastgrp 239.1.1.104
 net add vxlan vx-1005 bridge access 1005
-net add vxlan vx-1005 vxlan mcastgrp 203.0.113.105
+net add vxlan vx-1005 vxlan mcastgrp 239.1.1.105
 net add vxlan vx-1006 bridge access 1006
-net add vxlan vx-1006 vxlan mcastgrp 203.0.113.106
+net add vxlan vx-1006 vxlan mcastgrp 239.1.1.106
 net add vxlan vx-1007 bridge access 1007
-net add vxlan vx-1007 vxlan mcastgrp 203.0.113.107
+net add vxlan vx-1007 vxlan mcastgrp 239.1.1.107
 net add vxlan vx-1008 bridge access 1008
-net add vxlan vx-1008 vxlan mcastgrp 203.0.113.108
+net add vxlan vx-1008 vxlan mcastgrp 239.1.1.108
 net add vxlan vx-1009 bridge access 1009
-net add vxlan vx-1009 vxlan mcastgrp 203.0.113.109
+net add vxlan vx-1009 vxlan mcastgrp 239.1.1.109
 net add vxlan vx-4001 bridge access 4001
-net add vxlan vx-4001 vxlan mcastgrp 203.0.13.29
 net add vxlan vx-4002 bridge access 4002
-net add vxlan vx-4002 vxlan mcastgrp 203.0.13.30
 net add vxlan vx-4003 bridge access 4003
-net add vxlan vx-4003 vxlan mcastgrp 203.0.13.31
 net add dot1x radius accounting-port 1813
 net add dot1x eap-reauth-period 0
 net add dot1x default-dacl-preauth-filename default_preauth_dacl.rules
@@ -787,7 +784,7 @@ leaf01(config)# log file /var/log/frr/bgpd.log
 leaf01(config)# log timestamp precision 6
 leaf01(config)# evpn mh startup-delay 30
 leaf01(config)# zebra nexthop proto only
-leaf01(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+leaf01(config)# ip pim rp 192.0.2.5 239.1.1.0/24
 leaf01(config)# ip pim spt-switchover infinity-and-beyond
 leaf01(config)# service integrated-vtysh-config
 leaf01(config)# debug bgp evpn mh es
@@ -928,7 +925,7 @@ net add pim debug packets register
 net add pim debug packets joins
 net add pim debug trace
 net add msdp debug events
-net add pim rp 192.0.2.5 203.0.113.0/24
+net add pim rp 192.0.2.5 239.1.1.0/24
 net add pim spt-switchover infinity-and-beyond
 net add bgp debug evpn mh es
 net add bgp debug evpn mh route
@@ -1086,7 +1083,7 @@ net add vrf mgmt ip address 172.16.0.1/8
 net add vrf mgmt ipv6 address ::1/128
 net add vrf mgmt,vrf1-3 vrf-table auto
 net add vxlan vx-1000 bridge access 1000
-net add vxlan vx-1000 vxlan mcastgrp 203.0.113.100
+net add vxlan vx-1000 vxlan mcastgrp 239.1.1.100
 net add vxlan vx-1000-1009,4001-4003 bridge arp-nd-suppress on
 net add vxlan vx-1000-1009,4001-4003 bridge learning off
 net add vxlan vx-1000-1009,4001-4003 mtu 9152
@@ -1094,29 +1091,26 @@ net add vxlan vx-1000-1009,4001-4003 stp bpduguard
 net add vxlan vx-1000-1009,4001-4003 stp portbpdufilter
 net add vxlan vx-1000-1009,4001-4003 vxlan local-tunnelip 172.16.0.22
 net add vxlan vx-1001 bridge access 1001
-net add vxlan vx-1001 vxlan mcastgrp 203.0.113.101
+net add vxlan vx-1001 vxlan mcastgrp 239.1.1.101
 net add vxlan vx-1002 bridge access 1002
-net add vxlan vx-1002 vxlan mcastgrp 203.0.113.102
+net add vxlan vx-1002 vxlan mcastgrp 239.1.1.102
 net add vxlan vx-1003 bridge access 1003
-net add vxlan vx-1003 vxlan mcastgrp 203.0.113.103
+net add vxlan vx-1003 vxlan mcastgrp 239.1.1.103
 net add vxlan vx-1004 bridge access 1004
-net add vxlan vx-1004 vxlan mcastgrp 203.0.113.104
+net add vxlan vx-1004 vxlan mcastgrp 239.1.1.104
 net add vxlan vx-1005 bridge access 1005
-net add vxlan vx-1005 vxlan mcastgrp 203.0.113.105
+net add vxlan vx-1005 vxlan mcastgrp 239.1.1.105
 net add vxlan vx-1006 bridge access 1006
-net add vxlan vx-1006 vxlan mcastgrp 203.0.113.106
+net add vxlan vx-1006 vxlan mcastgrp 239.1.1.106
 net add vxlan vx-1007 bridge access 1007
-net add vxlan vx-1007 vxlan mcastgrp 203.0.113.107
+net add vxlan vx-1007 vxlan mcastgrp 239.1.1.107
 net add vxlan vx-1008 bridge access 1008
-net add vxlan vx-1008 vxlan mcastgrp 203.0.113.108
+net add vxlan vx-1008 vxlan mcastgrp 239.1.1.108
 net add vxlan vx-1009 bridge access 1009
-net add vxlan vx-1009 vxlan mcastgrp 203.0.113.109
+net add vxlan vx-1009 vxlan mcastgrp 239.1.1.109
 net add vxlan vx-4001 bridge access 4001
-net add vxlan vx-4001 vxlan mcastgrp 203.0.13.29
 net add vxlan vx-4002 bridge access 4002
-net add vxlan vx-4002 vxlan mcastgrp 203.0.13.30
 net add vxlan vx-4003 bridge access 4003
-net add vxlan vx-4003 vxlan mcastgrp 203.0.13.31
 net add dot1x radius accounting-port 1813
 net add dot1x eap-reauth-period 0
 net add dot1x default-dacl-preauth-filename default_preauth_dacl.rules
@@ -1141,7 +1135,7 @@ leaf02(config)# log file /var/log/frr/bgpd.log
 leaf02(config)# log timestamp precision 6
 leaf02(config)# evpn mh startup-delay 30
 leaf02(config)# ip forwarding
-leaf02(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+leaf02(config)# ip pim rp 192.0.2.5 239.1.1.0/24
 leaf02(config)# ip pim spt-switchover infinity-and-beyond
 leaf02(config)# debug bgp evpn mh es
 leaf02(config)# debug bgp evpn mh route
@@ -1305,7 +1299,7 @@ net add pim debug packets register
 net add pim debug packets joins
 net add pim debug trace
 net add msdp debug events
-net add pim rp 192.0.2.5 203.0.113.0/24
+net add pim rp 192.0.2.5 239.1.1.0/24
 net add pim spt-switchover infinity-and-beyond
 net add bgp debug evpn mh es
 net add bgp debug evpn mh route
@@ -1462,7 +1456,7 @@ net add vrf mgmt ip address 172.16.0.1/8
 net add vrf mgmt ipv6 address ::1/128
 net add vrf mgmt,vrf1-3 vrf-table auto
 net add vxlan vx-1000 bridge access 1000
-net add vxlan vx-1000 vxlan mcastgrp 203.0.113.100
+net add vxlan vx-1000 vxlan mcastgrp 239.1.1.100
 net add vxlan vx-1000-1009,4001-4003 bridge arp-nd-suppress on
 net add vxlan vx-1000-1009,4001-4003 bridge learning off
 net add vxlan vx-1000-1009,4001-4003 mtu 9152
@@ -1470,29 +1464,26 @@ net add vxlan vx-1000-1009,4001-4003 stp bpduguard
 net add vxlan vx-1000-1009,4001-4003 stp portbpdufilter
 net add vxlan vx-1000-1009,4001-4003 vxlan local-tunnelip 172.16.0.23
 net add vxlan vx-1001 bridge access 1001
-net add vxlan vx-1001 vxlan mcastgrp 203.0.113.101
+net add vxlan vx-1001 vxlan mcastgrp 239.1.1.101
 net add vxlan vx-1002 bridge access 1002
-net add vxlan vx-1002 vxlan mcastgrp 203.0.113.102
+net add vxlan vx-1002 vxlan mcastgrp 239.1.1.102
 net add vxlan vx-1003 bridge access 1003
-net add vxlan vx-1003 vxlan mcastgrp 203.0.113.103
+net add vxlan vx-1003 vxlan mcastgrp 239.1.1.103
 net add vxlan vx-1004 bridge access 1004
-net add vxlan vx-1004 vxlan mcastgrp 203.0.113.104
+net add vxlan vx-1004 vxlan mcastgrp 239.1.1.104
 net add vxlan vx-1005 bridge access 1005
-net add vxlan vx-1005 vxlan mcastgrp 203.0.113.105
+net add vxlan vx-1005 vxlan mcastgrp 239.1.1.105
 net add vxlan vx-1006 bridge access 1006
-net add vxlan vx-1006 vxlan mcastgrp 203.0.113.106
+net add vxlan vx-1006 vxlan mcastgrp 239.1.1.106
 net add vxlan vx-1007 bridge access 1007
-net add vxlan vx-1007 vxlan mcastgrp 203.0.113.107
+net add vxlan vx-1007 vxlan mcastgrp 239.1.1.107
 net add vxlan vx-1008 bridge access 1008
-net add vxlan vx-1008 vxlan mcastgrp 203.0.113.108
+net add vxlan vx-1008 vxlan mcastgrp 239.1.1.108
 net add vxlan vx-1009 bridge access 1009
-net add vxlan vx-1009 vxlan mcastgrp 203.0.113.109
+net add vxlan vx-1009 vxlan mcastgrp 239.1.1.109
 net add vxlan vx-4001 bridge access 4001
-net add vxlan vx-4001 vxlan mcastgrp 203.0.13.29
 net add vxlan vx-4002 bridge access 4002
-net add vxlan vx-4002 vxlan mcastgrp 203.0.13.30
 net add vxlan vx-4003 bridge access 4003
-net add vxlan vx-4003 vxlan mcastgrp 203.0.13.31
 net add dot1x radius accounting-port 1813
 net add dot1x eap-reauth-period 0
 net add dot1x default-dacl-preauth-filename default_preauth_dacl.rules
@@ -1518,7 +1509,7 @@ leaf03(config)# log file /var/log/frr/bgpd.log
 leaf03(config)# log timestamp precision 6
 leaf03(config)# evpn mh startup-delay 30
 leaf03(config)# ip forwarding
-leaf03(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+leaf03(config)# ip pim rp 192.0.2.5 239.1.1.0/24
 leaf03(config)# ip pim spt-switchover infinity-and-beyond
 leaf03(config)# debug bgp zebra
 leaf03(config)# debug zebra vxlan
@@ -1677,7 +1668,7 @@ net add pim debug packets register
 net add pim debug packets joins
 net add pim debug trace
 net add msdp debug events
-net add pim rp 192.0.2.5 203.0.113.0/24
+net add pim rp 192.0.2.5 239.1.1.0/24
 net add pim spt-switchover infinity-and-beyond
 net add bgp bestpath as-path multipath-relax
 net add bgp router-id 172.16.0.17
@@ -1758,7 +1749,7 @@ spine01(config)# log file /var/log/frr/zebra.log
 spine01(config)# log file /var/log/frr/bgpd.log
 spine01(config)# log timestamp precision 6
 spine01(config)# ip forwarding
-spine01(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+spine01(config)# ip pim rp 192.0.2.5 239.1.1.0/24
 spine01(config)# ip pim spt-switchover infinity-and-beyond
 spine01(config)# debug bgp zebra
 spine01(config)# debug zebra vxlan
@@ -1897,7 +1888,7 @@ net add pim debug packets register
 net add pim debug packets joins
 net add pim debug trace
 net add msdp debug events
-net add pim rp 192.0.2.5 203.0.113.0/24
+net add pim rp 192.0.2.5 239.1.1.0/24
 net add pim spt-switchover infinity-and-beyond
 net add bgp bestpath as-path multipath-relax
 net add bgp router-id 172.16.0.18
@@ -1978,7 +1969,7 @@ spine02(config)# log file /var/log/frr/zebra.log
 spine02(config)# log file /var/log/frr/bgpd.log
 spine02(config)# log timestamp precision 6
 spine02(config)# ip forwarding
-spine02(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+spine02(config)# ip pim rp 192.0.2.5 239.1.1.0/24
 spine02(config)# ip pim spt-switchover infinity-and-beyond
 spine02(config)# debug bgp zebra
 spine02(config)# debug zebra vxlan
@@ -2223,7 +2214,7 @@ iface vx-1000
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.100
+    vxlan-mcastgrp 239.1.1.100
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2235,7 +2226,7 @@ iface vx-1001
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.101
+    vxlan-mcastgrp 239.1.1.101
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2247,7 +2238,7 @@ iface vx-1002
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.102
+    vxlan-mcastgrp 239.1.1.102
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2259,7 +2250,7 @@ iface vx-1003
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.103
+    vxlan-mcastgrp 239.1.1.103
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2271,7 +2262,7 @@ iface vx-1004
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.104
+    vxlan-mcastgrp 239.1.1.104
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2283,7 +2274,7 @@ iface vx-1005
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.105
+    vxlan-mcastgrp 239.1.1.105
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2295,7 +2286,7 @@ iface vx-1006
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.106
+    vxlan-mcastgrp 239.1.1.106
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2307,7 +2298,7 @@ iface vx-1007
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.107
+    vxlan-mcastgrp 239.1.1.107
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2319,7 +2310,7 @@ iface vx-1008
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.108
+    vxlan-mcastgrp 239.1.1.108
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2331,7 +2322,7 @@ iface vx-1009
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.109
+    vxlan-mcastgrp 239.1.1.109
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2343,10 +2334,9 @@ iface vx-4001
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.29
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
 
 auto vx-4002
 iface vx-4002
@@ -2355,10 +2345,9 @@ iface vx-4002
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.30
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
 
 auto vx-4003
 iface vx-4003
@@ -2367,10 +2356,9 @@ iface vx-4003
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.31
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
 
 auto bridge
 iface bridge
@@ -2634,7 +2622,7 @@ iface vx-1000
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.100
+    vxlan-mcastgrp 239.1.1.100
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2646,7 +2634,7 @@ iface vx-1001
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.101
+    vxlan-mcastgrp 239.1.1.101
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2658,7 +2646,7 @@ iface vx-1002
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.102
+    vxlan-mcastgrp 239.1.1.102
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2670,7 +2658,7 @@ iface vx-1003
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.103
+    vxlan-mcastgrp 239.1.1.103
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2682,7 +2670,7 @@ iface vx-1004
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.104
+    vxlan-mcastgrp 239.1.1.104
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2694,7 +2682,7 @@ iface vx-1005
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.105
+    vxlan-mcastgrp 239.1.1.105
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2706,7 +2694,7 @@ iface vx-1006
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.106
+    vxlan-mcastgrp 239.1.1.106
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2718,7 +2706,7 @@ iface vx-1007
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.107
+    vxlan-mcastgrp 239.1.1.107
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2730,7 +2718,7 @@ iface vx-1008
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.108
+    vxlan-mcastgrp 239.1.1.108
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2742,7 +2730,7 @@ iface vx-1009
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.109
+    vxlan-mcastgrp 239.1.1.109
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -2754,10 +2742,9 @@ iface vx-4001
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.29
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
 
 auto vx-4002
 iface vx-4002
@@ -2766,10 +2753,9 @@ iface vx-4002
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.30
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
 
 auto vx-4003
 iface vx-4003
@@ -2778,10 +2764,9 @@ iface vx-4003
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.31
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
 
 auto bridge
 iface bridge
@@ -3045,7 +3030,7 @@ iface vx-1000
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.100
+    vxlan-mcastgrp 239.1.1.100
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -3057,7 +3042,7 @@ iface vx-1001
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.101
+    vxlan-mcastgrp 239.1.1.101
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -3069,7 +3054,7 @@ iface vx-1002
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.102
+    vxlan-mcastgrp 239.1.1.102
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -3081,7 +3066,7 @@ iface vx-1003
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.103
+    vxlan-mcastgrp 239.1.1.103
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -3093,7 +3078,7 @@ iface vx-1004
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.104
+    vxlan-mcastgrp 239.1.1.104
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -3105,7 +3090,7 @@ iface vx-1005
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.105
+    vxlan-mcastgrp 239.1.1.105
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -3117,7 +3102,7 @@ iface vx-1006
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.106
+    vxlan-mcastgrp 239.1.1.106
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -3129,7 +3114,7 @@ iface vx-1007
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.107
+    vxlan-mcastgrp 239.1.1.107
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -3141,7 +3126,7 @@ iface vx-1008
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.108
+    vxlan-mcastgrp 239.1.1.108
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -3153,7 +3138,7 @@ iface vx-1009
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.109
+    vxlan-mcastgrp 239.1.1.109
          mstpctl-portbpdufilter yes
          mstpctl-bpduguard  yes
          mtu 9152
@@ -3165,10 +3150,9 @@ iface vx-4001
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.29
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
 
 auto vx-4002
 iface vx-4002
@@ -3177,10 +3161,9 @@ iface vx-4002
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.30
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
 
 auto vx-4003
 iface vx-4003
@@ -3189,10 +3172,9 @@ iface vx-4003
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.31
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
 
 auto bridge
 iface bridge
@@ -4212,7 +4194,7 @@ log file /var/log/frr/bgpd.log
 log timestamp precision 6
 evpn mh startup-delay 30
 zebra nexthop proto only
-ip pim rp 192.0.2.5 203.0.113.0/24
+ip pim rp 192.0.2.5 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 service integrated-vtysh-config
 !
@@ -4354,7 +4336,7 @@ debug mroute
 debug mroute detail
 debug zebra mlag
 debug msdp events
-ip pim rp 192.0.2.5 203.0.113.0/24
+ip pim rp 192.0.2.5 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 no debug zebra kernel
 no debug zebra events
@@ -4506,7 +4488,7 @@ debug mroute
 debug mroute detail
 debug zebra mlag
 debug msdp events
-ip pim rp 192.0.2.5 203.0.113.0/24
+ip pim rp 192.0.2.5 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 no debug zebra kernel
 no debug zebra events
@@ -4658,7 +4640,7 @@ debug mroute
 debug mroute detail
 debug zebra mlag
 debug msdp events
-ip pim rp 192.0.2.5 203.0.113.0/24
+ip pim rp 192.0.2.5 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 !
 !
@@ -4855,7 +4837,7 @@ debug mroute
 debug mroute detail
 debug zebra mlag
 debug msdp events
-ip pim rp 192.0.2.5 203.0.113.0/24
+ip pim rp 192.0.2.5 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 !
 !

@@ -7,17 +7,17 @@ This document describes how to install and set up Cumulus VX within a Vagrant en
 
 {{% vx-intro %}}
 
-These steps were tested with VirtualBox version 6.1.12 and Vagrant version 2.2.9 on macOS version 10.14.6. Cumulus VX requires Vagrant version 1.7 or later.
+These steps were tested with VirtualBox version 6.1.12 and Vagrant version 2.2.9 on macOS version 10.14.6.
 
 ## Create the VMs
 
-The following procedure describes how to create a VM for each switch in the example topology (Leaf01, Leaf02, and Spine01) using VirtualBox and Vagrant. This section assumes a basic level of Vagrant, VirtualBox, and Linux experience.
+The following procedure describes how to create and connect Leaf01, Leaf02, and Spine01 in the example topology using VirtualBox and Vagrant. This section assumes a basic level of Vagrant, VirtualBox, and Linux experience.
 
 1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
 
 2. Download the Box image for use with Vagrant and VirtualBox from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}.
 
-3. Download and install {{<exlink url="https://www.vagrantup.com/downloads.html" text="Vagrant">}}. 
+3. Download and install {{<exlink url="https://www.vagrantup.com/downloads.html" text="Vagrant">}}.
 
 4. In a terminal, add the Cumulus VX Vagrant box image. Ensure option `2` is specified. Vagrant downloads and installs the latest Cumulus VX VirtualBox image.
 
@@ -51,7 +51,7 @@ The following procedure describes how to create a VM for each switch in the exam
 7. Configure Vagrant to spin up a Cumulus VX VM. Modify the newly created `Vagrantfile` to configure the VMs, then save the file:
 
    ```
-   local@host:~/vagrant$ sudo vi Vagrantfile
+   local@host:~/vagrant$ vi Vagrantfile
 
    Vagrant.configure(2) do |config|
    config.vm.box = "CumulusCommunity/cumulus-vx"

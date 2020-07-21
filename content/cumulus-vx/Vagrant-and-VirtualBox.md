@@ -11,7 +11,7 @@ These steps were tested with VirtualBox version 6.1.12 and Vagrant version 2.2.9
 
 ## Create the VMs and the Network Connections
 
-The following procedure creates leaf01, leaf02, and spine01 and the connections between them, as shown in the example topology. This section assumes a basic level of Vagrant, VirtualBox, and Linux experience.
+The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of Vagrant, VirtualBox, and Linux experience.
 
 1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
 
@@ -30,7 +30,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the connections 
    local@host:~/vagrant$ vagrant init
    ```
 
-7. Edit the `Vagrantfile` to create the VMs and the network connections. The following example creates leaf01, leaf02 and spine01, where the interfaces swp1 through swp3 are connected through separate private networks, as shown in the example topology above. Add this section at the end of the `Vagrantfile`.
+7. Edit the `Vagrantfile` and add the following section to create leaf01, leaf02 and spine01, and the network connections between them.
 
    ```
    local@host:~/vagrant$ vi Vagrantfile
@@ -66,8 +66,6 @@ The following procedure creates leaf01, leaf02, and spine01 and the connections 
    end
    ```
 
-   Cumulus VX images require at least 512MB. If performance issues exist, increase the amount of memory by setting the `v.memory` variable in the `Vagrantfile`. You can also adjust the memory size in the VirtualBox UI when the VM is powered off.
-
 9. Run `vagrant up` to start the VMs:
 
    ```
@@ -85,15 +83,19 @@ When using Vagrant with Cumulus VX:
 
 ## Log into the Switch
 
-Log into each switch with the `vagrant ssh` command. For example:
+1. Log into each switch with the `vagrant ssh` command. For example:
 
-```
-local@host:~/vagrant$ vagrant ssh leaf01
-```
+   ```
+   local@host:~/vagrant$ vagrant ssh leaf01
+   ```
 
-To have permissions to run `cumulus` commands, run the `sudo su cumulus -` command. When prompted to change the password, enter the default cumulus user password `cumulus`, enter a new password, then confirm the password.
+2. Configure the switch to be able to run NCLU commands without `sudo`:
 
-If you are using Cumulus VX 4.1.1 or earlier, the default password is `CumulusLinux!`. You are **not** prompted to change the default password.
+   ```
+   cumulus@cumulus:mgmt:~$ sudo usermod -a -G netedit vagrant
+   ```
+
+   When prompted to change the password, enter the default cumulus user password `cumulus`. E nter a new password, then confirm the password. If you are using Cumulus VX 4.1.1 or earlier, the default password is `CumulusLinux!`. You are **not** prompted to change the default password.
 
 ## Basic Switch Configuration
 

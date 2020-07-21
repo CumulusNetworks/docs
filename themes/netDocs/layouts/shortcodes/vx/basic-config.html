@@ -4,8 +4,8 @@
 <li>Change the hostname</li>
 <li>Bring up swp1, swp2, and swp3</li>
 <li>Check the connections</li>
+<li>Check system information</li>
 </ul>
-<p>You can also check system information and upgrade Cumulus Linux using ONIE (an open source project (equivalent to PXE on servers) that enables the installation of network operating systems).</p>
 
 <h3 id="changethehostname">Change the Hostname</h3>
 
@@ -47,7 +47,7 @@ swp2         1G       Default       leaf02         swp1
 </pre>
 
 <h3>Show System Information</h3>
-<p>To check system information on your VMs, including the Cumulus Linux version, run the <code>net show system</code> command:</p>
+<p>Review system information on your VMs, including the Cumulus Linux version:</p>
 <pre>
 cumulus@leaf01:mgmt:~$ net show system
 Hostname..............leaf01
@@ -61,14 +61,3 @@ Part Number...........4:00:27:39:B1:12
 Serial Number.........4:00:27:39:B1:12
 Product Name..........VX
 </pre>
-
-<h3>Upgrade Cumulus Linux</h3>
-<p>Cumulus VX images include the GRUB boot loader and Open Network Install Environment (ONIE) preinstalled. You can install Cumulus Linux on switch hardware using a binary image. You can test this process by installing a Cumulus VX binary image with ONIE in a virtual environment.</p>
-<ol>
-<li><p>After booting the VM, reboot into ONIE Rescue mode using one of two methods:</p>
-<ul>
-<li>Select ONIE Rescue mode on next reboot and reboot the VM with the <code>sudo onie-select -rf &amp;&amp; sudo reboot</code> command.</li>
-<li>Reboot and during the first 5 seconds on the GRUB menu, change the boot image to <code>ONIE</code>, then select <code>ONIE Rescue Mode</code> using the GRUB menu.</li></ul></li>
-<li>To install Cumulus VX, run the <code>onie-nos-install &lt;URL to cumulus-linux-vx-amd64.bin&gt;
-</code>command.</li>
-</ol>

@@ -11,7 +11,7 @@ These steps were tested with VirtualBox version 6.1.12 on macOS version 10.14.6.
 
 ## Create the VMs
 
-The following procedure creates leaf01, leaf02, and spine01 and the connections between them, as shown in the example topology. This section assumes a basic level of VirtualBox experience.
+The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of VirtualBox experience.
 
 1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
 

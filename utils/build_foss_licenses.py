@@ -149,7 +149,6 @@ def read_markdown_header(product, version):
         print("Unknown product {}. Exiting".format(product))
         exit(1)
 
-    look_for_end_of_header = True
     header_lines = []
     with open(input_file, "r") as in_file:
         # skip the first line, it should be just a yaml header of "---"
@@ -157,7 +156,6 @@ def read_markdown_header(product, version):
         for line in in_file:
             current_line = line
             if current_line.strip("\n") == "---":
-                look_for_end_of_header = False
                 break
             header_lines.append(current_line)
         else:

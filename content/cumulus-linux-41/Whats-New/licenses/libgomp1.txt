@@ -1,1 +1,0 @@
-libgomp1 has no debian/copyright file

@@ -1,1 +1,0 @@
-python2-dev has no debian/copyright file

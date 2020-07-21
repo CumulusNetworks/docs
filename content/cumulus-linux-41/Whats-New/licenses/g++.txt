@@ -1,1 +1,0 @@
-g++ has no debian/copyright file

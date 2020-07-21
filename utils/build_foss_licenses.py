@@ -124,7 +124,6 @@ def build_markdown_header(product, version):
     output.append("toc: 1\n")
     output.append("pdfhidden: True\n")
     output.append("---\n")
-    output.append("\n\n")
 
     return output
 
@@ -155,13 +154,15 @@ def read_markdown_header(product, version):
     with open(input_file, "r") as in_file:
         # skip the first line, it should be just a yaml header of "---"
         header_lines.append(in_file.readline())
-        while look_for_end_of_header:
-            current_line = in_file.readline()
+        for line in in_file:
+            current_line = line
             if current_line.strip("\n") == "---":
                 look_for_end_of_header = False
                 break
             header_lines.append(current_line)
-
+        else:
+            # There is no frontmatter yaml header
+            return []
         header_lines.append("---\n")
     return header_lines
 
@@ -208,7 +209,10 @@ def build_foss_license_markdown_files(product, version_list):
 
         # We only want to generate the frontmatter once per minor
         #version_output.extend(build_markdown_header(product_string(product), major))
-        version_output.extend(read_markdown_header(product, major))
+        markdown_header = read_markdown_header(product, major)
+        if markdown_header == []:
+            markdown_header = build_markdown_header(product_string(product), major)
+        version_output.extend(markdown_header)
 
         # Loop over all the maintenance releases.
         for version in major_minor[major]:

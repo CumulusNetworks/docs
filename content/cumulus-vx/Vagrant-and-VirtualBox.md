@@ -24,13 +24,13 @@ The following procedure creates leaf01, leaf02, and spine01 and the connections 
    local@host:~$ cd vagrant
    ```
 
-6. Initialize the Vagrant environment so you can provision your VMs. This creates a file called `Vagrantfile` within the folder you just created.
+6. Initialize the Vagrant environment to create a file called `Vagrantfile` in the folder you just created.
 
    ```
    local@host:~/vagrant$ vagrant init
    ```
 
-7. Edit the `Vagrantfile` to provision the VMs and create the network connections. The following example creates leaf01, leaf02 and spine01, where the interfaces swp1 through swp3 are connected through separate private networks, as shown in the example topology above. Add this section at the end of the `Vagrantfile`.
+7. Edit the `Vagrantfile` to create the VMs and the network connections. The following example creates leaf01, leaf02 and spine01, where the interfaces swp1 through swp3 are connected through separate private networks, as shown in the example topology above. Add this section at the end of the `Vagrantfile`.
 
    ```
    local@host:~/vagrant$ vi Vagrantfile

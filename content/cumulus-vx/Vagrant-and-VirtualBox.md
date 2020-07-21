@@ -3,21 +3,21 @@ title: Vagrant and VirtualBox
 author: Cumulus Networks
 weight: 30
 ---
-This document describes how to install and set up Cumulus Linux within a Vagrant environment, using VirtualBox as the hypervisor. These sections assume a basic level of Vagrant, VirtualBox, and Linux experience.
+This document describes how to install and set up Cumulus VX within a Vagrant environment for each switch in the two-leaf and one spine topology shown below, using VirtualBox as the hypervisor.
 
-To use Cumulus VX within a Vagrant environment, perform the following configuration:
+{{% vx-intro %}}
 
-- Create the VMs and the connections between them
-- Test the connections
-- Configure OSPF and FRRouting
+These steps were tested with VirtualBox version 6.1.12 and Vagrant version 1.9.4 on macOS version 10.14.6. Cumulus VX requires Vagrant version 1.7 or later.
 
 ## Create the VMs
+
+The following procedure describes how to create a VM for each switch in the example topology (Leaf01, Leaf02, and Spine01) using VirtualBox and Vagrant. This section assumes a basic level of Vagrant, VirtualBox, and Linux experience.
 
 1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
 
 2. Download the Box image for use with Vagrant and VirtualBox from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}.
 
-3. Download and install {{<exlink url="https://www.vagrantup.com/downloads.html" text="Vagrant">}}. Cumulus VX requires Vagrant version 1.7 or later. The installation steps below use Vagrant version 1.9.4 for the example commands.
+3. Download and install {{<exlink url="https://www.vagrantup.com/downloads.html" text="Vagrant">}}. 
 
 4. In a terminal, add the Cumulus VX Vagrant box image. Ensure option `2` is specified. Vagrant downloads and installs the latest Cumulus VX VirtualBox image.
 

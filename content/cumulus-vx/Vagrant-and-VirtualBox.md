@@ -7,7 +7,7 @@ This document describes how to install and set up Cumulus VX within a Vagrant en
 
 {{% vx-intro %}}
 
-These steps were tested with VirtualBox version 6.1.12 and Vagrant version 1.9.4 on macOS version 10.14.6. Cumulus VX requires Vagrant version 1.7 or later.
+These steps were tested with VirtualBox version 6.1.12 and Vagrant version 2.2.9 on macOS version 10.14.6. Cumulus VX requires Vagrant version 1.7 or later.
 
 ## Create the VMs
 

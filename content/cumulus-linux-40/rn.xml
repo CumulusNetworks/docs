@@ -7,6 +7,39 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30565</td>
+<td><p>Several denial of service vulnerabilities have been announced in the qemu packages:<br/>
+CVE-2020-10756 CVE-2020-13361 CVE-2020-13362 CVE-2020-13754 CVE-2020-13659<br/>
+Vulnerable: &lt;= 1:3.1+dfsg-8+deb10u5<br/>
+Fixed: 1:3.1+dfsg-8+deb10u6</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30546</td>
+<td><p>The following vulnerabilities have been announced in the nss packages, including libnss3, which may be used by other programs:<br/>
+CVE-2019-17006: Check length of inputs for cryptographic primitives<br/>
+CVE-2019-17023: After a HelloRetryRequest has been sent, the client may negotiate a lower protocol that TLS 1.3, resulting in an invalid state transition in the TLS State Machine. If the client gets into this state, incoming Application Data records will be ignored.<br/>
+CVE-2020-12399: NSS has shown timing differences when performing DSA signatures, which was exploitable and could eventually leak private keys.<br/>
+CVE-2020-12402: During RSA key generation, bignum implementations used a variation of the Binary Extended Euclidean Algorithm which entailed significantly input-dependent flow. This allowed an attacker able to perform electromagnetic-based side channel attacks to record traces leading to the recovery of the secret primes.<br/>
+Vulnerable: &lt;= 3.42.1-1+deb10u2<br/>
+Fixed: 3.42.1-1+deb10u3</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30514</td>
+<td><p>In OVSDB high availability mode, deleting multiple VLAN bindings might cause ovs-vtepd to crash.</p></td>
+<td>3.7.12, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30503</td>
+<td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
+<td>3.7.12, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30472</td>
 <td><p>On the QuantaMesh T1048-LY4 switch, pluggables inserted into SFP+ ports are not detected.<br/>
 To workaround this issue, downgrade to Cumulus Linux 3.7 ESR.</p></td>

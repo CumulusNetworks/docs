@@ -7,6 +7,52 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30565</td>
+<td><p>Several denial of service vulnerabilities have been announced in the qemu packages:<br/>
+CVE-2020-10756 CVE-2020-13361 CVE-2020-13362 CVE-2020-13754 CVE-2020-13659<br/>
+Vulnerable: &lt;= 1:3.1+dfsg-8+deb10u5<br/>
+Fixed: 1:3.1+dfsg-8+deb10u6</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30555</td>
+<td><p>If you have an existing community list of any type, redefining the same sequence number results in the entire community list being deleted.<br/>
+To work around this issue, delete the community list sequence before trying to adjust it.</p></td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30554</td>
+<td><p>If you create a route map with the set large-comm-list command and the large community list referenced does not exist, bgpd might crash. You will also see an entry in the /var/log/frr/frr.log file.</p></td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30546</td>
+<td><p>The following vulnerabilities have been announced in the nss packages, including libnss3, which may be used by other programs:<br/>
+CVE-2019-17006: Check length of inputs for cryptographic primitives<br/>
+CVE-2019-17023: After a HelloRetryRequest has been sent, the client may negotiate a lower protocol that TLS 1.3, resulting in an invalid state transition in the TLS State Machine. If the client gets into this state, incoming Application Data records will be ignored.<br/>
+CVE-2020-12399: NSS has shown timing differences when performing DSA signatures, which was exploitable and could eventually leak private keys.<br/>
+CVE-2020-12402: During RSA key generation, bignum implementations used a variation of the Binary Extended Euclidean Algorithm which entailed significantly input-dependent flow. This allowed an attacker able to perform electromagnetic-based side channel attacks to record traces leading to the recovery of the secret primes.<br/>
+Vulnerable: &lt;= 3.42.1-1+deb10u2<br/>
+Fixed: 3.42.1-1+deb10u3</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30514</td>
+<td><p>In OVSDB high availability mode, deleting multiple VLAN bindings might cause ovs-vtepd to crash.</p></td>
+<td>3.7.12, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30503</td>
+<td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
+<td>3.7.12, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30486</td>
 <td><p>A host migrated to an 802.1X MAB port within the same broadcast domain fails to have the correct FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.<br/>
 To work around this issue, manually delete the dynamic FDB entry that is associated with the uplink trunk port.</p></td>

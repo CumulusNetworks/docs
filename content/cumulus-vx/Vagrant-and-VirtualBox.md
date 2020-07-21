@@ -3,7 +3,7 @@ title: Vagrant and VirtualBox
 author: Cumulus Networks
 weight: 30
 ---
-This document describes how to install and set up Cumulus VX within a Vagrant environment for each switch in the two-leaf and one spine topology shown below, using VirtualBox as the hypervisor.
+This section describes how to install and set up Cumulus VX within a Vagrant environment for each switch in the two-leaf and one spine topology shown below, using VirtualBox as the hypervisor.
 
 {{% vx/intro %}}
 
@@ -28,9 +28,13 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
    ```
    local@host:~/vagrant$ vagrant init
+   A `Vagrantfile` has been placed in this directory. You are now
+   ready to `vagrant up` your first virtual environment! Please read
+   the comments in the Vagrantfile as well as documentation on
+   `vagrantup.com` for more information on using Vagrant.
    ```
 
-7. Edit the `Vagrantfile` and add the following section to create leaf01, leaf02 and spine01, and the network connections between them.
+7. Edit the `Vagrantfile` and add the following section under `Vagrant.configure("2") do |config|` to create leaf01, leaf02 and spine01, and the network connections between them.
 
    ```
    local@host:~/vagrant$ vi Vagrantfile
@@ -62,14 +66,16 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
       spine01.vm.network "private_network", virtualbox__intnet: "intnet-1", auto_config: false
       spine01.vm.network "private_network", virtualbox__intnet: "intnet-2", auto_config: false
    end
-
-   end
    ```
 
 9. Run `vagrant up` to start the VMs:
 
    ```
    local@host:~/vagrant$ vagrant up
+   Bringing machine 'leaf01' up with 'virtualbox' provider...
+   Bringing machine 'leaf02' up with 'virtualbox' provider...
+   Bringing machine 'spine01' up with 'virtualbox' provider...
+   ...
    ```
 
 {{%notice note%}}
@@ -83,19 +89,21 @@ When using Vagrant with Cumulus VX:
 
 ## Log into the Switch
 
-1. Log into each switch with the `vagrant ssh` command. For example:
+1. Log into each switch with the `vagrant ssh` command:
 
    ```
    local@host:~/vagrant$ vagrant ssh leaf01
+   local@host:~/vagrant$ vagrant ssh leaf02
+   local@host:~/vagrant$ vagrant ssh spine01
    ```
 
-2. Configure the switch to be able to run NCLU commands without `sudo`:
+2. Configure each switch to be able to run NCLU commands without `sudo`:
 
    ```
    cumulus@cumulus:mgmt:~$ sudo usermod -a -G netedit vagrant
    ```
 
-   When prompted to change the password, enter the default cumulus user password `cumulus`. E nter a new password, then confirm the password. If you are using Cumulus VX 4.1.1 or earlier, the default password is `CumulusLinux!`. You are **not** prompted to change the default password.
+   If prompted to change the password, enter the default cumulus user password `cumulus`. Enter a new password, then confirm the password. If you are using Cumulus VX 4.1.1 or earlier, the default password is `CumulusLinux!`. You are **not** prompted to change the default password.
 
 ## Basic Switch Configuration
 

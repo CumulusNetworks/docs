@@ -9,22 +9,27 @@
 
 <h3 id="changethehostname">Change the Hostname</h3>
 
-<p>On each VM, run the following command, where <code>&#60;name&#62;</code> is leaf01, leaf02, or spine01, then exit the switch and log back in:</p>
-<pre>cumulus@cumulus:mgmt:~$ net add hostname &lt;name&gt;
+<p>On each VM, run the <code>net add hostname &#60;name&#62;</code> command, where <code>&#60;name&#62;</code> is leaf01, leaf02, or spine01. Then, exit the switch and log back in. For example:</p>
+<pre>cumulus@cumulus:mgmt:~$ net add hostname leaf01
 cumulus@cumulus:mgmt:~$ net commit
 cumulus@cumulus:mgmt:~$ exit
+cumulus@leaf01:mgmt:~$ vagrant ssh leaf01
 </pre>
 
 <h3 id="bringuptheinterfaces">Bring up the Interfaces</h3>
 
-<p>On each VM, run the following command to bring up swp1, swp2, and swp3:</p>
+<p>On leaf01 and leaf02, run the following command to bring up swp1, swp2, and swp3:</p>
 <pre>cumulus@leaf01:mgmt:~$ net add interface swp1,swp2,swp3
+cumulus@leaf01:mgmt:~$ net commit
+</pre>
+<p>On spine01, run the following command to bring up swp1 and swp2:</p>
+<pre>cumulus@leaf01:mgmt:~$ net add interface swp1,swp2
 cumulus@leaf01:mgmt:~$ net commit
 </pre>
 
 <h3 id="checktheconnections">Check the Connections</h3>
 
-<p>On each VM, check the network connections and see which ports are neighbors of a given port:</p>
+<p>After you bring up the interfaces on all three switches, check the network connections on each switch and see which ports are neighbors of a given port:</p>
 <pre>cumulus@leaf01:mgmt:~$ net show lldp
 LocalPort    Speed    Mode          RemoteHost     RemotePort  
 -----------  -------  ------------  ------------   ------------

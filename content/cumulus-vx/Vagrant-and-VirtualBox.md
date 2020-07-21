@@ -9,9 +9,9 @@ This document describes how to install and set up Cumulus VX within a Vagrant en
 
 These steps were tested with VirtualBox version 6.1.12 and Vagrant version 2.2.9 on macOS version 10.14.6.
 
-## Create the VMs
+## Create the VMs and the Network Connections
 
-The following procedure describes how to create and connect Leaf01, Leaf02, and Spine01 in the example topology using VirtualBox and Vagrant. This section assumes a basic level of Vagrant, VirtualBox, and Linux experience.
+The following procedure creates leaf01, leaf02, and spine01 and the connections between them, as shown in the example topology. This section assumes a basic level of Vagrant, VirtualBox, and Linux experience.
 
 1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
 
@@ -30,12 +30,13 @@ The following procedure describes how to create and connect Leaf01, Leaf02, and 
    the provider you will be working with.
    1) libvirt
    2) virtualbox
+
    Enter your choice: 2
-   ==> box: Adding box 'CumulusCommunity/cumulus-vx' (v3.3.0) for provider: virtual box
+   ==> box: Adding box 'CumulusCommunity/cumulus-vx' (v4.2.0) for provider: virtual box
    ...
    ```
 
-5. In a terminal, create a folder to contain the Vagrant environment, then change directories into that folder.
+5. Create a folder to contain the Vagrant environment, then change directories into that folder.
 
    ```
    local@host:~$ mkdir vagrant
@@ -48,118 +49,49 @@ The following procedure describes how to create and connect Leaf01, Leaf02, and 
    local@host:~/vagrant$ vagrant init
    ```
 
-7. Configure Vagrant to spin up a Cumulus VX VM. Modify the newly created `Vagrantfile` to configure the VMs, then save the file:
+7. Edit the `Vagrantfile` to provision the VMs and create the network connections. The following example creates leaf01, leaf02 and spine01, where the interfaces swp1 through swp3 are connected through separate private networks, as shown in the example topology above. Add this section at the end of the `Vagrantfile`.
 
    ```
    local@host:~/vagrant$ vi Vagrantfile
 
-   Vagrant.configure(2) do |config|
-   config.vm.box = "CumulusCommunity/cumulus-vx"
+   Vagrant.configure("2") do |config|
+
+   config.vm.define "leaf01" do |leaf01|
+      leaf01.vm.box = "CumulusCommunity/cumulus-vx"
+
+      # Internal network for swp* interfaces.
+      leaf01.vm.network "private_network", virtualbox__intnet: "intnet-1", auto_config: false
+      leaf01.vm.network "private_network", virtualbox__intnet: "intnet-3", auto_config: false
+      leaf01.vm.network "private_network", virtualbox__intnet: "intnet-4", auto_config: false
+   end
+
+   config.vm.define "leaf02" do |leaf02|
+      leaf02.vm.box = "CumulusCommunity/cumulus-vx"
+
+      # Internal network for swp* interfaces.
+      leaf02.vm.network "private_network", virtualbox__intnet: "intnet-2", auto_config: false
+      leaf02.vm.network "private_network", virtualbox__intnet: "intnet-3", auto_config: false
+      leaf02.vm.network "private_network", virtualbox__intnet: "intnet-4", auto_config: false
+   end
+
+   config.vm.define "spine01" do |spine01|
+      spine01.vm.box = "CumulusCommunity/cumulus-vx"
+
+      # Internal network for swp* interfaces.
+      spine01.vm.network "private_network", virtualbox__intnet: "intnet-1", auto_config: false
+      spine01.vm.network "private_network", virtualbox__intnet: "intnet-2", auto_config: false
+   end
+
    end
    ```
 
-   Cumulus VX 3.y.z images require at least 512MB to be fully functional. The default Vagrant memory size is 512MB. If performance issues exist, increase the amount of memory by setting the `v.memory` variable in the `Vagrantfile` to *512* or more. You can also adjust the memory size in the VirtualBox UI when the VM is powered off.
+   Cumulus VX images require at least 512MB. If performance issues exist, increase the amount of memory by setting the `v.memory` variable in the `Vagrantfile`. You can also adjust the memory size in the VirtualBox UI when the VM is powered off.
 
-8. Run `vagrant up` to start the VM:
+9. Run `vagrant up` to start the VMs:
 
    ```
    local@host:~/vagrant$ vagrant up
-   Bringing machine 'default' up with 'virtualbox' provider...
-   ==> default: Importing base box 'cumulus-vx-3.3.0'...
-   ==> default: Matching MAC address for NAT networking...
-   ==> default: Setting the name of the VM: temp_default_1437562573479_23184
-   ==> default: Clearing any previously set network interfaces...
-   ==> default: Preparing network interfaces based on configuration...
-       default: Adapter 1: nat
-   ==> default: Forwarding ports...
-       default: 22 => 2222 (adapter 1)
-   ==> default: Booting VM...
-   ==> default: Waiting for machine to boot. This may take a few minutes...
-       default: SSH address: 127.0.0.1:2222
-       default: SSH username: vagrant
-       default: SSH auth method: private key
-       default: Warning: Connection timeout. Retrying...
-       default:
-       default: Vagrant insecure key detected. Vagrant will automatically replace
-       default: this with a newly generated keypair for better security.
-       default:
-       default: Inserting generated public key within guest...
-       default: Removing insecure key from the guest if it's present...
-       default: Key inserted! Disconnecting and reconnecting using new SSH key...
-   ==> default: Machine booted and ready!
-   ==> default: Checking for guest additions in VM...
-   ==> default: Mounting shared folders...
-       default: /vagrant => /Users/cumulus/vx-example
    ```
-
-After you start a VM, you can log in using the `ssh` option:
-
-   ```
-   local@host:~/vagrant$ vagrant ssh
-   ```
-
-The `vagrant ssh` command logs in as the preconfigured `vagrant` user. A shared file system is automatically mounted inside the VM under the `/vagrant` mount point; you can transfer files between the host and Cumulus VX instance from there.
-
-To shut down the VM, use the `destroy` command:
-
-   ```
-   local@host:~/vagrant$ vagrant destroy
-   ```
-
-For more information on configuring VMs with Vagrant, refer to the {{<exlink url="https://docs.vagrantup.com/v2/" text="Vagrant documentation">}}.
-
-## Add Switch Port Interfaces
-
-By default Vagrant only configures the first network interface (eth0) for its own use. You must configure additional network interfaces, such as the Cumulus Linux switch port interfaces, in the `Vagrantfile`. Normally, you configure these interfaces to use a private network. By default, Vagrant provides one preconfigured private network, although you can choose to create additional private networks. You can connect one or more network interfaces to a private network.
-
-The following example creates a Cumulus VX VM where the interfaces swp1 through swp4 are created and connected to the preconfigured private network:
-
-   ```
-   Vagrant.configure(2) do |config|
-     config.vm.box = "CumulusCommunity/cumulus-vx"
-
-     config.vm.network "private_network", virtualbox__intnet: "swp1", auto_config: false
-     config.vm.network "private_network", virtualbox__intnet: "swp2", auto_config: false
-     config.vm.network "private_network", virtualbox__intnet: "swp3", auto_config: false
-     config.vm.network "private_network", virtualbox__intnet: "swp4", auto_config: false
-   end
-   ```
-
-For more information on creating and using private networks, refer to the {{<exlink url="https://docs.vagrantup.com/v2/networking/private_network.html" text="Vagrant documentation">}}.
-
-### Create Multiple VMs
-
-Vagrant can create and configure multiple VMs with a single command. For example, you can use Vagrant to create multiple Cumulus VX VMs and then connect the network interfaces of those VMs together.
-
-The following example creates two Cumulus VX VMs, leaf1 and leaf2, where the interfaces swp1 through swp4 are connected together via separate private networks:
-
-   ```
-   Vagrant.configure(2) do |config|
-
-   config.vm.define "Leaf01" do |Leaf01|
-      leaf1.vm.box = "CumulusCommunity/cumulus-vx"
-
-      # Internal network for swp* interfaces.
-      Leaf01.vm.network "private_network", virtualbox__intnet: "swp1", auto_config: false
-      Leaf01.vm.network "private_network", virtualbox__intnet: "swp2", auto_config: false
-      Leaf01.vm.network "private_network", virtualbox__intnet: "swp3", auto_config: false
-      Leaf01.vm.network "private_network", virtualbox__intnet: "swp4", auto_config: false
-   end
-
-   config.vm.define "Leaf02" do |Leaf02|
-      Leaf02.vm.box = "CumulusCommunity/cumulus-vx"
-
-      # Internal network for swp* interfaces.
-      Leaf02.vm.network "private_network", virtualbox__intnet: "swp1", auto_config: false
-      Leaf02.vm.network "private_network", virtualbox__intnet: "swp2", auto_config: false
-      Leaf02.vm.network "private_network", virtualbox__intnet: "swp3", auto_config: false
-      Leaf02.vm.network "private_network", virtualbox__intnet: "swp4", auto_config: false
-   end
-
-   end
-   ```
-
-When you run `vagrant up`, both VMs are created. You can log in to each VM and configure the interfaces as you want; the interfaces will pass traffic between themselves as if they are two physical switches connected together by four cables.
 
 {{%notice note%}}
 
@@ -169,6 +101,18 @@ When using Vagrant with Cumulus VX:
 - The first network interface (eth0) is always managed by Vagrant and must be connected to a NAT network.
 
 {{%/notice%}}
+
+## Log into the Switch
+
+Log into each switch with the `vagrant ssh` command. For example:
+
+```
+local@host:~/vagrant$ vagrant ssh leaf01
+```
+
+To have permissions to run `cumulus` commands, run the `sudo su cumulus -` command. When prompted to change the password, enter the default cumulus user password `cumulus`, enter a new password, then confirm the password.
+
+If you are using Cumulus VX 4.1.1 or earlier, the default password is `CumulusLinux!`. You are **not** prompted to change the default password.
 
 ## Basic Switch Configuration
 

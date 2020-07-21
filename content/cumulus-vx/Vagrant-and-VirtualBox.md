@@ -5,7 +5,7 @@ weight: 30
 ---
 This document describes how to install and set up Cumulus VX within a Vagrant environment for each switch in the two-leaf and one spine topology shown below, using VirtualBox as the hypervisor.
 
-{{% vx-intro %}}
+{{% vx/intro %}}
 
 These steps were tested with VirtualBox version 6.1.12 and Vagrant version 2.2.9 on macOS version 10.14.6.
 
@@ -15,26 +15,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the connections 
 
 1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
 
-2. Download the Box image for use with Vagrant and VirtualBox from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}.
-
 3. Download and install {{<exlink url="https://www.vagrantup.com/downloads.html" text="Vagrant">}}.
-
-4. In a terminal, add the Cumulus VX Vagrant box image. Ensure option `2` is specified. Vagrant downloads and installs the latest Cumulus VX VirtualBox image.
-
-   ```
-   local@host:~$ vagrant box add cumuluscommunity/cumulus-vx
-   ==> box: Loading metadata for box 'cumuluscommunity/cumulus-vx'
-   box: URL: https://atlas.hashicorp.com/cumuluscommunity/cumulus-vx
-   This box can work with multiple providers! The providers that it
-   can work with are listed below. Please review the list and choose
-   the provider you will be working with.
-   1) libvirt
-   2) virtualbox
-
-   Enter your choice: 2
-   ==> box: Adding box 'CumulusCommunity/cumulus-vx' (v4.2.0) for provider: virtual box
-   ...
-   ```
 
 5. Create a folder to contain the Vagrant environment, then change directories into that folder.
 
@@ -116,8 +97,8 @@ If you are using Cumulus VX 4.1.1 or earlier, the default password is `CumulusLi
 
 ## Basic Switch Configuration
 
-{{% vx-basic-config %}}
+{{% vx/basic-config %}}
 
 ## Next Steps
 
-{{% vx-next-steps %}}
+{{% vx/next-steps %}}

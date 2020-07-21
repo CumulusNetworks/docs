@@ -74,8 +74,8 @@ e3<->e0 PC2 (VPCS)
 
 ## Basic Switch Configuration
 
-{{% vx-basic-config %}}
+{{% vx/basic-config %}}
 
 ## Next Steps
 
-{{% vx-next-steps %}}
+{{% vx/next-steps %}}

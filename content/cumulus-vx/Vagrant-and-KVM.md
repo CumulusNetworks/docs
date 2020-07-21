@@ -248,8 +248,8 @@ The `libvirt` domain is running. To stop this machine, you can run `vagrant halt
 
 ## Basic Switch Configuration
 
-{{% vx-basic-config %}}
+{{% vx/basic-config %}}
 
 ## Next Steps
 
-{{% vx-next-steps %}}
+{{% vx/next-steps %}}

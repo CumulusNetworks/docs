@@ -5,13 +5,13 @@ weight: 15
 ---
 This section describes how to download Cumulus VX and create a VM in VirtualBox for each switch in the two-leaf and one spine topology shown below.
 
-{{% vx-intro %}}
+{{% vx/intro %}}
 
 These steps were tested with VirtualBox version 6.1.12 on macOS version 10.14.6.
 
 ## Create the VMs
 
-The following procedure describes how to create a VM in VirtualBox for each switch in the example topology (Leaf01, Leaf02, and Spine01). This section assumes a basic level of VirtualBox experience.
+The following procedure creates leaf01, leaf02, and spine01 and the connections between them, as shown in the example topology. This section assumes a basic level of VirtualBox experience.
 
 1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
 
@@ -85,8 +85,8 @@ If you are using Cumulus VX 4.1.1 or earlier, the default password is `CumulusLi
 
 ## Basic Switch Configuration
 
-{{% vx-basic-config %}}
+{{% vx/basic-config %}}
 
 ## Next Steps
 
-{{% vx-next-steps %}}
+{{% vx/next-steps %}}

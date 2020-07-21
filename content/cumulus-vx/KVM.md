@@ -164,8 +164,8 @@ br0: received package on swp1 with own address as source address
 
 ## Basic Switch Configuration
 
-{{% vx-basic-config %}}
+{{% vx/basic-config %}}
 
 ## Next Steps
 
-{{% vx-next-steps %}}
+{{% vx/next-steps %}}

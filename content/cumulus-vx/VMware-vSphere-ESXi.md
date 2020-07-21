@@ -5,7 +5,7 @@ weight: 20
 ---
 This section describes how to download Cumulus VX and create a VM in VMWare vSphere for each switch in the two-leaf and one spine topology shown below.
 
-{{% vx-intro %}}
+{{% vx/intro %}}
 
 These steps were tested with VMware vSphere (ESXi) Standard version 7.0b on macOS version 10.14.6.
 
@@ -59,8 +59,8 @@ Add section here
 
 ## Basic Switch Configuration
 
-{{% vx-basic-config %}}
+{{% vx/basic-config %}}
 
 ## Next Steps
 
-{{% vx-next-steps %}}
+{{% vx/next-steps %}}

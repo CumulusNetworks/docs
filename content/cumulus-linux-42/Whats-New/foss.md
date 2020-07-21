@@ -1,4 +1,12 @@
-
+---
+title: Cumulus Linux 4.2 Open Source Packages
+author: Cumulus Networks
+weight: -30
+product: Cumulus Linux
+version: "4.2"
+toc: 1
+pdfhidden: True
+---
 ## 4.2.0 Open Source Software Licenses 
 | Package | Version | License(s) |
 |---	        |---	        |---	    |

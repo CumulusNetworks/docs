@@ -1,15 +1,15 @@
-<p>After you have created the three VMs: leaf01, leaf02, and spine 01, power on the VMs, then perform the following basic configuration:</p>
+<p>After you have provisioned three VMs (leaf01, leaf02, and spine 01) and created the network connections, perform the following basic configuration on each switch:</p>
 
 <ul>
 <li>Change the hostname</li>
-<li>Bring up swp1, swp2, and swp3</li>
+<li>Bring up the interfaces</li>
 <li>Check the connections</li>
 <li>Check system information</li>
 </ul>
 
 <h3 id="changethehostname">Change the Hostname</h3>
 
-<p>On each VM, run the <code>net add hostname &#60;name&#62;</code> command, where <code>&#60;name&#62;</code> is leaf01, leaf02, or spine01. Then, exit the switch and log back in. For example:</p>
+<p>On each VM, run the <code>net add hostname &#60;name&#62;</code> command, where <code>&#60;name&#62;</code> is leaf01, leaf02, or spine01, then, exit the switch and log back in. For example:</p>
 <pre>cumulus@cumulus:mgmt:~$ net add hostname leaf01
 cumulus@cumulus:mgmt:~$ net commit
 cumulus@cumulus:mgmt:~$ exit

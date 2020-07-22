@@ -34,7 +34,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    `vagrantup.com` for more information on using Vagrant.
    ```
 
-7. Edit the `Vagrantfile` and add the following section under `Vagrant.configure("2") do |config|` to create leaf01, leaf02 and spine01, and the network connections between them.
+7. Edit the `Vagrantfile`. Add the following section under `Vagrant.configure("2") do |config|` to create leaf01, leaf02 and spine01, and the network connections between them.
 
    ```
    local@host:~/vagrant$ vi Vagrantfile
@@ -87,14 +87,12 @@ When using Vagrant with Cumulus VX:
 
 {{%/notice%}}
 
-## Log into the Switch
+## Log into Each Switch
 
-1. Log into each switch with the `vagrant ssh` command:
+1. Log into each switch with the `vagrant ssh` command. For example:
 
    ```
    local@host:~/vagrant$ vagrant ssh leaf01
-   local@host:~/vagrant$ vagrant ssh leaf02
-   local@host:~/vagrant$ vagrant ssh spine01
    ```
 
 2. Configure each switch to be able to run NCLU commands without `sudo`:
@@ -102,8 +100,6 @@ When using Vagrant with Cumulus VX:
    ```
    cumulus@cumulus:mgmt:~$ sudo usermod -a -G netedit vagrant
    ```
-
-   If prompted to change the password, enter the default cumulus user password `cumulus`. Enter a new password, then confirm the password. If you are using Cumulus VX 4.1.1 or earlier, the default password is `CumulusLinux!`. You are **not** prompted to change the default password.
 
 ## Basic Switch Configuration
 

@@ -77,7 +77,7 @@ Make sure that the VM is powered off.
 |           | swp1     | Adapter 2            | Internal                | intnet-1              |
 |           | swp2     | Adapter 3            | Internal                | intnet-2              |
 
-## Log into the Switch
+## Log into Each Switch
 
 Log into each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time with the `cumulus` account, you are prompted to change the default password.
 

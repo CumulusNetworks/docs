@@ -4,7 +4,11 @@ author: Cumulus Networks
 weight: 40
 ---
 
-INTRO
+This section describes how to install and set up Cumulus VX with GNS3 and VirtualBox to create the two leaf and one spine topology shown below.
+
+{{% vx/intro %}}
+
+These steps were tested with VirtualBox version 6.1.12 and GNS3 version ??? on macOS version 10.14.6.
 
 ## Create VMs with GNS3 and VirtualBox
 
@@ -75,6 +79,10 @@ e3<->e0 PC2 (VPCS)
 ## Basic Switch Configuration
 
 {{% vx/basic-config %}}
+
+## Verify Configuration
+
+{{% vx/verify-config %}}
 
 ## Next Steps
 

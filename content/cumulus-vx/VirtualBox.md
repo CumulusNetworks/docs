@@ -3,7 +3,7 @@ title: VirtualBox
 author: Cumulus Networks
 weight: 15
 ---
-This section describes how to download Cumulus VX and create a VM in VirtualBox for each switch in the two-leaf and one spine topology shown below.
+This section describes how to download and install Cumulus VX with VirtualBox to create a two leaf and one spine topology shown below.
 
 {{% vx/intro %}}
 

@@ -3,7 +3,7 @@ title: Vagrant and VirtualBox
 author: Cumulus Networks
 weight: 30
 ---
-This section describes how to install and set up Cumulus VX within a Vagrant environment for each switch in the two-leaf and one spine topology shown below, using VirtualBox as the hypervisor.
+This section describes how to install and set up Cumulus VX using Vagrant and VirtualBox to create the two leaf and one spine topology shown below.
 
 {{% vx/intro %}}
 

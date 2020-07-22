@@ -491,3 +491,11 @@ directed. To only use `stdout`, set the `NCLU_TAB_STDOUT` environment
 variable to *true*. The value is not case sensitive.
 
 {{%/notice%}}
+
+## Caveats and Errata
+
+### Unsupported Interface Names
+NCLU does not support interfaces named `dev`.
+
+### Bonds With No Configured Members
+If a bond interface is configured and it contains no members NCLU will report the interace does not exist. 

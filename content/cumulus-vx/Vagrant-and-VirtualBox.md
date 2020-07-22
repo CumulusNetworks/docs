@@ -9,7 +9,7 @@ This section describes how to install and set up Cumulus VX within a Vagrant env
 
 These steps were tested with VirtualBox version 6.1.12 and Vagrant version 2.2.9 on macOS version 10.14.6.
 
-## Create the VMs and the Network Connections
+## Create VMs and Network Connections
 
 The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of Vagrant, VirtualBox, and Linux experience.
 

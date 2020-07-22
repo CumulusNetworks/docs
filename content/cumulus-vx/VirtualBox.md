@@ -87,6 +87,11 @@ If you are using Cumulus VX 4.1.1 or earlier, the default password is `CumulusLi
 
 {{% vx/basic-config %}}
 
+## Verify Configuration
+
+{{% vx/verify-config %}}
+
+
 ## Next Steps
 
 {{% vx/next-steps %}}

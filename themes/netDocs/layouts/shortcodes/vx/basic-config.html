@@ -1,68 +1,31 @@
-<p>After you have provisioned three VMs (leaf01, leaf02, and spine 01) and created the network connections, perform the following basic configuration on each switch:</p>
+<p>Run these commands on each switch to change the hostname and bring up the interfaces:</p>
 
-<ul>
-<li>Change the hostname</li>
-<li>Bring up the interfaces</li>
-<li>Check the connections</li>
-<li>Check system information</li>
-</ul>
-
-<h3 id="changethehostname">Change the Hostname</h3>
-
-<p>On each VM, run the <code>net add hostname &#60;name&#62;</code> command, where <code>&#60;name&#62;</code> is leaf01, leaf02, or spine01, then, exit the switch and log back in. For example:</p>
+<div class="book-tabs">
+<input type="radio" class="hidden" name="leaf01config" id="leaf01config -1" checked="" />
+<label for="leaf01config -1">Leaf01</label>
+<div class="book-tabs-content markdown-inner">
 <pre>cumulus@cumulus:mgmt:~$ net add hostname leaf01
+cumulus@cumulus:mgmt:~$ net add interface swp1,swp2,swp3
 cumulus@cumulus:mgmt:~$ net commit
 cumulus@cumulus:mgmt:~$ exit
-cumulus@leaf01:mgmt:~$ vagrant ssh leaf01
 </pre>
-
-<h3 id="bringuptheinterfaces">Bring up the Interfaces</h3>
-
-<p>On leaf01 and leaf02, run the following command to bring up swp1, swp2, and swp3:</p>
-<pre>cumulus@leaf01:mgmt:~$ net add interface swp1,swp2,swp3
-cumulus@leaf01:mgmt:~$ net commit
+</div>
+<input type="radio" class="hidden" name="leaf02config" id="leaf02config -2" />
+<label for="leaf02config -2">Leaf02</label>
+<div class="book-tabs-content markdown-inner">
+<pre>cumulus@cumulus:mgmt:~$ net add hostname leaf02
+cumulus@cumulus:mgmt:~$ net add interface swp1,swp2,swp3
+cumulus@cumulus:mgmt:~$ net commit
+cumulus@cumulus:mgmt:~$ exit
 </pre>
-<p>On spine01, run the following command to bring up swp1 and swp2:</p>
-<pre>cumulus@leaf01:mgmt:~$ net add interface swp1,swp2
-cumulus@leaf01:mgmt:~$ net commit
+</div>
+<input type="radio" class="hidden" name="spine01config" id="spine01config -3" />
+<label for="spine01config -3">spine01</label>
+<div class="book-tabs-content markdown-inner">
+<pre>cumulus@cumulus:mgmt:~$ net add hostname spine02
+cumulus@cumulus:mgmt:~$ net add interface swp1,swp2
+cumulus@cumulus:mgmt:~$ net commit
+cumulus@cumulus:mgmt:~$ exit
 </pre>
-
-<h3 id="checktheconnections">Check the Connections</h3>
-
-<p>After you bring up the interfaces on all three switches, check the network connections on each switch and see which ports are neighbors of a given port:</p>
-<pre>cumulus@leaf01:mgmt:~$ net show lldp
-LocalPort    Speed    Mode          RemoteHost     RemotePort  
------------  -------  ------------  ------------   ------------
-swp1         1G       Default       spine01        swp1
-swp2         1G       Default       leaf02         swp2
-swp3         1G       Default       leaf02         swp3
-</pre>
-<pre>cumulus@leaf02:mgmt:~$ net show lldp
-LocalPort    Speed    Mode          RemoteHost     RemotePort  
------------  -------  ------------  ------------   ------------
-swp1         1G       Default       spine01        swp2
-swp2         1G       Default       leaf01         swp2
-swp3         1G       Default       leaf01         swp3
-</pre>
-<pre>cumulus@spine01:mgmt:~$ net show lldp
-LocalPort    Speed    Mode          RemoteHost     RemotePort  
------------  -------  ------------  ------------   ------------
-swp1         1G       Default       leaf01         swp1
-swp2         1G       Default       leaf02         swp1
-</pre>
-
-<h3>Show System Information</h3>
-<p>Review system information on your VMs, including the Cumulus Linux version:</p>
-<pre>
-cumulus@leaf01:mgmt:~$ net show system
-Hostname..............leaf01
-Build.................Cumulus Linux 4.2.0
-Uptime................0.00.23.740000
-Model.................Cumulus VX
-Memory................922MB
-Disk..................6GB
-Vendor Name...........Cumulus Networks
-Part Number...........4:00:27:39:B1:12
-Serial Number.........4:00:27:39:B1:12
-Product Name..........VX
-</pre>
+</div>
+</div>

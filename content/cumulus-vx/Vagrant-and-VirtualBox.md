@@ -105,6 +105,10 @@ When using Vagrant with Cumulus VX:
 
 {{% vx/basic-config %}}
 
+## Verify Configuration
+
+{{% vx/verify-config %}}
+
 ## Next Steps
 
 {{% vx/next-steps %}}

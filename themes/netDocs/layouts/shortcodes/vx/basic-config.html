@@ -1,37 +1,44 @@
-<p>Run these commands on each switch to change the hostname and bring up the interfaces. Exit the switch, then log back in to see the new hostname at the prompt.</p>
+<p>
+  Run these commands on each switch to change the hostname and bring up the
+  interfaces. Exit the switch, then log back in to see the new hostname at the
+  prompt.
+</p>
 
 <div class="book-tabs">
-<input type="radio" class="hidden" name="leaf01config" id="leaf01config -1" checked="" />
-<label for="leaf01config -1">Leaf01</label>
-<div class="book-tabs-content markdown-inner">
-<pre>cumulus@cumulus:mgmt:~$ net add hostname leaf01
+  <input type="radio" class="hidden" name="interfaces" id="interfaces -1" checked="" />
+  <label for="interfaces -1">Leaf01</label>
+  <div class="book-tabs-content markdown-inner">
+    <pre>
+cumulus@cumulus:mgmt:~$ net add hostname leaf01
 cumulus@cumulus:mgmt:~$ net add interface swp1,swp2,swp3
 cumulus@cumulus:mgmt:~$ net commit
 cumulus@cumulus:mgmt:~$ exit
 local@host:~/vagrant$ vagrant ssh leaf01
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$
 </pre>
-</div>
-<input type="radio" class="hidden" name="leaf02config" id="leaf02config -2" />
-<label for="leaf02config -2">Leaf02</label>
-<div class="book-tabs-content markdown-inner">
-<pre>cumulus@cumulus:mgmt:~$ net add hostname leaf02
+  </div>
+  <input type="radio" class="hidden" name="interfaces" id="interfaces -2" />
+  <label for="interfaces -2">Leaf02</label>
+  <div class="book-tabs-content markdown-inner">
+    <pre>
+cumulus@cumulus:mgmt:~$ net add hostname leaf02
 cumulus@cumulus:mgmt:~$ net add interface swp1,swp2,swp3
 cumulus@cumulus:mgmt:~$ net commit
 cumulus@cumulus:mgmt:~$ exit
 local@host:~/vagrant$ vagrant ssh leaf02
-cumulus@leaf02:mgmt:~$ 
+cumulus@leaf02:mgmt:~$
 </pre>
-</div>
-<input type="radio" class="hidden" name="spine01config" id="spine01config -3" />
-<label for="spine01config -3">spine01</label>
-<div class="book-tabs-content markdown-inner">
-<pre>cumulus@cumulus:mgmt:~$ net add hostname spine02
+  </div>
+  <input type="radio" class="hidden" name="interfaces" id="interfaces -3" />
+  <label for="interfaces -3">spine01</label>
+  <div class="book-tabs-content markdown-inner">
+    <pre>
+cumulus@cumulus:mgmt:~$ net add hostname spine02
 cumulus@cumulus:mgmt:~$ net add interface swp1,swp2
 cumulus@cumulus:mgmt:~$ net commit
 cumulus@cumulus:mgmt:~$ exit
 local@host:~/vagrant$ vagrant ssh spine01
-cumulus@spine01:mgmt:~$ 
+cumulus@spine01:mgmt:~$
 </pre>
-</div>
+  </div>
 </div>

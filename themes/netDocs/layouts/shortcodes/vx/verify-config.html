@@ -1,7 +1,7 @@
 <p>Run the following commands on each switch to verify the configuration:</p>
 <div class="book-tabs">
-<input type="radio" class="hidden" name="LLDPleaf01" id="LLDPleaf01 -1" checked="" />
-<label for="LLDPleaf01 -2">Leaf01</label>
+<input type="radio" class="hidden" name="LLDP" id="LLDP -1" checked="" />
+<label for="LLDP -1">Leaf01</label>
 <div class="book-tabs-content markdown-inner">
 <pre>
 cumulus@leaf01:mgmt:~$ net show lldp
@@ -12,8 +12,8 @@ swp2         1G       Default       leaf02         swp2
 swp3         1G       Default       leaf02         swp3
 </pre>
 </div>
-<input type="radio" class="hidden" name="LLDPleaf02" id="LLDPleaf02 -2" />
-<label for="LLDPleaf02 -2">Leaf02</label>
+<input type="radio" class="hidden" name="LLDP" id="LLDP -2" />
+<label for="LLDP -2">Leaf02</label>
 <div class="book-tabs-content markdown-inner">
 <pre>cumulus@leaf02:mgmt:~$ net show lldp
 LocalPort    Speed    Mode          RemoteHost     RemotePort  
@@ -23,8 +23,8 @@ swp2         1G       Default       leaf01         swp2
 swp3         1G       Default       leaf01         swp3
 </pre>
 </div>
-<input type="radio" class="hidden" name="LLDPspine" id="LLDPspine -3" />
-<label for="LLDPspine -3">spine01</label>
+<input type="radio" class="hidden" name="LLDP" id="LLDP -3" />
+<label for="LLDP -3">spine01</label>
 <div class="book-tabs-content markdown-inner">
 <pre>cumulus@spine01:mgmt:~$ net show lldp
 LocalPort    Speed    Mode          RemoteHost     RemotePort  

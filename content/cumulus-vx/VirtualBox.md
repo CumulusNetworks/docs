@@ -3,37 +3,27 @@ title: VirtualBox
 author: Cumulus Networks
 weight: 15
 ---
-This section describes how to download and install Cumulus VX with VirtualBox to create a two leaf and one spine topology shown below.
+This section describes how to install and set up Cumulus VX in VirtualBox to create the two leaf and one spine topology shown below.
 
 {{% vx/intro %}}
 
 These steps were tested with VirtualBox version 6.1.12 on macOS version 10.14.6.
 
-## Create the VMs
+## Create VMs and Network Connections
 
 The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of VirtualBox experience.
 
-1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
+### Download the Software
 
-2. From the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}, download the OVA disk image to run Cumulus VX within VirtualBox.
+1. Download and install {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox">}}.
 
-3. Open the VirtualBox application and select **Import Appliance** from the **File** menu.
+2. Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="OVA VirtualBox image">}}.
 
-4. Browse for the OVA disk image you installed in the previous step, click the **Open** button, then click **Continue**.
+### Create the VMs
 
-5. In the Appliance settings, change the name of the VM to `Leaf01`, then click **Import** to begin the import process.  
+{{% vx/virtualbox-steps %}}
 
-   {{< figure src="/images/cumulus-vx/VirtualBox-review.png" width="500" >}}
-
-6. In the VirtualBox Manager window, right click the `Leaf01` VM, then select **Clone**.
-
-7. Change the name of the VM to `Leaf02`, then click **Continue**.
-
-8. Select **Full Clone** and click **Clone**.
-
-9. Repeat steps 6 through 8 to create `Spine01`.
-
-## Create Connections Between VMs
+### Create Network Connections
 
 Configure the network adapter settings for Leaf01, Leaf02, and Spine01 to create point-to-point connections.
 
@@ -59,7 +49,7 @@ Make sure that the VM is powered off.
 
 7. Repeat the steps 1 through 6 for Leaf02 and Spine01. Use the internal network names and the connections shown in the illustration and table below.
 
-   The internal network name for an adapter on a VM must match the internal network name on the corresponding network adapter on the VM to which it connects. For example, in the two-leaf and one spine topology, Adapter 2 (swp1) on Leaf01 is connected to Adapter 2 (swp1) on Spine01; the name (intnet-1) must be the same for Adapter 2 on both VMs.
+   The internal network name for an adapter on a VM must match the internal network name on the corresponding network adapter on the VM to which it connects. For example, in the two leaf and one spine topology, Adapter 2 (swp1) on Leaf01 is connected to Adapter 2 (swp1) on Spine01; the name (intnet-1) must be the same for Adapter 2 on both VMs.
 
 {{< figure src = "/images/cumulus-vx/VX-Connections.png" >}}
 
@@ -77,7 +67,7 @@ Make sure that the VM is powered off.
 |           | swp1     | Adapter 2            | Internal                | intnet-1              |
 |           | swp2     | Adapter 3            | Internal                | intnet-2              |
 
-## Log into Each Switch
+## Log into the Switches
 
 Log into each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time, you are prompted to change the default password.
 
@@ -90,7 +80,6 @@ If you are using Cumulus VX 4.1.1 or earlier, the default password is `CumulusLi
 ## Verify Configuration
 
 {{% vx/verify-config %}}
-
 
 ## Next Steps
 

@@ -3,7 +3,7 @@ title: Vagrant and VirtualBox
 author: Cumulus Networks
 weight: 30
 ---
-This section describes how to install and set up Cumulus VX using Vagrant and VirtualBox to create the two leaf and one spine topology shown below.
+This section describes how to install and set up Cumulus VX within Vagrant and VirtualBox to create the two leaf and one spine topology shown below.
 
 {{% vx/intro %}}
 
@@ -13,18 +13,18 @@ These steps were tested with VirtualBox version 6.1.12 and Vagrant version 2.2.9
 
 The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of Vagrant, VirtualBox, and Linux experience.
 
-1. Download and install VirtualBox. Refer to the {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox documentation">}}.
+1. Download and install {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox">}}.
 
-3. Download and install {{<exlink url="https://www.vagrantup.com/downloads.html" text="Vagrant">}}.
+2. Download and install {{<exlink url="https://www.vagrantup.com/downloads.html" text="Vagrant">}}.
 
-5. Create a folder to contain the Vagrant environment, then change directories into that folder.
+3. Create a folder to contain the Vagrant environment, then change directories into that folder.
 
    ```
    local@host:~$ mkdir vagrant
    local@host:~$ cd vagrant
    ```
 
-6. Initialize the Vagrant environment to create a file called `Vagrantfile` in the folder you just created.
+4. Initialize the Vagrant environment to create a file called `Vagrantfile` in the folder you just created.
 
    ```
    local@host:~/vagrant$ vagrant init
@@ -34,7 +34,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    `vagrantup.com` for more information on using Vagrant.
    ```
 
-7. Edit the `Vagrantfile`. Add the following section under `Vagrant.configure("2") do |config|` to create leaf01, leaf02 and spine01, and the network connections between them.
+5. Edit the `Vagrantfile`. Add the following section under `Vagrant.configure("2") do |config|` to create leaf01, leaf02 and spine01, and the network connections between them.
 
    ```
    local@host:~/vagrant$ vi Vagrantfile
@@ -68,7 +68,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    end
    ```
 
-9. Run `vagrant up` to start the VMs:
+6. Run `vagrant up` to start the VMs:
 
    ```
    local@host:~/vagrant$ vagrant up
@@ -87,7 +87,7 @@ When using Vagrant with Cumulus VX:
 
 {{%/notice%}}
 
-## Log into Each Switch
+## Log into the Switches
 
 1. Log into each switch with the `vagrant ssh` command. For example:
 

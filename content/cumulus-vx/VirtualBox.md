@@ -69,9 +69,7 @@ Make sure that the VM is powered off.
 
 ## Log into the Switches
 
-Log into each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time, you are prompted to change the default password.
-
-If you are using Cumulus VX 4.1.1 or earlier, the default password is `CumulusLinux!`. You are **not** prompted to change the default password.
+{{% vx/login %}}
 
 ## Basic Switch Configuration
 

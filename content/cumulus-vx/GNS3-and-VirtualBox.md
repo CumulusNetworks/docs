@@ -8,7 +8,7 @@ This section describes how to install and set up Cumulus VX within GNS3 and Virt
 
 {{% vx/intro %}}
 
-These steps were tested with VirtualBox version 6.1.12 and GNS3 version ??? on macOS version 10.14.6.
+These steps were tested with VirtualBox version 6.1.12 and GNS3 version 2.2.11 on macOS version 10.14.6.
 
 ## Create VMs and Network Connections
 
@@ -26,7 +26,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 ### Configure GNS3
 
-1. From the **Preferences** menu, select **GNS3**. From the left pane of the Preferences dialog, select **VirtualBox**.
+1. Open the GNS3 application and from the **Preferences** menu, select **GNS3**. From the left pane of the Preferences dialog, select **VirtualBox**.
 2. In the **Path to VBoxManage** field, enter the location where VBoxManage is installed. For example: `/usr/bin/VBoxManage`.
 3. From the left pane, select **VirtualBox VMs**, then click **New**. The **VM list** shows the VirtualBox VMs you set up earlier.
 
@@ -45,37 +45,45 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    3. Increase the number of **Adapters** to *4*.
    4. Select the **Type** to be *Paravirtualized Network*.
    5. Select **Allow GNS3 to use any configured VirtualBox adapter**.
-   6. Click **OK** to save your settings and close the dialog. GNS3 overwrites the interface names that are configured in VirtualBox; If you want to use the VM in VirtualBox, you might want to consider cloning them first.
+   6. Click **OK** to save your settings and close the dialog.
 
 ### Create Network Connections
 
-1. To connect VMs, select the cable icon from the left pane, then select the VMs to connect directly. Select which network interface you want connected for each VM. e1 in GNS3 corresponds to swp1 in Cumulus VX, e2 to swp2, and so on.
+To connect VMs, select the cable icon from the left pane, then select the VMs to connect directly. Select the network interfaces that connect for each VM. `e1` in GNS3 corresponds to `swp1` in Cumulus VX, `e2` corresponds to `swp2`, and so on.
 
-   {{< tabs "TabID01 ">}}
+{{< tabs "TabID01 ">}}
 
 {{< tab "leaf01 ">}}
 
-e1<->e1 spine01  
-e2<->e2 leaf02
-e3<->e3 leaf03
+```
+e1<=>e1 spine01
+e2<=>e2 leaf02
+e3<=>e3 leaf02
+```
 
 {{< /tab >}}
 {{< tab "leaf02 ">}}
 
-e1<->e2 spine01
-e2<->e2 leaf02  
-e3<->e3 leaf02
+```
+e1<=>e2 spine01
+e2<=>e2 leaf01  
+e3<=>e3 leaf01
+```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
-e1<->e1 leaf01  
-e2<->e1 leaf02
+```
+e1<=>e1 leaf01  
+e2<=>e1 leaf02
+```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-   You can also drag and drop virtual PCs (VPCS) and connect them to the Cumulus VX switch. To open a console to a virtual PC, right click on the VPCS icon and select **Console**. In the console, configure the IP address and default gateway for the VPCS (for example: `ip 10.4.1.101/25 10.4.1.1`).
+## Log into the Switches
+
+{{% vx/login %}}
 
 ## Basic Switch Configuration
 

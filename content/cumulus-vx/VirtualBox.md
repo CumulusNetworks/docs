@@ -45,7 +45,7 @@ Make sure that the VM is powered off.
 
 6. In the **Name** field, enter a name for the internal network, then click **OK**. The example below uses `intnet-1`.
 
-   {{< figure src="/images/cumulus-vx/adapterSettings.png" width="400" >}}
+   {{< img src="/images/cumulus-vx/adapterSettings.png" width="400" >}}
 
 7. Repeat the steps 1 through 6 for Leaf02 and Spine01. Use the internal network names and the connections shown in the illustration and table below.
 

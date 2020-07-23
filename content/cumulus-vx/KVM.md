@@ -3,14 +3,9 @@ title: KVM
 author: Cumulus Networks
 weight: 25
 ---
-To use Cumulus VX with KVM, you need to perform the following configuration:
+This section describes how to install and set up Cumulus VX with KVM on a Linux server to create the two leaf and one spine topology shown below.
 
-- Create the VMs
-- Create connections between the VMs ???
-- Test the connections
-- Configure OSPF and FRRouting
-
-Follow these steps to create a Cumulus VX VM with KVM on a Linux server. These sections assume a basic level of Linux and KVM experience. For detailed instructions, refer to the {{<exlink url="http://wiki.qemu.org/Main_Page" text="QEMU">}} and {{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM">}} documentation.
+{{% vx/intro %}}
 
 Performing virtualization in Linux requires three components:
 
@@ -18,13 +13,19 @@ Performing virtualization in Linux requires three components:
 - **KVM** works exclusively with QEMU and performs hardware acceleration for x86 VMs with Intel and AMD CPUs. The pair is often called KVM/QEMU or just KVM.
 - **QEMU** is a machine emulator that allows the host machine to emulate the CPU architecture of the guest machine. Because QEMU does not provide hardware acceleration, it works well with KVM.
 
-## Create the VMs
+These steps were tested with KVM version ??? on Linux version ???.
 
-1. Install QEMU/KVM. Refer to the {{<exlink url="http://www.qemu-project.org/download/" text="KVM documentation">}}  
+## Create the VMs and Network Connections
 
-2. Download Cumulus VX disk image for KVM from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}.
+The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of Linux and KVM experience.
 
-3. Run the following commands to install `libvirt:`
+For detailed instructions, refer to the {{<exlink url="http://wiki.qemu.org/Main_Page" text="QEMU">}} and {{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM">}} documentation.
+
+1. Download and install {{<exlink url="http://www.qemu-project.org/download/" text="QEMU">}}/{{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM">}}.  
+
+2. Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus VX Qcow2 image for KVM">}}.
+
+3. Install `libvirt:`
 
    ```
    local@host:~$ sudo add-apt-repository ppa:linuxsimba/libvirt-udp-tunnel
@@ -68,18 +69,11 @@ Performing virtualization in Linux requires three components:
    Do you want to continue? [Y/n] Y
    ```
 
-4. After the installation process is complete, log out, then log back in to verify the `libvirt` version. In this guide, `libvirt` 1.2.16 was verified.
+5. Copy the `qcow2` image onto a Linux server three times to create the three VMs. Name them as follows:
 
-   ```
-   local@host:~# libvirtd --version
-   libvirtd (libvirt) 1.2.16
-   ```
-
-5. Copy the `qcow2` image onto a Linux server four times to create the four VMs. Name them as follows:
-
-   - Leaf01.qcow2
-   - Leaf02.qcow2
-   - Spine01.qcow2
+   - leaf01.qcow2
+   - leaf02.qcow2
+   - spine01.qcow2
 
 6. Power on each VX and configure each one as follows:
 
@@ -150,21 +144,17 @@ sudo /usr/bin/kvm   -curses                             \
 
 {{< /tabs >}}
 
-The QEMU/KVM commands used here are minimal. You can add more parameters, such as `-enable-kvm`, `-serial` or `-monitor`, as needed.
+## Log into the Switches
 
-{{%notice note%}}
-
-If you intend to bridge the switch ports in the VM, place each switch port in the bridge in its own virtual network on the host. Otherwise, you might see this error:
-
-```
-br0: received package on swp1 with own address as source address
-```
-
-{{%/notice%}}
+{{% vx/login %}}
 
 ## Basic Switch Configuration
 
 {{% vx/basic-config %}}
+
+## Verify Configuration
+
+{{% vx/verify-config %}}
 
 ## Next Steps
 

@@ -26,60 +26,37 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 ### Configure GNS3
 
-1. Open the GNS3 application and from the **Preferences** menu, select **GNS3**. From the left pane of the Preferences dialog, select **VirtualBox**.
-2. In the **Path to VBoxManage** field, enter the location where VBoxManage is installed. For example: `/usr/bin/VBoxManage`.
-3. From the left pane, select **VirtualBox VMs**, then click **New**. The **VM list** shows the VirtualBox VMs you set up earlier.
+1. Open the GNS3 application an create a new project.
+
+2. From the **Preferences** menu, select **GNS3**. Then, from the left pane of the Preferences dialog, select **VirtualBox**.
+3. In the **Path to VBoxManage** field, enter the location where VBoxManage is installed. For example: `/usr/bin/VBoxManage`.
+4. From the left pane, select **VirtualBox VMs**, then click **New**. The **VM list** shows the VirtualBox VMs you set up earlier.
 
     {{< figure src = "/images/cumulus-vx/VX_GNS3_new_VBox_VM.png" >}}
 
 5. From the **VM list**, select leaf01, then click **Finish**. The VM you selected appears in the center pane. Repeat this step for leaf02 and spine01.
 
-6. Enable GNS3 to work with the network interfaces of the VirtualBox VMs. Configure the network settings for each VM using the GNS3 interface:
+6. Enable GNS3 to work with the network interfaces of the VirtualBox VMs:
 
-   1. Select a VM in the center pane, then click **Edit**.
+   1. In the center pane, select leaf01 then click **Edit**.
 
    2. In the VirtualBox VM configuration dialog, click the **Network** tab.
 
       {{< img src="/images/cumulus-vx/VX_GNS3_VBox_VM_nwconfig.png" width="300" >}}
 
    3. Increase the number of **Adapters** to *4*.
-   4. Select the **Type** to be *Paravirtualized Network*.
+   4. From the **Type** dropdown, select *Paravirtualized Network*.
    5. Select **Allow GNS3 to use any configured VirtualBox adapter**.
    6. Click **OK** to save your settings and close the dialog.
+   7. Repeat these steps for leaf02 and spine01, then click **OK** to close the Preferences dialog.
 
 ### Create Network Connections
 
-To connect VMs, select the cable icon from the left pane, then select the VMs to connect directly. Select the network interfaces that connect for each VM. `e1` in GNS3 corresponds to `swp1` in Cumulus VX, `e2` corresponds to `swp2`, and so on.
+Create the network connections between leaf01, leaf02, and spine01, then start the switches.
 
-{{< tabs "TabID01 ">}}
+From the GNS3 Management Console, drag leaf01, leaf02, and spine01 to the console. Select the cable icon from the left pane, then connect the leafs and spine by selecting the network interfaces. `e1` in GNS3 corresponds to `swp1` in Cumulus VX, `e2` corresponds to `swp2`, and so on.
 
-{{< tab "leaf01 ">}}
-
-```
-e1<=>e1 spine01
-e2<=>e2 leaf02
-e3<=>e3 leaf02
-```
-
-{{< /tab >}}
-{{< tab "leaf02 ">}}
-
-```
-e1<=>e2 spine01
-e2<=>e2 leaf01  
-e3<=>e3 leaf01
-```
-
-{{< /tab >}}
-{{< tab "spine01 ">}}
-
-```
-e1<=>e1 leaf01  
-e2<=>e1 leaf02
-```
-
-{{< /tab >}}
-{{< /tabs >}}
+{{< img src="/images/cumulus-vx/gns3-network-connections.png" width="500" >}}
 
 ## Log into the Switches
 

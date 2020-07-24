@@ -30,7 +30,7 @@ To configure multicast VXLAN tunnels, you need to configure PIM-SM in the underl
 
 The configuration steps needed to configure PIM-SM in the underlay are provided in {{<link url="Protocol-Independent-Multicast-PIM">}}.
 
-In addition to the PIM-SM configuration, you need to run the following commands on each VTEP to provide the VNI to MDT mapping.
+In addition to the PIM-SM configuration, you need to run the following commands on each VTEP to provide the layer 2 VNI to MDT mapping.
 
 {{< tabs "TabID37 ">}}
 
@@ -70,7 +70,7 @@ cumulus@switch:~$ ifreload -a
 
 {{%notice note%}}
 
-One multicast group per VNI is optimal configuration for underlay bandwidth utilization. However, you can specify the same multicast group for more than one VNI.
+One multicast group per layer 2 VNI is optimal configuration for underlay bandwidth utilization. However, you can specify the same multicast group for more than one layer 2 VNI.
 
 {{%/notice%}}
 
@@ -78,7 +78,7 @@ One multicast group per VNI is optimal configuration for underlay bandwidth util
 
 The following example shows an EVPN-PIM configuration on the VTEP, where:
 
-- PIM is enabled on swp1 and swp2 (shown in the example `/etc/frr/frr.conf` file below).
+- PIM is enabled on swp1, swp2, and the loopback interface (shown in the example `/etc/frr/frr.conf` file below).
 - The group mapping 192.168.0.1 is configured for a static RP (shown at the top of the `/etc/frr/frr.conf` file example below).
 - Multicast group 239.1.1.111 is mapped to VXLAN1000111. Multicast group 239.1.1.112 is mapped to VXLAN1000112 (shown in the example `/etc/network/interfaces` file below).
 
@@ -116,12 +116,7 @@ interface swp3
 interface swp6
  description swp6 > host-112's swp1
 !
-#auto-generated interface
-interface ipmr-lo
- ip pim
-!
 interface lo
- ip igmp
  ip pim
 !
 router bgp 650000
@@ -266,7 +261,7 @@ iface vlan4002
 
 ## Verify EVPN-PIM
 
-Run the NCLU `net show mroute` command or the vtysh `show ip mroute` command to review the multicast route information in FRR:
+Run the NCLU `net show mroute` command or the vtysh `show ip mroute` command to review the multicast route information in FRR. When using EVPN-PIM, every VTEP acts as both source and destination for a VNI-MDT group, therefore, mroute entries on each VTEP should look like this:
 
 ```
 cumulus@switch:~$ net show mroute
@@ -280,6 +275,8 @@ Source          Group           Proto  Input            Output           TTL  Up
 10.0.0.28       239.1.1.112     STAR   lo               ipmr-lo          1    21:36:41
                                 PIM                     swp2             1    21:36:41
 ```
+
+(*,G) entries should show `ipmr-lo` in the OIL (Outgoing Interface List) and (S,G) entries should show `lo` as the Source interface or incoming interface and `ipmr-lo` in the OIL.
 
 Run the `ip mroute` command to review the multicast route information in the kernel. The kernel information should match the FRR information.
 
@@ -304,6 +301,25 @@ cumulus@switch:~$ bridge fdb show | grep 00:00:00:00:00:00
 The `show ip mroute count` command, often used to check multicast packet counts does *not* update for encapsulated BUM traffic originating or terminating on the VTEPs.
 
 {{%/notice%}}
+
+Run the `show evpn vni <vni>` command to ensure that your layer 2 VNI has the correct flooding information:
+
+```
+cumulus@switch:~$ show evpn vni 104002
+VNI: 10
+ Type: L2
+ Tenant VRF: default
+ VxLAN interface: vni104002
+ VxLAN ifIndex: 18
+ Local VTEP IP: 10.0.0.28
+ Mcast group: 239.1.1.112   <<<<<<<
+ Remote VTEPs for this VNI:
+  10.0.0.26 flood: -
+  10.0.0.27 flood: -
+ Number of MACs (local and remote) known for this VNI: 9
+ Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 14
+ Advertise-gw-macip: No
+```
 
 ## Configure EVPN-PIM in VXLAN Active-Active Mode
 

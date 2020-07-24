@@ -7,6 +7,71 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30514</td>
+<td><p>In OVSDB high availability mode, deleting multiple VLAN bindings might cause ovs-vtepd to crash.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30503</td>
+<td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
+<td>3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30486</td>
 <td><p>A host migrated to an 802.1X MAB port within the same broadcast domain fails to have the correct FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.<br/>
 To work around this issue, manually delete the dynamic FDB entry that is associated with the uplink trunk port.</p></td>
@@ -2310,6 +2375,59 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30343</td>
@@ -4883,6 +5001,59 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30343</td>
 <td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
 CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
@@ -7152,6 +7323,59 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30343</td>
@@ -9860,6 +10084,59 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30343</td>
 <td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
 CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
@@ -12436,6 +12713,59 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30343</td>
@@ -15370,6 +15700,59 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30343</td>
 <td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
 CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
@@ -18258,6 +18641,59 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30343</td>
 <td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
 CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
@@ -20813,6 +21249,59 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30343</td>
@@ -23428,6 +23917,59 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30343</td>
@@ -26208,6 +26750,59 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30343</td>
@@ -29112,6 +29707,59 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30343</td>
 <td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
 CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
@@ -31528,6 +32176,59 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30582</td>
+<td><p>The following vulnerability has been announced in glib-networking, which is not installed by default, but is available in the repository for optional installation.<br/>
+CVE-2020-13645: In GNOME glib-networking through 2.64.2, the implementation of GTlsClientConnection skips hostname verification of the server's TLS certificate if the application fails to specify the expected server identity. This is in contrast to its intended documented behavior, to fail the certificate verification. <br/>
+Vulnerable: 2.42.0-2<br/>
+Fixed: 2.42.0-2+deb8u1</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30581</td>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
+Fixed: 1.6.2-5+deb8u7</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30533</td>
+<td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
+Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
+Fixed: 2.1.0-2+deb8u11</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30532</td>
+<td><p>Several issues were discovered in Python 3.4, an interactive high-level object-oriented language, that allow an attacker to cause denial of service, trafic redirection, header injection and cross-site scripting.<br/>
+CVE-2013-1753: The gzip_decode function in the xmlrpc client library allows remote attackers to cause a denial of service (memory consumption) via a crafted HTTP request.<br/>
+CVE-2016-1000110:The CGIHandler class does not protect against the HTTP_PROXY variable name clash in a CGI script, which could allow a remote attacker to redirect HTTP requests.<br/>
+CVE-2019-16935:The documentation XML-RPC server has XSS via the server_title field. This occurs in Lib/xmlrpc/server.py. If set_server_title is called with untrusted input, arbitrary JavaScript can be delivered to clients that visit the http URL for this server.<br/>
+CVE-2019-18348: In urllib2, CRLF injection is possible if the attacker controls a url parameter, as demonstrated by the first argument to urllib.request.urlopen with \r\n (specifically in the host component of a URL) followed by an HTTP header.<br/>
+CVE-2020-8492: Python allows an HTTP server to conduct Regular Expression Denial of Service (ReDoS) attacks against a client because of urllib.request.AbstractBasicAuthHandler catastrophic backtracking.<br/>
+CVE-2020-14422: Lib/ipaddress.py improperly computes hash values in the IPv4Interface and IPv6Interface classes, which might allow a remote attacker to cause a denial of service if an application is affected by the performance of a dictionary containing IPv4Interface or IPv6Interface objects, and this attacker can cause many dictionary entries to be created.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u7<br/>
+Fixed: 3.4.2-1+deb8u8</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30531</td>
+<td><p>Several vulnerabilities where found in Perl's regular expression compiler. An application that compiles untrusted regular expressions could be exploited to cause denial of service or code injection.<br/>
+It is discouraged to allow untrusted regular expressions to be compiled by Perl.<br/>
+CVE-2020-10543: Perl before 5.30.3 on 32-bit platforms allows a heap-based buffer overflow because nested regular expression quantifiers have an integer overflow.<br/>
+CVE-2020-10878: Perl before 5.30.3 has an integer overflow related to mishandling of a "PL_regkind<span class="error">&#91;OP(n)&#93;</span> == NOTHING" situation. A crafted regular expression could lead to malformed bytecode with a possibility of instruction injection.<br/>
+CVE-2020-12723: regcomp.c in Perl before 5.30.3 allows a buffer overflow via a crafted regular expression because of recursive S_study_chunk calls.<br/>
+Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
+Fixed: 5.20.2-3+deb8u13</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30343</td>

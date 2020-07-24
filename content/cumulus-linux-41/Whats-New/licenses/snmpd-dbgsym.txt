@@ -1,1 +1,0 @@
-snmpd-dbgsym has no debian/copyright file

@@ -10,17 +10,17 @@ This section describes how to install and set up Cumulus VX within GNS3 and Virt
 
 These steps were tested with VirtualBox version 6.1.12 and GNS3 version 2.2.11 on macOS version 10.14.6.
 
-## Create VMs and Network Connections
+## Create and Configure the VMs
 
 The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of GNS3 and VirtualBox experience.
 
-### Download the Software
+### Download and Install the Software
 
 1. Download and install {{<exlink url="https://www.virtualbox.org" text="VirtualBox">}}.
 2. Download the {{<exlink url="https://cumulusnetworks.com/cumulus-vx/download/" text="VirtualBox OVA image">}}.
 3. Download and install {{<exlink url="https://www.gns3.com/software" text="GNS3">}}.
 
-### Create the VMs in VirtualBox
+### Create VMs in VirtualBox
 
 {{% vx/virtualbox-steps %}}
 

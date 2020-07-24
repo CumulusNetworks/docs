@@ -9,15 +9,19 @@ This section describes how to install and set up Cumulus VX in VMWare vSphere to
 
 These steps were tested with VMware vSphere (ESXi) Standard version 7.0b on macOS version 10.14.6.
 
-## Create the VMs
+## Create and Configure the VMs
 
 The following procedure describes how to create a VM in VMWare vSphere for each switch in the example topology (Leaf01, Leaf02, and Spine01). This section assumes a basic level of VMWare vSphere experience.
+
+### Download and Install the Software
 
 1. Download and install the VMWare vSphere ESXi hypervisor. Refer to the {{<exlink url="http://www.vmware.com/products/vsphere.html" text="VMWare vSphere documentation">}}.
 
 2. Download the OVA disk image for use with VMware from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}.
 
 3. Download the VMware OVFtools utility from the {{<exlink url="https://my.vmware.com/web/vmware/details?productId=352&downloadGroup=OVFTOOL350" text="VMware downloads page">}} and install it on the client. You can view installation instructions on the VMware website.
+
+### Create the VMs
 
 4. Connect the vSphere client to the vSphere ESXi server using the IP address and user credentials of the ESXi server.
 
@@ -53,13 +57,21 @@ Configure ESXi to use the SATA controller.
 
 {{%/notice%}}
 
-## Create Connections Between VMs
+### Create Network Connections
 
 Add section here
+
+## Log into the Switches
+
+{{% vx/login %}}
 
 ## Basic Switch Configuration
 
 {{% vx/basic-config %}}
+
+## Verify Configuration
+
+{{% vx/verify-config %}}
 
 ## Next Steps
 

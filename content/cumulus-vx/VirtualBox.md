@@ -9,11 +9,11 @@ This section describes how to install and set up Cumulus VX in VirtualBox to cre
 
 These steps were tested with VirtualBox version 6.1.12 on macOS version 10.14.6.
 
-## Create VMs and Network Connections
+## Create and Configure the VMs
 
 The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of VirtualBox experience.
 
-### Download the Software
+### Download and Install the Software
 
 1. Download and install {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox">}}.
 

@@ -15,56 +15,18 @@ This section describes how to install and set up Cumulus VX with KVM/QEMU and Li
 
 These steps were tested with KVM/QEMU version ??? and Libvirt version 6.5.0 on Linux version ???.
 
-## Create the VMs and Network Connections
+## Create and Configure the VMs
 
 The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of Linux and KVM experience.
 
-1. Download and install {{<exlink url="http://www.qemu-project.org/download/" text="QEMU">}}/{{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM">}}.  
+1. Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus VX Qcow2 image for KVM">}}.
 
-2. Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus VX Qcow2 image for KVM">}}.
-
-3. Install `libvirt`:
+2. Run the following commands to install KVM/QEMU and Libvirt:
 
    ```
-   local@host:~$ sudo add-apt-repository ppa:linuxsimba/libvirt-udp-tunnel
-   local@host:~$ sudo apt-get update -y
-   local@host:~$ sudo apt-get install libvirt-bin libvirt-dev qemu-utils qemu
-   local@host:~$ sudo /etc/init.d/libvirt-bin restart
-   ```
-
-   The `linuxsimba`/`libvirt-udp-tunnel` package repository provides an updated `libvirtd` version that includes enhancements required to launch Cumulus VX. The example below shows the installation output:
-
-   ```
-   local@host:~/$ sudo apt-get install libvirt-bin libvirt-dev qemu-utils qemu
-   Reading package lists... Done
-   Building dependency tree
-   Reading state information... Done
-   tree is already the newest version.
-   git is already the newest version.
-   qemu-utils is already the newest version.
-   qemu-utils set to manually installed.
-   The following packages were automatically installed and are no longer required:
-   bsdtar libarchive13 liblzo2-2 libnettle4 linux-headers-4.2.0-34
-   linux-headers-4.2.0-34-generic linux-image-4.2.0-34-generic
-   linux-image-extra-4.2.0-34-generic ruby-childprocess ruby-erubis ruby-ffi
-   ruby-i18n ruby-log4r ruby-net-scp ruby-net-ssh
-   Use 'apt-get autoremove' to remove them.
-   The following extra packages will be installed:
-    libvirt0 python-paramiko python-support qemu-system qemu-system-arm
-    qemu-system-mips qemu-system-misc qemu-system-ppc qemu-system-sparc
-    qemu-user sshpass
-   Suggested packages:
-    radvd lvm2 qemu-user-static samba vde2 openbios-ppc openhackware qemu-slof
-   The following NEW packages will be installed:
-   htop python-paramiko python-support qemu qemu-system qemu-system-arm
-    qemu-system-mips qemu-system-misc qemu-system-ppc qemu-system-sparc
-    qemu-user sshpass
-   The following packages will be upgraded:
-    ansible libvirt-bin libvirt-dev libvirt0
-   4 upgraded, 12 newly installed, 0 to remove and 18 not upgraded.
-   Need to get 31.1 MB of archives.
-   After this operation, 166 MB of additional disk space will be used.
-   Do you want to continue? [Y/n] Y
+   local@host:~$ sudo apt update -y
+   local@host:~$ sudo apt install -qy qemu ebtables dnsmasq-base qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virt-manager python3-pip
+   local@host:~$ sudo apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev
    ```
 
 5. Copy the `qcow2` image onto a Linux server three times to create the three VMs. Name them as follows:

@@ -1,31 +1,29 @@
 ---
-title: KVM
+title: KVM-QEMU
 author: Cumulus Networks
-weight: 25
+weight: 35
 ---
-This section describes how to install and set up Cumulus VX with KVM on a Linux server to create the two leaf and one spine topology shown below.
-
-{{% vx/intro %}}
-
 Performing virtualization in Linux requires three components:
 
 - **Libvirt** provides an abstraction language to define a VM. It uses XML to represent and define the VM.
 - **KVM** works exclusively with QEMU and performs hardware acceleration for x86 VMs with Intel and AMD CPUs. The pair is often called KVM/QEMU or just KVM.
 - **QEMU** is a machine emulator that allows the host machine to emulate the CPU architecture of the guest machine. Because QEMU does not provide hardware acceleration, it works well with KVM.
 
-These steps were tested with KVM version ??? on Linux version ???.
+This section describes how to install and set up Cumulus VX with KVM/QEMU and Libvirt on a Linux server to create the two leaf and one spine topology shown below.
+
+{{% vx/intro %}}
+
+These steps were tested with KVM/QEMU version ??? and Libvirt version 6.5.0 on Linux version ???.
 
 ## Create the VMs and Network Connections
 
 The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of Linux and KVM experience.
 
-For detailed instructions, refer to the {{<exlink url="http://wiki.qemu.org/Main_Page" text="QEMU">}} and {{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM">}} documentation.
-
 1. Download and install {{<exlink url="http://www.qemu-project.org/download/" text="QEMU">}}/{{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM">}}.  
 
 2. Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus VX Qcow2 image for KVM">}}.
 
-3. Install `libvirt:`
+3. Install `libvirt`:
 
    ```
    local@host:~$ sudo add-apt-repository ppa:linuxsimba/libvirt-udp-tunnel

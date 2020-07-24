@@ -1,7 +1,7 @@
 ---
 title: Vagrant and KVM
 author: Cumulus Networks
-weight: 35
+weight: 40
 ---
 Running Cumulus VX with Vagrant and KVM requires four components:
 
@@ -10,25 +10,19 @@ Running Cumulus VX with Vagrant and KVM requires four components:
 - **QEMU** is a machine emulator that can allow the host machine to emulate the CPU architecture of the guest machine. Because QEMU does not provide hardware acceleration, it works well with KVM.
 - **Vagrant** is an orchestration tool that makes it easier to manage groups of VMs by interconnecting them programmatically. Vagrant helps to tie all the components together and provides a user-friendly language to launch suites of VMs. Vagrant allows multiple Cumulus VX VMs to be interconnected to simulate a network. Vagrant also allows Cumulus VX VMs to be interconnected with other VMs (such as Ubuntu or CentOS) to emulate real world networks.
 
-The following sections describe how to install libvirt, KVM/QEMU, and Vagrant on a Linux server.
+This section describes how to install and set up Cumulus VX with KVM/QEMU, Libvirt, and Vagrant on a Linux server to create the two leaf and one spine topology shown below.
 
-## Install libvirt
+{{% vx/intro %}}
 
-1. Check the Linux version of the host. This guide is validated and verified for Ubuntu 16.04 LTS starting from a clean install:
+These steps were tested with KVM/QEMU version ???, Libvirt version 6.5.0, and Vagrant version 2.2.9 on Linux version ???.
 
-   ```
-   user@ubuntubox:~$ lsb_release -a
-   No LSB modules are available.
-   Distributor ID: Ubuntu
-   Description:    Ubuntu 16.04 LTS
-   Release:    16.04
-   Codename:   xenial
+## Create the VMs and Network Connections
 
-   user@ubuntubox:~$ uname -a
-   Linux ubuntubox 4.4.0-22-generic #40-Ubuntu SMP Thu May 12 22:03:46 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
-   ```
+The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of Linux, KVM, and Vagrant experience.
 
-2. Install libvirt and QEMU. The following commands install the necessary components to get libvirt and QEMU operational.
+## Install the Software
+
+1. Install libvirt and QEMU. The following commands install the necessary components to get libvirt and QEMU operational.
 
    ```
    user@ubuntubox:~$ sudo apt-get update -y
@@ -55,16 +49,9 @@ The following sections describe how to install libvirt, KVM/QEMU, and Vagrant on
 
    {{< /expand >}}
 
-3. After the installation completes, log out, then log in and verify the libvirt version.
-
-   ```
-   user@ubuntubox:~$ libvirtd --version
-   libvirtd (libvirt) 1.3.1
-   ```
-
    libvirt versions 1.2.20 or higher have native support for the UDP tunnels, which are used for the point-to-point links in VM simulation.
 
-4. Add your user to the libvirtd group (if not already present) so your user can perform `virsh` commands.
+2. Add your user to the libvirtd group so your user can perform `virsh` commands.
 
    ```
    user@ubuntubox:~$ sudo addgroup libvirtd
@@ -73,7 +60,7 @@ The following sections describe how to install libvirt, KVM/QEMU, and Vagrant on
 
    To apply the new group to your existing user, log out and in again.
 
-5. Confirm that your Linux kernel and BIOS settings permit the use of KVM hardware acceleration.
+3. Confirm that your Linux kernel and BIOS settings permit the use of KVM hardware acceleration.
 
    ```
    user@ubuntubox:~$ kvm-ok
@@ -83,11 +70,9 @@ The following sections describe how to install libvirt, KVM/QEMU, and Vagrant on
 
 After completing these steps, libvirt and KVM/QEMU are installed. The Linux server is now ready to run VMs.
 
-## Install Vagrant
-
 You must install Vagrant **after** you install libvirt. Vagrant might not detect the necessary files if it is installed before libvirt. Cumulus VX requires version 1.7 or later. Version 2.0.2 or later is recommended.
 
-1. Install Vagrant from the `deb` package. Cumulus Networks cannot guarantee the functionality of any version of Vagrant. In this guide, Vagrant version 2.0.2 is used.
+4. Install Vagrant either from the `deb` package or with `dpkg`:
 
    ```
    user@ubuntubox:~$ wget https://releases.hashicorp.com/vagrant/2.0.2/vagrant_2.0.2_x86_64.deb
@@ -101,8 +86,6 @@ You must install Vagrant **after** you install libvirt. Vagrant might not detect
    2018-05-04 09:36:23 (33.1 MB/s) - 'vagrant_2.0.2_x86_64.deb' saved [43678320/43678320]
    ```
 
-2. Install Vagrant using `dpkg`:
-
    ```
    user@ubuntubox:~$ sudo dpkg -i vagrant_2.0.2_x86_64.deb 
    Selecting previously unselected package vagrant.
@@ -110,13 +93,6 @@ You must install Vagrant **after** you install libvirt. Vagrant might not detect
    Preparing to unpack vagrant_2.0.2_x86_64.deb ...
    Unpacking vagrant (1:2.0.2) ...
    Setting up vagrant (1:2.0.2) ...
-   ```
-
-3. Verify the Vagrant version:
-
-   ```
-   user@ubuntubox:~$ vagrant --version
-   Vagrant 2.0.2
    ```
 
 4. Install the necessary plugins for Vagrant:
@@ -160,7 +136,7 @@ You must install Vagrant **after** you install libvirt. Vagrant might not detect
 
 The `libvirt` domain is running. To stop this machine, you can run `vagrant halt`. To destroy the machine, you can run `vagrant destroy`.
 
-## Create the Vagrantfile and Launch KVM Instances
+### Create the Vagrantfile and Launch KVM Instances
 
 1. Create the desired Vagrantfile. Use the Cumulus {{<exlink url="https://github.com/CumulusNetworks/topology_converter" text="topology converter">}} or download the Cumulus-created {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="cldemo-vagrant">}}. The following steps use the cldemo-vagrant topology.
 
@@ -246,9 +222,17 @@ The `libvirt` domain is running. To stop this machine, you can run `vagrant halt
    cumulus@oob-mgmt-server:~$
    ```
 
+## Log into the Switches
+
+{{% vx/login-vagrant %}}
+
 ## Basic Switch Configuration
 
 {{% vx/basic-config %}}
+
+## Verify Configuration
+
+{{% vx/verify-config %}}
 
 ## Next Steps
 

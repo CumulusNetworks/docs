@@ -1,7 +1,7 @@
 ---
 title: Vagrant and VirtualBox
 author: Cumulus Networks
-weight: 30
+weight: 20
 ---
 This section describes how to install and set up Cumulus VX within Vagrant and VirtualBox to create the two leaf and one spine topology shown below.
 
@@ -89,17 +89,7 @@ When using Vagrant with Cumulus VX:
 
 ## Log into the Switches
 
-1. Log into each switch with the `vagrant ssh` command. For example:
-
-   ```
-   local@host:~/vagrant$ vagrant ssh leaf01
-   ```
-
-2. Configure each switch to be able to run NCLU commands without `sudo`:
-
-   ```
-   cumulus@cumulus:mgmt:~$ sudo usermod -a -G netedit vagrant
-   ```
+{{% vx/login-vagrant %}}
 
 ## Basic Switch Configuration
 

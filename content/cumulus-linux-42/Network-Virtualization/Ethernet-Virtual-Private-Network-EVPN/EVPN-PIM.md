@@ -305,11 +305,11 @@ The `show ip mroute count` command, often used to check multicast packet counts 
 Run the `show evpn vni <vni>` command to ensure that your layer 2 VNI has the correct flooding information:
 
 ```
-cumulus@switch:~$ show evpn vni 104002
+cumulus@switch:~$ show evpn vni 10
 VNI: 10
  Type: L2
  Tenant VRF: default
- VxLAN interface: vni104002
+ VxLAN interface: vni10
  VxLAN ifIndex: 18
  Local VTEP IP: 10.0.0.28
  Mcast group: 239.1.1.112   <<<<<<<

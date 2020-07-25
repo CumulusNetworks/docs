@@ -302,10 +302,10 @@ The `show ip mroute count` command, often used to check multicast packet counts 
 
 {{%/notice%}}
 
-Run the `show evpn vni <vni>` command to ensure that your layer 2 VNI has the correct flooding information:
+Run the NCLU `net show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to ensure that your layer 2 VNI has the correct flooding information:
 
 ```
-cumulus@switch:~$ show evpn vni 10
+cumulus@switch:~$ net show evpn vni 10
 VNI: 10
  Type: L2
  Tenant VRF: default

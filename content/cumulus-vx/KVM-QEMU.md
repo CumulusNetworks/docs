@@ -42,20 +42,20 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 {{< tab "leaf01.qcow2 ">}}
 
 ```
-sudo /usr/bin/kvm -curses \
-                  -name leaf01 \
-                  -pidfile leaf01.pid \
-                  -smp 1 \
-                  -m 256 \
-                  -net nic,macaddr=00:01:00:00:01:00,model=virtio \
-                  -net user,net=192.168.0.0/24,hostfwd=tcp::1401-:22 \
-                  -netdev socket,udp=127.0.0.1:1602,localaddr=127.0.0.1:1601,id=dev0 \
-                  -device virtio-net-pci,mac=00:02:00:00:00:01,addr=6.0,multifunction=on,netdev=dev0,id=swp1 \
-                  -netdev socket,udp=127.0.0.1:1606,localaddr=127.0.0.1:1605,id=dev1 \
-                  -device virtio-net-pci,mac=00:02:00:00:00:02,addr=6.1,multifunction=off,netdev=dev1,id=swp2 \
-                  -netdev socket,udp=127.0.0.1:1610,localaddr=127.0.0.1:1609,id=dev2 \
-                  -device virtio-net-pci,mac=00:02:00:00:00:09,addr=6.2,multifunction=off,netdev=dev2,id=swp3\
-                  var/lib/libvirt/images/leaf01.qcow2
+local@host:~$ sudo /usr/bin/kvm -curses \
+                                -name leaf01 \
+                                -pidfile leaf01.pid \
+                                -smp 1 \
+                                -m 256 \
+                                -net nic,macaddr=00:01:00:00:01:00,model=virtio \
+                                -net user,net=192.168.0.0/24,hostfwd=tcp::1401-:22 \
+                                -netdev socket,udp=127.0.0.1:1602,localaddr=127.0.0.1:1601,id=dev0 \
+                                -device virtio-net-pci,mac=00:02:00:00:00:01,addr=6.0,multifunction=on,netdev=dev0,id=swp1 \
+                                -netdev socket,udp=127.0.0.1:1606,localaddr=127.0.0.1:1605,id=dev1 \
+                                -device virtio-net-pci,mac=00:02:00:00:00:02,addr=6.1,multifunction=off,netdev=dev1,id=swp2 \
+                                -netdev socket,udp=127.0.0.1:1610,localaddr=127.0.0.1:1609,id=dev2 \
+                                -device virtio-net-pci,mac=00:02:00:00:00:09,addr=6.2,multifunction=off,netdev=dev2,id=swp3\
+                                /var/lib/libvirt/images/leaf01.qcow2
 ```
 
 {{< /tab >}}
@@ -76,7 +76,7 @@ sudo /usr/bin/kvm   -curses\
                     -device virtio-net-pci,mac=00:02:00:00:00:04,addr=6.1,multifunction=off,netdev=dev1,id=swp2 \
                     -netdev socket,udp=127.0.0.1:1612,localaddr=127.0.0.1:1611,id=dev2 \
                     -device virtio-net-pci,mac=00:02:00:00:00:10,addr=6.2,multifunction=off,netdev=dev2,id=swp3 \
-                    var/lib/libvirt/images/leaf02.qcow2
+                     /var/lib/libvirt/images/leaf02.qcow2
 ```
 
 {{< /tab >}}
@@ -85,19 +85,49 @@ sudo /usr/bin/kvm   -curses\
 
 ```
 sudo /usr/bin/kvm  -curses \
-                    -name spine01 \
-                    -pidfile spine01.pid \
-                    -smp 1 \
-                    -m 256 \
-                    -net nic,macaddr=00:01:00:00:03:00,model=virtio \
-                    -net user,net=192.168.0.0/24,hostfwd=tcp::1403-:22 \
-                    -netdev socket,udp=127.0.0.1:1601,localaddr=127.0.0.1:1602,id=dev0 \
-                    -device virtio-net-pci,mac=00:02:00:00:00:05,addr=6.0,multifunction=on,netdev=dev0,id=swp1\
-                    -netdev socket,udp=127.0.0.1:1603,localaddr=127.0.0.1:1604,id=dev1 \
-                    -device virtio-net-pci,mac=00:02:00:00:00:06,addr=6.1,multifunction=off,netdev=dev1,id=swp2 \
-                    -netdev socket,udp=127.0.0.1:1609,localaddr=127.0.0.1:1610,id=dev2 \
-                    -device virtio-net-pci,mac=00:02:00:00:00:11,addr=6.2,multifunction=off,netdev=dev2,id=swp3 \
-                    spine01.qcow2
+                  -name spine01 \
+                  -pidfile spine01.pid \
+                  -smp 1 \
+                  -m 256 \
+                  -net nic,macaddr=00:01:00:00:03:00,model=virtio \
+                  -net user,net=192.168.0.0/24,hostfwd=tcp::1403-:22 \
+                  -netdev socket,udp=127.0.0.1:1601,localaddr=127.0.0.1:1602,id=dev0 \
+                  -device virtio-net-pci,mac=00:02:00:00:00:05,addr=6.0,multifunction=on,netdev=dev0,id=swp1\
+                  -netdev socket,udp=127.0.0.1:1603,localaddr=127.0.0.1:1604,id=dev1 \
+                  -device virtio-net-pci,mac=00:02:00:00:00:06,addr=6.1,multifunction=off,netdev=dev1,id=swp2 \
+                  -netdev socket,udp=127.0.0.1:1609,localaddr=127.0.0.1:1610,id=dev2 \
+                  -device virtio-net-pci,mac=00:02:00:00:00:11,addr=6.2,multifunction=off,netdev=dev2,id=swp3 \
+                  /var/lib/libvirt/images/spine01.qcow2
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+7. Start each VM:
+
+   {{< tabs "TabID02 ">}}
+
+{{< tab "leaf01.qcow2 ">}}
+
+```
+local@host:~$ virt-install --name=leaf01 --vcpus=1 --memory=768 --os-type=linux --os-variant=generic --disk path=/var/lib/libvirt/images/leaf01.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=bond0,model=virtio -import --noautoconsole
+```
+
+{{< /tab >}}
+
+{{< tab "leaf02.qcow2 ">}}
+
+```
+local@host:~$ virt-install --name=leaf02 --vcpus=1 --memory=768 --os-type=linux --os-variant=generic --disk path=/var/lib/libvirt/images/leaf02.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=bond0,model=virtio -import --noautoconsole
+```
+
+{{< /tab >}}
+
+{{< tab "spine01.qcow2 ">}}
+
+```
+local@host:~$ virt-install --name=spine01 --vcpus=1 --memory=768 --os-type=linux --os-variant=generic --disk path=/var/lib/libvirt/images/spine01.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=bond0,model=virtio -import --noautoconsole
 ```
 
 {{< /tab >}}

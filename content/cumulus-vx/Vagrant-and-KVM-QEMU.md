@@ -14,7 +14,7 @@ This section describes how to install and set up Cumulus VX with KVM/QEMU, Libvi
 
 {{% vx/intro %}}
 
-These steps were tested with KVM/QEMU version 1:4.2-3ubuntu6.3, Libvirt version 6.0.0, and Vagrant version 2.2.9 on Linux version 20.04.
+These steps were tested with KVM/QEMU version 1:4.2-3ubuntu6.3, Libvirt version 6.0.0, and Vagrant version 2.2.9 on Linux Ubuntu version 20.04.
 
 ## Create and Configure the VMs
 
@@ -27,17 +27,10 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 1. Run the following commands to install KVM/QEMU and libvirt.
 
    ```
-   apt update -y
-   apt install -qy qemu ebtables dnsmasq-base qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virt-manager python3-pip
-   apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev
-   #apt-get build-dep ruby-libvirt
-
-   ```
-
-   ```
-   user@ubuntubox:~$ sudo apt-get update -y
-   user@ubuntubox:~$ sudo apt-get install libvirt-bin libvirt-dev qemu-utils qemu
-   user@ubuntubox:~$ sudo /etc/init.d/libvirt-bin restart
+   user@ubuntubox:~$ apt update -y
+   user@ubuntubox:~$ apt install -qy qemu ebtables dnsmasq-base qemu-kvm libvirt-clients libvirt-daemon-system user@ubuntubox:~$ bridge-utils virt-manager python3-pip
+   user@ubuntubox:~$ apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev
+   user@ubuntubox:~$ apt-get build-dep ruby-libvirt
    ```
 
 2. Add your user to the libvirtd group so your user can perform `virsh` commands.
@@ -49,16 +42,11 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
    To apply the new group to your existing user, log out, then log back in.
 
-3. Install Vagrant:
+3. Install Vagrant and the necessary plugins:
 
    ```
    user@ubuntubox: wget https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
    user@ubuntubox: dpkg -i vagrant_2.2.9_x86_64.deb
-   ```
-
-4. Install the necessary plugins for Vagrant:
-
-   ```
    user@ubuntubox: vagrant plugin install vagrant-libvirt
    ```
 
@@ -69,10 +57,10 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    INFO: /dev/kvm exists
    KVM acceleration can be used
    ```
-   
+
 ### Create VMs and Network Connections
 
-{{% vx/vagrant-setup %}}
+PROVIDE INFO
 
 ## Log into the Switches
 

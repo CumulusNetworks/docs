@@ -30,7 +30,6 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    user@ubuntubox:~$ apt update -y
    user@ubuntubox:~$ apt install -qy qemu ebtables dnsmasq-base qemu-kvm libvirt-clients libvirt-daemon-system user@ubuntubox:~$ bridge-utils virt-manager python3-pip
    user@ubuntubox:~$ apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev
-   user@ubuntubox:~$ apt-get build-dep ruby-libvirt
    ```
 
 2. Add your user to the libvirtd group so your user can perform `virsh` commands.

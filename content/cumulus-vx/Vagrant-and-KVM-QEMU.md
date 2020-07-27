@@ -14,7 +14,7 @@ This section describes how to install and set up Cumulus VX with KVM/QEMU, Libvi
 
 {{% vx/intro %}}
 
-These steps were tested with KVM/QEMU version ???, Libvirt version 6.5.0, and Vagrant version 2.2.9 on Linux version ???.
+These steps were tested with KVM/QEMU version 1:4.2-3ubuntu6.3, Libvirt version 6.0.0, and Vagrant version 2.2.9 on Linux version 20.04.
 
 ## Create and Configure the VMs
 
@@ -22,9 +22,17 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 ### Download and Install the Software
 
-1. Run the following commands to install KVM/QEMU, libvirt and Vagrant.
-
    You must install Vagrant **after** you install libvirt. Vagrant might not detect the necessary files if it is installed before libvirt.
+
+1. Run the following commands to install KVM/QEMU and libvirt.
+
+   ```
+   apt update -y
+   apt install -qy qemu ebtables dnsmasq-base qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virt-manager python3-pip
+   apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev
+   #apt-get build-dep ruby-libvirt
+
+   ```
 
    ```
    user@ubuntubox:~$ sudo apt-get update -y
@@ -39,8 +47,29 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    user@ubuntubox:~$ sudo usermod -a -G libvirtd USERNAME
    ```
 
-   To apply the new group to your existing user, log out and in again.
+   To apply the new group to your existing user, log out, then log back in.
 
+3. Install Vagrant:
+
+   ```
+   user@ubuntubox: wget https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
+   user@ubuntubox: dpkg -i vagrant_2.2.9_x86_64.deb
+   ```
+
+4. Install the necessary plugins for Vagrant:
+
+   ```
+   user@ubuntubox: vagrant plugin install vagrant-libvirt
+   ```
+
+5. Confirm that your Linux kernel and BIOS settings permit the use of KVM hardware acceleration.
+
+   ```
+   user@ubuntubox:~$ kvm-ok
+   INFO: /dev/kvm exists
+   KVM acceleration can be used
+   ```
+   
 ### Create VMs and Network Connections
 
 {{% vx/vagrant-setup %}}

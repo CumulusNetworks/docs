@@ -5,15 +5,15 @@ weight: 35
 ---
 Performing virtualization in Linux requires three components:
 
-- **Libvirt** provides an abstraction language to define a VM. It uses XML to represent and define the VM.
 - **KVM** works exclusively with QEMU and performs hardware acceleration for x86 VMs with Intel and AMD CPUs. The pair is often called KVM/QEMU or just KVM.
 - **QEMU** is a machine emulator that allows the host machine to emulate the CPU architecture of the guest machine. Because QEMU does not provide hardware acceleration, it works well with KVM.
+- **Libvirt** provides an abstraction language to define a VM. It uses XML to represent and define the VM.
 
 This section describes how to install and set up Cumulus VX with KVM/QEMU and Libvirt on a Linux server to create the two leaf and one spine topology shown below.
 
 {{% vx/intro %}}
 
-These steps were tested with KVM/QEMU version ??? and Libvirt version 6.5.0 on Linux version ???.
+These steps were tested with KVM/QEMU version 1:4.2-3ubuntu6.3 and Libvirt version 6.0.0 on Linux version 20.04.
 
 ## Create and Configure the VMs
 
@@ -21,7 +21,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 1. Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus VX Qcow2 image for KVM">}}.
 
-2. Run the following commands to install KVM/QEMU and Libvirt:
+2. Run the following commands to install KVM, QEMU and Libvirt:
 
    ```
    local@host:~$ sudo apt update -y
@@ -35,39 +35,39 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    - leaf02.qcow2
    - spine01.qcow2
 
-6. Power on each VX and configure each one as follows:
+6. Run the following commands to configure each VM:
 
    {{< tabs "TabID01 ">}}
 
-   {{< tab "leaf01.qcow2 ">}}
+{{< tab "leaf01.qcow2 ">}}
 
 ```
-sudo /usr/bin/kvm   -curses                             \
-                    -name leaf01                       \
-                    -pidfile leaf01.pid                \
-                    -smp 1                              \
-                    -m 256                              \
-                    -net nic,vlan=10,macaddr=00:01:00:00:01:00,model=virtio \
-                    -net user,vlan=10,net=192.168.0.0/24,hostfwd=tcp::1401-:22 \
-                    -netdev socket,udp=127.0.0.1:1602,localaddr=127.0.0.1:1601,id=dev0 \
-                    -device virtio-net-pci,mac=00:02:00:00:00:01,addr=6.0,multifunction=on,netdev=dev0,id=swp1 \
-                    -netdev socket,udp=127.0.0.1:1606,localaddr=127.0.0.1:1605,id=dev1 \
-                    -device virtio-net-pci,mac=00:02:00:00:00:02,addr=6.1,multifunction=off,netdev=dev1,id=swp2 \
-                    -netdev socket,udp=127.0.0.1:1610,localaddr=127.0.0.1:1609,id=dev2 \
-                    -device virtio-net-pci,mac=00:02:00:00:00:09,addr=6.2,multifunction=off,netdev=dev2,id=swp3 \
-                    leaf01.qcow2
-   ```
+sudo /usr/bin/kvm -curses \
+                  -name leaf01 \
+                  -pidfile leaf01.pid \
+                  -smp 1 \
+                  -m 256 \
+                  -net nic,macaddr=00:01:00:00:01:00,model=virtio \
+                  -net user,net=192.168.0.0/24,hostfwd=tcp::1401-:22 \
+                  -netdev socket,udp=127.0.0.1:1602,localaddr=127.0.0.1:1601,id=dev0 \
+                  -device virtio-net-pci,mac=00:02:00:00:00:01,addr=6.0,multifunction=on,netdev=dev0,id=swp1 \
+                  -netdev socket,udp=127.0.0.1:1606,localaddr=127.0.0.1:1605,id=dev1 \
+                  -device virtio-net-pci,mac=00:02:00:00:00:02,addr=6.1,multifunction=off,netdev=dev1,id=swp2 \
+                  -netdev socket,udp=127.0.0.1:1610,localaddr=127.0.0.1:1609,id=dev2 \
+                  -device virtio-net-pci,mac=00:02:00:00:00:09,addr=6.2,multifunction=off,netdev=dev2,id=swp3\
+                  var/lib/libvirt/images/leaf01.qcow2
+```
 
 {{< /tab >}}
 
 {{< tab "leaf02.qcow2 ">}}
 
 ```
-sudo /usr/bin/kvm   -curses                             \
-                    -name leaf02                       \
-                    -pidfile leaf02.pid                \
-                    -smp 1                              \
-                    -m 256                              \
+sudo /usr/bin/kvm   -curses\
+                    -name leaf02\
+                    -pidfile leaf02.pid\
+                    -smp 1\
+                    -m 256\
                     -net nic,vlan=10,macaddr=00:01:00:00:02:00,model=virtio \
                     -net user,vlan=10,net=192.168.0.0/24,hostfwd=tcp::1402-:22 \
                     -netdev socket,udp=127.0.0.1:1604,localaddr=127.0.0.1:1603,id=dev0 \
@@ -76,7 +76,7 @@ sudo /usr/bin/kvm   -curses                             \
                     -device virtio-net-pci,mac=00:02:00:00:00:04,addr=6.1,multifunction=off,netdev=dev1,id=swp2 \
                     -netdev socket,udp=127.0.0.1:1612,localaddr=127.0.0.1:1611,id=dev2 \
                     -device virtio-net-pci,mac=00:02:00:00:00:10,addr=6.2,multifunction=off,netdev=dev2,id=swp3 \
-                    leaf02.qcow2
+                    var/lib/libvirt/images/leaf02.qcow2
 ```
 
 {{< /tab >}}
@@ -84,15 +84,15 @@ sudo /usr/bin/kvm   -curses                             \
 {{< tab "spine01.qcow2 ">}}
 
 ```
-sudo /usr/bin/kvm   -curses                             \
-                    -name spine01                       \
-                    -pidfile spine01.pid                \
-                    -smp 1                              \
-                    -m 256                              \
-                    -net nic,vlan=10,macaddr=00:01:00:00:03:00,model=virtio \
-                    -net user,vlan=10,net=192.168.0.0/24,hostfwd=tcp::1403-:22 \
+sudo /usr/bin/kvm  -curses \
+                    -name spine01 \
+                    -pidfile spine01.pid \
+                    -smp 1 \
+                    -m 256 \
+                    -net nic,macaddr=00:01:00:00:03:00,model=virtio \
+                    -net user,net=192.168.0.0/24,hostfwd=tcp::1403-:22 \
                     -netdev socket,udp=127.0.0.1:1601,localaddr=127.0.0.1:1602,id=dev0 \
-                    -device virtio-net-pci,mac=00:02:00:00:00:05,addr=6.0,multifunction=on,netdev=dev0,id=swp1 \
+                    -device virtio-net-pci,mac=00:02:00:00:00:05,addr=6.0,multifunction=on,netdev=dev0,id=swp1\
                     -netdev socket,udp=127.0.0.1:1603,localaddr=127.0.0.1:1604,id=dev1 \
                     -device virtio-net-pci,mac=00:02:00:00:00:06,addr=6.1,multifunction=off,netdev=dev1,id=swp2 \
                     -netdev socket,udp=127.0.0.1:1609,localaddr=127.0.0.1:1610,id=dev2 \

@@ -200,7 +200,7 @@ logging.
     2019-02-16T18:48:54.260903+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url hydra-09.cumulusnetworks.com port 4786
     ...
 
-**Example: Configure debug-level logging**
+### Example: Configure Debug-level Logging
 
 1.  Set the logging level to *debug.*
 
@@ -213,12 +213,12 @@ logging.
 3.  Optionally, verify connection to the NetQ platform by viewing the
     `netq-agent.log` messages.
 
-**Example: Configure warning-level logging**
+### Example: Configure Warning-level Logging
 
     cumulus@switch:~$ netq config add agent loglevel warning
     cumulus@switch:~$ netq config restart agent
 
-**Example: Disable Agent Logging**
+### Example: Disable Agent Logging
 
 If you have set the logging level to
 *debug* for troubleshooting, it is recommended that you either change

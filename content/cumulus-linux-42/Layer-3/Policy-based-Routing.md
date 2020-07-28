@@ -107,7 +107,7 @@ You can only set one policy per interface.
 
 {{< tab "vtysh Commands ">}}
 
-1. Before you run the vtysh commands, you need to enable the `pbrd` service in the `/etc/frr/daemons` file, then restart FRR with the `systemctl restart frr.service` command.
+1. Before you run the vtysh commands, you need to enable the `pbrd` service in the `/etc/frr/daemons` file, then restart FRRouting with the `systemctl restart frr.service` command.
 
     ```
     cumulus@leaf01:~$ sudo nano /etc/frr/daemons

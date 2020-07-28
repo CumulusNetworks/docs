@@ -16,7 +16,7 @@ It helps answer questions such as:
 - Is my control plane configured correctly?
 - Can device A reach device B?
 
-## Monitor Virtual Extensible LANs
+## Monitor VXLANs
 
 Virtual Extensible LANs (VXLANs) provide a way to create a virtual
 network on top of layer 2 and layer 3 technologies. It is intended for

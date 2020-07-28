@@ -356,7 +356,7 @@ Ip: 10.0.0.4
 cumulus@leaf01:~$
 ```
 
-## Show the VRF Routing Table in FRR
+## Show the VRF Routing Table in FRRouting
 
 Run the `net show route vrf <vrf-name>` command to examine the VRF routing table. In the context of EVPN, this command is relevant for symmetric routing to verify that remote host and prefix routes are installed in the VRF routing table and point to the appropriate gateway next hop.
 
@@ -639,7 +639,7 @@ Paths: (1 available, best #1)
 Displayed 1 paths for requested prefix
 ```
 
-## Enable FRR Debug Logs
+## Enable FRRouting Debug Logs
 
 To troubleshoot EVPN, enable FRR debug logs. The relevant debug options are:
 

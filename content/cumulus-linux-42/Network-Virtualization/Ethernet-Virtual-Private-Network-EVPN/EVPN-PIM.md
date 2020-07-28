@@ -76,7 +76,7 @@ One multicast group per layer 2 VNI is optimal configuration for underlay bandwi
 
 ## Verify EVPN-PIM
 
-Run the NCLU `net show mroute` command or the vtysh `show ip mroute` command to review the multicast route information in FRR. When using EVPN-PIM, every VTEP acts as both source and destination for a VNI-MDT group, therefore, mroute entries on each VTEP should look like this:
+Run the NCLU `net show mroute` command or the vtysh `show ip mroute` command to review the multicast route information in FRRouting. When using EVPN-PIM, every VTEP acts as both source and destination for a VNI-MDT group, therefore, mroute entries on each VTEP should look like this:
 
 ```
 cumulus@switch:~$ net show mroute

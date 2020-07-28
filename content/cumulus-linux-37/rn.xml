@@ -17,7 +17,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
@@ -2387,7 +2387,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
@@ -5011,7 +5011,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
@@ -7335,7 +7335,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
@@ -10094,7 +10094,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
@@ -12725,7 +12725,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
@@ -15710,7 +15710,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
@@ -18651,7 +18651,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
@@ -21261,7 +21261,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
@@ -23929,7 +23929,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
@@ -26762,7 +26762,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
@@ -29717,7 +29717,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>
@@ -32188,7 +32188,7 @@ Fixed: 2.42.0-2+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-30581</td>
-<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux:<br/>
+<td><p>The following vulnerabilities have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default nginx configuration is not vulnerable, since it does not configure error_page redirection or use lua):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
 Vulnerable: &lt;= 1.6.2-5+deb8u6<br/>

@@ -89,6 +89,13 @@ To workaround this issue, downgrade to Cumulus Linux 3.7 ESR.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-30414</td>
+<td><p>If you toggle VRRP priority values between VRRP routers, then run a switchd restart, a few IPv6 VRRP instances might not converge. As a result, both the VRRP routers act as <em>master</em> routers for the impacted IPv6 VRRP instances. IPv4 VRRP instances are not affected.<br/>
+To work around this issue, remove, then add the VRRP configuration with NCLU commands or vtysh in FRR.</p></td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30394</td>
 <td><p>After adding an interface to a VRF, the routing information field (RIF) is missing.</p></td>
 <td>4.2.0</td>

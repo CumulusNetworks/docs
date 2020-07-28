@@ -290,7 +290,7 @@ cumulus@switch:~$ sudo nano /etc/default/lldpd
 DAEMON_ARGS="-c"
 ```
 
-## Caveats and Errata
+## Considerations
 
 Annex E (and hence Annex D) of IEEE802.1AB (lldp) is not supported.
 

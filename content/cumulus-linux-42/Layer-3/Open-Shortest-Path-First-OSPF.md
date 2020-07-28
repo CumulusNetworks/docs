@@ -92,7 +92,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "vtysh Commands ">}}
 
-1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configuring-FRRouting">}}.
+1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
 
 2. From the vtysh shell, configure OSPF.
 
@@ -575,7 +575,7 @@ router ospf 22
 
 {{%notice note%}}
 
-If you disable the {{<link url="Configuring-FRRouting" text="integrated">}} FRRouting configuration, you must create a separate `ospfd` configuration file for each instance. The `ospfd.conf` file must include the instance ID in the file name. For example, create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
+If you disable the {{<link url="Configure-FRRouting" text="integrated">}} FRRouting configuration, you must create a separate `ospfd` configuration file for each instance. The `ospfd.conf` file must include the instance ID in the file name. For example, create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
 
 ```
 cumulus@switch:~$ cat /etc/frr/ospfd-11.conf

@@ -625,7 +625,6 @@ net add vxlan vx-4003 vxlan id 4003
 net add bond hostbond1 alias Local Node/s leaf01 and Ports swp5 <==> Remote Node/s host01 and Ports swp1
 net add bond hostbond1,4 bridge pvid 1000
 net add bond hostbond1-4 bond mode 802.3ad
-net add bond hostbond1-4 mtu 9152
 net add bond hostbond2 alias Local Node/s leaf01 and Ports swp6 <==> Remote Node/s host02 and Ports swp1
 net add bond hostbond2 bridge pvid 1001
 net add bond hostbond3 alias Local Node/s leaf01 and Ports swp7 <==> Remote Node/s host03 and Ports swp1
@@ -642,8 +641,6 @@ net add interface eth0 ip address 192.168.0.15/24
 net add interface eth0 ip gateway 192.168.0.2
 net add interface eth0 vrf mgmt
 net add interface swp1 alias Local Node leaf01 and Ports swp1 <==> Remote Node/s spine01 and Ports swp1
-net add interface swp1-4 mtu 9202
-net add interface swp1-8 link speed 10000
 net add interface swp2 alias Local Node leaf01 and Ports swp2 <==> Remote Node/s spine01 and Ports swp2
 net add interface swp3 alias Local Node leaf01 and Ports swp3 <==> Remote Node/s spine02 and Ports swp1
 net add interface swp4 alias Local Node leaf01 and Ports swp4 <==> Remote Node/s spine02 and Ports swp2
@@ -735,7 +732,6 @@ net add vxlan vx-1000 bridge access 1000
 net add vxlan vx-1000 vxlan mcastgrp 239.1.1.100
 net add vxlan vx-1000-1009,4001-4003 bridge arp-nd-suppress on
 net add vxlan vx-1000-1009,4001-4003 bridge learning off
-net add vxlan vx-1000-1009,4001-4003 mtu 9152
 net add vxlan vx-1000-1009,4001-4003 stp bpduguard
 net add vxlan vx-1000-1009,4001-4003 stp portbpdufilter
 net add vxlan vx-1000-1009,4001-4003 vxlan local-tunnelip 172.16.0.21
@@ -978,7 +974,6 @@ net add vxlan vx-4003 vxlan id 4003
 net add bond hostbond1 alias Local Node/s leaf02 and Ports swp5 <==> Remote Node/s host01 and Ports swp2
 net add bond hostbond1,4 bridge pvid 1000
 net add bond hostbond1-4 bond mode 802.3ad
-net add bond hostbond1-4 mtu 9152
 net add bond hostbond2 alias Local Node/s leaf02 and Ports swp6 <==> Remote Node/s host02 and Ports swp2
 net add bond hostbond2 bridge pvid 1001
 net add bond hostbond3 alias Local Node/s leaf02 and Ports swp7 <==> Remote Node/s host03 and Ports swp2
@@ -993,8 +988,6 @@ net add interface eth0 ip address 192.168.0.15/24
 net add interface eth0 ip gateway 192.168.0.2
 net add interface eth0 vrf mgmt
 net add interface swp1 alias Local Node leaf02 and Ports swp1 <==> Remote Node/s spine01 and Ports swp3
-net add interface swp1-4 mtu 9202
-net add interface swp1-8 link speed 10000
 net add interface swp2 alias Local Node leaf02 and Ports swp2 <==> Remote Node/s spine01 and Ports swp4
 net add interface swp3 alias Local Node leaf02 and Ports swp3 <==> Remote Node/s spine02 and Ports swp3
 net add interface swp4 alias Local Node leaf02 and Ports swp4 <==> Remote Node/s spine02 and Ports swp4
@@ -1086,7 +1079,6 @@ net add vxlan vx-1000 bridge access 1000
 net add vxlan vx-1000 vxlan mcastgrp 239.1.1.100
 net add vxlan vx-1000-1009,4001-4003 bridge arp-nd-suppress on
 net add vxlan vx-1000-1009,4001-4003 bridge learning off
-net add vxlan vx-1000-1009,4001-4003 mtu 9152
 net add vxlan vx-1000-1009,4001-4003 stp bpduguard
 net add vxlan vx-1000-1009,4001-4003 stp portbpdufilter
 net add vxlan vx-1000-1009,4001-4003 vxlan local-tunnelip 172.16.0.22
@@ -1352,7 +1344,6 @@ net add vxlan vx-4003 vxlan id 4003
 net add bond hostbond1 alias Local Node/s leaf03 and Ports swp5 <==> Remote Node/s host01 and Ports swp3
 net add bond hostbond1,4 bridge pvid 1000
 net add bond hostbond1-4 bond mode 802.3ad
-net add bond hostbond1-4 mtu 9152
 net add bond hostbond2 alias Local Node/s leaf03 and Ports swp6 <==> Remote Node/s host02 and Ports swp3
 net add bond hostbond2 bridge pvid 1001
 net add bond hostbond3 alias Local Node/s leaf03 and Ports swp7 <==> Remote Node/s host03 and Ports swp3
@@ -1366,8 +1357,6 @@ net add interface eth0 ip address 192.168.0.15/24
 net add interface eth0 ip gateway 192.168.0.2
 net add interface eth0 vrf mgmt
 net add interface swp1 alias Local Node leaf03 and Ports swp1 <==> Remote Node/s spine01 and Ports swp5
-net add interface swp1-4 mtu 9202
-net add interface swp1-8 link speed 10000
 net add interface swp2 alias Local Node leaf03 and Ports swp2 <==> Remote Node/s spine01 and Ports swp6
 net add interface swp3 alias Local Node leaf03 and Ports swp3 <==> Remote Node/s spine02 and Ports swp5
 net add interface swp4 alias Local Node leaf03 and Ports swp4 <==> Remote Node/s spine02 and Ports swp6
@@ -1459,7 +1448,6 @@ net add vxlan vx-1000 bridge access 1000
 net add vxlan vx-1000 vxlan mcastgrp 239.1.1.100
 net add vxlan vx-1000-1009,4001-4003 bridge arp-nd-suppress on
 net add vxlan vx-1000-1009,4001-4003 bridge learning off
-net add vxlan vx-1000-1009,4001-4003 mtu 9152
 net add vxlan vx-1000-1009,4001-4003 stp bpduguard
 net add vxlan vx-1000-1009,4001-4003 stp portbpdufilter
 net add vxlan vx-1000-1009,4001-4003 vxlan local-tunnelip 172.16.0.23
@@ -1713,8 +1701,6 @@ net add interface eth0 ip address 192.168.0.15/24
 net add interface eth0 ip gateway 192.168.0.2
 net add interface eth0 vrf mgmt
 net add interface swp1 alias Local Node spine01 and Ports swp1 <==> Remote Node/s leaf01 and Ports swp1
-net add interface swp1-6 link speed 10000
-net add interface swp1-6 mtu 9202
 net add interface swp2 alias Local Node spine01 and Ports swp2 <==> Remote Node/s leaf01 and Ports swp2
 net add interface swp3 alias Local Node spine01 and Ports swp3 <==> Remote Node/s leaf02 and Ports swp1
 net add interface swp4 alias Local Node spine01 and Ports swp4 <==> Remote Node/s leaf02 and Ports swp2
@@ -1933,8 +1919,6 @@ net add interface eth0 ip address 192.168.0.15/24
 net add interface eth0 ip gateway 192.168.0.2
 net add interface eth0 vrf mgmt
 net add interface swp1 alias Local Node spine02 and Ports swp1 <==> Remote Node/s leaf01 and Ports swp3
-net add interface swp1-16 link speed 10000
-net add interface swp1-16 mtu 9202
 net add interface swp2 alias Local Node spine02 and Ports swp2 <==> Remote Node/s leaf01 and Ports swp4
 net add interface swp3 alias Local Node spine02 and Ports swp3 <==> Remote Node/s leaf02 and Ports swp3
 net add interface swp4 alias Local Node spine02 and Ports swp4 <==> Remote Node/s leaf02 and Ports swp4
@@ -2110,100 +2094,68 @@ iface lo
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf01 and Ports swp1 <==> Remote  Node/s spine01 and Ports swp1
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf01 and Ports swp2 <==> Remote  Node/s spine01 and Ports swp2
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf01 and Ports swp3 <==> Remote  Node/s spine02 and Ports swp1
 
 auto swp4
 iface swp4
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf01 and Ports swp4 <==> Remote  Node/s spine02 and Ports swp2
 
 auto swp5
 iface swp5
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp6
 iface swp6
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp7
 iface swp7
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp8
 iface swp8
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto hostbond1
 iface hostbond1
-        bond-slaves swp5
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp5
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf01 and Ports swp5 <==> Remote  Node/s host01 and Ports swp1
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1000
 
 auto hostbond2
 iface hostbond2
-        bond-slaves swp6
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp6
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf01 and Ports swp6 <==> Remote  Node/s host02 and Ports swp1
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1001
 
 auto hostbond3
 iface hostbond3
-        bond-slaves swp7
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp7
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf01 and Ports swp7 <==> Remote  Node/s host03 and Ports swp1
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1002
 
 auto hostbond4
 iface hostbond4
-        bond-slaves swp8
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp8
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf01 and Ports swp8 <==> Remote  Node/s host04 and Ports swp1
     bridge-pvid 1000
 
@@ -2215,9 +2167,8 @@ iface vx-1000
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.100
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1001
 iface vx-1001
@@ -2227,9 +2178,8 @@ iface vx-1001
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.101
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1002
 iface vx-1002
@@ -2239,9 +2189,8 @@ iface vx-1002
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.102
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1003
 iface vx-1003
@@ -2251,9 +2200,8 @@ iface vx-1003
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.103
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1004
 iface vx-1004
@@ -2263,9 +2211,8 @@ iface vx-1004
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.104
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1005
 iface vx-1005
@@ -2275,9 +2222,8 @@ iface vx-1005
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.105
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1006
 iface vx-1006
@@ -2287,9 +2233,8 @@ iface vx-1006
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.106
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1007
 iface vx-1007
@@ -2299,9 +2244,8 @@ iface vx-1007
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.107
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1008
 iface vx-1008
@@ -2311,9 +2255,8 @@ iface vx-1008
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.108
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1009
 iface vx-1009
@@ -2323,9 +2266,8 @@ iface vx-1009
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.109
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-4001
 iface vx-4001
@@ -2336,7 +2278,6 @@ iface vx-4001
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
-    mtu 9152
 
 auto vx-4002
 iface vx-4002
@@ -2347,7 +2288,6 @@ iface vx-4002
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
-    mtu 9152
 
 auto vx-4003
 iface vx-4003
@@ -2358,7 +2298,6 @@ iface vx-4003
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
-    mtu 9152
 
 auto bridge
 iface bridge
@@ -2518,100 +2457,68 @@ iface lo
     alias BGP un-numbered Use for Vxlan Src Tunnel
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf02 and Ports swp1 <==> Remote  Node/s spine01 and Ports swp3
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf02 and Ports swp2 <==> Remote  Node/s spine01 and Ports swp4
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf02 and Ports swp3 <==> Remote  Node/s spine02 and Ports swp3
 
 auto swp4
 iface swp4
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf02 and Ports swp4 <==> Remote  Node/s spine02 and Ports swp4
 
 auto swp5
 iface swp5
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp6
 iface swp6
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp7
 iface swp7
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp8
 iface swp8
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto hostbond1
 iface hostbond1
-        bond-slaves swp5
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp5
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf02 and Ports swp5 <==> Remote  Node/s host01 and Ports swp2
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1000
 
 auto hostbond2
 iface hostbond2
-        bond-slaves swp6
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp6
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf02 and Ports swp6 <==> Remote  Node/s host02 and Ports swp2
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1001
 
 auto hostbond3
 iface hostbond3
-        bond-slaves swp7
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp7
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf02 and Ports swp7 <==> Remote  Node/s host03 and Ports swp2
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1002
 
 auto hostbond4
 iface hostbond4
-        bond-slaves swp8
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp8
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf02 and Ports swp8 <==> Remote  Node/s host04 and Ports swp1
     bridge-pvid 1000
 
@@ -2623,9 +2530,8 @@ iface vx-1000
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.100
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1001
 iface vx-1001
@@ -2635,9 +2541,8 @@ iface vx-1001
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.101
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1002
 iface vx-1002
@@ -2647,9 +2552,8 @@ iface vx-1002
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.102
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1003
 iface vx-1003
@@ -2659,9 +2563,8 @@ iface vx-1003
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.103
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1004
 iface vx-1004
@@ -2671,9 +2574,8 @@ iface vx-1004
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.104
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1005
 iface vx-1005
@@ -2683,9 +2585,8 @@ iface vx-1005
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.105
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1006
 iface vx-1006
@@ -2695,9 +2596,8 @@ iface vx-1006
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.106
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1007
 iface vx-1007
@@ -2707,9 +2607,8 @@ iface vx-1007
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.107
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1008
 iface vx-1008
@@ -2719,9 +2618,8 @@ iface vx-1008
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.108
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1009
 iface vx-1009
@@ -2731,9 +2629,8 @@ iface vx-1009
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.109
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-4001
 iface vx-4001
@@ -2744,7 +2641,6 @@ iface vx-4001
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
-    mtu 9152
 
 auto vx-4002
 iface vx-4002
@@ -2755,7 +2651,6 @@ iface vx-4002
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
-    mtu 9152
 
 auto vx-4003
 iface vx-4003
@@ -2766,7 +2661,6 @@ iface vx-4003
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
-    mtu 9152
 
 auto bridge
 iface bridge
@@ -2926,100 +2820,68 @@ iface lo
     alias BGP un-numbered Use for Vxlan Src Tunnel
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf03 and Ports swp1 <==> Remote  Node/s spine01 and Ports swp5
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf03 and Ports swp2 <==> Remote  Node/s spine01 and Ports swp6
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf03 and Ports swp3 <==> Remote  Node/s spine02 and Ports swp5
 
 auto swp4
 iface swp4
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf03 and Ports swp4 <==> Remote  Node/s spine02 and Ports swp6
 
 auto swp5
 iface swp5
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp6
 iface swp6
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp7
 iface swp7
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp8
 iface swp8
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto hostbond1
 iface hostbond1
-        bond-slaves swp5
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp5
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf03 and Ports swp5 <==> Remote  Node/s host01 and Ports swp3
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1000
 
 auto hostbond2
 iface hostbond2
-        bond-slaves swp6
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp6
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf03 and Ports swp6 <==> Remote  Node/s host02 and Ports swp3
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1001
 
 auto hostbond3
 iface hostbond3
-        bond-slaves swp7
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp7
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf03 and Ports swp7 <==> Remote  Node/s host03 and Ports swp3
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1002
 
 auto hostbond4
 iface hostbond4
-        bond-slaves swp8
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp8
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf03 and Ports swp8 <==> Remote  Node/s host04 and Ports swp1
     bridge-pvid 1000
 
@@ -3031,9 +2893,8 @@ iface vx-1000
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.100
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1001
 iface vx-1001
@@ -3043,9 +2904,8 @@ iface vx-1001
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.101
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1002
 iface vx-1002
@@ -3055,9 +2915,8 @@ iface vx-1002
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.102
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1003
 iface vx-1003
@@ -3067,9 +2926,8 @@ iface vx-1003
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.103
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1004
 iface vx-1004
@@ -3079,9 +2937,8 @@ iface vx-1004
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.104
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1005
 iface vx-1005
@@ -3091,9 +2948,8 @@ iface vx-1005
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.105
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1006
 iface vx-1006
@@ -3103,9 +2959,8 @@ iface vx-1006
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.106
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1007
 iface vx-1007
@@ -3115,9 +2970,8 @@ iface vx-1007
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.107
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1008
 iface vx-1008
@@ -3127,9 +2981,8 @@ iface vx-1008
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.108
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1009
 iface vx-1009
@@ -3139,9 +2992,8 @@ iface vx-1009
     bridge-learning off
     bridge-arp-nd-suppress on
     vxlan-mcastgrp 239.1.1.109
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-4001
 iface vx-4001
@@ -3152,7 +3004,6 @@ iface vx-4001
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
-    mtu 9152
 
 auto vx-4002
 iface vx-4002
@@ -3163,7 +3014,6 @@ iface vx-4002
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
-    mtu 9152
 
 auto vx-4003
 iface vx-4003
@@ -3174,7 +3024,6 @@ iface vx-4003
     bridge-arp-nd-suppress on
     mstpctl-portbpdufilter yes
     mstpctl-bpduguard  yes
-    mtu 9152
 
 auto bridge
 iface bridge
@@ -3337,50 +3186,26 @@ iface lo
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine01 and Ports swp1 <==> Remote  Node/s leaf01 and Ports swp1
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine01 and Ports swp2 <==> Remote  Node/s leaf01 and Ports swp2
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine01 and Ports swp3 <==> Remote  Node/s leaf02 and Ports swp1
 
 auto swp4
 iface swp4
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine01 and Ports swp4 <==> Remote  Node/s leaf02 and Ports swp2
 
 auto swp5
 iface swp5
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine01 and Ports swp5 <==> Remote  Node/s leaf03 and Ports swp1
 
 auto swp6
 iface swp6
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine01 and Ports swp6 <==> Remote  Node/s leaf03 and Ports swp2
 
 cumulus@spine01:~$
@@ -3416,50 +3241,26 @@ iface lo
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine02 and Ports swp1 <==> Remote  Node/s leaf01 and Ports swp3
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine02 and Ports swp2 <==> Remote  Node/s leaf01 and Ports swp4
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine02 and Ports swp3 <==> Remote  Node/s leaf02 and Ports swp3
 
 auto swp4
 iface swp4
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine02 and Ports swp4 <==> Remote  Node/s leaf02 and Ports swp4
 
 auto swp5
 iface swp5
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine02 and Ports swp5 <==> Remote  Node/s leaf03 and Ports swp3
 
 auto swp6
 iface swp6
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine02 and Ports swp6 <==> Remote  Node/s leaf03 and Ports swp4
 
 cumulus@spine02:~$
@@ -3493,31 +3294,21 @@ iface lo inet loopback
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto torbond1
 iface torbond1
     address 172.20.0.9/24
     address 2001:db8::9/64
-        bond-slaves swp1 swp2 swp3
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp1 swp2 swp3
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s host01 and Ports swp1 swp2 swp3 <==> Remote  Node/s leaf01 leaf02 leaf03 and Ports swp5 swp5 swp5
     post-up ip route replace default via 172.20.0.1 dev torbond1
     post-up ip -6 route replace default via 2001:db8::1 dev torbond1
@@ -3670,31 +3461,21 @@ iface lo inet loopback
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto torbond1
 iface torbond1
     address 172.20.1.10/24
     address 2001:db8:0:1::a/64
-        bond-slaves swp1 swp2 swp3
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp1 swp2 swp3
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s host02 and Ports swp1 swp2 swp3 <==> Remote  Node/s leaf01 leaf02 leaf03 and Ports swp6 swp6 swp6
     post-up ip route replace default via 172.20.1.1 dev torbond1
     post-up ip -6 route replace default via 2001:db8:0:1::1 dev torbond1
@@ -3847,31 +3628,21 @@ iface lo inet loopback
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto torbond1
 iface torbond1
     address 172.20.1.11/24
     address 2001:db8:0:1::b/64
-        bond-slaves swp1 swp2 swp3
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp1 swp2 swp3
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s host03 and Ports swp1 swp2 swp3 <==> Remote  Node/s leaf01 leaf02 leaf03 and Ports swp7 swp7 swp7
     post-up ip route replace default via 172.20.1.1 dev torbond1
     post-up ip -6 route replace default via 2001:db8:0:1::1 dev torbond1
@@ -4024,31 +3795,21 @@ iface lo inet loopback
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto torbond1
 iface torbond1
     address 172.20.1.10/24
     address 2001:db8:0:1::a/64
-        bond-slaves swp1 swp2 swp3
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp1 swp2 swp3
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s host04 and Ports swp1 swp2 swp3 <==> Remote  Node/s leaf01 leaf02 leaf03 and Ports swp8 swp8 swp8
     post-up ip route replace default via 172.20.1.1 dev torbond1
     post-up ip -6 route replace default via 2001:db8:0:1::1 dev torbond1

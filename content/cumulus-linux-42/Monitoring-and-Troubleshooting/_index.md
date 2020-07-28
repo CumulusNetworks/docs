@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 910
 toc: 2
 ---
-This chapter introduces monitoring and troubleshooting Cumulus Linux.
+This chapter introduces the basics for monitoring and troubleshooting Cumulus Linux.
 
 ## Serial Console
 

@@ -16,13 +16,17 @@ VXLAN Tunnel DSCP operations are supported on Mellanox Spectrum switches only.
 
 ## Configure DSCP Operations
 
-You can set the following DSCP operations by editing the `/etc/cumulus/switchd.conf` file. After you modify the the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
+You can set the following DSCP operations by editing the `/etc/cumulus/switchd.conf` file.
 
 | Option | Description |
 | ------ | ----------- |
 |`vxlan.def_encap_dscp_action`| Sets the VXLAN outer DSCP action during encapsulation. You can specify one of the following options:<br>- `copy` (if the inner packet is IP)<br>- `set` (to a specific value)<br>- `derive` (from the switch priority).<br>The default setting is `derive`. |
 | `vxlan.def_encap_dscp_value`| If the `vxlan.def_encap_dscp_action` option is `set`, you must specify a value. |
 | `xlan.def_decap_dscp_action` | Sets the VXLAN decapsulation DSCP/COS action. You can specify one of the following options:<br>- `copy` (if the inner packet is IP)<br>- `preserve` (the inner DSCP is unchanged)<br>- `derive` (from the switch priority) |
+
+After you modify the the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect.
+
+{{<cl/restart-switchd>}}
 
 The following example shows that the VXLAN outer DSCP action during encapsulation is `set` with a value of 16.
 

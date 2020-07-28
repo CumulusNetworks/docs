@@ -26,7 +26,7 @@ The VXLAN tunnel endpoints cannot share a common subnet; there must be at least 
 
 {{%/notice%}}
 
-## Caveats and Errata
+## Considerations
 
 ### Cut-through Mode and Store and Forward Switching
 
@@ -42,7 +42,7 @@ The maximum transmission unit (MTU) size for a virtual network interface should 
 
 A layer 3 VNI and a layer 2 VNI cannot have the same ID. If the VNI IDs are the same, the layer 2 VNI does not get created.
 
-## Useful Links
+## Related Information
 
 - {{<exlink url="https://tools.ietf.org/html/rfc7348" text="VXLAN - RFC 7348">}}
 - {{<exlink url="http://openvswitch.org/support/dist-docs/ovsdb-server.1.html" text="ovsdb-server">}}

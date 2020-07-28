@@ -40,7 +40,7 @@ The `config-backup` command includes the following options:
 |`-v`|Enables verbose mode to show messages during the backup process.|
 |`-X <pattern>`|Excludes certain files that match a specified pattern. For example, to exclude all backup files ending with a tilde (~), use the `-X .*~$` option.|
 
-## config-backup Command Examples
+### config-backup Command Examples
 
 The following command example creates a backup file in debugging mode and provides the description `myconfig`, which shows in the backup archive list.
 
@@ -106,7 +106,7 @@ The `config-restore` command includes the following options:
 | `-T`| Runs the command in test mode; does not restore the configuration but shows what would be restored.|
 | `-v`| Enables verbose mode to display status messages during restore.|
 
-## config-restore Command Examples
+### config-restore Command Examples
 
 The following command example lists the backup files available on the switch. The list includes the file number (\#), type, description, and filename. Type is the text specified with the `config-backup -t` option.
 

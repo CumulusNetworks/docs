@@ -8,7 +8,7 @@ Cumulus Linux seamlessly integrates with the MidoNet OpenStack infrastructure, w
 
 {{< img src = "/images/cumulus-linux/virtualization-integrations-midonet.png" >}}
 
-## Getting Started
+## Get Started
 
 Make sure you have a layer 2 gateway; a Tomahawk, Trident II+ or Trident II switch running Cumulus Linux. Cumulus Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}.
 

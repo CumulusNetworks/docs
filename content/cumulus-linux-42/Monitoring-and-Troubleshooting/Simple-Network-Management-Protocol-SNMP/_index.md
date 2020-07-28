@@ -6,13 +6,11 @@ toc: 3
 ---
 Cumulus Linux uses the open source Net-SNMP agent `snmpd` version 5.8, which provides support for most of the common industry-wide MIBs, including interface counters and TCP/UDP IP stack data.
 
-## History
-
 SNMP is an IETF standards-based network management architecture and protocol that traces its roots back to Carnegie-Mellon University in 1982. Since then, it has been modified by programmers at the University of California. In 1995, this code was also made publicly available as the UCD project. After that, `ucd-snmp` was extended by work done at the University of Liverpool as well as later in Denmark. In late 2000, the project name changed to `net-snmp` and became a fully-fledged collaborative open source project. The version used by Cumulus Networks is based on the latest `net-snmp` 5.8 branch with added custom MIBs and pass-through and pass-persist scripts ({{<link url="#pass-persist-scripts" text="see below">}} for more information on pass persist scripts).
 
-## Introduction to Simple Network Management Protocol
+SNMP management servers gather information from different systems in a consistent manner and the paths to the relevant information are standardized in IETF RFCs. SNMPs longevity is due to the fact that it standardizes the objects collected from devices, the protocol used for transport, and architecture of the management systems. The most widely used, and most insecure, versions of SNMP are versions 1 and 2c and their popularity is largely due to implementations that have been in use for decades. SNMP version 3 is the recommended version because of its advanced security features. In general, a network being profiled by SNMP management stations mainly consist of devices containing SNMP agents. The agent running on Cumulus Linux switches and routers is the `snmpd` daemon.
 
-SNMP Management servers gather information from different systems in a consistent manner and the paths to the relevant information are standardized in IETF RFCs. SNMPs longevity is due to the fact that it standardizes the objects collected from devices, the protocol used for transport, and architecture of the management systems. The most widely used, and most insecure, versions of SNMP are versions 1 and 2c and their popularity is largely due to implementations that have been in use for decades. SNMP version 3 is the recommended version because of its advanced security features. In general, a network being profiled by SNMP Management Stations mainly consist of devices containing SNMP agents. The agent running on Cumulus Linux switches and routers is the `snmpd` daemon.
+## SNMP Components
 
 ### SNMP Managers
 
@@ -72,9 +70,9 @@ sysLocation OBJECT-TYPE
 
 The section `1.3.6.1` or `iso.org.dod.internet` is the OID that defines internet resources. The`2` or `mgmt` that follows is for a management subcategory. The `1` or `mib-2` under that defines the MIB-2 specification. And finally, the 1 or system is the parent for a number of child objects (sysDescr, sysObjectID, sysUpTime, sysContact, sysName, sysLocation, sysServices, and so on).
 
-## Getting Started
+## Get Started
 
-The simplest use case for using SNMP consists of creating a readonly community password and enabling a listening address for the loopback address (this is the default listening-address provided). This allows for testing functionality of `snmpd` before extending the listening addresses to IP addresses reachable from outside the switch or router. This first sample configuration adds a listening address on the loopback interface (this is not a change from the default so we get a message stating that the configuration has not changed), sets a simple community password (SNMPv2) for testing, changes the system-name object in the system table, commits the change, checks the status of `snmpd`, and gets the first MIB object in the system table:
+The simplest use case for using SNMP consists of creating a read-only community password and enabling a listening address for the loopback address (this is the default listening-address provided). This allows for testing functionality of `snmpd` before extending the listening addresses to IP addresses reachable from outside the switch or router. This first sample configuration adds a listening address on the loopback interface (this is not a change from the default so we get a message stating that the configuration has not changed), sets a simple community password (SNMPv2) for testing, changes the system-name object in the system table, commits the change, checks the status of `snmpd`, and gets the first MIB object in the system table:
 
 ```
 cumulus@router1:~$ net add snmp-server listening-address localhost
@@ -338,8 +336,8 @@ cumulus@switch:~$ net add snmp-server username user3 auth-md5 user3password encr
 cumulus@switch:~$ net add snmp-server username user666 auth-sha user666password encrypt-aes user666encryption
 cumulus@switch:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
 cumulus@switch:~$ net add snmp-server username user1 auth-none oid 1.3.6.1.2.1
-cumulus@switch:~$ net add snmp-server username user1 auth-none oid system 
-cumulus@switch:~$ net add snmp-server username user2 auth-md5 test1234 view testview  oid 1.3.6.1.2.1
+cumulus@switch:~$ net add snmp-server username user1 auth-none oid system
+cumulus@switch:~$ net add snmp-server username user2 auth-md5 test1234 view testview oid 1.3.6.1.2.1
 cumulus@switch:~$ net add snmp-server username user3 auth-sha testshax encrypt-aes testaesx oid 1.3.6.1.2.1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit

@@ -87,9 +87,7 @@ To enable DIP-based multicast forwarding:
 1. Edit the `/etc/cumulus/switchd.conf` file to set the `bridge.dip_based_l2multicast` field to `TRUE`, then uncomment the line.
 2. Restart the `switchd` service:
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+   {{<cl/restart-switchd>}}
 
 The following example shows that the `bridge.dip_based_l2multicast` field is set to `TRUE` and the line is uncommented in the `/etc/cumulus/switchd.conf` file:
 

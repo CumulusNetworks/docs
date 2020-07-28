@@ -6,7 +6,7 @@ toc: 3
 ---
 In VXLAN-based networks, there are a range of complexities and challenges in determining the destination *virtual tunnel endpoints* (VTEPs) for any given VXLAN. At scale, various solutions, including controller-based options like {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet">}} or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-MH" text="VMware NSX">}} and even new standards like {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} try to address these complexities, however, they also have their own complexities.
 
-S*tatic VXLAN tunnels* serve to connect two VTEPs in a given environment. Static VXLAN tunnels are the simplest deployment mechanism for small scale environments and are interoperable with other vendors that adhere to VXLAN standards. Because you simply map which VTEPs are in a particular VNI, you can avoid the tedious process of defining connections to every VLAN on every other VTEP on every other rack.
+*Static VXLAN tunnels* serve to connect two VTEPs in a given environment. Static VXLAN tunnels are the simplest deployment mechanism for small scale environments and are interoperable with other vendors that adhere to VXLAN standards. Because you simply map which VTEPs are in a particular VNI, you can avoid the tedious process of defining connections to every VLAN on every other VTEP on every other rack.
 
 ## Requirements
 
@@ -16,16 +16,16 @@ For a basic VXLAN configuration, make sure that:
 
 - The VXLAN has a network identifier (VNI). Do not use VNI ID 0 or 16777215; these are reserved values under Cumulus Linux.
 - Bridge learning must be enabled on the VNI (bridge learning is disabled by default).
-- The VXLAN link and local interfaces are added to the bridge to create the association between the port, VLAN, and VXLAN instance.
-- Each traditional bridge on the switch has only one VXLAN interface. Cumulus Linux does not support more than one VXLAN ID per traditional bridge.
+- The VXLAN link and local interfaces are added to the bridge to create the association between the port, VLAN and VXLAN instance.
+- Each traditional mode bridge on the switch has only one VXLAN interface. Cumulus Linux does not support more than one VXLAN ID per traditional bridge.
 
-    {{%notice note%}}
+  {{%notice note%}}
 
-This limitation only affects a traditional bridge configuration. Cumulus Linux supports *more* than one VXLAN ID per VLAN-aware bridge.
+This limitation only affects a traditional mode bridge configuration. Cumulus Linux supports *more* than one VXLAN ID in VLAN-aware bridge mode.
 
-    {{%/notice%}}
+{{%/notice%}}
 
-## Example Configuration
+## Example Topology
 
 The following topology is used in this chapter. Each IP address corresponds to the loopback address of the switch.
 

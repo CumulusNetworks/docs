@@ -188,7 +188,7 @@ When configuring a router to be a route reflector client, you must specify the c
 
 {{< tab "vtysh Commands ">}}
 
-1. Enable the `bgpd` daemon as described in {{<link title="Configuring FRRouting">}}.
+1. Enable the `bgpd` daemon as described in {{<link title="Configure FRRouting">}}.
 
 2. Identify the BGP node by assigning an ASN and the router ID:
 
@@ -426,7 +426,7 @@ router bgp 65000
 ...
 ```
 
-## BGP Unnumbered Interfaces
+## Unnumbered Interfaces
 
 Unnumbered interfaces are interfaces without unique IP addresses. In BGP, you configure unnumbered interfaces using *extended next hop encoding* (ENHE), which is defined by {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}}. BGP unnumbered interfaces provide a means of advertising an IPv4 route with an IPv6 next hop. Prior to RFC 5549, an IPv4 route could be advertised only with an IPv4 next hop.
 
@@ -2532,6 +2532,227 @@ switch# exit
 cumulus@switch:~$
 ```
 
+## Protocol Tuning
+
+### Converge Quickly On Link Failures
+
+In the Clos topology, Cumulus Networks recommends that you only use interface addresses to set up peering sessions. This means that when the link fails, the BGP session is torn down immediately, triggering route updates to propagate through the network quickly. This requires the `link-detect` and `ttl-security hops` commands to be enabled for all links. The `ttl-security hops` command specifies how many hops away the neighbor is. For example, in a Clos topology, every peer is at most 1 hop away.
+
+{{%notice note%}}
+
+See Caveats and Errata below for information about `ttl-security hops`.
+
+{{%/notice%}}
+
+To set the `ttl-security hops`:
+
+{{< tabs "62 ">}}
+
+{{< tab "NCLU Commands ">}} 
+
+```
+cumulus@switch:~$ net add bgp neighbor 10.0.0.2 ttl-security hops 1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}} 
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# neighbor 10.0.0.2 ttl-security hops 1
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65000
+  ...
+  neighbor 10.0.0.2 ttl-security hops 1
+...
+```
+
+### Converge Quickly On Soft Failures
+
+It is possible that the link is up but the neighboring BGP process is hung or has crashed. In this case, the FRRouting `watchfrr` daemon, which monitors the various FRRouting daemons, attempts to restart it. BGP itself has a keepalive interval that is exchanged between neighbors. By default, this keepalive interval is set to 3 seconds. You can increase this interval to a higher value, which decreases CPU load, especially in the presence of a lot of neighbors. The keepalive interval is the periodicity with which the keepalive message is sent. The hold time specifies how many keepalive messages can be lost before the connection is considered invalid. It is typically set to three times the keepalive time and defaults to 9 seconds. The following examples commands change the keepalive interval to 10 seconds and the hold time to 30 seconds.
+
+{{< tabs "64 ">}}
+
+{{< tab "NCLU Commands ">}} 
+
+```
+cumulus@switch:~$ net add bgp neighbor 10.0.0.2 timers 10 30
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}} 
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# neighbor 10.0.0.2 timers 10 30
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65000
+  ...
+  neighbor 10.0.0.2 timers 10 30
+...
+```
+
+### Reconnect Quickly
+
+A BGP process attempts to connect to a peer after a failure (or on startup) every `connect-time` seconds. By default, this is 10 seconds. To modify this value, run the following commands.
+
+{{%notice note%}}
+
+You must specify this command for each neighbor.
+
+{{%/notice%}}
+
+{{< tabs "66 ">}}
+
+{{< tab "NCLU Commands ">}} 
+
+```
+cumulus@switch:~$ net add bgp neighbor 10.0.0.2 timers connect 30
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}} 
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# neighbor 10.0.0.2 timers connect 30
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+```
+...
+router bgp 65000
+  ...
+  neighbor 10.0.0.2 timers connect 30
+...
+```
+
+### Advertisement Interval
+
+By default, BGP chooses stability over fast convergence, which is very useful when routing for the Internet. For example, unlike link-state protocols, BGP typically waits a number of seconds before sending consecutive updates to a neighbor. This advertisement interval ensures that an unstable neighbor flapping routes are not propagated throughout the network. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see {{<exlink url="http://tools.ietf.org/html/draft-jakma-mrai-02" text="IETF draft">}}.
+
+To modify the advertisement interval, run the following commands:
+
+{{< tabs "68 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 advertisement-interval 5
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# neighbor swp51 advertisement-interval 5
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the
+`/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65000
+  ...
+  neighbor swp51 advertisement-interval 5
+...
+```
+
+To show the keepalive interval, hold time, and advertisement interval, you can run the NCLU `net show bgp neighbor <peer>` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
+
+```
+cumulus@switch:~$ net show bgp neighbor swp51 
+BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link
+Hostname: spine01
+  Member of peer-group fabric for session parameters
+  BGP version 4, remote router ID 0.0.0.0
+  BGP state = Connect
+  Last read 00:04:37, Last write 00:44:07
+  Hold time is 30, keepalive interval is 10 seconds
+  Configured hold time is 30, keepalive interval is 10 seconds
+  Message statistics:
+    Inq depth is 0
+    Outq depth is 0
+                          Sent       Rcvd
+    Opens:                  1          1
+    Notifications:          1          0
+    Updates:                7          6
+    Keepalives:          2374       2373
+    Route Refresh:          0          0
+    Capability:             0          0
+    Total:               2383       2380
+  Minimum time between advertisement runs is 5 seconds
+...
+```
+
 ## Troubleshooting
 
 Use the following commands to troubleshoot BGP.
@@ -2962,228 +3183,7 @@ Read thread: on  Write thread: on
 
 {{< /tabs >}}
 
-## Protocol Tuning
-
-### Converge Quickly On Link Failures
-
-In the Clos topology, Cumulus Networks recommends that you only use interface addresses to set up peering sessions. This means that when the link fails, the BGP session is torn down immediately, triggering route updates to propagate through the network quickly. This requires the `link-detect` and `ttl-security hops` commands to be enabled for all links. The `ttl-security hops` command specifies how many hops away the neighbor is. For example, in a Clos topology, every peer is at most 1 hop away.
-
-{{%notice note%}}
-
-See Caveats and Errata below for information about `ttl-security hops`.
-
-{{%/notice%}}
-
-To set the `ttl-security hops`:
-
-{{< tabs "62 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net add bgp neighbor 10.0.0.2 ttl-security hops 1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# neighbor 10.0.0.2 ttl-security hops 1
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65000
-  ...
-  neighbor 10.0.0.2 ttl-security hops 1
-...
-```
-
-### Converge Quickly On Soft Failures
-
-It is possible that the link is up but the neighboring BGP process is hung or has crashed. In this case, the FRRouting `watchfrr` daemon, which monitors the various FRRouting daemons, attempts to restart it. BGP itself has a keepalive interval that is exchanged between neighbors. By default, this keepalive interval is set to 3 seconds. You can increase this interval to a higher value, which decreases CPU load, especially in the presence of a lot of neighbors. The keepalive interval is the periodicity with which the keepalive message is sent. The hold time specifies how many keepalive messages can be lost before the connection is considered invalid. It is typically set to three times the keepalive time and defaults to 9 seconds. The following examples commands change the keepalive interval to 10 seconds and the hold time to 30 seconds.
-
-{{< tabs "64 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net add bgp neighbor 10.0.0.2 timers 10 30
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# neighbor 10.0.0.2 timers 10 30
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65000
-  ...
-  neighbor 10.0.0.2 timers 10 30
-...
-```
-
-### Reconnect Quickly
-
-A BGP process attempts to connect to a peer after a failure (or on startup) every `connect-time` seconds. By default, this is 10 seconds. To modify this value, run the following commands.
-
-{{%notice note%}}
-
-You must specify this command for each neighbor.
-
-{{%/notice%}}
-
-{{< tabs "66 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net add bgp neighbor 10.0.0.2 timers connect 30
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# neighbor 10.0.0.2 timers connect 30
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-```
-...
-router bgp 65000
-  ...
-  neighbor 10.0.0.2 timers connect 30
-...
-```
-
-### Advertisement Interval
-
-By default, BGP chooses stability over fast convergence, which is very useful when routing for the Internet. For example, unlike link-state protocols, BGP typically waits a number of seconds before sending consecutive updates to a neighbor. This advertisement interval ensures that an unstable neighbor flapping routes are not propagated throughout the network. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see {{<exlink url="http://tools.ietf.org/html/draft-jakma-mrai-02" text="IETF draft">}}.
-
-To modify the advertisement interval, run the following commands:
-
-{{< tabs "68 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net add bgp neighbor swp51 advertisement-interval 5
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# neighbor swp51 advertisement-interval 5
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the
-`/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65000
-  ...
-  neighbor swp51 advertisement-interval 5
-...
-```
-
-To show the keepalive interval, hold time, and advertisement interval, you can run the NCLU `net show bgp neighbor <peer>` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
-
-```
-cumulus@switch:~$ net show bgp neighbor swp51 
-BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link
-Hostname: spine01
-  Member of peer-group fabric for session parameters
-  BGP version 4, remote router ID 0.0.0.0
-  BGP state = Connect
-  Last read 00:04:37, Last write 00:44:07
-  Hold time is 30, keepalive interval is 10 seconds
-  Configured hold time is 30, keepalive interval is 10 seconds
-  Message statistics:
-    Inq depth is 0
-    Outq depth is 0
-                          Sent       Rcvd
-    Opens:                  1          1
-    Notifications:          1          0
-    Updates:                7          6
-    Keepalives:          2374       2373
-    Route Refresh:          0          0
-    Capability:             0          0
-    Total:               2383       2380
-  Minimum time between advertisement runs is 5 seconds
-...
-```
-
-## Caveats and Errata
+## Considerations
 
 ### Removing a BGP neighbor on an Interface that Belongs to a VRF
 

@@ -6,7 +6,7 @@ toc: 3
 ---
 Cumulus Linux gathers statistics for VXLANs and VLANs using virtual device counters. These counters are supported on Tomahawk, Trident II+ and Trident II-based platforms only; see the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Networks HCL">}} for a list of supported platforms.
 
-You can retrieve the data from these counters using tools like `ip -s link show`, `ifconfig`, `/proc/net/dev`, or `netstat -i`.
+You can retrieve the data from these counters using tools like `ip -s link show`, `ifconfig`, `/proc/net/dev` or `netstat -i`.
 
 ## Sample VXLAN Statistics
 
@@ -155,8 +155,10 @@ Because `ethtool` is not supported for virtual devices, you *cannot* clear the s
 
 ```
 cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vlan
-cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vxlan Caveats and Errata
+cumulus@switch:~$ sudo echo 1 > /cumulus/switchd/clear/stats/vxlan
 ```
+
+## Considerations
 
 - Currently the CPU port is internally added as a member of all VLANs.Therefore, packets sent to the CPU are counted against the corresponding VLAN's tx packets/bytes. There is no workaround.
 - When checking the virtual counters for the bridge, the TX count is the number of packets destined to the CPU before any hardware policers take effect. For example, if 500 broadcast packets are sent into the bridge, the CPU is also sent 500 packets. These 500 packets are policed by the default ACLs in Cumulus Linux, so the CPU might receive fewer than the 500 packets if the incoming packet rate is too high. The TX counter for the bridge should be equal to 500\*(number of ports in the bridge - incoming port + CPU port) or just 500 \* number of ports in the bridge.

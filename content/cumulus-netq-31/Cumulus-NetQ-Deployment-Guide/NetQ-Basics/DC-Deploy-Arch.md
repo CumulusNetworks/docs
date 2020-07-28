@@ -21,7 +21,7 @@ routed environments whenever possible.
 
 {{%/notice%}}
 
-## Out-of-Band Management Deployment
+## Out-of-band Management Deployment
 
 Cumulus Networks recommends deploying NetQ on an out-of-band (OOB)
 management network to separate network management traffic from standard

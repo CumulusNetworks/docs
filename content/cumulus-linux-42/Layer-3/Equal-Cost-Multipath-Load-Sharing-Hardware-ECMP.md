@@ -155,9 +155,7 @@ ecmp_hash_seed = 50
 ...
 ```
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+{{<cl/restart-switchd>}}
 
 {{< /tab >}}
 
@@ -359,7 +357,6 @@ Mellanox switches with the Spectrum ASIC allow for two custom options to allocat
 
 {{%/notice%}}
 
-
 To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 1. Enable resilient hashing:
@@ -379,11 +376,9 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 3. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 
-    ```
-    cumulus@switch:~$ sudo systemctl restart switchd.service
-    ```
+    {{<cl/restart-switchd>}}
 
-## Caveats and Errata
+## Considerations
 
 ### IPv6 Route Replacement
 

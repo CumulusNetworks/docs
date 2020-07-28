@@ -494,7 +494,7 @@ Program terminated with signal SIGSEGV, Segmentation fault.
 
 To resolve the issue, manually edit the `/etc/default/isc-dhcp-relay` file to remove the space, then run the `systemctl restart dhcrelay.service` command to restart the `dhcrelay` service and apply the configuration change.
 
-## Caveats and Errata
+## Considerations
 
 ### Interface Names Cannot Be Longer than 14 Characters
 

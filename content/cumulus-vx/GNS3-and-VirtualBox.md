@@ -42,7 +42,9 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    3. Increase the number of **Adapters** to *4*.
    4. From the **Type** dropdown, select *Paravirtualized Network*.
    5. Select **Allow GNS3 to use any configured VirtualBox adapter**.
+
       {{< img src="/images/cumulus-vx/gns3-network.png" width="300" >}}
+
    6. Click **OK** to save your settings and close the dialog.
    7. Repeat these steps for leaf02 and spine01, then click **OK** to close the Preferences dialog.
 

@@ -346,13 +346,23 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
 
 {{< /expand >}}
 
+4. Run `vagrant up` to start the VMs:
+
+   ```
+   local@host:~/vagrant$ vagrant up
+   Bringing machine 'spine01' up with 'libvirt' provider...
+   Bringing machine 'leaf01' up with 'libvirt' provider...
+   Bringing machine 'leaf02' up with 'libvirt' provider...
+   ...
+   ```
+
 ## Log into the Switches
 
 {{% vx/login-vagrant %}}
 
 ## Basic Switch Configuration
 
-{{% vx/basic-config %}}
+{{% vx/basic-config-vagrant-kvm %}}
 
 ## Verify Configuration
 

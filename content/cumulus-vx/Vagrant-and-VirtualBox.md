@@ -29,7 +29,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 ## Basic Switch Configuration
 
-{{% vx/basic-config %}}
+{{% vx/basic-config-vagrant %}}
 
 ## Verify Configuration
 

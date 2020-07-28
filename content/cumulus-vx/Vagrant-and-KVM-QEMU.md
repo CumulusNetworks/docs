@@ -86,6 +86,7 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
 
    ```
    local@host:~/vagrant$ vi Vagrantfile
+
    #Set the default provider to libvirt in the case they forget --provider=libvirt or if someone destroys a machine it reverts to virtualbox ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
    # Check required plugins
    REQUIRED_PLUGINS_LIBVIRT = %w(vagrant-libvirt)
@@ -128,7 +129,7 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
      ####DEFINE VM for spine01 #####
      config.vm.define "spine01" do |device|
 
-       device.vm.hostname = "spine01" 
+       device.vm.hostname = "spine01"
 
        device.vm.box = "CumulusCommunity/cumulus-vx"
        device.vm.box_version = "4.2.0"
@@ -189,7 +190,7 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
      # DEFINE VM for leaf01 #####
      config.vm.define "leaf01" do |device|
 
-       device.vm.hostname = "leaf01" 
+       device.vm.hostname = "leaf01"
 
        device.vm.box = "CumulusCommunity/cumulus-vx"
        device.vm.box_version = "4.2.0"

@@ -19,6 +19,8 @@ These steps were tested with KVM/QEMU version 1:4.2-3ubuntu6.3 and Libvirt versi
 
 The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of Linux and KVM experience.
 
+### Download and Install the Software
+
 1. Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus VX Qcow2 image for KVM">}}.
 
 2. Run the following commands to install KVM, QEMU and Libvirt:
@@ -29,13 +31,15 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    local@host:~$ sudo apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev
    ```
 
-5. Copy the `qcow2` image onto a Linux server three times to create the three VMs. Name them as follows:
+### Create the VMs and Network Connections
+
+1. Copy the `qcow2` image onto a Linux server three times to create the three VMs. Name them as follows:
 
    - leaf01.qcow2
    - leaf02.qcow2
    - spine01.qcow2
 
-6. Run the following commands to configure each VM. In the example commands, the VMs are installed in `/var/lib/libvirt/images/`.
+2. Run the following commands to configure each VM. In the example commands, the VMs are installed in `/var/lib/libvirt/images/`.
 
    {{< tabs "TabID01 ">}}
 
@@ -104,7 +108,7 @@ local@host:~$ sudo /usr/bin/kvm  -curses \
 
 {{< /tabs >}}
 
-7. Start each VM:
+3. Start each VM:
 
    {{< tabs "TabID02 ">}}
 

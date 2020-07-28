@@ -326,7 +326,7 @@ Cumulus RMP is a ready-to-deploy solution that enables out-of-band management fo
 
 To deploy Nutanix with Cumulus RMP, connect the Nutanix 1G IPMI, 1G Shared IPMI and 1G ports to the Cumulus RMP switch. No additional configuration is required.
 
-Cumulus RMP does not support MLAG or active/active connections across Cumulus RMP switches. Connections across more than one Cumulus RMP switch rely on traditional {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree" text="spanning tree protocol">}} for redundancy.
+Cumulus RMP does not support MLAG or active/active connections across Cumulus RMP switches. Connections across more than one Cumulus RMP switch rely on traditional {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}} for redundancy.
 
 ### Other Cumulus Linux 1G Switches
 

@@ -234,7 +234,7 @@ The most common use case for VRF is to use multiple independent routing and forw
 - Route leaking is not allowed for overlapping addresses.
 - Route leaking is supported for both IPv4 and IPv6 routes.
 - Route leaking is supported with EVPN in a symmetric routing configuration only.
-- VRF route leaking is not supported between the tenant VRF and the default VRF with onlink next hops (bgp unnumbered).
+- VRF route leaking is not supported between the tenant VRF and the default VRF with onlink next hops (BGP unnumbered).
 - The NCLU command to configure route leaking fails if the VRF is named `red` (lowercase letters only). This is not a problem if the VRF is named `RED` (uppercase letters) or has a name other than red. To work around this issue, rename the VRF or run the `vtysh` command instead. This is a known limitation in `network-docopt`.
 
 {{%notice note%}}
@@ -1067,7 +1067,7 @@ You can also show routes in a VRF using the `ip [-6] route show vrf <vrf-name>` 
 
 ## BGP Unnumbered Interfaces with VRF
 
-{{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered-interfaces" text="BGP unnumbered interface configurations">}} are supported with VRF. In BGP unnumbered, there are no addresses on any interface. However, debugging tools like `traceroute` need at least a single IP address per node as the node's source IP address. Typically, this address is assigned to the loopback device. With VRF, you need a loopback device for each VRF table since VRF is based on interfaces, not IP addresses. While Linux does not support multiple loopback devices, it does support the concept of a dummy interface, which is used to achieve the same goal.
+{{<link url="Border-Gateway-Protocol-BGP#unnumbered-interfaces" text="BGP unnumbered interface configurations">}} are supported with VRF. In BGP unnumbered, there are no addresses on any interface. However, debugging tools like `traceroute` need at least a single IP address per node as the node's source IP address. Typically, this address is assigned to the loopback device. With VRF, you need a loopback device for each VRF table since VRF is based on interfaces, not IP addresses. While Linux does not support multiple loopback devices, it does support the concept of a dummy interface, which is used to achieve the same goal.
 
 An IP address can be associated with the VRF device, which will then act as the dummy (loopback-like) interface for that VRF.
 
@@ -1471,7 +1471,7 @@ To run `traceroute` on a VRF from the default VRF, run the `traceroute -i <vrf-n
 cumulus@switch:~$ sudo traceroute -i turtle
 ```
 
-## Caveats and Errata
+## Considerations
 
 - Switches using the Hurricane2 ASIC (such as the Penguin Computing Arctica 4804IP) do not support VRFs.
 - Table selection is based on the incoming interface only; currently, packet attributes or output-interface-based selection are not available.

@@ -259,7 +259,7 @@ It is not necessary to reboot the switch to activate the switch ports.
 After you install the license, restart the `switchd` service. All front
 panel ports become active and show up as swp1, swp2, and so on.
 
-    cumulus@switch:~$ sudo systemctl restart switchd.service
+{{<cl/restart-switchd>}}
 
 {{%/notice%}}
 

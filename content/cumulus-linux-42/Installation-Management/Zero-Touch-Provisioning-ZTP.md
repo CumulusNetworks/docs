@@ -641,7 +641,7 @@ URL            None
 
 You can run the NCLU `net show system ztp script` or `net show system ztp json` command to see the current `ztp` state.
 
-## Notes
+## Considerations
 
 - During the development of a provisioning script, the switch might need to be rebooted.
 - You can use the Cumulus Linux `onie-select -i` command to cause the switch to reprovision itself and install a network operating system again using ONIE.

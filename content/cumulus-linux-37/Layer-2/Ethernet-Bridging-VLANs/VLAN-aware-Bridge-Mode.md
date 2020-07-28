@@ -168,23 +168,16 @@ VLANs.
 
 To configure the reserved range:
 
-1.  Open `/etc/cumulus/switchd.conf` in a text editor.
+1. Open `/etc/cumulus/switchd.conf` in a text editor.
 
-2.  Uncomment the following line, specify a new range, and save the
-    file:
+2. Uncomment the following line, specify a new range, and save the
+   file:
 
-        resv_vlan_range
+       resv_vlan_range
 
-3.  Restart `switchd` to implement the change:
+3. Restart `switchd` to implement the change:
 
-        cumulus@switch:~$ sudo systemctl restart switchd.service
-
-    {{%notice note%}}
-
-While restarting `switchd`, all running ports will flap, and
-    forwarding will be interrupted.
-
-    {{%/notice%}}
+   {{<cl/restart-switchd>}}
 
 ## Example Configurations
 

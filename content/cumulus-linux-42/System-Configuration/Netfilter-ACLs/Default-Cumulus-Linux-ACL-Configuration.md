@@ -4,9 +4,9 @@ author: Cumulus Networks
 weight: 210
 toc: 4
 ---
-The Cumulus Linux default ACL configuration is split into three parts: IP tables, IPv6 tables, and EB tables. The sections below describe the default configurations for each part. You can see the default file by clicking the Default ACL Configuration link:
+The Cumulus Linux default ACL configuration is split into three parts: `iptables`, `ip6tables`, and `ebtables`. The sections below describe the default configurations for each part. You can see the default file by clicking the Default ACL Configuration link:
 
-{{< expand "Default ACL Configuration "  >}}
+{{<expand "Default ACL Configuration">}}
 
 ```
 cumulus@switch:~$ sudo cl-acltool -L all
@@ -182,9 +182,9 @@ Bridge chain: FORWARD, entries: 0, policy: ACCEPT
 Bridge chain: OUTPUT, entries: 0, policy: ACCEPT
 ```
 
-{{< /expand >}}
+{{</expand>}}
 
-## IP Tables
+## iptables
 
 |Action/Value <img width=250/>|Protocol/IP Address<img width=450/>|
 |---------------------------- |---------------------------------- |
@@ -203,7 +203,7 @@ Set class is internal to the switch - it does not set any precedence bits.
 
 {{%/notice%}}
 
-## IPv6 Tables
+## ip6tables
 
 | Action/Value <img width=300/> | Protocol/IP Address <img width=400/> |
 |------------------------------ |------------------------------------- |
@@ -225,7 +225,7 @@ Set class is internal to the switch - it does not set any precedence bits.
 
 {{%/notice%}}
 
-## EB Tables
+## ebtables
 
 | Action/Value<img width=300/> | Protocol/MAC Address<img width=400/> |
 |----------------------------- |------------------------------------- |
@@ -241,7 +241,7 @@ Set class is internal to the switch. It does not set any precedence bits.
 
 {{%/notice%}}
 
-## Caveats and Errata
+## Considerations
 
 Due to a hardware limitation on **Trident3 switches**, certain broadcast packets that are VXLAN decapsulated and sent to the CPU do not hit the normal INPUT chain ACL rules installed with `cl-acltool`.
 

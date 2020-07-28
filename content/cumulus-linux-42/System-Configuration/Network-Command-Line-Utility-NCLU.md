@@ -17,7 +17,7 @@ and sub-modes. NCLU provides these benefits:
 - Runs directly from and integrates with bash, while being interoperable with the regular way of accessing underlying configuration files and automation.
 - Configures dependent features automatically so that you don't have to.
 
-{{< img src = "/images/cumulus-linux/nclu-architecture.png" >}}
+{{<img src = "/images/cumulus-linux/nclu-architecture.png">}}
 
 The NCLU wrapper utility called `net` is capable of configuring layer 2 and layer 3 features of the networking stack, installing ACLs and VXLANs, restoring configuration files, as well as providing monitoring and troubleshooting functionality for these features. You can configure both the `/etc/network/interfaces` and `/etc/frr/frr.conf` files with `net`, in addition to running show and clear commands related to `ifupdown2` and FRRouting.
 

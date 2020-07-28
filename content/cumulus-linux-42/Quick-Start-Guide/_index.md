@@ -47,7 +47,7 @@ After installing Cumulus Linux, you are ready to:
 - Install the Cumulus Linux license.
 - Configure Cumulus Linux. This quick start guide provides instructions on configuring switch ports and a loopback interface.
 
-## Getting Started
+## Get Started
 
 When starting Cumulus Linux for the first time, the management port makes a DHCPv4 request. To determine the IP address of the switch, you can cross reference the MAC address of the switch with your DHCP server. The MAC address is typically located on the side of the switch or on the box in which the unit ships.
 
@@ -235,9 +235,7 @@ Check that your license is installed with the `cl-license` command.
 
 It is not necessary to reboot the switch to activate the switch ports. After you install the license, restart the `switchd` service. All front panel ports become active and show up as swp1, swp2, and so on.
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+{{<cl/restart-switchd>}}
 
 If a license is not installed on a Cumulus Linux switch, the `switchd` service does not start. After you install the license, start `switchd` as described above.
 

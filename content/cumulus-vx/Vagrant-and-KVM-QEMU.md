@@ -14,7 +14,10 @@ This section describes how to install and set up Cumulus VX with KVM/QEMU, Libvi
 
 {{% vx/intro %}}
 
-These steps were tested with KVM/QEMU version 1:4.2-3ubuntu6.3, Libvirt version 6.0.0, and Vagrant version 2.2.9 on Ubuntu version 20.04.
+These steps were tested on Ubuntu version 20.04 with:
+- KVM/QEMU version 1:4.2-3ubuntu6.3
+- Libvirt version 6.0.0
+- Vagrant version 2.2.9
 
 ## Create and Configure the VMs
 
@@ -33,17 +36,14 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
    ```
    user@ubuntubox:~$ sudo apt update -y
    user@ubuntubox:~$ sudo apt install -qy qemu ebtables dnsmasq-base qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virt-manager python3-pip
-   user@ubuntubox:~$ apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev
+   user@ubuntubox:~$ sudo apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev
    ```
 
-2. Add your user to the libvirtd group so your user can perform `virsh` commands.
+2. Add users who you want to be able to perform `virsh` commands to the `libvirt` group.
 
    ```
-   user@ubuntubox:~$ sudo addgroup libvirtd
-   user@ubuntubox:~$ sudo usermod -a -G libvirtd <username>
+   user@ubuntubox:~$ sudo usermod -a -G libvirt <username>
    ```
-
-   To apply the new group to your existing user, log out, then log back in.
 
 3. Install Vagrant and the necessary plugins:
 

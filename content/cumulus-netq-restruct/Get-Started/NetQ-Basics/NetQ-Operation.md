@@ -28,7 +28,7 @@ CLI or UI.
 The NetQ Agent polls the user
 space applications for information about the performance of the various
 routing protocols and services that are running on the switch. Cumulus
-Networks supports BGP and OSPF Free Range Routing (FRR) protocols as
+Networks supports BGP and OSPF FRRouting (FRR) protocols as
 well as static addressing. Cumulus Linux also supports LLDP and MSTP
 among other protocols, and a variety of services such as systemd and
 sensors . For hosts, the NetQ Agent also polls for performance of

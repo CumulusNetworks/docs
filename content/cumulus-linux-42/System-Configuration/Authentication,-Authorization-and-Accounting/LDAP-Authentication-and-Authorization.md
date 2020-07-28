@@ -286,118 +286,6 @@ map    group gidNumber     objectSid:S-1-5-21-1391733952-3059161487-1245441232
 map    group cn            sAMAccountName
 ```
 
-## Troubleshooting
-
-### nslcd Debug Mode
-
-When setting up LDAP authentication for the first time, Cumulus Networks recommends you turn off the `nslcd` service using the `systemctl stop nslcd.service` command (or the `systemctl stop nslcd@mgmt.service` if you are running the service in a management VRF) and run it in debug mode. Debug mode works whether you are using LDAP over SSL (port 636) or an unencrypted LDAP connection (port 389).
-
-```
-cumulus@switch:~$ sudo systemctl stop nslcd.service
-cumulus@switch:~$ sudo nslcd -d
-```
-
-After you enable debug mode, run the following command to test LDAP queries:
-
-```
-cumulus@switch:~$ getent passwd
-```
-
-If LDAP is configured correctly, the following messages appear after you run the `getent` command:
-
-```
-nslcd: DEBUG: accept() failed (ignored): Resource temporarily unavailable
-nslcd: [8e1f29] DEBUG: connection from pid=11766 uid=0 gid=0
-nslcd: [8e1f29] <passwd(all)> DEBUG: myldap_search(base="dc=example,dc=com", filter="(objectClass=posixAccount)")
-nslcd: [8e1f29] <passwd(all)> DEBUG: ldap_result(): uid=myuser,ou=people,dc=example,dc=com
-nslcd: [8e1f29] <passwd(all)> DEBUG: ldap_result(): ... 152 more results
-nslcd: [8e1f29] <passwd(all)> DEBUG: ldap_result(): end of results (162 total)
-```
-
-In the output above, `<passwd(all)>` indicates that the entire directory structure is queried.
-
-You can query a specific user with the following command:
-
-```
-cumulus@switch:~$ getent passwd myuser
-```
-
-You can replace `myuser` with any username on the switch. The following debug output indicates that user `myuser` exists:
-
-```
-nslcd: DEBUG: add_uri(ldap://10.50.21.101)
-nslcd: version 0.8.10 starting
-nslcd: DEBUG: unlink() of /var/run/nslcd/socket failed (ignored): No such file or directory
-nslcd: DEBUG: setgroups(0,NULL) done
-nslcd: DEBUG: setgid(110) done
-nslcd: DEBUG: setuid(107) done
-nslcd: accepting connections
-nslcd: DEBUG: accept() failed (ignored): Resource temporarily unavailable
-nslcd: [8b4567] DEBUG: connection from pid=11369 uid=0 gid=0
-nslcd: [8b4567] <passwd="myuser"> DEBUG: myldap_search(base="dc=cumulusnetworks,dc=com", filter="(&(objectClass=posixAccount)(uid=myuser))")
-nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_initialize(ldap://<ip_address>)
-nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_rebind_proc()
-nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_PROTOCOL_VERSION,3)
-nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_DEREF,0)
-nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_TIMELIMIT,0)
-nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_TIMEOUT,0)
-nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_NETWORK_TIMEOUT,0)
-nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_REFERRALS,LDAP_OPT_ON)
-nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_RESTART,LDAP_OPT_ON)
-nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_simple_bind_s(NULL,NULL) (uri="ldap://<ip_address>")
-nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_result(): end of results (0 total)
-```
-
-### Common Problems
-
-#### SSL/TLS
-
-- The FQDN of the LDAP server URI does not match the FQDN in the CA-signed server certificate exactly.
-- `nslcd` cannot read the SSL certificate and reports a *Permission denied* error in the debug during server connection negotiation. Check the permission on each directory in the path of the root SSL certificate. Ensure that it is readable by the `nslcd` user.
-
-#### NSCD
-
-- If the `nscd cache` daemon is also enabled and you make some changes to the user from LDAP, you can clear the cache using the following commands:
-
-   ```
-   nscd --invalidate = passwd
-   nscd --invalidate = group
-   ```
-
-- The `nscd` package works with `nslcd` to cache name entries returned from the LDAP server. This might cause authentication failures. To work around these issues, disable `nscd`, restart the `nslcd` service, then retry authentication:
-
-   ```
-   cumulus@switch:~$ sudo nscd -K
-   cumulus@switch:~$ sudo systemctl restart nslcd.service
-   ```
-
-{{%notice note%}}
-
-If you are running the `nslcd` service in a management VRF, you need to run the `systemctl restart nslcd@mgmt.service` command instead of the `systemctl restart nslcd.service` command. For example:
-
-```
-cumulus@switch:~$ sudo nscd -K
-cumulus@switch:~$ sudo systemctl restart nslcd@mgmt.service
-```
-
-{{%/notice%}}
-
-#### LDAP
-
-- The search filter returns incorrect results. Check for typos in the search filter. Use `ldapsearch` to test your filter.
-- Optionally, configure the basic LDAP connection and search parameters in `/etc/ldap/ldap.conf`.
-
-   ```
-   # ldapsearch -D 'cn=CLadmin' -w 'CuMuLuS' "(&(ObjectClass=inetOrgUser)(uid=myuser))"
-   ```
-
-- When a local username also exists in the LDAP database, the order of the information sources in `/etc/nsswitch` can be updated to query LDAP before the local user database. This is generally not recommended. For example, the configuration below ensures that LDAP is queried before the local database.
-
-   ```
-   # /etc/nsswitch.conf
-   passwd:       ldap compat
-   ```
-
 ## Configure LDAP Authorization
 
 Linux uses the *sudo* command to allow non-administrator users (such as the default *cumulus* user account) to perform privileged operations. To control the users authorized to use sudo, the `/etc/sudoers` file and files located in the `/etc/sudoers.d/` directory define a series of rules. Typically, the rules are based on groups, but can also be defined for specific users. You can add sudo rules using the group names from LDAP. For example, if a group of users are associated with the group *netadmin*, you can add a rule to give those users sudo privileges. Refer to the sudoers manual (`man sudoers`) for a complete usage description. The following shows an example in the `/etc/sudoers` file:
@@ -546,6 +434,118 @@ There are several GUI LDAP clients available that help you work with LDAP server
 
 - {{<exlink url="http://directory.apache.org/studio/" text="Apache Directory Studio">}}
 - {{<exlink url="http://ldapmanager.sourceforge.net/" text="LDAPManager">}}
+
+## Troubleshooting
+
+### nslcd Debug Mode
+
+When setting up LDAP authentication for the first time, Cumulus Networks recommends you turn off the `nslcd` service using the `systemctl stop nslcd.service` command (or the `systemctl stop nslcd@mgmt.service` if you are running the service in a management VRF) and run it in debug mode. Debug mode works whether you are using LDAP over SSL (port 636) or an unencrypted LDAP connection (port 389).
+
+```
+cumulus@switch:~$ sudo systemctl stop nslcd.service
+cumulus@switch:~$ sudo nslcd -d
+```
+
+After you enable debug mode, run the following command to test LDAP queries:
+
+```
+cumulus@switch:~$ getent passwd
+```
+
+If LDAP is configured correctly, the following messages appear after you run the `getent` command:
+
+```
+nslcd: DEBUG: accept() failed (ignored): Resource temporarily unavailable
+nslcd: [8e1f29] DEBUG: connection from pid=11766 uid=0 gid=0
+nslcd: [8e1f29] <passwd(all)> DEBUG: myldap_search(base="dc=example,dc=com", filter="(objectClass=posixAccount)")
+nslcd: [8e1f29] <passwd(all)> DEBUG: ldap_result(): uid=myuser,ou=people,dc=example,dc=com
+nslcd: [8e1f29] <passwd(all)> DEBUG: ldap_result(): ... 152 more results
+nslcd: [8e1f29] <passwd(all)> DEBUG: ldap_result(): end of results (162 total)
+```
+
+In the output above, `<passwd(all)>` indicates that the entire directory structure is queried.
+
+You can query a specific user with the following command:
+
+```
+cumulus@switch:~$ getent passwd myuser
+```
+
+You can replace `myuser` with any username on the switch. The following debug output indicates that user `myuser` exists:
+
+```
+nslcd: DEBUG: add_uri(ldap://10.50.21.101)
+nslcd: version 0.8.10 starting
+nslcd: DEBUG: unlink() of /var/run/nslcd/socket failed (ignored): No such file or directory
+nslcd: DEBUG: setgroups(0,NULL) done
+nslcd: DEBUG: setgid(110) done
+nslcd: DEBUG: setuid(107) done
+nslcd: accepting connections
+nslcd: DEBUG: accept() failed (ignored): Resource temporarily unavailable
+nslcd: [8b4567] DEBUG: connection from pid=11369 uid=0 gid=0
+nslcd: [8b4567] <passwd="myuser"> DEBUG: myldap_search(base="dc=cumulusnetworks,dc=com", filter="(&(objectClass=posixAccount)(uid=myuser))")
+nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_initialize(ldap://<ip_address>)
+nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_rebind_proc()
+nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_PROTOCOL_VERSION,3)
+nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_DEREF,0)
+nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_TIMELIMIT,0)
+nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_TIMEOUT,0)
+nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_NETWORK_TIMEOUT,0)
+nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_REFERRALS,LDAP_OPT_ON)
+nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_set_option(LDAP_OPT_RESTART,LDAP_OPT_ON)
+nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_simple_bind_s(NULL,NULL) (uri="ldap://<ip_address>")
+nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_result(): end of results (0 total)
+```
+
+### Common Problems
+
+#### SSL/TLS
+
+- The FQDN of the LDAP server URI does not match the FQDN in the CA-signed server certificate exactly.
+- `nslcd` cannot read the SSL certificate and reports a *Permission denied* error in the debug during server connection negotiation. Check the permission on each directory in the path of the root SSL certificate. Ensure that it is readable by the `nslcd` user.
+
+#### NSCD
+
+- If the `nscd cache` daemon is also enabled and you make some changes to the user from LDAP, you can clear the cache using the following commands:
+
+   ```
+   nscd --invalidate = passwd
+   nscd --invalidate = group
+   ```
+
+- The `nscd` package works with `nslcd` to cache name entries returned from the LDAP server. This might cause authentication failures. To work around these issues, disable `nscd`, restart the `nslcd` service, then retry authentication:
+
+   ```
+   cumulus@switch:~$ sudo nscd -K
+   cumulus@switch:~$ sudo systemctl restart nslcd.service
+   ```
+
+{{%notice note%}}
+
+If you are running the `nslcd` service in a management VRF, you need to run the `systemctl restart nslcd@mgmt.service` command instead of the `systemctl restart nslcd.service` command. For example:
+
+```
+cumulus@switch:~$ sudo nscd -K
+cumulus@switch:~$ sudo systemctl restart nslcd@mgmt.service
+```
+
+{{%/notice%}}
+
+#### LDAP
+
+- The search filter returns incorrect results. Check for typos in the search filter. Use `ldapsearch` to test your filter.
+- Optionally, configure the basic LDAP connection and search parameters in `/etc/ldap/ldap.conf`.
+
+   ```
+   # ldapsearch -D 'cn=CLadmin' -w 'CuMuLuS' "(&(ObjectClass=inetOrgUser)(uid=myuser))"
+   ```
+
+- When a local username also exists in the LDAP database, the order of the information sources in `/etc/nsswitch` can be updated to query LDAP before the local user database. This is generally not recommended. For example, the configuration below ensures that LDAP is queried before the local database.
+
+   ```
+   # /etc/nsswitch.conf
+   passwd:       ldap compat
+   ```
 
 ## Related Information
 

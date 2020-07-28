@@ -34,7 +34,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "vtysh Commands ">}}
 
-1. Enable the `ospf6` daemon, then start the FRRouting service. See {{<link url="Configuring-FRRouting">}}.
+1. Enable the `ospf6` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
 
 2. From the vtysh shell, configure OSPFv3:
 

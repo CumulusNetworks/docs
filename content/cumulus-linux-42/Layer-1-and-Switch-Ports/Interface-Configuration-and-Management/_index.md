@@ -313,9 +313,9 @@ iface lo inet loopback
 
 {{< /tabs >}}
 
-## ifupdown Behavior with Child Interfaces
+## ifupdown2 Behavior with Child Interfaces
 
-By default, `ifupdown` recognizes and uses any interface present on the system that is listed as a dependent of an interface (for example, a VLAN, bond, or physical interface). You are not required to list interfaces in the `interfaces` file unless they need a specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `interfaces` file.
+By default, `ifupdown2` recognizes and uses any interface present on the system that is listed as a dependent of an interface (for example, a VLAN, bond, or physical interface). You are not required to list interfaces in the `interfaces` file unless they need a specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `interfaces` file.
 
 In the following example, swp1 and swp2 do not need an entry in the `interfaces` file. The following stanzas defined in `/etc/network/interfaces` provide the exact same configuration:
 
@@ -1149,7 +1149,7 @@ Interface descriptions also appear in the {{<link url="Simple-Network-Management
 
 {{%/notice%}}
 
-## Caveats and Errata
+## Considerations
 
 Even though `ifupdown2` supports the inclusion of multiple `iface` stanzas for the same interface, Cumulus Networks recommends that you use a single `iface` stanza for each interface. If you must specify more than one `iface` stanza; for example, if the configuration for a single interface comes from many places, like a template or a sourced file, make sure the stanzas do not specify the same interface attributes. Otherwise, unexpected behavior can result.
 
@@ -1185,7 +1185,7 @@ For `sysctl` commands in the `pre-up`, `up`, `post-up`, `pre-down`, `down`, and 
 
 ### ifupdown2 and the gateway Parameter
 
-The default route created by the `gateway` parameter in ifupdown2 is not installed in FRR, therefore cannot be redistributed into other routing protocols. Define a static default route instead, which is installed in FRR and redistributed, if needed.
+The default route created by the `gateway` parameter in ifupdown2 is not installed in FRRouting, therefore cannot be redistributed into other routing protocols. Define a static default route instead, which is installed in FRR and redistributed, if needed.
 
 The following shows an example of the `/etc/network/interfaces` file when you use a static route instead of a gateway parameter:
 

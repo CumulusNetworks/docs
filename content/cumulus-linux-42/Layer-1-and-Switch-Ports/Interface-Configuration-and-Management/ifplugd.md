@@ -81,6 +81,6 @@ The example configuration below configures `ifplugd` to bring down all uplinks w
     cumulus@switch:~$ sudo systemctl restart ifplugd.service
     ```
 
-## Caveats and Errata
+## Considerations
 
 The default shell for `ifplugd` is `dash` (`/bin/sh`) instead of `bash`, as it provides a faster and more nimble shell. However, `dash` contains fewer features than `bash` (for example, `dash` is unable to handle multiple uplinks).

@@ -253,9 +253,7 @@ To always start `switchd` with nonatomic updates:
 
 3. {{%link url="Configuring-switchd#restart-switchd" text="Restart `switchd`"%}}:
 
-    ```
-    cumulus@switch:~$ sudo systemctl restart switchd.service
-    ```
+   {{<cl/restart-switchd>}}
 
 {{%notice note%}}
 
@@ -1059,9 +1057,9 @@ Cumulus Linux does not support the keyword `iprouter` (typically used for traffi
 
 {{%/notice%}}
 
-## Example Scenario
+## Example Configuration
 
-The following example scenario demonstrates how several different rules are applied.
+The following example demonstrates how several different rules are applied.
 
 {{< img src = "/images/cumulus-linux/acl-diagram.png" >}}
 
@@ -1193,12 +1191,12 @@ The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 
 [ebtables] -A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
 ```
 
-## Useful Links
+## Related Information
 
 - {{<exlink url="http://www.netfilter.org/" text="Netfilter website">}}
 - {{<exlink url="http://www.netfilter.org/documentation/HOWTO//packet-filtering-HOWTO-6.html" text="Netfilter.org packet filtering how-to">}}
 
-## Caveats and Errata
+## Considerations
 
 ### Not All Rules Supported
 

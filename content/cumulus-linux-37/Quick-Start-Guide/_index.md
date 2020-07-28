@@ -234,7 +234,11 @@ user@example.com|$ampleL1cen$et3xt
 
 {{%notice note%}}
 
-It is not necessary to reboot the switch to activate the switch ports. After you install the license, restart the `switchd`  service. All front panel ports become active and show up as swp1, swp2, and so on.
+It is not necessary to reboot the switch to activate the switch ports.
+After you install the license, restart the `switchd` service. All front
+panel ports become active and show up as swp1, swp2, and so on.
+
+{{<cl/restart-switchd>}}
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service

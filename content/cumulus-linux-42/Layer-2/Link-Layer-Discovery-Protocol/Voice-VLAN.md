@@ -15,7 +15,20 @@ The voice traffic is an 802.1q-tagged packet with a VLAN ID (that might or might
 
 Data traffic is always {{<link url="VLAN-Tagging" text="untagged">}}.
 
-## Voice VLAN Configuration Example
+## Configure LLDP
+
+Configuring voice VLAN with NCLU does not configure `lldpd` in Cumulus Linux; therefore, LLDP-MED does not provide data and voice VLAN information. You can configure LLDP-MED for each interface in a new file in `/etc/lldp.d`. In the following example, the file is called `/etc/lldpd.d/voice_vlan.conf`:
+
+```
+cumulus@switch:~$ sudo nano /etc/lldpd.d/voice_vlan.conf
+configure ports swp1 med policy application voice tagged vlan 200 priority voice dscp 46
+configure ports swp2 med policy application voice tagged vlan 100 priority voice dscp 46
+configure ports swp3 med policy application voice tagged vlan 300 priority voice dscp 46
+```
+
+You can also use the `lldpcli` command to configure an LLDP-MED network policy. However, `lldpcli` commands do not persist across switch reboots.
+
+## Example Configuration
 
 {{< img src = "/images/cumulus-linux/voice-vlan.png" >}}
 
@@ -81,19 +94,6 @@ iface bridge
 {{< /tab >}}
 
 {{< /tabs >}}
-
-## Configure LLDP
-
-Configuring voice VLAN with NCLU does not configure `lldpd` in Cumulus Linux; therefore, LLDP-MED does not provide data and voice VLAN information. You can configure LLDP-MED for each interface in a new file in `/etc/lldp.d`. In the following example, the file is called `/etc/lldpd.d/voice_vlan.conf`:
-
-```
-cumulus@switch:~$ sudo nano /etc/lldpd.d/voice_vlan.conf
-configure ports swp1 med policy application voice tagged vlan 200 priority voice dscp 46
-configure ports swp2 med policy application voice tagged vlan 100 priority voice dscp 46
-configure ports swp3 med policy application voice tagged vlan 300 priority voice dscp 46
-```
-
-You can also use the `lldpcli` command to configure an LLDP-MED network policy. However, `lldpcli` commands do not persist across switch reboots.
 
 ## Troubleshooting
 
@@ -184,7 +184,7 @@ cumulus@switch:~$ sudo brctl showmacs my_bridge
 
 To capture LLDP information, check `syslog` or use `tcpdump` on an interface.
 
-## Caveats and Errata
+## Considerations
 
 - A static voice VLAN configuration overwrites the existing configuration for the switch port.
 - Removing the `bridge-vids` or `bridge-pvid` configuration from a voice VLAN does not remove the VLAN from the bridge.

@@ -80,6 +80,4 @@ dos.udp_ports_eq
 
 4. Restart `switchd`:
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+   {{<cl/restart-switchd>}}

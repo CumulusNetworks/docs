@@ -8,6 +8,8 @@ The only real unique entity for logging on Cumulus Linux compared to any other L
 
 Read {{<exlink url="http://www.cyberciti.biz/faq/linux-log-files-location-and-how-do-i-view-logs-files/" text="this guide on NixCraft">}} to understand how `/var/log` works.
 
+## Log File Descriptions
+
 | Log | Description |
 |---- |------------ |
 | `/var/log/alternatives.log` | Information from update-alternatives.|

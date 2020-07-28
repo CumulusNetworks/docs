@@ -419,7 +419,7 @@ The following table describes the different pieces of software involved with del
 | libsimple-tacacct1\_1.0.0-cl3u2 | Provides an interface for programs to send accounting records to the TACACS+ server. Used by `audisp-tacplus`. |
 | libtac2-bin\_1.4.0-cl3u2 | Provides the `tacc` testing program and TACACS+ man page. |
 
-## Limitations
+## Considerations
 
 ### TACACS+ Client Is only Supported through the Management Interface
 
@@ -458,6 +458,6 @@ However, the command does remove the home directory. The user can still log in o
 
 Only use the `--remove-home` option when the `user_homedir=1` configuration command is in use.
 
-## When Both TACACS+ and RADIUS AAA Clients are Installed
+### When Both TACACS+ and RADIUS AAA Clients Are Installed
 
 When you have both the TACACS+ and the RADIUS AAA client installed, RADIUS login is not attempted. As a workaround, do not install both the TACACS+ and the RADIUS AAA client on the same switch.

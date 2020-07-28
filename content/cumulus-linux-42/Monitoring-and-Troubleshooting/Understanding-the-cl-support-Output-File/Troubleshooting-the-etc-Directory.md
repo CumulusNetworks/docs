@@ -8,6 +8,8 @@ The `{{<link url="Understanding-the-cl-support-Output-File" text="cl-support">}}
 
 This is the alphabetical list of the output from running `ls -l` on the `/etc` directory structure created by `cl-support`.
 
+## etc Directory Contents
+
 | **File**                  |
 | ------------------------- |
 | acpi |

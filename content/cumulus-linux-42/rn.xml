@@ -7,12 +7,43 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30856</td>
+<td><p>The following vulnerability have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default NGINX configuration is not vulnerable, as it does not configure error_page redirection):<br/>
+CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
+To work around this issue, do not use error_page redirection in the vulnerable configuration.  <a href="https://bertjwregeer.keybase.pub/2019-12-10%20-%20error_page%20request%20smuggling.pdf" class="external-link" rel="nofollow">https://bertjwregeer.keybase.pub/2019-12-10%20-%20error_page%20request%20smuggling.pdf</a> describes the vulnerability and the vulnerable configuration.</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30827</td>
+<td><p>If the MAC address of an SVI changes, clagd does not update its permanent neighbor entry for the local interface, and it does not report the change to its MLAG peer. This leaves the MLAG peer in a state where its permanent neighbor for the MLAG peer's SVI IP address continues to use the old MAC address, which causes routed traffic over this SVI to be dropped.<br/>
+To work around this issue, ifdown/ifup the SVI when a MAC address changes.</p></td>
+<td>3.7.12, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30826</td>
+<td><p>The following vulnerability has been announced in QEMU:<br/>
+CVE-2020-8608: In libslirp 4.1.0, as used in QEMU 4.2.0, tcp_subr.c misuses snprintf return values, leading to a buffer overflow in later code.<br/>
+Vulnerable: &lt;= 3.1+dfsg-8+deb10u6<br/>
+Fixed: 3.1+dfsg-8+deb10u7</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30565</td>
 <td><p>Several denial of service vulnerabilities have been announced in the qemu packages:<br/>
 CVE-2020-10756 CVE-2020-13361 CVE-2020-13362 CVE-2020-13754 CVE-2020-13659<br/>
 Vulnerable: &lt;= 1:3.1+dfsg-8+deb10u5<br/>
 Fixed: 1:3.1+dfsg-8+deb10u6</p></td>
 <td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30561</td>
+<td><p>On Mellanox switches, when you change the breakout configuration from 4x to 2x or from 2x to 4x, LLDP discovery fails.<br/>
+To resolve this issue, restart the LLDP service.</p></td>
+<td>4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -43,6 +74,12 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 <tr>
 <td>CM-30514</td>
 <td><p>In OVSDB high availability mode, deleting multiple VLAN bindings might cause ovs-vtepd to crash.</p></td>
+<td>3.7.12, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30504</td>
+<td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
 <td>3.7.12, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
@@ -86,6 +123,13 @@ To workaround this issue, downgrade to Cumulus Linux 3.7 ESR.</p></td>
 <td>CM-30422</td>
 <td><p>When you configure a bridge in the /etc/network/interfaces file, then try to reconfigure the bridge to be a VRF interface with the same name, ifreload/ifup commands fail with an invalid table id or unable to get vrf table id error.</p></td>
 <td>3.7.12, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30414</td>
+<td><p>If you toggle VRRP priority values between VRRP routers, then run a switchd restart, a few IPv6 VRRP instances might not converge. As a result, both the VRRP routers act as <em>master</em> routers for the impacted IPv6 VRRP instances. IPv4 VRRP instances are not affected.<br/>
+To work around this issue, remove, then add the VRRP configuration with NCLU commands or vtysh in FRR.</p></td>
+<td>4.2.0</td>
 <td></td>
 </tr>
 <tr>

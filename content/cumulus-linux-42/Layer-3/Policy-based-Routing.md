@@ -107,7 +107,7 @@ You can only set one policy per interface.
 
 {{< tab "vtysh Commands ">}}
 
-1. Before you run the vtysh commands, you need to enable the `pbrd` service in the `/etc/frr/daemons` file, then restart FRR with the `systemctl restart frr.service` command.
+1. Before you run the vtysh commands, you need to enable the `pbrd` service in the `/etc/frr/daemons` file, then restart FRRouting with the `systemctl restart frr.service` command.
 
     ```
     cumulus@leaf01:~$ sudo nano /etc/frr/daemons
@@ -249,63 +249,6 @@ pbr-map map1 seq 1
 ``` 
  -->
 
-## Configuration Example
-
-In the following example, the PBR-enabled switch has a PBR policy to route all traffic from the Internet to a server that performs anti-DDOS. The traffic returns to the PBR-enabled switch after being cleaned and is then passed onto the regular destination based routing mechanism.
-
-{{< img src = "/images/cumulus-linux/pbr-example.png" >}}
-
-The configuration for the example above is:
-
-{{< tabs "TabID197 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 0.0.0.0/0
-cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop 192.168.0.32
-cumulus@switch:~$ net add interface swp51 pbr-policy map1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# pbr-map map1 seq 1
-switch(config-pbr-map)# match src-ip 0.0.0.0/0
-switch(config-pbr-map)# set nexthop 192.168.0.32
-switch(config-pbr-map)# exit
-switch(config)# interface swp51
-switch(config-if)# pbr-policy map1
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-interface swp51
- pbr-policy map1
-...
-pbr-map map1 seq 1
- match src-ip 0.0.0.0/0
- set nexthop 192.168.0.32
-...
-```
-
 ## Review Your Configuration
 
 Use the following commands to see the configured PBR policies.
@@ -362,7 +305,7 @@ A new Linux routing table ID is used for each next hop and next hop group.
 
 {{%/notice%}}
 
-## Modifying Existing PBR Rules
+## Modify Existing PBR Rules
 
 When you want to change or extend an existing PBR rule, you must first delete the conditions in the rule, then add the rule back with the modification or addition.
 
@@ -660,3 +603,60 @@ net commit
 ```
 
 {{%/notice%}}
+
+## Example Configuration
+
+In the following example, the PBR-enabled switch has a PBR policy to route all traffic from the Internet to a server that performs anti-DDOS. The traffic returns to the PBR-enabled switch after being cleaned and is then passed onto the regular destination based routing mechanism.
+
+{{< img src = "/images/cumulus-linux/pbr-example.png" >}}
+
+The configuration for the example above is:
+
+{{< tabs "TabID197 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add pbr-map map1 seq 1 match src-ip 0.0.0.0/0
+cumulus@switch:~$ net add pbr-map map1 seq 1 set nexthop 192.168.0.32
+cumulus@switch:~$ net add interface swp51 pbr-policy map1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# pbr-map map1 seq 1
+switch(config-pbr-map)# match src-ip 0.0.0.0/0
+switch(config-pbr-map)# set nexthop 192.168.0.32
+switch(config-pbr-map)# exit
+switch(config)# interface swp51
+switch(config-if)# pbr-policy map1
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface swp51
+ pbr-policy map1
+...
+pbr-map map1 seq 1
+ match src-ip 0.0.0.0/0
+ set nexthop 192.168.0.32
+...
+```

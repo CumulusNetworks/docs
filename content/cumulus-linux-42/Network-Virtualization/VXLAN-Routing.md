@@ -10,7 +10,7 @@ Because VXLAN routing is fundamentally routing, it is most commonly deployed wit
 
 This topic describes the platform and hardware considerations for VXLAN routing. For a detailed description of different VXLAN routing models and configuration examples, refer to {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}.
 
-VXLAN routing supports full layer 3 multi-tenancy; all routing occurs in the context of a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}. Also, VXLAN routing is supported for dual-attached hosts where the associated VTEPs function in {{<link url="VXLAN-Active-Active-Mode" text="active-active mode">}}.
+VXLAN routing supports full layer 3 multi-tenancy; all routing occurs in the context of a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}. Also, VXLAN routing is supported for dual-attached hosts where the associated VTEPs function in {{<link url="VXLAN-Active-active-Mode" text="active-active mode">}}.
 
 ## Supported Platforms
 
@@ -66,6 +66,10 @@ For any profile you specify, you can allocate a *maximum* of 2K (2048) VXLAN SVI
 
 To disable VXLAN routing on a Trident II+ or Trident3 switch, set the `vxlan_routing_overlay.profile` field to *disable*.
 
+### Trident II
+
+VXLAN routing is not supported on Trident II switches, and the external hyperloop workaround for RIOT on Trident II switches has been removed in Cumulus Linux 4.0.0. Cumulus Networks recommends you use native VXLAN routing platforms and EVPN for network virtualization.
+
 ### Tomahawk and Tomahawk+
 
 The Tomahawk and Tomahawk+ ASICs do not support RIOT natively; you must configure the switch ports for VXLAN routing to use internal loopback (also referred to as *internal hyperloop)*. The internal loopback facilitates the recirculation of packets through the ingress pipeline to achieve VXLAN routing.
@@ -100,10 +104,6 @@ VXLAN routing with internal loopback is supported only with {{<link url="VLAN-aw
 
 For VXLAN routing on a switch with the Tomahawk+ ASIC, if you use 25G ports as the internal loopback, you must configure all four ports in the same port group.
 
-## VXLAN Routing Data Plane and Broadcom Trident II Platforms
+## VXLAN Routing Data Plane and Mellanox Spectrum ASICs
 
-VXLAN routing is not supported on Trident II switches, and the external hyperloop workaround for RIOT on Trident II switches has been removed in Cumulus Linux 4.0.0. Cumulus Networks recommends you use native VXLAN routing platforms and EVPN for network virtualization.
-
-## VXLAN Routing Data Plane and the Mellanox Spectrum ASIC
-
-There is no special configuration required for VXLAN routing on the Mellanox Spectrum ASIC.
+There is no special configuration required for VXLAN routing on Mellanox Spectrum ASICs.

@@ -1,16 +1,13 @@
 ---
-title: Configuring FRRouting
+title: Configure FRRouting
 author: Cumulus Networks
 weight: 760
 toc: 3
 ---
-This section discusses FRRouting configuration.
-
-## Configure FRRouting
 
 FRRouting does not start by default in Cumulus Linux. Before you run FRRouting, make sure you have enabled the relevant daemons that you intend to use (`bgpd`, `ospfd`, `ospf6d` or `pimd`) in the `/etc/frr/daemons` file.
 
-{{%notice warning%}}
+{{%notice info%}}
 
 Cumulus Networks has not tested RIP, RIPv6, IS-IS and Babel.
 
@@ -40,7 +37,7 @@ vrrpd=no
 ...
 ```
 
-### Enable and Start FRRouting
+## Enable and Start FRRouting
 
 After you enable the appropriate daemons, enable and start the FRRouting service:
 
@@ -59,7 +56,7 @@ For more information on the `systemctl` command and changing the state of daemon
 
 {{%/notice%}}
 
-### Integrated Configurations
+## Integrated Configurations
 
 By default in Cumulus Linux, FRRouting saves all daemon configurations in a single integrated configuration file, `frr.conf`.
 
@@ -106,7 +103,7 @@ Configuration saved to /etc/frr/bgpd.conf
 [OK]
 ```
 
-### Restore the Default Configuration
+## Restore the Default Configuration
 
 If you need to restore the FRRouting configuration to the default running configuration, delete the `frr.conf` file and restart the `frr` service.
 
@@ -444,7 +441,7 @@ To write debug messages to the log file, you must run the `log syslog debug` com
 
 {{%/notice%}}
 
-## Caveats
+## Considerations
 
 ### Obfuscated Passwords
 

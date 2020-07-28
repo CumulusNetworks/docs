@@ -36,13 +36,9 @@ cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 dos_enable = true
 ```
 
-Restart the `switchd` service with the `sudo systemctl restart switchd.service` command for the changes to take effect.
+Restart the `switchd` service for the changes to take effect.
 
-{{%notice warning%}}
-
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-
-{{%/notice%}}
+{{<cl/restart-switchd>}}
 
 To specify which DOS checks you want to enable, open the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf` file and enable the desired DOS checks by setting the corresponding values to _true_:
 
@@ -68,7 +64,9 @@ dos.icmpv6_length = true
 dos.ipv6_min_frag = true
 ```
 
-Restart the `switchd` service with the `sudo systemctl restart switchd.service` command for the changes to take effect.
+Restart the `switchd` service for the changes to take effect.
+
+{{<cl/restart-switchd>}}
 
 ### Configure Switch Ports
 

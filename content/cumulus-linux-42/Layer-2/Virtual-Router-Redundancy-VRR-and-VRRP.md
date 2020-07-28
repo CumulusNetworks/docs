@@ -461,7 +461,7 @@ cumulus@spine02:~$ net commit
 
 {{< tab "Linux and vtysh Commands ">}}
 
-1. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="Configuring FRRouting">}}.
+1. Enable the `vrrpd` daemon, then start the FRRouting service. See {{<link title="Configure FRRouting">}}.
 
 2. From the vtysh shell, configure VRRP.
 

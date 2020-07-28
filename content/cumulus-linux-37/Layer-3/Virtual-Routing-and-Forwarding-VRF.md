@@ -300,7 +300,7 @@ the steps below. To configure static route leaking with EVPN, see
         vrf_route_leak_enable = TRUE
         vrf_route_leak_enable_dynamic = false
 
-        cumulus@switch:~$ sudo systemctl restart switchd.service
+    {{<cl/restart-switchd>}}
 
     {{%notice note%}}
 
@@ -417,7 +417,7 @@ between a pair of VRFs.
         vrf_route_leak_enable = false
         vrf_route_leak_enable_dynamic = TRUE
 
-        cumulus@switch:~$ sudo systemctl restart switchd.service
+    {{<cl/restart-switchd>}}
 
     {{%notice note%}}
 

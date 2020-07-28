@@ -935,9 +935,13 @@ iface swp310s3
 ...
 ```
 
-3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+   {{<cl/restart-switchd>}}
 
    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+
+       cumulus@switch:~$ sudo systemctl reload switchd.service
 
 {{< /tab >}}
 
@@ -977,7 +981,11 @@ To remove a breakout port:
 
 3. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
+   {{<cl/restart-switchd>}}
+
    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+
+       cumulus@switch:~$ sudo systemctl reload switchd.service
 
 {{< /tab >}}
 
@@ -998,7 +1006,11 @@ To remove a breakout port:
 
 2. On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
+   {{<cl/restart-switchd>}}
+
    On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+
+       cumulus@switch:~$ sudo systemctl reload switchd.service
 
 {{< /tab >}}
 
@@ -1059,7 +1071,11 @@ To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` fi
 
 On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
 
+{{<cl/restart-switchd>}}
+
 On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+
+    cumulus@switch:~$ sudo systemctl reload switchd.service
 
 {{< /tab >}}
 
@@ -1179,7 +1195,7 @@ cumulus@switch:~$ sudo ethtool -m swp4 | egrep 'Vendor|type|power\s+:'
         Receiver signal average optical power     : 0.7285 mW / -1.38 dBm
 ```
 
-## Caveats and Errata
+## Considerations
 
 ### Port Speed and the ifreload -a Command
 
@@ -1224,7 +1240,9 @@ If you change the speed with `ethtool` to a setting already in use in the `/etc/
 
 {{%/notice%}}
 
-2. {{<link url="Configuring-switchd#restart-switchd" text="Restart switchd">}}.
+2. Restart `switchd`.
+
+   {{<cl/restart-switchd>}}
 
 3. If you want to set the speed of any SFPs to 1G, set the port speed to 1000 Mbps using NCLU commands; this is *not* necessary for 10G SFPs. You don't need to set the port speed to 1G for all four ports. For example, if you intend only for swp5 and swp6 to use 1G SFPs, do the following:
 

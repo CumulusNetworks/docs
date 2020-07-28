@@ -167,7 +167,7 @@ defaults to 10 seconds) and *StartBurstLimit* (which defaults to 5
 attempts), but many services override these defaults, sometimes with
 much longer times. `switchd.service`, for example, sets
 *StartLimitInterval=10m* and *StartBurstLimit=3*, which means if you
-restart switchd more than 3 times in 10 minutes, it does not start.
+restart `switchd` more than 3 times in 10 minutes, it does not start.
 
 When the restart fails for this reason, a message similar to the
 following appears:

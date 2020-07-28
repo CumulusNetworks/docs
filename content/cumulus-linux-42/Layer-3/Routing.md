@@ -486,7 +486,7 @@ When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" t
 
 On Broadcom switches with Cumulus Linux 4.0 and later, when there is a /32 IPv4 or /128 IPv6 route and the same prefix is also a neighbor entry in the linux kernel, the route entry takes precedence over the neighbor entry in the forwarding lookup. To change this behaviour, update the `route_preferred_over_neigh` variable to FALSE in the `/etc/cumulus/switchd.conf` file.
 
-## Caveats and Errata
+## Considerations
 
 ### Do Not Delete Routes through Linux Shell
 

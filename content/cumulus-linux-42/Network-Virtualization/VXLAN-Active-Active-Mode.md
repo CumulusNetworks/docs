@@ -1,5 +1,5 @@
 ---
-title: VXLAN Active-Active Mode
+title: VXLAN Active-active Mode
 author: Cumulus Networks
 weight: 600
 toc: 3
@@ -625,7 +625,7 @@ Our Interface      Peer Interface     CLAG Id   Conflicts      Proto-Down Reason
          vxlan10   -                  -         -              vxlan-single
 ```
 
-## Caveats and Errata
+## Considerations
 
 ### Use VLAN for Peer Link Only Once
 

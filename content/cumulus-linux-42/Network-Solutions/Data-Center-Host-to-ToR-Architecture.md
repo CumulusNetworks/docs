@@ -14,7 +14,7 @@ This chapter discusses the various architectures and strategies available from t
 
 | <div style="width:300px">Benefits | Caveats |
 |----------|---------|
-|<ul><li>Established technology: Interoperability with other vendors, easy configuration, a lot of documentation from multiple vendors and the industry</li><li>Ability to use {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree" text="spanning tree">}} commands: {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#portadminedge-portfast-mode" text="PortAdminEdge">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard" text="BPDU guard">}}</li><li>Layer 2 reachability to all VMs</li></ul>|<ul><li>The load balancing mechanism on the host can cause problems. If there is only host pinning to each NIC, there are no problems, but if you have a bond, you need to look at an MLAG solution.</li><li>No active-active host links. Some operating systems allow HA (NIC failover), but this still does not utilize all the bandwidth. VMs use one NIC, not two.</li></ul>|
+|<ul><li>Established technology: Interoperability with other vendors, easy configuration, a lot of documentation from multiple vendors and the industry</li><li>Ability to use {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree">}} commands: {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#portadminedge-portfast-mode" text="PortAdminEdge">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard" text="BPDU guard">}}</li><li>Layer 2 reachability to all VMs</li></ul>|<ul><li>The load balancing mechanism on the host can cause problems. If there is only host pinning to each NIC, there are no problems, but if you have a bond, you need to look at an MLAG solution.</li><li>No active-active host links. Some operating systems allow HA (NIC failover), but this still does not utilize all the bandwidth. VMs use one NIC, not two.</li></ul>|
 
 | <div style="width:130px">Active-Active Mode | <div style="width:130px">Active-Passive Mode | L2 to L3 Demarcation|
 |---------------------|--------------------|---------------------|
@@ -82,7 +82,7 @@ iface br-20 inet manual
 
 | <div style="width:300px">Example | Summary |
 |----|----|
-|{{< img src = "/images/cumulus-linux/network-solutions-mlag.png" >}} | {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG (multi-chassis link aggregation)">}} uses both uplinks at the same time. VRR enables both spines to act as gateways simultaneously for HA (high availability) and {{<link url="VXLAN-Active-Active-Mode" text="active-active mode">}} (both are used at the same time). |
+|{{< img src = "/images/cumulus-linux/network-solutions-mlag.png" >}} | {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG (multi-chassis link aggregation)">}} uses both uplinks at the same time. VRR enables both spines to act as gateways simultaneously for HA (high availability) and {{<link url="VXLAN-Active-active-Mode" text="active-active mode">}} (both are used at the same time). |
 
 | <div style="width:300px">Benefits | Caveats |
 |----------| --------|
@@ -261,7 +261,7 @@ iface eth1 inet static
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-|<ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>A default route can be advertised by all leaf/ToRs for dynamic ECMP paths</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="Configuring-FRRouting">}}</li></ul>|
+|<ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>A default route can be advertised by all leaf/ToRs for dynamic ECMP paths</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="Configure-FRRouting">}}</li></ul>|
 
 ## Layer 3 - Routing on the VM
 
@@ -275,7 +275,7 @@ iface eth1 inet static
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-| <ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>You can use multiple ToRs (two or more)</li><ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="Configuring-FRRouting">}}</li><ul>|
+| <ul><li>The first hop is still the ToR, just like redistribute neighbor</li><li>You can use multiple ToRs (two or more)</li><ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="Configure-FRRouting">}}</li><ul>|
 
 ## Layer 3 - Virtual Router
 
@@ -289,7 +289,7 @@ iface eth1 inet static
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
-|<ul><li>The gateway is the vRouter, which has two routes out (two ToRs)</li><li>You can use multiple vRouters</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="Configuring-FRRouting">}}</li></ul>|
+|<ul><li>The gateway is the vRouter, which has two routes out (two ToRs)</li><li>You can use multiple vRouters</li></ul>|<ul><li>{{<exlink url="http://docs.frrouting.org/en/latest/installation.html" text="Installing the FRRouting Package on an Ubuntu Server">}}</li><li>{{<link url="Configure-FRRouting">}}</li></ul>|
 
 ## Layer 3 - Anycast with Manual Redistribution
 

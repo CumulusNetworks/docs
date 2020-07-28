@@ -381,7 +381,7 @@ To always start `switchd` with nonatomic updates:
 
 3.  Restart `switchd`:
 
-        cumulus@switch:~$ sudo systemctl restart switchd.service
+    {{<cl/restart-switchd>}}
 
 {{%notice note%}}
 

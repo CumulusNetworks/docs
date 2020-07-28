@@ -1020,7 +1020,9 @@ iface swp310s3
 ...
 ```
 
-3. Restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+3. Restart `switchd`.
+
+   {{<cl/restart-switchd>}}
 
 {{< /tab >}}
 
@@ -1058,7 +1060,9 @@ To remove a breakout port:
     ...
     ```
 
-3. Restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+3. Restart `switchd`.
+
+   {{<cl/restart-switchd>}}
 
 {{< /tab >}}
 
@@ -1077,7 +1081,9 @@ To remove a breakout port:
     ...
     ```
 
-2. Restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+2. Restart `switchd`.
+
+   {{<cl/restart-switchd>}}
 
 {{< /tab >}}
 

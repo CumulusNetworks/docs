@@ -150,7 +150,7 @@ iface br-20 inet manual
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>{{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and {{<link url="VXLAN-Active-active-Mode" text="active-active mode">}} (both are being used at the same time).</p>
+<td><p>{{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and {{<link url="VXLAN-Active-Active-Mode" text="active-active mode">}} (both are being used at the same time).</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
 <pre><code>auto bridge

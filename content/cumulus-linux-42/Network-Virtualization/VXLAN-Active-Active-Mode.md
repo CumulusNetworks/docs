@@ -28,7 +28,7 @@ VXLAN active-active mode requires the following underlying technologies to work 
 | -----------|----------------- |
 | MLAG|Refer to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} for more detailed configuration information. Example configurations are provided below. |
 | OSPF or BGP |Refer to {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} for more detailed configuration information. Example configurations for BGP are provided below. |
-| STP | You must enable {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard" text="BPDU guard">}} in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN. Example configurations are provided below. |
+| STP | You must enable {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-filter" text="BPDU filter">}} and {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU guard">}} in the VXLAN interfaces if STP is enabled in the bridge that is connected to the VXLAN. Example configurations are provided below. |
 
 ### Active-active VTEP Anycast IP Behavior
 

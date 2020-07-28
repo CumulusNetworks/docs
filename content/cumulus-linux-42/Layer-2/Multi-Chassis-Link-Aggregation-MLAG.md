@@ -847,7 +847,7 @@ To get a better understanding of how STP and LACP behave in response to various 
 
 Cumulus Networks recommends that you always enable STP in your layer 2 network.
 
-With MLAG, Cumulus Networks recommends you enable BPDU guard on the host-facing bond interfaces. For more information about BPDU guard, see {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard" text="BPDU Guard and Bridge Assurance">}}.
+With MLAG, Cumulus Networks recommends you enable BPDU guard on the host-facing bond interfaces. For more information about BPDU guard, see {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU Guard and Bridge Assurance">}}.
 
 To show useful troubleshooting information:
 

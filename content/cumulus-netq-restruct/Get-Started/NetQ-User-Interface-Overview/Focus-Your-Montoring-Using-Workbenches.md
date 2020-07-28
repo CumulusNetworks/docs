@@ -78,7 +78,7 @@ There are several options for opening workbenches:
 - Open through Cumulus logo
     - Click the logo in the header to open your favorite workbench
 
-## Manage Auto-Refresh for Your Workbenches
+## Manage Auto-refresh for Your Workbenches
 
 With NetQ 2.3.1 and later, you can specify how often to update the data displayed on your workbenches. Three refresh rates are available:
 
@@ -88,7 +88,7 @@ With NetQ 2.3.1 and later, you can specify how often to update the data displaye
 
 By default, auto-refresh is enabled and configured to update every 30 seconds.
 
-### Disable/Enable Auto-Refresh
+### Disable/Enable Auto-refresh
 
 To disable or pause auto-refresh of your workbenches, simply click the **Refresh** icon. This toggles between the two states, *Running* and *Paused*, where <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" width="18"/> indicates it is currently disabled and <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" width="18"/> indicates it is currently enabled.
 

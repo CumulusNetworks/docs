@@ -1185,7 +1185,7 @@ For `sysctl` commands in the `pre-up`, `up`, `post-up`, `pre-down`, `down`, and 
 
 ### ifupdown2 and the gateway Parameter
 
-The default route created by the `gateway` parameter in ifupdown2 is not installed in FRR, therefore cannot be redistributed into other routing protocols. Define a static default route instead, which is installed in FRR and redistributed, if needed.
+The default route created by the `gateway` parameter in ifupdown2 is not installed in FRRouting, therefore cannot be redistributed into other routing protocols. Define a static default route instead, which is installed in FRR and redistributed, if needed.
 
 The following shows an example of the `/etc/network/interfaces` file when you use a static route instead of a gateway parameter:
 

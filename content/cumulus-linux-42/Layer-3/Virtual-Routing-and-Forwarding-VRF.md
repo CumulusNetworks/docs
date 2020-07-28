@@ -371,7 +371,7 @@ Export RT: 10.1.1.1:2
 ```
 
 - To view the BGP routing table, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast` command or the `vtysh` `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
-- To view the FRR IP routing table, use the NCLU `net show route vrf <vrf-name>` command or the `vtysh` `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
+- To view the FRRouting IP routing table, use the NCLU `net show route vrf <vrf-name>` command or the `vtysh` `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
 
 The following example commands show all routes in VRF `turtle`, including routes leaked from VRF `rocket`:
 

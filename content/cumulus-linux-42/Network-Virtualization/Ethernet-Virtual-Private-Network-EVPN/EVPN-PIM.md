@@ -74,6 +74,108 @@ One multicast group per layer 2 VNI is optimal configuration for underlay bandwi
 
 {{%/notice%}}
 
+## Verify EVPN-PIM
+
+Run the NCLU `net show mroute` command or the vtysh `show ip mroute` command to review the multicast route information in FRR. When using EVPN-PIM, every VTEP acts as both source and destination for a VNI-MDT group, therefore, mroute entries on each VTEP should look like this:
+
+```
+cumulus@switch:~$ net show mroute
+Source          Group           Proto  Input            Output           TTL  Uptime
+*               239.1.1.111     IGMP   swp2             pimreg           1    21:37:36
+                                PIM                     ipmr-lo          1    21:37:36
+10.0.0.28       239.1.1.111     STAR   lo               ipmr-lo          1    21:36:41
+                                PIM                     swp2             1    21:36:41
+*               239.1.1.112     IGMP   swp2             pimreg           1    21:37:36
+                                PIM                     ipmr-lo          1    21:37:36
+10.0.0.28       239.1.1.112     STAR   lo               ipmr-lo          1    21:36:41
+                                PIM                     swp2             1    21:36:41
+```
+
+(*,G) entries should show `ipmr-lo` in the OIL (Outgoing Interface List) and (S,G) entries should show `lo` as the Source interface or incoming interface and `ipmr-lo` in the OIL.
+
+Run the `ip mroute` command to review the multicast route information in the kernel. The kernel information should match the FRR information.
+
+```
+cumulus@switch:~$ ip mroute
+(10.0.0.28,239.1.1.112)      Iif: lo     Oifs: swp2   State: resolved
+(10.0.0.28,239.1.1.111)      Iif: lo     Oifs: swp2   State: resolved
+(0.0.0.0,239.1.1.111)        Iif: swp2   Oifs: pimreg ipmr-lo swp2  State: resolved
+(0.0.0.0,239.1.1.112)        Iif: swp2   Oifs: pimreg ipmr-lo swp2  State: resolved
+```
+
+Run the `bridge fdb show | grep 00:00:00:00:00:00` command to verify that all zero MAC addresses for every VXLAN device point to the correct multicast group destination.
+
+```
+cumulus@switch:~$ bridge fdb show | grep 00:00:00:00:00:00
+00:00:00:00:00:00 dev vxlan1000112 dst 239.1.1.112 self permanent
+00:00:00:00:00:00 dev vxlan1000111 dst 239.1.1.111 self permanent
+```
+
+{{%notice note%}}
+
+The `show ip mroute count` command, often used to check multicast packet counts does *not* update for encapsulated BUM traffic originating or terminating on the VTEPs.
+
+{{%/notice%}}
+
+Run the NCLU `net show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to ensure that your layer 2 VNI has the correct flooding information:
+
+```
+cumulus@switch:~$ net show evpn vni 10
+VNI: 10
+ Type: L2
+ Tenant VRF: default
+ VxLAN interface: vni10
+ VxLAN ifIndex: 18
+ Local VTEP IP: 10.0.0.28
+ Mcast group: 239.1.1.112   <<<<<<<
+ Remote VTEPs for this VNI:
+  10.0.0.26 flood: -
+  10.0.0.27 flood: -
+ Number of MACs (local and remote) known for this VNI: 9
+ Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 14
+ Advertise-gw-macip: No
+```
+
+## Configure EVPN-PIM in VXLAN Active-active Mode
+
+{{< img src = "/images/cumulus-linux/evpn-pim-anycast-vteps.png" >}}
+
+To configure EVPN-PIM in VXLAN active-active mode, enable PIM on the peer link on each MLAG peer switch (**in addition to** the configuration described in {{<link url="#configure-multicast-vxlan-tunnels" text="Configure Multicast VXLAN Tunnels">}}, above).
+
+{{< tabs "TabID318 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+Run the `net add interface <peerlink> pim sm` command. For example:
+
+```
+cumulus@switch:~$ net add interface peerlink.4094 pim sm
+cumulus@switch:~$ net commit
+cumulus@switch:~$ net pending
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+In the vtysh shell, run the following commands:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface peerlink.4094
+switch(config-if)# ip pim sm
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ## Example Configuration
 
 The following example shows an EVPN-PIM configuration on the VTEP, where:
@@ -253,108 +355,6 @@ iface vlan4002
     vlan-id 4002
     vlan-raw-device bridge
     vrf vrf2
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-## Verify EVPN-PIM
-
-Run the NCLU `net show mroute` command or the vtysh `show ip mroute` command to review the multicast route information in FRR. When using EVPN-PIM, every VTEP acts as both source and destination for a VNI-MDT group, therefore, mroute entries on each VTEP should look like this:
-
-```
-cumulus@switch:~$ net show mroute
-Source          Group           Proto  Input            Output           TTL  Uptime
-*               239.1.1.111     IGMP   swp2             pimreg           1    21:37:36
-                                PIM                     ipmr-lo          1    21:37:36
-10.0.0.28       239.1.1.111     STAR   lo               ipmr-lo          1    21:36:41
-                                PIM                     swp2             1    21:36:41
-*               239.1.1.112     IGMP   swp2             pimreg           1    21:37:36
-                                PIM                     ipmr-lo          1    21:37:36
-10.0.0.28       239.1.1.112     STAR   lo               ipmr-lo          1    21:36:41
-                                PIM                     swp2             1    21:36:41
-```
-
-(*,G) entries should show `ipmr-lo` in the OIL (Outgoing Interface List) and (S,G) entries should show `lo` as the Source interface or incoming interface and `ipmr-lo` in the OIL.
-
-Run the `ip mroute` command to review the multicast route information in the kernel. The kernel information should match the FRR information.
-
-```
-cumulus@switch:~$ ip mroute
-(10.0.0.28,239.1.1.112)      Iif: lo     Oifs: swp2   State: resolved
-(10.0.0.28,239.1.1.111)      Iif: lo     Oifs: swp2   State: resolved
-(0.0.0.0,239.1.1.111)        Iif: swp2   Oifs: pimreg ipmr-lo swp2  State: resolved
-(0.0.0.0,239.1.1.112)        Iif: swp2   Oifs: pimreg ipmr-lo swp2  State: resolved
-```
-
-Run the `bridge fdb show | grep 00:00:00:00:00:00` command to verify that all zero MAC addresses for every VXLAN device point to the correct multicast group destination.
-
-```
-cumulus@switch:~$ bridge fdb show | grep 00:00:00:00:00:00
-00:00:00:00:00:00 dev vxlan1000112 dst 239.1.1.112 self permanent
-00:00:00:00:00:00 dev vxlan1000111 dst 239.1.1.111 self permanent
-```
-
-{{%notice note%}}
-
-The `show ip mroute count` command, often used to check multicast packet counts does *not* update for encapsulated BUM traffic originating or terminating on the VTEPs.
-
-{{%/notice%}}
-
-Run the NCLU `net show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to ensure that your layer 2 VNI has the correct flooding information:
-
-```
-cumulus@switch:~$ net show evpn vni 10
-VNI: 10
- Type: L2
- Tenant VRF: default
- VxLAN interface: vni10
- VxLAN ifIndex: 18
- Local VTEP IP: 10.0.0.28
- Mcast group: 239.1.1.112   <<<<<<<
- Remote VTEPs for this VNI:
-  10.0.0.26 flood: -
-  10.0.0.27 flood: -
- Number of MACs (local and remote) known for this VNI: 9
- Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 14
- Advertise-gw-macip: No
-```
-
-## Configure EVPN-PIM in VXLAN Active-Active Mode
-
-{{< img src = "/images/cumulus-linux/evpn-pim-anycast-vteps.png" >}}
-
-To configure EVPN-PIM in VXLAN active-active mode, enable PIM on the peer link on each MLAG peer switch (**in addition to** the configuration described in {{<link url="#configure-multicast-vxlan-tunnels" text="Configure Multicast VXLAN Tunnels">}}, above).
-
-{{< tabs "TabID318 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-Run the `net add interface <peerlink> pim sm` command. For example:
-
-```
-cumulus@switch:~$ net add interface peerlink.4094 pim sm
-cumulus@switch:~$ net commit
-cumulus@switch:~$ net pending
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-In the vtysh shell, run the following commands:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# interface peerlink.4094
-switch(config-if)# ip pim sm
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
 ```
 
 {{< /tab >}}

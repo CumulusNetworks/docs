@@ -15,7 +15,7 @@ Static and dynamic NAT both support:
 - Basic NAT, which only translates the IP address in the packet: the source IP address in the outbound direction and the destination IP address in the inbound direction.
 - Port Address Translation (PAT), which translates both the IP address and layer 4 port: the source IP address and port in the outbound direction and the destination IP address and port in the inbound direction.
 
-The following illustratration shows a basic NAT configuration.
+The following illustration shows a basic NAT configuration.
 
 {{< img src = "/images/cumulus-linux/nat-example.png" >}}
 
@@ -66,7 +66,7 @@ For static **PAT**, create a rule that matches a source or destination IP addres
 
 For Mellanox Spectrum-2 switches, you can include the outgoing or incoming interface.
 
-To create rules, you can use either NCLU or cl-acltool.
+To create rules, you can use either NCLU or `cl-acltool`.
 
 {{< tabs "TabID68 ">}}
 

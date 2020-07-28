@@ -63,26 +63,6 @@ The `cl-tdr` command includes several options, described below:
 | `-j` | Displays diagnostic results in JSON format. |
 | `-y` | Proceeds automatically without the warning or prompt. |
 
-## Example Commands
-
-The following command runs diagnostics on ports swp39, swp40, and swp32 and sets the delay to one second:
-
-```
-cumulus@switch:~$  sudo cl-tdr swp39-40,swp32 -d 1
-```
-
-The following command example runs diagnostics on swp39 and reports the results in json format:
-
-```
-cumulus@switch:~$  sudo cl-tdr swp39 -j
-```
-
-The following command runs diagnostics on ports swp39 and swp40 without displaying the warning or prompting to continue:
-
-```
-cumulus@switch:~$   sudo cl-tdr swp39-40 -y
-```
-
 ## Understanding Diagnostic Results
 
 The TDR tool reports diagnostic test results per pair for each port. For example:
@@ -120,4 +100,24 @@ Cable diagnostic results are also logged to the `/var/log/switchd.log` file. For
 2019-08-05T10:02:31.471958-04:00 act-4610p-53 switchd[3037]: hal_bcm_port.c:3453 swp39 TDR pair B state=Ok len=18
 2019-08-05T10:02:31.475047-04:00 act-4610p-53 switchd[3037]: hal_bcm_port.c:3457 swp39 TDR pair C state=Ok len=18
 2019-08-05T10:02:31.477109-04:00 act-4610p-53 switchd[3037]: hal_bcm_port.c:3461 swp39 TDR pair D state=Ok len=15
+```
+
+## Example Commands
+
+The following command runs diagnostics on ports swp39, swp40, and swp32 and sets the delay to one second:
+
+```
+cumulus@switch:~$  sudo cl-tdr swp39-40,swp32 -d 1
+```
+
+The following command example runs diagnostics on swp39 and reports the results in json format:
+
+```
+cumulus@switch:~$  sudo cl-tdr swp39 -j
+```
+
+The following command runs diagnostics on ports swp39 and swp40 without displaying the warning or prompting to continue:
+
+```
+cumulus@switch:~$   sudo cl-tdr swp39-40 -y
 ```

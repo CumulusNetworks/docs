@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 1020
 toc: 3
 ---
-The following sections describe various ways you can troubleshoot `ifupdown2`.
+The following sections describe various ways you can troubleshoot `ifupdown2` and network interfaces.
 
 ## Enable Logging for Networking
 

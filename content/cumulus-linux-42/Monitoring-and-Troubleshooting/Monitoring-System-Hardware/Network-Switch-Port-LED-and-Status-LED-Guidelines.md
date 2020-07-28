@@ -95,7 +95,7 @@ This functionality is only supported on swp\* ports, not eth\* management interf
 
 {{%/notice%}}
 
-## Caveats and Errata
+## Considerations
 
 ### Dell-N3048EP-ON LED Colors at Low Speeds
 

@@ -118,7 +118,7 @@ You can check to see which agent IP was selected using:
 
 For information on configuring various sFlow visualization tools, read this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools" text="Help Center article">}}.
 
-## Caveats and Errata
+## Considerations
 
 The {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=EdgeCore" text="EdgeCore AS4610 switch">}} occasionally sends malformed packets and does not send any flow samples; it sends only counters. This is a known limitation on this Helix4 platform.
 

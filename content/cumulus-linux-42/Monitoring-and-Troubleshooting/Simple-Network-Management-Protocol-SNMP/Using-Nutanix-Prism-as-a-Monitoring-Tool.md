@@ -116,19 +116,6 @@ nutanix@NTNX-14SM15270093-D-CVM:192.168.0.184:~$ ncli network list-switch
     Port Ids                  : 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:52, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:53, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:54, 00051a76-f711-89b6-0000-000000003bac::5f13678e-6ffd-4b33-912f-f1aa6e8da982:55
 ```
 
-## Troubleshooting
-
-To help visualize the following diagram is provided:
-
-{{< img src = "/images/cumulus-linux/monitor-nutanix-troubleshoot.png" >}}
-
-| Nutanix Node    | Physical Port | Cumulus Linux Port |
-| --------------- | ------------- | ------------------ |
-| Node A (Green)  | vmnic2        | swp49              |
-| Node B (Blue)   | vmnic2        | swp50              |
-| Node C (Red)    | vmnic2        | swp51              |
-| Node D (Yellow) | vmnic2        | swp52              |
-
 ## Enable LLDP/CDP on VMware ESXi (Hypervisor on Nutanix)
 
 1. Follow the directions on one of the following websites to enable CDP:
@@ -195,7 +182,20 @@ To help visualize the following diagram is provided:
 
 {{<exlink url="http://www.nutanix.com/products/acropolis/" text="Nutanix Acropolis">}} is an alternate hypervisor that Nutanix supports. **Acropolis Hypervisor** uses the yum packaging system and is capable of installing normal Linux lldp daemons to operating just like Cumulus Linux. LLDP should be enabled for each interface on the host. Refer to this article from Mellanox, {{<exlink url="https://portal.nutanix.com/page/documents/kbs/details/?targetId=kA032000000TVfiCAG" title="Nutanix Documentation" >}}, for setup instructions.
 
-## Troubleshoot Connections without LLDP or CDP
+## Troubleshooting
+
+To help visualize the following diagram is provided:
+
+{{< img src = "/images/cumulus-linux/monitor-nutanix-troubleshoot.png" >}}
+
+| Nutanix Node    | Physical Port | Cumulus Linux Port |
+| --------------- | ------------- | ------------------ |
+| Node A (Green)  | vmnic2        | swp49              |
+| Node B (Blue)   | vmnic2        | swp50              |
+| Node C (Red)    | vmnic2        | swp51              |
+| Node D (Yellow) | vmnic2        | swp52              |
+
+### Troubleshoot Connections without LLDP or CDP
 
 1. Find the MAC address information in the Prism GUI, located in: **Hardware** \> **Table** \> **Host** \> **Host NICs**
 

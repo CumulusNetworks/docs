@@ -2687,7 +2687,7 @@ To modify the advertisement interval, run the following commands:
 
 {{< tabs "68 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp neighbor swp51 advertisement-interval 5
@@ -2697,7 +2697,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh

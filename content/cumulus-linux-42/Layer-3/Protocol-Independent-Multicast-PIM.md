@@ -14,7 +14,7 @@ Cumulus Linux supports only PIM Sparse Mode.
 
 {{%/notice%}}
 
-## PIM Overview
+## Example PIM Topology
 
 The following illustration shows a PIM configuration. The table below the illustration describes the network elements.
 
@@ -142,7 +142,7 @@ Restarting FRR impacts all routing protocols.
 
    {{%/notice%}}
 
-3. In the vtysh shell, run the following commands to configure the PIM interfaces:
+3. In the `vtysh` shell, run the following commands to configure the PIM interfaces:
 
    ```
    cumulus@switch:~$ sudo vtysh
@@ -294,7 +294,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-To view the configured prefix-list, run the vtysh `show ip mroute` command or the NCLU `net show mroute` command. The following command shows that *235.0.0.0* is configured for SPT switchover, identified by *pimreg*.
+To view the configured prefix-list, run the `vtysh` `show ip mroute` command or the NCLU `net show mroute` command. The following command shows that *235.0.0.0* is configured for SPT switchover, identified by *pimreg*.
 
 ```
 switch# show ip mroute
@@ -464,7 +464,7 @@ Examples are provided below that show the flow of traffic between server02 and s
 |--------|--------|
 |{{< figure src = "/images/cumulus-linux/pim-mlag-topology1.png" >}}|{{< figure src = "/images/cumulus-linux/pim-mlag-topology2.png" >}}|
 
-To show the PIM DR, run the NCLU `net show pim interface` command or the vtysh `show ip pim interface` command. The following example shows that in Vlan12 the DR is 10.1.2.12.
+To show the PIM DR, run the NCLU `net show pim interface` command or the `vtysh` `show ip pim interface` command. The following example shows that in Vlan12 the DR is 10.1.2.12.
 
 ```
 cumulus@leaf01:mgmt:~$ net show pim interface
@@ -491,322 +491,6 @@ Traditionally, the PIM DR is the only node to send the PIM *,G Join, but to prov
 {{%/notice%}}
 
 To prevent duplicate multicast packets, a Designated Forward (DF) is elected. The DF is the `primary` member of the MLAG pair. As a result, the MLAG secondary puts the VLAN in the Outgoing Interface List (OIL), preventing duplicate multicast traffic.
-
-## Verify PIM
-
-The following outputs are based on the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Reference Topology">}} with `cldemo-pim`.
-
-{{< tabs "TabID501 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-**Source Starts First**
-
-On the FHR, an mroute is built, but the upstream state is *Prune*. The FHR flag is set on the interface receiving multicast. Run the NCLU `net show` commands to review detailed output for the FHR. For example:
-
-```
-cumulus@fhr:~$ net show mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-172.16.5.105    239.1.1.1       none   br0        none       0    --:--:--
-!
-cumulus@fhr:~$ net show pim upstream
-Iif Source Group State Uptime JoinTimer RSTimer KATimer RefCnt
-br0 172.16.5.105 239.1.1.1 Prune 00:07:40 --:--:-- 00:00:36 00:02:50 1
-!
-cumulus@fhr:~$ net show pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-!
-cumulus@fhr:~$ net show pim interface
-Interface  State          Address  PIM Nbrs           PIM DR  FHR
-br0           up       172.16.5.1         0            local    1
-swp51         up        10.1.0.17         1            local    0
-swp52         up        10.1.0.19         0            local    0
-!
-cumulus@fhr:~$ net show pim state
-Source           Group            IIF    OIL
-172.16.5.105     239.1.1.1        br0
-!
-cumulus@fhr:~$ net show pim interface detail
-Interface : br0
-State     : up
-Address   : 172.16.5.1
-Designated Router
------------------
-Address   : 172.16.5.1
-Priority  : 1
-Uptime    : --:--:--
-Elections : 2
-Changes   : 0
-
-FHR - First Hop Router
-----------------------
-239.1.1.1 : 172.16.5.105 is a source, uptime is 00:27:43
-```
-
-On the RP, no mroute state is created, but the `net show pim upstream` output includes the Source and Group:
-
-```
-cumulus@rp01:~$ net show mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-!
-cumulus@rp01:~$ net show pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-swp30     172.16.5.105    239.1.1.1       Prune       00:00:19 --:--:--  --:--:--  00:02:46       1
-```
-
-As a receiver joins the group, the mroute output interface on the FHR transitions from *none* to the RPF interface of the RP:
-
-```
-cumulus@fhr:~$ net show mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-172.16.5.105    239.1.1.1       PIM    br0        swp51      1    00:05:40
-!
-cumulus@fhr:~$ net show pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-br0       172.16.5.105    239.1.1.1       Prune       00:48:23 --:--:--  00:00:00  00:00:37       2
-!
-
-cumulus@fhr:~$ net show pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-swp51     172.16.5.105    239.1.1.1       no         yes   no         yes         yes
-!
-cumulus@fhr:~$ net show pim state
-Source           Group            IIF    OIL
-172.16.5.105     239.1.1.1        br0    swp51
-
-cumulus@rp01:~$ net show mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-*               239.1.1.1       PIM    lo         swp1       1    00:09:59
-172.16.5.105    239.1.1.1       PIM    swp30      swp1       1    00:09:59
-!
-cumulus@rp01:~$ net show pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo        *               239.1.1.1       Joined      00:10:01 00:00:59  --:--:--  --:--:--       1
-swp30     172.16.5.105    239.1.1.1       Joined      00:00:01 00:00:59  --:--:--  00:02:35       1
-!
-cumulus@rp01:~$ net show pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-swp1      *               239.1.1.1       no         yes   no         yes         yes
-!
-cumulus@rp01:~$ net show pim state
-Source           Group            IIF    OIL
-*                239.1.1.1        lo     swp1
-172.16.5.105     239.1.1.1        swp30  swp1
-```
-
-**Receiver Joins First**
-
-On the LHR attached to the receiver:
-
-```
-cumulus@lhr:~$ net show mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-*               239.2.2.2       IGMP   swp51      br0        1    00:01:19
-!
-cumulus@lhr:~$ net show pim local-membership
-Interface Address         Source          Group           Membership
-br0       172.16.1.1      *               239.2.2.2       INCLUDE
-!
-cumulus@lhr:~$ net show pim state
-Source           Group            IIF    OIL
-*                239.2.2.2        swp51  br0
-!
-cumulus@lhr:~$ net show pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-swp51     *               239.2.2.2       Joined      00:02:07 00:00:53  --:--:--  --:--:--       1
-!
-cumulus@lhr:~$ net show pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-br0       *               239.2.2.2       no         no    yes        yes         yes
-!
-cumulus@lhr:~$ net show igmp groups
-Interface Address         Group           Mode Timer    Srcs V Uptime
-br0       172.16.1.1      239.2.2.2       EXCL 00:04:02    1 3 00:04:12
-!
-cumulus@lhr:~$ net show igmp sources
-Interface Address         Group           Source          Timer Fwd Uptime
-br0       172.16.1.1      239.2.2.2       *               03:54   Y 00:04:21
-```
-
-**On the RP**
-
-```
-cumulus@rp01:~$ net show mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-*               239.2.2.2       PIM    lo         swp1       1    00:00:03
-!
-cumulus@rp01:~$ net show pim state
-Source           Group            IIF    OIL
-*                239.2.2.2        lo     swp1
-!
-cumulus@rp01:~$ net show pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo        *               239.2.2.2       Joined      00:05:17 00:00:43  --:--:--  --:--:--       1
-!
-cumulus@rp01:~$ net show pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-swp1      *               239.2.2.2       no         yes   no         yes         yes
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-**Source Starts First**
-
-On the FHR, an mroute is built, but the upstream state is *Prune*. The FHR flag is set on the interface receiving multicast.
-
-Use the vtysh `show ip` commands to review detailed output for the FHR. For example:
-
-```
-cumulus@fhr:~$ sudo vtysh
-fhr# show ip mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-172.16.5.105    239.1.1.1       none   br0        none       0    --:--:--
-
-fhr# show ip pim upstream
-Iif Source Group State Uptime JoinTimer RSTimer KATimer RefCnt
-br0 172.16.5.105 239.1.1.1 Prune 00:07:40 --:--:-- 00:00:36 00:02:50 1
-
-fhr# show ip pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-!
-fhr# show ip pim interface
-Interface  State          Address  PIM Nbrs           PIM DR  FHR
-br0           up       172.16.5.1         0            local    1
-swp51         up        10.1.0.17         1            local    0
-swp52         up        10.1.0.19         0            local    0
-
-fhr# show ip pim state
-Source           Group            IIF    OIL
-172.16.5.105     239.1.1.1        br0
-
-fhr# show ip pim interface detail
-Interface : br0
-State     : up
-Address   : 172.16.5.1
-Designated Router
------------------
-Address   : 172.16.5.1
-Priority  : 1
-Uptime    : --:--:--
-Elections : 2
-Changes   : 0
-
-FHR - First Hop Router
-----------------------
-239.1.1.1 : 172.16.5.105 is a source, uptime is 00:27:43
-```
-
-On the RP, no mroute state is created, but the `show ip pim upstream` output includes the Source and Group:
-
-```
-rp01# show ip mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-
-rp01# show ip pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-swp30     172.16.5.105    239.1.1.1       Prune       00:00:19 --:--:--  --:--:--  00:02:46       1
-```
-
-As a receiver joins the group, the mroute output interface on the FHR
-transitions from *none* to the RPF interface of the RP:
-
-```
-fhr# show ip mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-172.16.5.105    239.1.1.1       PIM    br0        swp51      1    00:05:40
-
-fhr# show ip pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-br0       172.16.5.105    239.1.1.1       Prune       00:48:23 --:--:--  00:00:00  00:00:37       2
-
-fhr# show ip pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-swp51     172.16.5.105    239.1.1.1       no         yes   no         yes         yes
-
-fhr# show ip pim state
-Source           Group            IIF    OIL
-172.16.5.105     239.1.1.1        br0    swp51
-
-rp01# show ip mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-*               239.1.1.1       PIM    lo         swp1       1    00:09:59
-172.16.5.105    239.1.1.1       PIM    swp30      swp1       1    00:09:59
-
-rp01# show ip pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo        *               239.1.1.1       Joined      00:10:01 00:00:59  --:--:--  --:--:--       1
-swp30     172.16.5.105    239.1.1.1       Joined      00:00:01 00:00:59  --:--:--  00:02:35       1
-
-rp01# show ip pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-swp1      *               239.1.1.1       no         yes   no         yes         yes
-
-rp01# show ip pim state
-Source           Group            IIF    OIL
-*                239.1.1.1        lo     swp1
-172.16.5.105     239.1.1.1        swp30  swp1
-```
-
-**Receiver Joins First**
-
-On the LHR attached to the receiver:
-
-```
-lhr# show ip mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-*               239.2.2.2       IGMP   swp51      br0        1    00:01:19
-
-lhr# show ip pim local-membership
-Interface Address         Source          Group           Membership
-br0       172.16.1.1      *               239.2.2.2       INCLUDE
-
-lhr# show ip pim state
-Source           Group            IIF    OIL
-    *                239.2.2.2        swp51  br0
-
-lhr# show ip pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-swp51     *               239.2.2.2       Joined      00:02:07 00:00:53  --:--:--  --:--:--       1
-
-lhr# show ip pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-br0       *               239.2.2.2       no         no    yes        yes         yes
-
-lhr# show ip igmp groups
-Interface Address         Group           Mode Timer    Srcs V Uptime
-    br0       172.16.1.1      239.2.2.2       EXCL 00:04:02    1 3 00:04:12
-
-lhr# show ip igmp sources
-Interface Address         Group           Source          Timer Fwd Uptime
-br0       172.16.1.1      239.2.2.2       *               03:54   Y 00:04:21
-```
-
-On the RP:
-
-```
-rp01# show ip mroute
-Source          Group           Proto  Input      Output     TTL  Uptime
-*               239.2.2.2       PIM    lo         swp1       1    00:00:03
-
-rp01# show ip pim state
-    Source           Group            IIF    OIL
-    *                239.2.2.2        lo     swp1
-
-rp01# show ip pim upstream
-Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
-lo        *               239.2.2.2       Joined      00:05:17 00:00:43  --:--:--  --:--:--       1
-```
-```
-rp01# show ip pim upstream-join-desired
-Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
-swp1      *               239.2.2.2       no         yes   no         yes         yes
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
 
 ## Additional PIM Features
 
@@ -955,7 +639,7 @@ The rebalance command might cause some packet loss.
 
 {{< /tabs >}}
 
-To show which nexthop is selected for a specific source/group, run the `show ip pim nexthop` command from the vtysh shell:
+To show which nexthop is selected for a specific source/group, run the `show ip pim nexthop` command from the `vtysh` shell:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1220,7 +904,7 @@ iface purple
 ...
 ```
 
-Then add the PIM configuration to FRR. You can do this in vtysh:
+Then add the PIM configuration to FRR. You can do this in `vtysh`:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1249,7 +933,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-To show VRF information, run the NCLU `net show mroute vrf <vrf-name>` command or the vtysh `show ip mroute vrf <vrf-name>` command:
+To show VRF information, run the NCLU `net show mroute vrf <vrf-name>` command or the `vtysh` `show ip mroute vrf <vrf-name>` command:
 
 ```
 cumulus@fhr:~$ net show mroute vrf blue
@@ -1289,6 +973,322 @@ switch(config-if)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+## Verify PIM
+
+The following outputs are based on the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Reference Topology">}} with `cldemo-pim`.
+
+{{< tabs "TabID501 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+**Source Starts First**
+
+On the FHR, an mroute is built, but the upstream state is *Prune*. The FHR flag is set on the interface receiving multicast. Run the NCLU `net show` commands to review detailed output for the FHR. For example:
+
+```
+cumulus@fhr:~$ net show mroute
+Source          Group           Proto  Input      Output     TTL  Uptime
+172.16.5.105    239.1.1.1       none   br0        none       0    --:--:--
+!
+cumulus@fhr:~$ net show pim upstream
+Iif Source Group State Uptime JoinTimer RSTimer KATimer RefCnt
+br0 172.16.5.105 239.1.1.1 Prune 00:07:40 --:--:-- 00:00:36 00:02:50 1
+!
+cumulus@fhr:~$ net show pim upstream-join-desired
+Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
+!
+cumulus@fhr:~$ net show pim interface
+Interface  State          Address  PIM Nbrs           PIM DR  FHR
+br0           up       172.16.5.1         0            local    1
+swp51         up        10.1.0.17         1            local    0
+swp52         up        10.1.0.19         0            local    0
+!
+cumulus@fhr:~$ net show pim state
+Source           Group            IIF    OIL
+172.16.5.105     239.1.1.1        br0
+!
+cumulus@fhr:~$ net show pim interface detail
+Interface : br0
+State     : up
+Address   : 172.16.5.1
+Designated Router
+-----------------
+Address   : 172.16.5.1
+Priority  : 1
+Uptime    : --:--:--
+Elections : 2
+Changes   : 0
+
+FHR - First Hop Router
+----------------------
+239.1.1.1 : 172.16.5.105 is a source, uptime is 00:27:43
+```
+
+On the RP, no mroute state is created, but the `net show pim upstream` output includes the Source and Group:
+
+```
+cumulus@rp01:~$ net show mroute
+Source          Group           Proto  Input      Output     TTL  Uptime
+!
+cumulus@rp01:~$ net show pim upstream
+Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
+swp30     172.16.5.105    239.1.1.1       Prune       00:00:19 --:--:--  --:--:--  00:02:46       1
+```
+
+As a receiver joins the group, the mroute output interface on the FHR transitions from *none* to the RPF interface of the RP:
+
+```
+cumulus@fhr:~$ net show mroute
+Source          Group           Proto  Input      Output     TTL  Uptime
+172.16.5.105    239.1.1.1       PIM    br0        swp51      1    00:05:40
+!
+cumulus@fhr:~$ net show pim upstream
+Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
+br0       172.16.5.105    239.1.1.1       Prune       00:48:23 --:--:--  00:00:00  00:00:37       2
+!
+
+cumulus@fhr:~$ net show pim upstream-join-desired
+Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
+swp51     172.16.5.105    239.1.1.1       no         yes   no         yes         yes
+!
+cumulus@fhr:~$ net show pim state
+Source           Group            IIF    OIL
+172.16.5.105     239.1.1.1        br0    swp51
+
+cumulus@rp01:~$ net show mroute
+Source          Group           Proto  Input      Output     TTL  Uptime
+*               239.1.1.1       PIM    lo         swp1       1    00:09:59
+172.16.5.105    239.1.1.1       PIM    swp30      swp1       1    00:09:59
+!
+cumulus@rp01:~$ net show pim upstream
+Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
+lo        *               239.1.1.1       Joined      00:10:01 00:00:59  --:--:--  --:--:--       1
+swp30     172.16.5.105    239.1.1.1       Joined      00:00:01 00:00:59  --:--:--  00:02:35       1
+!
+cumulus@rp01:~$ net show pim upstream-join-desired
+Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
+swp1      *               239.1.1.1       no         yes   no         yes         yes
+!
+cumulus@rp01:~$ net show pim state
+Source           Group            IIF    OIL
+*                239.1.1.1        lo     swp1
+172.16.5.105     239.1.1.1        swp30  swp1
+```
+
+**Receiver Joins First**
+
+On the LHR attached to the receiver:
+
+```
+cumulus@lhr:~$ net show mroute
+Source          Group           Proto  Input      Output     TTL  Uptime
+*               239.2.2.2       IGMP   swp51      br0        1    00:01:19
+!
+cumulus@lhr:~$ net show pim local-membership
+Interface Address         Source          Group           Membership
+br0       172.16.1.1      *               239.2.2.2       INCLUDE
+!
+cumulus@lhr:~$ net show pim state
+Source           Group            IIF    OIL
+*                239.2.2.2        swp51  br0
+!
+cumulus@lhr:~$ net show pim upstream
+Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
+swp51     *               239.2.2.2       Joined      00:02:07 00:00:53  --:--:--  --:--:--       1
+!
+cumulus@lhr:~$ net show pim upstream-join-desired
+Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
+br0       *               239.2.2.2       no         no    yes        yes         yes
+!
+cumulus@lhr:~$ net show igmp groups
+Interface Address         Group           Mode Timer    Srcs V Uptime
+br0       172.16.1.1      239.2.2.2       EXCL 00:04:02    1 3 00:04:12
+!
+cumulus@lhr:~$ net show igmp sources
+Interface Address         Group           Source          Timer Fwd Uptime
+br0       172.16.1.1      239.2.2.2       *               03:54   Y 00:04:21
+```
+
+**On the RP**
+
+```
+cumulus@rp01:~$ net show mroute
+Source          Group           Proto  Input      Output     TTL  Uptime
+*               239.2.2.2       PIM    lo         swp1       1    00:00:03
+!
+cumulus@rp01:~$ net show pim state
+Source           Group            IIF    OIL
+*                239.2.2.2        lo     swp1
+!
+cumulus@rp01:~$ net show pim upstream
+Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
+lo        *               239.2.2.2       Joined      00:05:17 00:00:43  --:--:--  --:--:--       1
+!
+cumulus@rp01:~$ net show pim upstream-join-desired
+Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
+swp1      *               239.2.2.2       no         yes   no         yes         yes
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+**Source Starts First**
+
+On the FHR, an mroute is built, but the upstream state is *Prune*. The FHR flag is set on the interface receiving multicast.
+
+Use the `vtysh` `show ip` commands to review detailed output for the FHR. For example:
+
+```
+cumulus@fhr:~$ sudo vtysh
+fhr# show ip mroute
+Source          Group           Proto  Input      Output     TTL  Uptime
+172.16.5.105    239.1.1.1       none   br0        none       0    --:--:--
+
+fhr# show ip pim upstream
+Iif Source Group State Uptime JoinTimer RSTimer KATimer RefCnt
+br0 172.16.5.105 239.1.1.1 Prune 00:07:40 --:--:-- 00:00:36 00:02:50 1
+
+fhr# show ip pim upstream-join-desired
+Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
+!
+fhr# show ip pim interface
+Interface  State          Address  PIM Nbrs           PIM DR  FHR
+br0           up       172.16.5.1         0            local    1
+swp51         up        10.1.0.17         1            local    0
+swp52         up        10.1.0.19         0            local    0
+
+fhr# show ip pim state
+Source           Group            IIF    OIL
+172.16.5.105     239.1.1.1        br0
+
+fhr# show ip pim interface detail
+Interface : br0
+State     : up
+Address   : 172.16.5.1
+Designated Router
+-----------------
+Address   : 172.16.5.1
+Priority  : 1
+Uptime    : --:--:--
+Elections : 2
+Changes   : 0
+
+FHR - First Hop Router
+----------------------
+239.1.1.1 : 172.16.5.105 is a source, uptime is 00:27:43
+```
+
+On the RP, no mroute state is created, but the `show ip pim upstream` output includes the Source and Group:
+
+```
+rp01# show ip mroute
+Source          Group           Proto  Input      Output     TTL  Uptime
+
+rp01# show ip pim upstream
+Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
+swp30     172.16.5.105    239.1.1.1       Prune       00:00:19 --:--:--  --:--:--  00:02:46       1
+```
+
+As a receiver joins the group, the mroute output interface on the FHR
+transitions from *none* to the RPF interface of the RP:
+
+```
+fhr# show ip mroute
+Source          Group           Proto  Input      Output     TTL  Uptime
+172.16.5.105    239.1.1.1       PIM    br0        swp51      1    00:05:40
+
+fhr# show ip pim upstream
+Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
+br0       172.16.5.105    239.1.1.1       Prune       00:48:23 --:--:--  00:00:00  00:00:37       2
+
+fhr# show ip pim upstream-join-desired
+Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
+swp51     172.16.5.105    239.1.1.1       no         yes   no         yes         yes
+
+fhr# show ip pim state
+Source           Group            IIF    OIL
+172.16.5.105     239.1.1.1        br0    swp51
+
+rp01# show ip mroute
+Source          Group           Proto  Input      Output     TTL  Uptime
+*               239.1.1.1       PIM    lo         swp1       1    00:09:59
+172.16.5.105    239.1.1.1       PIM    swp30      swp1       1    00:09:59
+
+rp01# show ip pim upstream
+Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
+lo        *               239.1.1.1       Joined      00:10:01 00:00:59  --:--:--  --:--:--       1
+swp30     172.16.5.105    239.1.1.1       Joined      00:00:01 00:00:59  --:--:--  00:02:35       1
+
+rp01# show ip pim upstream-join-desired
+Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
+swp1      *               239.1.1.1       no         yes   no         yes         yes
+
+rp01# show ip pim state
+Source           Group            IIF    OIL
+*                239.1.1.1        lo     swp1
+172.16.5.105     239.1.1.1        swp30  swp1
+```
+
+**Receiver Joins First**
+
+On the LHR attached to the receiver:
+
+```
+lhr# show ip mroute
+Source          Group           Proto  Input      Output     TTL  Uptime
+*               239.2.2.2       IGMP   swp51      br0        1    00:01:19
+
+lhr# show ip pim local-membership
+Interface Address         Source          Group           Membership
+br0       172.16.1.1      *               239.2.2.2       INCLUDE
+
+lhr# show ip pim state
+Source           Group            IIF    OIL
+    *                239.2.2.2        swp51  br0
+
+lhr# show ip pim upstream
+Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
+swp51     *               239.2.2.2       Joined      00:02:07 00:00:53  --:--:--  --:--:--       1
+
+lhr# show ip pim upstream-join-desired
+Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
+br0       *               239.2.2.2       no         no    yes        yes         yes
+
+lhr# show ip igmp groups
+Interface Address         Group           Mode Timer    Srcs V Uptime
+    br0       172.16.1.1      239.2.2.2       EXCL 00:04:02    1 3 00:04:12
+
+lhr# show ip igmp sources
+Interface Address         Group           Source          Timer Fwd Uptime
+br0       172.16.1.1      239.2.2.2       *               03:54   Y 00:04:21
+```
+
+On the RP:
+
+```
+rp01# show ip mroute
+Source          Group           Proto  Input      Output     TTL  Uptime
+*               239.2.2.2       PIM    lo         swp1       1    00:00:03
+
+rp01# show ip pim state
+    Source           Group            IIF    OIL
+    *                239.2.2.2        lo     swp1
+
+rp01# show ip pim upstream
+Iif       Source          Group           State       Uptime   JoinTimer RSTimer   KATimer   RefCnt
+lo        *               239.2.2.2       Joined      00:05:17 00:00:43  --:--:--  --:--:--       1
+```
+```
+rp01# show ip pim upstream-join-desired
+Interface Source          Group           LostAssert Joins PimInclude JoinDesired EvalJD
+swp1      *               239.2.2.2       no         yes   no         yes         yes
 ```
 
 {{< /tab >}}
@@ -1432,7 +1432,7 @@ Source          Group           Proto  Input      Output     TTL  Uptime
 172.16.5.105    239.2.2.9       none   br0        none       0    --:--:--
 ```
 
-This is expected behavior. You can see the active source on the RP with either the NCLU `net show pim upstream` command or the vtysh `show ip pim upstream` command:
+This is expected behavior. You can see the active source on the RP with either the NCLU `net show pim upstream` command or the `vtysh` `show ip pim upstream` command:
 
 ```
 cumulus@rp01:~$ net show pim upstream
@@ -1459,7 +1459,7 @@ For Spectrum chipsets, refer to {{<link url="Routing#tcam-resource-profiles-for-
 
 ### Verify MSDP Session State
 
-To verify the state of MSDP sessions, run either the NCLU `net show msdp mesh-group` command or the vtysh `show ip msdp mesh-group` command:
+To verify the state of MSDP sessions, run either the NCLU `net show msdp mesh-group` command or the `vtysh` `show ip msdp mesh-group` command:
 
 ```
 cumulus@switch:~$ net show msdp mesh-group
@@ -1477,7 +1477,7 @@ Peer                       Local        State    Uptime   SaCnt
 
 ### View the Active Sources
 
-To review the active sources learned locally (through PIM registers) and from MSDP peers, run either the NCLU `net show msdp sa` command or the vtysh `show ip msdp sa` command:
+To review the active sources learned locally (through PIM registers) and from MSDP peers, run either the NCLU `net show msdp sa` command or the `vtysh` `show ip msdp sa` command:
 
 ```
 cumulus@switch:~$ net show msdp sa
@@ -1605,7 +1605,7 @@ end
 
 {{< /expand >}}
 
-## Caveats and Errata
+## Considerations
 
 - Cumulus Linux only supports *PIM sparse mode* (PIM-SM), *any-source multicast* (PIM-SM ASM), and *source-specific multicast* (SSM). *Dense mode* and *bidirectional multicast* are not supported.
 - Non-native forwarding (register decapsulation) is not supported. Initial packet loss is expected while the PIM \*,G tree is built from the rendezvous point to the FHR to trigger native forwarding.

@@ -49,6 +49,8 @@ When entering a time value, you must include a numeric value *and* the unit of m
 For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
+## Monitor Software on a Switch
+
 ### View OS Information for a Switch
 
 You can view the name and version of the OS on a switch, and when it was

@@ -6,26 +6,24 @@ toc: 3
 ---
 The following monitoring processes are considered best practices for reviewing and troubleshooting potential issues with Cumulus Linux environments. In addition, several of the more common issues have been listed, with potential solutions included.
 
-## Overview
-
 This document describes:
 
 - Metrics that you can poll from Cumulus Linux and use in trend analysis
 - Critical log messages that you can monitor for triggered alerts
 
-### Trend Analysis Using Metrics
+## Trend Analysis Using Metrics
 
 A metric is a quantifiable measure that is used to track and assess the status of a specific infrastructure component. It is a check collectedover time. Examples of metrics include bytes on an interface, CPU utilization, and total number of routes.
 
 Metrics are more valuable when used for trend analysis.
 
-### Generate Alerts with Triggered Logging
+## Generate Alerts with Triggered Logging
 
 Triggered issues are normally sent to `syslog`, but can go to another log file depending on the feature. In Cumulus Linux, `rsyslog` handles all logging, including local and remote logging. Logs are the best method to use for generating alerts when the system transitions from a stable steady state.
 
 Sending logs to a centralized collector, then creating alerts based on critical logs is an optimal solution for alerting.
 
-### Log Formatting
+## Log Formatting
 
 Most log files in Cumulus Linux use a standard presentation format. For example, consider this `syslog` entry:
 

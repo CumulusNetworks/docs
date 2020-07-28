@@ -17,7 +17,7 @@ Optionally, you can choose to back up your NetQ Data before performing the upgra
 
 To complete the preparation:
 
-1. For on-premises deployments only, optionally back up your NetQ 2.4.x or 3.0.0 data. Refer to {{<link title="Back Up Your NetQ Data">}}.
+1. For on-premises deployments only, optionally back up your NetQ 2.4.x or 3.0.0 data. Refer to {{<link title="Back Up and Restore NetQ">}}.
 
 2. Download the relevant software.
 

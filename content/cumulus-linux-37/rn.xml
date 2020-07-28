@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30845</td>
 <td><p>The following vulnerabilities were reported against qemu, which is available in the repository for optional installation:<br/>
 CVE-2020-13659: address_space_map in exec.c in QEMU 4.2.0 can trigger a NULL pointer dereference related to BounceBuffer.<br/>
@@ -2408,6 +2426,24 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30845</td>
@@ -5054,6 +5090,24 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30845</td>
 <td><p>The following vulnerabilities were reported against qemu, which is available in the repository for optional installation:<br/>
 CVE-2020-13659: address_space_map in exec.c in QEMU 4.2.0 can trigger a NULL pointer dereference related to BounceBuffer.<br/>
@@ -7396,6 +7450,24 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30845</td>
@@ -10177,6 +10249,24 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30845</td>
 <td><p>The following vulnerabilities were reported against qemu, which is available in the repository for optional installation:<br/>
 CVE-2020-13659: address_space_map in exec.c in QEMU 4.2.0 can trigger a NULL pointer dereference related to BounceBuffer.<br/>
@@ -12826,6 +12916,24 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30845</td>
@@ -15833,6 +15941,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30845</td>
 <td><p>The following vulnerabilities were reported against qemu, which is available in the repository for optional installation:<br/>
 CVE-2020-13659: address_space_map in exec.c in QEMU 4.2.0 can trigger a NULL pointer dereference related to BounceBuffer.<br/>
@@ -18794,6 +18920,24 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30845</td>
 <td><p>The following vulnerabilities were reported against qemu, which is available in the repository for optional installation:<br/>
 CVE-2020-13659: address_space_map in exec.c in QEMU 4.2.0 can trigger a NULL pointer dereference related to BounceBuffer.<br/>
@@ -21422,6 +21566,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30845</td>
@@ -24110,6 +24272,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30845</td>
@@ -26963,6 +27143,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30845</td>
@@ -29940,6 +30138,24 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30845</td>
 <td><p>The following vulnerabilities were reported against qemu, which is available in the repository for optional installation:<br/>
 CVE-2020-13659: address_space_map in exec.c in QEMU 4.2.0 can trigger a NULL pointer dereference related to BounceBuffer.<br/>
@@ -32429,6 +32645,24 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.12</td>
+</tr>
+<tr>
+<td>CM-30858</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30857</td>
+<td><p>A vulnerability was found in curl, a command line tool for transferring data with URL syntax.  curl is installed by default on Cumulus Linux.<br/>
+CVE-2020-8177: When using when using -J (–remote-header-name) and -i (–include) in the same command line, a malicious server could force curl to overwrite the contents of local files with incoming HTTP headers.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u16<br/>
+Fixed: 7.38.0-4+deb8u17</p></td>
+<td>3.0.0-3.7.12</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30845</td>

@@ -378,7 +378,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
     {{<cl/restart-switchd>}}
 
-## Caveats and Errata
+## Considerations
 
 ### IPv6 Route Replacement
 

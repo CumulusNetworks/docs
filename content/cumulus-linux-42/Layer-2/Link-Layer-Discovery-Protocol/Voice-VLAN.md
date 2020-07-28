@@ -28,7 +28,7 @@ configure ports swp3 med policy application voice tagged vlan 300 priority voice
 
 You can also use the `lldpcli` command to configure an LLDP-MED network policy. However, `lldpcli` commands do not persist across switch reboots.
 
-## Example Voice VLAN Configuration
+## Example Configuration
 
 {{< img src = "/images/cumulus-linux/voice-vlan.png" >}}
 

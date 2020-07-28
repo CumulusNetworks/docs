@@ -8,7 +8,7 @@ toc: 3
 
 The fundamental premise behind redistribute neighbor is to announce individual host /32 routes in the routed fabric. Other hosts on the fabric can then use this new path to access the hosts in the fabric. If multiple equal-cost paths (ECMP) are available, traffic can load balance across the available paths natively.
 
-The challenge is to accurately compile and update this list of reachable hosts or neighbors. Luckily, existing commonly-deployed protocols are available to solve this problem. Hosts use {{<exlink url="http://en.wikipedia.org/wiki/Address_Resolution_Protocol" text="ARP">}} to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
+The challenge is to accurately compile and update this list of reachable hosts or neighbors. Luckily, existing commonly-deployed protocols are available to solve this problem. Hosts use {{<link title="Address Resolution Protocol - ARP" text="ARP">}} to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
 
 In the case of a leaf switch, where the default gateway is deployed for hosts within the rack, the ARP cache table contains a list of all hosts that have ARP'd for their default gateway. In many scenarios, this table contains all the layer 3 information that is needed. This is where redistribute neighbor comes in, as it is a mechanism of formatting and syncing this table into the routing protocol.
 
@@ -16,7 +16,7 @@ Redistribute neighbor is distributed as `python-rdnbrd`.
 
 {{%notice note%}}
 
-The current release of redistribute neighbor:
+The current implementation of redistribute neighbor:
 
 - Supports IPv4 only.
 - Does not support {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}}.
@@ -297,25 +297,6 @@ SUSPEND_ACTION="stop"
 
 For full instructions on installing `ifplugd` on Ubuntu, {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204473717" text="follow this guide">}}.
 
-## Known Limitations
-
-### TCAM Route Scale
-
-This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Take care to keep the number of hosts minus fabric routes under the TCAM size of the switch. Review the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Networks datasheets">}} for up to date scalability limits of your chosen hardware platforms. If in doubt, contact Cumulus Networks support or your Cumulus Networks CSE.
-
-### Possible Uneven Traffic Distribution
-
-Linux uses *source* layer 3 addresses only to do load balancing on most older distributions.
-
-### Silent Hosts Never Receive Traffic
-
-Freshly provisioned hosts that have never sent traffic may not ARP for their default gateways. The post-up ARPing in `/etc/network/interfaces` on the host should take care of this. If the host does not ARP, then `rdnbrd` on the leaf cannot learn about the host.
-
-### Unsupported with EVPN
-
-Redistribute neighbor is unsupported when the BGP EVPN Address Family is enabled. Enabling both redistribute neighbor and EVPN will lead to unreachable IPv4 ARP and IPv6 neighbor entries.
-
-
 ## Troubleshooting
 
 ### How do I determine if rdnbrd (the redistribute neighbor daemon) is running?
@@ -437,3 +418,21 @@ Use the following workflow to verify that the kernel routing table isbeing popul
     ```
     leaf01# show ip bgp
     ```
+
+## Considerations
+
+### TCAM Route Scale
+
+This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Take care to keep the number of hosts minus fabric routes under the TCAM size of the switch. Review the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Networks datasheets">}} for up to date scalability limits of your chosen hardware platforms. If in doubt, contact Cumulus Networks support or your Cumulus Networks CSE.
+
+### Possible Uneven Traffic Distribution
+
+Linux uses *source* layer 3 addresses only to do load balancing on most older distributions.
+
+### Silent Hosts Never Receive Traffic
+
+Freshly provisioned hosts that have never sent traffic may not ARP for their default gateways. The post-up ARPing in `/etc/network/interfaces` on the host should take care of this. If the host does not ARP, then `rdnbrd` on the leaf cannot learn about the host.
+
+### Unsupported with EVPN
+
+Redistribute neighbor is unsupported when the BGP EVPN Address Family is enabled. Enabling both redistribute neighbor and EVPN will lead to unreachable IPv4 ARP and IPv6 neighbor entries.

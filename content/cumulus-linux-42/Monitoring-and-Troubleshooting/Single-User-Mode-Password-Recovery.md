@@ -29,7 +29,7 @@ To enter single user mode:
        |                                                                            |
        +----------------------------------------------------------------------------+  
 
-4. Press ctrl-d to reboot.
+4. Press **ctrl-d** to reboot.
 5. After the system reboots, set a new **root** password. The root user provides complete control over the switch.
 
        root@switch:~# passwd

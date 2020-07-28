@@ -21,6 +21,6 @@ These features work in conjunction with the following core Cumulus Linux functio
 - {{<link url="Layer-3">}}, including {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}, {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} and {{<link url="Routing#static-multicast-routes" text="multicast">}}
 - {{<link url="Buffer-and-Queue-Management" text="QoS">}}
 
-## More Information
+## Related Information
 
 For a deep dive into campus architecture, read the {{<exlink url="https://docs.cumulusnetworks.com/guides/campus-architecture-guide/" text="campus architecture solution guide">}}.

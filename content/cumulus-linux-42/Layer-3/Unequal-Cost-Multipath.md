@@ -321,7 +321,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-## Show Commands
+## Troubleshooting
 
 To show the extended community in a received or local route, run the NCLU `net show bgp` command or the vtysh `show bgp` command.
 
@@ -380,7 +380,7 @@ Routing entry for 192.168.10.1/32
   * fe80::202:ff:fe00:15, via swp1, weight 33
 ```
 
-## Caveats and Errata
+## Considerations
 
 UCMP with BGP link bandwidth is only available for BGP-learned routes.
 

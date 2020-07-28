@@ -19,10 +19,6 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 - Mellanox SN4600C (100G Spectrum-3) - available for Early Access
 - Mellanox SN3420 (25G Spectrum-2)
 
-The following platforms are supported in Cumulus Linux 3.7 and are now supported in Cumulus Linux 4.2.
-
-- Dell N3048EP-ON
-
 ### New Features and Enhancements
 
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming">}}, supported on Mellanox switches, is a standards-based replacement for MLAG in data centers deploying Clos topologies - this feature is available for Early Access

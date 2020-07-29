@@ -24,7 +24,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 2. From the **File** menu of the vSphere client window, click **Deploy OVF Template** to open the import window.
 
-3. Select **Browse**, locate the Cumulus VX OVA image, then click **Next** to continue.
+3. Select **Browse**, locate the Cumulus VX OVA image, then click **Next**.
 
 4. Review the template details, then click **Next**.
 
@@ -36,15 +36,15 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
     {{< img src="/images/cumulus-vx/VX_esxi_deploy4_ready.png" width="400" >}}
 
-7. To start the VM immediately after the import process is complete, select `Power on after deployment`, then click **Finish**.
+7. Select `Power on after deployment` to start the VM immediately after the import process is complete, then click **Finish**.
 
    The Cumulus VX OVA image is imported into vSphere ESXi and deployed as a VM. The length of the import process depends on the system configuration. You can view the progress in the `Recent Tasks` pane at the bottom of the client window. After the deployment process is complete, the newly created VM appears in the list of VMs in the left pane.
 
    {{< img src="/images/cumulus-vx/VX_esxi_deploy5_deploying.png" width="500" >}}
 
-8. Repeat the previous steps to create two additional VMs: `leaf02` and `spine01`.
+8. Repeat step 2 through step 7 to create two additional VMs: `leaf02` and `spine01`.
 
-If the wrong storage interface type is selected, you might see the error `Setting up installer ...Failure: Unable to find storage device for file system with label 'ONIE-BOOT'`. Configure ESXi to use the SATA controller.
+If the wrong storage interface type is selected, you might see the error `Setting up installer ...Failure: Unable to find storage device for file system with label 'ONIE-BOOT'`. Make sure you use the SATA controller.
 
 ### Create Network Connections
 

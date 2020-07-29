@@ -36,13 +36,13 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
    local@host:~$ sudo apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev
    ```
 
-2. Add users who you want to be able to perform `virsh` commands to the `libvirt` group.
+2. Add users to the `libvirt` group who you want to be able to perform `virsh` commands.
 
    ```
    local@host:~$ sudo usermod -a -G libvirt <username>
    ```
 
-3. Install Vagrant and the necessary plugins:
+3. Run the following commands to install Vagrant and the necessary plugins:
 
    ```
    local@host:~$ sudo wget https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb

@@ -14,10 +14,7 @@ This section describes how to install and set up Cumulus VX with KVM/QEMU, Libvi
 
 {{% vx/intro %}}
 
-These steps were tested on Ubuntu version 20.04 with:
-- KVM/QEMU version 1:4.2-3ubuntu6.3
-- Libvirt version 6.0.0
-- Vagrant version 2.2.9
+These steps were tested on Ubuntu 20.04 (64-bit) with KVM/QEMU version 4.2.0 (Debian 1:4.2-3ubuntu6.3), Libvirt version 6.0.0, and Vagrant version 2.2.9.
 
 ## Create and Configure the VMs
 
@@ -25,7 +22,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 ### Download and Install the Software
 
-{{%notice note%}}
+{{%notice info%}}
 
 Install Vagrant **after** you install libvirt so that Vagrant can detect all the necessary files.
 
@@ -50,7 +47,7 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
    ```
    user@ubuntubox: sudo wget https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
    user@ubuntubox: sudo dpkg -i vagrant_2.2.9_x86_64.deb
-   user@ubuntubox: vagrant plugin install vagrant-libvirt
+   user@ubuntubox: sudo vagrant plugin install vagrant-libvirt
    ```
 
 5. Confirm that your Linux kernel and BIOS settings permit the use of KVM hardware acceleration:
@@ -80,7 +77,7 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
    `vagrantup.com` for more information on using Vagrant.
    ```
 
-3. Edit the `Vagrantfile` and replace the text in the file with the following:
+3. Edit the `Vagrantfile` and replace the contents of the file with the following:
 
 {{< expand "Vagrantfile" >}}
 

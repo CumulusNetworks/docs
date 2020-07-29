@@ -11,7 +11,7 @@ These steps were tested with VMware vSphere (ESXi) Standard version 7.0b and web
 
 ## Create and Configure the VMs
 
-The following procedure describes how to create a VM in VMWare vSphere for each switch in the example topology (leaf01, leaf02, and spine01). This section assumes you have a basic level of VMWare vSphere experience.
+The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes you have a basic level of VMWare vSphere experience.
 
 ### Download and Install the Software
 
@@ -28,15 +28,15 @@ The following procedure describes how to create a VM in VMWare vSphere for each 
 
 4. Review the template details, then click **Next**.
 
-5. Edit the name of the VM to `leaf01`, then click **Next**.
+5. Change the name of the VM to `leaf01`, then click **Next**.
 
-    {{< img src="/images/cumulus-vx/VX_esxi_deploy3_name.png" width="300" >}}
+    {{< img src="/images/cumulus-vx/VX_esxi_deploy3_name.png" width="400" >}}
 
-6. As the Cumulus VX image is preconfigured, no more set up options are required. Click **Next** until you see the `Ready to Complete` window:
+6. The Cumulus VX image is preconfigured, so no more setup options are required. Click **Next** until you see the `Ready to Complete` window:
 
-    {{< img src="/images/cumulus-vx/VX_esxi_deploy4_ready.png" width="300" >}}
+    {{< img src="/images/cumulus-vx/VX_esxi_deploy4_ready.png" width="400" >}}
 
-7. If you want the VM to start immediately after the import process is complete, select the `Power on after deployment` option, then click **Finish**.
+7. To start the VM immediately after the import process is complete, select `Power on after deployment`, then click **Finish**.
 
    The Cumulus VX OVA image is imported into vSphere ESXi and deployed as a VM. The length of the import process depends on the system configuration. You can view the progress in the `Recent Tasks` pane at the bottom of the client window. After the deployment process is complete, the newly created VM appears in the list of VMs in the left pane.
 

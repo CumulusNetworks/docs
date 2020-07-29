@@ -25,7 +25,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 ### Create Network Connections
 
-Configure the network adapter settings for Leaf01, Leaf02, and Spine01 to create point-to-point connections.
+Configure the network adapter settings for leaf01, leaf02, and spine01 to create point-to-point connections.
 
 {{%notice note%}}
 
@@ -33,7 +33,7 @@ Make sure that the VM is powered off.
 
 {{%/notice%}}
 
-1. In the VirtualBox Manager window, select Leaf01.
+1. In the VirtualBox Manager window, select leaf01.
 
 2. Click **Settings**, then click **Network**.
 
@@ -47,23 +47,23 @@ Make sure that the VM is powered off.
 
    {{< img src="/images/cumulus-vx/adapterSettings.png" width="400" >}}
 
-7. Repeat the steps 1 through 6 for Leaf02 and Spine01. Use the internal network names and the connections shown in the illustration and table below.
+7. Repeat the steps 1 through 6 for leaf02 and spine01. Use the internal network names and the connections shown in the illustration and table below.
 
-   The internal network name for an adapter on a VM must match the internal network name on the corresponding network adapter on the VM to which it connects. For example, in the two leaf and one spine topology, Adapter 2 (swp1) on Leaf01 is connected to Adapter 2 (swp1) on Spine01; the name (intnet-1) must be the same for Adapter 2 on both VMs.
+   The internal network name for an adapter on a VM must match the internal network name on the corresponding network adapter on the VM to which it connects. For example, in the two leaf and one spine topology, Adapter 2 (swp1) on leaf01 is connected to Adapter 2 (swp1) on spine01; the name (intnet-1) must be the same for Adapter 2 on both VMs.
 
 {{< figure src = "/images/cumulus-vx/VX-Connections.png" >}}
 
 | Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Internal Network Name |
 | --------- | ----     | -------------------- | ----------------------- | --------------------- |
-|Leaf01     |          | Adapter 1            | NAT                     |                       |
+|leaf01     |          | Adapter 1            | NAT                     |                       |
 |           | swp1     | Adapter 2            | Internal                | intnet-1              |
 |           | swp2     | Adapter 3            | Internal                | intnet-3              |
 |           | swp3     | Adapter 4            | Internal                | intnet-4              |
-|Leaf02     |          | Adapter 1            | NAT                     |                       |
+|leaf02     |          | Adapter 1            | NAT                     |                       |
 |           | swp1     | Adapter 2            | Internal                | intnet-2              |
 |           | swp2     | Adapter 3            | Internal                | intnet-3              |
 |           | swp3     | Adapter 4            | Internal                | intnet-4              |
-|Spine01    |          | Adapter 1            | NAT                     |                       |
+|spine01    |          | Adapter 1            | NAT                     |                       |
 |           | swp1     | Adapter 2            | Internal                | intnet-1              |
 |           | swp2     | Adapter 3            | Internal                | intnet-2              |
 

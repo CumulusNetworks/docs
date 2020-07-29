@@ -1538,8 +1538,8 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
  
 <p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
 The workaround only works when an out-of-band network is present.</p></td>
-<td>3.7.6-4.1.1</td>
-<td>4.2.0</td>
+<td>3.7.6-3.7.12, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24799</td>
@@ -3523,8 +3523,8 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
  
 <p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
 The workaround only works when an out-of-band network is present.</p></td>
-<td>3.7.6-4.1.1</td>
-<td>4.2.0</td>
+<td>3.7.6-3.7.12, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-24799</td>

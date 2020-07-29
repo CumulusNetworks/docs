@@ -31,29 +31,29 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
 1. Run the following commands to install KVM/QEMU and libvirt.
 
    ```
-   user@ubuntubox:~$ sudo apt update -y
-   user@ubuntubox:~$ sudo apt install -qy qemu ebtables dnsmasq-base qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virt-manager python3-pip
-   user@ubuntubox:~$ sudo apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev
+   local@host:~$ sudo apt update -y
+   local@host:~$ sudo apt install -qy qemu ebtables dnsmasq-base qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virt-manager python3-pip
+   local@host:~$ sudo apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev ruby-dev
    ```
 
 2. Add users who you want to be able to perform `virsh` commands to the `libvirt` group.
 
    ```
-   user@ubuntubox:~$ sudo usermod -a -G libvirt <username>
+   local@host:~$ sudo usermod -a -G libvirt <username>
    ```
 
 3. Install Vagrant and the necessary plugins:
 
    ```
-   user@ubuntubox: sudo wget https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
-   user@ubuntubox: sudo dpkg -i vagrant_2.2.9_x86_64.deb
-   user@ubuntubox: sudo vagrant plugin install vagrant-libvirt
+   local@host:~$ sudo wget https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
+   local@host:~$ sudo dpkg -i vagrant_2.2.9_x86_64.deb
+   local@host:~$ sudo vagrant plugin install vagrant-libvirt
    ```
 
 5. Confirm that your Linux kernel and BIOS settings permit the use of KVM hardware acceleration:
 
    ```
-   user@ubuntubox:~$ kvm-ok
+   local@host:~$ kvm-ok
    INFO: /dev/kvm exists
    KVM acceleration can be used
    ```

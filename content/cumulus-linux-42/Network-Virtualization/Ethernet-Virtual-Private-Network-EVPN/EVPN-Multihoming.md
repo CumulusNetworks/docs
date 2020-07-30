@@ -30,7 +30,7 @@ An Ethernet segment can span more than two switches. Each Ethernet segment is a 
 ## Supported Features
 
 - Known unicast traffic multihoming via type-1/EAD (Ethernet auto discovery) routes and type-2 (non-zero ESI) routes. Includes active-active redundancy via aliasing and support for fast failover.
-- EVPN BUM traffic handling with {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes. Includes split-horizon-filtering and designated forwarder election.
+- EVPN BUM traffic handling with {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes, which includes split-horizon-filtering and designated forwarder election.
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} only.
 - {{<link url="Inter-subnet-Routing/#symmetric-routing" text="Distributed symmetric routing">}}.
 - {{<link url="Basic-Configuration/#arp-and-nd-suppression" text="ARP suppression">}} must be enabled.
@@ -43,7 +43,7 @@ In order to use EVPN-MH, you must remove any MLAG configuration on the switch. T
 
 - Removing the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
 - Removing the peerlink interfaces in the `/etc/network/interfaces` file.
-- Then run `ifreload` to reload the configuration:<pre>cumulus@switch:~$ sudo ifreload</pre>
+- Then running `ifreload` to reload the configuration:<pre>cumulus@switch:~$ sudo ifreload</pre>
 
 {{%/notice%}}
 
@@ -342,11 +342,13 @@ interface swp4
 
 ### Enable FRR Debugging
 
-You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethernet segments, routes and routing protocols (via Zebra). To debug Ethernet segments and routes, use the `net add bgp debug evpn mh (es|route)` command. To debug the routing protocols
+You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethernet segments, routes and routing protocols (via Zebra).
 
 {{<tabs "debug">}}
 
 {{<tab "NCLU Commands">}}
+
+To debug Ethernet segments and routes, use the `net add bgp debug evpn mh (es|route)` command. To debug the routing protocols, use `net add evpn mh debug zebra (es|mac|neigh|nh)`.
 
     cumulus@switch:~$ net add bgp debug evpn mh es
     cumulus@switch:~$ net add bgp debug evpn mh route

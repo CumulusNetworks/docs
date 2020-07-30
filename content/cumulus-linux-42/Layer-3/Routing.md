@@ -214,7 +214,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/network/interfaces` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/network/interfaces` file. For example:
 
 ```
 ...

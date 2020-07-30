@@ -135,7 +135,7 @@ NCLU commands are not currently available for this feature. Use the following Li
    OPTIONS="-a -r CUSTOMVALUE"
    ```
 
-Make sure to restart the `dhcrelay` service to apply the new configuration :
+Make sure to restart the `dhcrelay` service to apply the new configuration:
 
 ```
 cumulus@switch:~$ sudo systemctl restart dhcrelay.service

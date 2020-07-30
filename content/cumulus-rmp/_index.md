@@ -137,7 +137,7 @@ The [quick start guide](/cumulus-rmp/Quick-Start-Guide) walks you
 through the steps necessary for getting your Cumulus RMP switch up and
 running after you remove it from the box.
 
-## Caveats and Errata
+## Considerations
 
 ### Dynamic MAC Address Learning Delays
 

@@ -297,7 +297,7 @@ EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the s
 
 - When connecting to a WAN edge router to reach destinations outside the data center, Cumulus Networks recommends that you deploy specific border/exit leaf switches to originate the type-5 routes.
 - On switches with Spectrum ASICs, centralized routing, symmetric routing, and prefix-based routing only work with the Spectrum A1 chip.
-- If you are using a Broadcom Trident II+ switch as a border/exit leaf, see the {{<link url="#caveats">}} below for a required workaround; the workaround only applies to Trident II+ switches, not Tomahawk or Spectrum.
+- If you are using a Broadcom Trident II+ switch as a border/exit leaf, see {{<link url="#considerations" text="Considerations">}} below for a required workaround; the workaround only applies to Trident II+ switches, not Tomahawk or Spectrum.
 
 {{%/notice%}}
 
@@ -504,7 +504,7 @@ iface vlan4001
 
 {{%notice note%}}
 
-- In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 and have a previous symmetric routing with VXLAN active-active configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
+- In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 or later and have a previous symmetric routing with VXLAN active-active configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
 - When configuring third party networking devices using MLAG and EVPN for interoperability, you must configure and announce a single shared router MAC value per advertised next hop IP address.
 
 {{%/notice%}}

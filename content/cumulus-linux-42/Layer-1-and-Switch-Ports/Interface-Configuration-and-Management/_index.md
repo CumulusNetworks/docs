@@ -787,7 +787,7 @@ iface swp1
 
 {{%notice note%}}
 
-Purging existing addresses on interfaces with multiple `iface` stanzas is not supported. Doing so can result in the configuration of multiple addresses for an interface after you change an interface address and reload the configuration with `ifreload -a`. If this happens, you must shut down and restart the interface with `ifup` and `ifdown`, or manually delete superfluous addresses with `ip address delete specify.ip.address.here/mask dev DEVICE`. See also the {{<link url="#caveats-and-errata" text="Caveats and Errata">}} section below for cautions about using multiple `iface` stanzas for the same interface.
+Purging existing addresses on interfaces with multiple `iface` stanzas is not supported. Doing so can result in the configuration of multiple addresses for an interface after you change an interface address and reload the configuration with `ifreload -a`. If this happens, you must shut down and restart the interface with `ifup` and `ifdown`, or manually delete superfluous addresses with `ip address delete specify.ip.address.here/mask dev DEVICE`. See also the {{<link url="#considerations" text="Considerations">}} section below for cautions about using multiple `iface` stanzas for the same interface.
 
 {{%/notice%}}
 
@@ -1038,7 +1038,7 @@ addon_scripts_support=1
 `ifupdown2` sets the following environment variables when executing commands:
 
 - `$IFACE` represents the physical name of the interface being processed; for example, `br0` or vxlan42. The name is obtained from the `/etc/network/interfaces` file.
-- `$LOGICAL` <span style="color: #000000;"> represents the logical name (configuration name) of the interface being processed.
+- `$LOGICAL` represents the logical name (configuration name) of the interface being processed.
 - `$METHOD` represents the address method; for example, loopback, DHCP, DHCP6, manual, static, and so on.
 - `$ADDRFAM` represents the address families associated with the interface, formatted in a comma-separated list for example, `"inet,inet6"`.
 

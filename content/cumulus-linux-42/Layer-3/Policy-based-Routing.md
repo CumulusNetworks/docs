@@ -107,7 +107,7 @@ You can only set one policy per interface.
 
 {{< tab "vtysh Commands ">}}
 
-1. Before you run the vtysh commands, you need to enable the `pbrd` service in the `/etc/frr/daemons` file, then restart FRRouting with the `systemctl restart frr.service` command.
+1. Before you run the `vtysh` commands, you need to enable the `pbrd` service in the `/etc/frr/daemons` file, then restart FRRouting with the `systemctl restart frr.service` command.
 
     ```
     cumulus@leaf01:~$ sudo nano /etc/frr/daemons
@@ -213,7 +213,7 @@ You can only set one policy per interface.
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -253,16 +253,16 @@ pbr-map map1 seq 1
 
 Use the following commands to see the configured PBR policies.
 
-To see the policies applied to all interfaces on the switch, run the NCLU `net show pbr interface` command or the vtysh `show pbr interface` command. For example:
+To see the policies applied to all interfaces on the switch, run the NCLU `net show pbr interface` command or the `vtysh` `show pbr interface` command. For example:
 
 ```
 cumulus@switch:~$ net show pbr interface
 swp55s3(67) with pbr-policy map1
 ```
 
-To see the policies applied to a specific interface on the switch, add the interface name at the end of the command; for example, `net show pbr interface swp51` (or `show pbr interface swp51` in vtysh).
+To see the policies applied to a specific interface on the switch, add the interface name at the end of the command; for example, `net show pbr interface swp51` (or `show pbr interface swp51` in `vtysh`).
 
-To see information about all policies, including mapped table and rule numbers, run the NCLU `net show pbr map` command or the vtysh `show pbr map` command. If the rule is not set, you see a reason why.
+To see information about all policies, including mapped table and rule numbers, run the NCLU `net show pbr map` command or the `vtysh` `show pbr map` command. If the rule is not set, you see a reason why.
 
 ```
 cumulus@switch:~$ net show pbr map
@@ -277,9 +277,9 @@ cumulus@switch:~$ net show pbr map
       Installed: yes Tableid: 10004
 ```
 
-To see information about a specific policy, what it matches, and with which interface it is associated, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in vtysh).
+To see information about a specific policy, what it matches, and with which interface it is associated, add the map name at the end of the command; for example, `net show pbr map map1` (or `show pbr map map1` in `vtysh`).
 
-To see information about all next hop groups, run the NCLU `net show pbr nexthop-group` command or the vtysh `show pbr nexthop-group` command.
+To see information about all next hop groups, run the NCLU `net show pbr nexthop-group` command or the `vtysh` `show pbr nexthop-group` command.
 
 ```
 cumulus@switch:~$ net show pbr nexthop-group
@@ -297,7 +297,7 @@ Valid: yes nexthop 192.168.8.2
 Valid: yes nexthop 192.168.8.3
 ```
 
-To see information about a specific next hop group, add the group name at the end of the command; for example, `net show pbr nexthop-group group1` (or `show pbr nexthop-group group1` in vtysh).
+To see information about a specific next hop group, add the group name at the end of the command; for example, `net show pbr nexthop-group group1` (or `show pbr nexthop-group group1` in `vtysh`).
 
 {{%notice note%}}
 
@@ -648,7 +648,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...

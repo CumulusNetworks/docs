@@ -62,6 +62,8 @@ Entering incorrect information during the installation process might produce con
 
 Be sure to restart `netd` after editing the files.
 
+    cumulus@switch:~$ sudo systemctl restart netd.service
+
 {{< expand "Alternative Installation Method Using debconf-utils "  >}}
 
 Instead of running the installer and following the interactive prompts, as described above, you can pre-seed the installer parameters using `debconf-utils`.
@@ -396,7 +398,6 @@ result: 0 Success
 To use NCLU, a user must be in either the `netshow` or `netedit` NCLU group in the LDAP database. You can either:
 
 - Add a user or one of their groups to the `/etc/netd.conf` file manually.
-
 - Add a user to the local `/etc/group` file as a member of the `netshow` or `netedit` groups.
 
 In the following example, a user that is *not* in the `netshow` or `netedit` NCLU group in the LDAP database runs the NCLU `net show version` command, which produces an error:

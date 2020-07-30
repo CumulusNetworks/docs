@@ -8,7 +8,7 @@ In Cumulus Linux, a *voice VLAN* is a VLAN dedicated to voice traffic on a switc
 
 Voice VLAN is part of a trunk port with two VLANs that comprises either of the following:
 
-- Native VLAN, which carries both data and voice traffic
+- Native VLAN, which carries both data and voice traffic.
 - Voice VLAN, which carries the voice traffic, and a data or native VLAN, which carries the data traffic in a trunk port.
 
 The voice traffic is an 802.1q-tagged packet with a VLAN ID (that might or might not be 0) and an 802.1p (3-bit layer 2 COS) with a specific value (typically 5 is assigned for voice traffic).

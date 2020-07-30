@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30863</td>
+<td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
+The two scenarios where an exploit may be useful to an attacker:<br/>
+-The user is authorized to scp but not ssh (based on the command option in the authorized_keys file), so this vulnerability can allow executing a remote command on the target computer when not authorized to do so.<br/>
+-An attacker plants a maliciously named file in a directory tree that someone later uses scp -r to copy over to the target computer.<br/>
+Be aware that restricting users to scp by using the command option in the authorized_keys file is not effective in preventing those users from executing arbitrary commands on the server.<br/>
+If you want to use scp -r to copy directory trees, avoid copying directory trees to which attackers may have added maliciously-named files. Archiving the directory tree with tar, zip, or a similar program, then copying the archive over to be extracted on the server avoids having to use scp -r altogether. In addition, OpenSSH provides sftp, which you can use instead of scp to copy files.<br/>
+To disable scp completely, use /bin/chmod 0 /usr/bin/scp .</p></td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30856</td>
 <td><p>The following vulnerability have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default NGINX configuration is not vulnerable, as it does not configure error_page redirection):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
@@ -2072,6 +2084,18 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30863</td>
+<td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
+The two scenarios where an exploit may be useful to an attacker:<br/>
+-The user is authorized to scp but not ssh (based on the command option in the authorized_keys file), so this vulnerability can allow executing a remote command on the target computer when not authorized to do so.<br/>
+-An attacker plants a maliciously named file in a directory tree that someone later uses scp -r to copy over to the target computer.<br/>
+Be aware that restricting users to scp by using the command option in the authorized_keys file is not effective in preventing those users from executing arbitrary commands on the server.<br/>
+If you want to use scp -r to copy directory trees, avoid copying directory trees to which attackers may have added maliciously-named files. Archiving the directory tree with tar, zip, or a similar program, then copying the archive over to be extracted on the server avoids having to use scp -r altogether. In addition, OpenSSH provides sftp, which you can use instead of scp to copy files.<br/>
+To disable scp completely, use /bin/chmod 0 /usr/bin/scp .</p></td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30856</td>

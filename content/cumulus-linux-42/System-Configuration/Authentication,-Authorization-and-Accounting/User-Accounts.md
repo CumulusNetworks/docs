@@ -8,7 +8,7 @@ By default, Cumulus Linux has two user accounts: *cumulus* and *root*.
 
 The *cumulus* account:
 
-- Uses the default password *CumulusLinux\!*
+- Uses the default password `cumulus`. You are required to change the default password when you log into Cumulus Linux for the first time.
 - Is a user account in the *sudo* group with sudo privileges.
 - Can log in to the system through all the usual channels, such as console and {{<link url="SSH-for-Remote-Access" text="SSH">}}.
 - Along with the cumulus group, has both show and edit rights for {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}.
@@ -18,8 +18,6 @@ The *root* account:
 - Has the default password disabled by default.
 - Has the standard Linux root user access to everything on the switch.
 - Disabled password prohibits login to the switch by SSH, telnet, FTP, and so on.
-
-For optimal security, change the default password with the `passwd` command before you configure Cumulus Linux on the switch.
 
 You can add additional user accounts as needed. Like the *cumulus* account, these accounts must use `sudo` to {{<link url="Using-sudo-to-Delegate-Privileges" text="execute privileged commands">}}; be sure to include them in the *sudo* group. For example:
 

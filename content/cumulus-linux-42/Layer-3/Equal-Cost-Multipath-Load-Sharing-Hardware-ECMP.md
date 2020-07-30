@@ -283,7 +283,7 @@ The Mellanox Spectrum ASIC assigns packets to hash buckets and assigns hash buck
 
 - When a next hop is removed, the assigned buckets are distributed to the remaining next hops.
 - When a next hop is added, **no** buckets are assigned to the new next hop until the background thread rebalances the load.
-- The load gets rebalanced when the active flow timer specified by the `resilient_hash_active_timer` setting expires if, and only if, there are inactive hash buckets available; the new next hop may remain unpopulated until the period set in `resilient_hash_active_timer` expires
+- The load gets rebalanced when the active flow timer specified by the `resilient_hash_active_timer` setting expires if, and only if, there are inactive hash buckets available; the new next hop may remain unpopulated until the period set in `resilient_hash_active_timer` expires.
 - When the `resilient_hash_max_unbalanced_timer` setting expires and the load is not balanced, the thread migrates any bucket(s) to different next hops to rebalance the load.
 
 As a result, any flow may be migrated to any next hop, depending on flow activity and load balance conditions; over time, the flow may get pinned, which is the default setting and behavior.

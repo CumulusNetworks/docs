@@ -294,7 +294,11 @@ To estimate the number of rules you can create from an ACL entry, first determin
 By default, each entry occupies one double wide entry, except if the entry is one of the following:
 
 - An entry with multiple comma-separated input interfaces is split into one rule for each input interface (listed after `--in-interface` below). For example, this entry splits into two rules:
--A FORWARD --in-interface swp1s0,swp1s1 -p icmp -j ACCEPT
+
+  ```
+  -A FORWARD --in-interface swp1s0,swp1s1 -p icmp -j ACCEPT
+  ```
+
 - An entry with multiple comma-separated output interfaces is split into one rule for each output interface (listed after `--out-interface` below). This entry splits into two rules:
 
     ```
@@ -664,7 +668,7 @@ The Trident3 ASIC is divided into 12 slices, organized into 4 groups for ACLs. E
 | Egress raw limit                 | 512                    | 0                      | 512                       | 0                         |
 | Egress limit with default rules  | 512 (28 default)       | 0                      | 512 (28 default)          | 0                         |
 
-Due to a hardware limitation on Trident3 switches, certain broadcast packets that are VXLAN decapsulated and sent to the CPU do not hit the normal INPUT chain ACL rules installed with `cl-acltool`. See [Caveats and Errata](Default-Cumulus-Linux-ACL-Configuration#caveats-and-errata).
+Due to a hardware limitation on Trident3 switches, certain broadcast packets that are VXLAN decapsulated and sent to the CPU do not hit the normal INPUT chain ACL rules installed with `cl-acltool`. See {{<link text="default ACL considerations" url="Default-Cumulus-Linux-ACL-Configuration#considerations">}}.
 
 ### Broadcom Trident II+ Limits
 
@@ -779,7 +783,7 @@ For example, the `-A FORWARD --out-interface vlan100 -p icmp6 -j ACCEPT` rule is
 
 {{%/notice%}}
 
-#### Caveats
+#### Considerations
 
 Splitting rules across the ingress TCAM and the egress TCAM causes the ingress IPv6 part of the rule to match packets going to all destinations, which can interfere with the regular expected linear rule match in a sequence. For example:
 
@@ -1191,11 +1195,6 @@ The following rule blocks any traffic with source MAC address 00:00:00:00:00:12 
 [ebtables] -A FORWARD -s 00:00:00:00:00:12 -d 08:9e:01:ce:e2:04 -j DROP
 ```
 
-## Related Information
-
-- {{<exlink url="http://www.netfilter.org/" text="Netfilter website">}}
-- {{<exlink url="http://www.netfilter.org/documentation/HOWTO//packet-filtering-HOWTO-6.html" text="Netfilter.org packet filtering how-to">}}
-
 ## Considerations
 
 ### Not All Rules Supported
@@ -1375,3 +1374,8 @@ To work around this issue, duplicate the ACL rule on each physical port of the b
 -A FORWARD --out-interface <bond-member-port-1> -j DROP
 -A FORWARD --out-interface <bond-member-port-2> -j DROP
 ```
+
+## Related Information
+
+- {{<exlink url="http://www.netfilter.org/" text="Netfilter website">}}
+- {{<exlink url="http://www.netfilter.org/documentation/HOWTO//packet-filtering-HOWTO-6.html" text="Netfilter.org packet filtering how-to">}}

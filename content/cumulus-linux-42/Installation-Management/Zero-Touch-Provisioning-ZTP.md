@@ -13,9 +13,9 @@ While developing and testing the provisioning logic, you can use the `ztp` comma
 
 ZTP in Cumulus Linux can occur automatically in one of the following ways, in this order:
 
-- Through a local file
-- Using a USB drive inserted into the switch (ZTP-USB)
-- Through DHCP
+1. Through a local file
+1. Using a USB drive inserted into the switch (ZTP-USB)
+1. Through DHCP
 
 Each method is discussed in greater detail below.
 

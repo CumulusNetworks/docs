@@ -26,7 +26,7 @@ To configure multicast VXLAN tunnels, you need to configure PIM-SM in the underl
 
 - Enable PIM-SM on the appropriate layer 3 interfaces.
 - Configure static RP on all the PIM routers.
-- Configure MSDP on the RPs for RP redundancy
+- Configure MSDP on the RPs for RP redundancy.
 
 The configuration steps needed to configure PIM-SM in the underlay are provided in {{<link url="Protocol-Independent-Multicast-PIM">}}.
 

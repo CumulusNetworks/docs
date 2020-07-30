@@ -70,7 +70,7 @@ The name of the bridge must be:
 
 - Compliant with Linux interface naming conventions.
 - Unique within the switch.
-- Something other than *bridge*, **** as Cumulus Linux reserves that name for a single {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}.
+- Something other than *bridge*, as Cumulus Linux reserves that name for a single {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}.
 
 {{%/notice%}}
 

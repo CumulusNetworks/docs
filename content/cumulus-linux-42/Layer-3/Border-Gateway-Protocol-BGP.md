@@ -1346,7 +1346,7 @@ In this topology:
 - r5 and r6 are in AS 500
 - r7 is in AS 700
 - r8 is in AS 800
-- r7 learns 1.1.1.1/32 from r1, r2, r3, r4, r5, and r6. r7 picks the path from r1 as the bestpath for 1.1.1.1/32
+- r7 learns 1.1.1.1/32 from r1, r2, r3, r4, r5, and r6; r7 picks the path from r1 as the bestpath for 1.1.1.1/32
 
 {{< tabs "28 ">}}
 
@@ -2190,9 +2190,9 @@ To reduce packet loss during planned maintenance of a router or link, you can co
 
 To configure graceful BGP shutdown:
 
-{{< tabs "46 ">}}
+{{< tabs "Graceful BGP shutdown">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 To enable graceful shutdown:
 
@@ -2212,7 +2212,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 To enable graceful shutdown:
 
@@ -2453,7 +2453,7 @@ Here is an example of a standard community list filter:
 
 {{< tabs "54 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
@@ -2461,7 +2461,7 @@ cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -2480,9 +2480,9 @@ cumulus@switch:~$
 
 You can apply the community list to a route map to define the routing policy:
 
-{{< tabs "46 ">}}
+{{< tabs "Apply community list to route map">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp table-map ROUTE-MAP1
@@ -2490,7 +2490,7 @@ cumulus@switch:~$ net add bgp table-map ROUTE-MAP1
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -2540,7 +2540,7 @@ In the Clos topology, Cumulus Networks recommends that you only use interface ad
 
 {{%notice note%}}
 
-See Caveats and Errata below for information about `ttl-security hops`.
+See {{<link url="#considerations" text="Considerations">}} below for information about `ttl-security hops`.
 
 {{%/notice%}}
 
@@ -2681,7 +2681,7 @@ router bgp 65000
 
 ### Advertisement Interval
 
-By default, BGP chooses stability over fast convergence, which is very useful when routing for the Internet. For example, unlike link-state protocols, BGP typically waits a number of seconds before sending consecutive updates to a neighbor. This advertisement interval ensures that an unstable neighbor flapping routes are not propagated throughout the network. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see {{<exlink url="http://tools.ietf.org/html/draft-jakma-mrai-02" text="IETF draft">}}.
+By default, BGP chooses stability over fast convergence, which is very useful when routing for the Internet. For example, unlike link-state protocols, BGP typically waits a number of seconds before sending consecutive updates to a neighbor. This advertisement interval ensures that an unstable neighbor flapping routes are not propagated throughout the network. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see {{<exlink url="http://tools.ietf.org/html/draft-jakma-mrai-02" text="this IETF draft">}}.
 
 To modify the advertisement interval, run the following commands:
 
@@ -3241,7 +3241,7 @@ FRR does not add BGP `ttl-security` to either the running configuration or to th
 - {{<exlink url="https://tools.ietf.org/html/rfc5065" text="RFC 5065, Autonomous System Confederations for BGP">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc5291" text="RFC 5291, Outbound Route Filtering Capability for BGP-4">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc5492" text="RFC 5492, Capabilities Advertisement with BGP-4">}}
-- {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549, Advertising IPv4 Network Layer Reachability Information with an IPv6 Next Hop">}}()
+- {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549, Advertising IPv4 Network Layer Reachability Information with an IPv6 Next Hop">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc6793" text="RFC 6793, BGP Support for Four-Octet Autonomous System (AS) Number Space">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc7911" text="RFC 7911, Advertisement of Multiple Paths in BGP">}}
 - {{<exlink url="https://tools.ietf.org/html/draft-walton-bgp-hostname-capability-00" text="draft-walton-bgp-hostname-capability-02, Fully Qualified Domain Name Capability for BGP">}}

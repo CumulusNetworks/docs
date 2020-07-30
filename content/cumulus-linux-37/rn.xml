@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30879</td>
+<td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
+</td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30863</td>
 <td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
 The two scenarios where an exploit may be useful to an attacker:<br/>
@@ -57,7 +64,7 @@ To work around this issue, ifdown/ifup the SVI when a MAC address changes.</p></
 </tr>
 <tr>
 <td>CM-30514</td>
-<td><p>In OVSDB high availability mode, deleting multiple VLAN bindings might cause ovs-vtepd to crash.</p></td>
+<td><p>In OVSDB high availability mode, deleting &gt; 200 VLAN bindings might cause ovs-vtepd to crash.  Limit the deletion to 200 or fewer VLAN bindings.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
@@ -2123,6 +2130,13 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30879</td>
+<td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
+</td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30863</td>
 <td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
 The two scenarios where an exploit may be useful to an attacker:<br/>
@@ -2236,7 +2250,7 @@ Fixed: 5.20.2-3+deb8u13</p></td>
 </tr>
 <tr>
 <td>CM-30514</td>
-<td><p>In OVSDB high availability mode, deleting multiple VLAN bindings might cause ovs-vtepd to crash.</p></td>
+<td><p>In OVSDB high availability mode, deleting &gt; 200 VLAN bindings might cause ovs-vtepd to crash.  Limit the deletion to 200 or fewer VLAN bindings.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
 </tr>

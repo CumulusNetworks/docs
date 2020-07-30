@@ -1697,3 +1697,189 @@ footer {
 .expand-content {
   padding: $padding-16;
 }
+
+
+   /*
+  /////////////////////////////////////////////////////////
+ // TOP ANNOUNCEMENT BAR /////////////////////////////////
+/////////////////////////////////////////////////////////
+*/
+
+@media only screen and (max-width: 991px) {
+  .cta.announcement-bar {
+    display: none;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .cta.announcement-bar {
+    display: block;
+  }
+}
+
+  .cta.announcement-bar {
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1021;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    background: rgb(118, 185, 0);
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+  }
+  .cta.announcement-bar:before {
+    display: none;
+  }
+  .cta.announcement-bar .close:hover {
+    cursor: pointer;
+  }
+  .cta.announcement-bar .close .svg {
+    fill: white;
+    position: absolute;
+    top: 20px;
+    right: 18px;
+    width: 20px;
+    height: 20px;
+  }
+  .cta.cta.announcement-bar * {
+    color: white;
+  }
+  .cta.announcement-bar p {
+    font-size: 17px;
+    font-family: 'Gotham A', 'Gotham B';
+    margin-top: 16px;
+    margin-bottom: 0;
+    letter-spacing: -0.2px;
+  }
+  .cta.announcement-bar a {
+    font-weight: 500;
+    border-bottom: 2px solid white;
+    padding-bottom: 4px;
+    color: white !important;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+  }
+  .cta.announcement-bar a:hover {
+    border-bottom-color: white;
+    color: white;
+  }
+  
+
+
+   /*
+  /////////////////////////////////////////////////////////
+ // BOTTOM ANNOUNCEMENT BAR //////////////////////////////
+/////////////////////////////////////////////////////////
+*/
+
+@media only screen and (max-width: 991px) {
+  .m-bottom-promo-banner {
+    display: block;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .m-bottom-promo-banner {
+    display: none;
+  }
+}
+
+.m-bottom-promo-banner {
+  position: fixed;
+  bottom: -1000px;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  padding: 60px 25px 45px;
+  z-index: 9999;
+  transition: bottom 0.6s;
+  background: #76b900;
+}
+@media only screen and (min-width: 576px) {
+  .m-bottom-promo-banner {
+    padding-top: 40px;
+  }
+}
+.m-bottom-promo-banner h3 {
+  color: #FFF;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-family: "Gotham A", "Gotham B";
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: -0.15px;
+  line-height: 34px;
+}
+.m-bottom-promo-banner a.close .svg {
+  color: #FFF;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+.m-bottom-promo-banner.active {
+  bottom: 0;
+}
+.m-button {
+  display: inline-block;
+  background-color: white;
+  height: 43px;
+  line-height: 43px;
+  padding: 0px 16px;
+  font-weight: 600;
+  font-size: 13px;
+  font-family: "Gotham A", "Gotham B";
+  color: #FFF;
+  text-shadow: none;
+  margin: 0;
+  min-width: 169px;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.m-button:hover, .m-button:focus, .m-button:active, .m-button.is-active, .m-button.active {
+  text-decoration: none;
+}
+.m-button:hover, .m-button:focus {
+  color: #FFF;
+  background-color: white;
+}
+.m-button:active, .m-button.is-active, .m-button.active {
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4);
+  background: white;
+  color: #cccccc;
+  transition-duration: 0s;
+}
+.m-button:focus {
+  outline: none;
+}
+.m-button-white {
+  background-color: #FFF;
+  border-color: #e6e6e6;
+  color: #00AD69;
+  text-shadow: none;
+  opacity: 1;
+  transition: 0.2s all;
+}
+.m-button-white:hover, .m-button-white:focus {
+  background-color: #FFF;
+  color: #00AD69;
+  opacity: 0.8;
+}
+.m-button-white:active, .m-button-white.is-active, .m-button-white.active {
+  background: white;
+  color: #cccccc;
+  transition-duration: 0s;
+}
+
+.m-button-medium {
+  font-size: 14px;
+  height: 55px;
+  letter-spacing: 1.88px;
+  line-height: 55px;
+  padding: 0px 40px;
+}

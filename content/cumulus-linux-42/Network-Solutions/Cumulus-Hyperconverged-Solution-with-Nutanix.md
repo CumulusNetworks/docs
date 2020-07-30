@@ -36,7 +36,7 @@ Cumulus HCS runs on any platform. However, this chapter assumes a typical Nutani
 - MLAG peer link is on the first two uplink ports: swp49 and swp50
 - Connections to other infrastructure are on ports swp51 and above
 - The eth0 management interface is configured for {{<link url="Management-VRF" text="management VRF">}} via DHCP
-- For automatic configuration, the gateway IP addresses for all VMs, including the CVM, do not exist on the Cumulus Linux switches.
+- For automatic configuration, the gateway IP addresses for all VMs, including the CVM, do not exist on the Cumulus Linux switches
 
 The example configuration utilizes the following topology. All configuration focuses on the leaf01 and leaf02 switches. Configurations for spine01 and spine02 are not included.
 

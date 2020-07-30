@@ -351,6 +351,7 @@
     </div>
 
   {{ template "_internal/google_analytics_async.html" . }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> 
   <script type="text/javascript">
     (function() {
       var didInit = false;
@@ -407,6 +408,11 @@
   <script>
     (function(w,d,s){var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='//embeddable-widgets-usw2.insided.com/cumulusnetworks-en.insided-conversational.js';f.parentNode.insertBefore(j,f);})(window,document,'script');
   </script>
+
+  <!-- Announcement bars -->
+  {{ $jsAnnouncementBar := resources.Get "js/announcement-bar.js" }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src = "{{ $jsAnnouncementBar.Permalink }}"> </script>
 
 </body>
 

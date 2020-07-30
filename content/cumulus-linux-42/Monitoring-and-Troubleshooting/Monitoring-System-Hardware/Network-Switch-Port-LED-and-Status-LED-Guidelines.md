@@ -38,10 +38,12 @@ A set of status LEDs are typically located on one side of a network switch. The 
 - **Unit label** - The label should be printed on the front panel directly above the LED.
 - **Colors** - The focus should be on giving a network operator a simple set of indications that provide basic information about the unit. The following section has more information about the indications, but colors are standardized on green and amber. These colors are universally found on all status LEDs and should be easy to implement on future switches.
 - **Defined LED** - Every network switch must have LEDs for the following:
-      - PSU
-      - Fans
-      - System LED
-      - Locator LED
+
+  - PSU
+  - Fans
+  - System LED
+  - Locator LED
+
 - **PSU LEDs** - Each PSU must have its own LED. PSU faults are difficult to debug. If a network operator knows which PSU is faulty, he or she can quickly check if it is powered up correctly and, if that fault persists, replace the PSU.
 
     | Unit Activity                       | Indication          |

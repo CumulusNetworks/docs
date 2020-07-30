@@ -88,19 +88,19 @@ The switch has been added correctly when interfaces hooked up to the Nutanix hos
 
 ## Switch Information Displayed on Nutanix Prism
 
-- Physical Interface (e.g. swp1, swp2). This will only display swp interfaces connected to Nutanix hosts by default.
-- Switch ID - Unique identifier that Nutanix keeps track of each port ID (see below)
-- Index - interface index, in the above demonstration swp49 maps to Index 52 because there is a loopback and two ethernet interface before the swp starts.
-- MTU of interface
-- MAC Address of Interface
-- Unicast RX Packets (Received)
-- Unicast TX Packets (Transmitted)
-- Error RX Packets (Received)
-- Error TX Packets (Transmitted)
-- Discard RX Packets (Received)
-- Discard TX Packets (Transmitted)
+- Physical interface (for example, swp1, swp2). This only displays switch port interfaces connected to Nutanix hosts by default.
+- Switch ID: Unique identifier that Nutanix keeps track of each port ID (see below).
+- Index: Interface index, in the above demonstration swp49 maps to Index 52 because there is a loopback and two ethernet interface before the swp starts.
+- MTU of interface.
+- MAC address of interface.
+- Unicast RX packets (received).
+- Unicast TX packets (transmitted).
+- Error RX packets (received).
+- Error TX packets (transmitted).
+- Discard RX packets (received).
+- Discard TX packets (transmitted).
 
-The Nutanix appliance will use Switch IDs that can also be viewed on the Prism CLI (by SSHing to the box). To view information from the Nutanix CLI, login using the default username **nutanix**, and the password **nutanix/4u**.
+The Nutanix appliance will use Switch IDs that can also be viewed on the Prism CLI (by SSHing to the box). To view information from the Nutanix CLI, login using the default username *nutanix*, and the password *nutanix/4u*.
 
 ```
 nutanix@NTNX-14SM15270093-D-CVM:192.168.0.184:~$ ncli network list-switch
@@ -145,9 +145,9 @@ nutanix@NTNX-14SM15270093-D-CVM:192.168.0.184:~$ ncli network list-switch
            Uplinks: vmnic3, vmnic2, vmnic1, vmnic0
            Portgroups: VM Network, Management Network
 
-   **both** means CDP is now running and the lldp dameon on Cumulus Linux is capable of *seeing* CDP devices.
+   **both** means CDP is now running and the `lldp` dameon on Cumulus Linux is capable of *seeing* CDP devices.
 
-2. After the next CDP interval, the Cumulus Linux box will pick up the interface via the `lldp` daemon:
+2. After the next CDP interval, the Cumulus Linux switch picks up the interface via the `lldp` daemon:
 
     ```
     cumulus@switch:~$ lldpctl show neighbor swp49
@@ -180,7 +180,7 @@ nutanix@NTNX-14SM15270093-D-CVM:192.168.0.184:~$ ncli network list-switch
     swp52         1G       NotConfigured  ====  swp1               spine02
     ```
 
-{{<exlink url="http://www.nutanix.com/products/acropolis/" text="Nutanix Acropolis">}} is an alternate hypervisor that Nutanix supports. **Acropolis Hypervisor** uses the yum packaging system and is capable of installing normal Linux lldp daemons to operating just like Cumulus Linux. LLDP should be enabled for each interface on the host. Refer to this article from Mellanox, {{<exlink url="https://portal.nutanix.com/page/documents/kbs/details/?targetId=kA032000000TVfiCAG" title="Nutanix Documentation" >}}, for setup instructions.
+{{<exlink url="http://www.nutanix.com/products/acropolis/" text="Nutanix Acropolis">}} is an alternate hypervisor that Nutanix supports. **Acropolis Hypervisor** uses the `yum` packaging system and is capable of installing normal Linux `lldp` daemons to operating just like Cumulus Linux. LLDP should be enabled for each interface on the host. Refer to this article from Mellanox, {{<exlink url="https://portal.nutanix.com/page/documents/kbs/details/?targetId=kA032000000TVfiCAG" title="Nutanix Documentation" >}}, for setup instructions.
 
 ## Troubleshooting
 
@@ -199,9 +199,9 @@ To help visualize the following diagram is provided:
 
 1. Find the MAC address information in the Prism GUI, located in: **Hardware** \> **Table** \> **Host** \> **Host NICs**
 
-2. Select a MAC address to troubleshoot (e.g. 0c:c4:7a:09:a2:43 represents vmnic0 which is tied to NX-1050-A).
+2. Select a MAC address to troubleshoot (for example, 0c:c4:7a:09:a2:43 represents vmnic0 which is tied to NX-1050-A).
 
-3. List out all the MAC addresses associated to the bridge:
+3. List out all the MAC addresses associated with the bridge:
 
     ```
     cumulus@switch:~$ brctl showmacs br-ntnx

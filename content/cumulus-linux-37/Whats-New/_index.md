@@ -12,7 +12,7 @@ This document supports the Cumulus Linux 3.7 releases, and lists new platforms a
 
 ## What's New in Cumulus Linux 3.7.13
 
-Cumulus Linux 3.7.13 contains bug fixes.
+Cumulus Linux 3.7.13 contains bug fixes and security fixes.
 
 ## What's New in Cumulus Linux 3.7.12
 

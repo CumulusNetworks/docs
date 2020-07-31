@@ -9,7 +9,7 @@ Workbenches are an integral structure of the Cumulus NetQ UI. They are where you
 There are two types of workbenches:
 
 - **Default**: Provided by Cumulus Networks for use as they exist; changes made to these workbenches *cannot* be saved
-- **Custom**: Created by application users when default workbenches need some adjustments to better meet your needs or a completely different collection of cards is wanted; changes made to these workbenches are saved automatically.
+- **Custom**: Created by application users when default workbenches need some adjustments to better meet your needs or a completely different collection of cards is wanted; changes made to these workbenches are saved automatically
 
 Both types of workbenches display a set of cards. Default workbenches are public (available for viewing by all users), whereas Custom workbenches are private (only viewable by the user who created them).
 
@@ -25,11 +25,12 @@ On initial login, the Cumulus Workbench is opened. On subsequent logins, the las
 
 Users with either administrative or user roles can create and save as many custom workbenches as suits their needs. For example, a user might create a workbench that:
 
-- shows all of the selected cards for the past week and one that shows all of the selected cards for the past 24 hours
-- only has data about your virtual overlays; EVPN plus events cards
-- has selected switches that you are troubleshooting
-- focused on application or user account management
-- etc.
+- Shows all of the selected cards for the past week and one that shows all of the selected cards for the past 24 hours
+- Only has data about your virtual overlays; EVPN plus events cards
+- Has selected switches that you are troubleshooting
+- Focused on application or user account management
+
+And so forth.
 
 ### Create a Workbench
 
@@ -43,7 +44,7 @@ To create a workbench:
 
 3. Click **Create** to open a blank new workbench, or **Cancel** to discard the workbench.
 
-4. Add cards to the workbench using <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> or <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>.
+4. Add cards to the workbench using <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> or <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>.
 
 Refer to {{<link title="Access Data with Cards">}} for information about interacting with cards on your workbenches.
 

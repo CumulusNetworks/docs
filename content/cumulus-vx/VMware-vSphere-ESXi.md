@@ -7,7 +7,7 @@ This section describes how to install and set up Cumulus VX in VMWare vSphere to
 
 {{% vx/intro %}}
 
-These steps were tested with VMware vSphere (ESXi) ?? and VSphere web client version 6.7.0.30000.
+These steps were tested with VMware vSphere (ESXi) 6.7.0 and VSphere web client version 6.7.0.30000.
 
 ## Create and Configure the VMs
 
@@ -20,12 +20,12 @@ Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/down
 ### Create the VMs
 
 1. From the vSphere web client, create a new folder under VMs and Templates. Select the folder then click **Deploy OVF Template** from the **Actions** menu.
-2. Either select the Cumulus VX OVA image you downloaded or enter a URL to download and install the OVF package from the Internet,then click **Next**.
+2. Either select the Cumulus VX OVA image you downloaded, then click **Next**.
 3. In the **Virtual machine name** field, enter `leaf01`, then click **Next**.
 
    {{< img src="/images/cumulus-vx/vsphere-add-name.png" width="300" >}}
 
-4. Select a compute source, then click Next.
+4. Select a compute source (ESXi host), then click Next.
 
 5. The Cumulus VX image is preconfigured, so no more setup options are required. Click **Next** until you see the `Ready to Complete` dialog, then click **Finish**.
 

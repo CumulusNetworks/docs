@@ -87,7 +87,7 @@ Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/down
 
 ## Verify Configuration
 
-{{% vx/verify-config %}}
+{{% vx/verify-config-vsphere %}}
 
 ## Next Steps
 

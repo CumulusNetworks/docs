@@ -7,7 +7,7 @@ This section describes how to install and set up Cumulus VX in VMWare vSphere to
 
 {{% vx/intro %}}
 
-These steps were tested with VMware vSphere (ESXi) 6.7.0 and VSphere web client version 6.7.0.30000.
+These steps were tested with VMware vSphere (ESXi) 6.7.0 and VSphere web client (HTML5) version 6.7.0.30000.
 
 ## Create and Configure the VMs
 
@@ -51,7 +51,7 @@ Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/down
 
 7. Under **VMs and Templates**, select `leaf01` in the left pane, then click the **Edit Settings** icon.
 
-8. Under **Virtual Hardware**, configure the network adapters as shown below for each VM. Make sure **Connected** is not selected for Adapter 1.
+8. Under **Virtual Hardware**, configure the network adapters as shown below for each VM.
 
       {{< tabs "TabID55 ">}}
 

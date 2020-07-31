@@ -195,9 +195,9 @@ A *port group* refers to one or more sequences of contiguous ports. You can defi
 
 You can specify the set of ports in a port group in comma-separate sequences of contiguous ports; you can see which ports are contiguous in the `/var/lib/cumulus/porttab` file. The syntax supports:
 
-- A single port (swp1s0 or swp5)
-- A sequence of regular swp ports (swp2-swp5)
-- A sequence within a breakout swp port (swp6s0-swp6s3)
+- A single port (swp1s0 or swp5).
+- A sequence of regular swp ports (swp2-swp5).
+- A sequence within a breakout swp port (swp6s0-swp6s3).
 - A sequence of regular and breakout ports, provided they are all in a contiguous range. For example:
 
 ```
@@ -222,7 +222,7 @@ On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd
 
 The PAUSE frame is a flow control mechanism that halts the transmission of the transmitter for a specified period of time. A server or other network node within the data center may be receiving traffic faster than it can handle it, thus the PAUSE frame. In Cumulus Linux, you can configure individual ports to execute link pause by:
 
-- Transmitting pause frames when its ingress buffers become congested (TX pause enable)
+- Transmitting pause frames when its ingress buffers become congested (TX pause enable).
 - Responding to received pause frames (RX pause enable).
 
 Link pause is disabled by default. To enabling link pause, you must configure settings in the `/etc/cumulus/datapath traffic.conf` file.
@@ -629,7 +629,7 @@ lag_hash_config.ip_prot = true
 
 {{%notice note%}}
 
-On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you must enable packet priority remark on the **ingress** port. A packet received on a remark-enabled port is remarked according to the priority mapping configured on the **egress** port. If you configure packet priority remark the same way on every port, the default configuration example above is correct. However, per-port customized configurations require two port groups: one for the ingress ports and one for the egress ports, as below:
+On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, you must enable packet priority remark on the **ingress** port. A packet received on a remark-enabled port is remarked according to the priority mapping configured on the **egress** port. If you configure packet priority remark the same way on every port, the default configuration example above is correct. However, per-port customized configurations require two port groups, one for the ingress ports and one for the egress ports, as below:
 
 ```
 remark.port_group_list = [ingress_remark_group, egress_remark_group]

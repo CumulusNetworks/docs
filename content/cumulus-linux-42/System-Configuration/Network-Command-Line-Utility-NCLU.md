@@ -414,7 +414,7 @@ cumulus@switch:~$ sudo systemctl restart netd.service
 
 {{%/notice%}}
 
-## Caveats and Errata
+## Considerations
 
 ### Unsupported Interface Names
 NCLU does not support interfaces named `dev`.

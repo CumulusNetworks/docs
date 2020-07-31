@@ -65,7 +65,7 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 </tr>
 <tr>
 <td>CM-30514</td>
-<td><p>In OVSDB high availability mode, deleting multiple VLAN bindings might cause ovs-vtepd to crash.</p></td>
+<td><p>In OVSDB high availability mode, deleting &gt; 200 VLAN bindings might cause ovs-vtepd to crash.  Limit the deletion to 200 or fewer VLAN bindings.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>

@@ -7,48 +7,75 @@ This section describes how to install and set up Cumulus VX in VMWare vSphere to
 
 {{% vx/intro %}}
 
-These steps were tested with VMware vSphere (ESXi) Standard version 7.0b and web client version ??.
+These steps were tested with VMware vSphere (ESXi) ?? and VSphere web client version 6.7.0.30000.
 
 ## Create and Configure the VMs
 
 The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes you have a basic level of VMWare vSphere experience.
 
-### Download and Install the Software
+### Download Cumulus VX
 
-1. Download and install the {{<exlink url="https://my.vmware.com/web/vmware/details?productId=352&downloadGroup=OVFTOOL350" text="VMware OVFtools utility">}} on the vSphere Client.
-2. Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="OVA disk image for use with VMware">}}.
+Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="OVA disk image for use with VMware">}}.
 
 ### Create the VMs
 
-1. Connect the vSphere client to the vSphere ESXi server using the IP address and user credentials of the ESXi server.
+1. From the vSphere web client, create a new folder under VMs and Templates. Select the folder then click **Deploy OVF Template** from the **Actions** menu.
+2. Either select the Cumulus VX OVA image you downloaded or enter a URL to download and install the OVF package from the Internet,then click **Next**.
+3. In the **Virtual machine name** field, enter `leaf01`, then click **Next**.
 
-2. From the **File** menu of the vSphere client window, click **Deploy OVF Template** to open the import window.
+   {{< img src="/images/cumulus-vx/vsphere-add-name.png" width="300" >}}
 
-3. Select **Browse**, locate the Cumulus VX OVA image, then click **Next**.
+4. Select a compute source, then click Next.
 
-4. Review the template details, then click **Next**.
+5. The Cumulus VX image is preconfigured, so no more setup options are required. Click **Next** until you see the `Ready to Complete` dialog, then click **Finish**.
 
-5. Change the name of the VM to `leaf01`, then click **Next**.
+   The Cumulus VX OVA image is imported and deployed as a VM. After the deployment process is complete, the VM appears in the list of VMs in the left pane.
 
-    {{< img src="/images/cumulus-vx/VX_esxi_deploy3_name.png" width="400" >}}
-
-6. The Cumulus VX image is preconfigured, so no more setup options are required. Click **Next** until you see the `Ready to Complete` window:
-
-    {{< img src="/images/cumulus-vx/VX_esxi_deploy4_ready.png" width="400" >}}
-
-7. Select `Power on after deployment` to start the VM immediately after the import process is complete, then click **Finish**.
-
-   The Cumulus VX OVA image is imported into vSphere ESXi and deployed as a VM. The length of the import process depends on the system configuration. You can view the progress in the `Recent Tasks` pane at the bottom of the client window. After the deployment process is complete, the newly created VM appears in the list of VMs in the left pane.
-
-   {{< img src="/images/cumulus-vx/VX_esxi_deploy5_deploying.png" width="500" >}}
-
-8. Repeat step 2 through step 7 to create two additional VMs: `leaf02` and `spine01`.
-
-If the wrong storage interface type is selected, you might see the error `Setting up installer ...Failure: Unable to find storage device for file system with label 'ONIE-BOOT'`. Make sure you use the SATA controller.
+6. Repeat the previous steps to create two additional VMs: `leaf02` and `spine01`.
 
 ### Create Network Connections
 
-Add section here
+1. Under **Hosts and clusters**, select the ESXi host, then select **Add Networking** from the **Actions** menu.
+
+2. Select **Virtual Machine Port Group for a Standard Switch**, then click **Next**.
+
+   {{< img src="/images/cumulus-vx/vsphere-add-network.png" width="500" >}}
+
+3. Select **New standard switch**, then click **Next**.
+
+4. In the **Create a Standard Switch** dialog, click **Next**, then click **OK** when the Physical Network Adapters warning displays.
+
+5. In the **Network Label** field, enter `intnet-1`, click **Next**, then click **Finish**.
+
+6. Repeat the previous steps to create **three** additional port groups: `intnet-2`, `intnet-3`, and `intnet-4`.
+
+7. Under **VMs and Templates**, select `leaf01` in the left pane, then click the **Edit Settings** icon.
+
+8. Under **Virtual Hardware**, configure the network adapters as shown below for each VM. Make sure **Connected** is not selected for Adapter 1.
+
+      {{< tabs "TabID55 ">}}
+
+{{< tab "leaf01.qcow2 ">}}
+
+{{< img src="/images/cumulus-vx/vsphere-network-leaf01.png" width="500" >}}
+
+{{< /tab >}}
+
+{{< tab "leaf02.qcow2 ">}}
+
+{{< img src="/images/cumulus-vx/vsphere-network-leaf02.png" width="500" >}}
+
+{{< /tab >}}
+
+{{< tab "spine01.qcow2 ">}}
+
+{{< img src="/images/cumulus-vx/vsphere-network-spine01.png" width="500" >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+9. Start the VMS and launch the Console for each VM.
 
 ## Log into the Switches
 

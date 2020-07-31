@@ -14,6 +14,21 @@
 <td></td>
 </tr>
 <tr>
+<td>CM-30872</td>
+<td><p>Several vulnerabilities have been discovered in the GRUB2 bootloader.<br/>
+CVE-2020-10713: A flaw in the grub.cfg parsing code was found allowing to break UEFI Secure Boot and load arbitrary code. Details can be found at <a href="https://www.eclypsium.com/2020/07/29/theres-a-hole-in-the-boot/" class="external-link" rel="nofollow">https://www.eclypsium.com/2020/07/29/theres-a-hole-in-the-boot/</a><br/>
+CVE-2020-14308: It was discovered that grub_malloc does not validate the allocation size allowing for arithmetic overflow and subsequently a heap-based buffer overflow.<br/>
+CVE-2020-14309: An integer overflow in grub_squash_read_symlink may lead to a heap-based buffer overflow.<br/>
+CVE-2020-14310: An integer overflow in read_section_from_string may lead to a heap-based buffer overflow.<br/>
+CVE-2020-14311: An integer overflow in grub_ext2_read_link may lead to a heap-based buffer overflow.<br/>
+CVE-2020-15706: script: Avoid a use-after-free when redefining a function during execution.<br/>
+CVE-2020-15707: An integer overflow flaw was found in the initrd size handling.<br/>
+Vulnerable: &lt;= 2.02+dfsg1-20, &lt;= 2.02+dfsg1-cl4u1<br/>
+Fixed: 2.02+dfsg1-20+deb10u2, 2.02+dfsg1-cl4u1+20+deb10u2</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30863</td>
 <td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
 The two scenarios where an exploit may be useful to an attacker:<br/>
@@ -297,6 +312,13 @@ To work around this issue, enable MAB on the interface.</p></td>
 <td><p>The /usr/share/zoneinfo/leap-seconds.list file expires periodically and results in log messages being generated about that expiration.<br/>
 To work around this issue, you must update the file from <a href="https://www.ietf.org/timezones/data/leap-seconds.list" class="external-link" rel="nofollow">https://www.ietf.org/timezones/data/leap-seconds.list</a> or upgrade the tzdata package to the newest version.</p></td>
 <td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30159</td>
+<td><p>After you delete a bond, the deleted bond members have the deleted bond MAC address instead of their original MAC address, which might result in traffic being discarded. <br/>
+To work around this issue, perform a full switch restart.</p></td>
+<td>4.1.1-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1443,6 +1465,11 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>CM-30525</td>
+<td><p>When a specific PIM join/prune packet is received from a PIM neighbor the pimd process might crash with a core file.</p></td>
+<td>4.0.0-4.1.1</td>
 </tr>
 <tr>
 <td>CM-30447</td>

@@ -55,21 +55,21 @@ Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/down
 
       {{< tabs "TabID55 ">}}
 
-{{< tab "leaf01.qcow2 ">}}
+{{< tab "leaf01 ">}}
 
-{{< img src="/images/cumulus-vx/vsphere-network-leaf01.png" width="500" >}}
-
-{{< /tab >}}
-
-{{< tab "leaf02.qcow2 ">}}
-
-{{< img src="/images/cumulus-vx/vsphere-network-leaf02.png" width="500" >}}
+{{< img src="/images/cumulus-vx/vsphere-network-leaf01.png" width="600" >}}
 
 {{< /tab >}}
 
-{{< tab "spine01.qcow2 ">}}
+{{< tab "leaf02 ">}}
 
-{{< img src="/images/cumulus-vx/vsphere-network-spine01.png" width="500" >}}
+{{< img src="/images/cumulus-vx/vsphere-network-leaf02.png" width="600" >}}
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+{{< img src="/images/cumulus-vx/vsphere-network-spine01.png" width="600" >}}
 
 {{< /tab >}}
 

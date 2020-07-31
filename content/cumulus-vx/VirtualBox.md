@@ -11,7 +11,7 @@ These steps were tested with VirtualBox version 6.1.12 on macOS version 10.14.6.
 
 ## Create and Configure the VMs
 
-The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of VirtualBox experience.
+The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes you have a basic level of VirtualBox experience.
 
 ### Download and Install the Software
 
@@ -25,47 +25,35 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 ### Create Network Connections
 
-Configure the network adapter settings for leaf01, leaf02, and spine01 to create point-to-point connections.
-
-{{%notice note%}}
-
-Make sure that the VM is powered off.
-
-{{%/notice%}}
-
-1. In the VirtualBox Manager window, select leaf01.
-
-2. Click **Settings**, then click **Network**.
-
-3. Click **Adapter 2**.
-
-4. Make sure the **Enable Network Adapter** check box is selected.
-
-5. From the **Attached to** list, select **Internal Network**.  
-
-6. In the **Name** field, enter a name for the internal network, then click **OK**. The example below uses `intnet-1`.
-
-   {{< img src="/images/cumulus-vx/adapterSettings.png" width="400" >}}
-
-7. Repeat the steps 1 through 6 for leaf02 and spine01. Use the internal network names and the connections shown in the illustration and table below.
-
-   The internal network name for an adapter on a VM must match the internal network name on the corresponding network adapter on the VM to which it connects. For example, in the two leaf and one spine topology, Adapter 2 (swp1) on leaf01 is connected to Adapter 2 (swp1) on spine01; the name (intnet-1) must be the same for Adapter 2 on both VMs.
+Configure the network adapter settings for leaf01, leaf02, and spine01 to create point-to-point connections, as shown below.
 
 {{< figure src = "/images/cumulus-vx/VX-Connections.png" >}}
 
-| Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Internal Network Name |
-| --------- | ----     | -------------------- | ----------------------- | --------------------- |
-|leaf01     |          | Adapter 1            | NAT                     |                       |
-|           | swp1     | Adapter 2            | Internal                | intnet-1              |
-|           | swp2     | Adapter 3            | Internal                | intnet-3              |
-|           | swp3     | Adapter 4            | Internal                | intnet-4              |
-|leaf02     |          | Adapter 1            | NAT                     |                       |
-|           | swp1     | Adapter 2            | Internal                | intnet-2              |
-|           | swp2     | Adapter 3            | Internal                | intnet-3              |
-|           | swp3     | Adapter 4            | Internal                | intnet-4              |
-|spine01    |          | Adapter 1            | NAT                     |                       |
-|           | swp1     | Adapter 2            | Internal                | intnet-1              |
-|           | swp2     | Adapter 3            | Internal                | intnet-2              |
+Follow these steps for each VM (leaf01, leaf02, and spine01):
+
+1. In the VirtualBox Manager window, select the VM.
+
+2. Click **Settings**, then click **Network**.
+
+3. Configure the **Adapters** as shown in the table below, then click **OK**.
+
+   For each adapter, make sure the **Enable Network Adapter** check box is selected. For Adapter 2, 3, and 4, make sure  **Internal Network** is selected in the **Attached to** dropdown.
+
+   | Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Internal Network Name |
+   | --------- | ----     | -------------------- | ----------------------- | --------------------- |
+   |leaf01     |          | Adapter 1            | NAT                     |                       |
+   |           | swp1     | Adapter 2            | Internal                | intnet-1              |
+   |           | swp2     | Adapter 3            | Internal                | intnet-3              |
+   |           | swp3     | Adapter 4            | Internal                | intnet-4              |
+   |leaf02     |          | Adapter 1            | NAT                     |                       |
+   |           | swp1     | Adapter 2            | Internal                | intnet-2              |
+   |           | swp2     | Adapter 3            | Internal                | intnet-3              |
+   |           | swp3     | Adapter 4            | Internal                | intnet-4              |
+   |spine01    |          | Adapter 1            | NAT                     |                       |
+   |           | swp1     | Adapter 2            | Internal                | intnet-1              |
+   |           | swp2     | Adapter 3            | Internal                | intnet-2              |
+
+4. Start the VMs.
 
 ## Log into the Switches
 

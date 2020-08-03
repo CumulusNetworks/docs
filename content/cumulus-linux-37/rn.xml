@@ -7,6 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30879</td>
 <td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
 </td>
@@ -1971,7 +1980,7 @@ Fixed: 8.4.2-1-cl3u6</p></td>
 <tr>
 <td>CM-28437</td>
 <td><p>syslog might report a high load average with the CPU running a later microcode revision.</p></td>
-<td>3.7.11-3.7.12</td>
+<td>3.7.4-3.7.12</td>
 </tr>
 <tr>
 <td>CM-28376</td>
@@ -2128,6 +2137,15 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30879</td>
@@ -3021,7 +3039,7 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <tr>
 <td>CM-28437</td>
 <td><p>syslog might report a high load average with the CPU running a later microcode revision.</p></td>
-<td>3.7.11-3.7.12</td>
+<td>3.7.4-3.7.12</td>
 <td>3.7.13</td>
 </tr>
 <tr>
@@ -4572,6 +4590,15 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30863</td>
 <td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
 The two scenarios where an exploit may be useful to an attacker:<br/>
@@ -5173,7 +5200,7 @@ To work around this issue, run the apt-get upgrade command again and reboot the 
 <tr>
 <td>CM-28437</td>
 <td><p>syslog might report a high load average with the CPU running a later microcode revision.</p></td>
-<td>3.7.11-3.7.12</td>
+<td>3.7.4-3.7.12</td>
 <td>3.7.13</td>
 </tr>
 <tr>
@@ -7248,6 +7275,15 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30863</td>
 <td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
 The two scenarios where an exploit may be useful to an attacker:<br/>
@@ -7731,6 +7767,12 @@ Fixed: 0.7.0-2+deb8u1</p></td>
 To work around this issue, run the apt-get upgrade command again and reboot the device if prompted to complete the upgrade.</p></td>
 <td>3.7.10-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-28437</td>
+<td><p>syslog might report a high load average with the CPU running a later microcode revision.</p></td>
+<td>3.7.4-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-28393</td>
@@ -9624,6 +9666,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30863</td>
 <td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
 The two scenarios where an exploit may be useful to an attacker:<br/>
@@ -10085,6 +10136,12 @@ Vulnerable: 0.7.0-2<br/>
 Fixed: 0.7.0-2+deb8u1</p></td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12-3.7.13</td>
+</tr>
+<tr>
+<td>CM-28437</td>
+<td><p>syslog might report a high load average with the CPU running a later microcode revision.</p></td>
+<td>3.7.4-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-28393</td>
@@ -12435,6 +12492,15 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30863</td>
 <td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
 The two scenarios where an exploit may be useful to an attacker:<br/>
@@ -12896,6 +12962,12 @@ Vulnerable: 0.7.0-2<br/>
 Fixed: 0.7.0-2+deb8u1</p></td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12-3.7.13</td>
+</tr>
+<tr>
+<td>CM-28437</td>
+<td><p>syslog might report a high load average with the CPU running a later microcode revision.</p></td>
+<td>3.7.4-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-28374</td>
@@ -15118,6 +15190,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30863</td>
 <td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
 The two scenarios where an exploit may be useful to an attacker:<br/>
@@ -15566,6 +15647,12 @@ Vulnerable: 0.7.0-2<br/>
 Fixed: 0.7.0-2+deb8u1</p></td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12-3.7.13</td>
+</tr>
+<tr>
+<td>CM-28437</td>
+<td><p>syslog might report a high load average with the CPU running a later microcode revision.</p></td>
+<td>3.7.4-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-28224</td>
@@ -18155,6 +18242,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30863</td>
 <td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
 The two scenarios where an exploit may be useful to an attacker:<br/>
@@ -18596,6 +18692,12 @@ Vulnerable: 0.7.0-2<br/>
 Fixed: 0.7.0-2+deb8u1</p></td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12-3.7.13</td>
+</tr>
+<tr>
+<td>CM-28437</td>
+<td><p>syslog might report a high load average with the CPU running a later microcode revision.</p></td>
+<td>3.7.4-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-28224</td>
@@ -21148,6 +21250,15 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30863</td>
 <td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
 The two scenarios where an exploit may be useful to an attacker:<br/>
@@ -21582,6 +21693,12 @@ Vulnerable: 0.7.0-2<br/>
 Fixed: 0.7.0-2+deb8u1</p></td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12-3.7.13</td>
+</tr>
+<tr>
+<td>CM-28437</td>
+<td><p>syslog might report a high load average with the CPU running a later microcode revision.</p></td>
+<td>3.7.4-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-28224</td>
@@ -23810,6 +23927,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30863</td>
 <td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
 The two scenarios where an exploit may be useful to an attacker:<br/>
@@ -24238,6 +24364,12 @@ Vulnerable: 0.7.0-2<br/>
 Fixed: 0.7.0-2+deb8u1</p></td>
 <td>3.0.0-3.7.11</td>
 <td>3.7.12-3.7.13</td>
+</tr>
+<tr>
+<td>CM-28437</td>
+<td><p>syslog might report a high load average with the CPU running a later microcode revision.</p></td>
+<td>3.7.4-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-28224</td>
@@ -26528,6 +26660,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30863</td>
@@ -29413,6 +29554,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30863</td>
@@ -32422,6 +32572,15 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30863</td>
 <td><p>OpenSSH scp is vulnerable to CVE-2020-15778, where clients that have authorized access to the SSH server can execute commands on the server by copying maliciously named files.<br/>
 The two scenarios where an exploit may be useful to an attacker:<br/>
@@ -34943,6 +35102,15 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-30895</td>
+<td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
+CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
+Vulnerable: &lt;= 6.8.9.9-5+deb8u19<br/>
+Fixed: 6.8.9.9-5+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30863</td>

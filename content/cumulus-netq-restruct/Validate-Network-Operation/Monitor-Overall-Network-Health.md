@@ -143,15 +143,15 @@ The `netq check clag` command runs the following tests:
 | :---------: | --------- | ----------- |
 | 0 | Peering | Checks if: <ul><li>CLAG peerlink is up</li><li>CLAG peerlink bond slaves are down (not in full capacity and redundancy)</li><li>Peering is established between two nodes in a CLAG pair</li></ul> |
 | 1 | Backup IP | Checks if: <ul><li>CLAG backup IP configuration is missing on a CLAG node</li><li>CLAG backup IP is correctly pointing to the CLAG peer and its connectivity is available</li></ul> |
-| 2 | Clag Sysmac | Checks if: <ul><li>CLAG Sysmac is consistently configured on both nodes in a CLAG pair</li><li>there is any duplication of a CLAG sysmac within a bridge domain </li></ul> |
+| 2 | Clag Sysmac | Checks if: <ul><li>CLAG Sysmac is consistently configured on both nodes in a CLAG pair</li><li>There is any duplication of a CLAG sysmac within a bridge domain </li></ul> |
 | 3 | VXLAN Anycast IP | Checks if the VXLAN anycast IP address is consistently configured on both nodes in a CLAG pair |
 | 4 | Bridge Membership | Checks if the CLAG peerlink is part of bridge |
-| 5 | Spanning Tree | Checks if: <ul><li>STP is enabled and running on the CLAG nodes</li><li>CLAG peerlink role is correct from STP perspective</li><li>the bridge ID is consistent between two nodes of a CLAG pair</li><li>the VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
-| 6 | Dual Home | Checks for: <ul><li>CLAG bonds that are not in dually connected state</li><li>dually connected bonds have consistent VLAN and MTU configuration on both sides</li><li>STP has consistent view of bonds' dual connectedness</li></ul> |
-| 7 | Single Home | Checks for: <ul><li>singly connected bonds</li><li>STP has consistent view of bond's single connectedness</li></ul> |
+| 5 | Spanning Tree | Checks if: <ul><li>STP is enabled and running on the CLAG nodes</li><li>CLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of a CLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
+| 6 | Dual Home | Checks for: <ul><li>CLAG bonds that are not in dually connected state</li><li>Dually connected bonds have consistent VLAN and MTU configuration on both sides</li><li>STP has consistent view of bonds' dual connectedness</li></ul> |
+| 7 | Single Home | Checks for: <ul><li>Singly connected bonds</li><li>STP has consistent view of bond's single connectedness</li></ul> |
 | 8 | Conflicted Bonds | Checks for bonds in CLAG conflicted state and shows the reason |
 | 9 | ProtoDown Bonds | Checks for bonds in protodown state and shows the reason |
-| 10 | SVI | Checks if: <ul><li>an SVI is configured on both sides of a CLAG pair</li><li>SVI on both sides have consistent MTU setting</li></ul> |
+| 10 | SVI | Checks if: <ul><li>An SVI is configured on both sides of a CLAG pair</li><li>SVI on both sides have consistent MTU setting</li></ul> |
 
 ### Cumulus Linux Version Tests
 
@@ -159,7 +159,7 @@ The `netq check cl-version` command runs the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
-| 0 | Cumulus Linux Image Version | Checks the following: <ul><li>no version specified, checks that all switches in the network have consistent version</li><li><em>match-version</em> specified, checks that a switch's OS version is equals the specified version</li><li><em>min-version</em> specified, checks that a switch's OS version is equal to or greater than the specified version</li></ul> |
+| 0 | Cumulus Linux Image Version | Checks the following: <ul><li>No version specified, checks that all switches in the network have consistent version</li><li><em>match-version</em> specified, checks that a switch's OS version is equals the specified version</li><li><em>min-version</em> specified, checks that a switch's OS version is equal to or greater than the specified version</li></ul> |
 
 ### EVPN Validation Tests
 
@@ -167,7 +167,7 @@ The `netq check evpn` command runs the following tests to establish session sani
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
-| 0 | EVPN BGP Session | Checks if: <ul><li>BGP EVPN sessions are established</li><li>the EVPN address family advertisement is consistent</li></ul> |
+| 0 | EVPN BGP Session | Checks if: <ul><li>BGP EVPN sessions are established</li><li>The EVPN address family advertisement is consistent</li></ul> |
 | 1 | EVPN VNI Type Consistency | Because a VNI can be of type L2 or L3, checks that for a given VNI, its type is consistent across the network |
 | 2 | EVPN Type 2 | Checks for consistency of IP-MAC binding and the location of a given IP-MAC across all VTEPs |
 | 3 | EVPN Type 3 | Checks for consistency of replication group across all VTEPs |
@@ -212,15 +212,15 @@ The `netq check mlag` command runs the following tests:
 | :---------: | --------- | ----------- |
 | 0 | Peering | Checks if: <ul><li>MLAG peerlink is up</li><li>MLAG peerlink bond slaves are down (not in full capacity and redundancy)</li><li>Peering is established between two nodes in a MLAG pair</li></ul> |
 | 1 | Backup IP | Checks if: <ul><li>MLAG backup IP configuration is missing on a MLAG node</li><li>MLAG backup IP is correctly pointing to the MLAG peer and its connectivity is available</li></ul> |
-| 2 | Clag Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in a MLAG pair</li><li>there is any duplication of a MLAG sysmac within a bridge domain </li></ul> |
+| 2 | Clag Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in a MLAG pair</li><li>There is any duplication of a MLAG sysmac within a bridge domain </li></ul> |
 | 3 | VXLAN Anycast IP | Checks if the VXLAN anycast IP address is consistently configured on both nodes in an MLAG pair |
 | 4 | Bridge Membership | Checks if the MLAG peerlink is part of bridge |
-| 5 | Spanning Tree | Checks if: <ul><li>STP is enabled and running on the MLAG nodes</li><li>MLAG peerlink role is correct from STP perspective</li><li>the bridge ID is consistent between two nodes of a MLAG pair</li><li>the VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
-| 6 | Dual Home | Checks for: <ul><li>MLAG bonds that are not in dually connected state</li><li>dually connected bonds have consistent VLAN and MTU configuration on both sides</li><li>STP has consistent view of bonds' dual connectedness</li></ul> |
-| 7 | Single Home | Checks for: <ul><li>singly connected bonds</li><li>STP has consistent view of bond's single connectedness</li></ul> |
+| 5 | Spanning Tree | Checks if: <ul><li>STP is enabled and running on the MLAG nodes</li><li>MLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of a MLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
+| 6 | Dual Home | Checks for: <ul><li>MLAG bonds that are not in dually connected state</li><li>Dually connected bonds have consistent VLAN and MTU configuration on both sides</li><li>STP has consistent view of bonds' dual connectedness</li></ul> |
+| 7 | Single Home | Checks for: <ul><li>Singly connected bonds</li><li>STP has consistent view of bond's single connectedness</li></ul> |
 | 8 | Conflicted Bonds | Checks for bonds in MLAG conflicted state and shows the reason |
 | 9 | ProtoDown Bonds | Checks for bonds in protodown state and shows the reason |
-| 10 | SVI | Checks if: <ul><li>an SVI is configured on both sides of a MLAG pair</li><li>SVI on both sides have consistent MTU setting</li></ul> |
+| 10 | SVI | Checks if: <ul><li>An SVI is configured on both sides of a MLAG pair</li><li>SVI on both sides have consistent MTU setting</li></ul> |
 
 ### NTP Validation Tests
 
@@ -1183,9 +1183,9 @@ You can configure filters to change validation errors to warnings that would nor
 
 To create a validation filter:
 
-1. Navigate to the */etc/netq* directory.
+1. Navigate to the `/etc/netq` directory.
 
-2. Create or open the *check_filter.yml*  file using your text editor of choice.
+2. Create or open the `check_filter.yml` file using your text editor of choice.
 
     This file contains the syntax to follow to create one or more rules for one or more protocols or services. Create your own rules, and/or edit and un-comment any example rules you would like to use.
 

@@ -26,7 +26,7 @@ The small Alarms card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
-<td>Indicates data is for all critical severity events in the network</td>
+<td>Indicates data is for all critical severity events in the network.</td>
 </tr>
 <tr class="even">
 <td>Alarm trend</td>
@@ -39,7 +39,7 @@ The small Alarms card displays:
 </tr>
 <tr class="odd">
 <td>Alarm score</td>
-<td>Current count of alarms during the designated time period</td>
+<td>Current count of alarms during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Alarm rating</td>
@@ -53,7 +53,7 @@ The small Alarms card displays:
 </tr>
 <tr class="odd">
 <td>Chart</td>
-<td>Distribution alarms received during the designated time period and a total count of all alarms present in the system</td>
+<td>Distribution alarms received during the designated time period and a total count of all alarms present in the system.</td>
 </tr>
 </tbody>
 </table>
@@ -76,23 +76,23 @@ The medium Alarms card displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
-<td>Indicates data is for all critical events in the network</td>
+<td>Indicates data is for all critical events in the network.</td>
 </tr>
 <tr class="odd">
 <td>Count</td>
-<td>Total number of alarms received during the designated time period</td>
+<td>Total number of alarms received during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Alarm score</td>
-<td>Current count of alarms received from each category (overall, system, interface, and network services) during the designated time period</td>
+<td>Current count of alarms received from each category (overall, system, interface, and network services) during the designated time period.</td>
 </tr>
 <tr class="odd">
 <td>Chart</td>
-<td>Distribution of all alarms received from each category during the designated time period</td>
+<td>Distribution of all alarms received from each category during the designated time period.</td>
 </tr>
 </tbody>
 </table>
@@ -117,18 +117,18 @@ The *Alarm Summary* tab displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-clock.svg", height="18", width="18"/></td>
-<td>Indicates data is for all system, trace and interface critical events in the network</td>
+<td>Indicates data is for all system, trace and interface critical events in the network.</td>
 </tr>
 <tr class="odd">
 <td>Alarm Distribution</td>
 <td><p><strong>Chart</strong>: Distribution of all alarms received from each category during the designated time period:
 <ul><li>NetQ Agent</li><li>BTRFS Information</li><li>CL Support</li><li>Config Diff</li><li>CL License</li><li>Installed Packages</li><li>Link</li><li>LLDP</li><li>MTU</li><li>Node</li><li>Port</li><li>Resource</li><li>Running Config Diff</li><li>Sensor</li><li>Services</li><li>SSD Utilization</li><li>TCA Interface Stats</li><li>TCA Resource Utilization</li><li>TCA Sensors</li></ul>  
 The category with the largest number of alarms is shown at the top, followed by the next most, down to the chart with the fewest alarms.</p>
-<p><strong>Count</strong>: Total number of alarms received from each category during the designated time period</p></td>
+<p><strong>Count</strong>: Total number of alarms received from each category during the designated time period.</p></td>
 </tr>
 <tr class="even">
 <td>Table</td>
@@ -140,7 +140,7 @@ The category with the largest number of alarms is shown at the top, followed by 
 </tr>
 <tr class="odd">
 <td>Show All Events</td>
-<td>Opens full screen Events | Alarms card with a listing of all events</td>
+<td>Opens full screen Events | Alarms card with a listing of all events.</td>
 </tr>
 </tbody>
 </table>
@@ -167,11 +167,11 @@ The full screen Alarms card provides tabs for all events.
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Default Time</td>
-<td>Range of time in which the displayed data was collected</td>
+<td>Range of time in which the displayed data was collected.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
@@ -179,7 +179,7 @@ The full screen Alarms card provides tabs for all events.
 </tr>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>All Events</td>

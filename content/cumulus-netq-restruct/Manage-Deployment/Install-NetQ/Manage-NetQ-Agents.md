@@ -52,15 +52,15 @@ Hostname          Status           NTP Sync Version                             
 
 The agent configuration commands enable you to do the following:
 
-- add and remove agents from switches and hosts
-- start and stop agent operations
-- add and remove Kubernetes container monitoring
-- add or remove sensors
-- debug the agent
-- add or remove FRR (FRRouting)
-- set a limit on how many CPU resources the agent can consume on a Cumulus Linux switch
-- send data to the cluster nodes
-- collect What Just Happened data on a Mellanox switch
+- Add and remove agents from switches and hosts
+- Start and stop agent operations
+- Add and remove Kubernetes container monitoring
+- Add or remove sensors
+- Debug the agent
+- Add or remove FRR (FRRouting)
+- Set a limit on how many CPU resources the agent can consume on a Cumulus Linux switch
+- Send data to the cluster nodes
+- Collect What Just Happened data on a Mellanox switch
 
 {{%notice note%}}
 

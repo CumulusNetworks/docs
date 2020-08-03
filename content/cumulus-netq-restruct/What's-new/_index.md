@@ -6,16 +6,18 @@ subsection: true
 toc: 1
 cascade:
     product: Cumulus NetQ
-    version: "3.1"
+    version: "3.2"
     imgData: cumulus-netq
     siteSlug: cumulus-netq
     draft: true
 ---
 Cumulus NetQ {{<version>}} adds significant functionality improvements that streamline network operations and eliminate barriers to adoption of open networking for your customers. Included in the updated software are lifecycle Management (LCM) capabilities that enable NetQ to deliver upgrade and configuration management with push button simplicity.
 
-You can upgrade from NetQ 2.4.x and NetQ 3.0.0 to NetQ 3.1.0. Upgrades from NetQ 2.3.x and earlier require a fresh installation.
+You can upgrade from NetQ 2.4.x, 3.0.0, and 3.1.0 releases to NetQ 3.2.0. Upgrades from NetQ 2.3.x and earlier require a fresh installation.
 
-**Cumulus NetQ 3.1.0** includes the following new features and improvements:
+**Cumulus NetQ 3.2.0** includes the following new features and improvements:
+
+<!-- UPDATE FOR 3.2 -->
 
 - {{<link url="Lifecycle-Management" text="Lifecycle Management">}} support for Cumulus Linux upgrade on monitored switches (NetQ UI or CLI)
     - Simple NetQ UI workflow to prepare, run upgrade jobs, and evaluate results

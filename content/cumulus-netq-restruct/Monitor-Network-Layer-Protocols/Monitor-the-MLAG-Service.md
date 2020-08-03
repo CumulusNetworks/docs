@@ -74,31 +74,31 @@ The medium MLAG Service card displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
-<td>Indicates data is for all sessions of a Network Service or Protocol</td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services | All MLAG Sessions</td>
+<td>Network Services | All MLAG Sessions.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches with the MLAG service enabled during the designated time period</td>
+<td>Total number of switches with the MLAG service enabled during the designated time period.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
-<td>Total number of MLAG-related alarms received during the designated time period</td>
+<td>Total number of MLAG-related alarms received during the designated time period.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/11-Pins-Style%20Two/style-two-pin-off-map.svg" height="18" width="18"/></td>
-<td>Total number of sessions with an inactive backup IP address during the designated time period</td>
+<td>Total number of sessions with an inactive backup IP address during the designated time period.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/27-Link-Unlink/link-broken-1.svg" height="18" width="18"/></td>
-<td>Total number of bonds with only a single connection during the designated time period</td>
+<td>Total number of bonds with only a single connection during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Total Nodes Running chart</td>
@@ -112,7 +112,7 @@ The medium MLAG Service card displays:
 </tr>
 <tr class="even">
 <td>Total Sessions chart</td>
-<td>Distribution of MLAG sessions running during the designated time period, and the total number of sessions running on the network currently</td>
+<td>Distribution of MLAG sessions running during the designated time period, and the total number of sessions running on the network currently.</td>
 </tr>
 </tbody>
 </table>
@@ -137,11 +137,11 @@ The *All MLAG Sessions* summary tab which displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
-<td>Indicates data is for all sessions of a Network Service or Protocol</td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
@@ -149,11 +149,11 @@ The *All MLAG Sessions* summary tab which displays:
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches with the MLAG service enabled during the designated time period</td>
+<td>Total number of switches with the MLAG service enabled during the designated time period.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
-<td>Total number of MLAG-related alarms received during the designated time period</td>
+<td>Total number of MLAG-related alarms received during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Total Nodes Running chart</td>
@@ -162,20 +162,20 @@ The *All MLAG Sessions* summary tab which displays:
 </tr>
 <tr class="odd">
 <td>Total Sessions chart</td>
-<td><p>Distribution of MLAG sessions running during the designated time period, and the total number of sessions running on the network currently</p></td>
+<td><p>Distribution of MLAG sessions running during the designated time period, and the total number of sessions running on the network currently.</p></td>
 </tr>
 <tr class="even">
 <td>Total Sessions with Inactive-backup-ip chart</td>
-<td>Distribution of sessions without an active backup IP defined during the designated time period, and the total number of these sessions running on the network currently</td>
+<td>Distribution of sessions without an active backup IP defined during the designated time period, and the total number of these sessions running on the network currently.</td>
 </tr>
 <tr class="odd">
 <td>Table/Filter options</td>
-<td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running MLAG sessions in decreasing order of session count-devices with the largest number of sessions are listed first</p>
-<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running MLAG sessions in decreasing order of unestablished session count-devices with the largest number of unestablished sessions are listed first</p></td>
+<td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running MLAG sessions in decreasing order of session count-devices with the largest number of sessions are listed first.</p>
+<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running MLAG sessions in decreasing order of unestablished session count-devices with the largest number of unestablished sessions are listed first.</p></td>
 </tr>
 <tr class="even">
 <td>Show All Sessions</td>
-<td>Link to view all MLAG sessions in the full screen card</td>
+<td>Link to view all MLAG sessions in the full screen card.</td>
 </tr>
 </tbody>
 </table>
@@ -198,23 +198,23 @@ The *All MLAG Alarms* tab which displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in header)</td>
-<td>Indicates alarm data for all MLAG sessions</td>
+<td>Indicates alarm data for all MLAG sessions.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services | All MLAG Alarms (visible when you hover over card)</td>
+<td>Network Services | All MLAG Alarms (visible when you hover over card).</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches with the MLAG service enabled during the designated time period</td>
+<td>Total number of switches with the MLAG service enabled during the designated time period.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in summary bar)</td>
-<td>Total number of MLAG-related alarms received during the designated time period</td>
+<td>Total number of MLAG-related alarms received during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Total Alarms chart</td>
@@ -223,11 +223,11 @@ The *All MLAG Alarms* tab which displays:
 </tr>
 <tr class="odd">
 <td>Table/Filter options</td>
-<td>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays switches running MLAG sessions in decreasing order of alarm count-devices with the largest number of sessions are listed first</td>
+<td>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays switches running MLAG sessions in decreasing order of alarm count-devices with the largest number of sessions are listed first.</td>
 </tr>
 <tr class="even">
 <td>Show All Sessions</td>
-<td>Link to view all MLAG sessions in the full screen card</td>
+<td>Link to view all MLAG sessions in the full screen card.</td>
 </tr>
 </tbody>
 </table>
@@ -251,15 +251,15 @@ sessions, and all alarms.
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services | MLAG</td>
+<td>Network Services | MLAG.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
@@ -267,7 +267,7 @@ sessions, and all alarms.
 </tr>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>All Switches tab</td>
@@ -308,7 +308,7 @@ sessions, and all alarms.
 <li>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</li>
 <li>Model: Manufacturer's model name. Examples values include AS7712-32X and S4048-ON.</li>
 <li>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</li>
-<li>Revision: Release version of the platform</li>
+<li>Revision: Release version of the platform.</li>
 <li>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</li>
 <li>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</li>
 </ul></li>
@@ -319,33 +319,33 @@ sessions, and all alarms.
 <td>All Sessions tab</td>
 <td>Displays all MLAG sessions network-wide. By default, the session list is sorted by hostname. This tab provides the following additional data about each session:
 <ul>
-<li><strong>Backup Ip</strong>: IP address of the interface to use if the peerlink (or bond) goes down</li>
-<li><strong>Backup Ip Active</strong>: Indicates whether the backup IP address has been specified and is active (true) or not (false)</li>
+<li><strong>Backup Ip</strong>: IP address of the interface to use if the peerlink (or bond) goes down.</li>
+<li><strong>Backup Ip Active</strong>: Indicates whether the backup IP address has been specified and is active (true) or not (false).</li>
 <li><strong>Bonds</strong>
 <ul>
-<li>Conflicted: Identifies the set of interfaces in a bond that do not match on each end of the bond</li>
-<li>Single: Identifies a set of interfaces connecting to only one of the two switches</li>
-<li>Dual: Identifies a set of interfaces connecting to both switches</li>
+<li>Conflicted: Identifies the set of interfaces in a bond that do not match on each end of the bond.</li>
+<li>Single: Identifies a set of interfaces connecting to only one of the two switches.</li>
+<li>Dual: Identifies a set of interfaces connecting to both switches.</li>
 <li>Proto Down: Interface on the switch brought down by the <code>clagd</code> service. Value is blank if no interfaces are down due to <code>clagd</code> service.</li>
 </ul></li>
 <li><strong>Clag Sysmac</strong>: Unique MAC address for each bond interface pair. <strong>Note</strong>: Must be a value between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff.</li>
 <li><strong>Peer</strong>:
 <ul>
-<li>If: Name of the peer interface</li>
+<li>If: Name of the peer interface.</li>
 <li>Role: Role of the peer device. Values include primary and secondary.</li>
-<li>State: Indicates if peer device is up (true) or down (false)</li>
+<li>State: Indicates if peer device is up (true) or down (false).</li>
 </ul></li>
 <li><strong>Role</strong>: Role of the host device. Values include primary and secondary.</li>
-<li><strong>Timestamp</strong>: Date and time the MLAG session was started, deleted, updated, or marked dead (device went down)</li>
-<li><strong>Vxlan Anycast</strong>: Anycast IP address used for VXLAN termination</li>
+<li><strong>Timestamp</strong>: Date and time the MLAG session was started, deleted, updated, or marked dead (device went down).</li>
+<li><strong>Vxlan Anycast</strong>: Anycast IP address used for VXLAN termination.</li>
 </ul></td>
 </tr>
 <tr class="odd">
 <td>All Alarms tab</td>
 <td>Displays all MLAG events network-wide. By default, the event list is sorted by time, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
-<li><strong>Message</strong>: Text description of a MLAG-related event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10</li>
-<li><strong>Source</strong>: Hostname of network device that generated the event</li>
+<li><strong>Message</strong>: Text description of a MLAG-related event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
 <li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>clag</em> in this card workflow.</li>
 </ul></td>
@@ -465,11 +465,11 @@ Where to go next depends on what data you see, but a few options include:
 
 - Open the **All Switches** or **All Sessions** tabs to look more closely at the alarms from the switch or session perspective.
 - Sort on other parameters:
-    - by **Message** to determine the frequency of particular events
-    - by **Severity** to determine the most critical events
-    - by **Time** to find events that may have occurred at a particular time to try to correlate them with other system events
-- Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>
-- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner
+    - By **Message** to determine the frequency of particular events.
+    - By **Severity** to determine the most critical events.
+    - By **Time** to find events that may have occurred at a particular time to try to correlate them with other system events.
+- Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
+- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 ### View Details About All Switches Running MLAG
 
@@ -526,11 +526,11 @@ The small MLAG Session card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
-<td>Indicates data is for a single session of a Network Service or Protocol</td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>CLAG Session</td>
+<td>CLAG Session.</td>
 </tr>
 <tr class="odd">
 <td> </td>
@@ -538,7 +538,7 @@ The small MLAG Session card displays:
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
-<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/>.</td>
 </tr>
 </tbody>
 </table>
@@ -561,15 +561,15 @@ The medium MLAG Session card displays:
 <tbody>
 <tr class="odd">
 <td>Time period (in header)</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
-<td>Indicates data is for a single session of a Network Service or Protocol</td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services | MLAG Session</td>
+<td>Network Services | MLAG Session.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
@@ -577,11 +577,11 @@ The medium MLAG Session card displays:
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
-<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/>.</td>
 </tr>
 <tr class="even">
 <td>Time period (above chart)</td>
-<td>Range of time for data displayed in peer status chart</td>
+<td>Range of time for data displayed in peer status chart.</td>
 </tr>
 <tr class="odd">
 <td>Peer Status chart</td>
@@ -593,7 +593,7 @@ The medium MLAG Session card displays:
 </tr>
 <tr class="odd">
 <td>CLAG sysmac</td>
-<td>System MAC address of the MLAG session</td>
+<td>System MAC address of the MLAG session.</td>
 </tr>
 <tr class="even">
 <td>Peer Role</td>
@@ -601,7 +601,7 @@ The medium MLAG Session card displays:
 </tr>
 <tr class="odd">
 <td>Peer State</td>
-<td>Operational state of the peer, up (true) or down (false)</td>
+<td>Operational state of the peer, up (true) or down (false).</td>
 </tr>
 </tbody>
 </table>
@@ -626,15 +626,15 @@ The *Session Summary* tab displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
-<td>Indicates data is for a single session of a Network Service or Protocol</td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>(Network Services | MLAG Session) Session Summary</td>
+<td>(Network Services | MLAG Session) Session Summary.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
@@ -642,15 +642,15 @@ The *Session Summary* tab displays:
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
-<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/>.</td>
 </tr>
 <tr class="even">
 <td>Alarm Count Chart</td>
-<td>Distribution and count of CLAG alarm events over the given time period</td>
+<td>Distribution and count of CLAG alarm events over the given time period.</td>
 </tr>
 <tr class="odd">
 <td>Info Count Chart</td>
-<td>Distribution and count of CLAG info events over the given time period</td>
+<td>Distribution and count of CLAG info events over the given time period.</td>
 </tr>
 <tr class="even">
 <td>Peer Status chart</td>
@@ -658,35 +658,35 @@ The *Session Summary* tab displays:
 </tr>
 <tr class="odd">
 <td>Backup IP</td>
-<td>IP address of the interface to use if the peerlink (or bond) goes down</td>
+<td>IP address of the interface to use if the peerlink (or bond) goes down.</td>
 </tr>
 <tr class="even">
 <td>Backup IP Active</td>
-<td>Indicates whether the backup IP address is configured</td>
+<td>Indicates whether the backup IP address is configured.</td>
 </tr>
 <tr class="odd">
 <td>CLAG SysMAC</td>
-<td>System MAC address of the MLAG session</td>
+<td>System MAC address of the MLAG session.</td>
 </tr>
 <tr class="even">
 <td>Peer State</td>
-<td>Operational state of the peer, up (true) or down (false)</td>
+<td>Operational state of the peer, up (true) or down (false).</td>
 </tr>
 <tr class="odd">
 <td>Count of Dual Bonds</td>
-<td>Number of bonds connecting to both switches</td>
+<td>Number of bonds connecting to both switches.</td>
 </tr>
 <tr class="even">
 <td>Count of Single Bonds</td>
-<td>Number of bonds connecting to only one switch</td>
+<td>Number of bonds connecting to only one switch.</td>
 </tr>
 <tr class="odd">
 <td>Count of Protocol Down Bonds</td>
-<td>Number of bonds with interfaces that were brought down by the <code>clagd</code> service</td>
+<td>Number of bonds with interfaces that were brought down by the <code>clagd</code> service.</td>
 </tr>
 <tr class="even">
 <td>Count of Conflicted Bonds</td>
-<td>Number of bonds which have a set of interfaces that are not the same on both switches</td>
+<td>Number of bonds which have a set of interfaces that are not the same on both switches.</td>
 </tr>
 </tbody>
 </table>
@@ -709,15 +709,15 @@ The *Configuration File Evolution* tab displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/></td>
-<td>Indicates configuration file information for a single session of a Network Service or Protocol</td>
+<td>Indicates configuration file information for a single session of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>(Network Services | MLAG Session) Configuration File Evolution</td>
+<td>(Network Services | MLAG Session) Configuration File Evolution.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
@@ -725,7 +725,7 @@ The *Configuration File Evolution* tab displays:
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
-<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/>.</td>
 </tr>
 <tr class="even">
 <td>Timestamps</td>
@@ -781,33 +781,33 @@ and all events.
 <td>All MLAG Sessions tab</td>
 <td>Displays all MLAG sessions for the given session. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
 <ul>
-<li><strong>Backup Ip</strong>: IP address of the interface to use if the peerlink (or bond) goes down</li>
-<li><strong>Backup Ip Active</strong>: Indicates whether the backup IP address has been specified and is active (true) or not (false)</li>
+<li><strong>Backup Ip</strong>: IP address of the interface to use if the peerlink (or bond) goes down.</li>
+<li><strong>Backup Ip Active</strong>: Indicates whether the backup IP address has been specified and is active (true) or not (false).</li>
 <li><strong>Bonds</strong>
 <ul>
-<li>Conflicted: Identifies the set of interfaces in a bond that do not match on each end of the bond</li>
-<li>Single: Identifies a set of interfaces connecting to only one of the two switches</li>
-<li>Dual: Identifies a set of interfaces connecting to both switches</li>
+<li>Conflicted: Identifies the set of interfaces in a bond that do not match on each end of the bond.</li>
+<li>Single: Identifies a set of interfaces connecting to only one of the two switches.</li>
+<li>Dual: Identifies a set of interfaces connecting to both switches.</li>
 <li>Proto Down: Interface on the switch brought down by the <code>clagd</code> service. Value is blank if no interfaces are down due to <code>clagd</code> service.</li>
 </ul></li>
 <li><strong>Mlag Sysmac</strong>: Unique MAC address for each bond interface pair. <strong>Note</strong>: Must be a value between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff.</li>
 <li><strong>Peer</strong>:
 <ul>
-<li>If: Name of the peer interface</li>
+<li>If: Name of the peer interface.</li>
 <li>Role: Role of the peer device. Values include primary and secondary.</li>
-<li>State: Indicates if peer device is up (true) or down (false)</li>
+<li>State: Indicates if peer device is up (true) or down (false).</li>
 </ul></li>
 <li><strong>Role</strong>: Role of the host device. Values include primary and secondary.</li>
-<li><strong>Timestamp</strong>: Date and time the MLAG session was started, deleted, updated, or marked dead (device went down)</li>
-<li><strong>Vxlan Anycast</strong>: Anycast IP address used for VXLAN termination</li>
+<li><strong>Timestamp</strong>: Date and time the MLAG session was started, deleted, updated, or marked dead (device went down).</li>
+<li><strong>Vxlan Anycast</strong>: Anycast IP address used for VXLAN termination.</li>
 </ul></td>
 </tr>
 <tr class="even">
 <td>All Events tab</td>
 <td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
-<li><strong>Message</strong>: Text description of an event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10</li>
-<li><strong>Source</strong>: Hostname of network device that generated the event</li>
+<li><strong>Message</strong>: Text description of an event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
 <li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>clag</em> in this card workflow.</li>
 </ul></td>
@@ -832,7 +832,7 @@ To view the summary:
 3. Close the full screen card to view the medium MLAG Session card.  
 
     {{< figure src="/images/netq/ntwk-svcs-single-mlag-medium-summ-highlighted-bad-230.png" width="200" >}}
-    
+
     {{< figure src="/images/netq/ntwk-svcs-single-mlag-medium-summ-highlighted-230.png" width="200" >}}
 
     In the left example, we see that the tor1 switch plays the secondary role in this session with the switch at 44:38:39:ff:01:01. In the right example, we see that the leaf03 switch plays the primary role in this session with leaf04.
@@ -895,10 +895,10 @@ Where to go next depends on what data you see, but a few options include:
 
 - Open the **All Events** tabs to look more closely at the alarm and info events fin the network.
 - Sort on other parameters:
-    - by **Single Bonds** to determine which interface sets are only connected to one of the switches
-    - by **Backup IP and Backup IP Active** to determine if the correct backup IP address is specified for the service
-- Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>
-- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner
+    - By **Single Bonds** to determine which interface sets are only connected to one of the switches.
+    - By **Backup IP and Backup IP Active** to determine if the correct backup IP address is specified for the service.
+- Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
+- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 ### View All MLAG Session Events
 
@@ -912,8 +912,8 @@ Where to go next depends on what data you see, but a few options include:
 
 - Open the **All MLAG Sessions** tabs to look more closely at the individual sessions.
 - Sort on other parameters:
-    - by **Message** to determine the frequency of particular events
-    - by **Severity** to determine the most critical events
-    - by **Time** to find events that may have occurred at a particular time to try to correlate them with other system events
-- Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>
-- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner
+    - By **Message** to determine the frequency of particular events.
+    - By **Severity** to determine the most critical events.
+    - By **Time** to find events that may have occurred at a particular time to try to correlate them with other system events.
+- Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
+- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.

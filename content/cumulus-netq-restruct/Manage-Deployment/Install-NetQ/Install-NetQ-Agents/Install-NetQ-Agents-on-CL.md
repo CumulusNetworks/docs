@@ -39,8 +39,8 @@ If NTP is not installed, install and configure it before continuing.
 
 If NTP is not running:
 
-- verify the IP address or hostname of the NTP server in the `/etc/ntp.conf` file, and then
-- re-enable and start the NTP service using the `systemctl [enable|start] ntp` commands.
+- Verify the IP address or hostname of the NTP server in the `/etc/ntp.conf` file, and then
+- Re-enable and start the NTP service using the `systemctl [enable|start] ntp` commands
 
 {{<notice tip>}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
@@ -132,7 +132,7 @@ To install the NetQ Agent:
 After the NetQ Agents have been installed on the switches you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data. Two methods are available for configuring a NetQ Agent:
 
 - Edit the configuration file on the switch, or
-- Use the NetQ CLI.
+- Use the NetQ CLI
 
 ### Configure NetQ Agents Using a Configuration File
 

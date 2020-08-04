@@ -49,14 +49,16 @@ You can also access this view by clicking {{<img src="https://icons.cumulusnetwo
 
 The NetQ CLI provides a number of `netq lcm` commands to perform the various LCM capabilities. The syntax of these commands is:
 
-    netq lcm upgrade name <text-job-name> image-id <text-image-id> license <text-cumulus-license> hostnames <text-switch-hostnames> [order <text-upgrade-order>] [run-before-after]
-    netq lcm add credentials (username <text-switch-username> password <text-switch-password> | ssh-key <text-ssh-key>)
+    netq lcm upgrade name <text-job-name> cl-version <text-cumulus-linux-version> netq-version <text-netq-version> hostnames <text-switch-hostnames> [run-restore-on-failure] [run-before-after]
+    netq lcm add credentials username <text-switch-username> (password <text-switch-password> | ssh-key <text-ssh-key>)
     netq lcm add role (superspine | spine | leaf | exit) switches <text-switch-hostnames>
     netq lcm del credentials
     netq lcm show credentials [json]
     netq lcm show switches [version <text-cumulus-linux-version>] [json]
     netq lcm show status <text-lcm-job-id> [json]
-    netq lcm add image <text-image-path>
-    netq lcm del image <text-image-id>
+    netq lcm add cl-image <text-image-path>
+    netq lcm del cl-image <text-image-id>
+    netq lcm add netq-image <text-image-path>
+    netq lcm del netq-image <text-image-path>
     netq lcm show images [<text-image-id>] [json]
     netq lcm show upgrade-jobs [json]

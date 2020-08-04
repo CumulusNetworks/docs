@@ -207,31 +207,31 @@ The *Switches* tab displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Always Now for inventory by default</td>
+<td>Always Now for inventory by default.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-locker-1.svg" height="18" width="18"/></td>
-<td>Indicates data is for device inventory</td>
+<td>Indicates data is for device inventory.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Inventory | Devices</td>
+<td>Inventory | Devices.</td>
 </tr>
 <tr class="even">
 <td>{{<img src="/images/netq/inventory-devices-large-total-number-icon-230.png" width="24" height="24">}}</td>
-<td>Total number of switches in inventory during the designated time period</td>
+<td>Total number of switches in inventory during the designated time period.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="18" width="18"/></td>
-<td>Link to full screen listing of all switches</td>
+<td>Link to full screen listing of all switches.</td>
 </tr>
 <tr class="even">
 <td>Component</td>
-<td>Switch components monitored-ASIC, Operating System (OS), Cumulus Linux license, NetQ Agent version, and Platform</td>
+<td>Switch components monitored-ASIC, Operating System (OS), Cumulus Linux license, NetQ Agent version, and Platform.</td>
 </tr>
 <tr class="odd">
 <td>Distribution charts</td>
-<td>Distribution of switch components across the network</td>
+<td>Distribution of switch components across the network.</td>
 </tr>
 <tr class="even">
 <td>Unique</td>
@@ -258,11 +258,11 @@ The full screen Devices Inventory card provides tabs for all switches and all ho
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Inventory | Devices | Switches</td>
+<td>Inventory | Devices | Switches.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
@@ -272,7 +272,7 @@ The full screen Devices Inventory card provides tabs for all switches and all ho
 <td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>All Switches and All Hosts tabs</td>
@@ -313,7 +313,7 @@ The full screen Devices Inventory card provides tabs for all switches and all ho
 <li>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</li>
 <li>Model: Manufacturer's model name. Examples values include AS7712-32X and S4048-ON. </li>
 <li>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</li>
-<li>Revision: Release version of the platform</li>
+<li>Revision: Release version of the platform.</li>
 <li>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</li>
 <li>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</li>
 </ul></li>
@@ -355,11 +355,11 @@ The medium Switch Inventory card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="22" width="22"/></td>
-<td>Indicates data is for switch inventory</td>
+<td>Indicates data is for switch inventory.</td>
 </tr>
 <tr class="even">
 <td>Filter</p></td>
-<td>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card</td>
+<td>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card.</td>
 </tr>
 <tr class="odd">
 <td>Chart</td>
@@ -393,11 +393,11 @@ The *Summary* tab displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="22" width="22"/></td>
-<td>Indicates data is for switch inventory</td>
+<td>Indicates data is for switch inventory.</td>
 </tr>
 <tr class="even">
 <td>Filter</td>
-<td>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card</td>
+<td>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card.</td>
 </tr>
 <tr class="odd">
 <td>Charts</td>
@@ -429,11 +429,11 @@ The *ASIC* tab displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core-1.svg" height="20" width="20"/></td>
-<td>Indicates data is for ASIC information</td>
+<td>Indicates data is for ASIC information.</td>
 </tr>
 <tr class="even">
 <td>Filter</td>
-<td>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card</td>
+<td>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card.</td>
 </tr>
 <tr class="odd">
 <td>Vendor chart</td>
@@ -445,7 +445,7 @@ The *ASIC* tab displays:
 </tr>
 <tr class="odd">
 <td>Show All</td>
-<td>Opens full screen card displaying all components for all switches</td>
+<td>Opens full screen card displaying all components for all switches.</td>
 </tr>
 </tbody>
 </table>
@@ -468,11 +468,11 @@ The *Platform* tab displays:
 <tbody>
 <tr class="odd">
 <td>{{<img src="/images/netq/platform-icon.png" height="20" width="20">}}</td>
-<td>Indicates data is for platform information</td>
+<td>Indicates data is for platform information.</td>
 </tr>
 <tr class="even">
 <td>Filter</td>
-<td>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card</td>
+<td>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card.</td>
 </tr>
 <tr class="odd">
 <td>Vendor chart</td>
@@ -488,7 +488,7 @@ The *Platform* tab displays:
 </tr>
 <tr class="even">
 <td>Show All</td>
-<td>Opens full screen card displaying all components for all switches</td>
+<td>Opens full screen card displaying all components for all switches.</td>
 </tr>
 </tbody>
 </table>
@@ -511,11 +511,11 @@ The *Software* tab displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/12-CD-Rom/cd.svg" height="20" width="20"/></td>
-<td>Indicates data is for software information</td>
+<td>Indicates data is for software information.</td>
 </tr>
 <tr class="even">
 <td>Filter</td>
-<td>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card</td>
+<td>View fresh switches (those you have heard from recently) or rotten switches (those you have not heard from recently) on this card.</td>
 </tr>
 <tr class="odd">
 <td>Operating System chart</td>
@@ -528,7 +528,7 @@ The *Software* tab displays:
 </tr>
 <tr class="odd">
 <td>Show All</td>
-<td>Opens full screen card displaying all components for all switches</td>
+<td>Opens full screen card displaying all components for all switches.</td>
 </tr>
 </tbody>
 </table>
@@ -559,36 +559,36 @@ The small Switch card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24"/></td>
-<td>Indicates data is for a single switch</td>
+<td>Indicates data is for a single switch.</td>
 </tr>
 <tr class="even">
 <td>title</td>
-<td>Hostname of switch</td>
+<td>Hostname of switch.</td>
 </tr>
 <tr class="odd">
 <td>Chart</td>
-<td>Distribution of switch alarms during the designated time period</td>
+<td>Distribution of switch alarms during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Trend</td>
 <td>Trend of alarm count, represented by an arrow:
 <ul>
-<li><strong>Pointing upward and green</strong>: alarm count is higher than the last two time periods, an increasing trend</li>
-<li><strong>Pointing downward and bright pink</strong>: alarm count is lower than the last two time periods, a decreasing trend</li>
-<li><strong>No arrow</strong>: alarm count is unchanged over the last two time periods, trend is steady</li>
+<li><strong>Pointing upward and green</strong>: alarm count is higher than the last two time periods, an increasing trend.</li>
+<li><strong>Pointing downward and bright pink</strong>: alarm count is lower than the last two time periods, a decreasing trend.</li>
+<li><strong>No arrow</strong>: alarm count is unchanged over the last two time periods, trend is steady.</li>
 </ul></td>
 </tr>
 <tr class="odd">
 <td>Count</td>
-<td>Current count of alarms on the switch</td>
+<td>Current count of alarms on the switch.</td>
 </tr>
 <tr class="even">
 <td>Rating</td>
 <td>Overall performance of the switch. Determined by the count of alarms relative to the average count of alarms during the designated time period:
 <ul>
-<li><strong>Low</strong>: Count of alarms is below the average count; a nominal count</li>
-<li><strong>Med</strong>: Count of alarms is in range of the average count; some room for improvement</li>
-<li><strong>High</strong>: Count of alarms is above the average count; user intervention recommended</li>
+<li><strong>Low</strong>: Count of alarms is below the average count; a nominal count.</li>
+<li><strong>Med</strong>: Count of alarms is in range of the average count; some room for improvement.</li>
+<li><strong>High</strong>: Count of alarms is above the average count; user intervention recommended.</li>
 </ul>
 <p>{{< figure src="/images/netq/alarms-perf-rating.png" width="350" >}}</p></td>
 </tr>
@@ -613,19 +613,19 @@ The medium Switch card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24"/></td>
-<td>Indicates data is for a single switch</td>
+<td>Indicates data is for a single switch.</td>
 </tr>
 <tr class="even">
 <td>title</td>
-<td>Hostname of switch</td>
+<td>Hostname of switch.</td>
 </tr>
 <tr class="odd">
 <td>Alarms</td>
-<td>When selected, displays distribution and count of alarms by alarm category, generated by this switch during the designated time period</td>
+<td>When selected, displays distribution and count of alarms by alarm category, generated by this switch during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Charts</p></td>
-<td>When selected, displays distribution of alarms by alarm category, during the designated time period</td>
+<td>When selected, displays distribution of alarms by alarm category, during the designated time period.</td>
 </tr>
 </tbody>
 </table>
@@ -650,27 +650,27 @@ The *Attributes* tab displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24"/></td>
-<td>Indicates data is for a single switch</td>
+<td>Indicates data is for a single switch.</td>
 </tr>
 <tr class="even">
 <td>title</td>
-<td>&lt;Hostname&gt; | Attributes</td>
+<td>&lt;Hostname&gt; | Attributes.</td>
 </tr>
 <tr class="odd">
 <td>Hostname</td>
-<td>User-defined name for this switch</td>
+<td>User-defined name for this switch.</td>
 </tr>
 <tr class="even">
 <td>Management IP</td>
-<td>IPv4 or IPv6 address used for management of this switch</td>
+<td>IPv4 or IPv6 address used for management of this switch.</td>
 </tr>
 <tr class="odd">
 <td>Management MAC</td>
-<td>MAC address used for management of this switch</td>
+<td>MAC address used for management of this switch.</td>
 </tr>
 <tr class="even">
 <td>Agent State</td>
-<td>Operational state of the NetQ Agent on this switch; Fresh or Rotten</td>
+<td>Operational state of the NetQ Agent on this switch; Fresh or Rotten.</td>
 </tr>
 <tr class="odd">
 <td>Platform Vendor</td>
@@ -682,11 +682,11 @@ The *Attributes* tab displays:
 </tr>
 <tr class="odd">
 <td>ASIC Vendor</td>
-<td>Manufacturer of the ASIC installed on the motherboard</td>
+<td>Manufacturer of the ASIC installed on the motherboard.</td>
 </tr>
 <tr class="even">
 <td>ASIC Model</td>
-<td>Manufacturer model of the ASIC installed on the motherboard</td>
+<td>Manufacturer model of the ASIC installed on the motherboard.</td>
 </tr>
 <tr class="odd">
 <td>OS</td>
@@ -694,15 +694,15 @@ The *Attributes* tab displays:
 </tr>
 <tr class="even">
 <td>OS Version</td>
-<td>Version of the OS running on the switch</td>
+<td>Version of the OS running on the switch.</td>
 </tr>
 <tr class="odd">
 <td>NetQ Agent Version</td>
-<td>Version of the NetQ Agent running on the switch</td>
+<td>Version of the NetQ Agent running on the switch.</td>
 </tr>
 <tr class="even">
 <td>License State</td>
-<td>Indicates whether the license is valid (<em>ok</em>) or invalid/missing (<em>bad</em>)</td>
+<td>Indicates whether the license is valid (<em>ok</em>) or invalid/missing (<em>bad</em>).</td>
 </tr>
 <tr class="odd">
 <td>Total Interfaces</td>
@@ -729,19 +729,19 @@ The *Utilization* tab displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg" height="24" width="24"/></td>
-<td>Indicates utilization data is for a single switch</td>
+<td>Indicates utilization data is for a single switch.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>&lt;Hostname&gt; | Utilization</td>
+<td>&lt;Hostname&gt; | Utilization.</td>
 </tr>
 <tr class="odd">
 <td>Performance</td>
-<td>Displays distribution of CPU and memory usage during the designated time period</td>
+<td>Displays distribution of CPU and memory usage during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Disk Utilization</td>
-<td>Displays distribution of disk usage during the designated time period</td>
+<td>Displays distribution of disk usage during the designated time period.</td>
 </tr>
 </tbody>
 </table>
@@ -764,23 +764,23 @@ The *Interfaces* tab displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/07-Data-Transfer/data-transfer-square-diagonal.svg" width="18" height="18"/></td>
-<td>Indicates interface statistics for a single switch</td>
+<td>Indicates interface statistics for a single switch.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>&lt;Hostname&gt; | Interface Stats</td>
+<td>&lt;Hostname&gt; | Interface Stats.</td>
 </tr>
 <tr class="odd">
 <td>Interface List</td>
-<td>List of interfaces present during the designated time period</td>
+<td>List of interfaces present during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Interface Filter</td>
-<td>Sorts interface list by Name, Rx Util (receive utilization), or Tx Util (transmit utilization)</td>
+<td>Sorts interface list by Name, Rx Util (receive utilization), or Tx Util (transmit utilization).</td>
 </tr>
 <tr class="odd">
 <td>Interfaces Count</td>
-<td>Number of interfaces present during the designated time period</td>
+<td>Number of interfaces present during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Interface Statistics</td>
@@ -819,11 +819,11 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Default Time</td>
-<td>Displayed data is current as of this moment</td>
+<td>Displayed data is current as of this moment.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
@@ -831,7 +831,7 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>Alarms</td>
@@ -977,23 +977,23 @@ The full screen Switch card provides multiple tabs.
 <ul>
 <li><strong>ECMP Next Hops</strong>: Maximum number of hops seen in forwarding table, number used, and the percentage of this usage versus the maximum number</li>
 <li><strong>Hostname</strong>: Hostname where forwarding resources reside</li>
-<li><strong>IPv4 Host Entries</strong>: Maximum number of hosts in forwarding table, number of hosts used, and the percentage of usage versus the maximum.</li>
-<li><strong>IPv4 Route Entries</strong>: Maximum number of routes in forwarding table, number of routes used, and the percentage of usage versus the maximum.</li>
-<li><strong>IPv6 Host Entries</strong>: Maximum number of hosts in forwarding table, number of hosts used, and the percentage of usage versus the maximum.</li>
-<li><strong>IPv6 Route Entries</strong>: Maximum number of routes in forwarding table, number of routes used, and the percentage of usage versus the maximum.</li>
-<li><strong>MAC Entries</strong>: Maximum number of MAC addresses in forwarding table, number of MAC addresses used, and the percentage of usage versus the maximum.</li>
-<li><strong>MCAST Route</strong>: Maximum number of multicast routes in forwarding table, number of multicast routes used, and the percentage of usage versus the maximum.</li>
+<li><strong>IPv4 Host Entries</strong>: Maximum number of hosts in forwarding table, number of hosts used, and the percentage of usage versus the maximum</li>
+<li><strong>IPv4 Route Entries</strong>: Maximum number of routes in forwarding table, number of routes used, and the percentage of usage versus the maximum</li>
+<li><strong>IPv6 Host Entries</strong>: Maximum number of hosts in forwarding table, number of hosts used, and the percentage of usage versus the maximum</li>
+<li><strong>IPv6 Route Entries</strong>: Maximum number of routes in forwarding table, number of routes used, and the percentage of usage versus the maximum</li>
+<li><strong>MAC Entries</strong>: Maximum number of MAC addresses in forwarding table, number of MAC addresses used, and the percentage of usage versus the maximum</li>
+<li><strong>MCAST Route</strong>: Maximum number of multicast routes in forwarding table, number of multicast routes used, and the percentage of usage versus the maximum</li>
 <li><strong>Time</strong>: Date and time the data was collected</li>
-<li><strong>Total Routes</strong>: Maximum number of total routes in forwarding table, number of total routes used, and the percentage of usage versus the maximum.</li>
+<li><strong>Total Routes</strong>: Maximum number of total routes in forwarding table, number of total routes used, and the percentage of usage versus the maximum</li>
 </ul></td>
 </tr>
 <tr class="even">
 <td>ACL Resources</td>
 <td>Displays usage statistics for all ACLs on the switch. <br>The following is diplayed for each ACL:
-<ul><li>maximum entries in the ACL</li>
-<li>number entries used</li>
-<li>percentage of this usage versus the maximum</li>
-</ul> This tab also provides the following additional data about each ACL:
+<ul><li>Maximum entries in the ACL</li>
+<li>Number entries used</li>
+<li>Percentage of this usage versus the maximum</li>
+</ul>This tab also provides the following additional data about each ACL:
 <ul>
 <li><strong>Hostname</strong>: Hostname where the ACLs reside</li>
 <li><strong>Time</strong>: Date and time the data was collected</li>

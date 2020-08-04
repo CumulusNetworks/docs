@@ -42,9 +42,9 @@ There are a number of ways in which you can interact with the topology.
 
 You can move the focus on the topology closer to view a smaller number of nodes, or further out to view a larger number of nodes. As with mapping applications, the node labels appear and disappear as you move in and out on the diagram for better readability. To zoom, you can use:
 
-- the zoom controls, {{<img src="/images/netq/topo-zoom-widget-230.png" width="18">}}, in the bottom right corner of the screen; the '+' zooms you in closer, the '-' moves you further out, and the 'o' resets to the default size.
-- a scrolling motion on your mouse
-- your trackpad
+- The zoom controls, {{<img src="/images/netq/topo-zoom-widget-230.png" width="18">}}, in the bottom right corner of the screen; the '+' zooms you in closer, the '-' moves you further out, and the 'o' resets to the default size.
+- A scrolling motion on your mouse.
+- Your trackpad.
 
 You can also click anywhere on the topology, and drag it left, right, up, or down to view a different portion of the network diagram. This is especially helpful with larger topologies.
 
@@ -68,14 +68,14 @@ From the Configuration Panel, you can view the following data about nodes and li
 | Node Data | Description |
 | --------- | ----------- |
 | ASIC | Name of the ASIC used in the switch. A value of Cumulus Networks VX indicates a virtual machine. |
-| License State | Status of the Cumulus Linux license for the switch; OK, BAD (missing or invalid), or N/A (for hosts) |
-| NetQ Agent Status | Operational status of the NetQ Agent on the switch; Fresh, Rotten |
-| NetQ Agent Version | Version ID of the NetQ Agent on the switch |
-| OS Name | Operating system running on the switch |
-| Platform | Vendor and name of the switch hardware |
-| Open Card/s | Opens the Event|Alarms and/or the Events|Info cards when there are events present |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell-ring.svg" height="18" width="18"/> | Number of alarm events present on the switch |
-| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/> | Number of info events present on the switch |
+| License State | Status of the Cumulus Linux license for the switch; OK, BAD (missing or invalid), or N/A (for hosts). |
+| NetQ Agent Status | Operational status of the NetQ Agent on the switch; Fresh, Rotten. |
+| NetQ Agent Version | Version ID of the NetQ Agent on the switch. |
+| OS Name | Operating system running on the switch. |
+| Platform | Vendor and name of the switch hardware. |
+| Open Card/s | Opens the Event|Alarms and/or the Events|Info cards when there are events present. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell-ring.svg" height="18" width="18"/> | Number of alarm events present on the switch. |
+| <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/> | Number of info events present on the switch. |
 
 <p> </p>
 

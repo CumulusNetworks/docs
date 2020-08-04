@@ -686,7 +686,7 @@ Where the various options are:
 - `errors` limits the output to only the transmit and receive errors found on the designated interfaces
 - `physical-port` limits the output to a particular port
 - `around` enables viewing of the data at a time in the past
-- `json` outputs results in json format
+- `json` outputs results in JSON format
 - `text-port` limits output to a particular host and port; `hostname` is required with this option
 - `tx`, `rx` limits output to the transmit or receive values, respectively
 

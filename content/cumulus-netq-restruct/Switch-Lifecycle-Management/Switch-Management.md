@@ -516,14 +516,14 @@ To install or upgrade switches:
 <td>(2) Version Compatibility</td>
 <td>Unable to upgrade &lt;hostname&gt; with CL version &lt;3.y.z&gt; to &lt;4.y.z&gt;</td>
 <td>Error</td>
-<td>LCM only supports CL 3.x to 3.x and CL 4.x to 4.x upgrades</td>
-<td>Perform a fresh install of CL 4.x</td>
+<td>LCM only supports CL 3.x to 3.x and CL 4.x to 4.x upgrades.</td>
+<td>Perform a fresh install of CL 4.x.</td>
 </tr>
 <tr>
 <td></td>
 <td>Image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;Mellanox | Broadcom&gt;, CPU Arch - &lt;x86 | ARM &gt;</td>
 <td>Error</td>
-<td>The specified Cumulus Linux image is not available in the LCM repository</td>
+<td>The specified Cumulus Linux image is not available in the LCM repository.</td>
 <td>Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}.</td>
 </tr>
 <tr>

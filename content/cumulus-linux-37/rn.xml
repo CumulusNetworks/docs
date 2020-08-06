@@ -78,6 +78,18 @@ To work around this issue, ifdown/ifup the SVI when a MAC address changes.</p></
 <td></td>
 </tr>
 <tr>
+<td>CM-30504</td>
+<td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30503</td>
+<td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30486</td>
 <td><p>A host migrated to an 802.1X MAB port within the same broadcast domain fails to have the correct FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.<br/>
 To work around this issue, manually delete the dynamic FDB entry that is associated with the uplink trunk port.</p></td>
@@ -1674,16 +1686,6 @@ Fixed: 5.20.2-3+deb8u13</p></td>
 <td>3.0.0-3.7.12</td>
 </tr>
 <tr>
-<td>CM-30504</td>
-<td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
-<td>3.7.12</td>
-</tr>
-<tr>
-<td>CM-30503</td>
-<td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
-<td>3.7.12</td>
-</tr>
-<tr>
 <td>CM-30494</td>
 <td><p>On the Mellanox switch with the Spectrum and Spectrum-2 ASIC, IPv6 egress ACLs are not supported on subinterfaces.</p></td>
 <td></td>
@@ -2275,14 +2277,14 @@ Fixed: 5.20.2-3+deb8u13</p></td>
 <tr>
 <td>CM-30504</td>
 <td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
-<td>3.7.12</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30503</td>
 <td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
-<td>3.7.12</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30486</td>

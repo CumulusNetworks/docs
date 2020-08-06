@@ -10,7 +10,7 @@
 <td>CM-30879</td>
 <td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
 </td>
-<td>3.7.12-3.7.13, 4.1.1-4.2.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -114,14 +114,14 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 <tr>
 <td>CM-30504</td>
 <td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
-<td>3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30503</td>
 <td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
-<td>3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30486</td>

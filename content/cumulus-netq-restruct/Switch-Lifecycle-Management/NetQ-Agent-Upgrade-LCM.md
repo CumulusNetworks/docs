@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 580
 toc: 4
 ---
-LCM enables you to upgrade to Cumulus NetQ 3.2.0 on switches with an existing NetQ Agent 2.4.x, 3.0.0, or 3.1.0 release. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
+LCM enables you to upgrade to Cumulus NetQ 3.2.0 on switches with an existing NetQ Agent 2.4.x, 3.0.0, or 3.1.0 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
 
 The upgrade workflow includes the following steps:
 
@@ -12,7 +12,7 @@ The upgrade workflow includes the following steps:
 
 {{<notice info>}}
 
-Upgrades can be performed from NetQ Agents of 2.4.x, 3.0.0, and 3.1.0 releases to the NetQ 3.2.0 release. <em>Lifecycle management does not support upgrades from NetQ 2.3.1 or earlier releases; you must perform a new installation in these cases.</em> Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}}.
+Upgrades can be performed from NetQ Agents of 2.4.x, 3.0.0, and 3.1.0 releases to the NetQ 3.2.0 release. <em>Lifecycle management does not support upgrades from NetQ 2.3.1 or earlier releases; you must perform a new installation in these cases.</em> Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}}. Additionally, LCM commands are not available to perform this upgrade.
 
 {{</notice>}}
 
@@ -34,11 +34,7 @@ Your LCM dashboard should look similar to this after you have completed the abov
 
 ## Perform a Cumulus NetQ Agent Upgrade
 
-You can upgrade Cumulus NetQ Agents on switches using the NetQ UI or the NetQ CLI, as follows:
-
-{{< tabs "TabID39" >}}
-
-{{< tab "NetQ UI" >}}
+You can upgrade Cumulus NetQ Agents on switches using the NetQ UI as follows:
 
 1. Click **Manage** on the Switches card.
 
@@ -56,9 +52,9 @@ You can upgrade Cumulus NetQ Agents on switches using the NetQ UI or the NetQ CL
 
 6. Review each switch:
 
-    - Is the NetQ version 2.4.x, 3.0.0, or 3.1.0? If not, this switch can only be upgraded through the {{<link url="Lifecycle-Management/#switch-discovery" text="switch discovery">}} process.
+    - Is the NetQ Agent version 2.4.x, 3.0.0, or 3.1.0? If not, this switch can only be upgraded through the {{<link url="Lifecycle-Management/#switch-discovery" text="switch discovery">}} process.
     - Is the configuration profile the one you want to apply? If not, click **Change config**, then select an alternate profile to apply to all selected switches.
-    
+
     {{<notice tip>}}
 
 You can apply <em>different</em> profiles to switches in a <em>single</em> upgrade job by selecting a subset of switches (click checkbox for each switch) and then choosing a different profile. You can also change the profile on a per switch basis by clicking the current profile link and selecting an alternate one.
@@ -66,7 +62,7 @@ You can apply <em>different</em> profiles to switches in a <em>single</em> upgra
 <img src="/images/netq/lcm-netq-upgrade-select-alternate-profile-310.png" width="450">
     {{</notice>}}
 
-<div style="padding-left: 18px;">Scroll down to view all selected switches or use <strong>Search</strong> to find a particular switch of interest.</div>
+    Scroll down to view all selected switches or use **Search** to find a particular switch of interest.
 
 7. After you are satisfied with the included switches, click **Next**.
 
@@ -86,25 +82,19 @@ By default, the NetQ Agent and CLI are upgraded on the selected switches. If you
 
     {{<figure src="/images/netq/lcm-netq-upgrade-precheck-tab-310.png" width="500">}}
 
-<div style="padding-left:18px;">These checks verify the following:</div>
-    
+    These checks verify the following:
+
     - Selected switches are not currently scheduled for, or in the middle of, a Cumulus Linux or NetQ Agent upgrade
     - Selected versions of Cumulus Linux and NetQ Agent are valid upgrade paths
-    - All mandatory parameters have valid values.
+    - All mandatory parameters have valid values, including MLAG configurations
+    - All switches are reachable
+    - The order to upgrade the switches, based on roles and configurations
 
     If any of the pre-checks fail, review the error messages and take appropriate action.
 
     If all of the pre-checks pass, click **Upgrade** to initiate the upgrade job.
 
-{{< /tab >}}
-
-{{< tab "NetQ CLI" >}}
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-### Analyze the NetQ Agent Upgrade Results
+## Analyze the NetQ Agent Upgrade Results
 
 After starting the upgrade you can monitor the progress from the preview page or the Upgrade History page.
 
@@ -114,7 +104,7 @@ From the preview page, a green circle with rotating arrows is shown on each swit
 If you are disconnected while the job is in progress, it may appear as if nothing is happening. Try closing (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}) and reopening your view (click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}}), or refreshing the page.
 {{</notice>}}
 
-#### Monitor the NetQ Upgrade Job
+### Monitor the NetQ Agent Upgrade Job
 
 Several viewing options are available for monitoring the upgrade job.
 
@@ -126,25 +116,25 @@ Several viewing options are available for monitoring the upgrade job.
 
     {{<figure src="/images/netq/lcm-netq-upgrade-history-summ-view-310.png" width="700">}}
 
-    - Monitor the job through the NetQ Install and Upgrade History card on the LCM dashboard. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} twice to return to the LCM dashboard.
+- Monitor the job through the NetQ Install and Upgrade History card on the LCM dashboard. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} twice to return to the LCM dashboard.
 
-        {{<figure src="/images/netq/lcm-netq-upgrade-history-card-inprogress-310.png" width="200">}}
+    {{<figure src="/images/netq/lcm-netq-upgrade-history-card-inprogress-310.png" width="200">}}
 
-#### Sample Successful NetQ Upgrade
+### Sample Successful NetQ Agent Upgrade
 
 This example shows that all four of the selected switches were upgraded successfully. You can see the results in the Switches list as well.
 
 {{<figure src="/images/netq/lcm-netq-upgrade-example-success-310.png" width="700">}}
 
-#### Sample Failed NetQ Upgrade
+### Sample Failed NetQ Agent Upgrade
 
-This example shows that an error has occurred trying to upgrade two of the four switches in a job. The error indicates that the access permissions for the switches are invalid. In this case, you need to modify the {{<link url="Lifecycle-Management/#modify-switch-credentials" text="switch access credentials">}} and then create a new upgrade job.
+This example shows that an error has occurred trying to upgrade two of the four switches in a job. The error indicates that the access permissions for the switches are invalid. In this case, you need to modify the {{<link url="Switch-Management/#modify-switch-credentials" text="switch access credentials">}} and then create a new upgrade job.
 
 {{<figure src="/images/netq/lcm-netq-upgrade-example-failure-310.png" width="700">}}
 
 If you were watching this job from the LCM dashboard view, click **View** on the NetQ Install and Upgrade History card to return to the detailed view to resolve any issues that occurred.
 
-#### Reasons for NetQ Upgrade Failure
+### Reasons for NetQ Agent Upgrade Failure
 
 Upgrades can fail at any of the stages of the process, including when backing up data, upgrading the Cumulus NetQ software, and restoring the data. Failures can occur when attempting to connect to a switch or perform a particular task on the switch.
 

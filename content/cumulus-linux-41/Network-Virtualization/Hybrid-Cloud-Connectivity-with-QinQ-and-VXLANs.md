@@ -329,7 +329,7 @@ iface br10
 - When using switches with Mellanox Spectrum ASICs in an MLAG pair:
   - Configure the peerlink (peerlink.4094) between the MLAG pair for VLAN protocol 802.1ad.
   - You cannot use the peerlink as a backup datapath in case one of the MLAG peers loses all uplinks.
-- For switches with the Spectrum ASIC (but not the Spectrum 2), when the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, either:
+- For switches with any type of Spectrum ASIC, when the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, either:
   - All bridge ports are access ports, except for the MLAG peerlink.
   - All bridge ports are VLAN trunks. This means the switch terminating the cloud provider connections (double-tagged) cannot have local clients; these clients must be on a separate switch.
 

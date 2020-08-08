@@ -12,25 +12,25 @@ Cumulus VX runs in a virtual machine (VM) on a standard x86 environment. The VM 
 Cumulus VX is supported on:
 
 - VirtualBox
-- VMware Fusion, Worksation, and vSphere ESXi
-- KVM
 - Vagrant and VirtualBox
-- Vagrant and KVM
 - GNS3 and VirtualBox
+- VMware Fusion, Worksation, and vSphere ESXi
+- KVM-QEMU
+- Vagrant and KVM-QEMU
 
 {{%notice note%}}
 
-Cumulus VX is supported on VMware Fusion, Workstation, and vSphere ESXi. This document provides setup instructions for VMware vSphere ESXi.
+Although Cumulus VX is supported on VMware Fusion, Workstation, and vSphere ESXi. This document provides setup instructions for VMware vSphere ESXi only.
 
 {{%/notice%}}
 
-## Cumulus VX Compared with Other Cumulus Networks Products
+## Cumulus VX Compared with Cumulus Linux
 
 Cumulus VX is not a production-ready virtual switch or router. It has the same foundation as Cumulus Linux, including all the control plane elements, but without an actual ASIC or NPU for line rate performance or hardware acceleration.
 
 You can use tools like `jdoo` to monitor the virtual switch. The same automation, zero touch provisioning, security, and QoS tools are available.
 
-The following table outlines the similarities and differences between Cumulus VX and other Cumulus Networks operating systems:
+The following table outlines the similarities and differences between Cumulus VX and Cumulus Linux:
 
 | Feature or Functionality | Cumulus VX |
 | ------------------------ | -------------------------------- |

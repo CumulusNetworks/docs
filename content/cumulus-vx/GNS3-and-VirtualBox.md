@@ -8,11 +8,11 @@ This section describes how to install and set up Cumulus VX within GNS3 and Virt
 
 {{% vx/intro %}}
 
-These steps were tested with VirtualBox version 6.1.12 and GNS3 version 2.2.11 on macOS version 10.14.6.
+These steps were tested with Cumulus VX 4.2, VirtualBox version 6.1.12, and GNS3 version 2.2.11 on macOS version 10.14.6.
 
 ## Create and Configure the VMs
 
-The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of GNS3 and VirtualBox experience.
+The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes you have GNS3 and VirtualBox experience.
 
 ### Download and Install the Software
 
@@ -52,7 +52,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 Create the network connections between leaf01, leaf02, and spine01, then start the Vms.
 
-From the GNS3 project window, drag leaf01, leaf02, and spine01 to the console. Select the cable icon from the left pane, then connect the leafs and spine by selecting the network interfaces. `e1` in GNS3 corresponds to `swp1` in Cumulus VX, `e2` corresponds to `swp2`, and so on.
+From the GNS3 project window, drag leaf01, leaf02, and spine01 to the console. Select the cable icon from the left pane, then connect the leafs and spine by selecting the network interfaces, as shown in the Topology Summary below. `e1` in GNS3 corresponds to `swp1` in Cumulus VX, `e2` corresponds to `swp2`, and so on.
 
 {{< img src="/images/cumulus-vx/gns3-network-connections.png" width="500" >}}
 

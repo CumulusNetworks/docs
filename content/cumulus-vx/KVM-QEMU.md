@@ -13,11 +13,11 @@ This section describes how to install and set up Cumulus VX with KVM/QEMU and Li
 
 {{% vx/intro %}}
 
-These steps were tested with KVM/QEMU version 1:4.2-3ubuntu6.3 and Libvirt version 6.0.0 on Linux Ubuntu version 20.04.
+These steps were tested with Cumulus VX 4.2, KVM/QEMU version 1:4.2-3ubuntu6.3, and Libvirt version 6.0.0 on Linux Ubuntu version 20.04.
 
 ## Create and Configure the VMs
 
-The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes a basic level of Linux and KVM experience.
+The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes you have Linux and KVM experience.
 
 ### Download and Install the Software
 

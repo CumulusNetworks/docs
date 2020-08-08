@@ -7,17 +7,19 @@ This section describes how to install and set up Cumulus VX in VMWare vSphere to
 
 {{% vx/intro %}}
 
-These steps were tested with VMware vSphere (ESXi) 6.7.0 and VSphere web client (HTML5) version 6.7.0.30000.
+These steps were tested with Cumulus VX 4.2, VMware vSphere (ESXi) 6.7.0, and VSphere web client (HTML5) version 6.7.0.30000.
 
 ## Create and Configure the VMs
 
-The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes you have a basic level of VMWare vSphere experience.
+The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes you have VMWare vSphere experience.
 
 ### Download Cumulus VX
 
 Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="OVA disk image for VMware">}}.
 
 ### Create the VMs
+
+Create three VMs (`leaf01`,`leaf02`, and `spine01`.
 
 1. From the vSphere web client, create a new folder under VMs and Templates. Select the folder then click **Deploy OVF Template** from the **Actions** menu.
 2. Select the Cumulus VX OVA image you downloaded, then click **Next**.
@@ -34,6 +36,8 @@ Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/down
 6. Repeat the previous steps to create two additional VMs: `leaf02` and `spine01`.
 
 ### Create Network Connections
+
+Create the network connections between leaf01, leaf02, and spine01.
 
 1. Create four virtual machine port groups:
 

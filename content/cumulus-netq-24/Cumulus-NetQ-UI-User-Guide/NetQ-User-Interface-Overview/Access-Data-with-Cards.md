@@ -182,7 +182,7 @@ To open the card workflow from Recent Actions:
 
 To access the card workflow by adding the card:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> in the workbench task bar.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> in the workbench task bar.
 2.  Follow the instructions in {{<link url="#add-cards-to-your-workbench" text="Add Cards to Your Workbench">}} or {{<link url="#add-switch-cards-to-your-workbench" text="Add Switch Cards to Your Workbench">}}.
 
     The card appears on the current workbench, at the bottom.
@@ -219,7 +219,7 @@ You can add one or more cards to a workbench at any time. To add Devices|Switche
 
 To add one or more cards:
 
-1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open the **Cards** modal.
+1.  Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open the **Cards** modal.
 
     {{< figure src="/images/netq/add-card-modal-all-cards-222.png" width="700" >}}
 
@@ -364,7 +364,7 @@ You can manipulate the data in a data grid in a full-screen card in several ways
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> | Delete | Removes the selected items |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18"/> | Filter | Filters the list using available parameters. Refer to {{<link url="#filter-table-data" text="Filter Table Data">}} for more detail.  |
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/>, <img src="/images/netq/netq-mgmt-delete-keys-icon.png" height="18" width="18"/> | Generate/Delete AuthKeys | Creates or removes NetQ CLI authorization keys |
-| <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> | Open Cards | Opens the corresponding validation or trace card(s) |
+| <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> | Open Cards | Opens the corresponding validation or trace card(s) |
 | <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. Refer to {{<link url="#export-data" text="Export Data">}} for more detail. |
 
 When there are numerous items in a table, NetQ loads the first 25 by default and provides the rest in additional table pages. In this case, pagination is shown under the table.

@@ -349,7 +349,7 @@ SSM differs from ASM multicast in the following ways:
 - An RP is not configured or used. SSM does not require an RP since receivers always know the addresses of the senders.
 - There is no *,G PIM Join message. The multicast sender is always known so the PIM Join messages used in SSM are always S,G Join messages.
 - There is no Shared Tree or *,G tree. The PIM join message is always sent towards the source, building the SPT along the way. There is no shared tree or *,G state.
-- IGMPv3 is required. ASM allows for receivers to specify only the group they want to join without knowledge of the sender. This can be done in both IGMPv2 and IGMPv3. Only IGMPv3 supports requesting a specific source for a multicast group (the sending an S,G IGMP join)
+- IGMPv3 is required. ASM allows for receivers to specify only the group they want to join without knowledge of the sender. This can be done in both IGMPv2 and IGMPv3. Only IGMPv3 supports requesting a specific source for a multicast group (the sending an S,G IGMP join).
 - No PIM Register process or SPT Switchover. Without a shared tree or RP, there is no need for the PIM register process. S,G joins are sent directly towards the FHR.
 
 ### PIM Active-Active with MLAG

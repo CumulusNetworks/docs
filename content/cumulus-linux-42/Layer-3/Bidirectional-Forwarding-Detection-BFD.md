@@ -23,7 +23,7 @@ BFD multihop sessions are built over arbitrary paths between two systems, which 
 
 ## Configure BFD
 
-You can configure BFD by either using {{<link url="FRRouting-Overview" text="FRRouting">}} (with NCLU or vtysh commands) or by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM `topology.dot` file">}}. However, the topology file has some limitations:
+You can configure BFD by either using {{<link url="FRRouting-Overview" text="FRRouting">}} (with NCLU or `vtysh` commands) or by specifying the configuration in the {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM `topology.dot` file">}}. However, the topology file has some limitations:
 
 - The topology file supports BFD IPv4 and IPv6 *single* hop sessions only; you *cannot* specify IPv4 or IPv6 *multihop* sessions in the topology file.
 - The topology file supports BFD sessions for only link-local IPv6 peers; BFD sessions for global IPv6 peers discovered on the link are not created.
@@ -118,7 +118,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -127,7 +127,7 @@ neighbor fabric bfd 4 400 400
 ...
 ```
 
-To see neighbor information in BGP, including BFD status, run the NCLU `net show bgp neighbor <interface>` command or the vtysh `show ip bgp neighbor <interface>` command. For example:
+To see neighbor information in BGP, including BFD status, run the NCLU `net show bgp neighbor <interface>` command or the `vtysh` `show ip bgp neighbor <interface>` command. For example:
 
 ```
 cumulus@switch:~$ net show bgp neighbor swp1
@@ -179,7 +179,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -190,8 +190,8 @@ interface swp1
 
 You can run different commands to show neighbor information in OSPF, including BFD status.
 
-- To show IPv6 OSPF interface information, run the NCLU `net show ospf6 interface <interface>` command or the vtysh `show ip ospf6 interface <interface>` command.
-- To show IPv4 OSPF interface information, run the NCLU `net show ospf interface <interface>` command or the vtysh `show ip ospf interface <interface>` command.
+- To show IPv6 OSPF interface information, run the NCLU `net show ospf6 interface <interface>` command or the `vtysh` `show ip ospf6 interface <interface>` command.
+- To show IPv4 OSPF interface information, run the NCLU `net show ospf interface <interface>` command or the `vtysh` `show ip ospf interface <interface>` command.
 
    The following example shows IPv6 OSPF interface information.
 
@@ -215,8 +215,8 @@ You can run different commands to show neighbor information in OSPF, including B
     BFD: Detect Mul: 3, Min Rx interval: 300, Min Tx interval: 300
     ```
 
-- To show IPv6 OSPF neighbor details, run the NCLU `net show ospf6 neighbor detail` command or the vtysh `show ip ospf6 neighbor detail` command.
-- To show IPv4 OSPF interface information, run the NCLU `net show ospf neighbor detail` command or the vtysh `show ip ospf neighbor detail` command.
+- To show IPv6 OSPF neighbor details, run the NCLU `net show ospf6 neighbor detail` command or the `vtysh` `show ip ospf6 neighbor detail` command.
+- To show IPv4 OSPF interface information, run the NCLU `net show ospf neighbor detail` command or the `vtysh` `show ip ospf neighbor detail` command.
 
   The following example shows IPv6 OSPF neighbor details.
 

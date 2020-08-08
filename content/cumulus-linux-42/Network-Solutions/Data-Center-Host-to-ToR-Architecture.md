@@ -159,7 +159,7 @@ iface vm-br10 inet manual
 
 | <div style="width:300px">Benefits | Considerations |
 |----------| --------|
-| <ul><li>Relatively simple network configuration</li><li>No STP</li><li>No MLAG</li><li>No layer 2 loops</li><li>No crosslink between leafs</li><li>Greater route scaling and flexibility</li></ul>| <ul><li>No redundancy for ToR, upgrades can cause downtime</li><li>There is often no software to support application layer redundancy</li><ul>|
+| <ul><li>Relatively simple network configuration</li><li>No STP</li><li>No MLAG</li><li>No layer 2 loops</li><li>No crosslink between leafs</li><li>Greater route scaling and flexibility</li></ul>| <ul><li>No redundancy for ToR, upgrades can cause downtime.</li><li>There is often no software to support application layer redundancy.</li></ul>|
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 |----------| --------|
@@ -243,7 +243,7 @@ iface eth1 inet static
 
 | <div style="width:300px">Benefits | Considerations |
 |-----------------------------------| --------|
-| <ul><li>Configuration in FRRouting is simple (route map plus redistribute table)</li><li>Supported by Cumulus Networks</li></ul>| <ul><li>Silent hosts do not receive traffic (depending on ARP) </li><li>IPv4 only</li><li>If two VMs are on the same layer 2 domain, they can learn about each other directly instead of using the gateway, which causes problems (such as VM migration or getting the network routed). Put hosts on /32 (no other layer 2 adjacency).</li><li>VM moves do not trigger a route withdrawal from the original leaf (four hour timeout).</li><li>Clearing ARP impacts routing.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul> |
+| <ul><li>Configuration in FRRouting is simple (route map plus redistribute table)</li><li>Supported by Cumulus Networks</li></ul>| <ul><li>Silent hosts do not receive traffic (depending on ARP).</li><li>IPv4 only.</li><li>If two VMs are on the same layer 2 domain, they can learn about each other directly instead of using the gateway, which causes problems (such as VM migration or getting the network routed). Put hosts on /32 (no other layer 2 adjacency).</li><li>VM moves do not trigger a route withdrawal from the original leaf (four hour timeout).</li><li>Clearing ARP impacts routing.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul> |
 
 | FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
@@ -257,7 +257,7 @@ iface eth1 inet static
 
 | <div style="width:300px">Benefits | Considerations |
 |-----------------------------------| --------|
-| <ul><li>No requirement for MLAG</li><li>No spanning tree or layer 2 domain</li><li>No loops</li><li>You can use three or more ToRs instead of the usual two</li><li>Host and VM mobility</li><li>You can use traffic engineering to migrate traffic from one ToR to another when upgrading both hardware and software</li></ul>| <ul><li>The hypervisor or host OS might not support a routing application like FRRouting and requires a virtual router on the hypervisor</li><li>No layer 2 adjacnecy between servers without VXLAN</li></ul>|
+| <ul><li>No requirement for MLAG</li><li>No spanning tree or layer 2 domain</li><li>No loops</li><li>You can use three or more ToRs instead of the usual two</li><li>Host and VM mobility</li><li>You can use traffic engineering to migrate traffic from one ToR to another when upgrading both hardware and software</li></ul>| <ul><li>The hypervisor or host OS might not support a routing application like FRRouting and requires a virtual router on the hypervisor.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul>|
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
@@ -271,7 +271,7 @@ iface eth1 inet static
 
 | <div style="width:300px">Benefits | Considerations |
 |-----------------------------------| --------|
-| In addition to routing on host:<ul><li> The hypervisor/base OS does not need to be able to do routing.</li><li>VMs can be authenticated into routing fabric.</li></ul> |<ul><li>All VMs must be capable of routing</li><li>You need to take scale considerations into an account; instead of one routing process, there are as many as there are VMs</li><li>No layer 2 adjacency between servers without VXLAN</li></ul>|
+| In addition to routing on host:<ul><li> The hypervisor/base OS does not need to be able to do routing</li><li>VMs can be authenticated into routing fabric</li></ul> |<ul><li>All VMs must be capable of routing.</li><li>You need to take scale considerations into an account; instead of one routing process, there are as many as there are VMs.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul>|
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
@@ -285,7 +285,7 @@ iface eth1 inet static
 
 | <div style="width:300px">Benefits | Considerations |
 |-----------------------------------| --------|
-|In addition to routing on a host:<ul><li>Multi-tenancy can work, where multiple customers share the same racks</li><li>The base OS does not need to be routing capable</li></ul>|<ul><li>{{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}} might not work correctly (load balancing to multiple ToRs); the Linux kernel in older versions is not capable of ECMP per flow (it does it per packet)</li><li>No layer 2 adjacency between servers without VXLAN</li></ul>|
+|In addition to routing on a host:<ul><li>Multi-tenancy can work, where multiple customers share the same racks</li><li>The base OS does not need to be routing capable</li></ul>|<ul><li>{{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}} might not work correctly (load balancing to multiple ToRs); the Linux kernel in older versions is not capable of ECMP per flow (it does it per packet).</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul>|
 
 | <div style="width:300px">FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
@@ -299,7 +299,7 @@ iface eth1 inet static
 
 | <div style="width:300px">Benefits | Considerations |
 |-----------------------------------| --------|
-| <ul><li>Most benefits of routing **on** the host</li><li>No requirement for host to run routing</li><li>No requirement for redistribute neighbor</li></ul>|<ul><li>Removing a subnet from one ToR and re-adding it to another (network statements from your router process) is a manual process</li><li>Network team and server team have to be in sync, or the server team controls the ToR, or automation is used used whenever VM migration occurs</li><li>When using VMs or containers it is very easy to black hole traffic, as the leafs continue to advertise prefixes even when the VM is down</li><li>No layer 2 adjacency between servers without VXLAN</li></ul>|
+| <ul><li>Most benefits of routing **on** the host</li><li>No requirement for host to run routing</li><li>No requirement for redistribute neighbor</li></ul>|<ul><li>Removing a subnet from one ToR and re-adding it to another (network statements from your router process) is a manual process.</li><li>Network team and server team have to be in sync, or the server team controls the ToR, or automation is used used whenever VM migration occurs.</li><li>When using VMs or containers it is very easy to black hole traffic, as the leafs continue to advertise prefixes even when the VM is down.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul>|
 
 | FHR (First Hop Redundancy) |
 | ---------------------------|
@@ -385,7 +385,7 @@ Each server is configured on a VLAN, with a total of two VLANs for the setup. ML
 
 | <div style="width:300px">Benefits | Considerations |
 |-----------------------------------| --------|
-| <ul><li>Layer 2 domain is reduced to the pair of ToRs</li><li>Aggregation layer is all layer 3 (VLANs do not have to exist on spine switches)</li><li>Greater route scaling and flexibility</li><li>High availability</li></ul>| Needs MLAG (with the same considerations as the {{<link url="#mlag" text="MLAG">}} section above)|
+| <ul><li>Layer 2 domain is reduced to the pair of ToRs</li><li>Aggregation layer is all layer 3 (VLANs do not have to exist on spine switches)</li><li>Greater route scaling and flexibility</li><li>High availability</li></ul>| Needs MLAG (with the same considerations as the {{<link url="#mlag" text="MLAG">}} section above).|
 
 |Active-Active Mode|Active-Passive Mode|Demarcation| More Information|
 |------------------|-------------------|------------|-------------|

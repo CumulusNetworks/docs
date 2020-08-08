@@ -69,23 +69,23 @@ The medium OSPF Service card displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
-<td>Indicates data is for all sessions of a Network Service or Protocol</td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services | All OSPF Sessions</td>
+<td>Network Services | All OSPF Sessions.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches and hosts with the OSPF service enabled during the designated time period</td>
+<td>Total number of switches and hosts with the OSPF service enabled during the designated time period.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
-<td>Total number of OSPF-related alarms received during the designated time period</td>
+<td>Total number of OSPF-related alarms received during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Total Nodes Running chart</td>
@@ -124,23 +124,23 @@ The *Sessions Summary* tab displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
-<td>Indicates data is for all sessions of a Network Service or Protocol</td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Sessions Summary (visible when you hover over card)</td>
+<td>Sessions Summary (visible when you hover over card).</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches and hosts with the OSPF service enabled during the designated time period</td>
+<td>Total number of switches and hosts with the OSPF service enabled during the designated time period.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
-<td>Total number of OSPF-related alarms received during the designated time period</td>
+<td>Total number of OSPF-related alarms received during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Total Nodes Running chart</td>
@@ -163,7 +163,7 @@ The *Sessions Summary* tab displays:
 </tr>
 <tr class="even">
 <td>Show All Sessions</td>
-<td>Link to view data for all OSPF sessions in the full screen card</td>
+<td>Link to view data for all OSPF sessions in the full screen card.</td>
 </tr>
 </tbody>
 </table>
@@ -186,23 +186,23 @@ The *Alarms* tab displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in header)</td>
-<td>Indicates data is all alarms for all OSPF sessions</td>
+<td>Indicates data is all alarms for all OSPF sessions.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Alarms (visible when you hover over card)</td>
+<td>Alarms (visible when you hover over card).</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches and hosts with the OSPF service enabled during the designated time period</td>
+<td>Total number of switches and hosts with the OSPF service enabled during the designated time period.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in summary bar)</td>
-<td>Total number of OSPF-related alarms received during the designated time period</td>
+<td>Total number of OSPF-related alarms received during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Total Alarms chart</td>
@@ -215,7 +215,7 @@ The *Alarms* tab displays:
 </tr>
 <tr class="even">
 <td>Show All Sessions</td>
-<td>Link to view data for all OSPF sessions in the full screen card</td>
+<td>Link to view data for all OSPF sessions in the full screen card.</td>
 </tr>
 </tbody>
 </table>
@@ -238,15 +238,15 @@ The full screen OSPF Service card provides tabs for all switches, all sessions, 
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services | OSPF</td>
+<td>Network Services | OSPF.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
@@ -295,7 +295,7 @@ The full screen OSPF Service card provides tabs for all switches, all sessions, 
 <li>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</li>
 <li>Model: Manufacturer's model name. Examples values include AS7712-32X and S4048-ON.</li>
 <li>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</li>
-<li>Revision: Release version of the platform</li>
+<li>Revision: Release version of the platform.</li>
 <li>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</li>
 <li>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</li>
 </ul></li>
@@ -308,12 +308,12 @@ The full screen OSPF Service card provides tabs for all switches, all sessions, 
 <ul>
 <li><strong>Area</strong>: Routing domain for this host device. Example values include 0.0.0.1, 0.0.0.23.</li>
 <li><strong>Ifname</strong>: Name of the interface on host device where session resides. Example values include swp5, peerlink-1.</li>
-<li><strong>Is IPv6</strong>: Indicates whether the address of the host device is IPv6 (true) or IPv4 (false)</li>
+<li><strong>Is IPv6</strong>: Indicates whether the address of the host device is IPv6 (true) or IPv4 (false).</li>
 <li><strong>Peer</strong>
 <ul>
-<li>Address: IPv4 or IPv6 address of the peer device</li>
-<li>Hostname: User-defined name for peer device</li>
-<li>ID: Network subnet address of router with access to the peer device</li>
+<li>Address: IPv4 or IPv6 address of the peer device.</li>
+<li>Hostname: User-defined name for peer device.</li>
+<li>ID: Network subnet address of router with access to the peer device.</li>
 </ul></li>
 <li><strong>State</strong>: Current state of OSPF. Values include Full, 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</li>
 <li><strong>Timestamp</strong>: Date and time session was started, deleted, updated or marked dead (device is down)</li>
@@ -443,8 +443,8 @@ To view all OSPF events:
 
 Where to go next depends on what data you see, but a couple of options include:
 
-- Open one of the other full screen tabs in this flow to focus on devices or sessions
-- Export the data for use in another analytics tool, by clicking {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">}} and providing a name for the data file
+- Open one of the other full screen tabs in this flow to focus on devices or sessions.
+- Export the data for use in another analytics tool, by clicking {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">}} and providing a name for the data file.
 
 ### View Details for All Devices Running OSPF
 
@@ -473,7 +473,7 @@ Use the icons above the table to select/deselect, filter, and export items in th
 With NetQ, you can monitor a single session of the OSPF service, view session state changes, and compare with alarms occurring at the same time, as well as monitor the running OSPF configuration and changes to the configuration file. For an overview and how to configure OSPF to run in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Open-Shortest-Path-First-OSPF/" text="Open Shortest Path First - OSPF">}} or {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Open-Shortest-Path-First-v3-OSPFv3/" text="Open Shortest Path First v3 - OSPFv3">}}.
 
 {{<notice note>}}
-To access the single session cards, you must open the full screen OSPF Service, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards).
+To access the single session cards, you must open the full screen OSPF Service, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards).
 {{</notice>}}
 
 ### Granularity of Data Shown Based on Time Period
@@ -511,11 +511,11 @@ The small OSPF Session card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
-<td>Indicates data is for a single session of a Network Service or Protocol</td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>OSPF Session</td>
+<td>OSPF Session.</td>
 </tr>
 <tr class="odd">
 <td> </td>
@@ -547,15 +547,15 @@ The medium OSPF Session card displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
-<td>Indicates data is for a single session of a Network Service or Protocol</td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services | OSPF Session</td>
+<td>Network Services | OSPF Session.</td>
 </tr>
 <tr class="even">
 <td> </td>
@@ -568,7 +568,7 @@ The medium OSPF Session card displays:
 </tr>
 <tr class="even">
 <td>Time period for chart</td>
-<td>Time period for the chart data</td>
+<td>Time period for the chart data.</td>
 </tr>
 <tr class="odd">
 <td>Session State Changes Chart</td>
@@ -576,15 +576,15 @@ The medium OSPF Session card displays:
 </tr>
 <tr class="even">
 <td>Ifname</td>
-<td>Interface name on or hostname for host device where session resides</td>
+<td>Interface name on or hostname for host device where session resides.</td>
 </tr>
 <tr class="odd">
 <td>Peer Address</td>
-<td>IP address of the peer device</td>
+<td>IP address of the peer device.</td>
 </tr>
 <tr class="even">
 <td>Peer ID</td>
-<td>IP address of router with access to the peer device</td>
+<td>IP address of router with access to the peer device.</td>
 </tr>
 </tbody>
 </table>
@@ -609,15 +609,15 @@ The *Session Summary* tab displays:
 <tbody>
 <tr>
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr>
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
-<td>Indicates data is for a single session of a Network Service or Protocol</td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
 </tr>
 <tr>
 <td>Title</td>
-<td>Session Summary (Network Services | OSPF Session)</td>
+<td>Session Summary (Network Services | OSPF Session).</td>
 </tr>
 <tr>
 <td>Summary bar</td>
@@ -630,15 +630,15 @@ The *Session Summary* tab displays:
 </tr>
 <tr>
 <td>Alarm Count Chart</td>
-<td>Distribution and count of OSPF alarm events over the given time period</td>
+<td>Distribution and count of OSPF alarm events over the given time period.</td>
 </tr>
 <tr>
 <td>Info Count Chart</td>
-<td>Distribution and count of OSPF info events over the given time period</td>
+<td>Distribution and count of OSPF info events over the given time period.</td>
 </tr>
 <tr>
 <td>Ifname</td>
-<td>Name of the interface on the host device where the session resides</td>
+<td>Name of the interface on the host device where the session resides.</td>
 </tr>
 <tr>
 <td>State</td>
@@ -646,11 +646,11 @@ The *Session Summary* tab displays:
 </tr>
 <tr>
 <td>Is Unnumbered</td>
-<td>Indicates if the session is part of an unnumbered OSPF configuration (true) or part of a numbered OSPF configuration (false)</td>
+<td>Indicates if the session is part of an unnumbered OSPF configuration (true) or part of a numbered OSPF configuration (false).</td>
 </tr>
 <tr>
 <td>Nbr Count</td>
-<td>Number of routers in the OSPF configuration</td>
+<td>Number of routers in the OSPF configuration.</td>
 </tr>
 <tr>
 <td>Is Passive</td>
@@ -658,31 +658,31 @@ The *Session Summary* tab displays:
 </tr>
 <tr>
 <td>Peer ID</td>
-<td>IP address of router with access to the peer device</td>
+<td>IP address of router with access to the peer device.</td>
 </tr>
 <tr>
 <td>Is IPv6</td>
-<td>Indicates if the IP address of the host device is IPv6 (true) or IPv4 (false)</td>
+<td>Indicates if the IP address of the host device is IPv6 (true) or IPv4 (false).</td>
 </tr>
 <tr>
 <td>If Up</td>
-<td>Indicates if the interface on the host is up (true) or down (false)</td>
+<td>Indicates if the interface on the host is up (true) or down (false).</td>
 </tr>
 <tr>
 <td>Nbr Adj Count</td>
-<td>Number of adjacent routers for this host</td>
+<td>Number of adjacent routers for this host.</td>
 </tr>
 <tr>
 <td>MTU</td>
-<td>Maximum transmission unit (MTU) on shortest path between the host and peer</td>
+<td>Maximum transmission unit (MTU) on shortest path between the host and peer.</td>
 </tr>
 <tr>
 <td>Peer Address</td>
-<td>IP address of the peer device</td>
+<td>IP address of the peer device.</td>
 </tr>
 <tr>
 <td>Area</td>
-<td>Routing domain of the host device</td>
+<td>Routing domain of the host device.</td>
 </tr>
 <tr>
 <td>Network Type</td>
@@ -690,7 +690,7 @@ The *Session Summary* tab displays:
 </tr>
 <tr>
 <td>Cost</td>
-<td>Shortest path through the network between the host and peer devices</td>
+<td>Shortest path through the network between the host and peer devices.</td>
 </tr>
 <tr>
 <td>Dead Time</td>
@@ -718,19 +718,19 @@ The *Configuration File Evolution* tab displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/></td>
-<td>Indicates configuration file information for a single session of a Network Service or Protocol</td>
+<td>Indicates configuration file information for a single session of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>(Network Services | OSPF Session) Configuration File Evolution</td>
+<td>(Network Services | OSPF Session) Configuration File Evolution.</td>
 </tr>
 <tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
-<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open associated device card.</td>
+<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
+<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open associated device card.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/></td>
@@ -768,15 +768,15 @@ and all events.
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services | OSPF</td>
+<td>Network Services | OSPF.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
@@ -784,7 +784,7 @@ and all events.
 </tr>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>All OSPF Sessions tab</td>
@@ -792,23 +792,23 @@ and all events.
 <ul>
 <li><strong>Area</strong>: Routing domain for this host device. Example values include 0.0.0.1, 0.0.0.23.</li>
 <li><strong>Ifname</strong>: Name of the interface on host device where session resides. Example values include swp5, peerlink-1.</li>
-<li><strong>Is IPv6</strong>: Indicates whether the address of the host device is IPv6 (true) or IPv4 (false)</li>
+<li><strong>Is IPv6</strong>: Indicates whether the address of the host device is IPv6 (true) or IPv4 (false).</li>
 <li><strong>Peer</strong>
 <ul>
-<li>Address: IPv4 or IPv6 address of the peer device</li>
-<li>Hostname: User-defined name for peer device</li>
-<li>ID: Network subnet address of router with access to the peer device</li>
+<li>Address: IPv4 or IPv6 address of the peer device.</li>
+<li>Hostname: User-defined name for peer device.</li>
+<li>ID: Network subnet address of router with access to the peer device.</li>
 </ul></li>
 <li><strong>State</strong>: Current state of OSPF. Values include Full, 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</li>
-<li><strong>Timestamp</strong>: Date and time session was started, deleted, updated or marked dead (device is down)</li>
+<li><strong>Timestamp</strong>: Date and time session was started, deleted, updated or marked dead (device is down).</li>
 </ul></td>
 </tr>
 <tr class="even">
 <td>All Events tab</td>
 <td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
-<li><strong>Message</strong>: Text description of a OSPF-related event. Example: OSPF session with peer tor-1 swp7 vrf default state changed from failed to Established</li>
-<li><strong>Source</strong>: Hostname of network device that generated the event</li>
+<li><strong>Message</strong>: Text description of a OSPF-related event. Example: OSPF session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
 <li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of OSPF in this card workflow.</li>
 </ul></td>

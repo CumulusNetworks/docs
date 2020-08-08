@@ -64,11 +64,11 @@ The medium Info card displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-1.svg" height="18" width="18"/></td>
-<td>Indicates data is for all warning, info, and debug severity events in the network</td>
+<td>Indicates data is for all warning, info, and debug severity events in the network.</td>
 </tr>
 <tr class="odd">
 <td>Types of Info</td>
@@ -78,13 +78,13 @@ The medium Info card displays:
 <td>Distribution of Info</td>
 <td>Info Status
 <ul>
-<li><strong>Count</strong>: Number of info events received during the designated time period</li>
-<li><strong>Chart</strong>: Distribution of all info events received during the designated time period</li>
+<li><strong>Count</strong>: Number of info events received during the designated time period.</li>
+<li><strong>Chart</strong>: Distribution of all info events received during the designated time period.</li>
 </ul>
 Alarms Status
 <ul>
-<li><strong>Count</strong>: Number of alarm events received during the designated time period</li>
-<li><strong>Chart</strong>: Distribution of all alarm events received during the designated time period</li>
+<li><strong>Count</strong>: Number of alarm events received during the designated time period.</li>
+<li><strong>Chart</strong>: Distribution of all alarm events received during the designated time period.</li>
 </ul></td>
 </tr>
 </tbody>
@@ -108,11 +108,11 @@ The large Info card displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-1.svg" height="18" width="18"/></td>
-<td>Indicates data is for all warning, info, and debug severity events in the network</td>
+<td>Indicates data is for all warning, info, and debug severity events in the network.</td>
 </tr>
 <tr class="odd">
 <td>Types of Info</td>
@@ -122,26 +122,26 @@ The large Info card displays:
 <td>Distribution of Info</td>
 <td>Info Status
 <ul>
-<li><strong>Count</strong>: Current number of info events received during the designated time period</li>
-<li><strong>Chart</strong>: Distribution of all info events received during the designated time period</li>
+<li><strong>Count</strong>: Current number of info events received during the designated time period.</li>
+<li><strong>Chart</strong>: Distribution of all info events received during the designated time period.</li>
 </ul>
 Alarms Status
 <ul>
-<li><strong>Count</strong>: Current number of alarm events received during the designated time period</li>
-<li><strong>Chart</strong>: Distribution of all alarm events received during the designated time period</li>
+<li><strong>Count</strong>: Current number of alarm events received during the designated time period.</li>
+<li><strong>Chart</strong>: Distribution of all alarm events received during the designated time period.</li>
 </ul></td>
 </tr>
 <tr class="odd">
 <td>Table</td>
 <td>Listing of items that match the filter selection:
 <ul>
-<li><strong>Events by Most Recent</strong>: Most recent event are listed at the top</li>
-<li><strong>Devices by Event Count</strong>: Devices with the most events are listed at the top</li>
+<li><strong>Events by Most Recent</strong>: Most recent event are listed at the top.</li>
+<li><strong>Devices by Event Count</strong>: Devices with the most events are listed at the top.</li>
 </ul></td>
 </tr>
 <tr class="even">
 <td>Show All Events</td>
-<td>Opens full screen Events | Info card with a listing of all events</td>
+<td>Opens full screen Events | Info card with a listing of all events.</td>
 </tr>
 </tbody>
 </table>
@@ -168,11 +168,11 @@ The full screen Info card provides tabs for all events.
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Default Time</td>
-<td>Range of time in which the displayed data was collected</td>
+<td>Range of time in which the displayed data was collected.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
@@ -180,7 +180,7 @@ The full screen Info card provides tabs for all events.
 </tr>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>All Events</td>

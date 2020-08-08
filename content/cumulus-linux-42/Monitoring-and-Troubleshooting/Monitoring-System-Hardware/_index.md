@@ -64,7 +64,7 @@ Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t <target>][-e][-
 | `-t <target>` | Prints the target EEPROM (board, psu2, psu1) information.<br><br>**Note**: Some systems that use a BMC to manage sensors (such as the Dell Z9264 and EdgeCore Minipack AS8000) do not provide the PSU EEPROM contents. This is because the BMC connects to the PSUs via I2C and the main CPU of the switch has no direct access. |
 | `--serial`, `-e` | Prints the device serial number. |
 | `-m` | Prints the base MAC address for management interfaces. |
-| `--init` | Clears and initializes the board EEPROM cache |
+| `--init` | Clears and initializes the board EEPROM cache. |
 
 ### Related Commands
 

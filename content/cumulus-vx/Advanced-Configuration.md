@@ -3,7 +3,23 @@ title: Advanced Configuration
 author: Cumulus Networks
 weight: 46
 ---
-INTRO
+This section describes advanced procedures that you can follow to get more out of Cumulus VX.
+
+- Run the conversion script on your switches so that you can take the self-paced labs in the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}}.
+- Run the topology converter to convert a topology file into a Vagrantfile so you can create a topology of your choice.
+- Test the Cumulus Linux upgrade process in your virtual environment by installing a Cumulus VX binary image with ONIE.
+
+## Run the Conversion Script
+
+The self-paced labs in the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} use the following topology:
+
+IMAGE
+
+To run the labs, you need to first run a script to update the port configuration. 
+
+## Run the Topology Converter
+
+To create a topolgy of your choice, you can use the topology converter to convert a `topology.dot` (DOT-specified network graph) file to a Vagrantfile. The `topology.dot` file describes the network topology link-by-link.
 
 ## Install an ONIE Virtual Machine
 

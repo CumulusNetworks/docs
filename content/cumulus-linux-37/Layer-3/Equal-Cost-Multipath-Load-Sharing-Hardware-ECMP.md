@@ -190,9 +190,7 @@ To configure custom hashing, edit the `/usr/lib/python2.7/dist-packages/cumulus/
 2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
 3. Restart the `switchd` service:
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+   {{<cl/restart-switchd>}}
 
 The following shows an example `datapath.conf` file:
 
@@ -362,28 +360,22 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 1. Enable resilient hashing:
 
-```
-# Enable resilient hashing
-resilient_hash_enable = TRUE
-```
+       # Enable resilient hashing
+       resilient_hash_enable = TRUE
 
 1. **(Optional)** Edit the number of hash buckets:
 
-```
-# Resilient hashing flowset entries per ECMP group
-# Valid values - 64, 128, 256, 512, 1024
-resilient_hash_entries_ecmp = 256
-```
+       # Resilient hashing flowset entries per ECMP group
+       # Valid values - 64, 128, 256, 512, 1024
+       resilient_hash_entries_ecmp = 256
 
 1. **(Optional)** On {{<link url="#resilient-hashing-on-mellanox-switches" text="Mellanox switches">}},
   configure timers in the the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf​`
   file.
 
-1. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
+1. Restart the `switchd` service:
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+   {{<cl/restart-switchd>}}
 
 ## Caveats and Errata
 

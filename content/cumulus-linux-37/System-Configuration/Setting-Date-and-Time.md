@@ -430,7 +430,7 @@ To enable the PTP boundary clock on the switch:
 
 2.  Restart `switchd`:
 
-        cumulus@switch:~$ sudo systemctl restart switchd.service
+    {{<cl/restart-switchd>}}
 
 ### Configure the PTP Boundary Clock
 

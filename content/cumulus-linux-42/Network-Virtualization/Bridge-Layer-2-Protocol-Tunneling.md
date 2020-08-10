@@ -7,7 +7,7 @@ toc: 3
 
 A VXLAN connects layer 2 domains across a layer 3 fabric; however, layer 2 protocol packets, such as LLDP, LACP, STP, and CDP are normally terminated at the ingress VTEP. If you want the VXLAN to behave more like a wire or hub, where protocol packets are tunneled instead of being terminated locally, you can enable *bridge layer 2 protocol tunneling*.
 
-## Configuration
+## Configure Bridge Layer 2 Protocol Tunneling
 
 To configure bridge layer 2 protocol tunneling for all protocols:
 
@@ -135,7 +135,7 @@ The VTEP host-facing port is in access mode, and the PVID is mapped to the VNI.
 
 {{<img src="/images/cumulus-linux/pseudoWire.png">}}
 
-## Notes
+## Considerations
 
 Use caution when enabling bridge layer 2 protocol tunneling. Keep the following issues in mind:
 

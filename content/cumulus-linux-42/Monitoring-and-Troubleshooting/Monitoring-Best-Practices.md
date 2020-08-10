@@ -6,26 +6,24 @@ toc: 3
 ---
 The following monitoring processes are considered best practices for reviewing and troubleshooting potential issues with Cumulus Linux environments. In addition, several of the more common issues have been listed, with potential solutions included.
 
-## Overview
-
 This document describes:
 
 - Metrics that you can poll from Cumulus Linux and use in trend analysis
 - Critical log messages that you can monitor for triggered alerts
 
-### Trend Analysis Using Metrics
+## Trend Analysis Using Metrics
 
 A metric is a quantifiable measure that is used to track and assess the status of a specific infrastructure component. It is a check collectedover time. Examples of metrics include bytes on an interface, CPU utilization, and total number of routes.
 
 Metrics are more valuable when used for trend analysis.
 
-### Generate Alerts with Triggered Logging
+## Generate Alerts with Triggered Logging
 
 Triggered issues are normally sent to `syslog`, but can go to another log file depending on the feature. In Cumulus Linux, `rsyslog` handles all logging, including local and remote logging. Logs are the best method to use for generating alerts when the system transitions from a stable steady state.
 
 Sending logs to a centralized collector, then creating alerts based on critical logs is an optimal solution for alerting.
 
-### Log Formatting
+## Log Formatting
 
 Most log files in Cumulus Linux use a standard presentation format. For example, consider this `syslog` entry:
 
@@ -83,6 +81,7 @@ Short bursts of high CPU can occur during `switchd` churn or routing protocol st
 | System Element | Monitoring Commands | Interval Poll |
 |--------------- |-------------------- |-------------- |
 |CPU utilization | <pre>cumulus@switch:~$ cat /proc/stat<br>cumulus@switch:~$ top -b -n 1</pre> | 30 seconds |
+
 | CPU Logs | Log Location | Log Entries |
 |--------- |------------- |------------ |
 | High CPU | <pre>/var/log/syslog</pre> | <pre>sysmonitor: Critically high CPU use: 99%<br>systemd[1]: Starting Monitor system resources (cpu, memory, disk)...<br>systemd[1]: Started Monitor system resources (cpu, memory, disk).<br>sysmonitor: High CPU use: 89%<br>systemd[1]: Starting Monitor system resources (cpu, memory, disk)...<br>systemd[1]: Started Monitor system resources (cpu, memory, disk).<br>sysmonitor: CPU use no longer high: 77% |
@@ -232,7 +231,7 @@ The table below describes the various log files.
 | syslog | Catch all log file. Identifies memory leaks and CPU spikes. | <pre>/var/log/syslog</pre> |
 | switchd functionality | Hardware Abstraction Layer (HAL). | <pre>/var/log/switchd.log</pre> |
 | Routing daemons | FRRouting zebra daemon details. | <pre>/var/log/daemon.log</pre> |
-| Routing protocol | The log file is configurable in FRRouting. When FRRouting first boots, it uses the non-integrated configuration so each routing protocol has its own log file. After booting up, FRRouting switches over to using the integrated configuration, so that all logs go to a single place.<br>To edit the location of the log files, use the log file <location> command. By default, FRRouting logs are not sent to syslog. Use the log syslog <level> command to send logs through rsyslog and into /var/log/syslog.<br><br>**Note**: To write syslog debug messages to the log file, you must run the log syslog debug command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as, debug bgp neighbor-events, no output is sent to /var/log/frr/frr.log. <br>However, when you manually define a log target with the log file /var/log/frr/debug.log command, FRR automatically defaults to severity 7 (debug) logging and the output is logged to /var/log/frr/frr.log.|<pre>/var/log/frr/zebra.log<br>/var/log/frr/{protocol}.log<br>/var/log/frr/frr.log</pre> |
+| Routing protocol | The log file is configurable in FRRouting. When FRRouting first boots, it uses the non-integrated configuration so each routing protocol has its own log file. After booting up, FRRouting switches over to using the integrated configuration, so that all logs go to a single place.<br><br>To edit the location of the log files, use the log file <location> command. By default, FRRouting logs are not sent to syslog. Use the log syslog <level> command to send logs through rsyslog and into /var/log/syslog.<br><br>**Note**: To write syslog debug messages to the log file, you must run the log syslog debug command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as, debug bgp neighbor-events, no output is sent to /var/log/frr/frr.log.<br><br>However, when you manually define a log target with the log file /var/log/frr/debug.log command, FRR automatically defaults to severity 7 (debug) logging and the output is logged to /var/log/frr/frr.log.|<pre>/var/log/frr/zebra.log<br>/var/log/frr/{protocol}.log<br>/var/log/frr/frr.log</pre> |
 
 ## Protocols and Services
 

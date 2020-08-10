@@ -8,9 +8,9 @@ With this release and an administrator role, you are able to integrate the NetQ 
 
 Integrating with an LDAP server does not prevent you from configuring local users (stored and managed in the NetQ database) as well.
 
-Read the Overview to become familiar with LDAP configuration parameters, or skip to {{<link title="#Create an LDAP Configuration" text="Create an LDAP Configuration">}} if you are already an LDAP expert.
+Read Get Started to become familiar with LDAP configuration parameters, or skip to {{<link title="#Create an LDAP Configuration" text="Create an LDAP Configuration">}} if you are already an LDAP expert.
 
-## Overview
+## Get Started
 
 LDAP integration requires information about how to connect to your LDAP server, the type of authentication you plan to use, bind credentials, and, optionally, search attributes.
 
@@ -27,12 +27,12 @@ Two methods of user authentication are available: anonymous and basic.
 
     | Syntax | Description or Usage |
     | -------- | -------------------------- |
-    | cn | common name |
-    | ou | organizational unit or group |
-    | dc | domain name |
-    | dc | domain extension |
+    | cn | Common name |
+    | ou | Organizational unit or group |
+    | dc | Domain name |
+    | dc | Domain extension |
     
-    - **Bind DN**: DN of user with administrator access to query the LDAP server; used for binding with the server. For example, uid =admin,ou=ntwkops,dc=mycompany,dc=com.
+    - **Bind DN**: DN of user with administrator access to query the LDAP server; used for binding with the server. For example, `uid =admin,ou=ntwkops,dc=mycompany,dc=com`.
     - **Bind Password**: Password associated with Bind DN.
 
     The Bind DN and password are sent as clear text. Only users with these credentials are allowed to perform LDAP operations.
@@ -43,7 +43,7 @@ If you are unfamiliar with the configuration of your LDAP server, contact your a
 
 Two attributes are required to define a user entry in a directory:
 
-- **Base DN**: Location in directory structure where search begins. For example, dc=mycompany,dc=com
+- **Base DN**: Location in directory structure where search begins. For example, `dc=mycompany,dc=com`.
 - **User ID**: Type of identifier used to specify an LDAP user. This can vary depending on the authentication service you are using. For example,  user ID (UID) or email address can be used with OpenLDAP, whereas sAMAccountName might be used with Active Directory.
 
 Optionally, you can specify the first name, last name, and email address of the user.
@@ -59,7 +59,7 @@ Search scope options include:
 - **One Level**: Search for immediate children of user; not at base or for any descendants
 - **Subordinate**: Search for subordinates at any depth of user; but not at base
 
-A typical search query for users would be {userIdAttribute}={userId}.
+A typical search query for users would be *{userIdAttribute}={userId}*.
 
 Now that you are familiar with the various LDAP configuration parameters, you can configure the integration of your LDAP server with NetQ using the instructions in the next section.
 

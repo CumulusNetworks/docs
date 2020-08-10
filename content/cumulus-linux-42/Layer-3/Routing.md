@@ -214,7 +214,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/network/interfaces` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/network/interfaces` file. For example:
 
 ```
 ...
@@ -407,17 +407,15 @@ The values in the following tables reflect results from testing on the different
 
 #### Mellanox Spectrum Switches
 
-| <div style="width:135px">Profile     | MAC Addresses | <div style="width:170px">L3 Neighbors | <div style="width:200px">Longest Prefix Match (LPM)     |
-| --------------       | ------------- | ------------------------- | ------------------------------ |
-| default              | 40k           | 32k (IPv4) and 16k (IPv6) | 64k (IPv4) and 28k (IPv6-long) |
-| l2-heavy             | 88k           | 48k (IPv4) and 40k (IPv6) | 8k (IPv4) and 8k (IPv6-long)   |
-| l2-heavy-1           | 180k          | 8k (IPv4) and 8k (IPv6)   | 8k (IPv4) and 8k (IPv6-long)   |
-| v4-lpm-heavy         | 8k            | 8k (IPv4) and 16k (IPv6)  | 80k (IPv4) and 16k (IPv6-long) |
-| v4-lpm-heavy-1       | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
-| v6-lpm-heavy         | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4) and 64k (IPv6-long)  |
-| lpm-balanced         | 8k            | 8k (IPv4) and 8k (IPv6)   | 60k (IPv4) and 60k (IPv6-long) |
-| rash-custom-profile1 | 20k           | 8k (IPv4) and 1k (IPv6)   | 8k (IPv4) and 1k (IPv6-long)   |
-| rash-custom-profile2 | 2k            | 16k (IPv4) and 8k (IPv6)  | 64k (IPv4) and 16k (IPv6-long) |
+| <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">L3 Neighbors| Longest Prefix Match (LPM)  |
+| -------------- | ------------- | ------------------------- | ------------------------------ |
+| default        | 40k           | 32k (IPv4) and 16k (IPv6) | 64k (IPv4) and 28k (IPv6-long) |
+| l2-heavy       | 88k           | 48k (IPv4) and 40k (IPv6) | 8k (IPv4) and 8k (IPv6-long)   |
+| l2-heavy-1     | 180K          | 8k (IPv4) and 8k (IPv6)   | 8k (IPv4) and 8k (IPv6-long)   |
+| v4-lpm-heavy   | 8k            | 8k (IPv4) and 16k (IPv6)  | 80k (IPv4) and 16k (IPv6-long) |
+| v4-lpm-heavy-1 | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
+| v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4) and 32k (IPv6-long) and 32K (IPv6/64) |
+| lpm-balanced   | 8k            | 8k (IPv4) and 8k (IPv6)   | 60k (IPv4) and 60k (IPv6-long) |
 
 #### Broadcom Tomahawk/Tomahawk+ Switches
 
@@ -486,7 +484,7 @@ When {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" t
 
 On Broadcom switches with Cumulus Linux 4.0 and later, when there is a /32 IPv4 or /128 IPv6 route and the same prefix is also a neighbor entry in the linux kernel, the route entry takes precedence over the neighbor entry in the forwarding lookup. To change this behaviour, update the `route_preferred_over_neigh` variable to FALSE in the `/etc/cumulus/switchd.conf` file.
 
-## Caveats and Errata
+## Considerations
 
 ### Do Not Delete Routes through Linux Shell
 

@@ -1,1 +1,0 @@
-liblsan0 has no debian/copyright file

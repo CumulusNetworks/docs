@@ -45,7 +45,7 @@ When you have a running configuration, you can review and update the configurati
 - `net commit confirm` requires you to press *Enter* to commit changes using NCLU. If you run `net commit confirm` but do not press *Enter* within 10 seconds, the commit automatically reverts and no changes are made.
 - `net commit description <description>` enables you to provide a descriptive summary of the changes you are about to commit.
 - `net commit permanent` retains the {{<link url="Back-up-and-Restore" text="backup file">}} taken when committing the change. Otherwise, the backup files created from NCLU commands are cleaned up periodically.
-- `net del all` deletes all configurations and stops the IEEE 802.1X service.
+- `net del all` deletes all configurations.
 
     {{%notice note%}}
 
@@ -413,3 +413,11 @@ cumulus@switch:~$ sudo systemctl restart netd.service
 `net` provides an environment variable to set where the `net` output is directed. To only use `stdout`, set the `NCLU_TAB_STDOUT` environment variable to *true*. The value is not case sensitive.
 
 {{%/notice%}}
+
+## Caveats and Errata
+
+### Unsupported Interface Names
+NCLU does not support interfaces named `dev`.
+
+### Bonds With No Configured Members
+If a bond interface is configured and it contains no members NCLU will report the interace does not exist. 

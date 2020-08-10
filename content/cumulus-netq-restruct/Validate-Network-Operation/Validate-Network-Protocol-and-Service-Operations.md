@@ -34,7 +34,7 @@ The small Validation Request card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/05-Love-it/love-it-check.svg" height="18" width="18"/></td>
-<td>Indicates a validation request</td>
+<td>Indicates a validation request.</td>
 </tr>
 <tr class="even">
 <td>Validation</td>
@@ -66,11 +66,11 @@ The medium Validation Request card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/05-Love-it/love-it-check.svg" height="18" width="18"/></td>
-<td>Indicates a validation request</td>
+<td>Indicates a validation request.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>Validation Request</td>
+<td>Validation Request.</td>
 </tr>
 <tr class="odd">
 <td>Validation</td>
@@ -87,7 +87,7 @@ The medium Validation Request card displays:
 </tr>
 <tr class="even">
 <td>Start the validation request</td>
-<td>Run Now</td>
+<td>Run Now.</td>
 </tr>
 </tbody>
 </table>
@@ -110,19 +110,19 @@ The large Validation Request card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/05-Love-it/love-it-check.svg" height="18" width="18"/></td>
-<td>Indicates a validation request</td>
+<td>Indicates a validation request.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>Validation Request</td>
+<td>Validation Request.</td>
 </tr>
 <tr class="odd">
 <td>Validation</td>
 <td>Depending on user intent, this field is used to:
 <ul>
 <li>Select a scheduled request to run that request on-demand. A default validation is provided for each supported network protocol and service, which runs a network-wide validation check. These validations run every 60 minutes, but you may run them on-demand at any time.</li>
-<li>Leave as is to create a new scheduled validation request</li>
-<li>Select a scheduled request to modify</li>
+<li>Leave as is to create a new scheduled validation request.</li>
+<li>Select a scheduled request to modify.</li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -130,21 +130,21 @@ The large Validation Request card displays:
 <td>For a selected scheduled validation, the protocols included in a validation request are listed here. For new on-demand or scheduled validations, click these to include them in the validation.</td>
 </tr>
 <tr class="odd">
-<td>Schedule:</td>
+<td>Schedule</td>
 <td>For a selected scheduled validation, the schedule and the time of the last run are displayed. For new scheduled validations, select the frequency and starting date and time.
 <ul>
 <li><strong>Run Every</strong>: Select how often to run the request. Choose from 30 minutes, 1, 3, 6, or 12 hours, or 1 day.</li>
-<li><strong>Starting</strong>: Select the date and time to start the first request in the series</li>
-<li><strong>Last Run</strong>: Timestamp of when the selected validation was started</li>
+<li><strong>Starting</strong>: Select the date and time to start the first request in the series.</li>
+<li><strong>Last Run</strong>: Timestamp of when the selected validation was started.</li>
 </ul></td>
 </tr>
 <tr class="even">
 <td>Scheduled Validations</td>
-<td>Count of scheduled validations that are currently scheduled compared to the maximum of 15 allowed</td>
+<td>Count of scheduled validations that are currently scheduled compared to the maximum of 15 allowed.</td>
 </tr>
 <tr class="odd">
 <td>Run Now</td>
-<td>Start the validation request</td>
+<td>Start the validation request.</td>
 </tr>
 <tr class="even">
 <td>Update</td>
@@ -179,11 +179,11 @@ validation requests.
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Validation Request</td>
+<td>Validation Request.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Default Time</td>
@@ -195,18 +195,18 @@ validation requests.
 </tr>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>Validation Requests</td>
 <td>Displays all <em>scheduled</em> validation requests. By default, the requests list is sorted by the date and time that it was originally created (<strong>Created At</strong>). This tab provides the following additional data about each request:
 <ul>
-<li><strong>Name</strong>: Text identifier of the validation</li>
-<li><strong>Type</strong>: Name of network protocols and/or services included in the validation</li>
-<li><strong>Start Time</strong>: Data and time that the validation request was run</li>
-<li><strong>Last Modified</strong>: Date and time of the most recent change made to the validation request</li>
+<li><strong>Name</strong>: Text identifier of the validation.</li>
+<li><strong>Type</strong>: Name of network protocols and/or services included in the validation.</li>
+<li><strong>Start Time</strong>: Data and time that the validation request was run.</li>
+<li><strong>Last Modified</strong>: Date and time of the most recent change made to the validation request.</li>
 <li><strong>Cadence (Min)</strong>: How often, in minutes, the validation is scheduled to run. This is empty for new on-demand requests.</li>
-<li><strong>Is Active</strong>: Indicates whether the request is currently running according to its schedule (<em>true</em>) or it is not running (<em>false</em>)</li>
+<li><strong>Is Active</strong>: Indicates whether the request is currently running according to its schedule (<em>true</em>) or it is not running (<em>false</em>).</li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -354,15 +354,15 @@ The small Validation Result card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat-search.svg" height="18" width="18"/></td>
-<td>Indicates an on-demand validation result</td>
+<td>Indicates an on-demand validation result.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>On-demand Result &lt;Network Protocol or Service Name&gt; Validation</td>
+<td>On-demand Result &lt;Network Protocol or Service Name&gt; Validation.</td>
 </tr>
 <tr class="odd">
 <td>Timestamp</td>
-<td>Date and time the validation was completed</td>
+<td>Date and time the validation was completed.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
@@ -393,15 +393,15 @@ The medium Validation Result card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat-search.svg" height="18" width="18"/></td>
-<td>Indicates an on-demand validation result</td>
+<td>Indicates an on-demand validation result.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>On-demand Validation Result | &lt;Network Protocol or Service Name&gt;</td>
+<td>On-demand Validation Result | &lt;Network Protocol or Service Name&gt;.</td>
 </tr>
 <tr class="odd">
 <td>Timestamp</td>
-<td>Date and time the validation was completed</td>
+<td>Date and time the validation was completed.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
@@ -416,9 +416,9 @@ The medium Validation Result card displays:
 <td>Devices Tested</td>
 <td>Chart with the total number of devices included in the validation and the distribution of the results.
 <ul>
-<li><strong>Pass</strong>: Number of devices tested that had successful results</li>
-<li><strong>Warn</strong>: Number of devices tested that had successful results, but also had at least one warning event</li>
-<li><strong>Fail</strong>: Number of devices tested that had one or more protocol or service failures</li>
+<li><strong>Pass</strong>: Number of devices tested that had successful results.</li>
+<li><strong>Warn</strong>: Number of devices tested that had successful results, but also had at least one warning event.</li>
+<li><strong>Fail</strong>: Number of devices tested that had one or more protocol or service failures.</li>
 </ul>
 <p>Hover over chart to view the number of devices and the percentage of all tested devices for each result category.</p></td>
 </tr>
@@ -429,9 +429,9 @@ The medium Validation Result card displays:
 <p>For Interfaces, chart with total number of ports included in the validation and the distribution of the overall results.</p>
 <p>In each of these charts:</p>
 <ul>
-<li><strong>Pass</strong>: Number of sessions or ports tested that had successful results</li>
-<li><strong>Warn</strong>: Number of sessions or ports tested that had successful results, but also had at least one warning event</li>
-<li><strong>Fail</strong>: Number of sessions or ports tested that had one or more failure events</li>
+<li><strong>Pass</strong>: Number of sessions or ports tested that had successful results.</li>
+<li><strong>Warn</strong>: Number of sessions or ports tested that had successful results, but also had at least one warning event.</li>
+<li><strong>Fail</strong>: Number of sessions or ports tested that had one or more failure events.</li>
 </ul>
 <p>Hover over chart to view the number of devices, sessions, or ports and the percentage of all tested devices, sessions, or ports for each result category.</p>
 <p>This chart does not apply to other Network Protocols and Services, and thus is not displayed for those cards.</p></td>
@@ -463,15 +463,15 @@ The *Summary* tab displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat-search.svg" height="18" width="18"/></td>
-<td>Indicates an on-demand validation result</td>
+<td>Indicates an on-demand validation result.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>On-demand Validation Result | Summary | &lt;Network Protocol or Service Name&gt;</td>
+<td>On-demand Validation Result | Summary | &lt;Network Protocol or Service Name&gt;.</td>
 </tr>
 <tr class="odd">
 <td>Date</td>
-<td>Day and time when the validation completed</td>
+<td>Day and time when the validation completed.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
@@ -486,9 +486,9 @@ The *Summary* tab displays:
 <td>Devices Tested</td>
 <td>Chart with the total number of devices included in the validation and the distribution of the results.
 <ul>
-<li><strong>Pass</strong>: Number of devices tested that had successful results</li>
-<li><strong>Warn</strong>: Number of devices tested that had successful results, but also had at least one warning event</li>
-<li><strong>Fail</strong>: Number of devices tested that had one or more protocol or service failures</li>
+<li><strong>Pass</strong>: Number of devices tested that had successful results.</li>
+<li><strong>Warn</strong>: Number of devices tested that had successful results, but also had at least one warning event.</li>
+<li><strong>Fail</strong>: Number of devices tested that had one or more protocol or service failures.</li>
 </ul>
 <p>Hover over chart to view the number of devices and the percentage of all tested devices for each result category.</p></td>
 </tr>
@@ -500,9 +500,9 @@ The *Summary* tab displays:
 <p>For OSPF, chart with total number of OSPF sessions included in the validation and the distribution of the overall results.</p>
 <p>In each of these charts:</p>
 <ul>
-<li><strong>Pass</strong>: Number of sessions or ports tested that had successful results</li>
-<li><strong>Warn</strong>: Number of sessions or ports tested that had successful results, but also had at least one warning event</li>
-<li><strong>Fail</strong>: Number of sessions or ports tested that had one or more failure events</li>
+<li><strong>Pass</strong>: Number of sessions or ports tested that had successful results.</li>
+<li><strong>Warn</strong>: Number of sessions or ports tested that had successful results, but also had at least one warning event.</li>
+<li><strong>Fail</strong>: Number of sessions or ports tested that had one or more failure events.</li>
 </ul>
 <p>Hover over chart to view the number of devices, sessions, or ports and the percentage of all tested devices, sessions, or ports for each result category.</p>
 <p>This chart does not apply to other Network Protocols and Services, and thus is not displayed for those cards.</p></td>
@@ -516,10 +516,10 @@ The *Summary* tab displays:
 <td><p>When the <strong>Most Active</strong> filter option is selected, the table displays switches and hosts running the given service or protocol in decreasing order of alarm counts. Devices with the largest number of warnings and failures are listed first. You can click on the device name to open its switch card on your workbench.</p>
 <p>When the <strong>Most Recent</strong> filter option is selected, the table displays switches and hosts running the given service or protocol sorted by <strong>timestamp</strong>, with the device with the most recent warning or failure listed first. The table provides the following additional information:</p>
 <ul>
-<li><strong>Hostname</strong>: User-defined name for switch or host</li>
-<li><strong>Message Type</strong>: Network protocol or service which triggered the event</li>
-<li><strong>Message</strong>: Short description of the event</li>
-<li><strong>Severity</strong>: Indication of importance of event; values in decreasing severity include critical, warning, error, info, debug</li>
+<li><strong>Hostname</strong>: User-defined name for switch or host.</li>
+<li><strong>Message Type</strong>: Network protocol or service which triggered the event.</li>
+<li><strong>Message</strong>: Short description of the event.</li>
+<li><strong>Severity</strong>: Indication of importance of event; values in decreasing severity include critical, warning, error, info, debug.</li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -547,15 +547,15 @@ The *Configuration* tab displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/></td>
-<td>Indicates an on-demand validation request configuration</td>
+<td>Indicates an on-demand validation request configuration.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>On-demand Validation Result | Configuration | &lt;Network Protocol or Service Name&gt;</td>
+<td>On-demand Validation Result | Configuration | &lt;Network Protocol or Service Name&gt;.</td>
 </tr>
 <tr class="odd">
 <td>Validations</td>
-<td>List of network protocols or services included in the request that produced these results</td>
+<td>List of network protocols or services included in the request that produced these results.</td>
 </tr>
 <tr class="even">
 <td>Schedule</td>
@@ -582,11 +582,11 @@ The full screen Validation Result card provides a tab for all on-demand validati
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Validation Results | On-demand</td>
+<td>Validation Results | On-demand.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
@@ -598,7 +598,7 @@ The full screen Validation Result card provides a tab for all on-demand validati
 </tr>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>On-demand Validation Result | &lt;network protocol or service&gt;</td>
@@ -701,19 +701,19 @@ The small Scheduled Validation Result card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph-line.svg" height="18" width="18"/></td>
-<td>Indicates a scheduled validation result</td>
+<td>Indicates a scheduled validation result.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>Scheduled Result &lt;Network Protocol or Service Name&gt; Validation</td>
+<td>Scheduled Result &lt;Network Protocol or Service Name&gt; Validation.</td>
 </tr>
 <tr class="odd">
 <td>Results</td>
 <td>Summary of validation results:
 <ul>
-<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/21-Date-Calendar/calendar-refresh.svg" height="18" width="18"/> Number of validation runs completed in the designated time period</li>
-<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/> Number of runs with warnings</li>
-<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> Number of runs with errors</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/21-Date-Calendar/calendar-refresh.svg" height="18" width="18"/> Number of validation runs completed in the designated time period.</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/> Number of runs with warnings.</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> Number of runs with errors.</li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -745,21 +745,21 @@ The medium Scheduled Validation Result card displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph-line.svg" height="18" width="18"/></td>
-<td>Indicates a scheduled validation result</td>
+<td>Indicates a scheduled validation result.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Scheduled Validation Result | &lt;Network Protocol or Service Name&gt;</td>
+<td>Scheduled Validation Result | &lt;Network Protocol or Service Name&gt;.</td>
 </tr>
 <tr class="even">
 <td>Summary</td>
 <td>Summary of validation results:
 <ul>
-<li>Name of scheduled validation</li>
+<li>Name of scheduled validation.</li>
 <li>Status of the validation job, where:
 <ul>
 <li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> <strong>Pass</strong>: Job ran successfully. One or more warnings may have occurred during the run.</li>
@@ -771,7 +771,7 @@ The medium Scheduled Validation Result card displays:
 <td>Chart</td>
 <td>Validation results, where:
 <ul>
-<li><strong>Time period</strong>: Range of time in which the data on the heat map was collected</li>
+<li><strong>Time period</strong>: Range of time in which the data on the heat map was collected.</li>
 <li><strong>Heat map</strong>: A time segmented view of the results. For each time segment, the color represents the percentage of warning, passing, and failed results. Refer to {{<link title="#Granularity of Data Shown Based on Time Period">}} for details on how to interpret the results.</li>
 </ul></td>
 </tr>
@@ -802,30 +802,30 @@ The large Scheduled Validation Result card contains two tabs.
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph-line.svg" height="18" width="18"/></td>
-<td>Indicates a scheduled validation result</td>
+<td>Indicates a scheduled validation result.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>Validation Summary (Scheduled Validation Result | &lt;Network Protocol or Service Name&gt;)</td>
+<td>Validation Summary (Scheduled Validation Result | &lt;Network Protocol or Service Name&gt;).</td>
 </tr>
 <tr class="odd">
 <td>Summary</td>
 <td>Summary of validation results:
 <ul>
-<li>Name of scheduled validation</li>
+<li>Name of scheduled validation.</li>
 <li>Status of the validation job, where:
 <ul>
 <li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> <strong>Pass</strong>: Job ran successfully. One or more warnings may have occurred during the run.</li>
 <li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> <strong>Failed</strong>: Job encountered errors which prevented the job from completing, or job ran successfully, but errors occurred during the run.</li>
 </ul></li>
-<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg" height="18" width="18"/> <strong>Expand/Collapse</strong>: Expand the heat map to full width of card, collapse the heat map to the left</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg" height="18" width="18"/> <strong>Expand/Collapse</strong>: Expand the heat map to full width of card, collapse the heat map to the left.</li>
 </ul></td>
 </tr>
 <tr class="even">
 <td>Chart</td>
 <td>Validation results, where:
 <ul>
-<li><strong>Time period</strong>: Range of time in which the data on the heat map was collected</li>
+<li><strong>Time period</strong>: Range of time in which the data on the heat map was collected.</li>
 <li><strong>Heat map</strong>: A time segmented view of the results. For each time segment, the color represents the percentage of warning, passing, and failed results. Refer to {{<link title="#Granularity of Data Shown Based on Time Period">}} for details on how to interpret the results.</li>
 </ul></td>
 </tr>
@@ -838,10 +838,10 @@ The large Scheduled Validation Result card contains two tabs.
 <td><p>When the <strong>Most Active</strong> filter option is selected, the table displays switches and hosts running the given service or protocol in decreasing order of alarm counts-devices with the largest number of warnings and failures are listed first.</p>
 <p>When the <strong>Most Recent</strong> filter option is selected, the table displays switches and hosts running the given service or protocol sorted by <strong>timestamp</strong>, with the device with the most recent warning or failure listed first. The table provides the following additional information:</p>
 <ul>
-<li><strong>Hostname</strong>: User-defined name for switch or host</li>
-<li><strong>Message Type</strong>: Network protocol or service which triggered the event</li>
-<li><strong>Message</strong>: Short description of the event</li>
-<li><strong>Severity</strong>: Indication of importance of event; values in decreasing severity include critical, warning, error, info, debug</li>
+<li><strong>Hostname</strong>: User-defined name for switch or host.</li>
+<li><strong>Message Type</strong>: Network protocol or service which triggered the event.</li>
+<li><strong>Message</strong>: Short description of the event.</li>
+<li><strong>Severity</strong>: Indication of importance of event; values in decreasing severity include critical, warning, error, info, debug.</li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -913,15 +913,15 @@ validation results for the service.
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Scheduled Validation Results | &lt;Network Protocol or Service&gt;</td>
+<td>Scheduled Validation Results | &lt;Network Protocol or Service&gt;.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
@@ -929,7 +929,7 @@ validation results for the service.
 </tr>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>Scheduled Validation Result | &lt;network protocol or service&gt;</td>
@@ -982,7 +982,7 @@ To view the results:
 
 2. Select the validation results you want to view by clicking in the first column of the result and clicking the check box.
 
-3. On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards). This opens the medium Scheduled Validation Results card(s) for the selected items.
+3. On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards). This opens the medium Scheduled Validation Results card(s) for the selected items.
 
     {{<figure src="/images/netq/sch-valid-result-medium-222.png" width="425">}}
 

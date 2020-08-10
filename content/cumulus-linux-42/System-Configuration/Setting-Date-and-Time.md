@@ -321,7 +321,7 @@ When you use the above procedure to specify your NTP servers, the NCLU commands 
 
 For added security, you can configure NTP to use authorization keys.
 
-Configure the NTP server:
+#### Configure the NTP Server
 
 1. Create a `.keys` file, such as `/etc/ntp.keys`. Specify a key identifier (a number from 1-65535), an encryption method (M for MD5), and the password. The following provides an example:
 
@@ -346,7 +346,9 @@ Configure the NTP server:
 
 3. Restart NTP with the `sudo systemctl restart ntp` command.
 
-Configure the NTP client (the Cumulus Linux switch):
+#### Configure the NTP Client
+
+The NTP client is the Cumulus Linux switch.
 
 1. Create the same `.keys` file you created on the NTP server (`/etc/ntp.keys`). For example:
 
@@ -448,9 +450,7 @@ To enable the PTP boundary clock on the switch:
 
 2. Restart `switchd`:
 
-    ```
-    cumulus@switch:~$ sudo systemctl restart switchd.service
-    ```
+    {{<cl/restart-switchd>}}
 
 ### Configure the PTP Boundary Clock
 

@@ -43,7 +43,7 @@ To create a workbench:
 
 3. Click **Create** to open a blank new workbench, or **Cancel** to discard the workbench.
 
-4. Add cards to the workbench using <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> or <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>.
+4. Add cards to the workbench using <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> or <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>.
 
 Refer to {{<link title="Access Data with Cards">}} for information about interacting with cards on your workbenches.
 
@@ -78,7 +78,7 @@ There are several options for opening workbenches:
 - Open through Cumulus logo
     - Click the logo in the header to open your favorite workbench
 
-## Manage Auto-Refresh for Your Workbenches
+## Manage Auto-refresh for Your Workbenches
 
 With NetQ 2.3.1 and later, you can specify how often to update the data displayed on your workbenches. Three refresh rates are available:
 
@@ -88,7 +88,7 @@ With NetQ 2.3.1 and later, you can specify how often to update the data displaye
 
 By default, auto-refresh is enabled and configured to update every 30 seconds.
 
-### Disable/Enable Auto-Refresh
+### Disable/Enable Auto-refresh
 
 To disable or pause auto-refresh of your workbenches, simply click the **Refresh** icon. This toggles between the two states, *Running* and *Paused*, where <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" width="18"/> indicates it is currently disabled and <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" width="18"/> indicates it is currently enabled.
 

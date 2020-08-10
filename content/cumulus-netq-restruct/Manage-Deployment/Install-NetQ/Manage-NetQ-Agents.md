@@ -52,15 +52,15 @@ Hostname          Status           NTP Sync Version                             
 
 The agent configuration commands enable you to do the following:
 
-- add and remove agents from switches and hosts
-- start and stop agent operations
-- add and remove Kubernetes container monitoring
-- add or remove sensors
-- debug the agent
-- add or remove FRR (FRRouting)
-- set a limit on how many CPU resources the agent can consume on a Cumulus Linux switch
-- send data to the cluster nodes
-- collect What Just Happened data on a Mellanox switch
+- Add and remove agents from switches and hosts
+- Start and stop agent operations
+- Add and remove Kubernetes container monitoring
+- Add or remove sensors
+- Debug the agent
+- Add or remove FRR (FRRouting)
+- Set a limit on how many CPU resources the agent can consume on a Cumulus Linux switch
+- Send data to the cluster nodes
+- Collect What Just Happened data on a Mellanox switch
 
 {{%notice note%}}
 
@@ -200,7 +200,7 @@ logging.
     2019-02-16T18:48:54.260903+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url hydra-09.cumulusnetworks.com port 4786
     ...
 
-**Example: Configure debug-level logging**
+### Example: Configure Debug-level Logging
 
 1.  Set the logging level to *debug.*
 
@@ -213,12 +213,12 @@ logging.
 3.  Optionally, verify connection to the NetQ platform by viewing the
     `netq-agent.log` messages.
 
-**Example: Configure warning-level logging**
+### Example: Configure Warning-level Logging
 
     cumulus@switch:~$ netq config add agent loglevel warning
     cumulus@switch:~$ netq config restart agent
 
-**Example: Disable Agent Logging**
+### Example: Disable Agent Logging
 
 If you have set the logging level to
 *debug* for troubleshooting, it is recommended that you either change

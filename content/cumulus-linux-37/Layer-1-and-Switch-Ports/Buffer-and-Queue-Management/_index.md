@@ -50,10 +50,9 @@ platforms only:
 
 ## Commands
 
-If you modify the configuration in the
-`/etc/cumulus/datapath/traffic.conf` file, you must {{<link url="Configuring-switchd#restart-switchd" text="restart `switchd`">}} for the changes to take effect:
+If you modify the configuration in the `/etc/cumulus/datapath/traffic.conf` file, you must restart `switchd` for the changes to take effect:
 
-    cumulus@switch:~$ sudo systemctl restart switchd.service
+{{<cl/restart-switchd>}}
 
 ## Example Configuration File
 
@@ -512,10 +511,9 @@ sequences of contiguous ports; you can see which ports are contiguous in
         swp7
         ...
 
-{{<link url="Configuring-switchd#restart-switchd" text="Restart `switchd`">}}
-to allow the PFC configuration changes to take effect:
+Restart `switchd` to allow the PFC configuration changes to take effect:
 
-    cumulus@switch:~$ sudo systemctl restart switchd.service
+{{<cl/restart-switchd>}}
 
 ## Configure Link Pause
 
@@ -569,10 +567,9 @@ link_pause.pause_port_group.rx_enable = true
 link_pause.pause_port_group.tx_enable = true
 ```
 
-{{<link url="Configuring-switchd#restart-switchd" text="Restart `switchd`">}}
-to allow link pause configuration changes to take effect:
+Restart `switchd` to allow link pause configuration changes to take effect:
 
-    cumulus@switch:~$ sudo systemctl restart switchd.service
+{{<cl/restart-switchd>}}
 
 ## Configure Cut-through Mode and Store and Forward Switching
 
@@ -718,10 +715,10 @@ through swp4 and swp6:
      ecn.ecn_port_group.max_threshold_bytes = 200000
      ecn.ecn_port_group.probability = 100
 
-{{<link url="Configuring-switchd#restart-switchd" text="Restart `switchd`">}}
-to allow the ECN configuration changes to take effect:
+Restart `switchd` to allow the ECN configuration changes to take effect:
 
-    cumulus@switch:~$ sudo systemctl restart switchd.service
+{{<cl/restart-switchd>}}
+
 </details>
 
 ## Check Interface Buffer Status

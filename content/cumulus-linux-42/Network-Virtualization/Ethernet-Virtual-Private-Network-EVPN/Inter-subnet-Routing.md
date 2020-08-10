@@ -297,7 +297,7 @@ EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the s
 
 - When connecting to a WAN edge router to reach destinations outside the data center, Cumulus Networks recommends that you deploy specific border/exit leaf switches to originate the type-5 routes.
 - On switches with Spectrum ASICs, centralized routing, symmetric routing, and prefix-based routing only work with the Spectrum A1 chip.
-- If you are using a Broadcom Trident II+ switch as a border/exit leaf, see the {{<link url="#caveats">}} below for a required workaround; the workaround only applies to Trident II+ switches, not Tomahawk or Spectrum.
+- If you are using a Broadcom Trident II+ switch as a border/exit leaf, see {{<link url="#considerations" text="Considerations">}} below for a required workaround; the workaround only applies to Trident II+ switches, not Tomahawk or Spectrum.
 
 {{%/notice%}}
 
@@ -455,7 +455,7 @@ switch# write memory
 
 ### Advertise Primary IP address (VXLAN Active-Active Mode)
 
- With Cumulus Linux 3.7 and earlier, in EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes are advertised with the anycast IP address ({{<link url="VXLAN-Active-Active-Mode#terminology" text="clagd-vxlan-anycast-ip">}}) as the next-hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, this can lead to traffic being forwarded to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
+ With Cumulus Linux 3.7 and earlier, in EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes are advertised with the anycast IP address ({{<link url="VXLAN-Active-active-Mode#terminology" text="clagd-vxlan-anycast-ip">}}) as the next-hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, this can lead to traffic being forwarded to a leaf switch that does not have the destination routes. Traffic has to traverse the peer link (with additional BGP sessions per VRF).
 
 To prevent sub-optimal routing in Cumulus Linux 4.0 and later, the next hop IP address of the VTEP is conditionally handled depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
@@ -504,7 +504,7 @@ iface vlan4001
 
 {{%notice note%}}
 
-- In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 and have a previous symmetric routing with VXLAN active-active configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
+- In Cumulus Linux 3.7 and earlier, the `hwaddress` command is used instead of the `address-virtual` command. If you upgrade from Cumulus Linux 3.7 to 4.0 or later and have a previous symmetric routing with VXLAN active-active configuration, you must change `hwaddress` to `address-virtual`. Either run the NCLU `address-virtual <anycast-mac>` command or edit the `/etc/network/interfaces` file.
 - When configuring third party networking devices using MLAG and EVPN for interoperability, you must configure and announce a single shared router MAC value per advertised next hop IP address.
 
 {{%/notice%}}
@@ -638,7 +638,7 @@ cumulus@switch:~$ net show bgp vrf <vrf> ipv4 unicast
 *> 10.0.0.0/8    10.0.0.42                0             0 5541 I
 ```
 
-## Caveats
+## Considerations
 
 ### VXLAN Decapsulation on Maverick and Broadcom Trident II Switches
 

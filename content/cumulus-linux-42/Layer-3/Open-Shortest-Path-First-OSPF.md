@@ -92,7 +92,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "vtysh Commands ">}}
 
-1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configuring-FRRouting">}}.
+1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
 
 2. From the vtysh shell, configure OSPF.
 
@@ -575,7 +575,7 @@ router ospf 22
 
 {{%notice note%}}
 
-If you disable the {{<link url="Configuring-FRRouting" text="integrated">}} FRRouting configuration, you must create a separate `ospfd` configuration file for each instance. The `ospfd.conf` file must include the instance ID in the file name. For example, create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
+If you disable the {{<link url="Configure-FRRouting" text="integrated">}} FRRouting configuration, you must create a separate `ospfd` configuration file for each instance. The `ospfd.conf` file must include the instance ID in the file name. For example, create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
 
 ```
 cumulus@switch:~$ cat /etc/frr/ospfd-11.conf
@@ -967,7 +967,7 @@ For a list all of the OSPF debug options, refer to {{<exlink url="http://docs.fr
 - {{<link url="Bidirectional-Forwarding-Detection-BFD#bfd-in-ospf" text="Bidirectional forwarding detection">}} (BFD) and OSPF
 - {{<exlink url="http://en.wikipedia.org/wiki/Open_Shortest_Path_First" text="Wikipedia - Open Shortest Path First">}}
 - {{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html" text="FRR OSPFv2">}}
-- Perlman, Radia (1999). Interconnections: Bridges, Routers, Switches, and Internetworking Protocols (2 ed.). Addison-Wesley.
-- Moy, John T. OSPF: Anatomy of an Internet Routing Protocol. Addison-Wesley.
+- Perlman, Radia (1999); *Interconnections: Bridges, Routers, Switches, and Internetworking Protocols (2 ed.)*; Addison-Wesley
+- Moy, John T.; *OSPF: Anatomy of an Internet Routing Protocol*; Addison-Wesley
 - {{<exlink url="https://tools.ietf.org/html/rfc2328" text="RFC 2328 OSPFv2">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc3101" text="RFC 3101 OSPFv2 Not-So-Stubby Area (NSSA)">}}

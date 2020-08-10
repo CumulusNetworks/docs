@@ -6,6 +6,8 @@ toc: 3
 ---
 With the NetQ CLI, a network administrator can monitor the switch software components for misconfigurations.
 
+## Monitor Software on a Switch
+
 ### View OS Information for a Switch
 
 You can view the name and version of the OS on a switch, and when it was

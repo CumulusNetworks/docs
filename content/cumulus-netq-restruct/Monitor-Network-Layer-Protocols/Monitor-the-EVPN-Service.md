@@ -69,23 +69,23 @@ The medium EVPN Service card displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
-<td>Indicates data is for all sessions of a Network Service or Protocol</td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services | All EVPN Sessions</td>
+<td>Network Services | All EVPN Sessions.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches and hosts with the EVPN service enabled during the designated time period</td>
+<td>Total number of switches and hosts with the EVPN service enabled during the designated time period.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
-<td>Total number of EVPN-related alarms received during the designated time period</td>
+<td>Total number of EVPN-related alarms received during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Total Nodes Running chart</td>
@@ -124,23 +124,23 @@ The *Sessions Summary* tab which displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
-<td>Indicates data is for all sessions of a Network Service or Protocol</td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Sessions Summary (visible when you hover over card)</td>
+<td>Sessions Summary (visible when you hover over card).</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches and hosts with the EVPN service enabled during the designated time period</td>
+<td>Total number of switches and hosts with the EVPN service enabled during the designated time period.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
-<td>Total number of EVPN-related alarms received during the designated time period</td>
+<td>Total number of EVPN-related alarms received during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Total Nodes Running chart</td>
@@ -163,7 +163,7 @@ The *Sessions Summary* tab which displays:
 </tr>
 <tr class="even">
 <td>Show All Sessions</td>
-<td>Link to view data for all EVPN sessions network-wide in the full screen card</td>
+<td>Link to view data for all EVPN sessions network-wide in the full screen card.</td>
 </tr>
 </tbody>
 </table>
@@ -186,23 +186,23 @@ The *Alarms* tab which displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in header)</td>
-<td>Indicates data is for all alarms for all sessions of a Network Service or Protocol</td>
+<td>Indicates data is for all alarms for all sessions of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Alarms (visible when you hover over card)</td>
+<td>Alarms (visible when you hover over card).</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches and hosts with the EVPN service enabled during the designated time period</td>
+<td>Total number of switches and hosts with the EVPN service enabled during the designated time period.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in summary bar)</td>
-<td>Total number of EVPN-related alarms received during the designated time period</td>
+<td>Total number of EVPN-related alarms received during the designated time period.</td>
 </tr>
 <tr class="even">
 <td>Total Alarms chart</td>
@@ -211,11 +211,11 @@ The *Alarms* tab which displays:
 </tr>
 <tr class="odd">
 <td>Table/Filter options</td>
-<td>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays devices running EVPN sessions in decreasing order of alarm count-devices with the largest number of alarms are listed first</td>
+<td>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays devices running EVPN sessions in decreasing order of alarm count-devices with the largest number of alarms are listed first.</td>
 </tr>
 <tr class="even">
 <td>Show All Sessions</td>
-<td>Link to view data for all EVPN sessions in the full screen card</td>
+<td>Link to view data for all EVPN sessions in the full screen card.</td>
 </tr>
 </tbody>
 </table>
@@ -242,11 +242,11 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
@@ -254,7 +254,7 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 </tr>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>All Switches tab</td>
@@ -295,7 +295,7 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 <li>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</li>
 <li>Model: Manufacturer's model name. Examples include AS7712-32X and S4048-ON.</li>
 <li>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</li>
-<li>Revision: Release version of the platform</li>
+<li>Revision: Release version of the platform.</li>
 <li>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</li>
 <li>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</li>
 </ul></li>
@@ -306,26 +306,26 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 <td>All Sessions tab</td>
 <td>Displays all EVPN sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
 <ul>
-<li><strong>Adv All Vni</strong>: Indicates whether the VNI state is advertising all VNIs (true) or not (false)</li>
-<li><strong>Adv Gw Ip</strong>: Indicates whether the host device is advertising the gateway IP address (true) or not (false)</li>
-<li><strong>DB State</strong>: Session state of the DB</li>
-<li><strong>Export RT</strong>: IP address and port of the export route target used in the filtering mechanism for BGP route exchange</li>
-<li><strong>Import RT</strong>: IP address and port of the import route target used in the filtering mechanism for BGP route exchange</li>
-<li><strong>In Kernel</strong>: Indicates whether the associated VNI is in the kernel (in kernel) or not (not in kernel)</li>
-<li><strong>Is L3</strong>: Indicates whether the session is part of a layer 3 configuration (true) or not (false)</li>
-<li><strong>Origin Ip</strong>: Host device's local VXLAN tunnel IP address for the EVPN instance</li>
-<li><strong>OPID</strong>: LLDP service identifier</li>
-<li><strong>Rd</strong>: Route distinguisher used in the filtering mechanism for BGP route exchange</li>
-<li><strong>Timestamp</strong>: Date and time the session was started, deleted, updated or marked as dead (device is down)</li>
-<li><strong>Vni</strong>: Name of the VNI where session is running</li>
+<li><strong>Adv All Vni</strong>: Indicates whether the VNI state is advertising all VNIs (true) or not (false).</li>
+<li><strong>Adv Gw Ip</strong>: Indicates whether the host device is advertising the gateway IP address (true) or not (false).</li>
+<li><strong>DB State</strong>: Session state of the DB.</li>
+<li><strong>Export RT</strong>: IP address and port of the export route target used in the filtering mechanism for BGP route exchange.</li>
+<li><strong>Import RT</strong>: IP address and port of the import route target used in the filtering mechanism for BGP route exchange.</li>
+<li><strong>In Kernel</strong>: Indicates whether the associated VNI is in the kernel (in kernel) or not (not in kernel).</li>
+<li><strong>Is L3</strong>: Indicates whether the session is part of a layer 3 configuration (true) or not (false).</li>
+<li><strong>Origin Ip</strong>: Host device's local VXLAN tunnel IP address for the EVPN instance.</li>
+<li><strong>OPID</strong>: LLDP service identifier.</li>
+<li><strong>Rd</strong>: Route distinguisher used in the filtering mechanism for BGP route exchange.</li>
+<li><strong>Timestamp</strong>: Date and time the session was started, deleted, updated or marked as dead (device is down).</li>
+<li><strong>Vni</strong>: Name of the VNI where session is running.</li>
 </ul></td>
 </tr>
 <tr class="odd">
 <td>All Alarms tab</td>
 <td>Displays all EVPN events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
-<li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up</li>
-<li><strong>Source</strong>: Hostname of network device that generated the event</li>
+<li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
 <li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>evpn</em> in this card workflow.</li>
 </ul></td>
@@ -532,7 +532,7 @@ To return to original display of results, click the associated tab.
 With NetQ, you can monitor the performance of a single EVPN session, including the number of associated VNI, VTEPs and type. For an overview and how to configure EVPN in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Ethernet Virtual Private Network - EVPN">}}.
 
 {{%notice note%}}
-To access the single session cards, you must open the full screen EVPN Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Cards).
+To access the single session cards, you must open the full screen EVPN Service, click the All Sessions tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Cards).
 {{%/notice%}}
 
 ### EVPN Session Card Workflow Summary
@@ -690,19 +690,19 @@ The *Configuration File Evolution* tab displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/></td>
-<td>Indicates configuration file information for a single session of a Network Service or Protocol</td>
+<td>Indicates configuration file information for a single session of a Network Service or Protocol.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>(Network Services | EVPN Session) Configuration File Evolution</td>
+<td>(Network Services | EVPN Session) Configuration File Evolution.</td>
 </tr>
 <tr class="even">
 <td>{{<img src="/images/netq/ntwk-svcs-single-evpn-vtep-count-icon-230.png" width="20" height="20">}}</td>
-<td>VTEP count (currently)</td>
+<td>VTEP count (currently).</td>
 </tr>
 <tr class="odd">
 <td>Timestamps</td>
@@ -736,15 +736,15 @@ and all events.
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services | EVPN</td>
+<td>Network Services | EVPN.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
@@ -752,32 +752,32 @@ and all events.
 </tr>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>All EVPN Sessions tab</td>
 <td>Displays all EVPN sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
 <ul>
-<li><strong>Adv All Vni</strong>: Indicates whether the VNI state is advertising all VNIs (true) or not (false)</li>
-<li><strong>Adv Gw Ip</strong>: Indicates whether the host device is advertising the gateway IP address (true) or not (false)</li>
-<li><strong>DB State</strong>: Session state of the DB</li>
-<li><strong>Export RT</strong>: IP address and port of the export route target used in the filtering mechanism for BGP route exchange</li>
-<li><strong>Import RT</strong>: IP address and port of the import route target used in the filtering mechanism for BGP route exchange</li>
-<li><strong>In Kernel</strong>: Indicates whether the associated VNI is in the kernel (in kernel) or not (not in kernel)</li>
-<li><strong>Is L3</strong>: Indicates whether the session is part of a layer 3 configuration (true) or not (false)</li>
-<li><strong>Origin Ip</strong>: Host device's local VXLAN tunnel IP address for the EVPN instance</li>
-<li><strong>OPID</strong>: LLDP service identifier</li>
-<li><strong>Rd</strong>: Route distinguisher used in the filtering mechanism for BGP route exchange</li>
-<li><strong>Timestamp</strong>: Date and time the session was started, deleted, updated or marked as dead (device is down)</li>
-<li><strong>Vni</strong>: Name of the VNI where session is running</li>
+<li><strong>Adv All Vni</strong>: Indicates whether the VNI state is advertising all VNIs (true) or not (false).</li>
+<li><strong>Adv Gw Ip</strong>: Indicates whether the host device is advertising the gateway IP address (true) or not (false).</li>
+<li><strong>DB State</strong>: Session state of the DB.</li>
+<li><strong>Export RT</strong>: IP address and port of the export route target used in the filtering mechanism for BGP route exchange.</li>
+<li><strong>Import RT</strong>: IP address and port of the import route target used in the filtering mechanism for BGP route exchange.</li>
+<li><strong>In Kernel</strong>: Indicates whether the associated VNI is in the kernel (in kernel) or not (not in kernel).</li>
+<li><strong>Is L3</strong>: Indicates whether the session is part of a layer 3 configuration (true) or not (false).</li>
+<li><strong>Origin Ip</strong>: Host device's local VXLAN tunnel IP address for the EVPN instance.</li>
+<li><strong>OPID</strong>: LLDP service identifier.</li>
+<li><strong>Rd</strong>: Route distinguisher used in the filtering mechanism for BGP route exchange.</li>
+<li><strong>Timestamp</strong>: Date and time the session was started, deleted, updated or marked as dead (device is down).</li>
+<li><strong>Vni</strong>: Name of the VNI where session is running.</li>
 </ul></td>
 </tr>
 <tr class="even">
 <td>All Events tab</td>
 <td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
-<li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up</li>
-<li><strong>Source</strong>: Hostname of network device that generated the event</li>
+<li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
 <li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
 <li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>evpn</em> in this card workflow.</li>
 </ul></td>

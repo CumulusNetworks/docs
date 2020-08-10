@@ -155,9 +155,7 @@ ecmp_hash_seed = 50
 ...
 ```
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+{{<cl/restart-switchd>}}
 
 {{< /tab >}}
 
@@ -285,7 +283,7 @@ The Mellanox Spectrum ASIC assigns packets to hash buckets and assigns hash buck
 
 - When a next hop is removed, the assigned buckets are distributed to the remaining next hops.
 - When a next hop is added, **no** buckets are assigned to the new next hop until the background thread rebalances the load.
-- The load gets rebalanced when the active flow timer specified by the `resilient_hash_active_timer` setting expires if, and only if, there are inactive hash buckets available; the new next hop may remain unpopulated until the period set in `resilient_hash_active_timer` expires
+- The load gets rebalanced when the active flow timer specified by the `resilient_hash_active_timer` setting expires if, and only if, there are inactive hash buckets available; the new next hop may remain unpopulated until the period set in `resilient_hash_active_timer` expires.
 - When the `resilient_hash_max_unbalanced_timer` setting expires and the load is not balanced, the thread migrates any bucket(s) to different next hops to rebalance the load.
 
 As a result, any flow may be migrated to any next hop, depending on flow activity and load balance conditions; over time, the flow may get pinned, which is the default setting and behavior.
@@ -359,7 +357,6 @@ Mellanox switches with the Spectrum ASIC allow for two custom options to allocat
 
 {{%/notice%}}
 
-
 To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 1. Enable resilient hashing:
@@ -379,11 +376,9 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 
 3. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 
-    ```
-    cumulus@switch:~$ sudo systemctl restart switchd.service
-    ```
+    {{<cl/restart-switchd>}}
 
-## Caveats and Errata
+## Considerations
 
 ### IPv6 Route Replacement
 

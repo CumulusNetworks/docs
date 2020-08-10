@@ -17,7 +17,7 @@ and sub-modes. NCLU provides these benefits:
 - Runs directly from and integrates with bash, while being interoperable with the regular way of accessing underlying configuration files and automation.
 - Configures dependent features automatically so that you don't have to.
 
-{{< img src = "/images/cumulus-linux/nclu-architecture.png" >}}
+{{<img src = "/images/cumulus-linux/nclu-architecture.png">}}
 
 The NCLU wrapper utility called `net` is capable of configuring layer 2 and layer 3 features of the networking stack, installing ACLs and VXLANs, restoring configuration files, as well as providing monitoring and troubleshooting functionality for these features. You can configure both the `/etc/network/interfaces` and `/etc/frr/frr.conf` files with `net`, in addition to running show and clear commands related to `ifupdown2` and FRRouting.
 
@@ -45,7 +45,7 @@ When you have a running configuration, you can review and update the configurati
 - `net commit confirm` requires you to press *Enter* to commit changes using NCLU. If you run `net commit confirm` but do not press *Enter* within 10 seconds, the commit automatically reverts and no changes are made.
 - `net commit description <description>` enables you to provide a descriptive summary of the changes you are about to commit.
 - `net commit permanent` retains the {{<link url="Back-up-and-Restore" text="backup file">}} taken when committing the change. Otherwise, the backup files created from NCLU commands are cleaned up periodically.
-- `net del all` deletes all configurations and stops the IEEE 802.1X service.
+- `net del all` deletes all configurations.
 
     {{%notice note%}}
 
@@ -413,3 +413,12 @@ cumulus@switch:~$ sudo systemctl restart netd.service
 `net` provides an environment variable to set where the `net` output is directed. To only use `stdout`, set the `NCLU_TAB_STDOUT` environment variable to *true*. The value is not case sensitive.
 
 {{%/notice%}}
+
+## Considerations
+
+### Unsupported Interface Names
+NCLU does not support interfaces named `dev`.
+
+### Bonds With No Configured Members
+If a bond interface is configured and it contains no members NCLU will report the interace does not exist. 
+

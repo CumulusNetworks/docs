@@ -25,17 +25,17 @@ You can use {{<exlink url="https://grafana.com/" text="Grafana">}}, an open sour
 
 The first step is to install the NetQ plug-in on your NetQ server or appliance. There are three ways to install the plug-in:
 
-- **Docker File**: Add the following to your existing Dockerfile
+- **Docker File**: Add the following to your existing Dockerfile.
     ```
     # grafana docker file
     FROM grafana/grafana:6.2.2
     RUN grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
     ```
-- **Grafana Docker Image**: Download and run the plug-in in your Grafana Docker container
+- **Grafana Docker Image**: Download and run the plug-in in your Grafana Docker container.
     ```
     $ docker run -d -p 3000:3000 --name=grafana -e "GF_INSTALL_PLUGINS=https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip;netq-dashboard" grafana/grafana
     ```
-- **Grafana CLI**: Download and install the Grafana plug-in using Grafana CLI
+- **Grafana CLI**: Download and install the Grafana plug-in using Grafana CLI.
     ```
     brew update
     brew install grafana
@@ -51,7 +51,7 @@ running Grafana on a simulation server, you may need to modify
 forwarding rules in IPtables to allow access to port 3000.
     {{%/notice%}}
 
-## Set Up a Dashboard
+## Set Up a Pre-configured Dashboard
 
 The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plug-in. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.
 
@@ -159,7 +159,7 @@ Once you have your dashboard configured, you can start analyzing the data:
     - Select a different time period for the data by clicking the forward or back arrows. The default time range is dependent on the width of your browser window.
     - Zoom in on the dashboard by clicking the magnifying glass.
     - Manually refresh the dashboard data, or set an automatic refresh rate for the dashboard from the down arrow.
-    - Add a new variable by clicking the cog wheel, then selecting Variables
+    - Add a new variable by clicking the cog wheel, then selecting **Variables**
     - Add additional panels
     - Click any chart title to edit or remove it from the dashboard
     - Rename the dashboard by clicking the cog wheel and entering the new name

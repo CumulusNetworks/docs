@@ -256,6 +256,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 - On Broadcom switches, SPAN does not capture egress traffic.
 - Cumulus Linux does not support IPv6 ERSPAN destinations.
 - ERSPAN does not cause the kernel to send ARP requests to resolve the next hop for the ERSPAN destination. If an ARP entry for the destination/next hop does not already exist in the kernel, you need to manually resolve this before mirrored traffic is sent (using ping or arping).
+- Mirroring to the same interface that is being monitored will cause a recursive flood of traffic and may impact traffic on other interfaces.
 
 ### Configure SPAN for Switch Ports
 

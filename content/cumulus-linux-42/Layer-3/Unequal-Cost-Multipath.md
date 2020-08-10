@@ -92,7 +92,7 @@ cumulus@leaf01:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -145,7 +145,7 @@ cumulus@leaf01:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -196,7 +196,7 @@ cumulus@leaf01:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -228,7 +228,7 @@ By default, if some of the multipaths do not have link bandwidth, Cumulus Linux 
 
 Change this setting per BGP instance for both IPv4 and IPv6 unicast routes in the BGP instance. For EVPN, set the options on the tenant VRF.
 
-Either run the NCLU `net add bestpath bandwidth ignore|skip-missing|default-weight-for-missing` command or the vtysh `bgp bestpath bandwidth ignore|skip-missing|default-weight-for-missing` command.
+Either run the NCLU `net add bestpath bandwidth ignore|skip-missing|default-weight-for-missing` command or the `vtysh` `bgp bestpath bandwidth ignore|skip-missing|default-weight-for-missing` command.
 
 The following commands set link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
 
@@ -261,7 +261,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 router bgp 65011
@@ -290,7 +290,7 @@ You cannot disable just the BGP link bandwidth extended community from being adv
 
 {{%/notice%}}
 
-To disable all BGP extended communities on a peer or peer group (per address family), either run the NCLU `net del bgp neighbor <neighbor> send-community extended` command or the vtysh `no neighbor <neighbor> send-community extended` command:
+To disable all BGP extended communities on a peer or peer group (per address family), either run the NCLU `net del bgp neighbor <neighbor> send-community extended` command or the `vtysh` `no neighbor <neighbor> send-community extended` command:
 
 {{< tabs "TabID295 ">}}
 
@@ -321,9 +321,9 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-## Show Commands
+## Troubleshooting
 
-To show the extended community in a received or local route, run the NCLU `net show bgp` command or the vtysh `show bgp` command.
+To show the extended community in a received or local route, run the NCLU `net show bgp` command or the `vtysh` `show bgp` command.
 
 The following example shows that an IPv4 unicast route is received with the BGP link bandwidth attribute from two peers. The link bandwidth extended community is encoded in bytes-per-second and shown in Mbps per second: `Extended Community: LB:65002:131072000 (1000.000 Mbps) and Extended Community: LB:65001:65536000 (500.000 Mbps)`.
 
@@ -354,7 +354,7 @@ The bandwidth value used by UCMP is only to determine the percentage of load to 
 
 {{%/notice%}}
 
-To show EVPN type-5 routes, run the NCLU `net show bgp l2vpn evpn route type prefix` command or the vtysh `show bgp l2vpn evpn route type prefix` command.
+To show EVPN type-5 routes, run the NCLU `net show bgp l2vpn evpn route type prefix` command or the `vtysh` `show bgp l2vpn evpn route type prefix` command.
 
 The bandwidth is displayed both in the way it is carried in the extended community (as bytes-per-second - unsigned 32 bits) as well as in Gbps, Mbps, or Kbps. For example:
 
@@ -369,7 +369,7 @@ Origin codes: i - IGP, e - EGP, ? - incomplete
             RT:65050:104001 LB:65050:134217728 (1.000 Gbps) ET:8 Rmac:36:4f:15:ea:81:90
 ```
 
-To see weights associated with next hops for a route with multiple paths, run the NCLU `net show route` command or the vtysh `show ip route` command. For example:
+To see weights associated with next hops for a route with multiple paths, run the NCLU `net show route` command or the `vtysh` `show ip route` command. For example:
 
 ```
 cumulus@switch:~$ net show route 192.168.10.1/32
@@ -380,7 +380,7 @@ Routing entry for 192.168.10.1/32
   * fe80::202:ff:fe00:15, via swp1, weight 33
 ```
 
-## Caveats and Errata
+## Considerations
 
 UCMP with BGP link bandwidth is only available for BGP-learned routes.
 

@@ -61,11 +61,11 @@ The medium Trace Request card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/06-Trip/trip-pins.svg" height="18" width="18"/></td>
-<td>Indicates a trace request</td>
+<td>Indicates a trace request.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>New Trace Request</td>
+<td>New Trace Request.</td>
 </tr>
 <tr class="odd">
 <td>New Trace Request</td>
@@ -73,15 +73,15 @@ The medium Trace Request card displays:
 </tr>
 <tr class="even">
 <td>Source</td>
-<td>(Required) Hostname or IP address of device where to begin the trace</td>
+<td>(Required) Hostname or IP address of device where to begin the trace.</td>
 </tr>
 <tr class="odd">
 <td>Destination</td>
-<td>(Required) IP address of device where to end the trace</td>
+<td>(Required) IP address of device where to end the trace.</td>
 </tr>
 <tr class="even">
 <td>Run Now</td>
-<td>Start the trace now</td>
+<td>Start the trace now.</td>
 </tr>
 </tbody>
 </table>
@@ -104,11 +104,11 @@ The large Trace Request card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/06-Trip/trip-pins.svg" height="18" width="18"/></td>
-<td>Indicates a trace request</td>
+<td>Indicates a trace request.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>New Trace Request</td>
+<td>New Trace Request.</td>
 </tr>
 <tr class="odd">
 <td>Trace selection</td>
@@ -136,7 +136,7 @@ The large Trace Request card displays:
 </tr>
 <tr class="odd">
 <td>Run Now</td>
-<td>Start the trace now</td>
+<td>Start the trace now.</td>
 </tr>
 <tr class="even">
 <td>Update</td>
@@ -171,19 +171,19 @@ The full screen Trace Request card displays:
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Trace Request</td>
+<td>Trace Request.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
 </tr>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>Schedule Preview tab</td>
@@ -351,7 +351,7 @@ displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/06-Business-Products/13-Data-Files/data-file-bars-search.svg" height="18" width="18"/></td>
-<td>Indicates an on-demand trace result</td>
+<td>Indicates an on-demand trace result.</td>
 </tr>
 <tr class="even">
 <td> </td>
@@ -382,11 +382,11 @@ The medium On-demand Trace Results card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/06-Business-Products/13-Data-Files/data-file-bars-search.svg" height="18" width="18"/></td>
-<td>Indicates an on-demand trace result</td>
+<td>Indicates an on-demand trace result.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>On-demand Trace Result</td>
+<td>On-demand Trace Result.</td>
 </tr>
 <tr class="odd">
 <td> </td>
@@ -398,19 +398,19 @@ The medium On-demand Trace Results card displays:
 </tr>
 <tr class="odd">
 <td>Total Paths Found</td>
-<td>Number of paths found between the two devices</td>
+<td>Number of paths found between the two devices.</td>
 </tr>
 <tr class="even">
 <td>MTU Overall</td>
-<td>Average size of the maximum transmission unit for all paths</td>
+<td>Average size of the maximum transmission unit for all paths.</td>
 </tr>
 <tr class="odd">
 <td>Minimum Hops</td>
-<td>Smallest number of hops along a path between the devices</td>
+<td>Smallest number of hops along a path between the devices.</td>
 </tr>
 <tr class="even">
 <td>Maximum Hops</td>
-<td>Largest number of hops along a path between the devices</td>
+<td>Largest number of hops along a path between the devices.</td>
 </tr>
 </tbody>
 </table>
@@ -435,11 +435,11 @@ The *On-demand Trace Result* tab displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/06-Business-Products/13-Data-Files/data-file-bars-search.svg" height="18" width="18"/></td>
-<td>Indicates an on-demand trace result</td>
+<td>Indicates an on-demand trace result.</td>
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>On-demand Trace Result</td>
+<td>On-demand Trace Result.</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/></td>
@@ -451,11 +451,11 @@ The *On-demand Trace Result* tab displays:
 </tr>
 <tr class="odd">
 <td>Distribution by Hops chart</td>
-<td>Displays the distributions of various hop counts for the available paths</td>
+<td>Displays the distributions of various hop counts for the available paths.</td>
 </tr>
 <tr class="even">
 <td>Distribution by MTU chart</td>
-<td>Displays the distribution of MTUs used on the interfaces used in the available paths</td>
+<td>Displays the distribution of MTUs used on the interfaces used in the available paths.</td>
 </tr>
 <tr class="odd">
 <td>Table</td>
@@ -470,15 +470,15 @@ The *On-demand Trace Result* tab displays:
 </tr>
 <tr class="even">
 <td>Total Paths Found</td>
-<td>Number of paths found between the two devices</td>
+<td>Number of paths found between the two devices.</td>
 </tr>
 <tr class="odd">
 <td>MTU Overall</td>
-<td>Average size of the maximum transmission unit for all paths</td>
+<td>Average size of the maximum transmission unit for all paths.</td>
 </tr>
 <tr class="even">
 <td>Minimum Hops</td>
-<td>Smallest number of hops along a path between the devices</td>
+<td>Smallest number of hops along a path between the devices.</td>
 </tr>
 </tbody>
 </table>
@@ -585,7 +585,7 @@ The full screen On-demand Trace Results card displays:
 </tr>
 <tr class="odd">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}</td>
 </tr>
 </tbody>
 </table>
@@ -668,7 +668,7 @@ The small Scheduled Trace Results card displays:
 <tbody>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph.svg" height="18" width="18"/></td>
-<td>Indicates a scheduled trace result</td>
+<td>Indicates a scheduled trace result.</td>
 </tr>
 <tr class="even">
 <td> </td>
@@ -704,15 +704,15 @@ The medium Scheduled Trace Results card displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph.svg" height="18" width="18"/></td>
-<td>Indicates a scheduled trace result</td>
+<td>Indicates a scheduled trace result.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Scheduled Trace Result</td>
+<td>Scheduled Trace Result.</td>
 </tr>
 <tr class="even">
 <td>Summary</td>
@@ -726,7 +726,7 @@ The medium Scheduled Trace Results card displays:
 <tr class="odd">
 <td>Charts</td>
 <td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to {{<link url="#granularity-of-data-shown-based-on-time-period" text="Granularity of Data Shown Based on Time Period">}} for details on how to interpret the results.</p>
-<p><strong>Unique Bad Nodes</strong>: Distribution of unique nodes that generated the indicated warnings and/or failures</p></td>
+<p><strong>Unique Bad Nodes</strong>: Distribution of unique nodes that generated the indicated warnings and/or failures.</p></td>
 </tr>
 </tbody>
 </table>
@@ -751,15 +751,15 @@ The *Results* tab displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph.svg" height="18" width="18"/></td>
-<td>Indicates a scheduled trace result</td>
+<td>Indicates a scheduled trace result.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Scheduled Trace Result</td>
+<td>Scheduled Trace Result.</td>
 </tr>
 <tr class="even">
 <td>Summary</td>
@@ -802,43 +802,43 @@ The *Configuration* tab displays:
 <tbody>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/></td>
-<td>Indicates a scheduled trace configuration</td>
+<td>Indicates a scheduled trace configuration.</td>
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Scheduled Trace Configuration (Scheduled Trace Result)</td>
+<td>Scheduled Trace Configuration (Scheduled Trace Result).</td>
 </tr>
 <tr class="even">
 <td>Source</td>
-<td>Address or hostname of the device where the trace was started</td>
+<td>Address or hostname of the device where the trace was started.</td>
 </tr>
 <tr class="odd">
 <td>Destination</td>
-<td>Address of the device where the trace was stopped</td>
+<td>Address of the device where the trace was stopped.</td>
 </tr>
 <tr class="even">
 <td>Schedule</td>
-<td>The frequency and starting date and time to run the trace</td>
+<td>The frequency and starting date and time to run the trace.</td>
 </tr>
 <tr class="odd">
 <td>VRF</td>
-<td>Virtual Route Forwarding interface, when defined</td>
+<td>Virtual Route Forwarding interface, when defined.</td>
 </tr>
 <tr class="even">
 <td>VLAN</td>
-<td>Virtual LAN identifier, when defined</td>
+<td>Virtual LAN identifier, when defined.</td>
 </tr>
 <tr class="odd">
 <td>Name</td>
-<td>User-defined name of the scheduled trace</td>
+<td>User-defined name of the scheduled trace.</td>
 </tr>
 <tr class="even">
 <td>Run Now</td>
-<td>Start the trace now</td>
+<td>Start the trace now.</td>
 </tr>
 <tr class="odd">
 <td>Edit</td>
@@ -869,15 +869,15 @@ The full screen Scheduled Trace Results card displays:
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench</td>
+<td>Closes full screen card and returns to workbench.</td>
 </tr>
 <tr class="odd">
 <td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
 </tr>
 <tr class="even">
 <td>Results</td>
-<td>Number of results found for the selected tab</td>
+<td>Number of results found for the selected tab.</td>
 </tr>
 <tr class="odd">
 <td>Scheduled Trace Results tab</td>
@@ -928,7 +928,7 @@ To view the results:
 
 2. Select the scheduled trace you want to view results for by clicking in the first column of the result and clicking the check box.
 
-3. On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards). This opens the medium Scheduled Trace Results card(s) for the selected items.
+3. On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards). This opens the medium Scheduled Trace Results card(s) for the selected items.
 
     {{< figure src="/images/netq/sch-trace-result-medium.png" width="200" >}}
 

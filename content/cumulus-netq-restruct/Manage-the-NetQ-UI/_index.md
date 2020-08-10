@@ -8,7 +8,7 @@ As an administrator, you can manage access to and various application-wide setti
 
 Individual users have the ability to set preferences specific to their
 workspaces. This information is covered separately. Refer to
-{{<link title="Set User Preferences">}}.
+ {{<link title="Set User Preferences">}}.
 
 ## NetQ Management Workbench
 

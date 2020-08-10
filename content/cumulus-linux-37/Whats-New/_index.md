@@ -10,6 +10,10 @@ This document supports the Cumulus Linux 3.7 releases, and lists new platforms a
 - For a list of open and fixed issues in Cumulus Linux 3.7, see the {{<link url="Cumulus-Linux-3.7-Release-Notes" text="Cumulus Linux 3.7 Release Notes">}}.
 - To upgrade to a Cumulus Linux 3.7 release, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+## What's New in Cumulus Linux 3.7.13
+
+Cumulus Linux 3.7.13 contains bug fixes and security fixes.
+
 ## What's New in Cumulus Linux 3.7.12
 
 Cumulus Linux 3.7.12 contains bug fixes.

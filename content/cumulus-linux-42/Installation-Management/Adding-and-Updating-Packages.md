@@ -358,6 +358,6 @@ You add these packages normally with `apt-get update && apt-get install`, as {{<
 - {{<exlink url="https://www.debian.org/doc/manuals/debian-faq/pkgtools.en.html" text="Debian GNU/Linux FAQ, Ch 8 Package management tools">}}
 - man pages for `apt-get`, `dpkg`, `sources.list`, `apt_preferences`
 
-## Caveats and Errata
+## Considerations
 
 At this time, you cannot directly browse the contents of the apt.cumulusnetworks.com repository using HTTP.

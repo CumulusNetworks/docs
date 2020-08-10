@@ -13,9 +13,9 @@ While developing and testing the provisioning logic, you can use the `ztp` comma
 
 ZTP in Cumulus Linux can occur automatically in one of the following ways, in this order:
 
-- Through a local file
-- Using a USB drive inserted into the switch (ZTP-USB)
-- Through DHCP
+1. Through a local file
+1. Using a USB drive inserted into the switch (ZTP-USB)
+1. Through DHCP
 
 Each method is discussed in greater detail below.
 
@@ -641,7 +641,7 @@ URL            None
 
 You can run the NCLU `net show system ztp script` or `net show system ztp json` command to see the current `ztp` state.
 
-## Notes
+## Considerations
 
 - During the development of a provisioning script, the switch might need to be rebooted.
 - You can use the Cumulus Linux `onie-select -i` command to cause the switch to reprovision itself and install a network operating system again using ONIE.

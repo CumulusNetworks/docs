@@ -66,9 +66,9 @@
                     <!-- The version is the key in version_links. Get the Permalink of the page stored as a value  -->
                     {{ $ver := "" }}
                     {{ if not ($.Scratch.Get "version_page_map") }}
-                        <a class="dropdown-item" href="{{ .Page.RelPermalink }}">v{{.Page.Params.version}}</a>
+                        <a class="dropdown-item" href="{{ .Page.RelPermalink }}">v{{.Page.Params.version}} </a>
                     {{ else }}
-                        <a class="dropdown-item" href="{{index ($.Scratch.Get "version_page_map") (string .Page.Params.version)}}">v{{.Page.Params.version}}</a>
+                        <a class="dropdown-item" href="{{index ($.Scratch.Get "version_page_map") (string .Page.Params.version)}}">v{{.Page.Params.version}} </a>
                     {{ end }}
                 {{ end }}
             </div>

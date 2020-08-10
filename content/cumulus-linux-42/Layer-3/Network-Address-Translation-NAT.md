@@ -15,7 +15,7 @@ Static and dynamic NAT both support:
 - Basic NAT, which only translates the IP address in the packet: the source IP address in the outbound direction and the destination IP address in the inbound direction.
 - Port Address Translation (PAT), which translates both the IP address and layer 4 port: the source IP address and port in the outbound direction and the destination IP address and port in the inbound direction.
 
-The following illustratration shows a basic NAT configuration.
+The following illustration shows a basic NAT configuration.
 
 {{< img src = "/images/cumulus-linux/nat-example.png" >}}
 
@@ -48,7 +48,9 @@ nat.static_enable = TRUE
 ...
 ```
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+Then restart `switchd`.
+
+{{<cl/restart-switchd>}}
 
 {{%notice note%}}
 
@@ -64,7 +66,7 @@ For static **PAT**, create a rule that matches a source or destination IP addres
 
 For Mellanox Spectrum-2 switches, you can include the outgoing or incoming interface.
 
-To create rules, you can use either NCLU or cl-acltool.
+To create rules, you can use either NCLU or `cl-acltool`.
 
 {{< tabs "TabID68 ">}}
 
@@ -196,7 +198,9 @@ nat.dynamic_enable = TRUE
 ...
 ```
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+Then restart `switchd`.
+
+{{<cl/restart-switchd>}}
 
 {{%notice note%}}
 
@@ -214,7 +218,9 @@ The `/etc/cumulus/switchd.conf` file includes the following configuration option
 | nat.table_size | The maximum number of dynamic `snat` and `dnat` entries in the translation table. The default value is 1024.<br>Trident3 switches support a maximum of 1024  entries.<br>Mellanox Spectrum-2 switches support a maximum of 8192 entries. |
 | nat.config_table_size | The maximum number of rules allowed (NCLU or cl-acltool).<br>The default value is 64. The minimum value is 64. The maximum value is 1024. |
 
-After you change any of the dynamic NAT configuration options, restart `switchd` with the `sudo systemctl restart switchd.service` command.
+After you change any of the dynamic NAT configuration options, restart `switchd`.
+
+{{<cl/restart-switchd>}}
 
 ### Configure Dynamic NAT
 

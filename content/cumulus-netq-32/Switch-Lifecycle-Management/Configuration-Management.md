@@ -8,22 +8,41 @@ You can configure switches using one or more configurations. To enable consisten
 
 Workflow for config switches
 
-View Network Templates
-Create Network Templates
-    SNMP
-    NTP
-    User Accounts
-Modify Network Templates
-Delete Network Templates
-View Switch Configuration Profiles
-Create Switch Configuration Profiles
-Assign Switch Configuration Profiles
-Change Switch Configuration Profile Assignment
-    Modify Assignment
-    Remove Assignment
-View Switch Configuration History
+## Manage Network Templates
 
-you can set up a configuration profile to indicate how you want NetQ configured when it is installed or upgraded on your Cumulus Linux switches.
+### View Network Templates
+
+### Create Network Templates
+
+#### SNMP
+
+#### NTP
+
+#### User Accounts
+
+### Modify Network Templates
+
+### Delete Network Templates
+
+## Manage Switch Configuration Profiles
+
+### View Switch Configuration Profiles
+
+### Create Switch Configuration Profiles
+
+### Assign Switch Configuration Profiles
+
+### Change Switch Configuration Profile Assignment
+
+#### Modify Assignment
+
+#### Remove Assignment
+
+### View Switch Configuration History
+
+## Manage NetQ Configuration Profiles
+
+You can set up a configuration profile to indicate how you want NetQ configured when it is installed or upgraded on your Cumulus Linux switches.
 
 The default configuration profile, *NetQ default config*, is set up to run in the management VRF and provide info level logging. Both WJH and CPU Limiting are disabled.
 

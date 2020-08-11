@@ -6,7 +6,7 @@ weight: 46
 This section describes advanced procedures that you can follow to get more out of Cumulus VX.
 
 - Test the Cumulus Linux upgrade process in your virtual environment by installing a Cumulus VX binary image with ONIE.
-- Run the conversion script on your switches so that you can take the self-paced labs in the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}}.
+- Run the port updqte script on your switches so that you can take the self-paced labs in the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}}.
 - Run the topology converter to convert a topology file into a Vagrantfile so you can create a topology of your choice.
 
 ## Install an ONIE Virtual Machine
@@ -20,7 +20,7 @@ After booting the VM, reboot into ONIE Rescue mode using one of two methods:
 
 To install Cumulus VX, run the `onie-nos-install <URL to cumulus-linux-vx-amd64.bin>` command.
 
-## Run the Conversion Script
+## Run the Port Update Script
 
 The self-paced labs in the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} use the following topology:
 
@@ -34,7 +34,7 @@ To create a topolgy of your choice, you can use the topology converter to conver
 
 {{%notice note%}}
 
-The topology converter is supported for Virtualbox and Libvirt Vagrant.
+The topology converter is supported for Vagrant and Virtualbox, KVM-QEMU and Libvirt, and Vagrant KVM-QEMU and Libvirt.
 
 {{%/notice%}}
 
@@ -48,6 +48,8 @@ The topology converter:
 ### Install the Topology Converter
 
 Follow the steps below to install the topology converter.
+
+1. install the 
 
 {{< tabs "TabID01 ">}}
 
@@ -79,19 +81,29 @@ local@host:~$ sudo pip install ipaddress
 
 {{< /tabs >}}
 
+2. Download the following files from {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab">}}:
+
+   - The `topology_converter.py` file
+   - The `templates/Vagrantfile.j2` template file
+   - The `helper_scripts/extra_switch_config.sh` file
+
+3. Create a directory from which to run the topology converter. Add the files you dowloaded in the previous step.
+
+   The `Vagrantfile.j2` file must be in the `templates` subdirectory. The `extra_switch_config.sh` file must be in the `helper_scripts` subdirectory.
+
 ### Convert a Topology
 
-1. Create a `topology.dot` file or use a file provided by Cumulus Networks {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation#example-topologies" text="here">}}. The following example `toplology.dot` file contains leaf1, which is connected on swp40 and swp50 to leaf2, and server1, which is connected via eth1 to swp1 on leaf1 and eth2 to swp1 on leaf1:
+1. Create a `topology.dot` file or use a file provided by Cumulus Networks {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation#example-topologies" text="here">}}. The following example `toplology.dot` file contains leaf1, which is connected on swp40 and swp50 to leaf2, and server1, which is connected via eth1 to swp1 on leaf1 and eth2 to swp1 on leaf01:
 
    ```
    graph dc1 {
-    "leaf1" [function="leaf" os="CumulusCommunity/cumulus-vx" memory="768" config="./helper_scripts/extra_switch_config.sh"]
-    "leaf2" [function="leaf" os="CumulusCommunity/cumulus-vx" memory="768" config="./helper_scripts/extra_switch_config.sh"]
-    "server1" [function="host" os="boxcutter/ubuntu1404" memory="512" config="./helper_scripts/extra_server_config.sh"]
-      "leaf1":"swp40" -- "leaf2":"swp40"
-      "leaf1":"swp50" -- "leaf2":"swp50"
-      "server1":"eth1" -- "leaf1":"swp1"
-      "server1":"eth2" -- "leaf2":"swp1"
+    "leaf01" [function="leaf" os="CumulusCommunity/cumulus-vx" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+    "leaf02" [function="leaf" os="CumulusCommunity/cumulus-vx" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+    "server01" [function="host" os="boxcutter/ubuntu1404" memory="512" config="./helper_scripts/extra_server_config.sh"]
+      "leaf01":"swp40" -- "leaf02":"swp40"
+      "leaf01":"swp50" -- "leaf02":"swp50"
+      "server01":"eth1" -- "leaf01":"swp1"
+      "server01":"eth2" -- "leaf02":"swp1"
    }
    ```
 
@@ -121,4 +133,4 @@ local@host:~$ python3 ./topology_converter.py ./topology.dot -p libvirt
 
 4. Start the simulation with the `vagrant up` command. If you are using Livirt, start the simulation with the `vagrant up --provider=libvirt` command.
 
-The topology converter reads the provided topology file line by line, and learns information about each node and each link in the topology. This information is stored in a variables datastructure. A `jinja2` template `Vagrantfile.j2` (stored in the `/templates` directory) is used to create a Vagrantfile based on the variables datastructure.
+The topology converter reads the provided topology file line by line, and learns information about each node and each link in the topology. This information is stored in a variables datastructure. A `jinja2` template (`/templates/Vagrantfile.j2`) is used to create a Vagrantfile based on the variables datastructure.

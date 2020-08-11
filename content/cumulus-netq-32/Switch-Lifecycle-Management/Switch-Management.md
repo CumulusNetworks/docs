@@ -1,5 +1,5 @@
 ---
-title: Manage Switches
+title: Manage Switch Inventory and Roles
 author: Cumulus Networks
 weight: 576
 toc: 4

@@ -35,11 +35,7 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
 
 2. Click **Settings**, then click **Network**.
 
-3. Configure the **Adapters** as shown in the table below, then click **OK**.
-
-   For each adapter:
-   - Make sure the **Enable Network Adapter** check box is selected.
-   - For Adapter 2, 3, and 4, make sure  **Internal Network** is selected in the **Attached to** dropdown and that **Promiscuous Mode** is set to **Allow All** under **Advanced**.
+3. Configure the **Adapters** as shown in the table below, then click **OK**. 
 
    | Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Internal Network Name |
    | --------- | ----     | -------------------- | ----------------------- | --------------------- |
@@ -54,6 +50,10 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
    |spine01    |          | Adapter 1            | NAT                     |                       |
    |           | swp1     | Adapter 2            | Internal                | intnet-1              |
    |           | swp2     | Adapter 3            | Internal                | intnet-2              |
+
+   For each adapter:
+   - Make sure the **Enable Network Adapter** check box is selected.
+   - For Adapter 2, 3, and 4, make sure  **Internal Network** is selected in the **Attached to** dropdown and that **Promiscuous Mode** is set to **Allow All** under **Advanced**.
 
 4. Start the VMs.
 

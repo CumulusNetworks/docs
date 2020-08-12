@@ -33,28 +33,95 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
 
 1. In the VirtualBox Manager window, select the VM.
 
-2. Click **Settings**, then click **Network** to configure the **Adapters**.
+2. Click **Settings**, then click **Network**.
 
-3. For each adapter:
-   - Make sure the **Enable Network Adapter** check box is selected.
-   - For Adapter 2, 3, and 4, make sure  **Internal Network** is selected in the **Attached to** dropdown and that **Promiscuous Mode** is set to **Allow All** under **Advanced**.
-   - Set the internal network name as shown in the table below.
+3. Configure the **Adapters** on each VM as shown below, then click **OK** to save the network connections.
 
-      | Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Internal Network Name |
-      | --------- | ----     | -------------------- | ----------------------- | --------------------- |
-      |leaf01     |          | Adapter 1            | NAT                     |                       |
-      |           | swp1     | Adapter 2            | Internal                | intnet-1              |
-      |           | swp2     | Adapter 3            | Internal                | intnet-3              |
-      |           | swp3     | Adapter 4            | Internal                | intnet-4              |
-      |leaf02     |          | Adapter 1            | NAT                     |                       |
-      |           | swp1     | Adapter 2            | Internal                | intnet-2              |
-      |           | swp2     | Adapter 3            | Internal                | intnet-3              |
-      |           | swp3     | Adapter 4            | Internal                | intnet-4              |
-      |spine01    |          | Adapter 1            | NAT                     |                       |
-      |           | swp1     | Adapter 2            | Internal                | intnet-1              |
-      |           | swp2     | Adapter 3            | Internal                | intnet-2              |
+   **leaf01 configuration**
 
-4. Click **OK** to save the network connections, then start the VMs.
+      {{< tabs "TabID01 ">}}
+
+{{< tab "Adapter 1 ">}}
+
+{{< img src="/images/cumulus-vx/vbox-adapter1-leaf01.png" width="400" >}}
+
+{{< /tab >}}
+
+{{< tab "Adapter 2 ">}}
+
+{{< img src="/images/cumulus-vx/vbox-adapter2-leaf01.png" width="400" >}}
+
+{{< /tab >}}
+
+{{< tab "Adapter 3 ">}}
+
+{{< img src="/images/cumulus-vx/vbox-adapter3-leaf01.png" width="400" >}}
+
+{{< /tab >}}
+
+{{< tab "Adapter 4 ">}}
+
+{{< img src="/images/cumulus-vx/vbox-adapter4-leaf01.png"  width="400" >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+   **leaf02 configuration**
+
+   {{< tabs "TabID02 ">}}
+
+{{< tab "Adapter 1 ">}}
+
+{{< img src="/images/cumulus-vx/vbox-adapter1-leaf02.png"  width="400" >}}
+
+{{< /tab >}}
+
+{{< tab "Adapter 2 ">}}
+
+{{< img src = "/images/cumulus-vx/vbox-adapter2-leaf02.png" >}}
+
+{{< /tab >}}
+
+{{< tab "Adapter 3 ">}}
+
+{{< img src="/images/cumulus-vx/vbox-adapter3-leaf02.png"  width="400" >}}
+
+{{< /tab >}}
+
+{{< tab "Adapter 4 ">}}
+
+{{< img src="/images/cumulus-vx/vbox-adapter4-leaf02.png"  width="400" >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+   **spine01 configuration**
+
+   {{< tabs "TabID03 ">}}
+
+{{< tab "Adapter 1 ">}}
+
+{{< img src="/images/cumulus-vx/vbox-adapter1-spine01.png"  width="400" >}}
+
+{{< /tab >}}
+
+{{< tab "Adapter 2 ">}}
+
+{{< img src="/images/cumulus-vx/vbox-adapter2-spine01.png"  width="400" >}}
+
+{{< /tab >}}
+
+{{< tab "Adapter 3 ">}}
+
+{{< img src="/images/cumulus-vx/vbox-adapter3-spine01.png"  width="400" >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+4. Start the VMs.
 
 ## Log into the Switches
 

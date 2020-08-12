@@ -1,7 +1,7 @@
 ---
 title: Manage Network Snapshots
 author: Cumulus Networks
-weight: 578
+weight: 584
 toc: 4
 ---
 Creating and comparing network snapshots can be used at various times; typically when you are upgrading or changing the configuration of your switches in some way. The instructions here describe how to create and compare network snapshots at any time using the NetQ UI.

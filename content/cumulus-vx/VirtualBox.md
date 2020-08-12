@@ -40,19 +40,19 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
    - For Adapter 2, 3, and 4, make sure  **Internal Network** is selected in the **Attached to** dropdown and that **Promiscuous Mode** is set to **Allow All** under **Advanced**.
    - Set the internal network name as shown in the table below.
 
-   | Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Internal Network Name |
-   | --------- | ----     | -------------------- | ----------------------- | --------------------- |
-   |leaf01     |          | Adapter 1            | NAT                     |                       |
-   |           | swp1     | Adapter 2            | Internal                | intnet-1              |
-   |           | swp2     | Adapter 3            | Internal                | intnet-3              |
-   |           | swp3     | Adapter 4            | Internal                | intnet-4              |
-   |leaf02     |          | Adapter 1            | NAT                     |                       |
-   |           | swp1     | Adapter 2            | Internal                | intnet-2              |
-   |           | swp2     | Adapter 3            | Internal                | intnet-3              |
-   |           | swp3     | Adapter 4            | Internal                | intnet-4              |
-   |spine01    |          | Adapter 1            | NAT                     |                       |
-   |           | swp1     | Adapter 2            | Internal                | intnet-1              |
-   |           | swp2     | Adapter 3            | Internal                | intnet-2              |
+      | Switch    | swp      | VirtualBox Interface | VirtualBox Network Type | Internal Network Name |
+      | --------- | ----     | -------------------- | ----------------------- | --------------------- |
+      |leaf01     |          | Adapter 1            | NAT                     |                       |
+      |           | swp1     | Adapter 2            | Internal                | intnet-1              |
+      |           | swp2     | Adapter 3            | Internal                | intnet-3              |
+      |           | swp3     | Adapter 4            | Internal                | intnet-4              |
+      |leaf02     |          | Adapter 1            | NAT                     |                       |
+      |           | swp1     | Adapter 2            | Internal                | intnet-2              |
+      |           | swp2     | Adapter 3            | Internal                | intnet-3              |
+      |           | swp3     | Adapter 4            | Internal                | intnet-4              |
+      |spine01    |          | Adapter 1            | NAT                     |                       |
+      |           | swp1     | Adapter 2            | Internal                | intnet-1              |
+      |           | swp2     | Adapter 3            | Internal                | intnet-2              |
 
 4. Click **OK** to save the network connections, then start the VMs.
 

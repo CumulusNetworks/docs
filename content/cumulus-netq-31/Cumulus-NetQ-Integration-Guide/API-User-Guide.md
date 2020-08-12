@@ -30,7 +30,7 @@ Each API returns a predetermined set of data as defined in the API models.
 
 You can access the API gateway and execute requests from a terminal interface against your NetQ On-premises VM or Appliance through port 32708 or your NetQ Cloud VM or Appliance through port 443.
 
-### Log In and Authentication
+### Log In and Authenticate
 
 Use your login credentials that were provided as part of the installation process. For this release, the default is username *admin* and password *admin*.
 

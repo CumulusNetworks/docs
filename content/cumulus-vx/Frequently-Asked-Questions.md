@@ -83,3 +83,7 @@ Follow these steps to send both the grub menu and the kernel output back to the 
 {{< /tab >}}
 
 {{< /tabs >}}
+
+### I have platform and disk limitations for Cumulus VX, how do I try Cumulus Linux?
+
+Try {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.

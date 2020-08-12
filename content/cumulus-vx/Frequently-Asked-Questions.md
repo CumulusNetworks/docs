@@ -11,6 +11,10 @@ You can download Cumulus VX images for all supported platforms from the {{<exlin
 
 For a list of the supported hypervisors and orchestrators, see {{<link url="Overview" text="supported platforms">}}.
 
+### What's the support policy for Cumulus VX?
+
+The support policy for Cumulus VX depends on whether you are a customer or non-customer. See {{<link url="Overview#support-policy" text="Support Policy">}}.
+
 ### How do I log into the Cumulus VX switches?
 
 - For Cumulus VX 4.2 and later, log into each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time, you are prompted to change the default password.

@@ -48,15 +48,19 @@ To provide easier access in video-focused hypervisors (such as VirtualBox), Cumu
 
 Follow these steps to send both the grub menu and the kernel output back to the serial console.
 
-If the VM has not been booted:
+{{< tabs "TabID01 ">}}
+
+{{< tab "If the VM has not been booted ">}}
 
 1. Interrupt the boot process at the GRUB prompt.
 
-2. Modify the Linux command line directly, removing all references to the console entries:
+2. Modify the Linux command line directly, removing all references to the console entries.
 
 3. Start the VM.
 
-If the VM is already running:
+{{< /tab >}}
+
+{{< tab "If the VM is already running ">}}
 
 1. Run the following commands as the sudo user:
 
@@ -66,4 +70,8 @@ If the VM is already running:
    cumulus@switch:~$ sudo update-grub
    ```
 
-2. Restart the VM to implement the change.
+2. Restart the VM.
+
+{{< /tab >}}
+
+{{< /tabs >}}

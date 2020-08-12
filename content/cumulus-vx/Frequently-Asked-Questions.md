@@ -15,6 +15,10 @@ For a list of the supported hypervisors and orchestrators, see {{<link url="Over
 
 The support policy for Cumulus VX depends on whether you are a customer or non-customer. See {{<link url="Overview#support-policy" text="Support Policy">}}.
 
+### What's the difference between Cumulus VX and Cumulus Linux?
+
+Cumulus VX is not a production-ready virtual switch or router. See {{<link url="Overview#Cumulus-vx-compared-with-cumulus-linux" text="Cumulus VX Compared with Cumulus Linux">}}.
+
 ### How do I log into the Cumulus VX switches?
 
 - For Cumulus VX 4.2 and later, log into each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time, you are prompted to change the default password.

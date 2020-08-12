@@ -3,6 +3,7 @@ title: Frequently Asked Questions
 author: Cumulus Networks
 weight: 50
 ---
+
 ### From where do I download Cumulus VX images?
 
 You can download Cumulus VX images for all supported platforms from the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus VX Download">}} page.

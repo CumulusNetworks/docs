@@ -77,6 +77,6 @@ For non-customers, Cumulus VX remains a community-supported product, with no for
 
 {{%notice note%}}
 
-Cumulus Networks offers *Cumulus in the Cloud*, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network. This is a good way to try out Cumulus Linux if you have platform or disk limitations. You can check out CITC {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="here">}}.
+Cumulus Networks also offers *Cumulus in the Cloud*, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network. This is a good way to try out Cumulus Linux if you have platform or disk limitations. You can check out CITC {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="here">}}.
 
 {{%/notice%}}

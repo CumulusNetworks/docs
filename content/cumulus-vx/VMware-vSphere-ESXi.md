@@ -59,6 +59,8 @@ Create the network connections between leaf01, leaf02, and spine01.
 
    1. Under **VMs and Templates**, select the VM in the left pane, then click the **Edit Settings** icon.
 
+      {{< img src="/images/cumulus-vx/vsphere-edit-icon.png" width="500" >}}
+
    2. Under **Virtual Hardware**, configure the network adapters as shown below, then click **OK**.
 
       {{< figure src = "/images/cumulus-vx/VX-Connections.png" >}}

@@ -23,6 +23,6 @@ Cumulus Networks also offers {{<exlink url="https://cumulusnetworks.com/products
 
 ## How do I use Cumulus VX?
 
-This document describes how to install Cumulus VX on {{<link url="Overview" text="supported platforms">}} and configure the created VMs using a simple two leaf and one spine topology. After you successfully install and configure the VMs, you can run basic commands to get up and running. You can then explore further using the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux documentation">}} as a resource.
+This document describes how to install Cumulus VX on a {{<link url="Overview" text="supported platform">}} and configure the created VMs using a simple two leaf and one spine topology. After you successfully install and configure the VMs, you can run basic commands to get up and running. You can then explore further using the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux documentation">}} as a resource.
 
 The {{<link url="Advanced-Configuration" text="Advanced Configuration">}} section of this document provides additional procedures to configure the two leaf, one spine topology for use with the self-paced labs in the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} and to create your own topology with the topology converter for use with Vagrant and Libvirt.

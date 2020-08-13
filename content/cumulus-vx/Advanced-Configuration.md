@@ -26,7 +26,7 @@ Cumulus Networks offers the {{<exlink url="https://cumulusnetworks.com/lp/cumulu
 
 The self-paced labs in the Virtual Test Drive use the following topology:
 
-{{< img src="/images/cumulus-vx/testdrive-topology.png" width="300" >}}
+{{< img src="/images/cumulus-vx/testdrive-topology.png" width="400" >}}
 
 To be able to do the self-paced labs, you need to first run a script to update the port configuration, and add server01 and server02. Follow these steps:
 
@@ -75,7 +75,7 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
 
    - The `topology_converter.py` file
    - The `templates/Vagrantfile.j2` template file
-   - The `helper_scripts/extra_switch_config.sh` file
+   - The `helper_scripts/extra_switch_config.sh` file and the `helper_scripts/extra_server_config.sh` file
 
 3. Create a directory from which to run the topology converter. Add the files you dowloaded in the previous step.
 
@@ -88,6 +88,7 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
    local@host:topology_converter$ mkdir templates helper_scripts
    local@host:topology_converter$ cp /Users/abc/Downloads/templates_Vagrantfile.j2 ./templates/Vagrantfile.j2
    local@host:topology_converter$ cp /Users/abc/Downloads/helper_scripts_extra_switch_config.sh ./helper_scripts/extra_switch_config.sh
+   local@host:topology_converter$ cp /Users/abc/Downloads/helper_scripts_extra_server_config.sh ./helper_scripts/extra_server_config.sh
    ```
 
 ### Convert a Topology

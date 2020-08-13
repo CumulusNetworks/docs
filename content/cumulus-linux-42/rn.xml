@@ -81,6 +81,12 @@ Fixed: 3.1+dfsg-8+deb10u7</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-30580</td>
+<td><p>ifupdown2 does not account for link status or link down configuration when running dhclient. For example, ifupdown2 ignores link-down yes during ifup/ifreload and runs the DHCP module if inet dhcp is configured on the interface. ifupdown2 also runs the DHCP module even when the physical link configured for DHCP is down.</p></td>
+<td>3.7.12-3.7.13, 4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30565</td>
 <td><p>Several denial of service vulnerabilities have been announced in the qemu packages:<br/>
 CVE-2020-10756 CVE-2020-13361 CVE-2020-13362 CVE-2020-13754 CVE-2020-13659<br/>
@@ -363,6 +369,12 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <td></td>
 </tr>
 <tr>
+<td>CM-29982</td>
+<td><p>A VRRP role change over the EVPN network causes excessive BGP updates and connectivity issues to VIP for about one minute.</p></td>
+<td>4.1.1-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.13, 4.0.0-4.2.0</td>
@@ -446,12 +458,6 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 
 <p>To work around this issue,  run the ifreload -a command a second time.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29591</td>
-<td><p>When you add an IPv4 route with an IPv6 next hop, switchd crashes.</p></td>
-<td>4.1.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>

@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 190
 toc: 3
 ---
-The complete Cumulus NetQ solution contains several components that must be installed, including the NetQ applications, the database, and the NetQ Agents. NetQ can be deployed in two arrangements:
+The Cumulus NetQ software contains several components that must be installed, including the NetQ applications, the database, and the NetQ Agents. NetQ can be deployed in two arrangements:
 
 - All software components installed locally (the applications and database are installed as a single entity, called the *NetQ Platform*) running on the *NetQ On-premises Appliance* or *NetQ On-premises Virtual Machine (VM)*; known hereafter as the *on-premises solution*
 - Only the aggregation and forwarding application software installed locally (called the *NetQ Collector*) running on the *NetQ Cloud Appliance* or *NetQ Cloud VM*, with the database and all other applications installed in the cloud; known hereafter as the *cloud solution*
@@ -35,3 +35,7 @@ No matter how you answer the questions above, the installation workflow can be s
 2. Install the software (NetQ Platform or NetQ Collector).
 3. Install and configure NetQ Agents on switches and hosts.
 4. Install and configure NetQ CLI on switches and hosts (optional, but useful).
+
+## Where to Go Next
+
+Follow the instructions in {{<link title="Install NetQ System" text="Install the NetQ System">}} to begin installation of Cumulus NetQ.

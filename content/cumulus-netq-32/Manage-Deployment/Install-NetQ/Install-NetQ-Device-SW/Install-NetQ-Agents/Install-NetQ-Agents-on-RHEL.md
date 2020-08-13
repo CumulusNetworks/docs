@@ -1,7 +1,7 @@
 ---
 title: Install and Configure the NetQ Agent on RHEL and CentOS Servers
 author: Cumulus Networks
-weight: 300
+weight: 290
 toc: 5
 ---
 After installing your Cumulus NetQ software, you should install the NetQ 3.0.0 Agents on each server you want to monitor. NetQ Agents can be installed on servers running:

@@ -1,7 +1,7 @@
 ---
 title: Install and Configure the NetQ CLI on Cumulus Linux Switches
 author: Cumulus Networks
-weight: 320
+weight: 310
 toc: 5
 ---
 After installing your Cumulus NetQ software and the NetQ 3.0.0 Agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:

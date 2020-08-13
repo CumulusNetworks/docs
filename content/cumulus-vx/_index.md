@@ -13,7 +13,13 @@ Welcome to Cumulus Linux VX.
 
 ## What is Cumulus VX?
 
-Cumulus VX is a free virtual environment designed for cloud and network administrators that introduces you to open networking where you can learn and test the latest technology from Cumulus Networks in your own time, at your own pace, and within your own environment, without organizational and economic barriers. Use Cumulus VX to produce sandbox environments for prototype assessment, pre-production rollouts, and script development. Refer to the {{<link url="Overview" text="Cumulus VX overview">}} for additional information about Cumulus VX, to see a list of the supported platforms, and to read the support policy.
+Cumulus VX is a free virtual environment designed for cloud and network administrators that introduces you to open networking where you can learn and test the latest technology from Cumulus Networks in your own time, at your own pace, and within your own environment, without organizational and economic barriers. Use Cumulus VX to produce sandbox environments for prototype assessment, pre-production rollouts, and script development. Refer to the {{<link url="Overview" text="Cumulus VX overview">}} for additional information about Cumulus VX, to see a list of the supported environments, and to read the support policy.
+
+{{%notice note%}}
+
+Cumulus Networks also offers {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
+
+{{%/notice%}}
 
 ## How do I use Cumulus VX?
 

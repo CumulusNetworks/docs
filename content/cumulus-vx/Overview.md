@@ -5,9 +5,22 @@ weight: 5
 product: Cumulus VX
 version: '3.7'
 ---
-Cumulus VX runs in a virtual machine (VM) on a standard x86 environment. The VM is a 64-bit operating system, built on the same foundation as {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux">}}, and runs Debian Linux with `virtio` drivers for network and HDD interfaces as well as the logical volume manager (LVM).
+This section provides an overview of Cumulus VX and lists the supported environments.
 
-## Supported Platforms
+## Cumulus VX
+
+Cumulus VX is a virtual appliance that helps you become familiar with Cumulus Networks technology, and provides a platform for you to prototype network operations and develop custom applications before you deploy into a production environment. Without the need of a bare metal switch or specialized hardware, Cumulus VX runs on all popular hypervisors, making traditional networking protocols such as BGP and MLAG, Cumulus Networks-specific technologies such as ONIE, and Prescriptive Topology Manager (PTM) available for testing and configuration.
+
+Cumulus VX runs in a virtual machine (VM) on a standard x86 environment. The VM is a 64-bit operating system, built on the same foundation as {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux">}}, and runs Debian Linux with `virtio` drivers for network and HDD interfaces as well as the logical volume manager (LVM). Cumulus VX includes all the control plane elements without an actual ASIC or NPU for line rate performance or hardware acceleration.
+
+{{< img src="/images/cumulus-vx/cumulusVX.png" width="800" >}}
+
+## Cumulus in the Cloud
+
+As an alternative to Cumulus VX, which requires a hypervisor (or hypervisor and orchestrator) running on your system, you can use
+{{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
+
+## Supported Environments
 
 Cumulus VX is supported on:
 
@@ -74,9 +87,3 @@ For non-customers, Cumulus VX remains a community-supported product, with no for
 - {{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM documentation">}}
 - {{<exlink url="https://docs.vagrantup.com/v2/" text="Vagrant documentation">}}
 - {{<exlink url="https://www.gns3.com/software" text="GNS3 documentation">}}
-
-{{%notice note%}}
-
-Cumulus Networks also offers *Cumulus in the Cloud*, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network. This is a good way to try out Cumulus Linux if you have platform or disk limitations. You can check out CITC {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="here">}}.
-
-{{%/notice%}}

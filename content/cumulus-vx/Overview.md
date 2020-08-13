@@ -13,7 +13,7 @@ Cumulus VX is a virtual appliance that helps you become familiar with Cumulus Ne
 
 Cumulus VX runs in a virtual machine (VM) on a standard x86 environment. The VM is a 64-bit operating system, built on the same foundation as {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux" text="Cumulus Linux">}}, and runs Debian Linux with `virtio` drivers for network and HDD interfaces as well as the logical volume manager (LVM). Cumulus VX includes all the control plane elements without an actual ASIC or NPU for line rate performance or hardware acceleration.
 
-{{< img src="/images/cumulus-vx/cumulusVX.png" width="800" >}}
+{{< img src="/images/cumulus-vx/cumulus-vx.png" width="800" >}}
 
 ## Cumulus in the Cloud
 

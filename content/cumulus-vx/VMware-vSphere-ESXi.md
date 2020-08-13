@@ -87,7 +87,7 @@ Create the network connections between leaf01, leaf02, and spine01.
 
 {{< /tabs >}}
 
-3. Start the VMS and launch the Console for each VM.
+3. Start the VMs and launch the Console for each VM.
 
 ## Log into the Switches
 

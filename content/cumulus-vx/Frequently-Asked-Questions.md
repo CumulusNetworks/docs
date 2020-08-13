@@ -20,6 +20,10 @@ The support policy for Cumulus VX depends on whether you are a customer or non-c
 
 Cumulus VX is not a production-ready virtual switch or router. See {{<link url="Overview#Cumulus-vx-compared-with-cumulus-linux" text="Cumulus VX Compared with Cumulus Linux">}}.
 
+### I have platform and disk limitations for Cumulus VX, how do I try Cumulus Linux?
+
+Try {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
+
 ### How do I log into the Cumulus VX switches?
 
 - For Cumulus VX 4.2 and later, log into each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time, you are prompted to change the default password.
@@ -43,7 +47,7 @@ Info: Check the output of 'blkid'.
 
 Configure VMware vSphere to use the SATA controller.
 
-### Why do I see the error br0: received package on swp1 with own address as source address?
+### Why do I see the error "br0: received package on swp1 with own address as source address"?
 
 If you intend to bridge the switch ports in the VM, place each switch port in the bridge in its own virtual network on the host. Otherwise, you might see this error:
 
@@ -85,6 +89,12 @@ Follow these steps to send both the grub menu and the kernel output back to the 
 
 {{< /tabs >}}
 
-### I have platform and disk limitations for Cumulus VX, how do I try Cumulus Linux?
+### Why do I see a the error "net could not connect to netd" when I try to run NCLU commands?
 
-Try {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
+Based on the underlying CPU resources, it might take some time for the NCLU service to start when you boot the switch. If you issue an NCLU command before the NCLU service starts, you see the message:
+
+```
+ERROR: net could not connect to netd
+```
+
+Either wait a bit longer for the NCLU service to start or run the command `sudo sytemctl start netd`.

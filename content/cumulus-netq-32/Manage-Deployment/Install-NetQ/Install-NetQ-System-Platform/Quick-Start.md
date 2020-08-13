@@ -1,7 +1,7 @@
 ---
 title: Install NetQ Quick Start
 author: Cumulus Networks
-weight: 260
+weight: 240
 toc: 5
 ---
 If you know how you would answer the key installation questions, you can go directly to the instructions for those choices using the table here.

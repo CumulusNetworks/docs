@@ -1,5 +1,5 @@
 ---
-title: Install NetQ System Platform
+title: Install the NetQ System
 author: Cumulus Networks
 weight: 200
 toc: 4

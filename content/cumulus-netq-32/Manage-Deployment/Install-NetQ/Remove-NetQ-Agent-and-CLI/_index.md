@@ -1,7 +1,7 @@
 ---
 title: Remove the NetQ Agent and CLI
 author: Cumulus Networks
-weight: 380
+weight: 350
 toc: 3
 ---
 

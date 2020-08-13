@@ -7,10 +7,26 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30987</td>
+<td><p>On the Mellanox switch, RoCE with PFC configuration is not applied to all ports in hardware when a range is used in the traffic.conf file.<br/>
+To work around this issue, use NCLU to configure RoCE with PFC or list individual ports in the traffic.conf file.</p></td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30957</td>
+<td><p>The following vulnerability has been announced in the json-c / libjson_c3 packages:<br/>
+CVE-2020-12762: json-c through 0.14 has an integer overflow and out-of-bounds write via a large JSON file, as demonstrated by printbuf_memappend.<br/>
+Vulnerable: 0.12.1+ds-2<br/>
+Fixed: 0.12.1+ds-2+deb10u1</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30879</td>
 <td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
 </td>
-<td>3.7.12-3.7.13, 4.1.1-4.2.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -65,6 +81,12 @@ Fixed: 3.1+dfsg-8+deb10u7</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-30580</td>
+<td><p>ifupdown2 does not account for link status or link down configuration when running dhclient. For example, ifupdown2 ignores link-down yes during ifup/ifreload and runs the DHCP module if inet dhcp is configured on the interface. ifupdown2 also runs the DHCP module even when the physical link configured for DHCP is down.</p></td>
+<td>3.7.12-3.7.13, 4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30565</td>
 <td><p>Several denial of service vulnerabilities have been announced in the qemu packages:<br/>
 CVE-2020-10756 CVE-2020-13361 CVE-2020-13362 CVE-2020-13754 CVE-2020-13659<br/>
@@ -114,14 +136,14 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 <tr>
 <td>CM-30504</td>
 <td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
-<td>3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30503</td>
 <td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
-<td>3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30486</td>
@@ -344,6 +366,12 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <td>CM-30089</td>
 <td><p>Cumulus Linux supports a maximum of 300 ACLs for use with 802.1X interfaces. This limit encompasses the default ACLs, pre-auth ACLs and dynamic ACLs. Exceeding this limit can affect the performance of the switch.</p></td>
 <td>4.1.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29982</td>
+<td><p>A VRRP role change over the EVPN network causes excessive BGP updates and connectivity issues to VIP for about one minute.</p></td>
+<td>4.1.1-4.2.0</td>
 <td></td>
 </tr>
 <tr>

@@ -7,10 +7,19 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30957</td>
+<td><p>The following vulnerability has been announced in the json-c / libjson_c3 packages:<br/>
+CVE-2020-12762: json-c through 0.14 has an integer overflow and out-of-bounds write via a large JSON file, as demonstrated by printbuf_memappend.<br/>
+Vulnerable: 0.12.1+ds-2<br/>
+Fixed: 0.12.1+ds-2+deb10u1</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30879</td>
 <td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
 </td>
-<td>3.7.12-3.7.13, 4.1.1-4.2.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -100,14 +109,14 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 <tr>
 <td>CM-30504</td>
 <td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
-<td>3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30503</td>
 <td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
-<td>3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30486</td>
@@ -349,6 +358,12 @@ UPDATE Message Error/Optional Attribute Error
 To work around this issue, apply an extended community with a route map using import &lt;vrf&gt; route-map &lt;name&gt; in the importing VRF address family. Make sure that the route map contains the set extended community rt &lt;value:vaue&gt; command; for example, set extended community rt 11:22.</p></td>
 <td>4.1.0-4.1.1</td>
 <td>4.2.0</td>
+</tr>
+<tr>
+<td>CM-29982</td>
+<td><p>A VRRP role change over the EVPN network causes excessive BGP updates and connectivity issues to VIP for about one minute.</p></td>
+<td>4.1.1-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>
@@ -2121,6 +2136,22 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30957</td>
+<td><p>The following vulnerability has been announced in the json-c / libjson_c3 packages:<br/>
+CVE-2020-12762: json-c through 0.14 has an integer overflow and out-of-bounds write via a large JSON file, as demonstrated by printbuf_memappend.<br/>
+Vulnerable: 0.12.1+ds-2<br/>
+Fixed: 0.12.1+ds-2+deb10u1</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30879</td>
+<td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
+</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30872</td>
 <td><p>Several vulnerabilities have been discovered in the GRUB2 bootloader.<br/>
 CVE-2020-10713: A flaw in the grub.cfg parsing code was found allowing to break UEFI Secure Boot and load arbitrary code. Details can be found at <a href="https://www.eclypsium.com/2020/07/29/theres-a-hole-in-the-boot/" class="external-link" rel="nofollow">https://www.eclypsium.com/2020/07/29/theres-a-hole-in-the-boot/</a><br/>
@@ -2207,14 +2238,14 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 <tr>
 <td>CM-30504</td>
 <td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
-<td>3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30503</td>
 <td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
-<td>3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30473</td>

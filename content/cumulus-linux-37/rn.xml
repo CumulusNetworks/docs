@@ -7,6 +7,36 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30895</td>
 <td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
 CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
@@ -72,8 +102,26 @@ To work around this issue, ifdown/ifup the SVI when a MAC address changes.</p></
 <td></td>
 </tr>
 <tr>
+<td>CM-30580</td>
+<td><p>ifupdown2 does not account for link status or link down configuration when running dhclient. For example, ifupdown2 ignores link-down yes during ifup/ifreload and runs the DHCP module if inet dhcp is configured on the interface. ifupdown2 also runs the DHCP module even when the physical link configured for DHCP is down.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30514</td>
 <td><p>In OVSDB high availability mode, deleting &gt; 200 VLAN bindings might cause ovs-vtepd to crash.  Limit the deletion to 200 or fewer VLAN bindings.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30504</td>
+<td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30503</td>
+<td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
@@ -1674,16 +1722,6 @@ Fixed: 5.20.2-3+deb8u13</p></td>
 <td>3.0.0-3.7.12</td>
 </tr>
 <tr>
-<td>CM-30504</td>
-<td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
-<td>3.7.12</td>
-</tr>
-<tr>
-<td>CM-30503</td>
-<td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
-<td>3.7.12</td>
-</tr>
-<tr>
 <td>CM-30494</td>
 <td><p>On the Mellanox switch with the Spectrum and Spectrum-2 ASIC, IPv6 egress ACLs are not supported on subinterfaces.</p></td>
 <td></td>
@@ -2139,6 +2177,36 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30895</td>
 <td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
 CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
@@ -2233,6 +2301,12 @@ Fixed: 1.6.2-5+deb8u7</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30580</td>
+<td><p>ifupdown2 does not account for link status or link down configuration when running dhclient. For example, ifupdown2 ignores link-down yes during ifup/ifreload and runs the DHCP module if inet dhcp is configured on the interface. ifupdown2 also runs the DHCP module even when the physical link configured for DHCP is down.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30533</td>
 <td><p>CVE-2020-15389: jp2/opj_decompress.c in OpenJPEG through 2.3.1 has a use-after-free that can be triggered if there is a mix of valid and invalid files in a directory operated on by the decompressor. Triggering a double-free may also be possible. This is related to calling opj_image_destroy twice.<br/>
 Vulnerable: &lt;= 2.1.0-2+deb8u10<br/>
@@ -2275,14 +2349,14 @@ Fixed: 5.20.2-3+deb8u13</p></td>
 <tr>
 <td>CM-30504</td>
 <td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
-<td>3.7.12</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30503</td>
 <td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
-<td>3.7.12</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30486</td>
@@ -4588,6 +4662,36 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30895</td>
@@ -7275,6 +7379,36 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30895</td>
 <td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
 CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
@@ -9664,6 +9798,36 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30895</td>
@@ -12492,6 +12656,36 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30895</td>
 <td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
 CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
@@ -15188,6 +15382,36 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30895</td>
@@ -18242,6 +18466,36 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30895</td>
 <td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
 CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
@@ -21250,6 +21504,36 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30895</td>
 <td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
 CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
@@ -23925,6 +24209,36 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30895</td>
@@ -26660,6 +26974,36 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30895</td>
@@ -29554,6 +29898,36 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30895</td>
@@ -32572,6 +32946,36 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30895</td>
 <td><p>Various security vulnerabilities have been fixed in imagemagick, which is available in the repository for optional installation.  The list of CVEs is:<br/>
 CVE-2017-12805 CVE-2017-17681 CVE-2017-18252 CVE-2018-7443 CVE-2018-8804 CVE-2018-8960 CVE-2018-9133 CVE-2018-10177 CVE-2018-18024 CVE-2018-20467 CVE-2019-10131 CVE-2019-11472 CVE-2019-12977 CVE-2019-12978 CVE-2019-12979 CVE-2019-13300 CVE-2019-13307 CVE-2019-13454<br/>
@@ -35102,6 +35506,36 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-30978</td>
+<td><p>The following vulnerability has been announced in pillow:<br/>
+CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
+The python-pil packages are not installed by default, but are available for optional installation.<br/>
+Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
+Fixed: 2.6.1-2+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30914</td>
+<td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
+CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
+CVE-2020-12400: P-384 and P-521 implementation uses a side-channel vulnerable modular inversion function<br/>
+CVE-2020-12401: ECDSA timing attack mitigation bypass<br/>
+Vulnerable: &lt;= 3.26-1+debu8u11<br/>
+Fixed: 3.26-1+debu8u12</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30913</td>
+<td><p>The following vulnerability has been announced in the libx11 packages:<br/>
+CVE-2020-14344: The X Input Method (XIM) client implementation in libX11 has some integer overflows and signed/unsigned comparison issues that can lead to heap corruption when handling malformed messages from an input method.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u2<br/>
+Fixed: 1.6.2-3+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30895</td>

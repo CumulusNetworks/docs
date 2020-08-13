@@ -22,7 +22,7 @@ To install Cumulus VX, run the `onie-nos-install <URL to cumulus-linux-vx-amd64.
 
 ## Run the Update Script for the Self-paced Labs
 
-Cumulus Networks offers the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} to help you get familiar with Cumulus Linux. The test drive includes various self-paced labs so you practice configuring Cumulus Linux and using features such as BGP.
+Cumulus Networks offers the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} to help you get familiar with Cumulus Linux. The test drive includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as BGP.
 
 The self-paced labs in the Virtual Test Drive use the following topology:
 

@@ -20,13 +20,15 @@ After booting the VM, reboot into ONIE Rescue mode using one of two methods:
 
 To install Cumulus VX, run the `onie-nos-install <URL to cumulus-linux-vx-amd64.bin>` command.
 
-## Run the Update Script
+## Run the Update Script for the Self-paced Labs
 
-The self-paced labs in the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} use the following topology:
+Cumulus Networks offers the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} to help you get familiar with Cumulus Linux. The test drive includes various self-paced labs so you practice configuring Cumulus Linux and using features such as BGP.
+
+The self-paced labs in the Virtual Test Drive use the following topology:
 
 {{< img src="/images/cumulus-vx/testdrive-topology.png" width="300" >}}
 
-To be able to run the self-paced labs, you need to first run a script to update the port configuration and add server01 and server02. Follow these steps:
+To be able to do the self-paced labs, you need to first run a script to update the port configuration, and add server01 and server02. Follow these steps:
 
 1. 
 
@@ -38,7 +40,7 @@ To be able to run the self-paced labs, you need to first run a script to update 
 
 The topology Converter can help you to simulate a custom network topology directly on your laptop or on a dedicated server. The topology can be extremely complete enabling you to simulate hosts as well as network equipment.
 
-Topology converter translates a graphviz topology file (`.dot` file), which describe the network topology link-by-link, into a Vagrantfile, which fully represents the topology. Vagrantfiles are used with Vagrant to interconnect VMs. You can then simulate the topology in either Virtualbox or with KVM-QEMU and Libvirt.
+Topology converter translates a graphviz topology file (`.dot` file), which describes the network topology link-by-link, into a Vagrantfile, which fully represents the topology. Vagrantfiles are used with Vagrant to interconnect VMs. You can then simulate the topology in either Virtualbox or with KVM-QEMU and Libvirt.
 
 The topology converter:
 

@@ -1,5 +1,5 @@
 ---
-title: Monitor Events
+title: Manage Events and Notifications
 author: Cumulus Networks
 weight: 660
 toc: 3

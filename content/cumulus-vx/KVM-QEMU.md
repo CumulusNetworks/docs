@@ -39,7 +39,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    - leaf02.qcow2
    - spine01.qcow2
 
-2. Run the following commands to configure each VM. In the example commands below, the VMs are installed in `/var/lib/libvirt/images/`.
+2. Run the following commands to configure each VM. Make sure you specify the location of the VM at the end of the command. In the example commands below, the VMs are installed in `/var/lib/libvirt/images/`.
 
    {{< tabs "TabID01 ">}}
 

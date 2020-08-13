@@ -12,7 +12,7 @@ frontend:
     build:
       commands:
         # Embed the git commit ID into the PDF for future troubleshooting
-        - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/_default/baseof.html
+        - sed -i "s/COMMIT_INFO/$AWS_COMMIT_ID/g" themes/netDocs/layouts/partials/pdf-head.html
         #- echo Building PDFs...
         # Install docraptor and requests libraries
         - if [ "${AWS_BRANCH}" = "master" ]; then pip3 install --upgrade docraptor requests ; fi

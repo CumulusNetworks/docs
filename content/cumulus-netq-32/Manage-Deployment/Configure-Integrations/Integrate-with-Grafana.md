@@ -1,7 +1,7 @@
 ---
 title: Integrate NetQ with Grafana
 author: Cumulus Networks
-weight: 540
+weight: 550
 toc: 3
 ---
 Switches collect statistics about the performance of their interfaces.

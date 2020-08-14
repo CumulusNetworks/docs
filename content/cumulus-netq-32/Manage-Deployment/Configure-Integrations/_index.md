@@ -1,7 +1,7 @@
 ---
 title: Configure Integrations
 author: Cumulus Networks
-weight: 510
+weight: 530
 toc: 2
 ---
 After you have completed the installation of Cumulus NetQ,

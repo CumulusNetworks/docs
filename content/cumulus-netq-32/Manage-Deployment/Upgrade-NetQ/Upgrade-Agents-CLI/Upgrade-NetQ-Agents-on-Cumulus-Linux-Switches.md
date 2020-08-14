@@ -1,7 +1,7 @@
 ---
 title: Upgrade NetQ Agents on Cumulus Linux Switches
 author: Cumulus Networks
-weight: 430
+weight: 490
 toc: 5
 ---
 The following instructions are applicable to both Cumulus Linux 3.x and 4.x, and for both on-premises and cloud deployments.

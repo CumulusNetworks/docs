@@ -1,7 +1,7 @@
 ---
 title: Upgrade NetQ
 author: Cumulus Networks
-weight: 390
+weight: 400
 toc: 3
 ---
 This topic describes how to upgrade from your current NetQ 2.4.x installation to the NetQ 3.0.0 release to take advantage of new capabilities and bug fixes (refer to the {{<link title="Cumulus NetQ 3.2 Release Notes" text="release notes">}}).

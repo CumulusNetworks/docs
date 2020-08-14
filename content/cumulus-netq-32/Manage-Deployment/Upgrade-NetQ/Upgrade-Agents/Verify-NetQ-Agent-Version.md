@@ -1,7 +1,7 @@
 ---
 title: Verify NetQ Agent Version
 author: Cumulus Networks
-weight: 450
+weight: 460
 toc: 5
 ---
 You can verify the version of the agent software you have deployed as described in the following sections.

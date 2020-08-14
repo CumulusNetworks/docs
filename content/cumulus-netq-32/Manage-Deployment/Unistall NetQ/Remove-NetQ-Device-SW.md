@@ -1,7 +1,7 @@
 ---
-title: Remove the NetQ Agent and CLI
+title: Remove the NetQ Device Software
 author: Cumulus Networks
-weight: 350
+weight: 580
 toc: 3
 ---
 

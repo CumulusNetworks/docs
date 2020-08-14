@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 235
 toc: 5
 ---
-This topic describes how to prepare a NetQ 2.4.x or earlier NetQ Appliance before installing NetQ 3.0.x. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ 3.0.x.
+This topic describes how to prepare a NetQ 2.4.x or earlier NetQ Appliance before installing NetQ 3.x. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ 3.x.
 
 The preparation workflow is summarized in this figure:
 

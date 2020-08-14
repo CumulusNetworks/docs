@@ -12,7 +12,7 @@ You can monitor all of the hardware and software components installed and runnin
 
 The Cumulus NetQ UI provides two cards for monitoring network-wide inventory information. The Inventory | Devices card provides varying degrees of information about hardware and software on all switches and hosts running NetQ. The Inventory | Switches card provides varying degrees of information about the hardware and software on all switches running NetQ. Access these cards from the Cumulus Workbench, or add them to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory | Devices card  and/or Inventory | Switches > **Open Cards**.
 
-{{<img src="/images/netq/inventory-devices-medium-240.png" width="200">}}&mdash;{{<figure src="/images/netq/inventory-switches-medium-240.png" width="200">}}
+{{<img src="/images/netq/inventory-devices-medium-240.png" width="200">}}&mdash;{{<figure src="/images/netq/inventory-switch-medium-230.png" width="200">}}
 
 The second location is through tabular views for each network element. These are helpful when you want to see all data for a particular element in your network, or you want to export a list view. However, the tabular views only provide the current status; you cannot change the time period of the views, or graph the data within the UI.
 

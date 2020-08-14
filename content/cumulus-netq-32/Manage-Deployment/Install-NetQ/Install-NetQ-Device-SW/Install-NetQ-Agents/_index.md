@@ -1,7 +1,7 @@
 ---
 title: Install NetQ Agents
 author: Cumulus Networks
-weight: 260
+weight: 280
 toc: 4
 ---
 Cumulus NetQ Agents can be installed on switches or hosts running Cumulus Linux, Ubuntu, Red Hat Enterprise, or CentOS operating systems (OSs). Install the NetQ Agent based on the OS:

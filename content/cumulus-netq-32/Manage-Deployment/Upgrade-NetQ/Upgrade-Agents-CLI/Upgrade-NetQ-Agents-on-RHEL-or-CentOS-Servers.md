@@ -1,7 +1,7 @@
 ---
 title: Upgrade NetQ Agents on RHEL or CentOS Servers
 author: Cumulus Networks
-weight: 450
+weight: 510
 toc: 5
 ---
 The following instructions are applicable to both on-premises and cloud deployments.

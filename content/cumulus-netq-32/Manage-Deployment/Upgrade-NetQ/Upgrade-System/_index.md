@@ -1,7 +1,7 @@
 ---
 title: Upgrade NetQ Appliances and Virtual Machines
 author: Cumulus Networks
-weight: 400
+weight: 410
 toc: 4
 ---
 The first step in upgrading your NetQ 2.4.x installation to NetQ 3.0.0 is to upgrade your NetQ appliance(s) or VM(s). This topic describes how to upgrade this for both on-premises and cloud deployments.

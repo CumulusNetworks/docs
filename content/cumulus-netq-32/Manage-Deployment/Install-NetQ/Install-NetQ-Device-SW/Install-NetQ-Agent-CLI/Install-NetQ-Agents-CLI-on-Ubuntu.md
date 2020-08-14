@@ -1,7 +1,7 @@
 ---
 title: Install and Configure the NetQ Agent on Ubuntu Servers
 author: Cumulus Networks
-weight: 300
+weight: 380
 toc: 5
 ---
 After installing your Cumulus NetQ software, you should install the  NetQ 3.0.0 Agent on each server you want to monitor. NetQ Agents can be installed on servers running:

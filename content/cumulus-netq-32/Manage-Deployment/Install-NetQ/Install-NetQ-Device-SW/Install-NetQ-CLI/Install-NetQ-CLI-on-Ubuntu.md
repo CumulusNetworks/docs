@@ -1,7 +1,7 @@
 ---
 title: Install and Configure the NetQ CLI on Ubuntu Servers
 author: Cumulus Networks
-weight: 320
+weight: 340
 toc: 5
 ---
 After installing your Cumulus NetQ software, you should install the  NetQ 3.0.0 Agents on each switch you want to monitor. NetQ Agents can be installed on servers running:

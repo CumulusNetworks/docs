@@ -1,6 +1,6 @@
 ---
 title: Install NetQ Agent and CLI
 author: Cumulus Networks
-weight: 340
+weight: 360
 toc: 4
 ---

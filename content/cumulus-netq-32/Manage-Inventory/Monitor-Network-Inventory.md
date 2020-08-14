@@ -1,20 +1,45 @@
 ---
 title: Monitor Network Inventory
 author: Cumulus Networks
-weight: 820
+weight: 610
 toc: 4
 ---
 With NetQ, you can monitor the hardware and software components installed and running on the switches and hosts across the entire network at once. This is extremely useful for understanding the dependence on various vendors and versions, when planning upgrades or the scope of any other required changes.
 
-You can still monitor the components on a per-switch basis when needed. Refer to {{<link title="Monitor Switch Inventory">}}.
-
-Refer to {{<link title="Monitor Devices">}} for related CLI commands and UI cards used in the tasks in this topic.
-
 ## View Network Inventory Summary
 
-All of the devices in your network can be viewed from either the NetQ CLI or NetQ UI.
+All of the devices in your network can be viewed from either the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID17" >}}
+{{< tabs "TabID13" >}}
+
+{{< tab "NetQ UI" >}}
+
+### View the Number of Each Device Type in Your Network
+
+You can view the number of switches and hosts deployed in your network. As you grow your network this can be useful for validating that devices have been added as scheduled.
+
+To view the quantity of devices in your network, locate or open the small or medium Inventory|Devices card.
+
+{{<figure src="/images/netq/inventory-devices-small-240.png" width="200">}}
+{{<figure src="/images/netq/inventory-devices-medium-230.png" width="200">}}
+
+### View All Switches
+
+You can view all stored attributes for all switches in your network. To view all switch details, open the full screen Inventory|Devices card and click the **All Switches** tab in the navigation panel.
+
+{{< figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700" >}}
+
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+### View All Hosts
+
+You can view all stored attributes for all hosts in your network. To view all hosts details, open the full screen Inventory|Devices card and click the **All Hosts** tab in the navigation panel.
+
+{{< figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
+
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
 
 {{< tab "NetQ CLI" >}}
 
@@ -54,35 +79,6 @@ spine04           VX                   CL              x86_64   VX              
 
 {{< /tab >}}
 
-{{< tab "NetQ UI" >}}
-
-### View the Number of Each Device Type in Your Network
-
-You can view the number of switches and hosts deployed in your network. As you grow your network this can be useful for validating that devices have been added as scheduled.
-
-To view the quantity of devices in your network, locate or open the small or medium Inventory|Devices card.
-
-{{< figure src="/images/netq/inventory-devices-small-240.png" width="200" >}}
-{{< figure src="/images/netq/inventory-devices-medium-240.png" width="200" >}}
-
-### View All Switches
-
-You can view all stored attributes for all switches in your network. To view all switch details, open the full screen Inventory|Devices card and click the **All Switches** tab in the navigation panel.
-
-{{< figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700" >}}
-
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
-### View All Hosts
-
-You can view all stored attributes for all hosts in your network. To view all hosts details, open the full screen Inventory|Devices card and click the **All Hosts** tab in the navigation panel.
-
-{{< figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
-
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
-{{< /tab >}}
-
 {{< /tabs >}}
 
 ## View Hardware Inventory across the Network
@@ -94,6 +90,30 @@ You can view all hardware components or narrow your view to specific hardware co
 Switch component inventory can be viewed from either the NetQ CLI or NetQ UI.
 
 {{< tabs "TabID87" >}}
+
+{{< tab "NetQ UI" >}}
+
+To view switch components:
+
+1. Locate the Inventory|Devices card on your workbench.
+
+2. Hover over the card, and change to the large size card using the size picker.
+
+    By default the Switches tab is shown displaying the total number of switches, ASIC vendors, OS versions, license status, NetQ Agent versions, and specific platforms deployed across all of your switches.
+
+    {{< figure src="/images/netq/inventory-devices-large-switches-tab-230.png" width="500" >}}
+
+You can hover over any of the segments in a component distribution chart to highlight a specific type of the given component. When you *hover*, a tooltip appears displaying:
+
+- the name or value of the component type, such as the version number or status
+- the total number of switches with that type of component deployed compared to the total number of switches
+- percentage of this type with respect to all component types
+
+    {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650" >}}
+
+Additionally, sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
+
+{{< /tab >}}
 
 {{< tab "NetQ CLI" >}}
 
@@ -133,30 +153,6 @@ spine04           VX                   CL              x86_64   VX              
 
 {{< /tab >}}
 
-{{< tab "NetQ UI" >}}
-
-To view switch components:
-
-1. Locate the Inventory|Devices card on your workbench.
-
-2. Hover over the card, and change to the large size card using the size picker.
-
-    By default the Switches tab is shown displaying the total number of switches, ASIC vendors, OS versions, license status, NetQ Agent versions, and specific platforms deployed across all of your switches.
-
-    {{< figure src="/images/netq/inventory-devices-large-switches-tab-230.png" width="500" >}}
-
-You can hover over any of the segments in a component distribution chart to highlight a specific type of the given component. When you *hover*, a tooltip appears displaying:
-
-- the name or value of the component type, such as the version number or status
-- the total number of switches with that type of component deployed compared to the total number of switches
-- percentage of this type with respect to all component types
-
-    {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650" >}}
-
-Additionally, sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
-
-{{< /tab >}}
-
 {{< /tabs >}}
 
 ### View ASIC Information for all Switches
@@ -164,6 +160,32 @@ Additionally, sympathetic highlighting is used to show the related component typ
 ASIC information can be viewed from either the NetQ CLI or NetQ UI.
 
 {{< tabs "TabID158" >}}
+
+{{< tab "NetQ UI" >}}
+
+To dig deeper on a particular component type, you can filter the card data by that type. In this procedure, the result of filtering on the ASIC is shown.
+
+To view ASIC data:
+
+1. Click a segment of the ASIC graph in the component distribution charts.
+
+    {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-filter.png" width="300" >}}
+
+2. Select the first option from the popup, *Filter ASIC*. The card data is filtered to show only the components associated with selected component type. A filter tag appears next to the total number of switches indicating the filter criteria.
+
+    {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-filter-os-230.png" width="250" >}}
+
+3. Hover over the segments to view the related components.
+
+    {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight2-230.png" width="500" >}}
+
+4. To return to the full complement of components, click the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
+
+While the Device Inventory cards provide a network-wide view, you may want to see more detail about your switch inventory. This can be found in the Switches Inventory card workflow. To open that workflow, click the **Switch Inventory** button at the top right of the Switches card.
+
+{{< figure src="/images/netq/inventory-devices-large-switches-tab-switch-inv-button-230.png" width="500" >}}
+
+{{< /tab >}}
 
 {{< tab "NetQ CLI" >}}
 
@@ -223,247 +245,222 @@ st1-l1            Broadcom             Trident2                       BCM56854  
 
 {{< /tab >}}
 
-{{< tab "NetQ UI" >}}
-
-To dig deeper on a particular component type, you can filter the card data by that type. In this procedure, the result of filtering on the ASIC is shown.
-
-To view ASIC data:
-
-1. Click a segment of the ASIC graph in the component distribution charts.
-
-    {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-filter.png" width="300" >}}
-
-2. Select the first option from the popup, *Filter ASIC*. The card data is filtered to show only the components associated with selected component type. A filter tag appears next to the total number of switches indicating the filter criteria.
-
-    {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-filter-os-230.png" width="250" >}}
-
-3. Hover over the segments to view the related components.
-
-    {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight2-230.png" width="500" >}}
-
-4. To return to the full complement of components, click the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
-
-While the Device Inventory cards provide a network-wide view, you may want to see more detail about your switch inventory. This can be found in the Switches Inventory card workflow. To open that workflow, click the **Switch Inventory** button at the top right of the Switches card.
-
-{{< figure src="/images/netq/inventory-devices-large-switches-tab-switch-inv-button-230.png" width="500" >}}
-
-{{< /tab >}}
-
 {{< /tabs >}}
 
 ### View Motherboard Information for all Switches
 
-You can view the vendor, model, base MAC address, serial number, part
-number, revision, and manufacturing date for a switch motherboard on a
-single device or on all devices. This example shows all of the
-motherboard data for all devices.
+You can view the vendor, model, base MAC address, serial number, part number, revision, and manufacturing date for a switch motherboard on a single device or on all devices. This example shows all of the motherboard data for all devices.
 
-    cumulus@switch:~$ netq show inventory board
-    Matching inventory records:
-    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
-    ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-    dell-z9100-05     DELL                 Z9100-ON                       4C:76:25:E7:42:C0  CN03GT5N779315C20001      03GT5N           A00    12/04/2015
-    mlx-2100-05       Penguin              Arctica 1600cs                 7C:FE:90:F5:61:C0  MT1623X10078              MSN2100-CB2FO    N/A    06/09/2016
-    mlx-2410a1-05     Mellanox             SN2410                         EC:0D:9A:4E:55:C0  MT1734X00067              MSN2410-CB2F_QP3 N/A    08/24/2017
-    mlx-2700-11       Penguin              Arctica 3200cs                 44:38:39:00:AB:80  MT1604X21036              MSN2700-CS2FO    N/A    01/31/2016
-    qct-ix1-08        QCT                  QuantaMesh BMS T7032-IX1       54:AB:3A:78:69:51  QTFCO7623002C             1IX1UZZ0ST6      H3B    05/30/2016
-    qct-ix7-04        QCT                  IX7                            D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
-    qct-ix7-04        QCT                  T7032-IX7                      D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
-    st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
-    st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
-    st1-l3            Penguin              Arctica 4806xp                 44:38:39:00:70:49  N/A                       N/A              N/A    N/A
-    st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
-    st1-s2            Dell                 S6000-ON                       44:38:39:00:80:81  N/A                       N/A              N/A    N/A
+```
+cumulus@switch:~$ netq show inventory board
+Matching inventory records:
+Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
+dell-z9100-05     DELL                 Z9100-ON                       4C:76:25:E7:42:C0  CN03GT5N779315C20001      03GT5N           A00    12/04/2015
+mlx-2100-05       Penguin              Arctica 1600cs                 7C:FE:90:F5:61:C0  MT1623X10078              MSN2100-CB2FO    N/A    06/09/2016
+mlx-2410a1-05     Mellanox             SN2410                         EC:0D:9A:4E:55:C0  MT1734X00067              MSN2410-CB2F_QP3 N/A    08/24/2017
+mlx-2700-11       Penguin              Arctica 3200cs                 44:38:39:00:AB:80  MT1604X21036              MSN2700-CS2FO    N/A    01/31/2016
+qct-ix1-08        QCT                  QuantaMesh BMS T7032-IX1       54:AB:3A:78:69:51  QTFCO7623002C             1IX1UZZ0ST6      H3B    05/30/2016
+qct-ix7-04        QCT                  IX7                            D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
+qct-ix7-04        QCT                  T7032-IX7                      D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
+st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+st1-l3            Penguin              Arctica 4806xp                 44:38:39:00:70:49  N/A                       N/A              N/A    N/A
+st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+st1-s2            Dell                 S6000-ON                       44:38:39:00:80:81  N/A                       N/A              N/A    N/A
+```
 
-You can filter the results of the command to capture only those devices
-with a particular motherboard vendor. This example shows only the
-devices with *Celestica* motherboards.
+You can filter the results of the command to capture only those devices with a particular motherboard vendor. This example shows only the devices with *Celestica* motherboards.
 
-    cumulus@switch:~$ netq show inventory board vendor celestica
-    Matching inventory records:
-    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
-    ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-    st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
-    st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
+```
+cumulus@switch:~$ netq show inventory board vendor celestica
+Matching inventory records:
+Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
+st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+```
 
-You can filter the results of the command to view the model for a
-particular switch. This example shows the motherboard vendor for the
-*st1-s1* switch.
+You can filter the results of the command to view the model for a particular switch. This example shows the motherboard vendor for the *st1-s1* switch.
 
-    cumulus@switch:~$ netq st1-s1 show inventory board
-    Matching inventory records:
-    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
-    ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-    st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+```
+cumulus@switch:~$ netq st1-s1 show inventory board
+Matching inventory records:
+Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
+st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+```
 
 ### View CPU Information for all Switches
 
-You can view the architecture, model, operating frequency, and the
-number of cores for the CPU on a single device or for all devices. This
-example shows these CPU characteristics for all devices.
+You can view the architecture, model, operating frequency, and the number of cores for the CPU on a single device or for all devices. This example shows these CPU characteristics for all devices.
 
-    cumulus@nswitch:~$ netq show inventory cpu
-    Matching inventory records:
-    Hostname          Arch     Model                          Freq       Cores
-    ----------------- -------- ------------------------------ ---------- -----
-    dell-z9100-05     x86_64   Intel(R) Atom(TM) C2538        2.40GHz    4
-    mlx-2100-05       x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
-    mlx-2410a1-05     x86_64   Intel(R) Celeron(R)  1047UE    1.40GHz    2
-    mlx-2700-11       x86_64   Intel(R) Celeron(R)  1047UE    1.40GHz    2
-    qct-ix1-08        x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
-    qct-ix7-04        x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
-    st1-l1            x86_64   Intel(R) Atom(TM) C2538        2.41GHz    4
-    st1-l2            x86_64   Intel(R) Atom(TM) C2538        2.41GHz    4
-    st1-l3            x86_64   Intel(R) Atom(TM) C2538        2.40GHz    4
-    st1-s1            x86_64   Intel(R) Atom(TM)  S1220       1.60GHz    4
-    st1-s2            x86_64   Intel(R) Atom(TM)  S1220       1.60GHz    4
+```
+cumulus@nswitch:~$ netq show inventory cpu
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+dell-z9100-05     x86_64   Intel(R) Atom(TM) C2538        2.40GHz    4
+mlx-2100-05       x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
+mlx-2410a1-05     x86_64   Intel(R) Celeron(R)  1047UE    1.40GHz    2
+mlx-2700-11       x86_64   Intel(R) Celeron(R)  1047UE    1.40GHz    2
+qct-ix1-08        x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
+qct-ix7-04        x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
+st1-l1            x86_64   Intel(R) Atom(TM) C2538        2.41GHz    4
+st1-l2            x86_64   Intel(R) Atom(TM) C2538        2.41GHz    4
+st1-l3            x86_64   Intel(R) Atom(TM) C2538        2.40GHz    4
+st1-s1            x86_64   Intel(R) Atom(TM)  S1220       1.60GHz    4
+st1-s2            x86_64   Intel(R) Atom(TM)  S1220       1.60GHz    4
+```
 
-You can filter the results of the command to view which switches employ
-a particular CPU architecture using the *arch* keyword. This example
-shows how to determine which architectures are deployed in your network,
-and then shows all devices with an *x86\_64* architecture.
+You can filter the results of the command to view which switches employ a particular CPU architecture using the *arch* keyword. This example shows how to determine which architectures are deployed in your network, and then shows all devices with an *x86\_64* architecture.
 
-    cumulus@switch:~$ netq show inventory cpu arch
-        x86_64  :  CPU Architecture
-     
-    cumulus@switch:~$ netq show inventory cpu arch x86_64
-    Matching inventory records:
-    Hostname          Arch     Model                          Freq       Cores
-    ----------------- -------- ------------------------------ ---------- -----
-    leaf01            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    leaf02            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    leaf03            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    leaf04            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    oob-mgmt-server   x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    server01          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    server03          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    server04          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    spine01           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
+```
+cumulus@switch:~$ netq show inventory cpu arch
+    x86_64  :  CPU Architecture
+    
+cumulus@switch:~$ netq show inventory cpu arch x86_64
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+leaf01            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+leaf02            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+leaf03            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+leaf04            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+oob-mgmt-server   x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+server01          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+server03          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+server04          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+spine01           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+```
 
 You can filter the results to view CPU information for a single switch,
 as shown here for *server02*.
 
-    cumulus@switch:~$ netq server02 show inventory cpu
-     
-    Matching inventory records:
-    Hostname          Arch     Model                          Freq       Cores
-    ----------------- -------- ------------------------------ ---------- -----
-    server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
+```
+cumulus@switch:~$ netq server02 show inventory cpu
+    
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+```
 
 ### View Disk Information for all Switches
 
-You can view the name or operating system, type, transport, size,
-vendor, and model of the disk on a single device or all devices. This
-example shows all of these disk characteristics for all devices.
+You can view the name or operating system, type, transport, size, vendor, and model of the disk on a single device or all devices. This example shows all of these disk characteristics for all devices.
 
-    cumulus@switch:~$ netq show inventory disk
-    Matching inventory records:
-    Hostname          Name            Type             Transport          Size       Vendor               Model
-    ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
-    leaf01            vda             disk             N/A                6G         0x1af4               N/A
-    leaf02            vda             disk             N/A                6G         0x1af4               N/A
-    leaf03            vda             disk             N/A                6G         0x1af4               N/A
-    leaf04            vda             disk             N/A                6G         0x1af4               N/A
-    oob-mgmt-server   vda             disk             N/A                256G       0x1af4               N/A
-    server01          vda             disk             N/A                301G       0x1af4               N/A
-    server02          vda             disk             N/A                301G       0x1af4               N/A
-    server03          vda             disk             N/A                301G       0x1af4               N/A
-    server04          vda             disk             N/A                301G       0x1af4               N/A
-    spine01           vda             disk             N/A                6G         0x1af4               N/A
-    spine02           vda             disk             N/A                6G         0x1af4               N/A
+```
+cumulus@switch:~$ netq show inventory disk
+Matching inventory records:
+Hostname          Name            Type             Transport          Size       Vendor               Model
+----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
+leaf01            vda             disk             N/A                6G         0x1af4               N/A
+leaf02            vda             disk             N/A                6G         0x1af4               N/A
+leaf03            vda             disk             N/A                6G         0x1af4               N/A
+leaf04            vda             disk             N/A                6G         0x1af4               N/A
+oob-mgmt-server   vda             disk             N/A                256G       0x1af4               N/A
+server01          vda             disk             N/A                301G       0x1af4               N/A
+server02          vda             disk             N/A                301G       0x1af4               N/A
+server03          vda             disk             N/A                301G       0x1af4               N/A
+server04          vda             disk             N/A                301G       0x1af4               N/A
+spine01           vda             disk             N/A                6G         0x1af4               N/A
+spine02           vda             disk             N/A                6G         0x1af4               N/A
+```
 
-You can filter the results of the command to view the disk information
-for a particular device. This example shows disk information for
-*leaf03* switch.
+You can filter the results of the command to view the disk information for a particular device. This example shows disk information for *leaf03* switch.
 
-    cumulus@switch:~$ netq leaf03 show inventory disk
-    Matching inventory records:
-    Hostname          Name            Type             Transport          Size       Vendor               Model
-    ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
-    leaf03            vda             disk             N/A                6G         0x1af4               N/A
+```
+cumulus@switch:~$ netq leaf03 show inventory disk
+Matching inventory records:
+Hostname          Name            Type             Transport          Size       Vendor               Model
+----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
+leaf03            vda             disk             N/A                6G         0x1af4               N/A
+```
 
 ### View Memory Information for all Switches
 
-You can view the name, type, size, speed, vendor, and serial number for
-the memory installed in a single device or all devices. This example
-shows all of these characteristics for all devices.
+You can view the name, type, size, speed, vendor, and serial number for the memory installed in a single device or all devices. This example shows all of these characteristics for all devices.
 
-    cumulus@switch:~$ netq show inventory memory
-    Matching inventory records:
-    Hostname          Name            Type             Size       Speed      Vendor               Serial No
-    ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
-    dell-z9100-05     DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   Hynix                14391421
-    mlx-2100-05       DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   InnoDisk Corporation 00000000
-    mlx-2410a1-05     ChannelA-DIMM0  DDR3             8192 MB    1600 MHz   017A                 87416232
-                      BANK 0
-    mlx-2700-11       ChannelA-DIMM0  DDR3             8192 MB    1600 MHz   017A                 73215444
-                      BANK 0
-    mlx-2700-11       ChannelB-DIMM0  DDR3             8192 MB    1600 MHz   017A                 73215444
-                      BANK 2
-    qct-ix1-08        N/A             N/A              7907.45MB  N/A        N/A                  N/A
-    qct-ix7-04        DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   Transcend            00211415
-    st1-l1            DIMM0 BANK 0    DDR3             4096 MB    1333 MHz   N/A                  N/A
-    st1-l2            DIMM0 BANK 0    DDR3             4096 MB    1333 MHz   N/A                  N/A
-    st1-l3            DIMM0 BANK 0    DDR3             4096 MB    1600 MHz   N/A                  N/A
-    st1-s1            A1_DIMM0 A1_BAN DDR3             8192 MB    1333 MHz   A1_Manufacturer0     A1_SerNum0
-                      K0
-    st1-s2            A1_DIMM0 A1_BAN DDR3             8192 MB    1333 MHz   A1_Manufacturer0     A1_SerNum0
-                      K0
+```
+cumulus@switch:~$ netq show inventory memory
+Matching inventory records:
+Hostname          Name            Type             Size       Speed      Vendor               Serial No
+----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
+dell-z9100-05     DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   Hynix                14391421
+mlx-2100-05       DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   InnoDisk Corporation 00000000
+mlx-2410a1-05     ChannelA-DIMM0  DDR3             8192 MB    1600 MHz   017A                 87416232
+                    BANK 0
+mlx-2700-11       ChannelA-DIMM0  DDR3             8192 MB    1600 MHz   017A                 73215444
+                    BANK 0
+mlx-2700-11       ChannelB-DIMM0  DDR3             8192 MB    1600 MHz   017A                 73215444
+                    BANK 2
+qct-ix1-08        N/A             N/A              7907.45MB  N/A        N/A                  N/A
+qct-ix7-04        DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   Transcend            00211415
+st1-l1            DIMM0 BANK 0    DDR3             4096 MB    1333 MHz   N/A                  N/A
+st1-l2            DIMM0 BANK 0    DDR3             4096 MB    1333 MHz   N/A                  N/A
+st1-l3            DIMM0 BANK 0    DDR3             4096 MB    1600 MHz   N/A                  N/A
+st1-s1            A1_DIMM0 A1_BAN DDR3             8192 MB    1333 MHz   A1_Manufacturer0     A1_SerNum0
+                    K0
+st1-s2            A1_DIMM0 A1_BAN DDR3             8192 MB    1333 MHz   A1_Manufacturer0     A1_SerNum0
+                    K0
+```
 
-You can filter the results of the command to view devices with a
-particular memory type or vendor. This example shows all of the devices
-with memory from *QEMU* .
+You can filter the results of the command to view devices with a particular memory type or vendor. This example shows all of the devices with memory from *QEMU* .
 
-    cumulus@switch:~$ netq show inventory memory vendor QEMU
-    Matching inventory records:
-    Hostname          Name            Type             Size       Speed      Vendor               Serial No
-    ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
-    leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
-    leaf02            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
-    leaf03            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
-    leaf04            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
-    oob-mgmt-server   DIMM 0          RAM              4096 MB    Unknown    QEMU                 Not Specified
-    server01          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
-    server02          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
-    server03          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
-    server04          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
-    spine01           DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
-    spine02           DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+```
+cumulus@switch:~$ netq show inventory memory vendor QEMU
+Matching inventory records:
+Hostname          Name            Type             Size       Speed      Vendor               Serial No
+----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
+leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+leaf02            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+leaf03            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+leaf04            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+oob-mgmt-server   DIMM 0          RAM              4096 MB    Unknown    QEMU                 Not Specified
+server01          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
+server02          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
+server03          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
+server04          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
+spine01           DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+spine02           DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+```
 
-You can filter the results to view memory information for a single
-switch, as shown here for leaf01.
+You can filter the results to view memory information for a single switch, as shown here for leaf01.
 
-    cumulus@switch:~$ netq leaf01 show inventory memory
-     
-    Matching inventory records:
-    Hostname          Name            Type             Size       Speed      Vendor               Serial No
-    ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
-    leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+```
+cumulus@switch:~$ netq leaf01 show inventory memory
+    
+Matching inventory records:
+Hostname          Name            Type             Size       Speed      Vendor               Serial No
+----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
+leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+```
 
 ### View a Summary of Physical Inventory for the NetQ On-premises or NetQ Cloud Appliance
 
 Using the `opta` option lets you view inventory information for the NetQ or NetQ Cloud Appliance(s) rather than all network nodes. This example give you a summary of the inventory on the device.
 
 ```
-cumulus@spine-1:mgmt-vrf:~$ netq show inventory brief opta
+cumulus@appliance:~$ netq show inventory brief opta
 
 Matching inventory records:
 Hostname          Switch               OS              CPU      ASIC            Ports
@@ -472,7 +469,7 @@ Hostname          Switch               OS              CPU      ASIC            
 
 ```
 
-### View Memory for the NetQ or NetQ Cloud Appliance
+### View Memory for the NetQ On-premises or NetQ Cloud Appliance
 
 You can be specific about which inventory item you want to view for an appliance. This example shows the memory information for a NetQ Appliance, letting you verify you have sufficient memory.
 
@@ -487,27 +484,25 @@ netq-app          DIMM 0          RAM              64 GB      Unknown    QEMU   
 
 ### View Fan Health for All Switches
 
-Fan, power supply unit, and temperature sensors are available to provide
-additional data about the NetQ Platform operation. To view the health of
-fans in your switches, use the `netq show sensors fan` command. If you
-name the fans in all of your switches consistently, you can view more
-information at once.
+Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ Platform operation. To view the health of fans in your switches, use the `netq show sensors fan` command. If you name the fans in all of your switches consistently, you can view more information at once.
 
 In this example, we look at the state of all fans with the name *fan1*.
 
-    cumulus@switch:~$ netq show sensors fan fan1
-    Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
-    ----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
-    exit01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:17 2019
-    exit02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:33 2019
-    leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
-    leaf02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:41 2019
-    leaf03            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:44 2019
-    leaf04            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:36 2019
-    spine01           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:52 2019
-    spine02           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:08 2019
+```
+cumulus@switch:~$ netq show sensors fan fan1
+Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
+exit01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:17 2019
+exit02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:33 2019
+leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
+leaf02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:41 2019
+leaf03            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:44 2019
+leaf04            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:36 2019
+spine01           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:52 2019
+spine02           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:08 2019
+```
 
-{{%notice tip%}}
+{{<notice tip>}}
 
 Use tab completion to determine the names of the fans in your switches:
 
@@ -525,139 +520,138 @@ cumulus@switch:~$ netq show sensors fan <<press tab>>
    psu2fan1 : Fan Name
    <ENTER>
 ```
-{{%/notice%}}
 
-To view the status for a particular switch, use the optional `hostname`
-parameter.
+{{</notice>}}
 
-    cumulus@switch:~$ netq leaf01 show sensors fan fan1
-    Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
-    ----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
-    leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
+To view the status for a particular switch, use the optional `hostname` parameter.
+
+```
+cumulus@switch:~$ netq leaf01 show sensors fan fan1
+Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
+leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
+```
 
 ### View PSU Health for All Switches
 
-Fan, power supply unit, and temperature sensors are available to provide
-additional data about the NetQ Platform operation. To view the health of
-PSUs in your switches, use the `netq show sensors psu` command. If you
-name the PSUs in all of your switches consistently, you can view more
-information at once.
+Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ Platform operation. To view the health of PSUs in your switches, use the `netq show sensors psu` command. If you name the PSUs in all of your switches consistently, you can view more information at once.
 
 In this example, we look at the state of all PSUs with the name *psu2*.
 
-    cumulus@switch:~$ netq show sensors psu psu2
-    Matching sensors records:
-    Hostname          Name            State      Message                             Last Changed
-    ----------------- --------------- ---------- ----------------------------------- -------------------------
-    exit01            psu2            ok                                             Fri Apr 19 16:01:17 2019
-    exit02            psu2            ok                                             Fri Apr 19 16:01:33 2019
-    leaf01            psu2            ok                                             Sun Apr 21 20:07:12 2019
-    leaf02            psu2            ok                                             Fri Apr 19 16:01:41 2019
-    leaf03            psu2            ok                                             Fri Apr 19 16:01:44 2019
-    leaf04            psu2            ok                                             Fri Apr 19 16:01:36 2019
-    spine01           psu2            ok                                             Fri Apr 19 16:01:52 2019
-    spine02           psu2            ok                                             Fri Apr 19 16:01:08 2019
+```
+cumulus@switch:~$ netq show sensors psu psu2
+Matching sensors records:
+Hostname          Name            State      Message                             Last Changed
+----------------- --------------- ---------- ----------------------------------- -------------------------
+exit01            psu2            ok                                             Fri Apr 19 16:01:17 2019
+exit02            psu2            ok                                             Fri Apr 19 16:01:33 2019
+leaf01            psu2            ok                                             Sun Apr 21 20:07:12 2019
+leaf02            psu2            ok                                             Fri Apr 19 16:01:41 2019
+leaf03            psu2            ok                                             Fri Apr 19 16:01:44 2019
+leaf04            psu2            ok                                             Fri Apr 19 16:01:36 2019
+spine01           psu2            ok                                             Fri Apr 19 16:01:52 2019
+spine02           psu2            ok                                             Fri Apr 19 16:01:08 2019
+```
 
-{{%notice tip%}}
+{{<notice tip>}}
 
-Use Tab completion to determine the names of the PSUs in your switches.
-Use the optional `hostname` parameter to view the PSU state for a given
-switch.
+Use Tab completion to determine the names of the PSUs in your switches. Use the optional <code>hostname</code> parameter to view the PSU state for a given switch.
 
-{{%/notice%}}
+{{</notice>}}
 
 ### View the Temperature in All Switches
 
-Fan, power supply unit, and temperature sensors are available to provide
-additional data about the NetQ Platform operation. To view the
-temperature sensor status, current temperature, and configured threshold
-values, use the `netq show sensors temp` command. If you name the
-temperature sensors in all of your switches consistently, you can view
-more information at once.
+Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ Platform operation. To view the temperature sensor status, current temperature, and configured threshold values, use the `netq show sensors temp` command. If you name the temperature sensors in all of your switches consistently, you can view more information at once.
 
-In this example, we look at the state of all temperature sensors with
-the name *psu1temp1*.
+In this example, we look at the state of all temperature sensors with the name *psu1temp1*.
 
-    cumulus@switch:~$ netq show sensors temp psu2temp1 
-    Matching sensors records:
-    Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
-     
-    ----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
-     
-    exit01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:17 2019
+```
+cumulus@switch:~$ netq show sensors temp psu2temp1 
+Matching sensors records:
+Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
+    
+----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
+    
+exit01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:17 2019
 
-    exit02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:33 2019
-     
-    leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Sun Apr 21 20:07:12 2019
-     
-    leaf02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:41 2019
-     
-    leaf03            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:44 2019
-     
-    leaf04            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:36 2019
-     
-    spine01           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:52 2019
-     
-    spine02           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:08 2019
+exit02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:33 2019
+    
+leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Sun Apr 21 20:07:12 2019
+    
+leaf02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:41 2019
+    
+leaf03            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:44 2019
+    
+leaf04            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:36 2019
+    
+spine01           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:52 2019
+    
+spine02           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:08 2019
+```
 
-{{%notice tip%}}
+{{<notice tip>}}
 
 Use Tab completion to determine the names of the temperature sensors in
-your switches. Use the optional `hostname` parameter to view the
+your switches. Use the optional <code>hostname</code> parameter to view the
 temperature state, current temperature, and threshold values for a given
 switch.
 
-{{%/notice%}}
+{{</notice>}}
 
 ### View All Sensor Data
 
-To view all fan data, all PSU data, or
-all temperature data from the sensors, you must view all of the sensor
-data. The more consistently you name your sensors, the easier it will be
-to view the full sensor data.
+To view all fan data, all PSU data, or all temperature data from the sensors in a chassis, you must view all of the sensor data. The more consistently you name your sensors, the easier it will be to view the full sensor data.
 
-    cumulus@switch:~$ netq show sensors all
-    Matching sensors records:
-    Hostname          Name            Description                         State      Message                             Last Changed
-    ----------------- --------------- ----------------------------------- ---------- ----------------------------------- -------------------------
-    border01          fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
-    border01          fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
-    border01          fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
-    border01          fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
-    border01          psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:07:56 2020
-    border01          fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
-    border01          fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
-    border01          psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:07:56 2020
-    border02          fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:07:54 2020
-    border02          fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:07:54 2020
-    border02          psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:07:54 2020
-    border02          fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:07:54 2020
-    border02          fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:54 2020
-    border02          fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:07:54 2020
-    border02          fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:07:54 2020
-    border02          psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:07:54 2020
-    fw1               psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:08:45 2020
-    fw1               fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:08:45 2020
-    fw1               psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:08:45 2020
-    fw1               fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:08:45 2020
-    fw1               fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
-    fw1               fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:08:45 2020
-    fw1               fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
-    fw1               fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
-    fw2               fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:53 2020
-    ...
+```
+cumulus@switch:~$ netq show sensors all
+Matching sensors records:
+Hostname          Name            Description                         State      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ----------------------------------- -------------------------
+border01          fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
+border01          fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
+border01          fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
+border01          fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
+border01          psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:07:56 2020
+border01          fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
+border01          fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
+border01          psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:07:56 2020
+border02          fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:07:54 2020
+border02          fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:07:54 2020
+border02          psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:07:54 2020
+border02          fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:07:54 2020
+border02          fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:54 2020
+border02          fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:07:54 2020
+border02          fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:07:54 2020
+border02          psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:07:54 2020
+fw1               psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:08:45 2020
+fw1               fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:08:45 2020
+fw1               psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:08:45 2020
+fw1               fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:08:45 2020
+fw1               fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
+fw1               fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:08:45 2020
+fw1               fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
+fw1               fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
+fw2               fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:53 2020
+...
+```
 
 #### View All Sensor-related Events
 
-You can view the events that are triggered by the sensors using the
+You can view the events that are triggered by the chassis sensors using the
 `netq show events` command. You can narrow the focus to only critical
 events using the severity `level` option.
 
-    cumulus@switch:~$ netq show events type sensors
-    No matching events records found
-     
-    cumulus@switch:~$ netq show events level critical type sensors
-    No matching events records found
+```
+cumulus@switch:~$ netq show events type sensors
+No matching events records found
+```
+
+```
+cumulus@switch:~$ netq show events level critical type sensors
+No matching events records found
+```
+
+<!-- Move the rest of this topic to performance topic -->
 
 ### View Interface Statistics and Utilization
 

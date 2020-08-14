@@ -28,7 +28,7 @@ The self-paced labs in the Virtual Test Drive use the following topology:
 
 {{< img src="/images/cumulus-vx/testdrive-topology.png" width="400" >}}
 
-To be able to do the self-paced labs, you need to first run a script to update the port configuration, and add server01 and server02. Follow these steps:
+To be able to do the self-paced labs using the two leaf and one spine toplogy descibed in this documentation, you need to first run a script to update the port configuration, and add server01 and server02. Follow these steps:
 
 1. 
 

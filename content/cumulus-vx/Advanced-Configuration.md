@@ -56,7 +56,7 @@ To run the topology converter script and create the Vagrantfile, you do not need
 
 ### Install the Topology Converter
 
-Follow the steps below to install the required tools and download the topology converter script.
+Follow the steps below to install the required tools, and download the topology converter script and necessary files.
 
 This procedure assumes you are on a system running Linux and have a vagrant box image available.
 
@@ -99,7 +99,7 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
    graph dc1 {
     "leaf01" [function="leaf" os="CumulusCommunity/cumulus-vx" memory="768" config="./helper_scripts/extra_switch_config.sh"]
     "leaf02" [function="leaf" os="CumulusCommunity/cumulus-vx" memory="768" config="./helper_scripts/extra_switch_config.sh"]
-    "server01" [function="host" os="boxcutter/ubuntu1404" memory="512" config="./helper_scripts/extra_server_config.sh"]
+    "server01" [function="host" os="ubuntu/xenial64" memory="512" config="./helper_scripts/extra_server_config.sh"]
       "leaf01":"swp40" -- "leaf02":"swp40"
       "leaf01":"swp50" -- "leaf02":"swp50"
       "server01":"eth1" -- "leaf01":"swp1"

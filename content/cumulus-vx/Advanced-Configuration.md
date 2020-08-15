@@ -83,8 +83,6 @@ To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not
    cumulus@leaf01:mgmt:~$ net commit
    ```
 
-You can now got to {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}} and follow the lab tutorials.
-
 ### Create server01 and server02
 
 In your hypervisor, create two virtual servers; server01 and server02.
@@ -94,6 +92,8 @@ In your hypervisor, create two virtual servers; server01 and server02.
    - On server02, connect eth1 to swp2 on leaf01 and eth02 to swp2 on leaf02.
 
 Refer to the your hypervisor documentation for detailed instructions on creating virtual servers and network connections.
+
+After you change the ports and create server01 and server02, you are ready to go to {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}} and follow the lab tutorials.
 
 ## Run the Topology Converter
 

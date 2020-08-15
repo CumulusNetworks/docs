@@ -36,7 +36,7 @@ As an alternative to using Cumulus VX with Virtual Test Drive labs, you can use 
 
 {{%/notice%}}
 
-To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not require any port changes) and create the server01 and server 02 VMs.
+To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not require any port changes) and create the server01 and server 02 virtual servers.
 
 ### Change the Ports
 
@@ -73,15 +73,15 @@ To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not
    cumulus@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp50", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
    ```
 
-### Create the server01 and server02 VMs
+### Create server01 and server02
 
-Create two VMS, server01 and server02.
+Create two virtual servers; server01 and server02.
 
    - On server01, connect eth1 to swp1 on leaf01 and eth02 to swp1 on leaf02.
 
    - On server02, connect eth1 to swp2 on leaf01 and eth02 to swp2 on leaf02.
 
-Refer to the your hypervisor documentation for detailed instructions on creating server VMs and network connections.
+Refer to the your hypervisor documentation for detailed instructions on creating virtual servers and network connections.
 
 ## Run the Topology Converter
 

@@ -22,7 +22,7 @@ To install Cumulus VX, run the `onie-nos-install <URL to cumulus-linux-vx-amd64.
 
 ## Convert the Topology for Cumulus Linux on Demand
 
-Cumulus Networks offers {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} to help you get familiar with Cumulus Linux. This introductory lab tutorial includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as BGP.
+Cumulus Networks offers {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} to help you get familiar with Cumulus Linux. This introductory lab tutorial includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as NCLU, FRR and BGP unnumbered.
 
 The Cumulus Linux on demand labs use the following topology:
 

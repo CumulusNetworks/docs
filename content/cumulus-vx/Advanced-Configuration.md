@@ -58,23 +58,32 @@ To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not
 
 2. On both **leaf01** and **leaf02**, change the ports associated with the MAC addresses you obtained in the previous step:
 
-   Run this command to change swp1 to swp51. Replace `<mac-address>` with the MAC address you obtained for swp1 above:
+   As **root**, run this command to change swp1 to swp51. Replace `<mac-address>` with the MAC address you obtained for swp1 above:
 
    ```
-   cumulus@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp51", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+   root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp51", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
    ```
 
-   Run this comand to change swp2 to swp49. Replace `<mac-address>` with the MAC address you obtained for swp2 above:
+   As **root**, run this comand to change swp2 to swp49. Replace `<mac-address>` with the MAC address you obtained for swp2 above:
 
    ```
-   cumulus@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp49", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+   root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp49", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
    ```
 
-   Run this comand to change swp3 to swp50. Replace `<mac-address>` with the MAC address you obtained for swp3 above:
+   As **root**, run this comand to change swp3 to swp50. Replace `<mac-address>` with the MAC address you obtained for swp3 above:
 
    ```
-   cumulus@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp50", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+   root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp50", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
    ```
+
+3. Bring up swp49, swp50, and swp51:
+
+   ```
+   cumulus@leaf01:mgmt:~$ net add interface swp49,swp50,swp51
+   cumulus@leaf01:mgmt:~$ net commit
+   ```
+
+You can now got to {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}} and follow the lab tutorials.
 
 ### Create server01 and server02
 

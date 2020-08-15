@@ -28,24 +28,24 @@ The Virtual Test Drive labs use the following topology:
 
 {{< img src="/images/cumulus-vx/testdrive-topology.png" width="400" >}}
 
-To be able to follow the labs, you need to convert the two leaf, one spine topology to the topology used in the labs.
+To be able to follow the labs, you need to convert the two leaf, one spine topology we use in this documentation to the topology used in the labs.
 
 {{%notice tip%}}
 
-As an alternative to using Cumulus VX with the self-pased labs, you can use {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
+As an alternative to using Cumulus VX with Virtual Test Drive labs, you can use {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
 
 {{%/notice%}}
 
-To convert the topology, you need to change the ports on leaf01 and leaf02 (spine01 does not require any port changes), then create the server01 and server 02 VMs.
+To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not require any port changes) and create the server01 and server 02 VMs.
 
 ### Change the Ports
 
-1. On **leaf01** and **leaf02**, obtain the MAC address for swp1, swp2, and swp3. Run the following commands:
+1. On both **leaf01** and **leaf02**, obtain the MAC address for swp1, swp2, and swp3. Run the following commands:
 
    ```
    cumulus@leaf01:mgmt:~$ ip link show swp1
    OUTPUT
-   
+
    cumulus@leaf01:mgmt:~$ ip link show swp2
    OUTPUT
 
@@ -53,7 +53,7 @@ To convert the topology, you need to change the ports on leaf01 and leaf02 (spin
    OUTPUT
    ```
 
-2. On **leaf01** and **leaf02**, change the ports associated with the MAC addresses you obtained in the previous step:
+2. On both **leaf01** and **leaf02**, change the ports associated with the MAC addresses you obtained in the previous step:
 
    Run this command to change swp1 to swp51. Replace `<mac-address>` with the MAC addresses you obtained for swp1 above:
 
@@ -73,15 +73,15 @@ To convert the topology, you need to change the ports on leaf01 and leaf02 (spin
    cumulus@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp50", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
    ```
 
-### Add server01 and server02
+### Create the server01 and server02 VMs
 
-Add two VMS, server01 and server02.
+Create two VMS, server01 and server02.
 
    - On server01, connect eth1 to swp1 on leaf01 and eth02 to swp1 on leaf02.
 
    - On server02, connect eth1 to swp2 on leaf01 and eth02 to swp2 on leaf02.
 
-Refer to the your hypervisor documentation for detailed instructions on adding server VMs and network connections.
+Refer to the your hypervisor documentation for detailed instructions on creating server VMs and network connections.
 
 ## Run the Topology Converter
 

@@ -21,42 +21,36 @@ Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/down
 
 Create three VMs (`leaf01`,`leaf02`, and `spine01`.
 
-1. From the vSphere web client, create a new folder under VMs and Templates. Select the folder then click **Deploy OVF Template** from the **Actions** menu.
-2. Select the Cumulus VX OVA image you downloaded, then click **Next**.
-3. In the **Virtual machine name** field, enter `leaf01`, then click **Next**.
+1. From the vSphere web client, create a new folder under VMs and Templates.
+2. Select the folder then click **Deploy OVF Template** from the **Actions** menu.
+3. Select the Cumulus VX OVA image you downloaded, then click **Next**.
+4. In the **Virtual machine name** field, enter `leaf01`, then click **Next**.
 
    {{< img src="/images/cumulus-vx/vsphere-add-name.png" width="300" >}}
 
-4. Select a compute source (ESXi host), then click **Next**.
-
-5. The Cumulus VX image is preconfigured, so no more setup options are required. Click **Next** until you see the `Ready to Complete` dialog, then click **Finish**.
+5. Select a compute source (ESXi host), then click **Next**.
+6. The Cumulus VX image is preconfigured, so no more setup options are required. Click **Next** until you see the `Ready to Complete` dialog, then click **Finish**.
 
    The Cumulus VX OVA image is imported and deployed as a VM. After the deployment process is complete, the VM appears in the list of VMs in the left pane.
 
-6. Repeat the previous steps to create two additional VMs: `leaf02` and `spine01`.
+7. Repeat the previous steps to create two additional VMs: `leaf02` and `spine01`.
 
 ### Create Network Connections
 
 Create the network connections between leaf01, leaf02, and spine01.
 
 1. Create four virtual machine port groups:
-
    1. Under **Hosts and clusters**, select the ESXi host, then select **Add Networking** from the **Actions** menu.
-
    2. Select **Virtual Machine Port Group for a Standard Switch**, then click **Next**.
 
       {{< img src="/images/cumulus-vx/vsphere-add-network.png" width="500" >}}
 
    3. Select **New standard switch**, then click **Next**.
-
    4. In the **Create a Standard Switch** dialog, click **Next**, then click **OK** when the Physical Network Adapters warning displays.
-
    5. In the **Network Label** field, enter `intnet-1`, click **Next**, then click **Finish**.
-
    6. Repeat the previous steps to create **three** additional port groups: `intnet-2`, `intnet-3`, and `intnet-4`.
 
 2. Configure the virtual hardware for each VM (leaf01, leaf02, and spine01):
-
    1. Under **VMs and Templates**, select the VM in the left pane, then click the **Edit Settings** icon.
 
       {{< img src="/images/cumulus-vx/vsphere-edit-icon.png" width="500" >}}

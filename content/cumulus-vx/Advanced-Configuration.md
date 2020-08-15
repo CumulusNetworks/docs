@@ -44,13 +44,16 @@ To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not
 
    ```
    cumulus@leaf01:mgmt:~$ ip link show swp1
-   OUTPUT
+   3: swp1: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+       link/ether 08:00:27:8c:cf:41: brd ff:ff:ff:ff:ff:ff:ff
 
    cumulus@leaf01:mgmt:~$ ip link show swp2
-   OUTPUT
+   4: swp2: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+       link/ether 08:00:27:2a:5b:4e: brd ff:ff:ff:ff:ff:ff:ff
 
    cumulus@leaf01:mgmt:~$ ip link show swp3
-   OUTPUT
+   5: swp3: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+       link/ether 08:00:27:91:9a:48: brd ff:ff:ff:ff:ff:ff:ff
    ```
 
 2. On both **leaf01** and **leaf02**, change the ports associated with the MAC addresses you obtained in the previous step:

@@ -79,7 +79,7 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
 
 {{< tab "Adapter 2 ">}}
 
-{{< img src = "/images/cumulus-vx/vbox-adapter2-leaf02.png" >}}
+{{< img src="/images/cumulus-vx/vbox-adapter2-leaf02.png"  width="400" >}}
 
 {{< /tab >}}
 
@@ -121,7 +121,7 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
 
 {{< /tabs >}}
 
-4. Start the VMs.
+4. Power on the VMs.
 
 ## Log into the Switches
 

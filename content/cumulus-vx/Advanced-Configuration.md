@@ -6,7 +6,7 @@ weight: 46
 This section describes advanced procedures that help you get more out of Cumulus VX:
 
 - Test the Cumulus Linux upgrade process in your virtual environment by installing a Cumulus VX binary image with ONIE.
-- Convert the two leaf and one spine topology so that you can take the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} labs.
+- Convert the two leaf and one spine topology so that you can do the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} labs.
 - Run the topology converter script to convert a topology file into a Vagrantfile so you can simulate a custom network topology.
 
 ## Install an ONIE Virtual Machine
@@ -28,7 +28,7 @@ The Virtual Test Drive labs use the following topology:
 
 {{< img src="/images/cumulus-vx/testdrive-topology.png" width="400" >}}
 
-To be able to follow the labs, you need to convert the two leaf, one spine topology we use in this documentation to the topology used in the labs.
+To be able to follow the labs, you need to convert the two leaf and one spine topology we use in this documentation to the topology used in the labs.
 
 {{%notice tip%}}
 
@@ -75,7 +75,7 @@ To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not
 
 ### Create server01 and server02
 
-Create two virtual servers; server01 and server02.
+In your hypervisor, create two virtual servers; server01 and server02.
 
    - On server01, connect eth1 to swp1 on leaf01 and eth02 to swp1 on leaf02.
 
@@ -189,4 +189,4 @@ local@host:~$ python3 ./topology_converter.py ./topology.dot -p libvirt
 
 The topology converter reads the provided topology file line by line, and learns information about each node and each link in the topology. This information is stored in a variables datastructure. A `jinja2` template (`/templates/Vagrantfile.j2`) is used to create a Vagrantfile based on the variables datastructure.
 
-To see a selection of example topologies and view complete documentation on the topology converter, go to {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab">}}.
+To see a selection of example topologies and view complete documentation on the topology converter, go to {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab">}}, where you can also file any issues you encounter. In addition, you can go to {{<exlink url="cumulusnetworks.slack.com" text="Cumulus Networks community slack">}} to discuss issues or ask questions about using the topology converter.

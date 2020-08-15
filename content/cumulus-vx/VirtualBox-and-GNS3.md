@@ -1,7 +1,7 @@
 ---
-title: GNS3 and VirtualBox
+title: VirtualBox and GNS3
 author: Cumulus Networks
-weight: 25
+weight: 30
 ---
 
 This section describes how to install and set up Cumulus VX within GNS3 and VirtualBox to create the two leaf and one spine topology shown below.

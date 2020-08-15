@@ -1,7 +1,7 @@
 ---
 title: VMware vSphere ESXi
 author: Cumulus Networks
-weight: 30
+weight: 40
 ---
 This section describes how to install and set up Cumulus VX in VMWare vSphere to create the two leaf and one spine topology shown below.
 

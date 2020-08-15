@@ -1,7 +1,7 @@
 ---
-title: Vagrant and KVM-QEMU
+title: KVM-QEMU and Vagrant
 author: Cumulus Networks
-weight: 40
+weight: 20
 ---
 Running Cumulus VX with Vagrant and KVM-QEMU requires four components:
 

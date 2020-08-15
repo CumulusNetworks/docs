@@ -3,10 +3,10 @@ title: Advanced Configuration
 author: Cumulus Networks
 weight: 46
 ---
-This section describes advanced procedures that you can follow to get more out of Cumulus VX.
+This section describes advanced procedures that help you get more out of Cumulus VX:
 
 - Test the Cumulus Linux upgrade process in your virtual environment by installing a Cumulus VX binary image with ONIE.
-- Run the port update script on your switches so that you can take the self-paced labs in the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}}.
+- Convert the two leaf and one spine topology so that you can take the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} labs.
 - Run the topology converter script to convert a topology file into a Vagrantfile so you can simulate a custom network topology.
 
 ## Install an ONIE Virtual Machine
@@ -20,33 +20,80 @@ After booting the VM, reboot into ONIE Rescue mode using one of two methods:
 
 To install Cumulus VX, run the `onie-nos-install <URL to cumulus-linux-vx-amd64.bin>` command.
 
-## Run the Update Script for the Self-paced Labs
+## Convert the Topology for the Virtual Test Drive Labs
 
 Cumulus Networks offers the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} to help you get familiar with Cumulus Linux. The test drive includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as BGP.
 
-The self-paced labs in the Virtual Test Drive use the following topology:
+The Virtual Test Drive labs use the following topology:
 
 {{< img src="/images/cumulus-vx/testdrive-topology.png" width="400" >}}
 
-To be able to do the self-paced labs using the two leaf and one spine toplogy descibed in this documentation, you need to first run a script to update the port configuration, and add server01 and server02. Follow these steps:
+To be able to follow the labs, you need to convert the two leaf, one spine topology to the topology used in the labs.
 
-1. 
+{{%notice tip%}}
 
-2. 
+As an alternative to using Cumulus VX with the self-pased labs, you can use {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
 
-3. 
+{{%/notice%}}
+
+To convert the topology, you need to change the ports on leaf01 and leaf02 (spine01 does not require any port changes), then create the server01 and server 02 VMs.
+
+### Change the Ports
+
+1. On **leaf01** and **leaf02**, obtain the MAC address for swp1, swp2, and swp3. Run the following commands:
+
+   ```
+   cumulus@leaf01:mgmt:~$ ip link show swp1
+   OUTPUT
+   
+   cumulus@leaf01:mgmt:~$ ip link show swp2
+   OUTPUT
+
+   cumulus@leaf01:mgmt:~$ ip link show swp3
+   OUTPUT
+   ```
+
+2. On **leaf01** and **leaf02**, change the ports associated with the MAC addresses you obtained in the previous step:
+
+   Run this command to change swp1 to swp51. Replace `<mac-address>` with the MAC addresses you obtained for swp1 above:
+
+   ```
+   cumulus@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp51", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+   ```
+
+   Run this comand to change swp2 to swp49. Replace `<mac-address>` with the MAC addresses you obtained for swp2 above:
+
+   ```
+   cumulus@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp49", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+   ```
+
+   Run this comand to change swp3 to swp50. Replace `<mac-address>` with the MAC addresses you obtained for swp3 above:
+
+   ```
+   cumulus@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp50", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+   ```
+
+### Add server01 and server02
+
+Add two VMS, server01 and server02.
+
+   - On server01, connect eth1 to swp1 on leaf01 and eth02 to swp1 on leaf02.
+
+   - On server02, connect eth1 to swp2 on leaf01 and eth02 to swp2 on leaf02.
+
+Refer to the your hypervisor documentation for detailed instructions on adding server VMs and network connections.
 
 ## Run the Topology Converter
 
-The topology Converter can help you to simulate a custom network topology directly on your laptop or on a dedicated server. The topology can be extremely complete enabling you to simulate hosts as well as network equipment.
+The topology Converter can help you to simulate a custom network topology directly on your laptop or on a dedicated server. The topology can be extremely complete so that you can simulate hosts as well as network equipment.
 
-Topology converter translates a graphviz topology file (`.dot` file), which describes the network topology link-by-link, into a Vagrantfile, which fully represents the topology. Vagrantfiles are used with Vagrant to interconnect VMs. You can then simulate the topology in either Virtualbox or with KVM-QEMU and Libvirt.
+The topology converter translates a graphviz topology file (`.dot` file), which describes the network topology link-by-link, into a Vagrantfile, which fully represents the topology. Vagrantfiles are used with Vagrant to interconnect VMs. You can then simulate the topology in either Virtualbox or with KVM-QEMU and Libvirt.
 
 The topology converter:
 
-- Remaps interfaces on VX switches and hosts to match the interfaces used in the provided topology file
-- Removes extra Ruby-based logic from the Vagrantfile to provide simple human-readable output
-- Generates a Vagrantfile that contains servers and switches and anything else that can be found in a Vagrant Box image
+- Remaps interfaces on VX switches and hosts to match the interfaces used in the provided topology file.
+- Removes extra Ruby-based logic from the Vagrantfile to provide simple human-readable output.
+- Generates a Vagrantfile that contains servers and switches and anything else that can be found in a Vagrant Box image.
 
 {{%notice note%}}
 
@@ -86,25 +133,32 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
    local@host:~$ cd topology_converter
    local@host:topology_converter$ cp /Users/abc/Downloads/topology_converter.py topology_converter.py
    local@host:topology_converter$ mkdir templates helper_scripts
-   local@host:topology_converter$ cp /Users/abc/Downloads/templates_Vagrantfile.j2 ./templates/Vagrantfile.j2
-   local@host:topology_converter$ cp /Users/abc/Downloads/helper_scripts_extra_switch_config.sh ./helper_scripts/extra_switch_config.sh
-   local@host:topology_converter$ cp /Users/abc/Downloads/helper_scripts_extra_server_config.sh ./helper_scripts/extra_server_config.sh
+   local@host:topology_converter$ cp /Users/abc/Downloads/templates_Vagrantfile.j2 templates/Vagrantfile.j2
+   local@host:topology_converter$ cp /Users/abc/Downloads/helper_scripts_extra_switch_config.sh helper_scripts/extra_switch_config.sh
+   local@host:topology_converter$ cp /Users/abc/Downloads/helper_scripts_extra_server_config.sh helper_scripts/extra_server_config.sh
    ```
 
 ### Convert a Topology
 
-1. Create a `topology.dot` file or use a file provided by Cumulus Networks {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation#example-topologies" text="here">}}. The following example `toplology.dot` file contains leaf01, which is connected on swp40 and swp50 to leaf2, and server1, which is connected via eth1 to swp1 on leaf1 and eth2 to swp1 on leaf01:
+1. Create a `topology.dot` file or use a file provided by Cumulus Networks {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation#example-topologies" text="here">}}. The following example `toplology.dot` file represents the topology used in the self-paced labs of the Virtual Test Drive, which includes leaf01, leaf02, spine01, server01, and server02.
 
    ```
    graph dc1 {
-    "leaf01" [function="leaf" os="CumulusCommunity/cumulus-vx" memory="768" config="./helper_scripts/extra_switch_config.sh"]
-    "leaf02" [function="leaf" os="CumulusCommunity/cumulus-vx" memory="768" config="./helper_scripts/extra_switch_config.sh"]
-    "server01" [function="host" os="ubuntu/xenial64" memory="512" config="./helper_scripts/extra_server_config.sh"]
+   "spine01" [function="spine" os="CumulusCommunity/cumulus-vx" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+   "leaf01" [function="leaf" os="CumulusCommunity/cumulus-vx" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+   "leaf02" [function="leaf" os="CumulusCommunity/cumulus-vx" memory="768" config="./helper_scripts/extra_switch_config.sh"]
+   "server01" [function="host" os="ubuntu/xenial64" memory="512" config="./helper_scripts/extra_server_config.sh"]
+   "server02" [function="host" os="ubuntu/xenial64" memory="512" config="./helper_scripts/extra_server_config.sh"]
+      "spine01":"swp1" -- "leaf01":"swp51"
+      "spine01":"swp2" -- "leaf02":"swp51"
       "leaf01":"swp40" -- "leaf02":"swp40"
       "leaf01":"swp50" -- "leaf02":"swp50"
       "server01":"eth1" -- "leaf01":"swp1"
       "server01":"eth2" -- "leaf02":"swp1"
+      "server02":"eth1" -- "leaf01":"swp2"
+      "server02":"eth2" -- "leaf02":"swp2"
    }
+
    ```
 
 2. Place the `topology.dot` file in the same directory as `topology_converter.py` (or any subdirectory in the directory that contains `topology_converter.py`).

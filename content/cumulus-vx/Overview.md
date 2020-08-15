@@ -24,12 +24,12 @@ As an alternative to Cumulus VX, which requires a hypervisor (or hypervisor and 
 
 Cumulus VX is supported on:
 
-- VirtualBox
-- Vagrant and VirtualBox
-- GNS3 and VirtualBox
-- VMware Fusion, Worksation, and vSphere ESXi
 - KVM-QEMU
-- Vagrant and KVM-QEMU
+- KVM-QEMU and Vagrant
+- VirtualBox
+- VirtualBox and GNS3
+- VirtualBox and Vagrant
+- VMware Fusion, Worksation, and vSphere ESXi
 
 {{%notice note%}}
 

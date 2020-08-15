@@ -1,7 +1,7 @@
 ---
 title: VirtualBox
 author: Cumulus Networks
-weight: 15
+weight: 25
 ---
 This section describes how to install and set up Cumulus VX in VirtualBox to create the two leaf and one spine topology shown below.
 

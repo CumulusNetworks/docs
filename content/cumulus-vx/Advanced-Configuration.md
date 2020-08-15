@@ -6,7 +6,7 @@ weight: 46
 This section describes advanced procedures that help you get more out of Cumulus VX:
 
 - Test the Cumulus Linux upgrade process in your virtual environment by installing a Cumulus VX binary image with ONIE.
-- Convert the two leaf and one spine topology so that you can do the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} labs.
+- Convert the two leaf and one spine topology so that you can do the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} labs.
 - Run the topology converter script to convert a topology file into a Vagrantfile so you can simulate a custom network topology.
 
 ## Install an ONIE Virtual Machine
@@ -20,11 +20,11 @@ After booting the VM, reboot into ONIE Rescue mode using one of two methods:
 
 To install Cumulus VX, run the `onie-nos-install <URL to cumulus-linux-vx-amd64.bin>` command.
 
-## Convert the Topology for the Virtual Test Drive Labs
+## Convert the Topology for Cumulus Linux on Demand
 
-Cumulus Networks offers the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Virtual Test Drive">}} to help you get familiar with Cumulus Linux. The test drive includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as BGP.
+Cumulus Networks offers {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} to help you get familiar with Cumulus Linux. This introductory lab tutorial includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as BGP.
 
-The Virtual Test Drive labs use the following topology:
+The Cumulus Linux on demand labs use the following topology:
 
 {{< img src="/images/cumulus-vx/testdrive-topology.png" width="400" >}}
 
@@ -32,7 +32,7 @@ To be able to follow the labs, you need to convert the two leaf and one spine to
 
 {{%notice tip%}}
 
-As an alternative to using Cumulus VX with Virtual Test Drive labs, you can use {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
+As an alternative to using Cumulus VX with the Cumulus Linux on demand labs, you can use {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
 
 {{%/notice%}}
 
@@ -140,7 +140,7 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
 
 ### Convert a Topology
 
-1. Create a `topology.dot` file or use a file provided by Cumulus Networks {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation#example-topologies" text="here">}}. The following example `toplology.dot` file represents the topology used in the self-paced labs of the Virtual Test Drive, which includes leaf01, leaf02, spine01, server01, and server02.
+1. Create a `topology.dot` file or use a file provided by Cumulus Networks {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation#example-topologies" text="here">}}. The following example `toplology.dot` file represents the topology used in the Cumulus Linux on demand labs, which includes leaf01, leaf02, spine01, server01, and server02.
 
    ```
    graph dc1 {

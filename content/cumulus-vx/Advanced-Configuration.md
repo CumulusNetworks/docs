@@ -6,7 +6,7 @@ weight: 46
 This section describes advanced procedures that help you get more out of Cumulus VX:
 
 - Test the Cumulus Linux upgrade process in your virtual environment by installing a Cumulus VX binary image with ONIE.
-- Convert the two leaf and one spine topology so that you can do the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} labs.
+- Convert the two leaf and one spine topology so that you can follow the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} lab tutorials.
 - Run the topology converter script to convert a topology file into a Vagrantfile so you can simulate a custom network topology.
 
 ## Install an ONIE Virtual Machine
@@ -22,7 +22,7 @@ To install Cumulus VX, run the `onie-nos-install <URL to cumulus-linux-vx-amd64.
 
 ## Convert the Topology for Cumulus Linux on Demand
 
-Cumulus Networks offers {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} to help you get familiar with Cumulus Linux. This introductory lab tutorial includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as NCLU, FRR and BGP unnumbered.
+Cumulus Networks offers {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} to help you get familiar with Cumulus Linux. This introductory lab tutorial includes various self-paced labs that let you practice configuring Cumulus Linux and use features such as NCLU, FRR, and BGP unnumbered.
 
 The Cumulus Linux on demand labs use the following topology:
 
@@ -87,7 +87,7 @@ Refer to the your hypervisor documentation for detailed instructions on creating
 
 The topology Converter can help you to simulate a custom network topology directly on your laptop or on a dedicated server. The topology can be extremely complete so that you can simulate hosts as well as network equipment.
 
-The topology converter translates a graphviz topology file (`.dot` file), which describes the network topology link-by-link, into a Vagrantfile, which fully represents the topology. Vagrantfiles are used with Vagrant to interconnect VMs. You can then simulate the topology in either Virtualbox or with KVM-QEMU and Libvirt.
+The topology converter translates a graphviz topology file (`.dot` file), which describes the network topology link-by-link, into a Vagrantfile, which fully represents the topology. Vagrantfiles are used with Vagrant to interconnect VMs. You can then simulate the topology with either Virtualbox and Vagrant or with KVM-QEMU and Vagrant.
 
 The topology converter:
 

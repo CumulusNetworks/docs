@@ -3,7 +3,7 @@ title: KVM-QEMU and Vagrant
 author: Cumulus Networks
 weight: 20
 ---
-Running Cumulus VX with Vagrant and KVM-QEMU requires four components:
+Running Cumulus VX with KVM-QEMU and Vagrant requires four components:
 
 - **KVM** works exclusively with QEMU and performs hardware acceleration for x86 VMs with Intel and AMD CPUs. KVM and QEMU are hypervisors that emulate the VMs; the pair is often called KVM-QEMU or just KVM.
 - **QEMU** is a machine emulator that can allow the host machine to emulate the CPU architecture of the guest machine. Because QEMU does not provide hardware acceleration, it works well with KVM.

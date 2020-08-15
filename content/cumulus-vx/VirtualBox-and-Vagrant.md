@@ -3,7 +3,7 @@ title: VirtualBox and Vagrant
 author: Cumulus Networks
 weight: 35
 ---
-This section describes how to install and set up Cumulus VX within Vagrant and VirtualBox to create the two leaf and one spine topology shown below.
+This section describes how to install and set up Cumulus VX within VirtualBox and Vagrant to create the two leaf and one spine topology shown below.
 
 {{% vx/intro %}}
 

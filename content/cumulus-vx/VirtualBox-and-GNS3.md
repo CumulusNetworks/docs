@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 30
 ---
 
-This section describes how to install and set up Cumulus VX within GNS3 and VirtualBox to create the two leaf and one spine topology shown below.
+This section describes how to install and set up Cumulus VX with VirtualBox and GNS3 to create the two leaf and one spine topology shown below.
 
 {{% vx/intro %}}
 
@@ -12,7 +12,7 @@ These steps were tested with Cumulus VX 4.2, VirtualBox version 6.1.12, and GNS3
 
 ## Create and Configure the VMs
 
-The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes you have GNS3 and VirtualBox experience.
+The following procedure creates leaf01, leaf02, and spine01 and the network connections between them. This section assumes you have VirtualBox and GNS3 experience.
 
 ### Download and Install the Software
 

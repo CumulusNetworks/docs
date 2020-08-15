@@ -43,7 +43,11 @@ Cumulus VX is not a production-ready virtual switch or router. It has the same f
 
 You can use tools like `jdoo` to monitor the virtual switch. The same automation, zero touch provisioning, security, and QoS tools are available.
 
-The following table outlines the similarities and differences between Cumulus VX and Cumulus Linux:
+The following illustration and table outline the similarities and differences between Cumulus VX and Cumulus Linux:
+
+| Cumulus VX | Cumulus Linux |
+| -----------| ------------- |
+| {{< img src="/images/cumulus-vx/cumulus-vx.png" width="450" >}}| {{< img src="/images/cumulus-vx/cumulus-linux.png" width="450" >}}|
 
 | Feature or Functionality | Cumulus VX |
 | ------------------------ | -------------------------------- |

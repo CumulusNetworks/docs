@@ -41,15 +41,15 @@ Although Cumulus VX is supported on VMware Fusion, Workstation, and vSphere ESXi
 
 Cumulus VX is not a production-ready virtual switch or router. It has the same foundation as Cumulus Linux, including all the control plane elements, but without an actual ASIC or NPU for line rate performance or hardware acceleration.
 
-You can use tools like `jdoo` to monitor the virtual switch. The same automation, zero touch provisioning, security, and QoS tools are available.
-
-The following illustration and table outline the similarities and differences between Cumulus VX and Cumulus Linux:
-
 | Cumulus VX | Cumulus Linux |
 | -----------| ------------- |
 | {{< img src="/images/cumulus-vx/cumulus-vx.png" width="450" >}}| {{< img src="/images/cumulus-vx/cumulus-linux.png" width="450" >}}|
 
-| Feature or Functionality | Cumulus VX |
+You can use tools like `jdoo` to monitor the virtual switch. The same automation, zero touch provisioning, security, and QoS tools are available.
+
+The following table outlines the similarities and differences between Cumulus VX and Cumulus Linux:
+
+| <div style="width:300px">Feature or Functionality | Cumulus VX |
 | ------------------------ | -------------------------------- |
 | Installation and Upgrade | New images available with every GA release. |
 | Hardware acceleration    | Datapath forwarding is dependent on the choice of hypervisor and VM resources. |

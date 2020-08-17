@@ -461,12 +461,6 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 <td></td>
 </tr>
 <tr>
-<td>CM-29591</td>
-<td><p>When you add an IPv4 route with an IPv6 next hop, switchd crashes.</p></td>
-<td>4.1.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29562</td>
 <td><p>If you have an SVI with multiple VRR IP addresses and try to delete one of the VRR configurations, net commit or ifreload -a returns an error.</p></td>
 <td>3.7.12-3.7.13, 4.1.1-4.2.0</td>

@@ -156,11 +156,11 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
 
 2. Download the topology converter source code from {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab">}}.
 
-   The topology converter script and required files download to the `topology_converter` folder, which also includes a subfolder for documentation and a subfolder for example toplogies.
+   The topology converter script (`topology_converter.py`) and required files download to the `topology_converter` folder, which also includes a subfolder for documentation and a subfolder for example toplogies.
 
 ### Convert a Topology
 
-1. In the same directory as `topology_converter.py` (or any subdirectory in the directory that contains `topology_converter.py`), create a `topology.dot` file or use a file provided by Cumulus Networks {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation#example-topologies" text="here">}}. 
+1. In the`topology_converter` folder (which includes `topology_converter.py`), create a `topology.dot` file or use a file provided by Cumulus Networks {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation#example-topologies" text="here">}}.
 
    The following example `toplology.dot` file represents the topology used in the Cumulus Linux on demand labs; leaf01, leaf02, spine01, server01, and server02.
 
@@ -186,13 +186,13 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
 3. Run the following command to convert the `topology.dot` file to a Vagrantfile:
 
    ```
-   local@host:topology_converter$ python3 ./topology_converter.py ./topology.dot
+   local@host:$ python3 ./topology_converter.py ./topology.dot
    ```
 
    With Libvirt, run the following command:
 
    ```
-   local@host:topology_converter$ python3 ./topology_converter.py ./topology.dot -p libvirt
+   local@host:$ python3 ./topology_converter.py ./topology.dot -p libvirt
    ```
 
 4. Start the simulation with the `vagrant up` command. With Livirt, start the simulation with the `vagrant up --provider=libvirt` command.

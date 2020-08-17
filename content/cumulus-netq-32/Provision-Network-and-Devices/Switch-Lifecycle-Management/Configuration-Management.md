@@ -1,10 +1,48 @@
 ---
 title: Manage Switch Configurations
 author: Cumulus Networks
-weight: 640
+weight: 578
 toc: 4
 ---
-With the NetQ 3.1.0 release, you can set up a configuration profile to indicate how you want NetQ configured when it is installed or upgraded on your Cumulus Linux switches.
+You can configure switches using one or more configurations. To enable consistent application of configurations, switch configurations can contain network templates for SNMP, NTP, and user accounts. You can also configure configuration profiles for Cumulus NetQ Agents.
+
+Workflow for config switches
+
+## Manage Network Templates
+
+### View Network Templates
+
+### Create Network Templates
+
+#### SNMP
+
+#### NTP
+
+#### User Accounts
+
+### Modify Network Templates
+
+### Delete Network Templates
+
+## Manage Switch Configuration Profiles
+
+### View Switch Configuration Profiles
+
+### Create Switch Configuration Profiles
+
+### Assign Switch Configuration Profiles
+
+### Change Switch Configuration Profile Assignment
+
+#### Modify Assignment
+
+#### Remove Assignment
+
+### View Switch Configuration History
+
+## Manage NetQ Configuration Profiles
+
+You can set up a configuration profile to indicate how you want NetQ configured when it is installed or upgraded on your Cumulus Linux switches.
 
 The default configuration profile, *NetQ default config*, is set up to run in the management VRF and provide info level logging. Both WJH and CPU Limiting are disabled.
 

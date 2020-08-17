@@ -36,7 +36,7 @@ When using a VM, the following system resources must be allocated:
 <td>256 GB (2 TB max) SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
 {{ end }}
 {{- if eq (.Get "deployment") "cloud" -}}
-<td>32 GB (2 TB max)</td>
+<td>For NetQ 3.1: 64 GB (2 TB max)<br>For NetQ 3.0 and earlier: 32 GB (2 TB max)</td>
 {{ end }}
 </tr>
 <tr class="odd">

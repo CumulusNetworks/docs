@@ -27,18 +27,17 @@ To complete the preparation:
 
     3. Select the relevant software from the **HyperVisor/Platform** list:
 
+        If you are upgrading NetQ Platform software for a NetQ On-premises Appliance or VM, select *Appliance*  to download the NetQ-3.2.0.tgz file. If you are upgrading NetQ Collector software for a NetQ Cloud Appliance or VM, select *Appliance (Cloud)* to download the NetQ-3.2.0-opta.tgz file.
+
         {{< figure src="/images/netq/netq-30-download-options-300.png" width="500" >}}
-         
-        | Your Deployment Type | Hypervisor/Platform Selection | Downloaded Filename |
-        | ---- | ---- | ---- |
-        | NetQ On-premises VM | KVM or VMware | NetQ-3.0.0.tgz |
-        | NetQ Cloud VM | KVM (Cloud) or VMware (Cloud) | NetQ-3.0.0-opta.tgz |
-        | NetQ On-premises Appliance | Appliance | NetQ-3.0.0.tgz |
-        | NetQ Cloud Appliance | Appliance (Cloud) | NetQ-3.0.0-opta.tgz |
 
     4. Scroll down and click **Download**. For example: The NetQ Appliance images.
 
         {{< figure src="/images/netq/netq-30-appliance-onpremcld-dwnld-300.png" width="420" >}}
+
+        {{<notice note>}}
+You can ignore the note on the image card because, unlike during installation, you <em>do not</em> need to download the bootstrap file for an upgrade.
+        {{</notice>}}
 
 3. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
 

@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 5
 product: Cumulus VX
 ---
-This section provides an overview of Cumulus VX and lists the supported environments.
+This section provides an overview of Cumulus VX and lists supported environments.
 
 ## Cumulus VX
 
@@ -21,7 +21,7 @@ As an alternative to Cumulus VX, which requires a hypervisor (or hypervisor and 
 
 ## Supported Environments
 
-Cumulus VX is supported on:
+Cumulus VX is supported with:
 
 - KVM-QEMU
 - KVM-QEMU and Vagrant
@@ -32,7 +32,7 @@ Cumulus VX is supported on:
 
 {{%notice note%}}
 
-Although Cumulus VX is supported on VMware Fusion, Workstation, and vSphere ESXi. This document provides setup instructions for VMware vSphere ESXi only.
+Cumulus VX is supported with VMware Fusion, Workstation, and vSphere ESXi; however, this document provides setup instructions for VMware vSphere ESXi only.
 
 {{%/notice%}}
 

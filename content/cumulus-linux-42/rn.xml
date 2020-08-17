@@ -7,6 +7,22 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30987</td>
+<td><p>On the Mellanox switch, RoCE with PFC configuration is not applied to all ports in hardware when a range is used in the traffic.conf file.<br/>
+To work around this issue, use NCLU to configure RoCE with PFC or list individual ports in the traffic.conf file.</p></td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30957</td>
+<td><p>The following vulnerability has been announced in the json-c / libjson_c3 packages:<br/>
+CVE-2020-12762: json-c through 0.14 has an integer overflow and out-of-bounds write via a large JSON file, as demonstrated by printbuf_memappend.<br/>
+Vulnerable: 0.12.1+ds-2<br/>
+Fixed: 0.12.1+ds-2+deb10u1</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30879</td>
 <td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
 </td>
@@ -62,6 +78,12 @@ CVE-2020-8608: In libslirp 4.1.0, as used in QEMU 4.2.0, tcp_subr.c misuses snpr
 Vulnerable: &lt;= 3.1+dfsg-8+deb10u6<br/>
 Fixed: 3.1+dfsg-8+deb10u7</p></td>
 <td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30580</td>
+<td><p>ifupdown2 does not account for link status or link down configuration when running dhclient. For example, ifupdown2 ignores link-down yes during ifup/ifreload and runs the DHCP module if inet dhcp is configured on the interface. ifupdown2 also runs the DHCP module even when the physical link configured for DHCP is down.</p></td>
+<td>3.7.12-3.7.13, 4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -347,6 +369,12 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <td></td>
 </tr>
 <tr>
+<td>CM-29982</td>
+<td><p>A VRRP role change over the EVPN network causes excessive BGP updates and connectivity issues to VIP for about one minute.</p></td>
+<td>4.1.1-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.13, 4.0.0-4.2.0</td>
@@ -430,12 +458,6 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 
 <p>To work around this issue,  run the ifreload -a command a second time.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29591</td>
-<td><p>When you add an IPv4 route with an IPv6 next hop, switchd crashes.</p></td>
-<td>4.1.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>

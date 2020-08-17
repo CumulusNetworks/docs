@@ -96,6 +96,46 @@ On a switch with a {{<exlink url="https://cumulusnetworks.com/products/hardware-
 
 {{%/notice%}}
 
+The example below shows `cl-resource-query` results for a NVIDIA Mellanox Spectrum switch:
+```
+cumulus@switch:~$ sudo cl-resource-query
+IPv4 host entries:                      0,   0% of maximum value  32768
+IPv6 host entries:                      0,   0% of maximum value  16384
+IPv4 neighbors:                         0
+IPv6 neighbors:                         0
+IPv4 route entries:                     0,   0% of maximum value  65536
+IPv6 route entries:                     7,   0% of maximum value  28672
+IPv4 Routes:                            0
+IPv6 Routes:                            7
+Total Routes:                           7,   0% of maximum value  94208
+ECMP nexthops:                          0,   0% of maximum value   4101
+MAC entries:                            0,   0% of maximum value  40960
+Total Mcast Routes:                     0,   0% of maximum value    400
+Ingress ACL entries:                    0,   0% of maximum value      0
+Ingress ACL counters:                   0,   0% of maximum value      0
+Ingress ACL meters:                     0,   0% of maximum value      0
+Ingress ACL slices:                     0,   0% of maximum value      0
+Egress ACL entries:                     0,   0% of maximum value      0
+Egress ACL counters:                    0,   0% of maximum value      0
+Egress ACL meters:                      0,   0% of maximum value      0
+Egress ACL slices:                      0,   0% of maximum value      0
+Ingress ACL ipv4_mac filter table:      0,   0% of maximum value      0 (allocated: 0)
+Ingress ACL ipv6 filter table:          0,   0% of maximum value      0 (allocated: 0)
+Ingress ACL mirror table:               0,   0% of maximum value      0 (allocated: 0)
+Ingress ACL 8021x filter table:         0,   0% of maximum value      0 (allocated: 0)
+Ingress PBR ipv4_mac filter table:      0,   0% of maximum value      0 (allocated: 0)
+Ingress PBR ipv6 filter table:          0,   0% of maximum value      0 (allocated: 0)
+Ingress ACL ipv4_mac mangle table:      0,   0% of maximum value      0 (allocated: 0)
+Ingress ACL ipv6 mangle table:          0,   0% of maximum value      0 (allocated: 0)
+Egress ACL ipv4_mac filter table:       0,   0% of maximum value      0 (allocated: 0)
+Egress ACL ipv6 filter table:           0,   0% of maximum value      0 (allocated: 0)
+ACL L4 port range checkers:             0,   0% of maximum value      0
+ACL Regions:                            4,   1% of maximum value    400
+ACL 18B Rules Key:                      2,   0% of maximum value   2256
+ACL 32B Rules Key:                      0,   0% of maximum value   1024
+ACL 54B Rules Key:                      2,   0% of maximum value   1024
+```
+
 {{%notice note%}}
 
 Ingress ACL and Egress ACL entries show the counts in single wide (*not* double-wide). For information about ACL entries, see {{<link url="Netfilter-ACLs#estimate-the-number-of-rules" text="Estimate the Number of ACL Rules">}}.

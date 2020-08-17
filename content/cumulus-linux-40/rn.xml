@@ -7,6 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-30957</td>
+<td><p>The following vulnerability has been announced in the json-c / libjson_c3 packages:<br/>
+CVE-2020-12762: json-c through 0.14 has an integer overflow and out-of-bounds write via a large JSON file, as demonstrated by printbuf_memappend.<br/>
+Vulnerable: 0.12.1+ds-2<br/>
+Fixed: 0.12.1+ds-2+deb10u1</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30879</td>
 <td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
 </td>

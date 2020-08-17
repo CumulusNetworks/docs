@@ -40,7 +40,7 @@ To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not
 
 ### Change the Ports
 
-1. On both **leaf01** and **leaf02**, obtain the MAC address for swp1, swp2, and swp3. Run the following commands:
+1. On both **leaf01** and **leaf02**, obtain the MAC address for swp1, swp2, and swp3:
 
    {{< tabs "TabID45 ">}}
 
@@ -49,7 +49,7 @@ To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not
 ```
 cumulus@leaf01:mgmt:~$ ip link show swp1
 3: swp1: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
-    link/ether 08:00:27:8c:cf:41: brd ff:ff:ff:ff:ff:ff:ff
+    link/ether 08:00:27:8c:cf:41 brd ff:ff:ff:ff:ff:ff:ff
 ```
 
 {{< /tab >}}
@@ -59,7 +59,7 @@ cumulus@leaf01:mgmt:~$ ip link show swp1
    ```
    cumulus@leaf01:mgmt:~$ ip link show swp2
    4: swp2: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
-        link/ether 08:00:27:2a:5b:4e: brd ff:ff:ff:ff:ff:ff:ff
+        link/ether 08:00:27:2a:5b:4e brd ff:ff:ff:ff:ff:ff:ff
    ```
 
 {{< /tab >}}
@@ -69,21 +69,21 @@ cumulus@leaf01:mgmt:~$ ip link show swp1
 ```
 cumulus@leaf01:mgmt:~$ ip link show swp3
 5: swp3: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
-    link/ether 08:00:27:91:9a:48: brd ff:ff:ff:ff:ff:ff:ff
+    link/ether 08:00:27:91:9a:48 brd ff:ff:ff:ff:ff:ff:ff
  ```
 
 {{< /tab >}}
 
 {{< /tabs >}}
 
-2. On both **leaf01** and **leaf02**, change the ports associated with the MAC addresses. Run the following commands as **root** and replace `<mac-address>` with the MAC address you obtained in the previous step:
+2. On both **leaf01** and **leaf02**, change the ports associated with the MAC address obtained for swp1, swp2, and swp3 from the previous step; for example:
 
    {{< tabs "TabID65 ">}}
 
 {{< tab "Change swp1 to swp51 ">}}
 
 ```
-root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp51", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="08:00:27:8c:cf:41", NAME="swp51", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 ```
 
 {{< /tab >}}
@@ -91,7 +91,7 @@ root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-
 {{< tab "Change swp2 to swp49 ">}}
 
 ```
-root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp49", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="08:00:27:2a:5b:4e", NAME="swp49", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
 ```
 
 {{< /tab >}}
@@ -99,7 +99,7 @@ root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-
 {{< tab "Change swp3 to swp50 ">}}
 
 ```
-root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp50", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="08:00:27:91:9a:48", NAME="swp50", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
  ```
 
 {{< /tab >}}
@@ -115,7 +115,7 @@ root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-
 
 ### Create server01 and server02
 
-In your hypervisor, create two virtual servers; server01 and server02.
+In your hypervisor environment, create two virtual servers; server01 and server02.
 
    - On server01, connect eth1 to swp1 on leaf01 and eth02 to swp1 on leaf02.
 
@@ -162,7 +162,7 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
 
 1. In the `topology_converter` folder (which includes `topology_converter.py`), create a `topology.dot` file.
 
-   The following example `toplology.dot` file represents the topology used in the Cumulus Linux on demand labs; leaf01, leaf02, spine01, server01, and server02. With the following topology, you can follow the lab tutorials in {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand" text="Cumulus Linux on demand">}}.
+   The following example `toplology.dot` file represents the topology used in the Cumulus Linux on demand labs; leaf01, leaf02, spine01, server01, and server02. With the following topology, you can follow the lab tutorials with {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand" text="Cumulus Linux on demand">}}.
 
    ```
    graph dc1 {
@@ -199,6 +199,6 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
 
 The topology converter reads the provided topology file line by line, and learns information about each node and each link in the topology. This information is stored in a variables datastructure. A `jinja2` template (`/templates/Vagrantfile.j2`) is used to create a Vagrantfile based on the variables datastructure.
 
-To explore further with the topology converter, read the documentation and take a look at the selection of example topologies included with the source code you downloaded.
+To explore the topology converter further, read the documentation and take a look at the selection of example topologies included with the source code you downloaded.
 
 If you encounter any issues, you can file them directly in the {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab topology converter project">}}. You can also go to {{<exlink url="cumulusnetworks.slack.com" text="Cumulus Networks community slack">}} to discuss issues or ask questions about using the topology converter.

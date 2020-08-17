@@ -42,43 +42,69 @@ To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not
 
 1. On both **leaf01** and **leaf02**, obtain the MAC address for swp1, swp2, and swp3. Run the following commands:
 
-   ```
-   cumulus@leaf01:mgmt:~$ ip link show swp1
-   3: swp1: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
-       link/ether 08:00:27:8c:cf:41: brd ff:ff:ff:ff:ff:ff:ff
-   ```
+   {{< tabs "TabID45 ">}}
+
+{{< tab "swp1 ">}}
+
+```
+cumulus@leaf01:mgmt:~$ ip link show swp1
+3: swp1: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+    link/ether 08:00:27:8c:cf:41: brd ff:ff:ff:ff:ff:ff:ff
+```
+
+{{< /tab >}}
+
+{{< tab "swp2 ">}}
 
    ```
    cumulus@leaf01:mgmt:~$ ip link show swp2
    4: swp2: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
-       link/ether 08:00:27:2a:5b:4e: brd ff:ff:ff:ff:ff:ff:ff
+        link/ether 08:00:27:2a:5b:4e: brd ff:ff:ff:ff:ff:ff:ff
    ```
 
-   ```
-   cumulus@leaf01:mgmt:~$ ip link show swp3
-   5: swp3: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
-       link/ether 08:00:27:91:9a:48: brd ff:ff:ff:ff:ff:ff:ff
-   ```
+{{< /tab >}}
 
-2. On both **leaf01** and **leaf02**, change the ports associated with the MAC addresses you obtained in the previous step:
+{{< tab "swp3 ">}}
 
-   As **root**, run this command to change swp1 to swp51. Replace `<mac-address>` with the MAC address you obtained for swp1 above:
+```
+cumulus@leaf01:mgmt:~$ ip link show swp3
+5: swp3: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+    link/ether 08:00:27:91:9a:48: brd ff:ff:ff:ff:ff:ff:ff
+ ```
 
-   ```
-   root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp51", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
-   ```
+{{< /tab >}}
 
-   As **root**, run this comand to change swp2 to swp49. Replace `<mac-address>` with the MAC address you obtained for swp2 above:
+{{< /tabs >}}
 
-   ```
-   root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp49", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
-   ```
+2. On both **leaf01** and **leaf02**, change the ports associated with the MAC addresses. Run the following commands as **root** and replace `<mac-address>` with the MAC address you obtained in the previous step:
 
-   As **root**, run this comand to change swp3 to swp50. Replace `<mac-address>` with the MAC address you obtained for swp3 above:
+   {{< tabs "TabID65 ">}}
 
-   ```
-   root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp50", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
-   ```
+{{< tab "Change swp1 to swp51 ">}}
+
+```
+root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp51", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+```
+
+{{< /tab >}}
+
+{{< tab "Change swp2 to swp49 ">}}
+
+```
+root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp49", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+```
+
+{{< /tab >}}
+
+{{< tab "Change swp3 to swp50 ">}}
+
+```
+root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="<mac-address>", NAME="swp50", SUBSYSTEMS=="pci"' >> /etc/udev/rules.d/70-persistent-net.rules
+ ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 3. Bring up swp49, swp50, and swp51:
 
@@ -101,7 +127,7 @@ After you change the ports and create server01 and server02, you are ready to go
 
 ## Run the Topology Converter
 
-The topology Converter can help you to simulate a custom network topology directly on your laptop or on a dedicated server. The topology can be extremely complete so that you can simulate hosts as well as network equipment.
+The topology Converter can help you to simulate a custom network topology directly on your laptop or on a dedicated server. The topology can be extremely complete; you can simulate hosts as well as network equipment.
 
 The topology converter translates a graphviz topology file (`.dot` file), which describes the network topology link-by-link, into a Vagrantfile, which fully represents the topology. Vagrantfiles are used with Vagrant to interconnect VMs. You can then simulate the topology with either Virtualbox and Vagrant or with KVM-QEMU and Vagrant.
 
@@ -111,19 +137,13 @@ The topology converter:
 - Removes extra Ruby-based logic from the Vagrantfile to provide simple human-readable output.
 - Generates a Vagrantfile that contains servers and switches and anything else that can be found in a Vagrant Box image.
 
-{{%notice note%}}
-
-To run the topology converter script and create the Vagrantfile, you do not need to have Vagrant, Virtualbox, or libvirt installed.
-
-{{%/notice%}}
-
 ### Install the Topology Converter
 
-Follow the steps below to install the required tools, and download the topology converter script and necessary files.
+Follow the steps below to install the required tools, and download the topology converter script and required files.
 
 This procedure assumes you are on a system running Linux and have a vagrant box image available.
 
-1. Install the tools required to run the topology converter script:
+1. Install the tools required to run the topology converter:
 
    ```
    local@host:~$ sudo apt install python3-pip
@@ -134,29 +154,15 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
    local@host:~$ sudo pip3 install ipaddress
    ```
 
-2. Download the following files from {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab">}}:
+2. Download the topology converter source code from {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab">}}.
 
-   - The `topology_converter.py` file
-   - The `templates/Vagrantfile.j2` template file
-   - The `helper_scripts/extra_switch_config.sh` file and the `helper_scripts/extra_server_config.sh` file
-
-3. Create a directory from which to run the topology converter. Add the files you dowloaded in the previous step.
-
-   The `Vagrantfile.j2` file must be in the `templates` subdirectory. The `extra_switch_config.sh` file must be in the `helper_scripts` subdirectory. For example:
-
-   ```
-   local@host:~$ mkdir topology_converter
-   local@host:~$ cd topology_converter
-   local@host:topology_converter$ cp /Users/abc/Downloads/topology_converter.py topology_converter.py
-   local@host:topology_converter$ mkdir templates helper_scripts
-   local@host:topology_converter$ cp /Users/abc/Downloads/templates_Vagrantfile.j2 templates/Vagrantfile.j2
-   local@host:topology_converter$ cp /Users/abc/Downloads/helper_scripts_extra_switch_config.sh helper_scripts/extra_switch_config.sh
-   local@host:topology_converter$ cp /Users/abc/Downloads/helper_scripts_extra_server_config.sh helper_scripts/extra_server_config.sh
-   ```
+   The topology converter script and required files download to the `topology_converter` folder, which also includes a subfolder for documentation and a subfolder for example toplogies.
 
 ### Convert a Topology
 
-1. Create a `topology.dot` file or use a file provided by Cumulus Networks {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation#example-topologies" text="here">}}. The following example `toplology.dot` file represents the topology used in the Cumulus Linux on demand labs, which includes leaf01, leaf02, spine01, server01, and server02.
+1. In the same directory as `topology_converter.py` (or any subdirectory in the directory that contains `topology_converter.py`), create a `topology.dot` file or use a file provided by Cumulus Networks {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation#example-topologies" text="here">}}. 
+
+   The following example `toplology.dot` file represents the topology used in the Cumulus Linux on demand labs; leaf01, leaf02, spine01, server01, and server02.
 
    ```
    graph dc1 {
@@ -177,32 +183,22 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
 
    ```
 
-2. Place the `topology.dot` file in the same directory as `topology_converter.py` (or any subdirectory in the directory that contains `topology_converter.py`).
-
 3. Run the following command to convert the `topology.dot` file to a Vagrantfile:
 
-   {{< tabs "TabID02 ">}}
+   ```
+   local@host:topology_converter$ python3 ./topology_converter.py ./topology.dot
+   ```
 
-{{< tab "Ubuntu">}}
+   With Libvirt, run the following command:
 
-```
-local@host:~$ python3 ./topology_converter.py ./topology.dot
-```
+   ```
+   local@host:topology_converter$ python3 ./topology_converter.py ./topology.dot -p libvirt
+   ```
 
-{{< /tab >}}
-
-{{< tab "Libvirt ">}}
-
-```
-local@host:~$ python3 ./topology_converter.py ./topology.dot -p libvirt
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-4. Start the simulation with the `vagrant up` command. If you are using Livirt, start the simulation with the `vagrant up --provider=libvirt` command.
+4. Start the simulation with the `vagrant up` command. With Livirt, start the simulation with the `vagrant up --provider=libvirt` command.
 
 The topology converter reads the provided topology file line by line, and learns information about each node and each link in the topology. This information is stored in a variables datastructure. A `jinja2` template (`/templates/Vagrantfile.j2`) is used to create a Vagrantfile based on the variables datastructure.
 
-To see a selection of example topologies and view complete documentation on the topology converter, go to {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab">}}, where you can also file any issues you encounter. In addition, you can go to {{<exlink url="cumulusnetworks.slack.com" text="Cumulus Networks community slack">}} to discuss issues or ask questions about using the topology converter.
+To explore further with the topology converter, read the documentation and take a look at the selection of example topologies included with the source code you downloaded.
+
+If you encounter any issues, you can file them directly in the {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab topology converter project">}}. You can also go to {{<exlink url="cumulusnetworks.slack.com" text="Cumulus Networks community slack">}} to discuss issues or ask questions about using the topology converter.

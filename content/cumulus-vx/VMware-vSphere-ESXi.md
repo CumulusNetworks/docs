@@ -93,7 +93,7 @@ Create the network connections between leaf01, leaf02, and spine01.
 
 ## Verify Configuration
 
-{{% vx/verify-config-vsphere %}}
+{{% vx/verify-config %}}
 
 ## Next Steps
 

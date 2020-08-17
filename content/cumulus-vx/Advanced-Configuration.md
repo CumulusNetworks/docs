@@ -123,7 +123,7 @@ In your hypervisor, create two virtual servers; server01 and server02.
 
 Refer to the your hypervisor documentation for detailed instructions on creating virtual servers and network connections.
 
-After you change the ports and create server01 and server02, you are ready to go to {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}} and follow the lab tutorials.
+After you change the ports and create server01 and server02, you are ready to go to {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand" text="Cumulus Linux on demand">}} and follow the lab tutorials.
 
 ## Run the Topology Converter
 
@@ -160,9 +160,9 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
 
 ### Convert a Topology
 
-1. In the`topology_converter` folder (which includes `topology_converter.py`), create a `topology.dot` file or use a file provided by Cumulus Networks {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/-/tree/master/documentation#example-topologies" text="here">}}.
+1. In the `topology_converter` folder (which includes `topology_converter.py`), create a `topology.dot` file.
 
-   The following example `toplology.dot` file represents the topology used in the Cumulus Linux on demand labs; leaf01, leaf02, spine01, server01, and server02.
+   The following example `toplology.dot` file represents the topology used in the Cumulus Linux on demand labs; leaf01, leaf02, spine01, server01, and server02. With the following topology, you can follow the lab tutorials in {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand" text="Cumulus Linux on demand">}}.
 
    ```
    graph dc1 {

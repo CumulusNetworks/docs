@@ -38,6 +38,8 @@ As an alternative to using Cumulus VX with the Cumulus Linux on demand labs, you
 
 To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not require any port changes) and create the server01 and server 02 virtual servers.
 
+For Virtualbox and Vagrant or KVM-QEMU and Vagrant, you can run the topology converter to convert the topology. See {{<link url="#run-the-topology-converter" text="Run the Topology Converter">}} section below.
+
 ### Change the Ports
 
 1. On both **leaf01** and **leaf02**, obtain the MAC address for swp1, swp2, and swp3:

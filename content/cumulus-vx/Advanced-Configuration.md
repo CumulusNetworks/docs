@@ -156,7 +156,7 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
 
 2. Download the topology converter source code from {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab">}}.
 
-   The topology converter script (`topology_converter.py`) and required files download to the `topology_converter` folder, which also includes a subfolder for documentation and a subfolder for example toplogies.
+   The topology converter script (`topology_converter.py`) and required files download to the `topology_converter` folder, which also includes a subfolder for documentation and a subfolder for example topologies.
 
 ### Convert a Topology
 

@@ -1,7 +1,7 @@
 ---
 title: Manage the NetQ UI
 author: Cumulus Networks
-weight: 600
+weight: 650
 toc: 2
 ---
 As an administrator, you can manage access to and various application-wide settings for the Cumulus NetQ UI from a single location.

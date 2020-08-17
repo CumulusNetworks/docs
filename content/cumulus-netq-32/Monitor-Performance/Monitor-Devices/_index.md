@@ -339,7 +339,7 @@ The small Switch Inventory card displays:
 
 The medium Switch Inventory card displays:
 
-{{<figure src="/images/netq/inventory-switch-medium-230.png" width="200">}}
+{{<figure src="/images/netq/inventory-switch-medium-320.png" width="200">}}
 
 <table>
 <colgroup>

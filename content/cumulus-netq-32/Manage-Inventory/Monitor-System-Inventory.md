@@ -1,9 +1,11 @@
 ---
-title: Monitor Network Elements
+title: Monitor System Inventory
 author: Cumulus Networks
-weight: 870
+weight: 610
 ---
 In addition to network performance monitoring, the Cumulus NetQ UI provides a view into the current status and configuration of the network elements in a tabular, network-wide view. These are helpful when you want to see all data for all of a particular element in your network for troubleshooting, or you want to export a list view.
+
+The second location is through tabular views for each network element. These are helpful when you want to see all data for a particular element in your network, or you want to export a list view. However, the tabular views only provide the current status; you cannot change the time period of the views, or graph the data within the UI.
 
 Some of these views provide data that is also available through the card workflows, but these views are not treated like cards. They only provide the current status; you cannot change the time period of the views, or graph the data within the UI.
 

@@ -1,10 +1,18 @@
 ---
 title: Monitor Network Inventory
 author: Cumulus Networks
-weight: 610
+weight: 620
 toc: 4
 ---
 With NetQ, you can monitor the hardware and software components installed and running on the switches and hosts across the entire network at once. This is extremely useful for understanding the dependence on various vendors and versions, when planning upgrades or the scope of any other required changes.
+
+## Access Network Inventory Data
+
+The Cumulus NetQ UI provides two cards for monitoring network-wide inventory information. The Inventory | Devices card provides varying degrees of information about hardware and software on all switches and hosts running NetQ. The Inventory | Switches card provides varying degrees of information about the hardware and software on all switches running NetQ. Access these cards from the Cumulus Workbench, or add them to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory | Devices card  and/or Inventory | Switches > **Open Cards**.
+
+{{<img src="/images/netq/inventory-devices-medium-240.png" width="200">}}&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switch-medium-320.png" width="200">}}
+
+The CLI provides detailed network inventory information through its `netq show inventory` command.
 
 ## View Network Inventory Summary
 
@@ -27,7 +35,7 @@ To view the quantity of devices in your network, locate or open the small or med
 
 You can view all stored attributes for all switches in your network. To view all switch details, open the full screen Inventory|Devices card and click the **All Switches** tab in the navigation panel.
 
-{{< figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700" >}}
+{{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
@@ -35,7 +43,7 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 
 You can view all stored attributes for all hosts in your network. To view all hosts details, open the full screen Inventory|Devices card and click the **All Hosts** tab in the navigation panel.
 
-{{< figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
+{{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
@@ -85,9 +93,9 @@ spine04           VX                   CL              x86_64   VX              
 
 You can view all hardware components or narrow your view to specific hardware components for all of the switches in your network.
 
-### View Switch Components
+### View Switch Components Summary
 
-Switch component inventory can be viewed from either the NetQ CLI or NetQ UI.
+Switch component inventory can be viewed from either the NetQ UI or NetQ CLI.
 
 {{< tabs "TabID87" >}}
 
@@ -101,7 +109,7 @@ To view switch components:
 
     By default the Switches tab is shown displaying the total number of switches, ASIC vendors, OS versions, license status, NetQ Agent versions, and specific platforms deployed across all of your switches.
 
-    {{< figure src="/images/netq/inventory-devices-large-switches-tab-230.png" width="500" >}}
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-230.png" width="500">}}
 
 You can hover over any of the segments in a component distribution chart to highlight a specific type of the given component. When you *hover*, a tooltip appears displaying:
 
@@ -109,7 +117,7 @@ You can hover over any of the segments in a component distribution chart to high
 - the total number of switches with that type of component deployed compared to the total number of switches
 - percentage of this type with respect to all component types
 
-    {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650" >}}
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650">}}
 
 Additionally, sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
 
@@ -157,33 +165,57 @@ spine04           VX                   CL              x86_64   VX              
 
 ### View ASIC Information for all Switches
 
-ASIC information can be viewed from either the NetQ CLI or NetQ UI.
+ASIC information can be viewed from either the NetQ UI or NetQ CLI.
 
 {{< tabs "TabID158" >}}
 
 {{< tab "NetQ UI" >}}
 
-To dig deeper on a particular component type, you can filter the card data by that type. In this procedure, the result of filtering on the ASIC is shown.
+To dig deeper on a particular component type, you can filter the card data by that type. In this procedure, the result of filtering on the ASIC component is shown.
 
 To view ASIC data:
 
-1. Click a segment of the ASIC graph in the component distribution charts.
+{{< tabs "TabID178" >}}
 
-    {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-filter.png" width="300" >}}
+{{< tab "Inventory|Devices" >}}
 
-2. Select the first option from the popup, *Filter ASIC*. The card data is filtered to show only the components associated with selected component type. A filter tag appears next to the total number of switches indicating the filter criteria.
+1. Locate the Inventory|Devices card on your workbench.
 
-    {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-filter-os-230.png" width="250" >}}
+2. Hover over the card, and change to the large size card using the size picker.
 
-3. Hover over the segments to view the related components.
+3. Click a segment of the ASIC graph in the component distribution charts.
 
-    {{< figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight2-230.png" width="500" >}}
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-filter.png" width="300">}}
 
-4. To return to the full complement of components, click the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
+4. Select the first option from the popup, *Filter ASIC*. The card data is filtered to show only the components associated with selected component type. A filter tag appears next to the total number of switches indicating the filter criteria.
+
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-filter-os-230.png" width="250">}}
+
+5. Hover over the segments to view the related components.
+
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight2-230.png" width="500">}}
+
+6. To return to the full complement of components, click the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
 
 While the Device Inventory cards provide a network-wide view, you may want to see more detail about your switch inventory. This can be found in the Switches Inventory card workflow. To open that workflow, click the **Switch Inventory** button at the top right of the Switches card.
 
-{{< figure src="/images/netq/inventory-devices-large-switches-tab-switch-inv-button-230.png" width="500" >}}
+{{<figure src="/images/netq/inventory-devices-large-switches-tab-switch-inv-button-230.png" width="500">}}
+
+{{< /tab >}}
+
+{{< tab "Inventory|Switches" >}}
+
+1. Locate the Inventory|Switches card on your workbench.
+
+2. Hover over the ASIC distribution graph.
+
+    {{<figure src="/images/netq/inventory-switch-medium-asic-highlight-320.png" width="200">}}
+
+3. Move left and right to view the number of switches with the various ASICs.
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{< /tab >}}
 
@@ -233,23 +265,13 @@ st1-s1            Broadcom             Trident2                       BCM56850  
 st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
 ```
 
-You can filter the results of the command view the ASIC information for a particular switch. This example shows the ASIC information for *st1-11* switch.
-
-```
-cumulus@switch:~$ netq leaf02 show inventory asic
-Matching inventory records:
-Hostname          Vendor               Model                          Model ID                  Core BW        Ports
------------------ -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
-st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-```
-
 {{< /tab >}}
 
 {{< /tabs >}}
 
 ### View Motherboard Information for all Switches
 
-You can view the vendor, model, base MAC address, serial number, part number, revision, and manufacturing date for a switch motherboard on a single device or on all devices. This example shows all of the motherboard data for all devices.
+You can view motherboard information from the NetQ CLI, including the vendor, model, base MAC address, serial number, part number, revision, and manufacturing date for a switch motherboard on all devices. This example shows all of the motherboard data for all devices.
 
 ```
 cumulus@switch:~$ netq show inventory board
@@ -285,19 +307,9 @@ st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:2
                                                                                                                                     ne-XP
 ```
 
-You can filter the results of the command to view the model for a particular switch. This example shows the motherboard vendor for the *st1-s1* switch.
-
-```
-cumulus@switch:~$ netq st1-s1 show inventory board
-Matching inventory records:
-Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
------------------ -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
-```
-
 ### View CPU Information for all Switches
 
-You can view the architecture, model, operating frequency, and the number of cores for the CPU on a single device or for all devices. This example shows these CPU characteristics for all devices.
+You can view the architecture, model, operating frequency, and the number of cores for the CPU on all devices using the NetQ CLI. This example shows these CPU characteristics for all devices.
 
 ```
 cumulus@nswitch:~$ netq show inventory cpu
@@ -351,22 +363,9 @@ spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                             ss Core i7)
 ```
 
-You can filter the results to view CPU information for a single switch,
-as shown here for *server02*.
-
-```
-cumulus@switch:~$ netq server02 show inventory cpu
-    
-Matching inventory records:
-Hostname          Arch     Model                          Freq       Cores
------------------ -------- ------------------------------ ---------- -----
-server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                            ss Core i7)
-```
-
 ### View Disk Information for all Switches
 
-You can view the name or operating system, type, transport, size, vendor, and model of the disk on a single device or all devices. This example shows all of these disk characteristics for all devices.
+You can view the name or operating system, type, transport, size, vendor, and model of the disk on all devices using the NetQ CLI. This example shows all of these disk characteristics for all devices.
 
 ```
 cumulus@switch:~$ netq show inventory disk
@@ -384,16 +383,6 @@ server03          vda             disk             N/A                301G      
 server04          vda             disk             N/A                301G       0x1af4               N/A
 spine01           vda             disk             N/A                6G         0x1af4               N/A
 spine02           vda             disk             N/A                6G         0x1af4               N/A
-```
-
-You can filter the results of the command to view the disk information for a particular device. This example shows disk information for *leaf03* switch.
-
-```
-cumulus@switch:~$ netq leaf03 show inventory disk
-Matching inventory records:
-Hostname          Name            Type             Transport          Size       Vendor               Model
------------------ --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
-leaf03            vda             disk             N/A                6G         0x1af4               N/A
 ```
 
 ### View Memory Information for all Switches

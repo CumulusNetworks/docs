@@ -1,5 +1,5 @@
 ---
-title: Monitor Network Elements
+title: Monitor System Inventory
 author: Cumulus Networks
 weight: 870
 ---

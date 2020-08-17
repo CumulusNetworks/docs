@@ -81,6 +81,7 @@ When BGP multipath is in use, if multiple paths are equal, BGP still selects a s
 To configure BGP, you need to:
 
 - Identify the BGP node by assigning an ASN and router ID
+    - router ID should be in valid unicast ip range (0.x.x.x till 223.x.x.x)
 - Specify where to disseminate routing information
 - Set BGP session properties
 - Specify which prefixes to originate

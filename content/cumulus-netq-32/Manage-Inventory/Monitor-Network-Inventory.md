@@ -1,10 +1,25 @@
 ---
 title: Monitor Network Inventory
 author: Cumulus Networks
-weight: 620
+weight: 610
 toc: 4
 ---
-With NetQ, you can monitor the hardware and software components installed and running on the switches and hosts across the entire network at once. This is extremely useful for understanding the dependence on various vendors and versions, when planning upgrades or the scope of any other required changes.
+With the NetQ UI and CLI, a user can monitor the network inventory of switches and hosts across the entire network, including such items as the number of each and what operating systems are installed. Additional details are available about the hardware and software components on individual switches, such as  the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. This is extremely useful for understanding the dependence on various vendors and versions, when planning upgrades or the scope of any other required changes.
+
+The commands and cards available to obtain this type of information help you to answer questions such as:
+
+- What switches do I have in the network?
+- What is the distribution of ASICs across my network?
+- Do all switches have valid licenses?
+- Are NetQ agents running on all of my switches?
+- What hardware is installed on my switches?
+- What software is installed on my switches?
+- What is the ACL and forwarding resources usage?
+- Do all switches have NetQ Agents running?
+
+To monitor individual switch inventory, refer to {{<link title="Monitor Switch Inventory">}}.
+
+To view the network or device performance data, refer to {{<link title="Monitor Network and Device Performance">}}.
 
 ## Access Network Inventory Data
 
@@ -95,7 +110,7 @@ spine04           VX                   CL              x86_64   VX              
 
 You can view all hardware components or narrow your view to specific hardware components for all of the switches in your network.
 
-### View Switch Components Summary
+### View Components Summary for All Switches
 
 Switch component inventory can be viewed from either the NetQ UI or NetQ CLI.
 
@@ -571,32 +586,7 @@ spine02           DIMM 0          RAM              1024 MB    Unknown    QEMU   
 
 {{< /tabs >}}
 
-### View a Summary of Physical Inventory for the NetQ On-premises or NetQ Cloud Appliance
 
-Using the `opta` option lets you view inventory information for the NetQ or NetQ Cloud Appliance(s) rather than all network nodes. This example gives you a summary of the inventory on the device.
-
-```
-cumulus@appliance:~$ netq show inventory brief opta
-
-Matching inventory records:
-Hostname          Switch               OS              CPU      ASIC            Ports
------------------ -------------------- --------------- -------- --------------- -----------------------------------
-10-20-14-158      VX                   CL              x86_64   VX              N/A
-
-```
-
-### View Component Information for the NetQ On-premises or NetQ Cloud Appliance
-
-You can be specific about which inventory item you want to view for an appliance. This example shows the memory information for a NetQ Appliance, letting you verify you have sufficient memory.
-
-```
-cumulus@netq-appliance:~$ netq show inventory memory opta
-Matching inventory records:
-Hostname          Name            Type             Size       Speed      Vendor               Serial No
------------------ --------------- ---------------- ---------- ---------- -------------------- -------------------------
-netq-app          DIMM 0          RAM              64 GB      Unknown    QEMU                 Not Specified
-
-```
 
 <!-- Move these topics to performance topic
 
@@ -1089,7 +1079,7 @@ Optionally, use the `hostname` option to view the information for a given device
 
 You can view all software components or narrow your view to specific software components for all of the devices in your network.
 
-### View the Operating Systems Running on Your Network Devices
+### View the Operating Systems Running on All Switches and Hosts
 
 With both the NetQ UI and NetQ CLI, you can view the vendor name and version of the OS on all devices, and when it was last modified. With the NetQ UI you can also view the OS ID and view the distribution of operating systems running on your switches and hosts. This is useful for verifying which versions of the OS are deployed and for upgrade planning. It also provides a view into the relative dependence on a given OS in your network.
 
@@ -1329,7 +1319,7 @@ leaf02            vx                   x86_64               3.6.2.1
 ...
 ```
 
-### View All Software Packages Installed on Switches
+### View All Software Packages Installed on All Switches
 
 If you are having an issue with a particular switch, you may want to verify what software is installed and whether it needs updating.
 
@@ -1365,7 +1355,7 @@ fw1               libopts25                1:5.18.4-3           Cumulus Linux 3.
 ...
 ```
 
-### View Recommended Software Packages
+### View Recommended Software Packages on All Switches
 
 You can determine whether any of your switches are using a software package other than the default package associated with the Cumulus Linux release that is running on the switches. Use this list  determine which packages to install/upgrade on all devices. Additionally, you can determine if a software package is missing.
 
@@ -1458,7 +1448,7 @@ act-5712-09       3.1.0                bcm                  x86_64              
 cumulus@noc-pr:~$
 ``` -->
 
-### View ACL Resources
+### View ACL Resources on All Switches
 
 Using the NetQ CLI, you can monitor the incoming and outgoing access control lists (ACLs) configured on all devices, currently or at a time in the past.
 
@@ -1514,7 +1504,7 @@ cumulus@switch:~$ netq leaf01 show cl-resource acl json
 }
 ``` -->
 
-### View Forwarding Resources
+### View Forwarding Resources on All Switches
 
 With the NetQ CLI, you can monitor the amount of forwarding resources used by all devices, currently or at a time in the past.
 
@@ -1559,7 +1549,7 @@ cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
 }
 ``` -->
 
-### Validate NetQ Agents are Running
+### Validate NetQ Agents are Running on All Switches and Hosts
 
 With the NetQ UI and the NetQ CLI, you can confirm that NetQ Agents are running on switches and hosts (if installed). using the `netq show agents` command. Viewing the **Status** column of the output indicates whether the agent is up and current, labelled *Fresh*, or down and stale, labelled *Rotten*. Additional information is provided about the agent status, including whether it is time synchronized, how long it has been up, and the last time its state changed. You can also see the version running.
 

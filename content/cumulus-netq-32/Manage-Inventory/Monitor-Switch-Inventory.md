@@ -1,26 +1,40 @@
 ---
 title: Monitor Switch Inventory
 author: Cumulus Networks
-weight: 640
+weight: 620
 toc: 4
 ---
-With the NetQ UI, you can monitor individual switches separately from the network. You are able to view the status of services they are running, health of its various components, and connectivity performance. Being able to monitor switch component inventory aids in upgrade, compliance, and other planning tasks. Viewing individual switch health helps isolate performance issues.
+With the NetQ UI and NetQ CLI, you can monitor the inventory of individual switches separately from the network. A user can monitor such items as operating system, motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. Being able to monitor this inventory aids in upgrades, compliance, and other planning tasks.
 
-With NetQ, a network administrator can monitor both the switch hardware and its operating system for misconfigurations or misbehaving services. Refer to {{<link title="Monitor Devices">}} for related commands and cards.
+The commands and cards available to obtain this type of information help you to answer questions such as:
 
-## Access Switch Inventory Data
+- What hardware is installed on my switches?
+- How many transmit and receive packets have been dropped?
+- How healthy are the fans and power supply?
+- What software is installed on my switch?
+- What is the ACL and forwarding resources usage?
 
-The Cumulus NetQ UI provides the Inventory | Switches card for monitoring the hardware and software component inventory on switches running NetQ in your network. Access this card from the Cumulus Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory | Switches card > **Open Cards**.
-
-The CLI provides detailed switch inventory information through its `netq <hostname> show inventory` command.
+To monitor network-wide inventory, refer to {{<link title="Monitor Network Inventory">}}.
 
 To view the network or device performance data, refer to {{<link title="Monitor Network and Device Performance">}}.
 
+## Access Switch Inventory Data
+
+The Cumulus NetQ UI provides the Inventory | Switches card for monitoring the hardware and software component inventory on switches running NetQ in your network. Access this card from the Cumulus Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Switches card > **Open Cards**.
+
+{{<figure src="/images/netq/inventory-switch-medium-320.png" width="200">}}
+
+The CLI provides detailed switch inventory information through its `netq <hostname> show inventory` command.
+
 ## View Switch Inventory Summary
 
-All of the devices in your network can be viewed from either the NetQ CLI or NetQ UI.
+Component information for all of the switches in your network can be viewed from either the NetQ UI or NetQ CLI.
 
-{{< tabs "TabID13" >}}
+{{< tabs "TabID25" >}}
+
+{{< tab "NetQ UI" >}}
+
+{{< /tab >}}
 
 {{< tab "NetQ CLI" >}}
 
@@ -42,13 +56,9 @@ spine01           VX                   CL              x86_64   VX              
 
 {{< /tab >}}
 
-{{< tab "NetQ UI" >}}
-
-{{< /tab >}}
-
 {{< /tabs >}}
 
-## View Switch Hardware Inventory
+## View Hardware Inventory on a Given Switch
 
 You can view all hardware components or narrow your view to specific hardware components for a given switch.
 
@@ -66,7 +76,7 @@ netq <hostname> show inventory brief
 
 This example shows
 
-## View Information about the ASIC on all Switches
+### View Information about the ASIC on all Switches
 
 You can view the vendor, model, model identifier, core bandwidth
 capability, and ports of the ASIC installed on your switch motherboard.
@@ -116,7 +126,7 @@ a particular switch. This example shows the ASIC information for
     ----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
     st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
 
-## View Information about the Motherboard in a Switch
+### View Information about the Motherboard in a Switch
 
 You can view the vendor, model, base MAC address, serial number, part
 number, revision, and manufacturing date for a switch motherboard on a
@@ -165,7 +175,7 @@ particular switch. This example shows the motherboard vendor for the
     ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
     st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
 
-## View Information about the CPU on a Switch
+### View Information about the CPU on a Switch
 
 You can view the architecture, model, operating frequency, and the
 number of cores for the CPU on a single device or for all devices. This
@@ -233,7 +243,7 @@ as shown here for *server02*.
     server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                                ss Core i7)
 
-## View Information about the Disk on a Switch
+### View Information about the Disk on a Switch
 
 You can view the name or operating system, type, transport, size,
 vendor, and model of the disk on a single device or all devices. This
@@ -265,7 +275,7 @@ for a particular device. This example shows disk information for
     ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
     leaf03            vda             disk             N/A                6G         0x1af4               N/A
 
-## View Memory Information for a Switch
+### View Memory Information for a Switch
 
 You can view the name, type, size, speed, vendor, and serial number for
 the memory installed in a single device or all devices. This example
@@ -323,7 +333,7 @@ switch, as shown here for leaf01.
     ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
     leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
 
-## View a Summary of Physical Inventory for the NetQ or NetQ Cloud Appliance
+### View a Summary of Physical Inventory for the NetQ or NetQ Cloud Appliance
 
 Using the `opta` option lets you view inventory information for the NetQ or NetQ Cloud Appliance(s) rather than all network nodes. This example give you a summary of the inventory on the device.
 
@@ -337,7 +347,7 @@ Hostname          Switch               OS              CPU      ASIC            
 
 ```
 
-## View Memory for the NetQ or NetQ Cloud Appliance
+### View Memory for the NetQ or NetQ Cloud Appliance
 
 You can be specific about which inventory item you want to view for an appliance. This example shows the memory information for a NetQ Appliance, letting you verify you have sufficient memory.
 

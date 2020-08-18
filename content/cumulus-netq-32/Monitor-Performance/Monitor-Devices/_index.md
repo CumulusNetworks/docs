@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 810
 toc: 3
 ---
-With the NetQ UI and CLI, a user can monitor the network inventory of switches and hosts, including such items as the number of each and what operating systems are installed. Additional details are available about the hardware and software components on individual switches, such as  the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. The commands and cards available to obtain this type of information helps you to answer questions such as:
+With the NetQ UI and CLI, a user can monitor the network inventory of switches and hosts, including such items as the number of each and what operating systems are installed. Additional details are available about the hardware and software components on individual switches, such as  the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. The commands and cards available to obtain this type of information help you to answer questions such as:
 
 - What switches do I have in the network?
 - What is the distribution of ASICs across my network?

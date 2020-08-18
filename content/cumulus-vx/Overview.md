@@ -5,16 +5,18 @@ weight: 5
 product: Cumulus VX
 version: '4.2'
 ---
-This section provides an overview of Cumulus VX and lists supported environments.
+This section provides an overview of Cumulus VX and lists supported hypervisors.
 
 ## Cumulus VX
 
 Cumulus VX is a virtual appliance that helps you become familiar with Cumulus Networks technology, and provides a platform for you to prototype network operations and develop custom applications before you deploy into a production environment. Without the need for a bare metal switch or specialized hardware, Cumulus VX runs on all popular hypervisors, making traditional networking protocols such as BGP and MLAG, Cumulus Networks-specific technologies such as ONIE, and Prescriptive Topology Manager (PTM) available for testing and configuration.
 
-Cumulus VX is a virtual machine (VM) on a standard x86 environment. The VM is the same Cumulus Linux operating system supported on NVIDIA ethernet switches. Cumulus VX contains all of the software features as Cumulus Linux but provided in a VM format. Cumulus VX provides full data plane functionality via the Linux kernel as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities.
+Cumulus VX is a virtual machine (VM) on a standard x86 environment. The VM is the same Cumulus Linux operating system supported on NVIDIA ethernet switches and contains the same software features but in a VM format. Cumulus VX provides full data plane functionality through the Linux kernel, as well as layer 2 VLAN, VXLAN bridging, and VXLAN routing capabilities.
 
 {{%notice note%}}
+
 Cumulus VX is designed for testing and not data plane performance. Cumulus VX is not intended to act as a cloud virtual router. No testing or integration has been done with software packet acceleration integrations like SR-IOV or DPDK.
+
 {{%/notice%}}
 
 {{< img src="/images/cumulus-vx/cumulus-vx.png" width="800" >}}
@@ -43,27 +45,27 @@ Cumulus VX is supported with VMware Fusion, Workstation, and vSphere ESXi; howev
 
 ## Cumulus VX Compared with Cumulus Linux
 
-The VM is the same Cumulus Linux operating system supported on NVIDIA ethernet switches. Cumulus VX contains all of the software features as Cumulus Linux but provided in a VM format. Cumulus VX provides full data plane functionality via the Linux kernel as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities. Some functionality is supported in Cumulus VX but not no ethernet switches, due to hardware limitations. Some features are not supported on Cumulus VX due to hardware specific implementations.
+The VM is the same Cumulus Linux operating system supported on NVIDIA ethernet switches and contains all the same software features but in a VM format. Cumulus VX provides full data plane functionality through the Linux kernel, as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities. Due to hardware limitations, certain functionality is supported in Cumulus VX but not on ethernet switches. Due to hardware specific implementations, certain features are not supported in Cumulus VX.
+
+All software functions like BGP, spanning-tree, and SNMP are fully supported, as well as any automation tooling or third-party packages.
 
 | Cumulus VX | Cumulus Linux |
 | -----------| ------------- |
 | {{< img src="/images/cumulus-vx/cumulus-vx.png" width="450" >}}| {{< img src="/images/cumulus-vx/cumulus-linux.png" width="450" >}}|
 
-All software functions like BGP, spanning-tree and SNMP are fully supported, as well as any automation tooling or third-party packages.
-
 The following table outlines the similarities and differences between Cumulus VX and Cumulus Linux:
 
 | <div style="width:300px">Feature or Functionality | Cumulus Linux | Cumulus Vx |
 | ------------------------ | -------------------------------- | -------------------------------- |
-| Upgrade available via ONIE binary or via APT | <font color="green">Yes</font> | <font color="green">Yes</font> |
+| Upgrade available using an ONIE binary or with APT | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Line rate packet forwarding  | <font color="green">Yes</font> via switch ASIC | <font color="red">No</font> |
 | Software license install | <font color="green">Yes</font> | <font color="red">No</font> |
-| Temperature and Sensor Outputs   | <font color="green">Yes</font> | <font color="red">No</font> |
+| Temperature and sensor 0utputs   | <font color="green">Yes</font> | <font color="red">No</font> |
 | ACL and routing entry limits   | Limited depending on switch ASIC | Only limited by VM memory |
 | Designed and tested for production | <font color="green">Yes</font> | <font color="red">No</font> |
 | Layer 2 VLANs         | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Layer 2 bridging         | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| Spanning-tree         | <font color="green">Yes</font> | <font color="green">Yes</font> |
+| Spanning tree         | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Layer 3 routing       | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Routing protocols (BGP, OSPF) | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | VXLAN   | <font color="green">Yes</font> | <font color="green">Yes</font> |
@@ -77,8 +79,8 @@ The following table outlines the similarities and differences between Cumulus VX
 | 802.1x | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Cumulus NetQ | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Zero Touch Provisioning | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| 3rd party Linux packages | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| DHCP and DHCP Relay | <font color="green">Yes</font> | <font color="green">Yes</font> |
+| Third party Linux packages | <font color="green">Yes</font> | <font color="green">Yes</font> |
+| DHCP and DHCP relay | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | LLDP | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | LAG and MLAG | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Multicast, IGMP and PIM | <font color="green">Yes</font> | <font color="green">Yes</font> |
@@ -86,9 +88,9 @@ The following table outlines the similarities and differences between Cumulus VX
 | VRFs, Management VRF | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | NAT | <font color="green">Yes</font> | <font color="red">No</font><sup>3</sup> |
 
-<sub>1. Marking and remarking is supported in Cumulus VX via kernel and TC commands, but these are not supported the same on Cumulus Linux.</sub>  
-<sub>2. ACLs are supported in Cumulus VX via iptables, but the `cl-acltool` command is not supported</sub>  
-<sub>3. NAT is supported in Cumulus VX via iptables but not via cl-acltool. Using NAT within Cumulus VX will not be the same as Cumulus Linux</sub>  
+<sub>1. Marking and remarking is supported in Cumulus VX using kernel and Traffic Control (TC) commands, but these are not supported the same way in Cumulus Linux.</sub>  
+<sub>2. ACLs are supported in Cumulus VX using iptables, but the `cl-acltool` command is not supported.</sub>  
+<sub>3. NAT is supported in Cumulus VX using iptables but not with `cl-acltool`. Using NAT within Cumulus VX is not the same as Cumulus Linux.</sub>  
 
 ## Support Policy
 

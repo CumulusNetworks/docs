@@ -6,11 +6,11 @@ weight: 50
 
 ### From where do I download Cumulus VX images?
 
-Cumulus VX is available as a free download on the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}. You must create an account and log in to download a Cumulus VX image. Images are available for all supported environments.
+Cumulus VX is available as a free download on the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="Cumulus Networks website">}}. You must create an account and log in to download a Cumulus VX image. Images are available for all supported hypervisors.
 
 ### Which Hypervisors does Cumulus VX support?
 
-For a list of the supported hypervisors and orchestrators, see {{<link url="Overview" text="supported environments">}}.
+For a list of the supported hypervisors and orchestrators, see {{<link url="Overview" text="supported hypervisors">}}.
 
 ### What's the support policy for Cumulus VX?
 

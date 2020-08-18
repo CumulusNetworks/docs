@@ -634,7 +634,8 @@ Storm control provides protection against excessive inbound BUM (broadcast, unkn
 
 {{%notice note%}}
 
-Storm control is *not* supported on a switch with the Tomahawk2 ASIC.
+- Storm control is *not* supported on a switch with the Tomahawk2 ASIC.
+- On Broadcom switches, ARP requests over layer 2 VXLAN bypass broadcast storm control; they are forwarded to the CPU and subjected to embedded control plane QoS instead.
 
 {{%/notice%}}
 

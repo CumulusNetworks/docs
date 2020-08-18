@@ -11,10 +11,12 @@ This section provides an overview of Cumulus VX and lists supported environments
 
 Cumulus VX is a virtual appliance that helps you become familiar with Cumulus Networks technology, and provides a platform for you to prototype network operations and develop custom applications before you deploy into a production environment. Without the need for a bare metal switch or specialized hardware, Cumulus VX runs on all popular hypervisors, making traditional networking protocols such as BGP and MLAG, Cumulus Networks-specific technologies such as ONIE, and Prescriptive Topology Manager (PTM) available for testing and configuration.
 
-Cumulus VX is a virtual machine (VM) on a standard x86 environment. The VM is the same Cumulus Linux operating system supported on NVIDIA ethernet switches. Cumulus VX contains all of the software features as Cumulus Linux but provided in a VM format. Cumulus VX provides full data plane functionality via the Linux kernel as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities.
+Cumulus VX is a virtual machine (VM) on a standard x86 environment. The VM is the same Cumulus Linux operating system supported on NVIDIA ethernet switches. Cumulus VX contains all the same software features as Cumulus Linux but in a VM format. Cumulus VX provides full data plane functionality through the Linux kernel, as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities.
 
 {{%notice note%}}
+
 Cumulus VX is designed for testing and not data plane performance. Cumulus VX is not intended to act as a cloud virtual router. No testing or integration has been done with software packet acceleration integrations like SR-IOV or DPDK.
+
 {{%/notice%}}
 
 {{< img src="/images/cumulus-vx/cumulus-vx.png" width="800" >}}
@@ -43,7 +45,7 @@ Cumulus VX is supported with VMware Fusion, Workstation, and vSphere ESXi; howev
 
 ## Cumulus VX Compared with Cumulus Linux
 
-The VM is the same Cumulus Linux operating system supported on NVIDIA ethernet switches. Cumulus VX contains all of the software features as Cumulus Linux but provided in a VM format. Cumulus VX provides full data plane functionality via the Linux kernel as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities. Some functionality is supported in Cumulus VX but not no ethernet switches, due to hardware limitations. Some features are not supported on Cumulus VX due to hardware specific implementations.
+The VM is the same Cumulus Linux operating system supported on NVIDIA ethernet switches. Cumulus VX contains all the same software features as Cumulus Linux but in a VM format. Cumulus VX provides full data plane functionality via the Linux kernel as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities. Some functionality is supported in Cumulus VX but not on ethernet switches, due to hardware limitations. Some features are not supported on Cumulus VX due to hardware specific implementations.
 
 | Cumulus VX | Cumulus Linux |
 | -----------| ------------- |
@@ -86,9 +88,9 @@ The following table outlines the similarities and differences between Cumulus VX
 | VRFs, Management VRF | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | NAT | <font color="green">Yes</font> | <font color="red">No</font><sup>3</sup> |
 
-<sub>1. Marking and remarking is supported in Cumulus VX via kernel and TC commands, but these are not supported the same on Cumulus Linux.</sub>  
-<sub>2. ACLs are supported in Cumulus VX via iptables, but the `cl-acltool` command is not supported</sub>  
-<sub>3. NAT is supported in Cumulus VX via iptables but not via cl-acltool. Using NAT within Cumulus VX will not be the same as Cumulus Linux</sub>  
+<sub>1. Marking and remarking is supported in Cumulus VX using kernel and Traffic Control (TC) commands, but these are not supported the same way in Cumulus Linux.</sub>  
+<sub>2. ACLs are supported in Cumulus VX using iptables, but the `cl-acltool` command is not supported.</sub>  
+<sub>3. NAT is supported in Cumulus VX using iptables but not with `cl-acltool`. Using NAT within Cumulus VX is not the same as Cumulus Linux.</sub>  
 
 ## Support Policy
 

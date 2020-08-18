@@ -22,6 +22,10 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 ### Create VMs in VirtualBox
 
+{{% notice note %}}
+By default the Cumulus VX OVA defines the CPU, memory and disk requirements. If they are manually changed, Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
+{{% /notice %}}
+
 {{% vx/virtualbox-steps %}}
 
 ### Configure GNS3

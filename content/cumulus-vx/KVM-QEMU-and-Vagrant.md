@@ -77,11 +77,11 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
 
 3. Edit the `Vagrantfile` and replace the contents of the file with the following:
 
-{{<notice note>}}
-For more information on writing a Vagrantfile, reference the {{% exlink text="Hashicorp Vagrant" url="https://www.vagrantup.com/docs/vagrantfile" %}} documentation. 
+{{%notice note%}}
 
-The following is a complete Vagrantfile for the three-switch example topology.
-{{< /notice >}}
+The following is a complete Vagrantfile for the three-switch example topology. For more information on writing a Vagrantfile, reference the {{% exlink text="Hashicorp Vagrant" url="https://www.vagrantup.com/docs/vagrantfile" %}} documentation.
+
+{{%/notice%}}
 
 {{< expand "Vagrantfile" >}}
 
@@ -349,11 +349,11 @@ The following is a complete Vagrantfile for the three-switch example topology.
 
 4. Run `vagrant up` to start the VMs:
 
-{{% notice note %}}
-KVM starts all Vagrant defined VMs in parallel. In large topologies this may cause issues related to host resource contention.
+{{%notice note%}}
 
-Consider starting a subset of VMs at a time using the `vagrant up <hostname> <hostname>` command
-{{% /notice %}}
+KVM starts all Vagrant defined VMs in parallel. In large topologies, this might cause issues related to host resource contention. Consider starting a subset of VMs at a time using the `vagrant up <hostname> <hostname>` command.
+
+{{%/notice%}}
 
    ```
    local@host:~/vagrant$ vagrant up

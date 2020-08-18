@@ -352,7 +352,7 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
 
 {{%notice note%}}
 
-KVM starts all Vagrant defined VMs in parallel. In large topologies, this might cause issues related to host resource contention. Consider starting a subset of VMs at a time using the `vagrant up <hostname> <hostname>` command.
+KVM starts all Vagrant defined VMs in parallel. In large topologies, this might cause host resource contention issues. Consider starting a subset of VMs at a time using the `vagrant up <hostname> <hostname>` command.
 
 {{%/notice%}}
 

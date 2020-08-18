@@ -18,7 +18,8 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="OVA disk image for VMware">}}.
 
 ### Create the VMs
-Follow these steps for each VM (leaf01, leaf02, and spine01)
+
+Follow these steps for each VM (leaf01, leaf02, and spine01):
 
 1. From the vSphere web client, create a new folder under VMs and Templates.
 2. Select the folder then click **Deploy OVF Template** from the **Actions** menu.
@@ -32,9 +33,11 @@ Follow these steps for each VM (leaf01, leaf02, and spine01)
 
    The Cumulus VX OVA image is imported and deployed as a VM. After the deployment process is complete, the VM appears in the list of VMs in the left pane.
 
-{{% notice note %}}
-By default the Cumulus VX OVA defines the CPU, memory and disk requirements. If they are manually changed, Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
-{{% /notice %}}
+   {{% notice note %}}
+
+   The Cumulus VX OVA image defines the CPU, memory, and disk requirements. Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
+
+   {{% /notice %}}
 
 7. Repeat the previous steps to create two additional VMs: `leaf02` and `spine01`.
 

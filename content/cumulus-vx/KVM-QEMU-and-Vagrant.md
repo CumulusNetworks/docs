@@ -78,11 +78,10 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
 3. Edit the `Vagrantfile` and replace the contents of the file with the following:
 
 {{%notice note%}}
-The following is a complete Vagrantfile for the three-switch example topology. For more information on writing a Vagrantfile, reference the {{% exlink text="Hashicorp Vagrant" url="https://www.vagrantup.com/docs/vagrantfile" %}} documentation.
-{{%/notice%}}
 
-{{% notice note %}}
-This Vagrantfile defines CPU, memory and disk requirements for Cumulus VX. If they are manually changed, Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
+- The following is a complete Vagrantfile for the two leaf and one spine example topology. For more information on writing a Vagrantfile, reference the {{% exlink text="Hashicorp Vagrant" url="https://www.vagrantup.com/docs/vagrantfile" %}} documentation.
+- This Vagrantfile defines CPU, memory, and disk requirements for Cumulus VX, which requires at least 768MB of RAM and 6GB of disk space.
+
 {{% /notice %}}
 
 {{< expand "Vagrantfile" >}}

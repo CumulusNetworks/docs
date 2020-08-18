@@ -22,14 +22,16 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 ### Create the VMs
 
 {{% notice note %}}
-By default the Cumulus VX OVA defines the CPU, memory and disk requirements. If they are manually changed, Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
+
+The Cumulus VX OVA image defines the CPU, memory and disk requirements. Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
+
 {{% /notice %}}
 
 {{% vx/virtualbox-steps %}}
 
 ### Create Network Connections
 
-Virtualbox "network adapters" start with eth0, then swp1, swp2 and then swp3. Settings for "Adapter 1" will be applied to eth0, "Adapter 2" for "swp1" and so on.
+Virtualbox network adapters start with eth0, then swp1, swp2 and swp3. Settings for Adapter 1 are applied to eth0, settings for Adapter 2 are applied to swp1, and so on.
 
 Configure the network adapter settings for leaf01, leaf02, and spine01 to create point-to-point connections, as shown below.
 
@@ -42,9 +44,12 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
 2. Click **Settings**, then click **Network**.
 
 3. Configure the **Adapters** on each VM as shown below, then click **OK** to save the network connections.
-{{< notice note >}}
-Due to how Virtualbox manages link-local multicast frames, `Promiscuous Mode` must be enabled on all swp interfaces to allow for LACP bonding to properly operate.
-{{< /notice >}}
+
+   {{< notice note >}}
+
+   Due to how Virtualbox manages link-local multicast frames, you must enable *Promiscuous Mode* on all swp interfaces to allow for LACP bonding to properly operate.
+
+   {{< /notice >}}
 
    **leaf01 configuration**
 

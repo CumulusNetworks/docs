@@ -5,15 +5,13 @@ weight: 15
 ---
 Performing virtualization in Linux requires three components:
 
-- **KVM** works exclusively with QEMU and performs hardware acceleration for x86 VMs with Intel and AMD CPUs. The pair is often called KVM/QEMU or just KVM.
-- **QEMU** is a machine emulator that allows the host machine to emulate the CPU architecture of the guest machine. Because QEMU does not provide hardware acceleration, it works well with KVM.
-- **Libvirt** provides an abstraction language to define a VM. It uses XML to represent and define the VM.
+{{% vx/kvm-components %}}
 
 This section describes how to install and set up Cumulus VX with KVM/QEMU and Libvirt on a Linux server to create the two leaf and one spine topology shown below.
 
 {{% vx/intro %}}
 
-These steps were tested with Cumulus VX 4.2, KVM/QEMU version 1:4.2-3ubuntu6.3, and Libvirt version 6.0.0 on Linux Ubuntu version 20.04.
+These steps were tested with Cumulus VX 4.2, KVM/QEMU version 1:4.2-3ubuntu6.3, and Libvirt version 6.0.0 on Ubuntu Linux version 20.04.
 
 ## Create and Configure the VMs
 
@@ -29,6 +27,14 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
    local@host:~$ sudo apt update -y
    local@host:~$ sudo apt install -qy qemu ebtables dnsmasq-base qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virt-manager python3-pip
    local@host:~$ sudo apt install -qy libxslt-dev libxml2-dev libvirt-dev zlib1g-dev
+   ```
+
+3. Confirm that your Linux kernel and BIOS settings permit the use of KVM hardware acceleration:
+
+   ```
+   local@host:~$ kvm-ok
+   INFO: /dev/kvm exists
+   KVM acceleration can be used
    ```
 
 ### Create the VMs and Network Connections

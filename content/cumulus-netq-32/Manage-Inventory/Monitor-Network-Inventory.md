@@ -8,9 +8,11 @@ With NetQ, you can monitor the hardware and software components installed and ru
 
 ## Access Network Inventory Data
 
-The Cumulus NetQ UI provides two cards for monitoring network-wide inventory information. The Inventory | Devices card provides varying degrees of information about hardware and software on all switches and hosts running NetQ. The Inventory | Switches card provides varying degrees of information about the hardware and software on all switches running NetQ. Access these cards from the Cumulus Workbench, or add them to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory | Devices card  and/or Inventory | Switches > **Open Cards**.
+The Cumulus NetQ UI provides the Inventory|Devices card for monitoring network-wide inventory information. It provides varying degrees of information about hardware and software on all switches and hosts running NetQ. 
 
-{{<img src="/images/netq/inventory-devices-medium-240.png" width="200">}}&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switch-medium-320.png" width="200">}}
+Access this card from the Cumulus Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Devices card > **Open Cards**.
+
+{{<figure src="/images/netq/inventory-devices-medium-240.png" width="200">}}
 
 The CLI provides detailed network inventory information through its `netq show inventory` command.
 
@@ -41,7 +43,7 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 
 ### View All Hosts
 
-You can view all stored attributes for all hosts in your network. To view all hosts details, open the full screen Inventory|Devices card and click the **All Hosts** tab in the navigation panel.
+You can view all stored attributes for all hosts in your network. To view all host details, open the full screen Inventory|Devices card and click the **All Hosts** tab in the navigation panel.
 
 {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
 
@@ -54,7 +56,7 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 To view a list of devices in your network, run:
 
 ```
-netq show inventory brief
+netq show inventory brief [json]
 ```
 
 This example shows that we have four spine switches, three leaf switches, two border switches, two firewall switches, seven hosts (servers), and an out-of-band management server in this network. For each of these we see the type of switch, operating system, CPU and ASIC.
@@ -111,15 +113,16 @@ To view switch components:
 
     {{<figure src="/images/netq/inventory-devices-large-switches-tab-230.png" width="500">}}
 
-You can hover over any of the segments in a component distribution chart to highlight a specific type of the given component. When you *hover*, a tooltip appears displaying:
+<div style="padding-left: 18px;">You can hover over any of the segments in a component distribution chart to highlight a specific type of the given component. When you *hover*, a tooltip appears displaying:</div>
 
-- the name or value of the component type, such as the version number or status
-- the total number of switches with that type of component deployed compared to the total number of switches
-- percentage of this type with respect to all component types
+<div style="padding-left: 18px;"><ul>
+<li>Name or value of the component type, such as the version number or status</li>
+<li>Total number of switches with that type of component deployed compared to the total number of switches</li>
+<li>Percentage of this type with respect to all component types</li></ul></div>
 
     {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650">}}
 
-Additionally, sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
+<div style="padding-left: 18px;">Additionally, sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).</div>
 
 {{< /tab >}}
 
@@ -128,7 +131,7 @@ Additionally, sympathetic highlighting is used to show the related component typ
 To view switch components, run:
 
 ```
-netq show inventory brief
+netq show inventory brief [json]
 ```
 
 This example shows the operating systems (Cumulus Linux and Ubuntu), CPU architecture (all x86_64), ASIC (virtual), and ports (none, since virtual) for each device in the network. You can manually count the number of each of these, or export to a spreadsheet tool to sort and filter the list.
@@ -173,11 +176,11 @@ ASIC information can be viewed from either the NetQ UI or NetQ CLI.
 
 To dig deeper on a particular component type, you can filter the card data by that type. In this procedure, the result of filtering on the ASIC component is shown.
 
-To view ASIC data:
+View ASIC data in a graphic or a table:
 
-{{< tabs "TabID178" >}}
+{{< tabs "TabID181" >}}
 
-{{< tab "Inventory|Devices" >}}
+{{< tab "Graphic">}}
 
 1. Locate the Inventory|Devices card on your workbench.
 
@@ -185,15 +188,15 @@ To view ASIC data:
 
 3. Click a segment of the ASIC graph in the component distribution charts.
 
-    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-filter.png" width="300">}}
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-asic-component-filter-320.png" width="500">}}
 
 4. Select the first option from the popup, *Filter ASIC*. The card data is filtered to show only the components associated with selected component type. A filter tag appears next to the total number of switches indicating the filter criteria.
 
-    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-filter-os-230.png" width="250">}}
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-filter-asic-320.png" width="500">}}
 
 5. Hover over the segments to view the related components.
 
-    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight2-230.png" width="500">}}
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-agent-320.png" width="500">}}
 
 6. To return to the full complement of components, click the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
 
@@ -203,15 +206,19 @@ While the Device Inventory cards provide a network-wide view, you may want to se
 
 {{< /tab >}}
 
-{{< tab "Inventory|Switches" >}}
+{{< tab "Table" >}}
 
-1. Locate the Inventory|Switches card on your workbench.
+You can view ASIC model, modelID, vendor, and ports for all switches using the full-screen card. ASIC information is not available for hosts.
 
-2. Hover over the ASIC distribution graph.
+1. Locate the Inventory|Devices card on your workbench.
 
-    {{<figure src="/images/netq/inventory-switch-medium-asic-highlight-320.png" width="200">}}
+2. Hover over the card, and change to the full-screen card using the size picker.
 
-3. Move left and right to view the number of switches with the various ASICs.
+    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
+
+3. Scroll to the right to view the above ASIC information.
+
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{< /tab >}}
 
@@ -224,7 +231,7 @@ While the Device Inventory cards provide a network-wide view, you may want to se
 To view the vendor, model, model identifier, core bandwidth capability, and ports of the ASIC installed on your switch motherboard, run:
 
 ```
-netq show inventory asic
+netq show inventory asic [vendor <asic-vendor>|model <asic-model>|model-id <asic-model-id>] [json]
 ```
 
 This example shows all of the ASIC attributes for all devices.
@@ -248,7 +255,7 @@ st1-s1            Broadcom             Trident2                       BCM56850  
 st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
 ```
 
-You can filter the results of the command to view devices with a particular characteristic. This example shows all devices that use a Broadcom ASIC.
+You can filter the results of the command to view devices with a particular vendor, model, or modelID. This example shows all devices with a vendor of *Broadcom*.
 
 ```
 cumulus@switch:~$ netq show inventory asic vendor Broadcom
@@ -271,7 +278,33 @@ st1-s2            Broadcom             Trident2                       BCM56850  
 
 ### View Motherboard Information for all Switches
 
-You can view motherboard information from the NetQ CLI, including the vendor, model, base MAC address, serial number, part number, revision, and manufacturing date for a switch motherboard on all devices. This example shows all of the motherboard data for all devices.
+You can view motherboard information from the NetQ UI or NetQ CLI, including the vendor, model, base MAC address, serial number, part number, revision, and manufacturing date for a switch motherboard on all devices.
+
+{{< tabs "TabID266" >}}
+
+{{< tab "NetQ UI">}}
+
+1. Locate the Inventory|Devices card on your workbench.
+
+2. Hover over the card, and change to the full-screen card using the size picker.
+
+3. Scroll to the right to view the various parameters. Optionally drag and drop them to be next to each other.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
+
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab>}}
+
+{{< tab "NetQ CLI">}}
+
+To view a list of motherboards installed in your switches, run:
+
+```
+netq show inventory board [vendor <board-vendor>|model <board-model>] [json]
+```
+
+This example shows all of the motherboard data for all devices.
 
 ```
 cumulus@switch:~$ netq show inventory board
@@ -294,7 +327,7 @@ st1-s1            Dell                 S6000-ON                       44:38:39:0
 st1-s2            Dell                 S6000-ON                       44:38:39:00:80:81  N/A                       N/A              N/A    N/A
 ```
 
-You can filter the results of the command to capture only those devices with a particular motherboard vendor. This example shows only the devices with *Celestica* motherboards.
+You can filter the results of the command to capture only those devices with a particular motherboard vendor or model. This example shows only the devices with a *Celestica* motherboard.
 
 ```
 cumulus@switch:~$ netq show inventory board vendor celestica
@@ -307,9 +340,43 @@ st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:2
                                                                                                                                     ne-XP
 ```
 
-### View CPU Information for all Switches
+{{< /tab>}}
 
-You can view the architecture, model, operating frequency, and the number of cores for the CPU on all devices using the NetQ CLI. This example shows these CPU characteristics for all devices.
+{{< /tabs >}}
+
+### View CPU Information for all Switches and Hosts
+
+You can view the architecture, model, operating frequency, and the number of cores for the CPU on all devices using the NetQ UI or NetQ CLI.
+
+{{< tabs "TabID304" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Locate the Inventory|Devices card on your workbench.
+
+2. Hover over the card, and change to the full-screen card using the size picker.
+
+3. The **All Switches** tab is selected by default. Scroll to the right to view the various parameters. Optionally drag and drop them to be next to each other.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
+
+4. Click **All Hosts** to view the same information for your host servers.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
+
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view cpu information for your network, run:
+
+```
+netq show inventory cpu [arch <cpu-arch>] [json]
+```
+
+This example show the CPU for all devices.
 
 ```
 cumulus@nswitch:~$ netq show inventory cpu
@@ -363,9 +430,43 @@ spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
                             ss Core i7)
 ```
 
-### View Disk Information for all Switches
+{{< /tab >}}
 
-You can view the name or operating system, type, transport, size, vendor, and model of the disk on all devices using the NetQ CLI. This example shows all of these disk characteristics for all devices.
+{{< /tabs >}}
+
+### View Disk Information for all Switches and Hosts
+
+With NetQ UI you can view the size of the disk on all devices. With the NetQ CLI you can view the name or operating system, type, transport, size, vendor, and model of the disk on all devices. You can filter this list by name, transport, or vendor.
+
+{{< tabs "TabID406" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Locate the Inventory|Devices card on your workbench.
+
+2. Hover over the card, and change to the full-screen card using the size picker.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
+
+3. Locate the **Disk Total Size** column.
+
+4. Click **All Hosts** to view the total disk size of all host servers.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
+
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view disk information for your switches, run:
+
+```
+netq show inventory disk [name <disk-name>|transport <disk-transport>|vendor <disk-vendor>] [json]
+```
+
+This example show the CPU for all devices.
 
 ```
 cumulus@switch:~$ netq show inventory disk
@@ -385,9 +486,42 @@ spine01           vda             disk             N/A                6G        
 spine02           vda             disk             N/A                6G         0x1af4               N/A
 ```
 
-### View Memory Information for all Switches
+{{< /tab >}}
 
-You can view the name, type, size, speed, vendor, and serial number for the memory installed in a single device or all devices. This example shows all of these characteristics for all devices.
+{{< /tabs >}}
+
+### View Memory Information for all Switches and Hosts
+
+You can view the size of the memory on all devices with the NetQ CLI. You can view the name, type, size, speed, vendor, and serial number for the memory installed on all devices with the NetQ CLI.
+
+{{< tabs "TabID480" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Locate the Inventory|Devices card on your workbench.
+
+2. Hover over the card, and change to the full-screen card using the size picker.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
+
+3. Locate the **Memory Size** column.
+
+4. Click **All Hosts** to view the memory size for all host servers.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
+
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view memory information for your switches and host servers, run:
+
+```
+netq show inventory memory [type <memory-type>|vendor <memory-vendor>] [json]
+```
+
+This example shows all of the memory characteristics for all devices.
 
 ```
 cumulus@switch:~$ netq show inventory memory
@@ -433,20 +567,13 @@ spine01           DIMM 0          RAM              1024 MB    Unknown    QEMU   
 spine02           DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
 ```
 
-You can filter the results to view memory information for a single switch, as shown here for leaf01.
+{{< /tab >}}
 
-```
-cumulus@switch:~$ netq leaf01 show inventory memory
-    
-Matching inventory records:
-Hostname          Name            Type             Size       Speed      Vendor               Serial No
------------------ --------------- ---------------- ---------- ---------- -------------------- -------------------------
-leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
-```
+{{< /tabs >}}
 
 ### View a Summary of Physical Inventory for the NetQ On-premises or NetQ Cloud Appliance
 
-Using the `opta` option lets you view inventory information for the NetQ or NetQ Cloud Appliance(s) rather than all network nodes. This example give you a summary of the inventory on the device.
+Using the `opta` option lets you view inventory information for the NetQ or NetQ Cloud Appliance(s) rather than all network nodes. This example gives you a summary of the inventory on the device.
 
 ```
 cumulus@appliance:~$ netq show inventory brief opta
@@ -458,7 +585,7 @@ Hostname          Switch               OS              CPU      ASIC            
 
 ```
 
-### View Memory for the NetQ On-premises or NetQ Cloud Appliance
+### View Component Information for the NetQ On-premises or NetQ Cloud Appliance
 
 You can be specific about which inventory item you want to view for an appliance. This example shows the memory information for a NetQ Appliance, letting you verify you have sufficient memory.
 
@@ -471,9 +598,11 @@ netq-app          DIMM 0          RAM              64 GB      Unknown    QEMU   
 
 ```
 
+<!-- Move these topics to performance topic
+
 ### View Fan Health for All Switches
 
-Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ Platform operation. To view the health of fans in your switches, use the `netq show sensors fan` command. If you name the fans in all of your switches consistently, you can view more information at once.
+Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ system operation. To view the health of fans in your switches, use the `netq show sensors fan` command. If you name the fans in all of your switches consistently, you can view more information at once.
 
 In this example, we look at the state of all fans with the name *fan1*.
 
@@ -639,8 +768,6 @@ No matching events records found
 cumulus@switch:~$ netq show events level critical type sensors
 No matching events records found
 ```
-
-<!-- Move the rest of this topic to performance topic -->
 
 ### View Interface Statistics and Utilization
 
@@ -956,13 +1083,811 @@ spine02           31.16 %              3.96 GB              588.5 MB            
 Look for the **Rebalance Recommended** column. If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the output to determine if you are getting close to needing a rebalance, and come back to view this data at a later time.
 
 Optionally, use the `hostname` option to view the information for a given device, or use the `around` option to view the information for a particular time.
+-->
 
 ## View Software Inventory across the Network
 
-### View Which Operating Systems Are Running on Your Network Devices
+You can view all software components or narrow your view to specific software components for all of the devices in your network.
 
-You can view the distribution of operating systems running on your switches and hosts. This is useful for verifying which versions of the OS are deployed and for upgrade planning. It also provides a view into the relative dependence on a given OS in your network.
+### View the Operating Systems Running on Your Network Devices
 
-To view the OS distribution, open the medium Devices Inventory card if it is not already on your workbench.
+With both the NetQ UI and NetQ CLI, you can view the vendor name and version of the OS on all devices, and when it was last modified. With the NetQ UI you can also view the OS ID and view the distribution of operating systems running on your switches and hosts. This is useful for verifying which versions of the OS are deployed and for upgrade planning. It also provides a view into the relative dependence on a given OS in your network.
 
-{{< figure src="/images/netq/inventory-devices-medium-230.png" width="200" >}}
+{{< tabs "TabID1079" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Locate the medium Inventory|Devices card on your workbench.
+
+    {{<figure src="/images/netq/inventory-devices-medium-230.png" width="200">}}
+
+2. Hover over the pie charts to view the total number of devices with a given operating system installed.
+
+3. Change to the full-screen card using the size picker.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
+
+4. Scroll to the right to locate all of the OS parameter data.
+
+5. Click **All Hosts** to view the OS parameters for all host servers.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
+
+To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view OS information for your switches and host servers, run:
+
+```
+netq show inventory os [version <os-version>|name <os-name>] [json]
+```
+
+This example shows the OS information for all devices.
+
+```
+cumulus@switch:~$ netq show inventory os
+Matching inventory records:
+Hostname          Name            Version                              Last Changed
+----------------- --------------- ------------------------------------ -------------------------
+edge01            Ubuntu          16.04                                Fri Aug 14 16:01:18 2020
+exit01            CL              3.7.5                                Fri Aug 14 16:01:18 2020
+exit02            CL              3.7.5                                Fri Aug 14 16:01:18 2020
+leaf01            CL              3.7.5                                Sun Aug 14 16:01:18 2020
+leaf02            CL              3.7.5                                Fri Aug 14 16:01:18 2020
+leaf03            CL              3.7.5                                Fri Aug 14 16:01:18 2020
+leaf04            CL              3.7.5                                Fri Aug 14 16:01:18 2020
+server01          Ubuntu          16.04                                Fri Aug 14 16:01:18 2020
+server02          Ubuntu          16.04                                Fri Aug 14 16:01:18 2020
+server03          Ubuntu          16.04                                Fri Aug 14 16:01:18 2020
+server04          Ubuntu          16.04                                Fri Aug 14 16:01:18 2020
+spine01           CL              3.7.5                                Fri Aug 14 16:01:18 2020
+spine02           CL              3.7.5                                Fri Aug 14 16:01:18 2020
+```
+
+You can filter the results of the command to view only devices with a
+particular operating system or version. This can be especially helpful
+when you suspect that a particular device has not been upgraded as
+expected. This example shows all devices with the Cumulus Linux version
+3.7.5 installed.
+
+```
+cumulus@switch:~$ netq show inventory os version 3.7.5
+Matching inventory records:
+Hostname          Name            Version                              Last Changed
+----------------- --------------- ------------------------------------ -------------------------
+exit01            CL              3.7.5                                Fri Apr 19 16:01:13 2019
+exit02            CL              3.7.5                                Fri Apr 19 16:01:38 2019
+leaf01            CL              3.7.5                                Sun Apr 21 20:07:09 2019
+leaf02            CL              3.7.5                                Fri Apr 19 16:01:46 2019
+leaf03            CL              3.7.5                                Fri Apr 19 16:01:41 2019
+leaf04            CL              3.7.5                                Fri Apr 19 16:01:32 2019
+spine01           CL              3.7.5                                Fri Apr 19 16:01:49 2019
+spine02           CL              3.7.5                                Fri Apr 19 16:01:05 2019
+```
+
+This example shows changes that have been made to the OS on all devices
+between 16 and 21 days ago. Remember to use measurement units on the
+time values.
+
+```
+cumulus@switch:~$ netq show events type os between 16d and 21d
+Matching inventory records:
+Hostname          Name            Version                              DB State   Last Changed
+----------------- --------------- ------------------------------------ ---------- -------------------------
+mlx-2410a1-05     Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:53 2019
+mlx-2700-11       Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:45 2019
+mlx-2100-05       Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:26 2019
+mlx-2100-05       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:47 2019
+mlx-2700-11       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:38 2019
+mlx-2100-05       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:42 2019
+mlx-2700-11       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:51 2019
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### View License Information for all Switches
+
+In both the NetQ UI and NetQ CLI you can view the name and current state
+of the license (whether it is valid or invalid/missing).  The date at which the license was last updated is also shown.
+
+{{<notice note>}}
+
+If a license is no longer valid or missing, the associated switch does not operate properly. Hosts do not have Cumulus Linux or NetQ licenses.</ul>
+
+{{</notice>}}
+
+{{< tabs "TabID1187" >}}
+
+{{< tab "NetQUI" >}}
+
+1. Locate the medium Inventory|Devices card on your workbench.
+
+    {{<figure src="/images/netq/inventory-devices-medium-230.png" width="200">}}
+
+2. Hover over the distribution chart for license to view the total number of devices with a given operating system installed.
+
+3. Alternately, change to the full-screen card using the size picker.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
+
+4. Scroll to the right to locate the **License State** column.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view license information for your switches, run:
+
+```
+netq show inventory license [cumulus] [status ok | status missing] [around <text-time>] [json]
+```
+
+This example shows the license information for all switches.
+
+```
+cumulus@switch:~$ netq show inventory license
+
+Matching inventory records:
+Hostname          Name            State      Last Changed
+----------------- --------------- ---------- -------------------------
+edge01            Cumulus Linux   N/A        Fri Apr 19 16:01:18 2019
+exit01            Cumulus Linux   ok         Fri Apr 19 16:01:13 2019
+exit02            Cumulus Linux   ok         Fri Apr 19 16:01:38 2019
+leaf01            Cumulus Linux   ok         Sun Apr 21 20:07:09 2019
+leaf02            Cumulus Linux   ok         Fri Apr 19 16:01:46 2019
+leaf03            Cumulus Linux   ok         Fri Apr 19 16:01:41 2019
+leaf04            Cumulus Linux   ok         Fri Apr 19 16:01:32 2019
+server01          Cumulus Linux   N/A        Fri Apr 19 16:01:55 2019
+server02          Cumulus Linux   N/A        Fri Apr 19 16:01:55 2019
+server03          Cumulus Linux   N/A        Fri Apr 19 16:01:55 2019
+server04          Cumulus Linux   N/A        Fri Apr 19 16:01:55 2019
+spine01           Cumulus Linux   ok         Fri Apr 19 16:01:49 2019
+spine02           Cumulus Linux   ok         Fri Apr 19 16:01:05 2019
+```
+
+You can view the historical state of licenses using the around keyword.
+This example shows the license state for all devices about 7 days ago.
+Remember to use measurement units on the time values.
+
+```
+cumulus@switch:~$ netq show inventory license around 7d
+
+Matching inventory records:
+Hostname          Name            State      Last Changed
+----------------- --------------- ---------- -------------------------
+edge01            Cumulus Linux   N/A        Tue Apr 2 14:01:18 2019
+exit01            Cumulus Linux   ok         Tue Apr 2 14:01:13 2019
+exit02            Cumulus Linux   ok         Tue Apr 2 14:01:38 2019
+leaf01            Cumulus Linux   ok         Tue Apr 2 20:07:09 2019
+leaf02            Cumulus Linux   ok         Tue Apr 2 14:01:46 2019
+leaf03            Cumulus Linux   ok         Tue Apr 2 14:01:41 2019
+leaf04            Cumulus Linux   ok         Tue Apr 2 14:01:32 2019
+server01          Cumulus Linux   N/A        Tue Apr 2 14:01:55 2019
+server02          Cumulus Linux   N/A        Tue Apr 2 14:01:55 2019
+server03          Cumulus Linux   N/A        Tue Apr 2 14:01:55 2019
+server04          Cumulus Linux   N/A        Tue Apr 2 14:01:55 2019
+spine01           Cumulus Linux   ok         Tue Apr 2 14:01:49 2019
+spine02           Cumulus Linux   ok         Tue Apr 2 14:01:05 2019
+```
+
+You can filter the results to show license changes during a particular
+time frame for a particular device. This example shows that there have
+been no changes to the license state on spine01 between now and 24 hours
+ago.
+
+```
+cumulus@switch:~$ netq spine01 show events type license between now and 24h
+No matching events records found
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### View the Supported Cumulus Linux Packages on all Switches
+
+When you are troubleshooting an issue with a switch, you might want to know what versions of the Cumulus Linux operating system are supported on that switch and on a switch that is not having the same issue.
+
+To view package information for your switches, run:
+
+```
+netq show cl-manifest [json]
+```
+
+This example shows the OS packages supported for all switches.
+
+```
+cumulus@switch:~$ netq show cl-manifest
+
+Matching manifest records:
+Hostname          ASIC Vendor          CPU Arch             Manifest Version
+----------------- -------------------- -------------------- --------------------
+border01          vx                   x86_64               3.7.6.1
+border01          vx                   x86_64               3.7.10
+border01          vx                   x86_64               3.7.11
+border01          vx                   x86_64               3.6.2.1
+...
+fw1               vx                   x86_64               3.7.6.1
+fw1               vx                   x86_64               3.7.10
+fw1               vx                   x86_64               3.7.11
+fw1               vx                   x86_64               3.6.2.1
+...
+leaf01            vx                   x86_64               4.1.0
+leaf01            vx                   x86_64               4.0.0
+leaf01            vx                   x86_64               3.6.2
+leaf01            vx                   x86_64               3.7.2
+...
+leaf02            vx                   x86_64               3.7.6.1
+leaf02            vx                   x86_64               3.7.10
+leaf02            vx                   x86_64               3.7.11
+leaf02            vx                   x86_64               3.6.2.1
+...
+```
+
+### View All Software Packages Installed on Switches
+
+If you are having an issue with a particular switch, you may want to verify what software is installed and whether it needs updating.
+
+To view package information for your switches, run:
+
+```
+netq show cl-pkg-info [<text-package-name>] [around <text-time>] [json]
+```
+
+Use the `text-package-name` option to narrow the results to a particular package or the `around` option to narrow the output to a particular time range.
+
+This example shows all installed software packages for all devices.
+
+```
+cumulus@switch:~$ netq show cl-pkg-info
+
+Matching package_info records:
+Hostname          Package Name             Version              CL Version           Package Status       Last Changed
+----------------- ------------------------ -------------------- -------------------- -------------------- -------------------------
+border01          libcryptsetup4           2:1.6.6-5            Cumulus Linux 3.7.13 installed            Mon Aug 17 18:53:50 2020
+border01          libedit2                 3.1-20140620-2       Cumulus Linux 3.7.13 installed            Mon Aug 17 18:53:50 2020
+border01          libffi6                  3.1-2+deb8u1         Cumulus Linux 3.7.13 installed            Mon Aug 17 18:53:50 2020
+...
+border02          libdb5.3                 9999-cl3u2           Cumulus Linux 3.7.13 installed            Mon Aug 17 18:48:53 2020
+border02          libnl-cli-3-200          3.2.27-cl3u15+1      Cumulus Linux 3.7.13 installed            Mon Aug 17 18:48:53 2020
+border02          pkg-config               0.28-1               Cumulus Linux 3.7.13 installed            Mon Aug 17 18:48:53 2020
+border02          libjs-sphinxdoc          1.2.3+dfsg-1         Cumulus Linux 3.7.13 installed            Mon Aug 17 18:48:53 2020
+...
+fw1               libpcap0.8               1.8.1-3~bpo8+1       Cumulus Linux 3.7.13 installed            Mon Aug 17 19:18:57 2020
+fw1               python-eventlet          0.13.0-2             Cumulus Linux 3.7.13 installed            Mon Aug 17 19:18:57 2020
+fw1               libapt-pkg4.12           1.0.9.8.5-cl3u2      Cumulus Linux 3.7.13 installed            Mon Aug 17 19:18:57 2020
+fw1               libopts25                1:5.18.4-3           Cumulus Linux 3.7.13 installed            Mon Aug 17 19:18:57 2020
+...
+```
+
+### View Recommended Software Packages
+
+You can determine whether any of your switches are using a software package other than the default package associated with the Cumulus Linux release that is running on the switches. Use this list  determine which packages to install/upgrade on all devices. Additionally, you can determine if a software package is missing.
+
+To view recommended package information for your switches, run:
+
+```
+netq show recommended-pkg-version [release-id <text-release-id>] [package-name <text-package-name>] [json]
+```
+
+{{<notice tip>}}
+The output may be rather lengthy if this command is run for all releases and packages. If desired, run the command using the <code>release-id</code> and/or <code>package-name</code> options to shorten the output.
+{{</notice>}}
+
+This example looks for switches running Cumulus Linux 3.7.1 and `switchd`. The result is a single switch, *leaf12*, that has older software and is recommended for update.
+
+```
+cumulus@switch:~$ netq show recommended-pkg-version release-id 3.7.1 package-name switchd
+Matching manifest records:
+Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+leaf12            3.7.1                vx                   x86_64               switchd              1.0-cl3u30           Wed Feb  5 04:36:30 2020
+```
+
+This example looks for switches running Cumulus Linux 3.7.1 and `ptmd`. The result is a single switch, *server01*, that has older software and is recommended for update.
+
+```
+cumulus@switch:~$ netq show recommended-pkg-version release-id 3.7.1 package-name ptmd
+Matching manifest records:
+Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+server01            3.7.1                vx                   x86_64               ptmd                 3.0-2-cl3u8          Wed Feb  5 04:36:30 2020
+```
+
+This example looks for switches running Cumulus Linux 3.7.1 and `lldpd`. The result is a single switch, *server01*, that has older software and is recommended for update.
+
+```
+cumulus@switch:~$ netq show recommended-pkg-version release-id 3.7.1 package-name lldpd
+Matching manifest records:
+Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+server01            3.7.1                vx                   x86_64               lldpd                0.9.8-0-cl3u11       Wed Feb  5 04:36:30 2020
+```
+
+This example looks for switches running Cumulus Linux 3.6.2 and `switchd`. The result is a single switch, *leaf04*, that has older software and is recommended for update.
+
+```
+cumulus@noc-pr:~$ netq show recommended-pkg-version release-id 3.6.2 package-name switchd
+Matching manifest records:
+Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+leaf04            3.6.2                vx                   x86_64               switchd              1.0-cl3u27           Wed Feb  5 04:36:30 2020
+```
+
+<!-- Move to device inventory -->
+<!-- from the switch
+2:58
+cumulus@noc-pr:~$ netq act-5712-09 show recommended-pkg-version release-id 3.6.2 package-name switchd
+Matching manifest records:
+Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+act-5712-09       3.6.2                bcm                  x86_64               switchd              1.0-cl3u27           Wed Feb  5 04:36:30 2020
+cumulus@noc-pr:~$ netq act-5712-09 show recommended-pkg-version release-id 3.7.2 package-name switchd
+Matching manifest records:
+Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+act-5712-09       3.7.2                bcm                  x86_64               switchd              1.0-cl3u31           Wed Feb  5 04:36:30 2020
+cumulus@noc-pr:~$
+cumulus@noc-pr:~$
+3:02
+very old one too
+3:02
+cumulus@noc-pr:~$ netq act-5712-09 show recommended-pkg-version release-id 3.6.2 package-name switchd
+Matching manifest records:
+Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+act-5712-09       3.6.2                bcm                  x86_64               switchd              1.0-cl3u27           Wed Feb  5 04:36:30 2020
+cumulus@noc-pr:~$ netq act-5712-09 show recommended-pkg-version release-id 3.7.2 package-name switchd
+Matching manifest records:
+Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+act-5712-09       3.7.2                bcm                  x86_64               switchd              1.0-cl3u31           Wed Feb  5 04:36:30 2020
+cumulus@noc-pr:~$
+cumulus@noc-pr:~$
+3:02
+cumulus@noc-pr:~$ netq act-5712-09 show recommended-pkg-version release-id 3.1.0 package-name switchd
+Matching manifest records:
+Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+act-5712-09       3.1.0                bcm                  x86_64               switchd              1.0-cl3u4            Wed Feb  5 04:36:30 2020
+cumulus@noc-pr:~$
+``` -->
+
+### View ACL Resources
+
+Using the NetQ CLI, you can monitor the incoming and outgoing access control lists (ACLs) configured on all devices, currently or at a time in the past.
+
+To view ACL resources for all of your switches, run:
+
+```
+netq show cl-resource acl [ingress | egress] [around <text-time>] [json]
+```
+
+Use the `egress` or `ingress` options to show only the outgoing or incoming ACLs. Use the `around` option to show this information for a time in the past.
+
+<!-- Move to switch inventory
+This example shows the ACL resources for the *leaf01* switch.
+
+```
+cumulus@switch:~$ netq leaf01 show cl-resource acl
+Matching cl_resource records:
+Hostname          In IPv4 filter       In IPv4 Mangle       In IPv6 filter       In IPv6 Mangle       In 8021x filter      In Mirror            In PBR IPv4 filter   In PBR IPv6 filter   Eg IPv4 filter       Eg IPv4 Mangle       Eg IPv6 filter       Eg IPv6 Mangle       ACL Regions          18B Rules Key        32B Rules Key        54B Rules Key        L4 Port range Checke Last Updated
+                                                                                                                                                                                                                                                                                                                                                                  rs
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            36,512(7%)           0,0(0%)              30,768(3%)           0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              29,256(11%)          0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              2,24(8%)             Mon Jan 13 03:34:11 2020
+```
+
+You can also view this same information in JSON format.
+
+```
+cumulus@switch:~$ netq leaf01 show cl-resource acl json
+{
+    "cl_resource": [
+        {
+            "egIpv4Filter": "29,256(11%)",
+            "egIpv4Mangle": "0,0(0%)",
+            "inIpv6Filter": "30,768(3%)",
+            "egIpv6Mangle": "0,0(0%)",
+            "inIpv4Mangle": "0,0(0%)",
+            "hostname": "leaf01",
+            "inMirror": "0,0(0%)",
+            "egIpv6Filter": "0,0(0%)",
+            "lastUpdated": 1578886451.885,
+            "54bRulesKey": "0,0(0%)",
+            "aclRegions": "0,0(0%)",
+            "in8021XFilter": "0,0(0%)",
+            "inIpv4Filter": "36,512(7%)",
+            "inPbrIpv6Filter": "0,0(0%)",
+            "18bRulesKey": "0,0(0%)",
+            "l4PortRangeCheckers": "2,24(8%)",
+            "inIpv6Mangle": "0,0(0%)",
+            "32bRulesKey": "0,0(0%)",
+            "inPbrIpv4Filter": "0,0(0%)"
+	}
+    ],
+    "truncatedResult":false
+}
+``` -->
+
+### View Forwarding Resources
+
+With the NetQ CLI, you can monitor the amount of forwarding resources used by all devices, currently or at a time in the past.
+
+To view forwarding resources for all of your switches, run:
+
+```
+netq show cl-resource forwarding [around <text-time>] [json]
+```
+
+Use the `around` option to show this information for a time in the past.
+
+<!-- Move to switch inventory
+This example shows the forwarding resources used by the *spine02* switch.
+
+```
+cumulus@switch:~$ netq spine02 show cl-resource forwarding
+Matching cl_resource records:
+Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+spine02           9,16384(0%)          0,0(0%)              290,131072(0%)       173,20480(0%)        54,16330(0%)         26,32768(0%)         0,8192(0%)           Mon Jan 13 03:34:11 2020
+```
+
+You can also view this same information in JSON format.
+
+```
+cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
+{
+    "cl_resource": [
+        {
+            "macEntries": "26,32768(0%)",
+            "ecmpNexthops": "54,16330(0%)",
+            "ipv4HostEntries": "9,16384(0%)",
+            "hostname": "spine02",
+            "lastUpdated": 1578886451.884,
+            "ipv4RouteEntries": "290,131072(0%)",
+            "ipv6HostEntries": "0,0(0%)",
+            "ipv6RouteEntries": "173,20480(0%)",
+            "totalMcastRoutes": "0,8192(0%)"
+	}
+    ],
+    "truncatedResult":false
+}
+``` -->
+
+### Validate NetQ Agents are Running
+
+With the NetQ UI and the NetQ CLI, you can confirm that NetQ Agents are running on switches and hosts (if installed). using the `netq show agents` command. Viewing the **Status** column of the output indicates whether the agent is up and current, labelled *Fresh*, or down and stale, labelled *Rotten*. Additional information is provided about the agent status, including whether it is time synchronized, how long it has been up, and the last time its state changed. You can also see the version running.
+
+{{< tabs "TabID1549" >}}
+
+{{< tab "NetQ UI" >}}
+
+To view the NetQ Agents on all switches and hosts:
+
+1. Open the Main menu (click ).
+
+2. Select **Agents** from the **Network** column.
+
+    {{<figure src="/images/netq/main-menu-ntwk-agents-241.png" width="700">}}
+
+<div style="padding-left: 18px;"><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Last Reinit</td>
+<td>Date and time that the switch or host was reinitialized</td>
+</tr>
+<tr>
+<td>Last Update Time</td>
+<td>Date and time that the switch or host was updated</td>
+</tr>
+<tr>
+<td>Lastboot</td>
+<td>Date and time that the switch or host was last booted up</td>
+</tr>
+<tr>
+<td>NTP State</td>
+<td>Status of NTP synchronization on the switch or host; yes = in synchronization, no = out of synchronization</td>
+</tr>
+<tr>
+<td>Sys Uptime</td>
+<td>Amount of time the switch or host has been continuously up and running</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>NetQ version running on the switch or host</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view the NetQ Agents on all switches and hosts, run:
+
+```
+netq show agents [fresh | rotten ] [around <text-time>] [json]
+```
+
+Use the `fresh` keyword to view only the NetQ Agents that are in current communication with the NetQ Platform or NetQ Collector. Use the `rotten` keyword to view those that are not. Use the `around` keyword to view the state of NetQ Agents at an earlier time.
+
+This example shows the current NetQ Agent state on all devices.
+
+```
+
+cumulus@switch:~$ netq show agents
+Matching agents records:
+Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
+----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
+edge01            Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:7h:2m:12s              2d:7h:2m:5s               2d:7h:2m:5s                Sun Apr 21 16:00:50 2019
+exit01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:30s              2d:7h:1m:22s              2d:7h:1m:22s               Sun Apr 21 16:00:52 2019
+exit02            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:36s              2d:7h:1m:27s              2d:7h:1m:27s               Sun Apr 21 16:01:19 2019
+leaf01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:28s              2h:54m:12s                2h:54m:12s                 Sun Apr 21 20:05:45 2019
+leaf02            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:38s              2d:7h:1m:29s              2d:7h:1m:29s               Sun Apr 21 16:01:43 2019
+leaf03            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:37s              2d:7h:1m:28s              2d:7h:1m:28s               Sun Apr 21 16:01:23 2019
+leaf04            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:39s              2d:7h:1m:31s              2d:7h:1m:31s               Sun Apr 21 16:01:27 2019
+server01          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:6h:59m:35s             2d:6h:59m:27s             2d:6h:59m:27s              Sun Apr 21 16:00:43 2019
+server02          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:6h:59m:34s             2d:6h:59m:26s             2d:6h:59m:26s              Sun Apr 21 16:00:46 2019
+server03          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:6h:59m:34s             2d:6h:59m:26s             2d:6h:59m:26s              Sun Apr 21 16:00:52 2019
+server04          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:6h:59m:34s             2d:6h:59m:26s             2d:6h:59m:26s              Sun Apr 21 16:00:43 2019
+spine01           Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:40s              2d:7h:1m:32s              2d:7h:1m:32s               Sun Apr 21 16:01:33 2019
+spine02           Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:34s              2d:7h:1m:26s              2d:7h:1m:26s               Sun Apr 21 16:01:12 2019
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+<!-- Move to performance: new file "system services"
+
+## Monitor Software Services
+
+Cumulus Linux and NetQ run a number of services to deliver the various
+features of these products. You can monitor their status using the `netq
+show services` command. The services related to system-level operation
+are described here. Monitoring of other services, such as those related
+to routing, are described with those topics. NetQ automatically monitors
+the following services:
+
+  - **bgpd**: BGP (Border Gateway Protocol) daemon
+  - **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
+  - **helpledmgrd**: Switch LED manager daemon
+  - **lldpd**: LLDP (Link Layer Discovery Protocol) daemon
+  - **mstpd**: MSTP (Multiple Spanning Tree Protocol) daemon
+  - **neighmgrd**: Neighbor Manager daemon for BGP and OSPF
+  - **netq-agent**: NetQ Agent service
+  - **netqd**: NetQ application daemon
+  - **ntp**: NTP service
+  - **ntpd**: NTP daemon
+  - **ptmd**: PTM (Prescriptive Topology Manager) daemon
+  - **pwmd**: PWM (Password Manager)
+    daemon
+  - **rsyslog**: Rocket-fast system event logging processing service
+  - **smond**: System monitor daemon
+  - **ssh**: Secure Shell service for switches and servers
+  - **status**: License validation service
+  - **syslog**: System event logging service
+  - **vrf**: VRF (Virtual Route Forwarding) service
+  - **zebra**: GNU Zebra routing daemon
+
+The CLI syntax for viewing the status of services is:
+
+    netq [<hostname>] show services [<service-name>] [vrf <vrf>] [active|monitored] [around <text-time>] [json]
+    netq [<hostname>] show services [<service-name>] [vrf <vrf>] status (ok|warning|error|fail) [around <text-time>] [json]
+    netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] type services [between <text-time> and <text-endtime>] [json]
+
+### View All Services on All Devices
+
+This example shows all of the available services on each device and
+whether each is enabled, active, and monitored, along with how long the
+service has been running and the last time it was changed.
+
+{{%notice tip%}}
+
+It is useful to have colored output for this show command. To configure
+colored output, run the `netq config add color` command.
+
+{{%/notice%}}
+
+    cumulus@switch:~$ netq show services
+    Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+    ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+    leaf01            bgpd                 2872  default         yes     yes    yes       ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+    leaf01            clagd                n/a   default         yes     no     yes       n/a              1d:6h:43m:35s             Fri Feb 15 17:28:48 2019
+    leaf01            ledmgrd              1850  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+    leaf01            lldpd                2651  default         yes     yes    yes       ok               1d:6h:43m:27s             Fri Feb 15 17:28:56 2019
+    leaf01            mstpd                1746  default         yes     yes    yes       ok               1d:6h:43m:35s             Fri Feb 15 17:28:48 2019
+    leaf01            neighmgrd            1986  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+    leaf01            netq-agent           8654  mgmt            yes     yes    yes       ok               1d:6h:43m:29s             Fri Feb 15 17:28:54 2019
+    leaf01            netqd                8848  mgmt            yes     yes    yes       ok               1d:6h:43m:29s             Fri Feb 15 17:28:54 2019
+    leaf01            ntp                  8478  mgmt            yes     yes    yes       ok               1d:6h:43m:29s             Fri Feb 15 17:28:54 2019
+    leaf01            ptmd                 2743  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+    leaf01            pwmd                 1852  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+    leaf01            smond                1826  default         yes     yes    yes       ok               1d:6h:43m:27s             Fri Feb 15 17:28:56 2019
+    leaf01            ssh                  2106  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+    leaf01            syslog               8254  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+    leaf01            zebra                2856  default         yes     yes    yes       ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+    leaf02            bgpd                 2867  default         yes     yes    yes       ok               1d:6h:43m:55s             Fri Feb 15 17:28:28 2019
+    leaf02            clagd                n/a   default         yes     no     yes       n/a              1d:6h:43m:31s             Fri Feb 15 17:28:53 2019
+    leaf02            ledmgrd              1856  default         yes     yes    no        ok               1d:6h:43m:55s             Fri Feb 15 17:28:28 2019
+    leaf02            lldpd                2646  default         yes     yes    yes       ok               1d:6h:43m:30s             Fri Feb 15 17:28:53 2019
+    ...
+
+You can also view services information in JSON format:
+
+    cumulus@switch:~$ netq show services json
+    {
+        "services":[
+            {
+                "status":"ok",
+                "uptime":1550251734.0,
+                "monitored":"yes",
+                "service":"ntp",
+                "lastChanged":1550251734.4790000916,
+                "pid":"8478",
+                "hostname":"leaf01",
+                "enabled":"yes",
+                "vrf":"mgmt",
+                "active":"yes"
+            },
+            {
+                "status":"ok",
+                "uptime":1550251704.0,
+                "monitored":"no",
+                "service":"ssh",
+                "lastChanged":1550251704.0929999352,
+                "pid":"2106",
+                "hostname":"leaf01",
+                "enabled":"yes",
+                "vrf":"default",
+                "active":"yes"
+            },
+            {
+                "status":"ok",
+                "uptime":1550251736.0,
+                "monitored":"yes",
+                "service":"lldpd",
+                "lastChanged":1550251736.5160000324,
+                "pid":"2651",
+                "hostname":"leaf01",
+                "enabled":"yes",
+                "vrf":"default",
+                "active":"yes"
+            },
+            {
+                "status":"ok",
+                "uptime":1550251704.0,
+                "monitored":"yes",
+                "service":"bgpd",
+                "lastChanged":1550251704.1040000916,
+                "pid":"2872",
+                "hostname":"leaf01",
+                "enabled":"yes",
+                "vrf":"default",
+                "active":"yes"
+            },
+            {
+                "status":"ok",
+                "uptime":1550251704.0,
+                "monitored":"no",
+                "service":"neighmgrd",
+                "lastChanged":1550251704.0969998837,
+                "pid":"1986",
+                "hostname":"leaf01",
+                "enabled":"yes",
+                "vrf":"default",
+                "active":"yes"
+            },
+    ...
+
+If you want to view the service information for a given device, simply
+use the `hostname` option when running the command.
+
+### View Information about a Given Service on All Devices
+
+You can view the status of a given service at the current time, at a
+prior point in time, or view the changes that have occurred for the
+service during a specified timeframe.
+
+This example shows how to view the status of the NTP service across the
+network. In this case, VRF is configured so the NTP service runs on both
+the default and management interface. You can perform the same command
+with the other services, such as `bgpd`, `lldpd`, and `clagd`.
+
+    cumulus@switch:~$ netq show services ntp
+    Matching services records:
+    Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+    ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+    exit01            ntp                  8478  mgmt            yes     yes    yes       ok               1d:6h:52m:41s             Fri Feb 15 17:28:54 2019
+    exit02            ntp                  8497  mgmt            yes     yes    yes       ok               1d:6h:52m:36s             Fri Feb 15 17:28:59 2019
+    firewall01        ntp                  n/a   default         yes     yes    yes       ok               1d:6h:53m:4s              Fri Feb 15 17:28:31 2019
+    hostd-11          ntp                  n/a   default         yes     yes    yes       ok               1d:6h:52m:46s             Fri Feb 15 17:28:49 2019
+    hostd-21          ntp                  n/a   default         yes     yes    yes       ok               1d:6h:52m:37s             Fri Feb 15 17:28:58 2019
+    hosts-11          ntp                  n/a   default         yes     yes    yes       ok               1d:6h:52m:28s             Fri Feb 15 17:29:07 2019
+    hosts-13          ntp                  n/a   default         yes     yes    yes       ok               1d:6h:52m:19s             Fri Feb 15 17:29:16 2019
+    hosts-21          ntp                  n/a   default         yes     yes    yes       ok               1d:6h:52m:14s             Fri Feb 15 17:29:21 2019
+    hosts-23          ntp                  n/a   default         yes     yes    yes       ok               1d:6h:52m:4s              Fri Feb 15 17:29:31 2019
+    noc-pr            ntp                  2148  default         yes     yes    yes       ok               1d:6h:53m:43s             Fri Feb 15 17:27:52 2019
+    noc-se            ntp                  2148  default         yes     yes    yes       ok               1d:6h:53m:38s             Fri Feb 15 17:27:57 2019
+    spine01           ntp                  8414  mgmt            yes     yes    yes       ok               1d:6h:53m:30s             Fri Feb 15 17:28:05 2019
+    spine02           ntp                  8419  mgmt            yes     yes    yes       ok               1d:6h:53m:27s             Fri Feb 15 17:28:08 2019
+    spine03           ntp                  8443  mgmt            yes     yes    yes       ok               1d:6h:53m:22s             Fri Feb 15 17:28:13 2019
+    leaf01             ntp                  8765  mgmt            yes     yes    yes       ok               1d:6h:52m:52s             Fri Feb 15 17:28:43 2019
+    leaf02             ntp                  8737  mgmt            yes     yes    yes       ok               1d:6h:52m:46s             Fri Feb 15 17:28:49 2019
+    leaf11            ntp                  9305  mgmt            yes     yes    yes       ok               1d:6h:49m:22s             Fri Feb 15 17:32:13 2019
+    leaf12            ntp                  9339  mgmt            yes     yes    yes       ok               1d:6h:49m:9s              Fri Feb 15 17:32:26 2019
+    leaf21            ntp                  9367  mgmt            yes     yes    yes       ok               1d:6h:49m:5s              Fri Feb 15 17:32:30 2019
+    leaf22            ntp                  9403  mgmt            yes     yes    yes       ok               1d:6h:52m:57s             Fri Feb 15 17:28:38 2019
+
+This example shows the status of the BGP daemon.
+
+    cumulus@switch:~$ netq show services bgpd
+    Matching services records:
+    Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+    ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+    exit01            bgpd                 2872  default         yes     yes    yes       ok               1d:6h:54m:37s             Fri Feb 15 17:28:24 2019
+    exit02            bgpd                 2867  default         yes     yes    yes       ok               1d:6h:54m:33s             Fri Feb 15 17:28:28 2019
+    firewall01        bgpd                 21766 default         yes     yes    yes       ok               1d:6h:54m:54s             Fri Feb 15 17:28:07 2019
+    spine01           bgpd                 2953  default         yes     yes    yes       ok               1d:6h:55m:27s             Fri Feb 15 17:27:34 2019
+    spine02           bgpd                 2948  default         yes     yes    yes       ok               1d:6h:55m:23s             Fri Feb 15 17:27:38 2019
+    spine03           bgpd                 2953  default         yes     yes    yes       ok               1d:6h:55m:18s             Fri Feb 15 17:27:43 2019
+    leaf01            bgpd                 3221  default         yes     yes    yes       ok               1d:6h:54m:48s             Fri Feb 15 17:28:13 2019
+    leaf02            bgpd                 3177  default         yes     yes    yes       ok               1d:6h:54m:42s             Fri Feb 15 17:28:19 2019
+    leaf11            bgpd                 3521  default         yes     yes    yes       ok               1d:6h:51m:18s             Fri Feb 15 17:31:43 2019
+    leaf12            bgpd                 3527  default         yes     yes    yes       ok               1d:6h:51m:6s              Fri Feb 15 17:31:55 2019
+    leaf21            bgpd                 3512  default         yes     yes    yes       ok               1d:6h:51m:1s              Fri Feb 15 17:32:00 2019
+    leaf22            bgpd                 3536  default         yes     yes    yes       ok               1d:6h:54m:54s             Fri Feb 15 17:28:07 2019
+
+### View Events Related to a Given Service
+
+To view changes over a given time period, use the `netq show events`
+command. For more detailed information about events, refer to {{<link url="Monitor-Events">}}.
+
+In this example, we want to view changes to the bgpd service in the last
+48 hours.
+
+    cumulus@switch:/$ netq show events type bgp between now and 48h
+    Matching events records:
+    Hostname          Message Type Severity Message                             Timestamp
+    ----------------- ------------ -------- ----------------------------------- -------------------------
+    leaf01            bgp          info     BGP session with peer spine-1 swp3. 1d:6h:55m:37s
+                                            3 vrf DataVrf1081 state changed fro
+                                            m failed to Established
+    leaf01            bgp          info     BGP session with peer spine-2 swp4. 1d:6h:55m:37s
+                                            3 vrf DataVrf1081 state changed fro
+                                            m failed to Established
+    leaf01            bgp          info     BGP session with peer spine-3 swp5. 1d:6h:55m:37s
+                                            3 vrf DataVrf1081 state changed fro
+                                            m failed to Established
+    leaf01            bgp          info     BGP session with peer spine-1 swp3. 1d:6h:55m:37s
+                                            2 vrf DataVrf1080 state changed fro
+                                            m failed to Established
+    leaf01            bgp          info     BGP session with peer spine-3 swp5. 1d:6h:55m:37s
+                                            2 vrf DataVrf1080 state changed fro
+                                            m failed to Established
+    leaf01            bgp          info     BGP session with peer spine-2 swp4. 1d:6h:55m:37s
+                                            2 vrf DataVrf1080 state changed fro
+                                            m failed to Established
+    leaf01            bgp          info     BGP session with peer spine-3 swp5. 1d:6h:55m:37s
+                                            4 vrf DataVrf1082 state changed fro
+                                            m failed to Established -->

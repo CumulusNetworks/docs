@@ -300,7 +300,7 @@ It is recommended that when you upgrade NetQ that you also upgrade the NetQ Agen
 
 2. View the number in the **Unique** column next to Agent.
 
-    {{<figure src="/images/netq/inventory-switch-medium-agent-highlight-320.png" width="200">}}
+    {{<figure src="/images/netq/inventory-switch-medium-agent-highlight-230.png" width="200">}}
 
 3. If the number is greater than one, you have multiple NetQ Agent versions deployed.
 

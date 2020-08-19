@@ -3,11 +3,11 @@ title: Advanced Configuration
 author: Cumulus Networks
 weight: 46
 ---
-This section describes advanced procedures that help you get more out of Cumulus VX, for example:
+This section describes advanced procedures that help you get more out of Cumulus VX. For example, you can:
 
 - Test the Cumulus Linux upgrade process in your virtual environment by installing a Cumulus VX binary image with ONIE.
 - Convert the two leaf and one spine topology so that you can follow the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} lab tutorials.
-- Run the topology converter script to convert a topology file into a Vagrantfile so you can simulate a custom network topology, including servers and custom interface names and connections.
+- Run the topology converter script to convert a topology file into a Vagrantfile so you can simulate a custom network topology, that includes servers and custom interface names and connections.
 
 ## Install an ONIE Virtual Machine
 
@@ -31,7 +31,9 @@ The Cumulus Linux on demand labs use the following topology:
 To be able to follow the labs, you need to convert the two leaf and one spine topology we use in this documentation to the topology used in the labs.
 
 {{<notice tip>}}
+
 As an alternative to using Cumulus VX with the Cumulus Linux on demand labs, you can use {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
+
 {{</notice>}}
 
 To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not require any port changes) and create the server01 and server 02 virtual servers.
@@ -77,8 +79,11 @@ cumulus@leaf01:mgmt:~$ ip link show swp3
 {{< /tabs >}}
 
 2. On both **leaf01** and **leaf02**, change the ports associated with the MAC address obtained for swp1, swp2, and swp3 from the previous step; for example:
+
 {{< notice note >}}
-Cumulus VX supports the use of Linux {{<exlink text="udev rules" url="https://wiki.debian.org/udev">}} to rename interfaces to match any desired topologies
+
+Cumulus VX supports the use of Linux {{<exlink text="udev rules" url="https://wiki.debian.org/udev">}} to rename interfaces to match any desired topologies.
+
 {{</notice>}}
 
    {{< tabs "TabID65 ">}}

@@ -82,12 +82,6 @@ cumulus@leaf01:mgmt:~$ ip link show swp3
 
 2. As root, change the ports associated with the MAC address obtained for swp1, swp2, and swp3 from the previous step; for example:
 
-{{< notice note >}}
-
-Cumulus VX supports the use of Linux {{<exlink text="udev rules" url="https://wiki.debian.org/udev">}} to rename interfaces to match any desired topologies.
-
-{{</notice>}}
-
    {{< tabs "TabID65 ">}}
 
 {{< tab "Change swp1 to swp51 ">}}
@@ -115,6 +109,12 @@ root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="08:00
 {{< /tab >}}
 
 {{< /tabs >}}
+
+   {{< notice note >}}
+
+Cumulus VX supports the use of Linux {{<exlink text="udev rules" url="https://wiki.debian.org/udev">}} to rename interfaces to match any desired topologies.
+
+{{</notice>}}
 
 3. As root, run the following command to disable default remapping on Cumulus VX, then reboot the switch.
 

@@ -18,7 +18,7 @@ The support policy for Cumulus VX depends on whether you are a customer or non-c
 
 ### What's the difference between Cumulus VX and Cumulus Linux?
 
-Cumulus VX is intended for simulation, testing and training. Cumulus Linux is the software running directly on NVIDIA switches. Cumulus VX is not a production-ready virtual switch or router. See {{<link url="Overview#Cumulus-vx-compared-with-cumulus-linux" text="Cumulus VX Compared with Cumulus Linux">}}.
+Cumulus VX is intended for simulation, testing, and training. Cumulus Linux is the software running directly on NVIDIA switches. Cumulus VX is not a production-ready virtual switch or router. See {{<link url="Overview#Cumulus-vx-compared-with-cumulus-linux" text="Cumulus VX Compared with Cumulus Linux">}}.
 
 ### I have platform and disk limitations for Cumulus VX, how do I try Cumulus Linux?
 

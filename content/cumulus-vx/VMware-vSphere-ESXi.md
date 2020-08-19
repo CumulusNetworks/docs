@@ -87,6 +87,13 @@ Create the network connections between leaf01, leaf02, and spine01.
 
 {{< /tabs >}}
 
+      {{% notice note %}}
+
+Adapter 1 is a shared management interface. In the examples shown above, it is disabled for simplicity.
+
+{{% /notice %}}
+
+
 3. Start the VMs and launch the Console for each VM.
 
 ## Log into the Switches

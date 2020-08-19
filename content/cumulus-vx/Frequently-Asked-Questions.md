@@ -101,4 +101,4 @@ ERROR: net could not connect to netd
 
 Either wait a bit longer for the NCLU service to start or run the command `sudo sytemctl start netd`.
 
-If Cumulus VX is started with less than the required 768MB of RAM this may also cause the NCLU service to fail to start.
+If you start Cumulus VX with less than the required 768MB of RAM, the NCLU service might fail to start.

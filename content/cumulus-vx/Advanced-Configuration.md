@@ -42,7 +42,9 @@ For Virtualbox and Vagrant or KVM-QEMU and Vagrant, you can run the topology con
 
 ### Change the Ports
 
-1. On both **leaf01** and **leaf02**, obtain the MAC address for swp1, swp2, and swp3:
+Follow these steps on both **leaf01** and **leaf02**:
+
+1. Obtain the MAC address for swp1, swp2, and swp3:
 
    {{< tabs "TabID45 ">}}
 
@@ -78,7 +80,7 @@ cumulus@leaf01:mgmt:~$ ip link show swp3
 
 {{< /tabs >}}
 
-2. On both **leaf01** and **leaf02**, change the ports associated with the MAC address obtained for swp1, swp2, and swp3 from the previous step; for example:
+2. As root, change the ports associated with the MAC address obtained for swp1, swp2, and swp3 from the previous step; for example:
 
 {{< notice note >}}
 
@@ -114,7 +116,14 @@ root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="08:00
 
 {{< /tabs >}}
 
-3. Bring up swp49, swp50, and swp51:
+3. As root, run the following command to disable default remapping on Cumulus VX, then reboot the switch.
+
+   ```
+   root@leaf01:mgmt:~$ mv /etc/hw_init.d/S10rename_eth_swp.sh /etc/S10rename_eth_swp.sh.backup
+   root@leaf01:mgmt:~$ reboot
+   ```
+
+4. Log into the switch, then bring up swp49, swp50, and swp51:
 
    ```
    cumulus@leaf01:mgmt:~$ net add interface swp49,swp50,swp51

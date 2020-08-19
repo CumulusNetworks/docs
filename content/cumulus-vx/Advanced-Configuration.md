@@ -7,7 +7,7 @@ This section describes advanced procedures that help you get more out of Cumulus
 
 - Test the Cumulus Linux upgrade process in your virtual environment by installing a Cumulus VX binary image with ONIE.
 - Convert the two leaf and one spine topology so that you can follow the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} lab tutorials.
-- Run the topology converter script to convert a topology file into a Vagrantfile so you can simulate a custom network topology, that includes servers and custom interface names and connections.
+- Run the topology converter script to convert a topology file into a Vagrantfile so you can simulate a custom network topology that includes servers and custom interface names and connections.
 
 ## Install an ONIE Virtual Machine
 

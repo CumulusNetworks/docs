@@ -18,7 +18,7 @@ The support policy for Cumulus VX depends on whether you are a customer or non-c
 
 ### What's the difference between Cumulus VX and Cumulus Linux?
 
-Cumulus VX is not a production-ready virtual switch or router. See {{<link url="Overview#Cumulus-vx-compared-with-cumulus-linux" text="Cumulus VX Compared with Cumulus Linux">}}.
+Cumulus VX is intended for simulation, testing and training. Cumulus Linux is the software running directly on NVIDIA switches. Cumulus VX is not a production-ready virtual switch or router. See {{<link url="Overview#Cumulus-vx-compared-with-cumulus-linux" text="Cumulus VX Compared with Cumulus Linux">}}.
 
 ### I have platform and disk limitations for Cumulus VX, how do I try Cumulus Linux?
 
@@ -26,9 +26,11 @@ Try {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" t
 
 ### How do I log into the Cumulus VX switches?
 
+- For Cumulus VX 4.1.1 and earlier, log into each switch with the `cumulus` account and default password `CumulusLinux!`. You are **not** prompted to change the default password.
+
 - For Cumulus VX 4.2 and later, log into each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time, you are prompted to change the default password.
 
-- For Cumulus VX 4.1.1 and earlier, log into each switch with the `cumulus` account and default password `CumulusLinux!`. You are **not** prompted to change the default password.
+<p>For more information on the required password change, see the <a href="https://docs.cumulusnetworks.com/cumulus-linux/Quick-Start-Guide/#login-credentials">Cumulus Linux documentation</a>.</p>
 
 ### Why do I see the failure: Unable to find storage device for file system with label 'ONIE-BOOT'?
 
@@ -91,10 +93,12 @@ Follow these steps to send both the grub menu and the kernel output back to the 
 
 ### Why do I see a the error "net could not connect to netd" when I try to run NCLU commands?
 
-Based on the underlying CPU resources, it might take some time for the NCLU service to start when you boot the switch. If you issue an NCLU command before the NCLU service starts, you see the message:
+Based on the underlying CPU resources, it might take some time for the NCLU service to start after you boot the switch. If you issue an NCLU command before the NCLU service starts, you see the message:
 
 ```
 ERROR: net could not connect to netd
 ```
 
 Either wait a bit longer for the NCLU service to start or run the command `sudo sytemctl start netd`.
+
+If Cumulus VX is started with less than the required 768MB of RAM this may also cause the NCLU service to fail to start.

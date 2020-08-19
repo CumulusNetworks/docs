@@ -7,6 +7,28 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30978</td>
 <td><p>The following vulnerability has been announced in pillow:<br/>
 CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
@@ -2175,6 +2197,28 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30978</td>
@@ -4662,6 +4706,28 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30978</td>
@@ -7379,6 +7445,28 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30978</td>
 <td><p>The following vulnerability has been announced in pillow:<br/>
 CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
@@ -9798,6 +9886,28 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30978</td>
@@ -12656,6 +12766,28 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30978</td>
 <td><p>The following vulnerability has been announced in pillow:<br/>
 CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
@@ -15382,6 +15514,28 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30978</td>
@@ -18466,6 +18620,28 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30978</td>
 <td><p>The following vulnerability has been announced in pillow:<br/>
 CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
@@ -21504,6 +21680,28 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30978</td>
 <td><p>The following vulnerability has been announced in pillow:<br/>
 CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
@@ -24209,6 +24407,28 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30978</td>
@@ -26974,6 +27194,28 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30978</td>
@@ -29898,6 +30140,28 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30978</td>
@@ -32946,6 +33210,28 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30978</td>
 <td><p>The following vulnerability has been announced in pillow:<br/>
 CVE-2020-10177: Pillow before 7.1.0 has multiple out-of-bounds reads in libImaging/FliDecode.c.<br/>
@@ -35506,6 +35792,28 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30978</td>

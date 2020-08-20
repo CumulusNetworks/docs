@@ -119,3 +119,5 @@ For non-customers, Cumulus VX remains a community-supported product, with no for
 - {{<exlink url="http://www.linux-kvm.org/page/Documents" text="KVM documentation">}}
 - {{<exlink url="https://docs.vagrantup.com/v2/" text="Vagrant documentation">}}
 - {{<exlink url="https://www.gns3.com/software" text="GNS3 documentation">}}
+- {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}
+- {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand" text="Cumulus Linux on demand">}}

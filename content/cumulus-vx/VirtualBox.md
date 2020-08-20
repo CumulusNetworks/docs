@@ -47,11 +47,11 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
 
 3. Configure the **Adapters** on each VM as shown below, then click **OK** to save the network connections.
 
-   {{< notice note >}}
+   - Make sure you select the **Paravirtualized Network (virtio net)** network Adapter Type.
 
-   Due to how VirtualBox manages link-local multicast frames, you must enable Promiscuous Mode on all adapters (except Adapter 1) to allow for LACP bonding to operate properly.
+   - Do not change the MAC address, which is automatically created.
 
-   {{< /notice >}}
+   - Due to how VirtualBox manages link-local multicast frames, you must enable **Promiscuous Mode** on all adapters (except Adapter 1) to allow for LACP bonding to operate properly.
 
    **leaf01 configuration**
 

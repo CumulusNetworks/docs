@@ -107,9 +107,9 @@ If you start Cumulus VX with less than the required 768MB of RAM, the NCLU servi
 
 {{</notice>}}
 
-### On VirtualBox, why are the interfaces in a bond powered down?
+### When using VirtualBox, why is the bond down?
 
-With VirtualBox and VirtualBox with Vagrant, when you create a bond (aggregate multiple network interfaces (slaves) into a single logical bonded interface), you need to make sure that *promiscuous mode* is set to `on` for each interface participating in the bond. You set promiscuous mode in the `/etc/network/interface` file on the switch.
+With VirtualBox and VirtualBox with Vagrant, when you create a bond (aggregate multiple network interfaces (slaves) into a single logical bonded interface), you need to make sure that *promiscuous mode* is set to `on` for each interface in the bond. You set promiscuous mode in the `/etc/network/interface` file on the switch.
 
 The following example shows that swp2 and swp3 is configured as a bond.
 

@@ -33,12 +33,8 @@ else:
     base_url = sys.argv[2] + "/"
 http_user = sys.argv[3]
 http_pass = sys.argv[4]
-print("Token: " + str(token))
-docraptor.configuration.username = str(token)
-print("API token:" + docraptor.configuration.username)
-print(type(docraptor.configuration.username))
 doc_api = docraptor.DocApi()
-doc_api.api_client.configuration.debug = True
+doc_api.api_client.docraptor.configuration.username = str(token)
 
 # Taken from https://stackoverflow.com/a/600612/119527
 def mkdir_p(path):

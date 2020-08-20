@@ -2,6 +2,8 @@
 title: Advanced Configuration
 author: Cumulus Networks
 weight: 46
+product: Cumulus VX
+version: '4.x'
 ---
 This section describes advanced procedures that help you get more out of Cumulus VX. For example, you can:
 

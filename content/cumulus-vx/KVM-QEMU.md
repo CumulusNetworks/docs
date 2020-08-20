@@ -2,6 +2,8 @@
 title: KVM-QEMU
 author: Cumulus Networks
 weight: 15
+product: Cumulus VX
+version: '4.x'
 ---
 Performing virtualization in Linux requires three components:
 

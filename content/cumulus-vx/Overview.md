@@ -46,7 +46,7 @@ Cumulus VX is supported with VMware Fusion, Workstation, and vSphere ESXi; howev
 
 ## Cumulus VX Compared with Cumulus Linux
 
-The VM is the same Cumulus Linux operating system supported on NVIDIA ethernet switches and contains all the same software features but in a VM format. Cumulus VX provides full data plane functionality through the Linux kernel, as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities. Due to hardware limitations, certain functionality is supported in Cumulus VX but not on ethernet switches. Due to hardware specific implementations, certain features are not supported in Cumulus VX.
+The VM is the same Cumulus Linux operating system supported on NVIDIA Ethernet switches and contains all the same software features but in a VM format. Cumulus VX provides full data plane functionality through the Linux kernel, as well as layer 2 VLANs and both VXLAN bridging and VXLAN routing capabilities. Due to hardware limitations, certain functionality is supported in Cumulus VX but not on ethernet switches. Due to hardware specific implementations, certain features are not supported in Cumulus VX.
 
 Cumulus VX supports all software functions like BGP, spanning-tree, and SNMP, as well as any automation tooling and third-party packages.
 
@@ -56,7 +56,7 @@ Cumulus VX supports all software functions like BGP, spanning-tree, and SNMP, as
 
 The following table outlines the similarities and differences between Cumulus VX and Cumulus Linux:
 
-| <div style="width:300px">Feature or Functionality | Cumulus Linux | Cumulus Vx |
+| <div style="width:300px">Feature or Functionality | Cumulus Linux | Cumulus VX |
 | ------------------------ | -------------------------------- | -------------------------------- |
 | Upgrade available using an ONIE binary or with APT | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Line rate packet forwarding  | <font color="green">Yes</font> via switch ASIC | <font color="red">No</font> |

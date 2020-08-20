@@ -33,7 +33,10 @@ else:
     base_url = sys.argv[2] + "/"
 http_user = sys.argv[3]
 http_pass = sys.argv[4]
+print("Token: " + str(token))
 docraptor.configuration.username = str(token)
+print("API token:" + docraptor.configuration.username)
+print(type(docraptor.configuration.username))
 doc_api = docraptor.DocApi()
 doc_api.api_client.configuration.debug = True
 
@@ -187,5 +190,4 @@ except docraptor.rest.ApiException as error:
     print(error)
     print(error.message)
     print(error.code)
-    print(error.response_body)
     exit(1)

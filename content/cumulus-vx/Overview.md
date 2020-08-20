@@ -3,7 +3,6 @@ title: Overview
 author: Cumulus Networks
 weight: 5
 product: Cumulus VX
-version: '4.2'
 ---
 This section provides an overview of Cumulus VX and lists supported hypervisors.
 

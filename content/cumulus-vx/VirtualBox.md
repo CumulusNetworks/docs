@@ -49,7 +49,7 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
 
    {{< notice note >}}
 
-   Due to how VirtualBox manages link-local multicast frames, you must enable *Promiscuous Mode* on all swp interfaces to allow for LACP bonding to properly operate.
+   Due to how VirtualBox manages link-local multicast frames, you must enable Promiscuous Mode on all swp interfaces to allow for LACP bonding to properly operate.
 
    {{< /notice >}}
 

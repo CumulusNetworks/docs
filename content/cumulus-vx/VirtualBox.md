@@ -33,7 +33,7 @@ The Cumulus VX OVA image defines the CPU, memory and disk requirements. Cumulus 
 
 ### Create Network Connections
 
-Virtualbox network adapters start with eth0, then swp1, swp2 and swp3. Settings for Adapter 1 are applied to eth0, settings for Adapter 2 are applied to swp1, and so on.
+VirtualBox network adapters start with eth0, then swp1, swp2 and swp3. Settings for Adapter 1 are applied to eth0, settings for Adapter 2 are applied to swp1, and so on.
 
 Configure the network adapter settings for leaf01, leaf02, and spine01 to create point-to-point connections, as shown below.
 

@@ -114,7 +114,7 @@ If you start Cumulus VX with less than the required 768MB of RAM, the NCLU servi
 With VirtualBox and VirtualBox with Vagrant, when you create a bond (aggregate multiple network interfaces (slaves) into a single logical bonded interface), you need to make sure that *promiscuous mode* is set to `on` for each interface:
 
 1. Make sure all adapters (except Adapter 1) under network settings in the VirtualBox Manager are set to **Promiscuous Mode: Allow All**. See {{<link url="VirtualBox#create-network-connections" text="VirtualBox">}}.
-2. If you use Vagrant, make sure the Vagrant file contains the promiscuous mode setting for all interfaces. See the example Vagrantfile in {{<link url="VirtualBox-and-Vagrant" text="VirtualBox and Vagrant">}}.
+2. If you use Vagrant, make sure the `Vagrantfile` contains the promiscuous mode setting for all interfaces. See the example Vagrantfile in {{<link url="VirtualBox-and-Vagrant#create-vms-and-network-connections" text="VirtualBox and Vagrant">}}.
 3. On each switch, set promiscuous mode for all interfaces in the `/etc/network/interface` file. For example:
 
    ```

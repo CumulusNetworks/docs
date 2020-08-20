@@ -5,7 +5,7 @@ weight: -34
 subsection: true
 cascade:
   product: Cumulus VX
-  version: '4.2'
+  version: '4.x'
 toc: 1
 
 ---

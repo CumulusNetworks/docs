@@ -17,6 +17,10 @@ leaf01.vm.box = "CumulusCommunity/cumulus-vx"
     leaf01.vm.network "private_network", virtualbox__intnet: "intnet-1", auto_config: false
     leaf01.vm.network "private_network", virtualbox__intnet: "intnet-3", auto_config: false
     leaf01.vm.network "private_network", virtualbox__intnet: "intnet-4", auto_config: false
+        vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
+        vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
+        vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
+    end    
 end
 config.vm.define "leaf02" do |leaf02|
     leaf02.vm.box = "CumulusCommunity/cumulus-vx"
@@ -24,12 +28,20 @@ config.vm.define "leaf02" do |leaf02|
     leaf02.vm.network "private_network", virtualbox__intnet: "intnet-2", auto_config: false
     leaf02.vm.network "private_network", virtualbox__intnet: "intnet-3", auto_config: false
     leaf02.vm.network "private_network", virtualbox__intnet: "intnet-4", auto_config: false
+        vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
+        vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
+        vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
+    end    
 end
 config.vm.define "spine01" do |spine01|
     spine01.vm.box = "CumulusCommunity/cumulus-vx"
     # Internal network for swp* interfaces.
     spine01.vm.network "private_network", virtualbox__intnet: "intnet-1", auto_config: false
     spine01.vm.network "private_network", virtualbox__intnet: "intnet-2", auto_config: false
+        vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
+        vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
+    end
+end    
 end</pre></li>
 <li><p>Run <code>vagrant up</code> to start the VMs:</p>
 <pre>local@host:~/vagrant$ vagrant up

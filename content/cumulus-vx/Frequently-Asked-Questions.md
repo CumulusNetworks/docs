@@ -107,20 +107,22 @@ If you start Cumulus VX with less than the required 768MB of RAM, the NCLU servi
 
 {{</notice>}}
 
-### When using VirtualBox, why is the bond down?
+### When using VirtualBox or VirtualBox with Vagrant, why is the bond I created down?
 
-With VirtualBox and VirtualBox with Vagrant, when you create a bond (aggregate multiple network interfaces (slaves) into a single logical bonded interface), you need to make sure that *promiscuous mode* is set to `on` for each interface in the bond. You set promiscuous mode in the `/etc/network/interface` file on the switch.
+With VirtualBox and VirtualBox with Vagrant, when you create a bond (aggregate multiple network interfaces (slaves) into a single logical bonded interface), you need to make sure that *promiscuous mode* is set to `on` for each interface:
 
-The following example shows that swp2 and swp3 is configured as a bond.
+1. Make sure all adapters (except Adapter 1) under network settings in the VirtualBox Manager are set to **Promiscuous Mode: Allow All**. See {{<link url="VirtualBox#create-network-connections" text="VirtualBox">}}.
+2. If you use Vagrant, make sure the Vagrant file contains the promiscuous mode setting for all interfaces. See the example Vagrantfile in {{<link url="VirtualBox-and-Vagrant" text="VirtualBox and Vagrant">}}.
+3. On each switch, set promiscuous mode for all interfaces in the `/etc/network/interface` file. For example:
 
-```
-auto swp2
-iface swp2
-    #required for traffic to flow on Bonds in Vbox VMs
-    post-up ip link set $IFACE promisc on
+   ```
+   auto swp2
+   iface swp2
+       #required for traffic to flow on Bonds in Vbox VMs
+       post-up ip link set $IFACE promisc on
 
-auto swp3
-iface swp3
-    #required for traffic to flow on Bonds in Vbox VMs
-    post-up ip link set $IFACE promisc on
-```
+   auto swp3
+   iface swp3
+       #required for traffic to flow on Bonds in Vbox VMs
+       post-up ip link set $IFACE promisc on
+   ```

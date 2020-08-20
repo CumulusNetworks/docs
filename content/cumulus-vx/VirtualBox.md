@@ -47,9 +47,9 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
 
 3. Configure the **Adapters** on each VM as shown below, then click **OK** to save the network connections.
 
-   - Make sure you select the **Paravirtualized Network (virtio-net)** network Adapter Type.
-   - Enable **Promiscuous Mode** on all adapters (except Adapter 1) to allow for LACP bonding to operate properly.
-   - Do not change the **MAC Address**, which is provided automatically.
+   - Make sure to select the **Paravirtualized Network (virtio-net)** network Adapter Type for all adpaters
+   - Enable **Promiscuous Mode** for all adapters (except Adapter 1) to allow for LACP bonding to operate properly.
+   - Do not change the **MAC Addresses**, which are configured automatically.
 
    **leaf01 configuration**
 

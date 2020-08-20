@@ -106,3 +106,21 @@ Either wait a bit longer for the NCLU service to start or run the command `sudo 
 If you start Cumulus VX with less than the required 768MB of RAM, the NCLU service might fail to start.
 
 {{</notice>}}
+
+### On VirtualBox, why are the interfaces in a bond powered down?
+
+With VirtualBox and VirtualBox with Vagrant, when you create a bond (aggregate multiple network interfaces (slaves) into a single logical bonded interface), you need to make sure that *promiscuous mode* is set to `on` for each interface participating in the bond. You set promiscuous mode in the `/etc/network/interface` file on the switch.
+
+The following example shows that swp2 and swp3 is configured as a bond.
+
+```
+auto swp2
+iface swp2
+    #required for traffic to flow on Bonds in Vbox VMs
+    post-up ip link set $IFACE promisc on
+
+auto swp3
+iface swp3
+    #required for traffic to flow on Bonds in Vbox VMs
+    post-up ip link set $IFACE promisc on
+```

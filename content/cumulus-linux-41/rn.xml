@@ -1627,20 +1627,6 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
 <td></td>
 </tr>
 <tr>
-<td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
- 
- 
- cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
- cumulus@switch:~$ sudo reboot 
- 
- 
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
-The workaround only works when an out-of-band network is present.</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-24799</td>
 <td><p>On switches with the Trident2 ASIC, 802.1Q-encapsulated control plane traffic received on an interface with 802.1AD configured subinterfaces might be dropped. <br/>
 This issue only affects QinQ configurations. </p>
@@ -3688,20 +3674,6 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
 <td>3.7.5-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
- 
- 
- cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
- cumulus@switch:~$ sudo reboot 
- 
- 
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
-The workaround only works when an out-of-band network is present.</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>

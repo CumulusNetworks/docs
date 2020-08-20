@@ -75,7 +75,7 @@ The following table outlines the similarities and differences between Cumulus VX
 | QoS Buffer management | <font color="green">Yes</font> | <font color="red">No</font> |
 | QoS Buffer monitoring | <font color="green">Yes</font> | <font color="red">No</font> |
 | QoS Shaping | <font color="green">Yes</font> | <font color="red">No</font> |
-| What Just Happened | <font color="green">Yes</font> | <font color="red">No</font> |
+| Mellanox What Just Happened (WJH) | <font color="green">Yes</font> | <font color="red">No</font> |
 | ACLs | <font color="green">Yes</font> | <font color="red">No</font><sup>2</sup> | 
 | 802.1x | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Cumulus NetQ | <font color="green">Yes</font> | <font color="green">Yes</font> |

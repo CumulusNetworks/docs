@@ -34,7 +34,7 @@ else:
 http_user = sys.argv[3]
 http_pass = sys.argv[4]
 doc_api = docraptor.DocApi()
-doc_api.api_client.docraptor.configuration.username = str(token)
+doc_api.api_client.configuration.username = str(token)
 
 # Taken from https://stackoverflow.com/a/600612/119527
 def mkdir_p(path):

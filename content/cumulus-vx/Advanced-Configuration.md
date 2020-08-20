@@ -40,7 +40,7 @@ As an alternative to using Cumulus VX with the Cumulus Linux on demand labs, you
 
 To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not require any port changes) and create the server01 and server 02 virtual servers.
 
-For Virtualbox and Vagrant or KVM-QEMU and Vagrant, you can run the topology converter to convert the topology. See {{<link url="#run-the-topology-converter" text="Run the Topology Converter">}} section below.
+For VirtualBox and Vagrant or KVM-QEMU and Vagrant, you can run the topology converter to convert the topology. See {{<link url="#run-the-topology-converter" text="Run the Topology Converter">}} section below.
 
 ### Change the Ports
 
@@ -148,7 +148,7 @@ After you change the ports and create server01 and server02, you are ready to go
 
 The topology Converter can help you to simulate a custom network topology directly on your laptop or on a dedicated server. The topology can be extremely complete; you can simulate hosts as well as network equipment.
 
-The topology converter translates a graphviz topology file (`.dot` file), which describes the network topology link-by-link, into a Vagrantfile, which fully represents the topology. Vagrantfiles are used by Vagrant to define VM settings and connections. You can then simulate the topology with either Virtualbox and Vagrant or with KVM-QEMU and Vagrant.
+The topology converter translates a graphviz topology file (`.dot` file), which describes the network topology link-by-link, into a Vagrantfile, which fully represents the topology. Vagrantfiles are used by Vagrant to define VM settings and connections. You can then simulate the topology with either VirtualBox and Vagrant or with KVM-QEMU and Vagrant.
 
 The topology converter:
 

@@ -17,6 +17,7 @@ leaf01.vm.box = "CumulusCommunity/cumulus-vx"
     leaf01.vm.network "private_network", virtualbox__intnet: "intnet-1", auto_config: false
     leaf01.vm.network "private_network", virtualbox__intnet: "intnet-3", auto_config: false
     leaf01.vm.network "private_network", virtualbox__intnet: "intnet-4", auto_config: false
+    leaf01.vm.provider "virtualbox" do |vbox|
         vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
         vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
         vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
@@ -28,6 +29,7 @@ config.vm.define "leaf02" do |leaf02|
     leaf02.vm.network "private_network", virtualbox__intnet: "intnet-2", auto_config: false
     leaf02.vm.network "private_network", virtualbox__intnet: "intnet-3", auto_config: false
     leaf02.vm.network "private_network", virtualbox__intnet: "intnet-4", auto_config: false
+    leaf02.vm.provider "virtualbox" do |vbox|
         vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
         vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
         vbox.customize ['modifyvm', :id, '--nicpromisc4', 'allow-vms']
@@ -38,6 +40,7 @@ config.vm.define "spine01" do |spine01|
     # Internal network for swp* interfaces.
     spine01.vm.network "private_network", virtualbox__intnet: "intnet-1", auto_config: false
     spine01.vm.network "private_network", virtualbox__intnet: "intnet-2", auto_config: false
+    spine01.vm.provider "virtualbox" do |vbox|
         vbox.customize ['modifyvm', :id, '--nicpromisc2', 'allow-vms']
         vbox.customize ['modifyvm', :id, '--nicpromisc3', 'allow-vms']
     end

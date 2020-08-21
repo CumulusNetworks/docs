@@ -1,37 +1,35 @@
 ---
-title: Monitor Network Inventory
+title: Monitor Network-wide Inventory
 author: Cumulus Networks
 weight: 610
 toc: 4
 ---
-With the NetQ UI and CLI, a user can monitor the network inventory of switches and hosts across the entire network, including such items as the number of each and what operating systems are installed. Additional details are available about the hardware and software components on individual switches, such as  the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. This is extremely useful for understanding the dependence on various vendors and versions, when planning upgrades or the scope of any other required changes.
+With the NetQ UI and CLI, a user can monitor the inventory on a network-wide basis for all switches and hosts, or all switches. Inventory includes such items as the number of each device and what operating systems are installed. Additional details are available about the hardware and software components on individual switches, such as  the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. This is extremely useful for understanding the dependence on various vendors and versions when planning upgrades or evaluating the scope of any other required changes.
 
 The commands and cards available to obtain this type of information help you to answer questions such as:
 
-- What switches do I have in the network?
-- What is the distribution of ASICs across my network?
+- What switches are being monitored in the network?
+- What is the distribution of ASICs, CPUs, Agents, and so forth across my network?
 - Do all switches have valid licenses?
 - Are NetQ agents running on all of my switches?
 - What hardware is installed on my switches?
 - What software is installed on my switches?
-- What is the ACL and forwarding resources usage?
-- Do all switches have NetQ Agents running?
 
-To monitor individual switch inventory, refer to {{<link title="Monitor Switch Inventory">}}.
+To monitor the inventory of a given switch, refer to {{<link title="Monitor Switch Inventory">}}.
 
 To view the network or device performance data, refer to {{<link title="Monitor Network and Device Performance">}}.
 
-## Access Network Inventory Data
+## Access Network-wide Inventory Data
 
-The Cumulus NetQ UI provides the Inventory|Devices card for monitoring network-wide inventory information. It provides varying degrees of information about hardware and software on all switches and hosts running NetQ. 
+The Cumulus NetQ UI provides the Inventory|Devices card for monitoring network-wide inventory information for all switches and hosts. The Inventory|Switches card provides a more detailed view of inventory information for all switches (no hosts) on a network-wide basis.
 
-Access this card from the Cumulus Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Devices card > **Open Cards**.
+Access these card from the Cumulus Workbench, or add them to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Devices card or Inventory|Switches card > **Open Cards**.
 
-{{<figure src="/images/netq/inventory-devices-medium-240.png" width="200">}}
+{{<img src="/images/netq/inventory-devices-medium-240.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switch-medium-320.png" width="200">}}
 
-The CLI provides detailed network inventory information through its `netq show inventory` command.
+The NetQ CLI provides detailed network inventory information through its `netq show inventory` command.
 
-## View Network Inventory Summary
+## View Network-wide Inventory Summary
 
 All of the devices in your network can be viewed from either the NetQ UI or NetQ CLI.
 
@@ -43,24 +41,29 @@ All of the devices in your network can be viewed from either the NetQ UI or NetQ
 
 You can view the number of switches and hosts deployed in your network. As you grow your network this can be useful for validating that devices have been added as scheduled.
 
-To view the quantity of devices in your network, locate or open the small or medium Inventory|Devices card.
+To view the quantity of devices in your network, locate or open the small or medium Inventory|Devices card. The medium-sized card provide operating system distribution across the network in addition to the device count.
 
 {{<figure src="/images/netq/inventory-devices-small-240.png" width="200">}}
 {{<figure src="/images/netq/inventory-devices-medium-230.png" width="200">}}
 
 ### View All Switches
 
-You can view all stored attributes for all switches in your network. To view all switch details, open the full screen Inventory|Devices card and click the **All Switches** tab in the navigation panel.
+You can view all stored attributes for all switches in your network from either inventory card:
+- Open the full-screen Inventory|Devices card and click **All Switches**
 
-{{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
+    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-320.png" width="700">}}
+
+- Open the full-screen Inventory|Switches card and click **Show All**
+
+    {{<figure src="/images/netq/inventory-switch-fullscr-showall-tab-320.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 ### View All Hosts
 
-You can view all stored attributes for all hosts in your network. To view all host details, open the full screen Inventory|Devices card and click the **All Hosts** tab in the navigation panel.
+You can view all stored attributes for all hosts in your network. To view all host details, open the full screen Inventory|Devices card and click **All Hosts**.
 
-{{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
+{{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-320.png" width="700" >}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
@@ -106,19 +109,21 @@ spine04           VX                   CL              x86_64   VX              
 
 {{< /tabs >}}
 
-## View Hardware Inventory across the Network
+## View Network-wide Hardware Inventory
 
-You can view all hardware components or narrow your view to specific hardware components for all of the switches in your network.
+You can view hardware components deployed on all switches and hosts, or on all of the switches in your network.
 
-### View Components Summary for All Switches
+### View Components Summary
 
-Switch component inventory can be viewed from either the NetQ UI or NetQ CLI.
+Hardware and software component summary information is available from the NetQ UI and NetQ CLI.
+
+- Inventory|Devices card: view ASIC, license, NetQ Agent version, OS, and platform information on all devices
+- Inventory|Switches card: view  ASIC, CPU, disk, license, NetQ Agent version, OS, and platform information on all switches
+- `netq show inventory` command: view ASIC, CPU, disk, OS, and ports on all devices
 
 {{< tabs "TabID87" >}}
 
-{{< tab "NetQ UI" >}}
-
-To view switch components:
+{{< tab "Inventory|Devices" >}}
 
 1. Locate the Inventory|Devices card on your workbench.
 
@@ -128,20 +133,41 @@ To view switch components:
 
     {{<figure src="/images/netq/inventory-devices-large-switches-tab-230.png" width="500">}}
 
-<div style="padding-left: 18px;">You can hover over any of the segments in a component distribution chart to highlight a specific type of the given component. When you *hover*, a tooltip appears displaying:</div>
+<div style="padding-left: 18px;">You can hover over any of the segments in a component distribution chart to highlight a specific type of the given component. When you *hover*, a tooltip appears displaying:
 
-<div style="padding-left: 18px;"><ul>
+<ul>
+<li>Name or value of the component type, such as the version number or status</li>
+<li>Total number of switches with that type of component deployed compared to the total number of switches</li>
+<li>Percentage of this type with respect to all component types</li></ul>
+
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650">}}
+
+Additionally, sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).</div>
+
+{{< /tab >}}
+
+{{< tab "Inventory|Switches" >}}
+
+1. Locate the Inventory|Switches card on your workbench.
+
+2. Hover over any of the segments in the distribution chart to highlight a specific component.
+
+    {{<figure src="/images/netq/inventory-switch-medium-hover-license-230.png" width="200">}}
+
+<div style="padding-left: 18px;">When you <em>hover</em>, a tooltip appears displaying:
+
+<ul>
 <li>Name or value of the component type, such as the version number or status</li>
 <li>Total number of switches with that type of component deployed compared to the total number of switches</li>
 <li>Percentage of this type with respect to all component types</li></ul></div>
 
-    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650">}}
+3. Change to the large size card. The same information is shown separated by hardware and software, and sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
 
-<div style="padding-left: 18px;">Additionally, sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).</div>
+    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-320.png" width="500">}}
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "netq show inventory" >}}
 
 To view switch components, run:
 
@@ -181,21 +207,22 @@ spine04           VX                   CL              x86_64   VX              
 
 {{< /tabs >}}
 
-### View ASIC Information for all Switches
+### View ASIC Information
 
-ASIC information can be viewed from either the NetQ UI or NetQ CLI.
+ASIC information is available from the NetQ UI and NetQ CLI.
+
+- Inventory|Devices card
+    - Large: view ASIC distribution across all switches (graphic)
+    - Full-screen: view ASIC vendor, model, model ID, ports, core bandwidth across all devices (table)
+- Inventory|Switches card
+    - Medium/Large: view ASIC distribution across all switches (graphic)
+    - Full-screen: view ASIC vendor, model, model ID, ports, core bandwidth and data across all switches (table)
+- `netq show inventory asic` command
+    - View ASIC vendor, model, model ID, core bandwidth, and ports on all devices
 
 {{< tabs "TabID158" >}}
 
-{{< tab "NetQ UI" >}}
-
-To dig deeper on a particular component type, you can filter the card data by that type. In this procedure, the result of filtering on the ASIC component is shown.
-
-View ASIC data in a graphic or a table:
-
-{{< tabs "TabID181" >}}
-
-{{< tab "Graphic">}}
+{{< tab "Inventory|Devices">}}
 
 1. Locate the Inventory|Devices card on your workbench.
 
@@ -215,41 +242,55 @@ View ASIC data in a graphic or a table:
 
 6. To return to the full complement of components, click the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
 
-While the Device Inventory cards provide a network-wide view, you may want to see more detail about your switch inventory. This can be found in the Switches Inventory card workflow. To open that workflow, click the **Switch Inventory** button at the top right of the Switches card.
-
-{{<figure src="/images/netq/inventory-devices-large-switches-tab-switch-inv-button-230.png" width="500">}}
-
-{{< /tab >}}
-
-{{< tab "Table" >}}
-
-You can view ASIC model, modelID, vendor, and ports for all switches using the full-screen card. ASIC information is not available for hosts.
-
-1. Locate the Inventory|Devices card on your workbench.
-
-2. Hover over the card, and change to the full-screen card using the size picker.
+7. Hover over the card, and change to the full-screen card using the size picker.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
 
-3. Scroll to the right to view the above ASIC information.
+8. Scroll to the right to view the above ASIC information.
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
-{{< /tab >}}
-
-{{< /tabs >}}
+9. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "Inventory|Switches" >}}
 
-To view the vendor, model, model identifier, core bandwidth capability, and ports of the ASIC installed on your switch motherboard, run:
+1. Locate the Inventory|Switches card on your workbench.
+
+2. Hover over a segment of the ASIC graph in the distribution chart.
+
+    The same information is available on the summary tab of the large size card.
+
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+
+3. Hover over the card header and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core.svg" height="14" width="14"/> to view the ASIC vendor and model distribution.
+
+4. Hover over charts to view the name of the ASIC vendors or models, how many switches have that vendor or model deployed, and the percentage of this number compared to the total number of switches.
+
+    {{<figure src="/images/netq/inventory-switch-large-asic-tab-230.png" width="700">}}
+
+5. Change to the full-screen card to view all of the available ASIC information. Note that if you are running CumulusVX switches, no detailed ASIC information is available.
+
+    {{<figure src="/images/netq/inventory-switch-fullscr-asic-tab-320.png" width="700">}}
+
+6. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "netq show inventory" >}}
+
+To view information about the ASIC installed on your devices, run:
 
 ```
 netq show inventory asic [vendor <asic-vendor>|model <asic-model>|model-id <asic-model-id>] [json]
 ```
 
-This example shows all of the ASIC attributes for all devices.
+{{<notice tip>}}
+
+If you are running NetQ on a CumulusVX setup, there is no physical hardware to query and thus no ASIC information to display.
+
+{{</notice>}}
+
+This example shows the ASIC information for all devices in your network:
 
 ```
 cumulus@switch:~$ netq show inventory asic
@@ -270,50 +311,83 @@ st1-s1            Broadcom             Trident2                       BCM56850  
 st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
 ```
 
-You can filter the results of the command to view devices with a particular vendor, model, or modelID. This example shows all devices with a vendor of *Broadcom*.
+You can filter the results of the command to view devices with a particular vendor, model, or modelID. This example shows ASIC information for all devices with a vendor of *Mellanox*.
 
 ```
-cumulus@switch:~$ netq show inventory asic vendor Broadcom
+cumulus@switch:~$ netq show inventory asic vendor Mellanox
 Matching inventory records:
 Hostname          Vendor               Model                          Model ID                  Core BW        Ports
 ----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
-dell-z9100-05     Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
-qct-ix1-08        Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
-qct-ix7-04        Broadcom             Trident3                       BCM56870                  N/A            32 x 100G-QSFP28
-st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-st1-l2            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-st1-l3            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-st1-s1            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
-st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
+mlx-2100-05       Mellanox             Spectrum                       MT52132                   N/A            16 x 100G-QSFP28
+mlx-2410a1-05     Mellanox             Spectrum                       MT52132                   N/A            48 x 25G-SFP28 & 8 x 100G-QSFP28
+mlx-2700-11       Mellanox             Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
 ```
 
 {{< /tab >}}
 
 {{< /tabs >}}
 
-### View Motherboard Information for all Switches
+### View Motherboard/Platform Information
 
-You can view motherboard information from the NetQ UI or NetQ CLI, including the vendor, model, base MAC address, serial number, part number, revision, and manufacturing date for a switch motherboard on all devices.
+Motherboard and platform information is available from the NetQ UI and NetQ CLI.
+
+- Inventory|Devices card
+    - Full-screen: view platform vendor, model, manufacturing date, revision, serial number, MAC address, series across all devices (table)
+- Inventory|Switches card
+    - Medium/Large: view platform distribution across on all switches (graphic)
+    - Full-screen: view platform vendor, model, manufacturing date, revision, serial number, MAC address, series across all switches (table)
+- `netq show inventory board` command
+    - View motherboard vendor, model, base MAC address, serial number, part number, revision, and manufacturing date on all devices
 
 {{< tabs "TabID266" >}}
 
-{{< tab "NetQ UI">}}
+{{< tab "Inventory|Devices">}}
 
 1. Locate the Inventory|Devices card on your workbench.
 
 2. Hover over the card, and change to the full-screen card using the size picker.
 
-3. Scroll to the right to view the various parameters. Optionally drag and drop them to be next to each other.
+3. The **All Switches** tab is selected by default. Scroll to the right to view the various Platform parameters for your switches. Optionally drag and drop the relevant columns next to each other.
 
-    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
+    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-320.png" width="700">}}
+
+4. Click **All Hosts**.
+
+5. Scroll to the right to view the various Platform parameters for your hosts. Optionally drag and drop the relevant columns next to each other.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-320.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
-{{< /tab>}}
+{{< /tab >}}
 
-{{< tab "NetQ CLI">}}
+{{< tab "Inventory|Switches">}}
 
-To view a list of motherboards installed in your switches, run:
+1. Locate the Inventory|Switches card on your workbench.
+
+2. Hover over the card, and change to the large card using the size picker.
+
+3. Hover over the header and click {{<img src="/images/netq/platform-icon.png" height="14" width="14">}}.
+
+    {{<figure src="/images/netq/inventory-switch-large-platform-tab.png" width="500">}}
+
+4. Hover over a segment in the Vendor or Platform graphic to view how many and which switches deploy the specified vendor or platform.
+
+    Context sensitive highlighting is also employed here, such that when you select a vendor, the corresponding platforms are also highlighted; and vice versa. Note that you can also see the status of the Cumulus Linux license for each switch.
+
+5. Click either **Show All** link to open the full-screen card.
+
+6. Click **Platform**.
+
+    {{<figure src="/images/netq/inventory-switch-fullscr-platform-tab-320.png" width="700">}}
+
+7. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "netq show inventory" >}}
+
+To view a list of motherboards installed in your switches and hosts, run:
 
 ```
 netq show inventory board [vendor <board-vendor>|model <board-model>] [json]
@@ -359,39 +433,67 @@ st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:2
 
 {{< /tabs >}}
 
-### View CPU Information for all Switches and Hosts
+### View CPU Information
 
-You can view the architecture, model, operating frequency, and the number of cores for the CPU on all devices using the NetQ UI or NetQ CLI.
+CPU information is available from the NetQ UI and NetQ CLI.
+
+- Inventory|Devices card
+    - Full-screen: view CPU architecture, model, maximum operating frequency, and the number of cores on all devices (table)
+- Inventory|Switches card
+    - Medium/Large: view CPU distribution across on all switches (graphic)
+    - Full-screen: view CPU architecture, model, maximum operating frequency, the number of cores, and data on all switches (table)
+- `netq show inventory cpu` command
+    - View CPU architecture, model, maximum operating frequency, and the number of cores on all devices
 
 {{< tabs "TabID304" >}}
 
-{{< tab "NetQ UI" >}}
+{{< tab "Inventory|Devices" >}}
 
 1. Locate the Inventory|Devices card on your workbench.
 
 2. Hover over the card, and change to the full-screen card using the size picker.
 
-3. The **All Switches** tab is selected by default. Scroll to the right to view the various parameters. Optionally drag and drop them to be next to each other.
+3. The **All Switches** tab is selected by default. Scroll to the right to view the various CPU parameters. Optionally drag and drop relevant columns next to each other.
 
-    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
+    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-320.png" width="700">}}
 
-4. Click **All Hosts** to view the same information for your host servers.
+4. Click **All Hosts** to view the CPU information for your host servers.
 
-    {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
+    {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-320.png" width="700" >}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "Inventory|Switches" >}}
 
-To view cpu information for your network, run:
+1. Locate the Inventory|Switches card on your workbench.
+
+2. Hover over a segment of the CPU graph in the distribution chart.
+
+    The same information is available on the summary tab of the large size card.
+
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+
+3. Hover over the card, and change to the full-screen card using the size picker.
+
+4. Click **CPU**.
+
+    {{<figure src="/images/netq/inventory-switch-fullscr-cpu-tab-320.png" width="700" >}}
+
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "netq show inventory" >}}
+
+To view CPU information for all devices in your network, run:
 
 ```
 netq show inventory cpu [arch <cpu-arch>] [json]
 ```
 
-This example show the CPU for all devices.
+This example shows the CPU information for all devices.
 
 ```
 cumulus@nswitch:~$ netq show inventory cpu
@@ -449,13 +551,21 @@ spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
 
 {{< /tabs >}}
 
-### View Disk Information for all Switches and Hosts
+### View Disk Information
 
-With NetQ UI you can view the size of the disk on all devices. With the NetQ CLI you can view the name or operating system, type, transport, size, vendor, and model of the disk on all devices. You can filter this list by name, transport, or vendor.
+Disk information is available from the NetQ UI and NetQ CLI.
 
-{{< tabs "TabID406" >}}
+- Inventory|Devices card
+    - Full-screen: view the size of the disk on all devices (table)
+- Inventory|Switches card
+    - Medium/Large: view Disk distribution across on all switches (graphic)
+    - Full-screen: view disk vendor, size, revision, model, name, transport, and type on all switches (table)
+- `netq show inventory disk` command
+    - View disk name, type, transport, size, vendor, and model on all devices
 
-{{< tab "NetQ UI" >}}
+{{< tabs "TabID591" >}}
+
+{{< tab "Inventory|Devices" >}}
 
 1. Locate the Inventory|Devices card on your workbench.
 
@@ -463,17 +573,37 @@ With NetQ UI you can view the size of the disk on all devices. With the NetQ CLI
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
 
-3. Locate the **Disk Total Size** column.
+3. The **All Switches** tab is selected by default. Locate the **Disk Total Size** column.
 
 4. Click **All Hosts** to view the total disk size of all host servers.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "Inventory|Switches" >}}
+
+1. Locate the Inventory|Switches card on your workbench.
+
+2. Hover over a segment of the disk graph in the distribution chart.
+
+    The same information is available on the summary tab of the large size card.
+
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+
+3. Hover over the card, and change to the full-screen card using the size picker.
+
+4. Click **Disk**.
+
+    {{<figure src="/images/netq/inventory-switch-fullscr-disk-tab-320.png" width="700">}}
+
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "netq show inventory" >}}
 
 To view disk information for your switches, run:
 
@@ -481,7 +611,7 @@ To view disk information for your switches, run:
 netq show inventory disk [name <disk-name>|transport <disk-transport>|vendor <disk-vendor>] [json]
 ```
 
-This example show the CPU for all devices.
+This example shows the disk information for all devices.
 
 ```
 cumulus@switch:~$ netq show inventory disk
@@ -505,13 +635,21 @@ spine02           vda             disk             N/A                6G        
 
 {{< /tabs >}}
 
-### View Memory Information for all Switches and Hosts
+### View Memory Information
 
-You can view the size of the memory on all devices with the NetQ CLI. You can view the name, type, size, speed, vendor, and serial number for the memory installed on all devices with the NetQ CLI.
+Memory information is available from the NetQ UI and NetQ CLI.
+
+- Inventory|Devices card
+    -  Full-screen: view the size of the memory on all devices (table)
+- Inventory|Switches card
+    - Medium/Large: view the memory size distribution across all switches (graphic)
+    - Full-screen: view memory chip vendor, name, serial number, size, speed, and type on all switches (table)
+- `netq show inventory memory`
+    - View memory chip name, type, size, speed, vendor, and serial number on all devices
 
 {{< tabs "TabID480" >}}
 
-{{< tab "NetQ UI" >}}
+{{< tab "Inventory|Devices" >}}
 
 1. Locate the Inventory|Devices card on your workbench.
 
@@ -519,16 +657,37 @@ You can view the size of the memory on all devices with the NetQ CLI. You can vi
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
 
-3. Locate the **Memory Size** column.
+3. The **All Switches** tab is selected by default. Locate the **Memory Size** column.
 
 4. Click **All Hosts** to view the memory size for all host servers.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "Inventory|Switches" >}}
+
+1. Locate the Inventory|Switches card on your workbench.
+
+2. Hover over a segment of the memory graph in the distribution chart.
+
+    The same information is available on the summary tab of the large size card.
+
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+
+3. Hover over the card, and change to the full-screen card using the size picker.
+
+4. Click **Memory**.
+
+    {{<figure src="/images/netq/inventory-switch-fullscr-memory-tab-320.png" width="700">}}
+
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "netq show inventory" >}}
 
 To view memory information for your switches and host servers, run:
 
@@ -586,528 +745,186 @@ spine02           DIMM 0          RAM              1024 MB    Unknown    QEMU   
 
 {{< /tabs >}}
 
+### View Sensor Information
 
+Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ system operation. You can view the names and descriptions of each of these using the NetQ CLI.
 
-<!-- Move these topics to performance topic
-
-### View Fan Health for All Switches
-
-Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ system operation. To view the health of fans in your switches, use the `netq show sensors fan` command. If you name the fans in all of your switches consistently, you can view more information at once.
-
-In this example, we look at the state of all fans with the name *fan1*.
+To view sensor information for your switches and host servers, run:
 
 ```
-cumulus@switch:~$ netq show sensors fan fan1
-Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
------------------ --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
-exit01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:17 2019
-exit02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:33 2019
-leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
-leaf02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:41 2019
-leaf03            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:44 2019
-leaf04            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:36 2019
-spine01           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:52 2019
-spine02           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:08 2019
+netq show sensors all [around <text-time>] [json]
 ```
 
-{{<notice tip>}}
+Use the `around` option to view sensor information for a time in the past.
 
-Use tab completion to determine the names of the fans in your switches:
-
-```
-cumulus@switch:~$ netq show sensors fan <<press tab>>
-   around : Go back in time to around ...
-   fan1 : Fan Name
-   fan2 : Fan Name
-   fan3 : Fan Name
-   fan4 : Fan Name
-   fan5 : Fan Name
-   fan6 : Fan Name
-   json : Provide output in JSON
-   psu1fan1 : Fan Name
-   psu2fan1 : Fan Name
-   <ENTER>
-```
-
-{{</notice>}}
-
-To view the status for a particular switch, use the optional `hostname` parameter.
-
-```
-cumulus@switch:~$ netq leaf01 show sensors fan fan1
-Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
------------------ --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
-leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
-```
-
-### View PSU Health for All Switches
-
-Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ Platform operation. To view the health of PSUs in your switches, use the `netq show sensors psu` command. If you name the PSUs in all of your switches consistently, you can view more information at once.
-
-In this example, we look at the state of all PSUs with the name *psu2*.
-
-```
-cumulus@switch:~$ netq show sensors psu psu2
-Matching sensors records:
-Hostname          Name            State      Message                             Last Changed
------------------ --------------- ---------- ----------------------------------- -------------------------
-exit01            psu2            ok                                             Fri Apr 19 16:01:17 2019
-exit02            psu2            ok                                             Fri Apr 19 16:01:33 2019
-leaf01            psu2            ok                                             Sun Apr 21 20:07:12 2019
-leaf02            psu2            ok                                             Fri Apr 19 16:01:41 2019
-leaf03            psu2            ok                                             Fri Apr 19 16:01:44 2019
-leaf04            psu2            ok                                             Fri Apr 19 16:01:36 2019
-spine01           psu2            ok                                             Fri Apr 19 16:01:52 2019
-spine02           psu2            ok                                             Fri Apr 19 16:01:08 2019
-```
-
-{{<notice tip>}}
-
-Use Tab completion to determine the names of the PSUs in your switches. Use the optional <code>hostname</code> parameter to view the PSU state for a given switch.
-
-{{</notice>}}
-
-### View the Temperature in All Switches
-
-Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ Platform operation. To view the temperature sensor status, current temperature, and configured threshold values, use the `netq show sensors temp` command. If you name the temperature sensors in all of your switches consistently, you can view more information at once.
-
-In this example, we look at the state of all temperature sensors with the name *psu1temp1*.
-
-```
-cumulus@switch:~$ netq show sensors temp psu2temp1 
-Matching sensors records:
-Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
-    
------------------ --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
-    
-exit01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:17 2019
-
-exit02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:33 2019
-    
-leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Sun Apr 21 20:07:12 2019
-    
-leaf02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:41 2019
-    
-leaf03            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:44 2019
-    
-leaf04            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:36 2019
-    
-spine01           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:52 2019
-    
-spine02           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:08 2019
-```
-
-{{<notice tip>}}
-
-Use Tab completion to determine the names of the temperature sensors in
-your switches. Use the optional <code>hostname</code> parameter to view the
-temperature state, current temperature, and threshold values for a given
-switch.
-
-{{</notice>}}
-
-### View All Sensor Data
-
-To view all fan data, all PSU data, or all temperature data from the sensors in a chassis, you must view all of the sensor data. The more consistently you name your sensors, the easier it will be to view the full sensor data.
+This example shows all of the sensors on all devices.
 
 ```
 cumulus@switch:~$ netq show sensors all
 Matching sensors records:
 Hostname          Name            Description                         State      Message                             Last Changed
 ----------------- --------------- ----------------------------------- ---------- ----------------------------------- -------------------------
-border01          fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
-border01          fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
-border01          fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
-border01          fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
-border01          psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:07:56 2020
-border01          fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
-border01          fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
-border01          psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:07:56 2020
-border02          fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:07:54 2020
-border02          fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:07:54 2020
-border02          psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:07:54 2020
-border02          fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:07:54 2020
-border02          fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:54 2020
-border02          fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:07:54 2020
-border02          fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:07:54 2020
-border02          psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:07:54 2020
-fw1               psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:08:45 2020
-fw1               fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:08:45 2020
-fw1               psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:08:45 2020
-fw1               fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:08:45 2020
-fw1               fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
-fw1               fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:08:45 2020
-fw1               fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
-fw1               fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
-fw2               fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:53 2020
+border01          fan5            fan tray 3, fan 1                   ok                                             Fri Aug 21 18:51:11 2020
+border01          fan6            fan tray 3, fan 2                   ok                                             Fri Aug 21 18:51:11 2020
+border01          fan1            fan tray 1, fan 1                   ok                                             Fri Aug 21 18:51:11 2020
 ...
-```
-
-#### View All Sensor-related Events
-
-You can view the events that are triggered by the chassis sensors using the
-`netq show events` command. You can narrow the focus to only critical
-events using the severity `level` option.
-
-```
-cumulus@switch:~$ netq show events type sensors
-No matching events records found
-```
-
-```
-cumulus@switch:~$ netq show events level critical type sensors
-No matching events records found
-```
-
-### View Interface Statistics and Utilization
-
-NetQ Agents collect performance statistics every 30 seconds for the
-physical interfaces on switches and hosts in your network. The NetQ
-Agent does not collect statistics for non-physical interfaces, such as
-bonds, bridges, and VXLANs. The NetQ Agent collects the following statistics:
-
-- Statistics
-    - **Transmit**: tx\_bytes, tx\_carrier, tx\_colls, tx\_drop, tx\_errs, tx\_packets
-    - **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame, rx\_multicast, rx\_packets
-- Utilization
-    - rx\_util, tx\_util
-    - port speed
-
-These can be viewed using the following NetQ CLI commands:
-
-```
-netq [<hostname>] show interface-stats [errors | all] [<physical-port>] [around <text-time>] [json]
-netq [<hostname>] show interface-utilization [<text-port>] [tx|rx] [around <text-time>] [json]
-```
-
-Where the various options are:
-
-- `hostname` limits the output to a particular switch
-- `errors` limits the output to only the transmit and receive errors found on the designated interfaces
-- `physical-port` limits the output to a particular port
-- `around` enables viewing of the data at a time in the past
-- `json` outputs results in JSON format
-- `text-port` limits output to a particular host and port; `hostname` is required with this option
-- `tx`, `rx` limits output to the transmit or receive values, respectively
-
-In this example, we view the interface statistics for all switches and
-all of their physical interfaces.
-
-```
-cumulus@switch:~$ netq show interface-stats
-Matching proc_dev_stats records:
-Hostname          Interface                 RX Packets           RX Drop              RX Errors            TX Packets           TX Drop              TX Errors            Last Updated
------------------ ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-border01          swp1                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:56:48 2020
-border01          swp54                     82660                0                    0                    81630                0                    0                    Wed Apr 22 23:56:48 2020
-border01          swp52                     83115                0                    0                    81491                0                    0                    Wed Apr 22 23:56:48 2020
-border01          swp4                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:56:48 2020
-border01          swp53                     77128                0                    0                    70080                0                    0                    Wed Apr 22 23:56:48 2020
-border01          swp3                      183252               0                    0                    168795               0                    0                    Wed Apr 22 23:56:48 2020
-border01          swp49                     396524               0                    0                    324746               0                    0                    Wed Apr 22 23:56:48 2020
-border01          swp51                     80054                1                    0                    82420                0                    0                    Wed Apr 22 23:56:48 2020
-border01          swp2                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:56:48 2020
-border01          swp50                     179866               0                    0                    178564               0                    0                    Wed Apr 22 23:56:48 2020
-border02          swp1                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:57:12 2020
-border02          swp54                     75295                0                    0                    69453                0                    0                    Wed Apr 22 23:57:12 2020
-border02          swp52                     83255                0                    0                    82895                0                    0                    Wed Apr 22 23:57:12 2020
-border02          swp4                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:57:12 2020
+fw1               fan2            fan tray 1, fan 2                   ok                                             Thu Aug 20 19:16:12 2020
 ...
+fw2               fan3            fan tray 2, fan 1                   ok                                             Thu Aug 20 19:14:47 2020
+...
+leaf01            psu2fan1        psu2 fan                            ok                                             Fri Aug 21 16:14:22 2020
+...
+leaf02            fan3            fan tray 2, fan 1                   ok                                             Fri Aug 21 16:14:14 2020
+...
+leaf03            fan2            fan tray 1, fan 2                   ok                                             Fri Aug 21 09:37:45 2020
+...
+leaf04            psu1fan1        psu1 fan                            ok                                             Fri Aug 21 09:17:02 2020
+...
+spine01           psu2fan1        psu2 fan                            ok                                             Fri Aug 21 05:54:14 2020
+...
+spine02           fan2            fan tray 1, fan 2                   ok                                             Fri Aug 21 05:54:39 2020
+...
+spine03           fan4            fan tray 2, fan 2                   ok                                             Fri Aug 21 06:00:52 2020
+...
+spine04           fan2            fan tray 1, fan 2                   ok                                             Fri Aug 21 05:54:09 2020
+...
+border01          psu1temp1       psu1 temp sensor                    ok                                             Fri Aug 21 18:51:11 2020
+border01          temp2           board sensor near virtual switch    ok                                             Fri Aug 21 18:51:11 2020
+border01          temp3           board sensor at front left corner   ok                                             Fri Aug 21 18:51:11 2020
+...
+border02          temp1           board sensor near cpu               ok                                             Fri Aug 21 18:46:05 2020
+...
+fw1               temp4           board sensor at front right corner  ok                                             Thu Aug 20 19:16:12 2020
+...
+fw2               temp5           board sensor near fan               ok                                             Thu Aug 20 19:14:47 2020
+...
+leaf01            psu1temp1       psu1 temp sensor                    ok                                             Fri Aug 21 16:14:22 2020
+...
+leaf02            temp5           board sensor near fan               ok                                             Fri Aug 21 16:14:14 2020
+...
+leaf03            psu2temp1       psu2 temp sensor                    ok                                             Fri Aug 21 09:37:45 2020
+...
+leaf04            temp4           board sensor at front right corner  ok                                             Fri Aug 21 09:17:02 2020
+...
+spine01           psu1temp1       psu1 temp sensor                    ok                                             Fri Aug 21 05:54:14 2020
+...
+spine02           temp3           board sensor at front left corner   ok                                             Fri Aug 21 05:54:39 2020
+...
+spine03           temp1           board sensor near cpu               ok                                             Fri Aug 21 06:00:52 2020
+...
+spine04           temp3           board sensor at front left corner   ok                                             Fri Aug 21 05:54:09 2020
+...
+border01          psu1            N/A                                 ok                                             Fri Aug 21 18:51:11 2020
+border01          psu2            N/A                                 ok                                             Fri Aug 21 18:51:11 2020
+border02          psu1            N/A                                 ok                                             Fri Aug 21 18:46:05 2020
+border02          psu2            N/A                                 ok                                             Fri Aug 21 18:46:05 2020
+fw1               psu1            N/A                                 ok                                             Thu Aug 20 19:16:12 2020
+fw1               psu2            N/A                                 ok                                             Thu Aug 20 19:16:12 2020
+fw2               psu1            N/A                                 ok                                             Thu Aug 20 19:14:47 2020
+fw2               psu2            N/A                                 ok                                             Thu Aug 20 19:14:47 2020
+leaf01            psu1            N/A                                 ok                                             Fri Aug 21 16:14:22 2020
+leaf01            psu2            N/A                                 ok                                             Fri Aug 21 16:14:22 2020
+leaf02            psu1            N/A                                 ok                                             Fri Aug 21 16:14:14 2020
+leaf02            psu2            N/A                                 ok                                             Fri Aug 21 16:14:14 2020
+leaf03            psu1            N/A                                 ok                                             Fri Aug 21 09:37:45 2020
+leaf03            psu2            N/A                                 ok                                             Fri Aug 21 09:37:45 2020
+leaf04            psu1            N/A                                 ok                                             Fri Aug 21 09:17:02 2020
+leaf04            psu2            N/A                                 ok                                             Fri Aug 21 09:17:02 2020
+spine01           psu1            N/A                                 ok                                             Fri Aug 21 05:54:14 2020
+spine01           psu2            N/A                                 ok                                             Fri Aug 21 05:54:14 2020
+spine02           psu1            N/A                                 ok                                             Fri Aug 21 05:54:39 2020
+spine02           psu2            N/A                                 ok                                             Fri Aug 21 05:54:39 2020
+spine03           psu1            N/A                                 ok                                             Fri Aug 21 06:00:52 2020
+spine03           psu2            N/A                                 ok                                             Fri Aug 21 06:00:52 2020
+spine04           psu1            N/A                                 ok                                             Fri Aug 21 05:54:09 2020
+spine04           psu2            N/A                                 ok                                             Fri Aug 21 05:54:09 2020
 ```
-
-In this example, we view the interface statistics for switch port 1.
-
-```
-cumulus@switch:~$ netq show interface-stats swp1
-
-Matching proc_dev_stats records:
-Hostname          Interface                 RX Packets           RX Drop              RX Errors            TX Packets           TX Drop              TX Errors            Last Updated
------------------ ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-border01          swp1                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:56:18 2020
-border02          swp1                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:56:11 2020
-fw1               swp1                      163602               11                   0                    106430               0                    0                    Wed Apr 22 23:56:22 2020
-fw2               swp1                      0                    0                    0                    0                    0                    0                    Wed Apr 22 23:56:07 2020
-leaf01            swp1                      104053               1                    0                    160584               0                    0                    Wed Apr 22 23:56:18 2020
-leaf02            swp1                      104271               1                    0                    109072               0                    0                    Wed Apr 22 23:56:28 2020
-leaf03            swp1                      177346               3                    0                    106817               0                    0                    Wed Apr 22 23:56:25 2020
-leaf04            swp1                      183301               9                    0                    107134               0                    0                    Wed Apr 22 23:56:26 2020
-spine01           swp1                      83887                0                    0                    83131                0                    0                    Wed Apr 22 23:56:03 2020
-spine02           swp1                      99007                0                    0                    85146                0                    0                    Wed Apr 22 23:56:31 2020
-spine03           swp1                      88968                0                    0                    81558                0                    0                    Wed Apr 22 23:56:13 2020
-spine04           swp1                      88795                0                    0                    75526                0                    0                    Wed Apr 22 23:56:27 2020
-```
-
-In this example, we view the utilization for the leaf03 switch.
-
-```
-cumulus@switch:~$ netq leaf03 show interface-utilization
-Matching port_stats records:
-Hostname          Interface                 RX Bytes (30sec)     RX Drop (30sec)      RX Errors (30sec)    RX Util (%age)       TX Bytes (30sec)     TX Drop (30sec)      TX Errors (30sec)    TX Util (%age)       Port Speed           Last Changed
------------------ ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
-leaf03            swp1                      3937                 0                    0                    0                    4933                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
-                                                                                                                                                                                                                                         2020
-leaf03            swp54                     2459                 0                    0                    0                    2459                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
-                                                                                                                                                                                                                                         2020
-leaf03            swp52                     2459                 0                    0                    0                    2459                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
-                                                                                                                                                                                                                                         2020
-leaf03            swp53                     2545                 0                    0                    0                    2545                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
-                                                                                                                                                                                                                                         2020
-leaf03            swp3                      3937                 0                    0                    0                    4962                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
-                                                                                                                                                                                                                                         2020
-leaf03            swp49                     27858                0                    0                    0                    7732                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
-                                                                                                                                                                                                                                         2020
-leaf03            swp51                     1599                 0                    0                    0                    2459                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
-                                                                                                                                                                                                                                         2020
-leaf03            swp2                      3985                 0                    0                    0                    4924                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
-                                                                                                                                                                                                                                         2020
-leaf03            swp50                     7575                 0                    0                    0                    28221                0                    0                    0                    1G                   Fri Apr 24 09:35:51
-```
-
-In this example, we view the transmit utilization only.
-
-```
-cumulus@switch:~$ netq show interface-utilization tx
-
-Matching port_stats records:
-Hostname          Interface                 TX Bytes (30sec)     TX Drop (30sec)      TX Errors (30sec)    TX Util (%age)       Port Speed           Last Changed
------------------ ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
-border01          swp1                      0                    0                    0                    0                    Unknown              Fri Apr 24 09:33:20
-                                                                                                                                                     2020
-border01          swp54                     2461                 0                    0                    0                    1G                   Fri Apr 24 09:33:20
-                                                                                                                                                     2020
-border02          swp1                      0                    0                    0                    0                    Unknown              Fri Apr 24 09:33:05
-                                                                                                                                                     2020
-border02          swp54                     2461                 0                    0                    0                    1G                   Fri Apr 24 09:33:05
-                                                                                                                                                     2020
-border02          swp52                     2461                 0                    0                    0                    1G                   Fri Apr 24 09:33:05
-                                                                                                                                                     2020
-border02          swp4                      0                    0                    0                    0                    Unknown              Fri Apr 24 09:33:05
-                                                                                                                                                     2020
-border02          swp53                     2566                 0                    0                    0                    1G                   Fri Apr 24 09:33:05
-                                                                                                                                                     2020
-leaf02            swp1                      4209                 0                    0                    0                    1G                   Fri Apr 24 09:33:08
-                                                                                                                                                     2020
-leaf02            swp54                     2459                 0                    0                    0                    1G                   Fri Apr 24 09:33:08
-                                                                                                                                                     2020
-```
-
-### View Switch Resource Utilization
-
-You can quickly determine how many compute resources &mdash; CPU, disk and
-memory &mdash; are being consumed by the switches on your network. Run the
-`netq show resource-util` command to see the percentage of CPU and memory
-being consumed as well as the amount and percentage of disk space being
-consumed.
-
-You can use the `around` option to view the information for a particular time.
-
-```
-cumulus@switch:~$ netq show resource-util
-
-Matching resource_util records:
-Hostname          CPU Utilization      Memory Utilization   Disk Name            Total                Used                 Disk Utilization     Last Updated
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-exit01            9.2                  48                   /dev/vda4            6170849280           1524920320           26.8                 Wed Feb 12 03:54:10 2020
-exit02            9.6                  47.6                 /dev/vda4            6170849280           1539346432           27.1                 Wed Feb 12 03:54:22 2020
-leaf01            9.8                  50.5                 /dev/vda4            6170849280           1523818496           26.8                 Wed Feb 12 03:54:25 2020
-leaf02            10.9                 49.4                 /dev/vda4            6170849280           1535246336           27                   Wed Feb 12 03:54:11 2020
-leaf03            11.4                 49.4                 /dev/vda4            6170849280           1536798720           27                   Wed Feb 12 03:54:10 2020
-leaf04            11.4                 49.4                 /dev/vda4            6170849280           1522495488           26.8                 Wed Feb 12 03:54:03 2020
-spine01           8.4                  50.3                 /dev/vda4            6170849280           1522249728           26.8                 Wed Feb 12 03:54:19 2020
-spine02           9.8                  49                   /dev/vda4            6170849280           1522003968           26.8                 Wed Feb 12 03:54:25 2020
-```
-
-You can focus on a specific switch by including the hostname in your query:
-
-```
-cumulus@switch:~$ netq leaf01 show resource-util
-
-Matching resource_util records:
-Hostname          CPU Utilization      Memory Utilization   Disk Name            Total                Used                 Disk Utilization     Last Updated
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-leaf01            9.8                  49.9                 /dev/vda4            6170849280           1524314112           26.8                 Wed Feb 12 04:35:05 2020
-```
-
-### View CPU Utilization
-
-You can quickly determine what percentage of CPU resources are being consumed
-by the switches on your network. Run the `netq show resource-util cpu` command.
-
-You can use the `around` option to view the information for a particular time.
-
-```
-cumulus@switch:~$ netq show resource-util cpu
-
-Matching resource_util records:
-Hostname          CPU Utilization      Last Updated
------------------ -------------------- ------------------------
-exit01            8.9                  Wed Feb 12 04:29:29 2020
-exit02            8.3                  Wed Feb 12 04:29:22 2020
-leaf01            10.9                 Wed Feb 12 04:29:24 2020
-leaf02            11.6                 Wed Feb 12 04:29:10 2020
-leaf03            9.8                  Wed Feb 12 04:29:33 2020
-leaf04            11.7                 Wed Feb 12 04:29:29 2020
-spine01           10.4                 Wed Feb 12 04:29:38 2020
-spine02           9.7                  Wed Feb 12 04:29:15 2020
-```
-
-You can focus on a specific switch by including the hostname in your query:
-
-```
-cumulus@switch:~$ netq leaf01 show resource-util cpu
-
-Matching resource_util records:
-Hostname          CPU Utilization      Last Updated
------------------ -------------------- ------------------------
-leaf01            11.1                 Wed Feb 12 04:16:18 2020
-```
-
-### View Disk Utilization
-
-You can quickly determine how much storage, in bytes and in percentage of disk
-space, is being consumed by the switches on your network. Run the
-`netq show resource-util disk` command.
-
-You can use the `around` option to view the information for a particular time.
-
-```
-cumulus@switch:~$ netq show resource-util disk
-
-Matching resource_util records:
-Hostname          Disk Name            Total                Used                 Disk Utilization     Last Updated
------------------ -------------------- -------------------- -------------------- -------------------- ------------------------
-exit01            /dev/vda4            6170849280           1525309440           26.8                 Wed Feb 12 04:29:29 2020
-exit02            /dev/vda4            6170849280           1539776512           27.1                 Wed Feb 12 04:29:22 2020
-leaf01            /dev/vda4            6170849280           1524203520           26.8                 Wed Feb 12 04:29:24 2020
-leaf02            /dev/vda4            6170849280           1535631360           27                   Wed Feb 12 04:29:41 2020
-leaf03            /dev/vda4            6170849280           1537191936           27.1                 Wed Feb 12 04:29:33 2020
-leaf04            /dev/vda4            6170849280           1522864128           26.8                 Wed Feb 12 04:29:29 2020
-spine01           /dev/vda4            6170849280           1522688000           26.8                 Wed Feb 12 04:29:38 2020
-spine02           /dev/vda4            6170849280           1522409472           26.8                 Wed Feb 12 04:29:46 2020
-```
-
-You can focus on a specific switch and disk drive by including the hostname
-and device name in your query:
-
-```
-cumulus@switch:~$ netq leaf01 show resource-util disk /dev/vda4
-
-Matching resource_util records:
-Hostname          Disk Name            Total                Used                 Disk Utilization     Last Updated
------------------ -------------------- -------------------- -------------------- -------------------- ------------------------
-leaf01            /dev/vda4            6170849280           1524064256           26.8                 Wed Feb 12 04:15:45 2020
-```
-
-### View Memory Utilization
-
-You can quickly determine what percentage of memory resources are being consumed
-by the switches on your network. Run the `netq show resource-util memory` command.
-
-You can use the `around` option to view the information for a particular time.
-
-```
-cumulus@switch:~$ netq show resource-util memory
-
-Matching resource_util records:
-Hostname          Memory Utilization   Last Updated
------------------ -------------------- ------------------------
-exit01            48.8                 Wed Feb 12 04:29:29 2020
-exit02            49.7                 Wed Feb 12 04:29:22 2020
-leaf01            49.8                 Wed Feb 12 04:29:24 2020
-leaf02            49.5                 Wed Feb 12 04:29:10 2020
-leaf03            50.7                 Wed Feb 12 04:29:33 2020
-leaf04            49.3                 Wed Feb 12 04:29:29 2020
-spine01           47.5                 Wed Feb 12 04:29:07 2020
-spine02           49.2                 Wed Feb 12 04:29:15 2020
-```
-
-You can focus on a specific switch by including the hostname in your query:
-
-```
-cumulus@switch:~$ netq leaf01 show resource-util memory
-
-Matching resource_util records:
-Hostname          Memory Utilization   Last Updated
------------------ -------------------- ------------------------
-leaf01            49.8                 Wed Feb 12 04:16:18 2020
-```
-
-### View SSD Utilization
-
-For NetQ servers and appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. An alarm is generated for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
-
-Use the `netq show cl-ssd-util` command to view the SSD information.
-
-This example shows the utilization for spine02 which has this type of SSD.
-
-```
-cumulus@switch:~$ netq spine02 show cl-ssd-util
-Hostname        Remaining PE Cycle (%)  Current PE Cycles executed      Total PE Cycles supported       SSD Model               Last Changed
-spine02         80                      576                             2880                            M.2 (S42) 3ME3          Thu Oct 31 00:15:06 2019
-```
-
-This output indicates that this drive is in a good state overall with 80% of its PE cycles remaining. View this information for all devices with this type of SSD by removing the `hostname` option, or add the `around` option to view this information around a particular time.
-
-### View Disk Storage Utilization After BTRFS Allocation
-
-Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed. Refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions" text="When to Rebalance BTRFS Partitions">}} for details about the rules used to recommend a rebalance operation.
-
-To view the disk utilization and whether a rebalance is recommended, use the `netq show cl-btrfs-util` command as follows:
-
-```
-cumulus@switch:~$ netq show cl-btrfs-info
-Matching btrfs_info records:
-Hostname          Device Allocated     Unallocated Space    Largest Chunk Size   Unused Data Chunks S Rebalance Recommende Last Changed
-                                                                                 pace                 d
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-exit01            31.16 %              3.96 GB              588.5 MB             39.13 MB             no                   Wed Oct 30 18:51:35 2019
-exit02            31.16 %              3.96 GB              588.5 MB             38.79 MB             no                   Wed Oct 30 19:20:41 2019
-leaf01            31.16 %              3.96 GB              588.5 MB             38.75 MB             no                   Wed Oct 30 18:52:34 2019
-leaf02            31.16 %              3.96 GB              588.5 MB             38.79 MB             no                   Wed Oct 30 18:51:22 2019
-leaf03            31.16 %              3.96 GB              588.5 MB             35.44 MB             no                   Wed Oct 30 18:52:02 2019
-leaf04            31.16 %              3.96 GB              588.5 MB             33.49 MB             no                   Wed Oct 30 19:21:15 2019
-spine01           31.16 %              3.96 GB              588.5 MB             36.9 MB              no                   Wed Oct 30 19:21:13 2019
-spine02           31.16 %              3.96 GB              588.5 MB             39.12 MB             no                   Wed Oct 30 18:52:44 2019
-```
-
-Look for the **Rebalance Recommended** column. If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the output to determine if you are getting close to needing a rebalance, and come back to view this data at a later time.
-
-Optionally, use the `hostname` option to view the information for a given device, or use the `around` option to view the information for a particular time.
--->
 
 ## View Software Inventory across the Network
 
-You can view all software components or narrow your view to specific software components for all of the devices in your network.
+You can view software components deployed on all switches and hosts, or on all of the switches in your network.
 
-### View the Operating Systems Running on All Switches and Hosts
+### View the Operating Systems Information
 
-With both the NetQ UI and NetQ CLI, you can view the vendor name and version of the OS on all devices, and when it was last modified. With the NetQ UI you can also view the OS ID and view the distribution of operating systems running on your switches and hosts. This is useful for verifying which versions of the OS are deployed and for upgrade planning. It also provides a view into the relative dependence on a given OS in your network.
+Knowing what operating systems (OSs) you have deployed across your network is useful for upgrade planning and understanding your relative dependence on a given OS in your network.
+
+OS information is available from the NetQ UI and NetQ CLI.
+
+- Inventory|Devices card
+    - Medium: view the distribution of OSs and versions across all devices
+    - Large: view the distribution of OSs and versions across all switches
+    - Full-screen: view OS vendor, version, and version ID on all devices (table)
+- Inventory|Switches card
+    - Medium/Large: view the distribution of OSs and versions across all switches (graphic)
+    - Full-screen: view OS vendor, version, and version ID on all on all switches (table)
+- `netq show inventory os`
+    - View OS name and version on all devices
 
 {{< tabs "TabID1079" >}}
 
-{{< tab "NetQ UI" >}}
+{{< tab "Inventory|Devices" >}}
 
 1. Locate the medium Inventory|Devices card on your workbench.
 
-    {{<figure src="/images/netq/inventory-devices-medium-230.png" width="200">}}
+    {{<figure src="/images/netq/inventory-devices-medium-320.png" width="200">}}
 
 2. Hover over the pie charts to view the total number of devices with a given operating system installed.
 
-3. Change to the full-screen card using the size picker.
+    {{<figure src="/images/netq/inventory-devices-medium-hover-tip-320.png" width="200">}}
 
-    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
+3. Change to the large card using the size picker.
 
-4. Scroll to the right to locate all of the OS parameter data.
+4. Hover over a segment in the OS distribution chart to view the total number of devices with a given operating system installed.
 
-5. Click **All Hosts** to view the OS parameters for all host servers.
+    Note that sympathetic highlighting (in blue) is employed to show which versions of the other switch components are associated with this OS.
 
-    {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight2-230.png" width="500">}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+5. Click on a segment in OS distribution chart.
+
+6. Click *Filter OS* at the top of the popup.
+
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-filter-os-320.png" width="350">}}
+
+7. The card updates to show only the components associated with switches running the selected OS. To return to all OSs, click X in the OS tag to remove the filter.
+
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-filter-results-320.png" width="500">}}
+
+8. Change to the full-screen card using the size picker.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-320.png" width="700">}}
+
+9. The **All Switches** tab is selected by default. Scroll to the right to locate all of the OS parameter data.
+
+10. Click **All Hosts** to view the OS parameters for all host servers.
+
+    {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-320.png" width="700" >}}
+
+11. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "Inventory|Switches" >}}
+
+1. Locate the Inventory|Switches card on your workbench.
+
+2. Hover over a segment of the OS graph in the distribution chart.
+
+    The same information is available on the summary tab of the large size card.
+
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+
+3. Hover over the card, and change to the full-screen card using the size picker.
+
+4. Click **OS**.
+
+    {{<figure src="/images/netq/inventory-switch-fullscr-os-tab-320.png" width="700">}}
+
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "netq show inventory" >}}
 
 To view OS information for your switches and host servers, run:
 
@@ -1122,100 +939,125 @@ cumulus@switch:~$ netq show inventory os
 Matching inventory records:
 Hostname          Name            Version                              Last Changed
 ----------------- --------------- ------------------------------------ -------------------------
-edge01            Ubuntu          16.04                                Fri Aug 14 16:01:18 2020
-exit01            CL              3.7.5                                Fri Aug 14 16:01:18 2020
-exit02            CL              3.7.5                                Fri Aug 14 16:01:18 2020
-leaf01            CL              3.7.5                                Sun Aug 14 16:01:18 2020
-leaf02            CL              3.7.5                                Fri Aug 14 16:01:18 2020
-leaf03            CL              3.7.5                                Fri Aug 14 16:01:18 2020
-leaf04            CL              3.7.5                                Fri Aug 14 16:01:18 2020
-server01          Ubuntu          16.04                                Fri Aug 14 16:01:18 2020
-server02          Ubuntu          16.04                                Fri Aug 14 16:01:18 2020
-server03          Ubuntu          16.04                                Fri Aug 14 16:01:18 2020
-server04          Ubuntu          16.04                                Fri Aug 14 16:01:18 2020
-spine01           CL              3.7.5                                Fri Aug 14 16:01:18 2020
-spine02           CL              3.7.5                                Fri Aug 14 16:01:18 2020
+border01          CL              3.7.13                               Tue Jul 28 18:49:46 2020
+border02          CL              3.7.13                               Tue Jul 28 18:44:42 2020
+fw1               CL              3.7.13                               Tue Jul 28 19:14:27 2020
+fw2               CL              3.7.13                               Tue Jul 28 19:12:50 2020
+leaf01            CL              3.7.13                               Wed Jul 29 16:12:20 2020
+leaf02            CL              3.7.13                               Wed Jul 29 16:12:21 2020
+leaf03            CL              3.7.13                               Tue Jul 14 21:18:21 2020
+leaf04            CL              3.7.13                               Tue Jul 14 20:58:47 2020
+oob-mgmt-server   Ubuntu          18.04                                Mon Jul 13 21:01:35 2020
+server01          Ubuntu          18.04                                Mon Jul 13 22:09:18 2020
+server02          Ubuntu          18.04                                Mon Jul 13 22:09:18 2020
+server03          Ubuntu          18.04                                Mon Jul 13 22:09:20 2020
+server04          Ubuntu          18.04                                Mon Jul 13 22:09:20 2020
+server05          Ubuntu          18.04                                Mon Jul 13 22:09:20 2020
+server06          Ubuntu          18.04                                Mon Jul 13 22:09:21 2020
+server07          Ubuntu          18.04                                Mon Jul 13 22:09:21 2020
+server08          Ubuntu          18.04                                Mon Jul 13 22:09:22 2020
+spine01           CL              3.7.12                               Mon Aug 10 19:55:06 2020
+spine02           CL              3.7.12                               Mon Aug 10 19:55:07 2020
+spine03           CL              3.7.12                               Mon Aug 10 19:55:09 2020
+spine04           CL              3.7.12                               Mon Aug 10 19:55:08 2020
 ```
 
 You can filter the results of the command to view only devices with a
 particular operating system or version. This can be especially helpful
 when you suspect that a particular device has not been upgraded as
 expected. This example shows all devices with the Cumulus Linux version
-3.7.5 installed.
+3.7.12 installed.
 
 ```
-cumulus@switch:~$ netq show inventory os version 3.7.5
+cumulus@switch:~$ netq show inventory os version 3.7.12
+
 Matching inventory records:
 Hostname          Name            Version                              Last Changed
 ----------------- --------------- ------------------------------------ -------------------------
-exit01            CL              3.7.5                                Fri Apr 19 16:01:13 2019
-exit02            CL              3.7.5                                Fri Apr 19 16:01:38 2019
-leaf01            CL              3.7.5                                Sun Apr 21 20:07:09 2019
-leaf02            CL              3.7.5                                Fri Apr 19 16:01:46 2019
-leaf03            CL              3.7.5                                Fri Apr 19 16:01:41 2019
-leaf04            CL              3.7.5                                Fri Apr 19 16:01:32 2019
-spine01           CL              3.7.5                                Fri Apr 19 16:01:49 2019
-spine02           CL              3.7.5                                Fri Apr 19 16:01:05 2019
-```
-
-This example shows changes that have been made to the OS on all devices
-between 16 and 21 days ago. Remember to use measurement units on the
-time values.
-
-```
-cumulus@switch:~$ netq show events type os between 16d and 21d
-Matching inventory records:
-Hostname          Name            Version                              DB State   Last Changed
------------------ --------------- ------------------------------------ ---------- -------------------------
-mlx-2410a1-05     Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:53 2019
-mlx-2700-11       Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:45 2019
-mlx-2100-05       Cumulus Linux   3.7.3                                Add        Tue Feb 12 18:30:26 2019
-mlx-2100-05       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:47 2019
-mlx-2700-11       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:38 2019
-mlx-2100-05       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:42 2019
-mlx-2700-11       Cumulus Linux   3.7.3~1533263174.bce9472             Add        Wed Feb 13 11:10:51 2019
+spine01           CL              3.7.12                               Mon Aug 10 19:55:06 2020
+spine02           CL              3.7.12                               Mon Aug 10 19:55:07 2020
+spine03           CL              3.7.12                               Mon Aug 10 19:55:09 2020
+spine04           CL              3.7.12                               Mon Aug 10 19:55:08 2020
 ```
 
 {{< /tab >}}
 
 {{< /tabs >}}
 
-### View License Information for all Switches
+### View Cumulus Linux License Information
 
-In both the NetQ UI and NetQ CLI you can view the name and current state
-of the license (whether it is valid or invalid/missing).  The date at which the license was last updated is also shown.
+The state of a Cumulus Linux license can impact the function of your switches. If the license status is *Bad* or *Missing*, the license must be updated or applied for a switch to operate properly. Hosts do not require a Cumulus Linux or NetQ license.
 
-{{<notice note>}}
+Cumulus Linux license information is available from the NetQ UI and NetQ CLI.
 
-If a license is no longer valid or missing, the associated switch does not operate properly. Hosts do not have Cumulus Linux or NetQ licenses.</ul>
-
-{{</notice>}}
+- Inventory|Devices card
+    - Large: view the distribution of license state across all switches (graphic)
+    - Full-screen: view license state across all switches (table)
+- Inventory|Switches card
+    - Medium/Large: view the distribution of license state across all switches (graphic)
+    - Full-screen: view license state across all switches (table)
+- `netq show inventory license`
+    - View license name and state across all devices
 
 {{< tabs "TabID1187" >}}
 
-{{< tab "NetQUI" >}}
+{{< tab "Inventory|Devices" >}}
 
-1. Locate the medium Inventory|Devices card on your workbench.
+1. Locate the Inventory|Devices card on your workbench.
 
-    {{<figure src="/images/netq/inventory-devices-medium-230.png" width="200">}}
+2. Change to the large card using the size picker.
 
-2. Hover over the distribution chart for license to view the total number of devices with a given operating system installed.
+    {{<figure src="/images/netq/inventory-devices-large-switches-tab-230.png" width="500">}}
 
-3. Alternately, change to the full-screen card using the size picker.
+3. Hover over the distribution chart for license to view the total number of devices with a given license installed.
+
+4. Alternately, change to the full-screen card using the size picker.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
 
-4. Scroll to the right to locate the **License State** column.
+5. Scroll to the right to locate the **License State** and **License Name** columns. Based on these values:
+
+    - OK: no action is required
+    - Bad: validate the correct license is installed and has not expired
+    - Missing: install a valid Cumulus Linux license
+    - N/A: This device does not require a license; typically a host.
+
+6. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "Inventory|Switches" >}}
+
+1. Locate the medium Inventory|Switches card on your workbench.
+
+2. Hover over a segment of the license graph in the distribution chart.
+
+    The same information is available on the summary tab of the large size card.
+
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+
+3. Hover over the card, and change to the full-screen card using the size picker.
+
+4. The **Show All** tab is displayed by default. Scroll to the right to locate the **License State** and **License Name** columns. Based on these values:
+
+    - OK: no action is required
+    - Bad: validate the correct license is installed and has not expired
+    - Missing: install a valid Cumulus Linux license
+    - N/A: This device does not require a license; typically a host.
+
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "netq show inventory" >}}
 
 To view license information for your switches, run:
 
 ```
 netq show inventory license [cumulus] [status ok | status missing] [around <text-time>] [json]
 ```
+
+Use the `cumulus` option to list only Cumulus Linux licenses. Use the `status` option to list only the switches with that status.
 
 This example shows the license information for all switches.
 
@@ -1225,24 +1067,37 @@ cumulus@switch:~$ netq show inventory license
 Matching inventory records:
 Hostname          Name            State      Last Changed
 ----------------- --------------- ---------- -------------------------
-edge01            Cumulus Linux   N/A        Fri Apr 19 16:01:18 2019
-exit01            Cumulus Linux   ok         Fri Apr 19 16:01:13 2019
-exit02            Cumulus Linux   ok         Fri Apr 19 16:01:38 2019
-leaf01            Cumulus Linux   ok         Sun Apr 21 20:07:09 2019
-leaf02            Cumulus Linux   ok         Fri Apr 19 16:01:46 2019
-leaf03            Cumulus Linux   ok         Fri Apr 19 16:01:41 2019
-leaf04            Cumulus Linux   ok         Fri Apr 19 16:01:32 2019
-server01          Cumulus Linux   N/A        Fri Apr 19 16:01:55 2019
-server02          Cumulus Linux   N/A        Fri Apr 19 16:01:55 2019
-server03          Cumulus Linux   N/A        Fri Apr 19 16:01:55 2019
-server04          Cumulus Linux   N/A        Fri Apr 19 16:01:55 2019
-spine01           Cumulus Linux   ok         Fri Apr 19 16:01:49 2019
-spine02           Cumulus Linux   ok         Fri Apr 19 16:01:05 2019
+border01          Cumulus Linux   missing    Tue Jul 28 18:49:46 2020
+border02          Cumulus Linux   missing    Tue Jul 28 18:44:42 2020
+fw1               Cumulus Linux   missing    Tue Jul 28 19:14:27 2020
+fw2               Cumulus Linux   missing    Tue Jul 28 19:12:50 2020
+leaf01            Cumulus Linux   missing    Wed Jul 29 16:12:20 2020
+leaf02            Cumulus Linux   missing    Wed Jul 29 16:12:21 2020
+leaf03            Cumulus Linux   missing    Tue Jul 14 21:18:21 2020
+leaf04            Cumulus Linux   missing    Tue Jul 14 20:58:47 2020
+oob-mgmt-server   Cumulus Linux   N/A        Mon Jul 13 21:01:35 2020
+server01          Cumulus Linux   N/A        Mon Jul 13 22:09:18 2020
+server02          Cumulus Linux   N/A        Mon Jul 13 22:09:18 2020
+server03          Cumulus Linux   N/A        Mon Jul 13 22:09:20 2020
+server04          Cumulus Linux   N/A        Mon Jul 13 22:09:20 2020
+server05          Cumulus Linux   N/A        Mon Jul 13 22:09:20 2020
+server06          Cumulus Linux   N/A        Mon Jul 13 22:09:21 2020
+server07          Cumulus Linux   N/A        Mon Jul 13 22:09:21 2020
+server08          Cumulus Linux   N/A        Mon Jul 13 22:09:22 2020
+spine01           Cumulus Linux   missing    Mon Aug 10 19:55:06 2020
+spine02           Cumulus Linux   missing    Mon Aug 10 19:55:07 2020
+spine03           Cumulus Linux   missing    Mon Aug 10 19:55:09 2020
+spine04           Cumulus Linux   missing    Mon Aug 10 19:55:08 2020
 ```
 
-You can view the historical state of licenses using the around keyword.
-This example shows the license state for all devices about 7 days ago.
-Remember to use measurement units on the time values.
+Based on the state value:
+
+- OK: no action is required
+- Bad: validate the correct license is installed and has not expired
+- Missing: install a valid Cumulus Linux license
+- N/A: This device does not require a license; typically a host.
+
+You can view the historical state of licenses using the `around` keyword. This example shows the license state for all devices about 7 days ago. Remember to use measurement units on the time values.
 
 ```
 cumulus@switch:~$ netq show inventory license around 7d
@@ -1265,21 +1120,11 @@ spine01           Cumulus Linux   ok         Tue Apr 2 14:01:49 2019
 spine02           Cumulus Linux   ok         Tue Apr 2 14:01:05 2019
 ```
 
-You can filter the results to show license changes during a particular
-time frame for a particular device. This example shows that there have
-been no changes to the license state on spine01 between now and 24 hours
-ago.
-
-```
-cumulus@switch:~$ netq spine01 show events type license between now and 24h
-No matching events records found
-```
-
 {{< /tab >}}
 
 {{< /tabs >}}
 
-### View the Supported Cumulus Linux Packages on all Switches
+### View the Supported Cumulus Linux Packages
 
 When you are troubleshooting an issue with a switch, you might want to know what versions of the Cumulus Linux operating system are supported on that switch and on a switch that is not having the same issue.
 
@@ -1319,7 +1164,7 @@ leaf02            vx                   x86_64               3.6.2.1
 ...
 ```
 
-### View All Software Packages Installed on All Switches
+### View All Software Packages Installed
 
 If you are having an issue with a particular switch, you may want to verify what software is installed and whether it needs updating.
 
@@ -1355,9 +1200,9 @@ fw1               libopts25                1:5.18.4-3           Cumulus Linux 3.
 ...
 ```
 
-### View Recommended Software Packages on All Switches
+### View Recommended Software Packages
 
-You can determine whether any of your switches are using a software package other than the default package associated with the Cumulus Linux release that is running on the switches. Use this list  determine which packages to install/upgrade on all devices. Additionally, you can determine if a software package is missing.
+You can determine whether any of your switches are using a software package other than the default package associated with the Cumulus Linux release that is running on the switches. Use this list to determine which packages to install/upgrade on all devices. Additionally, you can determine if a software package is missing.
 
 To view recommended package information for your switches, run:
 

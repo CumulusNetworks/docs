@@ -329,3 +329,121 @@ It is recommended that when you upgrade NetQ that you also upgrade the NetQ Agen
 When the small, medium and large Switch Inventory cards do not provide either enough information or are not organized in a fashion that provides the information you need, open the full screen Switch Inventory card. Select the component tab of interest and filter and sort as desired. Export the data to a third-party tool, by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 
 {{<figure src="/images/netq/inventory-switch-fullscr-show-all-tab-241.png" width="700">}}
+
+
+
+
+Fan Health
+To view the health of fans in your switches, use the `netq show sensors fan` command. If you name the fans in all of your switches consistently, you can view more information at once.
+
+In this example, we look at the state of all fans with the name *fan1*.
+
+```
+cumulus@switch:~$ netq show sensors fan fan1
+Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
+exit01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:17 2019
+exit02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:33 2019
+leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
+leaf02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:41 2019
+leaf03            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:44 2019
+leaf04            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:36 2019
+spine01           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:52 2019
+spine02           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:08 2019
+```
+
+{{<notice tip>}}
+
+Use tab completion to determine the names of the fans in your switches:
+
+```
+cumulus@switch:~$ netq show sensors fan <<press tab>>
+   around : Go back in time to around ...
+   fan1 : Fan Name
+   fan2 : Fan Name
+   fan3 : Fan Name
+   fan4 : Fan Name
+   fan5 : Fan Name
+   fan6 : Fan Name
+   json : Provide output in JSON
+   psu1fan1 : Fan Name
+   psu2fan1 : Fan Name
+   <ENTER>
+```
+
+{{</notice>}}
+
+To view the status for a particular switch, use the optional `hostname` parameter.
+
+```
+cumulus@switch:~$ netq leaf01 show sensors fan fan1
+Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
+leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
+```
+
+### View PSU Health for All Switches
+
+Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ Platform operation. To view the health of PSUs in your switches, use the `netq show sensors psu` command. If you name the PSUs in all of your switches consistently, you can view more information at once.
+
+In this example, we look at the state of all PSUs with the name *psu2*.
+
+```
+cumulus@switch:~$ netq show sensors psu psu2
+Matching sensors records:
+Hostname          Name            State      Message                             Last Changed
+----------------- --------------- ---------- ----------------------------------- -------------------------
+exit01            psu2            ok                                             Fri Apr 19 16:01:17 2019
+exit02            psu2            ok                                             Fri Apr 19 16:01:33 2019
+leaf01            psu2            ok                                             Sun Apr 21 20:07:12 2019
+leaf02            psu2            ok                                             Fri Apr 19 16:01:41 2019
+leaf03            psu2            ok                                             Fri Apr 19 16:01:44 2019
+leaf04            psu2            ok                                             Fri Apr 19 16:01:36 2019
+spine01           psu2            ok                                             Fri Apr 19 16:01:52 2019
+spine02           psu2            ok                                             Fri Apr 19 16:01:08 2019
+```
+
+{{<notice tip>}}
+
+Use Tab completion to determine the names of the PSUs in your switches. Use the optional <code>hostname</code> parameter to view the PSU state for a given switch.
+
+{{</notice>}}
+
+### View the Temperature in All Switches
+
+Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ Platform operation. To view the temperature sensor status, current temperature, and configured threshold values, use the `netq show sensors temp` command. If you name the temperature sensors in all of your switches consistently, you can view more information at once.
+
+In this example, we look at the state of all temperature sensors with the name *psu1temp1*.
+
+```
+cumulus@switch:~$ netq show sensors temp psu2temp1 
+Matching sensors records:
+Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
+    
+----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
+    
+exit01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:17 2019
+
+exit02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:33 2019
+    
+leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Sun Apr 21 20:07:12 2019
+    
+leaf02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:41 2019
+    
+leaf03            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:44 2019
+    
+leaf04            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:36 2019
+    
+spine01           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:52 2019
+    
+spine02           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:08 2019
+```
+
+{{<notice tip>}}
+
+Use Tab completion to determine the names of the temperature sensors in
+your switches. Use the optional <code>hostname</code> parameter to view the
+temperature state, current temperature, and threshold values for a given
+switch.
+
+{{</notice>}}

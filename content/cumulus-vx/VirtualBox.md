@@ -18,7 +18,6 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 ### Download and Install the Software
 
 1. Download and install {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox">}}.
-
 2. Download the {{<exlink url="https://cumulusnetworks.com/products/cumulus-vx/download/" text="OVA VirtualBox image">}}.
 
 ### Create the VMs
@@ -42,11 +41,8 @@ Configure the network adapter settings for leaf01, leaf02, and spine01 to create
 Follow these steps for each VM (leaf01, leaf02, and spine01):
 
 1. In the VirtualBox Manager window, select the VM.
-
 2. Click **Settings**, then click **Network**.
-
 3. Configure the **Adapters** on each VM as shown below, then click **OK** to save the network connections.
-
    - Make sure to select the **Paravirtualized Network (virtio-net)** network Adapter Type for all adpaters
    - Enable **Promiscuous Mode** for all adapters (except Adapter 1) to allow for LACP bonding to operate properly.
    - Do not change the **MAC Addresses**, which are configured automatically.

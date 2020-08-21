@@ -58,11 +58,17 @@ The Cumulus VX OVA image defines the CPU, memory, and disk requirements. Cumulus
 
 ### Create Network Connections
 
-Create the network connections between leaf01, leaf02, and spine01, then start the Vms.
+Create the network connections between leaf01, leaf02, and spine01, as shown in the two leaf, one spine topology {{<link url="VirtualBox-and-GNS3" text="above">}}.
 
-From the GNS3 project window, drag leaf01, leaf02, and spine01 to the console. Select the cable icon from the left pane, then connect the leafs and spine by selecting the network interfaces, as shown in the Topology Summary below. `e1` in GNS3 corresponds to `swp1` in Cumulus VX, `e2` corresponds to `swp2`, and so on.
+1. Click the `Browse all Devices` button, then from the `End Devices` panel, drag leaf01, leaf02, and spine01 to the console.
+2. Select the cable icon from the left pane, then connect the leafs and spine by selecting the network interfaces, as shown in the Topology Summary below:
+   - `e1` in GNS3 corresponds to `swp1` in Cumulus VX
+   - `e2` in GNS3 corresponds to `swp2` in Cumulus VX
+   - `e3` in GNS3 corresponds to `swp3` in Cumulus VX
 
 {{< img src="/images/cumulus-vx/gns3-network-connections.png" width="500" >}}
+
+3. Start the VMs.
 
 ## Log into the Switches
 

@@ -1,7 +1,7 @@
 ---
 title: Perpetual Licenses General Questions
 author: Cumulus Networks
-weight: 61
+weight: 612
 toc: 4
 ---
 
@@ -9,7 +9,7 @@ toc: 4
 
 If you don\'t have a network switch on our {{<exlink url="https://cumulusnetworks.com/hcl" text="hardware compatibility list">}} (HCL) available for testing, reserve a {{<exlink url="https://cumulusnetworks.com/try-for-free/" text="Cumulus in the Cloud">}} and try out a test setup in your browser. {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/autoprovision/" text="Build your simulation here">}} and start your test drive.
 
-If you already have hardware from our HCL, fill out {{<exlink url="http://go.cumulusnetworks.com/l/32472/2014-12-15/3739w" text="this form">}} (USED BELOW TOO) and a Cumulus Networks representative will contact you.
+If you already have hardware from our HCL, fill out {{<exlink url="https://cumulusnetworks.com/contact/" text="this form">}} and a Cumulus Networks representative will contact you.
 
 ## How Is Cumulus Linux licensed?
 
@@ -36,7 +36,7 @@ Contact our {{<exlink url="mailto:sales@cumulusnetworks.com" text="sales team">}
 
 ## How can I order a Cumulus Linux license?
 
-Cumulus Networks partners with approved resellers and distributors to facilitate your license procurement. Sign up on {{<exlink url="http://go.cumulusnetworks.com/l/32472/2014-12-15/3739w" text="our website">}} for assistance and information on our approved resellers.
+Cumulus Networks partners with approved resellers and distributors to facilitate your license procurement. Sign up on {{<exlink url="https://cumulusnetworks.com/contact/" text="our website">}} for assistance and information on our approved resellers.
 
 Cumulus Networks does not sell any hardware; our resellers often do. Check our {{<exlink url="https://cumulusnetworks.com/hcl" text="HCL">}} for the list of our supported hardware.
 

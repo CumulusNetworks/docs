@@ -1,7 +1,7 @@
 ---
 title: vi for Beginners
 author: Cumulus Networks
-weight: 58
+weight: 551
 toc: 4
 ---
 

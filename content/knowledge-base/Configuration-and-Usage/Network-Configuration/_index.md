@@ -1,8 +1,7 @@
 ---
-title: Automation
+title: Network Configuration
 author: Cumulus Networks
-weight: 32
+weight: 36
 toc: 3
 ---
 
-placeholder

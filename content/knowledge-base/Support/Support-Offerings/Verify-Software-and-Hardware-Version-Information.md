@@ -1,8 +1,8 @@
 ---
 title: Verify Software and Hardware Version Information
 author: Cumulus Networks
-weight: 601
-toc: 3
+weight: 701
+toc: 4
 ---
 
 Cumulus Linux users familiar with Cisco IOS may look for the same level

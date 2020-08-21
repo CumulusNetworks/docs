@@ -120,6 +120,15 @@ collector for more information.
 
 {{%/notice%}}
 
+To configure the IP address for the sFlow agent, configure one of the following the `/etc/hsflowd.conf` file (following the recommendations in the {{<exlink url="https://sflow.net/host-sflow-linux-config.php" text="sFlow documentation">}}):
+
+- The agent CIDR. For example, `agent.cidr = 10.0.0.0/8`. The IP address should fall within this range.
+- The agent interface. For example, if the agent is using eth0, select the IP address associated with this interface.
+
+You can check to see which agent IP was selected using:
+
+    cumulus@switch:~$ grep agentIP /etc/hsflowd.auto
+
 ## Configure sFlow Visualization Tools
 
 For information on configuring various sFlow visualization tools, read this

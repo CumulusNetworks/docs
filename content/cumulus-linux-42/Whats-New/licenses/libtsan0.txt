@@ -1,1 +1,1 @@
-libtsan0 has no debian/copyright file
+libtsan0 has no copyright file

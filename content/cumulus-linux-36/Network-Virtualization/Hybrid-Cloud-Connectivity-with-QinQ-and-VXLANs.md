@@ -334,7 +334,7 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
         configured for VLAN protocol 802.1ad.
       - The peerlink cannot be used as a backup datapath in the event
         that one of the MLAG peers loses all uplinks.
-  - For switches with the Spectrum ASIC (but not the Spectrum 2), when
+  - For switches with any type of Spectrum ASIC, when
     the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, either:
       - All bridge ports are access ports, except for the MLAG peerlink.
       - All bridge ports are VLAN trunks.

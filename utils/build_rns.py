@@ -171,8 +171,6 @@ def build_rn_markdown(json_file, version, file_type):
     file_type - one of "affects" or "fixed"
     '''
     output = []
-    if version == "4.1.2":
-        return []
 
     if file_type == "affects":
         output.append("### Open issues in {}".format(version))
@@ -274,8 +272,6 @@ def write_rns(output, file_type, product, version):
     type - xls or md
     version - the version to write to in hugo directory syntax. For example, cumulus-linux-40
     '''
-    if version == "4.1.2":
-        return []
 
     directory = get_hugo_folder(product, version)
     if file_type not in ["xls", "md"]:

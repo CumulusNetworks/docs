@@ -17,7 +17,7 @@ Optionally, you can choose to back up your NetQ Data before performing the upgra
 
 To complete the preparation:
 
-1. For on-premises deployments only, optionally back up your NetQ 2.4.x data. Refer to {{<link title="Back Up Your NetQ Data">}}.
+1. For on-premises deployments only, optionally back up your NetQ 2.4.x data. Refer to {{<link title="Back Up and Restore NetQ">}}.
 
 2. Download the relevant software.
 
@@ -40,16 +40,16 @@ To complete the preparation:
 
         {{< figure src="/images/netq/netq-30-appliance-onpremcld-dwnld-300.png" width="420" >}}
 
-3. Copy the file to the */mnt/installables/* directory on your appliance or VM.
+3. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
 
-4. Update /etc/apt/sources.list.d/cumulus-netq.list to netq-3.0 as followed
+4. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-3.0 as follows:
 
     ```
     cat /etc/apt/sources.list.d/cumulus-netq.list
     deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-3.0
     ```
 
-5. Update the NetQ debian packages using the following three commands.
+5. Update the NetQ `debian` packages using the following three commands.
 
     ```
     cumulus@<hostname>:~$ sudo dpkg --remove --force-remove-reinstreq cumulus-netq netq-apps netq-agent 2>/dev/null
@@ -178,7 +178,7 @@ netq upgrade bundle /mnt/installables/NetQ-3.0.0-opta.tgz
 
 {{< /tabs >}}
 
-2. After the upgrade is completed, confirm the upgrade was successful.
+2. After the upgrade completes, confirm the upgrade was successful.
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release

@@ -1,1 +1,1 @@
-binutils-x86-64-linux-gnu has no debian/copyright file
+binutils-x86-64-linux-gnu has no copyright file

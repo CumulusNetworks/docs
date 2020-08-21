@@ -36,25 +36,6 @@ PTM performs its LLDP neighbor check using the PortID ifname TLV information.
 
 {{%/notice%}}
 
-## Basic Topology Example
-
-This is a basic example DOT file and its corresponding topology diagram. Use the same `topology.dot` file on all switches and do not split the file per device; this allows for easy automation by pushing/pulling the same exact file on each device.
-
-```
-graph G {
-    "spine1":"swp1" -- "leaf1":"swp1";
-    "spine1":"swp2" -- "leaf2":"swp1";
-    "spine2":"swp1" -- "leaf1":"swp2";
-    "spine2":"swp2" -- "leaf2":"swp2";
-    "leaf1":"swp3" -- "leaf2":"swp3";
-    "leaf1":"swp4" -- "leaf2":"swp4";
-    "leaf1":"swp5s0" -- "server1":"eth1";
-    "leaf2":"swp5s0" -- "server2":"eth1";
-}
-```
-
-{{< img src = "/images/cumulus-linux/ptm-dot.png" >}}
-
 ## ptmd Scripts
 
 `ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and `/etc/ptm.d/if-topo-fail`for each interface that goes through a change and runs `if-topo-pass` when an LLDP or BFD check passes or `if-topo-fails` when the check fails. The scripts receive an argument string that is the result of the `ptmctl` command, described in the {{%link url="#ptmd-service-commands" text="`ptmd` commands below"%}}.
@@ -495,11 +476,36 @@ If you edit `topology.dot` file from a Windows system, be sure to double check t
 
 {{%/notice%}}
 
-## Caveats and Errata
+## Basic Topology Example
 
-When PTMD is incorrectly in a failure state and the Zebra interface is enabled, PIF BGP sessions do not establish the route, but the subinterface on top of it does establish routes.
+This is a basic example DOT file and its corresponding topology diagram. Use the same `topology.dot` file on all switches and do not split the file per device; this allows for easy automation by pushing/pulling the same exact file on each device.
+
+```
+graph G {
+    "spine1":"swp1" -- "leaf1":"swp1";
+    "spine1":"swp2" -- "leaf2":"swp1";
+    "spine2":"swp1" -- "leaf1":"swp2";
+    "spine2":"swp2" -- "leaf2":"swp2";
+    "leaf1":"swp3" -- "leaf2":"swp3";
+    "leaf1":"swp4" -- "leaf2":"swp4";
+    "leaf1":"swp5s0" -- "server1":"eth1";
+    "leaf2":"swp5s0" -- "server2":"eth1";
+}
+```
+
+{{< img src = "/images/cumulus-linux/ptm-dot.png" >}}
+
+## Considerations
+
+### ptmd in Incorrect Failure State while Zebra Interface Is Enabled
+
+When `ptmd` is incorrectly in a failure state and the Zebra interface is enabled, PIF BGP sessions do not establish the route, but the subinterface on top of it does establish routes.
 
 If the subinterface is configured on the physical interface and the physical interface is incorrectly marked as being in a PTM FAIL state, routes on the physical interface are not processed in FRR, but the subinterface is working.
+
+### Cannot Use Commas in PortDescr
+
+If an LLDP neighbor advertises a `PortDescr` that contains commas, `ptmctl -d` splits the string on the commas and misplaces its components in other columns. Do not use commas in your port descriptions.
 
 ## Related Information
 

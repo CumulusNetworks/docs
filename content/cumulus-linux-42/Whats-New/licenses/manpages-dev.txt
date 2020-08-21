@@ -1,1 +1,1 @@
-manpages-dev has no debian/copyright file
+manpages-dev has no copyright file

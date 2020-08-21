@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 270
 toc: 3
 ---
-Cumulus Linux implements an HTTP application programing interface to {{<link url="OpenStack-Neutron-ML2-and-Cumulus-Linux" text="OpenStack ML2 driver">}} and {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or a web browser.
+Cumulus Linux implements an HTTP application programming interface to the {{<link url="OpenStack-Neutron-ML2-and-Cumulus-Linux" text="OpenStack ML2 driver">}} and {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL, HTTPie or a web browser.
 
 ## HTTP API Basics
 
@@ -29,13 +29,9 @@ cumulus@switch:~$ sudo systemctl start restserver
 cumulus@switch:~$ sudo systemctl stop restserver
 ```
 
-{{%notice note%}}
-
 Each service runs as a background daemon.
 
-{{%/notice%}}
-
-## Configuration
+## Configure API Services
 
 To configure the HTTP API services, edit the `/etc/nginx/sites-available/nginx-restapi.conf` configuration file, then run the `sudo systemctl restart nginx` command.
 
@@ -51,7 +47,7 @@ All URLs must use HTTPS instead of HTTP.
 
 For more information on the listen directive, refer to the {{<exlink url="https://nginx.org/en/docs/http/ngx_http_core_module.html#listen" text="NGINX documentation">}}.
 
-## Security
+## Configure Security
 
 ### Authentication
 
@@ -106,6 +102,6 @@ To add a bridge using ML2:
 cumulus@switch:~$ curl -X PUT -k -u user:pw https://192.168.0.32:8080/ml2/v1/bridge/"br1"/200
 ```
 
-## Caveats
+## Considerations
 
 The `/etc/restapi.conf` file is *not* listed in the `net show configuration files` command output.

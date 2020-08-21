@@ -13,7 +13,7 @@ The following examples show how to create a simple traditional mode bridge confi
 - You can add an IP address to provide IP access to the bridge interface.
 - You can specify a range of interfaces.
 
-To configure spanning tree options for a bridge interface, refer to {{<link title="Spanning Tree and Rapid Spanning Tree">}}.
+To configure spanning tree options for a bridge interface, refer to {{<link title="Spanning Tree and Rapid Spanning Tree - STP">}}.
 
 {{< tabs "TabID20 ">}}
 
@@ -70,7 +70,7 @@ The name of the bridge must be:
 
 - Compliant with Linux interface naming conventions.
 - Unique within the switch.
-- Something other than *bridge*, **** as Cumulus Linux reserves that name for a single {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}.
+- Something other than *bridge*, as Cumulus Linux reserves that name for a single {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}.
 
 {{%/notice%}}
 
@@ -177,6 +177,6 @@ Cumulus Linux does not often interact directly with end systems as much as end s
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes). To change this setting, follow the procedures outlined in this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202012933" text="knowledge base article">}}.
 
-## Caveats
+## Considerations
 
 On Broadcom switches, when two VLAN subinterfaces are bridged to each other in a traditional mode bridge, `switchd` does not assign an internal resource ID to the subinterface, which is expected for each VLAN subinterface. To work around this issue, add a VXLAN on the bridge so that it does not require a real tunnel IP address.

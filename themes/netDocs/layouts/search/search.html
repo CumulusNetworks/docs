@@ -252,7 +252,7 @@
       var params = {
         q: query,
         cx: "002929300794741444210:sy0sz3qlwdc",
-        key: "AIzaSyBLSSjykoQfJqtVEUoj_Exa77CEnhjcB68",
+        key: "SEARCH_KEY",
       }
       if (searchParams.has('start'))
         var start = parseInt(searchParams.get('start'));
@@ -292,6 +292,12 @@
 
     searchResults();
   </script>
+
+  <!-- Announcement bars -->
+  {{ $jsAnnouncementBar := resources.Get "js/announcement-bar.js" }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src = "{{ $jsAnnouncementBar.Permalink }}"> </script>
+  
 </body>
 
 </html>

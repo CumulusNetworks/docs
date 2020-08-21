@@ -1,1 +1,1 @@
-iputils-tracepath-dbgsym has no debian/copyright file
+iputils-tracepath-dbgsym has no copyright file

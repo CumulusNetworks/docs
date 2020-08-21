@@ -518,14 +518,14 @@ ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'MyP4$$word'
 
 To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. Using an encrypted hash is recommended to maintain a secure management network.
 
-- First, generate a sha-512 password hash with the following python command. The example command generates a sha-512 password hash for the password `MyP4$$word`.
+1. Generate a sha-512 password hash with the following python command. The example command generates a sha-512 password hash for the password `MyP4$$word`.
 
    ```
    user@host:~$ python3 -c "import crypt; print(crypt.crypt('MyP4$$word',salt=crypt.mksalt()))"
    $6$hs7OPmnrfvLNKfoZ$iB3hy5N6Vv6koqDmxixpTO6lej6VaoKGvs5E8p5zNo4tPec0KKqyQnrFMII3jGxVEYWntG9e7Z7DORdylG5aR/
    ```
 
-- Then, specify the new password from the command line of the installer with the `--hashed-password '<hash>'` command:
+1. Specify the new password from the command line of the installer with the `--hashed-password '<hash>'` command:
 
    ```
    ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '$6$hs7OPmnrfvLNKfoZ$iB3hy5N6Vv6koqDmxixpTO6lej6VaoKGvs5E8p5zNo4tPec0KKqyQnrFMII3jGxVEYWntG9e7Z7DORdylG5aR/'
@@ -590,7 +590,6 @@ CL_INSTALLER_LICENSE=''
 CL_INSTALLER_INTERFACES_FILENAME=''
 CL_INSTALLER_INTERFACES_CONTENT=''
 CL_INSTALLER_ZTP_FILENAME=''
-CL_INSTALLER_ZTP_CONTENT=''
 CL_INSTALLER_QUIET=""
 CL_INSTALLER_FORCEINST=""
 CL_INSTALLER_INTERACTIVE=""
@@ -608,7 +607,6 @@ The variables you can set are described below:
 | `CL_INSTALLER_INTERFACES_FILENAME` | Defines the name of the file on the ONIE filesystem you want to use as the `/etc/network/interfaces` file. <br>This variable is equivalent to the ONIE installer command line option `--interfaces-file`.|
 | `CL_INSTALLER_INTERFACES_CONTENT` | Describes the network interfaces available on your system and how to activate them. Setting this variable defines the contents of the `/etc/network/interfaces` file.<br>There is no equivalent ONIE installer command line option.<br>If you set both the `CL_INSTALLER_INTERFACES_FILENAME` and `CL_INSTALLER_INTERFACES_CONTENT` variables, the `CL_INSTALLER_INTERFACES_FILENAME` takes precedence. |
 | `CL_INSTALLER_ZTP_FILENAME` | Defines the name of the ZTP file on the ONIE filesystem you want to execute at first boot after installation. <br>This variable is equivalent to the ONIE installer command line option `--ztp`|
-|`CL_INSTALLER_ZTP_CONTENT` | Defines the contents of the script that you want to execute at first boot after installation.<br>There is no equivalent ONIE installer command line option.<br>If you modify both the `CL_INSTALLER_ZTP_FILENAME` and `CL_INSTALLER_ZTP_CONTENT` variables, the `CL_INSTALLER_ZTP_FILENAME` takes precedence.|
 
 ### Edit the Image File
 
@@ -678,11 +676,6 @@ iface mgmt
 	vrf-table auto
 '
 CL_INSTALLER_ZTP_FILENAME=''
-CL_INSTALLER_ZTP_CONTENT='#!/bin/bash
-#CUMULUS-AUTOPROVISIONING
-passwd -x 99999 cumulus
-echo \'cumulus:MyP4$$word\' | chpasswd
-'
 ...
 ```
 

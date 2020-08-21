@@ -10,43 +10,40 @@ EVPN multihoming is an {{<exlink url="https://support.cumulusnetworks.com/hc/en-
 
 {{%/notice%}}
 
-*EVPN multihoming* (EVPN-MH) is standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG removes the final dependency on a layer 2 topology, allowing for:
+*EVPN multihoming* (EVPN-MH) provides support for active-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG:
 
-- Layer 3 virtualization
-- Removing complexity
-- Increasing scale
-- Providing a single control plane
-- Multi-vendor interoperability
+- Eliminates the need for peerlinks or inter-switch links between the top of rack switches
+- Allows more than two TOR switches to participate in a redundancy group
+- Provides a single BGP-EVPN control plane
+- Allows multi-vendor interoperability
 
-EVPN-MH routes traffic using BGP-EVPN type-1, type-2 and type-4 routes, and the FDB, MDB and neighbor databases all sync between the Ethernet segment peers via these routes as well. The VTEPs connect to each other over an *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}*. An Ethernet segment is a group of switch or server links that share a unique Ethernet segment ID (ESI).
+EVPN-MH uses BGP-EVPN type-1, type-2 and type-4 routes for discovering Ethernet segments (ES) and for forwarding traffic to those Ethernet segments. The MAC and neighbor databases are synced between the Ethernet segment peers via these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that are attached to the same server. Each Ethernet segment has an unique Ethernet segment ID (`es-id`) across the entire PoD.
 
-Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es-sys-mac`) and an Ethernet segment ID (`es-id`) on a static or LACP bond. The `es-id` must be globally unique for all the nodes on the segment. However, if your specific topology does not require a system MAC address for each Ethernet segment, you can configure a global system MAC address that is inherited into all the Ethernet segments. You do this by configuring the same `es-sys-mac` for each interface.
+Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es-sys-mac`) and a local Ethernet segment ID (`local-es-id`) on a static or LACP bond. The `es-sys-mac` and `local-es-id` are used to build a type-3 `es-id`. This `es-id` must be globally unique across all the EVPN VTEPs. The same `es-sys-mac` can be configured on multiple interfaces.
 
-{{%notice note%}}
+{{%notice tip%}}
 
-An Ethernet segment can span more than two switches, unlike MLAG, where the `clag-id` is shared between two switches only. Further, a peerlink is not required to connect the systems on an Ethernet segment. Each Ethernet segment is a distinct redundancy group.
+An Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group.
 
 {{%/notice%}}
 
 ## Supported Features
 
 - Known unicast traffic multihoming via type-1/EAD (Ethernet auto discovery) routes and type-2 (non-zero ESI) routes. Includes active-active redundancy via aliasing and support for fast failover.
-- EVPN BUM traffic handling with {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes. Includes split-horizon-filtering and designated forwarder election.
+- EVPN BUM traffic handling with {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes, which includes split-horizon-filtering and designated forwarder election.
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} only.
 - {{<link url="Inter-subnet-Routing/#symmetric-routing" text="Distributed symmetric routing">}}.
 - {{<link url="Basic-Configuration/#arp-and-nd-suppression" text="ARP suppression">}} must be enabled.
 - EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
-- Supported RIOT-capable {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Broadcom Trident3, Trident II+ and Maverick, and Mellanox Spectrum and Spectrum 2.
+- Supported RIOT-capable {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Mellanox Spectrum A1, Spectrum 2 and Spectrum 3.
 
-{{%notice info%}}
+{{%notice warning%}}
 
-EVPN-MH is incompatible with MLAG. In order to use EVPN-MH, you must remove any MLAG configuration. This entails:
+In order to use EVPN-MH, you must remove any MLAG configuration on the switch. This entails:
 
 - Removing the `clag-id` from all interfaces in the `/etc/network/interfaces` file.
 - Removing the peerlink interfaces in the `/etc/network/interfaces` file.
-- Then run `ifreload` to reload the configuration
-
-      cumulus@switch:~$ sudo ifreload
+- Then running `ifreload` to reload the configuration:<pre>cumulus@switch:~$ sudo ifreload</pre>
 
 {{%/notice%}}
 
@@ -64,13 +61,16 @@ An Ethernet segment configuration has these characteristics:
 - The `es-id` is a 24-bit integer (1-16777215).
 - Each interface (bond) needs its own `es-id`.
 - Static and LACP bonds can be associated with an `es-id`.
-- FRRouting does not prevent association of a switch port with an `es-id`.
-- One `es-id` can only be associated with one device. You cannot have swp1->ES-1:1 and swp2->ES-1:1. To allow swp1 and swp2 to be a part of a single Ethernet segment, they would need to be LAG-bonded and then associate the bond with ES-1:1.
-- Each rack can have a maximum of 128 Ethernet segments.
 
-You can also specify a *designated forwarder* (`df-pref`) to maximize the load balancing between the VTEPs on an Ethernet segment. The VTEP with the highest `df-pref` setting becomes the designated forwarder. VTEPs that are *not* the DF block BUM traffic received on the VXLAN overlay to the Ethernet segment.
+A *designated forwarder* (DF) is elected for each Ethernet segment. The DF is responsible for forwarding flooded traffic received via the VXLAN overlay to the locally attached Ethernet segment. You can specify a preference (using the `es-df-pref` option) on an Ethernet segment for the DF election. The EVPN VTEP with the highest `es-df-pref` setting becomes the DF.
 
-`ifupdown2` generates the FRR EVPN-MH configuration and reloads FRR. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
+NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The configuration appears in both the `/etc/network/interfaces` file and in `/etc/frr/frr.conf` file.
+
+{{%notice info%}}
+
+In addition to the `es-id` and the `es-sys-mac`, you need to specify a unique SVI IP address for each VTEP across the racks. These IP addresses must be reachable from remote VTEPs. You enable these IP addresses using the `advertise-svi-ip` option. See the leaf configurations in the {{<link title="#Example Configuration" text="example configuration">}} below.
+
+{{%/notice%}}
 
 ### Configure the EVPN-MH Bonds
 
@@ -132,23 +132,14 @@ The NCLU commands create the following configuration in the `/etc/network/interf
 
 ```
 interface hostbond1
-  evpn mh es-df-pref 50000
-  evpn mh es-id 1
-  evpn mh es-sys-mac 44:38:39:ff:ff:01
   bond-slaves swp5
   es-sys-mac 44:38:39:ff:ff:01
 
 interface hostbond2
-  evpn mh es-df-pref 50000
-  evpn mh es-id 2
-  evpn mh es-sys-mac 44:38:39:ff:ff:01
   bond-slaves swp6
   es-sys-mac 44:38:39:ff:ff:01
 
 interface hostbond3
-  evpn mh es-df-pref 50000
-  evpn mh es-id 3
-  evpn mh es-sys-mac 44:38:39:ff:ff:01
   bond-slaves swp7
   es-sys-mac 44:38:39:ff:ff:01
 ```
@@ -178,10 +169,10 @@ interface hostbond3
 
 There are a few global settings for EVPN multihoming you can set, including:
 
-- `mac-holdtime`: MAC hold time, in seconds. This is the duration for which a switch maintains SYNC MAC entries after the Ethernet segment peer's EVPN route is deleted. During this time, the switch attempts to independently establish reachability of the MAC on the local Ethernet segment. The hold time can be between 0 and 86400 seconds.
-- `neigh-holdtime`:  Neighbor entry hold time, in seconds. The duration for which a switch maintains SYNC neigh entries after the Ethernet segment peer's EVPN route is deleted. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds.
-- `redirect-off`: **Cumulus VX only.** Disables fast failover of traffic destined to the access port via the VXLAN overlay. This knob only applies to Cumulus VX, since fast failover is not supported.
-- `startup-delay`:  Startup delay. The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. The delay can be between 0 and 216000 seconds.
+- `mac-holdtime`: MAC hold time, in seconds. This is the duration for which a switch maintains SYNC MAC entries after the Ethernet segment peer's EVPN type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the MAC on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
+- `neigh-holdtime`:  Neighbor entry hold time, in seconds. The duration for which a switch maintains SYNC neigh entries after the Ethernet segment peer's EVPN type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
+- `redirect-off`: **Cumulus VX only.** Disables fast failover of traffic destined to the access port via the VXLAN overlay. This knob only applies to Cumulus VX, since fast failover is only supported on the ASIC.
+- `startup-delay`:  Startup delay. The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. The delay can be between 0 and 216000 seconds. The default is 180 seconds.
 
 To configure a MAC hold time for 1000 seconds, run the following commands:
 
@@ -189,7 +180,7 @@ To configure a MAC hold time for 1000 seconds, run the following commands:
 
 {{<tab "NCLU Commands">}}
 
-    cumulus@switch:~$ net add evpn mh mac-holdtime 1200
+    cumulus@switch:~$ net add evpn mh mac-holdtime 1000
     cumulus@switch:~$ net commit
 
 {{</tab>}}
@@ -199,7 +190,7 @@ To configure a MAC hold time for 1000 seconds, run the following commands:
 ```
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
-switch(config)# evpn mh mac-holdtime 1200
+switch(config)# evpn mh mac-holdtime 1000
 switch(config)# exit
 switch# write memory
 ```
@@ -278,7 +269,7 @@ evpn mh startup-delay 1800
 
 ### Enable Uplink Tracking
 
-You can enable uplink tracking on a multihomed bond or switch port. When all uplinks are down, the Ethernet segment bonds on the switch are put into a proto-down or error-disabled state.
+When all the uplinks go down, the VTEP loses connectivity to the VXLAN overlay. To prevent traffic loss in this state, the uplinks' oper-state is tracked. When all the uplinks are down, the Ethernet segment bonds on the switch are put into a protodown or error-disabled state. You can configure a link as an MH uplink to enable this tracking.
 
 {{<tabs "upink tracking">}}
 
@@ -351,11 +342,13 @@ interface swp4
 
 ### Enable FRR Debugging
 
-You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethernet segments, routes and routing protocols (via Zebra). To debug Ethernet segments and routes, use the `net add bgp debug evpn mh (es|route)` command. To debug the routing protocols
+You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethernet segments, routes and routing protocols (via Zebra).
 
 {{<tabs "debug">}}
 
 {{<tab "NCLU Commands">}}
+
+To debug Ethernet segments and routes, use the `net add bgp debug evpn mh (es|route)` command. To debug the routing protocols, use `net add evpn mh debug zebra (es|mac|neigh|nh)`.
 
     cumulus@switch:~$ net add bgp debug evpn mh es
     cumulus@switch:~$ net add bgp debug evpn mh route
@@ -419,303 +412,105 @@ debug zebra vxlan
 
 ### Fast Failover
 
-When an Ethernet segment link goes down, the attached VTEP notifies all other VTEPs via a single EAD-ES withdraw. Via ES bond redirect.
+When an Ethernet segment link goes down, the attached VTEP notifies all other VTEPs via a single EAD-ES withdraw. This is done by way of an Ethernet segment bond redirect.
 
 Fast failover is also triggered by:
 
-- Failure of an access port &mdash; the link between a leaf switch and host.
 - Rebooting a leaf switch or VTEP.
-- Uplink failure. When all uplinks are down, the Ethernet segment bonds on the switch are proto-downed or error disabled.
+- Uplink failure. When all uplinks are down, the Ethernet segment bonds on the switch are protodowned or error disabled.
 
 ## Troubleshooting
 
 You can use the following `net show` commands to troubleshoot your EVPN multihoming configuration.
 
-### Show the Ethernet Segment MAC and IP Addresses
-
-The `net show bgp l2vpn evpn route mac-ip-es` command displays the MAC address and IP address for each Ethernet segment.
-
-```
-cumulus@switch:~$ net show bgp l2vpn evpn route mac-ip-es
-BGP table version is 0, local router ID is 172.16.0.21
-Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
-Origin codes: i - IGP, e - EGP, ? - incomplete
-EVPN type-1 prefix: [4]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
-EVPN type-2 prefix: [2]:[EthTag]:[MAClen]:[MAC]:[IPlen]:[IP]
-EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
-EVPN type-4 prefix: [4]:[ESI]:[IPlen]:[OrigIP]
-EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
-
-   Network          Next Hop            Metric LocPrf Weight Path
-*  [2]:[0]:[48]:[00:02:00:00:00:09]
-                    172.16.0.23                              0 4435 5558 i
-                    ESI:03:44:38:39:ff:ff:01:00:00:01 VNI: 1001
-                    RT:5558:1001 RT:5558:4001 ET:8 Rmac:00:02:00:00:00:68
-*  [2]:[0]:[48]:[00:02:00:00:00:09]
-                    172.16.0.23                              0 4435 5558 i
-                    ESI:03:44:38:39:ff:ff:01:00:00:01 VNI: 1001
-                    RT:5558:1001 RT:5558:4001 ET:8 Rmac:00:02:00:00:00:68
-*  [2]:[0]:[48]:[00:02:00:00:00:09]
-                    172.16.0.23                              0 4435 5558 i
-                    ESI:03:44:38:39:ff:ff:01:00:00:01 VNI: 1001
-                    RT:5558:1001 RT:5558:4001 ET:8 Rmac:00:02:00:00:00:68
-*  [2]:[0]:[48]:[00:02:00:00:00:09]
-                    172.16.0.23                              0 4435 5558 i
-                    ESI:03:44:38:39:ff:ff:01:00:00:01 VNI: 1001
-                    RT:5558:1001 RT:5558:4001 ET:8 Rmac:00:02:00:00:00:68
-*> [2]:[0]:[48]:[00:02:00:00:00:09]
-                    172.16.0.21                          32768 i
-                    ESI:03:44:38:39:ff:ff:01:00:00:01 VNI: 1001
-                    ET:8 RT:5556:1001 RT:5556:4001 Rmac:00:02:00:00:00:58
-*> [2]:[0]:[48]:[00:02:00:00:00:09]
-                    172.16.0.21                          32768 i
-                    ESI:03:44:38:39:ff:ff:01:00:00:01 VNI: 1007
-                    ET:8 RT:5556:1007 RT:5556:4002 Rmac:00:02:00:00:00:58
-
-...
-
-Displayed 2079 paths
-cumulus@switch:~$
-```
-
 ### Show Ethernet Segment Information
 
-The `net show bgp l2vpn evpn es` command displays route information for the Ethernet segments (type-4 routes).
-
-```
-cumulus@switch:~$ net show bgp evpn es
-Flags: L local, R remote, I inconsistent
-VTEP-Flags: E EAD-per-ES, V EAD-per-EVI
-VNI      ESI                            Flags VTEPs
-1005     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1005     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1005     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1005     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1005     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1005     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1002     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1002     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1002     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1002     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1001     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1001     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1001     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1001     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1006     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1006     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1006     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1006     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1006     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1006     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1000     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1000     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1000     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1000     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1000     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1000     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1003     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1003     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1003     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1003     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1003     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1003     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1004     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1004     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1004     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1004     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1004     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1004     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1007     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1007     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1007     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1007     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1007     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1007     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1008     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1008     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1008     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1008     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1008     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1008     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1009     03:44:38:39:ff:ff:01:00:00:01  LR    172.16.0.22(EV),172.16.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:02  LR    172.16.0.22(EV),172.16.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:03  LR    172.16.0.22(EV),172.16.0.23(EV)
-1009     03:44:38:39:ff:ff:02:00:00:01  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1009     03:44:38:39:ff:ff:02:00:00:02  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-1009     03:44:38:39:ff:ff:02:00:00:03  R     172.16.0.24(EV),172.16.0.25(EV),172.16.0.26(EV)
-cumulus@switch:~$
-```
-
-### Show Ethernet Segment Interfaces
-
-The `net show evpn es` command displays the interfaces and VTEPs associated with each Ethernet segment.
+The `net show evpn es` command displays the Ethernet segments across all VNIs.
 
 ```
 cumulus@switch:~$ net show evpn es
 Type: L local, R remote, N non-DF
 ESI                            Type ES-IF                 VTEPs
-03:44:38:39:ff:ff:01:00:00:01  R    -                     27.0.0.22,27.0.0.23
-03:44:38:39:ff:ff:01:00:00:02  LR   hostbond2             27.0.0.22,27.0.0.23
-03:44:38:39:ff:ff:01:00:00:03  LR   hostbond3             27.0.0.22,27.0.0.23
+03:44:38:39:ff:ff:01:00:00:01  R    -                     172.0.0.22,172.0.0.23
+03:44:38:39:ff:ff:01:00:00:02  LR   hostbond2             172.0.0.22,172.0.0.23
+03:44:38:39:ff:ff:01:00:00:03  LR   hostbond3             172.0.0.22,172.0.0.23
 03:44:38:39:ff:ff:01:00:00:05  L    hostbond1
-03:44:38:39:ff:ff:02:00:00:01  R    -                     27.0.0.24,27.0.0.25,27.0.0.26
-03:44:38:39:ff:ff:02:00:00:02  R    -                     27.0.0.24,27.0.0.25,27.0.0.26
-03:44:38:39:ff:ff:02:00:00:03  R    -                     27.0.0.24,27.0.0.25,27.0.0.26
+03:44:38:39:ff:ff:02:00:00:01  R    -                     172.0.0.24,172.0.0.25,172.0.0.26
+03:44:38:39:ff:ff:02:00:00:02  R    -                     172.0.0.24,172.0.0.25,172.0.0.26
+03:44:38:39:ff:ff:02:00:00:03  R    -                     172.0.0.24,172.0.0.25,172.0.0.26
 ```
 
-### Show VNIs for each Ethernet Segment
+### Show Ethernet Segment per VNI Information
 
-To see the VNIs associated with each Ethernet segment, run:
+The `net show evpn es-evi` command displays the Ethernet segments learned for each VNI.
 
 ```
 cumulus@switch:~$ net show evpn es-evi
 Type: L local, R remote
 VNI      ESI                            Type
-1005     03:44:38:39:ff:ff:01:00:00:02  L
-1005     03:44:38:39:ff:ff:01:00:00:03  L
-1005     03:44:38:39:ff:ff:01:00:00:05  L
+...
 1002     03:44:38:39:ff:ff:01:00:00:02  L
 1002     03:44:38:39:ff:ff:01:00:00:03  L
 1002     03:44:38:39:ff:ff:01:00:00:05  L
 1001     03:44:38:39:ff:ff:01:00:00:02  L
 1001     03:44:38:39:ff:ff:01:00:00:03  L
 1001     03:44:38:39:ff:ff:01:00:00:05  L
-1006     03:44:38:39:ff:ff:01:00:00:02  L
-1006     03:44:38:39:ff:ff:01:00:00:03  L
-1006     03:44:38:39:ff:ff:01:00:00:05  L
-1000     03:44:38:39:ff:ff:01:00:00:02  L
-1000     03:44:38:39:ff:ff:01:00:00:03  L
-1000     03:44:38:39:ff:ff:01:00:00:05  L
-1003     03:44:38:39:ff:ff:01:00:00:02  L
-1003     03:44:38:39:ff:ff:01:00:00:03  L
-1003     03:44:38:39:ff:ff:01:00:00:05  L
-1004     03:44:38:39:ff:ff:01:00:00:02  L
-1004     03:44:38:39:ff:ff:01:00:00:03  L
-1004     03:44:38:39:ff:ff:01:00:00:05  L
-1007     03:44:38:39:ff:ff:01:00:00:02  L
-1007     03:44:38:39:ff:ff:01:00:00:03  L
-1007     03:44:38:39:ff:ff:01:00:00:05  L
-1008     03:44:38:39:ff:ff:01:00:00:02  L
-1008     03:44:38:39:ff:ff:01:00:00:03  L
-1008     03:44:38:39:ff:ff:01:00:00:05  L
-1009     03:44:38:39:ff:ff:01:00:00:02  L
-1009     03:44:38:39:ff:ff:01:00:00:03  L
-1009     03:44:38:39:ff:ff:01:00:00:05  L
+...
 ```
 
-### Show VTEPs in Ethernet Segments
+### Show BGP Ethernet Segment Information
 
-To show VTEPs for all Ethernet segments for all VNIs, run `net show bgp evpn es-evi`:
+The `net show bgp l2vpn evpn es` command displays the Ethernet segments across all VNIs learned via type-1 and type-4 routes.
 
 ```
-cumulus@switch:~$ net show bgp evpn es-evi
-Flags: L local, R remote, I inconsistent
-VTEP-Flags: E EAD-per-ES, V EAD-per-EVI
-VNI      ESI                            Flags VTEPs
-1005     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1005     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1005     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1005     03:44:38:39:ff:ff:01:00:00:05  L  
-1005     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1005     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1005     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1002     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1002     03:44:38:39:ff:ff:01:00:00:05  L  
-1002     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1002     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1002     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1001     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1001     03:44:38:39:ff:ff:01:00:00:05  L  
-1001     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1001     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1001     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1006     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1006     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1006     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1006     03:44:38:39:ff:ff:01:00:00:05  L  
-1006     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1006     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1006     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1000     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1000     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1000     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1000     03:44:38:39:ff:ff:01:00:00:05  L  
-1000     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1000     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1000     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1003     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1003     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1003     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1003     03:44:38:39:ff:ff:01:00:00:05  L  
-1003     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1003     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1003     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1004     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1004     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1004     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1004     03:44:38:39:ff:ff:01:00:00:05  L  
-1004     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1004     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1004     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1007     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1007     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1007     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1007     03:44:38:39:ff:ff:01:00:00:05  L  
-1007     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1007     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1007     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1008     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1008     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1008     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1008     03:44:38:39:ff:ff:01:00:00:05  L  
-1008     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1008     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1008     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1009     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:05  L  
-1009     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1009     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1009     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
+cumulus@switch:~$ net show bgp l2vpn evpn es
+ES Flags: L local, R remote, I inconsistent
+VTEP Flags: E ESR/Type-4, A active nexthop
+ESI                            Flags RD                    #VNIs    VTEPs
+03:44:38:39:ff:ff:01:00:00:01  LR    172.0.0.9:3            10       172.0.0.10(EA),172.0.0.11(EA)
+03:44:38:39:ff:ff:01:00:00:02  LR    172.0.0.9:4            10       172.0.0.10(EA),172.0.0.11(EA)
+03:44:38:39:ff:ff:01:00:00:03  LR    172.0.0.9:5            10       172.0.0.10(EA),172.0.0.11(EA)
 cumulus@switch:~$
 ```
 
-To see the VTEPs for a specific VNI, run `net show bgp evpn es-evi vni`.
+### Show BGP Ethernet Segment per VNI Information
+
+The `net show bgp l2vpn evpn es-evi` command displays the Ethernet segments per VNI learned via type-1 and type-4 routes.
 
 ```
-cumulus@switch:~$ net show bgp evpn es-evi vni 1009
+cumulus@switch:~$ net show bgp l2vpn evpn es-evi
 Flags: L local, R remote, I inconsistent
 VTEP-Flags: E EAD-per-ES, V EAD-per-EVI
 VNI      ESI                            Flags VTEPs
-1009     03:44:38:39:ff:ff:01:00:00:01  R     27.0.0.22(EV),27.0.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:02  LR    27.0.0.22(EV),27.0.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:03  LR    27.0.0.22(EV),27.0.0.23(EV)
-1009     03:44:38:39:ff:ff:01:00:00:05  L
-1009     03:44:38:39:ff:ff:02:00:00:01  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1009     03:44:38:39:ff:ff:02:00:00:02  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
-1009     03:44:38:39:ff:ff:02:00:00:03  R     27.0.0.24(EV),27.0.0.25(EV),27.0.0.26(EV)
+...
+1002     03:44:38:39:ff:ff:01:00:00:01  R     172.0.0.22(EV),172.0.0.23(EV)
+1002     03:44:38:39:ff:ff:01:00:00:02  LR    172.0.0.22(EV),172.0.0.23(EV)
+1002     03:44:38:39:ff:ff:01:00:00:03  LR    172.0.0.22(EV),172.0.0.23(EV)
+1002     03:44:38:39:ff:ff:01:00:00:05  L  
+1002     03:44:38:39:ff:ff:02:00:00:01  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
+1002     03:44:38:39:ff:ff:02:00:00:02  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
+1002     03:44:38:39:ff:ff:02:00:00:03  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
+1001     03:44:38:39:ff:ff:01:00:00:01  R     172.0.0.22(EV),172.0.0.23(EV)
+1001     03:44:38:39:ff:ff:01:00:00:02  LR    172.0.0.22(EV),172.0.0.23(EV)
+1001     03:44:38:39:ff:ff:01:00:00:03  LR    172.0.0.22(EV),172.0.0.23(EV)
+1001     03:44:38:39:ff:ff:01:00:00:05  L  
+1001     03:44:38:39:ff:ff:02:00:00:01  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
+1001     03:44:38:39:ff:ff:02:00:00:02  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
+1001     03:44:38:39:ff:ff:02:00:00:03  R     172.0.0.24(EV),172.0.0.25(EV),172.0.0.26(EV)
+...
 cumulus@switch:~$
 ```
 
 ### Show EAD Route Types
 
-You can use the `net show bgp evpn route` command to view type-1 EAD routes. Just include the `ead` route type option.
+You can use the `net show bgp l2vpn evpn route` command to view type-1 EAD routes. Just include the `ead` route type option.
 
 ```
-cumulus@switch:~$ net show bgp evpn route type ead
+cumulus@switch:~$ net show bgp evpn l2vpn route type ead
 BGP table version is 30, local router ID is 172.16.0.21
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete
-EVPN type-1 prefix: [4]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
+EVPN type-1 prefix: [1]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
 EVPN type-2 prefix: [2]:[EthTag]:[MAClen]:[MAC]:[IPlen]:[IP]
 EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
 EVPN type-4 prefix: [4]:[ESI]:[IPlen]:[OrigIP]
@@ -742,7 +537,7 @@ cumulus@switch:~$
 
 ## Example Configuration
 
-The following example uses the topology illustrated here.
+The following example uses the topology illustrated here. It shows one rack for simplicity, but multiple racks can be added to this topology.
 
 {{<img src="/images/cumulus-linux/EVPN-MH-example-config.png">}}
 
@@ -832,7 +627,6 @@ net add vxlan vx-4003 vxlan id 4003
 net add bond hostbond1 alias Local Node/s leaf01 and Ports swp5 <==> Remote Node/s host01 and Ports swp1
 net add bond hostbond1,4 bridge pvid 1000
 net add bond hostbond1-4 bond mode 802.3ad
-net add bond hostbond1-4 mtu 9152
 net add bond hostbond2 alias Local Node/s leaf01 and Ports swp6 <==> Remote Node/s host02 and Ports swp1
 net add bond hostbond2 bridge pvid 1001
 net add bond hostbond3 alias Local Node/s leaf01 and Ports swp7 <==> Remote Node/s host03 and Ports swp1
@@ -849,8 +643,6 @@ net add interface eth0 ip address 192.168.0.15/24
 net add interface eth0 ip gateway 192.168.0.2
 net add interface eth0 vrf mgmt
 net add interface swp1 alias Local Node leaf01 and Ports swp1 <==> Remote Node/s spine01 and Ports swp1
-net add interface swp1-4 mtu 9202
-net add interface swp1-8 link speed 10000
 net add interface swp2 alias Local Node leaf01 and Ports swp2 <==> Remote Node/s spine01 and Ports swp2
 net add interface swp3 alias Local Node leaf01 and Ports swp3 <==> Remote Node/s spine02 and Ports swp1
 net add interface swp4 alias Local Node leaf01 and Ports swp4 <==> Remote Node/s spine02 and Ports swp2
@@ -939,37 +731,33 @@ net add vrf mgmt ip address 172.16.0.1/8
 net add vrf mgmt ipv6 address ::1/128
 net add vrf mgmt,vrf1-3 vrf-table auto
 net add vxlan vx-1000 bridge access 1000
-net add vxlan vx-1000 vxlan mcastgrp 203.0.113.100
+net add vxlan vx-1000 vxlan mcastgrp 239.1.1.100
 net add vxlan vx-1000-1009,4001-4003 bridge arp-nd-suppress on
 net add vxlan vx-1000-1009,4001-4003 bridge learning off
-net add vxlan vx-1000-1009,4001-4003 mtu 9152
 net add vxlan vx-1000-1009,4001-4003 stp bpduguard
 net add vxlan vx-1000-1009,4001-4003 stp portbpdufilter
 net add vxlan vx-1000-1009,4001-4003 vxlan local-tunnelip 172.16.0.21
 net add vxlan vx-1001 bridge access 1001
-net add vxlan vx-1001 vxlan mcastgrp 203.0.113.101
+net add vxlan vx-1001 vxlan mcastgrp 239.1.1.101
 net add vxlan vx-1002 bridge access 1002
-net add vxlan vx-1002 vxlan mcastgrp 203.0.113.102
+net add vxlan vx-1002 vxlan mcastgrp 239.1.1.102
 net add vxlan vx-1003 bridge access 1003
-net add vxlan vx-1003 vxlan mcastgrp 203.0.113.103
+net add vxlan vx-1003 vxlan mcastgrp 239.1.1.103
 net add vxlan vx-1004 bridge access 1004
-net add vxlan vx-1004 vxlan mcastgrp 203.0.113.104
+net add vxlan vx-1004 vxlan mcastgrp 239.1.1.104
 net add vxlan vx-1005 bridge access 1005
-net add vxlan vx-1005 vxlan mcastgrp 203.0.113.105
+net add vxlan vx-1005 vxlan mcastgrp 239.1.1.105
 net add vxlan vx-1006 bridge access 1006
-net add vxlan vx-1006 vxlan mcastgrp 203.0.113.106
+net add vxlan vx-1006 vxlan mcastgrp 239.1.1.106
 net add vxlan vx-1007 bridge access 1007
-net add vxlan vx-1007 vxlan mcastgrp 203.0.113.107
+net add vxlan vx-1007 vxlan mcastgrp 239.1.1.107
 net add vxlan vx-1008 bridge access 1008
-net add vxlan vx-1008 vxlan mcastgrp 203.0.113.108
+net add vxlan vx-1008 vxlan mcastgrp 239.1.1.108
 net add vxlan vx-1009 bridge access 1009
-net add vxlan vx-1009 vxlan mcastgrp 203.0.113.109
+net add vxlan vx-1009 vxlan mcastgrp 239.1.1.109
 net add vxlan vx-4001 bridge access 4001
-net add vxlan vx-4001 vxlan mcastgrp 203.0.13.29
 net add vxlan vx-4002 bridge access 4002
-net add vxlan vx-4002 vxlan mcastgrp 203.0.13.30
 net add vxlan vx-4003 bridge access 4003
-net add vxlan vx-4003 vxlan mcastgrp 203.0.13.31
 net add dot1x radius accounting-port 1813
 net add dot1x eap-reauth-period 0
 net add dot1x default-dacl-preauth-filename default_preauth_dacl.rules
@@ -994,7 +782,7 @@ leaf01(config)# log file /var/log/frr/bgpd.log
 leaf01(config)# log timestamp precision 6
 leaf01(config)# evpn mh startup-delay 30
 leaf01(config)# zebra nexthop proto only
-leaf01(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+leaf01(config)# ip pim rp 192.0.2.5 239.1.1.0/24
 leaf01(config)# ip pim spt-switchover infinity-and-beyond
 leaf01(config)# service integrated-vtysh-config
 leaf01(config)# debug bgp evpn mh es
@@ -1135,7 +923,7 @@ net add pim debug packets register
 net add pim debug packets joins
 net add pim debug trace
 net add msdp debug events
-net add pim rp 192.0.2.5 203.0.113.0/24
+net add pim rp 192.0.2.5 239.1.1.0/24
 net add pim spt-switchover infinity-and-beyond
 net add bgp debug evpn mh es
 net add bgp debug evpn mh route
@@ -1188,7 +976,6 @@ net add vxlan vx-4003 vxlan id 4003
 net add bond hostbond1 alias Local Node/s leaf02 and Ports swp5 <==> Remote Node/s host01 and Ports swp2
 net add bond hostbond1,4 bridge pvid 1000
 net add bond hostbond1-4 bond mode 802.3ad
-net add bond hostbond1-4 mtu 9152
 net add bond hostbond2 alias Local Node/s leaf02 and Ports swp6 <==> Remote Node/s host02 and Ports swp2
 net add bond hostbond2 bridge pvid 1001
 net add bond hostbond3 alias Local Node/s leaf02 and Ports swp7 <==> Remote Node/s host03 and Ports swp2
@@ -1203,8 +990,6 @@ net add interface eth0 ip address 192.168.0.15/24
 net add interface eth0 ip gateway 192.168.0.2
 net add interface eth0 vrf mgmt
 net add interface swp1 alias Local Node leaf02 and Ports swp1 <==> Remote Node/s spine01 and Ports swp3
-net add interface swp1-4 mtu 9202
-net add interface swp1-8 link speed 10000
 net add interface swp2 alias Local Node leaf02 and Ports swp2 <==> Remote Node/s spine01 and Ports swp4
 net add interface swp3 alias Local Node leaf02 and Ports swp3 <==> Remote Node/s spine02 and Ports swp3
 net add interface swp4 alias Local Node leaf02 and Ports swp4 <==> Remote Node/s spine02 and Ports swp4
@@ -1293,37 +1078,33 @@ net add vrf mgmt ip address 172.16.0.1/8
 net add vrf mgmt ipv6 address ::1/128
 net add vrf mgmt,vrf1-3 vrf-table auto
 net add vxlan vx-1000 bridge access 1000
-net add vxlan vx-1000 vxlan mcastgrp 203.0.113.100
+net add vxlan vx-1000 vxlan mcastgrp 239.1.1.100
 net add vxlan vx-1000-1009,4001-4003 bridge arp-nd-suppress on
 net add vxlan vx-1000-1009,4001-4003 bridge learning off
-net add vxlan vx-1000-1009,4001-4003 mtu 9152
 net add vxlan vx-1000-1009,4001-4003 stp bpduguard
 net add vxlan vx-1000-1009,4001-4003 stp portbpdufilter
 net add vxlan vx-1000-1009,4001-4003 vxlan local-tunnelip 172.16.0.22
 net add vxlan vx-1001 bridge access 1001
-net add vxlan vx-1001 vxlan mcastgrp 203.0.113.101
+net add vxlan vx-1001 vxlan mcastgrp 239.1.1.101
 net add vxlan vx-1002 bridge access 1002
-net add vxlan vx-1002 vxlan mcastgrp 203.0.113.102
+net add vxlan vx-1002 vxlan mcastgrp 239.1.1.102
 net add vxlan vx-1003 bridge access 1003
-net add vxlan vx-1003 vxlan mcastgrp 203.0.113.103
+net add vxlan vx-1003 vxlan mcastgrp 239.1.1.103
 net add vxlan vx-1004 bridge access 1004
-net add vxlan vx-1004 vxlan mcastgrp 203.0.113.104
+net add vxlan vx-1004 vxlan mcastgrp 239.1.1.104
 net add vxlan vx-1005 bridge access 1005
-net add vxlan vx-1005 vxlan mcastgrp 203.0.113.105
+net add vxlan vx-1005 vxlan mcastgrp 239.1.1.105
 net add vxlan vx-1006 bridge access 1006
-net add vxlan vx-1006 vxlan mcastgrp 203.0.113.106
+net add vxlan vx-1006 vxlan mcastgrp 239.1.1.106
 net add vxlan vx-1007 bridge access 1007
-net add vxlan vx-1007 vxlan mcastgrp 203.0.113.107
+net add vxlan vx-1007 vxlan mcastgrp 239.1.1.107
 net add vxlan vx-1008 bridge access 1008
-net add vxlan vx-1008 vxlan mcastgrp 203.0.113.108
+net add vxlan vx-1008 vxlan mcastgrp 239.1.1.108
 net add vxlan vx-1009 bridge access 1009
-net add vxlan vx-1009 vxlan mcastgrp 203.0.113.109
+net add vxlan vx-1009 vxlan mcastgrp 239.1.1.109
 net add vxlan vx-4001 bridge access 4001
-net add vxlan vx-4001 vxlan mcastgrp 203.0.13.29
 net add vxlan vx-4002 bridge access 4002
-net add vxlan vx-4002 vxlan mcastgrp 203.0.13.30
 net add vxlan vx-4003 bridge access 4003
-net add vxlan vx-4003 vxlan mcastgrp 203.0.13.31
 net add dot1x radius accounting-port 1813
 net add dot1x eap-reauth-period 0
 net add dot1x default-dacl-preauth-filename default_preauth_dacl.rules
@@ -1348,7 +1129,7 @@ leaf02(config)# log file /var/log/frr/bgpd.log
 leaf02(config)# log timestamp precision 6
 leaf02(config)# evpn mh startup-delay 30
 leaf02(config)# ip forwarding
-leaf02(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+leaf02(config)# ip pim rp 192.0.2.5 239.1.1.0/24
 leaf02(config)# ip pim spt-switchover infinity-and-beyond
 leaf02(config)# debug bgp evpn mh es
 leaf02(config)# debug bgp evpn mh route
@@ -1512,7 +1293,7 @@ net add pim debug packets register
 net add pim debug packets joins
 net add pim debug trace
 net add msdp debug events
-net add pim rp 192.0.2.5 203.0.113.0/24
+net add pim rp 192.0.2.5 239.1.1.0/24
 net add pim spt-switchover infinity-and-beyond
 net add bgp debug evpn mh es
 net add bgp debug evpn mh route
@@ -1565,7 +1346,6 @@ net add vxlan vx-4003 vxlan id 4003
 net add bond hostbond1 alias Local Node/s leaf03 and Ports swp5 <==> Remote Node/s host01 and Ports swp3
 net add bond hostbond1,4 bridge pvid 1000
 net add bond hostbond1-4 bond mode 802.3ad
-net add bond hostbond1-4 mtu 9152
 net add bond hostbond2 alias Local Node/s leaf03 and Ports swp6 <==> Remote Node/s host02 and Ports swp3
 net add bond hostbond2 bridge pvid 1001
 net add bond hostbond3 alias Local Node/s leaf03 and Ports swp7 <==> Remote Node/s host03 and Ports swp3
@@ -1579,8 +1359,6 @@ net add interface eth0 ip address 192.168.0.15/24
 net add interface eth0 ip gateway 192.168.0.2
 net add interface eth0 vrf mgmt
 net add interface swp1 alias Local Node leaf03 and Ports swp1 <==> Remote Node/s spine01 and Ports swp5
-net add interface swp1-4 mtu 9202
-net add interface swp1-8 link speed 10000
 net add interface swp2 alias Local Node leaf03 and Ports swp2 <==> Remote Node/s spine01 and Ports swp6
 net add interface swp3 alias Local Node leaf03 and Ports swp3 <==> Remote Node/s spine02 and Ports swp5
 net add interface swp4 alias Local Node leaf03 and Ports swp4 <==> Remote Node/s spine02 and Ports swp6
@@ -1669,37 +1447,33 @@ net add vrf mgmt ip address 172.16.0.1/8
 net add vrf mgmt ipv6 address ::1/128
 net add vrf mgmt,vrf1-3 vrf-table auto
 net add vxlan vx-1000 bridge access 1000
-net add vxlan vx-1000 vxlan mcastgrp 203.0.113.100
+net add vxlan vx-1000 vxlan mcastgrp 239.1.1.100
 net add vxlan vx-1000-1009,4001-4003 bridge arp-nd-suppress on
 net add vxlan vx-1000-1009,4001-4003 bridge learning off
-net add vxlan vx-1000-1009,4001-4003 mtu 9152
 net add vxlan vx-1000-1009,4001-4003 stp bpduguard
 net add vxlan vx-1000-1009,4001-4003 stp portbpdufilter
 net add vxlan vx-1000-1009,4001-4003 vxlan local-tunnelip 172.16.0.23
 net add vxlan vx-1001 bridge access 1001
-net add vxlan vx-1001 vxlan mcastgrp 203.0.113.101
+net add vxlan vx-1001 vxlan mcastgrp 239.1.1.101
 net add vxlan vx-1002 bridge access 1002
-net add vxlan vx-1002 vxlan mcastgrp 203.0.113.102
+net add vxlan vx-1002 vxlan mcastgrp 239.1.1.102
 net add vxlan vx-1003 bridge access 1003
-net add vxlan vx-1003 vxlan mcastgrp 203.0.113.103
+net add vxlan vx-1003 vxlan mcastgrp 239.1.1.103
 net add vxlan vx-1004 bridge access 1004
-net add vxlan vx-1004 vxlan mcastgrp 203.0.113.104
+net add vxlan vx-1004 vxlan mcastgrp 239.1.1.104
 net add vxlan vx-1005 bridge access 1005
-net add vxlan vx-1005 vxlan mcastgrp 203.0.113.105
+net add vxlan vx-1005 vxlan mcastgrp 239.1.1.105
 net add vxlan vx-1006 bridge access 1006
-net add vxlan vx-1006 vxlan mcastgrp 203.0.113.106
+net add vxlan vx-1006 vxlan mcastgrp 239.1.1.106
 net add vxlan vx-1007 bridge access 1007
-net add vxlan vx-1007 vxlan mcastgrp 203.0.113.107
+net add vxlan vx-1007 vxlan mcastgrp 239.1.1.107
 net add vxlan vx-1008 bridge access 1008
-net add vxlan vx-1008 vxlan mcastgrp 203.0.113.108
+net add vxlan vx-1008 vxlan mcastgrp 239.1.1.108
 net add vxlan vx-1009 bridge access 1009
-net add vxlan vx-1009 vxlan mcastgrp 203.0.113.109
+net add vxlan vx-1009 vxlan mcastgrp 239.1.1.109
 net add vxlan vx-4001 bridge access 4001
-net add vxlan vx-4001 vxlan mcastgrp 203.0.13.29
 net add vxlan vx-4002 bridge access 4002
-net add vxlan vx-4002 vxlan mcastgrp 203.0.13.30
 net add vxlan vx-4003 bridge access 4003
-net add vxlan vx-4003 vxlan mcastgrp 203.0.13.31
 net add dot1x radius accounting-port 1813
 net add dot1x eap-reauth-period 0
 net add dot1x default-dacl-preauth-filename default_preauth_dacl.rules
@@ -1725,7 +1499,7 @@ leaf03(config)# log file /var/log/frr/bgpd.log
 leaf03(config)# log timestamp precision 6
 leaf03(config)# evpn mh startup-delay 30
 leaf03(config)# ip forwarding
-leaf03(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+leaf03(config)# ip pim rp 192.0.2.5 239.1.1.0/24
 leaf03(config)# ip pim spt-switchover infinity-and-beyond
 leaf03(config)# debug bgp zebra
 leaf03(config)# debug zebra vxlan
@@ -1884,7 +1658,7 @@ net add pim debug packets register
 net add pim debug packets joins
 net add pim debug trace
 net add msdp debug events
-net add pim rp 192.0.2.5 203.0.113.0/24
+net add pim rp 192.0.2.5 239.1.1.0/24
 net add pim spt-switchover infinity-and-beyond
 net add bgp bestpath as-path multipath-relax
 net add bgp router-id 172.16.0.17
@@ -1929,8 +1703,6 @@ net add interface eth0 ip address 192.168.0.15/24
 net add interface eth0 ip gateway 192.168.0.2
 net add interface eth0 vrf mgmt
 net add interface swp1 alias Local Node spine01 and Ports swp1 <==> Remote Node/s leaf01 and Ports swp1
-net add interface swp1-6 link speed 10000
-net add interface swp1-6 mtu 9202
 net add interface swp2 alias Local Node spine01 and Ports swp2 <==> Remote Node/s leaf01 and Ports swp2
 net add interface swp3 alias Local Node spine01 and Ports swp3 <==> Remote Node/s leaf02 and Ports swp1
 net add interface swp4 alias Local Node spine01 and Ports swp4 <==> Remote Node/s leaf02 and Ports swp2
@@ -1965,7 +1737,7 @@ spine01(config)# log file /var/log/frr/zebra.log
 spine01(config)# log file /var/log/frr/bgpd.log
 spine01(config)# log timestamp precision 6
 spine01(config)# ip forwarding
-spine01(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+spine01(config)# ip pim rp 192.0.2.5 239.1.1.0/24
 spine01(config)# ip pim spt-switchover infinity-and-beyond
 spine01(config)# debug bgp zebra
 spine01(config)# debug zebra vxlan
@@ -2104,7 +1876,7 @@ net add pim debug packets register
 net add pim debug packets joins
 net add pim debug trace
 net add msdp debug events
-net add pim rp 192.0.2.5 203.0.113.0/24
+net add pim rp 192.0.2.5 239.1.1.0/24
 net add pim spt-switchover infinity-and-beyond
 net add bgp bestpath as-path multipath-relax
 net add bgp router-id 172.16.0.18
@@ -2149,8 +1921,6 @@ net add interface eth0 ip address 192.168.0.15/24
 net add interface eth0 ip gateway 192.168.0.2
 net add interface eth0 vrf mgmt
 net add interface swp1 alias Local Node spine02 and Ports swp1 <==> Remote Node/s leaf01 and Ports swp3
-net add interface swp1-16 link speed 10000
-net add interface swp1-16 mtu 9202
 net add interface swp2 alias Local Node spine02 and Ports swp2 <==> Remote Node/s leaf01 and Ports swp4
 net add interface swp3 alias Local Node spine02 and Ports swp3 <==> Remote Node/s leaf02 and Ports swp3
 net add interface swp4 alias Local Node spine02 and Ports swp4 <==> Remote Node/s leaf02 and Ports swp4
@@ -2185,7 +1955,7 @@ spine02(config)# log file /var/log/frr/zebra.log
 spine02(config)# log file /var/log/frr/bgpd.log
 spine02(config)# log timestamp precision 6
 spine02(config)# ip forwarding
-spine02(config)# ip pim rp 192.0.2.5 203.0.113.0/24
+spine02(config)# ip pim rp 192.0.2.5 239.1.1.0/24
 spine02(config)# ip pim spt-switchover infinity-and-beyond
 spine02(config)# debug bgp zebra
 spine02(config)# debug zebra vxlan
@@ -2326,100 +2096,68 @@ iface lo
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf01 and Ports swp1 <==> Remote  Node/s spine01 and Ports swp1
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf01 and Ports swp2 <==> Remote  Node/s spine01 and Ports swp2
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf01 and Ports swp3 <==> Remote  Node/s spine02 and Ports swp1
 
 auto swp4
 iface swp4
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf01 and Ports swp4 <==> Remote  Node/s spine02 and Ports swp2
 
 auto swp5
 iface swp5
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp6
 iface swp6
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp7
 iface swp7
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp8
 iface swp8
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto hostbond1
 iface hostbond1
-        bond-slaves swp5
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp5
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf01 and Ports swp5 <==> Remote  Node/s host01 and Ports swp1
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1000
 
 auto hostbond2
 iface hostbond2
-        bond-slaves swp6
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp6
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf01 and Ports swp6 <==> Remote  Node/s host02 and Ports swp1
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1001
 
 auto hostbond3
 iface hostbond3
-        bond-slaves swp7
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp7
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf01 and Ports swp7 <==> Remote  Node/s host03 and Ports swp1
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1002
 
 auto hostbond4
 iface hostbond4
-        bond-slaves swp8
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp8
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf01 and Ports swp8 <==> Remote  Node/s host04 and Ports swp1
     bridge-pvid 1000
 
@@ -2430,10 +2168,9 @@ iface vx-1000
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.100
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.100
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1001
 iface vx-1001
@@ -2442,10 +2179,9 @@ iface vx-1001
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.101
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.101
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1002
 iface vx-1002
@@ -2454,10 +2190,9 @@ iface vx-1002
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.102
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.102
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1003
 iface vx-1003
@@ -2466,10 +2201,9 @@ iface vx-1003
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.103
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.103
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1004
 iface vx-1004
@@ -2478,10 +2212,9 @@ iface vx-1004
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.104
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.104
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1005
 iface vx-1005
@@ -2490,10 +2223,9 @@ iface vx-1005
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.105
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.105
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1006
 iface vx-1006
@@ -2502,10 +2234,9 @@ iface vx-1006
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.106
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.106
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1007
 iface vx-1007
@@ -2514,10 +2245,9 @@ iface vx-1007
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.107
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.107
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1008
 iface vx-1008
@@ -2526,10 +2256,9 @@ iface vx-1008
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.108
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.108
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1009
 iface vx-1009
@@ -2538,10 +2267,9 @@ iface vx-1009
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.109
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.109
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-4001
 iface vx-4001
@@ -2550,10 +2278,8 @@ iface vx-4001
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.29
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-4002
 iface vx-4002
@@ -2562,10 +2288,8 @@ iface vx-4002
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.30
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-4003
 iface vx-4003
@@ -2574,10 +2298,8 @@ iface vx-4003
     vxlan-local-tunnelip 172.16.0.21
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.31
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto bridge
 iface bridge
@@ -2737,100 +2459,68 @@ iface lo
     alias BGP un-numbered Use for Vxlan Src Tunnel
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf02 and Ports swp1 <==> Remote  Node/s spine01 and Ports swp3
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf02 and Ports swp2 <==> Remote  Node/s spine01 and Ports swp4
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf02 and Ports swp3 <==> Remote  Node/s spine02 and Ports swp3
 
 auto swp4
 iface swp4
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf02 and Ports swp4 <==> Remote  Node/s spine02 and Ports swp4
 
 auto swp5
 iface swp5
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp6
 iface swp6
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp7
 iface swp7
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp8
 iface swp8
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto hostbond1
 iface hostbond1
-        bond-slaves swp5
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp5
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf02 and Ports swp5 <==> Remote  Node/s host01 and Ports swp2
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1000
 
 auto hostbond2
 iface hostbond2
-        bond-slaves swp6
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp6
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf02 and Ports swp6 <==> Remote  Node/s host02 and Ports swp2
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1001
 
 auto hostbond3
 iface hostbond3
-        bond-slaves swp7
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp7
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf02 and Ports swp7 <==> Remote  Node/s host03 and Ports swp2
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1002
 
 auto hostbond4
 iface hostbond4
-        bond-slaves swp8
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp8
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf02 and Ports swp8 <==> Remote  Node/s host04 and Ports swp1
     bridge-pvid 1000
 
@@ -2841,10 +2531,9 @@ iface vx-1000
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.100
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.100
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1001
 iface vx-1001
@@ -2853,10 +2542,9 @@ iface vx-1001
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.101
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.101
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1002
 iface vx-1002
@@ -2865,10 +2553,9 @@ iface vx-1002
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.102
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.102
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1003
 iface vx-1003
@@ -2877,10 +2564,9 @@ iface vx-1003
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.103
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.103
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1004
 iface vx-1004
@@ -2889,10 +2575,9 @@ iface vx-1004
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.104
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.104
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1005
 iface vx-1005
@@ -2901,10 +2586,9 @@ iface vx-1005
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.105
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.105
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1006
 iface vx-1006
@@ -2913,10 +2597,9 @@ iface vx-1006
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.106
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.106
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1007
 iface vx-1007
@@ -2925,10 +2608,9 @@ iface vx-1007
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.107
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.107
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1008
 iface vx-1008
@@ -2937,10 +2619,9 @@ iface vx-1008
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.108
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.108
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1009
 iface vx-1009
@@ -2949,10 +2630,9 @@ iface vx-1009
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.109
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.109
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-4001
 iface vx-4001
@@ -2961,10 +2641,8 @@ iface vx-4001
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.29
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-4002
 iface vx-4002
@@ -2973,10 +2651,8 @@ iface vx-4002
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.30
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-4003
 iface vx-4003
@@ -2985,10 +2661,8 @@ iface vx-4003
     vxlan-local-tunnelip 172.16.0.22
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.31
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto bridge
 iface bridge
@@ -3148,100 +2822,68 @@ iface lo
     alias BGP un-numbered Use for Vxlan Src Tunnel
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf03 and Ports swp1 <==> Remote  Node/s spine01 and Ports swp5
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf03 and Ports swp2 <==> Remote  Node/s spine01 and Ports swp6
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf03 and Ports swp3 <==> Remote  Node/s spine02 and Ports swp5
 
 auto swp4
 iface swp4
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node leaf03 and Ports swp4 <==> Remote  Node/s spine02 and Ports swp6
 
 auto swp5
 iface swp5
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp6
 iface swp6
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp7
 iface swp7
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp8
 iface swp8
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto hostbond1
 iface hostbond1
-        bond-slaves swp5
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp5
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf03 and Ports swp5 <==> Remote  Node/s host01 and Ports swp3
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1000
 
 auto hostbond2
 iface hostbond2
-        bond-slaves swp6
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp6
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf03 and Ports swp6 <==> Remote  Node/s host02 and Ports swp3
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1001
 
 auto hostbond3
 iface hostbond3
-        bond-slaves swp7
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp7
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf03 and Ports swp7 <==> Remote  Node/s host03 and Ports swp3
     es-sys-mac 44:38:39:ff:ff:01
     bridge-pvid 1002
 
 auto hostbond4
 iface hostbond4
-        bond-slaves swp8
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp8
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s leaf03 and Ports swp8 <==> Remote  Node/s host04 and Ports swp1
     bridge-pvid 1000
 
@@ -3252,10 +2894,9 @@ iface vx-1000
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.100
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.100
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1001
 iface vx-1001
@@ -3264,10 +2905,9 @@ iface vx-1001
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.101
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.101
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1002
 iface vx-1002
@@ -3276,10 +2916,9 @@ iface vx-1002
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.102
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.102
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1003
 iface vx-1003
@@ -3288,10 +2927,9 @@ iface vx-1003
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.103
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.103
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1004
 iface vx-1004
@@ -3300,10 +2938,9 @@ iface vx-1004
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.104
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.104
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1005
 iface vx-1005
@@ -3312,10 +2949,9 @@ iface vx-1005
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.105
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.105
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1006
 iface vx-1006
@@ -3324,10 +2960,9 @@ iface vx-1006
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.106
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.106
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1007
 iface vx-1007
@@ -3336,10 +2971,9 @@ iface vx-1007
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.107
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.107
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1008
 iface vx-1008
@@ -3348,10 +2982,9 @@ iface vx-1008
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.108
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.108
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-1009
 iface vx-1009
@@ -3360,10 +2993,9 @@ iface vx-1009
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.113.109
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    vxlan-mcastgrp 239.1.1.109
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-4001
 iface vx-4001
@@ -3372,10 +3004,8 @@ iface vx-4001
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.29
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-4002
 iface vx-4002
@@ -3384,10 +3014,8 @@ iface vx-4002
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.30
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto vx-4003
 iface vx-4003
@@ -3396,10 +3024,8 @@ iface vx-4003
     vxlan-local-tunnelip 172.16.0.23
     bridge-learning off
     bridge-arp-nd-suppress on
-    vxlan-mcastgrp 203.0.13.31
-         mstpctl-portbpdufilter yes
-         mstpctl-bpduguard  yes
-         mtu 9152
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
 
 auto bridge
 iface bridge
@@ -3562,50 +3188,26 @@ iface lo
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine01 and Ports swp1 <==> Remote  Node/s leaf01 and Ports swp1
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine01 and Ports swp2 <==> Remote  Node/s leaf01 and Ports swp2
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine01 and Ports swp3 <==> Remote  Node/s leaf02 and Ports swp1
 
 auto swp4
 iface swp4
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine01 and Ports swp4 <==> Remote  Node/s leaf02 and Ports swp2
 
 auto swp5
 iface swp5
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine01 and Ports swp5 <==> Remote  Node/s leaf03 and Ports swp1
 
 auto swp6
 iface swp6
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine01 and Ports swp6 <==> Remote  Node/s leaf03 and Ports swp2
 
 cumulus@spine01:~$
@@ -3641,50 +3243,26 @@ iface lo
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine02 and Ports swp1 <==> Remote  Node/s leaf01 and Ports swp3
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine02 and Ports swp2 <==> Remote  Node/s leaf01 and Ports swp4
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine02 and Ports swp3 <==> Remote  Node/s leaf02 and Ports swp3
 
 auto swp4
 iface swp4
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine02 and Ports swp4 <==> Remote  Node/s leaf02 and Ports swp4
 
 auto swp5
 iface swp5
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine02 and Ports swp5 <==> Remote  Node/s leaf03 and Ports swp3
 
 auto swp6
 iface swp6
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
-        mtu  9202
     alias Local Node spine02 and Ports swp6 <==> Remote  Node/s leaf03 and Ports swp4
 
 cumulus@spine02:~$
@@ -3718,31 +3296,21 @@ iface lo inet loopback
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto torbond1
 iface torbond1
     address 172.20.0.9/24
     address 2001:db8::9/64
-        bond-slaves swp1 swp2 swp3
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp1 swp2 swp3
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s host01 and Ports swp1 swp2 swp3 <==> Remote  Node/s leaf01 leaf02 leaf03 and Ports swp5 swp5 swp5
     post-up ip route replace default via 172.20.0.1 dev torbond1
     post-up ip -6 route replace default via 2001:db8::1 dev torbond1
@@ -3895,31 +3463,21 @@ iface lo inet loopback
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto torbond1
 iface torbond1
     address 172.20.1.10/24
     address 2001:db8:0:1::a/64
-        bond-slaves swp1 swp2 swp3
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp1 swp2 swp3
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s host02 and Ports swp1 swp2 swp3 <==> Remote  Node/s leaf01 leaf02 leaf03 and Ports swp6 swp6 swp6
     post-up ip route replace default via 172.20.1.1 dev torbond1
     post-up ip -6 route replace default via 2001:db8:0:1::1 dev torbond1
@@ -4072,31 +3630,21 @@ iface lo inet loopback
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto torbond1
 iface torbond1
     address 172.20.1.11/24
     address 2001:db8:0:1::b/64
-        bond-slaves swp1 swp2 swp3
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp1 swp2 swp3
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s host03 and Ports swp1 swp2 swp3 <==> Remote  Node/s leaf01 leaf02 leaf03 and Ports swp7 swp7 swp7
     post-up ip route replace default via 172.20.1.1 dev torbond1
     post-up ip -6 route replace default via 2001:db8:0:1::1 dev torbond1
@@ -4249,31 +3797,21 @@ iface lo inet loopback
 
 auto swp1
 iface swp1
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp2
 iface swp2
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto swp3
 iface swp3
-    link-speed 10000
-    link-duplex full
-    link-autoneg off
 
 auto torbond1
 iface torbond1
     address 172.20.1.10/24
     address 2001:db8:0:1::a/64
-        bond-slaves swp1 swp2 swp3
-        bond-mode 802.3ad
-        bond-min-links 1
-        bond-lacp-rate 1
-        mtu  9152
+    bond-slaves swp1 swp2 swp3
+    bond-mode 802.3ad
+    bond-min-links 1
+    bond-lacp-rate 1
     alias Local Node/s host04 and Ports swp1 swp2 swp3 <==> Remote  Node/s leaf01 leaf02 leaf03 and Ports swp8 swp8 swp8
     post-up ip route replace default via 172.20.1.1 dev torbond1
     post-up ip -6 route replace default via 2001:db8:0:1::1 dev torbond1
@@ -4419,7 +3957,7 @@ log file /var/log/frr/bgpd.log
 log timestamp precision 6
 evpn mh startup-delay 30
 zebra nexthop proto only
-ip pim rp 192.0.2.5 203.0.113.0/24
+ip pim rp 192.0.2.5 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 service integrated-vtysh-config
 !
@@ -4561,7 +4099,7 @@ debug mroute
 debug mroute detail
 debug zebra mlag
 debug msdp events
-ip pim rp 192.0.2.5 203.0.113.0/24
+ip pim rp 192.0.2.5 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 no debug zebra kernel
 no debug zebra events
@@ -4713,7 +4251,7 @@ debug mroute
 debug mroute detail
 debug zebra mlag
 debug msdp events
-ip pim rp 192.0.2.5 203.0.113.0/24
+ip pim rp 192.0.2.5 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 no debug zebra kernel
 no debug zebra events
@@ -4865,7 +4403,7 @@ debug mroute
 debug mroute detail
 debug zebra mlag
 debug msdp events
-ip pim rp 192.0.2.5 203.0.113.0/24
+ip pim rp 192.0.2.5 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 !
 !
@@ -5062,7 +4600,7 @@ debug mroute
 debug mroute detail
 debug zebra mlag
 debug msdp events
-ip pim rp 192.0.2.5 203.0.113.0/24
+ip pim rp 192.0.2.5 239.1.1.0/24
 ip pim spt-switchover infinity-and-beyond
 !
 !

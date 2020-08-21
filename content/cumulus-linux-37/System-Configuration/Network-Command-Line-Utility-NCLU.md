@@ -104,8 +104,7 @@ configuration with the following commands:
   from NCLU commands are cleaned up periodically with a snapper cron job.
 - `net commit delete` deletes one or more snapshots created when
   committing changes with NCLU.
-- `net del all` deletes all configurations and stops the IEEE 802.1X
-  service.
+- `net del all` deletes all configurations.
 
     {{%notice note%}}
 
@@ -491,3 +490,11 @@ directed. To only use `stdout`, set the `NCLU_TAB_STDOUT` environment
 variable to *true*. The value is not case sensitive.
 
 {{%/notice%}}
+
+## Caveats and Errata
+
+### Unsupported Interface Names
+NCLU does not support interfaces named `dev`.
+
+### Bonds With No Configured Members
+If a bond interface is configured and it contains no members NCLU will report the interace does not exist. 

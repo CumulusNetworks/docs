@@ -164,7 +164,7 @@ This example shows changes that have been made to the cluster in the last hour. 
 
 ## View Kubernetes Pod Information
 
-You can show configuration and status of the pods in a cluster, including the names, labels, addresses, associated cluster and containers, and whether the pod is running. This example shows pods for FRR, Nginx, Calico, and various Kubernetes components sorted by master node.
+You can show configuration and status of the pods in a cluster, including the names, labels, addresses, associated cluster and containers, and whether the pod is running. This example shows pods for FRR, `nginx`, Calico, and various Kubernetes components sorted by master node.
 
     cumulus@host:~$ netq show kubernetes pod
     Matching kube_pod records:
@@ -463,7 +463,7 @@ You can view information about the daemon set running on the node. This example 
 
 ### View Pods on a Node
 
-You can view information about the pods on the node. The first example shows all pods running *nginx* in the default namespace for the *server11* cluster. The second example shows all pods running any application in the default namespace for the *server11* cluster.
+You can view information about the pods on the node. The first example shows all pods running `nginx` in the default namespace for the *server11* cluster. The second example shows all pods running any application in the default namespace for the *server11* cluster.
 
     cumulus@host:~$ netq server11 show kubernetes pod namespace default label nginx
     Matching kube_pod records:
@@ -491,7 +491,7 @@ When replicas have been created, you are then able to view information about the
 
 ## View Kubernetes Deployment Information
 
-For each depolyment, you can view the number of replicas associated with an application. this example shows information for a deployment of the nginx application:
+For each depolyment, you can view the number of replicas associated with an application. This example shows information for a deployment of the `nginx` application:
 
     cumulus@host:~$ netq server11 show kubernetes deployment name nginx
     Matching kube_deployment records:

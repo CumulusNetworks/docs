@@ -40,6 +40,16 @@ CRC-32               0xFE   4 0x96543BC5
 (checksum valid)
 ```
 
+{{%notice info%}}
+
+Edgecore AS5712-54X, AS5812-54T, AS5812-54X, AS6712-32X and AS6812-32X switches support a second source power supply. This second source device presents at a different I2C address than the primary. As a result, whenever `decode-syseeprom` attempts to read the EEPROM on the PSUs in these systems, both addresses are checked. When the driver reads the location that is not populated, a warning message like the following is logged:
+
+    Oct 18 09:54:41 lfc-1ao15 decode-syseeprom: Unable to find eeprom at /sys/bus/i2c/devices/11-0050/eeprom for psu2
+
+This is expected behavior on these platforms.
+
+{{%/notice%}}
+
 ### Command Options
 
 Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t <target>][-e][-m]`
@@ -54,7 +64,7 @@ Usage: `/usr/cumulus/bin/decode-syseeprom [-a][-r][-s [args]][-t <target>][-e][-
 | `-t <target>` | Prints the target EEPROM (board, psu2, psu1) information.<br><br>**Note**: Some systems that use a BMC to manage sensors (such as the Dell Z9264 and EdgeCore Minipack AS8000) do not provide the PSU EEPROM contents. This is because the BMC connects to the PSUs via I2C and the main CPU of the switch has no direct access. |
 | `--serial`, `-e` | Prints the device serial number. |
 | `-m` | Prints the base MAC address for management interfaces. |
-| `--init` | Clears and initializes the board EEPROM cache |
+| `--init` | Clears and initializes the board EEPROM cache. |
 
 ### Related Commands
 

@@ -67,9 +67,7 @@ To configure custom hash, edit the `/usr/lib/python2.7/dist-packages/cumulus/__c
 2. To enable a field, set the field to `true`. To disable a field, set the field to `false`.
 3. Restart the `switchd` service:
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
+   {{<cl/restart-switchd>}}
 
 The following shows an example `datapath.conf` file:
 

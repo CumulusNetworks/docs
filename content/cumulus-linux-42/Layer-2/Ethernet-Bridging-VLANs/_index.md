@@ -326,7 +326,7 @@ cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
 
 {{%/notice%}}
 
-## Caveats and Errata
+## Considerations
 
 - A bridge cannot contain multiple subinterfaces of the **same** port. Attempting this configuration results in an error.
 - In environments where both VLAN-aware and traditional bridges are used, if a traditional bridge has a subinterface of a bond that is a normal interface in a VLAN-aware bridge, the bridge is flapped when the traditional bridge's bond subinterface is brought down.

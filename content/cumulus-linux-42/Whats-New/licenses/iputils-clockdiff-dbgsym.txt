@@ -1,1 +1,1 @@
-iputils-clockdiff-dbgsym has no debian/copyright file
+iputils-clockdiff-dbgsym has no copyright file

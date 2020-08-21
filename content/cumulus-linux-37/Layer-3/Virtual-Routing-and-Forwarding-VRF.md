@@ -215,18 +215,17 @@ details how to do this.
 
 In Cumulus Linux, the following services work with VRF instances:
 
-- chef-client
-- collectd
-- dhcpd
-- dhcrelay
-- hsflowd
-- netq-agent
-- ntp
-- puppet
-- snmpd
-- snmptrapd
-- ssh
-- zabbix-agent
+- `chef-client`
+- `collectd`
+- `dhcpd`
+- `dhcrelay`
+- `hsflowd`
+- `netq-agent`
+- `ntp`
+- `puppet`
+- `snmptrapd`
+- `ssh`
+- `zabbix-agent`
 
 {{%notice note%}}
 
@@ -301,7 +300,7 @@ the steps below. To configure static route leaking with EVPN, see
         vrf_route_leak_enable = TRUE
         vrf_route_leak_enable_dynamic = false
 
-        cumulus@switch:~$ sudo systemctl restart switchd.service
+    {{<cl/restart-switchd>}}
 
     {{%notice note%}}
 
@@ -418,7 +417,7 @@ between a pair of VRFs.
         vrf_route_leak_enable = false
         vrf_route_leak_enable_dynamic = TRUE
 
-        cumulus@switch:~$ sudo systemctl restart switchd.service
+    {{<cl/restart-switchd>}}
 
     {{%notice note%}}
 
@@ -1238,7 +1237,7 @@ non-default VRF table using the `dhcpd` and `dhcrelay` services,
 respectively. These services must be managed by `systemd` in order to
 run in a VRF context; in addition, the services must be listed in
 `/etc/vrf/systemd.conf`. By default, this file already lists these two
-services, as well as others like `ntp` and `snmpd`. You can add more
+services, as well as others like `ntp`. You can add more
 services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
 
 If you edit `/etc/vrf/systemd.conf`, run `sudo systemctl daemon-reload`

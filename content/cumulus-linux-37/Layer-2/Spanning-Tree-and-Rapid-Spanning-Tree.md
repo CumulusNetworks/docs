@@ -590,7 +590,8 @@ Storm control provides protection against excessive inbound BUM (broadcast, unkn
 
 {{%notice note%}}
 
-Storm control is *not* supported on a switch with the Tomahawk2 ASIC.
+- Storm control is *not* supported on a switch with the Tomahawk2 ASIC.
+- On Broadcom switches, ARP requests over layer 2 VXLAN bypass broadcast storm control; they are forwarded to the CPU and subjected to embedded control plane QoS instead.
 
 {{%/notice%}}
 
@@ -608,7 +609,9 @@ interface.swp1.storm_control.unknown_unicast = 500
 ...
 ```
 
-When you update the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect. Run the `sudo systemctl restart switchd.service` command.
+When you update the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect.
+
+{{<cl/restart-switchd>}}
 
 Alternatively, you can run the following commands. The configuration below takes effect immediately, but does not persist if you reboot the switch. For a persistent configuration, edit the `/etc/cumulus/switchd.conf` file, as described above.
 

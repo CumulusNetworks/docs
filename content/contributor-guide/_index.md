@@ -4,7 +4,6 @@ author: Cumulus Networks
 weight: 1
 cascade:
   siteSlug: contributor-guide
-  version: "2.0"
   product: Documentation Contributor Guide
 ---
 Welcome to the Cumulus Networks documentation Contributor Guide!

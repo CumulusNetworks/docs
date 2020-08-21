@@ -12,7 +12,7 @@ When you want to monitor the health of a particular switch, open the small Switc
 
 To view the summary:
 
-1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Event-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/>, and select Device|Switches. A dialog box opens.
+1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/>, and select Device|Switches. A dialog box opens.
 
     {{< figure src="/images/netq/dev-switch-open-switch-card.png" width="250" >}}
 
@@ -36,10 +36,10 @@ When you are monitoring switches that have been problematic or are newly install
 
 To view the key metrics, open the medium Switch card. The card shows you the overall switch health score and the scores for the key metrics that comprise that score. The key metric scores are based on the number of alarms attributed to the following activities on the switch:
 
-- network services, such as BGP, EVPN, MLAG, NTP, and so forth
-- scheduled traces
-- interface performance
-- platform performance
+- Network services, such as BGP, EVPN, MLAG, NTP, and so forth
+- Scheduled traces
+- Interface performance
+- Platform performance
 
 {{<figure src="/images/netq/dev-switch-medium-alarms-charts-231.png" width="420">}}
 

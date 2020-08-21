@@ -521,32 +521,34 @@ graph from working correctly.
 
 ## Caveats and Errata
 
-  - Prior to version 2.1, Cumulus Linux stored the `ptmd` configuration
+- Prior to version 2.1, Cumulus Linux stored the `ptmd` configuration
     files in `/etc/cumulus/ptm.d`. When you upgrade to version 2.1 or
     later, all the existing `ptmd` files are copied from their original
     location to `/etc/ptm.d` with a `dpkg-old` extension, except for
     `topology.dot`, which gets copied to `/etc/ptm.d`.
 
-    If you customized the `if-topo-pass` and `if-topo-fail` scripts,
+  If you customized the `if-topo-pass` and `if-topo-fail` scripts,
     they are also copied to `dpkg-old`, and you must modify them so they
     can parse the CSV output correctly.
 
-    Sample `if-topo-pass` and `if-topo-fail` scripts are available in
+  Sample `if-topo-pass` and `if-topo-fail` scripts are available in
     `/etc/ptm.d`. A sample `topology.dot` file is available in
     `/usr/share/doc/ptmd/examples`.
 
-  - When PTMD is incorrectly in a failure state and the Zebra interface
+- When PTMD is incorrectly in a failure state and the Zebra interface
     is enabled, PIF BGP sessions are not establishing the route, but the
     subinterface on top of it does establish routes.
 
-    If the subinterface is configured on the physical interface and the
+  If the subinterface is configured on the physical interface and the
     physical interface is incorrectly marked as being in a PTM FAIL
     state, routes on the physical interface are not processed in FRRouting,
     but the subinterface is working.
 
+- If an LLDP neighbor advertises a `PortDescr` that contains commas, `ptmctl -d` splits the string on the commas and misplaces its components in other columns. Do not use commas in your port descriptions.
+
 ## Related Information
 
-  - {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection (BFD)">}}
-  - {{<exlink url="http://www.graphviz.org" text="Graphviz">}}
-  - {{<exlink url="http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol" text="LLDP on Wikipedia">}}
-  - {{<exlink url="https://github.com/CumulusNetworks/ptm" text="PTMd GitHub repo">}}
+- {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection (BFD)">}}
+- {{<exlink url="http://www.graphviz.org" text="Graphviz">}}
+- {{<exlink url="http://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol" text="LLDP on Wikipedia">}}
+- {{<exlink url="https://github.com/CumulusNetworks/ptm" text="PTMd GitHub repo">}}

@@ -1,1 +1,1 @@
-console-setup-linux has no debian/copyright file
+console-setup-linux has no copyright file

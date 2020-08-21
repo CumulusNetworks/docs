@@ -8,7 +8,7 @@ The Cumulus Linux bridge driver supports two configuration modes, one that is VL
 
 For {{<link url="Traditional-Bridge-Mode" text="traditional Linux bridges">}}, the kernel supports VLANs in the form of VLAN subinterfaces. Enabling bridging on multiple VLANs means configuring a bridge for each VLAN and, for each member port on a bridge, creating one or more VLAN subinterfaces out of that port. This mode poses scalability challenges in terms of configuration size as well as boot time and run time state management, when the number of ports times the number of VLANs becomes large.
 
-The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with **one single instance** of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port/VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
+The VLAN-aware mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with **one single instance** of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port is configured with the list of allowed VLANs as well as its port VLAN ID, either primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This significantly reduces the configuration size, and eliminates the large overhead of managing the port/VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
 {{%notice tip%}}
 
@@ -136,15 +136,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 resv_vlan_range
 ```
 
-```
-cumulus@switch:~$ sudo systemctl restart switchd.service
-```
-
-{{%notice note%}}
-
-While restarting `switchd`, all running ports will flap, and forwarding will be interrupted.
-
-{{%/notice%}}
+{{<cl/restart-switchd>}}
 
 ## VLAN Filtering (VLAN Pruning)
 
@@ -361,9 +353,9 @@ bridge 1
 
 {{< /tabs >}}
 
-## VLAN Layer 3 Addressing - Switch Virtual Interfaces and Other VLAN Attributes
+## VLAN Layer 3 Addressing
 
-When configuring the VLAN attributes for the bridge, specify the attributes for each VLAN interface. If you are configuring the SVI for the native VLAN, you must declare the native VLAN and specify its IP address. Specifying the IP address in the bridge stanza itself returns an error.
+When configuring the VLAN attributes for the bridge, specify the attributes for each VLAN interface. If you are configuring the switch virtual interface (SVI) for the native VLAN, you must declare the native VLAN and specify its IP address. Specifying the IP address in the bridge stanza itself returns an error.
 
 {{< tabs "TabID370 ">}}
 
@@ -647,13 +639,13 @@ cumulus@switch:~$ sudo bridge fdb show
 12:12:12:12:12:12 dev bridge master bridge permanent
 ```
 
-## Caveats and Errata
+## Considerations
 
 ### Spanning Tree Protocol (STP)
 
 - Because STP is enabled on a per-bridge basis, VLAN-aware mode supports a single instance of STP across all VLANs. A common practice when using a single STP instance for all VLANs is to define every VLAN on every switch in the spanning tree instance.
 - `mstpd` remains the user space protocol daemon.
-- Cumulus Linux supports {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree" text="Rapid Spanning Tree Protocol (RSTP)">}}.
+- Cumulus Linux supports {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Rapid Spanning Tree Protocol (RSTP)">}}.
 
 ### IGMP Snooping
 

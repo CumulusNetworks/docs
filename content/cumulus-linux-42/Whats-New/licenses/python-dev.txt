@@ -1,1 +1,1 @@
-python-dev has no debian/copyright file
+python-dev has no copyright file

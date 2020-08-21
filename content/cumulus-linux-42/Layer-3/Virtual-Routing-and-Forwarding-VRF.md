@@ -211,7 +211,6 @@ The following services work with VRF instances:
 - `netq-agent`
 - `ntp`
 - `puppet`
-- `snmpd`
 - `snmptrapd`
 - `ssh`
 - `zabbix-agent`
@@ -235,7 +234,7 @@ The most common use case for VRF is to use multiple independent routing and forw
 - Route leaking is not allowed for overlapping addresses.
 - Route leaking is supported for both IPv4 and IPv6 routes.
 - Route leaking is supported with EVPN in a symmetric routing configuration only.
-- VRF route leaking is not supported between the tenant VRF and the default VRF with onlink next hops (bgp unnumbered).
+- VRF route leaking is not supported between the tenant VRF and the default VRF with onlink next hops (BGP unnumbered).
 - The NCLU command to configure route leaking fails if the VRF is named `red` (lowercase letters only). This is not a problem if the VRF is named `RED` (uppercase letters) or has a name other than red. To work around this issue, rename the VRF or run the `vtysh` command instead. This is a known limitation in `network-docopt`.
 
 {{%notice note%}}
@@ -297,7 +296,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -358,7 +357,7 @@ cumulus@switch:~$
 
 ### Verify Route Leaking Configuration
 
-To check the status of VRF route leaking, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
+To check the status of VRF route leaking, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command or the `vtysh` `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
 
 ```
 cumulus@switch:~$ net show bgp vrf turtle ipv4 unicast route-leak
@@ -371,8 +370,8 @@ RD: 10.1.1.1:2
 Export RT: 10.1.1.1:2
 ```
 
-- To view the BGP routing table, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
-- To view the FRR IP routing table, use the NCLU `net show route vrf <vrf-name>` command or the vtysh `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
+- To view the BGP routing table, run the NCLU `net show bgp vrf <vrf-name> ipv4|ipv6 unicast` command or the `vtysh` `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
+- To view the FRRouting IP routing table, use the NCLU `net show route vrf <vrf-name>` command or the `vtysh` `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
 
 The following example commands show all routes in VRF `turtle`, including routes leaked from VRF `rocket`:
 
@@ -527,7 +526,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -611,7 +610,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -633,9 +632,415 @@ router ospf vrf vrf1
 ...
 ```
 
-## Show VRF Information
+## BGP Unnumbered Interfaces with VRF
 
-To show VRF information, you can use NCLU, vtysh, or Linux commands.
+{{<link url="Border-Gateway-Protocol-BGP#unnumbered-interfaces" text="BGP unnumbered interface configurations">}} are supported with VRF. In BGP unnumbered, there are no addresses on any interface. However, debugging tools like `traceroute` need at least a single IP address per node as the node's source IP address. Typically, this address is assigned to the loopback device. With VRF, you need a loopback device for each VRF table since VRF is based on interfaces, not IP addresses. While Linux does not support multiple loopback devices, it does support the concept of a dummy interface, which is used to achieve the same goal.
+
+An IP address can be associated with the VRF device, which will then act as the dummy (loopback-like) interface for that VRF.
+
+The BGP unnumbered configuration is the same as for a non-VRF, applied under the VRF context.
+
+To configure BGP unnumbered:
+
+{{< tabs "TabID1081 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add vrf vrf1 vrf-table auto
+cumulus@switch:~$ net add vrf vrf1 ip address 6.1.0.6/32
+cumulus@switch:~$ net add vrf vrf1 ipv6 address 2001:6:1::6/128
+cumulus@switch:~$ net add interface swp1 link speed 10000
+cumulus@switch:~$ net add interface swp1 link autoneg off
+cumulus@switch:~$ net add interface swp1 vrf vrf1
+cumulus@switch:~$ net add vlan 101 ip address 20.1.6.1/24
+cumulus@switch:~$ net add vlan 101 ipv6 address 2001:20:1:6::1/80
+cumulus@switch:~$ net add bridge bridge ports vlan101
+```
+
+Here is the FRRouting BGP configuration:
+
+```
+cumulus@switch:~$ net add bgp vrf vrf1 autonomous-system 65001
+cumulus@switch:~$ net add bgp vrf vrf1 bestpath as-path multipath-relax
+cumulus@switch:~$ net add bgp vrf vrf1 bestpath compare-routerid
+cumulus@switch:~$ net add bgp vrf vrf1 neighbor LEAF peer-group
+cumulus@switch:~$ net add bgp vrf vrf1 neighbor LEAF remote-as external
+cumulus@switch:~$ net add bgp vrf vrf1 neighbor LEAF capability extended-nexthop
+cumulus@switch:~$ net add bgp vrf vrf1 neighbor swp1.101 interface peer-group LEAF
+cumulus@switch:~$ net add bgp vrf vrf1 neighbor swp2.101 interface peer-group LEAF
+cumulus@switch:~$ net add bgp vrf vrf1 ipv4 unicast redistribute connected
+cumulus@switch:~$ net add bgp vrf vrf1 ipv4 unicast neighbor LEAF activate
+cumulus@switch:~$ net add bgp vrf vrf1 ipv6 unicast redistribute connected
+cumulus@switch:~$ net add bgp vrf vrf1 ipv6 unicast neighbor LEAF activate
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file. For example:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1
+iface swp1
+    link-autoneg on
+    link-speed 10000
+    vrf vrf1
+
+auto bridge
+iface bridge
+    bridge-ports vlan101
+    bridge-vids 101
+    bridge-vlan-aware yes
+
+auto vlan101
+iface vlan101
+    address 20.1.6.1/24
+    address 2001:20:1:6::1/80
+    vlan-id 101
+    vlan-raw-device bridge
+
+auto vrf1
+iface vrf1
+    address 6.1.0.6/32
+    address 2001:6:1::6/128
+    vrf-table auto
+...
+```
+
+Here is the FRRouting BGP configuration:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65001 vrf vrf1
+switch(config-router)# no bgp default ipv4-unicast
+switch(config-router)# bgp bestpath as-path multipath-relax
+switch(config-router)# bgp bestpath compare-routerid
+switch(config-router)# neighbor LEAF peer-group
+switch(config-router)# neighbor LEAF remote-as external
+switch(config-router)# neighbor LEAF capability extended-nexthop
+switch(config-router)# neighbor swp1.101 interface peer-group LEAF
+switch(config-router)# neighbor swp2.101 interface peer-group LEAF
+switch(config-router)# address-family ipv4 unicast
+switch(config-router-af)# redistribute connected
+switch(config-router-af)# neighbor LEAF activate
+switch(config-router-af)# exit
+switch(config-router)# address-family ipv6 unicast
+switch(config-router-af)# redistribute connected
+switch(config-router-af)# neighbor LEAF activate
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65001 vrf vrf1
+ no bgp default ipv4-unicast
+ bgp bestpath as-path multipath-relax
+ bgp bestpath compare-routerid
+ neighbor LEAF peer-group
+ neighbor LEAF remote-as external
+ neighbor LEAF capability extended-nexthop
+ neighbor swp1.101 interface peer-group LEAF
+ neighbor swp2.101 interface peer-group LEAF
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  neighbor LEAF activate
+  exit-address-family
+  !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor LEAF activate
+ exit-address-family
+...
+```
+
+## DHCP with VRF
+
+Because you can use VRF to bind IPv4 and IPv6 sockets to non-default VRF tables, you can start DHCP servers and relays in any non-default VRF table using the `dhcpd` and `dhcrelay` services.  These services must be managed by `systemd` to run in a VRF context. In addition, the services must be listed in the `/etc/vrf/systemd.conf` file. By default, this file already lists these two services, as well as others like `ntp`. You can add more services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
+
+If you edit `/etc/vrf/systemd.conf`, run `sudo systemctl daemon-reload` to generate the `systemd` instance files for the newly added services. Then you can start the service in the VRF using `systemctl start <service>@<vrf-name>.service`, where `<service>` is the name of the service (such as `dhcpd` or `dhcrelay`) and `<vrf-name>` is the name of the VRF.
+
+For example, to start the `dhcrelay` service after you configure a VRF named *turtle*, run:
+
+```
+cumulus@switch:~$ sudo systemctl start dhcrelay@turtle.service
+```
+
+To enable the service at boot time, you must also enable the service:
+
+```
+cumulus@switch:~$ sudo systemctl enable dhcrelay@turtle.service
+```
+
+In addition, you need to create a separate default file in `/etc/default` for every instance of a DHCP server and/or relay in a non-default VRF; this is where you set the server and relay options. To run multiple instances of any of these services, you need a separate file for each instance. The files must be named as follows:
+
+- `isc-dhcp-server-<vrf-name>`
+- `isc-dhcp-server6-<vrf-name>`
+- `isc-dhcp-relay-<vrf-name>`
+- `isc-dhcp-relay6-<vrf-name>`
+
+See the example configuration below for more details.
+
+{{%notice note%}}
+
+- Cumulus Linux does **not** support DHCP server and relay across VRFs; the server and host cannot be in different VRF tables. In addition, the server and relay cannot be in different VRF tables.
+- Typically, a service running in the default VRF owns a port across all VRFs. If the VRF local instance is preferred, first disable and stop the global instance.
+- VRF is a layer 3 routing feature; only run programs that use AF\_INET and AF\_INET6 sockets in a VRF. VRF context does not affect any other aspects of the operation of a program.
+- This method only works with `systemd`-based services.
+
+{{%/notice%}}
+
+### Example Configuration
+
+In the following example, there is one IPv4 network with a VRF named
+*rocket* and one IPv6 network with a VRF named *turtle*.
+
+|IPv4 DHCP Server/relay network|IPv6 DHCP Server/relay network|
+|---|---|
+|{{< img src = "/images/cumulus-linux/vrf-rocket-dhcp4.png" >}}|{{< img src = "/images/cumulus-linux/vrf-turtle-dhcp6.png" >}}|
+
+Configure each DHCP server and relay as follows:
+
+{{< tabs "TabID1258 ">}}
+
+{{< tab "DHCP Server ">}}
+
+1. Create the file `isc-dhcp-server-rocket` in `/etc/default/`. Here is sample content:
+
+    ```
+    # Defaults for isc-dhcp-server initscript
+    # sourced by /etc/init.d/isc-dhcp-server
+    # installed at /etc/default/isc-dhcp-server by the maintainer scripts
+    #
+    # This is a POSIX shell fragment
+    #
+    # Path to dhcpd's config file (default: /etc/dhcp/dhcpd.conf).
+    DHCPD_CONF="-cf /etc/dhcp/dhcpd-rocket.conf"
+    # Path to dhcpd's PID file (default: /var/run/dhcpd.pid).
+    DHCPD_PID="-pf /var/run/dhcpd-rocket.pid"
+    # Additional options to start dhcpd with.
+    # Don't use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
+    #OPTIONS=""
+    # On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
+    # Separate multiple interfaces with spaces, e.g. "eth0 eth1".
+    INTERFACES="swp2"
+    ```
+
+2. Enable the DHCP server:
+
+    ```
+    cumulus@switch:~$ sudo systemctl enable dhcpd@rocket.service
+    ```
+
+3. Start the DHCP server:
+
+    ```
+    cumulus@switch:~$ sudo systemctl start dhcpd@rocket.service
+    ```
+
+4. Check status:
+
+    ```
+    cumulus@switch:~$ sudo systemctl status dhcpd@rocket.service
+    ```
+
+You can create this configuration using the `vrf` command (see {{<link url="#ipv4-and-ipv6-commands-in-a-vrf-context" text="IPv4 and IPv6 Commands in a VRF Context">}} above for more details):
+
+```
+cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcpd -f -q -cf /
+    /etc/dhcp/dhcpd-rocket.conf -pf /var/run/dhcpd-rocket.pid swp2
+```
+
+{{< /tab >}}
+
+{{< tab "DHCP6 Server ">}}
+
+1. Create the file `isc-dhcp-server6-turtle` in `/etc/default/`. Here is sample content:
+
+    ```
+    # Defaults for isc-dhcp-server initscript
+    # sourced by /etc/init.d/isc-dhcp-server
+    # installed at /etc/default/isc-dhcp-server by the maintainer scripts
+    #
+    # This is a POSIX shell fragment
+    #
+    # Path to dhcpd's config file (default: /etc/dhcp/dhcpd.conf).
+    DHCPD_CONF="-cf /etc/dhcp/dhcpd6-turtle.conf"
+    # Path to dhcpd's PID file (default: /var/run/dhcpd.pid).
+    DHCPD_PID="-pf /var/run/dhcpd6-turtle.pid"
+    # Additional options to start dhcpd with.
+    # Don't use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
+    #OPTIONS=""
+    # On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
+    # Separate multiple interfaces with spaces, e.g. "eth0 eth1".
+    INTERFACES="swp3"
+    ```
+
+2. Enable the DHCP server:
+
+    ```
+    cumulus@switch:~$ sudo systemctl enable dhcpd6@turtle.service
+    ```
+
+3. Start the DHCP server:
+
+    ```
+    cumulus@switch:~$ sudo systemctl start dhcpd6@turtle.service
+    ```
+
+4. Check status:
+
+    ```
+    cumulus@switch:~$ sudo systemctl status dhcpd6@turtle.service
+    ```
+
+You can create this configuration using the `vrf` command (see {{<link url="#ipv4-and-ipv6-commands-in-a-vrf-context" text="IPv4 and IPv6 Commands in a VRF Context">}} above for more details):
+
+```
+cumulus@switch:~$ sudo ip vrf exec turtle dhcpd -6 -q -cf /
+  /etc/dhcp/dhcpd6-turtle.conf -pf /var/run/dhcpd6-turtle.pid swp3
+```
+
+{{< /tab >}}
+
+{{< tab "DHCP Relay ">}}
+
+1. Create the file `isc-dhcp-relay-rocket` in `/etc/default/`. Here is sample content:
+
+    ```
+    # Defaults for isc-dhcp-relay initscript
+    # sourced by /etc/init.d/isc-dhcp-relay
+    # installed at /etc/default/isc-dhcp-relay by the maintainer scripts
+    #
+    # This is a POSIX shell fragment
+    #
+    # What servers should the DHCP relay forward requests to?
+    SERVERS="102.0.0.2"
+    # On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+    # Always include the interface towards the DHCP server.
+    # This variable requires a -i for each interface configured above.
+    # This will be used in the actual dhcrelay command
+    # For example, "-i eth0 -i eth1"
+    INTF_CMD="-i swp2s2 -i swp2s3"
+    # Additional options that are passed to the DHCP relay daemon?
+    OPTIONS=""
+    ```
+
+2. Enable the DHCP relay:
+
+    ```
+    cumulus@switch:~$ sudo systemctl enable dhcrelay@rocket.service
+    ```
+
+3. Start the DHCP relay:
+
+    ```
+    cumulus@switch:~$ sudo systemctl start dhcrelay@rocket.service
+    ```
+
+4. Check status:
+
+    ```
+    cumulus@switch:~$ sudo systemctl status dhcrelay@rocket.service
+    ```
+
+You can create this configuration using the `vrf` command (see {{<link url="#ipv4-and-ipv6-commands-in-a-vrf-context" text="IPv4 and IPv6 Commands in a VRF Context">}} above for more details):
+
+```
+cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcrelay -d -q -i /
+    swp2s2 -i swp2s3 102.0.0.2
+```
+
+{{< /tab >}}
+
+{{< tab "DHCP6 Relay ">}}
+
+1. Create the file `isc-dhcp-relay6-turtle` in `/etc/default/`. Here is sample content:
+
+    ```
+    # Defaults for isc-dhcp-relay initscript
+    # sourced by /etc/init.d/isc-dhcp-relay
+    # installed at /etc/default/isc-dhcp-relay by the maintainer scripts
+    #
+    # This is a POSIX shell fragment
+    #
+    # What servers should the DHCP relay forward requests to?
+    #SERVERS="103.0.0.2"
+    # On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
+    # Always include the interface towards the DHCP server.
+    # This variable requires a -i for each interface configured above.
+    # This will be used in the actual dhcrelay command
+    # For example, "-i eth0 -i eth1"
+    INTF_CMD="-l swp18s0 -u swp18s1"
+    # Additional options that are passed to the DHCP relay daemon?
+    OPTIONS="-pf /var/run/dhcrelay6@turtle.pid"
+    ```
+
+2. Enable the DHCP relay:
+
+    ```
+    cumulus@switch:~$ sudo systemctl enable dhcrelay6@turtle.service
+    ```
+
+3. Start the DHCP relay:
+
+    ```
+    cumulus@switch:~$ sudo systemctl start dhcrelay6@turtle.service
+    ```
+
+4. Check status:
+
+    ```
+    cumulus@switch:~$ sudo systemctl status dhcrelay6@turtle.service
+    ```
+
+You can create this configuration using the `vrf` command (see {{<link url="#ipv4-and-ipv6-commands-in-a-vrf-context" text="IPv4 and IPv6 Commands in a VRF Context">}} above for more details):
+
+```
+cumulus@switch:~$ sudo ip vrf exec turtle /usr/sbin/dhcrelay -d -q -6 -l /
+    swp18s0 -u swp18s1 -pf /var/run/dhcrelay6@turtle.pid
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+## Use ping or traceroute on a VRF
+
+You can run `ping` or `traceroute` on a VRF from the default VRF.
+
+To ping a VRF from the default VRF, run the `ping` `-I <vrf-name>` command. For example:
+
+```
+cumulus@switch:~$ ping -I turtle
+```
+
+To run `traceroute` on a VRF from the default VRF, run the `traceroute -i <vrf-name>` command. For example:
+
+```
+cumulus@switch:~$ sudo traceroute -i turtle
+```
+
+## Troubleshooting
+
+You can use NCLU, `vtysh`, or Linux show commands commands to troubleshoot VRFs.
 
 {{< tabs "TabID642 ">}}
 
@@ -694,7 +1099,7 @@ Total number of prefixes 1
 
 {{%notice note%}}
 
-To show BGP IPv6 routes in the VRF, you need to run the vtysh `show bgp vrf <vrf-name>` command.
+To show BGP IPv6 routes in the VRF, you need to run the `vtysh` `show bgp vrf <vrf-name>` command.
 
 {{%/notice%}}
 
@@ -1066,413 +1471,7 @@ You can also show routes in a VRF using the `ip [-6] route show vrf <vrf-name>` 
 
 {{< /tabs >}}
 
-## BGP Unnumbered Interfaces with VRF
-
-{{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered-interfaces" text="BGP unnumbered interface configurations">}} are supported with VRF. In BGP unnumbered, there are no addresses on any interface. However, debugging tools like `traceroute` need at least a single IP address per node as the node's source IP address. Typically, this address is assigned to the loopback device. With VRF, you need a loopback device for each VRF table since VRF is based on interfaces, not IP addresses. While Linux does not support multiple loopback devices, it does support the concept of a dummy interface, which is used to achieve the same goal.
-
-An IP address can be associated with the VRF device, which will then act as the dummy (loopback-like) interface for that VRF.
-
-The BGP unnumbered configuration is the same as for a non-VRF, applied under the VRF context.
-
-To configure BGP unnumbered:
-
-{{< tabs "TabID1081 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add vrf vrf1 vrf-table auto
-cumulus@switch:~$ net add vrf vrf1 ip address 6.1.0.6/32
-cumulus@switch:~$ net add vrf vrf1 ipv6 address 2001:6:1::6/128
-cumulus@switch:~$ net add interface swp1 link speed 10000
-cumulus@switch:~$ net add interface swp1 link autoneg off
-cumulus@switch:~$ net add interface swp1 vrf vrf1
-cumulus@switch:~$ net add vlan 101 ip address 20.1.6.1/24
-cumulus@switch:~$ net add vlan 101 ipv6 address 2001:20:1:6::1/80
-cumulus@switch:~$ net add bridge bridge ports vlan101
-```
-
-Here is the FRRouting BGP configuration:
-
-```
-cumulus@switch:~$ net add bgp vrf vrf1 autonomous-system 65001
-cumulus@switch:~$ net add bgp vrf vrf1 bestpath as-path multipath-relax
-cumulus@switch:~$ net add bgp vrf vrf1 bestpath compare-routerid
-cumulus@switch:~$ net add bgp vrf vrf1 neighbor LEAF peer-group
-cumulus@switch:~$ net add bgp vrf vrf1 neighbor LEAF remote-as external
-cumulus@switch:~$ net add bgp vrf vrf1 neighbor LEAF capability extended-nexthop
-cumulus@switch:~$ net add bgp vrf vrf1 neighbor swp1.101 interface peer-group LEAF
-cumulus@switch:~$ net add bgp vrf vrf1 neighbor swp2.101 interface peer-group LEAF
-cumulus@switch:~$ net add bgp vrf vrf1 ipv4 unicast redistribute connected
-cumulus@switch:~$ net add bgp vrf vrf1 ipv4 unicast neighbor LEAF activate
-cumulus@switch:~$ net add bgp vrf vrf1 ipv6 unicast redistribute connected
-cumulus@switch:~$ net add bgp vrf vrf1 ipv6 unicast neighbor LEAF activate
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file. For example:
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-auto swp1
-iface swp1
-    link-autoneg on
-    link-speed 10000
-    vrf vrf1
-
-auto bridge
-iface bridge
-    bridge-ports vlan101
-    bridge-vids 101
-    bridge-vlan-aware yes
-
-auto vlan101
-iface vlan101
-    address 20.1.6.1/24
-    address 2001:20:1:6::1/80
-    vlan-id 101
-    vlan-raw-device bridge
-
-auto vrf1
-iface vrf1
-    address 6.1.0.6/32
-    address 2001:6:1::6/128
-    vrf-table auto
-...
-```
-
-Here is the FRRouting BGP configuration:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65001 vrf vrf1
-switch(config-router)# no bgp default ipv4-unicast
-switch(config-router)# bgp bestpath as-path multipath-relax
-switch(config-router)# bgp bestpath compare-routerid
-switch(config-router)# neighbor LEAF peer-group
-switch(config-router)# neighbor LEAF remote-as external
-switch(config-router)# neighbor LEAF capability extended-nexthop
-switch(config-router)# neighbor swp1.101 interface peer-group LEAF
-switch(config-router)# neighbor swp2.101 interface peer-group LEAF
-switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# redistribute connected
-switch(config-router-af)# neighbor LEAF activate
-switch(config-router-af)# exit
-switch(config-router)# address-family ipv6 unicast
-switch(config-router-af)# redistribute connected
-switch(config-router-af)# neighbor LEAF activate
-switch(config-router-af)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65001 vrf vrf1
- no bgp default ipv4-unicast
- bgp bestpath as-path multipath-relax
- bgp bestpath compare-routerid
- neighbor LEAF peer-group
- neighbor LEAF remote-as external
- neighbor LEAF capability extended-nexthop
- neighbor swp1.101 interface peer-group LEAF
- neighbor swp2.101 interface peer-group LEAF
- !
- address-family ipv4 unicast
-  redistribute connected
-  neighbor LEAF activate
-  exit-address-family
-  !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor LEAF activate
- exit-address-family
-...
-```
-
-## DHCP with VRF
-
-Because you can use VRF to bind IPv4 and IPv6 sockets to non-default VRF tables, you can start DHCP servers and relays in any non-default VRF table using the `dhcpd` and `dhcrelay` services.  These services must be managed by `systemd` to run in a VRF context. In addition, the services must be listed in the `/etc/vrf/systemd.conf` file. By default, this file already lists these two services, as well as others like `ntp` and `snmpd`. You can add more services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
-
-If you edit `/etc/vrf/systemd.conf`, run `sudo systemctl daemon-reload` to generate the `systemd` instance files for the newly added services. Then you can start the service in the VRF using `systemctl start <service>@<vrf-name>.service`, where `<service>` is the name of the service (such as `dhcpd` or `dhcrelay`) and `<vrf-name>` is the name of the VRF.
-
-For example, to start the `dhcrelay` service after you configure a VRF named *turtle*, run:
-
-```
-cumulus@switch:~$ sudo systemctl start dhcrelay@turtle.service
-```
-
-To enable the service at boot time, you must also enable the service:
-
-```
-cumulus@switch:~$ sudo systemctl enable dhcrelay@turtle.service
-```
-
-In addition, you need to create a separate default file in `/etc/default` for every instance of a DHCP server and/or relay in a non-default VRF; this is where you set the server and relay options. To run multiple instances of any of these services, you need a separate file for each instance. The files must be named as follows:
-
-- `isc-dhcp-server-<vrf-name>`
-- `isc-dhcp-server6-<vrf-name>`
-- `isc-dhcp-relay-<vrf-name>`
-- `isc-dhcp-relay6-<vrf-name>`
-
-See the example configuration below for more details.
-
-{{%notice note%}}
-
-- Cumulus Linux does **not** support DHCP server and relay across VRFs; the server and host cannot be in different VRF tables. In addition, the server and relay cannot be in different VRF tables.
-- Typically, a service running in the default VRF owns a port across all VRFs. If the VRF local instance is preferred, first disable and stop the global instance.
-- VRF is a layer 3 routing feature; only run programs that use AF\_INET and AF\_INET6 sockets in a VRF. VRF context does not affect any other aspects of the operation of a program.
-- This method only works with `systemd`-based services.
-
-{{%/notice%}}
-
-### Example Configuration
-
-In the following example, there is one IPv4 network with a VRF named
-*rocket* and one IPv6 network with a VRF named *turtle*.
-
-|IPv4 DHCP Server/relay network|IPv6 DHCP Server/relay network|
-|---|---|
-|{{< img src = "/images/cumulus-linux/vrf-rocket-dhcp4.png" >}}|{{< img src = "/images/cumulus-linux/vrf-turtle-dhcp6.png" >}}|
-
-Configure each DHCP server and relay as follows:
-
-{{< tabs "TabID1258 ">}}
-
-{{< tab "DHCP Server ">}}
-
-1. Create the file `isc-dhcp-server-rocket` in `/etc/default/`. Here is sample content:
-
-    ```
-    # Defaults for isc-dhcp-server initscript
-    # sourced by /etc/init.d/isc-dhcp-server
-    # installed at /etc/default/isc-dhcp-server by the maintainer scripts
-    #
-    # This is a POSIX shell fragment
-    #
-    # Path to dhcpd's config file (default: /etc/dhcp/dhcpd.conf).
-    DHCPD_CONF="-cf /etc/dhcp/dhcpd-rocket.conf"
-    # Path to dhcpd's PID file (default: /var/run/dhcpd.pid).
-    DHCPD_PID="-pf /var/run/dhcpd-rocket.pid"
-    # Additional options to start dhcpd with.
-    # Don't use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
-    #OPTIONS=""
-    # On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
-    # Separate multiple interfaces with spaces, e.g. "eth0 eth1".
-    INTERFACES="swp2"
-    ```
-
-2. Enable the DHCP server:
-
-    ```
-    cumulus@switch:~$ sudo systemctl enable dhcpd@rocket.service
-    ```
-
-3. Start the DHCP server:
-
-    ```
-    cumulus@switch:~$ sudo systemctl start dhcpd@rocket.service
-    ```
-
-4. Check status:
-
-    ```
-    cumulus@switch:~$ sudo systemctl status dhcpd@rocket.service
-    ```
-
-You can create this configuration using the `vrf` command (see {{<link url="#ipv4-and-ipv6-commands-in-a-vrf-context" text="IPv4 and IPv6 Commands in a VRF Context">}} above for more details):
-
-```
-cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcpd -f -q -cf /
-    /etc/dhcp/dhcpd-rocket.conf -pf /var/run/dhcpd-rocket.pid swp2
-```
-
-{{< /tab >}}
-
-{{< tab "DHCP6 Server ">}}
-
-1. Create the file `isc-dhcp-server6-turtle` in `/etc/default/`. Here is sample content:
-
-    ```
-    # Defaults for isc-dhcp-server initscript
-    # sourced by /etc/init.d/isc-dhcp-server
-    # installed at /etc/default/isc-dhcp-server by the maintainer scripts
-    #
-    # This is a POSIX shell fragment
-    #
-    # Path to dhcpd's config file (default: /etc/dhcp/dhcpd.conf).
-    DHCPD_CONF="-cf /etc/dhcp/dhcpd6-turtle.conf"
-    # Path to dhcpd's PID file (default: /var/run/dhcpd.pid).
-    DHCPD_PID="-pf /var/run/dhcpd6-turtle.pid"
-    # Additional options to start dhcpd with.
-    # Don't use options -cf or -pf here; use DHCPD_CONF/ DHCPD_PID instead
-    #OPTIONS=""
-    # On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
-    # Separate multiple interfaces with spaces, e.g. "eth0 eth1".
-    INTERFACES="swp3"
-    ```
-
-2. Enable the DHCP server:
-
-    ```
-    cumulus@switch:~$ sudo systemctl enable dhcpd6@turtle.service
-    ```
-
-3. Start the DHCP server:
-
-    ```
-    cumulus@switch:~$ sudo systemctl start dhcpd6@turtle.service
-    ```
-
-4. Check status:
-
-    ```
-    cumulus@switch:~$ sudo systemctl status dhcpd6@turtle.service
-    ```
-
-You can create this configuration using the `vrf` command (see {{<link url="#ipv4-and-ipv6-commands-in-a-vrf-context" text="IPv4 and IPv6 Commands in a VRF Context">}} above for more details):
-
-```
-cumulus@switch:~$ sudo ip vrf exec turtle dhcpd -6 -q -cf /
-  /etc/dhcp/dhcpd6-turtle.conf -pf /var/run/dhcpd6-turtle.pid swp3
-```
-
-{{< /tab >}}
-
-{{< tab "DHCP Relay ">}}
-
-1. Create the file `isc-dhcp-relay-rocket` in `/etc/default/`. Here is sample content:
-
-    ```
-    # Defaults for isc-dhcp-relay initscript
-    # sourced by /etc/init.d/isc-dhcp-relay
-    # installed at /etc/default/isc-dhcp-relay by the maintainer scripts
-    #
-    # This is a POSIX shell fragment
-    #
-    # What servers should the DHCP relay forward requests to?
-    SERVERS="102.0.0.2"
-    # On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
-    # Always include the interface towards the DHCP server.
-    # This variable requires a -i for each interface configured above.
-    # This will be used in the actual dhcrelay command
-    # For example, "-i eth0 -i eth1"
-    INTF_CMD="-i swp2s2 -i swp2s3"
-    # Additional options that are passed to the DHCP relay daemon?
-    OPTIONS=""
-    ```
-
-2. Enable the DHCP relay:
-
-    ```
-    cumulus@switch:~$ sudo systemctl enable dhcrelay@rocket.service
-    ```
-
-3. Start the DHCP relay:
-
-    ```
-    cumulus@switch:~$ sudo systemctl start dhcrelay@rocket.service
-    ```
-
-4. Check status:
-
-    ```
-    cumulus@switch:~$ sudo systemctl status dhcrelay@rocket.service
-    ```
-
-You can create this configuration using the `vrf` command (see {{<link url="#ipv4-and-ipv6-commands-in-a-vrf-context" text="IPv4 and IPv6 Commands in a VRF Context">}} above for more details):
-
-```
-cumulus@switch:~$ sudo ip vrf exec rocket /usr/sbin/dhcrelay -d -q -i /
-    swp2s2 -i swp2s3 102.0.0.2
-```
-
-{{< /tab >}}
-
-{{< tab "DHCP6 Relay ">}}
-
-1. Create the file `isc-dhcp-relay6-turtle` in `/etc/default/`. Here is sample content:
-
-    ```
-    # Defaults for isc-dhcp-relay initscript
-    # sourced by /etc/init.d/isc-dhcp-relay
-    # installed at /etc/default/isc-dhcp-relay by the maintainer scripts
-    #
-    # This is a POSIX shell fragment
-    #
-    # What servers should the DHCP relay forward requests to?
-    #SERVERS="103.0.0.2"
-    # On what interfaces should the DHCP relay (dhrelay) serve DHCP requests?
-    # Always include the interface towards the DHCP server.
-    # This variable requires a -i for each interface configured above.
-    # This will be used in the actual dhcrelay command
-    # For example, "-i eth0 -i eth1"
-    INTF_CMD="-l swp18s0 -u swp18s1"
-    # Additional options that are passed to the DHCP relay daemon?
-    OPTIONS="-pf /var/run/dhcrelay6@turtle.pid"
-    ```
-
-2. Enable the DHCP relay:
-
-    ```
-    cumulus@switch:~$ sudo systemctl enable dhcrelay6@turtle.service
-    ```
-
-3. Start the DHCP relay:
-
-    ```
-    cumulus@switch:~$ sudo systemctl start dhcrelay6@turtle.service
-    ```
-
-4. Check status:
-
-    ```
-    cumulus@switch:~$ sudo systemctl status dhcrelay6@turtle.service
-    ```
-
-You can create this configuration using the `vrf` command (see {{<link url="#ipv4-and-ipv6-commands-in-a-vrf-context" text="IPv4 and IPv6 Commands in a VRF Context">}} above for more details):
-
-```
-cumulus@switch:~$ sudo ip vrf exec turtle /usr/sbin/dhcrelay -d -q -6 -l /
-    swp18s0 -u swp18s1 -pf /var/run/dhcrelay6@turtle.pid
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-## Use ping or traceroute on a VRF
-
-You can run `ping` or `traceroute` on a VRF from the default VRF.
-
-To ping a VRF from the default VRF, run the `ping` `-I <vrf-name>` command. For example:
-
-```
-cumulus@switch:~$ ping -I turtle
-```
-
-To run `traceroute` on a VRF from the default VRF, run the `traceroute -i <vrf-name>` command. For example:
-
-```
-cumulus@switch:~$ sudo traceroute -i turtle
-```
-
-## Caveats and Errata
+## Considerations
 
 - Switches using the Hurricane2 ASIC (such as the Penguin Computing Arctica 4804IP) do not support VRFs.
 - Table selection is based on the incoming interface only; currently, packet attributes or output-interface-based selection are not available.

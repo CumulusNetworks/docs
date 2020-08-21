@@ -28,7 +28,7 @@ CLI or UI.
 The NetQ Agent polls the user
 space applications for information about the performance of the various
 routing protocols and services that are running on the switch. Cumulus
-Networks supports BGP and OSPF Free Range Routing (FRR) protocols as
+Networks supports BGP and OSPF FRRouting (FRR) protocols as
 well as static addressing. Cumulus Linux also supports LLDP and MSTP
 among other protocols, and a variety of services such as systemd and
 sensors . For hosts, the NetQ Agent also polls for performance of
@@ -153,7 +153,7 @@ This output is read as:
     leaf12 interface swp8 out VLAN1002 peerlink-1 into VLAN1002
     interface swp6 on leaf11
   - Path 2 traverses the network from server12 out bond1.1002 into
-    VLAN1002 interface swp8 on leaf11.
+    VLAN1002 interface swp8 on leaf11
 
 If the MTU does not match across the network, or any of the paths or
 parts of the paths have issues, that data is called out in the summary
@@ -283,15 +283,10 @@ When retrieving the timestamp, command outputs display the time in three
 ways:
 
   - For non-JSON output when the timestamp represents the Last Changed
-    time, time is displayed in actual date and time when the time change
-    occurred
+    time, time is displayed in actual date and time when the time change occurred
   - For non-JSON output when the timestamp represents an Uptime, time is
-    displayed as days, hours, minutes, and seconds from the current
-    time.
-  - For JSON output, time is displayed in microseconds that have passed
-    since the Epoch time (January 1,
-    1970 at 00:00:00 GMT)
-    .
+    displayed as days, hours, minutes, and seconds from the current time
+  - For JSON output, time is displayed in microseconds that have passed since the Epoch time (January 1, 1970 at 00:00:00 GMT)
 
 This example shows the difference between the timestamp displays.
 

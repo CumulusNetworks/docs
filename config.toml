@@ -24,13 +24,13 @@ disableKinds = ["RSS"]
   [[menu.subnav]]
     identifier = "cumulus-linux"
     title = "Cumulus Linux"
-    url = "/cumulus-linux-41/"
+    url = "/cumulus-linux-42/"
     weight = 10
 
   [[menu.subnav]]
     identifier = "cumulus-netq"
     title = "Cumulus NetQ"
-    url = "/cumulus-netq-30/"
+    url = "/cumulus-netq-31/"
     weight = 20
 
   [[menu.subnav]]

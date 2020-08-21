@@ -62,6 +62,8 @@ Entering incorrect information during the installation process might produce con
 
 Be sure to restart `netd` after editing the files.
 
+    cumulus@switch:~$ sudo systemctl restart netd.service
+
 {{< expand "Alternative Installation Method Using debconf-utils "  >}}
 
 Instead of running the installer and following the interactive prompts, as described above, you can pre-seed the installer parameters using `debconf-utils`.
@@ -286,6 +288,154 @@ map    group gidNumber     objectSid:S-1-5-21-1391733952-3059161487-1245441232
 map    group cn            sAMAccountName
 ```
 
+## Configure LDAP Authorization
+
+Linux uses the *sudo* command to allow non-administrator users (such as the default *cumulus* user account) to perform privileged operations. To control the users authorized to use sudo, the `/etc/sudoers` file and files located in the `/etc/sudoers.d/` directory define a series of rules. Typically, the rules are based on groups, but can also be defined for specific users. You can add sudo rules using the group names from LDAP. For example, if a group of users are associated with the group *netadmin*, you can add a rule to give those users sudo privileges. Refer to the sudoers manual (`man sudoers`) for a complete usage description. The following shows an example in the `/etc/sudoers` file:
+
+```
+# The basic structure of a user specification is "who where = (as_whom) what ".
+%sudo ALL=(ALL:ALL) ALL
+%netadmin ALL=(ALL:ALL) ALL
+```
+
+## Active Directory Configuration
+
+Active Directory (AD) is a fully featured LDAP-based NIS server create by Microsoft. It offers unique features that classic OpenLDAP servers do not have. AD can be more complicated to configure on the client and each version works a little differently with Linux-based LDAP clients. Some more advanced configuration examples, from testing LDAP clients on Cumulus Linux with Active Directory (AD/LDAP), are available in our {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204383797" text="knowledge base">}}.
+
+## LDAP Verification Tools
+
+Typically, password and group information is retrieved from LDAP and cached by the LDAP client daemon. To test the LDAP interaction, you can use these command-line tools to trigger an LDAP query from the device. This helps to create the best filters and verify the information sent back from the LDAP server.
+
+### Identify a User with the id Command
+
+The `id` command performs a username lookup by following the lookup information sources in NSS for the *passwd* service. This simply returns the user ID, group ID and the group list retrieved from the information source. In the following example, the user *cumulus* is locally defined in `/etc/passwd`, and *myuser* is on LDAP. The NSS configuration has the `passwd` map configured with the sources `compat ldap`:
+
+```
+cumulus@switch:~$ id cumulus
+uid=1000(cumulus) gid=1000(cumulus) groups=1000(cumulus),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev)
+cumulus@switch:~$ id myuser
+uid=1230(myuser) gid=3000(Development) groups=3000(Development),500(Employees),27(sudo)
+```
+
+### getent
+
+The `getent` command retrieves all records found with NSS for a given map. It can also retrieve a specific entry under that map. You can perform tests with the `passwd`, `group`, `shadow`, or any other map configured in the `/etc/nsswitch.conf` file. The output from this command is formatted according to the map requested. For the  `passwd` service, the structure of the output is the same as the entries in `/etc/passwd`. The group map outputs the same structure as `/etc/group`. 
+
+In this example, looking up a specific user in the `passwd` map, the user *cumulus* is locally defined in `/etc/passwd`, and *myuser* is only in LDAP.
+
+```
+cumulus@switch:~$ getent passwd cumulus
+cumulus:x:1000:1000::/home/cumulus:/bin/bash
+cumulus@switch:~$ getent passwd myuser
+myuser:x:1230:3000:My Test User:/home/myuser:/bin/bash
+```
+
+In the next example, looking up a specific group in the group service, the group *cumulus* is locally defined in `/etc/groups`, and *netadmin* is on LDAP.
+
+```
+cumulus@switch:~$ getent group cumulus
+cumulus:x:1000:
+cumulus@switch:~$ getent group netadmin
+netadmin:*:502:larry,moe,curly,shemp
+```
+
+Running the command `getent passwd` or `getent group` without a specific request returns **all** local and LDAP entries for the *passwd* and *group* maps.
+
+### LDAP search
+
+The `ldapsearch` command performs LDAP operations directly on the LDAP server. This does not interact with NSS. This command helps display what the LDAP daemon process is receiving back from the server. The command has many options. The simplest option uses anonymous bind to the host and specifies the search DN and the attribute to look up.
+
+```
+cumulus@switch:~$ ldapsearch -H ldap://ldap.example.com -b dc=example,dc=com -x uid=myuser
+```
+
+{{< expand "Click to expand the command output ... "  >}}
+
+```
+# extended LDIF
+#
+# LDAPv3
+# base <dc=example,dc=com> with scope subtree
+# filter: uid=myuser
+# requesting: ALL
+#
+# myuser, people, example.com
+dn: uid=myuser,ou=people,dc=example,dc=com
+cn: My User
+displayName: My User
+gecos: myuser
+gidNumber: 3000
+givenName: My
+homeDirectory: /home/myuser
+initials: MU
+loginShell: /bin/bash
+mail: myuser@example.com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: top
+shadowExpire: -1
+shadowFlag: 0
+shadowMax: 999999
+shadowMin: 8
+shadowWarning: 7
+sn: User
+uid: myuser
+uidNumber: 1234
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+```
+
+{{< /expand >}}
+
+### NCLU
+
+To use NCLU, a user must be in either the `netshow` or `netedit` NCLU group in the LDAP database. You can either:
+
+- Add a user or one of their groups to the `/etc/netd.conf` file manually.
+- Add a user to the local `/etc/group` file as a member of the `netshow` or `netedit` groups.
+
+In the following example, a user that is *not* in the `netshow` or `netedit` NCLU group in the LDAP database runs the NCLU `net show version` command, which produces an error:
+
+```
+hsolo@switch:~$ net show version
+ERROR: 'getpwuid(): uid not found: 0922'
+See /var/log/netd.log for more details
+```
+
+To add the the user to the `netshow` or `netedit` NCLU group in the LDAP database, either edit the `/etc/group` file manually or use the `sudo adduser USERNAME netshow` command, then restart `netd`. For example, to add the user bill to the `netshow` group:
+
+```
+cumulus@switch:~$ sudo adduser hsolo netshow
+Adding user `hsolo' to group `netshow' ...
+Adding user hsolo to group netshow
+Done.
+
+cumulus@switch:~$ sudo systemctl restart netd
+```
+
+Now, the user can run the NCLU `net show` commands successfully:
+
+```
+hsolo@switch:~$ net show version
+NCLU_VERSION=1.0-cl4u5
+DISTRIB_ID="Cumulus Linux"
+DISTRIB_RELEASE=4.1.0
+DISTRIB_DESCRIPTION="Cumulus Linux 4.1.0"
+```
+
+### LDAP Browsers
+
+There are several GUI LDAP clients available that help you work with LDAP servers. These are free tools that show the structure of the LDAP database graphically.
+
+- {{<exlink url="http://directory.apache.org/studio/" text="Apache Directory Studio">}}
+- {{<exlink url="http://ldapmanager.sourceforge.net/" text="LDAPManager">}}
+
 ## Troubleshooting
 
 ### nslcd Debug Mode
@@ -397,155 +547,6 @@ cumulus@switch:~$ sudo systemctl restart nslcd@mgmt.service
    # /etc/nsswitch.conf
    passwd:       ldap compat
    ```
-
-## Configure LDAP Authorization
-
-Linux uses the *sudo* command to allow non-administrator users (such as the default *cumulus* user account) to perform privileged operations. To control the users authorized to use sudo, the `/etc/sudoers` file and files located in the `/etc/sudoers.d/` directory define a series of rules. Typically, the rules are based on groups, but can also be defined for specific users. You can add sudo rules using the group names from LDAP. For example, if a group of users are associated with the group *netadmin*, you can add a rule to give those users sudo privileges. Refer to the sudoers manual (`man sudoers`) for a complete usage description. The following shows an example in the `/etc/sudoers` file:
-
-```
-# The basic structure of a user specification is "who where = (as_whom) what ".
-%sudo ALL=(ALL:ALL) ALL
-%netadmin ALL=(ALL:ALL) ALL
-```
-
-## Active Directory Configuration
-
-Active Directory (AD) is a fully featured LDAP-based NIS server create by Microsoft. It offers unique features that classic OpenLDAP servers do not have. AD can be more complicated to configure on the client and each version works a little differently with Linux-based LDAP clients. Some more advanced configuration examples, from testing LDAP clients on Cumulus Linux with Active Directory (AD/LDAP), are available in our {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204383797" text="knowledge base">}}.
-
-## LDAP Verification Tools
-
-Typically, password and group information is retrieved from LDAP and cached by the LDAP client daemon. To test the LDAP interaction, you can use these command-line tools to trigger an LDAP query from the device. This helps to create the best filters and verify the information sent back from the LDAP server.
-
-### Identify a User with the id Command
-
-The `id` command performs a username lookup by following the lookup information sources in NSS for the *passwd* service. This simply returns the user ID, group ID and the group list retrieved from the information source. In the following example, the user *cumulus* is locally defined in `/etc/passwd`, and *myuser* is on LDAP. The NSS configuration has the `passwd` map configured with the sources `compat ldap`:
-
-```
-cumulus@switch:~$ id cumulus
-uid=1000(cumulus) gid=1000(cumulus) groups=1000(cumulus),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev)
-cumulus@switch:~$ id myuser
-uid=1230(myuser) gid=3000(Development) groups=3000(Development),500(Employees),27(sudo)
-```
-
-### getent
-
-The `getent` command retrieves all records found with NSS for a given map. It can also retrieve a specific entry under that map. You can perform tests with the `passwd`, `group`, `shadow`, or any other map configured in the `/etc/nsswitch.conf` file. The output from this command is formatted according to the map requested. For the  `passwd` service, the structure of the output is the same as the entries in `/etc/passwd`. The group map outputs the same structure as `/etc/group`. 
-
-In this example, looking up a specific user in the `passwd` map, the user *cumulus* is locally defined in `/etc/passwd`, and *myuser* is only in LDAP.
-
-```
-cumulus@switch:~$ getent passwd cumulus
-cumulus:x:1000:1000::/home/cumulus:/bin/bash
-cumulus@switch:~$ getent passwd myuser
-myuser:x:1230:3000:My Test User:/home/myuser:/bin/bash
-```
-
-In the next example, looking up a specific group in the group service, the group *cumulus* is locally defined in `/etc/groups`, and *netadmin* is on LDAP.
-
-```
-cumulus@switch:~$ getent group cumulus
-cumulus:x:1000:
-cumulus@switch:~$ getent group netadmin
-netadmin:*:502:larry,moe,curly,shemp
-```
-
-Running the command `getent passwd` or `getent group` without a specific request returns **all** local and LDAP entries for the *passwd* and *group* maps.
-
-### LDAP search
-
-The `ldapsearch` command performs LDAP operations directly on the LDAP server. This does not interact with NSS. This command helps display what the LDAP daemon process is receiving back from the server. The command has many options. The simplest option uses anonymous bind to the host and specifies the search DN and the attribute to look up.
-
-```
-cumulus@switch:~$ ldapsearch -H ldap://ldap.example.com -b dc=example,dc=com -x uid=myuser
-```
-
-{{< expand "Click to expand the command output ... "  >}}
-
-```
-# extended LDIF
-#
-# LDAPv3
-# base <dc=example,dc=com> with scope subtree
-# filter: uid=myuser
-# requesting: ALL
-#
-# myuser, people, example.com
-dn: uid=myuser,ou=people,dc=example,dc=com
-cn: My User
-displayName: My User
-gecos: myuser
-gidNumber: 3000
-givenName: My
-homeDirectory: /home/myuser
-initials: MU
-loginShell: /bin/bash
-mail: myuser@example.com
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: shadowAccount
-objectClass: top
-shadowExpire: -1
-shadowFlag: 0
-shadowMax: 999999
-shadowMin: 8
-shadowWarning: 7
-sn: User
-uid: myuser
-uidNumber: 1234
-
-# search result
-search: 2
-result: 0 Success
-
-# numResponses: 2
-# numEntries: 1
-```
-
-{{< /expand >}}
-
-### NCLU
-
-To use NCLU, a user must be in either the `netshow` or `netedit` NCLU group in the LDAP database. You can either:
-
-- Add a user or one of their groups to the `/etc/netd.conf` file manually.
-
-- Add a user to the local `/etc/group` file as a member of the `netshow` or `netedit` groups.
-
-In the following example, a user that is *not* in the `netshow` or `netedit` NCLU group in the LDAP database runs the NCLU `net show version` command, which produces an error:
-
-```
-hsolo@switch:~$ net show version
-ERROR: 'getpwuid(): uid not found: 0922'
-See /var/log/netd.log for more details
-```
-
-To add the the user to the `netshow` or `netedit` NCLU group in the LDAP database, either edit the `/etc/group` file manually or use the `sudo adduser USERNAME netshow` command, then restart `netd`. For example, to add the user bill to the `netshow` group:
-
-```
-cumulus@switch:~$ sudo adduser hsolo netshow
-Adding user `hsolo' to group `netshow' ...
-Adding user hsolo to group netshow
-Done.
-
-cumulus@switch:~$ sudo systemctl restart netd
-```
-
-Now, the user can run the NCLU `net show` commands successfully:
-
-```
-hsolo@switch:~$ net show version
-NCLU_VERSION=1.0-cl4u5
-DISTRIB_ID="Cumulus Linux"
-DISTRIB_RELEASE=4.1.0
-DISTRIB_DESCRIPTION="Cumulus Linux 4.1.0"
-```
-
-### LDAP Browsers
-
-There are several GUI LDAP clients available that help you work with LDAP servers. These are free tools that show the structure of the LDAP database graphically.
-
-- {{<exlink url="http://directory.apache.org/studio/" text="Apache Directory Studio">}}
-- {{<exlink url="http://ldapmanager.sourceforge.net/" text="LDAPManager">}}
 
 ## Related Information
 

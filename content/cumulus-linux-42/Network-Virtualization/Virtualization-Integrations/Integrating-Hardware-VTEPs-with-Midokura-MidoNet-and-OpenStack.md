@@ -8,13 +8,13 @@ Cumulus Linux seamlessly integrates with the MidoNet OpenStack infrastructure, w
 
 {{< img src = "/images/cumulus-linux/virtualization-integrations-midonet.png" >}}
 
-## Getting Started
+## Get Started
 
 Make sure you have a layer 2 gateway; a Tomahawk, Trident II+ or Trident II switch running Cumulus Linux. Cumulus Linux includes OVSDB server (`ovsdb-server`) and VTEPd (`ovs-vtepd`), which support {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}.
 
 To integrate a VXLAN with MidoNet, you need to:
 
-- Configure the MidoNet integration on the swtich
+- Configure the MidoNet integration on the switch
 - Configure the MidoNet VTEP and port bindings
 - Verify the VXLAN configuration
 
@@ -49,9 +49,9 @@ In previous versions of Cumulus Linux, you had to edit the `/etc/default/openvsw
 
 The `vtep-bootstrap` script is available so you can perform the configuration automatically. For information, read `man vtep-bootstrap`. This script requires three parameters, in this order:
 
-- The switch name (the name of the switch that is the VTEP gateway).
-- The tunnel IP address (the datapath IP address of the VTEP).
-- The management IP address (the IP address of the management interface on the switch).
+- The switch name (the name of the switch that is the VTEP gateway)
+- The tunnel IP address (the datapath IP address of the VTEP)
+- The management IP address (the IP address of the management interface on the switch)
 
 ```
 cumulus@switch:~$ sudo vtep-bootstrap sw11 10.111.1.1 10.50.20.21 --no_encryption

@@ -1,1 +1,1 @@
-iputils-arping-dbgsym has no debian/copyright file
+iputils-arping-dbgsym has no copyright file

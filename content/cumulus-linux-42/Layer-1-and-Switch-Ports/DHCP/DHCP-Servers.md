@@ -96,7 +96,7 @@ cumulus@switch:~$ sudo systemctl enable dhcpd6.service
 cumulus@switch:~$ sudo systemctl start dhcpd6.service
 ```
 
-## Assign Port-Based IP Addresses
+## Assign Port-based IP Addresses
 
 You can assign an IP address and other DHCP options based on physical location or port regardless of MAC address to clients that are attached directly to the Cumulus Linux switch through a switch port. This is helpful when swapping out switches and servers; you can avoid the inconvenience of collecting the MAC address and sending it to the network administrator to modify the DHCP server configuration.
 

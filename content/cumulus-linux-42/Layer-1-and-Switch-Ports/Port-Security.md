@@ -58,7 +58,7 @@ cumulus@switch:~$ net commit
 
 You can configure the action you want to take when there is a security violation on a port:
 
-- `shutdown` puts a port into ADMIN down state
+- `shutdown` puts a port into ADMIN down state.
 - `restrict` drops packets. When packets are dropped, Cumulus Linux sends a log message.
 
 You can also set a timeout value between 0 and 3600 seconds for the action to take effect. The default is 1800 seconds.

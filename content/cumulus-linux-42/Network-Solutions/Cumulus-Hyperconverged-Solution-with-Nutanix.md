@@ -19,7 +19,7 @@ Cumulus HCS has two major components:
 
     Cumulus HCS periodically polls Nutanix Prism for information about VMs in the cluster. When a new VM is discovered, the service automatically identifies the physical Nutanix server hosting the VM and discovers any VLANs required for the VM. The service then automatically adds these VLANs to the default {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}, the MLAG peer link and the automatically created bond to the Nutanix node. When a VM is powered off, removed or moved, and the associated VLAN has no other VMs, the VLAN is automatically removed from the bridge, peer link and dynamic bond.
 
-## Prerequisites
+## Requirements
 
 - 2 {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Networks-compatible switches">}} running Cumulus Linux
 - Nutanix AOS 5.5.8 or later
@@ -36,7 +36,7 @@ Cumulus HCS runs on any platform. However, this chapter assumes a typical Nutani
 - MLAG peer link is on the first two uplink ports: swp49 and swp50
 - Connections to other infrastructure are on ports swp51 and above
 - The eth0 management interface is configured for {{<link url="Management-VRF" text="management VRF">}} via DHCP
-- For automatic configuration, the gateway IP addresses for all VMs, including the CVM, do not exist on the Cumulus Linux switches.
+- For automatic configuration, the gateway IP addresses for all VMs, including the CVM, do not exist on the Cumulus Linux switches
 
 The example configuration utilizes the following topology. All configuration focuses on the leaf01 and leaf02 switches. Configurations for spine01 and spine02 are not included.
 
@@ -326,7 +326,7 @@ Cumulus RMP is a ready-to-deploy solution that enables out-of-band management fo
 
 To deploy Nutanix with Cumulus RMP, connect the Nutanix 1G IPMI, 1G Shared IPMI and 1G ports to the Cumulus RMP switch. No additional configuration is required.
 
-Cumulus RMP does not support MLAG or active/active connections across Cumulus RMP switches. Connections across more than one Cumulus RMP switch rely on traditional {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree" text="spanning tree protocol">}} for redundancy.
+Cumulus RMP does not support MLAG or active/active connections across Cumulus RMP switches. Connections across more than one Cumulus RMP switch rely on traditional {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}} for redundancy.
 
 ### Other Cumulus Linux 1G Switches
 
@@ -427,6 +427,6 @@ Interface:    swp1, via: LLDP, RID: 37, Time: 0 day, 01:42:23
 -------------------------------------------------------------------------------
 ```
 
-## Caveats
+## Considerations
 
 Reloading Cumulus HCS causes the bond interfaces to rebuild. For the stability of the Nutanix cluster, do not reload the service on both leaf switches simultaneously.

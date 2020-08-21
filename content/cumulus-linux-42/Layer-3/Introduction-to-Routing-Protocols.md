@@ -20,9 +20,9 @@ Cumulus Linux does **not** support running multiple instances of the same protoc
 
 A routing protocol needs to know three pieces of information, at a minimum:
 
-- Who am I (my identity)
+- Who it is (its identity)
 - Where to disseminate information
-- What to disseminate
+- What information to disseminate
 
 Most routing protocols use the concept of a router ID to identify a node. Different routing protocols answer the last two questions differently.
 

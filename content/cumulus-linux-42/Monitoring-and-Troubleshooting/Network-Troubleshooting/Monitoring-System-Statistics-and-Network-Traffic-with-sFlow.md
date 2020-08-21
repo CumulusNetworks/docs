@@ -105,11 +105,20 @@ Some collectors require each source to transmit on a different port, others list
 
 {{%/notice%}}
 
+To configure the IP address for the sFlow agent, configure one of the following the `/etc/hsflowd.conf` file (following the recommendations in the {{<exlink url="https://sflow.net/host-sflow-linux-config.php" text="sFlow documentation">}}):
+
+- The agent CIDR. For example, `agent.cidr = 10.0.0.0/8`. The IP address should fall within this range.
+- The agent interface. For example, if the agent is using eth0, select the IP address associated with this interface.
+
+You can check to see which agent IP was selected using:
+
+    cumulus@switch:~$ grep agentIP /etc/hsflowd.auto
+
 ## Configure sFlow Visualization Tools
 
 For information on configuring various sFlow visualization tools, read this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools" text="Help Center article">}}.
 
-## Caveats and Errata
+## Considerations
 
 The {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=EdgeCore" text="EdgeCore AS4610 switch">}} occasionally sends malformed packets and does not send any flow samples; it sends only counters. This is a known limitation on this Helix4 platform.
 

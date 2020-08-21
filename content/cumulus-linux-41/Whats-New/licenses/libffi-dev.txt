@@ -1,1 +1,0 @@
-libffi-dev has no debian/copyright file

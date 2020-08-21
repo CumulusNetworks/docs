@@ -86,14 +86,14 @@ The following HTTP status codes might be presented in the API responses:
 
 | Code | Name                  | Description                                                                   | Action                                                                          |
 | ---- | --------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| 200  | Success               | Request was successfully processed.                                           | Review response                                                                 |
-| 400  | Bad Request           | Invalid input was detected in request.                                        | Check the syntax of your request and make sure it matches the schema            |
-| 401  | Unauthorized          | Authentication has failed or credentials were not provided.                   | Provide or verify your credentials, or request access from your administrator   |
-| 403  | Forbidden             | Request was valid, but user may not have needed permissions.                  | Verify your credentials or request an account from your administrator           |
-| 404  | Not Found             | Requested resource could not be found.                                        | Try the request again after a period of time or verify status of resource       |
-| 409  | Conflict              | Request cannot be processed due to conflict in current state of the resource. | Verify status of resource and remove conflict                                   |
-| 500  | Internal Server Error | Unexpected condition has occurred.                                            | Perform general troubleshooting and try the request again                       |
-| 503  | Service Unavailable   | The service being requested is currently unavailable.                         | Verify the status of the NetQ Platform or Appliance, and the associated service |
+| 200  | Success               | Request was successfully processed.                                           | Review response.                                                                 |
+| 400  | Bad Request           | Invalid input was detected in request.                                        | Check the syntax of your request and make sure it matches the schema.            |
+| 401  | Unauthorized          | Authentication has failed or credentials were not provided.                   | Provide or verify your credentials, or request access from your administrator.   |
+| 403  | Forbidden             | Request was valid, but user may not have needed permissions.                  | Verify your credentials or request an account from your administrator.           |
+| 404  | Not Found             | Requested resource could not be found.                                        | Try the request again after a period of time or verify status of resource.       |
+| 409  | Conflict              | Request cannot be processed due to conflict in current state of the resource. | Verify status of resource and remove conflict.                                   |
+| 500  | Internal Server Error | Unexpected condition has occurred.                                            | Perform general troubleshooting and try the request again.                       |
+| 503  | Service Unavailable   | The service being requested is currently unavailable.                         | Verify the status of the NetQ Platform or Appliance, and the associated service. |
 
 ## Example Requests and Responses
 

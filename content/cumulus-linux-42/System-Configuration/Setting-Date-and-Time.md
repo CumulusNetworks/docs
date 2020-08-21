@@ -30,6 +30,12 @@ Use the following command to apply the new time zone immediately.
 cumulus@switch:~$ sudo dpkg-reconfigure --frontend noninteractive tzdata
 ```
 
+Use the following command to change the /etc/localtime to reflect your current timezone. Use the same value as the previous step.
+
+```
+sudo ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
+```
+
 ### Use the Guided Wizard
 
 To set the time zone using the guided wizard, run `dpkg-reconfigure tzdata` as root:
@@ -315,7 +321,7 @@ When you use the above procedure to specify your NTP servers, the NCLU commands 
 
 For added security, you can configure NTP to use authorization keys.
 
-Configure the NTP server:
+#### Configure the NTP Server
 
 1. Create a `.keys` file, such as `/etc/ntp.keys`. Specify a key identifier (a number from 1-65535), an encryption method (M for MD5), and the password. The following provides an example:
 
@@ -340,7 +346,9 @@ Configure the NTP server:
 
 3. Restart NTP with the `sudo systemctl restart ntp` command.
 
-Configure the NTP client (the Cumulus Linux switch):
+#### Configure the NTP Client
+
+The NTP client is the Cumulus Linux switch.
 
 1. Create the same `.keys` file you created on the NTP server (`/etc/ntp.keys`). For example:
 
@@ -442,9 +450,7 @@ To enable the PTP boundary clock on the switch:
 
 2. Restart `switchd`:
 
-    ```
-    cumulus@switch:~$ sudo systemctl restart switchd.service
-    ```
+    {{<cl/restart-switchd>}}
 
 ### Configure the PTP Boundary Clock
 

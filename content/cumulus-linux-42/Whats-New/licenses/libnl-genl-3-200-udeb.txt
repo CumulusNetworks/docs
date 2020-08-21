@@ -1,1 +1,1 @@
-libnl-genl-3-200-udeb has no debian/copyright file
+libnl-genl-3-200-udeb has no copyright file

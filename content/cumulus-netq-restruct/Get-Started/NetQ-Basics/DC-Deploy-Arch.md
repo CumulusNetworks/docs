@@ -21,7 +21,7 @@ routed environments whenever possible.
 
 {{%/notice%}}
 
-## Out-of-Band Management Deployment
+## Out-of-band Management Deployment
 
 Cumulus Networks recommends deploying NetQ on an out-of-band (OOB)
 management network to separate network management traffic from standard
@@ -66,7 +66,7 @@ The physical *management* hardware includes:
     network devices through communications with the NetQ Agent on each
     node
   - NetQ Platform: hosts the telemetry software, database and user
-    interfaces (refer to description above).
+    interfaces (refer to description above)
 
 These switches are connected to each of the physical network devices
 through a virtual network overlay, shown with purple lines.

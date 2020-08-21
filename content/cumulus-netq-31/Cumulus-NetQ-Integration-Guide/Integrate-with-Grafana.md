@@ -51,7 +51,7 @@ running Grafana on a simulation server, you may need to modify
 forwarding rules in IPtables to allow access to port 3000.
     {{%/notice%}}
 
-## Set Up a Dashboard
+## Set Up a Pre-configured Dashboard
 
 The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plug-in. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.
 

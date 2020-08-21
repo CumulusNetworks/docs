@@ -1,1 +1,1 @@
-python-netsnmp-dbgsym has no debian/copyright file
+python-netsnmp-dbgsym has no copyright file

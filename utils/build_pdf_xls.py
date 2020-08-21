@@ -33,8 +33,8 @@ else:
     base_url = sys.argv[2] + "/"
 http_user = sys.argv[3]
 http_pass = sys.argv[4]
-docraptor.configuration.username = str(token)
 doc_api = docraptor.DocApi()
+doc_api.api_client.configuration.username = str(token)
 
 # Taken from https://stackoverflow.com/a/600612/119527
 def mkdir_p(path):
@@ -184,4 +184,6 @@ try:
 
 except docraptor.rest.ApiException as error:
     print(error)
+    print(error.message)
+    print(error.code)
     exit(1)

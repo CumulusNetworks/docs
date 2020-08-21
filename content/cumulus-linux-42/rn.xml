@@ -7,6 +7,49 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31056</td>
+<td><p>After configuring multiple dhcrelay6 instances, then restarting the dhcrelay6 relay service, replies are sent on the incorrect VLAN.<br/>
+This problem does not occur if you only have one instance of dhcrelay6.</p></td>
+<td>4.1.1-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.0+u2,  5.8.0-cl3.7.13+u2 (REPLACE WITH ACTUAL RELEASE VERSION)</p></td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31039</td>
+<td><p>The iptables iptables-restore application is vulnerable to a buffer overflow. A local attacker could cause a denial-of-service (DoS) or potentially execute code by supplying a specially crafted iptables-save file.<br/>
+Vulnerable: &lt;= 1.8.2-3-cl4u1</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31038</td>
+<td><p>CVE-2019-20795: iproute2 has a use-after-free in get_netnsid_from_name in ip/ipnetns.c.<br/>
+Vulnerable: &lt;= 4.19.0-cl4u3</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30987</td>
 <td><p>On the Mellanox switch, RoCE with PFC configuration is not applied to all ports in hardware when a range is used in the traffic.conf file.<br/>
 To work around this issue, use NCLU to configure RoCE with PFC or list individual ports in the traffic.conf file.</p></td>
@@ -58,7 +101,7 @@ To disable scp completely, use /bin/chmod 0 /usr/bin/scp .</p></td>
 </tr>
 <tr>
 <td>CM-30856</td>
-<td><p>The following vulnerability have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default NGINX configuration is not vulnerable, as it does not configure error_page redirection):<br/>
+<td><p>The following vulnerability has been announced in NGINX, which is installed by default on Cumulus Linux (however, the default NGINX configuration is not vulnerable, as it does not configure error_page redirection):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
 To work around this issue, do not use error_page redirection in the vulnerable configuration.  <a href="https://bertjwregeer.keybase.pub/2019-12-10%20-%20error_page%20request%20smuggling.pdf" class="external-link" rel="nofollow">https://bertjwregeer.keybase.pub/2019-12-10%20-%20error_page%20request%20smuggling.pdf</a> describes the vulnerability and the vulnerable configuration.</p></td>
 <td>4.0.0-4.2.0</td>
@@ -458,12 +501,6 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 
 <p>To work around this issue,  run the ifreload -a command a second time.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29591</td>
-<td><p>When you add an IPv4 route with an IPv6 next hop, switchd crashes.</p></td>
-<td>4.1.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1033,20 +1070,6 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
 <td>3.7.5-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
- 
- 
- cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
- cumulus@switch:~$ sudo reboot 
- 
- 
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
-The workaround only works when an out-of-band network is present.</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>

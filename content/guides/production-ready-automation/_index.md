@@ -3,7 +3,6 @@ title: Production Ready Automation Guide
 author: Cumulus Networks
 weight: 10
 product: Cumulus Networks Guides
-version: "1.0"
 draft: true
 ---
 The Production Ready Automation package from Cumulus Networks provides several examples of a fully operationalized, automated data center and includes:

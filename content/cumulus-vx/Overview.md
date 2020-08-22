@@ -95,7 +95,7 @@ The following table outlines the similarities and differences between Cumulus VX
 
 ## Support Policy
 
-As a Cumulus Linux customer, you can receive formal GSS support for Cumulus VX instances to:
+As a Cumulus Linux customer, you can receive formal GSS support for Cumulus VX to:
 
 - Test and stage network topologies before deploying to production.
 - Analyze, troubleshoot, and correct issues with configurations and software bugs in Cumulus VX that might also apply to Cumulus Linux running on physical devices.

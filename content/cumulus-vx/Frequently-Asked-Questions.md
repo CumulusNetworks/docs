@@ -12,7 +12,7 @@ Cumulus VX is available as a free download on the {{<exlink url="https://cumulus
 
 ### Which Hypervisors does Cumulus VX support?
 
-For a list of the supported hypervisors and orchestrators, see {{<link url="Overview" text="supported hypervisors">}}.
+For a list of the supported hypervisors and orchestrators, see {{<link url="Overview#supported-hypervisors" text="supported hypervisors">}}.
 
 ### What's the support policy for Cumulus VX?
 
@@ -51,7 +51,7 @@ Info: Check the output of 'blkid'.
 
 Configure VMware vSphere to use the SATA controller.
 
-### Why do I see the error "br0: received package on swp1 with own address as source address"?
+### Why do I see the error br0: received package on swp1 with own address as source address?
 
 If you intend to bridge the switch ports in the VM, place each switch port in the bridge in its own virtual network on the host. Otherwise, you might see this error:
 
@@ -93,7 +93,7 @@ Follow these steps to send both the grub menu and the kernel output back to the 
 
 {{< /tabs >}}
 
-### Why do I see a the error "net could not connect to netd" when I try to run NCLU commands?
+### Why do I see a the error: net could not connect to netd when I try to run NCLU commands?
 
 Based on the underlying CPU resources, it might take some time for the NCLU service to start after you boot the switch. If you issue an NCLU command before the NCLU service starts, you see the message:
 

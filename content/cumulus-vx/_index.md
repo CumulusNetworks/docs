@@ -16,9 +16,7 @@ Welcome to NVIDIA Cumulus VX.
 Cumulus VX is a free virtual machine (VM) that provides all the features of Cumulus Linux. Use Cumulus VX to learn and test Cumulus Linux in your own environment, at your own pace, without organizational and economic barriers. You can also produce sandbox environments for prototype assessment, pre-production rollouts, and script development. Read the {{<link url="/Overview" text="Cumulus VX overview">}} for additional information about Cumulus VX, to see a list of the supported hypervisors, and to read the support policy.
 
 {{%notice note%}}
-
 Cumulus Networks also offers {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
-
 {{%/notice%}}
 
 ## How do I use Cumulus VX?

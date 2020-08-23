@@ -23,9 +23,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 ### Download and Install the Software
 
 {{%notice info%}}
-
 Install Vagrant **after** you install libvirt so that Vagrant can detect all the necessary files.
-
 {{%/notice%}}
 
 1. Run the following commands to install KVM-QEMU and libvirt.
@@ -80,11 +78,9 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
 3. Edit the `Vagrantfile` and replace the contents of the file with the following:
 
 {{%notice note%}}
-
 - The following is a complete Vagrantfile for the two leaf and one spine example topology. For more information on writing a Vagrantfile, reference the {{% exlink text="Hashicorp Vagrant" url="https://www.vagrantup.com/docs/vagrantfile" %}} documentation.
 - This Vagrantfile defines CPU, memory, and disk requirements for Cumulus VX, which requires at least 768MB of RAM and 6GB of disk space.
-
-{{% /notice %}}
+{{%/notice%}}
 
 {{< expand "Vagrantfile" >}}
 
@@ -353,9 +349,7 @@ Install Vagrant **after** you install libvirt so that Vagrant can detect all the
 4. Run `vagrant up` to start the VMs:
 
 {{%notice note%}}
-
 KVM starts all Vagrant defined VMs in parallel. In large topologies, this might cause host resource contention issues. Consider starting a subset of VMs at a time using the `vagrant up <hostname> <hostname>` command.
-
 {{%/notice%}}
 
    ```

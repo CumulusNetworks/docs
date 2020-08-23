@@ -22,11 +22,9 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 
 ### Create the VMs
 
-{{% notice note %}}
-
+{{%notice note%}}
 The Cumulus VX OVA image defines the CPU, memory, and disk requirements. Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
-
-{{% /notice %}}
+{{%/notice%}}
 
 {{% vx/virtualbox-steps %}}
 

@@ -15,9 +15,7 @@ Cumulus VX is a virtual appliance that helps you become familiar with Cumulus Ne
 Cumulus VX is a virtual machine (VM) on a standard x86 environment. The VM is the same Cumulus Linux operating system supported on NVIDIA ethernet switches and contains the same software features but in a VM format. Cumulus VX provides full data plane functionality through the Linux kernel, as well as layer 2 VLAN, VXLAN bridging, and VXLAN routing capabilities.
 
 {{%notice note%}}
-
 Cumulus VX is designed for testing and not data plane performance. Cumulus VX is not intended to act as a cloud virtual router. No testing or integration has been done with software packet acceleration integrations like SR-IOV or DPDK.
-
 {{%/notice%}}
 
 {{< img src="/images/cumulus-vx/cumulus-vx.png" width="800" >}}
@@ -39,9 +37,7 @@ Cumulus VX is supported with:
 - VMware Fusion, Worksation, and vSphere ESXi
 
 {{%notice note%}}
-
 Cumulus VX is supported with VMware Fusion, Workstation, and vSphere ESXi; however, this document provides setup instructions for VMware vSphere ESXi only.
-
 {{%/notice%}}
 
 ## Cumulus VX Compared with Cumulus Linux
@@ -61,7 +57,7 @@ The following table outlines the similarities and differences between Cumulus VX
 | Upgrade available using an ONIE binary or with APT | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Line rate packet forwarding  | <font color="green">Yes</font> via switch ASIC | <font color="red">No</font> |
 | Software license install | <font color="green">Yes</font> | <font color="red">No</font> |
-| Temperature and sensor 0utputs   | <font color="green">Yes</font> | <font color="red">No</font> |
+| Temperature and sensor outputs   | <font color="green">Yes</font> | <font color="red">No</font> |
 | ACL and routing entry limits   | Limited depending on switch ASIC | Only limited by VM memory |
 | Designed and tested for production | <font color="green">Yes</font> | <font color="red">No</font> |
 | Layer 2 VLANs         | <font color="green">Yes</font> | <font color="green">Yes</font> |
@@ -72,9 +68,9 @@ The following table outlines the similarities and differences between Cumulus VX
 | VXLAN   | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | ECMP | <font color="green">Yes</font>, based on hardware hashing | <font color="green">Yes</font>, based on Linux kernel hashing |
 | Packet marking and remarking | <font color="green">Yes</font> | <font color="red">No</font><sup>1</sup> |
-| QoS Buffer management | <font color="green">Yes</font> | <font color="red">No</font> |
-| QoS Buffer monitoring | <font color="green">Yes</font> | <font color="red">No</font> |
-| QoS Shaping | <font color="green">Yes</font> | <font color="red">No</font> |
+| QoS buffer management | <font color="green">Yes</font> | <font color="red">No</font> |
+| QoS buffer monitoring | <font color="green">Yes</font> | <font color="red">No</font> |
+| QoS shaping | <font color="green">Yes</font> | <font color="red">No</font> |
 | Mellanox What Just Happened (WJH) | <font color="green">Yes</font> | <font color="red">No</font> |
 | ACLs | <font color="green">Yes</font> | <font color="red">No</font><sup>2</sup> | 
 | 802.1x | <font color="green">Yes</font> | <font color="green">Yes</font> |
@@ -86,7 +82,7 @@ The following table outlines the similarities and differences between Cumulus VX
 | LAG and MLAG | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Multicast, IGMP and PIM | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | BFD | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| VRFs, Management VRF | <font color="green">Yes</font> | <font color="green">Yes</font> |
+| VRFs, management VRF | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | NAT | <font color="green">Yes</font> | <font color="red">No</font><sup>3</sup> |
 
 <sub>1. Marking and remarking is supported in Cumulus VX using kernel and Traffic Control (TC) commands, but these are not supported the same way in Cumulus Linux.</sub>  
@@ -103,7 +99,7 @@ As a Cumulus Linux customer, you can receive formal GSS support for Cumulus VX t
 
 Cumulus Networks does *not* provide support for:
 
-- Cumulus VX instances used in a production environment.
+- Cumulus VX used in a production environment.
 - Virtualization environments, including installation, setup, and configuration.
 - Automation tool playbooks, including creation and troubleshooting.
 - Performance or scalability issues related to network traffic running through Cumulus VX instances.

@@ -29,10 +29,9 @@ Try {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" t
 ### How do I log into the Cumulus VX switches?
 
 - For Cumulus VX 4.1.1 and earlier, log into each switch with the `cumulus` account and default password `CumulusLinux!`. You are **not** prompted to change the default password.
-
 - For Cumulus VX 4.2 and later, log into each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time, you are prompted to change the default password.
 
-<p>For more information on the required password change, see the <a href="https://docs.cumulusnetworks.com/cumulus-linux/Quick-Start-Guide/#login-credentials">Cumulus Linux documentation</a>.</p>
+For more information on the required password change, see the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Quick-Start-Guide/#login-credentials" text="Cumulus Linux documentation">}}.
 
 ### Why do I see the failure: Unable to find storage device for file system with label 'ONIE-BOOT'?
 
@@ -70,9 +69,7 @@ Follow these steps to send both the grub menu and the kernel output back to the 
 {{< tab "If the VM has not been booted ">}}
 
 1. Interrupt the boot process at the GRUB prompt.
-
 2. Modify the Linux command line directly, removing all references to the console entries.
-
 3. Start the VM.
 
 {{< /tab >}}
@@ -103,11 +100,9 @@ ERROR: net could not connect to netd
 
 Either wait a bit longer for the NCLU service to start or run the command `sudo sytemctl start netd`.
 
-{{<notice note>}}
-
+{{%notice note%}}
 If you start Cumulus VX with less than the required 768MB of RAM, the NCLU service might fail to start.
-
-{{</notice>}}
+{{%/notice%}}
 
 ### When using VirtualBox or VirtualBox with Vagrant, why is the bond I create down?
 

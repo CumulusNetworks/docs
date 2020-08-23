@@ -5,7 +5,7 @@ weight: 46
 product: Cumulus VX
 version: '4.x'
 ---
-This section describes advanced procedures that help you get more out of Cumulus VX. For example, you can:
+This section describes advanced procedures that help you get more out of Cumulus VX; for example, you can:
 
 - Test the Cumulus Linux upgrade process in your virtual environment by installing a Cumulus VX binary image with ONIE.
 - Convert the two leaf and one spine topology so that you can follow the {{<exlink url="https://cumulusnetworks.com/lp/cumulus-linux-on-demand/" text="Cumulus Linux on demand">}} lab tutorials.
@@ -13,7 +13,7 @@ This section describes advanced procedures that help you get more out of Cumulus
 
 ## Install an ONIE Virtual Machine
 
-Cumulus VX images include the GRUB boot loader and Open Network Install Environment (ONIE) preinstalled. You can install Cumulus Linux on switch hardware using a binary image. You can test this process by installing a Cumulus VX binary image with ONIE in a virtual environment.
+Cumulus VX images include the GRUB boot loader and Open Network Install Environment (ONIE). You can install Cumulus Linux on switch hardware using a binary image. You can test this process by installing a Cumulus VX binary image with ONIE in a virtual environment.
 
 After booting the VM, reboot into ONIE Rescue mode using one of two methods:
 
@@ -32,13 +32,14 @@ The Cumulus Linux on demand labs use the following topology:
 
 To be able to follow the labs, you need to convert the two leaf and one spine topology we use in this documentation to the topology used in the labs.
 
-{{<notice tip>}}
-
+{{%notice tip%}}
 As an alternative to using Cumulus VX with the Cumulus Linux on demand labs, you can use {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action. Your virtual data center consists of two racks with two dual-homed servers connected with a leaf-spine network.
+{{%/notice%}}
 
-{{</notice>}}
+To convert the topology, you need to:
 
-To convert the topology, change the ports on leaf01 and leaf02 (spine01 does not require any port changes) and create the server01 and server 02 virtual servers.
+- Change the ports on leaf01 and leaf02 (spine01 does not require any port changes)
+- Create the server01 and server 02 virtual servers
 
 For VirtualBox and Vagrant or KVM-QEMU and Vagrant, you can run the topology converter to convert the topology. See {{<link url="#run-the-topology-converter" text="Run the Topology Converter">}} section below.
 
@@ -62,11 +63,11 @@ cumulus@leaf01:mgmt:~$ ip link show swp1
 
 {{< tab "swp2 ">}}
 
-   ```
-   cumulus@leaf01:mgmt:~$ ip link show swp2
-   4: swp2: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
-      link/ether 08:00:27:2a:5b:4e brd ff:ff:ff:ff:ff:ff:ff
-   ```
+```
+cumulus@leaf01:mgmt:~$ ip link show swp2
+4: swp2: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
+   link/ether 08:00:27:2a:5b:4e brd ff:ff:ff:ff:ff:ff:ff
+```
 
 {{< /tab >}}
 
@@ -76,7 +77,7 @@ cumulus@leaf01:mgmt:~$ ip link show swp1
 cumulus@leaf01:mgmt:~$ ip link show swp3
 5: swp3: <BROADCAST,MULTICAST,UP,LOWER,LOWER_UP> mtu 9216 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
    link/ether 08:00:27:91:9a:48 brd ff:ff:ff:ff:ff:ff:ff
- ```
+```
 
 {{< /tab >}}
 
@@ -112,11 +113,9 @@ root@leaf01:mgmt:~$ echo 'ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="08:00
 
 {{< /tabs >}}
 
-   {{< notice note >}}
-
+   {{%notice note%}}
 Cumulus VX supports the use of Linux {{<exlink text="udev rules" url="https://wiki.debian.org/udev">}} to rename interfaces to match any desired topologies.
-
-{{</notice>}}
+{{%/notice%}}
 
 3. As root, run the following command to disable default remapping on Cumulus VX, then reboot the switch.
 
@@ -136,9 +135,8 @@ Cumulus VX supports the use of Linux {{<exlink text="udev rules" url="https://wi
 
 In your hypervisor environment, create two Ubuntu virtual servers; server01 and server02.
 
-   - On server01, connect eth1 to swp1 on leaf01 and eth02 to swp1 on leaf02.
-
-   - On server02, connect eth1 to swp2 on leaf01 and eth02 to swp2 on leaf02.
+- On server01, connect eth1 to swp1 on leaf01 and eth02 to swp1 on leaf02.
+- On server02, connect eth1 to swp2 on leaf01 and eth02 to swp2 on leaf02.
 
 Refer to the your hypervisor documentation for detailed instructions on creating virtual servers and network connections.
 
@@ -146,7 +144,7 @@ After you change the ports and create server01 and server02, you are ready to go
 
 ## Run the Topology Converter
 
-The topology Converter can help you to simulate a custom network topology directly on your laptop or on a dedicated server. The topology can be extremely complete; you can simulate hosts as well as network equipment.
+The topology converter can help you to simulate a custom network topology directly on your laptop or on a dedicated server. The topology can be extremely complete; you can simulate hosts as well as network equipment.
 
 The topology converter translates a graphviz topology file (`.dot` file), which describes the network topology link-by-link, into a Vagrantfile, which fully represents the topology. Vagrantfiles are used by Vagrant to define VM settings and connections. You can then simulate the topology with either VirtualBox and Vagrant or with KVM-QEMU and Vagrant.
 

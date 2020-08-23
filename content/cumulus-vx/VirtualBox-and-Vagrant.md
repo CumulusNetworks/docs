@@ -18,15 +18,12 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 ### Download and Install the Software
 
 1. Download and install {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox">}}.
-
 2. Download and install {{<exlink url="https://www.vagrantup.com/downloads.html" text="Vagrant">}}.
 
 ### Create VMs and Network Connections
 
 {{% notice note %}}
-
 The Cumulus VX box image defines the CPU, memory, and disk requirements. Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
-
 {{% /notice %}}
 
 {{% vx/vagrant-setup %}}

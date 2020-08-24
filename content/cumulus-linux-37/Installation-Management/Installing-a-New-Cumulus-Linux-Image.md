@@ -28,6 +28,12 @@ In the following procedures:
 - Run the `sudo onie-install -h` command to show the ONIE installer options.
 - After you install the Cumulus Linux disk image, you need to install the license file. Refer to {{<link url="Quick-Start-Guide#install-the-license" text="Install the License">}}.
 
+{{%notice info%}}
+
+In Cumulus Linux 3.7.12, the default password for the cumulus user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before you upgrade to Cumulus Linux 3.7.12.
+
+{{%/notice%}}
+
 ## Install Using a DHCP/Web Server with DHCP Options
 
 To install Cumulus Linux using a DHCP/web server *with* DHCP options, set up a DHCP/web server on your laptop and connect the eth0 management port of the switch to your laptop. After you connect the cable, the installation proceeds as follows:

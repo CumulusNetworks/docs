@@ -18,6 +18,12 @@ ZTP in Cumulus Linux can occur automatically in one of the following ways, in th
 
 Each method is discussed in greater detail below.
 
+{{%notice info%}}
+
+In Cumulus Linux 3.7.12, the default password for the cumulus user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before you upgrade to Cumulus Linux 3.7.12.
+
+{{%/notice%}}
+
 ## Zero Touch Provisioning Using a Local File
 
 ZTP only looks once for a ZTP script on the local file system when the switch boots. ZTP searches for an install script that matches an {{<exlink url="http://onie.org" text="ONIE">}}-style waterfall in `/var/lib/cumulus/ztp`, looking for the most specific name first, and ending at the most generic:
@@ -232,6 +238,17 @@ function install_license(){
          /usr/cumulus/bin/cl-license
          exit 1
     fi
+}
+```
+
+### Change the Default Password
+
+In Cumulus Linux 3.7.12, the default password for the cumulus user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are now **required** to change this default password. You can use the following function to change the default password to CumulusLinux!:
+
+```
+function change_password(){
+    # Change default cumulus user password
+    echo "cumulus:CumulusLinux!" | chpasswd
 }
 ```
 

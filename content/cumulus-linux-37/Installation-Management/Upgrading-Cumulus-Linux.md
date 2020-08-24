@@ -8,6 +8,12 @@ This topic describes how to upgrade Cumulus Linux on your switches to a more rec
 
 Cumulus Networks recommends that you deploy, provision, configure, and upgrade switches using automation, even with small networks or test labs. During the upgrade process, you can quickly upgrade dozens of devices in a repeatable manner. Using tools like Ansible, Chef, or Puppet for configuration management greatly increases the speed and accuracy of the next major upgrade; these tools also enable the quick swap of failed switch hardware.
 
+{{%notice info%}}
+
+In Cumulus Linux 3.7.12, the default password for the cumulus user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before you upgrade to Cumulus Linux 3.7.12.
+
+{{%/notice%}}
+
 ## Before You Upgrade Cumulus Linux
 
 {{%notice tip%}}

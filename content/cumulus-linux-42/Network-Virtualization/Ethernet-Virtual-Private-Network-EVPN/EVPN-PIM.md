@@ -12,7 +12,7 @@ The following example shows a EVPN-PIM configuration, where underlay multicast i
 
 In the above example, host01 sends an ARP request to resolve host03. leaf01 (in addition to flooding the packet to host02) sends an encapsulated packet over the underlay network, which is forwarded using the MDT to leaf02 and leaf03.
 
-For PIM-SM, type-3 routes do not result in any forwarding entries. Cumulus Linux does not advertise type-3 routes for a layer 2 VNI when BUM mode for that VNI is PIM-SM.
+For PIM-SM, type-3 routes do not result in any forwarding entries. Cumulus Linux does **not** advertise type-3 routes for a layer 2 VNI when BUM mode for that VNI is PIM-SM.
 
 {{%notice note%}}
 

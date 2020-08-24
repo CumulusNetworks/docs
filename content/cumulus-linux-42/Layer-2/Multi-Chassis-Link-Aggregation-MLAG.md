@@ -190,7 +190,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.0.2.50
-    clagd-peer-ip primary
+    clagd-peer-ip 169.254.1.2
     clagd-sys-mac 44:38:39:FF:40:94
 ...
 ```
@@ -261,7 +261,7 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto peerlink.4094
 iface peerlink.4094
-    clagd-peer-ip linklocal
+    clagd-peer-ip 169.254.1.2
     clagd-backup-ip 192.0.2.50
     clagd-sys-mac 44:38:39:FF:40:94
     clagd-priority 2048
@@ -369,7 +369,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.12
     clagd-enable no
-    clagd-peer-ip linklocal
+    clagd-peer-ip 169.254.1.2
     clagd-priority 1000
     clagd-sys-mac 44:38:39:FF:00:01
 ...
@@ -487,7 +487,7 @@ auto peerlink.4094
 iface peerlink.4094
     netmask 255.255.255.0
     clagd-priority 8192
-    clagd-peer-ip linklocal
+    clagd-peer-ip 169.254.1.2
     clagd-backup-ip 192.0.2.50
     clagd-sys-mac 44:38:39:ff:00:01
     clagd-args --priority 1000
@@ -507,7 +507,7 @@ auto peerlink.4094
 iface peerlink.4094
     netmask 255.255.255.0
     clagd-priority 8192
-    clagd-peer-ip linklocal
+    clagd-peer-ip 169.254.1.2
     clagd-backup-ip 192.0.2.50
     clagd-args --backupPort 5400
     clagd-sys-mac 44:38:39:ff:00:01
@@ -526,7 +526,7 @@ cumulus@switch:~$ net show clag
 The peer is alive
         Our Priority, ID, and Role: 32768 44:38:39:00:00:41 primary
     Peer Priority, ID, and Role: 32768 44:38:39:00:00:42 secondary
-            Peer Interface and IP: peerlink.4094 linklocal
+            Peer Interface and IP: peerlink.4094 169.254.1.2
                         Backup IP: 192.168.0.22 (active)
                         System MAC: 44:38:39:FF:40:90
 
@@ -578,7 +578,7 @@ iface mgmt
 auto peer-bond.4000
 iface peer-bond.4000
         clagd-priority 8192
-        clagd-peer-ip linklocal
+        clagd-peer-ip 169.254.1.2
         clagd-backup-ip 192.0.2.174 vrf mgmt
         clagd-sys-mac 44:38:39:ff:00:01
 ...
@@ -599,7 +599,7 @@ cumulus@switch:~$ net show clag
 The peer is alive
         Our Priority, ID, and Role: 32768 44:38:39:00:00:41 primary
     Peer Priority, ID, and Role: 32768 44:38:39:00:00:42 secondary
-            Peer Interface and IP: peerlink.4094 linklocal
+            Peer Interface and IP: peerlink.4094 169.254.1.2
                         Backup IP: 192.168.0.22 vrf green (active)
                         System MAC: 44:38:39:FF:40:90
 
@@ -642,7 +642,7 @@ auto peerlink.4094
 iface peerlink.4094
     clagd-args --backupPort 5400
     clagd-args --peerTimeout 900
-    clagd-peer-ip linklocal
+    clagd-peer-ip 169.254.1.2
     clagd-backup-ip 192.0.2.50
     clagd-priority 8192
     clagd-sys-mac 44:38:39:ff:00:01
@@ -686,7 +686,7 @@ auto peerlink.4094
  iface peerlink.4094
     clagd-args --backupPort 5400
     clagd-args --lacpPoll 900
-    clagd-peer-ip linklocal
+    clagd-peer-ip 169.254.1.2
     clagd-backup-ip 192.0.2.50
     clagd-priority 8192
     clagd-sys-mac 44:38:39:ff:00:01
@@ -1109,7 +1109,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.12
-    clagd-peer-ip linklocal
+    clagd-peer-ip 169.254.1.2
     clagd-priority 1000
     clagd-sys-mac 44:38:39:FF:00:01
 
@@ -1212,7 +1212,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.11
-    clagd-peer-ip linklocal
+    clagd-peer-ip 169.254.1.2
     clagd-sys-mac 44:38:39:FF:00:01
 
 auto server1
@@ -1314,7 +1314,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.14
-    clagd-peer-ip linklocal
+    clagd-peer-ip 169.254.1.2
     clagd-priority 1000
     clagd-sys-mac 44:38:39:FF:00:02
 
@@ -1417,7 +1417,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 192.168.1.13
-    clagd-peer-ip linklocal
+    clagd-peer-ip 169.254.1.2
     clagd-sys-mac 44:38:39:FF:00:02
 
 auto server3
@@ -1476,7 +1476,7 @@ cumulus@switch:~$ net show clag
 The peer is alive
     Peer Priority, ID, and Role: 4096 44:38:39:FF:00:01 primary
      Our Priority, ID, and Role: 8192 44:38:39:FF:00:02 secondary
-          Peer Interface and IP: peerlink.4094 linklocal
+          Peer Interface and IP: peerlink.4094 169.254.1.2
                       Backup IP: 192.168.1.12 (inactive)
                      System MAC: 44:38:39:FF:00:01
 

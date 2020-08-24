@@ -4,11 +4,11 @@ author: Cumulus Networks
 weight: 620
 toc: 4
 ---
-With the NetQ UI and NetQ CLI, you can monitor the inventory of individual switches separately from the network. A user can monitor such items as operating system, motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. Being able to monitor this inventory aids in upgrades, compliance, and other planning tasks.
+With the NetQ UI and NetQ CLI, you can monitor your inventory of switches across the network or individually. A user can monitor such items as operating system, motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. Being able to monitor this inventory aids in upgrades, compliance, and other planning tasks.
 
 The commands and cards available to obtain this type of information help you to answer questions such as:
 
-- What hardware is installed on my switches?
+- What hardware is installed on my switch?
 - How many transmit and receive packets have been dropped?
 - How healthy are the fans and power supply?
 - What software is installed on my switch?
@@ -28,11 +28,42 @@ The CLI provides detailed switch inventory information through its `netq <hostna
 
 ## View Switch Inventory Summary
 
-Component information for all of the switches in your network can be viewed from either the NetQ UI or NetQ CLI.
+Component information for all of the switches in your network can be viewed from both the NetQ UI and NetQ CLI.
+
+- Inventory|Switches card:
+    - Small: view count of switches and distribution of switch status
+    - Medium: view count of OS, license, ASIC, platform, CPU model, Disk, and memory types or versions across all switches
+- `netq show inventory` command:
+    -View ASIC, CPU, disk, OS, and ports on all switches
 
 {{< tabs "TabID25" >}}
 
 {{< tab "NetQ UI" >}}
+
+1. Locate the Inventory|Switches card on your workbench.
+
+2. From the medium sized card, view the distribution of hardware and software components across the network.
+
+3. Hover over any of the segments in the distribution chart to highlight a specific component.
+
+    {{<figure src="/images/netq/inventory-switch-medium-hover-license-230.png" width="200">}}
+
+<div style="padding-left: 18px;">When you <em>hover</em>, a tooltip appears displaying:
+
+<ul>
+<li>Name or value of the component type, such as the version number or status</li>
+<li>Total number of switches with that type of component deployed compared to the total number of switches</li>
+<li>Percentage of this type with respect to all component types</li></ul></div>
+
+4. Choose *Rotten Switches* from the dropdown to see which, if any, switches are currently not communicating with NetQ.
+
+    {{<figure src="/images/netq/switch-status-dropdown-320.png" width="180">}}
+
+5. Return to your fresh switches, then hover over the card header and change to the small size card using the size picker.
+
+    {{<figure src="/images/netq/inventory-switch-small-230.png" width="150">}}
+
+<div style="padding-left: 18px;">Here you can see the total switch count and the distribution of those that are communicating well and those that are not.</div>
 
 {{< /tab >}}
 
@@ -58,74 +89,63 @@ spine01           VX                   CL              x86_64   VX              
 
 {{< /tabs >}}
 
-## View Hardware Inventory on a Given Switch
+## View ASIC Information for a Switch
 
-You can view all hardware components or narrow your view to specific hardware components for a given switch.
+Asic information for a switch can be viewed from either the NetQ CLI or NetQ UI.
 
-Switch component inventory can be viewed from either the NetQ CLI or NetQ UI.
+{{< tabs "TabID96" >}}
 
-{{< tabs "TabID47" >}}
+{{< tab "NetQ UI" >}}
+
+1. Locate the medium Inventory|Switches card on your workbench.
+
+2. Hover over a segment of the ASIC graph in the distribution chart.
+
+    The same information is available on the summary tab of the large size card.
+
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+
+3. Hover over the card header and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core.svg" height="14" width="14"/> to view the ASIC vendor and model distribution.
+
+4. Hover over charts to view the name of the ASIC vendors or models, how many switches have that vendor or model deployed, and the percentage of this number compared to the total number of switches.
+
+    {{<figure src="/images/netq/inventory-switch-large-asic-tab-230.png" width="700">}}
+
+5. Change to the full-screen card and click **ASIC**. Note that if you are running CumulusVX switches, no detailed ASIC information is available because the hardware is virtualized.
+
+    {{<figure src="/images/netq/inventory-switch-fullscr-asic-tab-320.png" width="700">}}
+
+6. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
+
+7. Select *hostname* from the **Field** dropdown. Then enter the hostname of the switch you want to view.
+
+   {{<figure src="/images/netq/inventory-switch-fullscr-filterbyhostname-320.png" width="400">}}
+
+8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+
+{{< /tab >}}
 
 {{< tab "NetQ CLI" >}}
 
-To view switch components, run:
+To view information about the ASIC on a switch, run:
 
 ```
-netq <hostname> show inventory brief
+netq <hostname> show inventory asic
 ```
 
-This example shows
+This example shows the ASIC information for the *leaf02* switch.
 
-### View Information about the ASIC on all Switches
+```
+cumulus@switch:~$ netq leaf02 show inventory asic
+Matching inventory records:
+Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
+leaf02            Mellanox             Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
+```
 
-You can view the vendor, model, model identifier, core bandwidth
-capability, and ports of the ASIC installed on your switch motherboard.
-This example shows all of these for all devices.
+{{< /tab >}}
 
-    cumulus@switch:~$ netq show inventory asic
-    Matching inventory records:
-    Hostname          Vendor               Model                          Model ID                  Core BW        Ports
-    ----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
-    dell-z9100-05     Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
-    mlx-2100-05       Mellanox             Spectrum                       MT52132                   N/A            16 x 100G-QSFP28
-    mlx-2410a1-05     Mellanox             Spectrum                       MT52132                   N/A            48 x 25G-SFP28 & 8 x 100G-QSFP28
-    mlx-2700-11       Mellanox             Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
-    qct-ix1-08        Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
-    qct-ix7-04        Broadcom             Trident3                       BCM56870                  N/A            32 x 100G-QSFP28
-    qct-ix7-04        N/A                  N/A                            N/A                       N/A            N/A
-    st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-    st1-l2            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-    st1-l3            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-    st1-s1            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
-    st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
-
-You can filter the results of the command to view devices with a
-particular characteristic. This example shows all devices that use a
-Broadcom ASIC.
-
-    cumulus@switch:~$ netq show inventory asic vendor Broadcom
-    Matching inventory records:
-    Hostname          Vendor               Model                          Model ID                  Core BW        Ports
-    ----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
-    dell-z9100-05     Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
-    qct-ix1-08        Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
-    qct-ix7-04        Broadcom             Trident3                       BCM56870                  N/A            32 x 100G-QSFP28
-    st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-    st1-l2            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-    st1-l3            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-    st1-s1            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
-    st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
-
-You can filter the results of the command view the ASIC information for
-a particular switch. This example shows the ASIC information for
-*st1-11* switch.
-
-    cumulus@switch:~$ netq leaf02 show inventory asic
-    Matching inventory records:
-    Hostname          Vendor               Model                          Model ID                  Core BW        Ports
-    ----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
-    st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-
+{{< /tabs >}}
 ### View Information about the Motherboard in a Switch
 
 You can view the vendor, model, base MAC address, serial number, part

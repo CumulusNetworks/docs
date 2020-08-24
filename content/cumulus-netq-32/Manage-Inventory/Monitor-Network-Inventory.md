@@ -224,7 +224,7 @@ ASIC information is available from the NetQ UI and NetQ CLI.
 
 {{< tab "Inventory|Devices">}}
 
-1. Locate the Inventory|Devices card on your workbench.
+1. Locate the medium Inventory|Devices card on your workbench.
 
 2. Hover over the card, and change to the large size card using the size picker.
 
@@ -303,7 +303,6 @@ mlx-2410a1-05     Mellanox             Spectrum                       MT52132   
 mlx-2700-11       Mellanox             Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
 qct-ix1-08        Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
 qct-ix7-04        Broadcom             Trident3                       BCM56870                  N/A            32 x 100G-QSFP28
-qct-ix7-04        N/A                  N/A                            N/A                       N/A            N/A
 st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
 st1-l2            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
 st1-l3            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
@@ -1293,7 +1292,7 @@ act-5712-09       3.1.0                bcm                  x86_64              
 cumulus@noc-pr:~$
 ``` -->
 
-### View ACL Resources on All Switches
+### View ACL Resources
 
 Using the NetQ CLI, you can monitor the incoming and outgoing access control lists (ACLs) configured on all devices, currently or at a time in the past.
 
@@ -1304,6 +1303,71 @@ netq show cl-resource acl [ingress | egress] [around <text-time>] [json]
 ```
 
 Use the `egress` or `ingress` options to show only the outgoing or incoming ACLs. Use the `around` option to show this information for a time in the past.
+
+This example shows the ACL resources for all configured switches:
+
+```
+cumulus@switch:~$ netq show cl-resource acl
+Matching cl_resource records:
+Hostname          In IPv4 filter       In IPv4 Mangle       In IPv6 filter       In IPv6 Mangle       In 8021x filter      In Mirror            In PBR IPv4 filter   In PBR IPv6 filter   Eg IPv4 filter       Eg IPv4 Mangle       Eg IPv6 filter       Eg IPv6 Mangle       ACL Regions          18B Rules Key        32B Rules Key        54B Rules Key        L4 Port range Checke Last Updated
+                                                                                                                                                                                                                                                                                                                                                                  rs
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+act-5712-09       40,512(7%)           0,0(0%)              30,768(3%)           0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              32,256(12%)          0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              2,24(8%)             Tue Aug 18 20:20:39 2020
+mlx-2700-04       0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              4,400(1%)            2,2256(0%)           0,1024(0%)           2,1024(0%)           0,0(0%)              Tue Aug 18 20:19:08 2020
+```
+
+The same information can be output to JSON format:
+
+```
+cumulus@noc-pr:~$ netq show cl-resource acl json
+{
+    "cl_resource":[
+        {
+            "egIpv6Mangle":"0,0(0%)",
+            "egIpv6Filter":"0,0(0%)",
+            "inIpv6Mangle":"0,0(0%)",
+            "egIpv4Mangle":"0,0(0%)",
+            "egIpv4Filter":"32,256(12%)",
+            "inIpv4Mangle":"0,0(0%)",
+            "in8021XFilter":"0,0(0%)",
+            "inPbrIpv4Filter":"0,0(0%)",
+            "inPbrIpv6Filter":"0,0(0%)",
+            "l4PortRangeCheckers":"2,24(8%)",
+            "lastUpdated":1597782039.632999897,
+            "inMirror":"0,0(0%)",
+            "hostname":"act-5712-09",
+            "54bRulesKey":"0,0(0%)",
+            "18bRulesKey":"0,0(0%)",
+            "32bRulesKey":"0,0(0%)",
+            "inIpv6Filter":"30,768(3%)",
+            "aclRegions":"0,0(0%)",
+            "inIpv4Filter":"40,512(7%)"
+        },
+        {
+            "egIpv6Mangle":"0,0(0%)",
+            "egIpv6Filter":"0,0(0%)",
+            "inIpv6Mangle":"0,0(0%)",
+            "egIpv4Mangle":"0,0(0%)",
+            "egIpv4Filter":"0,0(0%)",
+            "inIpv4Mangle":"0,0(0%)",
+            "in8021XFilter":"0,0(0%)",
+            "inPbrIpv4Filter":"0,0(0%)",
+            "inPbrIpv6Filter":"0,0(0%)",
+            "l4PortRangeCheckers":"0,0(0%)",
+            "lastUpdated":1597781948.3259999752,
+            "inMirror":"0,0(0%)",
+            "hostname":"mlx-2700-04",
+            "54bRulesKey":"2,1024(0%)",
+            "18bRulesKey":"2,2256(0%)",
+            "32bRulesKey":"0,1024(0%)",
+            "inIpv6Filter":"0,0(0%)",
+            "aclRegions":"4,400(1%)",
+            "inIpv4Filter":"0,0(0%)"
+	}
+    ],
+    "truncatedResult":false
+}
+```
 
 <!-- Move to switch inventory
 This example shows the ACL resources for the *leaf01* switch.
@@ -1349,7 +1413,7 @@ cumulus@switch:~$ netq leaf01 show cl-resource acl json
 }
 ``` -->
 
-### View Forwarding Resources on All Switches
+### View Forwarding Resources
 
 With the NetQ CLI, you can monitor the amount of forwarding resources used by all devices, currently or at a time in the past.
 
@@ -1360,6 +1424,17 @@ netq show cl-resource forwarding [around <text-time>] [json]
 ```
 
 Use the `around` option to show this information for a time in the past.
+
+This example shows forwarding resources for all configured switches:
+
+```
+cumulus@noc-pr:~$ netq show cl-resource forwarding
+Matching cl_resource records:
+Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+act-5712-09       0,16384(0%)          0,0(0%)              0,131072(0%)         23,20480(0%)         0,16330(0%)          0,32768(0%)          0,8192(0%)           Tue Aug 18 20:20:39 2020
+mlx-2700-04       0,32768(0%)          0,16384(0%)          0,65536(0%)          4,28672(0%)          0,4101(0%)           0,40960(0%)          0,1000(0%)           Tue Aug 18 20:19:08 2020
+```
 
 <!-- Move to switch inventory
 This example shows the forwarding resources used by the *spine02* switch.
@@ -1394,9 +1469,14 @@ cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
 }
 ``` -->
 
-### Validate NetQ Agents are Running on All Switches and Hosts
+### View NetQ Agents
 
-With the NetQ UI and the NetQ CLI, you can confirm that NetQ Agents are running on switches and hosts (if installed). using the `netq show agents` command. Viewing the **Status** column of the output indicates whether the agent is up and current, labelled *Fresh*, or down and stale, labelled *Rotten*. Additional information is provided about the agent status, including whether it is time synchronized, how long it has been up, and the last time its state changed. You can also see the version running.
+NetQ Agent information is available from the NetQ UI and NetQ CLI.
+
+- Agents table
+    - Full-screen: view NetQ Agent version across all devices (table)
+- `netq show agents`
+    - View NetQ Agent status, uptime, and version across all devices
 
 {{< tabs "TabID1549" >}}
 
@@ -1404,11 +1484,13 @@ With the NetQ UI and the NetQ CLI, you can confirm that NetQ Agents are running 
 
 To view the NetQ Agents on all switches and hosts:
 
-1. Open the Main menu (click ).
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main menu.
 
 2. Select **Agents** from the **Network** column.
 
-    {{<figure src="/images/netq/main-menu-ntwk-agents-241.png" width="700">}}
+3. View the **Version** column to determine which release of the NetQ Agent is running on your devices. Ideally, this version should be the same as the NetQ release you are running, and is the same across all of your devices.
+
+    {{<figure src="/images/netq/main-menu-ntwk-agents-310.png" width="700">}}
 
 <div style="padding-left: 18px;"><table>
 <thead>
@@ -1466,7 +1548,7 @@ netq show agents [fresh | rotten ] [around <text-time>] [json]
 
 Use the `fresh` keyword to view only the NetQ Agents that are in current communication with the NetQ Platform or NetQ Collector. Use the `rotten` keyword to view those that are not. Use the `around` keyword to view the state of NetQ Agents at an earlier time.
 
-This example shows the current NetQ Agent state on all devices.
+This example shows the current NetQ Agent state on all devices. View the **Status** column which indicates whether the agent is up and current, labelled *Fresh*, or down and stale, labelled *Rotten*. Additional information is provided about the agent status, including whether it is time synchronized, how long it has been up, and the last time its state changed. You can also see the version running. Ideally, this version should be the same as the NetQ release you are running, and is the same across all of your devices.
 
 ```
 
@@ -1474,19 +1556,27 @@ cumulus@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-edge01            Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:7h:2m:12s              2d:7h:2m:5s               2d:7h:2m:5s                Sun Apr 21 16:00:50 2019
-exit01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:30s              2d:7h:1m:22s              2d:7h:1m:22s               Sun Apr 21 16:00:52 2019
-exit02            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:36s              2d:7h:1m:27s              2d:7h:1m:27s               Sun Apr 21 16:01:19 2019
-leaf01            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:28s              2h:54m:12s                2h:54m:12s                 Sun Apr 21 20:05:45 2019
-leaf02            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:38s              2d:7h:1m:29s              2d:7h:1m:29s               Sun Apr 21 16:01:43 2019
-leaf03            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:37s              2d:7h:1m:28s              2d:7h:1m:28s               Sun Apr 21 16:01:23 2019
-leaf04            Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:39s              2d:7h:1m:31s              2d:7h:1m:31s               Sun Apr 21 16:01:27 2019
-server01          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:6h:59m:35s             2d:6h:59m:27s             2d:6h:59m:27s              Sun Apr 21 16:00:43 2019
-server02          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:6h:59m:34s             2d:6h:59m:26s             2d:6h:59m:26s              Sun Apr 21 16:00:46 2019
-server03          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:6h:59m:34s             2d:6h:59m:26s             2d:6h:59m:26s              Sun Apr 21 16:00:52 2019
-server04          Fresh            yes      2.1.0-ub16.04u15~1555612152.6e34b56  2d:6h:59m:34s             2d:6h:59m:26s             2d:6h:59m:26s              Sun Apr 21 16:00:43 2019
-spine01           Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:40s              2d:7h:1m:32s              2d:7h:1m:32s               Sun Apr 21 16:01:33 2019
-spine02           Fresh            yes      2.1.0-cl3u15~1555612272.6e34b56      2d:7h:1m:34s              2d:7h:1m:26s              2d:7h:1m:26s               Sun Apr 21 16:01:12 2019
+border01          Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 28 18:48:31 2020  Tue Jul 28 18:49:46 2020  Tue Jul 28 18:49:46 2020   Sun Aug 23 18:56:56 2020
+border02          Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 28 18:43:29 2020  Tue Jul 28 18:44:42 2020  Tue Jul 28 18:44:42 2020   Sun Aug 23 18:49:57 2020
+fw1               Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 28 19:13:26 2020  Tue Jul 28 19:14:28 2020  Tue Jul 28 19:14:28 2020   Sun Aug 23 19:24:01 2020
+fw2               Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 28 19:11:27 2020  Tue Jul 28 19:12:51 2020  Tue Jul 28 19:12:51 2020   Sun Aug 23 19:21:13 2020
+leaf01            Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 14 21:04:03 2020  Wed Jul 29 16:12:22 2020  Wed Jul 29 16:12:22 2020   Sun Aug 23 16:16:09 2020
+leaf02            Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 14 20:59:10 2020  Wed Jul 29 16:12:23 2020  Wed Jul 29 16:12:23 2020   Sun Aug 23 16:16:48 2020
+leaf03            Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 14 21:04:03 2020  Tue Jul 14 21:18:23 2020  Tue Jul 14 21:18:23 2020   Sun Aug 23 21:25:16 2020
+leaf04            Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 14 20:57:30 2020  Tue Jul 14 20:58:48 2020  Tue Jul 14 20:58:48 2020   Sun Aug 23 21:09:06 2020
+oob-mgmt-server   Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 17:07:59 2020  Mon Jul 13 21:01:35 2020  Tue Jul 14 19:36:19 2020   Sun Aug 23 15:45:05 2020
+server01          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 18:30:46 2020  Mon Jul 13 22:09:19 2020  Tue Jul 14 19:36:22 2020   Sun Aug 23 19:43:34 2020
+server02          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 18:30:46 2020  Mon Jul 13 22:09:19 2020  Tue Jul 14 19:35:59 2020   Sun Aug 23 19:48:07 2020
+server03          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 18:30:46 2020  Mon Jul 13 22:09:20 2020  Tue Jul 14 19:36:22 2020   Sun Aug 23 19:47:47 2020
+server04          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 18:30:46 2020  Mon Jul 13 22:09:20 2020  Tue Jul 14 19:35:59 2020   Sun Aug 23 19:47:52 2020
+server05          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 18:30:46 2020  Mon Jul 13 22:09:20 2020  Tue Jul 14 19:36:02 2020   Sun Aug 23 19:46:27 2020
+server06          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 18:30:46 2020  Mon Jul 13 22:09:21 2020  Tue Jul 14 19:36:37 2020   Sun Aug 23 19:47:37 2020
+server07          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 17:58:02 2020  Mon Jul 13 22:09:21 2020  Tue Jul 14 19:36:01 2020   Sun Aug 23 18:01:08 2020
+server08          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 17:58:18 2020  Mon Jul 13 22:09:23 2020  Tue Jul 14 19:36:03 2020   Mon Aug 24 09:10:38 2020
+spine01           Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Mon Jul 13 17:48:43 2020  Mon Aug 10 19:55:07 2020  Mon Aug 10 19:55:07 2020   Sun Aug 23 19:57:05 2020
+spine02           Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Mon Jul 13 17:47:39 2020  Mon Aug 10 19:55:09 2020  Mon Aug 10 19:55:09 2020   Sun Aug 23 19:56:39 2020
+spine03           Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Mon Jul 13 17:47:40 2020  Mon Aug 10 19:55:12 2020  Mon Aug 10 19:55:12 2020   Sun Aug 23 19:57:29 2020
+spine04           Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Mon Jul 13 17:47:56 2020  Mon Aug 10 19:55:11 2020  Mon Aug 10 19:55:11 2020   Sun Aug 23 19:58:23 2020
 ```
 
 {{< /tab >}}

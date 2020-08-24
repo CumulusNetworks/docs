@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31073</td>
+<td><p>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.<br/>
+To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31057</td>
 <td><p>The following vulnerability has been announced:<br/>
 CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
@@ -40,6 +47,12 @@ Vulnerable: &lt;= 1.8.2-3-cl4u1</p></td>
 <td><p>CVE-2019-20795: iproute2 has a use-after-free in get_netnsid_from_name in ip/ipnetns.c.<br/>
 Vulnerable: &lt;= 4.19.0-cl4u3</p></td>
 <td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31028</td>
+<td><p>Ingress SPAN/ERSPAN does not mirror packets when the next hop is EVPN encapsulated.</p></td>
+<td>3.7.7-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2159,6 +2172,13 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31073</td>
+<td><p>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.<br/>
+To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31057</td>
 <td><p>The following vulnerability has been announced:<br/>
 CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
@@ -2185,6 +2205,12 @@ Vulnerable: &lt;= 1.8.2-3-cl4u1</p></td>
 <td><p>CVE-2019-20795: iproute2 has a use-after-free in get_netnsid_from_name in ip/ipnetns.c.<br/>
 Vulnerable: &lt;= 4.19.0-cl4u3</p></td>
 <td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31028</td>
+<td><p>Ingress SPAN/ERSPAN does not mirror packets when the next hop is EVPN encapsulated.</p></td>
+<td>3.7.7-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>

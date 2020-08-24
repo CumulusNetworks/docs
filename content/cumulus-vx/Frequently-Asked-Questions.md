@@ -58,11 +58,11 @@ If you intend to bridge the switch ports in the VM, place each switch port in th
 br0: received package on swp1 with own address as source address
 ```
 
-### How do I redirect the grub menu and the kernel output to the serial console?
+### How do I redirect the GRUB menu and the kernel output to the serial console?
 
-To provide easier access in video-focused hypervisors (such as VirtualBox), Cumulus VX is configured by default to redirect the grub menu and the kernel output to the video console.
+To provide easier access in video-focused hypervisors (such as VirtualBox), Cumulus VX is configured by default to redirect the GRUB menu and the kernel output to the video console.
 
-Follow these steps to send both the grub menu and the kernel output back to the serial console.
+Follow these steps to send both the GRUB menu and the kernel output back to the serial console.
 
 {{< tabs "TabID01 ">}}
 

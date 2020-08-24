@@ -85,13 +85,27 @@ Hostname          Switch               OS              CPU      ASIC            
 spine01           VX                   CL              x86_64   VX              N/A
 ```
 
+This example show the components on the NetQ On-premises or Cloud Appliance.
+
+```
+cumulus@switch:~$ netq show inventory brief opta
+Matching inventory records:
+Hostname          Switch               OS              CPU      ASIC            Ports
+----------------- -------------------- --------------- -------- --------------- -----------------------------------
+netq-ts           N/A                  Ubuntu          x86_64   N/A             N/A
+```
+
 {{< /tab >}}
 
 {{< /tabs >}}
 
-## View ASIC Information for a Switch
+## View Switch Hardware Inventory
 
-Asic information for a switch can be viewed from either the NetQ CLI or NetQ UI.
+You can view hardware components deployed on each switch in your network.
+
+### View ASIC Information for a Switch
+
+ASIC information for a switch can be viewed from either the NetQ CLI or NetQ UI.
 
 {{< tabs "TabID96" >}}
 
@@ -111,17 +125,23 @@ Asic information for a switch can be viewed from either the NetQ CLI or NetQ UI.
 
     {{<figure src="/images/netq/inventory-switch-large-asic-tab-230.png" width="700">}}
 
-5. Change to the full-screen card and click **ASIC**. Note that if you are running CumulusVX switches, no detailed ASIC information is available because the hardware is virtualized.
+5. Change to the full-screen card and click **ASIC**.
 
     {{<figure src="/images/netq/inventory-switch-fullscr-asic-tab-320.png" width="700">}}
 
+<div style="padding-left: 18px;">Note that if you are running CumulusVX switches, no detailed ASIC information is available because the hardware is virtualized.</div>
+
 6. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
 
-7. Select *hostname* from the **Field** dropdown. Then enter the hostname of the switch you want to view.
+7. Select *hostname* from the **Field** dropdown.
 
-   {{<figure src="/images/netq/inventory-switch-fullscr-filterbyhostname-320.png" width="400">}}
+8. Enter the hostname of the switch you want to view, and click **Apply**.
 
-8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+   {{<figure src="/images/netq/inventory-switch-fullscr-filterbyhostname-320.png" width="300">}}
+
+   {{<figure src="/images/netq/inventory-switch-asic-single-switch-filter-320.png" width="700">}}
+
+9. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
 {{< /tab >}}
 
@@ -130,7 +150,7 @@ Asic information for a switch can be viewed from either the NetQ CLI or NetQ UI.
 To view information about the ASIC on a switch, run:
 
 ```
-netq <hostname> show inventory asic
+netq [<hostname>] show inventory asic [opta] [json]
 ```
 
 This example shows the ASIC information for the *leaf02* switch.
@@ -143,157 +163,240 @@ Hostname          Vendor               Model                          Model ID  
 leaf02            Mellanox             Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
 ```
 
+This example shows the ASIC information for the NetQ On-premises or Cloud Appliance.
+
+```
+cumulus@switch:~$ netq show inventory asic opta
+Matching inventory records:
+Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
+netq-ts            Mellanox             Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
+```
+
 {{< /tab >}}
 
 {{< /tabs >}}
-### View Information about the Motherboard in a Switch
 
-You can view the vendor, model, base MAC address, serial number, part
-number, revision, and manufacturing date for a switch motherboard on a
-single device or on all devices. This example shows all of the
-motherboard data for all devices.
+### View Motherboard Information for a Switch
 
-    cumulus@switch:~$ netq show inventory board
-    Matching inventory records:
-    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
-    ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-    dell-z9100-05     DELL                 Z9100-ON                       4C:76:25:E7:42:C0  CN03GT5N779315C20001      03GT5N           A00    12/04/2015
-    mlx-2100-05       Penguin              Arctica 1600cs                 7C:FE:90:F5:61:C0  MT1623X10078              MSN2100-CB2FO    N/A    06/09/2016
-    mlx-2410a1-05     Mellanox             SN2410                         EC:0D:9A:4E:55:C0  MT1734X00067              MSN2410-CB2F_QP3 N/A    08/24/2017
-    mlx-2700-11       Penguin              Arctica 3200cs                 44:38:39:00:AB:80  MT1604X21036              MSN2700-CS2FO    N/A    01/31/2016
-    qct-ix1-08        QCT                  QuantaMesh BMS T7032-IX1       54:AB:3A:78:69:51  QTFCO7623002C             1IX1UZZ0ST6      H3B    05/30/2016
-    qct-ix7-04        QCT                  IX7                            D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
-    qct-ix7-04        QCT                  T7032-IX7                      D8:C4:97:62:37:65  QTFCUW821000A             1IX7UZZ0ST5      B3D    05/07/2018
-    st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
-    st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
-    st1-l3            Penguin              Arctica 4806xp                 44:38:39:00:70:49  N/A                       N/A              N/A    N/A
-    st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
-    st1-s2            Dell                 S6000-ON                       44:38:39:00:80:81  N/A                       N/A              N/A    N/A
+Motherboard/platform information is available from the NetQ UI and NetQ CLI.
 
-You can filter the results of the command to capture only those devices
-with a particular motherboard vendor. This example shows only the
-devices with *Celestica* motherboards.
+- Inventory|Switches card
+    - Medium/Large: view platform distribution across on all switches (graphic)
+    - Full-screen: view platform vendor, model, manufacturing date, revision, serial number, MAC address, series for a switch (table)
+- `netq show inventory board` command
+    - View motherboard vendor, model, base MAC address, serial number, part number, revision, and manufacturing date on a switch
 
-    cumulus@switch:~$ netq show inventory board vendor celestica
-    Matching inventory records:
-    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
-    ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-    st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
-    st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
-                                                                                                                                        ne-XP
+{{< tabs "TabID164" >}}
 
-You can filter the results of the command to view the model for a
-particular switch. This example shows the motherboard vendor for the
-*st1-s1* switch.
+{{< tab "NetQ UI">}}
 
-    cumulus@switch:~$ netq st1-s1 show inventory board
-    Matching inventory records:
-    Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
-    ----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
-    st1-s1            Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+1. Locate the medium Inventory|Switches card on your workbench.
 
-### View Information about the CPU on a Switch
+2. Hover over the card, and change to the large card using the size picker.
 
-You can view the architecture, model, operating frequency, and the
-number of cores for the CPU on a single device or for all devices. This
-example shows these CPU characteristics for all devices.
+3. Hover over the header and click {{<img src="/images/netq/platform-icon.png" height="14" width="14">}}.
 
-    cumulus@nswitch:~$ netq show inventory cpu
-    Matching inventory records:
-    Hostname          Arch     Model                          Freq       Cores
-    ----------------- -------- ------------------------------ ---------- -----
-    dell-z9100-05     x86_64   Intel(R) Atom(TM) C2538        2.40GHz    4
-    mlx-2100-05       x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
-    mlx-2410a1-05     x86_64   Intel(R) Celeron(R)  1047UE    1.40GHz    2
-    mlx-2700-11       x86_64   Intel(R) Celeron(R)  1047UE    1.40GHz    2
-    qct-ix1-08        x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
-    qct-ix7-04        x86_64   Intel(R) Atom(TM) C2558        2.40GHz    4
-    st1-l1            x86_64   Intel(R) Atom(TM) C2538        2.41GHz    4
-    st1-l2            x86_64   Intel(R) Atom(TM) C2538        2.41GHz    4
-    st1-l3            x86_64   Intel(R) Atom(TM) C2538        2.40GHz    4
-    st1-s1            x86_64   Intel(R) Atom(TM)  S1220       1.60GHz    4
-    st1-s2            x86_64   Intel(R) Atom(TM)  S1220       1.60GHz    4
+    {{<figure src="/images/netq/inventory-switch-large-platform-tab.png" width="500">}}
 
-You can filter the results of the command to view which switches employ
-a particular CPU architecture using the *arch* keyword. This example
-shows how to determine which architectures are deployed in your network,
-and then shows all devices with an *x86\_64* architecture.
+4. Hover over a segment in the Vendor or Platform graphic to view how many switches deploy the specified vendor or platform.
 
-    cumulus@switch:~$ netq show inventory cpu arch
-        x86_64  :  CPU Architecture
-     
-    cumulus@switch:~$ netq show inventory cpu arch x86_64
-    Matching inventory records:
-    Hostname          Arch     Model                          Freq       Cores
-    ----------------- -------- ------------------------------ ---------- -----
-    leaf01            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    leaf02            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    leaf03            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    leaf04            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    oob-mgmt-server   x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    server01          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    server03          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    server04          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    spine01           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
-    spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
+    Context sensitive highlighting is also employed here, such that when you select a vendor, the corresponding platforms are also highlighted; and vice versa. Note that you can also see the status of the Cumulus Linux license for each switch.
 
-You can filter the results to view CPU information for a single switch,
-as shown here for *server02*.
+5. Click either **Show All** link to open the full-screen card.
 
-    cumulus@switch:~$ netq server02 show inventory cpu
-     
-    Matching inventory records:
-    Hostname          Arch     Model                          Freq       Cores
-    ----------------- -------- ------------------------------ ---------- -----
-    server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
-                               ss Core i7)
+6. Click **Platform**.
 
-### View Information about the Disk on a Switch
+    {{<figure src="/images/netq/inventory-switch-fullscr-platform-tab-320.png" width="700">}}
 
-You can view the name or operating system, type, transport, size,
-vendor, and model of the disk on a single device or all devices. This
-example shows all of these disk characteristics for all devices.
+<div style="padding-left: 18px;">Note that if you are running CumulusVX switches, no detailed platform information is available because the hardware is virtualized.</div>
 
-    cumulus@switch:~$ netq show inventory disk
-    Matching inventory records:
-    Hostname          Name            Type             Transport          Size       Vendor               Model
-    ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
-    leaf01            vda             disk             N/A                6G         0x1af4               N/A
-    leaf02            vda             disk             N/A                6G         0x1af4               N/A
-    leaf03            vda             disk             N/A                6G         0x1af4               N/A
-    leaf04            vda             disk             N/A                6G         0x1af4               N/A
-    oob-mgmt-server   vda             disk             N/A                256G       0x1af4               N/A
-    server01          vda             disk             N/A                301G       0x1af4               N/A
-    server02          vda             disk             N/A                301G       0x1af4               N/A
-    server03          vda             disk             N/A                301G       0x1af4               N/A
-    server04          vda             disk             N/A                301G       0x1af4               N/A
-    spine01           vda             disk             N/A                6G         0x1af4               N/A
-    spine02           vda             disk             N/A                6G         0x1af4               N/A
+7. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
 
-You can filter the results of the command to view the disk information
-for a particular device. This example shows disk information for
-*leaf03* switch.
+8. Select *hostname* from the **Field** dropdown.
 
-    cumulus@switch:~$ netq leaf03 show inventory disk
-    Matching inventory records:
-    Hostname          Name            Type             Transport          Size       Vendor               Model
-    ----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
-    leaf03            vda             disk             N/A                6G         0x1af4               N/A
+9. Enter the hostname of the switch you want to view, and click **Apply**.
+
+   {{<figure src="/images/netq/inventory-switch-fullscr-filterbyhostname-320.png" width="300">}}
+
+   {{<figure src="/images/netq/inventory-switch-platform-single-switch-filter-320.png" width="700">}}
+
+10. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view a list of motherboards installed in a switch, run:
+
+```
+netq [<hostname>] show inventory board [opta] [json]
+```
+
+This example shows all of the motherboard data for the *spine01* switch.
+
+```
+cumulus@switch:~$ netq spine01 show inventory board
+Matching inventory records:
+Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
+spine01           Dell                 S6000-ON                       44:38:39:00:80:00  N/A                       N/A              N/A    N/A
+```
+
+Use the `opta` option without the `hostname` option to view the motherboard data for the NetQ On-premises or Cloud Appliance.
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### View CPU Information for a Switch
+
+CPU information is available from the NetQ UI and NetQ CLI.
+
+- Inventory|Switches card
+    - Medium/Large: view CPU distribution across on all switches (graphic)
+    - Full-screen: view CPU architecture, model, maximum operating frequency, the number of cores, and data on a switch (table)
+- `netq show inventory cpu` command
+    - View CPU architecture, model, maximum operating frequency, and the number of cores on a switch
+
+{{< tabs "TabID232" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Locate the Inventory|Switches card on your workbench.
+
+2. Hover over a segment of the CPU graph in the distribution chart.
+
+    The same information is available on the summary tab of the large size card.
+
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+
+3. Hover over the card, and change to the full-screen card using the size picker.
+
+4. Click **CPU**.
+
+    {{<figure src="/images/netq/inventory-switch-fullscr-cpu-tab-320.png" width="700" >}}
+
+5. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
+
+6. Select *hostname* from the **Field** dropdown. Then enter the hostname of the switch you want to view.
+
+   {{<figure src="/images/netq/inventory-switch-fullscr-cpu-filterbyhostname-320.png" width="300">}}
+
+   {{<figure src="/images/netq/inventory-switch-cpu-single-switch-filter-320.png" width="700">}}
+
+7. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view CPU information for a switch in your network, run:
+
+```
+netq [<hostname>] show inventory cpu [arch <cpu-arch>] [opta] [json]
+```
+
+This example shows CPU information for the *server02* switch.
+
+```
+cumulus@switch:~$ netq server02 show inventory cpu
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+```
+
+This example shows the CPU information for the NetQ On-premises or Cloud Appliance.
+
+```
+cumulus@switch:~$ netq show inventory cpu opta
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+netq-ts           x86_64   Intel Xeon Processor (Skylake, N/A        8
+                           IBRS)
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### View Disk Information for a Switch
+
+Disk information is available from the NetQ UI and NetQ CLI.
+
+- Inventory|Switches card
+    - Medium/Large: view Disk distribution across on all switches (graphic)
+    - Full-screen: view disk vendor, size, revision, model, name, transport, and type on a switch (table)
+- `netq show inventory disk` command
+    - View disk name, type, transport, size, vendor, and model on all devices
+
+{{< tabs "TabID336" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Locate the Inventory|Switches card on your workbench.
+
+2. Hover over a segment of the disk graph in the distribution chart.
+
+    The same information is available on the summary tab of the large size card.
+
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+
+3. Hover over the card, and change to the full-screen card using the size picker.
+
+4. Click **Disk**.
+
+    {{<figure src="/images/netq/inventory-switch-fullscr-disk-tab-320.png" width="700">}}
+
+<div style="padding-left: 18px;">Note that if you are running CumulusVX switches, no detailed disk information is available because the hardware is virtualized.</div>
+
+5. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
+
+6. Select *hostname* from the **Field** dropdown. Then enter the hostname of the switch you want to view.
+
+   {{<figure src="/images/netq/inventory-switch-fullscr-filterbyhostname-320.png" width="300">}}
+
+   {{<figure src="/images/netq/inventory-switch-disk-single-switch-filter-320.png" width="700">}}
+
+7. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view disk information for a switch in your network, run:
+
+```
+netq [<hostname>] show inventory disk [opta] [json]
+```
+
+This example shows the disk information for the *leaf03* switch.
+
+```
+cumulus@switch:~$ netq leaf03 show inventory disk
+Matching inventory records:
+Hostname          Name            Type             Transport          Size       Vendor               Model
+----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
+leaf03            vda             disk             N/A                6G         0x1af4               N/A
+```
+
+This example show the disk information for the NetQ On-premises or Cloud Appliance.
+
+```
+cumulus@switch:~$ netq show inventory disk opta
+
+Matching inventory records:
+Hostname          Name            Type             Transport          Size       Vendor               Model
+----------------- --------------- ---------------- ------------------ ---------- -------------------- ------------------------------
+netq-ts           vda             disk             N/A                265G       0x1af4               N/A
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### View Memory Information for a Switch
 
@@ -541,9 +644,6 @@ to view the full sensor data.
     fw1               fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:08:45 2020
     fw2               fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:53 2020
     ...
-{{< /tab >}}
-
-{{< /tabs >}}
 
 ## View Switch Software Inventory
 

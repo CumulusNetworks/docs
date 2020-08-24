@@ -154,7 +154,7 @@ For example, if *peerlink* is the inter-chassis bond, and VLAN 4094 is the peer 
 {{< tab "NCLU Commands" >}}
 
 ```
-cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 linklocal backup-ip 192.0.2.50
+cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 192.0.2.50
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```

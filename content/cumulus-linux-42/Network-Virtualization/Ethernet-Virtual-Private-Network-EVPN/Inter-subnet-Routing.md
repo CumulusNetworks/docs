@@ -472,10 +472,10 @@ Run the `address-virtual <anycast-mac>` command under the SVI, where `<anycast-m
 
 {{< tab "NCLU Commands ">}}
 
-Run the `net add vlan <vlan> address-virtual <anycast-mac>` command. For example:
+Run the `net add vlan <vlan> ip address-virtual <anycast-mac>` command. For example:
 
 ```
-cumulus@leaf01:~$ net add vlan 4001 address-virtual 44:38:39:FF:40:94
+cumulus@leaf01:~$ net add vlan 4001 ip address-virtual 44:38:39:FF:40:94
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```

@@ -1502,14 +1502,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td></td>
 </tr>
 <tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-21785</td>
 <td><p>The source address of the ICMPv6 time exceeded message (traceroute hop) is sourced from the wrong VRF when the traceroute target resides on the same switch but in a different VRF.</p></td>
 <td>3.6.2-3.7.13</td>
@@ -4261,14 +4253,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td></td>
 </tr>
 <tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-21898</td>
 <td><p>On a Trident3 switch, IGMP packets are not policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. <br/>
  -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 <br/>
@@ -6763,14 +6747,6 @@ When the driver recovers, it automatically resumes the transmit queues. In most 
 <td><p>On the Trident3 switch, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.<br/>
 To work around this issue, use dynamic signaling (joins) to manage IP multicast traffic.</p></td>
 <td>3.7.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -9705,14 +9681,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td></td>
 </tr>
 <tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-21898</td>
 <td><p>On a Trident3 switch, IGMP packets are not policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. <br/>
  -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 <br/>
@@ -11959,14 +11927,6 @@ When the driver recovers, it automatically resumes the transmit queues. In most 
 <td><p>On the Trident3 switch, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.<br/>
 To work around this issue, use dynamic signaling (joins) to manage IP multicast traffic.</p></td>
 <td>3.7.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -15263,14 +15223,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td></td>
 </tr>
 <tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-21898</td>
 <td><p>On a Trident3 switch, IGMP packets are not policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. <br/>
  -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 <br/>
@@ -17924,14 +17876,6 @@ When the driver recovers, it automatically resumes the transmit queues. In most 
 <td><p>On the Trident3 switch, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.<br/>
 To work around this issue, use dynamic signaling (joins) to manage IP multicast traffic.</p></td>
 <td>3.7.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -21307,14 +21251,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td></td>
 </tr>
 <tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-21898</td>
 <td><p>On a Trident3 switch, IGMP packets are not policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. <br/>
  -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 <br/>
@@ -24099,14 +24035,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td></td>
 </tr>
 <tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-21898</td>
 <td><p>On a Trident3 switch, IGMP packets are not policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. <br/>
  -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 <br/>
@@ -26696,14 +26624,6 @@ When the driver recovers, it automatically resumes the transmit queues. In most 
 <td><p>On the Trident3 switch, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.<br/>
 To work around this issue, use dynamic signaling (joins) to manage IP multicast traffic.</p></td>
 <td>3.7.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -29561,14 +29481,6 @@ When the driver recovers, it automatically resumes the transmit queues. In most 
 <td><p>On the Trident3 switch, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.<br/>
 To work around this issue, use dynamic signaling (joins) to manage IP multicast traffic.</p></td>
 <td>3.7.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -32574,14 +32486,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td></td>
 </tr>
 <tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-21898</td>
 <td><p>On a Trident3 switch, IGMP packets are not policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. <br/>
  -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 <br/>
@@ -35475,14 +35379,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td>3.7.2-3.7.13</td>
 </tr>
 <tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-21898</td>
 <td><p>On a Trident3 switch, IGMP packets are not policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. <br/>
  -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 <br/>
@@ -38061,14 +37957,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td><p>Mellanox switches prefer a MAC entry learned through the VNI over a permanent entry for the corresponding SVI. </p></td>
 <td>3.6.2-3.7.1</td>
 <td>3.7.2-3.7.13</td>
-</tr>
-<tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-21898</td>

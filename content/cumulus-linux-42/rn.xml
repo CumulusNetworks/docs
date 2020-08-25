@@ -1416,14 +1416,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td></td>
 </tr>
 <tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-21785</td>
 <td><p>The source address of the ICMPv6 time exceeded message (traceroute hop) is sourced from the wrong VRF when the traceroute target resides on the same switch but in a different VRF.</p></td>
 <td>3.6.2-3.7.13, 4.0.0-4.2.0</td>

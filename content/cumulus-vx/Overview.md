@@ -57,7 +57,7 @@ The following table outlines the similarities and differences between Cumulus VX
 | Upgrade available using an ONIE binary or with APT | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Line rate packet forwarding  | <font color="green">Yes</font> via switch ASIC | <font color="red">No</font> |
 | Software license install | <font color="green">Yes</font> | <font color="red">No</font> |
-| Temperature and sensor outputs   | <font color="green">Yes</font> | <font color="red">No</font> |
+| Temperature and sensor outputs   | <font color="green">Yes</font> | <font color="red">No</font><sup>1</sup> |
 | ACL and routing entry limits   | Limited depending on switch ASIC | Only limited by VM memory |
 | Designed and tested for production | <font color="green">Yes</font> | <font color="red">No</font> |
 | Layer 2 VLANs         | <font color="green">Yes</font> | <font color="green">Yes</font> |
@@ -67,12 +67,12 @@ The following table outlines the similarities and differences between Cumulus VX
 | Routing protocols (BGP, OSPF) | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | VXLAN   | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | ECMP | <font color="green">Yes</font>, based on hardware hashing | <font color="green">Yes</font>, based on Linux kernel hashing |
-| Packet marking and remarking | <font color="green">Yes</font> | <font color="red">No</font><sup>1</sup> |
+| Packet marking and remarking | <font color="green">Yes</font> | <font color="red">No</font><sup>2</sup> |
 | QoS buffer management | <font color="green">Yes</font> | <font color="red">No</font> |
 | QoS buffer monitoring | <font color="green">Yes</font> | <font color="red">No</font> |
 | QoS shaping | <font color="green">Yes</font> | <font color="red">No</font> |
 | Mellanox What Just Happened (WJH) | <font color="green">Yes</font> | <font color="red">No</font> |
-| ACLs | <font color="green">Yes</font> | <font color="red">No</font><sup>2</sup> | 
+| ACLs | <font color="green">Yes</font> | <font color="red">No</font><sup>3</sup> | 
 | 802.1x | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Cumulus NetQ | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | Zero Touch Provisioning | <font color="green">Yes</font> | <font color="green">Yes</font> |
@@ -83,11 +83,12 @@ The following table outlines the similarities and differences between Cumulus VX
 | Multicast, IGMP and PIM | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | BFD | <font color="green">Yes</font> | <font color="green">Yes</font> |
 | VRFs, management VRF | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| NAT | <font color="green">Yes</font> | <font color="red">No</font><sup>3</sup> |
+| NAT | <font color="green">Yes</font> | <font color="red">No</font><sup>4</sup> |
 
-<sub>1. Marking and remarking is supported in Cumulus VX using kernel and Traffic Control (TC) commands, but these are not supported the same way in Cumulus Linux.</sub>  
-<sub>2. ACLs are supported in Cumulus VX using iptables, but the `cl-acltool` command is not supported.</sub>  
-<sub>3. NAT is supported in Cumulus VX using iptables but not with `cl-acltool`. Using NAT within Cumulus VX is not the same as Cumulus Linux.</sub>  
+<sub>1. Cumulus VX provides artificial temperature and sensor outputs for simulation. You can control and test monitoring tools using these artificial sensors.</sub>  
+<sub>2. Marking and remarking is supported in Cumulus VX using kernel and Traffic Control (TC) commands, but these are not supported the same way in Cumulus Linux.</sub>  
+<sub>3. ACLs are supported in Cumulus VX using iptables, but the `cl-acltool` command is not supported.</sub>  
+<sub>4. NAT is supported in Cumulus VX using iptables but not with `cl-acltool`. Using NAT within Cumulus VX is not the same as Cumulus Linux.</sub>  
 
 ## Support Policy
 

@@ -272,7 +272,7 @@ The *Interfaces* tab displays:
 
 The full screen Switch card provides multiple tabs.
 
-{{< figure src="/images/netq/dev-switch-fullscr-alarms-tab-241.png" width="700" >}}
+{{< figure src="/images/netq/dev-switch-fullscr-alarms-tab-310.png" width="700" >}}
 
 <table>
 <colgroup>
@@ -462,7 +462,7 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="even">
 <td>ACL Resources</td>
-<td>Displays usage statistics for all ACLs on the switch. <br>The following is diplayed for each ACL:
+<td>Displays usage statistics for all ACLs on the switch. <br>The following is displayed for each ACL:
 <ul><li>maximum entries in the ACL</li>
 <li>number entries used</li>
 <li>percentage of this usage versus the maximum</li>
@@ -478,7 +478,7 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="even">
 <td>Sensors</td>
-<td>Displays all known sensors on the switch. This tab provides a table for each type of sensor. Select the sensor type using the filter above the table. SFP and QSFP digital optic module data is available when optical diagnostics support is enabled in Cumulus Linux.</td>
+<td>Displays all known sensors on the switch. This tab provides a table for each type of sensor. Select the sensor type using the filter above the table.
 <ul>
 <li> <strong>Fan</strong>:<ul>
 <li>Hostname: Hostname where the fan sensor resides</li>
@@ -519,8 +519,11 @@ The full screen Switch card provides multiple tabs.
 <li>Time: Date and time the data was collected</li>
 <li>VIn: Input voltage (V) measured by sensor</li>
 <li>VOut: Output voltage (V) measured by sensor</li>
-</ul>
-<li> <strong>Digital Optical Modules</strong>:<ul>
+</ul></td></tr>
+<tr class="odd">
+<td>Digital Optics</td>
+<td>Displays SFP and QSFP digital optic module data when optical diagnostics support is enabled in Cumulus Linux.
+<ul>
 <li>Input power (Upper): Maximum input power (mW/dBm) seen in the designated time period (24 hrs, week, et
 <li>Input power (Lower): Minimum input power (mW/dBm) (seen over some timeframe)</li>
 <li>Laser output power (Upper): Maximum laser output power (mW/dBm) (seen over some timeframe)</li>

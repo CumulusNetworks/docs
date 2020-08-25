@@ -400,88 +400,329 @@ netq-ts           vda             disk             N/A                265G      
 
 ### View Memory Information for a Switch
 
-You can view the name, type, size, speed, vendor, and serial number for
-the memory installed in a single device or all devices. This example
-shows all of these characteristics for all devices.
+Memory information is available from the NetQ UI and NetQ CLI.
 
-    cumulus@switch:~$ netq show inventory memory
-    Matching inventory records:
-    Hostname          Name            Type             Size       Speed      Vendor               Serial No
-    ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
-    dell-z9100-05     DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   Hynix                14391421
-    mlx-2100-05       DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   InnoDisk Corporation 00000000
-    mlx-2410a1-05     ChannelA-DIMM0  DDR3             8192 MB    1600 MHz   017A                 87416232
-                      BANK 0
-    mlx-2700-11       ChannelA-DIMM0  DDR3             8192 MB    1600 MHz   017A                 73215444
-                      BANK 0
-    mlx-2700-11       ChannelB-DIMM0  DDR3             8192 MB    1600 MHz   017A                 73215444
-                      BANK 2
-    qct-ix1-08        N/A             N/A              7907.45MB  N/A        N/A                  N/A
-    qct-ix7-04        DIMM0 BANK 0    DDR3             8192 MB    1600 MHz   Transcend            00211415
-    st1-l1            DIMM0 BANK 0    DDR3             4096 MB    1333 MHz   N/A                  N/A
-    st1-l2            DIMM0 BANK 0    DDR3             4096 MB    1333 MHz   N/A                  N/A
-    st1-l3            DIMM0 BANK 0    DDR3             4096 MB    1600 MHz   N/A                  N/A
-    st1-s1            A1_DIMM0 A1_BAN DDR3             8192 MB    1333 MHz   A1_Manufacturer0     A1_SerNum0
-                      K0
-    st1-s2            A1_DIMM0 A1_BAN DDR3             8192 MB    1333 MHz   A1_Manufacturer0     A1_SerNum0
-                      K0
+- Inventory|Switches card
+    - Medium/Large: view the memory size distribution across all switches (graphic)
+    - Full-screen: view memory chip vendor, name, serial number, size, speed, and type on all switches (table)
+- `netq show inventory memory`
+    - View memory chip name, type, size, speed, vendor, and serial number on all devices
 
-You can filter the results of the command to view devices with a
-particular memory type or vendor. This example shows all of the devices
-with memory from *QEMU* .
+{{< tabs "TabID411" >}}
 
-    cumulus@switch:~$ netq show inventory memory vendor QEMU
-    Matching inventory records:
-    Hostname          Name            Type             Size       Speed      Vendor               Serial No
-    ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
-    leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
-    leaf02            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
-    leaf03            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
-    leaf04            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
-    oob-mgmt-server   DIMM 0          RAM              4096 MB    Unknown    QEMU                 Not Specified
-    server01          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
-    server02          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
-    server03          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
-    server04          DIMM 0          RAM              512 MB     Unknown    QEMU                 Not Specified
-    spine01           DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
-    spine02           DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+{{< tab "NetQ UI" >}}
 
-You can filter the results to view memory information for a single
-switch, as shown here for leaf01.
+1. Locate the medium Inventory|Switches card on your workbench.
 
-    cumulus@switch:~$ netq leaf01 show inventory memory
-     
-    Matching inventory records:
-    Hostname          Name            Type             Size       Speed      Vendor               Serial No
-    ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
-    leaf01            DIMM 0          RAM              1024 MB    Unknown    QEMU                 Not Specified
+2. Hover over a segment of the memory graph in the distribution chart.
 
-### View a Summary of Physical Inventory for the NetQ or NetQ Cloud Appliance
+    The same information is available on the summary tab of the large size card.
 
-Using the `opta` option lets you view inventory information for the NetQ or NetQ Cloud Appliance(s) rather than all network nodes. This example give you a summary of the inventory on the device.
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="700">}}
+
+3. Hover over the card, and change to the full-screen card using the size picker.
+
+4. Click **Memory**.
+
+    {{<figure src="/images/netq/inventory-switch-fullscr-memory-tab-320.png" width="700">}}
+
+5. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
+
+6. Select *hostname* from the **Field** dropdown. Then enter the hostname of the switch you want to view.
+
+   {{<figure src="/images/netq/inventory-switch-fullscr-filterbyhostname-320.png" width="300">}}
+
+   {{<figure src="/images/netq/inventory-switch-memory-single-switch-filter-320.png" width="700">}}
+
+7. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view memory information for your switches and host servers, run:
 
 ```
-cumulus@spine-1:mgmt-vrf:~$ netq show inventory brief opta
-
-Matching inventory records:
-Hostname          Switch               OS              CPU      ASIC            Ports
------------------ -------------------- --------------- -------- --------------- -----------------------------------
-10-20-14-158      VX                   CL              x86_64   VX              N/A
-
+netq [<hostname>] show inventory memory [opta] [json]
 ```
 
-### View Memory for the NetQ or NetQ Cloud Appliance
-
-You can be specific about which inventory item you want to view for an appliance. This example shows the memory information for a NetQ Appliance, letting you verify you have sufficient memory.
+This example shows all of the memory characteristics for the *leaf01* switch.
 
 ```
-cumulus@netq-appliance:~$ netq show inventory memory opta
+cumulus@switch:~$ netq leaf01 show inventory memory
 Matching inventory records:
 Hostname          Name            Type             Size       Speed      Vendor               Serial No
 ----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
-netq-app          DIMM 0          RAM              64 GB      Unknown    QEMU                 Not Specified
+leaf01            DIMM 0          RAM              768 MB     Unknown    QEMU                 Not Specified
 
 ```
+
+This example shows the memory information for the NetQ On-premises or Cloud Appliance.
+
+```
+cumulus@switch:~$ netq show inventory memory opta
+Matching inventory records:
+Hostname          Name            Type             Size       Speed      Vendor               Serial No
+----------------- --------------- ---------------- ---------- ---------- -------------------- -------------------------
+netq-ts           DIMM 0          RAM              16384 MB   Unknown    QEMU                 Not Specified
+netq-ts           DIMM 1          RAM              16384 MB   Unknown    QEMU                 Not Specified
+netq-ts           DIMM 2          RAM              16384 MB   Unknown    QEMU                 Not Specified
+netq-ts           DIMM 3          RAM              16384 MB   Unknown    QEMU                 Not Specified
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### View Sensor Information for a Switch
+
+Fan, power supply unit (PSU), and temperature sensors are available to provide additional data about the switch operation.
+
+Sensor information is available from the NetQ UI and NetQ CLI.
+
+- PSU Sensor card: view sensor name, current/previous state, input/output power, and input/output voltage on all devices (table)
+- Fan Sensor card: view sensor name, description, current/maximum/minimum speed, and current/previous state on all devices (table)
+- Temperature Sensor card: view sensor name, description, minimum/maximum threshold, current/critical(maximum)/lower critical (minimum) threshold, and current/previous state on all devices (table)
+- `netq show inventory sensors`: view sensor name, description, current state, and time when data was last changed on all devices for all or one sensor type
+
+{{< tabs "TabID488" >}}
+
+{{< tab "NetQ UI" >}}
+
+#### Power Supply Unit Information
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
+
+    {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
+
+2. The PSU tab is displayed by default.
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-psu-310.png" width="700">}}
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
+
+4. Enter a hostname in the **Hostname** field.
+
+   {{<figure src="/images/netq/main-menu-sensors-filterbyhostname-320.png" width="300">}}
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-psu-single-switch-filter-310.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>PSU Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the power supply is installed</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td>Type of sensor message; always <em>PSU</em> in this table</td>
+</tr>
+<tr>
+<td>PIn(W)</td>
+<td>Input power (Watts) for the PSU on the switch or host</td>
+</tr>
+<tr>
+<td>POut(W)</td>
+<td>Output power (Watts) for the PSU on the switch or host</td>
+</tr>
+<tr>
+<td>Sensor Name</td>
+<td>User-defined name for the PSU</td>
+</tr>
+<tr>
+<td>Previous State</td>
+<td>State of the PSU when data was captured in previous window</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the PSU when data was last captured</td>
+</tr>
+<tr>
+<td>VIn(V)</td>
+<td>Input voltage (Volts) for the PSU on the switch or host</td>
+</tr>
+<tr>
+<td>VOut(V)</td>
+<td>Output voltage (Volts) for the PSU on the switch or host</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+#### Fan Information
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
+
+2. Click **Fan**.
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-fan-320.png" width="700">}}
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
+
+4. Enter a hostname in the **Hostname** field.
+
+   {{<figure src="/images/netq/main-menu-sensors-filterbyhostname-320.png" width="300">}}
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-fan-single-switch-filter-320.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>Fan Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the fan is installed</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td>Type of sensor message; always <em>Fan</em> in this table</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>User specified description of the fan</td>
+</tr>
+<tr>
+<td>Speed (RPM)</td>
+<td>Revolution rate of the fan (revolutions per minute)</td>
+</tr>
+<tr>
+<td>Max</td>
+<td>Maximum speed (RPM)</td>
+</tr>
+<tr>
+<td>Min</td>
+<td>Minimum speed (RPM)</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>Message</td>
+</tr>
+<tr>
+<td>Sensor Name</td>
+<td>User-defined name for the fan</td>
+</tr>
+<tr>
+<td>Previous State</td>
+<td>State of the fan when data was captured in previous window</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the fan when data was last captured</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+#### Temperature Information
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
+
+2. Click **Temperature**.
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-temp-320.png" width="700">}}
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
+
+4. Enter a hostname in the **Hostname** field.
+
+   {{<figure src="/images/netq/main-menu-sensors-filterbyhostname-320.png" width="300">}}
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-temp-single-switch-filter-320.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>Temperature Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the temperature sensor is installed</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td>Type of sensor message; always <em>Temp</em> in this table</td>
+</tr>
+<tr>
+<td>Critical</td>
+<td>Current critical maximum temperature (&deg;C) threshold setting</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>User specified description of the temperature sensor</td>
+</tr>
+<tr>
+<td>Lower Critical</td>
+<td>Current critical minimum temperature (&deg;C) threshold setting</td>
+</tr>
+<tr>
+<td>Max</td>
+<td>Maximum temperature threshold setting</td>
+</tr>
+<tr>
+<td>Min</td>
+<td>Minimum temperature threshold setting</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>Message</td>
+</tr>
+<tr>
+<td>Sensor Name</td>
+<td>User-defined name for the temperature sensor</td>
+</tr>
+<tr>
+<td>Previous State</td>
+<td>State of the fan when data was captured in previous window</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the fan when data was last captured</td>
+</tr>
+<tr>
+<td>Temperature(Celsius)</td>
+<td>Current temperature (&deg;C) measured by sensor</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
 
 ## View Fan Health for All Switches
 

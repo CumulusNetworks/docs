@@ -370,7 +370,7 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 
     {{<figure src="/images/netq/inventory-switch-large-platform-tab.png" width="500">}}
 
-4. Hover over a segment in the Vendor or Platform graphic to view how many and which switches deploy the specified vendor or platform.
+4. Hover over a segment in the Vendor or Platform graphic to view how many switches deploy the specified vendor or platform.
 
     Context sensitive highlighting is also employed here, such that when you select a vendor, the corresponding platforms are also highlighted; and vice versa. Note that you can also see the status of the Cumulus Linux license for each switch.
 
@@ -495,7 +495,7 @@ netq show inventory cpu [arch <cpu-arch>] [json]
 This example shows the CPU information for all devices.
 
 ```
-cumulus@nswitch:~$ netq show inventory cpu
+cumulus@switch:~$ netq show inventory cpu
 Matching inventory records:
 Hostname          Arch     Model                          Freq       Cores
 ----------------- -------- ------------------------------ ---------- -----
@@ -668,7 +668,7 @@ Memory information is available from the NetQ UI and NetQ CLI.
 
 {{< tab "Inventory|Switches" >}}
 
-1. Locate the Inventory|Switches card on your workbench.
+1. Locate the medium Inventory|Switches card on your workbench.
 
 2. Hover over a segment of the memory graph in the distribution chart.
 
@@ -746,9 +746,233 @@ spine02           DIMM 0          RAM              1024 MB    Unknown    QEMU   
 
 ### View Sensor Information
 
-Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ system operation. You can view the names and descriptions of each of these using the NetQ CLI.
+Fan, power supply unit (PSU), and temperature sensors are available to provide additional data about the NetQ system operation.
 
-To view sensor information for your switches and host servers, run:
+Sensor information is available from the NetQ UI and NetQ CLI.
+
+- PSU Sensor card: view sensor name, current/previous state, input/output power, and input/output voltage on all devices (table)
+- Fan Sensor card: view sensor name, description, current/maximum/minimum speed, and current/previous state on all devices (table)
+- Temperature Sensor card: view sensor name, description, minimum/maximum threshold, current/critical(maximum)/lower critical (minimum) threshold, and current/previous state on all devices (table)
+- `netq show inventory sensors`: view sensor name, description, current state, and time when data was last changed on all devices for all or one sensor type
+
+{{< tabs "TabID480" >}}
+
+{{< tab "NetQ UI" >}}
+
+#### Power Supply Unit Information
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
+
+    {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
+
+2. The PSU tab is displayed by default.
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-psu-310.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>PSU Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the power supply is installed</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td>Type of sensor message; always <em>PSU</em> in this table</td>
+</tr>
+<tr>
+<td>PIn(W)</td>
+<td>Input power (Watts) for the PSU on the switch or host</td>
+</tr>
+<tr>
+<td>POut(W)</td>
+<td>Output power (Watts) for the PSU on the switch or host</td>
+</tr>
+<tr>
+<td>Sensor Name</td>
+<td>User-defined name for the PSU</td>
+</tr>
+<tr>
+<td>Previous State</td>
+<td>State of the PSU when data was captured in previous window</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the PSU when data was last captured</td>
+</tr>
+<tr>
+<td>VIn(V)</td>
+<td>Input voltage (Volts) for the PSU on the switch or host</td>
+</tr>
+<tr>
+<td>VOut(V)</td>
+<td>Output voltage (Volts) for the PSU on the switch or host</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+3. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+#### Fan Information
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
+
+2. Click **Fan**.
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-fan-320.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>Fan Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the fan is installed</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td>Type of sensor message; always <em>Fan</em> in this table</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>User specified description of the fan</td>
+</tr>
+<tr>
+<td>Speed (RPM)</td>
+<td>Revolution rate of the fan (revolutions per minute)</td>
+</tr>
+<tr>
+<td>Max</td>
+<td>Maximum speed (RPM)</td>
+</tr>
+<tr>
+<td>Min</td>
+<td>Minimum speed (RPM)</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>Message</td>
+</tr>
+<tr>
+<td>Sensor Name</td>
+<td>User-defined name for the fan</td>
+</tr>
+<tr>
+<td>Previous State</td>
+<td>State of the fan when data was captured in previous window</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the fan when data was last captured</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+3. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+#### Temperature Information
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
+
+2. Click **Temperature**.
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-temp-320.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>Temperature Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the temperature sensor is installed</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td>Type of sensor message; always <em>Temp</em> in this table</td>
+</tr>
+<tr>
+<td>Critical</td>
+<td>Current critical maximum temperature (&deg;C) threshold setting</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>User specified description of the temperature sensor</td>
+</tr>
+<tr>
+<td>Lower Critical</td>
+<td>Current critical minimum temperature (&deg;C) threshold setting</td>
+</tr>
+<tr>
+<td>Max</td>
+<td>Maximum temperature threshold setting</td>
+</tr>
+<tr>
+<td>Min</td>
+<td>Minimum temperature threshold setting</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>Message</td>
+</tr>
+<tr>
+<td>Sensor Name</td>
+<td>User-defined name for the temperature sensor</td>
+</tr>
+<tr>
+<td>Previous State</td>
+<td>State of the fan when data was captured in previous window</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the fan when data was last captured</td>
+</tr>
+<tr>
+<td>Temperature(Celsius)</td>
+<td>Current temperature (&deg;C) measured by sensor</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+3. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+#### View All Sensors
+
+To view all sensor information for your switches and host servers, run:
 
 ```
 netq show sensors all [around <text-time>] [json]
@@ -838,6 +1062,36 @@ spine03           psu2            N/A                                 ok        
 spine04           psu1            N/A                                 ok                                             Fri Aug 21 05:54:09 2020
 spine04           psu2            N/A                                 ok                                             Fri Aug 21 05:54:09 2020
 ```
+
+### View Only PSU Sensors
+
+Use the `netq show sensors psu` command to view only the PSUs on all of your devices. If you name the PSUs in all of your switches consistently, you can view more information at once.
+
+This example shows all PSUs with the name *psu2*.
+
+    cumulus@switch:~$ netq show sensors psu psu2
+    Matching sensors records:
+    Hostname          Name            State      Message                             Last Changed
+    ----------------- --------------- ---------- ----------------------------------- -------------------------
+    exit01            psu2            ok                                             Fri Apr 19 16:01:17 2019
+    exit02            psu2            ok                                             Fri Apr 19 16:01:33 2019
+    leaf01            psu2            ok                                             Sun Apr 21 20:07:12 2019
+    leaf02            psu2            ok                                             Fri Apr 19 16:01:41 2019
+    leaf03            psu2            ok                                             Fri Apr 19 16:01:44 2019
+    leaf04            psu2            ok                                             Fri Apr 19 16:01:36 2019
+    spine01           psu2            ok                                             Fri Apr 19 16:01:52 2019
+    spine02           psu2            ok                                             Fri Apr 19 16:01:08 2019
+
+{{%notice tip%}}
+
+Use Tab completion to determine the names of the PSUs in your switches.
+Use the optional `hostname` parameter to view the PSU state for a given
+switch.
+
+{{%/notice%}}
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## View Software Inventory across the Network
 

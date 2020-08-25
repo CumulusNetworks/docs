@@ -11,10 +11,6 @@ Access these tables through the Main Menu (<img src="https://icons.cumulusnetwor
 
 {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
 
-{{<notice tip>}}
-If you do not have administrative rights, the Admin menu options are not available to you.
-{{</notice>}}
-
 Tables can be manipulated using the settings above the tables, shown here and described in {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.
 
 {{<figure src="/images/netq/main-menu-ntwk-table-settings-241.png" width="100">}}

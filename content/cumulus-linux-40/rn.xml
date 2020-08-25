@@ -2368,14 +2368,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td></td>
 </tr>
 <tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-21898</td>
 <td><p>On a Trident3 switch, IGMP packets are not policed by the police rule in the 00control ACL file. The packets are policed by the catchall policer in the 99control ACL file instead. <br/>
  -A $INGRESS_CHAIN -p ipv4 -d 01:00:5e:00:00:00/ff:ff:ff:80:00:00 -j police --set-mode pkt --set-rate 100 --set-burst 100 <br/>

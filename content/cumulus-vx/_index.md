@@ -9,7 +9,7 @@ cascade:
 toc: 1
 
 ---
-Welcome to NVIDIA Cumulus VX.
+Welcome to NVIDIA&#174; Cumulus VX.
 
 ## What is Cumulus VX?
 

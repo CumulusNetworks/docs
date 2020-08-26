@@ -753,9 +753,9 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 - PSU Sensor card: view sensor name, current/previous state, input/output power, and input/output voltage on all devices (table)
 - Fan Sensor card: view sensor name, description, current/maximum/minimum speed, and current/previous state on all devices (table)
 - Temperature Sensor card: view sensor name, description, minimum/maximum threshold, current/critical(maximum)/lower critical (minimum) threshold, and current/previous state on all devices (table)
-- `netq show inventory sensors`: view sensor name, description, current state, and time when data was last changed on all devices for all or one sensor type
+- `netq show sensors`: view sensor name, description, current state, and time when data was last changed on all devices for all or one sensor type
 
-{{< tabs "TabID480" >}}
+{{< tabs "TabID758" >}}
 
 {{< tab "NetQ UI" >}}
 
@@ -970,9 +970,9 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 
 {{< tab "NetQ CLI" >}}
 
-#### View All Sensors
+#### View All Sensor Information
 
-To view all sensor information for your switches and host servers, run:
+To view information for power supplies, fans, and temperature sensors on all switches and host servers, run:
 
 ```
 netq show sensors all [around <text-time>] [json]
@@ -1063,32 +1063,421 @@ spine04           psu1            N/A                                 ok        
 spine04           psu2            N/A                                 ok                                             Fri Aug 21 05:54:09 2020
 ```
 
-### View Only PSU Sensors
+### View Only Power Supply Sensors
 
-Use the `netq show sensors psu` command to view only the PSUs on all of your devices. If you name the PSUs in all of your switches consistently, you can view more information at once.
+To view information from all PSU sensors or PSU sensors with a given name on your switches and host servers, run:
+
+```
+netq show sensors psu [<psu-name>] [around <text-time>] [json]
+```
+
+Use the `psu-name` option to view all PSU sensors with a particular name. Use the `around` option to view sensor information for a time in the past.
+
+{{<notice tip>}}
+
+Use Tab completion to determine the names of the PSUs in your switches.
+
+```
+cumulus@switch:~$ netq show sensors psu <press tab>
+around  :  Go back in time to around ...
+json    :  Provide output in JSON
+psu1    :  Power Supply
+psu2    :  Power Supply
+<ENTER>
+```
+
+{{</notice>}}
+
+This example shows information from all PSU sensors on all switches and hosts.
+
+```
+cumulus@switch:~$ netq show sensor psu
+
+Matching sensors records:
+Hostname          Name            State      Pin(W)       Pout(W)        Vin(V)       Vout(V)        Message                             Last Changed
+----------------- --------------- ---------- ------------ -------------- ------------ -------------- ----------------------------------- -------------------------
+border01          psu1            ok                                                                                                     Tue Aug 25 21:45:21 2020
+border01          psu2            ok                                                                                                     Tue Aug 25 21:45:21 2020
+border02          psu1            ok                                                                                                     Tue Aug 25 21:39:36 2020
+border02          psu2            ok                                                                                                     Tue Aug 25 21:39:36 2020
+fw1               psu1            ok                                                                                                     Wed Aug 26 00:08:01 2020
+fw1               psu2            ok                                                                                                     Wed Aug 26 00:08:01 2020
+fw2               psu1            ok                                                                                                     Wed Aug 26 00:02:13 2020
+fw2               psu2            ok                                                                                                     Wed Aug 26 00:02:13 2020
+leaf01            psu1            ok                                                                                                     Wed Aug 26 16:14:41 2020
+leaf01            psu2            ok                                                                                                     Wed Aug 26 16:14:41 2020
+leaf02            psu1            ok                                                                                                     Wed Aug 26 16:14:08 2020
+leaf02            psu2            ok                                                                                                     Wed Aug 26 16:14:08 2020
+leaf03            psu1            ok                                                                                                     Wed Aug 26 14:41:57 2020
+leaf03            psu2            ok                                                                                                     Wed Aug 26 14:41:57 2020
+leaf04            psu1            ok                                                                                                     Wed Aug 26 14:20:22 2020
+leaf04            psu2            ok                                                                                                     Wed Aug 26 14:20:22 2020
+spine01           psu1            ok                                                                                                     Wed Aug 26 10:53:17 2020
+spine01           psu2            ok                                                                                                     Wed Aug 26 10:53:17 2020
+spine02           psu1            ok                                                                                                     Wed Aug 26 10:54:07 2020
+spine02           psu2            ok                                                                                                     Wed Aug 26 10:54:07 2020
+spine03           psu1            ok                                                                                                     Wed Aug 26 11:00:44 2020
+spine03           psu2            ok                                                                                                     Wed Aug 26 11:00:44 2020
+spine04           psu1            ok                                                                                                     Wed Aug 26 10:52:00 2020
+spine04           psu2            ok                                                                                                     Wed Aug 26 10:52:00 2020
+```
 
 This example shows all PSUs with the name *psu2*.
 
-    cumulus@switch:~$ netq show sensors psu psu2
-    Matching sensors records:
-    Hostname          Name            State      Message                             Last Changed
-    ----------------- --------------- ---------- ----------------------------------- -------------------------
-    exit01            psu2            ok                                             Fri Apr 19 16:01:17 2019
-    exit02            psu2            ok                                             Fri Apr 19 16:01:33 2019
-    leaf01            psu2            ok                                             Sun Apr 21 20:07:12 2019
-    leaf02            psu2            ok                                             Fri Apr 19 16:01:41 2019
-    leaf03            psu2            ok                                             Fri Apr 19 16:01:44 2019
-    leaf04            psu2            ok                                             Fri Apr 19 16:01:36 2019
-    spine01           psu2            ok                                             Fri Apr 19 16:01:52 2019
-    spine02           psu2            ok                                             Fri Apr 19 16:01:08 2019
+```
+cumulus@switch:~$ netq show sensors psu psu2
+Matching sensors records:
+Hostname          Name            State      Message                             Last Changed
+----------------- --------------- ---------- ----------------------------------- -------------------------
+exit01            psu2            ok                                             Fri Apr 19 16:01:17 2019
+exit02            psu2            ok                                             Fri Apr 19 16:01:33 2019
+leaf01            psu2            ok                                             Sun Apr 21 20:07:12 2019
+leaf02            psu2            ok                                             Fri Apr 19 16:01:41 2019
+leaf03            psu2            ok                                             Fri Apr 19 16:01:44 2019
+leaf04            psu2            ok                                             Fri Apr 19 16:01:36 2019
+spine01           psu2            ok                                             Fri Apr 19 16:01:52 2019
+spine02           psu2            ok                                             Fri Apr 19 16:01:08 2019
+```
 
-{{%notice tip%}}
+#### View Only Fan Sensors
 
-Use Tab completion to determine the names of the PSUs in your switches.
-Use the optional `hostname` parameter to view the PSU state for a given
-switch.
+To view information from all fan sensors or fan sensors with a given name on your switches and host servers, run:
 
-{{%/notice%}}
+```
+netq show sensors fan [<fan-name>] [around <text-time>] [json]
+```
+
+Use the `around` option to view sensor information for a time in the past.
+
+{{<notice tip>}}
+
+Use tab completion to determine the names of the fans in your switches:
+
+```
+cumulus@switch:~$ netq show sensors fan <<press tab>>
+   around : Go back in time to around ...
+   fan1 : Fan Name
+   fan2 : Fan Name
+   fan3 : Fan Name
+   fan4 : Fan Name
+   fan5 : Fan Name
+   fan6 : Fan Name
+   json : Provide output in JSON
+   psu1fan1 : Fan Name
+   psu2fan1 : Fan Name
+   <ENTER>
+```
+
+{{</notice>}}
+
+This example shows the state of all fans.
+
+```
+cumulus@switch:~$ netq show sensor fan
+
+Matching sensors records:
+Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
+border01          fan5            fan tray 3, fan 1                   ok         2500       29000    2500                                         Tue Aug 25 21:45:21 2020
+border01          fan6            fan tray 3, fan 2                   ok         2500       29000    2500                                         Tue Aug 25 21:45:21 2020
+border01          fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Tue Aug 25 21:45:21 2020
+border01          fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Aug 25 21:45:21 2020
+border01          psu1fan1        psu1 fan                            ok         2500       29000    2500                                         Tue Aug 25 21:45:21 2020
+border01          fan3            fan tray 2, fan 1                   ok         2500       29000    2500                                         Tue Aug 25 21:45:21 2020
+border01          fan2            fan tray 1, fan 2                   ok         2500       29000    2500                                         Tue Aug 25 21:45:21 2020
+border01          psu2fan1        psu2 fan                            ok         2500       29000    2500                                         Tue Aug 25 21:45:21 2020
+border02          fan2            fan tray 1, fan 2                   ok         2500       29000    2500                                         Tue Aug 25 21:39:36 2020
+border02          psu2fan1        psu2 fan                            ok         2500       29000    2500                                         Tue Aug 25 21:39:36 2020
+border02          psu1fan1        psu1 fan                            ok         2500       29000    2500                                         Tue Aug 25 21:39:36 2020
+border02          fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Aug 25 21:39:36 2020
+border02          fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Tue Aug 25 21:39:36 2020
+border02          fan6            fan tray 3, fan 2                   ok         2500       29000    2500                                         Tue Aug 25 21:39:36 2020
+border02          fan5            fan tray 3, fan 1                   ok         2500       29000    2500                                         Tue Aug 25 21:39:36 2020
+border02          fan3            fan tray 2, fan 1                   ok         2500       29000    2500                                         Tue Aug 25 21:39:36 2020
+fw1               fan2            fan tray 1, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 00:08:01 2020
+fw1               fan5            fan tray 3, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 00:08:01 2020
+fw1               psu1fan1        psu1 fan                            ok         2500       29000    2500                                         Wed Aug 26 00:08:01 2020
+fw1               fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 00:08:01 2020
+fw1               fan3            fan tray 2, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 00:08:01 2020
+fw1               psu2fan1        psu2 fan                            ok         2500       29000    2500                                         Wed Aug 26 00:08:01 2020
+fw1               fan6            fan tray 3, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 00:08:01 2020
+fw1               fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 00:08:01 2020
+fw2               fan3            fan tray 2, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 00:02:13 2020
+fw2               psu2fan1        psu2 fan                            ok         2500       29000    2500                                         Wed Aug 26 00:02:13 2020
+fw2               fan2            fan tray 1, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 00:02:13 2020
+fw2               fan6            fan tray 3, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 00:02:13 2020
+fw2               fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 00:02:13 2020
+fw2               fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 00:02:13 2020
+fw2               fan5            fan tray 3, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 00:02:13 2020
+fw2               psu1fan1        psu1 fan                            ok         2500       29000    2500                                         Wed Aug 26 00:02:13 2020
+leaf01            psu2fan1        psu2 fan                            ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            fan5            fan tray 3, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            fan3            fan tray 2, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            fan6            fan tray 3, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            fan2            fan tray 1, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            psu1fan1        psu1 fan                            ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf02            fan3            fan tray 2, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 16:14:08 2020
+...
+spine04           fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 10:52:00 2020
+spine04           psu1fan1        psu1 fan                            ok         2500       29000    2500                                         Wed Aug 26 10:52:00 2020
+```
+
+This example shows the state of all fans with the name *fan1*.
+
+```
+cumulus@switch~$ netq show sensors fan fan1
+Matching sensors records:
+Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
+border01          fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Tue Aug 25 21:45:21 2020
+border02          fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Tue Aug 25 21:39:36 2020
+fw1               fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 00:08:01 2020
+fw2               fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 00:02:13 2020
+leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Tue Aug 25 18:30:07 2020
+leaf02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Tue Aug 25 18:08:38 2020
+leaf03            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Tue Aug 25 21:20:34 2020
+leaf04            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 14:20:22 2020
+spine01           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 10:53:17 2020
+spine02           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 10:54:07 2020
+spine03           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 11:00:44 2020
+spine04           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 10:52:00 2020
+
+```
+
+#### View Only Temperature Sensors
+
+To view information from all temperature sensors or temperature sensors with a given name on your switches and host servers, run:
+
+```
+netq show sensors temp [<temp-name>] [around <text-time>] [json]
+```
+
+Use the `around` option to view sensor information for a time in the past.
+
+{{<notice tip>}}
+
+Use tab completion to determine the names of the temperature sensors on your devices:
+
+```
+cumulus@switch:~$ netq show sensors temp <press tab>
+    around     :  Go back in time to around ...
+    json       :  Provide output in JSON
+    psu1temp1  :  Temp Name
+    psu2temp1  :  Temp Name
+    temp1      :  Temp Name
+    temp2      :  Temp Name
+    temp3      :  Temp Name
+    temp4      :  Temp Name
+    temp5      :  Temp Name
+    <ENTER>
+```
+
+{{</notice>}}
+
+This example shows the state of all temperature sensors.
+
+```
+cumulus@oob-mgmt-server:~$ netq show sensor temp
+
+Matching sensors records:
+Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
+border01          psu1temp1       psu1 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:45:21 2020
+border01          temp2           board sensor near virtual switch    ok         25       85       80       5                                            Tue Aug 25 21:45:21 2020
+border01          temp3           board sensor at front left corner   ok         25       85       80       5                                            Tue Aug 25 21:45:21 2020
+border01          temp1           board sensor near cpu               ok         25       85       80       5                                            Tue Aug 25 21:45:21 2020
+border01          temp4           board sensor at front right corner  ok         25       85       80       5                                            Tue Aug 25 21:45:21 2020
+border01          psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:45:21 2020
+border01          temp5           board sensor near fan               ok         25       85       80       5                                            Tue Aug 25 21:45:21 2020
+border02          temp1           board sensor near cpu               ok         25       85       80       5                                            Tue Aug 25 21:39:36 2020
+border02          temp5           board sensor near fan               ok         25       85       80       5                                            Tue Aug 25 21:39:36 2020
+border02          temp3           board sensor at front left corner   ok         25       85       80       5                                            Tue Aug 25 21:39:36 2020
+border02          temp4           board sensor at front right corner  ok         25       85       80       5                                            Tue Aug 25 21:39:36 2020
+border02          psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:39:36 2020
+border02          psu1temp1       psu1 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:39:36 2020
+border02          temp2           board sensor near virtual switch    ok         25       85       80       5                                            Tue Aug 25 21:39:36 2020
+fw1               temp4           board sensor at front right corner  ok         25       85       80       5                                            Wed Aug 26 00:08:01 2020
+fw1               temp3           board sensor at front left corner   ok         25       85       80       5                                            Wed Aug 26 00:08:01 2020
+fw1               psu1temp1       psu1 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 00:08:01 2020
+fw1               temp1           board sensor near cpu               ok         25       85       80       5                                            Wed Aug 26 00:08:01 2020
+fw1               temp2           board sensor near virtual switch    ok         25       85       80       5                                            Wed Aug 26 00:08:01 2020
+fw1               temp5           board sensor near fan               ok         25       85       80       5                                            Wed Aug 26 00:08:01 2020
+fw1               psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 00:08:01 2020
+fw2               temp5           board sensor near fan               ok         25       85       80       5                                            Wed Aug 26 00:02:13 2020
+fw2               temp2           board sensor near virtual switch    ok         25       85       80       5                                            Wed Aug 26 00:02:13 2020
+fw2               psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 00:02:13 2020
+fw2               temp3           board sensor at front left corner   ok         25       85       80       5                                            Wed Aug 26 00:02:13 2020
+fw2               temp4           board sensor at front right corner  ok         25       85       80       5                                            Wed Aug 26 00:02:13 2020
+fw2               temp1           board sensor near cpu               ok         25       85       80       5                                            Wed Aug 26 00:02:13 2020
+fw2               psu1temp1       psu1 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 00:02:13 2020
+leaf01            psu1temp1       psu1 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf01            temp5           board sensor near fan               ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf01            temp4           board sensor at front right corner  ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf01            temp1           board sensor near cpu               ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf01            temp2           board sensor near virtual switch    ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf01            temp3           board sensor at front left corner   ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf02            temp5           board sensor near fan               ok         25       85       80       5                                            Wed Aug 26 16:14:08 2020
+...
+spine04           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 10:52:00 2020
+spine04           temp5           board sensor near fan               ok         25       85       80       5                                            Wed Aug 26 10:52:00 2020
+```
+
+This example shows the state of all temperature sensors with the name *psu2temp1*.
+
+```
+cumulus@switch:~$ netq show sensors temp psu2temp1
+Matching sensors records:
+Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
+border01          psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:45:21 2020
+border02          psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:39:36 2020
+fw1               psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 00:08:01 2020
+fw2               psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 00:02:13 2020
+leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 18:30:07 2020
+leaf02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 18:08:38 2020
+leaf03            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:20:34 2020
+leaf04            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 14:20:22 2020
+spine01           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 10:53:17 2020
+spine02           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 10:54:07 2020
+spine03           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 11:00:44 2020
+spine04           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 10:52:00 2020
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### View Digital Optics Information
+
+Digital optics information is available from any digital optics modules in the system using the NetQ UI and NetQ CLI.
+
+- Digital Optics card: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage (table)
+- `netq show dom type` command: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage
+
+{{< tabs "TabID1227" >}}
+
+{{< tab "NetQ UI" >}}
+
+Use the filter option to view laser power and bias current for a given interface and channel on a switch, and temperature and voltage for a given module. Select the relevant tab to view the data.
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Digital Optics** in the **Network** heading.
+
+    {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
+
+2. The **Laser Rx Power** tab is displayed by default.
+
+    {{<figure src="/images/netq/main-menu-ntwk-dom-laserrx-power-310.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>Laser Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the digital optics module resides</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>If Name</td>
+<td>Name of interface where the digital optics module is installed</td>
+</tr>
+<tr>
+<td>Units</td>
+<td>Measurement unit for the power (mW) or current (mA)</td>
+</tr>
+<tr>
+<td>Channel 1&ndash;8</td>
+<td>Value of the power or current on each channel where the digital optics module is transmitting</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>Module Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the digital optics module resides</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>If Name</td>
+<td>Name of interface where the digital optics module is installed</td>
+</tr>
+<tr>
+<td>Degree C</td>
+<td>Current module temperature, measured in degrees Celsius</td>
+</tr>
+<tr>
+<td>Degree F</td>
+<td>Current module temperature, measured in degrees Fahrenheit</td>
+</tr>
+<tr>
+<td>Units</td>
+<td>Measurement unit for module voltage; Volts</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>Current module voltage</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+3. Click each of the other Laser or Module tabs to view that information for all devices.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view digital optics information for your switches and host servers, run one of the following:
+
+```
+netq show dom type (laser_rx_power|laser_output_power|laser_bias_current) [interface <text-dom-port-anchor>] [channel_id <text-channel-id>] [around <text-time>] [json]
+netq show dom type (module_temperature|module_voltage) [interface <text-dom-port-anchor>] [around <text-time>] [json]
+```
+
+This example shows module temperature information for all devices.
+
+```
+cumulus@switch:~$ netq show dom type module_temperature
+Matching dom records:
+Hostname          Interface  type                 high_alarm_threshold low_alarm_threshold  high_warning_thresho low_warning_threshol value                Last Updated
+                                                                                            ld                   d
+----------------- ---------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+...
+spine01           swp53s0    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp35      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 27.82,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 82.08}
+spine01           swp55      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 26.29,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 79.32}
+spine01           swp9       module_temperature   {‘degree_c’: 78,     {‘degree_c’: -13,    {‘degree_c’: 73,     {‘degree_c’: -8,     {‘degree_c’: 25.57,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 8.6}     ‘degree_f’: 163.4}   ‘degree_f’: 17.6}    ‘degree_f’: 78.02}
+spine01           swp56      module_temperature   {‘degree_c’: 78,     {‘degree_c’: -10,    {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 29.43,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 14}      ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 84.97}
+...
+```
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -1215,11 +1604,9 @@ spine03           CL              3.7.12                               Mon Aug 1
 spine04           CL              3.7.12                               Mon Aug 10 19:55:08 2020
 ```
 
-You can filter the results of the command to view only devices with a
-particular operating system or version. This can be especially helpful
-when you suspect that a particular device has not been upgraded as
-expected. This example shows all devices with the Cumulus Linux version
-3.7.12 installed.
+You can filter the results of the command to view only devices with a particular operating system or version. This can be especially helpful when you suspect that a particular device has not been upgraded as expected.
+
+This example shows all devices with the Cumulus Linux version 3.7.12 installed.
 
 ```
 cumulus@switch:~$ netq show inventory os version 3.7.12
@@ -1291,7 +1678,7 @@ Cumulus Linux license information is available from the NetQ UI and NetQ CLI.
 
 3. Hover over the card, and change to the full-screen card using the size picker.
 
-4. The **Show All** tab is displayed by default. Scroll to the right to locate the **License State** and **License Name** columns. Based on these values:
+4. The **Show All** tab is displayed by default. Scroll to the right to locate the **License State** and **License Name** columns. Based on the state values:
 
     - OK: no action is required
     - Bad: validate the correct license is installed and has not expired
@@ -1419,7 +1806,7 @@ leaf02            vx                   x86_64               3.6.2.1
 
 ### View All Software Packages Installed
 
-If you are having an issue with a particular switch, you may want to verify what software is installed and whether it needs updating.
+If you are having an issue several switch, you may want to verify what software is installed and whether it needs updating.
 
 To view package information for your switches, run:
 

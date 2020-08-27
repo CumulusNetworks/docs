@@ -171,10 +171,10 @@ To check the NTP peer status:
 
 To remove one or more NTP servers:
 
-    cumulus@switch:~$ net del time ntp server 0.cumulusnetworks.pool.ntp.org iburst
-    cumulus@switch:~$ net del time ntp server 1.cumulusnetworks.pool.ntp.org iburst
-    cumulus@switch:~$ net del time ntp server 2.cumulusnetworks.pool.ntp.org iburst
-    cumulus@switch:~$ net del time ntp server 3.cumulusnetworks.pool.ntp.org iburst
+    cumulus@switch:~$ net del time ntp server 0.cumulusnetworks.pool.ntp.org
+    cumulus@switch:~$ net del time ntp server 1.cumulusnetworks.pool.ntp.org
+    cumulus@switch:~$ net del time ntp server 2.cumulusnetworks.pool.ntp.org
+    cumulus@switch:~$ net del time ntp server 3.cumulusnetworks.pool.ntp.org
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 

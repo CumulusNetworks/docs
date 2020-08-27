@@ -130,17 +130,7 @@ PIM is included in the FRRouting package. For proper PIM operation, PIM depends 
    ...
    ```
 
-2. Run the `systemctl restart` command to restart FRRouting:
-
-   ```
-   cumulus@switch:~$ sudo systemctl restart frr
-   ```
-
-   {{%notice warning%}}
-
-Restarting FRR impacts all routing protocols.
-
-   {{%/notice%}}
+2. {{<cl/restart-frr>}}
 
 3. In the `vtysh` shell, run the following commands to configure the PIM interfaces:
 

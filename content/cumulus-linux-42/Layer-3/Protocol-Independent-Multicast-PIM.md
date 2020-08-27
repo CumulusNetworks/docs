@@ -24,7 +24,7 @@ The following illustration shows a PIM configuration. The table below the illust
 |---------------- |-------------|
 | First Hop Router (FHR) | The router attached to the source. The FHR is responsible for the PIM register process. |
 | Last Hop Router (LHR) | The last router in the path, attached to an interested multicast receiver. There is a single LHR for each network subnet with an interested receiver, however multicast groups can have multiple LHRs throughout the network. |
-| Rendezvous Point (RP) | Allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable. <br><br> <p>{{%notice warning%}}</p> <ul> <li><code>zebra</code> does not resolve the next hop for the RP through the default route and multicast forwarding fails unless you either have a specific route to the RP or specify the following command to give <code>zebra</code> permission to resolve the next hop for the RP through the default route:<pre>cumulus@switch:~$ sudo vtysh
+| Rendezvous Point (RP) | Allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable. <br><br> <p>{{%notice warning%}}</p> <ul> <li><code>zebra</code> does not resolve the next hop for the RP through the default route and multicast forwarding fails. Either provide a specific route to the RP or specify the following command to give <code>zebra</code> permission to resolve the next hop for the RP through the default route:<pre>cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# ip nht resolve-via-default.
 switch(config)# exit

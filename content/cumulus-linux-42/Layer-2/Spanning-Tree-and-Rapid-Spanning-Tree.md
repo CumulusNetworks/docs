@@ -699,9 +699,57 @@ Most of these parameters are blacklisted in the `ifupdown_blacklist` section of 
 | `mstpctl-portbpdufilter` | `net add interface <interface> stp portbpdufilter`| Enables or disables the BPDU filter functionality for an interface in the bridge. The default is no. |
 | `mstpctl-treeportcost` | `net add interface <interface> stp treeportcost <port-cost>` | Sets the spanning tree port cost to a value from 0 to 255. The default is 0. |
 
+{{%notice note%}}
+
 ## Considerations
 
 MSTP is not supported currently because Cumulus Linux only supports MSTI 0 (not MSTI 1 through 15). However, interoperability with MSTP networks can be accomplished using PVRSTP or PVSTP.
+
+{{%/notice%}}
+
+## RSTP interoperability 
+
+This section covers RSTP interoperability on vlan-aware bridge only. 
+
+VLAN-aware bridges only operate in RSTP mode. STP bridge protocol data units (BPDUs) are transmitted on the native VLAN.
+
+### Interoperability with STP
+
+If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU, it falls back to 802.1D operation automatically. RSTP also interoperates with PVST and MST to ensure a loop-free layer 2 domain.
+
+### Interoperability with PVST
+
+PVST sends BPDUs on a per vlan basis. The RSTP domain sends its BPDUs on the native vlan. The basic idea to enable both protocols to interoperate is to enable the native vlan on the link between the RSTP to PVST domain. The spanning tree is built according to the native vlan parameters. 
+
+What happens with other vlans BPDUs?
+
+The RSTP protocol does not send and parse BPDUs on other vlans, and the switch will treat it as just another data. The BPDUs will be flooded across the network, enabling the PVST domain to maintain its spanning-tree topology and provide a loop-free network. The spanning-tree created on the native vlan will be used to form the RSTP domain. 
+To enable proper BPDUs exchange across the network, all vlans participating in the PVST domain, need to be allowed on the link between the RSTP and PVST domains. 
+When interoperating RSTP into an existing PVST network, the root bridge needs to be defined on the PVST domain. This can be achieved by lowering the priority on the PVST domain or changing the RSTP switches’ priority to a higher number. 
+
+### Interoperability with MST
+
+RSTP interoperates with MST seamlessly, creating a single instance of spanning tree, which transmits BPDUs on the native VLAN. RSTP treats the MST domain as one giant switch. On the other hand, the MST treats the RSTP domain as a different region, which significantly decreases the complexity when integrating RSTP domain into an existing MST domain. 
+MST divides the topology to different regions. Grouping is done by having all switches sharing the same vlan-to-instance mapping in the same region. To enable proper communication between the regions, MST creates a CST (Common Spanning Tree) connecting all the boundaries switches and forming the big picture of the MST domain. 
+Since changes in the CST should be reflected in all regions, the RSTP tree is included in the CST. This ensures changes occurring on the RSTP domain to be reflected in the CST domain. On the downside, this causes topology changes on the RSTP domain to impact the rest of the network. The upside is to keep the MST domain informed of every change occurring in the RSTP domain, ensuring a loop-free network.  
+
+{{%notice note%}}
+
+Not every change in the MST domain will affect the RSTP domain. Only changes to the CST (which are changes in the CIST regional root bridge) are converged into the RSTP domain.
+
+{{%/notice%}}
+
+The root bridge must be configured within the MST domain. To ensure that, configure the RB within the MST domain by changing the priority on the relevant MST switch.
+When MST detects an RSTP link, it falls back into RSTP mode.
+MST switches will consider the RSTP domain as a different region. The switch with the lowest cost to the CST root bridge will be chosen as the CIST root bridge from the MST domain point of view. Also, the MST switch detects the other side is not using MST but RSTP. Since MST sends its BPDUs over vlan 1, which is part of IST, this will easily interoperate with the RSTP region. 
+
+### Load balancing using MLAG 
+
+One of the main reasons PVST and MST were introduced, is to better utilize the links. Having more than one spanning-tree instance enables switches to load balance and use different links for different vlans. 
+When using RSTP, there is only one instance of spanning tree. To better utilize the links, it is recommended to configure CLAG on the switches connected to the MST/PVST domain and configure these interfaces as a CLAG port. 
+This will make the PVST/MST domain think they are connected to a single switch, and utilize all links connected to it. 
+The load balancing is based on the port-channel hashing mechanism, rather than different spanning-tree instances. 
+Most importantly, it utilizes all links between the RSTP to the PVST/MST domains. 
 
 ## Related Information
 

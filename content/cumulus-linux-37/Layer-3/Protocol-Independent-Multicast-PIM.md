@@ -47,9 +47,11 @@ Cumulus Linux supports only PIM Sparse Mode.
 </tr>
 <tr>
 <td><p>Rendezvous Point (RP)</p></td>
-<td><p>The RP allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable.</p>
-<p>{{%notice warning%}}</p>
- <ul> <li><code>zebra</code> does not resolve the next hop for the RP through the default route. Multicast forwarding fails unless you have a specific route to the RP.</li><li>Do not use a spine switch as an RP. If you are running BGP on a spine switch and it is <b>not</b> configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP).</li>
+<td><p>The RP allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable.<br><br> <p>{{%notice warning%}}</p> <ul> <li><code>zebra</code> does not resolve the next hop for the RP through the default route. To prevent multicast forwarding from failing, either provide a specific route to the RP or specify the following command to be able to resolve the next hop for the RP through the default route:<pre>cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# ip nht resolve-via-default
+switch(config)# exit
+switch# write memory</li><li>Do not use a spine switch as an RP. If you are running BGP on a spine switch and it is <b>not</b> configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP).</li>
 <p>{{%/notice%}}</p></td>
 </tr>
 <tr>

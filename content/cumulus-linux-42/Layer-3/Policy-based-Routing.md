@@ -107,7 +107,7 @@ You can only set one policy per interface.
 
 {{< tab "vtysh Commands ">}}
 
-1. Before you run the `vtysh` commands, you need to enable the `pbrd` service in the `/etc/frr/daemons` file, then restart FRRouting with the `systemctl restart frr.service` command.
+1. Enable the `pbrd` service in the `/etc/frr/daemons` file:
 
     ```
     cumulus@leaf01:~$ sudo nano /etc/frr/daemons
@@ -129,7 +129,9 @@ You can only set one policy per interface.
     ...
     ```
 
-2. Configure the policy map.
+2. {{<cl/restart-frr>}}
+
+3. Configure the policy map.
 
     The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
 
@@ -160,7 +162,7 @@ You can only set one policy per interface.
     switch(config-pbr-map)# match ecn 2
     ```
 
-3. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
+4. Either apply a *next hop* or a *next hop* group to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `rocket` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
 
     ```
     switch(config-pbr-map)# set nexthop 192.168.0.31 swp2 nexthop-vrf rocket
@@ -192,7 +194,7 @@ You can only set one policy per interface.
     switch(config)#
     ```-->
 
-4. Assign the PBR policy to an ingress interface. The example command below assigns the PBR policy `map1` to interface swp51:
+5. Assign the PBR policy to an ingress interface. The example command below assigns the PBR policy `map1` to interface swp51:
 
     ```
     switch(config)# interface swp51

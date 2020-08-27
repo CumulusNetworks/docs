@@ -220,6 +220,12 @@ To work around this issue, manually delete the dynamic FDB entry that is associa
 <td></td>
 </tr>
 <tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30464</td>
 <td><p>The net show dot1x interface summary command output shows a MAC address with all zeros associated with a port.</p></td>
 <td>3.7.12-3.7.13</td>
@@ -938,12 +944,6 @@ To work around this issue, disable MAC learning on QinQ VLANs by adding bridge-l
 <td><p>When local-tunnelip is an SVI, the static VXLAN tunnel does not work; the next hop router receives the packet but drops it as it does not know where to forward the packet. The static VXLAN tunnel does works if local-tunnelip is a loopback or a physical layer 3 interface. </p>
 </td>
 <td>3.7.8-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-26139</td>
-<td><p>Selective ERSPAN does not work when you specify a bridge port.</p></td>
-<td>3.7.6-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2524,6 +2524,12 @@ To work around this issue, manually delete the dynamic FDB entry that is associa
 <td></td>
 </tr>
 <tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30464</td>
 <td><p>The net show dot1x interface summary command output shows a MAC address with all zeros associated with a port.</p></td>
 <td>3.7.12-3.7.13</td>
@@ -3706,12 +3712,6 @@ To work around this issue, disable MAC learning on QinQ VLANs by adding bridge-l
 </td>
 <td>3.7.9-3.7.12</td>
 <td>3.7.13</td>
-</tr>
-<tr>
-<td>CM-26139</td>
-<td><p>Selective ERSPAN does not work when you specify a bridge port.</p></td>
-<td>3.7.6-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-26138</td>
@@ -5025,6 +5025,12 @@ Fixed: 5.20.2-3+deb8u13</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30343</td>
 <td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
 CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
@@ -6193,12 +6199,6 @@ To work around this issue, disable MAC learning on QinQ VLANs by adding bridge-l
 </td>
 <td>3.7.9-3.7.12</td>
 <td>3.7.13</td>
-</tr>
-<tr>
-<td>CM-26139</td>
-<td><p>Selective ERSPAN does not work when you specify a bridge port.</p></td>
-<td>3.7.6-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-26138</td>
@@ -7799,6 +7799,12 @@ Fixed: 5.20.2-3+deb8u13</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30343</td>
 <td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
 CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
@@ -8963,12 +8969,6 @@ See /var/log/netd.log for more details.
 </td>
 <td>3.7.8-3.7.10</td>
 <td>3.7.11-3.7.13</td>
-</tr>
-<tr>
-<td>CM-26139</td>
-<td><p>Selective ERSPAN does not work when you specify a bridge port.</p></td>
-<td>3.7.6-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-26138</td>
@@ -10259,6 +10259,12 @@ Fixed: 5.20.2-3+deb8u13</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30343</td>
 <td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
 CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
@@ -11233,12 +11239,6 @@ See /var/log/netd.log for more details.
 </td>
 <td>3.7.8-3.7.10</td>
 <td>3.7.11-3.7.13</td>
-</tr>
-<tr>
-<td>CM-26139</td>
-<td><p>Selective ERSPAN does not work when you specify a bridge port.</p></td>
-<td>3.7.6-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-26138</td>
@@ -13154,6 +13154,12 @@ Fixed: 5.20.2-3+deb8u13</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30343</td>
 <td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
 CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
@@ -13972,12 +13978,6 @@ See /var/log/netd.log for more details.
 </td>
 <td>3.7.8-3.7.10</td>
 <td>3.7.11-3.7.13</td>
-</tr>
-<tr>
-<td>CM-26139</td>
-<td><p>Selective ERSPAN does not work when you specify a bridge port.</p></td>
-<td>3.7.6-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-26138</td>
@@ -15921,6 +15921,12 @@ Fixed: 5.20.2-3+deb8u13</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30343</td>
 <td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
 CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
@@ -16656,12 +16662,6 @@ See /var/log/netd.log for more details.
 </td>
 <td>3.7.6-3.7.10</td>
 <td>3.7.11-3.7.13</td>
-</tr>
-<tr>
-<td>CM-26139</td>
-<td><p>Selective ERSPAN does not work when you specify a bridge port.</p></td>
-<td>3.7.6-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-26138</td>
@@ -19036,6 +19036,12 @@ Fixed: 5.20.2-3+deb8u13</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30343</td>
 <td><p>The libnss3 package, available for optional installation on Cumulus Linux, has the following vulnerabilities:<br/>
 CVE-2020-12399: Timing differences when performing DSA signatures.<br/>
@@ -19710,12 +19716,6 @@ For the detailed security status of ghostscript, refer to its security tracker p
 </td>
 <td>3.7.6-3.7.10</td>
 <td>3.7.11-3.7.13</td>
-</tr>
-<tr>
-<td>CM-26139</td>
-<td><p>Selective ERSPAN does not work when you specify a bridge port.</p></td>
-<td>3.7.6-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-26138</td>
@@ -22105,6 +22105,12 @@ Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
 Fixed: 5.20.2-3+deb8u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
+</tr>
+<tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30343</td>
@@ -24859,6 +24865,12 @@ Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
 Fixed: 5.20.2-3+deb8u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
+</tr>
+<tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30343</td>
@@ -27671,6 +27683,12 @@ Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
 Fixed: 5.20.2-3+deb8u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
+</tr>
+<tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30343</td>
@@ -30642,6 +30660,12 @@ Vulnerable: &lt;= 5.20.2-3+deb8u12<br/>
 Fixed: 5.20.2-3+deb8u13</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
+</tr>
+<tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30343</td>

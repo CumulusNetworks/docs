@@ -134,11 +134,7 @@ PIM is included in the FRRouting package. For proper PIM operation, PIM depends 
    ...
    ```
 
-2. Run the `systemctl restart` command to restart FRRouting:
-
-   ```
-   cumulus@switch:~$ sudo systemctl restart frr
-   ```
+2. {{<cl/restart-frr>}}
 
    {{%notice warning%}}
 

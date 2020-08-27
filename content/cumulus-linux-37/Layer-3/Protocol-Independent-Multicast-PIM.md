@@ -235,25 +235,22 @@ other routing protocol or static routes.
 
 To configure PIM on a switch using FRR:
 
-1.  Open the `/etc/frr/daemons` file in a text editor.
+1. Open the `/etc/frr/daemons` file in a text editor.
 
-2.  Add the following line to the end of the file to enable `pimd`, then
+2. Add the following line to the end of the file to enable `pimd`, then
     save the file:
 
         zebra=yes
         pimd=yes
 
-3.  Run the `systemctl restart` command to restart FRRouting:
+3. {{<cl/restart-frr>}}
 
-        cumulus@switch:~$ sudo systemctl restart frr
-
-4.  In a terminal, run the `vtysh` command to start the FRRouting CLI on
-    the switch.
+4. In a terminal, run the `vtysh` command to start the FRRouting CLI on the switch.
 
         cumulus@switch:~$ sudo vtysh
         cumulus#
 
-5.  Run the following commands to configure the PIM interfaces:
+5. Run the following commands to configure the PIM interfaces:
 
         cumulus# configure terminal
         cumulus(config)# int swp1
@@ -267,7 +264,7 @@ PIM must be enabled on all interfaces facing multicast sources or
 
     {{%/notice%}}
 
-6.  **Optional:** Run the following commands to enable IGMP (either
+6. **Optional:** Run the following commands to enable IGMP (either
     version 2 or 3) on the interfaces with hosts attached. IGMP version
     3 is the default; you only need to specify the version if you want
     to use IGMP version 2:
@@ -284,7 +281,7 @@ You must configure IGMP on all interfaces where multicast receivers
 
     {{%/notice%}}
 
-7.  Configure a group mapping for a static RP:
+7. Configure a group mapping for a static RP:
 
         cumulus# configure terminal
         cumulus(config)# ip pim rp 192.168.0.1

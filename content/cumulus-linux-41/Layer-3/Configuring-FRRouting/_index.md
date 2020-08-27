@@ -127,11 +127,7 @@ Back up `frr.conf` (or any configuration files you want to remove) before procee
 
     If integrated configuration file mode is disabled, remove all the configuration files (such as `zebra.conf` or `ospf6d.conf`) instead of `frr.conf`.
 
-3.  Restart FRRouting:
-
-    ```
-    cumulus@switch:~$ sudo systemctl restart frr.service
-    ```
+3. {{<cl/restart-frr>}}
 
 ## Interface IP Addresses and VRFs
 

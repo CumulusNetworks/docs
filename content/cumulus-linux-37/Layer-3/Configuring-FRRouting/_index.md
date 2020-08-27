@@ -116,11 +116,7 @@ cumulus@switch:~$ net show configuration | grep integrated
 cumulus@switch:~$ sudo rm /etc/frr/frr.conf
 ```
 
-3. Restart FRRouting:
-
-```
-cumulus@switch:~$ sudo systemctl restart frr.service
-```
+3. {{<cl/restart-frr>}}
 
 {{%notice note%}}
 

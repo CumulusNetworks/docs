@@ -47,9 +47,11 @@ Cumulus Linux supports only PIM Sparse Mode.
 </tr>
 <tr>
 <td><p>Rendezvous Point (RP)</p></td>
-<td><p>The RP allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable.</p>
-<p>{{%notice warning%}}</p>
-<p>Do not use a spine switch as an RP. If you are running {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} on a spine switch and it is *not* configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP - see below).</p>
+<td><p>The RP allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable.<br><br> <p>{{%notice warning%}}</p> <ul> <li><code>zebra</code> does not resolve the next hop for the RP through the default route. To prevent multicast forwarding from failing, either provide a specific route to the RP or specify the following command to be able to resolve the next hop for the RP through the default route:<pre>cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# ip nht resolve-via-default
+switch(config)# exit
+switch# write memory</li><li>Do not use a spine switch as an RP. If you are running BGP on a spine switch and it is <b>not</b> configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP).</li>
 <p>{{%/notice%}}</p></td>
 </tr>
 <tr>
@@ -233,25 +235,22 @@ other routing protocol or static routes.
 
 To configure PIM on a switch using FRR:
 
-1.  Open the `/etc/frr/daemons` file in a text editor.
+1. Open the `/etc/frr/daemons` file in a text editor.
 
-2.  Add the following line to the end of the file to enable `pimd`, then
+2. Add the following line to the end of the file to enable `pimd`, then
     save the file:
 
         zebra=yes
         pimd=yes
 
-3.  Run the `systemctl restart` command to restart FRRouting:
+3. {{<cl/restart-frr>}}
 
-        cumulus@switch:~$ sudo systemctl restart frr
-
-4.  In a terminal, run the `vtysh` command to start the FRRouting CLI on
-    the switch.
+4. In a terminal, run the `vtysh` command to start the FRRouting CLI on the switch.
 
         cumulus@switch:~$ sudo vtysh
         cumulus#
 
-5.  Run the following commands to configure the PIM interfaces:
+5. Run the following commands to configure the PIM interfaces:
 
         cumulus# configure terminal
         cumulus(config)# int swp1
@@ -265,7 +264,7 @@ PIM must be enabled on all interfaces facing multicast sources or
 
     {{%/notice%}}
 
-6.  **Optional:** Run the following commands to enable IGMP (either
+6. **Optional:** Run the following commands to enable IGMP (either
     version 2 or 3) on the interfaces with hosts attached. IGMP version
     3 is the default; you only need to specify the version if you want
     to use IGMP version 2:
@@ -282,7 +281,7 @@ You must configure IGMP on all interfaces where multicast receivers
 
     {{%/notice%}}
 
-7.  Configure a group mapping for a static RP:
+7. Configure a group mapping for a static RP:
 
         cumulus# configure terminal
         cumulus(config)# ip pim rp 192.168.0.1

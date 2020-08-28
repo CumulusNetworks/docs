@@ -1,0 +1,24 @@
+<p>Run these commands on each switch to bring up the interfaces.</p>
+<div class="book-tabs">
+<input type="radio" class="hidden" name="interfaces" id="interfaces -1" checked="" />
+<label for="interfaces -1">leaf01</label>
+<div class="book-tabs-content markdown-inner">
+<pre>cumulus@cumulus:mgmt:~$ net add interface swp1,swp2,swp3
+cumulus@cumulus:mgmt:~$ net commit
+cumulus@cumulus:mgmt:~$ exit</pre>
+</div>
+<input type="radio" class="hidden" name="interfaces" id="interfaces -2" />
+<label for="interfaces -2">leaf02</label>
+<div class="book-tabs-content markdown-inner">
+<pre>cumulus@cumulus:mgmt:~$ net add interface swp1,swp2,swp3
+cumulus@cumulus:mgmt:~$ net commit
+cumulus@cumulus:mgmt:~$ exit</pre>
+</div>
+<input type="radio" class="hidden" name="interfaces" id="interfaces -3" />
+<label for="interfaces -3">spine01</label>
+<div class="book-tabs-content markdown-inner">
+<pre>cumulus@cumulus:mgmt:~$ net add interface swp1,swp2
+cumulus@cumulus:mgmt:~$ net commit
+cumulus@cumulus:mgmt:~$ exit</pre>
+</div>
+</div>

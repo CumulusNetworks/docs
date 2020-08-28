@@ -239,110 +239,106 @@ To configure multi-instance OSPF:
 
 1. Edit `/etc/frr/daemons` and add *ospfd\_instances="instance1 instance2 ..."* to the `ospfd` line, specifying an instance ID for each separate instance. For example, the following configuration has OSPF enabled with 2 `ospfd` instances, 11 and 22:
 
-```
-cumulus@switch:~$ cat /etc/frr/daemons
-zebra=yes
-bgpd=no
-ospfd=yes ospfd_instances="11 22"
-ospf6d=no
-ripd=no
-ripngd=no
-isisd=no
-```
+   ```
+   cumulus@switch:~$ cat /etc/frr/daemons
+   zebra=yes
+   bgpd=no
+   ospfd=yes ospfd_instances="11 22"
+   ospf6d=no
+   ripd=no
+   ripngd=no
+   isisd=no
+   ```
 
-2. After you modify the `daemons` file, restart FRRouting:
-
-```
-cumulus@switch:~$ sudo systemctl restart frr.service
-```
+2. {{<cl/restart-frr>}}
 
 3. Configure each instance:
 
-```
-cumulus@switch:~$ net add interface swp1 ospf instance-id 11
-cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
-cumulus@switch:~$ net add ospf router-id 1.1.1.1
-cumulus@switch:~$ net add interface swp2 ospf instance-id 22
-cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
-cumulus@switch:~$ net add ospf router-id 1.1.1.1
-```
+   ```
+   cumulus@switch:~$ net add interface swp1 ospf instance-id 11
+   cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
+   cumulus@switch:~$ net add ospf router-id 1.1.1.1
+   cumulus@switch:~$ net add interface swp2 ospf instance-id 22
+   cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
+   cumulus@switch:~$ net add ospf router-id 1.1.1.1
+   ```
 
 4. Confirm the configuration:
 
-```
-cumulus@switch:~$ net show configuration ospf
+   ```
+   cumulus@switch:~$ net show configuration ospf
 
-hostname zebra
-log file /var/log/frr/zebra.log
-username cumulus nopassword
+   hostname zebra
+   log file /var/log/frr/zebra.log
+   username cumulus nopassword
 
-service integrated-vtysh-config
+   service integrated-vtysh-config
 
-interface eth0
-    ipv6 nd suppress-ra
-    link-detect
+   interface eth0
+       ipv6 nd suppress-ra
+       link-detect
 
-interface lo
-    link-detect
+   interface lo
+       link-detect
 
-interface swp1
-    ip ospf 11 area 0.0.0.0
-    link-detect
+   interface swp1
+       ip ospf 11 area 0.0.0.0
+       link-detect
 
-interface swp2
-    ip ospf 22 area 0.0.0.0
-    link-detect
+   interface swp2
+       ip ospf 22 area 0.0.0.0
+       link-detect
 
-interface swp45
-    link-detect
+   interface swp45
+       link-detect
 
-interface swp46
-    link-detect
+   interface swp46
+       link-detect
 
-interface swp47
-    link-detect
+   interface swp47
+       link-detect
 
-interface swp48
-    link-detect
+   interface swp48
+       link-detect
 
-interface swp49
-    link-detect
+   interface swp49
+       link-detect
 
-interface swp50
-    link-detect
+   interface swp50
+       link-detect
 
-interface swp51
-    link-detect
+   interface swp51
+       link-detect
 
-interface swp52
-    link-detect
+   interface swp52
+       link-detect
 
-interface vagrant
-    link-detect
+   interface vagrant
+       link-detect
 
-router ospf 11
-    ospf router-id 1.1.1.1
+   router ospf 11
+       ospf router-id 1.1.1.1
 
-router ospf 22
-    ospf router-id 1.1.1.1
+   router ospf 22
+       ospf router-id 1.1.1.1
 
-ip forwarding
-ipv6 forwarding
+   ip forwarding
+   ipv6 forwarding
 
-line vty
+   line vty
 
-end
-```
+   end
+   ```
 
 5. Confirm that all the OSPF instances are running:
 
-```
-cumulus@switch:~$ ps -ax | grep ospf
-21135 ?        S<s    0:00 /usr/lib/frr/ospfd --daemon -A 127.0.0.1 -n 11
-21139 ?        S<s    0:00 /usr/lib/frr/ospfd --daemon -A 127.0.0.1 -n 22
-21160 ?        S<s    0:01 /usr/lib/frr/watchfrr -adz -r /usr/sbin/servicebBfrrbBrestartbB%s -s /usr/sbin/servicebBquaggabBstartbB%s -k /usr/sbin/servicebBfrrbBstopbB%s -b bB -t 30 zebra ospfd-11 ospfd-22 pimd
-22021 pts/3    S+     0:00 grep ospf
-```
+   ```
+   cumulus@switch:~$ ps -ax | grep ospf
+   21135 ?        S<s    0:00 /usr/lib/frr/ospfd --daemon -A 127.0.0.1 -n 11
+   21139 ?        S<s    0:00 /usr/lib/frr/ospfd --daemon -A 127.0.0.1 -n 22
+   21160 ?        S<s    0:01 /usr/lib/frr/watchfrr -adz -r /usr/sbin/servicebBfrrbBrestartbB%s -s /usr/sbin/servicebBquaggabBstartbB%s -k /usr/sbin/servicebBfrrbBstopbB%s -b bB -t 30 zebra ospfd-11 ospfd-22 pimd
+   22021 pts/3    S+     0:00 grep ospf
+   ```
 
 #### Caveats
 

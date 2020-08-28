@@ -68,7 +68,7 @@ NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The co
 
 {{%notice info%}}
 
-In addition to the `es-id` and the `es-sys-mac`, you need to specify a unique SVI IP address for each VTEP across the racks. These IP addresses must be reachable from remote VTEPs. You enable these IP addresses using the `advertise-svi-ip` option. See the leaf configurations in the {{<link title="#Example Configuration" text="example configuration">}} below.
+In addition to the `es-id` and the `es-sys-mac`, you need to specify a unique SVI IP address for each VTEP across the racks. These IP addresses must be reachable from remote VTEPs. You enable the advertisement of these IP addresses using the `advertise-svi-ip` option, under the BGP EVPN address family. See the leaf configurations in the {{<link title="#Example Configuration" text="example configuration">}} below.
 
 {{%/notice%}}
 

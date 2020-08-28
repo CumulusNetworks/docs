@@ -1,54 +1,38 @@
 ---
 title: Integrate NetQ with Notification Applications
 author: Cumulus Networks
-weight: 520
+weight: 670
 toc: 3
 ---
-After you have installed the NetQ applications package and the NetQ Agents,
-you may want to configure some of the additional capabilities that NetQ
-offers. This topic describes how to integrate NetQ with an event notification application.
+To take advantage of the numerous event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with Syslog, PagerDuty, Slack, and Email. You may integrate with one or more of these applications simultaneously.
 
-## Integrate NetQ with an Event Notification Application
+In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data and delivers events to the Notification function. Notification then stores, filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream on to the NetQ Cloud service for processing and delivery.
 
-To take advantage of the numerous event messages generated and processed
-by NetQ, you must integrate with third-party event notification
-applications. You can integrate NetQ with Syslog, PagerDuty and Slack tools.
-You may integrate with one or more of these applications simultaneously.
+{{<figure src="/images/netq/event-notif-arch-onprem-320.png">}}
 
-Each network protocol and service in the NetQ Platform receives the raw
-data stream from the NetQ Agents, processes the data and delivers events
-to the Notification function. Notification then stores, filters and
-sends messages to any configured notification applications. Filters are
-based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold.
-
-{{<figure src="/images/netq/event-notif-arch-300.png">}}
+{{<figure src="/images/netq/event-notif-arch-cloud-320.png">}}
 
 {{<notice note>}}
 
-You may choose to implement a proxy server (that sits between the NetQ
-Platform and the integration channels) that receives, processes and
-distributes the notifications rather than having them sent directly to
-the integration channel. If you use such a proxy, you must configure
-NetQ with the proxy information.
+You may choose to implement a proxy server (that sits between the NetQ Appliance or VM and the integration channels) that receives, processes and distributes the notifications rather than having them sent directly to the integration channel. If you use such a proxy, you must configure NetQ with the proxy information.
 
 {{</notice>}}
 
-In either case, notifications are generated for the following types of
-events:
+Notifications are generated for the following types of events:
 
 | Category | Events |
 | --- | --- | 
-| Network Protocols | <ul><li>BGP status and session state</li><li>CLAG (MLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>OSPF status and session state </li><li>VLAN status and session state \*</li><li>VXLAN status and session state \*</li></ul> |
+| Network Protocol Validations | <ul><li>BGP status and session state</li><li>MLAG (CLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>OSPF status and session state </li><li>VLAN status and session state \*</li><li>VXLAN status and session state \*</li></ul> |
 | Interfaces | <ul><li>Link status</li><li>Ports and cables status</li><li>MTU status</li></ul> |
-| Services | <ul><li>NetQ Agent status</li><li>PTM</li><li>SSH \*</li><li>NTP status\*</li></ul> |
+| Services | <ul><li>NetQ Agent status</li><li>PTM*</li><li>SSH \*</li><li>NTP status\*</li></ul> |
 | Traces | <ul><li>On-demand trace status</li><li>Scheduled trace status</li></ul> |
 | Sensors | <ul><li>Fan status</li><li>PSU (power supply unit) status</li><li>Temperature status</li></ul> |
-| System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux License status</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li></ul> |
-| System Hardware | <ul><li>Physical resources status</li><li>BTRFS status</li><li>SSD utilization status</li><li>Threshold Crossing Alerts (TCAs)</li></ul> |
+| System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux License status</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li><li>Lifecycle Management status</li></ul> |
+| System Hardware | <ul><li>Physical resources status</li><li>BTRFS status</li><li>SSD utilization status</li></ul> |
 
 *\* This type of event can only be viewed in the CLI with this release.*
 
-**\* This type of event is only visible when enabled in the CLI.*
+Event filters are based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold.
 
 Refer to the {{<link title="Events Reference">}} for descriptions and examples of these events.
 
@@ -69,6 +53,12 @@ Messages have the following structure:
 For example:
 
 {{<figure src="/images/netq/event-msg-format.png">}}
+
+You can integrate notification channels using the NetQ UI or the NetQ CLI.
+
+- Channels card: specify channels
+- Threshold Crossing Rules card: specify channels and rules
+-`netq notification (channel|rule|filter)` command: specify channels, rules, and filters
 
 To set up the integrations, you must configure NetQ with at least one channel, one rule, and one filter. To refine what messages you want to view and where to send them, you can add additional rules and filters and set thresholds on supported event types. You can also configure a proxy server to receive, process, and forward the messages. This is accomplished using the NetQ CLI in the following order:
 
@@ -96,7 +86,7 @@ The command syntax for standard events is:
 
 The command syntax for events with user-configurable thresholds is:
 
-    ##Rules
+    ##Rules and Filters
     netq add tca event_id <event-name> scope <regex-filter> [severity <critical|info>] threshold <value>
 
     ##Management
@@ -130,46 +120,335 @@ Create one or more PagerDuty, Slack, or syslog channels to present the notificat
 
 #### Create a PagerDuty Channel
 
-Configure a channel using the integration key for your PagerDuty setup. Verify the configuration.
+You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 
+{{< tabs "TabID125" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+
+    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+
+    {{<figure src="/images/netq/channels-nopagerduty-created-320.png" width="700">}}
+
+2. Click **PagerDuty**.
+
+    {{<figure src="/images/netq/channels-nopagerduty-created-320.png" width="700">}}
+
+3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+
+4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+
+    {{<figure src="/images/netq/channels-add-pagerduty-300.png" width="250">}}
+
+5. Obtain and enter an integration key (also called a service key or routing key).
+
+6. Click **Add**.
+
+7. Verify it is correctly configured.
+
+8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To create and verify the specification of a PagerDuty channel, run:
+
+```
+netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
+netq show notification channel [json]
+```
+
+This example shows the creation of a *pd-netq-events* channel and verifies the configuration.
+
+1. Obtain an integration key as described in this PagerDuty {{<exlink url="https://support.pagerduty.com/docs/services-and-integrations#section-events-api-v2" text="support page">}}.
+
+2. Create the channel.
+
+    ```
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
     Successfully added/updated channel pd-netq-events
-    
+    ```
+3. Verify the configuration.
+
+    ```
     cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
     pd-netq-events  pagerduty        info             integration-key: c6d666e
-                                                    210a8425298ef7abde0d1998      
+                                                    210a8425298ef7abde0d1998
+    ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 #### Create a Slack Channel
 
-Create an *incoming webhook* as described in the documentation for your version of Slack. Verify the configuration.
+You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
+{{< tabs "TabID191" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+
+    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+
+2. The **Slack** tab is displayed by default.
+
+    {{<figure src="/images/netq/channels-none-created-300.png" width="700">}}
+
+3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+
+4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+
+    {{<figure src="/images/netq/channels-add-slack-300.png" width="250">}}
+
+5. Create an *incoming webhook* as described in the documentation for your version of Slack. Then copy and paste it here.
+
+6. Click **Add**.
+
+    {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
+
+7. Verify the channel configuration.
+
+8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To create and verify the specification of a Slack channel, run:
+
+```
+netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
+netq show notification channel [json]
+```
+
+This example shows the creation of a *slk-netq-events* channel and verifies the configuration.
+
+1. Create an *incoming webhook* as described in the documentation for your version of Slack.
+
+2. Create the channel.
+
+    ```
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
-        
+    ```
+
+3. Verify the configuration.
+
+    ```
     cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity Channel Info
     --------------- ---------------- -------- ----------------------
     slk-netq-events slack            info     webhook:https://hooks.s
-                                            lack.com/services/text/
-                                            moretext/evenmoretext
+                                                lack.com/services/text/
+                                                moretext/evenmoretext
+    ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 #### Create a syslog Channel
 
-Create the channel using the syslog server hostname (or IP address) and port. Verify the configuration.
+You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
+{{< tabs "TabID261" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+
+    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+
+2. Click **Syslog**.
+
+    {{<figure src="/images/netq/channels-nosyslog-created-320.png" width="700">}}
+
+3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+
+4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+
+    {{<figure src="/images/netq/channels-add-syslog-300.png" width="250">}}
+
+5. Enter the IP address and port of the Syslog server.
+
+6. Click **Add**.
+
+7. Verify the channel configuration.
+
+8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To create and verify the specification of a syslog channel, run:
+
+```
+netq add notification channel syslog <text-channel-name> hostname <text-syslog-hostname> port <text-syslog-port> [severity info | severity warning | severity error | severity debug]
+netq show notification channel [json]
+```
+
+This example shows the creation of a *syslog-netq-events* channel and verifies the configuration.
+
+1. Obtain the syslog server hostname (or IP address) and port.
+
+2. Create the channel.
+
+    ```
     cumulus@switch:~$ netq add notification channel syslog syslog-netq-events hostname syslog-server port 514
     Successfully added/updated channel syslog-netq-events
-        
+    ```
+
+3. Verify the configuration.
+
+    ```
     cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity Channel Info
     --------------- ---------------- -------- ----------------------
     syslog-netq-eve syslog            info     host:syslog-server
     nts                                        port: 514
+    ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+#### Create an Email Channel
+
+You can use the NetQ UI or the NetQ CLI to create an Email channel.
+
+{{< tabs "TabID328" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+
+    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+
+2. Click **Email**.
+
+    {{<figure src="/images/netq/channels-nosyslog-created-320.png" width="700">}}
+<!-- change to noemail -->
+
+3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+
+4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+
+    {{<figure src="/images/netq/channels-add-syslog-300.png" width="250">}}
+<!-- change to email modal -->
+
+5. On prem vs cloud steps
+
+6. Click **Add**.
+
+7. Verify the channel configuration.
+
+8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To create and verify the specification of an Email channel, run:
+
+```
+netq add notification channel email <text-channel-name> to <text-email-toids> [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity warning | severity error | severity debug]
+netq add notification channel email <text-channel-name> to <text-email-toids>
+netq show notification channel [json]
+```
+
+The configuration is different depending on whether you are using the on-premises or cloud version of NetQ. No SMTP configuration is required  for cloud deployments as the NetQ cloud service uses the NetQ SMTP server to push email notifications.
+
+For an **on-premises** deployment:
+
+1. Set up an SMTP server. The server can be internal or public.
+
+2. Create a user account (login and password) on the SMTP server. Notifications are sent to this address.
+
+3. Create the notification channel using this form of the CLI command:
+
+    ```
+    netq add notification channel email <text-channel-name> to <text-email-toids>  [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity warning | severity error | severity debug]
+    ```
+
+<div style="padding-left: 18px;">For example:
+
+```
+cumulus@switch:~$ netq add notification channel email onprem-email to netq-notifications@domain.com smtpserver smtp.domain.com smtpport 587 login smtphostlogin@domain.com password MyPassword123
+Successfully added/updated channel onprem-email
+```
+
+</div>
+
+4. Verify the configuration.
+
+    ```
+    cumulus@netq-ts:~$ netq show notification channel
+    Matching config_notify records:
+    Name            Type             Severity         Channel Info
+    --------------- ---------------- ---------------- ------------------------
+    onprem-email    email            info             password: MyPassword123,
+                                                      port: 587,
+                                                      isEncrypted: True,
+                                                      host: smtp.domain.com,
+                                                      from: smtphostlogin@doma
+                                                      in.com,
+                                                      id: smtphostlogin@domain
+                                                      .com,
+                                                      to: netq-notifications@d
+                                                      omain.com
+    ```
+
+For a **cloud** deployment:
+
+1. Create the notification channel using this form of the CLI command:
+
+    ```
+    netq add notification channel email <text-channel-name> to <text-email-toids>
+    ```
+
+<div style="padding-left: 18px;">For example:
+
+```
+cumulus@switch:~$ netq add notification channel email cloud-email to netq-cloud-notifications@domain.com
+Successfully added/updated channel cloud-email
+```
+
+</div>
+
+2. Verify the configuration.
+
+    ```
+    cumulus@netq-ts:~$ netq show notification channel
+    Matching config_notify records:
+    Name            Type             Severity         Channel Info
+    --------------- ---------------- ---------------- ------------------------
+    cloud-email    email            info             password: TEiO98BOwlekUP
+                                                     TrFev2/Q==, port: 587,
+                                                     isEncrypted: True,
+                                                     host: netqsmtp.domain.com,
+                                                     from: netqsmtphostlogin@doma
+                                                     in.com,
+                                                     id: smtphostlogin@domain
+                                                     .com,
+                                                     to: netq-notifications@d
+                                                     omain.com
+
+    ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Create a Rule
 

@@ -290,6 +290,9 @@ For information about configuring threshold-based events (TCAs), refer to {{<lin
 <td>VNI @vni vni state changed from @old_adv_all_vni_state to @new_adv_all_vni_state</td>
 <td>VNI 11 vni state changed from false to true</td>
 </tr>
+
+<!-- add lcm events here -->
+
 <tr>
 <td>license</td>
 <td>License state is missing or invalid</td>

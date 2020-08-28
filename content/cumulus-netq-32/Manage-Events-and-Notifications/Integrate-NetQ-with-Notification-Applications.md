@@ -60,49 +60,9 @@ You can integrate notification channels using the NetQ UI or the NetQ CLI.
 - Threshold Crossing Rules card: specify channels and rules
 -`netq notification (channel|rule|filter)` command: specify channels, rules, and filters
 
-To set up the integrations, you must configure NetQ with at least one channel, one rule, and one filter. To refine what messages you want to view and where to send them, you can add additional rules and filters and set thresholds on supported event types. You can also configure a proxy server to receive, process, and forward the messages. This is accomplished using the NetQ CLI in the following order:
+To set up the integrations, you must configure NetQ with at least one channel, one rule, and one filter. To refine what messages you want to view and where to send them, you can add additional rules and filters and set thresholds on supported event types. You can also configure a proxy server to receive, process, and forward the messages. This is accomplished using the NetQ UI and NetQ CLI in the following order:
 
 {{<figure src="/images/netq/notif-config-wkflow.png">}}
-
-### Notification Commands Overview
-
-The NetQ Command Line Interface (CLI) is used to filter and send notifications to third-party tools based on severity, service, event-type, and device. You can use TAB completion or the `help` option to assist when needed.
-
-The command syntax for standard events is:
-
-    ##Channels
-    netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
-    netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
-     
-    ##Rules and Filters
-    netq add notification rule <text-rule-name> key <text-rule-key> value <text-rule-value>
-    netq add notification filter <text-filter-name> [severity info|severity warning|severity error|severity debug] [rule <text-rule-name-anchor>] [channel <text-channel-name-anchor>] [before <text-filter-name-anchor>|after <text-filter-name-anchor>]
-     
-    ##Management
-    netq del notification channel <text-channel-name-anchor>
-    netq del notification filter <text-filter-name-anchor>
-    netq del notification rule <text-rule-name-anchor>
-    netq show notification [channel|filter|rule] [json]
-
-The command syntax for events with user-configurable thresholds is:
-
-    ##Rules and Filters
-    netq add tca event_id <event-name> scope <regex-filter> [severity <critical|info>] threshold <value>
-
-    ##Management
-    netq add tca tca_id <tca-rule-name> is_active <true|false>
-    netq add tca tca_id <tca-rule-name> channel drop <channel-name>
-    netq del tca tca_id <tca-rule-name>
-    netq show tca [tca_id <tca-rule-name>]
-
-The command syntax for a server proxy is:
-
-    ##Proxy
-    netq add notification proxy <text-proxy-hostname> [port <text-proxy-port>]
-    netq show notification proxy
-    netq del notification proxy
-
-The various command options are described in the following sections where they are used.
 
 ## Configure Basic NetQ Event Notifications
 
@@ -110,13 +70,13 @@ The simplest configuration you can create is one that sends all events generated
 
 A notification configuration must contain one channel, one rule, and one filter. Creation of the configuration follows this same path:
 
-1. Add a channel (`slack`, `pagerduty`, `syslog`).
+1. Add a channel.
 2. Add a rule that accepts all interface events.
 3. Add a filter that associates this rule with the newly created channel.
 
-### Create Your Channel
+### Create a Channel
 
-Create one or more PagerDuty, Slack, or syslog channels to present the notifications.
+The first step is to create a PagerDuty, Slack, syslog, or Email channel to receive the notifications.
 
 #### Create a PagerDuty Channel
 
@@ -452,55 +412,84 @@ Successfully added/updated channel cloud-email
 
 ### Create a Rule
 
-Create and verify a rule that accepts all interface events. Verify the configuration.
+The second step is to create and verify a rule that accepts all interface events. Rules for system events are created using the NetQ CLI.
 
-    cumulus@switch:~$ netq add notification rule all-ifs key ifname value ALL
-    Successfully added/updated rule all-ifs
-    
-    cumulus@switch:~$ netq show notification rule
-    Matching config_notify records:
-    Name            Rule Key         Rule Value
-    --------------- ---------------- --------------------
-    all-interfaces  ifname           ALL
+This example creates a rule named *all-ifs* to send all events from all interfaces.
+
+```
+cumulus@switch:~$ netq add notification rule all-ifs key ifname value ALL
+Successfully added/updated rule all-ifs
+
+cumulus@switch:~$ netq show notification rule
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+all-interfaces  ifname           ALL
+```
+
+Refer to {{<link title="Configure Threshold-based Event Notifications" text="Advanced Configuration">}} to create rules based on thresholds.
 
 ### Create a Filter
 
-Create a filter to tie the rule to the channel. Verify the configuration.
+The final step is to create a filter to tie the rule to the channel. Filters are created for system events using the NetQ CLI.
+
+These examples use the channels created in the {{<link title="Create a Channel">}} topic.
 
 For PagerDuty:
 
-    cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel pd-netq-events
-    Successfully added/updated filter notify-all-ifs
-    
-    cumulus@switch:~$ netq show notification filter
-    Matching config_notify records:
-    Name            Order      Severity         Channels         Rules
-    --------------- ---------- ---------------- ---------------- ----------
-    notify-all-ifs  1          info             pd-netq-events   all-ifs
+```
+cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel pd-netq-events
+Successfully added/updated filter notify-all-ifs
+
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+notify-all-ifs  1          info             pd-netq-events   all-ifs
+```
 
 For Slack:
 
-    cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel slk-netq-events
-    Successfully added/updated filter notify-all-ifs
+```
+cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel slk-netq-events
+Successfully added/updated filter notify-all-ifs
 
-    cumulus@switch:~$ netq show notification filter
-    Matching config_notify records:
-    Name            Order      Severity         Channels         Rules
-    --------------- ---------- ---------------- ---------------- ----------
-    notify-all-ifs  1          info             slk-netq-events   all-ifs
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+notify-all-ifs  1          info             slk-netq-events   all-ifs
+```
 
 For Syslog:
 
-    cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel syslog-netq-events
-    Successfully added/updated filter notify-all-ifs
+```
+cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel syslog-netq-events
+Successfully added/updated filter notify-all-ifs
 
-    cumulus@switch:~$ netq show notification filter
-    Matching config_notify records:
-    Name            Order      Severity         Channels         Rules
-    --------------- ---------- ---------------- ---------------- ----------
-    notify-all-ifs  1          info             syslog-netq-events all-ifs
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+notify-all-ifs  1          info             syslog-netq-events all-ifs
+```
+
+For Email:
+
+```
+cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel email-netq-events
+Successfully added/updated filter notify-all-ifs
+
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+notify-all-ifs  1          info             email-netq-events all-ifs
+```
 
 NetQ is now configured to send all interface events to your selected channel.
+
+Refer to {{<link title="Configure Threshold-based Event Notifications" text="Advanced Configuration">}} to create filters for threshold-based events.
 
 ## Configure Advanced NetQ Event Notifications
 
@@ -508,19 +497,13 @@ If you want to create more granular notifications based on such items as selecte
 
 ### Configure a Proxy Server
 
-To send notification messages through a proxy server instead of directly
-to a notification channel, you configure NetQ with the hostname and
-optionally a port of a proxy server. If no port is specified, NetQ
-defaults to port 80. Only one proxy server is currently supported. To
-simplify deployment, configure your proxy server before configuring
-channels, rules, or filters.To configure the proxy server:
+To send notification messages through a proxy server instead of directly to a notification channel, you configure NetQ with the hostname and optionally a port of a proxy server. If no port is specified, NetQ defaults to port 80. Only one proxy server is currently  supported. To simplify deployment, configure your proxy server before configuring channels, rules, or filters.To configure the proxy server:
 
     cumulus@switch:~$ netq add notification proxy <text-proxy-hostname> [port <text-proxy-port]
     cumulus@switch:~$ netq add notification proxy proxy4
     Successfully configured notifier proxy proxy4:80
 
-You can view the proxy server settings by running the `netq show
-notification proxy` command.
+You can view the proxy server settings by running the `netq show notification proxy` command.
 
     cumulus@switch:~$ netq show notification proxy
     Matching config_notify records:
@@ -528,17 +511,14 @@ notification proxy` command.
     ------------------ -------------------------- ----------------------------------
     proxy4:80          yes                        yes
 
-You can remove the proxy server by running the `netq del notification
-proxy` command. This changes the NetQ behavior to send events directly
-to the notification channels.
+You can remove the proxy server by running the `netq del notification proxy` command. This changes the NetQ behavior to send events directly to the notification channels.
 
     cumulus@switch:~$ netq del notification proxy
     Successfully overwrote notifier proxy to null
 
 ### Create Channels
 
-Create one or more PagerDuty, Slack, or syslog channels to present the
-notifications.
+Create one or more PagerDuty, Slack, or syslog channels to receive the notifications.
 
 #### Configure a PagerDuty Channel
 

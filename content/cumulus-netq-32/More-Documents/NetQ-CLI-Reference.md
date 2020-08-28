@@ -2094,3 +2094,45 @@ Options:
    area                         : OSPF area
    <area-id>                    : Specific value of OSPF area
 
+
+
+
+### Notification Commands Overview
+
+The NetQ Command Line Interface (CLI) is used to filter and send notifications to third-party tools based on severity, service, event-type, and device. You can use TAB completion or the `help` option to assist when needed.
+
+The command syntax for standard events is:
+
+    ##Channels
+    netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
+    netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
+     
+    ##Rules and Filters
+    netq add notification rule <text-rule-name> key <text-rule-key> value <text-rule-value>
+    netq add notification filter <text-filter-name> [severity info|severity warning|severity error|severity debug] [rule <text-rule-name-anchor>] [channel <text-channel-name-anchor>] [before <text-filter-name-anchor>|after <text-filter-name-anchor>]
+     
+    ##Management
+    netq del notification channel <text-channel-name-anchor>
+    netq del notification filter <text-filter-name-anchor>
+    netq del notification rule <text-rule-name-anchor>
+    netq show notification [channel|filter|rule] [json]
+
+The command syntax for events with user-configurable thresholds is:
+
+    ##Rules and Filters
+    netq add tca event_id <event-name> scope <regex-filter> [severity <critical|info>] threshold <value>
+
+    ##Management
+    netq add tca tca_id <tca-rule-name> is_active <true|false>
+    netq add tca tca_id <tca-rule-name> channel drop <channel-name>
+    netq del tca tca_id <tca-rule-name>
+    netq show tca [tca_id <tca-rule-name>]
+
+The command syntax for a server proxy is:
+
+    ##Proxy
+    netq add notification proxy <text-proxy-hostname> [port <text-proxy-port>]
+    netq show notification proxy
+    netq del notification proxy
+
+The various command options are described in the following sections where they are used.

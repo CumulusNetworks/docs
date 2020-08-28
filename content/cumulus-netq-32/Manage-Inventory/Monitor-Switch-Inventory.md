@@ -1261,61 +1261,36 @@ spine01           ntp                      1:4.2.8p10-cl3u2     Cumulus Linux 3.
 
 ### View Recommended Software Packages
 
-You can determine whether any of your switches are using a software package other than the default package associated with the Cumulus Linux release that is running on the switches. Additionally, you can determine if a software package is missing. Use the `netq show recommended-pkg-version` command to display a list of recommended packages to install/upgrade on one or all devices.
+If you have a software manifest [installed?], you can determine what software packages and versions are recommended based on the Cumulus Linux release. You can then compare that to what is installed on your switch(es) to determine if it differs from the manifest. Such a difference might occur if one or more packages have been upgraded separately from the Cumulus Linux software itself.
 
-This example shows that the *leaf12* switch which is running Cumulus Linux *3.7.1* needs to update the *switchd* software.
+To view recommended package information for a switch, run:
 
 ```
-cumulus@noc-pr:~$ netq show recommended-pkg-version release-id 3.7.1 package-name switchd
+netq <hostname> show recommended-pkg-version [release-id <text-release-id>] [package-name <text-package-name>] [json]
+```
+
+This example shows packages that are recommended for upgrade on the *leaf12* switch, namely *switchd*.
+
+```
+cumulus@switch:~$ netq leaf12 show recommended-pkg-version
 Matching manifest records:
 Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-noc-pr            3.7.1                vx                   x86_64               switchd              1.0-cl3u30           Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$
-cumulus@noc-pr:~$
-cumulus@noc-pr:~$ netq show recommended-pkg-version release-id 3.7.1 package-name ptmd
+leaf12            3.7.1                vx                   x86_64               switchd              1.0-cl3u30           Wed Feb  5 04:36:30 2020
+```
+
+This example shows packages that are recommended for upgrade on the *server01* switch, namely *lldpd*.
+
+```
+cumulus@switch:~$ netq server01 show recommended-pkg-version 
 Matching manifest records:
 Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-noc-pr            3.7.1                vx                   x86_64               ptmd                 3.0-2-cl3u8          Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$ netq show recommended-pkg-version release-id 3.7.1 package-name lldpd
-Matching manifest records:
-Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-noc-pr            3.7.1                vx                   x86_64               lldpd                0.9.8-0-cl3u11       Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$ netq show recommended-pkg-version release-id 3.6.2 package-name switchd
-Matching manifest records:
-Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-noc-pr            3.6.2                vx                   x86_64               switchd              1.0-cl3u27           Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$
-2:57
-from the hardware switch (real)
-2:57
-cumulus@noc-pr:~$ netq show recommended-pkg-version release-id 3.7.1 package-name switchd
-Matching manifest records:
-Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-noc-pr            3.7.1                vx                   x86_64               switchd              1.0-cl3u30           Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$
-cumulus@noc-pr:~$
-cumulus@noc-pr:~$ netq show recommended-pkg-version release-id 3.7.1 package-name ptmd
-Matching manifest records:
-Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-noc-pr            3.7.1                vx                   x86_64               ptmd                 3.0-2-cl3u8          Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$ netq show recommended-pkg-version release-id 3.7.1 package-name lldpd
-Matching manifest records:
-Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-noc-pr            3.7.1                vx                   x86_64               lldpd                0.9.8-0-cl3u11       Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$ netq show recommended-pkg-version release-id 3.6.2 package-name switchd
-Matching manifest records:
-Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
-noc-pr            3.6.2                vx                   x86_64               switchd              1.0-cl3u27           Wed Feb  5 04:36:30 2020
-cumulus@noc-pr:~$
-2:58
+server01            3.7.1                vx                   x86_64               lldpd                0.9.8-0-cl3u11       Wed Feb  5 04:36:30 2020
+```
+
+
+
 from the switch
 2:58
 cumulus@noc-pr:~$ netq act-5712-09 show recommended-pkg-version release-id 3.6.2 package-name switchd
@@ -1352,13 +1327,41 @@ Hostname          Release ID           ASIC Vendor          CPU Arch            
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
 act-5712-09       3.1.0                bcm                  x86_64               switchd              1.0-cl3u4            Wed Feb  5 04:36:30 2020
 cumulus@noc-pr:~$
+
+<!-- move to switch performance -->
+### View ACL Resources for a Switch
+
+You can monitor the incoming and outgoing access control lists (ACLs) configured on a switch. This ACL resource information is available from the NetQ UI and NetQ CLI.
+
+Both the Switch card and `netq show cl-resource acl` command display the ingress/egress IPv4/IPv6 filter/mangle, ingress 802.1x filter, ingress mirror, ingress/egress PBR IPv4/IPv6 filter/mangle, ACL Regions,          18B/32B/54B Rules Key, and L4 port range checker.
+
+{{< tabs "TabID1338" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Open the Switch card for a switch by searching in the **Global Search** field or clicking {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" width="18">}} > **Open switch card**.
+
+2. Hover over the card and change to the full-screen card using the size picker.
+
+3. Click **ACL Resources**.
+
+<!-- insert img here; additional steps?-->
+
+4. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view ACL resources on a switch, run:
+
+```
+netq <hostname> show cl-resource acl [ingress | egress] [around <text-time>] [json]
 ```
 
-### View ACL Resources
+Use the `egress` or `ingress` options to show only the outgoing or incoming ACLs. Use the `around` option to show this information for a time in the past.
 
-You can monitor the incoming and outgoing access control lists (ACLs) configured on one or all devices, currently or at a time in the past. Use the `netq show cl-resource acl` command to view this information. Use the `egress` or `ingress` options to show only the outgoing or incoming ACLs. Use the `around` option to show this information for a time in the past.
-
-This example shows the ACL resources by the *leaf01* switch.
+This example shows the ACL resources available and currently used by the *leaf01* switch.
 
 ```
 cumulus@switch:~$ netq leaf01 show cl-resource acl
@@ -1401,6 +1404,10 @@ cumulus@switch:~$ netq leaf01 show cl-resource acl json
 }
 ```
 
+{{< /tab >}}
+
+{{< /tabs >}}
+<!-- move to switch performance -->
 ### View Forwarding Resources
 
 You can monitor the amount of forwarding resources used by one or all devices, currently or at a time in the past. Use the `netq show cl-resource forwarding` command to view this information. Use the `around` option to show this information for a time in the past.
@@ -1475,6 +1482,7 @@ You can narrow your focus in several ways:
   - View the state of NetQ Agents at an earlier time using the *around*
     keyword.
 
+<!-- move to netwk/switch performance -->
 ## Monitor Software Services
 
 Cumulus Linux and NetQ run a number of services to deliver the various

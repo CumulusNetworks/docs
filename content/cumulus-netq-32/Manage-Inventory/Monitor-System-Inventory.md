@@ -3,7 +3,7 @@ title: Monitor System Inventory
 author: Cumulus Networks
 weight: 630
 ---
-In addition to network and switch inventory, the Cumulus NetQ UI provides a view into the current status and configuration of the system inventory in a tabular, network-wide view. These are helpful when you want to see all data for all of a particular element in your network for troubleshooting, or you want to export a list view.
+In addition to network and switch inventory, the Cumulus NetQ UI provides a view into the current status and configuration of the software network constructs in a tabular, network-wide view. These are helpful when you want to see all data for all of a particular element in your network for troubleshooting, or you want to export a list view.
 
 Some of these views provide data that is also available through the card workflows, but these views are not treated like cards. They only provide the current status; you cannot change the time period of the views, or graph the data within the UI.
 
@@ -139,75 +139,13 @@ The IP Addresses view provides all available parameter data about all IP address
 | Prefix | Network portion of the address |
 | VRF | Virtual route interface associated with this address prefix and interface on this switch or host |
 
-## View Sensors
+{{<notice note>}}
 
-The Sensors view provides all available parameter data provided by the power supply units (PSUs), fans, and temperature sensors in a chassis. Select the relevant tab to view the data.
+Refer to the following for information about:
+<ul>
+<li>What Just Happened: {{<link url="http://docs.cumulusnetworks.com/cumulus-netq-32/Manage-Events-and-Notifications/WJH/" text="Configure and Monitor What Just Happened Metrics">}}</li>
+<li>Sensors: {{<link url="http://docs.cumulusnetworks.com/cumulus-netq-32/Manage-Inventory/Monitor-Network-Inventory/#view-sensor-information" text="View Sensor Information">}} or {{<link url="http://docs.cumulusnetworks.com/cumulus-netq-32/Manage-Inventory/Monitor-Switch-Inventory/#view-sensor-information-for-a-switch" text="View Sensor Information for a Switch">}}</li>
+<li>Digital Optics: {{<link url="http://docs.cumulusnetworks.com/cumulus-netq-32/Manage-Inventory/Monitor-Switch-Inventory/#view-digital-optics-information-for-a-switch" text="View Digital Optics Information for a Switch">}}</li>
+</ul>
 
-{{<figure src="/images/netq/main-menu-ntwk-sensors-psu-310.png" width="700">}}
-
-| PSU Parameter | Description |
-| --- | --- |
-| Hostname | Name of the switch or host where the power supply is installed |
-| Timestamp | Date and time the data was captured |
-| Message Type | Type of sensor message; always *PSU* in this table |
-| PIn(W) | Input power (Watts) for the PSU on the switch or host |
-| POut(W) | Output power (Watts) for the PSU on the switch or host |
-| Sensor Name | User-defined name for the PSU |
-| Previous State | State of the PSU when data was captured in previous window |
-| State | State of the PSU when data was last captured |
-| VIn(V) | Input voltage (Volts) for the PSU on the switch or host |
-| VOut(V) | Output voltage (Volts) for the PSU on the switch or host |
-
-| Fan Parameter | Description |
-| --- | --- |
-| Hostname | Name of the switch or host where the fan is installed |
-| Timestamp | Date and time the data was captured |
-| Message Type | Type of sensor message; always *Fan* in this table |
-| Description | User specified description of the fan |
-| Speed (RPM) | Revolution rate of the fan (revolutions per minute) |
-| Max | Maximum speed (RPM) |
-| Min | Minimum speed (RPM) |
-| Message | Message |
-| Sensor Name | User-defined name for the fan |
-| Previous State | State of the fan when data was captured in previous window |
-| State | State of the fan when data was last captured |
-
-| Temperature Parameter | Description |
-| --- | --- |
-| Hostname | Name of the switch or host where the temperature sensor is installed |
-| Timestamp | Date and time the data was captured |
-| Message Type | Type of sensor message; always *Temp* in this table |
-| Critical | Current critical maximum temperature (&deg;C) threshold setting|
-| Description | User specified description of the temperature sensor |
-| Lower Critical | Current critical minimum temperature (&deg;C) threshold setting |
-| Max | Maximum temperature threshold setting |
-| Min | Minimum temperature threshold setting |
-| Message | Message |
-| Sensor Name | User-defined name for the temperature sensor |
-| Previous State | State of the fan when data was captured in previous window |
-| State | State of the fan when data was last captured |
-| Temperature(Celsius) | Current temperature (&deg;C) measured by sensor |
-
-## View Digital Optics
-
-The Digital Optics view provides all available parameter data provided by any digital optics modules in the system. View Laser power and bias current for a given interface and channel on a switch, and temperature and voltage for a given module. Select the relevant tab to view the data.
-
-{{<figure src="/images/netq/main-menu-ntwk-dom-laserrx-power-310.png" width="700">}}
-
-| Laser Parameter | Description |
-| --- | --- |
-| Hostname | Name of the switch or host where the digital optics module resides |
-| Timestamp | Date and time the data was captured |
-| If Name | Name of interface where the digital optics module is installed |
-| Units | Measurement unit for the power (mW) or current (mA) |
-| Channel 1&ndash;8 | Value of the power or current on each channel where the digital optics module is transmitting |
-
-| Module Parameter | Description |
-| --- | --- |
-| Hostname | Name of the switch or host where the digital optics module resides |
-| Timestamp | Date and time the data was captured |
-| If Name | Name of interface where the digital optics module is installed |
-| Degree C | Current module temperature, measured in degrees Celsius |
-| Degree F | Current module temperature, measured in degrees Fahrenheit |
-| Units | Measurement unit for module voltage; Volts |
-| Value | Current module voltage |
+{{</notice>}}

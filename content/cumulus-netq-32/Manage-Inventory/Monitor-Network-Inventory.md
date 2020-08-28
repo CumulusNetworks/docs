@@ -1806,9 +1806,9 @@ leaf02            vx                   x86_64               3.6.2.1
 
 ### View All Software Packages Installed
 
-If you are having an issue several switch, you may want to verify what software is installed and whether it needs updating.
+If you are having an issue with several switches, you may want to verify what software packages are installed on them and compare that to the recommended packages for a given Cumulus Linux release.
 
-To view package information for your switches, run:
+To view installed package information for your switches, run:
 
 ```
 netq show cl-pkg-info [<text-package-name>] [around <text-time>] [json]
@@ -1820,7 +1820,6 @@ This example shows all installed software packages for all devices.
 
 ```
 cumulus@switch:~$ netq show cl-pkg-info
-
 Matching package_info records:
 Hostname          Package Name             Version              CL Version           Package Status       Last Changed
 ----------------- ------------------------ -------------------- -------------------- -------------------- -------------------------
@@ -1838,6 +1837,18 @@ fw1               python-eventlet          0.13.0-2             Cumulus Linux 3.
 fw1               libapt-pkg4.12           1.0.9.8.5-cl3u2      Cumulus Linux 3.7.13 installed            Mon Aug 17 19:18:57 2020
 fw1               libopts25                1:5.18.4-3           Cumulus Linux 3.7.13 installed            Mon Aug 17 19:18:57 2020
 ...
+```
+
+This example shows the installed *switchd* package version.
+
+```
+cumulus@netq-ts:~$ netq spine01 show cl-pkg-info switchd
+
+Matching package_info records:
+Hostname          Package Name             Version              CL Version           Package Status       Last Changed
+----------------- ------------------------ -------------------- -------------------- -------------------- -------------------------
+spine01           switchd                  1.0-cl3u40           Cumulus Linux 3.7.12 installed            Thu Aug 27 01:58:47 2020
+
 ```
 
 ### View Recommended Software Packages
@@ -1932,10 +1943,10 @@ Hostname          Release ID           ASIC Vendor          CPU Arch            
 act-5712-09       3.1.0                bcm                  x86_64               switchd              1.0-cl3u4            Wed Feb  5 04:36:30 2020
 cumulus@noc-pr:~$
 ``` -->
-
+<!-- move to network performance -->
 ### View ACL Resources
 
-Using the NetQ CLI, you can monitor the incoming and outgoing access control lists (ACLs) configured on all devices, currently or at a time in the past.
+Using the NetQ CLI, you can monitor the incoming and outgoing access control lists (ACLs) configured on all switches, currently or at a time in the past.
 
 To view ACL resources for all of your switches, run:
 
@@ -2010,7 +2021,7 @@ cumulus@noc-pr:~$ netq show cl-resource acl json
 }
 ```
 
-<!-- Move to switch inventory
+<!-- Move to switch performance
 This example shows the ACL resources for the *leaf01* switch.
 
 ```
@@ -2053,7 +2064,7 @@ cumulus@switch:~$ netq leaf01 show cl-resource acl json
     "truncatedResult":false
 }
 ``` -->
-
+<!-- move to network performance -->
 ### View Forwarding Resources
 
 With the NetQ CLI, you can monitor the amount of forwarding resources used by all devices, currently or at a time in the past.
@@ -2077,7 +2088,7 @@ act-5712-09       0,16384(0%)          0,0(0%)              0,131072(0%)        
 mlx-2700-04       0,32768(0%)          0,16384(0%)          0,65536(0%)          4,28672(0%)          0,4101(0%)           0,40960(0%)          0,1000(0%)           Tue Aug 18 20:19:08 2020
 ```
 
-<!-- Move to switch inventory
+<!-- Move to switch performance
 This example shows the forwarding resources used by the *spine02* switch.
 
 ```

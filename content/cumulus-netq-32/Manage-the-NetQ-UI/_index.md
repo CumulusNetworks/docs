@@ -154,6 +154,10 @@ To delete one or more user accounts:
 
 3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> to remove the accounts.
 
+## Manage User Login Requirements
+
+<!-- new content here -->
+
 ## Manage Scheduled Traces
 
 From the NetQ Management workbench, you can view the number of traces scheduled to run in the system. A set of default traces are provided with the NetQ GUI. As an administrator, you can run one or more scheduled traces, add new scheduled traces, and edit or delete existing traces.
@@ -376,99 +380,7 @@ When a rule is filtered by more than one parameter, each is displayed on the car
 
 ### Specify Notification Channels
 
-The notification channel specified by a TCA rule tells NetQ where to send the notification message.
-
-To specify a notification channel:
-
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
-
-    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
-
-    This opens the Channels view.
-
-    {{<figure src="/images/netq/channels-none-created-300.png" width="700">}}
-
-2. Determine the type of channel you want to add (Slack, PagerDuty, or Syslog). Follow the instructions for the selected type.
-
-#### Specify Slack Channels
-
-To specify Slack channels:
-
-1. Create one or more channels using Slack.
-
-2. In NetQ, click **Slack** in the Channels view.
-
-3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
-
-4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
-
-    {{<figure src="/images/netq/channels-add-slack-300.png" width="250">}}
-
-5. Copy and paste the incoming webhook URL for a channel you created in Step 1 (or earlier).
-
-6. Click **Add**.
-
-    {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
-
-7. Repeat to add additional Slack channels as needed.
-
-#### Specify PagerDuty Channels
-
-To specify PagerDuty channels:
-
-1. Create one or more channels using PagerDuty.
-
-2. In NetQ, click **PagerDuty** in the Channels view.
-
-3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
-
-4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
-
-    {{<figure src="/images/netq/channels-add-pagerduty-300.png" width="250">}}
-
-5. Copy and paste the integration key for a PagerDuty channel you created in Step 1 (or earlier).
-
-6. Click **Add**.
-
-7. Repeat to add additional PagerDuty channels as needed.
-
-#### Specify a Syslog Channel
-
-To specify a Syslog channel:
-
-1. Click **Syslog** in the Channels view.
-
-3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
-
-4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
-
-    {{<figure src="/images/netq/channels-add-syslog-300.png" width="250">}}
-
-5. Enter the IP address and port of the Syslog server.
-
-6. Click **Add**.
-
-7. Repeat to add additional Syslog channels as needed.
-
-### Remove Notification Channels
-
-You can view your notification channels at any time. If you create new channels or retire selected channels, you might need to add or remove them from NetQ as well. To add channels refer to {{<link title="#Specify Notification Channels" text="Specify Notification Channels">}}.
-
-To remove channels:
-
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
-
-    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
-
-    This opens the Channels view.
-
-    {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
-
-2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, or Syslog).
-
-3. Select one or more channels.
-
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
+The notification channel specified by a TCA rule tells NetQ where to send the notification message. Refer to {{<link title="Manage Notification Channels">}}.
 
 ### Create a TCA Rule
 
@@ -689,6 +601,104 @@ In summary:
 | leaf01, swp1 | Hostname, Interface | hostname=leaf01, ifname=swp1 | hostname ^ leaf, ifname=\* | hostname=\*, ifname=\* | Scope 1 |
 | leaf01, swp3 | Hostname, Interface | hostname=leaf01, ifname=swp1 | hostname ^ leaf, ifname=\* | hostname=\*, ifname=\* | Scope 2 |
 | spine01, swp1 | Hostname, Interface | hostname=leaf01, ifname=swp1 | hostname ^ leaf, ifname=\* | hostname=\*, ifname=\* | Scope 3 |
+
+## Manage Notification Channels
+
+NetQ supports Slack, PagerDuty, and syslog notification channels for reporting system and threshold-based events. You can access channel configuration in one of two ways:
+
+- Click **Manage** on the Channels card
+
+    {{<figure src="/images/netq/netq-mgmt-channels-card-320.png" width="200">}}
+
+- Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column
+
+    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+
+In either case, the Channels view is opened.
+
+{{<figure src="/images/netq/channels-none-created-300.png" width="700">}}
+
+Determine the type of channel you want to add and follow the instructions for the selected type.
+
+### Specify Slack Channels
+
+To specify Slack channels:
+
+1. Create one or more channels using Slack.
+
+2. In NetQ, click **Slack** in the Channels view.
+
+3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+
+4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+
+    {{<figure src="/images/netq/channels-add-slack-300.png" width="250">}}
+
+5. Copy and paste the incoming webhook URL for a channel you created in Step 1 (or earlier).
+
+6. Click **Add**.
+
+    {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
+
+7. Repeat to add additional Slack channels as needed.
+
+### Specify PagerDuty Channels
+
+To specify PagerDuty channels:
+
+1. Create one or more channels using PagerDuty.
+
+2. In NetQ, click **PagerDuty** in the Channels view.
+
+3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+
+4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+
+    {{<figure src="/images/netq/channels-add-pagerduty-300.png" width="250">}}
+
+5. Copy and paste the integration key for a PagerDuty channel you created in Step 1 (or earlier).
+
+6. Click **Add**.
+
+7. Repeat to add additional PagerDuty channels as needed.
+
+### Specify a Syslog Channel
+
+To specify a Syslog channel:
+
+1. Click **Syslog** in the Channels view.
+
+3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+
+4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+
+    {{<figure src="/images/netq/channels-add-syslog-300.png" width="250">}}
+
+5. Enter the IP address and port of the Syslog server.
+
+6. Click **Add**.
+
+7. Repeat to add additional Syslog channels as needed.
+
+### Remove Notification Channels
+
+You can view your notification channels at any time. If you create new channels or retire selected channels, you might need to add or remove them from NetQ as well. To add channels refer to {{<link title="#Specify Notification Channels" text="Specify Notification Channels">}}.
+
+To remove channels:
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+
+    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+
+    This opens the Channels view.
+
+    {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
+
+2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, or Syslog).
+
+3. Select one or more channels.
+
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
 
 ## Configure Multiple Premises
 

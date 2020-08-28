@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 400
 toc: 3
 ---
-Spanning tree protocol (STP) identifies links in the network and shuts down the redundant ones, preventing possible network loops and broadcast radiation on a bridged network. STP also provides redundant links for automatic failover when an active link fails. STP is enabled by default for both VLAN-aware and traditional bridges.
+Spanning tree protocol (STP) identifies links in the network and shuts down redundant links, preventing possible network loops and broadcast radiation on a bridged network. STP also provides redundant links for automatic failover when an active link fails. STP is enabled by default for both VLAN-aware and traditional bridges.
 
 Cumulus Linux supports RSTP, PVST, and PVRST modes:
 

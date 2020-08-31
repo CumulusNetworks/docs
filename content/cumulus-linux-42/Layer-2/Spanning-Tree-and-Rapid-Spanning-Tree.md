@@ -4,34 +4,44 @@ author: Cumulus Networks
 weight: 400
 toc: 3
 ---
-Spanning tree protocol (STP) is always recommended in layer 2 topologies as it prevents bridge loops and broadcast radiation on a bridged network. STP also provides redundant links for automatic failover when an active link fails. STP is enabled by default for both VLAN-aware and traditional bridges.
-
-## Supported Modes
+Spanning tree protocol (STP) identifies links in the network and shuts down redundant links, preventing possible network loops and broadcast radiation on a bridged network. STP also provides redundant links for automatic failover when an active link fails. STP is enabled by default in Cumulus Linux for both VLAN-aware and traditional bridges.
 
 Cumulus Linux supports RSTP, PVST, and PVRST modes:
 
-- Bridges configured in *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware">}}* mode operate **only** in RSTP mode.
-- Bridges configured in
-*{{<link url="Traditional-Bridge-Mode" text="traditional mode">}}* operate in both PVST and PVRST. The default is set to PVRST. Each traditional bridge has its own separate STP instance.
-
-### STP for a VLAN-aware Bridge
-
-VLAN-aware bridges only operate in RSTP mode. STP bridge protocol data units (BPDUs) are transmitted on the native VLAN.
-
-If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU, it falls back to 802.1D operation automatically. RSTP interoperates with MST seamlessly, creating a single instance of spanning tree, which transmits BPDUs on the native VLAN. RSTP treats the MST domain as one giant switch.
+- *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}* operate **only** in RSTP mode.
+- *{{<link url="Traditional-Bridge-Mode" text="Traditional bridges">}}* operate in both PVST and PVRST mode. The default is set to PVRST. Each traditional bridge has its own separate STP instance.
 
 {{%notice note%}}
 
-When connecting a VLAN-aware bridge to a proprietary PVST+ switch using STP, VLAN 1 must be allowed on all 802.1Q trunks that interconnect them, regardless of the configured *native* VLAN. Only VLAN 1 enables the
-switches to address the BPDU frames to the IEEE multicast MAC address. The proprietary switch might be configured like this:
-
-```
-switchport trunk allowed vlan 1-100
-```
+Cumulus Linux does not support MSTP; however, you can accomplish interoperability with MSTP networks using PVRSTP or PVSTP.
 
 {{%/notice%}}
 
-### STP for a Traditional Mode Bridge
+## STP for a VLAN-aware Bridge
+
+VLAN-aware bridges operate in RSTP mode only. RSTP on VLAN-aware bridges works with other modes in the following ways:
+
+- If a bridge running RSTP (802.1w) receives a common **STP** (802.1D) BPDU, it falls back to 802.1D automatically.
+- The RSTP domain sends BPDUs on the native VLAN, whereas **PVST** sends BPDUs on a per VLAN basis. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVST domain; the spanning tree is built according to the native VLAN parameters. The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs across the network, enabling the PVST domain to maintain its spanning-tree topology and provide a loop-free network. To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVST domain on the link between the RSTP and PVST domains.
+
+   - When using RSTP together with an existing PVST network, you need to define the root bridge on the PVST domain. Either lower the priority on the PVST domain or change the priority of the RSTP switches to a higher number.
+   - When connecting a VLAN-aware bridge to a proprietary PVST+ switch using STP, you must allow VLAN 1 on all 802.1Q trunks that interconnect them, regardless of the configured *native* VLAN. Only VLAN 1 enables the switches to address the BPDU frames to the IEEE multicast MAC address. The proprietary switch might be configured like this:
+
+      ```
+      switchport trunk allowed vlan 1-100
+      ```
+
+- RSTP works with **MST** seamlessly, creating a single instance of spanning tree that transmits BPDUs on the native VLAN. RSTP treats the MST domain as one giant switch, whereas MST treats the RSTP domain as a different region (MST divides the topology into different regions; all switches share the same VLAN-to-instance mapping in the same region). To enable proper communication between the regions, MST creates a Common Spanning Tree (CST) that connects all the boundary switches and forms the overall view of the MST domain. Because changes in the CST need to be reflected in all regions, the RSTP tree is included in the CST to ensure that changes on the RSTP domain are reflected in the CST domain. This does cause topology changes on the RSTP domain to impact the rest of the network but keeps the MST domain informed of every change occurring in the RSTP domain, ensuring a loop-free network.
+
+   Configure the root bridge within the MST domain by changing the priority on the relevant MST switch. When MST detects an RSTP link, it falls back into RSTP mode. The MST domain choses the switch with the lowest cost to the CST root bridge as the CIST root bridge.
+
+{{%notice note%}}
+
+More than one spanning tree instance enables switches to load balance and use different links for different VLANs. With RSTP, there is only one instance of spanning tree. To better utilize the links, you can configure MLAG on the switches connected to the MST or PVST domain and set up these interfaces as an MLAG port. The PVST or MST domain thinks it is connected to a single switch and utilizes all the links connected to it. Load balancing is based on the port channel hashing mechanism instead of different spanning tree instances and uses all the links between the RSTP to the PVST or MST domains. For information about configuring MLAG, see {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation - MLAG">}}.
+
+{{%/notice%}}
+
+## STP for a Traditional Mode Bridge
 
 Per VLAN Spanning Tree (PVST) creates a spanning tree instance for a bridge. Rapid PVST (PVRST) supports RSTP enhancements for each spanning tree instance. To use PVRST with a traditional bridge, you must create a bridge corresponding to the untagged native VLAN and all the physical switch ports must be part of the same VLAN.
 
@@ -53,11 +63,17 @@ Run the `net show bridge spanning-tree` command:
 
 ```
 cumulus@switch:~$ net show bridge spanning-tree
-bridge CIST info
+Bridge info
   enabled         yes
-  bridge id       1.000.44:38:39:FF:40:90
-  designated root 1.000.44:38:39:FF:40:90
-  regional root   1.000.44:38:39:FF:40:90
+  bridge id       8.000.44:38:39:FF:40:94
+    Priority:     32768
+    Address:      44:38:39:FF:40:94
+  This bridge is root.
+
+  designated root 8.000.44:38:39:FF:40:94
+    Priority:     32768
+    Address:      44:38:39:FF:40:94
+
   root port       none
   path cost     0          internal path cost   0
   max age       20         bridge max age       20
@@ -65,100 +81,13 @@ bridge CIST info
   tx hold count 6          max hops             20
   hello time    2          ageing time          300
   force protocol version     rstp
-  time since topology change 253343s
-  topology change count      4
-  topology change            no
-  topology change port       peerlink
-  last topology change port  leaf03-04
 
-bridge:exit01-02 CIST info
-  enabled            no                      role                 Disabled
-  port id            8.004                   state                discarding
-  external port cost 305                     admin external cost  0
-  internal port cost 305                     admin internal cost  0
-  designated root    1.000.44:38:39:00:00:27 dsgn external cost   0
-  dsgn regional root 1.000.44:38:39:00:00:27 dsgn internal cost   0
-  designated bridge  1.000.44:38:39:00:00:27 designated port      8.004
-  admin edge port    no                      auto edge port       yes
-  oper edge port     no                      topology change ack  no
-  point-to-point     yes                     admin point-to-point auto
-  restricted role    no                      restricted TCN       no
-  port hello time    2                       disputed             no
-  bpdu guard port    no                      bpdu guard error     no
-  network port       no                      BA inconsistent      no
-  Num TX BPDU        2                       Num TX TCN           0
-  Num RX BPDU        0                       Num RX TCN           0
-  Num Transition FWD 0                       Num Transition BLK   2
-  bpdufilter port    no
-  clag ISL           no                      clag ISL Oper UP     no
-  clag role          primary                 clag dual conn mac   00:00:00:00:00:00
-  clag remote portID F.FFF                   clag system mac      44:38:39:FF:40:90
-bridge:leaf01-02 CIST info
-  enabled            yes                     role                 Designated
-  port id            8.003                   state                forwarding
-  external port cost 10000                   admin external cost  0
-  internal port cost 10000                   admin internal cost  0
-  designated root    1.000.44:38:39:FF:40:90 dsgn external cost   0
-  dsgn regional root 1.000.44:38:39:FF:40:90 dsgn internal cost   0
-  designated bridge  1.000.44:38:39:FF:40:90 designated port      8.003
-  admin edge port    no                      auto edge port       yes
-  oper edge port     no                      topology change ack  no
-  point-to-point     yes                     admin point-to-point auto
-  restricted role    no                      restricted TCN       no
-  port hello time    2                       disputed             no
-  bpdu guard port    no                      bpdu guard error     no
-  network port       no                      BA inconsistent      no
-  Num TX BPDU        253558                  Num TX TCN           2
-  Num RX BPDU        253373                  Num RX TCN           4
-  Num Transition FWD 126675                  Num Transition BLK   126694
-  bpdufilter port    no
-  clag ISL           no                      clag ISL Oper UP     no
-  clag role          primary                 clag dual conn mac   44:38:39:FF:40:94
-  clag remote portID F.FFF                   clag system mac      44:38:39:FF:40:90
-bridge:leaf03-04 CIST info
-  enabled            yes                     role                 Designated
-  port id            8.001                   state                forwarding
-  external port cost 10000                   admin external cost  0
-  internal port cost 10000                   admin internal cost  0
-  designated root    1.000.44:38:39:FF:40:90 dsgn external cost   0
-  dsgn regional root 1.000.44:38:39:FF:40:90 dsgn internal cost   0
-  designated bridge  1.000.44:38:39:FF:40:90 designated port      8.001
-  admin edge port    no                      auto edge port       yes
-  oper edge port     no                      topology change ack  no
-  point-to-point     yes                     admin point-to-point auto
-  restricted role    no                      restricted TCN       no
-  port hello time    2                       disputed             no
-  bpdu guard port    no                      bpdu guard error     no
-  network port       no                      BA inconsistent      no
-  Num TX BPDU        130960                  Num TX TCN           6
-  Num RX BPDU        4                       Num RX TCN           1
-  Num Transition FWD 2                       Num Transition BLK   1
-  bpdufilter port    no
-  clag ISL           no                      clag ISL Oper UP     no
-  clag role          primary                 clag dual conn mac   44:38:39:FF:40:93
-  clag remote portID F.FFF                   clag system mac      44:38:39:FF:40:90
-bridge:peerlink CIST info
-  enabled            yes                     role                 Designated
-  port id            F.002                   state                forwarding
-  external port cost 10000                   admin external cost  0
-  internal port cost 10000                   admin internal cost  0
-  designated root    1.000.44:38:39:FF:40:90 dsgn external cost   0
-  dsgn regional root 1.000.44:38:39:FF:40:90 dsgn internal cost   0
-  designated bridge  1.000.44:38:39:FF:40:90 designated port      F.002
-  admin edge port    no                      auto edge port       yes
-  oper edge port     no                      topology change ack  no
-  point-to-point     yes                     admin point-to-point auto
-  restricted role    no                      restricted TCN       no
-  port hello time    2                       disputed             no
-  bpdu guard port    no                      bpdu guard error     no
-  network port       no                      BA inconsistent      no
-  Num TX BPDU        126700                  Num TX TCN           2
-  Num RX BPDU        6                       Num RX TCN           3
-  Num Transition FWD 2                       Num Transition BLK   1
-  bpdufilter port    no
-  clag ISL           yes                     clag ISL Oper UP     yes
-  clag role          primary                 clag dual conn mac   00:00:00:00:00:00
-  clag remote portID F.FFF                   clag system mac      44:38:39:FF:40:90
+INTERFACE  STATE  ROLE  EDGE
+---------  -----  ----  ----
+peerlink   forw   Desg  Yes
+vni13      forw   Desg  Yes
+vni24      forw   Desg  Yes
+vxlan4001  forw   Desg  Yes
 ```
 
 {{< /tab >}}
@@ -171,7 +100,7 @@ The `mstpd` daemon starts by default when the switch boots. The `mstpd` logs and
 
 {{%notice warning%}}
 
-`mstpd` is the preferred utility for interacting with STP on Cumulus Linux. `brctl` also provides certain methods for configuring STP; however, they are not as complete as the tools offered in `mstpd` and output from brctl can be misleading in some cases.
+`mstpd` is the preferred utility for interacting with STP on Cumulus Linux. `brctl` also provides certain methods for configuring STP; however, they are not as complete as the tools offered in `mstpd` and output from `brctl` can be misleading in some cases.
 
 {{%/notice%}}
 
@@ -698,10 +627,6 @@ Most of these parameters are blacklisted in the `ifupdown_blacklist` section of 
 | `mstpctl-bpduguard` | `net add interface <interface> stp bpduguard` | Enables or disables the BPDU guard configuration of the interface in the bridge. The default is no. See above. |
 | `mstpctl-portbpdufilter` | `net add interface <interface> stp portbpdufilter`| Enables or disables the BPDU filter functionality for an interface in the bridge. The default is no. |
 | `mstpctl-treeportcost` | `net add interface <interface> stp treeportcost <port-cost>` | Sets the spanning tree port cost to a value from 0 to 255. The default is 0. |
-
-## Considerations
-
-MSTP is not supported currently because Cumulus Linux only supports MSTI 0 (not MSTI 1 through 15). However, interoperability with MSTP networks can be accomplished using PVRSTP or PVSTP.
 
 ## Related Information
 

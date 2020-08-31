@@ -49,7 +49,7 @@ Cumulus Linux supports only PIM Sparse Mode.
 <td><p>Rendezvous Point (RP)</p></td>
 <td><p>The RP allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable.</p>
 <p>{{%notice warning%}}</p>
-<p>Do not use a spine switch as an RP. If you are running {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} on a spine switch and it is *not* configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP - see below).</p>
+ <ul> <li><code>zebra</code> does not resolve the next hop for the RP through the default route. Multicast forwarding fails unless you have a specific route to the RP.</li><li>Do not use a spine switch as an RP. If you are running BGP on a spine switch and it is <b>not</b> configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP).</li>
 <p>{{%/notice%}}</p></td>
 </tr>
 <tr>

@@ -92,5 +92,5 @@ Here is sample output of a bond (bond2) where swp5 is a member of bond2. Not
 
 For additional reading, please refer to the following resources:
 
-- {{<exlink url="https://tools.ietf.org/html/rfc2863" text="RFC2863">}}
+- {{<exlink url="https://tools.ietf.org/html/rfc2863" text="RFC 2863">}}
 - {{<exlink url="https://www.kernel.org/doc/Documentation/networking/operstates.txt" text="kernel.org documentation on operational states">}}

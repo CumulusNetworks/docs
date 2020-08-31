@@ -21,6 +21,6 @@ To access the BIOS on a Dell S6000 switch, complete the following steps:
 
 2.  To configure the serial console navigate to this menu:
 
-        Advanced->Serial Port Console Redirection->COM0_Console Redirection Settings->"Bits per second" 115200
+    **Advanced** -> **Serial Port Console Redirection** -> **COM0_Console Redirection Settings** -> **"Bits per second"** _115200_
 
 3.  Reboot the switch and adjust your console server to the new baud rate.

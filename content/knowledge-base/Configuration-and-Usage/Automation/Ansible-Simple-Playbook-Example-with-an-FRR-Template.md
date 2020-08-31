@@ -7,7 +7,7 @@ toc: 4
 
 This article describes a very simple Ansible example. Use it to learn Ansible; **don't** use it as a production-level script. Please refer to the {{<link url="Demos-and-Training" text="Demos and Training section">}} for more robust examples with Ansible and other DevOp tools.
 
-{{<img src="/images/knowledge-base/ansible-simple-playbook.png" alt="Ansible simple playbook">}}
+{{<img src="/images/knowledge-base/ansible-simple-playbook.png" alt="Ansible simple playbook" width="500px">}}
 
 ## Playbook Requirements
 

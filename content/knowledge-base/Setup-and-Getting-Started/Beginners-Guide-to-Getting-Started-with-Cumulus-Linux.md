@@ -32,7 +32,7 @@ Learn how to use the nano text editor ([cheat sheet --- external link](http://ww
     - [Define a DNS server](https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Management-VRF/#management-vrf-and-dns)
     - [Write a message of the day](https://wiki.debian.org/motd)
 
-        cumulus@switch:~$ sudo vi /etc/motd
+          cumulus@switch:~$ sudo vi /etc/motd
 
     - [Configure NTP and clock](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Setting-Date-and-Time/)
     - [Configure the management Interface](https://docs.cumulusnetworks.com/cumulus-linux/Quick-Start-Guide/#wired-ethernet-management)

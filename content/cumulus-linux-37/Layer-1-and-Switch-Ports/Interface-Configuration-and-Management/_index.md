@@ -43,7 +43,7 @@ command:
 
 In this example, swp1 is administratively UP and the physical link is UP
 (LOWER\_UP flag). More information on interface administrative state and
-physical state can be found in {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202693826" text="this knowledge base article">}}.
+physical state can be found in {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux/" text="this knowledge base article">}}.
 
 To put an interface into an admin down state. The interface remains down
 after any future reboots or applying configuration changes with
@@ -241,7 +241,7 @@ iface br-100
 </table>
 
 For more information on the bridge in traditional mode vs the bridge in
-VLAN-aware mode, please read {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204909397" text="this knowledge base article">}}.
+VLAN-aware mode, please read {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="this knowledge base article">}}.
 </details>
 
 ## ifupdown2 Interface Dependencies
@@ -746,7 +746,7 @@ You can test your template and confirm it evaluates correctly by running
 {{%/notice%}}
 
 For more examples of configuring Mako templates, read this
-{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202868023" text="knowledge base article">}}.
+{{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Automation/Configure-the-interfaces-File-with-Mako/" text="knowledge base article">}}.
 
 To comment out content in Mako templates, use double hash marks (\#\#).
 For example:

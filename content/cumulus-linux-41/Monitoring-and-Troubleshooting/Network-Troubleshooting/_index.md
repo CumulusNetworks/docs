@@ -454,7 +454,7 @@ The `src-ip` option can be any IP address, whether it exists in the routing tabl
 
 {{%notice tip%}}
 
-If a SPAN destination IP address is not available, or if the interface type or types prevent using a laptop as a SPAN destination, read this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360040711774" text="knowledge base article">}} for a workaround.
+If a SPAN destination IP address is not available, or if the interface type or types prevent using a laptop as a SPAN destination, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch/" text="knowledge base article">}} for a workaround.
 
 {{%/notice%}}
 

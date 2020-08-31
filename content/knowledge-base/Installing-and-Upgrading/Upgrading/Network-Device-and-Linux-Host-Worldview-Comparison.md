@@ -1,7 +1,7 @@
 ---
 title: Upgrades - Network Device and Linux Host Worldview Comparison
 author: Cumulus Networks
-weight: 292
+weight: 291
 toc: 4
 ---
 

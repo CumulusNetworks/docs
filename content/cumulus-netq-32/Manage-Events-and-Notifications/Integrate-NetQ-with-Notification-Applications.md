@@ -57,7 +57,7 @@ For example:
 You can integrate notification channels using the NetQ UI or the NetQ CLI.
 
 - Channels card: specify channels
-- Threshold Crossing Rules card: specify channels and rules
+- Threshold Crossing Rules card: specify rules and filters, assign existing channels
 -`netq notification (channel|rule|filter)` command: specify channels, rules, and filters
 
 To set up the integrations, you must configure NetQ with at least one channel, one rule, and one filter. To refine what messages you want to view and where to send them, you can add additional rules and filters and set thresholds on supported event types. You can also configure a proxy server to receive, process, and forward the messages. This is accomplished using the NetQ UI and NetQ CLI in the following order:
@@ -71,14 +71,16 @@ The simplest configuration you can create is one that sends all events generated
 A notification configuration must contain one channel, one rule, and one filter. Creation of the configuration follows this same path:
 
 1. Add a channel.
-2. Add a rule that accepts all interface events.
+2. Add a rule that accepts a selected set events.
 3. Add a filter that associates this rule with the newly created channel.
 
 ### Create a Channel
 
 The first step is to create a PagerDuty, Slack, syslog, or Email channel to receive the notifications.
 
-#### Create a PagerDuty Channel
+{{< tabs "TabID81" >}}
+
+{{< tab "PagerDuty" >}}
 
 You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 
@@ -146,7 +148,9 @@ This example shows the creation of a *pd-netq-events* channel and verifies the c
 
 {{< /tabs >}}
 
-#### Create a Slack Channel
+{{< /tab >}}
+
+{{< tab "Slack" >}}
 
 You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
@@ -216,7 +220,9 @@ This example shows the creation of a *slk-netq-events* channel and verifies the 
 
 {{< /tabs >}}
 
-#### Create a syslog Channel
+{{< /tab >}}
+
+{{< tab "Syslog" >}}
 
 You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
@@ -283,7 +289,9 @@ This example shows the creation of a *syslog-netq-events* channel and verifies t
 
 {{< /tabs >}}
 
-#### Create an Email Channel
+{{< /tab >}}
+
+{{< tab "Email" >}}
 
 You can use the NetQ UI or the NetQ CLI to create an Email channel.
 
@@ -410,14 +418,27 @@ Successfully added/updated channel cloud-email
 
 {{< /tabs >}}
 
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### Create a Rule
 
-The second step is to create and verify a rule that accepts all interface events. Rules for system events are created using the NetQ CLI.
+The second step is to create and verify a rule that accepts a set of events. Rules for system events are created using the NetQ CLI.
 
-This example creates a rule named *all-ifs* to send all events from all interfaces.
+To create and verify the specification of a rule, run:
 
 ```
-cumulus@switch:~$ netq add notification rule all-ifs key ifname value ALL
+netq add notification rule <text-rule-name> key <text-rule-key> value <text-rule-value>
+netq show notification rule [json]
+```
+
+Refer to {{<link title="Create Rules">}} for a list of available keys and values.
+
+This example creates a rule named *all-interfaces*, using the key *ifname* and the value *ALL* to indicate that all events from all interfaces should be sent to any channel with this rule.
+
+```
+cumulus@switch:~$ netq add notification rule all-interfaces key ifname value ALL
 Successfully added/updated rule all-ifs
 
 cumulus@switch:~$ netq show notification rule
@@ -433,38 +454,51 @@ Refer to {{<link title="Configure Threshold-based Event Notifications" text="Adv
 
 The final step is to create a filter to tie the rule to the channel. Filters are created for system events using the NetQ CLI.
 
-These examples use the channels created in the {{<link title="Create a Channel">}} topic.
-
-For PagerDuty:
+To create and verify a filter, run:
 
 ```
-cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel pd-netq-events
+netq add notification filter <text-filter-name> rule <text-rule-name-anchor> channel <text-channel-name-anchor>
+netq show notification filter [json]
+```
+
+These examples use the channels created in the {{<link title="Create a Channel">}} topic and the rule created in the {{<link title="Create a Rule">}} topic.
+
+{{< tabs "TabID466" >}}
+
+{{< tab "PagerDuty" >}}
+
+```
+cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel pd-netq-events
 Successfully added/updated filter notify-all-ifs
 
 cumulus@switch:~$ netq show notification filter
 Matching config_notify records:
 Name            Order      Severity         Channels         Rules
 --------------- ---------- ---------------- ---------------- ----------
-notify-all-ifs  1          info             pd-netq-events   all-ifs
+notify-all-ifs  1          info             pd-netq-events   all-interfaces
 ```
 
-For Slack:
+{{< /tab >}}
+
+{{< tab "Slack" >}}
 
 ```
-cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel slk-netq-events
+cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel slk-netq-events
 Successfully added/updated filter notify-all-ifs
 
 cumulus@switch:~$ netq show notification filter
 Matching config_notify records:
 Name            Order      Severity         Channels         Rules
 --------------- ---------- ---------------- ---------------- ----------
-notify-all-ifs  1          info             slk-netq-events   all-ifs
+notify-all-ifs  1          info             slk-netq-events   all-interfaces
 ```
 
-For Syslog:
+{{< /tab >}}
+
+{{< tab "Syslog" >}}
 
 ```
-cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel syslog-netq-events
+cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel syslog-netq-events
 Successfully added/updated filter notify-all-ifs
 
 cumulus@switch:~$ netq show notification filter
@@ -474,18 +508,24 @@ Name            Order      Severity         Channels         Rules
 notify-all-ifs  1          info             syslog-netq-events all-ifs
 ```
 
-For Email:
+{{< /tab >}}
+
+{{< tab "Email" >}}
 
 ```
-cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-ifs channel email-netq-events
+cumulus@switch:~$ netq add notification filter notify-all-ifs rule all-interfaces channel onprem-email
 Successfully added/updated filter notify-all-ifs
 
 cumulus@switch:~$ netq show notification filter
 Matching config_notify records:
 Name            Order      Severity         Channels         Rules
 --------------- ---------- ---------------- ---------------- ----------
-notify-all-ifs  1          info             email-netq-events all-ifs
+notify-all-ifs  1          info             onprem-email all-ifs
 ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 NetQ is now configured to send all interface events to your selected channel.
 
@@ -497,30 +537,35 @@ If you want to create more granular notifications based on such items as selecte
 
 ### Configure a Proxy Server
 
-To send notification messages through a proxy server instead of directly to a notification channel, you configure NetQ with the hostname and optionally a port of a proxy server. If no port is specified, NetQ defaults to port 80. Only one proxy server is currently  supported. To simplify deployment, configure your proxy server before configuring channels, rules, or filters.To configure the proxy server:
+To send notification messages through a proxy server instead of directly to a notification channel, you configure NetQ with the hostname and optionally a port of a proxy server. If no port is specified, NetQ defaults to port 80. Only one proxy server is currently  supported. To simplify deployment, configure your proxy server before configuring channels, rules, or filters.
 
-    cumulus@switch:~$ netq add notification proxy <text-proxy-hostname> [port <text-proxy-port]
-    cumulus@switch:~$ netq add notification proxy proxy4
-    Successfully configured notifier proxy proxy4:80
+To configure and verify the proxy server, run:
 
-You can view the proxy server settings by running the `netq show notification proxy` command.
+```
+netq add notification proxy <text-proxy-hostname> [port <text-proxy-port>]
+netq show notification proxy
+```
 
-    cumulus@switch:~$ netq show notification proxy
-    Matching config_notify records:
-    Proxy URL          Slack Enabled              PagerDuty Enabled
-    ------------------ -------------------------- ----------------------------------
-    proxy4:80          yes                        yes
+This example configures and verifies the *proxy4* server on port *80* to act as a proxy for event notifications.
 
-You can remove the proxy server by running the `netq del notification proxy` command. This changes the NetQ behavior to send events directly to the notification channels.
+```
+cumulus@switch:~$ netq add notification proxy proxy4
+Successfully configured notifier proxy proxy4:80
 
-    cumulus@switch:~$ netq del notification proxy
-    Successfully overwrote notifier proxy to null
+cumulus@switch:~$ netq show notification proxy
+Matching config_notify records:
+Proxy URL          Slack Enabled              PagerDuty Enabled
+------------------ -------------------------- ----------------------------------
+proxy4:80          yes                        yes
+```
 
 ### Create Channels
 
-Create one or more PagerDuty, Slack, or syslog channels to receive the notifications.
+Create one or more PagerDuty, Slack, syslog, or Email channels to receive the notifications.
 
-#### Configure a PagerDuty Channel
+{{< tabs "TabID566" >}}
+
+{{< tab "PagerDuty" >}}
 
 NetQ sends notifications to PagerDuty as PagerDuty events.
 
@@ -528,21 +573,54 @@ For example:
 
 {{<figure src="/images/netq/NetQ-PagerDuty-ex-output.png">}}
 
-To configure the NetQ notifier to send notifications to PagerDuty:
+To create and verify the specification of a PagerDuty channel, run:
 
-1.  Configure the following options using the `netq add notification channel` command:
+```
+netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
+netq show notification channel [json]
+```
 
-    | Option | Description   |
-    | ------ | ------------- |
-    | CHANNEL\_TYPE \<text-channel-name\>      | The third-party notification channel and name; use *pagerduty* in this case.                                                                                       |
-    | integration-key \<text-integration-key\> | The {{<exlink url="https://v2.developer.pagerduty.com/docs/events-api-v2" text="integration">}} key is also called the service\_key or routing\_key. The default is an empty string (""). |
-    | severity                                 | (Optional) The log level to set, which can be one of *info*, *warning*, *error*, *critical* or *debug*. The severity defaults to *info*.                           |
+where:
 
+<table>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;text-channel-name&gt;</td>
+<td>User-specified PagerDuty channel name</td>
+</tr>
+<tr>
+<td>integration-key &lt;text-integration-key&gt;</td>
+<td>The {{<exlink url="https://v2.developer.pagerduty.com/docs/events-api-v2" text="integration">}} key is also called the service_key or routing_key. The default is an empty string (&quot;&quot;).</td>
+</tr>
+<tr>
+<td>severity &lt;level&gt;</td>
+<td>(Optional) The log level to set, which can be one of <em>info</em>, <em>warning</em>, <em>error</em>, <em>critical</em> or <em>debug</em>. The severity defaults to <em>info</em> if unspecified.</td>
+</tr>
+</tbody>
+</table>
 
-        cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
-        Successfully added/updated channel pd-netq-events
+This example shows the creation of a *pd-netq-events* channel and verifies the configuration.
 
-2.  Verify that the channel is configured properly.
+1. Obtain an integration key as described in this PagerDuty {{<exlink url="https://support.pagerduty.com/docs/services-and-integrations#section-events-api-v2" text="support page">}}.
+
+2. Create the channel.
+
+    ```
+    cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
+    Successfully added/updated channel pd-netq-events
+    ```
+
+3. Verify the configuration.
 
     ```
     cumulus@switch:~$ netq show notification channel
@@ -550,100 +628,254 @@ To configure the NetQ notifier to send notifications to PagerDuty:
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
     pd-netq-events  pagerduty        info             integration-key: c6d666e
-                                                      210a8425298ef7abde0d1998
+                                                    210a8425298ef7abde0d1998
     ```
 
-#### Configure a Slack Channel
+{{< /tab >}}
+
+{{< tab "Slack" >}}
 
 NetQ Notifier sends notifications to Slack as incoming webhooks for a
-Slack channel you configure. For example:
+Slack channel you configure.
+
+For example:
 
 {{<figure src="/images/netq/slack-ex-output.png">}}
 
-To configure NetQ to send notifications to Slack:
+To create and verify the specification of a Slack channel, run:
 
-1.  If needed, create one or more Slack channels on which to receive the
-    notifications.
+```
+netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
+netq show notification channel [json]
+```
 
-    1.  Click **+** next to **Channels**.
-    2.  Enter a name for the channel, and click **Create Channel**.
-    3.  Navigate to the new channel.
-    4.  Click **+ Add an app** link below the channel name to open the
-        application directory.
-    5.  In the search box, start typing *incoming* and select **
-        **Incoming WebHooks** when it appears.
-    6.  Click **Add Configuration** and enter the name of the channel
-        you created (where you want to post notifications).
-    7.  Click **Add Incoming WebHooks integration**.
-    8.  Save WebHook URL in a text file for use in next step.
+where:
 
-2.  Configure the following options in the `netq config add notification channel` command:
+<table>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt;text-channel-name&gt;</td>
+<td>User-specified Slack channel name</p></td>
+</tr>
+<tr class="even">
+<td>webhook &lt;text-webhook-url&gt;</td>
+<td>WebHook URL for the desired channel. For example: <em>https://hooks.slack.com/services/text/moretext/evenmoretext</em></td>
+</tr>
+<tr class="odd">
+<td>severity &lt;level&gt;</td>
+<td>The log level to set, which can be one of <em>error, warning, info,</em> or <em>debug</em>. The severity defaults to <em>info</em>.</td>
+</tr>
+<tr class="even">
+<td>tag &lt;text-slack-tag&gt;</td>
+<td>Optional tag appended to the Slack notification to highlight particular channels or people. The tag value must be preceded by the @ sign. For example, <em>@netq-info</em>.</td>
+</tr>
+</tbody>
+</table>
 
-    <table>
-    <colgroup>
-    <col style="width: 20%" />
-    <col style="width: 80%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th><p>Option</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>CHANNEL_TYPE &lt;text-channel-name&gt;</p></td>
-    <td><p>The third-party notification channel name; use <em>slack</em> in this case.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>WEBHOOK</p></td>
-    <td><p>Copy the WebHook URL from the text file OR in the desired channel, locate the initial message indicating the addition of the webhook, click <strong>incoming-webhook</strong> link, click <strong>Settings</strong>.</p>
-    <p>Example URL: <code>https://hooks.slack.com/services/text/moretext/evenmoretext</code></p></td>
-    </tr>
-    <tr class="odd">
-    <td><p>severity</p></td>
-    <td><p>The log level to set, which can be one of <em>error, warning, info,</em> or <em>debug</em>. The severity defaults to <em>info</em>.</p></td>
-    </tr>
-    <tr class="even">
-    <td><p>tag</p></td>
-    <td><p>Optional tag appended to the Slack notification to highlight particular channels or people. The tag value must be preceded by the @ sign. For example, <em>@netq-info</em>.</p></td>
-    </tr>
-    </tbody>
-    </table>
+This example shows the creation of a *slk-netq-events* channel and verifies the configuration.
 
-        cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
-        Successfully added/updated channel netq-events
+1. Create an incoming webhook as described in the documentation for your version of Slack.
 
-3.  Verify the channel is configured correctly.  
-    From the CLI:
+2. Create the channel.
+
+    ```
+    cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext severity warning tag @netq-ops
+    Successfully added/updated channel slk-netq-events
+    ```
+
+3. Verify the configuration.
+
+    ```
+    cumulus@switch:~$ netq show notification channel
+    Matching config_notify records:
+    Name            Type             Severity         Channel Info
+    --------------- ---------------- ---------------- ------------------------
+    slk-netq-events slack            warning          tag: @netq-ops,
+                                                      webhook: https://hooks.s
+                                                      lack.com/services/text/m
+                                                      oretext/evenmoretext
+    ```
+
+{{< /tab >}}
+
+{{< tab "Syslog" >}}
+
+To create and verify the specification of a syslog channel, run:
+
+```
+netq add notification channel syslog <text-channel-name> hostname <text-syslog-hostname> port <text-syslog-port> [severity info | severity warning | severity error | severity debug]
+netq show notification channel [json]
+```
+where:
+
+<table>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt;text-channel-name&gt;</td>
+<td>User-specified syslog channel name</p></td>
+</tr>
+<tr class="even">
+<td>hostname &lt;text-syslog-hostname&gt;</td>
+<td>Hostname or IP address of the syslog server to receive notifications</td>
+</tr>
+<tr class="odd">
+<td>port &lt;text-syslog-port&gt;</td>
+<td>Port on the syslog server to receive notifications</td>
+</tr>
+<tr class="even">
+<td>severity &lt;level&gt;</td>
+<td>The log level to set, which can be one of <em>error, warning, info,</em> or <em>debug</em>. The severity defaults to <em>info</em>.</td>
+</tr>
+</tbody>
+</table>
+
+This example shows the creation of a *syslog-netq-events* channel and verifies the configuration.
+
+1. Obtain the syslog server hostname (or IP address) and port.
+
+2. Create the channel.
+
+    ```
+    cumulus@switch:~$ netq add notification channel syslog syslog-netq-events hostname syslog-server port 514 severity error
+    Successfully added/updated channel syslog-netq-events
+    ```
+
+3. Verify the configuration.
 
     ```
     cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity Channel Info
     --------------- ---------------- -------- ----------------------
-    slk-netq-events slack            info     webhook:https://hooks.s
-                                              lack.com/services/text/
-                                              moretext/evenmoretext
+    syslog-netq-eve syslog           error     host:syslog-server
+    nts                                        port: 514
     ```
 
-    From the Slack Channel:
+{{< /tab >}}
 
-    {{<figure src="/images/netq/slack-add-webhook-ex.png">}}
+{{< tab "Email" >}}
+
+The configuration is different depending on whether you are using the on-premises or cloud version of NetQ.
+
+{{< tabs "TabID780" >}}
+
+{{< tab "On-premises" >}}
+
+To create an Email notification channel for an on-premises deployment, run:
+
+```
+netq add notification channel email <text-channel-name> to <text-email-toids> [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity warning | severity error | severity debug]
+```
+
+This example creates an email channel named *onprem-email* that uses the *smtpserver* on port *587* to send messages to those persons with access to the *smtphostlogin* account.
+
+1. Set up an SMTP server. The server can be internal or public.
+
+2. Create a user account (login and password) on the SMTP server. Notifications are sent to this address.
+
+3. Create the notification channel.
+
+    ```
+    cumulus@switch:~$ netq add notification channel email onprem-email to netq-notifications@domain.com smtpserver smtp.domain.com smtpport 587 login smtphostlogin@domain.com password MyPassword123 severity warning
+    Successfully added/updated channel onprem-email
+    ```
+
+4. Verify the configuration.
+
+    ```
+    cumulus@netq-ts:~$ netq show notification channel
+    Matching config_notify records:
+    Name            Type             Severity         Channel Info
+    --------------- ---------------- ---------------- ------------------------
+    onprem-email    email            warning          password: MyPassword123,
+                                                      port: 587,
+                                                      isEncrypted: True,
+                                                      host: smtp.domain.com,
+                                                      from: smtphostlogin@doma
+                                                      in.com,
+                                                      id: smtphostlogin@domain
+                                                      .com,
+                                                      to: netq-notifications@d
+                                                      omain.com
+    ```
+
+{{< /tab >}}
+
+{{< tab "Cloud" >}}
+
+In cloud deployments as the NetQ cloud service uses the NetQ SMTP server to push email notifications.
+
+To create an Email notification channel for a cloud deployment, run:
+
+```
+netq add notification channel email <text-channel-name> to <text-email-toids> [severity info | severity warning | severity error | severity debug]
+netq show notification channel [json]
+```
+
+This example creates an email channel named *cloud-email* that uses the NetQ SMTP server to send messages to those persons with access to the *netq-cloud-notifications* account.
+
+1. Create the channel.
+
+    ```
+    cumulus@switch:~$ netq add notification channel email cloud-email to netq-cloud-notifications@domain.com severity error
+    Successfully added/updated channel cloud-email
+    ```
+
+2. Verify the configuration.
+
+    ```
+    cumulus@netq-ts:~$ netq show notification channel
+    Matching config_notify records:
+    Name            Type             Severity         Channel Info
+    --------------- ---------------- ---------------- ------------------------
+    cloud-email    email            error            password: TEiO98BOwlekUP
+                                                     TrFev2/Q==, port: 587,
+                                                     isEncrypted: True,
+                                                     host: netqsmtp.domain.com,
+                                                     from: netqsmtphostlogin@doma
+                                                     in.com,
+                                                     id: smtphostlogin@domain
+                                                     .com,
+                                                     to: netq-notifications@d
+                                                     omain.com
+
+    ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Create Rules
 
-Each rule is comprised of a single key-value pair. The key-value pair
-indicates what messages to include or drop from event information sent
-to a notification channel. You can create more than one rule for a
-single filter. Creating multiple rules for a given filter can provide a
-very defined filter. For example, you can specify rules around hostnames
-or interface names, enabling you to filter messages specific to those
-hosts or interfaces. You should have already defined the PagerDuty or
-Slack channels (as described earlier).
+Each rule is comprised of a single key-value pair. The key-value pair indicates what messages to include or drop from event information sent to a notification channel. You can create more than one rule for a single filter. Creating multiple rules for a given filter can provide a very defined filter. For example, you can specify rules around hostnames or interface names, enabling you to filter messages specific to those hosts or interfaces. You should have already defined channels (as described earlier).
 
-There is a fixed set of valid rule keys. Values are entered as regular
-expressions and *vary according to your deployment*.
+There is a fixed set of valid rule keys. Values are entered as regular expressions and *vary according to your deployment*.
+
+#### Rule Keys and Values
 
 <table>
 <tr>
@@ -699,36 +931,6 @@ expressions and *vary according to your deployment*.
 <td>Apr8, 2019, 11:38 am</td>
 </tr>
 <tr>
-<td rowspan="6">MLAG (CLAG)</td>
-<td>message_type</td>
-<td>Network protocol or service identifier</td>
-<td>clag</td>
-</tr>
-<tr>
-<td>hostname</td>
-<td>User-defined, text-based name for a switch or host</td>
-<td>server02, leaf-9, exit01, spine04</td>
-</tr>
-<tr>
-<td>old_conflicted_bonds</td>
-<td>Previous pair of interfaces in a conflicted bond</td>
-<td>swp7 swp8, swp3 swp4</td>
-</tr>
-<tr>
-<td>new_conflicted_bonds</td>
-<td>Current pair of interfaces in a conflicted bond</td>
-<td>swp11 swp12, swp23 swp24</td>
-</tr>
-<tr>
-<td>old_state_protodownbond</td>
-<td>Previous state of the bond</td>
-<td>protodown, up</td>
-</tr>
-<tr>
-<td>new_state_protodownbond</td>
-<td>Current state of the bond</td>
-<td>protodown, up</td>
-</tr>
 <tr>
 <td rowspan="5">ConfigDiff</td>
 <td>message_type</td>
@@ -791,6 +993,36 @@ expressions and *vary according to your deployment*.
 <td>Current VNI advertising state, advertising all or not</td>
 <td>true, false</td>
 </tr>
+<td rowspan="6">LCM</td>
+<td>message_type</td>
+<td>Network protocol or service identifier</td>
+<td>clag</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf-9, exit01, spine04</td>
+</tr>
+<tr>
+<td>old_conflicted_bonds</td>
+<td>Previous pair of interfaces in a conflicted bond</td>
+<td>swp7 swp8, swp3 swp4</td>
+</tr>
+<tr>
+<td>new_conflicted_bonds</td>
+<td>Current pair of interfaces in a conflicted bond</td>
+<td>swp11 swp12, swp23 swp24</td>
+</tr>
+<tr>
+<td>old_state_protodownbond</td>
+<td>Previous state of the bond</td>
+<td>protodown, up</td>
+</tr>
+<tr>
+<td>new_state_protodownbond</td>
+<td>Current state of the bond</td>
+<td>protodown, up</td>
+</tr>
 <tr>
 <td rowspan="3">Link</td>
 <td>message_type</td>
@@ -842,6 +1074,36 @@ expressions and *vary according to your deployment*.
 <td>new_peer_hostname</td>
 <td>Current user-defined, text-based name for a peer switch or host</td>
 <td>server02, leaf41, exit01, spine-5, tor-36</td>
+</tr>
+<td rowspan="6">MLAG (CLAG)</td>
+<td>message_type</td>
+<td>Network protocol or service identifier</td>
+<td>clag</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>User-defined, text-based name for a switch or host</td>
+<td>server02, leaf-9, exit01, spine04</td>
+</tr>
+<tr>
+<td>old_conflicted_bonds</td>
+<td>Previous pair of interfaces in a conflicted bond</td>
+<td>swp7 swp8, swp3 swp4</td>
+</tr>
+<tr>
+<td>new_conflicted_bonds</td>
+<td>Current pair of interfaces in a conflicted bond</td>
+<td>swp11 swp12, swp23 swp24</td>
+</tr>
+<tr>
+<td>old_state_protodownbond</td>
+<td>Previous state of the bond</td>
+<td>protodown, up</td>
+</tr>
+<tr>
+<td>new_state_protodownbond</td>
+<td>Current state of the bond</td>
+<td>protodown, up</td>
 </tr>
 <tr>
 <td rowspan="4">Node</td>
@@ -990,8 +1252,8 @@ expressions and *vary according to your deployment*.
 <td rowspan="10">Sensors</td>
 <td>sensor</td>
 <td>Network protocol or service identifier</td>
-<td>Fan: fan1, fan-2  
-Power Supply Unit: psu1, psu2  
+<td>Fan: fan1, fan-2<br>
+Power Supply Unit: psu1, psu2<br>
 Temperature: psu1temp1, temp2</td>
 </tr>
 <tr>
@@ -1002,27 +1264,27 @@ Temperature: psu1temp1, temp2</td>
 <tr>
 <td>old_state</td>
 <td>Previous state of a fan, power supply unit, or thermal sensor</td>
-<td>Fan: ok, absent, bad  
-PSU: ok, absent, bad  
+<td>Fan: ok, absent, bad<br>  
+PSU: ok, absent, bad<br>  
 Temp: ok, busted, bad, critical</td>
 </tr>
 <tr>
 <td>new_state</td>
 <td>Current state of a fan, power supply unit, or thermal sensor</td>
-<td>Fan: ok, absent, bad  
-PSU: ok, absent, bad  
+<td>Fan: ok, absent, bad<br>  
+PSU: ok, absent, bad<br>  
 Temp: ok, busted, bad, critical</td>
 </tr>
 <tr>
 <td>old_s_state</td>
 <td>Previous state of a fan or power supply unit.</td>
-<td>Fan: up, down  
+<td>Fan: up, down<br>  
 PSU: up, down</td>
 </tr>
 <tr>
 <td>new_s_state</td>
 <td>Current state of a fan or power supply unit.</td>
-<td>Fan: up, down  
+<td>Fan: up, down<br>  
 PSU: up, down</td>
 </tr>
 <tr>
@@ -1059,7 +1321,7 @@ PSU: up, down</td>
 <tr>
 <td>name</td>
 <td>Name of service</td>
-<td>clagd, lldpd, ssh, ntp, netqd, net-agent</td>
+<td>clagd, lldpd, ssh, ntp, netqd, netq-agent</td>
 </tr>
 <tr>
 <td>old_pid</td>
@@ -1084,13 +1346,9 @@ PSU: up, down</td>
 </table>
 
 {{<notice note>}}
-Rule names are case sensitive, and no wildcards are permitted. Rule
-names may contain spaces, but must be enclosed with single quotes in
-commands. It is easier to use dashes in place of spaces or mixed case
-for better readability. For example, use bgpSessionChanges or
-BGP-session-changes or BGPsessions, instead of 'BGP Session Changes'.
 
-Use Tab completion to view the command options syntax.
+Rule names are case sensitive, and no wildcards are permitted. Rule names may contain spaces, but must be enclosed with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use bgpSessionChanges or BGP-session-changes or BGPsessions, instead of 'BGP Session Changes'. Use Tab completion to view the command options syntax.
+
 {{</notice>}}
 
 #### Example Rules
@@ -1151,39 +1409,20 @@ platform.
 
 ### Create Filters
 
-You can limit or direct event messages using filters. Filters are
-created based on rules you define; like those in the previous section.
-Each filter contains one or more rules. When a message matches the rule,
-it is sent to the indicated destination. Before you can create filters,
-you need to have already defined the rules and configured PagerDuty
-and/or Slack channels (as described earlier).
+You can limit or direct event messages using filters. Filters are created based on rules you define; like those in the previous section. Each filter contains one or more rules. When a message matches the rule, it is sent to the indicated destination. Before you can create filters, you need to have already defined the rules and configured channels (as described earlier).
 
-As filters are created, they are added to the bottom of a filter list.
-By default, filters are processed in the order they appear in this list
-(from top to bottom) until a match is found. This means that each event
-message is first evaluated by the first filter listed, and if it matches
-then it is processed, ignoring all other filters, and the system moves
-on to the next event message received. If the event does not match the
-first filter, it is tested against the second filter, and if it matches
-then it is processed and the system moves on to the next event received.
-And so forth. Events that do not match any filter are ignored.
+As filters are created, they are added to the bottom of a filter list. By default, filters are processed in the order they appear in this list (from top to bottom) until a match is found. This means that each event message is first evaluated by the first filter listed, and if it matches then it is processed, ignoring all other filters, and the system moves on to the next event message received. If the event does not match the first filter, it is tested against the second filter, and if it matches then it is processed and the system moves on to the next event received. And so forth. Events that do not match any filter are ignored.
 
-You may need to change the order of filters in the list to ensure you
-capture the events you want and drop the events you do not want. This is
-possible using the *before* or *after* keywords to ensure one rule is
-processed before or after another.
+You may need to change the order of filters in the list to ensure you capture the events you want and drop the events you do not want. This is possible using the *before* or *after* keywords to ensure one rule is processed before or after another.
 
-This diagram shows an example with four defined filters with sample
-output results.
+This diagram shows an example with four defined filters with sample output results.
 
-{{<figure src="/images/netq/NQ-2x-Filter-Process-Flow.png">}}
+{{<figure src="/images/netq/NQ-3x-Filter-Process-Flow.png" width="300">}}
 
 {{<notice note>}}
-Filter names may contain spaces, but <em>must</em> be enclosed with single
-quotes in commands. It is easier to use dashes in place of spaces or
-mixed case for better readability. For example, use bgpSessionChanges or
-BGP-session-changes or BGPsessions, instead of 'BGP Session Changes'.
-Filter names are also case sensitive.
+
+Filter names may contain spaces, but <em>must</em> be enclosed with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use bgpSessionChanges or BGP-session-changes or BGPsessions, instead of 'BGP Session Changes'. Filter names are also case sensitive.
+
 {{</notice>}}
 
 #### Example Filters
@@ -1215,7 +1454,7 @@ Create a Filter to Monitor for Services that Change to a Down State:
 
 Create a Filter to Monitor Overheating Platforms:
 
-    cumulus@switch:~$ netq add notification filter critTemp severity error rule overTemp channel pd-netq-events
+    cumulus@switch:~$ netq add notification filter critTemp severity error rule overTemp channel onprem-email
     Successfully added/updated filter critTemp
 
 Create a Filter to Drop Messages from a Given Interface, and match
@@ -1243,54 +1482,52 @@ platform.
     configChange    4          info             slk-netq-events  sysconf
     newFEC          5          info             slk-netq-events  fecSupport
     svcDown         6          critical         slk-netq-events  svcStatus
-    critTemp        7          critical         pd-netq-events   overTemp
+    critTemp        7          critical         onprem-email     overTemp
 
 #### Reorder Filters
 
-When you look at the results of the `netq show notification filter`
-command above, you might notice that although you have the drop-based
-filter first (no point in looking at something you are going to drop
-anyway, so that is good), but the critical severity events are processed
-last, per the current definitions. If you wanted to process those before
-lesser severity events, you can reorder the list using the *before* and
-*after* options.
+When you look at the results of the `netq show notification filter` command above, you might notice that although you have the drop-based filter first (no point in looking at something you are going to drop anyway, so that is good), but the critical severity events are processed last, per the current definitions. If you wanted to process those before
+lesser severity events, you can reorder the list using the `before` and `after` options.
 
-For example, to put the two critical severity event filters just below
-the drop filter:
+For example, to put the two critical severity event filters just below the drop filter:
 
-    cumulus@switch:~$ netq add notification filter critTemp after swp52Drop
-    Successfully added/updated filter critTemp
-    cumulus@switch:~$ netq add notification filter svcDown before bgpSpine
-    Successfully added/updated filter svcDown
+```
+cumulus@switch:~$ netq add notification filter critTemp after swp52Drop
+Successfully added/updated filter critTemp
+cumulus@switch:~$ netq add notification filter svcDown before bgpSpine
+Successfully added/updated filter svcDown
+```
 
 {{<notice tip>}}
-You do not need to reenter all the severity, channel, and rule
-information for existing rules if you only want to change their
-processing order.
+
+You do not need to reenter all the severity, channel, and rule information for existing rules if you only want to change their processing order.
+
 {{</notice>}}
 
 Run the `netq show notification` command again to verify the changes:
 
-    cumulus@switch:~$ netq show notification filter
-    Matching config_notify records:
-    Name            Order      Severity         Channels         Rules
-    --------------- ---------- ---------------- ---------------- ----------
-    swp52Drop       1          error            NetqDefaultChann swp52
-                                                el
-    critTemp        2          critical         pd-netq-events   overTemp
-    svcDown         3          critical         slk-netq-events  svcStatus
-    bgpSpine        4          info             pd-netq-events   bgpHostnam
-                                                                 e
-    vni42           5          warning          pd-netq-events   evpnVni
-    configChange    6          info             slk-netq-events  sysconf
-    newFEC          7          info             slk-netq-events  fecSupport
+```
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+swp52Drop       1          error            NetqDefaultChann swp52
+                                            el
+critTemp        2          critical         onprem-email     overTemp
+svcDown         3          critical         slk-netq-events  svcStatus
+bgpSpine        4          info             pd-netq-events   bgpHostnam
+                                                                e
+vni42           5          warning          pd-netq-events   evpnVni
+configChange    6          info             slk-netq-events  sysconf
+newFEC          7          info             slk-netq-events  fecSupport
+```
 
 ## Examples of Advanced Notification Configurations
 
 Putting all of these channel, rule, and filter definitions together you
 create a complete notification configuration. The following are example
 notification configurations are created using the three-step process
-outlined above. Refer to {{<link url="#integrate-netq-with-an-event-notification-application" text="Integrate NetQ with an Event Notification Application">}} for details and instructions for creating channels, rules, and filters.
+outlined above.
 
 ### Create a Notification for BGP Events from a Selected Switch
 
@@ -1298,7 +1535,7 @@ In this example, we created a notification integration with a PagerDuty
 channel called *pd-netq-events*. We then created a rule *bgpHostname*
 and a filter called *4bgpSpine* for any notifications from *spine-01*.
 The result is that any info severity event messages from Spine-01 are
-filtered to the *pd-netq-events* ** channel.
+filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
@@ -1538,6 +1775,7 @@ svcStatus       new_status       down
 switchLeaf04    hostname         leaf04
 swp52           port             swp52
 sysconf         configdiff       updated
+
 cumulus@switch:~$ netq show notification filter
 Matching config_notify records:
 Name            Order      Severity         Channels         Rules
@@ -1551,15 +1789,12 @@ configChange    4          info             slk-netq-events  sysconf
 svcDown         5          critical         slk-netq-events  svcStatus
 critTemp        6          critical         pd-netq-events   switchLeaf
                                                              04
-                                                             overTemp                                                
+                                                             overTemp
 ```
 
 ### View Notification Configurations in JSON Format
 
-You can view configured integrations using the `netq show notification`
-commands. To view the channels, filters, and rules, run the three
-flavors of the command. Include the `json` option to display
-JSON-formatted output.
+You can view configured integrations using the `netq show notification` commands. To view the channels, filters, and rules, run the three flavors of the command. Include the `json` option to display JSON-formatted output.
 
 For example:
 
@@ -1668,9 +1903,7 @@ You might need to modify event notification configurations at some point in the 
 
 ### Remove an Event Notification Channel
 
-You can delete an event notification integration using the `netq config
-del notification` command. You can verify it has been removed using the
-related `show` command.
+You can delete an event notification integration using the `netq config del notification` command. You can verify it has been removed using the related `show` command.
 
 For example, to remove a Slack integration and verify it is no longer in
 the configuration:
@@ -1685,8 +1918,7 @@ the configuration:
 
 ### Delete an Event Notification Rule
 
-To delete a rule, use the following command, then verify it has been
-removed:
+To delete a rule, use the following command, then verify it has been removed:
 
     cumulus@switch:~$ netq del notification rule swp52
     cumulus@switch:~$ netq show notification rule
@@ -1702,8 +1934,7 @@ removed:
 
 ### Delete an Event Notification Filter
 
-To delete a filter, use the following command, then verify it has been
-removed:
+To delete a filter, use the following command, then verify it has been removed:
 
     cumulus@switch:~$ netq del notification filter bgpSpine
     cumulus@switch:~$ netq show notification filter
@@ -1718,6 +1949,15 @@ removed:
     critTemp        5          critical         pd-netq-events   switchLeaf
                                                                  04
                                                                  overTemp
+
+### Delete an Event Notification Proxy
+
+You can remove the proxy server by running the `netq del notification proxy` command. This changes the NetQ behavior to send events directly to the notification channels.
+
+```
+cumulus@switch:~$ netq del notification proxy
+Successfully overwrote notifier proxy to null
+```
 
 ## Configure Threshold-based Event Notifications
 

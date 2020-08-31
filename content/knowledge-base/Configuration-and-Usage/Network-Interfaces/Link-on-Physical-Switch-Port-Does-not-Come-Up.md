@@ -28,7 +28,7 @@ Until you install a valid Cumulus Linux license, none of the physical switch por
     $ sudo cl-license
     No license installed!
 
-Please [read this article](/hc/en-us/articles/201787536) <!-- Physical Ports Missing from "ip link show" Output - switchd Failure --> for additional details on how to address this.
+Please {{<link url="Physical-Ports-Missing-from-ip-link-show-Output-switchd-Failure" text="read this article">}} for additional details on how to address this.
 
 ### Bring the Link Up with ip link set
 
@@ -52,7 +52,7 @@ If the physical switch port is shown as DOWN instead of UP, configure the interf
     5: swp3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc pfifo_fast master vlan5 state UP mode DEFAULT qlen 500 
         link/ether c4:54:44:4f:ab:00 brd ff:ff:ff:ff:ff:ff
 
-To make this persistent after reboot so the port is up, define the swp in the `/etc/network/interfaces` file (using `net add interface swp3 link up`); you can also automate this with Mako, as documented in [this article](/hc/en-us/articles/202868023). <!--  Configuring /etc/network/interfaces with Mako or just link here - https://docs.cumulusnetworks.com/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/#mako-templates -->
+To make this persistent after reboot so the port is up, define the swp in the `/etc/network/interfaces` file (using `net add interface swp3 link up`); you can also automate this with Mako, as documented in {{<link url="Configure-the-interfaces-File-with-Mako" text="this article">}}.
 
     cumulus@switch$ net add interface swp3 link up
     cumulus@switch$ net commit
@@ -97,9 +97,8 @@ Note that if the interface name starts with swp and ends with \_sX, where X is a
     port_init_autoneg_xe34=0
     serdes_if_type_xe34=9
 
-Please read the following article for more details on how to configure the physical switch port attributes:
-
-{{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/" text="Switch Port Attributes">}}
+Please {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes/" text="Switch Port Attributes">}}
+ for more details on how to configure the physical switch port attributes.
 
 ### Validate Hardware Settings with ethtool
 
@@ -109,9 +108,7 @@ The `ethtool` command enables you to query or control the network driver and har
 
     cumulus@switch$ sudo ethtool -m swp1
 
-Please read the following article for more details on `ethtool`:
-
-{{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool/" text="Monitoring Interfaces and Transceivers Using ethtool">}}
+Please read {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Monitoring-and-Troubleshooting/Troubleshooting-Network-Interfaces/Monitoring-Interfaces-and-Transceivers-Using-ethtool/" text="Monitoring Interfaces and Transceivers Using ethtool">}} for more details on `ethtool`.
 
 ### Force the Interface Configurations to Be Pushed to Hardware
 

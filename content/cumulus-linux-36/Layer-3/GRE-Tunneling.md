@@ -4,12 +4,12 @@ author: Cumulus Networks
 weight: 195
 pageID: 8362432
 ---
+
 {{%notice warning%}}
 
 **Early Access Feature**
 
-GRE Tunneling is an [early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
-in Cumulus Linux 3.6.
+GRE Tunneling is an [early access feature](https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/) in Cumulus Linux 3.6.
 
 {{%/notice%}}
 

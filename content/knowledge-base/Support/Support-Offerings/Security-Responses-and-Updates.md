@@ -1,7 +1,7 @@
 ---
 title: Security Responses and Updates
 author: Cumulus Networks
-weight: 710
+weight: 705
 toc: 4
 ---
 

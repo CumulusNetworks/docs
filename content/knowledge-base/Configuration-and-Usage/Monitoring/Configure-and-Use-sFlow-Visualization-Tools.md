@@ -28,7 +28,7 @@ Two free, very simple open source collectors are {{<exlink url="https://www.wire
 
 Due to the high volume of traffic passing through most switches, a more human readable format is often preferred. Graphs also provide excellent visibility.
 
-Many organizations have existing systems to monitor servers. One of these, {{<exlink url="/hc/en-us/articles/202539668-Ganglia-on-Cumulus-Linux" text="Ganglia">}}, can directly ingest sFlow counter samples and display switch metrics directly. {{<exlink url="http://graphite.wikidot.com/" text="Graphite">}}, another popular tool for visualizing system data, can display sFlow data with the {{<exlink url="https://code.google.com/p/sflow2graphite/" text="sflow2graphite script">}}.
+Many organizations have existing systems to monitor servers. One of these, {{<link url="Use-Ganglia-with-Cumulus-Linux/" text="Ganglia">}}, can directly ingest sFlow counter samples and display switch metrics directly. {{<exlink url="http://graphite.wikidot.com/" text="Graphite">}}, another popular tool for visualizing system data, can display sFlow data with the {{<exlink url="https://code.google.com/p/sflow2graphite/" text="sflow2graphite script">}}.
 
 Tools that specialize in network traffic also exist for sFlow. These tools can also ingest netflow data, for compatibility with any network gear which does not yet support sFlow. These tools also will show more network specific information such as flow data. Two popular open source projects are {{<exlink url="http://www.pmacct.net/" text="pmacct">}} and {{<exlink url="http://nfsen.sourceforge.net/" text="NfSen">}} (described in more detail below).
 

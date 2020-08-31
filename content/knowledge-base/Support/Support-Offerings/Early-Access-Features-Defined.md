@@ -1,7 +1,7 @@
 ---
 title: Early Access Features Defined
 author: Cumulus Networks
-weight: 705
+weight: 709
 toc: 4
 ---
 

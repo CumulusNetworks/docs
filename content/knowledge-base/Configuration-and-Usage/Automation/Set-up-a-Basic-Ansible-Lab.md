@@ -1,12 +1,11 @@
 ---
 title: Set up a Basic Ansible Lab
 author: Cumulus Networks
-weight: 333
+weight: 321
 toc: 4
 ---
 
-This article outlines the process for managing a switch using Ansible in a lab environment. This example is showing off Ansible's [ad-hoc commands](http://docs.ansible.com/intro_adhoc.html). For repeated tasks,
-use an Ansible playbook; like this [easy playbook example](/hc/en-us/articles/205014637-Ansible-Simple-Playbook-Example-with-a-Quagga-Template).
+This article outlines the process for managing a switch using Ansible in a lab environment. This example is showing off Ansible's {{<exlink url="http://docs.ansible.com/intro_adhoc.html" text="ad-hoc commands">}}. For repeated tasks, use an Ansible playbook; like this {{<link url="Ansible-Simple-Playbook-Example-with-an-FRR-Template" text="easy playbook example">}}.
 
 ## Requirements
 

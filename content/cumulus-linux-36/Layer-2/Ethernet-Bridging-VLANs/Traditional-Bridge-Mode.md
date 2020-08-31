@@ -260,5 +260,5 @@ removal from the Linux kernel, and thus before it would be removed from
 the hardware forwarding.
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes). You can
-change this setting by following the procedures outlined in this
-[knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/202012933).
+change this setting by following the procedures outlined in
+[the ARP chapter](https://docs.cumulusnetworks.com/cumulus-linux-42/Layer-3/Address-Resolution-Protocol-ARP/).

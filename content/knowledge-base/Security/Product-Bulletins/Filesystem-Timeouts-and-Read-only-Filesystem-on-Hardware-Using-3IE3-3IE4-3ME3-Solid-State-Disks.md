@@ -89,7 +89,6 @@ The `cumulus-trim` package does the following if it detects a drive that require
     <span class="comment-actions"> <span class="dropdown">
     <span class="dropdown-toggle" data-aria-label="Comment actions" data-aria-haspopup="true">Comment
     actions</span> <span class="dropdown-menu" data-role="menu">
-    [Permalink](https://support.cumulusnetworks.com/hc/en-us/articles/360019258193/comments/360002355193)
     </span> </span>
     </span>
     
@@ -100,12 +99,6 @@ The `cumulus-trim` package does the following if it detects a drive that require
 - 
     
     <div id="comment_360002400654">
-    
-    <div class="comment-avatar comment-avatar-agent">
-    
-    ![Avatar](https://support.cumulusnetworks.com/system/photos/0001/1366/9073/profilepic.jpg)
-    
-    </div>
     
     <div class="comment-container">
     
@@ -127,7 +120,6 @@ The `cumulus-trim` package does the following if it detects a drive that require
     <span class="comment-actions"> <span class="dropdown">
     <span class="dropdown-toggle" data-aria-label="Comment actions" data-aria-haspopup="true">Comment
     actions</span> <span class="dropdown-menu" data-role="menu">
-    [Permalink](https://support.cumulusnetworks.com/hc/en-us/articles/360019258193/comments/360002400654)
     </span> </span>
     </span>
     
@@ -160,7 +152,6 @@ The `cumulus-trim` package does the following if it detects a drive that require
     <span class="comment-actions"> <span class="dropdown">
     <span class="dropdown-toggle" data-aria-label="Comment actions" data-aria-haspopup="true">Comment
     actions</span> <span class="dropdown-menu" data-role="menu">
-    [Permalink](https://support.cumulusnetworks.com/hc/en-us/articles/360019258193/comments/360003342194)
     </span> </span>
     </span>
     
@@ -200,7 +191,6 @@ The `cumulus-trim` package does the following if it detects a drive that require
     <span class="comment-actions"> <span class="dropdown">
     <span class="dropdown-toggle" data-aria-label="Comment actions" data-aria-haspopup="true">Comment
     actions</span> <span class="dropdown-menu" data-role="menu">
-    [Permalink](https://support.cumulusnetworks.com/hc/en-us/articles/360019258193/comments/360003337953)
     </span> </span>
     </span>
     
@@ -242,7 +232,6 @@ The `cumulus-trim` package does the following if it detects a drive that require
     <span class="comment-actions"> <span class="dropdown">
     <span class="dropdown-toggle" data-aria-label="Comment actions" data-aria-haspopup="true">Comment
     actions</span> <span class="dropdown-menu" data-role="menu">
-    [Permalink](https://support.cumulusnetworks.com/hc/en-us/articles/360019258193/comments/360003337993)
     </span> </span>
 </span>
     

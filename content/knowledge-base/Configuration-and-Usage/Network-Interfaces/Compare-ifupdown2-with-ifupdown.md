@@ -631,4 +631,4 @@ iface bond0
 
 ## See Also
 
-[Configuring /etc/network/interfaces with Mako](/hc/en-us/articles/202868023-Configuring-etc-network-interfaces-with-Mako)
+{{<link url="Configure-the-interfaces-File-with-Mako">}}

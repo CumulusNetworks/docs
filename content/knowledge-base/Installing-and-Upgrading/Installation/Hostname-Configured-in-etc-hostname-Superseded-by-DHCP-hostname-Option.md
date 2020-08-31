@@ -1,7 +1,7 @@
 ---
 title: Hostname Configured in hostname File Is Superseded by the DHCP hostname Option
 author: Cumulus Networks
-weight: 26
+weight: 251
 toc: 4
 ---
 

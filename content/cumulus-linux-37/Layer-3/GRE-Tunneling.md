@@ -6,7 +6,7 @@ pageID: 8362966
 ---
 {{%notice warning%}}
 
-GRE tunneling is an {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202933878" text="early access feature">}}.
+GRE tunneling is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
 
 {{%/notice%}}
 

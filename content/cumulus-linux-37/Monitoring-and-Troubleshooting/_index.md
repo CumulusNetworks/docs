@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: 25
 pageID: 8362592
 ---
+
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 
 ## Serial Console
@@ -31,20 +32,19 @@ You must reboot the switch for the `baudrate` change to take effect.
 
 The valid values for `baudrate` are:
 
-  - 300
-  - 600
-  - 1200
-  - 2400
-  - 4800
-  - 9600
-  - 19200
-  - 38400
-  - 115200
+- 300
+- 600
+- 1200
+- 2400
+- 4800
+- 9600
+- 19200
+- 38400
+- 115200
 
 ### Configure the Serial Console on x86 Switches
 
-On x86 switches, you configure serial console baud rate by editing
-`grub`.
+On x86 switches, you configure serial console baud rate by editing `grub`.
 
 {{%notice warning%}}
 
@@ -56,15 +56,15 @@ before implementation.
 
 The valid values for the baud rate are:
 
-  - 300
-  - 600
-  - 1200
-  - 2400
-  - 4800
-  - 9600
-  - 19200
-  - 38400
-  - 115200
+- 300
+- 600
+- 1200
+- 2400
+- 4800
+- 9600
+- 19200
+- 38400
+- 115200
 
 To change the serial console baud rate:
 
@@ -73,21 +73,15 @@ To change the serial console baud rate:
     a valid value specified above in the `--speed` variable in the first
     line and in the `console` variable in the second line:
 
-```
-    GRUB_SERIAL_COMMAND="serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1"
-    GRUB_CMDLINE_LINUX="console=ttyS1,115200n8 cl_platform=accton_as5712_54x"
-```
+        GRUB_SERIAL_COMMAND="serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1"
+        GRUB_CMDLINE_LINUX="console=ttyS1,115200n8 cl_platform=accton_as5712_54x"
 
 2.  After you save your changes to the grub configuration, type the
     following at the command prompt:
-```
-    cumulus@switch:~$ update-grub
-```
 
-3.  If you plan on accessing the switch BIOS over the serial console,
-    you need to update the baud rate in the switch BIOS. For more
-    information, see this
-    {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/203884473" text="knowledge base article">}}.
+        cumulus@switch:~$ update-grub
+
+3.  If you plan on accessing the switch BIOS over the serial console, you need to update the baud rate in the switch BIOS. For more information, see this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Accessing-the-BIOS-on-an-x86-Switch" text="this knowledge base article">}}.
 
 4.  Reboot the switch.
 

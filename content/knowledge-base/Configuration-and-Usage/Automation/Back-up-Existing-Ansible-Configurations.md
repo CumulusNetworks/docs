@@ -1,7 +1,7 @@
 ---
-title: Ansible Back up Existing Configurations
+title: Back up Existing Ansible Configurations
 author: Cumulus Networks
-weight: 332
+weight: 323
 toc: 4
 ---
 
@@ -174,7 +174,7 @@ generic folder called save by using:
 
     {{ansible_date_time.time}}
 
-You can find more information on which facts Ansible gathers by reading {{<exlink url="/hc/en-us/articles/202025106-Ansible-Gathering-Facts-on-Cumulus-Linux" text="this KB article">}}.
+You can find more information on which facts Ansible gathers by reading {{<link url="Gathering-Ansible-Facts-on-Cumulus-Linux" text="this article">}}.
 
 <!-- Comments
 

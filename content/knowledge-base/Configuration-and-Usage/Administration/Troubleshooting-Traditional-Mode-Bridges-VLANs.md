@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting Traditional Mode Bridges - VLANs
 author: Cumulus Networks
-weight: 32
+weight: 315
 toc: 4
 ---
 

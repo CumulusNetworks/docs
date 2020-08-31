@@ -1,7 +1,7 @@
 ---
 title: Monitor Interface Administrative State and Physical State on Cumulus Linux
 author: Cumulus Networks
-weight: 352
+weight: 353
 toc: 4
 ---
 

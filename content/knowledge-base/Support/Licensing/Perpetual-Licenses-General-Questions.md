@@ -67,9 +67,9 @@ Please click the following link to view {{<exlink url="http://cumulusnetworks.co
 
 - **New license with a Software Updates and Support contract:** Upon purchase, you have 45 days to activate your license and Software Updates and Support contract through the {{<exlink url="https://cumulusnetworks.com/landing/" text="Cumulus Networks Customer Portal">}}. The date when you activate your contract is the start date. If not activated before 45 days, your contract will automatically activate on the 45th day after purchase.
 
-    If you procured your license through Dell, your contract will start within 2 business days after you claim your license from our portal. See the {{<exlink url="/hc/en-us/articles/203667748-Dell-Customers-Questions" text="Dell ordering process">}}.
+    If you procured your license through Dell, your contract will start within 2 business days after you claim your license from our portal.
 - **Renewal:** Renewals start on the last active date of the contract, regardless of when the renewal is purchased. For example, your Cumulus Linux 10G 1 year support contract starts on 2/2/2016 and expires on 2/2/2017. Its renewal will start on 2/2/2017.
-- **Co-term:** Co-terminable contract start on the last active date of the contract, the same asÂ renewals. For more information on co-terms, read {{<exlink url="/hc/en-us/articles/204429267#howcoterm" text="this FAQ">}}.
+- **Co-term:** Co-terminable contract start on the last active date of the contract, the same as renewals. For more information on co-terms, contact your account team.
 
 ## What happens when the Software Updates and Support contract expires?
 

@@ -1,7 +1,7 @@
 ---
 title: Ansible Simple Playbook Example with an FRR Template
 author: Cumulus Networks
-weight: 331
+weight: 325
 toc: 4
 ---
 
@@ -121,5 +121,5 @@ fail.
 
 ## Related Information
 
-- {{<exlink url="/hc/en-us/articles/201955173-Setting-up-a-Basic-Ansible-Lab" text="Setting up a Basic Ansible Lab">}}
-- {{<exlink url="/hc/en-us/articles/202025106-Ansible-Gathering-Facts-on-Cumulus-Linux" text="Ansible: Gathering Facts on Cumulus Linux">}}
+- {{<link url="Set-up-a-Basic-Ansible-Lab">}}
+- {{<link url="Gathering-Ansible-Facts-on-Cumulus-Linux">}}

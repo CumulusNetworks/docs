@@ -204,7 +204,7 @@ ARGS="-q -f -u10 -d10 -w -I"
 SUSPEND_ACTION="stop"
 ```
 
-For full instructions on installing `ifplugd` on Ubuntu, {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204473717" text="follow this guide">}}.
+For full instructions on installing `ifplugd` on Ubuntu, {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Using-ifplugd-on-a-Server-Host" text="follow this guide">}}.
 
 ## Known Limitations
 

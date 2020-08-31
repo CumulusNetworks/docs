@@ -1,7 +1,7 @@
 ---
 title: RX Error Counters and Slow Throughput Performance
 author: Cumulus Networks
-weight: 353
+weight: 357
 toc: 4
 ---
 
@@ -15,10 +15,7 @@ error counters may be seen in the output of different commands:
 - `ip -s link show`
 - `ethtool -S`
 
-If you want to monitor the output of these commands to see
-the statistics live as they change, use the linux `watch` command. For
-more information on using this command, please refer to the following
-[article](/hc/en-us/articles/204349348).
+If you want to monitor the output of these commands to see the statistics live as they change, use the Linux `watch` command. For more information on using this command, please refer to the following {{<link url="Using-the-watch-Command" text="article">}}.
 
 ### cl-netstat Shows RX\_ERR
 

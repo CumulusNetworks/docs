@@ -532,4 +532,4 @@ there may be problems with packet forwarding through the switch. Here
 are some previously written articles that address this scenario:
 
 - {{<link title="RX Error Counters and Slow Throughput Performance">}}
-- {{<exlink url="/hc/en-us/articles/203605283" text="Understanding CPU Usage on Cumulus Linux">}}
+- {{<link url="Understanding-CPU-Usage-on-Cumulus-Linux">}}

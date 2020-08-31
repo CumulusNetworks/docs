@@ -1,7 +1,7 @@
 ---
 title: Cumulus Networks Repositories - Organization and Support Levels
 author: Cumulus Networks
-weight: 706
+weight: 711
 toc: 4
 ---
 
@@ -134,7 +134,7 @@ Community-contributed packages.</p>
 </tbody>
 </table>
 
-\* For more information on Cumulus Linux versioning, please refer to the [Cumulus Linux Release Versioning and Support Policy](/hc/en-us/articles/217132357).
+\* For more information on Cumulus Linux versioning, please refer to {{<link url="Cumulus-Linux-Release-Versioning-and-Support-Policy">}}.
 
 \*\* In development. Does not contain packages as of the Cumulus Linux 3.0 initial release.
 

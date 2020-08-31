@@ -181,13 +181,10 @@ We can also see that while swp10-13 do not have any traffic running across them,
 
 {{<img src="/images/knowledge-base/ganglia-swp45.png">}}
 
-## Related Links
-
-{{<exlink url="https://github.com/ganglia/gmond_python_modules/tree/master/network/iface/python_modules" text="Ganglia multi_interface module">}}
-
 ## See Also
 
-{{<link url="Set-up-a-Basic-Ansible-Lab/">}}
+- {{<exlink url="https://github.com/ganglia/gmond_python_modules/tree/master/network/iface/python_modules" text="Ganglia multi_interface module">}}
+- {{<link url="Set-up-a-Basic-Ansible-Lab/">}}
 
 <!-- 
 ## Comments

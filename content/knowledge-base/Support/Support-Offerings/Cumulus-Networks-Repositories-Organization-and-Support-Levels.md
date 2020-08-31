@@ -204,5 +204,5 @@ To access packages from the repository server, you simply follow Debian conventi
 
 ## Additional Reading
 
-- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-42/Installation-Management/Adding-and-Updating-Packages/#add-new-packages" text="Cumulus Linux User Guide: How to install packages using apt-get">}}
-- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-42/Installation-Management/Adding-and-Updating-Packages/#add-packages-from-another-repository" text="Cumulus Linux User Guide: How to enable third party repositories">}}
+- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Adding-and-Updating-Packages/#add-new-packages" text="Cumulus Linux User Guide: How to install packages using apt-get">}}
+- {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Installation-Management/Adding-and-Updating-Packages/#add-packages-from-another-repository" text="Cumulus Linux User Guide: How to enable third party repositories">}}

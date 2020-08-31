@@ -14,7 +14,7 @@ This type of model can be beneficial for:
 - Reverting quickly back to a snapshot
 - Providing an introduction to automation
 
-{{<img src="/images/knowledge-base/Ansible-fetch-copy.png">}}
+{{<img src="/images/knowledge-base/Ansible-fetch-copy.png" width="600px">}}
 
 ## Requirements
 

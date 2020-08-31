@@ -113,7 +113,7 @@ uplink                  105   uplink
 
 ### Reserved MAC Address Range
 
-To prevent MAC address conflicts with other interfaces in the same bridged network, Cumulus Networks has {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/203837076" text="reserved a range of MAC addresses">}} specifically to use with MLAG. This range of MAC addresses is 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff.
+To prevent MAC address conflicts with other interfaces in the same bridged network, Cumulus Networks has reserved a range of MAC addresses specifically to use with MLAG. This range of MAC addresses is 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff.
 
 Cumulus Networks recommends you use this range of MAC addresses when configuring MLAG.
 
@@ -946,7 +946,7 @@ iface br0.100
 ...
 ```
 
-For a deeper comparison of traditional versus VLAN-aware bridge modes, read this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/204909397" text="knowledge base article">}}.
+For a deeper comparison of traditional versus VLAN-aware bridge modes, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="knowledge base article">}}.
 
 ## Peer Link Interfaces and the protodown State
 
@@ -1287,7 +1287,7 @@ cumulus@switch:~$ net commit
 
 {{%notice tip%}}
 
-Be aware of an existing issue when you use NCLU to create an iBGP peering, it creates an eBGP peering instead. For more information, see {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360007793174-Cumulus-Linux-3-7-Release-Notes#RN1222" text="release note 1222">}}.
+Be aware of an existing issue when you use NCLU to create an iBGP peering, it creates an eBGP peering instead. For more information, see {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-37/Whats-New/rn/#CM-23417" text="this release note">}}.
 
 {{%/notice%}}
 
@@ -1425,8 +1425,7 @@ Scaling this example out to a full rack, when planning for link failures, you ne
 
 ### Failover Redundancy Scenarios
 
-To get a better understanding of how STP and LACP behave in response to various failover redundancy scenarios, read 
-{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/217942577-Understanding-MLAG-Redundancy-Scenarios" text="this knowledge base article">}}.
+To get a better understanding of how STP and LACP behave in response to various failover redundancy scenarios, read {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="this knowledge base article">}}.
 
 ## STP Interoperability with MLAG
 

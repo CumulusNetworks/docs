@@ -629,7 +629,7 @@ Spanning tree parameters are defined in the IEEE
 
 The table below describes the STP configuration parameters available in
 Cumulus Linux. For a comparison of STP parameter configuration between
-`mstpctl` and other vendors, read this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/206908397" text="knowledge base article">}}.
+`mstpctl` and other vendors, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Demos-and-Training/Interoperability/Cumulus-Linux-vs-Cisco-IOS-Spanning-Tree-Protocol/" text="knowledge base article">}}.
 
 {{%notice note%}}
 

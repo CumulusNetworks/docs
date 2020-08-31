@@ -13,8 +13,7 @@ Cumulus Networks recommends that you deploy, provision, configure, and upgrade s
 
 {{%notice tip%}}
 
-Be sure to read the knowledge base article 
-{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360010451353" text="Upgrades: Network Device and Linux Host Worldview Comparison" >}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
+Be sure to read the knowledge base article {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}, which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
 
 {{%/notice%}}
 
@@ -237,7 +236,7 @@ After you upgrade using a full disk image install, you need to reinstall any thi
 
 ## Related Information
 
-- {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360010451353" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}
+- {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison/" text="Upgrades: Network Device Worldview and Linux Host Worldview Comparison">}}
 - {{<exlink url="https://cumulusnetworks.com/solutions/automation/" text="Automation Solutions">}}
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<link title="Multi-Chassis Link Aggregation - MLAG">}}

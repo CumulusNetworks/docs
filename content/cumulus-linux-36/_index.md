@@ -77,9 +77,9 @@ improvements:
       - [Filter EVPN routes based on type](/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#filtering-evpn-routes-based-on-type)
       - [Control which RIB routes are injected into EVPN](/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#controlling-which-rib-routes-are-injected-into-evpn)
 
-For information on bug fixes and known issues present in this release,
+<!-- For information on bug fixes and known issues present in this release,
 refer to the
-[product release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003039873-Cumulus-Linux-3-6-Release-Notes).
+[product release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003039873-Cumulus-Linux-3-6-Release-Notes). -->
 
 ## Open Source Contributions
 

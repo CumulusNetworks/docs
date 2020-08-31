@@ -302,18 +302,11 @@ uplink                  200   uplink
 
 ### Reserved MAC Address Range
 
-To prevent MAC address conflicts with other interfaces in the same
-bridged network, Cumulus Networks has 
-[reserved a range of MAC addresses](https://support.cumulusnetworks.com/hc/en-us/articles/203837076)
-specifically to use with MLAG. This range of MAC addresses is
-44:38:39:ff:00:00 to 44:38:39:ff:ff:ff.
+To prevent MAC address conflicts with other interfaces in the same bridged network, Cumulus Networks has reserved a range of MAC addresses specifically to use with MLAG. This range of MAC addresses is 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff.
 
-Cumulus Networks recommends you use this range of MAC addresses when
-configuring MLAG.
+Cumulus Networks recommends you use this range of MAC addresses when configuring MLAG.
 
 {{%notice note%}}
-
-**Important**
 
 You cannot use the same MAC address for different MLAG pairs. Make sure
 you specify a different `clag sys-mac` setting for each MLAG pair in the
@@ -1114,7 +1107,7 @@ link:
       bridge-stp on
 
 For a deeper comparison of traditional versus VLAN-aware bridge modes,
-read this [knowledge base article](https://support.cumulusnetworks.com/hc/en-us/articles/204909397).
+read this [knowledge base article](https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/).
 
 ## Peer Link Interfaces and the protodown State
 

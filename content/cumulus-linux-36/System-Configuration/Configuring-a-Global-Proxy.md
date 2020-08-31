@@ -70,4 +70,4 @@ proxy is set up correctly:
 
 ## Related Information
 
-  - [Setting up an apt package cache](https://support.cumulusnetworks.com/hc/en-us/articles/232058388-Setting-up-an-apt-Package-Cache)
+{{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Set-up-an-apt-Package-Cache" text="Set up an apt package cache">}}

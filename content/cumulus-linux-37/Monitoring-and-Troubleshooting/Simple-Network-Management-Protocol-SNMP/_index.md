@@ -797,8 +797,8 @@ of authentication and encryption:
     cumulus@switch:~$ net add snmp-server username user666 auth-sha user666password encrypt-aes user666encryption
     cumulus@switch:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
     cumulus@switch:~$ net add snmp-server username user1 auth-none oid 1.3.6.1.2.1
-    cumulus@switch:~$ net add snmp-server username user1 auth-none oid system 
-    cumulus@switch:~$ net add snmp-server username user2 auth-md5 test1234 view testview  oid 1.3.6.1.2.1
+    cumulus@switch:~$ net add snmp-server username user1 auth-none oid system
+    cumulus@switch:~$ net add snmp-server username user2 auth-md5 test1234 view testview oid 1.3.6.1.2.1
     cumulus@switch:~$ net add snmp-server username user3 auth-sha testshax encrypt-aes testaesx oid 1.3.6.1.2.1
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
@@ -1415,7 +1415,7 @@ for them. The overall Cumulus Linux MIB is defined in the
 </tr>
 <tr>
 <td><p><a href="https://cumulusnetworks.com/static/mibs/CUMULUS-SNMP-MIB.txt">CUMULUS-SNMP-MIB</a></p></td>
-<td><p>SNMP counters. For information on exposing CPU and memory information with SNMP, see this <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203922988">knowledge base article</a>.</p></td>
+<td><p>SNMP counters. For information on exposing CPU and memory information with SNMP, see this <a href="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Monitoring/Expose-CPU-and-Memory-Information-via-SNMP/">knowledge base article</a>.</p></td>
 </tr>
 <tr>
 <td><p><a href="https://cumulusnetworks.com/static/mibs/DISMAN-EVENT-MIB.txt">DISMAN-EVENT-MIB</a></p></td>
@@ -1479,10 +1479,6 @@ SNMPDOPTS=&#39;-y -LS 0-4 d -Lf /dev/null -u snmp -g snmp -I -smux -p /run/snmpd
 <tr>
 <td><p><a href="https://cumulusnetworks.com/static/mibs/NET-SNMP-AGENT-MIB.txt">NET-SNMP-AGENT-MIB</a></p></td>
 <td><p>Agent timers, user, group config</p></td>
-</tr>
-<tr>
-<td><p><a href="https://cumulusnetworks.com/static/mibs/NET-SNMP-EXTEND-MIB.txt">NET-SNMP-EXTEND-MIB</a></p></td>
-<td><p>See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/204507848">this knowledge base article</a> on extending NET-SNMP in Cumulus Linux to include data from power supplies, fans, and temperature sensors.</p></td>
 </tr>
 <tr>
 <td><p><a href="https://cumulusnetworks.com/static/mibs/NET-SNMP-VACM-MIB.txt">NET-SNMP-VACM-MIB</a></p></td>

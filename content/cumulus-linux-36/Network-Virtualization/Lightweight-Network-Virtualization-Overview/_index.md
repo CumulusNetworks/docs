@@ -19,7 +19,7 @@ background information,
 {{%notice note%}}
 
 LNV is a lightweight controller option. 
-[Contact Cumulus Networks](https://support.cumulusnetworks.com/hc/en-us/requests/new)
+[Contact NVIDIA Cumulus Networks](https://support.mellanox.com/s/contact-support-page)
 with your scale requirements so we can make sure this is the right fit
 for you. There are also other controller options that can work on
 Cumulus Linux.

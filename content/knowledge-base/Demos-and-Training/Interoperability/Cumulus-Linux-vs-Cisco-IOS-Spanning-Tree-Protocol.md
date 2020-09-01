@@ -23,9 +23,9 @@ You can find the Cisco Configuration Guide used to interpret their commands {{<e
 </colgroup>
 <tbody>
 <tr>
-<td><strong>Cumulus Linux</strong></td>
-<td><strong>Cisco Systems IOS</strong></td>
-<td><strong>Description</strong></td>
+<th>Cumulus Linux</th>
+<th>Cisco Systems IOS</th>
+<th>Description</th>
 </tr>
 <tr>
 <td><pre><code>net add bridge stp maxage 20</code></pre>

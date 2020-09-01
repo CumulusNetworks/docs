@@ -1,5 +1,5 @@
 ---
-title: Integrate NetQ with Notification Applications
+title: Configure Notifications
 author: Cumulus Networks
 weight: 670
 toc: 3
@@ -1899,56 +1899,119 @@ For example:
 
 ## Manage NetQ Event Notification Integrations
 
-You might need to modify event notification configurations at some point in the lifecycle of your deployment.
+You might need to modify event notification configurations at some point in the lifecycle of your deployment. You can add and remove channels, rules, filters, and a proxy at any time.
+
+For integrations with threshold-based event notifications, refer to {{<link title="Manage Threshold-based Event Notifications">}}.
 
 ### Remove an Event Notification Channel
 
-You can delete an event notification integration using the `netq config del notification` command. You can verify it has been removed using the related `show` command.
+If you retire selected channels from a given notification appliacation, you might want to remove them from NetQ as well. You can remove channels using the NetQ UI or the NetQ CLI.
 
-For example, to remove a Slack integration and verify it is no longer in
+{{< tabs "TabID1908" >}}
+
+{{< tab "NetQ UI" >}}
+
+To remove notification channels:
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+
+    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+
+<div style="padding-left: 18px;">This opens the Channels view.</div>
+
+    {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
+
+2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, Syslog, Email).
+
+3. Select one or more channels.
+
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To remove notification channels, run:
+
+```
+netq config del notification channel <text-channel-name-anchor>
+```
+
+This example removes a Slack integration and verifies it is no longer in
 the configuration:
 
-    cumulus@switch:~$ netq del notification channel slk-netq-events
-    cumulus@switch:~$ netq show notification channel
-    Matching config_notify records:
-    Name            Type             Severity         Channel Info
-    --------------- ---------------- ---------------- ------------------------
-    pd-netq-events  pagerduty        info             integration-key: 1234567
-                                                      890
+```
+cumulus@switch:~$ netq del notification channel slk-netq-events
+
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+pd-netq-events  pagerduty        info             integration-key: 1234567
+                                                    890
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Delete an Event Notification Rule
 
-To delete a rule, use the following command, then verify it has been removed:
+You may find after some experience with a given rule that you want to edit or remove the rule to better meet your needs. You can remove rules using the NetQ CLI.
 
-    cumulus@switch:~$ netq del notification rule swp52
-    cumulus@switch:~$ netq show notification rule
-    Matching config_notify records:
-    Name            Rule Key         Rule Value
-    --------------- ---------------- --------------------
-    bgpHostname     hostname         spine-01
-    evpnVni         vni              42
-    overTemp        new_s_crit       24
-    svcStatus       new_status       down
-    switchLeaf04    hostname         leaf04
-    sysconf         configdiff       updated
+To remove notification rules, run:
+
+```
+netq config del notification rule <text-rule-name-anchor>
+```
+
+This example removes a rule named *swp52* and verifies it is no longer in
+the configuration:
+
+```
+cumulus@switch:~$ netq del notification rule swp52
+
+cumulus@switch:~$ netq show notification rule
+Matching config_notify records:
+Name            Rule Key         Rule Value
+--------------- ---------------- --------------------
+bgpHostname     hostname         spine-01
+evpnVni         vni              42
+overTemp        new_s_crit       24
+svcStatus       new_status       down
+switchLeaf04    hostname         leaf04
+sysconf         configdiff       updated
+```
 
 ### Delete an Event Notification Filter
 
-To delete a filter, use the following command, then verify it has been removed:
+You may find after some experience with a given filter that you want to edit or remove the filter to better meet your current needs. You can remove filters using the NetQ CLI.
 
-    cumulus@switch:~$ netq del notification filter bgpSpine
-    cumulus@switch:~$ netq show notification filter
-    Matching config_notify records:
-    Name            Order      Severity         Channels         Rules
-    --------------- ---------- ---------------- ---------------- ----------
-    swp52Drop       1          error            NetqDefaultChann swp52
-                                                el
-    vni42           2          warning          pd-netq-events   evpnVni
-    configChange    3          info             slk-netq-events  sysconf
-    svcDown         4          critical         slk-netq-events  svcStatus
-    critTemp        5          critical         pd-netq-events   switchLeaf
-                                                                 04
-                                                                 overTemp
+To remove notification filters, run:
+
+```
+netq del notification filter <text-filter-name-anchor>
+```
+
+This example removes a filter named *bgpSpine* and verifies it is no longer in
+the configuration:
+
+```
+cumulus@switch:~$ netq del notification filter bgpSpine
+
+cumulus@switch:~$ netq show notification filter
+Matching config_notify records:
+Name            Order      Severity         Channels         Rules
+--------------- ---------- ---------------- ---------------- ----------
+swp52Drop       1          error            NetqDefaultChann swp52
+                                            el
+vni42           2          warning          pd-netq-events   evpnVni
+configChange    3          info             slk-netq-events  sysconf
+svcDown         4          critical         slk-netq-events  svcStatus
+critTemp        5          critical         pd-netq-events   switchLeaf
+                                                                04
+                                                                overTemp
+```
 
 ### Delete an Event Notification Proxy
 
@@ -1961,129 +2024,372 @@ Successfully overwrote notifier proxy to null
 
 ## Configure Threshold-based Event Notifications
 
-NetQ supports a set of events that are triggered by crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected interface, utilization,  sensor, forwarding, and ACL events.
+NetQ supports a set of events that are triggered by crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected interface, utilization, sensor, forwarding, ACL and digital optics events.
 
-The simplest configuration you can create is one that sends a TCA event generated by all devices and all interfaces to a single notification application. Use the `netq add tca` command to configure the event. Its syntax is:
-
-```
-netq add tca [event_id <text-event-id-anchor>]  [scope <text-scope-anchor>] [tca_id <text-tca-id-anchor>]  [severity info | severity critical] [is_active true | is_active false] [suppress_until <text-suppress-ts>] [threshold <text-threshold-value> ] [channel <text-channel-name-anchor> | channel drop <text-drop-channel-name>]
-```
-
-A notification configuration must contain one rule. Each rule must contain a scope and a threshold. Optionally, you can specify an associated channel.  *Note: If a rule is not associated with a channel, the event information is only reachable from the database.* If you want to deliver events to one or more notification channels (syslog, Slack, or PagerDuty), create them by following the instructions in {{<link title="#Create Your Channel" text="Create Your Channel">}}, and then return here to define your rule.
+A notification configuration must contain one rule. Each rule must contain a scope and a threshold. Optionally, you can specify an associated channel.  *Note: If a rule is not associated with a channel, the event information is only reachable from the database.* If you want to deliver events to one or more notification channels (Email, syslog, Slack, or PagerDuty), create them by following the instructions in {{<link title="#Create a Channel" text="Create a Channel">}}, and then return here to define your rule.
 
 ### Supported Events
 
 The following events are supported:
 
-| Category | Event ID | Description |
-| ----------- | ---------- | -------------- |
-| Interface Statistics | TCA_RXBROADCAST_UPPER  |  rx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_RXBYTES_UPPER |  rx_bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_RXMULTICAST_UPPER |  rx_multicast per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_TXBROADCAST_UPPER |  tx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_TXBYTES_UPPER     |  tx_bytes per second on a given switch or host is greater than maximum threshold |
-| Interface Statistics | TCA_TXMULTICAST_UPPER |  tx_multicast bytes per second on a given switch or host is greater than maximum threshold |
-| Resource Utilization | TCA_CPU_UTILIZATION_UPPER | CPU utilization (%) on a given switch or host is greater than maximum threshold |
-| Resource Utilization | TCA_DISK_UTILIZATION_UPPER  |  Disk utilization (%) on a given switch or host is greater than maximum threshold |
-| Resource Utilization | TCA_MEMORY_UTILIZATION_UPPER  |  Memory utilization (%) on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_FAN_UPPER  |  Switch sensor reported fan speed on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_POWER_UPPER|  Switch sensor reported power (Watts) on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_TEMPERATURE_UPPER  |  Switch sensor reported temperature (&deg;C) on a given switch or host is greater than maximum threshold |
-| Sensors | TCA_SENSOR_VOLTAGE_UPPER  |  Switch sensor reported voltage (Volts) on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Number of routes on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Number of multicast routes on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_MAC_ENTRIES_UPPER | Number of MAC addresses on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV4_ROUTE_UPPER | Number of IPv4 routes on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV4_HOST_UPPER | Number of IPv4 hosts on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV6_ROUTE_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_IPV6_HOST_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
-| Forwarding Resources | TCA_TCAM_ECMP_NEXTHOPS_UPPER | Number of equal cost multi-path (ECMP) next hop entries on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Number of ingress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Number of egress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Number of ingress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Number of egress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Number of ingress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Number of egress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Number of ingress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Number of egress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Number of ingress ACL 802.1 filters on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Number of ACL port range checkers on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_REGIONS_UPPER | Number of ACL regions on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_ACL_MIRROR_UPPER | Number of ingress ACL mirrors on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_18B_RULES_UPPER | Number of ACL 18B rules on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_32B_RULES_UPPER | Number of ACL 32B rules on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_ACL_54B_RULES_UPPER | Number of ACL 54B rules on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
-| ACL Resources | TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
+{{< tabs "TabID2035" >}}
+
+{{< tab "ACL Resources" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Number of ingress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Number of egress ACL filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Number of ingress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Number of egress ACL mangles for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Number of ingress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Number of egress ACL filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Number of ingress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Number of egress ACL mangles for IPv6 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Number of ingress ACL 802.1 filters on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Number of ACL port range checkers on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_REGIONS_UPPER | Number of ACL regions on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_ACL_MIRROR_UPPER | Number of ingress ACL mirrors on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_18B_RULES_UPPER | Number of ACL 18B rules on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_32B_RULES_UPPER | Number of ACL 32B rules on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ACL_54B_RULES_UPPER | Number of ACL 54B rules on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv4 addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv6 addresses on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< tab "Digital Optics" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_INPUT_POWER_UPPER | Transceiver Input power (mW) for the digital optical module on a given switch or host is greater than maximum threshold |
+| TCA_INPUT_POWER_LOWER | Transceiver Input power (mW) for the digital optical module on a given switch or host is less than minimum threshold |
+| TCA_LASER_BIAS_UPPER | Laser bias current (mA) for the digital optical module on a given switch or host is greater than maximum threshold |
+| TCA_LASER_BIAS_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host is less than minimum threshold |
+| TCA_LASER_OUTPUT_POWER_UPPER | Laser output power (mW) for the digital optical module on a given switch or host is greater than maximum threshold |
+| TCA_LASER_OUTPUT_POWER_LOWER | Laser output power (mW) for the digital optical module on a given switch or host is less than minimum threshold |
+| TCA_MODULE_TEMPERATURE_UPPER | Digital optical module temperature (&deg;C) on a given switch or host is greater than maximum threshold |
+| TCA_MODULE_TEMPERATURE_LOWER | Digital optical module temperature (&deg;C) on a given switch or host is less than minimum threshold |
+| TCA_TRANSCEIVER_VOLTAGE_UPPER | Transceiver voltage (mV) on a given switch or host is greater than maximum threshold |
+| TCA_TRANSCEIVER_VOLTAGE_LOWER | Transceiver voltage (mV) on a given switch or host is less than minimum threshold |
+
+{{< /tab >}}
+
+{{< tab "Forwarding Resources" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Number of routes on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Number of multicast routes on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_MAC_ENTRIES_UPPER | Number of MAC addresses on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IPV4_ROUTE_UPPER | Number of IPv4 routes on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IPV4_HOST_UPPER | Number of IPv4 hosts on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IPV6_ROUTE_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_IPV6_HOST_UPPER | Number of IPv6 hosts on a given switch or host is greater than maximum threshold |
+| TCA_TCAM_ECMP_NEXTHOPS_UPPER | Number of equal cost multi-path (ECMP) next hop entries on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< tab "Interface Statistics" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_RXBROADCAST_UPPER  |  rx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
+| TCA_RXBYTES_UPPER |  rx_bytes per second on a given switch or host is greater than maximum threshold |
+| TCA_RXMULTICAST_UPPER |  rx_multicast per second on a given switch or host is greater than maximum threshold |
+| TCA_TXBROADCAST_UPPER |  tx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
+| TCA_TXBYTES_UPPER     |  tx_bytes per second on a given switch or host is greater than maximum threshold |
+| TCA_TXMULTICAST_UPPER |  tx_multicast bytes per second on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< tab "Resource Utilization" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_CPU_UTILIZATION_UPPER | CPU utilization (%) on a given switch or host is greater than maximum threshold |
+| TCA_DISK_UTILIZATION_UPPER  |  Disk utilization (%) on a given switch or host is greater than maximum threshold |
+| TCA_MEMORY_UTILIZATION_UPPER  |  Memory utilization (%) on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< tab "Sensors" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_SENSOR_FAN_UPPER  |  Switch sensor reported fan speed on a given switch or host is greater than maximum threshold |
+| TCA_SENSOR_POWER_UPPER|  Switch sensor reported power (Watts) on a given switch or host is greater than maximum threshold |
+| TCA_SENSOR_TEMPERATURE_UPPER  |  Switch sensor reported temperature (&deg;C) on a given switch or host is greater than maximum threshold |
+| TCA_SENSOR_VOLTAGE_UPPER  |  Switch sensor reported voltage (Volts) on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Define a Scope
 
-A scope is used to filter the events generated by a given rule. Scope values are set on a per TCA rule basis. All rules can be filtered on Hostname. Some rules can also be filtered by other parameters, as shown in this table. *Note*: Scope parameters must be entered in the order defined.
+A scope is used to filter the events generated by a given rule. Scope values are set on a per TCA rule basis. All rules can be filtered on Hostname. Some rules can also be filtered by other parameters.
 
-| Category | Event ID | Scope Parameters |
-| ------------ | ---------- | -------------- |
-| Interface Statistics | TCA_RXBROADCAST_UPPER  |  Hostname, Interface |
-| Interface Statistics | TCA_RXBYTES_UPPER |  Hostname, Interface |
-| Interface Statistics | TCA_RXMULTICAST_UPPER |  Hostname, Interface |
-| Interface Statistics | TCA_TXBROADCAST_UPPER | Hostname, Interface |
-| Interface Statistics | TCA_TXBYTES_UPPER | Hostname, Interface |
-| Interface Statistics | TCA_TXMULTICAST_UPPER | Hostname, Interface |
-| Resource Utilization | TCA_CPU_UTILIZATION_UPPER | Hostname |
-| Resource Utilization | TCA_DISK_UTILIZATION_UPPER  |  Hostname |
-| Resource Utilization | TCA_MEMORY_UTILIZATION_UPPER  |  Hostname |
-| Sensors | TCA_SENSOR_FAN_UPPER  |  Hostname, Sensor Name |
-| Sensors | TCA_SENSOR_POWER_UPPER|  Hostname, Sensor Name |
-| Sensors | TCA_SENSOR_TEMPERATURE_UPPER  |  Hostname, Sensor Name |
-| Sensors | TCA_SENSOR_VOLTAGE_UPPER  |  Hostname, Sensor Name |
-| Forwarding Resources | TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_MAC_ENTRIES_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_ECMP_NEXTHOPS_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV4_ROUTE_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV4_HOST_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV6_ROUTE_UPPER | Hostname |
-| Forwarding Resources | TCA_TCAM_IPV6_HOST_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_REGIONS_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_ACL_MIRROR_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_18B_RULES_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_32B_RULES_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_ACL_54B_RULES_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Hostname |
-| ACL Resources | TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Hostname |
+#### Select Filter Parameters
+
+You can filter rules based on the following filter parameters.
+
+{{< tabs "TabID373" >}}
+
+{{< tab "ACL Resources" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Hostname |
+| TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Hostname |
+| TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Hostname |
+| TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Hostname |
+| TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Hostname |
+| TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Hostname |
+| TCA_TCAM_ACL_REGIONS_UPPER | Hostname |
+| TCA_TCAM_IN_ACL_MIRROR_UPPER | Hostname |
+| TCA_TCAM_ACL_18B_RULES_UPPER | Hostname |
+| TCA_TCAM_ACL_32B_RULES_UPPER | Hostname |
+| TCA_TCAM_ACL_54B_RULES_UPPER | Hostname |
+| TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Hostname |
+| TCA_TCAM_IN_PBR_V6_FILTER_UPPER | Hostname |
+
+{{< /tab >}}
+
+{{< tab "Digital Optics" >}}
+<!-- any other params besides hostname? -->
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_INPUT_POWER_UPPER  | Hostname |
+| TCA_INPUT_POWER_LOWER  |  Hostname |
+| TCA_LASER_BIAS_UPPER  |  Hostname |
+| TCA_LASER_BIAS_LOWER  |  Hostname |
+| TCA_LASER_OUTPUT_POWER_UPPER  |  Hostname |
+| TCA_LASER_OUTPUT_POWER_LOWER  |  Hostname |
+| TCA_MODULE_TEMPERATURE_UPPER  |  Hostname |
+| TCA_MODULE_TEMPERATURE_LOWER  |  Hostname |
+| TCA_TRANSCEIVER_VOLTAGE_UPPER  |  Hostname |
+| TCA_TRANSCEIVER_VOLTAGE_LOWER  |  Hostname |
+
+{{< /tab >}}
+
+{{< tab "Forwarding Resources" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_TCAM_TOTAL_ROUTE_ENTRIES_UPPER | Hostname |
+| TCA_TCAM_TOTAL_MCAST_ROUTES_UPPER | Hostname |
+| TCA_TCAM_MAC_ENTRIES_UPPER | Hostname |
+| TCA_TCAM_ECMP_NEXTHOPS_UPPER | Hostname |
+| TCA_TCAM_IPV4_ROUTE_UPPER | Hostname |
+| TCA_TCAM_IPV4_HOST_UPPER | Hostname |
+| TCA_TCAM_IPV6_ROUTE_UPPER | Hostname |
+| TCA_TCAM_IPV6_HOST_UPPER | Hostname |
+
+{{< /tab >}}
+
+{{< tab "Interface Statistics" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_RXBROADCAST_UPPER  | Hostname, Interface |
+| TCA_RXBYTES_UPPER | Hostname, Interface |
+| TCA_RXMULTICAST_UPPER | Hostname, Interface |
+| TCA_TXBROADCAST_UPPER | Hostname, Interface |
+| TCA_TXBYTES_UPPER | Hostname, Interface |
+| TCA_TXMULTICAST_UPPER | Hostname, Interface |
+
+{{< /tab >}}
+
+{{< tab "Resource Utilization" >}}
+
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_CPU_UTILIZATION_UPPER | Hostname |
+| TCA_DISK_UTILIZATION_UPPER  | Hostname |
+| TCA_MEMORY_UTILIZATION_UPPER  | Hostname |
+
+{{< /tab >}}
+
+{{< tab "Sensors" >}}
+| Event ID | Scope Parameters |
+| ---------- | -------------- |
+| TCA_SENSOR_FAN_UPPER  | Hostname, Sensor Name |
+| TCA_SENSOR_POWER_UPPER| Hostname, Sensor Name |
+| TCA_SENSOR_TEMPERATURE_UPPER  | Hostname, Sensor Name |
+| TCA_SENSOR_VOLTAGE_UPPER  | Hostname, Sensor Name |
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+#### Specify the Scope
+
+Scopes are defined and displayed as regular expressions. The definition and display is slightly different between the NetQ UI and the NetQ CLI, but the results are the same.
+
+{{< tabs "TabID2234" >}}
+
+{{< tab "NetQ UI" >}}
+
+Scopes are displayed in TCA rule cards using the following format.
+<!-- Fill in ACL, forwarding and digital optics items -->
+| Scope | Display in Card | Result |
+| ------- | ------------------- | ------- |
+| All devices | hostname = * | Show events for all devices |
+| All interfaces | ifname = * | Show events for all devices and all interfaces |
+| All sensors | s_name = * | Show events for all devices and all sensors |
+| All ACLs | hostname = * | Show events for all ACL resources |
+| All forwarding | xxx | Show events for all forwarding resources |
+| All digital optical modules | xxx | Show events for all digital optics |
+| Particular device | hostname = leaf01 | Show events for *leaf01* switch |
+| Particular interface | ifname = swp14 | Show events for *swp14* interface |
+| Particular sensor | s_name = fan2 | Show events for the *fan2* fan |
+| Particular ACL resource | xxx | Show events for the *xxx* ACL resource |
+| Particular forwarding resource | xxx | Show events for the *xxx* forwarding resource |
+| Particular digital optical module | xxx | Show events for the *xxx* digital optics module |
+| Set of devices | hostname ^ leaf | Show events for switches having names starting with *leaf* |
+| Set of interfaces | ifname ^ swp | Show events for interfaces having names starting with *swp* |
+| Set of sensors | s_name ^ fan | Show events for sensors having names starting with *fan* |
+| Set of ACL resources | xxx | Show events for xxx |
+| Set of forwarding resources | xxx | Show events for xxx |
+| Set of digital optical modules | xxx | Show events for xxx |
+
+When a rule is filtered by more than one parameter, each is displayed on the card. Leaving a value blank for a parameter defaults to all; all hostnames, interfaces, sensors, forwarding resources, ACL resources, and digital optics.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
 
 Scopes are defined with regular expressions, as follows. When two paramaters are used, they are separated by a comma, but no space. When as asterisk (*) is used alone, it must be entered inside either single or double quotes. Single quotes are used here.
 
-| Parameters | Scope Value | Example | Result |
-| -------------- | --------------- | ---------- | -------- |
-| Hostname | \<hostname> | leaf01 | Deliver events for the specified device |
-| Hostname | \<partial-hostname>\* | leaf\* | Deliver events for devices with hostnames starting with specified text (*leaf*) |
-| Hostname | \'\*\' | \'\*\' | Deliver events for all devices |
-| Hostname, Interface | \<hostname>,\<interface> | leaf01,swp9 | Deliver events for the specified interface (*swp9*) on the specified device (*leaf01*) |
-| Hostname, Interface | \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all interfaces on the specified device (*leaf01*) |
-| Hostname, Interface | \'\*\',\<interface> | \'\*\',swp9 | Deliver events for the specified interface (*swp9*) on all devices |
-| Hostname, Interface | \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all devices and all interfaces |
-| Hostname, Interface | \<partial-hostname>\*,\<interface> | leaf*,swp9 | Deliver events for the specified interface (*swp9*) on all devices with hostnames starting with the specified text (*leaf*) |
-| Hostname, Interface | \<hostname>,\<partial-interface>\* | leaf01,swp* | Deliver events for all interface with names starting with the specified text (*swp*) on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \<hostname>,\<sensorname> | leaf01,fan1 | Deliver events for the specified sensor (*fan1*) on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \'\*\',\<sensorname> | \'\*\',fan1 | Deliver events for the specified sensor (*fan1*) for all devices |
-| Hostname, Sensor Name |  \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all sensors on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \<partial-hostname>\*,\<interface> | leaf*,fan1 | Deliver events for the specified sensor (*fan1*) on all devices with hostnames starting with the specified text (*leaf*) |
-| Hostname, Sensor Name | \<hostname>,\<partial-sensorname>\* | leaf01,fan* | Deliver events for all sensors with names starting with the specified text (*fan*) on the specified device (*leaf01*) |
-| Hostname, Sensor Name | \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all sensors on all devices |
+{{< tabs "TabID2270" >}}
+
+{{< tab "Hostname" >}}
+
+| Scope Value | Example | Result |
+| --------------- | ---------- | -------- |
+| \<hostname> | leaf01 | Deliver events for the specified device |
+| \<partial-hostname>\* | leaf\* | Deliver events for devices with hostnames starting with specified text (*leaf*) |
+| \'\*\' | \'\*\' | Deliver events for all devices |
+
+{{< /tab >}}
+
+{{< tab "Hostname, Interface">}}
+
+| Scope Value | Example | Result |
+| --------------- | ---------- | -------- |
+| \<hostname>,\<interface> | leaf01,swp9 | Deliver events for the specified interface (*swp9*) on the specified device (*leaf01*) |
+| \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all interfaces on the specified device (*leaf01*) |
+| \'\*\',\<interface> | \'\*\',swp9 | Deliver events for the specified interface (*swp9*) on all devices |
+| \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all devices and all interfaces |
+| \<partial-hostname>\*,\<interface> | leaf*,swp9 | Deliver events for the specified interface (*swp9*) on all devices with hostnames starting with the specified text (*leaf*) |
+| \<hostname>,\<partial-interface>\* | leaf01,swp* | Deliver events for all interface with names starting with the specified text (*swp*) on the specified device (*leaf01*) |
+
+{{< /tab >}}
+
+{{< tab "Hostname, Sensor Name">}}
+
+| Scope Value | Example | Result |
+| --------------- | ---------- | -------- |
+| \<hostname>,\<sensorname> | leaf01,fan1 | Deliver events for the specified sensor (*fan1*) on the specified device (*leaf01*) |
+| \'\*\',\<sensorname> | \'\*\',fan1 | Deliver events for the specified sensor (*fan1*) for all devices |
+|  \<hostname>,\'\*\' | leaf01,\'\*\' | Deliver events for all sensors on the specified device (*leaf01*) |
+| \<partial-hostname>\*,\<interface> | leaf*,fan1 | Deliver events for the specified sensor (*fan1*) on all devices with hostnames starting with the specified text (*leaf*) |
+| \<hostname>,\<partial-sensorname>\* | leaf01,fan* | Deliver events for all sensors with names starting with the specified text (*fan*) on the specified device (*leaf01*) |
+| \'\*\',\'\*\' | \'\*\',\'\*\' | Deliver events for all sensors on all devices |
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+<!-- ADD New params for acl and forwarding resources, dom? -->
 
 ### Create a TCA Rule
 
-Now that you know which events are supported and how to set the scope, you can create a basic rule to deliver one of the TCA events to a notification channel using the `netq add tca` command. Note that the event ID is case sensitive and must be in all caps.
+Now that you know which events are supported and how to set the scope, you can create a basic rule to deliver one of the TCA events to a notification channel. This can be done using either the NetQ UI or the NetQ CLI.
+
+{{< tabs "TabID2294" >}}
+
+{{< tab "NetQ UI" >}}
+
+To create a TCA rule:
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
+
+    {{<figure src="/images/netq/main-menu-tcarules-selected-300.png" width="600">}}
+
+2. Click *Threshold Crossing Rules* under **Notifications**.
+
+3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> to add a rule.
+
+    The Create TCA Rule dialog opens. Four steps create the rule.
+
+    {{<figure src="/images/netq/tca-create-rule-details-tab-300.png" width="400">}}
+
+    {{<notice tip>}}
+You can move forward and backward until you are satisfied with your rule definition.
+    {{</notice>}}
+
+4. On the **Enter Details** step, enter a name for your rule, choose your TCA event type, and assign a severity.
+
+    {{<notice note>}}
+The rule name has a maximum of 20 characters (including spaces).
+    {{</notice>}}
+
+5. Click **Next**.
+
+6. On the **Choose Event** step, select the attribute to measure against.
+
+    {{<figure src="/images/netq/tca-create-rule-event-tab-300.png" width="400">}}
+
+    {{<notice note>}}
+The attributes presented depend on the event type chosen in the <em>Enter Details</em> step. This example shows the attributes available when <em>Resource Utilization</em> was selected.
+    {{</notice>}}
+
+7. Click **Next**.
+
+8. On the **Set Threshold** step, enter a threshold value.
+
+    {{<figure src="/images/netq/tca-create-rule-threshold-tab-300.png" width="400">}}
+
+9. Define the scope of the rule.
+
+    - If you want to restrict the rule to a particular device, and enter values for one or more of the available parameters.
+
+    - If you want the rule to apply to all devices, click the scope toggle.
+
+    {{<figure src="/images/netq/tca-create-rule-apply-toggle-241.png" width="450">}}
+
+10. Click **Next**.
+
+11. Optionally, select a notification channel where you want the events to be sent. If no channel is select, the notifications are only available from the database. You can add a channel at a later time. Refer to {{<link title="#Modify TCA Rules" text="Modify TCA Rules">}}.
+
+12. Click **Finish**.
+
+This example shows two rules. The rule on the left triggers an informational event when switch *leaf01* exceeds the maximum CPU utilization of 87%. The rule on the right triggers a critical event when any device exceeds the maximum CPU utilization of 93%. Note that the cards indicate both rules are currently Active.
+
+{{<figure src="/images/netq/tca-create-rule-examples-300.png" width="420">}}
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+The simplest configuration you can create is one that sends a TCA event generated by all devices and all interfaces to a single notification application. Use the `netq add tca` command to configure the event. Its syntax is:
+
+```
+netq add tca [event_id <text-event-id-anchor>] [scope <text-scope-anchor>] [tca_id <text-tca-id-anchor>] [severity info | severity critical] [is_active true | is_active false] [suppress_until <text-suppress-ts>] [threshold <text-threshold-value>] [channel <text-channel-name-anchor> | channel drop <text-drop-channel-name>]
+```
+
+*Note that the event ID is case sensitive and must be in all uppercase.*
 
 For example, this rule tells NetQ to deliver an event notification to the *tca_slack_ifstats*  pre-configured Slack channel when the CPU utilization exceeds 95% of its capacity on any monitored switch:
 
@@ -2109,7 +2415,7 @@ For a Slack channel, the event messages should be similar to this:
 
 ### Set the Severity of a Threshold-based Event
 
-In addition to defining a scope for TCA rule, you can also set a severity of either info or critical. To add a severity to a rule, use the `severity` option. 
+In addition to defining a scope for TCA rule, you can also set a severity of either info or critical. To add a severity to a rule, use the `severity` option.
 
 For example, if you want add a critical severity to the CPU utilization rule you created earlier:
 
@@ -2123,6 +2429,10 @@ Or if an event is important, but not critical. Set the `severity` to *info*:
 netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' severity info channel tca_pd_ifstats threshold 20000
 ```
 
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### Create Multiple Rules for a TCA Event
 
 You are likely to want more than one rule around a particular event. For example, you might want to:
@@ -2132,6 +2442,10 @@ You are likely to want more than one rule around a particular event. For example
 - Change the threshold for a particular device that you are troubleshooting
 
 And so forth.
+
+In the NetQ UI you create multiple rules by adding mulitple rule cards. Refer to {{<link title="#Create a TCA Rule" text="Create a TCA Rule">}}.
+
+In the NetQ CLI, you also add multiple rules. This example shows the creation of three additional rules for the max temperature sensor.
 
 ```
 netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf*,temp1 channel syslog-netq threshold 32
@@ -2143,35 +2457,37 @@ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf03,temp1 channel sy
 
 Now you have four rules created (the original one, plus these three new ones) all based on the TCA_SENSOR_TEMPERATURE_UPPER event. To identify the various rules, NetQ automatically generates a TCA name for each rule. As each rule is created, an *\_#* is added to the event name. The TCA Name for the first rule created is then TCA_SENSOR_TEMPERATURE_UPPER_1, the second rule created for this event is TCA_SENSOR_TEMPERATURE_UPPER_2, and so forth.
 
-### Suppress a Rule
+## Manage Threshold-based Event Notifications
 
-During troubleshooting or maintenance of switches you may want to suppress a rule to prevent erroneous event messages. Using the `suppress_until` option allows you to prevent the rule from being applied for a designated amout of time (in seconds). When this time has passed, the rule is automatically re-enabled.
+Once you have created a bunch of rules, you might want to modify them; view a list of the rules, disable a rule, delete a rule, and so forth.
 
-For example, to suppress the disk utilization event for an hour:
+### View TCA Rules
+
+You can view all of the threshold-crossing event rules you have created in the NetQ UI or the NetQ CLI.
+
+{{< tabs "TabID2438" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}}.
+
+2. Select *Threshold Crossing Rules* under **Notifications**.
+
+    A card is displayed for every rule.
+
+    {{<figure src="/images/netq/tca-rules-allcards-320.png" width="500">}}
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view TCA rules, run:
 
 ```
-cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 suppress_until 3600
-Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
+netq show tca [tca_id <text-tca-id-anchor>] [json]
 ```
 
-### Remove a Channel from a Rule
-
-You can stop sending events to a particular channel using the `drop` option:
-
-```
-cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 channel drop tca_slack_resources
-Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
-```
-
-## Manage Threshold-based  Event Notifications
-
-Once you have created a bunch of rules, you might to manage them; view a list of the rules, disable a rule, delete a rule, and so forth.
-
-### Show Threshold-based Event Rules
-
-You can view all TCA rules or a particular rule using the `netq show tca` command:
-
-Example 1: Display All TCA Rules
+This example displays all TCA rules:
 
 ```
 cumulus@switch:~$ netq show tca
@@ -2198,7 +2514,7 @@ TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname inf
                              R                    ":"leaf01"}
 ```
 
-Example 2: Display a Specific TCA Rule
+This example display a specific TCA rule:
 
 ```
 cumulus@switch:~$ netq show tca tca_id TCA_TXMULTICAST_UPPER_1
@@ -2209,23 +2525,391 @@ TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname inf
                              R                    ":"leaf01"}
 ```
 
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Change the Threshold on a TCA Rule
+
+{{< tabs "TabID2512" >}}
+
+{{< tab "NetQ UI" >}}
+
+To modify the threshold:
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
+
+2. Click *Threshold Crossing Rules* under **Notifications**.
+
+3. Locate the rule you want to modify and hover over the card.
+
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/>.
+
+    {{<figure src="/images/netq/tca-edit-rule-300.png" width="200">}}
+
+5. Enter a new threshold value.
+
+    {{<figure src="/images/netq/tca-edit-rule-example-300.png" width="500">}}
+
+6. Click **Update Rule**.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To modify the threshold, run:
+
+```
+netq add tca tca_id <text-tca-id-anchor> threshold <text-threshold-value>
+```
+
+This example changes the threshold for the rule *TCA_CPU_UTILIZATION_UPPER_1* to a value of 96 percent. *This overwrites the existing threshold value.*
+
+```
+cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 threshold 96
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Change the Scope of a TCA Rule
+
+{{< tabs "TabID2582" >}}
+
+{{< tab "NetQ UI" >}}
+
+To modify the scope:
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
+
+2. Click *Threshold Crossing Rules* under **Notifications**.
+
+3. Locate the rule you want to modify and hover over the card.
+
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/>.
+
+    {{<figure src="/images/netq/tca-edit-rule-300.png" width="200">}}
+
+5. Change the scope, applying the rule to all devices or broadening or narrowing the scope. Refer to {{<link title="#Specify the Scope" text="Specify the Scope">}} for details.
+
+    {{<figure src="/images/netq/tca-edit-rule-example-300.png" width="500">}}
+
+<div style="padding-left: 18px;">In this example, the scope is across the entire network. Toggle the scope and select one or more hosts on which to apply this rule.</div>
+
+    {{<figure src="/images/netq/tca-create-rule-apply-toggle-241.png" width="450">}}
+
+6. Click **Update Rule**.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To modify the scope, run:
+
+```
+netq add tca event_id <text-event-id-anchor> scope <text-scope-anchor> threshold <text-threshold-value>
+```
+
+This example changes the scope for the rule *TCA_CPU_UTILIZATION_UPPER* to apply only to switches beginning with a hostname of *leaf*.  You must also provide a threshold value. In this case we have used a value of 95 percent. *Note that this overwrites the existing scope and threshold values.*
+
+```
+cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope hostname^leaf threshold 95
+Successfully added/updated tca
+
+cumulus@netq-ts:~$ netq show tca
+
+Matching config_tca records:
+TCA Name                     Event Name           Scope                      Severity         Channel/s          Active Threshold          Suppress Until
+---------------------------- -------------------- -------------------------- ---------------- ------------------ ------ ------------------ ----------------------------
+TCA_CPU_UTILIZATION_UPPER_1  TCA_CPU_UTILIZATION_ {"hostname":"*"}           critical         onprem-email       True   93                 Mon Aug 31 20:59:57 2020
+                             UPPER
+TCA_CPU_UTILIZATION_UPPER_2  TCA_CPU_UTILIZATION_ {"hostname":"hostname^leaf info                                True   95                 Tue Sep  1 18:47:24 2020
+                             UPPER                "}
+
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Change, Add, or Remove the Channels on a TCA Rule
+
+{{< tabs "TabID2638" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
+
+2. Click *Threshold Crossing Rules* under **Notifications**.
+
+3. Locate the rule you want to modify and hover over the card.
+
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/>.
+
+    {{<figure src="/images/netq/tca-edit-rule-300.png" width="200">}}
+
+5. Click **Channels**.
+
+    {{<figure src="/images/netq/tca-edit-rule-channels-320.png" width="500">}}
+
+6. Select one or more channels.
+
+    Click a channel to select it. Click again to unselect a channel.
+
+7. Click **Update Rule**.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To **change** a channel association, run:
+
+```
+netq add tca tca_id <text-tca-id-anchor> channel <text-channel-name-anchor>
+```
+
+*This overwrites the existing channel association.*
+
+This example shows the channel for the disk utilization 1 rule being changed to a PagerDuty channel *pd-netq-events*.
+
+```
+cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 channel pd-netq-events
+Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
+```
+
+<!-- To **add** another channel association, run:
+
+```
+netq add tca tca_id <text-tca-id-anchor> channel <text-channel-name-anchor>
+```
+
+This example shows the channel for the disk utilization 1 rule being changed to a PagerDuty channel *pd-netq-events*.
+
+```
+``` -->
+
+To **remove** a channel association (stop sending events to a particular channel), run:
+
+```
+netq add tca tca_id <text-tca-id-anchor> channel drop <text-drop-channel-name>
+```
+
+This example removes the *tca_slack_resources* channel from the disk utilization 1 rule.
+
+```
+cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 channel drop tca_slack_resources
+Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Change the Name of a TCA Rule
+
+You cannot change the name of a TCA rule using the NetQ CLI because the rules are not named. They are given identifiers (tca_id) automatically. In the NetQ UI, to change a rule name, you must delete the rule and re-create it with the new name.
+
+### Change the Severity of a TCA Rule
+
+TCA rules have either an informational or critical severity. In the NetQ UI, the severity cannot be changed by itself, the rule must be deleted and re-created using the new severity.
+
+In the NetQ CLI, to change the severity, run:
+
+```
+netq add tca tca_id <text-tca-id-anchor> (severity info | severity critical)
+```
+
+This example changes the severity of the maximum CPU utilization 1 rule from critical to info:
+
+```
+cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 severity info
+Successfully added/updated tca TCA_CPU_UTILIZATION_UPPER_1
+```
+
+### Suppress a TCA Rule
+
+During troubleshooting or maintenance of switches you may want to suppress a rule to prevent erroneous event messages. This can be accomplished using the NetQ UI or the NetQ CLI.
+
+{{< tabs "TabID2718" >}}
+
+{{< tab "NetQ UI" >}}
+
+The TCA rules have three possible states iin the NetQ UI:
+
+- **Active**: Rule is operating, delivering events. This would be the normal operating state.
+- **Suppressed**: Rule is disabled until a designated date and time. When that time occurs, the rule is automatically re-enabled. This state is useful during troubleshooting or maintenance of a switch when you do not want erroneous events being generated.
+- **Disabled**: Rule is disabled until a user manually re-enables it. This state is useful when you are unclear when you want the rule to be re-enabled. This is not the same as deleting the rule.
+
+To suppress a rule for a designated amount of time, you must change the state of the rule.
+
+To suppress a rule:
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
+
+2. Click *Threshold Crossing Rules* under **Notifications**.
+
+3. Locate the rule you want to suppress.
+
+4. Click **Disable**.
+
+    {{<figure src="/images/netq/tca-suppress-rule-300.png" width="300">}}
+
+5. Click in the **Date/Time** field to set when you want the rule to be *automatically re-enabled*.
+
+6. Click **Disable**.
+
+    {{<figure src="/images/netq/tca-suppress-rule-example-300.png" width="200">}}
+
+<div style="padding-left: 18px;">Note the changes in the card:
+<ul>
+<li>The state is now marked as <em>Inactive</em>,  but remains green</li>
+<li>The date and time that the rule will be enabled is noted in the <strong>Suppressed</strong> field</li>
+<li>The <strong>Disable</strong> option has changed to <strong>Disable Forever</strong>. Refer to {{<link title="#Disable a TCA Rule" text="Disable a TCA Rule">}} for information about this change.</li>
+</div>
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+Using the `suppress_until` option allows you to prevent the rule from being applied for a designated amout of time (in seconds). When this time has passed, the rule is automatically re-enabled.
+
+To suppress a rule, run:
+
+```
+netq add tca tca_id <text-tca-id-anchor> suppress_until <text-suppress-ts>
+```
+
+This example suppresses the maximum cpu utilization event for 24 hours:
+
+```
+cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_2 suppress_until 86400
+Successfully added/updated tca TCA_CPU_UTILIZATION_UPPER_2
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### Disable a TCA Rule
 
-Where the `suppress` option temporarily disables a TCA rule, you can use the `is_active` option to disable a rule indefinitely. To disable a rule, set the option to *false*. To re-enable it, set the option to *true*.
+Whereas suppression temporarily disables a rule, you can deactivate a rule to disable it indefinitely. You can disable a rule using the NetQ UI or the NetQ CLI.
+
+{{< tabs "TabID2781" >}}
+
+{{< tab "NetQ UI" >}}
+
+The TCA rules have three possible states in the NetQ UI:
+
+- **Active**: Rule is operating, delivering events. This would be the normal operating state.
+- **Suppressed**: Rule is disabled until a designated date and time. When that time occurs, the rule is automatically re-enabled. This state is useful during troubleshooting or maintenance of a switch when you do not want erroneous events being generated.
+- **Disabled**: Rule is disabled until a user manually re-enables it. This state is useful when you are unclear when you want the rule to be re-enabled. This is not the same as deleting the rule.
+
+To disable a rule that is currently **active**:
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
+
+2. Click *Threshold Crossing Rules* under **Notifications**.
+
+3. Locate the rule you want to disable.
+
+4. Click **Disable**.
+
+5. Leave the **Date/Time** field blank.
+
+6. Click **Disable**.
+
+    {{<figure src="/images/netq/tca-disable-rule-example-300.png" width="200">}}
+
+<div style="padding-left: 18px;">Note the changes in the card:
+<ul>
+<li>The state is now marked as <em>Inactive</em> and is red</li>
+<li>The rule definition is grayed out</li>
+<li>The <strong>Disable</strong> option has changed to <strong>Enable</strong> to reactivate the rule when you are ready</li>
+</ul>
+</div>
+
+To disable a rule that is currently **suppressed**:
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
+
+2. Click *Threshold Crossing Rules* under **Notifications**.
+
+3. Locate the rule you want to disable.
+
+4. Click **Disable Forever**.
+
+    Note the changes in the card:
+
+    - The state is now marked as *Inactive* and is red
+    - The rule definition is grayed out
+    - The **Disable** option has changed to **Enable** to reactivate the rule when you are ready
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To disable a rule, run:
+
+```
+netq add tca tca_id <text-tca-id-anchor> is_active false
+```
+
+This example disables the maximum disk utilization 1 rule:
 
 ```
 cumulus@switch:~$ netq add tca tca_id TCA_DISK_UTILIZATION_UPPER_1 is_active false
 Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
 ```
 
+To re-enable the rule, set the `is_active` option to *true*.
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### Delete a TCA Rule
 
-If disabling a rule is not sufficient, and you want to remove a rule altogether, you can do so using the `netq del tca` command.
+You might find that you no longer want to receive event notifications for a particular TCA event. In that case, you can either disable the event if you think you may want to receive them again or delete the rule altogether. Refer to {{<link title="#Disable a Rule" text="Disable a Rule">}} for the first case. Follow the instructions here to remove the rule using either the NetQ UI or NetQ CLI.
+
+{{< tabs "TabID2858" >}}
+
+{{< tab "NetQ UI" >}}
+
+The rule can be in any of the three states, active, suppressed, or disabled.
+
+To delete a rule:
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
+
+2. Click *Threshold Crossing Rules* under **Notifications**.
+
+3. Locate the rule you want to remove and hover over the card.
+
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
+
+    {{<figure src="/images/netq/tca-delete-rule-300.png" width="200">}}
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To remove a rule altogether, run:
+
+```
+netq del tca tca_id <text-tca-id-anchor>
+```
+
+This example deletes the maximum receive bytes rule:
 
 ```
 cumulus@switch:~$ netq del tca tca_id TCA_RXBYTES_UPPER_1
 Successfully deleted TCA TCA_RXBYTES_UPPER_1
 ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Resolve Scope Conflicts
 
@@ -2256,3 +2940,5 @@ In summary:
  leaf01,swp1 | Hostname, Interface | \'\*\',\'\*\' | leaf\*,\'\*\' | leaf01,swp1 | Scope 3 |
 | leaf01,swp3 | Hostname, Interface | \'\*\',\'\*\' | leaf\*,\'\*\' | leaf01,swp1 | Scope 2 |
 | spine01,swp1 | Hostname, Interface | \'\*\',\'\*\' | leaf\*,\'\*\' | leaf01,swp1 | Scope 1 |
+
+Modify your TCA rules to remove the conflict.

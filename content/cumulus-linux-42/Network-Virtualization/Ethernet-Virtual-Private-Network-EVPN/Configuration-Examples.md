@@ -6,16 +6,16 @@ toc: 4
 ---
 This section shows the following configuration examples:
 
-- Basic Clos (4x2) for bridging
-- Clos with MLAG and centralized routing
-- Clos with MLAG and asymmetric routing
-- Basic Clos with symmetric routing and exit leafs
+- EVPN layer 2 routing
+- EVPN centralized routing
+- EVPN asymmetric routing
+- EVPN symmetric routing
 
-## Basic Clos (4x2) for Bridging
+## EVPN Layer 2 Routing
 
-The following example configuration shows a basic Clos topology for bridging.
+The following example shows an EVPN layer 2 routing configuration.
 
-{{< img src = "/images/cumulus-linux/evpn-basic-clos.png" >}}
+{{< img src = "/images/cumulus-linux/evpn-layer2.png" >}}
 
 ### /etc/network/interfaces
 
@@ -78,20 +78,12 @@ iface vlan20
     ip-forward off
     ip6-forward off
 
- auto swp51
+auto swp51
 iface swp51
     alias leaf to spine
 
 auto swp52
 iface swp52
-    alias leaf to spine
-
-auto swp53
-iface swp53
-    alias leaf to spine
-
-auto swp54
-iface swp54
     alias leaf to spine
 
 auto swp49
@@ -208,14 +200,6 @@ auto swp52
 iface swp52
     alias leaf to spine
 
-auto swp53
-iface swp53
-    alias leaf to spine
-
-auto swp54
-iface swp54
-    alias leaf to spine
-
 auto swp49
 iface swp49
     alias peerlink
@@ -301,6 +285,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -309,6 +294,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     vlan-raw-device bridge
@@ -329,14 +315,6 @@ iface swp51
 
 auto swp52
 iface swp52
-    alias leaf to spine
-
-auto swp53
-iface swp53
-    alias leaf to spine
-
-auto swp54
-iface swp54
     alias leaf to spine
 
 auto swp49
@@ -453,14 +431,6 @@ auto swp52
 iface swp52
     alias leaf to spine
 
-auto swp53
-iface swp53
-    alias leaf to spine
-
-auto swp54
-iface swp54
-    alias leaf to spine
-
 auto swp49
 iface swp49
     alias peerlink
@@ -542,14 +512,6 @@ iface swp3
 auto swp4
 iface swp4
     alias leaf to spine
-
-auto swp5
-iface swp5
-    alias leaf to spine
-
-auto swp6
-iface swp6
-    alias leaf to spine
 ```
 
 {{< /tab >}}
@@ -586,316 +548,6 @@ iface swp3
 auto swp4
 iface swp4
     alias leaf to spine
-
-auto swp5
-iface swp5
-    alias leaf to spine
-
-auto swp6
-iface swp6
-    alias leaf to spine
-```
-
-{{< /tab >}}
-
-{{< tab "spine03 ">}}
-
-```
-cumulus@spine03:~$ cat /etc/network/interfaces
-
-auto lo
-iface lo inet loopback
-    address 10.10.10.103/32
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-auto swp1
-iface swp1
-    alias leaf to spine
-
-auto swp2
-iface swp2
-    alias leaf to spine
-
-auto swp3
-iface swp3
-    alias leaf to spine
-
-auto swp4
-iface swp4
-    alias leaf to spine
-
-auto swp5
-iface swp5
-    alias leaf to spine
-
-auto swp6
-iface swp6
-    alias leaf to spine
-```
-
-{{< /tab >}}
-
-{{< tab "spine04 ">}}
-
-```
-cumulus@spine04:~$ cat /etc/network/interfaces
-
-auto lo
-iface lo inet loopback
-    address 10.10.10.104/32
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-auto swp1
-iface swp1
-    alias leaf to spine
-
-auto swp2
-iface swp2
-    alias leaf to spine
-
-auto swp3
-iface swp3
-    alias leaf to spine
-
-auto swp4
-iface swp4
-    alias leaf to spine
-
-auto swp5
-iface swp5
-    alias leaf to spine
-
-auto swp6
-iface swp6
-    alias leaf to spine
-```
-
-{{< /tab >}}
-
-{{< tab "border01 ">}}
-
-```
-cumulus@border01:~$ cat /etc/network/interfaces
-
-auto lo
-iface lo inet loopback
-    address 10.10.10.63/32
-    clagd-vxlan-anycast-ip 10.0.1.254
-    vxlan-local-tunnelip 10.10.10.63
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-auto bridge
-iface bridge
-    bridge-ports peerlink
-    bridge-ports bond3
-    bridge-ports vni10 vni20
-    bridge-vids 10 20  
-    bridge-vlan-aware yes
-
-auto vni10
-iface vni10
-    bridge-access 10
-    vxlan-id 10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard yes
-    bridge-learning off
-    bridge-arp-nd-suppress on
-auto vni20
-iface vni20
-    bridge-access 20
-    vxlan-id 20
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard yes
-    bridge-learning off
-    bridge-arp-nd-suppress on
-auto vlan10
-iface vlan10
-    vlan-raw-device bridge
-    vlan-id 10
-    ip-forward off
-    ip6-forward off
-
-auto vlan20
-iface vlan20
-    vlan-raw-device bridge
-    vlan-id 20
-    ip-forward off
-    ip6-forward off
-
- auto swp51
-iface swp51
-    alias leaf to spine
-
-auto swp52
-iface swp52
-    alias leaf to spine
-
-auto swp53
-iface swp53
-    alias leaf to spine
-
-auto swp54
-iface swp54
-    alias leaf to spine
-
-auto swp49
-iface swp49
-    alias peerlink
-auto swp50
-iface swp50
-    alias peerlink
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-auto peerlink.4094
-iface peerlink.4094
-    clagd-backup-ip 10.10.10.64
-    clagd-peer-ip linklocal
-    clagd-priority 1000
-    clagd-sys-mac 44:38:39:BE:EF:FF
-
-auto swp3
-iface swp3
-    alias bond member of bond3
-    mtu 9000
-auto bond3
-iface bond3
-    alias bond3 on swp3
-    mtu 9000
-    clag-id 1
-    bridge-vids 10 20
-    bond-slaves swp3
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-```
-
-{{< /tab >}}
-
-{{< tab "border02 ">}}
-
-```
-cumulus@border02:~$ cat /etc/network/interfaces
-
-auto lo
-iface lo inet loopback
-    address 10.10.10.64/32
-    clagd-vxlan-anycast-ip 10.0.1.254
-    vxlan-local-tunnelip 10.10.10.64
-auto mgmt
-iface mgmt
-    vrf-table auto
-    address 127.0.0.1/8
-    address ::1/128
-
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
-auto bridge
-iface bridge
-    bridge-ports peerlink
-    bridge-ports bond3
-    bridge-ports vni10 vni20
-    bridge-vids 10 20  
-    bridge-vlan-aware yes
-
-auto vni10
-iface vni10
-    bridge-access 10
-    vxlan-id 10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard yes
-    bridge-learning off
-    bridge-arp-nd-suppress on
-auto vni20
-iface vni20
-    bridge-access 20
-    vxlan-id 20
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard yes
-    bridge-learning off
-    bridge-arp-nd-suppress on
-auto vlan10
-iface vlan10
-    vlan-raw-device bridge
-    vlan-id 10
-    ip-forward off
-    ip6-forward off
-
-auto vlan20
-iface vlan20
-    vlan-raw-device bridge
-    vlan-id 20
-    ip-forward off
-    ip6-forward off
-
- auto swp51
-iface swp51
-    alias leaf to spine
-
-auto swp52
-iface swp52
-    alias leaf to spine
-
-auto swp53
-iface swp53
-    alias leaf to spine
-
-auto swp54
-iface swp54
-    alias leaf to spine
-
-auto swp49
-iface swp49
-    alias peerlink
-auto swp50
-iface swp50
-    alias peerlink
-auto peerlink
-iface peerlink
-    bond-slaves swp49 swp50
-auto peerlink.4094
-iface peerlink.4094
-    clagd-backup-ip 10.10.10.63
-    clagd-peer-ip linklocal
-    clagd-priority 1000
-    clagd-sys-mac 44:38:39:BE:EF:FF
-
-auto swp3
-iface swp3
-    alias bond member of bond3
-    mtu 9000
-auto bond3
-iface bond3
-    alias bond3 on swp3
-    mtu 9000
-    clag-id 1
-    bridge-vids 10 20
-    bond-slaves swp3
-    bond-lacp-bypass-allow yes
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
@@ -924,8 +576,6 @@ router bgp 65101
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
- neighbor swp53 interface peer-group underlay
- neighbor swp54 interface peer-group underlay
  !
  !
  address-family ipv4 unicast
@@ -963,8 +613,6 @@ router bgp 65101
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
- neighbor swp53 interface peer-group underlay
- neighbor swp54 interface peer-group underlay
  !
  !
  address-family ipv4 unicast
@@ -1002,8 +650,7 @@ router bgp 65102
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
- neighbor swp53 interface peer-group underlay
- neighbor swp54 interface peer-group underlay
+
  !
  !
  address-family ipv4 unicast
@@ -1041,8 +688,6 @@ router bgp 65102
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
- neighbor swp53 interface peer-group underlay
- neighbor swp54 interface peer-group underlay
  !
  !
  address-family ipv4 unicast
@@ -1140,169 +785,13 @@ line vty
 
 {{< /tab >}}
 
-{{< tab "spine03 ">}}
-
-```
-cumulus@spine03:~$ cat /etc/frr/frr.conf
-...
-service integrated-vtysh-config
-!
-log syslog informational
-!
-!
-router bgp 65199
- bgp router-id 10.10.10.103
- bgp bestpath as-path multipath-relax
- neighbor underlay peer-group
- neighbor underlay remote-as external
- neighbor swp1 interface peer-group underlay
- neighbor swp2 interface peer-group underlay
- neighbor swp3 interface peer-group underlay
- neighbor swp4 interface peer-group underlay
- neighbor swp5 interface peer-group underlay
- neighbor swp6 interface peer-group underlay
- !
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor underlay activate
- exit-address-family
-!
-
-!
-line vty
-!
-```
-
-{{< /tab >}}
-
-{{< tab "spine04 ">}}
-
-```
-cumulus@spine04:~$ cat /etc/frr/frr.conf
-...
-service integrated-vtysh-config
-!
-log syslog informational
-!
-!
-router bgp 65199
- bgp router-id 10.10.10.104
- bgp bestpath as-path multipath-relax
- neighbor underlay peer-group
- neighbor underlay remote-as external
- neighbor swp1 interface peer-group underlay
- neighbor swp2 interface peer-group underlay
- neighbor swp3 interface peer-group underlay
- neighbor swp4 interface peer-group underlay
- neighbor swp5 interface peer-group underlay
- neighbor swp6 interface peer-group underlay
- !
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor underlay activate
- exit-address-family
-!
-
-!
-line vty
-!
-```
-
-{{< /tab >}}
-
-{{< tab "border01 ">}}
-
-```
-cumulus@border01:~$ cat /etc/frr/frr.conf
-...
-service integrated-vtysh-config
-!
-log syslog informational
-!
-!
-router bgp 65132
- bgp router-id 10.10.10.63
- bgp bestpath as-path multipath-relax
- neighbor underlay peer-group
- neighbor underlay remote-as external
- neighbor peerlink.4094 interface remote-as internal
- neighbor swp51 interface peer-group underlay
- neighbor swp52 interface peer-group underlay
- neighbor swp53 interface peer-group underlay
- neighbor swp54 interface peer-group underlay
- !
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor underlay activate
-  advertise-all-vni
- exit-address-family
-!
-
-!
-line vty
-!
-```
-
-{{< /tab >}}
-
-{{< tab "border02 ">}}
-
-```
-cumulus@border02:~$ cat /etc/frr/frr.conf
-...
-service integrated-vtysh-config
-!
-log syslog informational
-!
-!
-router bgp 65132
- bgp router-id 10.10.10.64
- bgp bestpath as-path multipath-relax
- neighbor underlay peer-group
- neighbor underlay remote-as external
- neighbor peerlink.4094 interface remote-as internal
- neighbor swp51 interface peer-group underlay
- neighbor swp52 interface peer-group underlay
- neighbor swp53 interface peer-group underlay
- neighbor swp54 interface peer-group underlay
- !
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor underlay activate
-  advertise-all-vni
- exit-address-family
-!
-
-!
-line vty
-!
-```
-
-{{< /tab >}}
-
 {{< /tabs >}}
 
 ## EVPN Centralized Routing
 
-The following example configuration shows a basic Clos topology with centralized routing. MLAG is configured between leaf switches.
+The following example shows an EVPN centralized routing configuration.
 
-{{< img src = "/images/cumulus-linux/evpn-centralized.png" >}}
+{{< img src = "/images/cumulus-linux/evpn-central.png" >}}
 
 ### /etc/network/interfaces
 
@@ -1371,14 +860,6 @@ iface swp51
 
 auto swp52
 iface swp52
-    alias leaf to spine
-
-auto swp53
-iface swp53
-    alias leaf to spine
-
-auto swp54
-iface swp54
     alias leaf to spine
 
 auto swp49
@@ -1465,6 +946,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -1473,6 +955,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     vlan-raw-device bridge
@@ -1493,14 +976,6 @@ iface swp51
 
 auto swp52
 iface swp52
-    alias leaf to spine
-
-auto swp53
-iface swp53
-    alias leaf to spine
-
-auto swp54
-iface swp54
     alias leaf to spine
 
 auto swp49
@@ -1617,14 +1092,6 @@ auto swp52
 iface swp52
     alias leaf to spine
 
-auto swp53
-iface swp53
-    alias leaf to spine
-
-auto swp54
-iface swp54
-    alias leaf to spine
-
 auto swp49
 iface swp49
     alias peerlink
@@ -1739,14 +1206,6 @@ auto swp52
 iface swp52
     alias leaf to spine
 
-auto swp53
-iface swp53
-    alias leaf to spine
-
-auto swp54
-iface swp54
-    alias leaf to spine
-
 auto swp49
 iface swp49
     alias peerlink
@@ -1804,6 +1263,7 @@ cumulus@spine01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -1813,6 +1273,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -1857,6 +1318,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -2038,14 +1500,6 @@ auto swp52
 iface swp52
     alias leaf to spine
 
-auto swp53
-iface swp53
-    alias leaf to spine
-
-auto swp54
-iface swp54
-    alias leaf to spine
-
 auto swp49
 iface swp49
     alias peerlink
@@ -2143,14 +1597,6 @@ iface swp51
 
 auto swp52
 iface swp52
-    alias leaf to spine
-
-auto swp53
-iface swp53
-    alias leaf to spine
-
-auto swp54
-iface swp54
     alias leaf to spine
 
 auto swp49
@@ -2519,8 +1965,6 @@ router bgp 65132
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
- neighbor swp53 interface peer-group underlay
- neighbor swp54 interface peer-group underlay
  !
  !
  address-family ipv4 unicast
@@ -2559,8 +2003,6 @@ router bgp 65132
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
- neighbor swp53 interface peer-group underlay
- neighbor swp54 interface peer-group underlay
  !
  !
  address-family ipv4 unicast
@@ -2583,9 +2025,9 @@ line vty
 
 {{< /tabs >}}
 
-## EVPN Asymmetric Routing
+<!-- ## EVPN Asymmetric Routing
 
-The following example configuration is a basic Clos topology with EVPN asymmetric routing. MLAG is configured between leaf switches.
+The following example shows an EVPN asymmetric routing configuration.
 
 {{< img src = "/images/cumulus-linux/evpn-asymmetric.png" >}}
 
@@ -3628,13 +3070,13 @@ line vty
 
 {{< /tab >}}
 
-{{< /tabs >}}
+{{< /tabs >}} -->
 
 ## EVPN Symmetric Routing
 
-The following example configuration is a basic Clos topology with EVPN symmetric routing with external prefix (type-5) routing via exit leafs (border01 and border02) connected to an edge router. Here is the topology diagram:
+The following shows an EVPN symmetric routing configuration with external prefix (type-5) routing through exit leafs (border01 and border02) connected to an edge router.
 
-{{< img src = "/images/cumulus-linux/evpn-symmetric-mode.png" >}}
+{{< img src = "/images/cumulus-linux/evpn-symmetric-config.png" >}}
 
 ### /etc/network/interfaces
 

@@ -18,7 +18,7 @@ LCM enables you to:
 - Upgrade Cumulus Linux on switches with Cumulus NetQ Agents version 2.4.x or later (includes upgrade of NetQ to 3.0.0 or 3.1.0)
 
 {{<notice note>}}
-This feature is fully enabled for on-premises deployments and fully disabled for cloud deployments. Contact your local Cumulus Networks sales representative or {{<exlink url="https://support.cumulusnetworks.com/hc/en-us" text="submit a support ticket">}} to activate LCM on cloud deployments.
+This feature is fully enabled for on-premises deployments and fully disabled for cloud deployments. Contact your local Cumulus Networks sales representative or {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="submit a support ticket">}} to activate LCM on cloud deployments.
 {{</notice>}}
 
 ## Access Lifecycle Management Features

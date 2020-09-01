@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31257</td>
+<td><p>On the EdgeCore AS-6712-32X switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
+These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31238</td>
+<td><p>IPv6 TCP or UDP connections (sourcing from an ephemeral port in the range 34048 to 35071) are not forwarded if the switch has more than one layer 2 VNI defined. The traffic might be locally switched on the bridge and dropped. <br/>
+To work around this issue, disable ARP/ND suppression to remove the internal ACL rule that affects the ports.</p></td>
+<td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31210</td>
 <td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
 Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
@@ -1693,7 +1707,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -2260,6 +2274,13 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31257</td>
+<td><p>On the EdgeCore AS-6712-32X switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
+These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -4503,7 +4524,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -7030,7 +7051,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -10016,7 +10037,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -12282,7 +12303,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -15694,7 +15715,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -18367,7 +18388,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -21786,7 +21807,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -24580,7 +24601,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -27195,7 +27216,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -30093,7 +30114,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -33154,7 +33175,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -36104,7 +36125,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -38707,7 +38728,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>

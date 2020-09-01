@@ -28,7 +28,7 @@ background information, {{<link url="LNV-Full-Example" text="read this chapter">
 {{%notice note%}}
 
 LNV is a lightweight controller option.
-{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/requests/new" text="Contact Cumulus Networks">}}
+{{<exlink url="https://support.mellanox.com/s/contact-support-page" text="Contact Cumulus Networks">}}
 with your scale requirements so we can make sure this is the right fit
 for you. There are also other controller options that can work on Cumulus Linux.
 

@@ -34,8 +34,7 @@ This article will be updated as new information arises.
 
 ## Resolution
 
-In the event that the switch fails to boot under the circumstances
-described above, Cumulus Networks recommends that you contact:
+In the event that the switch fails to boot under the circumstances described above, Cumulus Networks recommends that you contact:
 
-- The [Cumulus support team](https://support.cumulusnetworks.com/hc/en-us/requests/new) to make them aware of your situation, and,
+- The {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="NVIDIA Cumulus support team">}} to make them aware of your situation, and,
 - Your hardware supplier for the appropriate hardware warranty service.

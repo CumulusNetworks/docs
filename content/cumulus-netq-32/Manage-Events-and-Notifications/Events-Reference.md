@@ -4,13 +4,12 @@ author: Cumulus Networks
 weight: 690
 toc: 4
 ---
-The following table lists all event messages organized by type.
+The following table lists all system event messages organized by type.
 
-The messages can be viewed through third-party notification
-applications. For details about configuring notifications using the NetQ
-CLI, refer to {{<link title="Integrate NetQ with Notification Applications">}}.
+The messages can be viewed through third-party notification applications. For details about configuring notifications using the NetQ
+CLI, refer to {{<link title="Configure Notifications">}}.
 
-For information about configuring threshold-based events (TCAs), refer to {{<link url="Application-Management/#manage-threshold-crossing-rules">}}.
+For information about configuring threshold-based events (TCAs), refer to {{<link url="http://docs.cumulusnetworks.com/cumulus-netq-32/Manage-Events-and-Notifications/Integrate-NetQ-with-Notification-Applications/#configure-threshold-based-event-notifications" text="Configure Threshold-based Event Notifications">}}.
 
 <table>
 <colgroup>

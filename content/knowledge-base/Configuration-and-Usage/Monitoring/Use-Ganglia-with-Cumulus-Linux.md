@@ -1,7 +1,7 @@
 ---
 title: Use Ganglia with Cumulus Linux
 author: Cumulus Networks
-weight: 356
+weight: 376
 toc: 4
 ---
 

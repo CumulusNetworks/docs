@@ -1,7 +1,7 @@
 ---
 title: RX Error Counters and Slow Throughput Performance
 author: Cumulus Networks
-weight: 357
+weight: 377
 toc: 4
 ---
 

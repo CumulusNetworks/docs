@@ -837,8 +837,8 @@ line vty
 The following example shows an EVPN centralized routing configuration with:
 
 - BGP unnumbered in the underlay
-- A VXLAN overlay encapsulation data plane
-- EVPN overlay control plane
+- VXLAN encapsulation server connectivity
+- EVPN as the control plane
 - Centralized routing (SVI as gateways on the border leafs)
 
 The example configures a network infrastructure that creates a layer 2 extension between racks. Inter-VXLAN routed traffic routes between VXLANs on the border leafs.

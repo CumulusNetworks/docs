@@ -31,6 +31,7 @@ iface lo inet loopback
     address 10.10.10.1/32
     clagd-vxlan-anycast-ip 10.0.1.1
     vxlan-local-tunnelip 10.10.10.1
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -56,6 +57,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -64,6 +66,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     vlan-raw-device bridge
@@ -89,12 +92,14 @@ iface swp52
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.2
@@ -106,6 +111,7 @@ auto swp1
 iface swp1
     alias bond member of bond1
     mtu 9000
+
 auto bond1
 iface bond1
     alias bond1 on swp1
@@ -121,6 +127,7 @@ auto swp2
 iface swp2
     alias bond member of bond2
     mtu 9000
+
 auto bond2
 iface bond2
     alias bond2 on swp2
@@ -145,6 +152,7 @@ iface lo inet loopback
     address 10.10.10.2/32
     clagd-vxlan-anycast-ip 10.0.1.1
     vxlan-local-tunnelip 10.10.10.2
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -154,6 +162,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink
@@ -170,6 +179,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -178,6 +188,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     vlan-raw-device bridge
@@ -203,12 +214,14 @@ iface swp52
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.1
@@ -220,6 +233,7 @@ auto swp1
 iface swp1
     alias bond member of bond1
     mtu 9000
+
 auto bond1
 iface bond1
     alias bond1 on swp1
@@ -236,6 +250,7 @@ iface swp2
     alias bond member of bond2
     mtu 9000
 auto bond2
+
 iface bond2
     alias bond2 on swp2
     mtu 9000
@@ -259,16 +274,17 @@ iface lo inet loopback
     address 10.10.10.3/32
     clagd-vxlan-anycast-ip 10.0.1.2
     vxlan-local-tunnelip 10.10.10.3
+
 auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
 
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink
@@ -320,12 +336,15 @@ iface swp52
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.4
@@ -337,6 +356,7 @@ auto swp1
 iface swp1
     alias bond member of bond1
     mtu 9000
+
 auto bond1
 iface bond1
     alias bond1 on swp1
@@ -352,6 +372,7 @@ auto swp2
 iface swp2
     alias bond member of bond2
     mtu 9000
+
 auto bond2
 iface bond2
     alias bond2 on swp2
@@ -376,6 +397,7 @@ iface lo inet loopback
     address 10.10.10.4/32
     clagd-vxlan-anycast-ip 10.0.1.2
     vxlan-local-tunnelip 10.10.10.4
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -385,6 +407,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink
@@ -401,6 +424,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -409,6 +433,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     vlan-raw-device bridge
@@ -434,12 +459,15 @@ iface swp52
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.3
@@ -451,6 +479,7 @@ auto swp1
 iface swp1
     alias bond member of bond1
     mtu 9000
+
 auto bond1
 iface bond1
     alias bond1 on swp1
@@ -466,6 +495,7 @@ auto swp2
 iface swp2
     alias bond member of bond2
     mtu 9000
+
 auto bond2
 iface bond2
     alias bond2 on swp2
@@ -488,6 +518,7 @@ cumulus@spine01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -497,6 +528,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -524,6 +556,7 @@ cumulus@spine02:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.102/32
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -533,6 +566,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -807,6 +841,7 @@ iface lo inet loopback
     address 10.10.10.1/32
     clagd-vxlan-anycast-ip 10.0.1.1
     vxlan-local-tunnelip 10.10.10.1
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -832,6 +867,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -840,6 +876,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     vlan-raw-device bridge
@@ -865,12 +902,15 @@ iface swp52
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.2
@@ -882,6 +922,7 @@ auto swp1
 iface swp1
     alias bond member of bond1
     mtu 9000
+
 auto bond1
 iface bond1
     alias bond1 on swp1
@@ -897,6 +938,7 @@ auto swp2
 iface swp2
     alias bond member of bond2
     mtu 9000
+
 auto bond2
 iface bond2
     alias bond2 on swp2
@@ -921,6 +963,7 @@ iface lo inet loopback
     address 10.10.10.2/32
     clagd-vxlan-anycast-ip 10.0.1.1
     vxlan-local-tunnelip 10.10.10.2
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -930,6 +973,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink
@@ -970,7 +1014,7 @@ iface vlan20
     ip-forward off
     ip6-forward off
 
- auto swp51
+auto swp51
 iface swp51
     alias leaf to spine
 
@@ -981,12 +1025,15 @@ iface swp52
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.1
@@ -998,6 +1045,7 @@ auto swp1
 iface swp1
     alias bond member of bond1
     mtu 9000
+
 auto bond1
 iface bond1
     alias bond1 on swp1
@@ -1013,6 +1061,7 @@ auto swp2
 iface swp2
     alias bond member of bond2
     mtu 9000
+
 auto bond2
 iface bond2
     alias bond2 on swp2
@@ -1037,6 +1086,7 @@ iface lo inet loopback
     address 10.10.10.3/32
     clagd-vxlan-anycast-ip 10.0.1.2
     vxlan-local-tunnelip 10.10.10.3
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -1046,6 +1096,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink
@@ -1062,6 +1113,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -1070,6 +1122,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     vlan-raw-device bridge
@@ -1095,12 +1148,15 @@ iface swp52
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.4
@@ -1112,6 +1168,7 @@ auto swp1
 iface swp1
     alias bond member of bond1
     mtu 9000
+
 auto bond1
 iface bond1
     alias bond1 on swp1
@@ -1127,6 +1184,7 @@ auto swp2
 iface swp2
     alias bond member of bond2
     mtu 9000
+
 auto bond2
 iface bond2
     alias bond2 on swp2
@@ -1151,6 +1209,7 @@ iface lo inet loopback
     address 10.10.10.4/32
     clagd-vxlan-anycast-ip 10.0.1.2
     vxlan-local-tunnelip 10.10.10.4
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -1160,6 +1219,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink
@@ -1176,6 +1236,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -1184,6 +1245,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     vlan-raw-device bridge
@@ -1209,12 +1271,15 @@ iface swp52
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.3
@@ -1226,6 +1291,7 @@ auto swp1
 iface swp1
     alias bond member of bond1
     mtu 9000
+
 auto bond1
 iface bond1
     alias bond1 on swp1
@@ -1241,6 +1307,7 @@ auto swp2
 iface swp2
     alias bond member of bond2
     mtu 9000
+
 auto bond2
 iface bond2
     alias bond2 on swp2
@@ -1309,6 +1376,7 @@ cumulus@spine02:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.102/32
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -1354,6 +1422,7 @@ cumulus@spine03:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.103/32
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -1363,6 +1432,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -1398,6 +1468,7 @@ cumulus@spine04:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.104/32
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -1407,6 +1478,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -1444,16 +1516,17 @@ iface lo inet loopback
     address 10.10.10.63/32
     clagd-vxlan-anycast-ip 10.0.1.254
     vxlan-local-tunnelip 10.10.10.63
+
 auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
 
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink
@@ -1470,6 +1543,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -1478,6 +1552,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
@@ -1503,12 +1578,15 @@ iface swp52
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.64
@@ -1520,6 +1598,7 @@ auto swp3
 iface swp3
     alias bond member of bond3
     mtu 9000
+
 auto bond3
 iface bond3
     alias bond3 on swp3
@@ -1544,6 +1623,7 @@ iface lo inet loopback
     address 10.10.10.64/32
     clagd-vxlan-anycast-ip 10.0.1.254
     vxlan-local-tunnelip 10.10.10.64
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -1553,6 +1633,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink
@@ -1569,6 +1650,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -1577,6 +1659,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
@@ -1602,12 +1685,15 @@ iface swp52
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.63
@@ -1619,6 +1705,7 @@ auto swp3
 iface swp3
     alias bond member of bond3
     mtu 9000
+
 auto bond3
 iface bond3
     alias bond3 on swp3
@@ -2045,6 +2132,7 @@ iface lo inet loopback
     address 10.10.10.1/32
     clagd-vxlan-anycast-ip 10.0.1.1
     vxlan-local-tunnelip 10.10.10.1
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -2078,6 +2166,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -2086,6 +2175,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni30
 iface vni30
     bridge-access 30
@@ -2094,6 +2184,7 @@ iface vni30
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vniRED
 iface vniRED
     bridge-access 4001
@@ -2102,6 +2193,7 @@ iface vniRED
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vniBLUE
 iface vniBLUE
     bridge-access 4002
@@ -2110,6 +2202,7 @@ iface vniBLUE
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
@@ -2167,12 +2260,15 @@ iface swp54
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.2
@@ -2184,6 +2280,7 @@ auto swp1
 iface swp1
     alias bond member of bond1
     mtu 9000
+
 auto bond1
 iface bond1
     alias bond1 on swp1
@@ -2199,6 +2296,7 @@ auto swp2
 iface swp2
     alias bond member of bond2
     mtu 9000
+
 auto bond2
 iface bond2
     alias bond2 on swp2
@@ -2214,6 +2312,7 @@ auto swp3
 iface swp3
     alias bond member of bond3
     mtu 9000
+
 auto bond3
 iface bond3
     alias bond3 on swp3
@@ -2238,6 +2337,7 @@ iface lo inet loopback
     address 10.10.10.2/32
     clagd-vxlan-anycast-ip 10.0.1.1
     vxlan-local-tunnelip 10.10.10.2
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -2247,6 +2347,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto RED
 iface RED
   vrf-table auto
@@ -2271,6 +2372,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -2279,6 +2381,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni30
 iface vni30
     bridge-access 30
@@ -2287,6 +2390,7 @@ iface vni30
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vniRED
 iface vniRED
     bridge-access 4001
@@ -2295,6 +2399,7 @@ iface vniRED
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vniBLUE
 iface vniBLUE
     bridge-access 4002
@@ -2303,6 +2408,7 @@ iface vniBLUE
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     address 10.1.10.3/24
@@ -2360,12 +2466,15 @@ iface swp54
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.1
@@ -2377,6 +2486,7 @@ auto swp1
 iface swp1
     alias bond member of bond1
     mtu 9000
+
 auto bond1
 iface bond1
     alias bond1 on swp1
@@ -2392,6 +2502,7 @@ auto swp2
 iface swp2
     alias bond member of bond2
     mtu 9000
+
 auto bond2
 iface bond2
     alias bond2 on swp2
@@ -2407,6 +2518,7 @@ auto swp3
 iface swp3
     alias bond member of bond3
     mtu 9000
+
 auto bond3
 iface bond3
     alias bond3 on swp3
@@ -2431,16 +2543,17 @@ iface lo inet loopback
     address 10.10.10.3/32
     clagd-vxlan-anycast-ip 10.0.1.2
     vxlan-local-tunnelip 10.10.10.3
+
 auto mgmt
 iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
 
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto RED
 iface RED
   vrf-table auto
@@ -2465,6 +2578,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -2473,6 +2587,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni30
 iface vni30
     bridge-access 30
@@ -2481,6 +2596,7 @@ iface vni30
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vniRED
 iface vniRED
     bridge-access 4001
@@ -2489,6 +2605,7 @@ iface vniRED
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vniBLUE
 iface vniBLUE
     bridge-access 4002
@@ -2497,6 +2614,7 @@ iface vniBLUE
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
@@ -2554,12 +2672,15 @@ iface swp54
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.4
@@ -2571,6 +2692,7 @@ auto swp1
 iface swp1
     alias bond member of bond1
     mtu 9000
+
 auto bond1
 iface bond1
     alias bond1 on swp1
@@ -2586,6 +2708,7 @@ auto swp2
 iface swp2
     alias bond member of bond2
     mtu 9000
+
 auto bond2
 iface bond2
     alias bond2 on swp2
@@ -2601,6 +2724,7 @@ auto swp3
 iface swp3
     alias bond member of bond3
     mtu 9000
+
 auto bond3
 iface bond3
     alias bond3 on swp3
@@ -2625,6 +2749,7 @@ iface lo inet loopback
     address 10.10.10.4/32
     clagd-vxlan-anycast-ip 10.0.1.2
     vxlan-local-tunnelip 10.10.10.4
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -2658,6 +2783,7 @@ iface vni10
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni20
 iface vni20
     bridge-access 20
@@ -2666,6 +2792,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vni30
 iface vni30
     bridge-access 30
@@ -2674,6 +2801,7 @@ iface vni30
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vniRED
 iface vniRED
     bridge-access 4001
@@ -2682,6 +2810,7 @@ iface vniRED
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vniBLUE
 iface vniBLUE
     bridge-access 4002
@@ -2690,6 +2819,7 @@ iface vniBLUE
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     address 10.1.10.3/24
@@ -2747,12 +2877,15 @@ iface swp54
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.3
@@ -2764,6 +2897,7 @@ auto swp1
 iface swp1
     alias bond member of bond1
     mtu 9000
+
 auto bond1
 iface bond1
     alias bond1 on swp1
@@ -2779,6 +2913,7 @@ auto swp2
 iface swp2
     alias bond member of bond2
     mtu 9000
+
 auto bond2
 iface bond2
     alias bond2 on swp2
@@ -2794,6 +2929,7 @@ auto swp3
 iface swp3
     alias bond member of bond3
     mtu 9000
+
 auto bond3
 iface bond3
     alias bond3 on swp3
@@ -2816,6 +2952,7 @@ cumulus@spine01:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -2825,6 +2962,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -2860,6 +2998,7 @@ cumulus@spine02:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.102/32
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -2869,6 +3008,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -2904,6 +3044,7 @@ cumulus@spine03:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.103/32
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -2913,6 +3054,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -2948,6 +3090,7 @@ cumulus@spine04:~$ cat /etc/network/interfaces
 auto lo
 iface lo inet loopback
     address 10.10.10.104/32
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -2957,6 +3100,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -2994,6 +3138,7 @@ iface lo inet loopback
     address 10.10.10.63/32
     clagd-vxlan-anycast-ip 10.0.1.254
     vxlan-local-tunnelip 10.10.10.63
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -3003,6 +3148,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto RED
 iface RED
   vrf-table auto
@@ -3027,6 +3173,7 @@ iface vniRED
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vniBLUE
 iface vniBLUE
     bridge-access 4002
@@ -3035,6 +3182,7 @@ iface vniBLUE
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan4001
 iface vlan4001
     hwaddress 44:38:39:BE:EF:FF
@@ -3068,12 +3216,15 @@ iface swp54
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.64
@@ -3085,6 +3236,7 @@ auto swp3
 iface swp3
     alias bond member of bond3
     mtu 9000
+
 auto bond3
 iface bond3
     alias bond3 on swp3
@@ -3109,6 +3261,7 @@ iface lo inet loopback
     address 10.10.10.64/32
     clagd-vxlan-anycast-ip 10.0.1.254
     vxlan-local-tunnelip 10.10.10.64
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -3118,6 +3271,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto RED
 iface RED
   vrf-table auto
@@ -3142,6 +3296,7 @@ iface vniRED
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vniBLUE
 iface vniBLUE
     bridge-access 4002
@@ -3150,6 +3305,7 @@ iface vniBLUE
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan4001
 iface vlan4001
     hwaddress 44:38:39:BE:EF:FF
@@ -3183,12 +3339,15 @@ iface swp54
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.63
@@ -3200,6 +3359,7 @@ auto swp3
 iface swp3
     alias bond member of bond3
     mtu 9000
+
 auto bond3
 iface bond3
     alias bond3 on swp3

@@ -1,7 +1,7 @@
 ---
 title: MLAG Redundancy Scenarios
 author: Cumulus Networks
-weight: 376
+weight: 416
 toc: 4
 ---
 

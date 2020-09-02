@@ -7,7 +7,7 @@ toc: 4
 
 Cumulus Networks provides two methods for sharing files with our support team:
 
-- Uploading files directly to the case inside the {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/requests" text="Web tool">}}
+- Uploading files directly to the case inside the {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="Web tool">}}
 - Using FTP to upload files directly to Cumulus Networks
 
 This article discusses when and how to use FTP to upload files to Cumulus Networks.

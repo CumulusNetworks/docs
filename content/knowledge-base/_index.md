@@ -6,7 +6,6 @@ subsection: true
 cascade:
     version: 0
     product: Cumulus Networks Knowledge Base
-draft: true
 toc: 1
 ---
 

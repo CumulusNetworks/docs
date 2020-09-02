@@ -1,7 +1,7 @@
 ---
 title: Compare Traditional Bridge Mode to VLAN-aware Bridge Mode
 author: Cumulus Networks
-weight: 371
+weight: 411
 toc: 4
 ---
 

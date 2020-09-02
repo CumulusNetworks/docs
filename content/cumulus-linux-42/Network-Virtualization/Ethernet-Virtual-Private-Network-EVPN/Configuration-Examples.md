@@ -15,7 +15,12 @@ You can see these configurations in action and explore further by selecting one 
 
 ## Layer 2 EVPN with External Routing
 
-The following example shows an EVPN layer 2 routing configuration.
+The following example shows an EVPN layer 2 routing configuration with:
+
+- BGP in the underlay
+- VXLAN encapsulation server connectivity
+- EVPN as the control plane
+- All server gateways outside the VXLAN fabric
 
 {{< img src = "/images/cumulus-linux/evpn-layer2.png" >}}
 
@@ -43,6 +48,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink
@@ -98,6 +104,7 @@ iface swp49
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
@@ -205,7 +212,7 @@ iface vlan20
     ip-forward off
     ip6-forward off
 
- auto swp51
+auto swp51
 iface swp51
     alias leaf to spine
 
@@ -450,7 +457,7 @@ iface vlan20
     ip-forward off
     ip6-forward off
 
- auto swp51
+auto swp51
 iface swp51
     alias leaf to spine
 
@@ -825,7 +832,12 @@ line vty
 
 ## EVPN Centralized Routing
 
-The following example shows an EVPN centralized routing configuration.
+The following example shows an EVPN centralized routing configuration with:
+
+- BGP in the underlay
+- VXLAN encapsulation server connectivity
+- EVPN as the control plane
+- SVI as gateways living on border leafs
 
 {{< img src = "/images/cumulus-linux/evpn-central.png" >}}
 
@@ -2116,7 +2128,12 @@ line vty
 
 ## EVPN Symmetric Routing
 
-The following shows an EVPN symmetric routing configuration with external prefix (type-5) routing through exit leafs (border01 and border02) connected to an edge router.
+The following shows an EVPN symmetric routing configuration with:
+
+- BGP in the underlay
+- VXLAN encapsulation server connectivity
+- EVPN as the control plane
+- Distributed gateway routing, with SVI as gateways living on border leafs
 
 {{< img src = "/images/cumulus-linux/evpn-symmetric-config.png" >}}
 

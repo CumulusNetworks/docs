@@ -501,5 +501,4 @@ After you upgrade using a full disk image install, you need to reinstall any thi
 - {{<exlink url="https://cumulusnetworks.com/solutions/automation/" text="Automation Solutions">}}
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG">}}
-- {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360011472734-Configuration-File-Migration-Script" text="Configuration File Migration Script">}}
 - {{<link url="Zero-Touch-Provisioning-ZTP">}}

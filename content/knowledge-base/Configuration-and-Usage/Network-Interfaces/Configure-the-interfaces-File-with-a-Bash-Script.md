@@ -1,7 +1,7 @@
 ---
 title: Configure the interfaces File with a Bash Script
 author: Cumulus Networks
-weight: 372
+weight: 412
 toc: 4
 ---
 

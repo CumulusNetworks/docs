@@ -1,7 +1,7 @@
 ---
 title: Calculating the Limitation of a Linux Bridge in Traditional Mode
 author: Cumulus Networks
-weight: 361
+weight: 391
 toc: 4
 ---
 

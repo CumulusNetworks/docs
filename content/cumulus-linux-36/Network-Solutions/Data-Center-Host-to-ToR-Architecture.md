@@ -416,8 +416,7 @@ iface eth1 inet static
 <li><p>A default route can be advertised by all leaf/ToRs for dynamic ECMP paths</p></li>
 </ul></td>
 <td><ul>
-<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/216805858-Routing-on-the-Host-An-Introduction" class="external-link">Routing on the Host: An Introduction</a></p></li>
-<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
+<li><p><a href="http://docs.frrouting.org/en/latest/installation.html" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
 <li><p><a href="/cumulus-linux-36/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
 </ul></td>
 </tr>
@@ -468,8 +467,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 <li><p>Multiple ToRs (2+) can be used</p></li>
 </ul></td>
 <td><ul>
-<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/216805858-Routing-on-the-Host-An-Introduction" class="external-link">Routing on the host: An Introduction</a></p></li>
-<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
+<li><p><a href="http://docs.frrouting.org/en/latest/installation.html" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
 <li><p><a href="/cumulus-linux-36/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
 </ul></td>
 </tr>
@@ -516,8 +514,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 <li><p>Multiple vRouters could be used</p></li>
 </ul></td>
 <td><ul>
-<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/216805858-Routing-on-the-Host-An-Introduction" class="external-link">Routing on the Host: An Introduction</a></p></li>
-<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
+<li><p><a href="http://docs.frrouting.org/en/latest/installation.html" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
 <li><p><a href="/cumulus-linux-36/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
 </ul></td>
 </tr>

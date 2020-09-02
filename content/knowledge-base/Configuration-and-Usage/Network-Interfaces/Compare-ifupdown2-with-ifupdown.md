@@ -1,7 +1,7 @@
 ---
 title: Compare ifupdown2 Commands with ifupdown Commands
 author: Cumulus Networks
-weight: 375
+weight: 415
 toc: 4
 ---
 

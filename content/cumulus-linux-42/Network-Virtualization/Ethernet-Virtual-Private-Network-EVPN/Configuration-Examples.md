@@ -11,6 +11,8 @@ This section shows the following configuration examples:
 - EVPN symmetric routing
 <!-- - EVPN asymmetric routing -->
 
+You can see these configurations in action and explore further by selecting one of the demos in {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}} (a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action).
+
 ## Layer 2 EVPN with External Routing
 
 The following example shows an EVPN layer 2 routing configuration.

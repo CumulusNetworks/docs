@@ -131,11 +131,7 @@ If integrated configuration file mode is disabled, remove all the configuration 
 
 {{%/notice%}}
 
-3.  Restart FRRouting:
-
-```
-cumulus@switch:~$ sudo systemctl restart frr.service
-```
+3. {{<cl/restart-frr>}}
 
 ## Interface IP Addresses and VRFs
 

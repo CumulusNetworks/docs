@@ -916,16 +916,6 @@ Spectrum A1 chip.
 
 {{%/notice%}}
 
-{{%notice note%}}
-
-If you are using a Broadcom Trident II+ switch as a border/exit leaf,
-[read release
-note 766](https://support.cumulusnetworks.com/hc/en-us/articles/115015543848#rn766)
-for a necessary workaround; the workaround only applies to Trident II+
-switches, not Tomahawk or Spectrum.
-
-{{%/notice%}}
-
 ### Configuring the Switch to Install EVPN Type-5 Routes
 
 For a switch to be able to install EVPN type-5 routes into the routing
@@ -1798,12 +1788,7 @@ The following caveats apply to EVPN in this version of Cumulus Linux:
     mode by a control plane. This has no impact on forwarding.
 
   - Currently, only switches with the Mellanox Spectrum chipset or the
-    Broadcom Tomahawk chipset can be deployed as a border/exit leaf. If
-    you want to use a Broadcom Trident II+ switch as a border/exit leaf,
-    [read release
-    note 766](https://support.cumulusnetworks.com/hc/en-us/articles/115015543848#rn766)
-    for a necessary workaround; the workaround only applies to Trident
-    II+ switches, not Tomahawk or Spectrum.
+    Broadcom Tomahawk chipset can be deployed as a border/exit leaf.
 
   - You must configure the overlay (tenants) in a specific VRF(s) and
     separate from the underlay, which resides in the default VRF. A

@@ -190,7 +190,7 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
    "server02" [function="host" os="ubuntu/xenial64" memory="512" config="./helper_scripts/extra_server_config.sh"]
       "spine01":"swp1" -- "leaf01":"swp51"
       "spine01":"swp2" -- "leaf02":"swp51"
-      "leaf01":"swp40" -- "leaf02":"swp40"
+      "leaf01":"swp49" -- "leaf02":"swp49"
       "leaf01":"swp50" -- "leaf02":"swp50"
       "server01":"eth1" -- "leaf01":"swp1"
       "server01":"eth2" -- "leaf02":"swp1"
@@ -200,7 +200,7 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
 
    ```
 
-3. Run the following command to convert the `topology.dot` file to a Vagrantfile:
+2. Run the following command to convert the `topology.dot` file to a Vagrantfile:
 
    ```
    local@host:$ python3 ./topology_converter.py ./topology.dot
@@ -212,9 +212,11 @@ This procedure assumes you are on a system running Linux and have a vagrant box 
    local@host:$ python3 ./topology_converter.py ./topology.dot -p libvirt
    ```
 
-4. Start the simulation with the `vagrant up` command. With Livirt, start the simulation with the `vagrant up --provider=libvirt` command.
+   The topology converter reads the provided topology file line by line, and learns information about each node and each link in the topology. This information is stored in a variables datastructure. A `jinja2` template (`/templates/Vagrantfile.j2`) is used to create a Vagrantfile based on the variables datastructure.
 
-The topology converter reads the provided topology file line by line, and learns information about each node and each link in the topology. This information is stored in a variables datastructure. A `jinja2` template (`/templates/Vagrantfile.j2`) is used to create a Vagrantfile based on the variables datastructure.
+3. Start the simulation with the `vagrant up` command. With Livirt, start the simulation with the `vagrant up --provider=libvirt` command.
+
+4. Log into each switch, then bring up the interfaces.
 
 To explore the topology converter further, read the documentation and take a look at the selection of example topologies included with the source code you downloaded.
 

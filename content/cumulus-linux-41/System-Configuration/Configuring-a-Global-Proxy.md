@@ -70,4 +70,4 @@ The proxy is now configured. The `echo` command can be used to confirm aproxy is
 
 ## Related Information
 
-{{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/232058388-Setting-up-an-apt-Package-Cache" text="Setting up an apt package cache">}}
+{{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Set-up-an-apt-Package-Cache" text="Set up an apt package cache">}}

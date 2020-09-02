@@ -24,7 +24,11 @@ The following illustration shows a PIM configuration. The table below the illust
 |---------------- |-------------|
 | First Hop Router (FHR) | The router attached to the source. The FHR is responsible for the PIM register process. |
 | Last Hop Router (LHR) | The last router in the path, attached to an interested multicast receiver. There is a single LHR for each network subnet with an interested receiver, however multicast groups can have multiple LHRs throughout the network. |
-| Rendezvous Point (RP) | Allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable. <br><br> <p>{{%notice warning%}}</p> <ul> <li><code>zebra</code> does not resolve the next hop for the RP through the default route. Multicast forwarding fails unless you have a specific route to the RP.</li><li>Do not use a spine switch as an RP. If you are running BGP on a spine switch and it is <b>not</b> configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP).</li> <p>{{%/notice%}}</p>  |
+| Rendezvous Point (RP) | Allows for the discovery of multicast sources and multicast receivers. The RP is responsible for sending PIM Register Stop messages to FHRs. The PIM RP address must be globally routable. <br><br> <p>{{%notice warning%}}</p> <ul> <li><code>zebra</code> does not resolve the next hop for the RP through the default route. To prevent multicast forwarding from failing, either provide a specific route to the RP or specify the following command to be able to resolve the next hop for the RP through the default route:<pre>cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# ip nht resolve-via-default
+switch(config)# exit
+switch# write memory</li><li>Do not use a spine switch as an RP. If you are running BGP on a spine switch and it is <b>not</b> configured for allow-as in origin, BGP does not accept routes learned through other spines that do not originate on the spine itself. The RP must route to a multicast source. During a single failure scenario, this is not possible if the RP is on the spine. This also applies to Multicast Source Discovery Protocol (MSDP).</li> <p>{{%/notice%}}</p>  |
 | PIM Shared Tree (RP Tree) or (*,G) Tree | The multicast tree rooted at the RP. When receivers want to join a multicast group, join messages are sent along the shared tree towards the RP.|
 |PIM Shortest Path Tree (SPT) or (S,G) Tree|The multicast tree rooted at the multicast source for a given group. Each multicast source has a unique SPT. The SPT can match the RP Tree, but this is not a requirement. The SPT represents the most efficient way to send multicast traffic from a source to the interested receivers. |
 | Outgoing Interface (OIF) | Indicates the interface on which a PIM or multicast packet is to be sent out. OIFs are the interfaces towards the multicast receivers. |
@@ -114,11 +118,7 @@ PIM is included in the FRRouting package. For proper PIM operation, PIM depends 
    ...
    ```
 
-2. Run the `systemctl restart` command to restart FRRouting. Restarting FRR impacts all routing protocols.
-
-   ```
-   cumulus@switch:~$ sudo systemctl restart frr
-   ```
+2. {{<cl/restart-frr>}}
 
 3. In the vtysh shell, run the following commands to configure the PIM interfaces. PIM must be enabled on all interfaces facing multicast sources or multicast receivers, as well as on the interface where the RP address is configured.
 

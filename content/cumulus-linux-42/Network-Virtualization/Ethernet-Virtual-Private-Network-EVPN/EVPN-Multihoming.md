@@ -4,9 +4,10 @@ author: Cumulus Networks
 weight: 555
 toc: 4
 ---
+
 {{%notice warning%}}
 
-EVPN multihoming is an {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202933878" text="early access feature">}}.
+EVPN multihoming is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
 
 {{%/notice%}}
 

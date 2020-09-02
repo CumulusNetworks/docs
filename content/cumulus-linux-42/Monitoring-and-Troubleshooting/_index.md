@@ -73,7 +73,7 @@ To change the serial console baud rate:
    cumulus@switch:~$ update-grub
    ```
 
-3. If you plan on accessing the switch BIOS over the serial console, you need to update the baud rate in the switch BIOS. For more information, see {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/203884473" text="this knowledge base article">}}.
+3. If you plan on accessing the switch BIOS over the serial console, you need to update the baud rate in the switch BIOS. For more information, see {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Accessing-the-BIOS-on-an-x86-Switch" text="this knowledge base article">}}.
 
 4. Reboot the switch.
 

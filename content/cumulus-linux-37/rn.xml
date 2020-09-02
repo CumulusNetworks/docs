@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31158</td>
 <td><p>An issue has been found in python2.7, an interactive high-level object-oriented language.<br/>
 CVE-2019-20907: Opening a crafted tar file could result in an infinite loop due to missing header validation.<br/>
@@ -173,6 +181,12 @@ CVE-2020-15863: stack-based overflow in xgmac_enet_send() in hw/net/xgmac.c.<br/
 Vulnerable: &lt;= 2.1+dfsg-12+deb8u15<br/>
 Fixed: 2.1+dfsg-12+deb8u16</p></td>
 <td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30832</td>
+<td><p>The Mellanox SN2700 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
+<td>3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -1679,7 +1693,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -2246,6 +2260,14 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -4481,7 +4503,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -4805,6 +4827,14 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -7000,7 +7030,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -7579,6 +7609,14 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -9978,7 +10016,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -10052,6 +10090,14 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -12236,7 +12282,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -12947,6 +12993,14 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -15640,7 +15694,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -15714,6 +15768,14 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -18305,7 +18367,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -18835,6 +18897,14 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -21716,7 +21786,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -21906,6 +21976,14 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -24502,7 +24580,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -24666,6 +24744,14 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -27109,7 +27195,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -27484,6 +27570,14 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -29999,7 +30093,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -30461,6 +30555,14 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -33052,7 +33154,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -33560,6 +33662,14 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -35994,7 +36104,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -36163,6 +36273,14 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31210</td>
+<td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
+Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
+Fixed: 9.4.26-0+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31158</td>
@@ -38589,7 +38707,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>

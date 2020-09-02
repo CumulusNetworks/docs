@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 580
 toc: 4
 ---
-This section shows the following configuration examples:
+This section shows the following EVPN configuration examples:
 
 - Layer 2 EVPN with external routing
 - EVPN centralized routing
@@ -15,12 +15,14 @@ You can see these configurations in action and explore further by selecting one 
 
 ## Layer 2 EVPN with External Routing
 
-The following example shows an EVPN layer 2 routing configuration with:
+The following example shows a layer 2 EVPN external routing configuration with:
 
-- BGP in the underlay
+- BGP unnumbered in the underlay
 - VXLAN encapsulation server connectivity
 - EVPN as the control plane
-- All server gateways outside the VXLAN fabric
+- Server gateways outside the VXLAN fabric
+
+The example configures a network infrastructure that creates a layer 2 extension between racks. Inter-VXLAN routed traffic routes between VXLANs on an external device.
 
 {{< img src = "/images/cumulus-linux/evpn-layer2.png" >}}
 
@@ -834,10 +836,12 @@ line vty
 
 The following example shows an EVPN centralized routing configuration with:
 
-- BGP in the underlay
+- BGP unnumbered in the underlay
 - VXLAN encapsulation server connectivity
 - EVPN as the control plane
-- SVI as gateways living on border leafs
+- Centralized routing (SVI as gateways on the border leafs)
+
+The example configures a network infrastructure that creates a layer 2 extension between racks. Inter-VXLAN routed traffic routes between VXLANs on the border leafs.
 
 {{< img src = "/images/cumulus-linux/evpn-central.png" >}}
 
@@ -2130,10 +2134,10 @@ line vty
 
 The following shows an EVPN symmetric routing configuration with:
 
-- BGP in the underlay
+- BGP unnumbered in the underlay
 - VXLAN encapsulation server connectivity
 - EVPN as the control plane
-- Distributed gateway routing, with SVI as gateways living on border leafs
+- Distributed gateway routing (SVI as gateways on the border leafs)
 
 {{< img src = "/images/cumulus-linux/evpn-symmetric-config.png" >}}
 

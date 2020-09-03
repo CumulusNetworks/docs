@@ -1,53 +1,56 @@
 ---
 title: Cumulus Linux 3.6 Release Notes
 author: Cumulus Networks
-weight: 109
-toc: 3
+weight: 7
 ---
 
 These release notes support Cumulus Linux 3.6.0, 3.6.1, and 3.6.2 and describe currently available features and known issues.
 
 ## Stay up to Date
 
-- Subscribe to our [product bulletin](https://lists.cumulusnetworks.com/listinfo/cumulus-product-bulletin) mailing list to receive important announcements and updates about issues that arise in our products.
-- Subscribe to our [security announcement](https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce) mailing list to receive alerts whenever we update our software for security issues.
+- Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-product-bulletin" text="product bulletin">}} mailing list to receive important announcements and updates about issues that arise in our products.
+- Subscribe to our {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="security announcement">}} mailing list to receive alerts whenever we update our software for security issues.
 
-## What's New in Cumulus Linux 3.6.2
+## What's New in Cumulus Linux 3.6.2
 
 Cumulus Linux 3.6.2 contains the following new features, platforms, and improvements:
 
-- [Facebook Voyager](https://cumulusnetworks.com/hcl) (DWDM) (100G Tomahawk) now generally available
-- NCLU commands available for [configuring traditional mode bridges](https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/)
-- [VRF static route leaking with EVPN](https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-3/Virtual-Routing-and-Forwarding-VRF/#configuring-static-route-leaking-with-evpn) symmetric routing
-- New [`vrf_route_leak_enable` option](https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-3/Virtual-Routing-and-Forwarding-VRF/#enabling-vrf-route-leaking) to enable VRF route leaking
+- {{<exlink url="https://cumulusnetworks.com/hcl" text="Facebook Voyager">}} (DWDM) (100G Tomahawk) now generally available
+- NCLU commands available for {{<link url="Traditional-Bridge-Mode" text="configuring traditional mode bridges">}}
+- {{<link url="Virtual-Routing-and-Forwarding-VRF/#configuring-static-route-leaking-with-evpn" text="VRF static route leaking with EVPN">}} symmetric routing
+- New {{<link url="Virtual-Routing-and-Forwarding-VRF/#enabling-vrf-route-leaking" text="vrf_route_leak_enable option">}} used to enable VRF route leaking
+
+## What's New in Cumulus Linux 3.6.2
+
+Cumulus Linux 3.6.1 contains bug fixes and security fixes.
 
 ## What's New in Cumulus Linux 3.6.0
 
-Cumulus Linux 3.6.0 contains the following new features, platforms, and improvements:
+Cumulus Linux 3.6.0 contains a number of new platforms, features and improvements:
 
-- New [platforms](https://cumulusnetworks.com/hcl) include:
-    - Dell S4128T (10GBASE-T Maverick)
-    - Dell S5048 (25G Tomahawk+)
+- New {{<exlink url="https://cumulusnetworks.com/hcl" text="platforms">}} include:
+    - Dell S4128T-ON (10GBASE-T Maverick)
+    - Dell S5048-ON (25G Tomahawk+)
     - Delta AG-5648v1 (25G Tomahawk+)
-    - Edgecore AS7312-54XS (Tomahawk+) - also available as Cumulus Express
-    - Facebook Voyager (DWDM) (100G Tomahawk) - *Early Access*
-    - Penguin Arctica 1600CS (Spectrum 100G)
-    - Penguin Arctica 3200CS (Spectrum 100G)
-    - Penguin Arctica 4808X (Spectrum 10G)
-- [Policy-Based Routing](https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-3/Policy-based-Routing/)
-- [VRF Route Leaking](https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-3/Virtual-Routing-and-Forwarding-VRF/#vrf-route-leaking) on switches with Broadcom ASICs
-- [PTP Boundary Clock](https://docs.cumulusnetworks.com/cumulus-linux-36/System-Configuration/Setting-Date-and-Time/#precision-time-protocol-ptp-boundary-clock)
-- [GRE Tunneling](https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-3/GRE-Tunneling/) (early access)
-- New [`/etc/cumulus/ports.conf` file validator](#rn873) finds syntax and platform-specific errors, and provides a reason for each invalid line.
-- Support for combination of `local-as` and `allowas-in` command
+    - Edgecore AS7312-54XS (Tomahawk+)
+    - Facebook Voyager (100G Tomahawk/DWDM) Early Access
+    - Penguin Arctica 1600CS (100G Spectrum)
+    - Penguin Arctica 3200CS (100G Spectrum)
+    - Penguin Arctica 4808X (10G Spectrum)
+- {{<link url="Policy-based-Routing" text="Policy-based routing">}}
+- {{<link url="Virtual-Routing-and-Forwarding-VRF/#vrf-route-leaking" text="VRF route leaking">}}
+- {{<link url="Setting-Date-and-Time/#precision-time-protocol-ptp-boundary-clock" text="PTP boundary clock">}} on Mellanox switches
+- {{<link url="GRE-Tunneling" text="GRE tunneling">}} on Mellanox switches
+- New {{<link url="#rn873" text="ports.conf file validator">}} finds syntax errors and provides a reason for each invalid line. Error messages are shown when you run the `net commit` command.
+- Support for the combination of the `local-as` and `allowas-in` commands
 - OSPFv3 enhancements:
     - Validated interoperability with other routers at a scale of 120 neighbors
-    - New NCLU commands to configure [OSPFv3](https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-v3-OSPFv3-Protocol/#configuring-the-ospfv3-area)
+    - New NCLU commands to configure {{<link url="Open-Shortest-Path-First-v3-OSPFv3-Protocol/#configuring-the-ospfv3-area" text="OSPFv3">}}
 - EVPN Enhancements:
-    - [Type-5 routes with asymmetric routing](https://docs.cumulusnetworks.com/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#evpn-type-5-routing-with-asymmetric-routing)
-    - [Default originate EVPN Type-5 Routes](https://docs.cumulusnetworks.com/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#originating-default-evpn-type-5-routes)
-    - [Filter EVPN routes based on type](https://docs.cumulusnetworks.com/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#filtering-evpn-routes-based-on-type)
-    - [Control which RIB routes are injected into EVPN](https://docs.cumulusnetworks.com/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#controlling-which-rib-routes-are-injected-into-evpn)
+    - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#evpn-type-5-routing-with-asymmetric-routing" text="Type-5 routes with asymmetric routing">}}
+    - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#originating-default-evpn-type-5-routes" text="Originate default EVPN type-5 routes">}}
+    - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#filtering-evpn-routes-based-on-type" text="Filter EVPN routes based on type">}}
+    - {{<link url="Ethernet-Virtual-Private-Network-EVPN/#controlling-which-rib-routes-are-injected-into-evpn" text="Control which RIB routes are injected into EVPN">}}
 - Cumulus Linux 3.6 is the last release to support Quanta IX2 (25G Tomahawk)
 
 ## Licensing
@@ -59,13 +62,11 @@ and console ports are activated on an un-licensed instance of Cumulus
 Linux. Enabling front panel ports requires a license.
 
 You should have received a license key from Cumulus Networks or an
-authorized reseller. To install the license, read the Cumulus Linux
-[Quick Start Guide](https://docs.cumulusnetworks.com/cumulus-linux-36/Quick-Start-Guide/).
+authorized reseller. To install the license, read the {{<link url="Quick-Start-Guide">}}.
 
 ## Installing Version 3.6
 
-If you are upgrading from version 3.0.0 or later, use
-[`apt-get`](https://wiki.debian.org/apt-get) to update the software.
+If you are upgrading from version 3.0.0 or later, use {{<exlink url="https://wiki.debian.org/apt-get" text="apt-get">}} to update the software.
 
 Cumulus Networks recommends you use the `-E` option with `sudo` whenever
 you run any `apt-get` command. This option preserves your environment
@@ -73,7 +74,7 @@ variables, such as HTTP proxies, before you install new packages or
 upgrade your distribution.
 
 1.  Retrieve the new version packages: `cumulus@switch:~$ sudo -E apt-get update`
-2.  If you are using any [early access features](https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/) from an older release, remove them with: `cumulus@switch:~$ sudo -E apt-get remove EA_PACKAGENAME`
+2.  If you are using any {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access features">}} from an older release, remove them with: `cumulus@switch:~$ sudo -E apt-get remove EA_PACKAGENAME`
 3.  Upgrade the release: `cumulus@switch:~$ sudo -E apt-get upgrade`
 4.  To include additional Cumulus Linux packages not present in your current version, run the command: `cumulus@switch:~$ apt-get install nclu hostapd python-cumulus-restapi linuxptp` 
 
@@ -82,7 +83,7 @@ upgrade your distribution.
 
 {{%notice note%}}
 
-If you see errors for expired GPG keys that prevent you from upgrading packages when upgrading to Cumulus Linux 3.6 from 3.5.1 or earlier, follow the steps in [Upgrading Expired GPG Keys](https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/).
+If you see errors for expired GPG keys that prevent you from upgrading packages when upgrading to Cumulus Linux 3.6 from 3.5.1 or earlier, follow the steps in {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys/" text="Upgrading Expired GPG Keys">}}.
 
 {{%/notice%}}
 
@@ -113,12 +114,12 @@ For upgrades post 3.6.0, if no reboot is required after the upgrade completes, t
     Policy: Removed /usr/sbin/policy-rc.d
     Policy: Upgrade is finished
 
-For additional information about upgrading, see [Upgrading Cumulus Linux](https://docs.cumulusnetworks.com/cumulus-linux-36/Installation-Management/Upgrading-Cumulus-Linux/) in the *Cumulus Linux User Guide*.
+For additional information about upgrading, see {{<link url="Upgrading-Cumulus-Linux" text="Upgrading Cumulus Linux">}}.
 
 ### New Install or Upgrading from Versions Older than 3.0.0
 
 If you are upgrading from a version older than 3.0.0, or installing
-Cumulus Linux for the first time, download the [Cumulus Linux 3.6.0 installer](https://cumulusnetworks.com/downloads/) for Broadcom or Mellanox switches from the Cumulus Networks website, then use [ONIE](http://onie.github.io/onie/) to perform a complete install, following the instructions in the [quick start guide](https://docs.cumulusnetworks.com/cumulus-linux-36/Quick-Start-Guide/).
+Cumulus Linux for the first time, download the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Linux 3.6.0 installer">}} for Broadcom or Mellanox switches from the Cumulus Networks website, then use {{<exlink url="http://onie.github.io/onie/" text="ONIE">}} to perform a complete install, following the instructions in the {{<link url="Quick-Start-Guide">}}.
 
 {{%notice note%}}
 
@@ -134,7 +135,7 @@ After you install, run `apt-get update`, then `apt-get upgrade` on your switch t
 
 ### Updating a Deployment that Has MLAG Configured
 
-If you are using [MLAG](https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/) to dual connect two switches in your environment, and those switches are still running Cumulus Linux 2.5 ESR or any other release earlier than 3.0.0, the switches will not be dual-connected after you upgrade the first switch. To ensure a smooth upgrade, follow these steps:
+If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} to dual connect two switches in your environment, and those switches are still running Cumulus Linux 2.5 ESR or any other release earlier than 3.0.0, the switches will not be dual-connected after you upgrade the first switch. To ensure a smooth upgrade, follow these steps:
 
 1.  Disable `clagd` in the `/etc/network/interfaces` file (set `clagd-enable` to *no*), then restart the `switchd`, networking, and FRR services.  
 
@@ -161,7 +162,7 @@ If you are using [MLAG](https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-
 6.  Install Cumulus Linux 3.6 onto the secondary switch using ONIE. At
     this time, all traffic is going to the switch in the primary role.
 
-7.  After the install, copy the license file and all the [configuration files](https://docs.cumulusnetworks.com/cumulus-linux-36/Installation-Management/Upgrading-Cumulus-Linux/) you backed up, then restart the `switchd`, networking, and Quagga services. All traffic is still going to the primary switch.  
+7.  After the install, copy the license file and all the {{<link url="Upgrading-Cumulus-Linux" text="configuration files">}} you backed up, then restart the `switchd`, networking, and Quagga services. All traffic is still going to the primary switch.  
 
         cumulus@switch:~$ sudo systemctl restart switchd.service
         cumulus@switch:~$ sudo systemctl restart networking.service
@@ -171,9 +172,9 @@ If you are using [MLAG](https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-
 
 9.  Install Cumulus Linux 3.6 onto the *primary switch* using ONIE.
 
-10. After the install, copy the license file and all the [configuration files](https://docs.cumulusnetworks.com/cumulus-linux-36/Installation-Management/Upgrading-Cumulus-Linux/) you backed up.
+10. After the install, copy the license file and all the {{<link url="Upgrading-Cumulus-Linux" text="configuration files">}} you backed up.
 
-11. Follow the steps for [upgrading from Quagga to FRRouting](https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-3/FRRouting-Overview/Upgrading-from-Quagga-to-FRRouting/).
+11. Follow the steps for {{<link url="Upgrading-from-Quagga-to-FRRouting" text="upgrading from Quagga to FRRouting">}}.
 
 12. Enable `clagd` again in the `/etc/network/interfaces` file (set
     `clagd-enable` to *yes*), then run `ifreload -a`.  
@@ -193,10 +194,6 @@ If you are using [MLAG](https://docs.cumulusnetworks.com/cumulus-linux-36/Layer-
 Any Perl scripts that use the `DB_File` module or Python scripts that use the `bsddb` module won't run under Cumulus Linux 3.6.
 
 {{%/notice%}}
-
-## Documentation
-
-You can read the technical documentation [here](https://docs.cumulusnetworks.com/cumulus-linux-36/).
 
 ## Issues Fixed in Cumulus Linux 3.6.2
 

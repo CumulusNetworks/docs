@@ -28,13 +28,13 @@ cumulus@switch:~$ net example clag basic-clag
 
 {{%/notice%}}
 
-The two switches, S1 and S2, known as *peer switches*, appear as a single device to the bond on host H1. H1 distributes traffic between the two links to S1 and S2 in any way that you configure on the host. Similarly, traffic inbound to H1 can traverse S1 or S2 and arrive at H1.
+The two switches, leaf01 and leaf02, known as *peer switches*, appear as a single device to the bond on server01. server01 distributes traffic between the two links to leaf01 and leaf02 in any way that you configure on the host. Similarly, traffic inbound to server01 can traverse leaf01 or leaf02 and arrive at server01.
 
 ## MLAG Requirements
 
 MLAG has these requirements:
 
-- There must be a direct connection between the two peer switches implementing MLAG (S1 and S2). This is typically a bond for increased reliability and bandwidth.
+- There must be a direct connection between the two peer switches implementing MLAG (leaf01 and leaf02). This is typically a bond for increased reliability and bandwidth.
 - There must be only two peer switches in one MLAG configuration, but you can have multiple configurations in a network for *switch-to-switch MLAG* (see below).
 - You must specify a unique `clag-id` for every dual-connected bond on each peer switch; the value must be between 1 and 65535 and must be the same on both peer switches for the bond to be considered *dual-connected*.
 - The dual-connected devices (servers or switches) can use LACP (IEEE 802.3ad/802.1ax) to form the {{<link url="Bonding-Link-Aggregation" text="bond">}}. In this case, the peer switches must also use LACP.
@@ -47,17 +47,15 @@ If you cannot use LACP, you can also use
 
 {{%/notice%}}
 
-More elaborate configurations are also possible. The number of links between the host and the switches can be greater than two and does not have to be symmetrical:
+More elaborate configurations are also possible. The number of links between the host and the switches can be greater than two and does not have to be symmetrical.
 
-{{< img src = "/images/cumulus-linux/mlag-multiple-links.png" >}}
-
-Additionally, because S1 and S2 appear as a single switch to other bonding devices, you can also connect pairs of MLAG switches to each other in a switch-to-switch MLAG configuration:
+Additionally, because leaf01 and leaf02 appear as a single switch to other bonding devices, you can also connect pairs of MLAG switches to each other in a switch-to-switch MLAG configuration:
 
 {{< img src = "/images/cumulus-linux/mlag-two-pair.png" >}}
 
-In the above example, L1 and L2 are also MLAG peer switches and present a two-port bond from a single logical system to S1 and S2. S1 and S2 do the same as far as L1 and L2 are concerned. For a switch-to-switch MLAG configuration, each switch pair must have a unique system MAC address. In the example, switch L1 and L2 each have the same system MAC address. Switch pair S1 and S2 each have the same system MAC address; however, it is a different system MAC address than the one used by the switch pair L1 and L2.
+In the above example, leaf01 and leaf02 are also MLAG peer switches and present a two-port bond from a single logical system to spine01 and spine02. spine01 and spin02 do the same as far as leaf01 and leaf02 are concerned. For a switch-to-switch MLAG configuration, each switch pair must have a unique system MAC address. In the example, leaf01 and leaf02 each have the same system MAC address. Switch pair spine01 and spine02 each have the same system MAC address; however, it is a different system MAC address than the one used by the switch pair leaf01 and leaf02.
 
-## LACP and Dual-connectedness
+## LACP and Dual-connected Links
 
 For MLAG to operate correctly, the peer switches must know which links are *dual-connected* or are connected to the same host or switch. You must specify a `clag-id` for every dual-connected bond on each peer switch; the `clag-id` must be the same for the corresponding bonds on both peer switches. Typically, {{<exlink url="http://en.wikipedia.org/wiki/Link_Aggregation_Control_Protocol#Link_Aggregation_Control_Protocol" text="Link Aggregation Control Protocol (LACP)">}}, the IEEE standard protocol for managing bonds, is used for verifying dual-connectedness. LACP runs on the dual-connected device and on each of the peer switches. On the dual-connected device, the only configuration requirement is to create a bond that is managed by LACP.
 
@@ -69,7 +67,7 @@ On each of the peer switches, you must place the links that are connected to the
 
 All of the dual-connected bonds on the peer switches have their system ID set to the MLAG system ID. Therefore, from the point of view of the hosts, each of the links in its bond is connected to the same system and so the host uses both links.
 
-Each peer switch periodically makes a list of the LACP partner MAC addresses for all of their bonds and sends that list to its peer (using the `clagd` service; see below). The LACP partner MAC address is the MAC address of the system at the other end of a bond (hosts H1, H2, and H3 in the figure above). When a switch receives this list from its peer, it compares the list to the LACP partner MAC addresses on its switch. If any matches are found and the `clag-id` for those bonds match, then that bond is a dual-connected bond. You can find the LACP partner MAC address by the running `net show bridge macs` command or by examining the `/sys/class/net/<bondname>/bonding/ad_partner_mac sysfs` file for each bond.
+Each peer switch periodically makes a list of the LACP partner MAC addresses for all of their bonds and sends that list to its peer (using the `clagd` service; see below). The LACP partner MAC address is the MAC address of the system at the other end of a bond (hosts server01, server02, and server03 in the figure above). When a switch receives this list from its peer, it compares the list to the LACP partner MAC addresses on its switch. If any matches are found and the `clag-id` for those bonds match, then that bond is a dual-connected bond. You can find the LACP partner MAC address by the running `net show bridge macs` command or by examining the `/sys/class/net/<bondname>/bonding/ad_partner_mac sysfs` file for each bond.
 
 ## Configure MLAG
 
@@ -134,13 +132,13 @@ On your dual-connected device, create a bond that uses LACP. The method you use 
 
 ### Configure the Interfaces
 
-Place every interface that connects to the MLAG pair from a dual-connected device into a {{<link url="Bonding-Link-Aggregation" text="bond">}}, even if the bond contains only a single link on a single physical switch (even though the MLAG pair contains two or more links). Layer 2 data travels over this bond. In the examples throughout this chapter, *peerlink* is the name of the bond.
+To configure the interfaces:
 
-Single-attached hosts, also known as *orphan ports*, can be just a member of the bridge.
+- Place every interface that connects to the MLAG pair from a dual-connected device into a {{<link url="Bonding-Link-Aggregation" text="bond">}}, even if the bond contains only a single link on a single physical switch (even though the MLAG pair contains two or more links). Layer 2 data travels over this bond. In the examples throughout this chapter, *peerlink* is the name of the bond.
+- Single-attached hosts, also known as *orphan ports*, can be just a member of the bridge.
+- Configure the fast mode of LACP on the bond to allow more timely updates of the LACP state. These bonds are then placed in a bridge, which must include the peer link between the switches.
 
-Additionally, configure the fast mode of LACP on the bond to allow more timely updates of the LACP state. These bonds are then placed in a bridge, which must include the peer link between the switches.
-
-To enable communication between the `clagd` services on the peer switches, do the following:
+To enable communication between the `clagd` services on the peer switches:
 
 - Choose an unused VLAN (also known as a *switched virtual interface* or *SVI* here).
 - Assign the SVI an unrouteable link-local address to give the peer switches layer 3 connectivity between each other.
@@ -162,7 +160,7 @@ cumulus@switch:~$ net commit
 
 {{%notice note%}}
 
-Do *not* add VLAN 4094 to the bridge VLAN list; VLAN 4094 for the peer link subinterface cannot also be configured as a bridged VLAN with bridge VIDs under the bridge.
+Do *not* add VLAN 4094 to the bridge VLAN list; VLAN 4094 for the peer link subinterface must not be also configured as a bridged VLAN with bridge VIDs under the bridge.
 
 {{%/notice%}}
 

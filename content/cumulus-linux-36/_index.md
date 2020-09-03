@@ -18,51 +18,9 @@ Cumulus Linux is the first full-featured Linux operating system for the networki
 
 This user guide provides in-depth documentation on the Cumulus Linux installation process, system configuration and management, network solutions, and monitoring and troubleshooting recommendations. In addition, the quick start guide provides an end-to-end setup process to get you started.
 
-## What's New in Cumulus Linux 3.6.2
+## What's New in this Release
 
-Cumulus Linux 3.6.2 contains the following new features, platforms, and improvements:
-
-  - [Facebook Voyager](https://cumulusnetworks.com/hcl) (DWDM) (100G Tomahawk) now generally available
-  - NCLU commands available for [configuring traditional mode bridges](/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode)
-  - [VRF static route leaking with EVPN](/cumulus-linux-36/Layer-3/Virtual-Routing-and-Forwarding-VRF/#configuring-static-route-leaking-with-evpn) symmetric routing
-  - New [`vrf_route_leak_enable` option](/cumulus-linux-36/Layer-3/Virtual-Routing-and-Forwarding-VRF/#enabling-vrf-route-leaking) used to enable VRF route leaking
-
-## What's New in Cumulus Linux 3.6.0
-
-Cumulus Linux 3.6.0 contains a number of new platforms, features and improvements:
-
-  - New [platforms](https://cumulusnetworks.com/hcl) include:
-      - Dell S4128T-ON (10GBASE-T Maverick)
-      - Dell S5048-ON (25G Tomahawk+)
-      - Delta AG-5648v1 (25G Tomahawk+)
-      - Edgecore AS7312-54XS (Tomahawk+)
-      - Facebook Voyager (100G Tomahawk/DWDM) Early Access
-      - Penguin Arctica 1600CS (100G Spectrum)
-      - Penguin Arctica 3200CS (100G Spectrum)
-      - Penguin Arctica 4808X (10G Spectrum)
-  - [Policy-based Routing](/cumulus-linux-36/Layer-3/Policy-based-Routing)
-  - [VRF Route Leaking](/cumulus-linux-36/Layer-3/Virtual-Routing-and-Forwarding-VRF/#vrf-route-leaking)
-  - [PTP Boundary Clock](/cumulus-linux-36/System-Configuration/Setting-Date-and-Time/#precision-time-protocol-ptp-boundary-clock)
-    on Mellanox switches
-  - [GRE Tunneling](/cumulus-linux-36/Layer-3/GRE-Tunneling) on
-    Mellanox switches
-  - New `/etc/cumulus/ports.conf` file validator finds syntax errors and
-    provides a reason for each invalid line. Error messages are shown
-    when you run the `net commit` command.
-  - Support for the combination of the `local-as` and `allowas-in`
-    commands
-  - OSPFv3 enhancements:
-      - Validated interoperability with other routers at a scale of 120
-        neighbors
-      - New NCLU commands to configure
-        [OSPFv3](/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-v3-OSPFv3-Protocol/#configuring-the-ospfv3-area)
-  - EVPN Enhancements:
-      - [Type-5 routes with asymmetric routing](/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#evpn-type-5-routing-with-asymmetric-routing)
-      - [Originate default EVPN type-5 routes](/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#originating-default-evpn-type-5-routes)
-      - [Filter EVPN routes based on type](/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#filtering-evpn-routes-based-on-type)
-      - [Control which RIB routes are injected into EVPN](/cumulus-linux-36/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/#controlling-which-rib-routes-are-injected-into-evpn)
-
-For information on bug fixes and known issues present in this release, refer to the {{<exlink url="https://support.cumulusnetworks.com/knowledge-base/Setup-and-Getting-Started/Cumulus-Linux-3-6-Release-Notes/" text="product release notes">}}.
+For a list of the new features in this release, see {{<link url="Whats-New">}}. For bug fixes and known issues present in this release, refer to the {{<link url="Cumulus-Linux-3.6-Release-Notes" text="Cumulus Linux 3.6 Release Notes">}}.
 
 ## Open Source Contributions
 

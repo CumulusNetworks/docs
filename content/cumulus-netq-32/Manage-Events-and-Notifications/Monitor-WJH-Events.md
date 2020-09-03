@@ -210,10 +210,10 @@ The What Just Happened view displays events based on conditions detected in the 
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server.</li>
 <li><strong>Reason</strong>: Reason why ACL dropped packets.
-<ul><li>Ingress port ACL:  ACL action set to deny on the ingress port.</li>
-<li>Ingress router ACL: ACL action set to deny on the ingress router interface.</li>
-<li>Egress port ACL:  ACL action set to deny on the egress port.</li>
-<li>Egress router ACL: ACL action set to deny on the egress router interface.</li>
+<ul><li>Ingress port ACL:  ACL action set to deny on the physical ingress port or bond.</li>
+<li>Ingress router ACL: ACL action set to deny on the ingress switch virtual interfaces (SVIs).</li>
+<li>Egress port ACL:  ACL action set to deny on the physical egress port or bond.</li>
+<li>Egress router ACL: ACL action set to deny on the egress SVIs.</li>
 </ul></li>
 </ul></td>
 <tr class="even">

@@ -1281,6 +1281,7 @@ bridge:peerlink CIST info
 
 - The STP global configuration must be the same on both peer switches.
 - The STP configuration for dual-connected ports should be the same on both peer switches.
+- To minimize convergence times when a link transitions to forwarding state, configure Edge ports (may carry tagged and untagged frames) with PortAdminEdge and BPDU Guard enabled.
 - The STP priority must be the same on both peer switches. You set the priority with this command:
 
   ```

@@ -1,7 +1,7 @@
 ---
 title: Use Ganglia with Cumulus Linux
 author: Cumulus Networks
-weight: 356
+weight: 376
 toc: 4
 ---
 
@@ -242,8 +242,7 @@ We can also see that while swp10-13 do not have any traffic running across them,
     <span class="comment-actions"> <span class="dropdown">
     <span class="dropdown-toggle" data-aria-label="Comment actions" data-aria-haspopup="true">Comment
     actions</span> <span class="dropdown-menu" data-role="menu">
-    [Permalink](https://support.cumulusnetworks.com/hc/en-us/articles/202539668/comments/204032787)
-    </span> </span>
+    /span> </span>
     </span>
     
     </div>
@@ -275,7 +274,6 @@ We can also see that while swp10-13 do not have any traffic running across them,
     <span class="comment-actions"> <span class="dropdown">
     <span class="dropdown-toggle" data-aria-label="Comment actions" data-aria-haspopup="true">Comment
     actions</span> <span class="dropdown-menu" data-role="menu">
-    [Permalink](https://support.cumulusnetworks.com/hc/en-us/articles/202539668/comments/202709248)
     </span> </span>
     </span>
     

@@ -7,6 +7,54 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31263</td>
+<td><p>RX_DRP on a bond interface increases without any data traffic while the slave port does not increase.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31257</td>
+<td><p>On the EdgeCore AS-6712-32X switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
+These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31238</td>
+<td><p>IPv6 TCP or UDP connections (sourcing from an ephemeral port in the range 34048 to 35071) are not forwarded if the switch has more than one layer 2 VNI defined. The traffic might be locally switched on the bridge and dropped. <br/>
+To work around this issue, disable ARP/ND suppression to remove the internal ACL rule that affects the ports.</p></td>
+<td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31210</td>
 <td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
 Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
@@ -1693,7 +1741,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -2260,6 +2308,47 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31263</td>
+<td><p>RX_DRP on a bond interface increases without any data traffic while the slave port does not increase.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31257</td>
+<td><p>On the EdgeCore AS-6712-32X switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
+These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -4503,7 +4592,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -4827,6 +4916,34 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -7030,7 +7147,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -7609,6 +7726,34 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -10016,7 +10161,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -10090,6 +10235,34 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -12282,7 +12455,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -12993,6 +13166,34 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -15694,7 +15895,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -15768,6 +15969,34 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -18367,7 +18596,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -18897,6 +19126,34 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -21786,7 +22043,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -21976,6 +22233,34 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -24580,7 +24865,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -24744,6 +25029,34 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -27195,7 +27508,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -27570,6 +27883,34 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -30093,7 +30434,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -30555,6 +30896,34 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -33154,7 +33523,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -33662,6 +34031,34 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -36104,7 +36501,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -36273,6 +36670,34 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -38707,7 +39132,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>

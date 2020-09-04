@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31263</td>
+<td><p>RX_DRP on a bond interface increases without any data traffic while the slave port does not increase.</p></td>
+<td>3.7.12-3.7.13, 4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31225</td>
 <td><p>The following vulnerabilities have been announced in the BIND9 server, which is available for optional installation:<br/>
 CVE-2020-8619: an asterisk character in an empty non-terminal can cause an assertion failure, resulting in denial of service.<br/>
@@ -16,6 +22,12 @@ CVE-2020-8624: update-policy rules of type "subdomain" are enforced incorrectly,
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u1<br/>
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u2</p></td>
 <td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31224</td>
+<td><p>FDB entries with type <em>static</em> are installed in hardware as dynamic entries with no aging instead of truly static, which might result in the entries being occasionally flushed from hardware and the kernel. For example, this might happen when a port is in the STP Blocking state during a MAC sync.</p></td>
+<td>4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1599,7 +1611,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>

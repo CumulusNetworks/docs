@@ -207,14 +207,14 @@ For information on EVPN BUM flooding with PIM, refer to {{<link url="EVPN-BUM-Tr
 
 {{%/notice%}}
 
-To disable BUM flooding, run the NCLU `net add bgp l2vpn evpn bum-flood-disable` command or the vtysh `flooding disable` command. For example:
+To disable BUM flooding, run the NCLU `net add bgp l2vpn evpn disable-flooding` command or the vtysh `flooding disable` command. For example:
 
 {{< tabs "TabID212 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp l2vpn evpn bum-flood-disable
+cumulus@switch:~$ net add bgp l2vpn evpn disable-flooding
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -251,14 +251,14 @@ router bgp 65000
 ...
 ```
 
-To re-enable BUM flooding, run the NCLU `net del bgp l2vpn evpn bum-flood-disable` command or the vtysh `flooding head-end-replication` command. For example:
+To re-enable BUM flooding, run the NCLU `net del bgp l2vpn evpn disable-flooding` command or the vtysh `flooding head-end-replication` command. For example:
 
 {{< tabs "TabID256 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net del bgp l2vpn evpn bum-flood-disable
+cumulus@switch:~$ net del bgp l2vpn evpn disable-flooding
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```

@@ -1,7 +1,7 @@
 ---
 title: Physical Ports Missing from ip link show Output - switchd Failure
 author: Cumulus Networks
-weight: 376
+weight: 416
 toc: 4
 ---
 

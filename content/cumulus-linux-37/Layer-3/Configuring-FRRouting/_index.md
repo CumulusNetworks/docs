@@ -415,7 +415,7 @@ Examine the running configuration and verify that it matches the config in `/etc
 cumulus@switch:~$ net show configuration
 ```
 
-If the running configuration is not what you expected, {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/requests/new" text="submit a support request">}} and supply the following information:
+If the running configuration is not what you expected, {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="submit a support request">}} and supply the following information:
 
 - The current running configuration (run `net show configuration` and output the contents to a file)
 - The contents of `/etc/frr/frr.conf`

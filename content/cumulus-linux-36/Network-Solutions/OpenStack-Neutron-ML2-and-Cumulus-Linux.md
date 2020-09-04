@@ -88,10 +88,6 @@ You configure them in the `/etc/neutron/plugins/ml2/ml2_conf.ini` file.
     for the bridge configuration. The default value is *False*, so a
     traditional mode bridge is created.
 
-<!-- ## Demo
+## OpenStack with Cumulus in the Cloud
 
-A demo involving OpenStack with Cumulus Linux is available in the
-[Cumulus Networks knowledge base](https://support.cumulusnetworks.com/hc/en-us/articles/226174767).
-It demonstrates dynamic provisioning of VLANs using a virtual simulation
-of two Cumulus VX leaf switches and two CentOS 7 (RDO Project) servers;
-collectively they comprise an OpenStack environment. -->
+OpenStack Neutron is available as a preconfigured option with {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud" text="Cumulus in the Cloud">}}. Add the ML2 driver, described above.

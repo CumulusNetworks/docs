@@ -14,7 +14,7 @@ Multi-Chassis Link Aggregation (MLAG) enables a server or switch with a two-port
 
 Dual-connected devices can create LACP bonds that contain links to each physical switch. Therefore, active-active links from the dual-connected devices are supported even though they are connected to two different physical switches.
 
-A basic setup looks like this:
+A basic MLAG configuration looks like this:
 
 {{< img src = "/images/cumulus-linux/mlag-basic-setup.png" >}}
 
@@ -28,23 +28,17 @@ cumulus@switch:~$ net example clag basic-clag
 
 {{%/notice%}}
 
-The two switches, leaf01 and leaf02, known as *peer switches*, appear as a single device to the bond on server01. server01 distributes traffic between the two links to leaf01 and leaf02 in any way that you configure on the host. Similarly, traffic inbound to server01 can traverse leaf01 or leaf02 and arrive at server01.
+The two switches, leaf01 and leaf02, known as *peer switches*, appear as a single device to the bond on server01. server01 distributes traffic between the two links to leaf01 and leaf02 in the way you configure on the host. Traffic inbound to server01 can traverse leaf01 or leaf02 and arrive at server01.
 
 ## MLAG Requirements
 
 MLAG has these requirements:
 
-- There must be a direct connection between the two peer switches implementing MLAG (leaf01 and leaf02). This is typically a bond for increased reliability and bandwidth.
-- There must be only two peer switches in one MLAG configuration, but you can have multiple configurations in a network for *switch-to-switch MLAG* (see below).
+- There must be a direct connection between the two peer switches implementing MLAG. This is typically a bond for increased reliability and bandwidth.
+- There must be only two peer switches in one MLAG configuration, but you can have multiple configurations in a network for *switch-to-switch MLAG*.
 - You must specify a unique `clag-id` for every dual-connected bond on each peer switch; the value must be between 1 and 65535 and must be the same on both peer switches for the bond to be considered *dual-connected*.
 - The dual-connected devices (servers or switches) can use LACP (IEEE 802.3ad/802.1ax) to form the {{<link url="Bonding-Link-Aggregation" text="bond">}}. In this case, the peer switches must also use LACP.
 - Both switches in the MLAG pair must be running the same release of Cumulus Linux.
-
-    {{%notice tip%}}
-
-Instead of LACP, you can use {{<link url="Bonding-Link-Aggregation" text="balance-xor mode">}} to dual-connect host-facing bonds in an MLAG environment. You must still configure the same `clag-id` parameter on the MLAG bonds and it must be the same on both MLAG switches. Otherwise, the MLAG switch pair treats the bonds as if they are single-connected.
-
-{{%/notice%}}
 
 More elaborate configurations are also possible. The number of links between the host and the switches can be greater than two and does not have to be symmetrical. Additionally, because the two peer switches appear as a single switch to other bonding devices, you can also connect pairs of MLAG switches to each other in a switch-to-switch MLAG configuration:
 
@@ -68,43 +62,32 @@ Each peer switch periodically makes a list of the LACP partner MAC addresses for
 
 ## Configure MLAG
 
-To configure MLAG, you need to:
+To configure MLAG:
 
 - Create a bond that uses LACP on the dual-connected devices.
 - Configure the interfaces, including bonds, VLANs, bridges, and peer links on each peer switch.
 
 MLAG synchronizes the dynamic state between the two peer switches but it does not synchronize the switch configurations. After modifying the configuration of one peer switch, you must make the same changes to the configuration on the other peer switch. This applies to all configuration changes, including:
-
-- Port configuration; for example, VLAN membership, {{<link url="#mtu-in-an-mlag-configuration" text="MTU">}} and bonding parameters.
-- Bridge configuration; for example, spanning tree parameters or bridge properties.
-- Static address entries; for example, static FDB entries and static IGMP entries.
-- QoS configuration; for example, ACL entries.
+- Port configuration, such as VLAN membership, {{<link url="#mtu-in-an-mlag-configuration" text="MTU">}} and bonding parameters.
+- Bridge configuration, such as spanning tree parameters or bridge properties.
+- Static address entries, such as static FDB entries and static IGMP entries.
+- QoS configuration, such as ACL entries.
 
 To verify VLAN membership configuration, run the NCLU `net show clag verify-vlans verbose` command or the Linux `clagctl -v verifyvlans` command. For example:
 
 ```
-cumulus@switch:~$ net show clag verify-vlans verbose
+cumulus@switch:mgmt:~$ net show clag verify-vlans verbose
+Vlan Database
 Our Bond Interface   VlanId   Peer Bond Interface
 ------------------   ------   -------------------
-server01                  1   server01
-server01                 10   server01
-server01                 20   server01
-server01                 30   server01
-server01                 40   server01
-server01                 50   server01
-uplink                    1   uplink
-uplink                   10   uplink
-uplink                   20   uplink
-uplink                   30   uplink
-uplink                   40   uplink
-uplink                   50   uplink
-uplink                  100   uplink
-uplink                  101   uplink
-uplink                  102   uplink
-uplink                  103   uplink
-uplink                  104   uplink
-uplink                  105   uplink
-...
+bond1                    10   bond1
+bond2                    20   bond2
+bond3                    30   bond3
+vni30                    30   vni30
+vni20                    20   vni20
+vniRED                 4001   vniRED
+vniBLUE                4002   vniBLUE
+vni10                    10   vni10
 ```
 
 ### Reserved MAC Address Range
@@ -139,7 +122,7 @@ To enable communication between the `clagd` services on the peer switches:
 
 - Choose an unused VLAN (also known as a *switched virtual interface* or *SVI* here).
 - Assign the SVI an unrouteable link-local address to give the peer switches layer 3 connectivity between each other.
-- Configure the VLAN as a {{<link url="Interface-Configuration-and-Management" text="VLAN subinterface">}} on the peer link bond instead of the VLAN-aware bridge, called *peerlink*. If you configure the subinterface with {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}, the VLAN subinterface is named 4094 by default (the subinterface named *peerlink.4094* below). If you are configuring the peer link  without NCLU, Cumulus Networks still recommends you use 4094 for the peer link VLAN if possible. This ensures that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
+- Configure the VLAN as a {{<link url="Interface-Configuration-and-Management" text="VLAN subinterface">}} on the peer link bond instead of the VLAN-aware bridge, called *peerlink*. If you configure the subinterface with {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}, the VLAN subinterface is named 4094 by default (the subinterface named *peerlink.4094* below). If you are configuring the peer link without NCLU, Cumulus Networks recommends you use 4094 for the peer link VLAN if possible. This ensures that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
 - Include untagged traffic on the peer link, as this avoids issues with STP.
 - Specify a backup interface, which is any layer 3 backup interface for your peer links in case the peer link goes down. More information about configuring the {{<link url="#specify-a-backup-link" text="backup link">}} and understanding various {{<link url="#failover-redundancy-scenarios" text="redundancy scenarios">}} is available below.
 
@@ -150,18 +133,18 @@ For example, if *peerlink* is the inter-chassis bond, and VLAN 4094 is the peer 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 192.0.2.50
+cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
 {{%notice note%}}
 
-Do *not* add VLAN 4094 to the bridge VLAN list; VLAN 4094 for the peer link subinterface must not be also configured as a bridged VLAN with bridge VIDs under the bridge.
+Do *not* add VLAN 4094 to the bridge VLAN list; VLAN 4094 for the peer link subinterface must **not** be also configured as a bridged VLAN with bridge VIDs under the bridge.
 
 {{%/notice%}}
 
-To enable MLAG, you must add *peerlink* to a traditional or VLAN-aware bridge. The commands below add *peerlink* to a VLAN-aware bridge:
+To enable MLAG, add *peerlink* to a traditional or VLAN-aware bridge. The commands below add *peerlink* to a VLAN-aware bridge:
 
 ```
 cumulus@switch:~$ net add bridge bridge ports peerlink
@@ -184,13 +167,13 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 192.0.2.50
+    clagd-backup-ip 10.10.10.2
     clagd-peer-ip linklocal
-    clagd-sys-mac 44:38:39:FF:40:94
+    clagd-sys-mac 44:38:39:BE:EF:AA
 ...
 ```
 
-To enable MLAG, you must add *peerlink* to a traditional or VLAN-aware bridge, then run the `ifreload -a` command. The configuration below adds *peerlink* to a VLAN-aware bridge:
+To enable MLAG, add *peerlink* to a traditional or VLAN-aware bridge, then run the `ifreload -a` command. The configuration below adds *peerlink* to a VLAN-aware bridge:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -257,8 +240,8 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 auto peerlink.4094
 iface peerlink.4094
     clagd-peer-ip linklocal
-    clagd-backup-ip 192.0.2.50
-    clagd-sys-mac 44:38:39:FF:40:94
+    clagd-backup-ip 10.10.10.2
+    clagd-sys-mac 44:38:39:BE:EF:AA
     clagd-priority 2048
 ...
 ```
@@ -279,7 +262,7 @@ However, if the primary switch goes down without stopping the `clagd` service fo
 
 ### clagctl Timers
 
-The `clagd` service has a number of timers that you can tune for enhanced performance. The relevant timers are:
+The `clagd` service has a number of timers that you can tune for enhanced performance:
 
 - `--reloadTimer <SECONDS>`: The number of seconds to wait for the peer switch to become active. If the peer switch does not become active after the timer expires, the MLAG bonds leave the initialization ({{<link url="#peer-link-interfaces-and-the-protodown-state" text="protodown">}}) state and become active. This provides `clagd` with sufficient time to determine whether the peer switch is coming up or if it is permanently unreachable. The default is *300* seconds.
 - `--peerTimeout <SECONDS>`: The number of seconds `clagd` waits without receiving any data from the peer switch before it determines that the peer is no longer active. If this parameter is not specified, `clagd` uses ten times the local `lacpPoll` value.
@@ -298,12 +281,12 @@ You can run `clagctl params` to see the settings for all of the `clagd` paramete
 
 ```
 cumulus@leaf01:~$ clagctl params
-clagVersion = 1.3.0
-clagDataVersion = 1.3.0
+clagVersion = 1.4.0
+clagDataVersion = 1.4.0
 clagCmdVersion = 1.1.0
-peerIp = 169.254.1.2
+peerIp = linklocal
 peerIf = peerlink.4094
-sysMac = 44:38:39:ff:00:01
+sysMac = 44:38:39:be:ef:aa
 lacpPoll = 2
 currLacpPoll = 2
 peerConnect = 1
@@ -326,15 +309,14 @@ sendBufSize = 65536
 forceDynamic = False
 dormantDisable = False
 redirectEnable = False
-backupIp = 192.168.0.12
+backupIp = 10.10.10.2
 backupVrf = None
 backupPort = 5342
 vxlanAnycast = None
 neighSync = True
 permanentMacSync = True
-cmdLine = /usr/sbin/clagd --daemon 169.254.1.2 peerlink.4094 44:38:39:FF:00:01 --priority 1000 --backupIp 192.168.0.12 --peerTimeout 900
+cmdLine = /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:BE:EF:AA --priority 1000 --backupIp 10.10.10.2
 peerlinkLearnEnable = False
-cumulus@leaf01:~$
 ```
 
 ## Disable clagd on an Interface
@@ -362,11 +344,11 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 192.168.1.12
+    clagd-backup-ip 10.10.10.2
     clagd-enable no
     clagd-peer-ip linklocal
     clagd-priority 1000
-    clagd-sys-mac 44:38:39:FF:00:01
+    clagd-sys-mac 44:38:39:BE:EF:AA
 ...
 ```
 
@@ -388,7 +370,7 @@ To configure MLAG with a traditional mode bridge instead of a {{<link url="VLAN-
 ...
 auto br0
 iface br0
-    bridge-ports peerlink spine1-2 host1 host2
+    bridge-ports peerlink spine01-02 server01 server02
 ...
 ```
 
@@ -439,14 +421,14 @@ The `clagd-backup-ip` is required.
 
 Cumulus Networks recommends you use the loopback or management IP address of the switch for this purpose. Which one should you choose?
 
-- If your MLAG configuration has **routed uplinks** (a modern approach to the data center fabric network), configure `clagd` to use the peer switch **loopback** address for the health check. When the peer link is down, the secondary switch must route towards the loopback address using uplinks (towards spine layer). If the primary switch is also suffering a more significant problem (for example, `switchd` is unresponsive /or stopped), then the secondary switch eventually promotes itself to primary and traffic now flows normally.
+- If your MLAG configuration has **routed uplinks** (a modern approach to the data center fabric network), configure `clagd` to use the peer switch **loopback** address for the health check. When the peer link is down, the secondary switch must route towards the loopback address using uplinks (towards the spine layer). If the primary switch is also suffering a more significant problem (for example, `switchd` is unresponsive or stopped), then the secondary switch eventually promotes itself to primary and traffic now flows normally.
 
-    To ensure IP connectivity between the loopbacks, you must carefully
-    consider what implications this has on the BGP ASN configured:
+    To ensure IP connectivity between the loopbacks, you must carefully consider what implications this has on the BGP ASN configured:
 
-    - The two MLAG member switches must use unique BGP ASNs. If the two MLAG member switches use the same BGP ASN, you must bypass the BGP loop prevention check on AS_PATH attribute.
+    - The two MLAG member switches must use unique BGP ASNs.
+    - If the two MLAG member switches use the same BGP ASN, you must bypass the BGP loop prevention check on AS_PATH attribute.
 
-- If your MLAG configuration has **bridged uplinks** (such as a campus network or a large, flat layer 2 network), then configure `clagd` to use the peer switch **eth0** address for the health check. When the peer link is down, the secondary switch must route towards the eth0 address using the OOB network (provided you have implemented an OOB network).
+- If your MLAG configuration has **bridged uplinks** (such as a campus network or a large, flat layer 2 network), configure `clagd` to use the peer switch **eth0** address for the health check. When the peer link is down, the secondary switch must route towards the eth0 address using the OOB network (provided you have implemented an OOB network).
 
 To configure a backup link:
 
@@ -851,14 +833,14 @@ Run the `net show bridge spanning-tree` command:
 cumulus@switch:~$ net show bridge spanning-tree
 Bridge info
     enabled         yes
-    bridge id       8.000.44:39:39:FF:40:94
+    bridge id       8.000.44:38:39:BE:EF:AA
     Priority:   32768
-    Address:    44:39:39:FF:40:94
+    Address:    44:38:39:BE:EF:AA
     This bridge is root.
 
-designated root 8.000.44:39:39:FF:40:94
+designated root 8.000.44:38:39:BE:EF:AA
 Priority:   32768
-Address:    44:39:39:FF:40:94
+Address:    44:44:38:39:BE:EF:AA
 
 root port       none
 path cost     0          internal path cost   0
@@ -1044,7 +1026,7 @@ net add bgp ipv4 unicast neighbor fabric prefix-list dc-leaf-out out
 net add bgp neighbor swp51-52 interface peer-group fabric
 net add vlan 100 ip address 172.16.1.1/24
 net add bgp ipv4 unicast network 172.16.1.1/24
-net add clag peer sys-mac 44:38:39:FF:00:01 interface swp49-50 primary backup-ip 192.168.1.12
+net add clag peer sys-mac 44:38:39:FF:00:01 interface swp49-50 primary backup-ip 10.10.10.2
 net add clag port bond server1 interface swp1 clag-id 1
 net add clag port bond server2 interface swp2 clag-id 2
 net add bond server1-2 bridge access 100
@@ -1098,7 +1080,7 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 192.168.1.12
+    clagd-backup-ip 10.10.10.2
     clagd-peer-ip linklocal
     clagd-priority 1000
     clagd-sys-mac 44:38:39:FF:00:01
@@ -1568,7 +1550,7 @@ HwIfInDiscards: 2129675
 
 ### Duplicate LACP Partner MAC Warning
 
-When you run `clagctl`, you may see output like this:
+When you run `clagctl`, you might see output similar to this:
 
 ```
 bond01 bond01 52 duplicate lacp - partner mac

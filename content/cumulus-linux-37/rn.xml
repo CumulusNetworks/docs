@@ -420,13 +420,6 @@ Fixed: 4.84.2-2+deb8u7</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-29667</td>
-<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
-To work around this issue, run the systemctl restart switchd command.</p></td>
-<td>3.7.12-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29652</td>
 <td><p>The ACCTON-DIAG option under the Cumulus Linux GRUB menu does not work. When you select this option, you see the following error:</p>
 
@@ -2914,13 +2907,6 @@ DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the 
 Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29667</td>
-<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
-To work around this issue, run the systemctl restart switchd command.</p></td>
-<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>

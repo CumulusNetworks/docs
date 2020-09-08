@@ -435,13 +435,6 @@ Fixed: 1.8.2.1</p></td>
 <td>4.2.0</td>
 </tr>
 <tr>
-<td>CM-29667</td>
-<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
-To work around this issue, run the systemctl restart switchd command.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29594</td>
 <td><p>When you run an Ansible script to replace the /etc/network/interfaces file, then run the ifreload -a command, you see errors similar to the following:</p>
 

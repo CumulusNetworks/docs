@@ -22,11 +22,9 @@ Refer to the {{<link title="NetQ CLI Reference" text="NetQ CLI Reference">}} for
 
 {{< /tabs >}}
 
-## Monitor All System Events
+## Monitor All System Events Networkwide
 
-You can monitor all system events across the network or on a given device with the NetQ UI and the NetQ CLI.
-
-### View All System Events Network-wide
+You can monitor all system events across the network with the NetQ UI and the NetQ CLI.
 
 {{< tabs "TabID29" >}}
 
@@ -121,7 +119,9 @@ leaf01            btrfsinfo                critical         data storage efficie
 
 {{< /tabs >}}
 
-### View All System Events on a Device
+## Monitor All System Events on a Device
+
+You can monitor all system events on a given device with the NetQ UI and the NetQ CLI.
 
 {{< tabs "TabID126" >}}
 
@@ -134,6 +134,10 @@ leaf01            btrfsinfo                critical         data storage efficie
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
 
 4. Enter a hostname or IP address in the **Hostname** field.
+
+<div style="padding-left: 18px;">{{<notice tip>}}
+You can enter additional filters for message type, severity, and time range to further narrow the output.
+{{</notice>}}</div>
 
 5. Click **Apply**.
 
@@ -176,13 +180,11 @@ No matching event records found
 
 {{< /tabs >}}
 
-## Monitor System Events by Type
+## Monitor System Events Networkwide by Type
 
-You can view all system events of a given type on a network-wide basis or for a given device.
+You can view all system events of a given type on a networkwide basis using the NetQ UI and the NetQ CLI.
 
-### View System Events by Type Networkwide
-
-{{< tabs "TabID181" >}}
+{{< tabs "TabID187" >}}
 
 {{< tab "NetQ UI" >}}
 
@@ -193,6 +195,10 @@ You can view all system events of a given type on a network-wide basis or for a 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
 
 4. Enter the name of network protocol or service in the **Message Type** field.
+
+<div style="padding-left: 18px;">{{<notice tip>}}
+You can enter additional filters for severity and time range to further narrow the output.
+{{</notice>}}</div>
 
 5. Click **Apply**.
 
@@ -208,25 +214,126 @@ To view all system events for a given network protocol or service, run:
 netq show events (type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type macs | type services | type lldp | type license | type os | type sensors | type btrfsinfo) [between <text-time> and <text-endtime>] [json]
 ```
 
-This example shows all BGP events between now and an hour ago.
+This example shows all services events between now and 30 days ago.
 
 ```
-netq show events type bgp
+cumulus@switch:~$ netq show events type services between now and 30d
+Matching events records:
+Hostname          Message Type             Severity         Message                             Timestamp
+----------------- ------------------------ ---------------- ----------------------------------- -------------------------
+spine03           services                 critical         Service netqd status changed from a Mon Aug 10 19:55:52 2020
+                                                            ctive to inactive
+spine04           services                 critical         Service netqd status changed from a Mon Aug 10 19:55:51 2020
+                                                            ctive to inactive
+spine02           services                 critical         Service netqd status changed from a Mon Aug 10 19:55:50 2020
+                                                            ctive to inactive
+spine03           services                 info             Service netqd status changed from i Mon Aug 10 19:55:38 2020
+                                                            nactive to active
+spine04           services                 info             Service netqd status changed from i Mon Aug 10 19:55:37 2020
+                                                            nactive to active
+spine02           services                 info             Service netqd status changed from i Mon Aug 10 19:55:35 2020
+
 ```
+
+{{<notice tip>}}
+You can enter a severity using the <code>level</code> option to further narrow the output.
+{{</notice>}}
 
 {{< /tab >}}
 
 {{< /tabs >}}
 
-### View System Events by Type on a Device
+## Monitor System Events on a Device by Type
 
-## Monitor System Events by Severity
+You can view all system events of a given type on a given device using the NetQ UI and the NetQ CLI.
 
-### View System Events by Severity Network-wide
+{{< tabs "TabID250" >}}
 
-### View System Events by Severity on a Device
+{{< tab "NetQ UI" >}}
 
-## View Alarm Status Summary
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+
+2. Click **Events** under the **Network** column.
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
+
+4. Enter the hostname of the device for which you want to see events in the **Hostname** field.
+
+5. Enter the name of a network protocol or service in the **Message Type** field.
+
+<div style="padding-left: 18px;">{{<notice tip>}}
+You can enter additional filters for severity and time range to further narrow the output.
+{{</notice>}}</div>
+
+6. Click **Apply**.
+
+    {{<figure src="/images/netq/main-menu-ntwk-events-filterbymsgtype-320.png" width="700">}}
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view all system events for a given network protocol or service, run:
+
+```
+netq <hostname> show events (type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type macs | type services | type lldp | type license | type os | type sensors | type btrfsinfo) [between <text-time> and <text-endtime>] [json]
+```
+
+This example shows all services events on the *spine03* switch between now and 30 days ago.
+
+```
+cumulus@switch:~$ netq spine03 show events type services between now and 30d
+Matching events records:
+Hostname          Message Type             Severity         Message                             Timestamp
+----------------- ------------------------ ---------------- ----------------------------------- -------------------------
+spine03           services                 critical         Service netqd status changed from a Mon Aug 10 19:55:52 2020
+                                                            ctive to inactive
+spine03           services                 info             Service netqd status changed from i Mon Aug 10 19:55:38 2020
+                                                            nactive to active
+```
+
+{{<notice tip>}}
+You can enter a severity using the <code>level</code> option to further narrow the output.
+{{</notice>}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+## Monitor System Events Networkwide by Severity
+
+You can view system events by their severity on a networkwide basis with the NetQ UI and the NetQ CLI using the:
+
+- Events list: with events of all severities at once or filter by severity
+- Events|Alarms card: view events with critical severity
+- Events|Info card: view events with info, error, and warning severities
+- `netq show events level` command
+
+{{< tabs "TabID312" >}}
+
+{{< tab "Events List" >}}
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+
+2. Click **Events** under the **Network** column.
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
+
+4. Enter a severity (info, error, warning, critical, or debug) in the **Severity** field.
+
+<div style="padding-left: 18px;">{{<notice tip>}}
+You can enter additional filters for message type and time range to further narrow the output.
+{{</notice>}}</div>
+
+5. Click **Apply**.
+
+    {{<figure src="/images/netq/main-menu-ntwk-events-filterbymsgtype-320.png" width="700">}}
+
+{{< /tab >}}
+
+{{< tab "Event|Alarms Card" >}}
+
+### View Alarm Status Summary
 
 A summary of the critical alarms in the network includes the number of alarms, a trend indicator, a performance indicator, and a distribution of those alarms.
 
@@ -236,7 +343,7 @@ To view the summary, open the small Alarms card.
 
 In this example, there are a small number of alarms (2), the number of alarms is decreasing (down arrow), and there are fewer alarms right now than the average number of alarms during this time period. This would indicate no further investigation is needed. Note that with such a small number of alarms, the rating may be a bit skewed.
 
-## View the Distribution of Alarms
+### View the Distribution of Alarms
 
 It is helpful to know where and when alarms are occurring in your network. The Alarms card workflow enables you to see the distribution of alarms based on its source: network services, interfaces, system services, and threshold-based events.
 
@@ -244,7 +351,7 @@ To view the alarm distribution, open the medium Alarms card. Scroll down to view
 
 {{< figure src="/images/netq/events-alarms-medium-222.png" width="200" >}}
 
-## Monitor Alarm Details
+### Monitor Alarm Details
 
 The Alarms card workflow enables users to easily view and track critical severity alarms occurring anywhere in your network. You can sort alarms based on their occurrence or view devices with the most network services alarms.
 
@@ -254,7 +361,7 @@ To view critical alarms, open the large Alarms card.
 
 From this card, you can view the distribution of alarms for each of the categories over time. The charts are sorted by total alarm count, with the highest number of alarms i a category listed at the top. Scroll down to view any hidden charts. A list of the associated alarms is also displayed. By default, the list of the most recent alarms is displayed when viewing the large card.
 
-### View Devices with the Most Alarms
+#### View Devices with the Most Alarms
 
 You can filter instead for the devices that have the most alarms.
 
@@ -266,7 +373,7 @@ To view devices with the most alarms, open the large Alarms card, and then selec
 You can open the switch card for any of the listed devices by clicking on the device name.
 {{</notice>}}
 
-### Filter Alarms by Category
+#### Filter Alarms by Category
 
 You can focus your view to include alarms for one or more selected alarm categories.
 
@@ -284,7 +391,7 @@ In this example, we removed the Services from the event listing.
 
 {{< figure src="/images/netq/events-alarms-large-filtered-222.png" width="500" >}}
 
-### Compare Alarms with a Prior Time
+#### Compare Alarms with a Prior Time
 
 You can change the time period for the data to compare with a prior time. If the same devices are consistently indicating the most alarms, you might want to look more carefully at those devices using the Switches card workflow.
 
@@ -303,14 +410,14 @@ To compare two time periods:
 5. Select a different time period.  
 
     {{<figure src="/images/netq/events-alarms-large-by-event-count-300.png" width="500">}}
-    <p> </p>
+    
     {{<figure src="/images/netq/events-alarms-large-by-event-count-1w-300.png" width="500">}}
 
 6. Compare the two cards with the **Devices by event count** filter applied.
 
     In this example, the total alarm count and the devices with the most alarms in each time period have changed for the better overall. You could go back further in time  or investigate the current status of the largest offenders.
 
-## View All Events
+### View All Alarm Events
 
 You can view all events in the network either by clicking the **Show All Events** link under the table on the large Alarm Events card, or by opening the full screen Alarm Events card.
 
@@ -322,11 +429,11 @@ OR
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
-You can easily monitor warning, info, and debug severity events occurring across your network using the Info card. You can determine the number of events for the various system, interface, and network protocols and services components in the network. The content of the cards in the workflow is described first, and then followed by common tasks you would perform using this card workflow.
+{{< /tab >}}
 
-Refer to the {{<link title="NetQ UI Card Reference" text="NetQ UI Card Reference">}} for details of the cards used with the following procedures.
+{{< tab "Events|Info Card" >}}
 
-## View Info Status Summary
+### View Info Status Summary
 
 A summary of the informational events occurring in the network can be found on the small, medium, and large Info cards. Additional details are available as you increase the size of the card.
 
@@ -344,7 +451,7 @@ Use the chart at the top of the card to view the various sources of info events.
 
 To view the summary with the large Info card, open the card. The left side of the card provides the same capabilities as the medium Info card.
 
-## Compare Timing of Info and Alarm Events
+### Compare Timing of Info and Alarm Events
 
 While you can see the relative relationship between info and alarm events on the small Info card, the medium and large cards provide considerably more information. Open either of these to view individual line charts for the events. Generally, alarms have some corollary info events. For example, when a network service becomes unavailable, a
 critical alarm is often issued, and when the service becomes available again, an info event of severity warning is generated. For this reason, you might see some level of tracking between the info and alarm counts and distributions. Some other possible scenarios:
@@ -353,25 +460,25 @@ critical alarm is often issued, and when the service becomes available again, an
 - When you get a burst of info events, you may see a follow-on increase in critical alarms, as the info events may have been   warning you of something beginning to go wrong.
 - You set logging to debug, and a large number of info events of severity debug are seen. You would not expect to see an increase in critical alarms.
 
-## View All Info Events Sorted by Time of Occurrence
+#### View All Info Events Sorted by Time of Occurrence
 
 You can view all info events using the large Info card. Open the large card and confirm the **Events By Most Recent** option is selected in the filter above the table on the right. When this option is selected, all of the info events are listed with the most recently occurring event at the top. Scrolling down shows you the info events that have occurred at an earlier time within the selected time period for the card.
 
 {{<figure src="/images/netq/events-info-large-222.png" width="500">}}
 
-### View Devices with the Most Info Events
+#### View Devices with the Most Info Events
 
 You can filter instead for the devices that have the most info events by selecting the **Devices by Event Count** option from the filter above the table.
 
 {{<figure src="/images/netq/events-info-large-table-options-222.png" width="300">}}
-<p> </p>
+
 {{<figure src="/images/netq/events-info-large-by-event-count-222.png" width="500">}}
 
 {{<notice tip>}}
 You can open the switch card for any of the listed devices by clicking on the device name.
 {{</notice>}}
 
-## View All Events
+### View All Info Events
 
 You can view all events in the network either by clicking the **Show All Events** link under the table on the large Info Events card, or by opening the full screen Info Events card.
 
@@ -382,3 +489,115 @@ OR
 {{<figure src="/images/netq/events-info-fullscr-300.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "netq show events" >}}
+
+To view all system events of a given severity, run:
+
+```
+netq show events (level info | level error | level warning | level critical | level debug) [between <text-time> and <text-endtime>] [json]
+```
+
+This example shows all events with critical severity between now and 24 hours ago.
+
+```
+cumulus@switch:~$ netq show events level critical
+Matching events records:
+Hostname          Message Type             Severity         Message                             Timestamp
+----------------- ------------------------ ---------------- ----------------------------------- -------------------------
+Matching events records:
+Hostname          Message Type             Severity         Message                             Timestamp
+----------------- ------------------------ ---------------- ----------------------------------- -------------------------
+leaf02            btrfsinfo                critical         data storage efficiency : space lef Tue Sep  8 21:32:32 2020
+                                                            t after allocation greater than chu
+                                                            nk size 0.57 GB
+leaf01            btrfsinfo                critical         data storage efficiency : space lef Tue Sep  8 21:13:28 2020
+                                                            t after allocation greater than chu
+                                                            nk size 0.57 GB
+leaf02            btrfsinfo                critical         data storage efficiency : space lef Tue Sep  8 21:02:31 2020
+                                                            t after allocation greater than chu
+                                                            nk size 0.57 GB
+leaf01            btrfsinfo                critical         data storage efficiency : space lef Tue Sep  8 20:43:27 2020
+                                                            t after allocation greater than chu
+                                                            nk size 0.57 GB
+```
+
+{{<notice tip>}}
+You can use the <code>type</code> and <code>between</code> options to further narrow the output.
+{{</notice>}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+## Monitor System Events on a Device by Severity
+
+You can view system events by their severity on a given device with the NetQ UI and the NetQ CLI using the:
+
+- Events list: with events of all severities at once or by one severity filtered by device
+- Events|Alarms card: view events with critical severity filtered by device
+- Events|Info card: view events with info, error, and warning severities filtered by device
+- Switch card: view all events with critical severity on the given device
+- `netq show events level` command
+
+{{< tabs "TabID545" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+
+2. Click **Events** under the **Network** column.
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
+
+4. Enter the hostname of the device for which you want to see events in the **Hostname** field.
+
+5. Enter the name of a network protocol or service in the **Message Type** field.
+
+<div style="padding-left: 18px;">{{<notice tip>}}
+You can enter additional filters for severity and time range to further narrow the output.
+{{</notice>}}</div>
+
+6. Click **Apply**.
+
+    {{<figure src="/images/netq/main-menu-ntwk-events-filterbymsgtype-320.png" width="700">}}
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view all system events for a given network protocol or service, run:
+
+```
+netq <hostname> show events (type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type macs | type services | type lldp | type license | type os | type sensors | type btrfsinfo) [between <text-time> and <text-endtime>] [json]
+```
+
+This example shows all services events on the *spine03* switch between now and 30 days ago.
+
+```
+cumulus@switch:~$ netq spine03 show events type services between now and 30d
+Matching events records:
+Hostname          Message Type             Severity         Message                             Timestamp
+----------------- ------------------------ ---------------- ----------------------------------- -------------------------
+spine03           services                 critical         Service netqd status changed from a Mon Aug 10 19:55:52 2020
+                                                            ctive to inactive
+spine03           services                 info             Service netqd status changed from i Mon Aug 10 19:55:38 2020
+                                                            nactive to active
+```
+
+{{<notice tip>}}
+You can enter a severity using the <code>level</code> option to further narrow the output.
+{{</notice>}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+
+
+You can easily monitor warning, info, and debug severity events occurring across your network using the Info card. You can determine the number of events for the various system, interface, and network protocols and services components in the network. The content of the cards in the workflow is described first, and then followed by common tasks you would perform using this card workflow.
+
+Refer to the {{<link title="NetQ UI Card Reference" text="NetQ UI Card Reference">}} for details of the cards used with the following procedures.
+

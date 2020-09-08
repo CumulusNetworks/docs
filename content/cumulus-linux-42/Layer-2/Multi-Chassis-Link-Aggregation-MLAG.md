@@ -195,13 +195,8 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{%notice note%}}
 
-When you change the MLAG configuration in the `interfaces` file, the changes take effect when you bring the peer link interface up with `ifup` or `ifreload -a`. Do **not** use `systemctl restart clagd.service` to apply the new configuration.
-
-{{%/notice%}}
-
-{{%notice warning%}}
-
-Do not use 169.254.0.1 as the MLAG peer link IP address; Cumulus Linux uses this address exclusively for {{<link url="Border-Gateway-Protocol-BGP" text="BGP unnumbered">}} interfaces.
+- When you change the MLAG configuration in the `interfaces` file, the changes take effect when you bring the peer link interface up with `ifup` or `ifreload -a`. Do **not** use `systemctl restart clagd.service` to apply the new configuration.
+- Do not use 169.254.0.1 as the MLAG peer link IP address; Cumulus Linux uses this address exclusively for {{<link url="Border-Gateway-Protocol-BGP" text="BGP unnumbered">}} interfaces.
 
 {{%/notice%}}
 

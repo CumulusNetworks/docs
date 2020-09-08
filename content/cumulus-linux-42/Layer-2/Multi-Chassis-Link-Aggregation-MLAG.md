@@ -4,13 +4,13 @@ author: Cumulus Networks
 weight: 480
 toc: 3
 ---
-Multi-Chassis Link Aggregation (MLAG) enables a server or switch with a two-port bond, such as a link aggregation group (LAG), EtherChannel, port group or trunk, to connect those ports to different switches and operate as if they are connected to a single, logical switch. This provides greater redundancy and greater system throughput.
-
 {{%notice info%}}
 
 **MLAG or CLAG**: The Cumulus Linux implementation of MLAG is referred to by other vendors as CLAG, MC-LAG or VPC. You will even see references to CLAG in Cumulus Linux, including the management daemon, named `clagd`, and other options in the code, such as `clag-id`, which exist for historical purposes. The Cumulus Linux implementation is truly a multi-chassis link aggregation protocol, so we call it MLAG.
 
 {{%/notice%}}
+
+Multi-Chassis Link Aggregation (MLAG) enables a server or switch with a two-port bond, such as a link aggregation group (LAG), EtherChannel, port group or trunk, to connect those ports to different switches and operate as if they are connected to a single, logical switch. This provides greater redundancy and greater system throughput.
 
 Dual-connected devices can create LACP bonds that contain links to each physical switch. Therefore, active-active links from the dual-connected devices are supported even though they are connected to two different physical switches.
 
@@ -18,17 +18,13 @@ A basic MLAG configuration looks like this:
 
 {{< img src = "/images/cumulus-linux/mlag-basic-setup.png" >}}
 
-{{%notice tip%}}
-
-You can see an example of how to set up this configuration by running:
-
-```
-cumulus@switch:~$ net example clag basic-clag
-```
-
-{{%/notice%}}
-
 The two switches, leaf01 and leaf02, known as *peer switches*, appear as a single device to the bond on server01. server01 distributes traffic between the two links to leaf01 and leaf02 in the way you configure on the host. Traffic inbound to server01 can traverse leaf01 or leaf02 and arrive at server01.
+
+More elaborate configurations are also possible. The number of links between the host and the switches can be greater than two and does not have to be symmetrical. Additionally, because the two peer switches appear as a single switch to other bonding devices, you can also connect pairs of MLAG switches to each other in a switch-to-switch MLAG configuration:
+
+{{< img src = "/images/cumulus-linux/mlag-two-pair.png" >}}
+
+In the above example, leaf01 and leaf02 are also MLAG peer switches and present a two-port bond from a single logical system to spine01 and spine02. spine01 and spine02 do the same as far as leaf01 and leaf02 are concerned. For a switch-to-switch MLAG configuration, each switch pair must have a unique system MAC address. In the example, leaf01 and leaf02 each have the same system MAC address. Switch pair spine01 and spine02 each have the same system MAC address; however, it is a different system MAC address than the one used by the switch pair leaf01 and leaf02.
 
 ## MLAG Requirements
 
@@ -39,12 +35,6 @@ MLAG has these requirements:
 - You must specify a unique `clag-id` for every dual-connected bond on each peer switch; the value must be between 1 and 65535 and must be the same on both peer switches for the bond to be considered *dual-connected*.
 - The dual-connected devices (servers or switches) can use LACP (IEEE 802.3ad/802.1ax) to form the {{<link url="Bonding-Link-Aggregation" text="bond">}}. In this case, the peer switches must also use LACP.
 - Both switches in the MLAG pair must be running the same release of Cumulus Linux.
-
-More elaborate configurations are also possible. The number of links between the host and the switches can be greater than two and does not have to be symmetrical. Additionally, because the two peer switches appear as a single switch to other bonding devices, you can also connect pairs of MLAG switches to each other in a switch-to-switch MLAG configuration:
-
-{{< img src = "/images/cumulus-linux/mlag-two-pair.png" >}}
-
-In the above example, leaf01 and leaf02 are also MLAG peer switches and present a two-port bond from a single logical system to spine01 and spine02. spine01 and spine02 do the same as far as leaf01 and leaf02 are concerned. For a switch-to-switch MLAG configuration, each switch pair must have a unique system MAC address. In the example, leaf01 and leaf02 each have the same system MAC address. Switch pair spine01 and spine02 each have the same system MAC address; however, it is a different system MAC address than the one used by the switch pair leaf01 and leaf02.
 
 ## LACP and Dual-connected Links
 
@@ -419,7 +409,6 @@ Cumulus Networks recommends you use the loopback or management IP address of the
 - If your MLAG configuration has **routed uplinks** (a modern approach to the data center fabric network), configure `clagd` to use the peer switch **loopback** address for the health check. When the peer link is down, the secondary switch must route towards the loopback address using uplinks (towards the spine layer). If the primary switch is also suffering a more significant problem (for example, `switchd` is unresponsive or stopped), then the secondary switch eventually promotes itself to primary and traffic now flows normally.
 
     To ensure IP connectivity between the loopbacks, you must carefully consider what implications this has on the BGP ASN configured:
-
     - The two MLAG member switches must use unique BGP ASNs.
     - If the two MLAG member switches use the same BGP ASN, you must bypass the BGP loop prevention check on AS_PATH attribute.
 
@@ -889,9 +878,7 @@ bridge:peerlink CIST info
 
 {{< /tabs >}}
 
-{{%notice note%}}
-
-### Best Practices for STP with MLAG
+{{%notice note%}}xs
 
 - The STP global configuration must be the same on both peer switches.
 - The STP configuration for dual-connected ports must be the same on both peer switches.

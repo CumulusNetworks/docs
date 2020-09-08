@@ -343,7 +343,7 @@ The MAC address allocated to the bridge must be unique across the entire network
      bridge-ports swp1 swp2 swp3 swp4 bond1
      bridge-vids 100
      bridge-vlan-aware yes
-     up ip link set dev bridge address 00:11:22:33:44:55
+     hwaddress 00:11:22:33:44:55
     ...
 
 You can verify the configuration change using the `ip link show` command.

@@ -1262,7 +1262,7 @@ The *Alarm Summary* tab displays:
 <td>Alarm Distribution</td>
 <td><p><strong>Chart</strong>: Distribution of all alarms received from each category during the designated time period:
 <ul><li>NetQ Agent</li><li>BTRFS Information</li><li>CL Support</li><li>Config Diff</li><li>CL License</li><li>Installed Packages</li><li>Link</li><li>LLDP</li><li>MTU</li><li>Node</li><li>Port</li><li>Resource</li><li>Running Config Diff</li><li>Sensor</li><li>Services</li><li>SSD Utilization</li><li>TCA Interface Stats</li><li>TCA Resource Utilization</li><li>TCA Sensors</li></ul>  
-The category with the largest number of alarms is shown at the top, followed by the next most, down to the chart with the fewest alarms.</p>
+The categories are displayed in descending order based on total count of alarms, with the largest number of alarms is shown at the top, followed by the next most, down to the chart with the fewest alarms.</p>
 <p><strong>Count</strong>: Total number of alarms received from each category during the designated time period.</p></td>
 </tr>
 <tr class="even">

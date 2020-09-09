@@ -1,30 +1,20 @@
 ---
-title: Monitor System Events
+title: Monitor System and TCA Events
 author: Cumulus Networks
 weight: 680
 toc: 4
 ---
-NetQ offers multiple ways to view your event status. The NetQ UI provides a graphical and tabular view and the NetQ CLI provides a tabular view of system events. System events include events associates with network protocols and services operation, hardware and software status, and system services. You can view all events across the entire network or all events on a device. For each of these, you can filter your view of system events based on event type, severity, and time frame.
+NetQ offers multiple ways to view your event status. The NetQ UI provides a graphical and tabular view and the NetQ CLI provides a tabular view of system and threshold-based (TCA) events. System events include events associated with network protocols and services operation, hardware and software status, and system services. TCA events include events associated with digital optics, ACL and forwarding resources, interface statistics, resource utilization, and sensors. You can view all events across the entire network or all events on a device. For each of these, you can filter your view of events based on event type, severity, and time frame.
+
+Refer to {{<link title="Configure Notifications" text="Configure Notifications">}} for information about configuring and managing these events.
 
 Refer to the {{<link title="NetQ UI Card Reference" text="NetQ UI Card Reference">}} for details of the cards used with the following procedures.
 
 Refer to the {{<link title="NetQ CLI Reference" text="NetQ CLI Reference">}} for details about commands used in the following procedures.
 
-{{< tabs "TabIDxxx" >}}
+## Monitor All System and TCA Events Networkwide
 
-{{< tab "NetQ UI" >}}
-
-{{< /tab >}}
-
-{{< tab "NetQ CLI" >}}
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-## Monitor All System Events Networkwide
-
-You can monitor all system events across the network with the NetQ UI and the NetQ CLI.
+You can monitor all system and TCA events across the network with the NetQ UI and the NetQ CLI.
 
 {{< tabs "TabID29" >}}
 
@@ -36,19 +26,19 @@ You can monitor all system events across the network with the NetQ UI and the Ne
 
     You can filter the list by any column data (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}) and export a page of events at a time (click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" width="18" height="18">}}).
 
-    {{<figure src="/images/netq/main-menu-ntwk-events-320.png" width="700">}}
+    {{<figure src="/images/netq/main-menu-ntwk-events-320.png" width="700" caption="All system and TCA events across the network">}}
 
 {{< /tab >}}
 
 {{< tab "NetQ CLI" >}}
 
-To view all system events, run:
+To view all system and all TCA events, run:
 
 ```
 netq show events [between <text-time> and <text-endtime>] [json]
 ```
 
-This example shows all events between now and an hour ago.
+This example shows all system and TCA events between now and an hour ago.
 
 ```
 netq show events
@@ -68,7 +58,6 @@ leaf01            btrfsinfo                critical         data storage efficie
 leaf02            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  2 19:25:24 2020
                                                             t after allocation greater than chu
                                                             nk size 0.57 GB
-
 ```
 
 This example shows all events between now and 24 hours ago.
@@ -119,9 +108,9 @@ leaf01            btrfsinfo                critical         data storage efficie
 
 {{< /tabs >}}
 
-## Monitor All System Events on a Device
+## Monitor All System and TCA Events on a Device
 
-You can monitor all system events on a given device with the NetQ UI and the NetQ CLI.
+You can monitor all system and TCA events on a given device with the NetQ UI and the NetQ CLI.
 
 {{< tabs "TabID126" >}}
 
@@ -141,19 +130,19 @@ You can enter additional filters for message type, severity, and time range to f
 
 5. Click **Apply**.
 
-    {{<figure src="/images/netq/main-menu-ntwk-events-filterbyhost-320.png" width="700">}}
+    {{<figure src="/images/netq/main-menu-ntwk-events-filterbyhost-320.png" width="700" caption="All system and TCA events on spine01 switch">}}
 
 {{< /tab >}}
 
 {{< tab "NetQ CLI" >}}
 
-To view all system events on a switch, run:
+To view all system and TCA events on a switch, run:
 
 ```
 netq <hostname> show events [between <text-time> and <text-endtime>] [json]
 ```
 
-This example shows all events that have occurred on the *leaf01* switch between now and an hour ago.
+This example shows all system and TCA events that have occurred on the *leaf01* switch between now and an hour ago.
 
 ```
 cumulus@switch:~$ netq leaf01 show events
@@ -180,9 +169,9 @@ No matching event records found
 
 {{< /tabs >}}
 
-## Monitor System Events Networkwide by Type
+## Monitor System and TCA Events Networkwide by Type
 
-You can view all system events of a given type on a networkwide basis using the NetQ UI and the NetQ CLI.
+You can view all system  and TCA events of a given type on a networkwide basis using the NetQ UI and the NetQ CLI.
 
 {{< tabs "TabID187" >}}
 
@@ -194,7 +183,7 @@ You can view all system events of a given type on a networkwide basis using the 
 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
 
-4. Enter the name of network protocol or service in the **Message Type** field.
+4. Enter the name of network protocol or service (agent, bgp, link, tca_dom, and so on) in the **Message Type** field.
 
 <div style="padding-left: 18px;">{{<notice tip>}}
 You can enter additional filters for severity and time range to further narrow the output.
@@ -202,7 +191,7 @@ You can enter additional filters for severity and time range to further narrow t
 
 5. Click **Apply**.
 
-    {{<figure src="/images/netq/main-menu-ntwk-events-filterbymsgtype-320.png" width="700">}}
+    {{<figure src="/images/netq/main-menu-ntwk-events-filterbymsgtype-320.png" width="700" caption="All LLDP events">}}
 
 {{< /tab >}}
 
@@ -243,9 +232,9 @@ You can enter a severity using the <code>level</code> option to further narrow t
 
 {{< /tabs >}}
 
-## Monitor System Events on a Device by Type
+## Monitor System and TCA Events on a Device by Type
 
-You can view all system events of a given type on a given device using the NetQ UI and the NetQ CLI.
+You can view all system and TCA events of a given type on a given device using the NetQ UI and the NetQ CLI.
 
 {{< tabs "TabID250" >}}
 
@@ -267,7 +256,7 @@ You can enter additional filters for severity and time range to further narrow t
 
 6. Click **Apply**.
 
-    {{<figure src="/images/netq/main-menu-ntwk-events-filterbymsgtype-320.png" width="700">}}
+    {{<figure src="/images/netq/main-menu-ntwk-events-filterbymsgtype-device-320.png" width="700" caption="All agent events on the spine01 switch">}}
 
 {{< /tab >}}
 
@@ -279,7 +268,7 @@ To view all system events for a given network protocol or service, run:
 netq <hostname> show events (type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type macs | type services | type lldp | type license | type os | type sensors | type btrfsinfo) [between <text-time> and <text-endtime>] [json]
 ```
 
-This example shows all services events on the *spine03* switch between now and 30 days ago.
+This example shows all *services* events on the *spine03* switch between now and 30 days ago.
 
 ```
 cumulus@switch:~$ netq spine03 show events type services between now and 30d
@@ -300,14 +289,18 @@ You can enter a severity using the <code>level</code> option to further narrow t
 
 {{< /tabs >}}
 
-## Monitor System Events Networkwide by Severity
+## Monitor System and TCA Events Networkwide by Severity
 
-You can view system events by their severity on a networkwide basis with the NetQ UI and the NetQ CLI using the:
+You can view system and TCA events by their severity on a networkwide basis with the NetQ UI and the NetQ CLI using the:
 
 - Events list: with events of all severities at once or filter by severity
 - Events|Alarms card: view events with critical severity
 - Events|Info card: view events with info, error, and warning severities
 - `netq show events level` command
+
+{{<notice tip>}}
+System events may be of info, error, warning, critical or debug severity. TCA events may be of info or critical severity.
+{{</notice>}}
 
 {{< tabs "TabID312" >}}
 
@@ -319,7 +312,7 @@ You can view system events by their severity on a networkwide basis with the Net
 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
 
-4. Enter a severity (info, error, warning, critical, or debug) in the **Severity** field.
+4. Enter a severity in the **Severity** field. Default is Info.
 
 <div style="padding-left: 18px;">{{<notice tip>}}
 You can enter additional filters for message type and time range to further narrow the output.
@@ -327,7 +320,7 @@ You can enter additional filters for message type and time range to further narr
 
 5. Click **Apply**.
 
-    {{<figure src="/images/netq/main-menu-ntwk-events-filterbymsgtype-320.png" width="700">}}
+    {{<figure src="/images/netq/main-menu-ntwk-events-filterbyseverity-320.png" width="700" caption="All system and TCA events with info severity">}}
 
 {{< /tab >}}
 
@@ -357,9 +350,9 @@ The Alarms card workflow enables users to easily view and track critical severit
 
 To view critical alarms, open the large Alarms card.
 
-{{< figure src="/images/netq/events-alarms-large-summary-tab-300.png" width="500" >}}
+{{<figure src="/images/netq/events-alarms-large-summary-tab-300.png" width="500" >}}
 
-From this card, you can view the distribution of alarms for each of the categories over time. The charts are sorted by total alarm count, with the highest number of alarms i a category listed at the top. Scroll down to view any hidden charts. A list of the associated alarms is also displayed. By default, the list of the most recent alarms is displayed when viewing the large card.
+From this card, you can view the distribution of alarms for each of the categories over time. The charts are sorted by total alarm count, with the highest number of alarms in a category listed at the top. Scroll down to view any hidden charts. A list of the associated alarms is also displayed. By default, the list of the most recent alarms is displayed when viewing the large card.
 
 #### View Devices with the Most Alarms
 
@@ -367,7 +360,7 @@ You can filter instead for the devices that have the most alarms.
 
 To view devices with the most alarms, open the large Alarms card, and then select **Devices by event count** from the dropdown.
 
-{{< figure src="/images/netq/events-alarms-large-by-event-count-300.png" width="500" >}}
+{{<figure src="/images/netq/events-alarms-large-by-event-count-300.png" width="500" >}}
 
 {{<notice tip>}}
 You can open the switch card for any of the listed devices by clicking on the device name.
@@ -389,7 +382,7 @@ To filter for selected categories:
 
 In this example, we removed the Services from the event listing.
 
-{{< figure src="/images/netq/events-alarms-large-filtered-222.png" width="500" >}}
+{{<figure src="/images/netq/events-alarms-large-filtered-222.png" width="500" >}}
 
 #### Compare Alarms with a Prior Time
 
@@ -399,13 +392,13 @@ To compare two time periods:
 
 1. Open a second Alarm Events card. Remember it goes to the bottom of the workbench.
 
-2. Switch to the large size view.
+2. Switch to the large size card.
 
 3. Move the card to be next to the original Alarm Events card. Note that moving large cards can take a few extra seconds since they contain a large amount of data.
 
 4. Hover over the card and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
 
-    {{< figure src="/images/netq/time-picker-popup-narrow-222.png" width="175" >}}
+    {{<figure src="/images/netq/time-picker-popup-narrow-222.png" width="175" >}}
 
 5. Select a different time period.  
 
@@ -486,7 +479,9 @@ You can view all events in the network either by clicking the **Show All Events*
 
 OR
 
-{{<figure src="/images/netq/events-info-fullscr-300.png" width="700">}}
+{{<figure src="/images/netq/events-info-fullscr-300.png" width="700" caption="System events">}}
+
+{{<figure src="/images/netq/events-info-fullscr-with-tca-320.png" width="700" caption="System and TCA events">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
@@ -532,19 +527,23 @@ You can use the <code>type</code> and <code>between</code> options to further na
 
 {{< /tabs >}}
 
-## Monitor System Events on a Device by Severity
+## Monitor System and TCA Events on a Device by Severity
 
-You can view system events by their severity on a given device with the NetQ UI and the NetQ CLI using the:
+You can view system and TCA events by their severity on a given device with the NetQ UI and the NetQ CLI using the:
 
-- Events list: with events of all severities at once or by one severity filtered by device
+- Events list: view events of all severities at once or by one severity filtered by device
 - Events|Alarms card: view events with critical severity filtered by device
 - Events|Info card: view events with info, error, and warning severities filtered by device
 - Switch card: view all events with critical severity on the given device
 - `netq show events level` command
 
+{{<notice tip>}}
+System events may be of info, error, warning, critical or debug severity. TCA events may be of info or critical severity.
+{{</notice>}}
+
 {{< tabs "TabID545" >}}
 
-{{< tab "NetQ UI" >}}
+{{< tab "Events List" >}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
 
@@ -552,52 +551,155 @@ You can view system events by their severity on a given device with the NetQ UI 
 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}.
 
-4. Enter the hostname of the device for which you want to see events in the **Hostname** field.
+4. Enter the hostname for the device of interest in the **Hostname** field.
 
-5. Enter the name of a network protocol or service in the **Message Type** field.
+5. Enter a severity in the **Severity** field. Default is Info.
 
 <div style="padding-left: 18px;">{{<notice tip>}}
-You can enter additional filters for severity and time range to further narrow the output.
+You can enter additional filters for message type and time range to further narrow the output.
 {{</notice>}}</div>
 
-6. Click **Apply**.
+5. Click **Apply**.
 
-    {{<figure src="/images/netq/main-menu-ntwk-events-filterbymsgtype-320.png" width="700">}}
+    {{<figure src="/images/netq/main-menu-ntwk-events-filterbyseverity-device-320.png" width="700" caption="All critical severity events on the spine01 switch">}}
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "Events|Alarms Card">}}
 
-To view all system events for a given network protocol or service, run:
+The Events|Alarms card shows critical severity events. You can view the devices that have the most alarms or you can view all alarms on a device.
+
+To view devices with the most alarms:
+
+1. Locate or open the Events|Alarms card on your workbench.
+
+2. Change to the large size card using the size picker.
+
+3. Select **Devices by event count** from the dropdown above the table.
+
+    {{<figure src="/images/netq/events-alarms-large-by-event-count-300.png" width="500" >}}
+
+    {{<notice tip>}}
+You can open the switch card for any of the listed devices by clicking on the device name.
+    {{</notice>}}
+
+To view all alarms on a given device:
+
+1. Click the **Show All Events** link under the table on the large Events|Alarms card, or open the full screen Events|Alarms card.
+
+    {{< figure src="/images/netq/events-alarms-large-show-all-events-link-222.png" width="200" >}}
+
+<div style="padding-left: 18px;">OR</div>
+
+    {{< figure src="/images/netq/events-alarms-fullscr-allevents-tab-300.png" width="700" >}}
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}} and enter a hostname for the device of interest.
+
+3. Click **Apply**.
+
+4. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "Events|Info Card">}}
+
+The Events|Info card shows all non-critical severity events. You can view the devices that have the most info events or you can view all non-critical events on a device.
+
+To view devices with the most non-critical events:
+
+1. Locate or open the Events|Info card on your workbench.
+
+2. Change to the large size card using the size picker.
+
+3. Select **Devices by event count** from the dropdown above the table.
+
+    {{<figure src="/images/netq/events-info-large-table-options-222.png" width="300">}}
+
+    {{<figure src="/images/netq/events-info-large-by-event-count-222.png" width="500">}}
+
+    {{<notice tip>}}
+You can open the switch card for any of the listed devices by clicking on the device name.
+    {{</notice>}}
+
+To view all info events on a given device:
+
+1. Click the **Show All Events** link under the table on the large Events|Info card, or open the full screen Events|Info card.
+
+    {{<figure src="/images/netq/events-alarms-large-show-all-events-link-222.png" width="200" >}}
+
+<div style="padding-left: 18px;">OR</div>
+
+    {{<figure src="/images/netq/events-info-fullscr-300.png" width="700">}}
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}} and enter a hostname for the device of interest.
+
+3. Click **Apply**.
+
+4. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "Switch Card">}}
+
+The Switch card displays the alarms (events of critical severity) for the switch.
+
+1. Open the Switch card for the switch of interest.
+
+    1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" width="18" height="18">}}.
+
+    2. Click **Open a switch card**.
+
+    3. Enter the switch hostname.
+
+    4. Click **Add**.
+
+2. Change to the full screen card using the size picker.
+
+3. Enter a severity in the **Severity** field. Default is Info.
+
+    {{<notice tip>}}
+You can enter additional filters for message type and time range to further narrow the output.
+    {{</notice>}}
+
+4. Click **Apply**.
+
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "netq show events" >}}
+
+To view all system events for a given severity on a device, run:
 
 ```
-netq <hostname> show events (type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type macs | type services | type lldp | type license | type os | type sensors | type btrfsinfo) [between <text-time> and <text-endtime>] [json]
+netq <hostname> show events (level info | level error | level warning | level critical | level debug)  [between <text-time> and <text-endtime>] [json]
 ```
 
-This example shows all services events on the *spine03* switch between now and 30 days ago.
+This example shows all *critical* severity events on the *leaf01* switch between now and 24 hours ago.
 
 ```
-cumulus@switch:~$ netq spine03 show events type services between now and 30d
+cumulus@switch:~$ netq leaf01 show events level critical
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
-spine03           services                 critical         Service netqd status changed from a Mon Aug 10 19:55:52 2020
-                                                            ctive to inactive
-spine03           services                 info             Service netqd status changed from i Mon Aug 10 19:55:38 2020
-                                                            nactive to active
+leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 18:44:49 2020
+                                                            t after allocation greater than chu
+                                                            nk size 0.57 GB
+leaf01            btrfsinfo                critical         data storage efficiency : space lef Wed Sep  9 18:14:48 2020
+                                                            t after allocation greater than chu
+                                                            nk size 0.57 GB
+
 ```
 
 {{<notice tip>}}
-You can enter a severity using the <code>level</code> option to further narrow the output.
+You can use the <code>type</code> or <code>between</code> options to further narrow the output.
 {{</notice>}}
 
 {{< /tab >}}
 
 {{< /tabs >}}
 
+## Monitor System and TCA Events Networkwide by Time
 
-
-You can easily monitor warning, info, and debug severity events occurring across your network using the Info card. You can determine the number of events for the various system, interface, and network protocols and services components in the network. The content of the cards in the workflow is described first, and then followed by common tasks you would perform using this card workflow.
-
-Refer to the {{<link title="NetQ UI Card Reference" text="NetQ UI Card Reference">}} for details of the cards used with the following procedures.
+## Monitor System and TCA Events on a Device by Time
 

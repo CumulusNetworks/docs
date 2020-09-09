@@ -1,7 +1,7 @@
 ---
 title: Transceiver and Cable Self-qualification with Cumulus Linux
 author: Cumulus Networks
-weight: 361
+weight: 331
 toc: 4
 ---
 

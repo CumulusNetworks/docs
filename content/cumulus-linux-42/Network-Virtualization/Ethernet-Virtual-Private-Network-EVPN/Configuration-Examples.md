@@ -1966,14 +1966,17 @@ line vty
 
 ## EVPN Symmetric Routing
 
-The following shows an EVPN symmetric routing configuration with:
+The following example shows an EVPN symmetric routing configuration where:
 
-- BGP unnumbered in the underlay
-- VXLAN encapsulation server connectivity
-- EVPN as the control plane
-- Distributed gateway routing (SVI as gateways on the border leafs)
+- MLAG is configured between the leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
+- BGP unnumbered is in the underlay (configured on all leafs and spines)
+- VRF BLUE and VRF RED are configured for traffic flow.
+   The following logical diagrams show traffic flow between VRF BLUE and VRF RED, which server is on the same VLAN and which switch connects VLANs together. Each VRF is a unique layer 3 routing table.
 
-{{< img src = "/images/cumulus-linux/evpn-symmetric-config.png" >}}
+    VRF BLUE| VRF RED |
+   | ------- | ------- |
+   | {{< img src="/images/cumulus-linux/evpn-symmetric-blue.png" width="450" >}} | {{< img src="/images/cumulus-linux/evpn-symmetric-red.png" width="400" >}} |
+   | <ul><li>VLAN 10 contains server01, server04, and all four leafs.</li><li>The leafs act as routers and connect to VLAN 20 (which also contain server02 and server05).</li></ul> | <ul><li>VLAN 30 contains server03 and server06, and all four leafs.</li><li>what connects VLAN 30</li></ul> |
 
 ### /etc/network/interfaces
 

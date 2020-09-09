@@ -788,7 +788,7 @@ Scaling this example out to a full rack, when planning for link failures, you ne
 To get a better understanding of how STP and LACP behave in response to various failover redundancy scenarios, read
 {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="this knowledge base article">}}.
 
-## STP Interoperability with MLAG
+### STP and MLAG
 
 Cumulus Networks recommends that you always enable STP in your layer 2 network.
 

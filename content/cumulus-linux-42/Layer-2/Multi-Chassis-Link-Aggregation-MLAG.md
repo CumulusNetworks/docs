@@ -54,60 +54,36 @@ Each peer switch periodically makes a list of the LACP partner MAC addresses for
 
 To configure MLAG:
 
-- Create a bond that uses LACP on the dual-connected devices.
-- Configure the interfaces, including bonds, VLANs, bridges, and peer links on each peer switch.
+1. On the dual-connected device, create a bond that uses LACP. The method you use varies with the type of device you are configuring.
+2. On each peer switch, configure the interfaces, including bonds, VLANs, bridges, and peer links.
+   - Place every interface that connects to the MLAG pair from a dual-connected device into a {{<link url="Bonding-Link-Aggregation" text="bond">}}, even if the bond contains only a single link on a single physical switch. Layer 2 data travels over this bond. In the examples throughout this chapter, *peerlink* is the name of the bond. Single-attached hosts, also known as *orphan ports*, can be just a member of the bridge.
+   - Configure the fast mode of LACP on the bond to allow more timely updates of the LACP state. These bonds are then placed in a bridge, which must include the peer link between the switches.
 
-MLAG synchronizes the dynamic state between the two peer switches but it does not synchronize the switch configurations. After modifying the configuration of one peer switch, you must make the same changes to the configuration on the other peer switch. This applies to all configuration changes, including:
-- Port configuration, such as VLAN membership, {{<link url="#mtu-in-an-mlag-configuration" text="MTU">}} and bonding parameters.
-- Bridge configuration, such as spanning tree parameters or bridge properties.
-- Static address entries, such as static FDB entries and static IGMP entries.
-- QoS configuration, such as ACL entries.
+   ```
+   cumulus@switch:~$ net add bond bond1 bond slaves swp1
+   cumulus@switch:~$ net add bond bond2 bond slaves swp2
+   cumulus@switch:~$ net add bond bond3 bond slaves swp3
+   cumulus@switch:~$ net add bond peerlink bond slaves swp49-swp50
+   cumulus@switch:~$ net pending
+   cumulus@switch:~$ net commit
+   ```
 
-To verify VLAN membership configuration, run the NCLU `net show clag verify-vlans verbose` command or the Linux `clagctl -v verifyvlans` command. For example:
+3. Enable communication between the `clagd` services on the peer switches:
+   - Choose an unused VLAN (also known as a *switched virtual interface* or *SVI*).
+   - Assign the SVI an unrouteable link-local address to give the peer switches layer 3 connectivity between each other.
+   - Configure the VLAN as a {{<link url="Interface-Configuration-and-Management" text="VLAN subinterface">}} on the peer link bond instead of the VLAN-aware bridge, called *peerlink*. If you configure the subinterface with {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}, the VLAN subinterface is named 4094 by default. If you are configuring the peer link without NCLU, Cumulus Networks recommends you use 4094 to ensures that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
+   - To avoid issues with STP, include untagged traffic on the peer link.
+   - Specify a backup interface, which is any layer 3 backup interface for your peer links in case the peer link goes down. See {{<link url="#specify-a-backup-link" text="backup link">}} and {{<link url="#failover-redundancy-scenarios" text="redundancy scenarios">}} below.
 
-```
-cumulus@switch:mgmt:~$ net show clag verify-vlans verbose
-Vlan Database
-Our Bond Interface   VlanId   Peer Bond Interface
-------------------   ------   -------------------
-bond1                    10   bond1
-bond2                    20   bond2
-bond3                    30   bond3
-```
+   ```
+   example
+   ```
 
-{{%notice note%}}
+4. DO WHAT HERE 
 
-To prevent MAC address conflicts with other interfaces in the same bridged network, Cumulus Networks has reserved a range of MAC addresses specifically to use with MLAG. This range of MAC addresses is 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff. Cumulus Networks recommends you use this range of MAC addresses when configuring MLAG.
+   The following example configures *peerlink.4094*, where *peerlink* is the inter-chassis bond and VLAN 4094 is the peer link VLAN:
 
-- You *cannot* use the same MAC address for different MLAG pairs. Make sure you specify a different `clagd-sys-mac` setting for each MLAG pair in the network.
-- You cannot use multicast MAC addresses as the `clagd-sys-mac`.
-- If you configure MLAG with NCLU commands, Cumulus Linux does not check against a possible collision with VLANs outside the default reserved range when creating the peer link interfaces.
-
-{{%/notice%}}
-
-### Configure the Host or Switch
-
-On your dual-connected device, create a bond that uses LACP. The method you use varies with the type of device you are configuring. A bond is a layer 2 logical interface. The physical switch ports are members of the bond and the bond is a member of the bridge. All bonds are a member of the bridge.
-
-### Configure the Interfaces
-
-To configure the interfaces:
-
-- Place every interface that connects to the MLAG pair from a dual-connected device into a {{<link url="Bonding-Link-Aggregation" text="bond">}}, even if the bond contains only a single link on a single physical switch (even though the MLAG pair contains two or more links). Layer 2 data travels over this bond. In the examples throughout this chapter, *peerlink* is the name of the bond.
-- Single-attached hosts, also known as *orphan ports*, can be just a member of the bridge.
-- Configure the fast mode of LACP on the bond to allow more timely updates of the LACP state. These bonds are then placed in a bridge, which must include the peer link between the switches.
-
-To enable communication between the `clagd` services on the peer switches:
-
-- Choose an unused VLAN (also known as a *switched virtual interface* or *SVI*).
-- Assign the SVI an unrouteable link-local address to give the peer switches layer 3 connectivity between each other.
-- Configure the VLAN as a {{<link url="Interface-Configuration-and-Management" text="VLAN subinterface">}} on the peer link bond instead of the VLAN-aware bridge, called *peerlink*. If you configure the subinterface with {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}, the VLAN subinterface is named 4094 by default. If you are configuring the peer link without NCLU, Cumulus Networks recommends you use 4094 for the peer link VLAN. This ensures that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
-- To avoid issues with STP, include untagged traffic on the peer link.
-- Specify a backup interface, which is any layer 3 backup interface for your peer links in case the peer link goes down. See {{<link url="#specify-a-backup-link" text="backup link">}} and {{<link url="#failover-redundancy-scenarios" text="redundancy scenarios">}} below.
-
-For example, if *peerlink* is the inter-chassis bond, and VLAN 4094 is the peer link VLAN, configure *peerlink.4094* as follows:
-
-{{< tabs "TabID155 ">}}
+   {{< tabs "TabID155 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -117,21 +93,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-{{%notice note%}}
-
-Do *not* add VLAN 4094 to the bridge VLAN list; VLAN 4094 for the peer link subinterface must **not** be also configured as a bridged VLAN with bridge VIDs under the bridge.
-
-{{%/notice%}}
-
-To enable MLAG, add *peerlink* to a traditional or VLAN-aware bridge. The commands below add *peerlink* to a VLAN-aware bridge:
-
-```
-cumulus@switch:~$ net add bridge bridge ports peerlink
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
+   {{< /tab >}}
 
 {{< tab "Linux Commands ">}}
 
@@ -172,12 +134,54 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tabs >}}
 
+  {{%notice note%}}
+
+To prevent MAC address conflicts with other interfaces in the same bridged network, Cumulus Networks has reserved a range of MAC addresses specifically to use with MLAG. This range of MAC addresses is 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff. Cumulus Networks recommends you use this range of MAC addresses when configuring MLAG.
+
+- You *cannot* use the same MAC address for different MLAG pairs. Make sure you specify a different `clagd-sys-mac` setting for each MLAG pair in the network.
+- You cannot use multicast MAC addresses as the `clagd-sys-mac`.
+- If you configure MLAG with NCLU commands, Cumulus Linux does not check against a possible collision with VLANs outside the default reserved range when creating the peer link interfaces.
+
+{{%/notice%}}
+
+{{%notice note%}}
+
+Do *not* add VLAN 4094 to the bridge VLAN list; VLAN 4094 for the peer link subinterface must **not** be also configured as a bridged VLAN with bridge VIDs under the bridge.
+
+{{%/notice%}}
+
+5. Enable MLAG by add *peerlink* to the bridge. The commands below add *peerlink* to a VLAN-aware bridge:
+
+   ```
+   cumulus@switch:~$ net add bridge bridge ports peerlink
+   cumulus@switch:~$ net pending
+   cumulus@switch:~$ net commit
+   ```
+
 {{%notice note%}}
 
 - When you change the MLAG configuration in the `/etc/network/interfaces` file, the changes take effect when you bring the peer link interface up with `ifup` or `ifreload -a`. Do **not** use `systemctl restart clagd.service` to apply the new configuration.
 - Do not use 169.254.0.1 as the MLAG peer link IP address; Cumulus Linux uses this address exclusively for {{<link url="Border-Gateway-Protocol-BGP" text="BGP unnumbered">}} interfaces.
 
 {{%/notice%}}
+
+MLAG synchronizes the dynamic state between the two peer switches but it does not synchronize the switch configurations. After modifying the configuration of one peer switch, you must make the same changes to the configuration on the other peer switch. This applies to all configuration changes, including:
+- Port configuration, such as VLAN membership, {{<link url="#mtu-in-an-mlag-configuration" text="MTU">}} and bonding parameters.
+- Bridge configuration, such as spanning tree parameters or bridge properties.
+- Static address entries, such as static FDB entries and static IGMP entries.
+- QoS configuration, such as ACL entries.
+
+To verify VLAN membership configuration, run the NCLU `net show clag verify-vlans verbose` command or the Linux `clagctl -v verifyvlans` command. For example:
+
+```
+cumulus@switch:mgmt:~$ net show clag verify-vlans verbose
+Vlan Database
+Our Bond Interface   VlanId   Peer Bond Interface
+------------------   ------   -------------------
+bond1                    10   bond1
+bond2                    20   bond2
+bond3                    30   bond3
+```
 
 ### Set Roles and Priority
 

@@ -879,171 +879,71 @@ For additional information on STP, see {{<link url="Spanning-Tree-and-Rapid-Span
 
 ## Example MLAG Configuration
 
-The example configuration below configures two bonds for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port.
+The example below shows an MLAG configuration.
 
-{{%notice tip%}}
+{{< img src = "/images/cumulus-linux/mlag-config.png" >}}
 
-You can see a more traditional layer 2 example configuration in NCLU; run `net example clag l2-with-server-vlan-trunks`. For a very basic configuration with just one pair of switches and a single host, run `net example clag l2-with-server-vlan-trunks`.
-
-{{%/notice%}}
-
-{{< img src = "/images/cumulus-linux/mlag-config-example.png" >}}
-
-You configure these interfaces using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}, so the bridges are in {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}. The bridges use these Cumulus Linux-specific keywords:
-
-- `bridge-vids` defines the allowed list of tagged 802.1q VLAN IDs for all bridge member interfaces. You can specify non-contiguous ranges with a space-separated list; for example, `bridge-vids 100-200 300 400-500`.
-- `bridge-pvid` defines the untagged VLAN ID for each port. This is commonly referred to as the *native VLAN*.
-
-The bridge configurations below indicate that each bond carries tagged frames on VLANs 10, 20, 30, 40, 50, and 100 to 200 (as specified by `bridge-vids`), but untagged frames on VLAN 1 (as specified by `bridge-pvid`). Also, take note on how you configure the VLAN subinterfaces used for `clagd` communication (*peerlink.4094* in the sample configuration below). Finally, the host configurations for server01 through server04 are not shown here. The configurations for each corresponding node are almost identical, except for the IP addresses used for managing the `clagd` service.
-
-{{%notice note%}}
-
-Make sure that the VLAN subinterface is not in your layer 2 domain and does not have a very high VLAN ID (up to 4094). Read more about the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="range of VLAN IDs you can use">}}.
-
-{{%/notice%}}
-
-The commands to create the configurations look like the following. The `clag-id` and `clagd-sys-mac` must be the same for the corresponding bonds on spine01 and spine02, the corresponding bonds on leaf01 and leaf02, and the corresponding bonds on leaf03 and leaf04.
-
-{{< tabs "TabID374 ">}}
-
-{{< tab "spine01 ">}}
-
-```
-cumulus@spine01:~$ net show configuration commands
-net add interface swp1-4
-net add loopback lo ip address 10.0.0.21/32
-net add interface eth0 ip address dhcp
-```
-
-These commands create the following configuration in the `/etc/network/interfaces` file:
-
-```
-cumulus@spine01:~$ cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.0.0.21/32
-
-auto eth0
-iface eth0 inet dhcp
-
-# downlinks
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp3
-iface swp3
-
-auto swp4
-iface swp4
-```
-
-{{< /tab >}}
-
-{{< tab "spine02 ">}}
-
-```
-cumulus@spine02:~$ net show configuration commands
-net add interface swp1-4
-net add loopback lo ip address 10.0.0.22/32
-net add interface eth0 ip address dhcp
-```
-
-These commands create the following configuration in the `/etc/network/interfaces` file:
-
-```
-cumulus@spine02:~$ cat /etc/network/interfaces
-auto lo
-iface lo inet loopback
-    address 10.0.0.22/32
-
-auto eth0
-iface eth0 inet dhcp
-
-# downlinks
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp3
-iface swp3
-
-auto swp4
-iface swp4
-```
-
-{{< /tab >}}
+{{< tabs "TabID2970 ">}}
 
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ net show configuration commands
-net add loopback lo ip address 10.0.0.11/32
-net add bgp autonomous-system 65011
-net add bgp router-id 10.0.0.11
-net add bgp ipv4 unicast network 10.0.0.11/32
-net add routing prefix-list ipv4 dc-leaf-in seq 10 permit 0.0.0.0/0
-net add routing prefix-list ipv4 dc-leaf-in seq 20 permit 10.0.0.0/24 le 32
-net add routing prefix-list ipv4 dc-leaf-in seq 30 permit 172.16.2.0/24
-net add routing prefix-list ipv4 dc-leaf-out seq 10 permit 172.16.1.0/24
-net add bgp neighbor fabric peer-group
-net add bgp neighbor fabric remote-as external
-net add bgp ipv4 unicast neighbor fabric prefix-list dc-leaf-in in
-net add bgp ipv4 unicast neighbor fabric prefix-list dc-leaf-out out
-net add bgp neighbor swp51-52 interface peer-group fabric
-net add vlan 100 ip address 172.16.1.1/24
-net add bgp ipv4 unicast network 172.16.1.1/24
-net add clag peer sys-mac 44:38:39:FF:00:01 interface swp49-50 primary backup-ip 10.10.10.2
-net add clag port bond server1 interface swp1 clag-id 1
-net add clag port bond server2 interface swp2 clag-id 2
-net add bond server1-2 bridge access 100
-net add bond server1-2 stp portadminedge
-net add bond server1-2 stp bpduguard
-```
-
-These commands create the following configuration in the `/etc/network/interfaces` file:
-
-```
 cumulus@leaf01:~$ cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
-    address 10.0.0.11/32
+    address 10.10.10.1/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
 
 auto eth0
 iface eth0 inet dhcp
+    vrf mgmt
 
-auto swp1
-iface swp1
+auto bridge
+iface bridge
+    bridge-ports peerlink
+    bridge-ports bond1 bond2 bond3
+    bridge-vids 10 20 30  
+    bridge-vlan-aware yes
 
-auto swp2
-iface swp2
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    vlan-raw-device bridge
+    vlan-id 10
 
-# peerlink
-auto swp49
-iface swp49
-    post-up ip link set $IFACE promisc on     # Only required on VX
+auto vlan20
+iface vlan20
+    address 10.1.20.2/24
+    vlan-raw-device bridge
+    vlan-id 20
 
-auto swp50
-iface swp50
-    post-up ip link set $IFACE promisc on     # Only required on VX
+auto vlan30
+iface vlan30
+    address 10.1.30.2/24
+    vlan-raw-device bridge
+    vlan-id 30
 
-# uplinks
 auto swp51
 iface swp51
+    alias leaf to spine
 
 auto swp52
 iface swp52
+    alias leaf to spine
 
-# bridge to hosts
-auto bridge
-iface bridge
-    bridge-ports peerlink server1 server2
-    bridge-vids 100
-    bridge-vlan-aware yes
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
 
 auto peerlink
 iface peerlink
@@ -1054,29 +954,55 @@ iface peerlink.4094
     clagd-backup-ip 10.10.10.2
     clagd-peer-ip linklocal
     clagd-priority 1000
-    clagd-sys-mac 44:38:39:FF:00:01
+    clagd-sys-mac 44:38:39:BE:EF:AA
 
-auto server1
-iface server1
-    bond-slaves swp1
-    bridge-access 100
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
     clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
 
-auto server2
-iface server2
-    bond-slaves swp2
-    bridge-access 100
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
     clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
 
-auto vlan100
-iface vlan100
-    address 172.16.1.1/24
-    vlan-id 100
-    vlan-raw-device bridge
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 3
+    bridge-access 30
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
@@ -1084,69 +1010,62 @@ iface vlan100
 {{< tab "leaf02 ">}}
 
 ```
-cumulus@leaf02:~$ net show conf commands
-net add loopback lo ip address 10.0.0.12/32
-net add bgp autonomous-system 65012
-net add bgp router-id 10.0.0.12
-net add bgp ipv4 unicast network 10.0.0.12/32
-net add routing prefix-list ipv4 dc-leaf-in seq 10 permit 0.0.0.0/0
-net add routing prefix-list ipv4 dc-leaf-in seq 20 permit 10.0.0.0/24 le 32
-net add routing prefix-list ipv4 dc-leaf-in seq 30 permit 172.16.2.0/24
-net add routing prefix-list ipv4 dc-leaf-out seq 10 permit 172.16.1.0/24
-net add bgp neighbor fabric peer-group
-net add bgp neighbor fabric remote-as external
-net add bgp ipv4 unicast neighbor fabric prefix-list dc-leaf-in in
-net add bgp ipv4 unicast neighbor fabric prefix-list dc-leaf-out out
-net add bgp neighbor swp51-52 interface peer-group fabric
-net add vlan 100 ip address 172.16.1.2/24
-net add bgp ipv4 unicast network 172.16.1.2/24
-net add clag peer sys-mac 44:38:39:FF:00:01 interface swp49-50 secondary backup-ip 192.168.1.11
-net add clag port bond server1 interface swp1 clag-id 1
-net add clag port bond server2 interface swp2 clag-id 2
-net add bond server1-2 bridge access 100
-net add bond server1-2 stp portadminedge
-net add bond server1-2 stp bpduguard
-```
-
-These commands create the following configuration in the `/etc/network/interfaces` file:
-
-```
 cumulus@leaf02:~$ cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
-    address 10.0.0.12/32
+    address 10.10.10.2/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
 
 auto eth0
 iface eth0 inet dhcp
+    vrf mgmt
 
-auto swp1
-iface swp1
+auto bridge
+iface bridge
+    bridge-ports peerlink
+    bridge-ports bond1 bond2 bond3
+    bridge-vids 10 20 30  
+    bridge-vlan-aware yes
 
-auto swp2
-iface swp2
+auto vlan10
+iface vlan10
+    address 10.1.10.3/24
+    vlan-raw-device bridge
+    vlan-id 10
 
-# peerlink
-auto swp49
-iface swp49
-    post-up ip link set $IFACE promisc on     # Only required on VX
+auto vlan20
+iface vlan20
+    address 10.1.20.3/24
+    vlan-raw-device bridge
+    vlan-id 20
 
-auto swp50
-iface swp50
-    post-up ip link set $IFACE promisc on     # Only required on VX
+auto vlan30
+iface vlan30
+    address 10.1.30.3/24
+    vlan-raw-device bridge
+    vlan-id 30
 
-# uplinks
 auto swp51
 iface swp51
+    alias leaf to spine
 
 auto swp52
 iface swp52
+    alias leaf to spine
 
-# bridge to hosts
-auto bridge
-iface bridge
-    bridge-ports peerlink server1 server2
-    bridge-vids 100
-    bridge-vlan-aware yes
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
 
 auto peerlink
 iface peerlink
@@ -1154,31 +1073,58 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 192.168.1.11
+    clagd-backup-ip 10.10.10.1
     clagd-peer-ip linklocal
-    clagd-sys-mac 44:38:39:FF:00:01
+    clagd-priority 32768
+    clagd-sys-mac 44:38:39:BE:EF:AA
 
-auto server1
-iface server1
-    bond-slaves swp1
-    bridge-access 100
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
     clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
 
-auto server2
-iface server2
-    bond-slaves swp2
-    bridge-access 100
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
     clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
 
-auto vlan100
-iface vlan100
-    address 172.16.1.2/24
-    vlan-id 100
-    vlan-raw-device bridge
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 3
+    bridge-access 30
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
@@ -1186,69 +1132,62 @@ iface vlan100
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ net show conf commands
-net add loopback lo ip address 10.0.0.13/32
-net add bgp autonomous-system 65013
-net add bgp router-id 10.0.0.13
-net add bgp ipv4 unicast network 10.0.0.13/32
-net add routing prefix-list ipv4 dc-leaf-in seq 10 permit 0.0.0.0/0
-net add routing prefix-list ipv4 dc-leaf-in seq 20 permit 10.0.0.0/24 le 32
-net add routing prefix-list ipv4 dc-leaf-in seq 30 permit 172.16.2.0/24
-net add routing prefix-list ipv4 dc-leaf-out seq 10 permit 172.16.1.0/24
-net add bgp neighbor fabric peer-group
-net add bgp neighbor fabric remote-as external
-net add bgp ipv4 unicast neighbor fabric prefix-list dc-leaf-in in
-net add bgp ipv4 unicast neighbor fabric prefix-list dc-leaf-out out
-net add bgp neighbor swp51-52 interface peer-group fabric
-net add vlan 100 ip address 172.16.1.3/24
-net add bgp ipv4 unicast network 172.16.1.3/24
-net add clag peer sys-mac 44:38:39:FF:00:02 interface swp49-50 primary backup-ip 192.168.1.14
-net add clag port bond server3 interface swp1 clag-id 3
-net add clag port bond server4 interface swp2 clag-id 4
-net add bond server3-4 bridge access 100
-net add bond server3-4 stp portadminedge
-net add bond server3-4 stp bpduguard
-```
-
-These commands create the following configuration in the `/etc/network/interfaces` file:
-
-```
 cumulus@leaf03:~$ cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
-    address 10.0.0.13/32
+    address 10.10.10.3/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
 
 auto eth0
 iface eth0 inet dhcp
+    vrf mgmt
 
-auto swp1
-iface swp1
+auto bridge
+iface bridge
+    bridge-ports peerlink
+    bridge-ports bond1 bond2 bond3
+    bridge-vids 10 20 30  
+    bridge-vlan-aware yes
 
-auto swp2
-iface swp2
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    vlan-raw-device bridge
+    vlan-id 10
 
-# peerlink
-auto swp49
-iface swp49
-    post-up ip link set $IFACE promisc on     # Only required on VX
+auto vlan20
+iface vlan20
+    address 10.1.20.2/24
+    vlan-raw-device bridge
+    vlan-id 20
 
-auto swp50
-iface swp50
-    post-up ip link set $IFACE promisc on     # Only required on VX
+auto vlan30
+iface vlan30
+    address 10.1.30.2/24
+    vlan-raw-device bridge
+    vlan-id 30
 
-# uplinks
 auto swp51
 iface swp51
+    alias leaf to spine
 
 auto swp52
 iface swp52
+    alias leaf to spine
 
-# bridge to hosts
-auto bridge
-iface bridge
-    bridge-ports peerlink server3 server4
-    bridge-vids 100
-    bridge-vlan-aware yes
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
 
 auto peerlink
 iface peerlink
@@ -1256,32 +1195,58 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 192.168.1.14
+    clagd-backup-ip 10.10.10.4
     clagd-peer-ip linklocal
     clagd-priority 1000
-    clagd-sys-mac 44:38:39:FF:00:02
+    clagd-sys-mac 44:38:39:BE:EF:BB
 
-auto server3
-iface server3
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
     bond-slaves swp1
-    bridge-access 100
-    clag-id 3
+    bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
 
-auto server4
-iface server4
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
     bond-slaves swp2
-    bridge-access 100
-    clag-id 4
+    bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
 
-auto vlan100
-iface vlan100
-    address 172.16.1.3/24
-    vlan-id 100
-    vlan-raw-device bridge
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 3
+    bridge-access 30
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
@@ -1289,69 +1254,61 @@ iface vlan100
 {{< tab "leaf04 ">}}
 
 ```
-cumulus@leaf04:~$ net show configuration commands
-net add loopback lo ip address 10.0.0.14/32
-net add bgp autonomous-system 65014
-net add bgp router-id 10.0.0.14
-net add bgp ipv4 unicast network 10.0.0.14/32
-net add routing prefix-list ipv4 dc-leaf-in seq 10 permit 0.0.0.0/0
-net add routing prefix-list ipv4 dc-leaf-in seq 20 permit 10.0.0.0/24 le 32
-net add routing prefix-list ipv4 dc-leaf-in seq 30 permit 172.16.2.0/24
-net add routing prefix-list ipv4 dc-leaf-out seq 10 permit 172.16.1.0/24
-net add bgp neighbor fabric peer-group
-net add bgp neighbor fabric remote-as external
-net add bgp ipv4 unicast neighbor fabric prefix-list dc-leaf-in in
-net add bgp ipv4 unicast neighbor fabric prefix-list dc-leaf-out out
-net add bgp neighbor swp51-52 interface peer-group fabric
-net add vlan 100 ip address 172.16.1.4/24
-net add bgp ipv4 unicast network 172.16.1.4/24
-net add clag peer sys-mac 44:38:39:FF:00:02 interface swp49-50 secondary backup-ip 192.168.1.13
-net add clag port bond server3 interface swp1 clag-id 3
-net add clag port bond server4 interface swp2 clag-id 4
-net add bond server3-4 bridge access 100
-net add bond server3-4 stp portadminedge
-net add bond server3-4 stp bpduguard
-```
-
-These commands create the following configuration in the `/etc/network/interfaces` file:
-
-```
 cumulus@leaf04:~$ cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
-    address 10.0.0.14/32
+    address 10.10.10.4/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
 
 auto eth0
 iface eth0 inet dhcp
 
-auto swp1
-iface swp1
+auto bridge
+iface bridge
+    bridge-ports peerlink
+    bridge-ports bond1 bond2 bond3
+    bridge-vids 10 20 30
+    bridge-vlan-aware yes
 
-auto swp2
-iface swp2
+auto vlan10
+iface vlan10
+    address 10.1.10.3/24
+    vlan-raw-device bridge
+    vlan-id 10
 
-# peerlink
-auto swp49
-iface swp49
-    post-up ip link set $IFACE promisc on     # Only required on VX
+auto vlan20
+iface vlan20
+    address 10.1.20.3/24
+    vlan-raw-device bridge
+    vlan-id 20
 
-auto swp50
-iface swp50
-    post-up ip link set $IFACE promisc on     # Only required on VX
+auto vlan30
+iface vlan30
+    address 10.1.30.3/24
+    vlan-raw-device bridge
+    vlan-id 30
 
-# uplinks
 auto swp51
 iface swp51
+    alias leaf to spine
 
 auto swp52
 iface swp52
+    alias leaf to spine
 
-# bridge to hosts
-auto bridge
-iface bridge
-    bridge-ports peerlink server3 server4
-    bridge-vids 100
-    bridge-vlan-aware yes
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
 
 auto peerlink
 iface peerlink
@@ -1359,31 +1316,330 @@ iface peerlink
 
 auto peerlink.4094
 iface peerlink.4094
-    clagd-backup-ip 192.168.1.13
+    clagd-backup-ip 10.10.10.3
     clagd-peer-ip linklocal
-    clagd-sys-mac 44:38:39:FF:00:02
+    clagd-priority 32768
+    clagd-sys-mac 44:38:39:BE:EF:BB
 
-auto server3
-iface server3
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
     bond-slaves swp1
-    bridge-access 100
-    clag-id 3
+    bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
 
-auto server4
-iface server4
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
     bond-slaves swp2
-    bridge-access 100
-    clag-id 4
+    bond-lacp-bypass-allow yes
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
 
-auto vlan100
-iface vlan100
-    address 172.16.1.4/24
-    vlan-id 100
-    vlan-raw-device bridge
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 3
+    bridge-access 30
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ cat /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+    address 10.10.10.101/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto swp1
+iface swp1
+    alias leaf to spine
+
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ cat /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+    address 10.10.10.102/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto swp1
+iface swp1
+    alias leaf to spine
+
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### /etc/frr/frr.conf
+
+{{< tabs "TabID3535 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ cat /etc/frr/frr.conf
+...
+service integrated-vtysh-config
+!
+log syslog informational
+!
+router bgp 65101
+ bgp router-id 10.10.10.1
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ !
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+
+!
+line vty
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ cat /etc/frr/frr.conf
+...
+service integrated-vtysh-config
+!
+log syslog informational
+!
+router bgp 65101
+ bgp router-id 10.10.10.2
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ !
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+!
+
+!
+line vty
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ cat /etc/frr/frr.conf
+...
+service integrated-vtysh-config
+!
+log syslog informational
+!
+router bgp 65102
+ bgp router-id 10.10.10.3
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ !
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+
+!
+line vty
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ cat /etc/frr/frr.conf
+...
+service integrated-vtysh-config
+!
+log syslog informational
+!
+router bgp 65102
+ bgp router-id 10.10.10.4
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ !
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+!
+
+!
+line vty
+!
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ cat /etc/frr/frr.conf
+...
+service integrated-vtysh-config
+!
+log syslog informational
+!
+!
+router bgp 65199
+ bgp router-id 10.10.10.101
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ !
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+!
+
+!
+line vty
+!
+```
+
+{{< /tab >}}
+
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ cat /etc/frr/frr.conf
+...
+service integrated-vtysh-config
+!
+log syslog informational
+!
+!
+router bgp 65199
+ bgp router-id 10.10.10.102
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ !
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+
+!
+line vty
+!
 ```
 
 {{< /tab >}}
@@ -1524,7 +1780,7 @@ HwIfInDiscards: 2129675
 When you run `clagctl`, you might see output similar to this:
 
 ```
-bond01 bond01 52 duplicate lacp - partner mac
+bond1 bond1 52 duplicate lacp - partner mac
 ```
 
 This occurs when you have multiple LACP bonds between the same two LACP endpoints; for example, an MLAG switch pair is one endpoint and an ESXi host is another. These bonds have duplicate LACP identifiers, which are MAC addresses. This same warning might trigger when you have a cabling or configuration error.

@@ -65,7 +65,8 @@ Fixed:  5.8.0-cl4.2.1u1,  5.8.0-cl3.7.14u1</p></td>
 </tr>
 <tr>
 <td>CM-31038</td>
-<td><p>CVE-2019-20795: iproute2 has a use-after-free in get_netnsid_from_name in ip/ipnetns.c.<br/>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20795: iproute2 has a use-after-free in get_netnsid_from_name in ip/ipnetns.c.<br/>
 Vulnerable: &lt;= 4.19.0-cl4u3</p></td>
 <td>4.0.0-4.2.0</td>
 <td></td>

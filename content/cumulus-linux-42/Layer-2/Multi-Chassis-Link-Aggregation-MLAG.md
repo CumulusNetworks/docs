@@ -68,6 +68,14 @@ To configure MLAG:
    cumulus@switch:~$ net commit
    ```
 
+   ```
+   cumulus@switch:~$ net add bridge bridge ports bond1,bond2,bond3,peerlink
+   cumulus@switch:~$ net add bridge bridge vids 10,20
+   cumulus@switch:~$ net add bridge bridge pvid 1
+   cumulus@switch:~$ net pending
+   cumulus@switch:~$ net commit
+   ```
+
 3. Enable communication between the `clagd` services on the peer switches:
    - Choose an unused VLAN (also known as a *switched virtual interface* or *SVI*).
    - Assign the SVI an unrouteable link-local address to give the peer switches layer 3 connectivity between each other.

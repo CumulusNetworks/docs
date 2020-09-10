@@ -70,7 +70,7 @@ To configure MLAG:
 
    ```
    cumulus@switch:~$ net add bridge bridge ports bond1,bond2,bond3,peerlink
-   cumulus@switch:~$ net add bridge bridge vids 10,20
+   cumulus@switch:~$ net add bridge bridge vids 10,20,30
    cumulus@switch:~$ net add bridge bridge pvid 1
    cumulus@switch:~$ net pending
    cumulus@switch:~$ net commit

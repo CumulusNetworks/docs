@@ -1,9 +1,12 @@
 ---
-title: Monitor Network Layer Protocols
+title: Monitor Internet Protocol Service
 author: Cumulus Networks
-weight: 750
+weight: 940
 toc: 3
 ---
+
+IP addresses, neighbors, routes
+
 With NetQ, a network administrator can monitor OSI Layer 3 network
 protocols running on Linux-based hosts, including IP (Internet
 Protocol), BGP (Border Gateway Protocol) and OSPF (Open Shortest Path

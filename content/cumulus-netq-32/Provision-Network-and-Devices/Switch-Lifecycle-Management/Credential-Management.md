@@ -1,7 +1,7 @@
 ---
 title: Manage Switch Credentials
 author: Cumulus Networks
-weight: 574
+weight: 640
 toc: 4
 ---
 Switch access credentials are needed for performing upgrades. You can choose between basic authentication (SSH password) and SSH (Public/Private key) authentication. These credentials apply to all switches.

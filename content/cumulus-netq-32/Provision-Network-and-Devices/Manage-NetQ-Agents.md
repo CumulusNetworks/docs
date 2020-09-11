@@ -1,7 +1,7 @@
 ---
 title: Manage NetQ Agents
 author: Cumulus Networks
-weight: 375
+weight: 700
 toc: 3
 ---
 At various points in time, you might want to change which network nodes are being monitored by NetQ or look more closely at a network node for troubleshooting purposes. Adding the NetQ Agent to a switch or host is described in {{<link url="Install-NetQ" text="Install NetQ">}}. Viewing the status of an Agent, disabling an Agent, and managing NetQ Agent logging are presented.

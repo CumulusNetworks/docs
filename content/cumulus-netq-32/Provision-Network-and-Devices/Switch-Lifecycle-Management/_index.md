@@ -1,7 +1,7 @@
 ---
 title: Manage Switches through Their Lifecycle
 author: Cumulus Networks
-weight: 570
+weight: 620
 subsection: true
 toc: 1
 ---

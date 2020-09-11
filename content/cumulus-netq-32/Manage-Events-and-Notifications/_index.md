@@ -1,7 +1,7 @@
 ---
 title: Manage Events and Notifications
 author: Cumulus Networks
-weight: 660
+weight: 770
 toc: 3
 ---
 Events provide information about how the network and its devices are operating. NetQ allows you to view current events and compare that with events at an earlier time. Event notifications are available through Slack, PagerDuty, syslog, and Email channels and aid troubleshooting and resolution of problems in the network before they become critical.

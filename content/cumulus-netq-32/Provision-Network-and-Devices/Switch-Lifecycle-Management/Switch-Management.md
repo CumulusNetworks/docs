@@ -1,7 +1,7 @@
 ---
 title: Manage Switch Inventory and Roles
 author: Cumulus Networks
-weight: 576
+weight: 650
 toc: 4
 ---
 On initial installation, this lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ 3.x and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.6 or later and Cumulus NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.

@@ -1,7 +1,7 @@
 ---
 title: Configure and Monitor What Just Happened Metrics
 author: Cumulus Networks
-weight: 690
+weight: 800
 toc: 4
 ---
 The *What Just Happened* (WJH) feature, available on Mellanox switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. You must have Cumulus Linux 4.0.0 or later and NetQ 2.4.0 or later to take advantage of this feature.

@@ -1,7 +1,7 @@
 ---
 title: Monitor Switch Software
 author: Cumulus Networks
-weight: 850
+weight: 0
 toc: 3
 ---
 With the NetQ CLI, a network administrator can monitor the switch software components for misconfigurations.

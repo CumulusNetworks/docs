@@ -1,7 +1,7 @@
 ---
 title: Upgrade Cumulus NetQ Agent Using LCM
 author: Cumulus Networks
-weight: 580
+weight: 670
 toc: 4
 ---
 LCM enables you to upgrade to Cumulus NetQ 3.2.0 on switches with an existing NetQ Agent 2.4.x, 3.0.0, or 3.1.0 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.

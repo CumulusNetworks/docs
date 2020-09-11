@@ -1,15 +1,12 @@
 ---
-title: Events Reference
+title: System Event Messages Reference
 author: Cumulus Networks
-weight: 690
+weight: 810
 toc: 4
 ---
-The following table lists all system event messages organized by type.
+The following table lists all system event messages organized by type. These messages can be viewed through third-party notification applications. For details about configuring notifications, refer to {{<link title="Configure Notifications">}}.
 
-The messages can be viewed through third-party notification applications. For details about configuring notifications using the NetQ
-CLI, refer to {{<link title="Configure Notifications">}}.
-
-For information about configuring threshold-based events (TCAs), refer to {{<link url="http://docs.cumulusnetworks.com/cumulus-netq-32/Manage-Events-and-Notifications/Integrate-NetQ-with-Notification-Applications/#configure-threshold-based-event-notifications" text="Configure Threshold-based Event Notifications">}}.
+For a list of threshold-based events supported, refer to {{<link title="Supported Events" text="TCA Supported Events">}}. For a list of What Just Happened events supported, refer to {{<link title="View What Just Happened Metrics" text="WJH Supported Events">}}.
 
 <table>
 <colgroup>

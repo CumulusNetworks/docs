@@ -1,7 +1,7 @@
 ---
 title: Monitor Network-wide Inventory
 author: Cumulus Networks
-weight: 610
+weight: 730
 toc: 4
 ---
 With the NetQ UI and CLI, a user can monitor the inventory on a network-wide basis for all switches and hosts, or all switches. Inventory includes such items as the number of each device and what operating systems are installed. Additional details are available about the hardware and software components on individual switches, such as  the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. This is extremely useful for understanding the dependence on various vendors and versions when planning upgrades or evaluating the scope of any other required changes.

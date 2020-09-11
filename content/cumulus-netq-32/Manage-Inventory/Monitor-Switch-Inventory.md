@@ -1,7 +1,7 @@
 ---
 title: Monitor Switch Inventory
 author: Cumulus Networks
-weight: 620
+weight: 740
 toc: 4
 ---
 With the NetQ UI and NetQ CLI, you can monitor your inventory of switches across the network or individually. A user can monitor such items as operating system, motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. Being able to monitor this inventory aids in upgrades, compliance, and other planning tasks.

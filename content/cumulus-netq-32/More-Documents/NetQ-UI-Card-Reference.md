@@ -1,7 +1,7 @@
 ---
 title: NetQ UI Card Reference
 author: Cumulus Networks
-weight: 0
+weight: 1060
 ---
 This reference describes the cards available with the NetQ 3.2 graphical user interface (NetQ UI). Each item and field on the four sizes of cards is shown.
 

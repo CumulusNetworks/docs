@@ -1,7 +1,7 @@
 ---
 title: Manage Inventory
 author: Cumulus Networks
-weight: 600
+weight: 720
 toc: 3
 ---
 This topic describes how to use the Cumulus NetQ UI and CLI to monitor your inventory from network-wide and device-specific perspectives.

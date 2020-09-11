@@ -1,7 +1,7 @@
 ---
 title: Validate Network Protocol and Service Operations
 author: Cumulus Networks
-weight: 630
+weight: 1020
 toc: 4
 ---
 With the NetQ UI, you can validate the operation of the network protocols and services running in your network either on demand or on a scheduled basis. There are three card workflows to perform this validation: one for creating the validation request (either on-demand or scheduled) and two validation results (one for on-demand and one for scheduled).

@@ -1,7 +1,7 @@
 ---
 title: Upgrade Cumulus Linux Using LCM
 author: Cumulus Networks
-weight: 582
+weight: 680
 toc: 4
 ---
 LCM provides the ability to upgrade Cumulus Linux on one or more switches in your network through the NetQ UI or the NetQ CLI. Up to five upgrade jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.

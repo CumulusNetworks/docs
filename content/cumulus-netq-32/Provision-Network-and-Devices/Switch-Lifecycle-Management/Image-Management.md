@@ -1,7 +1,7 @@
 ---
 title: Manage Cumulus Linux and NetQ Images
 author: Cumulus Networks
-weight: 572
+weight: 630
 toc: 4
 ---
 You can manage both Cumulus Linux and Cumulus NetQ images with LCM. They are managed in a similar manner.

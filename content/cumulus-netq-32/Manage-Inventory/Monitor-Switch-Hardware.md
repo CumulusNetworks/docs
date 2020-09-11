@@ -1,7 +1,7 @@
 ---
 title: Monitor Switch Hardware
 author: Cumulus Networks
-weight: 840
+weight: 0
 toc: 3
 ---
 With the NetQ CLI, a network administrator can monitor the key components of switch an NetQ Appliance hardware, including the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. You can also monitor temperature and SSD utilization information.

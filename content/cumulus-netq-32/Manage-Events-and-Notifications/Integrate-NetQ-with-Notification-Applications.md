@@ -1,7 +1,7 @@
 ---
 title: Configure Notifications
 author: Cumulus Networks
-weight: 670
+weight: 780
 toc: 3
 ---
 To take advantage of the numerous event messages generated and processed by NetQ, you must integrate with third-party event notification applications. You can integrate NetQ with Syslog, PagerDuty, Slack, and Email. You may integrate with one or more of these applications simultaneously.

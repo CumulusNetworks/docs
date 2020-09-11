@@ -1,7 +1,7 @@
 ---
 title: Configure Lifecycle Management
 author: Cumulus Networks
-weight: 590
+weight: 0
 toc: 3
 ---
 

@@ -1,7 +1,7 @@
 ---
-title: Monitor Data Link Layer Devices and Protocols
+title: Monitor Spanning Tree Protocol
 author: Cumulus Networks
-weight: 720
+weight: 900
 toc: 3
 ---
 With NetQ, a network administrator can monitor OSI Layer 2 devices and

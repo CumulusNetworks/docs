@@ -1,7 +1,7 @@
 ---
 title: Monitor Network Health
 author: Cumulus Networks
-weight: 620
+weight: 1010
 toc: 3
 ---
 As with any network, one of the challenges is keeping track of all of the moving parts. With the NetQ GUI, you can view the overall health of your network at a glance and then delve deeper for periodic checks or as conditions arise that require attention. For a general understanding of how well your network is operating, the Network Health card workflow is the best place to start as it contains the highest view and performance roll-ups.

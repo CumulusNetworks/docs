@@ -1,7 +1,7 @@
 ---
 title: Manage Switch Configurations
 author: Cumulus Networks
-weight: 578
+weight: 660
 toc: 4
 ---
 You can configure switches using one or more configurations. To enable consistent application of configurations, switch configurations can contain network templates for SNMP, NTP, and user accounts. You can also configure configuration profiles for Cumulus NetQ Agents.

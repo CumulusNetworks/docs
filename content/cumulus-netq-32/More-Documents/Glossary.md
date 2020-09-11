@@ -1,7 +1,7 @@
 ---
 title: Glossary
 author: Cumulus Networks
-weight: 1100
+weight: 1130
 ---
 
 ## Common Cumulus Linux and NetQ Terminology

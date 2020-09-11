@@ -179,7 +179,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 {{< /tabs >}}
 
-#### Upload Upgrade Images
+### Upload Upgrade Images
 
 To upload the Cumulus Linux or Cumulus NetQ images that you want to use for upgrade:
 
@@ -256,7 +256,7 @@ To change the default Cumulus Linux or Cumulus NetQ version:
 
 3. Click **Save**.
 
-### Export Images
+## Export Images
 
 You can export a listing of the Cumulus Linux and NetQ images stored in the LCM repository for reference.
 
@@ -297,7 +297,7 @@ cumulus@switch:~$ netq lcm show images json
 
 {{< /tabs >}}
 
-### Remove Images from Local Repository
+## Remove Images from Local Repository
 
 Once you have upgraded all of your switches beyond a particular release of Cumulus Linux or NetQ, you may want to remove those images from the LCM repository to save space on the server.
 

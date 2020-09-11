@@ -12,13 +12,17 @@ The upgrade workflow includes the following steps:
 
 {{<notice info>}}
 
-Upgrades can be performed from NetQ Agents of 2.4.x, 3.0.0, and 3.1.0 releases to the NetQ 3.2.0 release. <em>Lifecycle management does not support upgrades from NetQ 2.3.1 or earlier releases; you must perform a new installation in these cases.</em> Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}}. Additionally, LCM commands are not available to perform this upgrade.
+Upgrades can be performed from NetQ Agents of 2.4.x, 3.0.0, and 3.1.0 releases to the NetQ 3.2.0 release. <em>Lifecycle management does not support upgrades from NetQ 2.3.1 or earlier releases; you must perform a new installation in these cases.</em> Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}}.
 
 {{</notice>}}
 
 ## Prepare for a Cumulus NetQ Agent Upgrade
 
-In preparation for NetQ Agent upgrade on switches, perform the following steps:
+Prepare for NetQ Agent upgrade on switches as follows:
+
+{{< tabs "TabID23" >}}
+
+{{< tab "NetQ UI" >}}
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**.
 
@@ -26,15 +30,35 @@ In preparation for NetQ Agent upgrade on switches, perform the following steps:
 
 3. Optionally, specify a {{<link url="Image-Management/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
-4. Optionally, create a new {{<link url="Configuration-Management/#create-cumulus-netq-configuration-profiles" text="configuration profile">}}.
+4. Verify or add {{<link title="Specify Switch Credentials" text="switch access credentials">}}.
+
+5. Optionally, create a new {{<link url="Configuration-Management/#create-cumulus-netq-configuration-profiles" text="configuration profile">}}.
 
 Your LCM dashboard should look similar to this after you have completed the above steps:
 
 {{<figure src="/images/netq/lcm-netq-upgrade-dashboard-post-prep-310.png" width="600">}}
 
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+1. Verify or add {{<link title="Specify Switch Credentials" text="switch access credentials">}}.
+
+2. Configure {{<link title="Assign Switch Roles" text="switch roles">}} to determine the order in which the switches get upgraded.
+
+3. Upload the {{<link title="Upload Upgrade Images" text="Cumulus Linux install images">}}.
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ## Perform a Cumulus NetQ Agent Upgrade
 
-You can upgrade Cumulus NetQ Agents on switches using the NetQ UI as follows:
+You can upgrade Cumulus NetQ Agents on switches as follows:
+
+{{< tabs "TabID61" >}}
+
+{{< tab "NetQ UI" >}}
 
 1. Click **Manage** on the Switches card.
 
@@ -55,14 +79,18 @@ You can upgrade Cumulus NetQ Agents on switches using the NetQ UI as follows:
     - Is the NetQ Agent version 2.4.x, 3.0.0, or 3.1.0? If not, this switch can only be upgraded through the {{<link url="Lifecycle-Management/#switch-discovery" text="switch discovery">}} process.
     - Is the configuration profile the one you want to apply? If not, click **Change config**, then select an alternate profile to apply to all selected switches.
 
-    {{<notice tip>}}
+<div style="padding-left: 18px;">
+
+{{<notice tip>}}
 
 You can apply <em>different</em> profiles to switches in a <em>single</em> upgrade job by selecting a subset of switches (click checkbox for each switch) and then choosing a different profile. You can also change the profile on a per switch basis by clicking the current profile link and selecting an alternate one.
 
 <img src="/images/netq/lcm-netq-upgrade-select-alternate-profile-310.png" width="450">
-    {{</notice>}}
 
-    Scroll down to view all selected switches or use **Search** to find a particular switch of interest.
+{{</notice>}}
+
+Scroll down to view all selected switches or use **Search** to find a particular switch of interest.
+</div>
 
 7. After you are satisfied with the included switches, click **Next**.
 
@@ -72,9 +100,11 @@ You can apply <em>different</em> profiles to switches in a <em>single</em> upgra
 
 9. Select the version of NetQ Agent for upgrade. If you have designated a default version, keep the **Default** selection. Otherwise, select an alternate version by clicking **Custom** and selecting it from the list.
 
-    {{<notice note>}}
+<div style="padding-left: 18px;">
+{{<notice note>}}
 By default, the NetQ Agent and CLI are upgraded on the selected switches. If you <em>do not</em> want to upgrade the NetQ CLI, click <strong>Advanced</strong> and change the selection to <strong>No</strong>.
-    {{</notice>}}
+{{</notice>}}
+</div>
 
 10. Click **Next**.
 
@@ -82,21 +112,53 @@ By default, the NetQ Agent and CLI are upgraded on the selected switches. If you
 
     {{<figure src="/images/netq/lcm-netq-upgrade-precheck-tab-310.png" width="500">}}
 
-    These checks verify the following:
+<div style="padding-left: 18px;">These checks verify the following:
+<ul>
+<li>Selected switches are not currently scheduled for, or in the middle of, a Cumulus Linux or NetQ Agent upgrade</li>
+<li>Selected versions of Cumulus Linux and NetQ Agent are valid upgrade paths</li>
+<li>All mandatory parameters have valid values, including MLAG configurations</li>
+<li>All switches are reachable</li>
+<li>The order to upgrade the switches, based on roles and configurations</li>
+</ul>
+<p>If any of the pre-checks fail, review the error messages and take appropriate action.</p>
+<p>If all of the pre-checks pass, click <strong>Upgrade</strong> to initiate the upgrade job.</p>
+</div>
 
-    - Selected switches are not currently scheduled for, or in the middle of, a Cumulus Linux or NetQ Agent upgrade
-    - Selected versions of Cumulus Linux and NetQ Agent are valid upgrade paths
-    - All mandatory parameters have valid values, including MLAG configurations
-    - All switches are reachable
-    - The order to upgrade the switches, based on roles and configurations
+{{< /tab >}}
 
-    If any of the pre-checks fail, review the error messages and take appropriate action.
+{{< tab "NetQ CLI" >}}
 
-    If all of the pre-checks pass, click **Upgrade** to initiate the upgrade job.
+To upgrade the NetQ Agent on one or more switches, run:
+
+```
+netq lcm upgrade name <text-job-name> cl-version <text-cumulus-linux-version> netq-version <text-netq-version> hostnames <text-switch-hostnames> [run-restore-on-failure] [run-before-after]
+```
+
+This example creates a NetQ Agent upgrade job called *upgrade-cl410-nq320*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 3.2.0.
+
+cumulus@switch:~$ netq lcm upgrade name upgrade-cl410-nq320 cl-version 4.1.0 netq-version 3.2.0 hostnames spine01,spine02
+
+<!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:
+
+    cumulus@switch:~$ netq lcm upgrade name upgrade-3712 image-id cl_image_69ce56d15b7958de5bb8371e9c4bf2fc9131da9a57b13853e2a60ca109238b22 license LICENSE hostnames spine01,spine02,leaf01,leaf02 order spine,leaf
+
+If the switches have not been assigned a role, then do not use the `order` option. So in this example, if switches spine01 and spine02 have not been assigned the _spine_ role, then do not specify the `order spine` option. -->
+
+Including the `run-restore-on-failure` option restores the switch(es) with their earlier version of NetQ Agent should the upgrade fail. The `run-before-after` option generates a network snapshot before upgrade begins and another when it is completed. The snapshots are visible in the NetQ UI.
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Analyze the NetQ Agent Upgrade Results
 
-After starting the upgrade you can monitor the progress from the preview page or the Upgrade History page.
+After starting the upgrade you can monitor the progress in the NetQ UI or the NetQ CLI.
+
+{{< tabs "TabID157" >}}
+
+{{< tab "NetQ UI" >}}
+
+Progress can be monitored from the preview page or the Upgrade History page.
 
 From the preview page, a green circle with rotating arrows is shown on each switch as it is working. Alternately, you can close the detail of the job and see a summary of all current and past upgrade jobs on the NetQ Install and Upgrade History page. The job started most recently is shown at the top, and the data is refreshed periodically.
 
@@ -134,9 +196,36 @@ This example shows that an error has occurred trying to upgrade two of the four 
 
 If you were watching this job from the LCM dashboard view, click **View** on the NetQ Install and Upgrade History card to return to the detailed view to resolve any issues that occurred.
 
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view the progress of upgrade jobs, run:
+
+```
+netq lcm show upgrade-jobs [json]
+netq lcm show status <text-lcm-job-id> [json]
+```
+
+You can view the progress of one upgrade job at a time. To do so, you first need the job identifier and then you can view the status of that job.
+
+This example shows all upgrade jobs that are currently running or have completed, and then shows the status of the job with a job identifier of xxx.
+
+```
+cumulus@switch:~$ netq lcm show upgrade-jobs
+xxx
+
+cumulus@switch:~$ netq lcm show status xxx
+xxx
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### Reasons for NetQ Agent Upgrade Failure
 
-Upgrades can fail at any of the stages of the process, including when backing up data, upgrading the Cumulus NetQ software, and restoring the data. Failures can occur when attempting to connect to a switch or perform a particular task on the switch.
+Upgrades can fail at any of the stages of the process, including when backing up data, upgrading the Cumulus NetQ software, and restoring the data. Failures can also occur when attempting to connect to a switch or perform a particular task on the switch.
 
 Some of the common reasons for upgrade failures and the errors they present:
 

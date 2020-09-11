@@ -140,7 +140,7 @@ You can view the type of credentials being used to access your switches in the N
 
 {{< /tab >}}
 
-{{< tab "NetQ UI" >}}
+{{< tab "NetQ CLI" >}}
 
 To see the credentials, run `netq lcm show credentials`.
 

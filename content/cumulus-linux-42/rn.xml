@@ -7,6 +7,31 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31358</td>
+<td><p>The Dell 100G-LR4 (Innolight) transceiver cannot be up due to a power budge exceeded error on the Mellanox SN4600C switch.</p></td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31327</td>
+<td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
+To work around this issue, run the net add/del dns nameserver <span class="error">&#91;vrf &lt;name&gt;&#93;</span> command to force the DNS configuration.</p></td>
+<td>3.7.13, 4.1.1-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31316</td>
+<td><p>On the Mellanox SN2410 switch, when you create an unused VNI, you might see high CPU utilization due to neighmgrd.</p></td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31300</td>
+<td><p>If a neighbour contains a special character in PortID for LLDP, the net show interface command does not display the LLDP information or the command might fail.</p></td>
+<td>3.7.10-3.7.13, 4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31263</td>
 <td><p>RX_DRP on a bond interface increases without any data traffic while the slave port does not increase.</p></td>
 <td>3.7.12-3.7.13, 4.2.0</td>
@@ -107,7 +132,8 @@ Fixed:  5.8.0-cl4.2.1u1,  5.8.0-cl3.7.14u1</p></td>
 </tr>
 <tr>
 <td>CM-31038</td>
-<td><p>CVE-2019-20795: iproute2 has a use-after-free in get_netnsid_from_name in ip/ipnetns.c.<br/>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20795: iproute2 has a use-after-free in get_netnsid_from_name in ip/ipnetns.c.<br/>
 Vulnerable: &lt;= 4.19.0-cl4u3</p></td>
 <td>4.0.0-4.2.0</td>
 <td></td>
@@ -193,7 +219,7 @@ Fixed: 1.14.2-2+deb10u2</p></td>
 <tr>
 <td>CM-30832</td>
 <td><p>The Mellanox SN2700 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
-<td>3.7.13, 4.1.1-4.2.0</td>
+<td>4.1.1-4.2.0</td>
 <td></td>
 </tr>
 <tr>

@@ -61,7 +61,7 @@ Fixed: 1.6.2-3+deb8u4</p></td>
 <td>CM-31294</td>
 <td><p>When all the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
 <ul>
-	<li>clagd uses an IPv6 link-local address (LLA) to establish the TCP connection (the clagd-peer-ip linklocal command configures an IPv6 LLA connection</code>)</li>
+	<li>clagd uses an IPv6 link-local address (LLA) to establish the TCP connection (the clagd-peer-ip linklocal command configures an IPv6 LLA connection)</li>
 	<li>bridge-ports has peerlink as the first member port (the bridge inherits the MAC address of peerlink bond. VLAN interfaces inherit the MAC address of the bridge. For example:
 
 auto bridge
@@ -2423,7 +2423,7 @@ Fixed: 1.6.2-3+deb8u4</p></td>
 <td>CM-31294</td>
 <td><p>When all the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
 <ul>
-	<li>clagd uses an IPv6 link-local address (LLA) to establish the TCP connection (the clagd-peer-ip linklocal command configures an IPv6 LLA connection</code>)</li>
+	<li>clagd uses an IPv6 link-local address (LLA) to establish the TCP connection (the clagd-peer-ip linklocal command configures an IPv6 LLA connection)</li>
 	<li>bridge-ports has peerlink as the first member port (the bridge inherits the MAC address of peerlink bond. VLAN interfaces inherit the MAC address of the bridge. For example:
 
 auto bridge

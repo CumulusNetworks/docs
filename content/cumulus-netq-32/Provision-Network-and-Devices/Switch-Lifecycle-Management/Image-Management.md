@@ -211,7 +211,7 @@ Then continue with the instructions here based on whether you want to use the Ne
 
 {{< tab "NetQ CLI" >}}
 
-Use the `netq lcm add image` command to upload the images.
+Use the `netq lcm add cl-image <text-image-path>` and `netq lcm add netq-image <text-image-path>` commands to upload the images.
 
 Cumulus Linux images:
 
@@ -323,17 +323,23 @@ To remove images:
 
 {{< tab "NetQ CLI" >}}
 
+To remove images, run:
+
+```
+netq lcm show images [json]
+netq lcm del image <text-image-id>
+```
+
 1. Determine the ID of the image you want to remove.
 
     ```
     cumulus@switch:~$ netq lcm show images
-    
     ```
+
 2. Remove the image.
 
     ```
     cumulus@switch:~$ netq lcm del image <text-image-id>
-
     ```
 
 {{< /tab >}}

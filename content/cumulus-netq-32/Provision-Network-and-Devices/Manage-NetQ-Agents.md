@@ -4,16 +4,17 @@ author: Cumulus Networks
 weight: 700
 toc: 3
 ---
-At various points in time, you might want to change which network nodes are being monitored by NetQ or look more closely at a network node for troubleshooting purposes. Adding the NetQ Agent to a switch or host is described in {{<link url="Install-NetQ" text="Install NetQ">}}. Viewing the status of an Agent, disabling an Agent, and managing NetQ Agent logging are presented.
+At various points in time, you might want to change which network nodes are being monitored by NetQ or look more closely at a network node for troubleshooting purposes. Adding the NetQ Agent to a switch or host is described in {{<link url="Install-NetQ" text="Install NetQ">}}. Viewing the status of an Agent, disabling an Agent, managing NetQ Agent logging, and configuring the events the agent collects are presented here.
 
 ## View NetQ Agent Status
 
-To view the health of your NetQ Agents, use the `netq show agents` command:
+To view the health of your NetQ Agents, run:
 
 ```
 netq [<hostname>] show agents [fresh | dead | rotten | opta] [around <text-time>] [json]
 ```
-You can view the status for a given switch, host or NetQ server. You can also filter by the status as well as view the status at a time in the past.
+
+You can view the status for a given switch, host or NetQ Appliance or Virtual Machine. You can also filter by the status and view the status at a time in the past.
 
 To view the current status of all NetQ Agents:
 
@@ -22,13 +23,28 @@ cumulus@switch~:$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-exit-1            Fresh            yes      2.2.1-cl3u19~1564503011.e3b463d      1d:4h:35m:11s             1d:4h:14m:34s             1d:4h:14m:34s              Wed Jul 31 16:50:40 2019
-exit-2            Fresh            yes      2.2.1-cl3u19~1564503011.e3b463d      1d:4h:35m:11s             1d:4h:14m:30s             1d:4h:14m:30s              Wed Jul 31 16:51:07 2019
-firewall-1        Fresh            yes      2.2.1-ub16.04u19~1564494614.6fed81f  1d:4h:35m:11s             1d:4h:14m:24s             1d:4h:14m:24s              Wed Jul 31 16:51:13 2019
-firewall-2        Fresh            yes      2.2.1-rh7u19~1564496494.6fed81f      1d:4h:34m:35s             1d:4h:14m:18s             1d:4h:14m:18s              Wed Jul 31 16:51:06 2019
-hostd-11          Fresh            yes      2.2.1-ub16.04u19~1564494614.6fed81f  1d:4h:35m:6s              1d:4h:14m:6s              1d:4h:14m:6s               Wed Jul 31 16:51:16 2019
-hostd-12          Fresh            yes      2.2.1-rh7u19~1564496494.6fed81f      1d:4h:34m:40s             1d:4h:14m:2s              1d:4h:14m:2s               Wed Jul 31 16:51:40 2019
-...
+border01          Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 28 18:48:31 2020  Tue Jul 28 18:49:46 2020  Tue Jul 28 18:49:46 2020   Sun Sep 13 19:02:44 2020
+border02          Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 28 18:43:29 2020  Tue Jul 28 18:44:42 2020  Tue Jul 28 18:44:42 2020   Sun Sep 13 18:55:19 2020
+fw1               Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 28 19:13:26 2020  Tue Jul 28 19:14:28 2020  Tue Jul 28 19:14:28 2020   Sun Sep 13 19:30:47 2020
+fw2               Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 28 19:11:27 2020  Tue Jul 28 19:12:51 2020  Tue Jul 28 19:12:51 2020   Sun Sep 13 19:26:35 2020
+leaf01            Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 14 21:04:03 2020  Wed Jul 29 16:12:22 2020  Wed Jul 29 16:12:22 2020   Mon Sep 14 16:17:42 2020
+leaf02            Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 14 20:59:10 2020  Wed Jul 29 16:12:23 2020  Wed Jul 29 16:12:23 2020   Mon Sep 14 16:20:10 2020
+leaf03            Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 14 21:04:03 2020  Tue Jul 14 21:18:23 2020  Tue Jul 14 21:18:23 2020   Sun Sep 13 21:27:29 2020
+leaf04            Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Tue Jul 14 20:57:30 2020  Tue Jul 14 20:58:48 2020  Tue Jul 14 20:58:48 2020   Sun Sep 13 21:15:52 2020
+oob-mgmt-server   Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 17:07:59 2020  Mon Jul 13 21:01:35 2020  Tue Jul 14 19:36:19 2020   Mon Sep 14 15:47:57 2020
+server01          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 18:30:46 2020  Mon Jul 13 22:09:19 2020  Tue Jul 14 19:36:22 2020   Sun Sep 13 19:49:05 2020
+server02          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 18:30:46 2020  Mon Jul 13 22:09:19 2020  Tue Jul 14 19:35:59 2020   Sun Sep 13 19:56:08 2020
+server03          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 18:30:46 2020  Mon Jul 13 22:09:20 2020  Tue Jul 14 19:36:22 2020   Sun Sep 13 19:53:44 2020
+server04          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 18:30:46 2020  Mon Jul 13 22:09:20 2020  Tue Jul 14 19:35:59 2020   Sun Sep 13 19:55:00 2020
+server05          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 18:30:46 2020  Mon Jul 13 22:09:20 2020  Tue Jul 14 19:36:02 2020   Sun Sep 13 19:53:04 2020
+server06          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 18:30:46 2020  Mon Jul 13 22:09:21 2020  Tue Jul 14 19:36:37 2020   Sun Sep 13 19:53:43 2020
+server07          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 17:58:02 2020  Mon Jul 13 22:09:21 2020  Tue Jul 14 19:36:01 2020   Mon Sep 14 07:01:22 2020
+server08          Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Mon Jul 13 17:58:18 2020  Mon Jul 13 22:09:23 2020  Tue Jul 14 19:36:03 2020   Mon Sep 14 17:58:36 2020
+spine01           Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Mon Jul 13 17:48:43 2020  Mon Aug 10 19:55:07 2020  Mon Aug 10 19:55:07 2020   Sun Sep 13 20:05:01 2020
+spine02           Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Mon Jul 13 17:47:39 2020  Mon Aug 10 19:55:09 2020  Mon Aug 10 19:55:09 2020   Sun Sep 13 19:59:33 2020
+spine03           Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Mon Jul 13 17:47:40 2020  Mon Aug 10 19:55:12 2020  Mon Aug 10 19:55:12 2020   Sun Sep 13 20:03:10 2020
+spine04           Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1      Mon Jul 13 17:47:56 2020  Mon Aug 10 19:55:11 2020  Mon Aug 10 19:55:11 2020   Sun Sep 13 20:02:22 2020
+
 ```
 
 To view NetQ Agents that are not communicating:
@@ -45,204 +61,306 @@ cumulus@leaf01~:$ netq show agents opta
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-10-20-14-157      Fresh            yes      2.2.1-cl3u19~1564299612.73c7ab4      1d:5h:40m:41s             6m:34.417s                6m:34.417s                 Wed Jul 31 22:12:40 2019
+netq-ts           Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1  Tue Jul 14 19:27:31 2020  Tue Jul 14 19:27:39 2020  Tue Jul 14 19:36:45 2020   Sun Sep 13 19:42:51 2020
+```
+
+## View NetQ Agent Configuration
+
+You can view the current configuration of a NetQ Agent to determine what data is being collected and where it is being sent. To view this configuration, run:
+
+```
+netq config show agent [kubernetes-monitor|loglevel|stats|sensors|frr-monitor|wjh|cpu-limit] [json]
+```
+
+This example shows a NetQ Agent in an on-premises deployment, talking to an appliance or VM at 127.0.0.1 using the default ports and VRF. No special configuration is included to monitor kubernetes, FRR, interface statistics, sensors, WJH. No limit has been set on the CPU usage or alter the default logging level.
+
+```
+cumulus@switch:~$ netq config show agent
+netq-agent             value      default
+---------------------  ---------  ---------
+exhibitport
+exhibiturl
+server                 127.0.0.1  127.0.0.1
+cpu-limit              100        100
+agenturl
+enable-opta-discovery  True       True
+agentport              8981       8981
+port                   31980      31980
+vrf                    default    default
+()
+```
+
+To view the configuration of a particular aspect of a NetQ Agent, use the various options.
+
+This example show a NetQ Agent that has been configured with a CPU limit of 60%.
+
+```
+cumulus@switch:~$ netq config show agent cpu-limit
+CPU Quota
+-----------
+60%
+()
 ```
 
 ## Modify the Configuration of the NetQ Agent on a Node
 
 The agent configuration commands enable you to do the following:
 
-- Add and remove agents from switches and hosts
-- Start and stop agent operations
-- Add and remove Kubernetes container monitoring
-- Add or remove sensors
-- Debug the agent
-- Add or remove FRR (FRRouting)
-- Set a limit on how many CPU resources the agent can consume on a Cumulus Linux switch
-- Send data to the cluster nodes
-- Collect What Just Happened data on a Mellanox switch
+- Add, Disable, and Remove a NetQ Agent
+- Start and Stop a NetQ Agent
+- Configure a NetQ Agent to Collect Selected Data (CPU usage limit, FRR, Kubernetes, sensors, WJH)
+- Configure a NetQ Agent to Send Data to a Server Cluster
+- Troubleshoot the NetQ Agent
 
-{{%notice note%}}
+{{<notice note>}}
 
-Commands apply to one agent at a time,
-and are run from the switch or host where the NetQ Agent resides.
+Commands apply to one agent at a time, and are run from the switch or host where the NetQ Agent resides.
 
-{{%/notice%}}
+{{</notice>}}
 
-The agent configuration commands include:
+## Add and Remove a NetQ Agent
 
-    netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
-    netq config add agent cpu-limit [<text-limit-number>]
-    netq config add agent frr-monitor [<text-frr-docker-name>]
-    netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
-    netq config add agent loglevel [debug|error|info|warning]
-    netq config add agent sensors
-    netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
-    netq config (start|stop|status|restart) agent
-    netq config del agent (agent-url|cluster-servers|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats|wjh)
-    netq config show agent [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|stats|wjh] [json]
+To use the NetQ CLI to add or remove a NetQ Agent on a switch or host, run:
 
-This example shows how to specify the IP address and optionally a
-specific port on the NetQ Platform where agents should send their data.
+```
+netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
+netq config del agent server
+```
 
-    cumulus@switch~:$ netq config add agent server 10.0.0.23
+If you want to use a specific port on the appliance or VM, use the `port` option. If you want the data sent over a particular virtual route interface, use the `vrf` option.
 
-This example shows how to configure the agent to send sensor data.
+This example shows how to add a NetQ Agent and tell it to send the data it collects to the NetQ Appliance or VM at the IPv4 address of 10.0.0.23 using the default port (on-premises = 31980; cloud = 443) and vrf (default).
 
-    cumulus@switch~:$ netq config add agent sensors
+```
+cumulus@switch~:$ netq config add agent server 10.0.0.23
+cumulus@switch~:$ netq config restart agent
+```
 
-This example shows how to start monitoring with Kubernetes.
+## Disable and Re-enable a NetQ Agent
 
-    cumulus@switch:~$ netq config add agent kubernetes-monitor
+You can temporarily disable NetQ Agent on a node. Disabling the agent maintains the activity history in the NetQ database, but stops the agent from collecting new data.
 
-This example shows how to configure the agent to send data to the cluster nodes.
-You can optionally specify a port or VRF.
+To disable a NetQ Agent, run:
 
-    cumulus@switch:~$ netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf rocket
+```
+cumulus@switch:~$ netq config stop agent
+```
 
-This example shows how to prevent the agent from consuming no more than 40% of
-CPU resources on a Cumulus Linux switch. This setting requires Cumulus Linux
-versions 3.7.12 or later and 4.1.0 or later to be running on the switch.
+To re-eable a NetQ Agent, run:
 
-    netq config add agent cpu-limit 40
+```
+cumulus@switch:~$ netq config restart agent
+```
 
-{{%notice note%}}
-After making configuration changes to your agents, you must restart the
-agent for the changes to take effect. Use the `netq config restart agent`
-command.
-{{%/notice%}}
+## Decommission a NetQ Agent
 
-## Disable the NetQ Agent on a Node
-
-You can temporarily disable NetQ Agent on a node. Disabling the agent
-maintains the activity history in the NetQ database.
-
-To disable NetQ Agent on a node, run the following command from the
-node:
-
-    cumulus@switch:~$ netq config stop agent
-
-## Remove the NetQ Agent from a Node
-
-You can decommission a NetQ Agent on a given node. You might need to do
+You can decommission, or completely remove, a NetQ Agent on a given device. You might need to do
 this when you:
 
-  - RMA the switch or host being monitored
-  - Change the hostname of the switch or host being monitored
-  - Move the switch or host being monitored from one data center to
-    another
+- Change the hostname of the switch or host being monitored
+- Move the switch or host being monitored from one data center to
+another
+- RMA the switch or host being monitored
 
-{{%notice note%}}
+{{<notice note>}}
 
-Decommissioning the node removes the agent server settings from the
-local configuration file.
+Decommissioning the NetQ Agent on a switch or host removes the agent server settings from the local configuration file.
 
-{{%/notice%}}
+{{</notice>}}
 
-To decommission a node from the NetQ database:
+To decommission a NetQ Agent and remove its data from the NetQ database:
 
-1.  On the given node, stop and disable the NetQ Agent service.
+1. On the given switch or host, stop and disable the NetQ Agent service.
 
-        cumulus@switch:~$ sudo systemctl stop netq-agent
-        cumulus@switch:~$ sudo systemctl disable netq-agent
+    ```
+    cumulus@switch:~$ sudo systemctl stop netq-agent
+    cumulus@switch:~$ sudo systemctl disable netq-agent
+    ```
 
-2.  On the NetQ Appliance or Platform, decommission the node.
+2. On the NetQ On-premises or Cloud Appliance or VM, decommission the switch or host.
 
-        cumulus@netq-appliance:~$ netq decommission <hostname>
+    ```
+    cumulus@netq-appliance:~$ netq decommission <hostname>
+    ```
 
-## Configure Logging for a NetQ Agent
+## Configure a NetQ Agent to Limit Switch CPU Usage
+
+While not typically an issue, you can restrict the NetQ Agent from using more than a configurable amount of the CPU resources. This setting requires Cumulus Linux versions 3.6 or later or 4.1.0 or later to be running on the switch.
+
+For more detail about this feature, refer to this {{<link url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches/" text="Knowledge Base article">}}.
+
+This example limits a NetQ Agent from consuming more than 40% of the CPU resources on a Cumulus Linux switch.
+
+```
+cumulus@switch:~$ netq config add agent cpu-limit 40
+cumulus@switch:~$ netq config restart agent
+```
+
+To remove the limit, run:
+
+```
+cumulus@switch:~$ netq config del agent cpu-limit
+cumulus@switch:~$ netq config restart agent
+```
+
+## Configure a NetQ Agent to Collect Data from Selected Services
+
+You can enable and disable collection of data from the FRR (FR Routing), Kubernetes, sensors, and WJH (What Just Happened) by the NetQ Agent.
+
+To configure the agent to start or stop collecting **FRR** data, run:
+
+```
+cumulus@chassis~:$ netq config add agent frr-monitor
+cumulus@switch:~$ netq config restart agent
+
+cumulus@chassis~:$ netq config del agent frr-monitor
+cumulus@switch:~$ netq config restart agent
+```
+
+To configure the agent to start or stop collecting **Kubernetes** data, run:
+
+```
+cumulus@switch:~$ netq config add agent kubernetes-monitor
+cumulus@switch:~$ netq config restart agent
+
+cumulus@switch:~$ netq config del agent kubernetes-monitor
+cumulus@switch:~$ netq config restart agent
+```
+
+To configure the agent to start or stop collecting chassis **sensor** data, run:
+
+```
+cumulus@chassis~:$ netq config add agent sensors
+cumulus@switch:~$ netq config restart agent
+
+cumulus@chassis~:$ netq config del agent sensors
+cumulus@switch:~$ netq config restart agent
+```
+
+Note that this only applies when run on a chassis, not a switch.
+This example shows how to enable or disable monitoring of Kubernetes containers.
+
+To configure the agent to start or stop collecting **WJH** data, run:
+
+```
+cumulus@chassis~:$ netq config add agent wjh
+cumulus@switch:~$ netq config restart agent
+
+cumulus@chassis~:$ netq config del agent wjh
+cumulus@switch:~$ netq config restart agent
+```
+
+## Configure a NetQ Agent to Send Data to a Server Cluster
+
+If you have a server cluster arrangement for NetQ, you will want to configure the NetQ Agent to send the data it collects to all of the servers in the cluster.
+
+To configure the agent to send data to the servers in your cluster, run:
+
+```
+netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
+```
+
+The list of IP addresses  must be separated by commas, but no spaces. You can optionally specify a port or VRF.
+
+This example configures the NetQ Agent on a switch to send the data to three servers located at *10.0.0.21*, *10.0.0.22*, and *10.0.0.23* using the *rocket* VRF.
+
+```
+cumulus@switch:~$ netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf rocket
+```
+
+## Configure Logging to Troubleshoot a NetQ Agent
 
 The logging level used for a NetQ Agent determines what types of events
 are logged about the NetQ Agent on the switch or host.
 
-First, you need to decide what level of
-logging you want to configure. You can configure the logging level to be
-the same for every NetQ Agent, or selectively increase or decrease the
-logging level for a NetQ Agent on a problematic node.
+First, you need to decide what level of logging you want to configure. You can configure the logging level to be the same for every NetQ Agent, or selectively increase or decrease the logging level for a NetQ Agent on a problematic node.
 
-| Logging Level | Description                                                                                                                                                 |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| debug         | Sends notifications for all debugging-related, informational, warning, and error messages.                            |
-| info          | Sends notifications for informational, warning, and error messages (default). |
-| warning       | Sends notifications for warning and error messages.                            |
-| error         | Sends notifications for errors messages.                                      |
+| Logging Level | Description |
+| ------------- | ------------------ |
+| debug | Sends notifications for all debugging-related, informational, warning, and error messages. |
+| info | Sends notifications for informational, warning, and error messages (default). |
+| warning | Sends notifications for warning and error messages. |
+| error | Sends notifications for errors messages. |
 
-You can view the NetQ Agent log directly. Messages have the following
-structure:
+You can view the NetQ Agent log directly. Messages have the following structure:
 
 `<timestamp> <node> <service>[PID]: <level>: <message>`
 
-| Element         | Description                                                                                  |
-| --------------- | -------------------------------------------------------------------------------------------- |
-| timestamp       | Date and time event occurred in UTC format                                                   |
-| node            | Hostname of network node where event occurred                                                |
-| service \[PID\] | Service and Process IDentifier that generated the event                                      |
-| level           | Logging level in which the given event is classified; *debug*, *error*, *info*, or *warning* |
-| message         | Text description of event, including the node where the event occurred                       |
+| Element | Description |
+| ---------- | -------------- |
+| timestamp | Date and time event occurred in UTC format|
+| node | Hostname of network node where event occurred |
+| service \[PID\] | Service and Process IDentifier that generated the event |
+| level | Logging level in which the given event is classified; *debug*, *error*, *info*, or *warning* |
+| message | Text description of event, including the node where the event occurred |
 
 For example:
 
 {{<figure src="/images/old_doc_images/NetQAgentLogFormat.png" height="69" width="747">}}
 
-This example shows a portion of a NetQ Agent log with debug level
-logging.
+This example shows a portion of a NetQ Agent log with debug level logging.
 
     ...
-    2019-02-16T18:45:53.951124+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url hydra-09.cumulusnetworks.com port 4786
+    2019-02-16T18:45:53.951124+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
     2019-02-16T18:45:53.952035+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery Agent ID spine-1
     2019-02-16T18:45:53.960152+00:00 spine-1 netq-agent[8600]: INFO: Received Discovery Response 0
-    2019-02-16T18:46:54.054160+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url hydra-09.cumulusnetworks.com port 4786
+    2019-02-16T18:46:54.054160+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
     2019-02-16T18:46:54.054509+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery Agent ID spine-1
     2019-02-16T18:46:54.057273+00:00 spine-1 netq-agent[8600]: INFO: Received Discovery Response 0
-    2019-02-16T18:47:54.157985+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url hydra-09.cumulusnetworks.com port 4786
+    2019-02-16T18:47:54.157985+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
     2019-02-16T18:47:54.158857+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery Agent ID spine-1
     2019-02-16T18:47:54.171170+00:00 spine-1 netq-agent[8600]: INFO: Received Discovery Response 0
-    2019-02-16T18:48:54.260903+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url hydra-09.cumulusnetworks.com port 4786
+    2019-02-16T18:48:54.260903+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
     ...
 
-### Example: Configure Debug-level Logging
+To configure **debug**-level logging:
 
-1.  Set the logging level to *debug.*
+1. Set the logging level to *debug.*
 
-        cumulus@switch:~$ netq config add agent loglevel debug
+    ```
+    cumulus@switch:~$ netq config add agent loglevel debug
+    ```
 
-2.  Restart the NetQ Agent.
+2. Restart the NetQ Agent.
 
-        cumulus@switch:~$ netq config restart agent
-
-3.  Optionally, verify connection to the NetQ platform by viewing the
-    `netq-agent.log` messages.
-
-### Example: Configure Warning-level Logging
-
-    cumulus@switch:~$ netq config add agent loglevel warning
+    ```
     cumulus@switch:~$ netq config restart agent
+    ```
 
-### Example: Disable Agent Logging
+3. Optionally, verify connection to the NetQ platform by viewing the `netq-agent.log` messages.
 
-If you have set the logging level to
-*debug* for troubleshooting, it is recommended that you either change
-the logging level to a less heavy mode or completely disable agent
-logging altogether when you are finished troubleshooting.
+To configure **warning**-level logging:
 
-To change the logging level, run the
-following command and restart the agent service:
+```
+cumulus@switch:~$ netq config add agent loglevel warning
+cumulus@switch:~$ netq config restart agent
+```
 
-    cumulus@switch:~$ netq config add agent loglevel <LOG_LEVEL> 
-    cumulus@switch:~$ netq config restart agent
+### Disable Agent Logging
+
+If you have set the logging level to *debug* for troubleshooting, it is recommended that you either change the logging level to a less heavy mode or completely disable agent logging altogether when you are finished troubleshooting.
+
+To change the logging level, run:
+
+```
+cumulus@switch:~$ netq config add agent loglevel <LOG_LEVEL> 
+cumulus@switch:~$ netq config restart agent
+```
 
 To disable all logging:
 
-    cumulus@switch:~$ netq config del agent loglevel 
-    cumulus@switch:~$ netq config restart agent
+```
+cumulus@switch:~$ netq config del agent loglevel 
+cumulus@switch:~$ netq config restart agent
+```
 
-## Modular NetQ Agent Commands
+## Change NetQ Agent Polling Data and Frequency
 
-The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. You can fine tune which events the agent can poll and vary frequency of polling.
+The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. You can fine tune which events the agent can poll and vary frequency of polling using the NetQ CLI.
 
-For example, if your network is not running OSPF, you can disable the command that polls for OSPF events. Or you can decrease the polling interval for LLDP from the default of 60 seconds to 120 seconds. This way you can reduce agent CPU usage due to less frequent polling.
+For example, if your network is not running OSPF, you can disable the command that polls for OSPF events. Or you can decrease the polling interval for LLDP from the default of 60 seconds to 120 seconds. By not polling for selected data or polling less frequently, you can reduce switch CPU usage by the NetQ Agent.
 
-In addition, depending on the switch platform, some supported protocol commands may not be executed by the agent. For example, if a switch has no VXLAN capability, then all VXLAN-related commands get skipped by agent.
+Depending on the switch platform, some supported protocol commands may not be executed by the NetQ Agent. For example, if a switch has no VXLAN capability, then all VXLAN-related commands get skipped by agent.
 
 You cannot create new commands in this release.
 
@@ -281,17 +399,17 @@ ospf-interface-json            60  yes       ['/usr/bin/vtysh', '-c', 'show ip o
 
 The NetQ predefined commands are described as follows:
 
-- **agent_stats**: Collects the NetQ agent's statistics every 5 minutes.
-- **agent_util_stats**: Collects the NetQ agent's CPU and memory utilization every 30 seconds.
+- **agent_stats**: Collects the NetQ Agent's statistics every five (5) minutes.
+- **agent_util_stats**: Collects the NetQ Agent's CPU and memory utilization every 30 seconds.
 - **cl-support-json**: Polls the switch every 3 minutes to determine if a `cl-support` file was generated.
-- **config-mon-json**: Polls the `/etc/network/interfaces`, `/etc/frr/frr.conf`, `/etc/lldpd.d/README.conf` and `/etc/ptm.d/topology.dot` files every 2 minutes looking to see if the contents of any of these files changes. If a change occurs, the contents of the file and its modification time are transmitted to the NetQ appliance or VM.
+- **config-mon-json**: Polls the `/etc/network/interfaces`, `/etc/frr/frr.conf`, `/etc/lldpd.d/README.conf` and `/etc/ptm.d/topology.dot` files every 2 minutes looking to see if the contents of any of these files has changed. If a change has occurred, the contents of the file and its modification time are transmitted to the NetQ appliance or VM.
 - **ports**: Polls for optics plugged into the switch every hour.
 - **proc-net-dev**: Polls for network statistics on the switch every 30 seconds.
 - **running-config-mon-json**: Polls the `clagctl` parameters every 30 seconds and sends a diff of any changes to the NetQ appliance or VM.
 
 ### Modify the Polling Frequency
 
-You can change the polling frequency of a modular command. The frequency is specified in seconds. For example, to change the polling frequency of the `lldp-json` command to 60 seconds, run:
+You can change the polling frequency of a modular command. The frequency is specified in seconds. For example, to change the polling frequency of the `lldp-json` command to 60 seconds from its default of 120 seconds, run:
 
 ```
 cumulus@switch:~$ netq config add agent command service-key lldp-json poll-period 60
@@ -327,13 +445,15 @@ ospf-interface-json            60  no        ['/usr/bin/vtysh', '-c', 'show ip o
 
 ### Disable a Command
 
-You can disable any of these commands if they are not needed on your network. This can help reduce the compute resources the agent consumes. For example, if your network does not run OSPF, you can disable the two OSPF commands:
+You can disable any of these commands if they are not needed on your network. This can help reduce the compute resources the NetQ Agent consumes on the switch. For example, if your network does not run OSPF, you can disable the two OSPF commands:
 
 ```
 cumulus@switch:~$ netq config add agent command service-key ospf-interface-json enable False
 Command Service ospf-interface-json is disabled
+
 cumulus@switch:~$ netq config add agent command service-key ospf-neighbor-json enable False
 Command Service ospf-neighbor-json is disabled
+
 cumulus@switch:~$ netq config show agent commands
  Service Key               Period  Active       Command
 -----------------------  --------  --------  ---------------------------------------------------------------------
@@ -364,11 +484,12 @@ ospf-interface-json            60  no        ['/usr/bin/vtysh', '-c', 'show ip o
 
 ### Reset to Default
 
-To quickly revert to the original command settings, run `netq config agent factory-reset commands`:
+To quickly revert to the original command settings, run:
 
 ```
 cumulus@switch:~$ netq config agent factory-reset commands
 Netq Command factory reset successfull
+
 cumulus@switch:~$ netq config show agent commands
  Service Key               Period  Active       Command
 -----------------------  --------  --------  ---------------------------------------------------------------------

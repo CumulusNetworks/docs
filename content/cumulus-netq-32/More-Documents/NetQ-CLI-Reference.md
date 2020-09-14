@@ -2136,3 +2136,34 @@ The command syntax for a server proxy is:
     netq del notification proxy
 
 The various command options are described in the following sections where they are used.
+
+## LCM Commands
+
+The NetQ CLI provides a number of `netq lcm` commands to perform LCM. The syntax of these commands is:
+
+    netq lcm upgrade name <text-job-name> image-id <text-image-id> license <text-cumulus-license> hostnames <text-switch-hostnames> [order <text-upgrade-order>] [run-before-after]
+    netq lcm add credentials (username <text-switch-username> password <text-switch-password> | ssh-key <text-ssh-key>)
+    netq lcm add role (superspine | spine | leaf | exit) switches <text-switch-hostnames>
+    netq lcm del credentials
+    netq lcm show credentials [json]
+    netq lcm show switches [version <text-cumulus-linux-version>] [json]
+    netq lcm show status <text-lcm-job-id> [json]
+    netq lcm add image <text-image-path>
+    netq lcm del image <text-image-id>
+    netq lcm show images [<text-image-id>] [json]
+    netq lcm show upgrade-jobs [json]
+
+## Agent Commands
+
+The agent configuration commands include:
+
+    netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
+    netq config add agent cpu-limit [<text-limit-number>]
+    netq config add agent frr-monitor [<text-frr-docker-name>]
+    netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
+    netq config add agent loglevel [debug|error|info|warning]
+    netq config add agent sensors
+    netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
+    netq config (start|stop|status|restart) agent
+    netq config del agent (agent-url|cluster-servers|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats|wjh)
+    netq config show agent [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|stats|wjh] [json]

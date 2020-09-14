@@ -22,7 +22,7 @@ To view a list of all switches known to lifecycle management, click **Manage** o
 
 {{<figure src="/images/netq/lcm-switch-mgmt-list-300.png" width="700">}}
 
-Review the list, filtering as needed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}}) to determine if the switches you want to upgrade are included. 
+Review the list, filtering as needed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}}) to determine if the switches you want to upgrade are included.
 
 {{<notice tip>}}
 If you have more than one Cumulus Linux version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
@@ -33,6 +33,14 @@ If you have more than one Cumulus Linux version running on your switches, you ca
 {{< tab "NetQ CLI" >}}
 
 To view a list of all switches known to lifecycle management, run:
+
+```
+netq lcm show switches [version <text-cumulus-linux-version>] [json]
+```
+
+Use the `version` option to only show switches with a given Cumulus Linux version, X.Y.Z.
+
+This example shows the role of all switches and Cumulus Linux versions in the **Role** column of the listing.
 
 ```
 cumulus@switch:~$ netq lcm show switches
@@ -126,7 +134,11 @@ A bonus of assigning roles to switches is that you can then filter the list of s
 
 {{< tab "NetQ CLI" >}}
 
-Run the `netq lcm add role` command for a single switch or multiple switches.
+To add roles to one or more switches, run:
+
+```
+netq lcm add role (superspine | spine | leaf | exit) switches <text-switch-hostnames>
+```
 
 For a single switch, run:
 
@@ -134,7 +146,7 @@ For a single switch, run:
 netq lcm add role leaf switches leaf01
 ```
 
-For multiple switches to be assigned the same role, separate the hostnames with commas (no spaces). For example:
+For multiple switches to be assigned the same role, separate the hostnames with commas (no spaces). This example configures *leaf01* through *leaf04* switches with the leaf role:
 
 ```
 netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
@@ -156,15 +168,52 @@ You can view the roles assigned to the switches in the LCM inventory at any time
 
 2. On the Switches card, click **Manage**.
 
-The assigned role is displayed in the **Role** column of the listing.
+    The assigned role is displayed in the **Role** column of the listing.
+
+    {{<figure src="/images/netq/lcm-switch-mgmt-list-300.png" width="700">}}
 
 {{< /tab >}}
 
 {{< tab "NetQ CLI" >}}
 
-1. Run the `netq lcm show switches` command.
+To view all switch roles, run:
 
-2. View the role in the **Role** column of the listing.
+```
+netq lcm show switches [version <text-cumulus-linux-version>] [json]
+```
+
+Use the `version` option to only show switches with a given Cumulus Linux version, X.Y.Z.
+
+This example shows the role of all switches and Cumulus Linux versions in the **Role** column of the listing.
+
+```
+cumulus@switch:~$ netq lcm show switches
+Hostname          Role       IP Address                MAC Address        CPU      CL Version           NetQ Version             Last Changed
+----------------- ---------- ------------------------- ------------------ -------- -------------------- ------------------------ -------------------------
+fw1               exit       192.168.200.61            44:38:39:00:01:8C  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:22:05 2020
+                                                                                                        c5bc079
+spine02           spine      192.168.200.22            44:38:39:00:01:92  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 17:51:28 2020
+                                                                                                        c5bc079
+spine03           spine      192.168.200.23            44:38:39:00:01:70  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 17:51:30 2020
+                                                                                                        c5bc079
+leaf03            leaf       192.168.200.13            44:38:39:00:01:84  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:07:06 2020
+                                                                                                        c5bc079
+border02          exit       192.168.200.64            44:38:39:00:01:7C  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:17:22 2020
+                                                                                                        c5bc079
+leaf04            leaf       192.168.200.14            44:38:39:00:01:8A  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:06:36 2020
+                                                                                                        c5bc079
+fw2               exit       192.168.200.62            44:38:39:00:01:8E  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:36:30 2020
+                                                                                                        c5bc079
+leaf01            leaf       192.168.200.11            44:38:39:00:01:7A  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:07:48 2020
+                                                                                                        c5bc079
+spine01           spine      192.168.200.21            44:38:39:00:01:82  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 17:55:56 2020
+                                                                                                        c5bc079
+spine04           spine      192.168.200.24            44:38:39:00:01:6C  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 17:49:26 2020
+                                                                                                        c5bc079
+border01          exit       192.168.200.63            44:38:39:00:01:74  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:18:31 2020
+                                                                                                        c5bc079
+leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:06:36 2020
+```
 
 {{< /tab >}}
 
@@ -207,7 +256,7 @@ netq lcm add role exit switches border01
 For multiple switches to be assigned the same role, separate the hostnames with commas (no spaces). For example:
 
 ```
-netq lcm add role exit switches border01,border02
+cumulus@switch:~$ netq lcm add role exit switches border01,border02
 ```
 
 {{< /tab >}}

@@ -136,7 +136,9 @@ netq lcm upgrade name <text-job-name> cl-version <text-cumulus-linux-version> ne
 
 This example creates a NetQ Agent upgrade job called *upgrade-cl410-nq320*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 3.2.0.
 
+```
 cumulus@switch:~$ netq lcm upgrade name upgrade-cl410-nq320 cl-version 4.1.0 netq-version 3.2.0 hostnames spine01,spine02
+```
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:
 

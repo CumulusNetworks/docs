@@ -27,7 +27,7 @@ The workflows vary slightly with each approach:
 
 - Using the NetQ CLI for switches with NetQ Agent installed, the workflow is:
 
-<!-- insert workflow here -->
+    {{<figure src="/images/netq/lcm-upgrade-workflow-cli-320.png" width="500">}}
 
 - Using the NetQ UI for switches without NetQ Agent installed, the workflow is:
 

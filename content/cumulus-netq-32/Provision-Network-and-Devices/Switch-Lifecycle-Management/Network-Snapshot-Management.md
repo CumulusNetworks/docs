@@ -6,7 +6,7 @@ toc: 4
 ---
 Creating and comparing network snapshots can be used at various times; typically when you are upgrading or changing the configuration of your switches in some way. The instructions here describe how to create and compare network snapshots at any time using the NetQ UI.
 
-the NetQ CLI can only create network snapshots during a Cumulus Linux upgrade. The results are only visible from the NetQ UI.
+The NetQ CLI can only create network snapshots during a Cumulus Linux upgrade. The results are only visible from the NetQ UI.
 
 Refer to {{<link title="#Image Installation and Upgrade" text="Image Installation and Upgrade">}} to see how snapshots are automatically created during upgrades to validate that the network state has not changed unexpectedly after an upgrade.
 

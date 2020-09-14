@@ -547,7 +547,7 @@ Cumulus Networks recommends that you always enable STP in your layer 2 network a
 
 ### Peer Link Peering
 
-When you use MLAG with VRR, Cumulus Networks recommends you set up a routed adjacency across the peerlink.4094 interface. If a routed connection is not built across the peer link, then during uplink failure on one of the switches in the MLAG pair, egress traffic can be blackholed if it hashes to the leaf whose uplinks are down.
+When you use MLAG with VRR, Cumulus Networks recommends you set up a routed adjacency across the peerlink.4094 interface. If a routed connection is not built across the peer link, then during an uplink failure on one of the switches in the MLAG pair, egress traffic might be blackholed if it hashes to the leaf whose uplinks are down.
 
 To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#unnumbered" text="BGP">}} or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} unnumbered peering, as appropriate for your network.
 
@@ -573,9 +573,9 @@ cumulus@switch:~$ net add bgp l2vpn evpn neighbor peerlink.4094 activate
 cumulus@switch:~$ net commit
 ```
 
-{{%notice tip%}}
+{{%notice note%}}
 
-Be aware of an existing issue when you use NCLU to create an iBGP peering, it creates an eBGP peering instead. For more information, see {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-37/Whats-New/rn/#CM-23417" text="this release note">}}.
+If you use NCLU to create an iBGP peering across the peer link, running the `net add bgp l2vpn evpn neighbor peerlink.4094 activate` command creates a new eBGP neighborship when one has already been configured for iBGP. This is unexpected; the existing iBGP configuration is valid.
 
 {{%/notice%}}
 

@@ -103,7 +103,7 @@ iface bond2
 
 {{< /tabs >}}
 
-4. Add a unique MLAG ID (clag-id) to each bond.
+3. Add a unique MLAG ID (clag-id) to each bond.
 
    For MLAG to operate correctly, the peer switches must know which links are dual-connected or are connected to the same host or switch. You must specify a unique MLAG ID (clag-id) for every dual-connected bond on each peer switch. The value must be between 1 and 65535 and must be the same on both peer switches for the bond to be considered dual-connected. The example commands use values 1 and 2:
 
@@ -145,18 +145,17 @@ iface bond2
 
 {{< /tabs >}}
 
-5. Create the inter-chassis bond and the peer link VLAN and  provide a peer link IP address, the interfaces in the MLAG bond, the MLAG interface MAC address, and backup interface.
+4. Create the inter-chassis bond, the peer link VLAN and provide the peer link IP address, interfaces in the MLAG bond, MLAG interface MAC address, and backup interface.
 
    - By default, the NCLU command configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Cumulus Networks recommends you use *peerlink.4094* to ensure that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
 
-   - The peer link IP address is an unrouteable link-local address to provide the peer switches layer 3 connectivity between each other.
+   - The peer link IP address is an unrouteable link-local address that provides layer 3 connectivity between the peer switches.
 
    - Cumulus Networks provides a reserved range of MAC address for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network. If you configure MLAG with NCLU commands, Cumulus Linux does not check against a possible collision with VLANs outside this default reserved range.
-
       - Do not to use a multicast MAC address.
-      - You *cannot* use the same MAC address for different MLAG pairs; make sure you specify a different MAC address for each MLAG pair in the network.  
+      - Do not use the same MAC address for different MLAG pairs; make sure you specify a different MAC address for each MLAG pair in the network.  
 
-   - The backup IP address is any layer 3 backup interface for the peer link, used in case the peer link goes down. The backup IP address is **required** and **must** be different than the peer link IP address. It must be reachable by a route that does not use the peer link and it must be in the same network namespace as the peer link IP address. Cumulus Networks recommends you use the loopback or management IP address of the switch.
+   - The backup IP address is any layer 3 backup interface for the peer link, which is used in case the peer link goes down. The backup IP address is **required** and **must** be different than the peer link IP address. It must be reachable by a route that does not use the peer link and it must be in the same network namespace as the peer link IP address. Cumulus Networks recommends you use the loopback or management IP address of the switch.
 
       {{< expand "Loopback or Management IP Address?" >}}
 
@@ -233,7 +232,7 @@ iface peerlink.4094
 
 5. Add the bonds you created above to the bridge (including the *peerlink* bond). The examples below add bond1, bond2, and *peerlink* to a VLAN-aware bridge.
 
- {{< tabs "TabID197 ">}}
+   {{< tabs "TabID197 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -348,9 +347,49 @@ The `clagd` service has a number of timers that you can tune for enhanced perfor
 | `--peerTimeout <SECONDS>` | The number of seconds `clagd` waits without receiving any data from the peer switch before it determines that the peer is no longer active. If this parameter is not specified, `clagd` uses ten times the local `lacpPoll` value. |
 | `--initDelay <SECONDS>` | The number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. <br>The default is *180* seconds. |
 | `--sendTimeout <SECONDS>` | The number of seconds `clagd` waits until the sending socket times out. If it takes longer than the `sendTimeout` value to send data to the peer, `clagd` generates an exception. <br>The default is *30* seconds. |
-| `--lacpPoll <seconds>` | The number of seconds |
+| `--lacpPoll <seconds>` | How often the switch sends an update frequency value in the messages to its peer. |
 
-You can run `clagctl params` to see the settings for all of the `clagd` parameters.
+To set a timer:
+
+{{< tabs "TabID354 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+Run the `net add interface peerlink.4094 clag args <timer> <value>` command. The following example command sets the peerlink timer to 900 seconds:
+
+```
+cumulus@switch:~$ net add interface peerlink.4094 clag args --peerTimeout 900
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to add `clagd-args <timer> <value>` to the peerlink.4094 stanza, then run the `ifreload -a` command. The following example sets the peerlink timer to 900 seconds:
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto peerlink.4094
+iface peerlink.4094
+    clagd-args --peerTimeout 900
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.2
+    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-priority 2048
+...
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+To see the settings for all of the `clagd` parameters, run the `clagctl params` command:
 
 ```
 cumulus@leaf01:~$ clagctl params
@@ -437,7 +476,7 @@ In addition, you might want to add extra links to the peer link bond to handle l
 
 In the illustration below, each host has two 10G links, with each 10G link going to each switch in the MLAG pair. Each host has 20G of dual-connected bandwidth, so all three hosts have a total of 60G of dual-connected bandwidth. Cumulus Networks recommend you allocate at least 15G of bandwidth to each peer link bond, which represents half of the single-connected bandwidth.
 
-{{< img src = "/images/cumulus-linux/mlag-peerlink-sizing.png" >}}
+{{< img src="/images/cumulus-linux/mlag-peerlink-sizing.png" width="600" >}}
 
 Scaling this example out to a full rack, when planning for link failures, you need only allocate enough bandwidth to meet your site's strategy for handling failure scenarios. Imagine a full rack with 40 servers and two switches. You might plan for four to six servers to lose connectivity to a single switch and become single connected before you respond to the event. So expanding upon our previous example, if you have 40 hosts each with 20G of bandwidth dual-connected to the MLAG pair, you might allocate 20G to 30G of bandwidth to the peer link - which accounts for half of the single-connected bandwidth for four to six hosts.
 

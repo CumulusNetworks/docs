@@ -7,6 +7,31 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31374</td>
+<td><p>CVE-2020-15166: ZeroMQ, a lightweight messaging kernel library<br/>
+does not properly handle connecting peers before a handshake is<br/>
+completed. A remote, unauthenticated client connecting to an application<br/>
+using the libzmq library, running with a socket listening with CURVE<br/>
+encryption/authentication enabled can take advantage of this flaw to<br/>
+cause a denial of service affecting authenticated and encrypted clients.<br/>
+Vulnerable: &lt;= 4.3.1-4+deb10u1<br/>
+Fixed: 4.3.1-4+deb10u2</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31373</td>
+<td><p>The following vulnerabilities have been announced in the qemu packages, which are available for optional installation:<br/>
+CVE-2020-12829: An integer overflow in the sm501 display device may result in denial of service.<br/>
+CVE-2020-14364: An out-of-bounds write in the USB emulation code may result in guest-to-host code execution.<br/>
+CVE-2020-15863: A buffer overflow in the XGMAC network device may result in denial of service or the execution of arbitrary code.<br/>
+CVE-2020-16092: A triggerable assert in the e1000e and vmxnet3 devices may result in denial of service.<br/>
+Vulnerable: &lt;= 3.1+dfsg-8+deb10u7<br/>
+Fixed: 3.1+dfsg-8+deb10u8</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31327</td>
 <td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
 To work around this issue, run the net add/del dns nameserver <span class="error">&#91;vrf &lt;name&gt;&#93;</span> command to force the DNS configuration.</p></td>
@@ -2125,12 +2150,6 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
-<td>CM-18192</td>
-<td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-17934</td>
 <td><p>FRR tracks interface speed based on the value it learns from the Linux kernel for that interface. If the interface speed changes, FRR does not update its interface speed cache. This can lead to issues for routing protocols that derive metrics from interface speed as the cost can become out of sync with the interface speed.<br/>
 To work around this issue, manually define the routing protocol metric for these interfaces or restart FRR.</p></td>
@@ -2236,6 +2255,31 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31374</td>
+<td><p>CVE-2020-15166: ZeroMQ, a lightweight messaging kernel library<br/>
+does not properly handle connecting peers before a handshake is<br/>
+completed. A remote, unauthenticated client connecting to an application<br/>
+using the libzmq library, running with a socket listening with CURVE<br/>
+encryption/authentication enabled can take advantage of this flaw to<br/>
+cause a denial of service affecting authenticated and encrypted clients.<br/>
+Vulnerable: &lt;= 4.3.1-4+deb10u1<br/>
+Fixed: 4.3.1-4+deb10u2</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31373</td>
+<td><p>The following vulnerabilities have been announced in the qemu packages, which are available for optional installation:<br/>
+CVE-2020-12829: An integer overflow in the sm501 display device may result in denial of service.<br/>
+CVE-2020-14364: An out-of-bounds write in the USB emulation code may result in guest-to-host code execution.<br/>
+CVE-2020-15863: A buffer overflow in the XGMAC network device may result in denial of service or the execution of arbitrary code.<br/>
+CVE-2020-16092: A triggerable assert in the e1000e and vmxnet3 devices may result in denial of service.<br/>
+Vulnerable: &lt;= 3.1+dfsg-8+deb10u7<br/>
+Fixed: 3.1+dfsg-8+deb10u8</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31225</td>
@@ -4223,12 +4267,6 @@ To work around this issue, use net show interface command for LLDP output when c
 <td><p>When you use NCLU to bring a bond admin down (net add bond &lt;bond&gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.<br/>
 To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td>
 <td>3.5.0-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-18192</td>
-<td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>

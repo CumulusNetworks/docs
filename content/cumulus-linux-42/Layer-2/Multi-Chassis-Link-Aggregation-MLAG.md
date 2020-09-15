@@ -145,7 +145,49 @@ iface bond2
 
 {{< /tabs >}}
 
-4. Create the inter-chassis bond, the peer link VLAN and provide the peer link IP address, interfaces in the MLAG bond, MLAG interface MAC address, and backup interface.
+4. Add the bonds you created above to the bridge. The examples below add bond1 and bond2 to a VLAN-aware bridge.
+
+   {{< tabs "TabID197 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf02:~$ net add bridge bridge ports bond1,bond2
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to add the `bridge-ports bond1 bond2` lines to the `auto bridge` stanza:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto bridge
+iface bridge
+    bridge-ports bond1 bond2
+    bridge-vlan-aware yes
+...
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{%notice note%}}
+
+When you change the MLAG configuration in the `/etc/network/interfaces` file, the changes take effect when you bring the peer link interface up with `ifup` or `ifreload -a`. Do **not** use `systemctl restart clagd.service` to apply the new configuration.
+
+{{%/notice%}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+5. Create the inter-chassis bond, the peer link VLAN and provide the peer link IP address, interfaces in the MLAG bond, MLAG interface MAC address, and backup interface.
 
    - By default, the NCLU command configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Cumulus Networks recommends you use *peerlink.4094* to ensure that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
 
@@ -175,7 +217,11 @@ To ensure IP connectivity between the loopbacks, the two MLAG member switches mu
 
 {{< tab "NCLU Commands ">}}
 
-The following NCLU command is a macro command that creates the inter-chassis bond (peerlink) with the peer link VLAN (peerlink.4094), configures the peer link IP address (primary specifies linklocal), and adds the MAC address, the MLAG bond interfaces, and backup IP address you specify.
+The following NCLU command is a macro command that:
+- Automatically creates the inter-chassis bond (peerlink) with the peer link VLAN (peerlink.4094)
+- Adds the peerlink bond to the bridge
+- Configures the peer link IP address (primary is the linklocal IP address)
+- Adds the MAC address, the MLAG bond interfaces, and the backup IP address you provide
 
 ```
 cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2
@@ -196,11 +242,17 @@ cumulus@switch:~$ net commit
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add:
-- The peer link (peerlink) with the two ports in the bond (swp49 and swp50 in the example command below).
+- The inter-chasis bond (`peerlink`) with the two ports in the bond (swp49 and swp50 in the example command below).
+- The `peerlink` bond to the bridge.
 - The peer link VLAN (peerlink.4094) with the backup IP address, the MLAG peer link IP address (linklocal), and the MAC address (from the reserved range of addresses).
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto bridge
+iface bridge
+    bridge-ports bond1 bond2 peerlink
+    bridge-vlan-aware yes
 ...
 auto peerlink
 iface peerlink
@@ -225,49 +277,6 @@ iface peerlink.4094
     clagd-sys-mac 44:38:39:BE:EF:AA
 ...
 ```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-5. Add the bonds you created above to the bridge (including the *peerlink* bond). The examples below add bond1, bond2, and *peerlink* to a VLAN-aware bridge.
-
-   {{< tabs "TabID197 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf02:~$ net add bridge bridge ports bond1,bond2,peerlink
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file to add the following lines:
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-auto bridge
-iface bridge
-    bridge-ports bond1 bond2
-    bridge-ports peerlink
-    bridge-vlan-aware yes
-...
-```
-
-```
-cumulus@switch:~$ sudo ifreload -a
-```
-
-{{%notice note%}}
-
-When you change the MLAG configuration in the `/etc/network/interfaces` file, the changes take effect when you bring the peer link interface up with `ifup` or `ifreload -a`. Do **not** use `systemctl restart clagd.service` to apply the new configuration.
-
-{{%/notice%}}
 
 {{< /tab >}}
 
@@ -547,7 +556,7 @@ Cumulus Networks recommends that you always enable STP in your layer 2 network a
 
 ### Peer Link Peering
 
-When you use MLAG with VRR, Cumulus Networks recommends you set up a routed adjacency across the peerlink.4094 interface. If a routed connection is not built across the peer link, then during uplink failure on one of the switches in the MLAG pair, egress traffic can be blackholed if it hashes to the leaf whose uplinks are down.
+When you use MLAG with VRR, Cumulus Networks recommends you set up a routed adjacency across the peerlink.4094 interface. If a routed connection is not built across the peer link, then during an uplink failure on one of the switches in the MLAG pair, egress traffic might be blackholed if it hashes to the leaf whose uplinks are down.
 
 To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#unnumbered" text="BGP">}} or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} unnumbered peering, as appropriate for your network.
 
@@ -573,9 +582,9 @@ cumulus@switch:~$ net add bgp l2vpn evpn neighbor peerlink.4094 activate
 cumulus@switch:~$ net commit
 ```
 
-{{%notice tip%}}
+{{%notice note%}}
 
-Be aware of an existing issue when you use NCLU to create an iBGP peering, it creates an eBGP peering instead. For more information, see {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-37/Whats-New/rn/#CM-23417" text="this release note">}}.
+If you use NCLU to create an iBGP peering across the peer link, running the `net add bgp l2vpn evpn neighbor peerlink.4094 activate` command creates a new eBGP neighborship when one has already been configured for iBGP. This is unexpected; the existing iBGP configuration is valid.
 
 {{%/notice%}}
 

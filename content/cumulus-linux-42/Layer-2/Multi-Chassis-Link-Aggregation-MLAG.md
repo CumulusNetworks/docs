@@ -18,15 +18,15 @@ Dual-connected devices can create LACP bonds that contain links to each physical
 
 A basic MLAG configuration looks like this:
 
-{{< img src = "/images/cumulus-linux/mlag-basic-setup.png" >}}
-
-The two switches, leaf01 and leaf02, known as *peer switches*, appear as a single device to the bond on server01. server01 distributes traffic between the two links to leaf01 and leaf02 in the way you configure on the host. Traffic inbound to server01 can traverse leaf01 or leaf02 and arrive at server01.
+| | |
+|---|---|
+|<div style="width:400px">{{< img src="/images/cumulus-linux/mlag-basic-setup.png" width="400" >}}|<br> <ul><li>The two switches, leaf01 and leaf02, known as *peer switches*, appear as a single device to the bond on server01.</li><li>server01 distributes traffic between the two links to leaf01 and leaf02 in the way you configure on the host. Traffic inbound to server01 can traverse leaf01 or leaf02 and arrive at server01.</li></ul>|
 
 More elaborate configurations are also possible. The number of links between the host and the switches can be greater than two and does not have to be symmetrical. Additionally, because the two peer switches appear as a single switch to other bonding devices, you can also connect pairs of MLAG switches to each other in a switch-to-switch MLAG configuration:
 
-{{< img src = "/images/cumulus-linux/mlag-two-pair.png" >}}
-
-In the above example, leaf01 and leaf02 are also MLAG peer switches and present a two-port bond from a single logical system to spine01 and spine02. spine01 and spine02 do the same as far as leaf01 and leaf02 are concerned.
+| | |
+|---|---|
+|<div style="width:400px">{{< img src="/images/cumulus-linux/mlag-two-pair.png" width="350" >}} |<br><br> <ul><li>leaf01 and leaf02 are also MLAG peer switches and present a two-port bond from a single logical system to spine01 and spine02.</li><li>spine01 and spine02 do the same as far as leaf01 and leaf02 are concerned.</li></ul>|
 
 ### LACP and Dual-connected Links
 
@@ -38,7 +38,7 @@ On each of the peer switches, you must place the links that are connected to the
 
 All of the dual-connected bonds on the peer switches have their system ID set to the MLAG system ID. Therefore, from the point of view of the hosts, each of the links in its bond is connected to the same system and so the host uses both links.
 
-Each peer switch periodically makes a list of the LACP partner MAC addresses for all of their bonds and sends that list to its peer (using the `clagd` service). The LACP partner MAC address is the MAC address of the system at the other end of a bond (hosts server01, server02, and server03 in the figure above). When a switch receives this list from its peer, it compares the list to the LACP partner MAC addresses on its switch. If any matches are found and the `clag-id` for those bonds match, then that bond is a dual-connected bond. You can find the LACP partner MAC address by the running `net show bridge macs` command or by examining the `/sys/class/net/<bondname>/bonding/ad_partner_mac sysfs` file for each bond.
+Each peer switch periodically makes a list of the LACP partner MAC addresses for all of their bonds and sends that list to its peer (using the `clagd` service). The LACP partner MAC address is the MAC address of the system at the other end of a bond (server01, server02, and server03 in the figure above). When a switch receives this list from its peer, it compares the list to the LACP partner MAC addresses on its switch. If any matches are found and the `clag-id` for those bonds match, then that bond is a dual-connected bond. You can find the LACP partner MAC address by the running `net show bridge macs` command or by examining the `/sys/class/net/<bondname>/bonding/ad_partner_mac sysfs` file for each bond.
 
 ### Requirements
 

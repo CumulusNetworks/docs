@@ -18,15 +18,15 @@ Dual-connected devices can create LACP bonds that contain links to each physical
 
 A basic MLAG configuration looks like this:
 
-{{< img src = "/images/cumulus-linux/mlag-basic-setup.png" >}}
-
-The two switches, leaf01 and leaf02, known as *peer switches*, appear as a single device to the bond on server01. server01 distributes traffic between the two links to leaf01 and leaf02 in the way you configure on the host. Traffic inbound to server01 can traverse leaf01 or leaf02 and arrive at server01.
+| | |
+|---|---|
+|<div style="width:400px">{{< img src="/images/cumulus-linux/mlag-basic-setup.png" width="400" >}}|<br> <ul><li>The two switches, leaf01 and leaf02, known as *peer switches*, appear as a single device to the bond on server01.</li><li>server01 distributes traffic between the two links to leaf01 and leaf02 in the way you configure on the host. Traffic inbound to server01 can traverse leaf01 or leaf02 and arrive at server01.</li></ul>|
 
 More elaborate configurations are also possible. The number of links between the host and the switches can be greater than two and does not have to be symmetrical. Additionally, because the two peer switches appear as a single switch to other bonding devices, you can also connect pairs of MLAG switches to each other in a switch-to-switch MLAG configuration:
 
-{{< img src = "/images/cumulus-linux/mlag-two-pair.png" >}}
-
-In the above example, leaf01 and leaf02 are also MLAG peer switches and present a two-port bond from a single logical system to spine01 and spine02. spine01 and spine02 do the same as far as leaf01 and leaf02 are concerned.
+| | |
+|---|---|
+|<div style="width:400px">{{< img src="/images/cumulus-linux/mlag-two-pair.png" width="350" >}} |<br><br> <ul><li>leaf01 and leaf02 are also MLAG peer switches and present a two-port bond from a single logical system to spine01 and spine02.</li><li>spine01 and spine02 do the same as far as leaf01 and leaf02 are concerned.</li></ul>|
 
 ### LACP and Dual-connected Links
 
@@ -38,7 +38,7 @@ On each of the peer switches, you must place the links that are connected to the
 
 All of the dual-connected bonds on the peer switches have their system ID set to the MLAG system ID. Therefore, from the point of view of the hosts, each of the links in its bond is connected to the same system and so the host uses both links.
 
-Each peer switch periodically makes a list of the LACP partner MAC addresses for all of their bonds and sends that list to its peer (using the `clagd` service). The LACP partner MAC address is the MAC address of the system at the other end of a bond (hosts server01, server02, and server03 in the figure above). When a switch receives this list from its peer, it compares the list to the LACP partner MAC addresses on its switch. If any matches are found and the `clag-id` for those bonds match, then that bond is a dual-connected bond. You can find the LACP partner MAC address by the running `net show bridge macs` command or by examining the `/sys/class/net/<bondname>/bonding/ad_partner_mac sysfs` file for each bond.
+Each peer switch periodically makes a list of the LACP partner MAC addresses for all of their bonds and sends that list to its peer (using the `clagd` service). The LACP partner MAC address is the MAC address of the system at the other end of a bond (server01, server02, and server03 in the figure above). When a switch receives this list from its peer, it compares the list to the LACP partner MAC addresses on its switch. If any matches are found and the `clag-id` for those bonds match, then that bond is a dual-connected bond. You can find the LACP partner MAC address by the running `net show bridge macs` command or by examining the `/sys/class/net/<bondname>/bonding/ad_partner_mac sysfs` file for each bond.
 
 ### Requirements
 
@@ -56,7 +56,7 @@ The following procedure provides the steps required to configure MLAG. Follow st
 
    {{%notice note%}}
 
-If you cannot use LACP in your environment, you can configure the bonds in {{<link url="Bonding-Link-Aggregation" text="balance-xor mode">}}. When using balance-xor mode to dual-connect host-facing bonds in an MLAG environment, you must configure the `clag-id` on the MLAG bonds, which must be the same on both MLAG switches. Otherwise, the bonds are treated by the MLAG switch pair as if they are single-connected. Dual-connectedness is solely determined by matching `clag-id` and any misconnection is **not** detected.
+If you cannot use LACP in your environment, you can configure the bonds in {{<link url="Bonding-Link-Aggregation" text="balance-xor mode">}}.
 
 {{%/notice%}}
 
@@ -187,13 +187,13 @@ When you change the MLAG configuration in the `/etc/network/interfaces` file, th
 
 {{< /tabs >}}
 
-5. Create the inter-chassis bond and the peer link VLAN. You also need to provide the peer link IP address, the MLAG bond interfaces, the MLAG interface MAC address, and the backup interface.
+5. Create the inter-chassis bond and the peer link VLAN. You also need to provide the peer link IP address, the MLAG bond interfaces, the MLAG system MAC address, and the backup interface.
 
    - By default, the NCLU command configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Cumulus Networks recommends you use *peerlink.4094* to ensure that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
 
    - The peer link IP address is an unrouteable link-local address that provides layer 3 connectivity between the peer switches.
 
-   - Cumulus Networks provides a reserved range of MAC address for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network. If you configure MLAG with NCLU commands, Cumulus Linux does not check against a possible collision with VLANs outside this default reserved range.
+   - Cumulus Networks provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network. If you configure MLAG with NCLU commands, Cumulus Linux does not check against a possible collision with VLANs outside this default reserved range.
       - Do not to use a multicast MAC address.
       - Do not use the same MAC address for different MLAG pairs; make sure you specify a different MAC address for each MLAG pair in the network.  
 
@@ -221,7 +221,7 @@ The following NCLU command is a macro command that:
 - Automatically creates the inter-chassis bond (`peerlink`) and the peer link VLAN (`peerlink.4094`)
 - Adds the `peerlink` bond to the bridge
 - Configures the peer link IP address (`primary` is the link-local address)
-- Adds the MAC address 44:38:39:FF:40:94, the MLAG bond interfaces swp49 and swp50, and the backup IP address 10.10.10.2
+- Adds the system MAC address 44:38:39:FF:40:94, the MLAG bond interfaces swp49 and swp50, and the backup IP address 10.10.10.2
 
 ```
 cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2
@@ -242,9 +242,9 @@ cumulus@switch:~$ net commit
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add:
-- The inter-chasis bond (`peerlink`) with two ports in the bond (swp49 and swp50 in the example command below).
-- The `peerlink` bond to the bridge.
-- The peer link VLAN (`peerlink.4094`) with the backup IP address, the peer link IP address (link-local), and the MAC address (from the reserved range of addresses).
+- The inter-chasis bond (`peerlink`) with two ports in the bond (swp49 and swp50 in the example command below)
+- The `peerlink` bond to the bridge
+- The peer link VLAN (`peerlink.4094`) with the backup IP address, the peer link IP address (link-local), and the MLAG system MAC address (from the reserved range of addresses).
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -442,13 +442,13 @@ peerlinkLearnEnable = False
 
 ### Configure MLAG with a Traditional Mode Bridge
 
-To configure MLAG with a traditional mode bridge instead of a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode bridge">}}, configure the peer link and all dual-connected links as {{<link url="Traditional-Bridge-Mode" text="untagged/native">}} ports on a bridge (note the absence of any VLANs in the bridge-ports line and the lack of the bridge-vlan-aware parameter below):
+To configure MLAG with a traditional mode bridge instead of a {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode bridge">}}, you must configure the peer link and all dual-connected links as {{<link url="Traditional-Bridge-Mode" text="untagged/native">}} ports on a bridge (note the absence of any VLANs in the bridge-ports line and the lack of the bridge-vlan-aware parameter below):
 
 ```
 ...
 auto br0
 iface br0
-    bridge-ports peerlink leaf01 leaf02 server01 server02
+    bridge-ports peerlink bond1 bond2
 ...
 ```
 
@@ -458,7 +458,7 @@ The following example shows you how to allow VLAN 10 across the peer link:
 ...
 auto br0.10
 iface br0.10
-    bridge-ports peerlink.10 bond1.10
+    bridge-ports peerlink.10 bond1.10 bond2.10
     bridge-stp on
 ...
 ```

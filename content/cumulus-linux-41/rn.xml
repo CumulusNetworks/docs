@@ -4979,5 +4979,10 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
 </tr>
+<tr>
+<td>CM-18192</td>
+<td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
+<td>3.7.11-4.0.0</td>
+</tr>
 </table>
 </tables>

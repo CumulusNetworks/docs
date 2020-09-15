@@ -84,7 +84,7 @@ cumulus@leaf01:~$ net commit
 Add the following lines to the `/etc/network/interfaces` file:
 
 ```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
+cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
 auto bond1
 iface bond1
@@ -152,9 +152,9 @@ iface bond2
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf02:~$ net add bridge bridge ports bond1,bond2
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -221,12 +221,12 @@ The following NCLU command is a macro command that:
 - Automatically creates the inter-chassis bond (`peerlink`) and the peer link VLAN (`peerlink.4094`)
 - Adds the `peerlink` bond to the bridge
 - Configures the peer link IP address (`primary` is the link-local address)
-- Adds the system MAC address 44:38:39:FF:40:94, the MLAG bond interfaces swp49 and swp50, and the backup IP address 10.10.10.2
+- Adds the MLAG system MAC address 44:38:39:FF:40:94, the MLAG bond interfaces swp49 and swp50, and the backup IP address 10.10.10.2
 
 ```
-cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 To configure the backup link to a VRF or management VRF, include the name of the VRF or management VRF with the `backup-ip` parameter. For example:
@@ -310,9 +310,9 @@ By default, the role is determined by comparing the MAC addresses of the two sid
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add interface peerlink.4094 clag priority 2048
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add interface peerlink.4094 clag priority 2048
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -344,7 +344,7 @@ The switch with the lower priority value is given the primary role; the default 
 
 When the `clagd` service exits during switch reboot or if you stop the service on the primary switch, the peer switch that is in the secondary role becomes the primary.
 
-However, if the primary switch goes down without stopping the `clagd` service for any reason, or if the peer link goes down, the secondary switch does **not** change its role. If the peer switch is determined to not be alive, the switch in the secondary role rolls back the LACP system ID to be the bond interface MAC address instead of the MLAG MAC address (`clagd-sys-mac`) and the switch in primary role uses the MLAG MAC address as the LACP system ID on the bonds.
+However, if the primary switch goes down without stopping the `clagd` service for any reason, or if the peer link goes down, the secondary switch does **not** change its role. If the peer switch is determined to not be alive, the switch in the secondary role rolls back the LACP system ID to be the bond interface MAC address instead of the MLAG system MAC address (`clagd-sys-mac`) and the switch in primary role uses the MLAG system MAC address as the LACP system ID on the bonds.
 
 ### Set clagctl Timers
 
@@ -367,9 +367,9 @@ To set a timer:
 Run the `net add interface peerlink.4094 clag args <timer> <value>` command. The following example command sets the peerlink timer to 900 seconds:
 
 ```
-cumulus@switch:~$ net add interface peerlink.4094 clag args --peerTimeout 900
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add interface peerlink.4094 clag args --peerTimeout 900
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -398,7 +398,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tabs >}}
 
-To see the settings for all of the `clagd` parameters, run the `clagctl params` command:
+To see all `clagd` parameter settings, run the `clagctl params` command:
 
 ```
 cumulus@leaf01:~$ clagctl params
@@ -931,23 +931,25 @@ The peer is alive
 CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
-         server1   server1            1         -                      -
-         server2   server2            2         -                      -
+           bond1   bond1              1         -                      -
+           bond2   bond2              2         -                      -
 ```
 
 ### Monitor the clagd Service
 
 Due to the critical nature of the `clagd` service, `systemd` continuously monitors the status of the `clagd` service with notify messages every 30 seconds. If the `clagd` service terminates or becomes unresponsive for any reason and `systemd` receives no messages after 60 seconds, `systemd` restarts `clagd`. `systemd` logs these failures in the `/var/log/syslog` file and, on the first failure, also generates a `cl-support`file.
 
-This monitoring is configured and enabled automatically as long as `clagd` is enabled (`clagd-peer-ip` and `clagd-sys-mac` are configured for an interface) and the `clagd` service is running. If you stop `clagd` with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
+Monitoring is configured and enabled automatically as long as `clagd` is enabled (`clagd-peer-ip` and `clagd-sys-mac` are configured for an interface) and the `clagd` service is running. If you stop `clagd` with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
 
 You can check the status of `clagd` monitoring with the `cl-service-summary` or the `systemctl status` command:
 
 ```
 cumulus@switch:~$ sudo cl-service-summary
-The systemctl daemon 5.4 uptime: 15m
-...
-Service clagd        enabled    active
+Service cron               enabled    active
+Service ssh                enabled    active
+Service syslog             enabled    active
+Service asic-monitor       enabled    inactive
+Service clagd              enabled    active
 ...
 ```
 
@@ -960,7 +962,7 @@ cumulus@switch:~$ sudo systemctl status clagd.service
     Main PID: 1235 (clagd)
     CGroup: /system.slice/clagd.service
             ├─1235 /usr/bin/python /usr/sbin/clagd --daemon 169.254.255.2 peerlink.4094 44:38:39:FF:40:90 --prior...
-            └─1307 /sbin/bridge monitor fdb
+            └─15795 /usr/share/mgmt-vrf/bin/ping6 -L -c 1 ff02::1 -I peerlink.409
 
 Feb 01 23:19:30 leaf01 clagd[1717]: Cleanup is executing.
 Feb 01 23:19:31 leaf01 clagd[1717]: Cleanup is finished
@@ -971,7 +973,7 @@ Feb 01 23:19:31 leaf01 clagd[1717]: Initial config loaded
 Feb 01 23:19:31 leaf01 systemd[1]: Started Cumulus Linux Multi-Chassis LACP Bonding Daemon.
 Feb 01 23:24:31 leaf01 clagd[1717]: HealthCheck: reload timeout.
 Feb 01 23:24:31 leaf01 clagd[1717]: Role is now primary; Reload timeout
-Hint: Some lines were ellipsized, use -l to show in full.
+...
 ```
 
 ### Large Packet Drops on the Peer Link Interface
@@ -1011,20 +1013,24 @@ swp51           9216        0         0         0         0      292         0  
 
 {{< tab "Linux Commands ">}}
 
-Run the `ethtool -S <interface>` command. The number of dropped packets are indicated by the `HwIfInDiscards` counter.
+Run the `ethtool -S <interface>` command.
 
 ```
-cumulus@switch:~$ sudo ethtool -S swp51
+cumulus@leaf01:mgmt:~$ ethtool -S swp49
 NIC statistics:
-HwIfInOctets: 669507330
-HwIfInUcastPkts: 658871
-HwIfInBcastPkts: 2231559
-HwIfInMcastPkts: 3696790
-HwIfOutOctets: 2752224343
-HwIfOutUcastPkts: 1001632
-HwIfOutMcastPkts: 3743199
-HwIfOutBcastPkts: 34212938
-HwIfInDiscards: 2129675
+     rx_queue_0_packets: 136
+     rx_queue_0_bytes: 36318
+     rx_queue_0_drops: 0
+     rx_queue_0_xdp_packets: 0
+     rx_queue_0_xdp_tx: 0
+     rx_queue_0_xdp_redirects: 0
+     rx_queue_0_xdp_drops: 0
+     rx_queue_0_kicks: 1
+     tx_queue_0_packets: 200
+     tx_queue_0_bytes: 44244
+     tx_queue_0_xdp_tx: 0
+     tx_queue_0_xdp_tx_drops: 0
+     tx_queue_0_kicks: 195
 ```
 
 {{< /tab >}}
@@ -1046,7 +1052,7 @@ This occurs when you have multiple LACP bonds between the same two LACP endpoint
 In addition to the standard UP and DOWN administrative states, an interface that is a member of an MLAG bond can also be in a `protodown` state. When MLAG detects a problem that might result in connectivity issues, it can put that interface into `protodown` state. Such connectivity issues include:
 
 - When the peer link goes down but the peer switch is up (the backup link is active).
-- When the bond is configured with an MLAG ID, but the `clagd` service is not running (either deliberately stopped or crashes).
+- When the bond is configured with an MLAG ID but the `clagd` service is not running (either deliberately stopped or crashes).
 - When an MLAG-enabled node is booted or rebooted, the MLAG bonds are placed in a `protodown` state until the node establishes a connection to its peer switch, or five minutes have elapsed.
 
 When an interface goes into a `protodown` state, it results in a local OPER DOWN (carrier down) on the interface.

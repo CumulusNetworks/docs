@@ -26,7 +26,7 @@ More elaborate configurations are also possible. The number of links between the
 
 {{< img src = "/images/cumulus-linux/mlag-two-pair.png" >}}
 
-In the above example, leaf01 and leaf02 are also MLAG peer switches and present a two-port bond from a single logical system to spine01 and spine02. spine01 and spine02 do the same as far as leaf01 and leaf02 are concerned. For a switch-to-switch MLAG configuration, each switch pair must have a unique system MAC address. In the example, leaf01 and leaf02 each have the same system MAC address. Switch pair spine01 and spine02 each have the same system MAC address; however, it is a different system MAC address than the one used by the switch pair leaf01 and leaf02.
+In the above example, leaf01 and leaf02 are also MLAG peer switches and present a two-port bond from a single logical system to spine01 and spine02. spine01 and spine02 do the same as far as leaf01 and leaf02 are concerned.
 
 ### LACP and Dual-connected Links
 
@@ -50,7 +50,7 @@ MLAG has these requirements:
 
 ## Basic Configuration
 
-The following procedure provides the steps required to configure MLAG. 
+The following procedure provides the steps required to configure MLAG. Follow steps 2 through 5 on each switch in the MLAG pair.
 
 1. On the dual-connected device, such as a host or server that sends traffic to and from the switch, create a bond that uses LACP. The method you use varies with the type of device you are configuring. On the dual-connected device, the only configuration requirement is to create a bond that is managed by LACP.
 
@@ -187,7 +187,7 @@ When you change the MLAG configuration in the `/etc/network/interfaces` file, th
 
 {{< /tabs >}}
 
-5. Create the inter-chassis bond, the peer link VLAN and provide the peer link IP address, interfaces in the MLAG bond, MLAG interface MAC address, and backup interface.
+5. Create the inter-chassis bond and the peer link VLAN. You also need to provide the peer link IP address, the MLAG bond interfaces, the MLAG interface MAC address, and the backup interface.
 
    - By default, the NCLU command configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Cumulus Networks recommends you use *peerlink.4094* to ensure that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
 
@@ -218,10 +218,10 @@ To ensure IP connectivity between the loopbacks, the two MLAG member switches mu
 {{< tab "NCLU Commands ">}}
 
 The following NCLU command is a macro command that:
-- Automatically creates the inter-chassis bond (peerlink) with the peer link VLAN (peerlink.4094)
-- Adds the peerlink bond to the bridge
-- Configures the peer link IP address (primary is the linklocal IP address)
-- Adds the MAC address, the MLAG bond interfaces, and the backup IP address you provide
+- Automatically creates the inter-chassis bond (`peerlink`) and the peer link VLAN (`peerlink.4094`)
+- Adds the `peerlink` bond to the bridge
+- Configures the peer link IP address (`primary` is the link-local address)
+- Adds the MAC address 44:38:39:FF:40:94, the MLAG bond interfaces swp49 and swp50, and the backup IP address 10.10.10.2
 
 ```
 cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2
@@ -229,7 +229,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-To configure the backup link to a VRF or management VRF, include the name of the VRF or management VRF with the backup-ip command. For example:
+To configure the backup link to a VRF or management VRF, include the name of the VRF or management VRF with the `backup-ip` parameter. For example:
 
 ```
 cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2 vrf RED
@@ -242,9 +242,9 @@ cumulus@switch:~$ net commit
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/network/interfaces` file to add:
-- The inter-chasis bond (`peerlink`) with the two ports in the bond (swp49 and swp50 in the example command below).
+- The inter-chasis bond (`peerlink`) with two ports in the bond (swp49 and swp50 in the example command below).
 - The `peerlink` bond to the bridge.
-- The peer link VLAN (peerlink.4094) with the backup IP address, the MLAG peer link IP address (linklocal), and the MAC address (from the reserved range of addresses).
+- The peer link VLAN (`peerlink.4094`) with the backup IP address, the peer link IP address (link-local), and the MAC address (from the reserved range of addresses).
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -344,7 +344,7 @@ The switch with the lower priority value is given the primary role; the default 
 
 When the `clagd` service exits during switch reboot or if you stop the service on the primary switch, the peer switch that is in the secondary role becomes the primary.
 
-However, if the primary switch goes down without stopping the `clagd` service for any reason, or if the peer link goes down, the secondary switch does **not** change its role. If the peer switch is determined to not be alive, the switch in the secondary role rolls back the LACP system ID to be the bond interface MAC address instead of the `clagd-sys-mac` and the switch in primary role uses the `clagd-sys-mac` as the LACP system ID on the bonds.
+However, if the primary switch goes down without stopping the `clagd` service for any reason, or if the peer link goes down, the secondary switch does **not** change its role. If the peer switch is determined to not be alive, the switch in the secondary role rolls back the LACP system ID to be the bond interface MAC address instead of the MLAG MAC address (`clagd-sys-mac`) and the switch in primary role uses the MLAG MAC address as the LACP system ID on the bonds.
 
 ### Set clagctl Timers
 
@@ -376,7 +376,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add `clagd-args <timer> <value>` to the peerlink.4094 stanza, then run the `ifreload -a` command. The following example sets the peerlink timer to 900 seconds:
+Edit the `/etc/network/interfaces` file to add the `clagd-args <timer> <value>` line to the peerlink.4094 stanza, then run the `ifreload -a` command. The following example sets the peerlink timer to 900 seconds:
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
@@ -487,13 +487,13 @@ In the illustration below, each host has two 10G links, with each 10G link going
 
 {{< img src="/images/cumulus-linux/mlag-peerlink-sizing.png" width="600" >}}
 
-Scaling this example out to a full rack, when planning for link failures, you need only allocate enough bandwidth to meet your site's strategy for handling failure scenarios. Imagine a full rack with 40 servers and two switches. You might plan for four to six servers to lose connectivity to a single switch and become single connected before you respond to the event. So expanding upon our previous example, if you have 40 hosts each with 20G of bandwidth dual-connected to the MLAG pair, you might allocate 20G to 30G of bandwidth to the peer link - which accounts for half of the single-connected bandwidth for four to six hosts.
+Scaling this example out to a full rack, when planning for link failures, you need only allocate enough bandwidth to meet your site's strategy for handling failure scenarios. For example, for a full rack with 40 servers and two switches, you might plan for four to six servers to lose connectivity to a single switch and become single connected before you respond to the event. So expanding upon our previous example, if you have 40 hosts each with 20G of bandwidth dual-connected to the MLAG pair, you might allocate 20G to 30G of bandwidth to the peer link, which accounts for half of the single-connected bandwidth for four to six hosts.
 
 ### MTU and MLAG
 
-The {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} in MLAG traffic is determined by the bridge MTU. Bridge MTU is determined by the lowest MTU setting of an interface that is a member of the bridge. If you want to set an MTU other than the default of 9216 bytes, you must configure the MTU on each physical interface and bond interface that are members of the MLAG bridges in the entire bridged domain.
+The {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} in MLAG traffic is determined by the bridge MTU. Bridge MTU is determined by the lowest MTU setting of an interface that is a member of the bridge. If you want to set an MTU other than the default of 9216 bytes, you must configure the MTU on each physical interface and bond interface that is a member of every MLAG bridge in the entire bridged domain.
 
-For example, if an MTU of 1500 is desired through the MLAG domain in the example shown above, **on all four leaf switches**, {{%link url="Switch-Port-Attributes#mtu" text="configure `mtu 1500`"%}} for each of the following bond interfaces, as they are members of bridge *bridge*: peerlink, uplink, server01.
+The following example commands set an MTU of 1500 for each of the bond interfaces (peerlink, uplink, server01), which are members of bridge *bridge*:
 
 {{< tabs "TabID1009 ">}}
 
@@ -590,7 +590,7 @@ If you use NCLU to create an iBGP peering across the peer link, running the `net
 
 ## Configuration Examples
 
-The example below shows a basic MLAG configuration, where leaf01 and leaf02 are MLAG peers. swp1 on the switch is a member of bond1 and swp2 is a member of bond2.
+The example below shows a basic MLAG configuration, where leaf01 and leaf02 are MLAG peers.
 
 {{< img src = "/images/cumulus-linux/mlag-config.png" >}}
 
@@ -898,7 +898,7 @@ Then, to connect the spine switches to the core switches, you need to determine 
 
 ### View the MLAG Log File
 
-By default, when `clagd` is running, it logs its status to the `/var/log/clagd.log` file and `syslog`. Example log file output is below:
+By default, when `clagd` is running, it logs status to the `/var/log/clagd.log` file and `syslog`. Example log file output is shown below:
 
 ```
 cumulus@spine01:~$ sudo tail /var/log/clagd.log
@@ -936,11 +936,11 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
 
 ### Monitor the clagd Service
 
-Due to the critical nature of the `clagd` service, `systemd` continuously monitors the status of `clagd`. `systemd` monitors the `clagd` service through the use of notify messages every 30 seconds. If the `clagd` service dies or becomes unresponsive for any reason and `systemd` receives no messages after 60 seconds `systemd` restarts `clagd`. `systemd` logs these failures in `/var/log/syslog`, and, on the first failure, generates a `cl-support`file as well.
+Due to the critical nature of the `clagd` service, `systemd` continuously monitors the status of the `clagd` service with notify messages every 30 seconds. If the `clagd` service terminates or becomes unresponsive for any reason and `systemd` receives no messages after 60 seconds, `systemd` restarts `clagd`. `systemd` logs these failures in the `/var/log/syslog` file and, on the first failure, also generates a `cl-support`file.
 
-This monitoring is configured and enabled automatically as long as `clagd` is enabled (`clagd-peer-ip` and `clagd-sys-mac` are configured for an interface) and the `clagd` service is running. If you stop `clagd`, for example with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
+This monitoring is configured and enabled automatically as long as `clagd` is enabled (`clagd-peer-ip` and `clagd-sys-mac` are configured for an interface) and the `clagd` service is running. If you stop `clagd` with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
 
-You can check the status of `clagd` monitoring by using the `cl-service-summary` command:
+You can check the status of `clagd` monitoring with the `cl-service-summary` or the `systemctl status` command:
 
 ```
 cumulus@switch:~$ sudo cl-service-summary
@@ -949,8 +949,6 @@ The systemctl daemon 5.4 uptime: 15m
 Service clagd        enabled    active
 ...
 ```
-
-Or the `systemctl status` command:
 
 ```
 cumulus@switch:~$ sudo systemctl status clagd.service
@@ -991,12 +989,21 @@ Run the `net show counters` command. The number of dropped packets is displayed 
 cumulus@switch:~$ net show counters
 
 Kernel Interface table
-Iface              MTU    Met    RX_OK    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_ERR    TX_DRP    TX_OVR  Flg
----------------  -----  -----    -------  --------  --------  --------  -------  --------  --------  ------  -----
-peerlink        1500       0      19226721     0      2952460  0       55115330     0       364      0       BMmRU
-peerlink.4094   1500       0      0            0      0        0       5379243      0       0        0       BMRU
-swp51           1500       0      6587220      0      2129676  0       38957769     0       202      0       BMsRU
-swp52           1500       0      12639501     0      822784   0       16157561     0       162      0       BMsRU
+Iface            MTU    RX_OK    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_ERR    TX_DRP    TX_OVR  Flg
+-------------  -----  -------  --------  --------  --------  -------  --------  --------  --------  -----
+bond1           9216        0         0         0         0      542         0         0         0  BMmU
+bond2           9216        0         0         0         0      542         0         0         0  BMmU
+bridge          9216        0         0         0         0       17         0         0         0  BMRU
+eth0            1500     5497         0         0         0      933         0         0         0  BMRU
+lo             65536     1328         0         0         0     1328         0         0         0  LRU
+mgmt           65536      790         0         0         0        0         0        33         0  OmRU
+peerlink        9216    23626         0       520         0    23665         0         0         0  BMmRU
+peerlink.4094   9216     8013         0         0         0     8017         0         0         0  BMRU
+swp1            9216        5         0         0         0      553         0         0         0  BMsRU
+swp2            9216        3         0         0         0      552         0         0         0  BMsRU
+swp49           9216    11822         0         0         0    11852         0         0         0  BMsRU
+swp50           9216    11804         0         0         0    11841         0         0         0  BMsRU
+swp51           9216        0         0         0         0      292         0         0         0  BMRU
 ```
 
 {{< /tab >}}

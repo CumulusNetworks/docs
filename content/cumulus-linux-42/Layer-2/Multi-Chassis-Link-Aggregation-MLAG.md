@@ -173,16 +173,6 @@ iface bridge
 ...
 ```
 
-```
-cumulus@switch:~$ sudo ifreload -a
-```
-
-{{%notice note%}}
-
-When you change the MLAG configuration in the `/etc/network/interfaces` file, the changes take effect when you bring the peer link interface up with `ifup` or `ifreload -a`. Do **not** use `systemctl restart clagd.service` to apply the new configuration.
-
-{{%/notice%}}
-
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -241,7 +231,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add:
+Edit the `/etc/network/interfaces` file to add the following parameters, then run the `sudo ifreload -a` command.
 - The inter-chasis bond (`peerlink`) with two ports in the bond (swp49 and swp50 in the example command below)
 - The `peerlink` bond to the bridge
 - The peer link VLAN (`peerlink.4094`) with the backup IP address, the peer link IP address (link-local), and the MLAG system MAC address (from the reserved range of addresses).
@@ -278,6 +268,12 @@ iface peerlink.4094
 ...
 ```
 
+Run the `sudo ifreload -a` command to apply all the configuration changes:
+
+```
+cumulus@leaf01:~$ sudo ifreload -a
+```
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -286,6 +282,7 @@ iface peerlink.4094
 
 - Do *not* add VLAN 4094 to the bridge VLAN list; VLAN 4094 for the peer link subinterface **cannot** be configured as a bridged VLAN with bridge VIDs under the bridge.
 - Do not use 169.254.0.1 as the MLAG peer link IP address; Cumulus Linux uses this address exclusively for {{<link url="Border-Gateway-Protocol-BGP" text="BGP unnumbered">}} interfaces.
+- When you configure MLAG manually in the `/etc/network/interfaces` file, the changes take effect when you bring the peer link interface up with the `sudo ifreload -a` command. Do **not** use `systemctl restart clagd.service` to apply the new configuration.
 
 {{%/notice%}}
 
@@ -356,7 +353,7 @@ The `clagd` service has a number of timers that you can tune for enhanced perfor
 | `--peerTimeout <SECONDS>` | The number of seconds `clagd` waits without receiving any data from the peer switch before it determines that the peer is no longer active. If this parameter is not specified, `clagd` uses ten times the local `lacpPoll` value. |
 | `--initDelay <SECONDS>` | The number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. <br>The default is *180* seconds. |
 | `--sendTimeout <SECONDS>` | The number of seconds `clagd` waits until the sending socket times out. If it takes longer than the `sendTimeout` value to send data to the peer, `clagd` generates an exception. <br>The default is *30* seconds. |
-| `--lacpPoll <seconds>` | How often the switch sends an update frequency value in the messages to its peer. |
+| `--lacpPoll <seconds>` | The number of seconds `clagd` waits before obtaining local LACP information. |
 
 To set a timer:
 
@@ -397,48 +394,6 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 
 {{< /tabs >}}
-
-To see all `clagd` parameter settings, run the `clagctl params` command:
-
-```
-cumulus@leaf01:~$ clagctl params
-clagVersion = 1.4.0
-clagDataVersion = 1.4.0
-clagCmdVersion = 1.1.0
-peerIp = linklocal
-peerIf = peerlink.4094
-sysMac = 44:38:39:be:ef:aa
-lacpPoll = 2
-currLacpPoll = 2
-peerConnect = 1
-cmdConnect = 1
-peerLinkPoll = 1
-switchdReadyTimeout = 120
-reloadTimer = 300
-periodicRun = 4
-priority = 1000
-quiet = False
-debug = 0x0
-verbose = False
-log = syslog
-vm = True
-peerPort = 5342
-peerTimeout = 20
-initDelay = 180
-sendTimeout = 30
-sendBufSize = 65536
-forceDynamic = False
-dormantDisable = False
-redirectEnable = False
-backupIp = 10.10.10.2
-backupVrf = None
-backupPort = 5342
-vxlanAnycast = None
-neighSync = True
-permanentMacSync = True
-cmdLine = /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:BE:EF:AA --priority 1000 --backupIp 10.10.10.2
-peerlinkLearnEnable = False
-```
 
 ### Configure MLAG with a Traditional Mode Bridge
 
@@ -1641,6 +1596,50 @@ line vty
 {{< /tabs >}}
 
 ## Troubleshooting
+
+### Show All MLAG Settings
+
+To see all MLAG parameter settings, run the `clagctl params` command:
+
+```
+cumulus@leaf01:~$ clagctl params
+clagVersion = 1.4.0
+clagDataVersion = 1.4.0
+clagCmdVersion = 1.1.0
+peerIp = linklocal
+peerIf = peerlink.4094
+sysMac = 44:38:39:be:ef:aa
+lacpPoll = 2
+currLacpPoll = 2
+peerConnect = 1
+cmdConnect = 1
+peerLinkPoll = 1
+switchdReadyTimeout = 120
+reloadTimer = 300
+periodicRun = 4
+priority = 1000
+quiet = False
+debug = 0x0
+verbose = False
+log = syslog
+vm = True
+peerPort = 5342
+peerTimeout = 20
+initDelay = 180
+sendTimeout = 30
+sendBufSize = 65536
+forceDynamic = False
+dormantDisable = False
+redirectEnable = False
+backupIp = 10.10.10.2
+backupVrf = None
+backupPort = 5342
+vxlanAnycast = None
+neighSync = True
+permanentMacSync = True
+cmdLine = /usr/sbin/clagd --daemon linklocal peerlink.4094 44:38:39:BE:EF:AA --priority 1000 --backupIp 10.10.10.2
+peerlinkLearnEnable = False
+```
 
 ### View the MLAG Log File
 

@@ -50,7 +50,7 @@ MLAG has these requirements:
 
 ## Basic Configuration
 
-The following procedure provides the steps required to configure MLAG. Follow steps 2 through 5 on each switch in the MLAG pair.
+The following procedure provides the steps required to configure MLAG. Follow the steps on each peer switch in the MLAG pair.
 
 1. On the dual-connected device, such as a host or server that sends traffic to and from the switch, create a bond that uses LACP. The method you use varies with the type of device you are configuring. On the dual-connected device, the only configuration requirement is to create a bond that is managed by LACP.
 

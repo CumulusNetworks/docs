@@ -551,6 +551,7 @@ Cumulus Networks recommends that you always enable STP in your layer 2 network a
 - The STP global configuration must be the same on both peer switches.
 - The STP configuration for dual-connected ports must be the same on both peer switches.
 - The STP priority must be the same on both peer switches.
+- To minimize convergence times when a link transitions to a forwarding state, configure the edge ports (for tagged and untagged frames) with PortAdminEdge and BPDU guard enabled.
 
 {{%/notice%}}
 

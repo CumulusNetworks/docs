@@ -229,7 +229,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-To configure a backup UDP port, add the `net add interface peerlink.4094 clag args --backupPort <port` command. For example:
+To configure a backup UDP port, add the `net add interface peerlink.4094 clag args --backupPort <port>` command. For example:
 
 ```
 cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2
@@ -274,6 +274,19 @@ To configure the backup link to a VRF or management VRF, include the name of the
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.2 vrf RED
+    clagd-peer-ip linklocal
+    clagd-sys-mac 44:38:39:BE:EF:AA
+...
+```
+
+To configure a backup UDP port, add `clagd-args --backupPort <port>` to the `auto peerlink.4094` stanza. For example:
+
+```
+...
+auto peerlink.4094
+iface peerlink.4094
+    clagd-args --backupPort 5400
+    clagd-backup-ip 10.10.10.2
     clagd-peer-ip linklocal
     clagd-sys-mac 44:38:39:BE:EF:AA
 ...

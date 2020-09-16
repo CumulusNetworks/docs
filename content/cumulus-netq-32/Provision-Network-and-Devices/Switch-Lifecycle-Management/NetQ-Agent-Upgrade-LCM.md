@@ -26,13 +26,13 @@ Prepare for NetQ Agent upgrade on switches as follows:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**.
 
-2. Add the {{<link url="Image-Management/#upload-upgrade-images" text="upgrade images">}}.
+2. Add the {{<link title="Manage Cumulus Linux and NetQ Images/#upload-upgrade-images" text="upgrade images">}}.
 
-3. Optionally, specify a {{<link url="Image-Management/#specify-a-default-upgrade-version" text="default upgrade version">}}.
+3. Optionally, specify a {{<link title="Manage Cumulus Linux and NetQ Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
-4. Verify or add {{<link title="Specify Switch Credentials" text="switch access credentials">}}.
+4. Verify or add {{<link title="Manage Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
 
-5. Optionally, create a new {{<link url="Configuration-Management/#create-cumulus-netq-configuration-profiles" text="configuration profile">}}.
+5. Optionally, create a new {{<link title="Manage Switch Configurations/#create-cumulus-netq-configuration-profiles" text="switch configuration profile">}}.
 
 Your LCM dashboard should look similar to this after you have completed the above steps:
 
@@ -42,11 +42,11 @@ Your LCM dashboard should look similar to this after you have completed the abov
 
 {{< tab "NetQ CLI" >}}
 
-1. Verify or add {{<link title="Specify Switch Credentials" text="switch access credentials">}}.
+1. Verify or add {{<link title="Manage Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
 
-2. Configure {{<link title="Assign Switch Roles" text="switch roles">}} to determine the order in which the switches get upgraded.
+2. Configure {{<link title="Manage Switch Inventory and Roles/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
 
-3. Upload the {{<link title="Upload Upgrade Images" text="Cumulus Linux install images">}}.
+3. Upload the {{<link title="Manage Cumulus Linux and NetQ Images/#upload-upgrade-images" text="Cumulus Linux install images">}}.
 
 {{< /tab >}}
 

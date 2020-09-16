@@ -4,42 +4,42 @@ author: Cumulus Networks
 weight: 830
 toc: 4
 ---
-With the NetQ UI, you can monitor individual switches separately from the network. You are able to view the status of services they are running, health of its various components, and connectivity performance. Being able to monitor switch component inventory aids in upgrade, compliance, and other planning tasks. Viewing individual switch health helps isolate performance issues.
+With the NetQ UI and NetQ CLI, you can monitor interfaces, services, utilization, and overall health of individual switches.
 
 ## View the Overall Health of a Switch
 
-When you want to monitor the health of a particular switch, open the small Switch card. It is unlikely that you would have this card open for every switch in your network at the same time, but it is useful for tracking selected switches that may have been problematic in the recent past or that you have recently installed. The card shows you alarm status and summary performance score and trend.
+When you want to view an overview of the current or past health of a particular switch, Use the NetQ UI to open the small Switch card. It is unlikely that you would have this card open for every switch in your network at the same time, but it is useful for tracking selected switches that may have been problematic in the recent past or that you have recently installed. The card shows you alarm status and summary performance score and trend.
 
 To view the summary:
 
-1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/>, and select Device|Switches. A dialog box opens.
+1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches), then click **Open a switch card**.
 
-    {{< figure src="/images/netq/dev-switch-open-switch-card.png" width="250" >}}
+    {{<figure src="/images/netq/add-switch-card-modal-310.png" width="250">}}
 
 2. Begin typing the hostname of the device you are interested in. Select it from the suggested matches when it appears.
 
-    {{< figure src="/images/netq/dev-switch-type-dev-name.png" width="250" >}}
+    {{<figure src="/images/netq/add-switch-card-auto-suggest-310.png" width="250">}}
 
-3. Select *small* to open the small size card.
+3. Select *Small* to open the small size card.
 
-    {{< figure src="/images/netq/dev-switch-choose-card-size.png" width="250" >}}
+    {{<figure src="/images/netq/add-switch-card-choose-size-320.png" width="250">}}
 
 4. Click **Add**, or **Cancel** to exit the process.
 
     {{<figure src="/images/netq/dev-switch-small-card-230.png" width="200">}}
 
-In this example, we see that the leaf01 switch has had very few alarms overall, but the number is trending upward, with a total count of 24 alarms currently.
+    This example shows the *leaf01* switch has had very few alarms overall, but the number is trending upward, with a total count of 24 alarms currently.
 
 ## View Health Performance Metrics
 
 When you are monitoring switches that have been problematic or are newly installed, you might want to view more than a summary. Instead, seeing key performance metrics can help you determine where issues might be occurring or how new devices are functioning in the network.
 
-To view the key metrics, open the medium Switch card. The card shows you the overall switch health score and the scores for the key metrics that comprise that score. The key metric scores are based on the number of alarms attributed to the following activities on the switch:
+To view the key metrics, use the NetQ UI to open the medium Switch card. The card shows you the overall switch health score and the scores for the key metrics that comprise that score. The key metric scores are based on the number of alarms attributed to the following activities on the switch:
 
 - Network services, such as BGP, EVPN, MLAG, NTP, and so forth
-- Scheduled traces
+<!-- - Scheduled traces -->
 - Interface performance
-- Platform performance
+- System performance
 
 {{<figure src="/images/netq/dev-switch-medium-alarms-charts-231.png" width="420">}}
 
@@ -47,11 +47,136 @@ Also included on the card is the total alarm count for all of these metrics. You
 
 ## View Attributes of a Switch
 
-For a quick look at the key attributes of a particular switch, open the large Switch card. Attributes are displayed as the default tab.
+For a quick look at the key attributes of a particular switch, open the large Switch card. Attributes are displayed as the default tab. You can view the static information about the switch, including its hostname, addresses, server and ASIC vendors and models, OS and NetQ software information. You can also view the state of the interfaces, NetQ Agent, and license on the switch.
 
-{{< figure src="/images/netq/dev-switch-large-attributes-tab-230.png" width="500" >}}
+{{<figure src="/images/netq/dev-switch-large-attributes-tab-230.png" width="500">}}
 
-In this example, the items of interest might be the five interfaces that are down and what version of OS and NetQ Agent the switch is running.
+From a performance perspective, this example shows that five interfaces are down, the NetQ Agent is communicating with the NetQ appliance or VM, and it is missing the Cumulus Linux license. It is important the license is valid, so you would want to fix this first (refer to {{<link url="https://docs.cumulusnetworks.com/cumulus-linux-42/Quick-Start-Guide/#install-the-license" text="Install the Cumulus Linux License">}}). Secondly, you would want to look more closely at the interfaces (refer to {{<link title="View Interface Statistics for a Switch" text="interface statistics">}}).
+
+
+
+## View Interface Statistics and Utilization for a Switch
+
+NetQ Agents collect performance statistics every 30 seconds for the physical interfaces on switches in your network. The NetQ Agent does not collect statistics for non-physical interfaces, such as bonds, bridges, and VXLANs. The NetQ Agent collects the following statistics:
+
+- Statistics
+    - **Transmit**: tx\_bytes, tx\_carrier, tx\_colls, tx\_drop, tx\_errs, tx\_packets
+    - **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame, rx\_multicast, rx\_packets
+- Utilization
+    - rx\_util, tx\_util
+    - port speed
+
+You can view these statistics and utilization data using the NetQ UI or the NetQ CLI.
+
+{{< tabs "TabID89" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Locate the switch card of interest on your workbench and change to the large size card if needed. Otherwise, open the relevant switch card:
+
+    1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" width="18" height="18">}} (Switches), and then select **Open a switch card**.
+
+    2. Begin typing the name of the switch of interest, and select when it appears in the suggestions list.
+
+    3. Select the *Large* card size.
+
+    4. Click **Add**.
+
+2. Hover over the card and click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/07-Data-Transfer/data-transfer-square-diagonal.svg" width="18" height="18">}} to open the Interface Stats tab.
+
+    {{<figure src="/images/netq/dev-switch-large-interfaces-tab-230.png" width="500">}}
+
+3. Select an interface from the list, scrolling down until you find it. By default the interfaces are sorted by Name, but you may find it easier to sort by the highest transmit or receive utilization using the filter above the list.
+
+    The charts update according to your selection. Scroll up and down to view the individual statistics. Look for high usage, a large number of drops or errors.
+
+What you view next depends on what you see, but a couple of possibilities include:
+
+- Open the full screen card to view details about all of the interfaces on the switch.
+- Open another switch card to compare performance on a similar interface.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+These can be viewed using the following NetQ CLI commands:
+
+```
+netq <hostname> show interface-stats [errors | all] [<physical-port>] [around <text-time>] [json]
+netq <hostname> show interface-utilization [<text-port>] [tx|rx] [around <text-time>] [json]
+```
+
+Where the various options are:
+
+- `hostname` limits the output to a particular switch
+- `errors` limits the output to only the transmit and receive errors found on the designated interfaces
+- `physical-port` limits the output to a particular port
+- `around` enables viewing of the data at a time in the past
+- `json` outputs results in JSON format
+- `text-port` limits output to a particular host and port; `hostname` is required with this option
+- `tx`, `rx` limits output to the transmit or receive values, respectively
+
+This example shows the interface statistics for the *leaf01* switch for all of their physical interfaces.
+
+```
+cumulus@switch:~$ netq leaf01 show interface-stats
+Matching proc_dev_stats records:
+Hostname          Interface                 RX Packets           RX Drop              RX Errors            TX Packets           TX Drop              TX Errors            Last Updated
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            swp1                      6147779              0                    0                    6504275              0                    0                    Tue Sep 15 19:01:56 2020
+leaf01            swp54                     4325143              1                    0                    4366254              0                    0                    Tue Sep 15 19:01:56 2020
+leaf01            swp52                     4415219              1                    0                    4321097              0                    0                    Tue Sep 15 19:01:56 2020
+leaf01            swp53                     4298355              1                    0                    4707209              0                    0                    Tue Sep 15 19:01:56 2020
+leaf01            swp3                      5489369              1                    0                    5753733              0                    0                    Tue Sep 15 19:01:56 2020
+leaf01            swp49                     10325417             0                    0                    10251618             0                    0                    Tue Sep 15 19:01:56 2020
+leaf01            swp51                     4498784              1                    0                    4360750              0                    0                    Tue Sep 15 19:01:56 2020
+leaf01            swp2                      5697369              0                    0                    5942791              0                    0                    Tue Sep 15 19:01:56 2020
+leaf01            swp50                     13885780             0                    0                    13944728             0                    0                    Tue Sep 15 19:01:56 2020
+```
+
+This example shows the utilization data for the *leaf03* switch.
+
+```
+cumulus@switch:~$ netq leaf03 show interface-utilization
+Matching port_stats records:
+Hostname          Interface                 RX Bytes (30sec)     RX Drop (30sec)      RX Errors (30sec)    RX Util (%age)       TX Bytes (30sec)     TX Drop (30sec)      TX Errors (30sec)    TX Util (%age)       Port Speed           Last Changed
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+leaf03            swp1                      3937                 0                    0                    0                    4933                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp54                     2459                 0                    0                    0                    2459                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp52                     2459                 0                    0                    0                    2459                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp53                     2545                 0                    0                    0                    2545                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp3                      3937                 0                    0                    0                    4962                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp49                     27858                0                    0                    0                    7732                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp51                     1599                 0                    0                    0                    2459                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp2                      3985                 0                    0                    0                    4924                 0                    0                    0                    1G                   Fri Apr 24 09:35:51
+                                                                                                                                                                                                                                         2020
+leaf03            swp50                     7575                 0                    0                    0                    28221                0                    0                    0                    1G                   Fri Apr 24 09:35:51
+```
+
+This example shows only the transmit utilization data for the *border01* switch.
+
+```
+cumulus@switch:~$ netq border01 show interface-utilization tx
+
+Matching port_stats records:
+Hostname          Interface                 TX Bytes (30sec)     TX Drop (30sec)      TX Errors (30sec)    TX Util (%age)       Port Speed           Last Changed
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+border01          swp1                      0                    0                    0                    0                    Unknown              Fri Apr 24 09:33:20
+                                                                                                                                                     2020
+border01          swp54                     2461                 0                    0                    0                    1G                   Fri Apr 24 09:33:20
+                                                                                                                                                     2020
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## View Current Resource Utilization for a Switch
 
@@ -74,59 +199,6 @@ To view the resource utilization on a particular switch:
 6. Change the time period. Is the performance about the same? Better? Worse? The results can guide your decisions about upgrade options.
 
 7. Open a different Switch card for a comparable switch. Is the performance similar?
-
-## View Interface Statistics for a Switch
-
-If you suspect that a particular switch is having performance problems, you might want to view the status of its interfaces. The statistics can also provide insight into interfaces that are more heavily loaded than others.
-
-To view interface statistics:
-
-1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" width="18" height="18"/>.
-
-2. Begin typing the name of the switch of interest, and select when it appears in the suggestions list.
-
-3. Select the *Large* card size.
-
-4. Click **Add**.
-
-5. Hover over the card and click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/07-Data-Transfer/data-transfer-square-diagonal.svg" width="18" height="18"/> to open the Interface Stats tab.
-
-    {{<figure src="/images/netq/dev-switch-large-interfaces-tab-230.png" width="500">}}
-
-6. Select an interface from the list, scrolling down until you find it. By default the interfaces are sorted by Name, but you may find it easier to sort by the highest transmit or receive utilization using the filter above the list.
-
-7. The charts update according to your selection. Scroll up and down to view the individual statistics.
-
-What you view next depends on what you see, but a couple of possibilities include:
-
-- Open the full screen card to view details about all of the IP addresses, MAC addresses, and interfaces on the switch.
-- Open another switch card to compare performance on a similar interface.
-
-## View All Addresses for a Switch
-
-It can be useful to view all of the configured addresses that this switch is using. You can view all IP addresses or all MAC addresses using the full screen Switch card.
-
-To view all IP addresses:
-
-1. Open the full screen Switch card. Click **IP addresses**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-ipaddr-tab-241.png" width="700">}}
-
-    By default **All** IP addresses are selected. Click **IPv6** or **IPv4** above the table to view only those IP addresses.
-
-2. Review the addresses for any anomalies, to obtain prefix information, determine if it is an IPv4 or IPv6 address, and so forth.
-
-3. To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
-
-To view all MAC addresses:
-
-1. Open the full screen Switch card and click **MAC Addresses**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-macaddr-tab-241.png" width="700">}}
-
-2. Review the addresses for any anomalies, to see the associated egress port, associated VLANs, and so forth.
-
-3. To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 ## View All Interfaces on a Switch
 
@@ -200,14 +272,6 @@ To view SSD utilization:
 3. View the Health value for a given drive. Is it lower than  usual? Less than 10%?
 
 Consider adding the switch cards that are suspect to a workbench for easy tracking.
-
-## View a Summary of Communication Status for All Switches
-
-A communication status summary for all of your switches across the network is available from the small Switch Inventory card.
-
-{{<figure src="/images/netq/inventory-switch-small-230.png" width="200">}}
-
-In this example, we see all 13 switches have been heard from recently (they are fresh).
 
 ## View the Number of Types of Any Component Deployed
 

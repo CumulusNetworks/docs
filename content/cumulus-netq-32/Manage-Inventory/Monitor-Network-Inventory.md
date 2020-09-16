@@ -1,5 +1,5 @@
 ---
-title: Monitor Network-wide Inventory
+title: Monitor Networkwide Inventory
 author: Cumulus Networks
 weight: 730
 toc: 4
@@ -19,7 +19,7 @@ To monitor the inventory of a given switch, refer to {{<link title="Monitor Swit
 
 To view the network or device performance data, refer to {{<link title="Monitor Network and Device Performance">}}.
 
-## Access Network-wide Inventory Data
+## Access Networkwide Inventory Data
 
 The Cumulus NetQ UI provides the Inventory|Devices card for monitoring network-wide inventory information for all switches and hosts. The Inventory|Switches card provides a more detailed view of inventory information for all switches (no hosts) on a network-wide basis.
 
@@ -29,7 +29,7 @@ Access these card from the Cumulus Workbench, or add them to your own workbench 
 
 The NetQ CLI provides detailed network inventory information through its `netq show inventory` command.
 
-## View Network-wide Inventory Summary
+## View Networkwide Inventory Summary
 
 All of the devices in your network can be viewed from either the NetQ UI or NetQ CLI.
 
@@ -109,7 +109,7 @@ spine04           VX                   CL              x86_64   VX              
 
 {{< /tabs >}}
 
-## View Network-wide Hardware Inventory
+## View Networkwide Hardware Inventory
 
 You can view hardware components deployed on all switches and hosts, or on all of the switches in your network.
 

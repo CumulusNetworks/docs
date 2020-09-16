@@ -47,17 +47,17 @@ spine04           Fresh            yes      3.1.0-cl3u28~1594095615.8f00ba1     
 
 ```
 
-To view NetQ Agents that are not communicating:
+To view NetQ Agents that are not communicating, run:
 
 ```
 cumulus@switch~:$ netq show agents rotten
 No matching agents records found
 ```
 
-To view NetQ Agent status on the NetQ Server or Appliance, run the following command from a node:
+To view NetQ Agent status on the NetQ appliance or VM, run:
 
 ```
-cumulus@leaf01~:$ netq show agents opta
+cumulus@switch~:$ netq show agents opta
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
@@ -118,7 +118,9 @@ Commands apply to one agent at a time, and are run from the switch or host where
 
 {{</notice>}}
 
-## Add and Remove a NetQ Agent
+### Add and Remove a NetQ Agent
+
+Adding or removing a NetQ Agent is to add or remove the IP address (and port and VRF when specified) from NetQ configuration file (at */etc/netq/netq.yml*). This adds or removes the information about the appliance or VM where the agent sends the data it collects.
 
 To use the NetQ CLI to add or remove a NetQ Agent on a switch or host, run:
 
@@ -136,9 +138,9 @@ cumulus@switch~:$ netq config add agent server 10.0.0.23
 cumulus@switch~:$ netq config restart agent
 ```
 
-## Disable and Re-enable a NetQ Agent
+### Disable and Re-enable a NetQ Agent
 
-You can temporarily disable NetQ Agent on a node. Disabling the agent maintains the activity history in the NetQ database, but stops the agent from collecting new data.
+You can temporarily disable NetQ Agent on a node. Disabling the NetQ Agent maintains the data already collected in the NetQ database, but stops the NetQ Agent from collecting new data until it is re-enabled.
 
 To disable a NetQ Agent, run:
 
@@ -146,44 +148,13 @@ To disable a NetQ Agent, run:
 cumulus@switch:~$ netq config stop agent
 ```
 
-To re-eable a NetQ Agent, run:
+To re-enable a NetQ Agent, run:
 
 ```
 cumulus@switch:~$ netq config restart agent
 ```
 
-## Decommission a NetQ Agent
-
-You can decommission, or completely remove, a NetQ Agent on a given device. You might need to do
-this when you:
-
-- Change the hostname of the switch or host being monitored
-- Move the switch or host being monitored from one data center to
-another
-- RMA the switch or host being monitored
-
-{{<notice note>}}
-
-Decommissioning the NetQ Agent on a switch or host removes the agent server settings from the local configuration file.
-
-{{</notice>}}
-
-To decommission a NetQ Agent and remove its data from the NetQ database:
-
-1. On the given switch or host, stop and disable the NetQ Agent service.
-
-    ```
-    cumulus@switch:~$ sudo systemctl stop netq-agent
-    cumulus@switch:~$ sudo systemctl disable netq-agent
-    ```
-
-2. On the NetQ On-premises or Cloud Appliance or VM, decommission the switch or host.
-
-    ```
-    cumulus@netq-appliance:~$ netq decommission <hostname>
-    ```
-
-## Configure a NetQ Agent to Limit Switch CPU Usage
+### Configure a NetQ Agent to Limit Switch CPU Usage
 
 While not typically an issue, you can restrict the NetQ Agent from using more than a configurable amount of the CPU resources. This setting requires Cumulus Linux versions 3.6 or later or 4.1.0 or later to be running on the switch.
 
@@ -203,7 +174,7 @@ cumulus@switch:~$ netq config del agent cpu-limit
 cumulus@switch:~$ netq config restart agent
 ```
 
-## Configure a NetQ Agent to Collect Data from Selected Services
+### Configure a NetQ Agent to Collect Data from Selected Services
 
 You can enable and disable collection of data from the FRR (FR Routing), Kubernetes, sensors, and WJH (What Just Happened) by the NetQ Agent.
 
@@ -237,8 +208,9 @@ cumulus@chassis~:$ netq config del agent sensors
 cumulus@switch:~$ netq config restart agent
 ```
 
-Note that this only applies when run on a chassis, not a switch.
-This example shows how to enable or disable monitoring of Kubernetes containers.
+{{<notice note>}}
+This command is only valid when run on a chassis, not a switch.
+{{</notice>}}
 
 To configure the agent to start or stop collecting **WJH** data, run:
 
@@ -250,7 +222,7 @@ cumulus@chassis~:$ netq config del agent wjh
 cumulus@switch:~$ netq config restart agent
 ```
 
-## Configure a NetQ Agent to Send Data to a Server Cluster
+### Configure a NetQ Agent to Send Data to a Server Cluster
 
 If you have a server cluster arrangement for NetQ, you will want to configure the NetQ Agent to send the data it collects to all of the servers in the cluster.
 
@@ -268,7 +240,13 @@ This example configures the NetQ Agent on a switch to send the data to three ser
 cumulus@switch:~$ netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf rocket
 ```
 
-## Configure Logging to Troubleshoot a NetQ Agent
+To stop a NetQ Agent from sending data to a server cluster, run:
+
+```
+cumulus@switch:~$ netq config del agent cluster-servers
+```
+
+### Configure Logging to Troubleshoot a NetQ Agent
 
 The logging level used for a NetQ Agent determines what types of events
 are logged about the NetQ Agent on the switch or host.
@@ -301,16 +279,16 @@ For example:
 This example shows a portion of a NetQ Agent log with debug level logging.
 
     ...
-    2019-02-16T18:45:53.951124+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
-    2019-02-16T18:45:53.952035+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery Agent ID spine-1
-    2019-02-16T18:45:53.960152+00:00 spine-1 netq-agent[8600]: INFO: Received Discovery Response 0
-    2019-02-16T18:46:54.054160+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
-    2019-02-16T18:46:54.054509+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery Agent ID spine-1
-    2019-02-16T18:46:54.057273+00:00 spine-1 netq-agent[8600]: INFO: Received Discovery Response 0
-    2019-02-16T18:47:54.157985+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
-    2019-02-16T18:47:54.158857+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery Agent ID spine-1
-    2019-02-16T18:47:54.171170+00:00 spine-1 netq-agent[8600]: INFO: Received Discovery Response 0
-    2019-02-16T18:48:54.260903+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
+    2020-02-16T18:45:53.951124+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
+    2020-02-16T18:45:53.952035+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery Agent ID spine-1
+    2020-02-16T18:45:53.960152+00:00 spine-1 netq-agent[8600]: INFO: Received Discovery Response 0
+    2020-02-16T18:46:54.054160+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
+    2020-02-16T18:46:54.054509+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery Agent ID spine-1
+    2020-02-16T18:46:54.057273+00:00 spine-1 netq-agent[8600]: INFO: Received Discovery Response 0
+    2020-02-16T18:47:54.157985+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
+    2020-02-16T18:47:54.158857+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery Agent ID spine-1
+    2020-02-16T18:47:54.171170+00:00 spine-1 netq-agent[8600]: INFO: Received Discovery Response 0
+    2020-02-16T18:48:54.260903+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
     ...
 
 To configure **debug**-level logging:
@@ -327,7 +305,7 @@ To configure **debug**-level logging:
     cumulus@switch:~$ netq config restart agent
     ```
 
-3. Optionally, verify connection to the NetQ platform by viewing the `netq-agent.log` messages.
+3. Optionally, verify connection to the NetQ appliance or VM by viewing the `netq-agent.log` messages.
 
 To configure **warning**-level logging:
 
@@ -336,21 +314,21 @@ cumulus@switch:~$ netq config add agent loglevel warning
 cumulus@switch:~$ netq config restart agent
 ```
 
-### Disable Agent Logging
+#### Disable Agent Logging
 
 If you have set the logging level to *debug* for troubleshooting, it is recommended that you either change the logging level to a less heavy mode or completely disable agent logging altogether when you are finished troubleshooting.
 
-To change the logging level, run:
+To change the logging level from debug to another level, run:
 
 ```
-cumulus@switch:~$ netq config add agent loglevel <LOG_LEVEL> 
+cumulus@switch:~$ netq config add agent loglevel [info|warning|error]
 cumulus@switch:~$ netq config restart agent
 ```
 
 To disable all logging:
 
 ```
-cumulus@switch:~$ netq config del agent loglevel 
+cumulus@switch:~$ netq config del agent loglevel
 cumulus@switch:~$ netq config restart agent
 ```
 
@@ -399,10 +377,10 @@ ospf-interface-json            60  yes       ['/usr/bin/vtysh', '-c', 'show ip o
 
 The NetQ predefined commands are described as follows:
 
-- **agent_stats**: Collects the NetQ Agent's statistics every five (5) minutes.
-- **agent_util_stats**: Collects the NetQ Agent's CPU and memory utilization every 30 seconds.
-- **cl-support-json**: Polls the switch every 3 minutes to determine if a `cl-support` file was generated.
-- **config-mon-json**: Polls the `/etc/network/interfaces`, `/etc/frr/frr.conf`, `/etc/lldpd.d/README.conf` and `/etc/ptm.d/topology.dot` files every 2 minutes looking to see if the contents of any of these files has changed. If a change has occurred, the contents of the file and its modification time are transmitted to the NetQ appliance or VM.
+- **agent_stats**: Collects statistics about the NetQ Agent every five (5) minutes.
+- **agent_util_stats**: Collects switch CPU and memory utilization by the NetQ Agent every 30 seconds.
+- **cl-support-json**: Polls the switch every three (3) minutes to determine if a `cl-support` file was generated.
+- **config-mon-json**: Polls the */etc/network/interfaces*, */etc/frr/frr.conf*, */etc/lldpd.d/README.conf* and */etc/ptm.d/topology.dot* files every two (2) minutes to determine if the contents of any of these files has changed. If a change has occurred, the contents of the file and its modification time are transmitted to the NetQ appliance or VM.
 - **ports**: Polls for optics plugged into the switch every hour.
 - **proc-net-dev**: Polls for network statistics on the switch every 30 seconds.
 - **running-config-mon-json**: Polls the `clagctl` parameters every 30 seconds and sends a diff of any changes to the NetQ appliance or VM.
@@ -488,7 +466,7 @@ To quickly revert to the original command settings, run:
 
 ```
 cumulus@switch:~$ netq config agent factory-reset commands
-Netq Command factory reset successfull
+Netq Command factory reset successful
 
 cumulus@switch:~$ netq config show agent commands
  Service Key               Period  Active       Command

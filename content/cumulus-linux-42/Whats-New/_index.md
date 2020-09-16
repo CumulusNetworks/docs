@@ -10,6 +10,21 @@ This document supports the Cumulus Linux 4.2 release, and lists new platforms an
 - For a list of open and fixed issues in Cumulus Linux 4.2, see the {{<link title="Cumulus Linux 4.2 Release Notes" text="Cumulus Linux 4.2 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.2, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+## What's New in Cumulus Linux 4.2.1
+
+Cumulus Linux 4.2.1 supports new platforms, provides bug fixes, and contains certain enhancements.
+
+### New Platforms
+
+- Mellanox SN4700 (400G Spectrum-3)
+- Mellanox SN4700 (200G Spectrum-3)
+- Mellanox SN4700 (100G Spectrum-3)
+
+### Enhancements
+
+- {{<link url="EVPN-Multihoming" text="EVPN multihoming">}} is now generally available on Mellanox switches
+- {{<link url="Virtual-Routing-and-Forwarding-VRF/#vrf-route-leaking" text="Inter-VRF route leaking">}} is now ASIC accelerated by default
+
 ## What's New in Cumulus Linux 4.2.0
 
 Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains several new features and improvements.

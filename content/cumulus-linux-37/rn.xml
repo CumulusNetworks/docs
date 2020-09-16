@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31390</td>
 <td><p>The following vulnerabilities have been announced in libxml2:<br/>
 CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
@@ -2374,6 +2392,24 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31390</td>
@@ -5047,6 +5083,24 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31390</td>
@@ -7897,6 +7951,24 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31390</td>
 <td><p>The following vulnerabilities have been announced in libxml2:<br/>
 CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
@@ -10442,6 +10514,24 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31390</td>
@@ -13407,6 +13497,24 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31390</td>
 <td><p>The following vulnerabilities have been announced in libxml2:<br/>
 CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
@@ -16240,6 +16348,24 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31390</td>
@@ -19431,6 +19557,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31390</td>
 <td><p>The following vulnerabilities have been announced in libxml2:<br/>
 CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
@@ -22570,6 +22714,24 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31390</td>
 <td><p>The following vulnerabilities have been announced in libxml2:<br/>
 CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
@@ -25396,6 +25558,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31390</td>
@@ -28282,6 +28462,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31390</td>
@@ -31327,6 +31525,24 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31390</td>
@@ -34496,6 +34712,24 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31390</td>
 <td><p>The following vulnerabilities have been announced in libxml2:<br/>
 CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
@@ -37165,6 +37399,24 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31390</td>

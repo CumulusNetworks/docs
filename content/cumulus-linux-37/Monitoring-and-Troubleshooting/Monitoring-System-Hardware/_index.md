@@ -194,7 +194,7 @@ For example:
 {{%notice note%}}
 
 - Output from the `sensors` command varies depending upon the switch hardware you use, as each platform ships with a different type and number of sensors.
-- On a Mellanox SN2700 or SN2410 switch running Cumulus Linux 3.7, if both power supply units (PSUs) are energized, the `sensors` command does not flag any ALARM. If only one PSU is energized and the other PSU is just plugged in with out being energized, `lm-sensors` might enumerate this device and flag an ALARM as the VIN field reports zero voltage.
+- On a Mellanox switch with the Spectrum ASIC, if both power supply units (PSUs) are energized, the `sensors` command does not flag any ALARM. If only one PSU cable is energized and the other PSU cable is just plugged in without being energized, `lm-sensors` might enumerate this device and flag an ALARM as the VIN field reports zero voltage.
 
 {{%/notice%}}
 

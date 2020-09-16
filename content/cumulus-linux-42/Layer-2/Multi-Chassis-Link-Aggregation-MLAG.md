@@ -50,7 +50,9 @@ MLAG has these requirements:
 
 ## Basic Configuration
 
-The following procedure provides the steps required to configure MLAG. Follow the steps on each peer switch in the MLAG pair.
+To configure MLAG, you need to create a bond that uses LACP on the dual-connected devices and configure the interfaces (including bonds, VLANs, bridges, and peer links) on each peer switch.
+
+Follow these steps on each peer switch in the MLAG pair:
 
 1. On the dual-connected device, such as a host or server that sends traffic to and from the switch, create a bond that uses LACP. The method you use varies with the type of device you are configuring. On the dual-connected device, the only configuration requirement is to create a bond that is managed by LACP.
 
@@ -177,7 +179,7 @@ iface bridge
 
 {{< /tabs >}}
 
-5. Create the inter-chassis bond and the peer link VLAN. You also need to provide the peer link IP address, the MLAG bond interfaces, the MLAG system MAC address, and the backup interface.
+5. Create the inter-chassis bond and the peer link VLAN (as a VLAN subinterface). You also need to provide the peer link IP address, the MLAG bond interfaces, the MLAG system MAC address, and the backup interface.
 
    - By default, the NCLU command configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Cumulus Networks recommends you use *peerlink.4094* to ensure that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
 
@@ -208,7 +210,7 @@ To ensure IP connectivity between the loopbacks, the two MLAG member switches mu
 {{< tab "NCLU Commands ">}}
 
 The following NCLU command is a macro command that:
-- Automatically creates the inter-chassis bond (`peerlink`) and the peer link VLAN (`peerlink.4094`)
+- Automatically creates the inter-chassis bond (`peerlink`) and the peer link VLAN subinterface (`peerlink.4094`)
 - Adds the `peerlink` bond to the bridge
 - Configures the peer link IP address (`primary` is the link-local address)
 - Adds the MLAG system MAC address 44:38:39:FF:40:94, the MLAG bond interfaces swp49 and swp50, and the backup IP address 10.10.10.2
@@ -223,6 +225,15 @@ To configure the backup link to a VRF or management VRF, include the name of the
 
 ```
 cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2 vrf RED
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+To configure a backup UDP port, add the `net add interface peerlink.4094 clag args --backupPort <port` command. For example:
+
+```
+cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2
+cumulus@switch:~$ net add interface peerlink.4094 clag args --backupPort 5400
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -417,8 +428,6 @@ iface br0.10
     bridge-stp on
 ...
 ```
-
-For a deeper comparison of traditional versus VLAN-aware bridge modes, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="knowledge base article">}}.
 
 ## Best Practices
 
@@ -1811,4 +1820,5 @@ cumulus@switch:~$ net show bridge link
 
 ## Related Information
 
-{{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="MLAG Redundancy Scenarios">}}.
+- {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="MLAG Redundancy Scenarios">}}
+- {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="Compare Traditional Bridge Mode to VLAN-aware Bridge Mode">}}

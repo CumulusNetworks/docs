@@ -7,6 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31418</td>
+<td><p>The default NTP configuration is to use eth0 as the NTP source interfaces. In Cumulus Linux releases where eth0 is in the mgmt VRF by default, the ntp service automatically runs in the management VRF. <br/>
+It is not recommended to run NTP with a source interface other than eth0 as this can be a security vulnerability.<br/>
+Changing the NTP source interface name with NCLU to a non-management VRF interface<br/>
+might result in NTP not functioning since the ntp service is still running in the mgmt VRF.</p>
+</td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31374</td>
 <td><p>CVE-2020-15166: ZeroMQ, a lightweight messaging kernel library<br/>
 does not properly handle connecting peers before a handshake is<br/>
@@ -42,12 +52,6 @@ Fixed: 3.1+dfsg-8+deb10u8</p></td>
 <td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
 To work around this issue, run the net add/del dns nameserver <span class="error">&#91;vrf &lt;name&gt;&#93;</span> command to force the DNS configuration.</p></td>
 <td>3.7.13, 4.1.1-4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31316</td>
-<td><p>On the Mellanox SN2410 switch, when you create an unused VNI, you might see high CPU utilization due to neighmgrd.</p></td>
-<td>4.2.0</td>
 <td></td>
 </tr>
 <tr>

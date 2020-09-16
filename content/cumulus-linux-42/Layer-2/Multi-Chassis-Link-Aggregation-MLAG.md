@@ -107,7 +107,9 @@ iface bond2
 
 3. Add a unique MLAG ID (clag-id) to each bond.
 
-   For MLAG to operate correctly, the peer switches must know which links are dual-connected or are connected to the same host or switch. You must specify a unique MLAG ID (clag-id) for every dual-connected bond on each peer switch. The value must be between 1 and 65535 and must be the same on both peer switches for the bond to be considered dual-connected. The example commands use values 1 and 2:
+   For MLAG to operate correctly, the peer switches must know which links are dual-connected or are connected to the same host or switch. You must specify a unique MLAG ID (clag-id) for every dual-connected bond on each peer switch. The value must be between 1 and 65535 and must be the same on both peer switches for the bond to be considered dual-connected.
+
+   When the switch receives a valid message from its peer, it knows that the `clagd` daemon is alive and executing on that peer. This causes `clagd` to change the system ID of each bond that is assigned a `clag-id` from the default value (the MAC address of the bond) to the system ID assigned to both peer switches, which makes the hosts connected to each switch act as if they are connected to the same system so that they use all ports within their bond. Additionally, `clagd` determines which bonds are dual-connected and modifies the forwarding and learning behavior to accommodate these dual-connected bonds. 
 
     {{< tabs "TabID110 ">}}
 
@@ -374,7 +376,7 @@ The `clagd` service has a number of timers that you can tune for enhanced perfor
 | <div style="width:250px">Timer | Description |
 | ----- | ----------- |
 | `--reloadTimer <SECONDS>` | The number of seconds to wait for the peer switch to become active. If the peer switch does not become active after the timer expires, the MLAG bonds leave the initialization ({{<link url="#peer-link-interfaces-and-the-protodown-state" text="protodown">}}) state and become active. This provides `clagd` with sufficient time to determine whether the peer switch is coming up or if it is permanently unreachable. <br>The default is *300* seconds.|
-| `--peerTimeout <SECONDS>` | The number of seconds `clagd` waits without receiving any data from the peer switch before it determines that the peer is no longer active. If this parameter is not specified, `clagd` uses ten times the local `lacpPoll` value. |
+| `--peerTimeout <SECONDS>` | The number of seconds `clagd` waits without receiving any messages from the peer switch before it determines that the peer is no longer active. At this point, the switch reverts all configuration changes so that it operates as a standard non-MLAG switch. This includes removing all statically assigned MAC addresses, clearing the egress forwarding mask, and allowing addresses to move from any port to the peer port. After a message is again received from the peer, MLAG operation restarts. If this parameter is not specified, `clagd` uses ten times the local `lacpPoll` value. |
 | `--initDelay <SECONDS>` | The number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. <br>The default is *180* seconds. |
 | `--sendTimeout <SECONDS>` | The number of seconds `clagd` waits until the sending socket times out. If it takes longer than the `sendTimeout` value to send data to the peer, `clagd` generates an exception. <br>The default is *30* seconds. |
 | `--lacpPoll <seconds>` | The number of seconds `clagd` waits before obtaining local LACP information. |

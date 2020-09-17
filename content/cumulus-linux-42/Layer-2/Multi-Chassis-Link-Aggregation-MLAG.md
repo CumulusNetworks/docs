@@ -109,8 +109,6 @@ iface bond2
 
    For MLAG to operate correctly, the peer switches must know which links are dual-connected or are connected to the same host or switch. You must specify a unique MLAG ID (clag-id) for every dual-connected bond on each peer switch. The value must be between 1 and 65535 and must be the same on both peer switches for the bond to be considered dual-connected.
 
-   When the switch receives a valid message from its peer, it knows that the `clagd` daemon is alive and executing on that peer. This causes `clagd` to change the system ID of each bond that is assigned a `clag-id` from the default value (the MAC address of the bond) to the system ID assigned to both peer switches, which makes the hosts connected to each switch act as if they are connected to the same system so that they use all ports within their bond. Additionally, `clagd` determines which bonds are dual-connected and modifies the forwarding and learning behavior to accommodate these dual-connected bonds.
-
    The example commands below add an MLAG ID of 1 to bond1 and 2 to bond2:
 
     {{< tabs "TabID110 ">}}
@@ -184,21 +182,14 @@ iface bridge
 {{< /tabs >}}
 
 5. Create the inter-chassis bond and the peer link VLAN (as a VLAN subinterface). You also need to provide the peer link IP address, the MLAG bond interfaces, the MLAG system MAC address, and the backup interface.
-
    - By default, the NCLU command configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Cumulus Networks recommends you use *peerlink.4094* to ensure that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
-
    - The peer link IP address is an unrouteable link-local address that provides layer 3 connectivity between the peer switches.
-
-   - Cumulus Networks provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network. If you configure MLAG with NCLU commands, Cumulus Linux does not check against a possible collision with VLANs outside this default reserved range.
+   - Cumulus Networks provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network.
       - Do not to use a multicast MAC address.
       - Do not use the same MAC address for different MLAG pairs; make sure you specify a different MAC address for each MLAG pair in the network.  
-
    - The backup IP address is any layer 3 backup interface for the peer link, which is used in case the peer link goes down. The backup IP address is **required** and **must** be different than the peer link IP address. It must be reachable by a route that does not use the peer link and it must be in the same network namespace as the peer link IP address. Cumulus Networks recommends you use the loopback or management IP address of the switch.
-
       {{< expand "Loopback or Management IP Address?" >}}
-
 - If your MLAG configuration has **bridged uplinks** (such as a campus network or a large, flat layer 2 network), use the peer switch **eth0** address. When the peer link is down, the secondary switch routes towards the eth0 address using the OOB network (provided you have implemented an OOB network).
-
 - If your MLAG configuration has **routed uplinks** (a modern approach to the data center fabric network), use the peer switch **loopback** address. When the peer link is down, the secondary switch routes towards the loopback address using uplinks (towards the spine layer). If the primary switch is also suffering a more significant problem (for example, `switchd` is unresponsive or stopped), the secondary switch eventually promotes itself to primary and traffic now flows normally. 
 
    {{%notice note%}}
@@ -209,15 +200,16 @@ When using BGP, to ensure IP connectivity between the loopbacks, the MLAG peer s
 
 {{< /expand >}}
 
+   The following examples show commands for each MLAG peer (leaf01 and leaf02).
+
    {{< tabs "TabID216 ">}}
 
 {{< tab "NCLU Commands ">}}
 
-The following NCLU command is a macro command that:
-- Automatically creates the inter-chassis bond (`peerlink`) and the peer link VLAN subinterface (`peerlink.4094`)
-- Adds the `peerlink` bond to the bridge
+The NCLU command is a macro command that:
+- Automatically creates the inter-chassis bond (`peerlink`) and the peer link VLAN subinterface (`peerlink.4094`), and adds the `peerlink` bond to the bridge
 - Configures the peer link IP address (`primary` is the link-local address)
-- Adds the MLAG system MAC address, the MLAG bond interfaces, and the backup IP address
+- Adds the MLAG system MAC address, the MLAG bond interfaces, and the backup IP address you specify
 
    {{< tabs "TabID222 ">}}
 

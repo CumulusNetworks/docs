@@ -40,11 +40,39 @@ Component information for all of the switches in your network can be viewed from
 
 {{< tab "NetQ UI" >}}
 
+### View the Number of Types of Any Component Deployed
+
+For each of the components monitored on a switch, NetQ displays the variety of those component by way of a count. For example, if you have three operating systems running on your switches, say Cumulus Linux, Ubuntu and RHEL, NetQ indicates a total unique count of three OSs. If you only use Cumulus Linux, then the count shows as one.
+
+To view this count for all of the components on the switch:
+
+1. Open the medium Switch Inventory card.
+
+    {{<figure src="/images/netq/inventory-switch-medium-320.png" width="200">}}
+
+2. Note the number in the **Unique** column for each component.
+
+    In the above example, there are four different disk sizes deployed, four different OSs running, four different ASIC vendors and models deployed, and so forth.
+
+3. Scroll down to see additional components.
+
+By default, the data is shown for switches with a fresh communication status. You can choose to look at the data for switches in the rotten state instead. For example, if you wanted to see if there was any correlation to a version of OS to the switch having a rotten status, you could select **Rotten Switches** from the dropdown at the top of the card and see if they all use the same OS (count would be 1). It may not be the cause of the lack of communication, but you get the idea.
+
+### View the Distribution of Any Component Deployed
+
+NetQ monitors a number of switch components. For each component you can view the distribution of versions or models or vendors deployed across your network for that component.
+
+To view the distribution:
+
 1. Locate the Inventory|Switches card on your workbench.
 
-2. From the medium sized card, view the distribution of hardware and software components across the network.
+2. From the medium or large card, view the distribution of hardware and software components across the network.
 
-3. Hover over any of the segments in the distribution chart to highlight a specific component.
+    {{<figure src="/images/netq/inventory-switch-medium-230.png" width="200">}}
+
+    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="500">}}
+
+3. Hover over any of the segments in the distribution chart to highlight a specific component. Scroll down to view additional components.
 
     {{<figure src="/images/netq/inventory-switch-medium-hover-license-230.png" width="200">}}
 
@@ -53,7 +81,13 @@ Component information for all of the switches in your network can be viewed from
 <ul>
 <li>Name or value of the component type, such as the version number or status</li>
 <li>Total number of switches with that type of component deployed compared to the total number of switches</li>
-<li>Percentage of this type with respect to all component types</li></ul></div>
+<li>Percentage of this type with respect to all component types</li></ul>
+
+On the large Switch Inventory card, hovering also highlights the related components for the selected component. This is shown in blue here.
+
+{{<figure src="/images/netq/inventory-switch-large-summary-tab-hover-os-230.png" width="500">}}
+
+</div>
 
 4. Choose *Rotten Switches* from the dropdown to see which, if any, switches are currently not communicating with NetQ.
 
@@ -63,7 +97,7 @@ Component information for all of the switches in your network can be viewed from
 
     {{<figure src="/images/netq/inventory-switch-small-230.png" width="150">}}
 
-<div style="padding-left: 18px;">Here you can see the total switch count and the distribution of those that are communicating well and those that are not.</div>
+<div style="padding-left: 18px;">Here you can see the total switch count and the distribution of those that are communicating well with the NetQ appliance or VM and those that are not. In this example, there are a total of 13 switches and they are all fresh (communicating well).</div>
 
 {{< /tab >}}
 
@@ -1106,7 +1140,7 @@ netq-ts           Ubuntu          18.04                                Tue Jul 1
 
 ### View Cumulus Linux License Information for a Switch
 
-The state of a Cumulus Linux license can impact the function of your switches. If the license status is *Bad* or *Missing*, the license must be updated or applied for a switch to operate properly. Hosts do not require a Cumulus Linux or NetQ license.
+It is important to know when you have switches that have invalid or missing Cumulus Linux licenses, as not all of the features are operational without a valid license. If the license status is *Bad* or *Missing*, the license must be updated or applied for a switch to operate properly. Hosts do not require a Cumulus Linux or NetQ license.
 
 Cumulus Linux license information is available from the NetQ UI and NetQ CLI.
 
@@ -1121,7 +1155,7 @@ Cumulus Linux license information is available from the NetQ UI and NetQ CLI.
 
 2. Hover over the card, and change to the full-screen card using the size picker.
 
-4. The **Show All** tab is displayed by default. 
+4. The **Show All** tab is displayed by default.
 
 5. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
 

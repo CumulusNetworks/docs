@@ -1,14 +1,28 @@
 ---
-title: Monitor Switches
+title: Monitor Switch Performance
 author: Cumulus Networks
 weight: 830
 toc: 4
 ---
-With the NetQ UI and NetQ CLI, you can monitor interfaces, services, utilization, and overall health of individual switches.
+With the NetQ UI and NetQ CLI, you can monitor the health of individual switches, including interface performance and resource utilization.
 
-## View the Overall Health of a Switch
+Three categories of performance metrics are available for switches:
 
-When you want to view an overview of the current or past health of a particular switch, Use the NetQ UI to open the small Switch card. It is unlikely that you would have this card open for every switch in your network at the same time, but it is useful for tracking selected switches that may have been problematic in the recent past or that you have recently installed. The card shows you alarm status and summary performance score and trend.
+- **System configuration**: alarms, interfaces, IP and MAC addresses, VLANs, IP routes, IP neighbors, and installed software packages
+- **Utilization statistics**: CPU, memory, disk, ACL and forwarding resources, SSD, and BTRFS
+- **Physical sensing**: digital optics, chassis sensors, and WJH
+
+For information about the health of network services and protocols (BGP, EVPN, NTP, and so forth) running on switches, refer to the relevant layer monitoring topic.
+
+For switch inventory information for all switches (ASIC, platform, CPU, memory, disk, and OS), refer to {{<link title="Monitor Switch Inventory">}}.
+
+## View Overall Health
+
+The NetQ UI provides several views that enable users to easily track the overall health of switch, some high-level metrics, and attributes of the switch.
+
+### View the Overall Health
+
+When you want to view an overview of the current or past health of a particular switch, open the NetQ UI small Switch card. It is unlikely that you would have this card open for every switch in your network at the same time, but it is useful for tracking selected switches that may have been problematic in the recent past or that you have recently installed. The card shows you alarm status, a summary health score, and health trend.
 
 To view the summary:
 
@@ -16,46 +30,211 @@ To view the summary:
 
     {{<figure src="/images/netq/add-switch-card-modal-310.png" width="250">}}
 
-2. Begin typing the hostname of the device you are interested in. Select it from the suggested matches when it appears.
+2. Begin typing the hostname of the switch you are interested in. Select it from the suggested matches when it appears.
 
     {{<figure src="/images/netq/add-switch-card-auto-suggest-310.png" width="250">}}
 
-3. Select *Small* to open the small size card.
+3. Select *Small* from the card size dropdown.
 
     {{<figure src="/images/netq/add-switch-card-choose-size-320.png" width="250">}}
 
-4. Click **Add**, or **Cancel** to exit the process.
+4. Click **Add**.
 
     {{<figure src="/images/netq/dev-switch-small-card-230.png" width="200">}}
 
     This example shows the *leaf01* switch has had very few alarms overall, but the number is trending upward, with a total count of 24 alarms currently.
 
-## View Health Performance Metrics
+### View High-Level Health Metrics
 
 When you are monitoring switches that have been problematic or are newly installed, you might want to view more than a summary. Instead, seeing key performance metrics can help you determine where issues might be occurring or how new devices are functioning in the network.
 
 To view the key metrics, use the NetQ UI to open the medium Switch card. The card shows you the overall switch health score and the scores for the key metrics that comprise that score. The key metric scores are based on the number of alarms attributed to the following activities on the switch:
 
 - Network services, such as BGP, EVPN, MLAG, NTP, and so forth
-<!-- - Scheduled traces -->
 - Interface performance
 - System performance
 
+Locate or open the relevant Switch card:
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches), then click **Open a switch card**.
+
+2. Begin typing the hostname of the device you are interested in. Select it from the suggested matches when it appears.
+
+3. Click **Add**.
+
 {{<figure src="/images/netq/dev-switch-medium-alarms-charts-231.png" width="420">}}
 
-Also included on the card is the total alarm count for all of these metrics. You can view the key performance metrics as numerical scores or as line charts over time, by clicking **Charts** or **Alarms** at the top of the card.
+Also included on the card is the total alarm count for all of these metrics. You can view the key performance metrics as numerical scores or as line charts over time, by clicking **Alarms** or **Charts** at the top of the card.
 
-## View Attributes of a Switch
+### View Attributes
 
-For a quick look at the key attributes of a particular switch, open the large Switch card. Attributes are displayed as the default tab. You can view the static information about the switch, including its hostname, addresses, server and ASIC vendors and models, OS and NetQ software information. You can also view the state of the interfaces, NetQ Agent, and license on the switch.
+For a quick look at the key attributes of a particular switch, open the large Switch card.
+
+Locate or open the relevant Switch card:
+
+- Hover over the card, then change to the large card using the card size picker.
+
+OR
+
+1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches), then click **Open a switch card**.
+
+2. Begin typing the hostname of the device you are interested in. Select it from the suggested matches when it appears.
+
+3. Select *Large* from the card size dropdown.
+
+4. Click **Add**.
+
+Attributes are displayed as the default tab on the large Switch card. You can view the static information about the switch, including its hostname, addresses, server and ASIC vendors and models, OS and NetQ software information. You can also view the state of the interfaces, NetQ Agent, and license on the switch.
 
 {{<figure src="/images/netq/dev-switch-large-attributes-tab-230.png" width="500">}}
 
 From a performance perspective, this example shows that five interfaces are down, the NetQ Agent is communicating with the NetQ appliance or VM, and it is missing the Cumulus Linux license. It is important the license is valid, so you would want to fix this first (refer to {{<link url="https://docs.cumulusnetworks.com/cumulus-linux-42/Quick-Start-Guide/#install-the-license" text="Install the Cumulus Linux License">}}). Secondly, you would want to look more closely at the interfaces (refer to {{<link title="View Interface Statistics for a Switch" text="interface statistics">}}).
 
+## System Configuration Metrics
 
+At some point in the lifecycle of a switch, you are likely to want more detail about how the switch is configured and what software is running on it. The NetQ UI and the NetQ CLI can provide this information.
 
-## View Interface Statistics and Utilization for a Switch
+### View All Switch Alarms
+
+### View Status of All Interfaces
+
+You can view all of the configured interfaces on a switch in one place making it easier to see inconsistencies in the configuration, quickly see when changes were made, and the operational status.
+
+To view all interfaces:
+
+1. Open the full-screen Switch card and click **All Interfaces**.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-interfaces-tab-241.png" width="700">}}
+
+2. Look for interfaces that are down, shown in the **State** column.
+
+3. Look for recent changes to the interfaces, shown in the **Last Changed** column.
+
+4. View details about each interface, shown in the **Details** column.
+
+5. Verify they are of the correct kind for their intended function, shown in the **Type** column.
+
+6. Verify the correct VRF interface is assigned to an interface, shown in the **VRF** column.
+
+7. To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
+
+### View Status of All MAC Addresses
+
+### View Status of All VLANs
+
+### View Status of All IP Routes
+
+### View Status of All IP Neighbors
+
+### View Status of All IP Addresses
+
+### View All Software Packages
+
+You can view all of the software installed on a given switch to quickly validate versions and total software installed.
+
+To view all software packages:
+
+1. Open the full-screen Switch card and click **Installed Packages**.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-pkgs-tab-241.png" width="700">}}
+
+2. Look for packages of interest and their version and status. Sort by a particular parameter by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18"/>.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-filter-by-pkgname-241.png" width="300">}}
+
+3. Optionally, export the list by selecting all or specific packages, then clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
+
+## Utilization Statistics
+
+Utilization statistics provide a view into the operation of a switch. They indicate whether resources are becoming dangerously close to their maximum capacity or a user-defined threshold. Depending on the function of the switch, the acceptable thresholds can vary. You can use the NetQ UI or the NetQ CLI to access the utilization statistics.
+
+### View Compute Resources Utilization
+
+You can view the current utilization of CPU, memory, and disk resources to determine whether a switch is reaching its maximum load and compare its performance with other switches.
+
+{{< tabs "TabID155" >}}
+
+{{< tab "NetQ UI" >}}
+
+To view the compute resources utilization:
+
+1. Open the large Switch card.
+
+2. Hover over the card and click <img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg" height="18" width="18"/>.
+
+3. The card is divided into two sections, displaying hardware-related performance through a series of charts.
+
+    {{<figure src="/images/netq/dev-switch-large-utilization-tab-230.png" width="500">}}
+
+4. Look at the hardware performance charts.
+
+    Are there any that are reaching critical usage levels? Is usage high at a particular time of day?
+
+5. Change the time period. Is the performance about the same? Better? Worse? The results can guide your decisions about upgrade options.
+
+6. Open the large Switch card for a comparable switch. Is the performance similar?
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+You can quickly determine how many compute resources &mdash; CPU, disk and memory &mdash; are being consumed by the switches on your network.
+
+To obtain this information, run the relevant command:
+
+```
+netq <hostname> show resource-util [cpu | memory] [around <text-time>] [json]
+netq <hostname> show resource-util disk [<text-diskname>] [around <text-time>] [json]
+```
+
+When no options are included the output shows the percentage of CPU and memory being consumed as well as the amount and percentage of disk space being consumed. You can use the `around` option to view the information for a particular time.
+
+This example shows the CPU, memory, and disk utilization for the *leaf01* switch.
+
+```
+cumulus@switch:~$ netq leaf01 show resource-util
+Matching resource_util records:
+Hostname          CPU Utilization      Memory Utilization   Disk Name            Total                Used                 Disk Utilization     Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            4.5                  72.1                 /dev/vda4            6170849280           1230303232           20.9                 Wed Sep 16 20:35:57 2020
+
+```
+
+This example shows only the CPU utilization for the *leaf01* switch.
+
+```
+cumulus@switch:~$ netq leaf01 show resource-util cpu
+Matching resource_util records:
+Hostname          CPU Utilization      Last Updated
+----------------- -------------------- ------------------------
+leaf01            4.2                  Wed Sep 16 20:52:12 2020
+```
+
+This example shows only the memory utilization for the *leaf01* switch.
+
+```
+cumulus@switch:~$ netq leaf01 show resource-util memory
+Matching resource_util records:
+Hostname          Memory Utilization   Last Updated
+----------------- -------------------- ------------------------
+leaf01            72.1                 Wed Sep 16 20:52:12 2020
+```
+
+This example shows only the disk utilization for the *leaf01* switch. If you have more than one disk in your switch, utilization data for all of the disks are displayed. If you want to view the data for only one of the disks, you must specify a disk name.
+
+```
+cumulus@switch:~$ netq leaf01 show resource-util disk
+Matching resource_util records:
+Hostname          Disk Name            Total                Used                 Disk Utilization     Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            /dev/vda4            6170849280           1230393344           20.9                 Wed Sep 16 20:54:14 2020
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### View Interface Statistics and Utilization
 
 NetQ Agents collect performance statistics every 30 seconds for the physical interfaces on switches in your network. The NetQ Agent does not collect statistics for non-physical interfaces, such as bonds, bridges, and VXLANs. The NetQ Agent collects the following statistics:
 
@@ -99,7 +278,7 @@ What you view next depends on what you see, but a couple of possibilities includ
 
 {{< tab "NetQ CLI" >}}
 
-These can be viewed using the following NetQ CLI commands:
+To view the interface statistics and utilization, run:
 
 ```
 netq <hostname> show interface-stats [errors | all] [<physical-port>] [around <text-time>] [json]
@@ -116,7 +295,7 @@ Where the various options are:
 - `text-port` limits output to a particular host and port; `hostname` is required with this option
 - `tx`, `rx` limits output to the transmit or receive values, respectively
 
-This example shows the interface statistics for the *leaf01* switch for all of their physical interfaces.
+This example shows the interface statistics for the *leaf01* switch for all of its physical interfaces.
 
 ```
 cumulus@switch:~$ netq leaf01 show interface-stats
@@ -178,88 +357,17 @@ border01          swp54                     2461                 0              
 
 {{< /tabs >}}
 
-## View Current Resource Utilization for a Switch
+### View ACL Resource Utilization
 
-The NetQ GUI enables you to easily view the performance of various hardware components and the network tables. This enables you to determine whether a switch is reaching its maximum load and compare its performance with other switches.
+### View Forwarding Resource Utilization
 
-To view the resource utilization on a particular switch:
+### View SSD Utilization
 
-1. Open the large Switch card.
+For NetQ Appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. An alarm is generated for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
 
-2. Hover over the card and click <img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg" height="18" width="18"/>.
+{{< tabs "TabID368" >}}
 
-3. The card is divided into two sections, displaying hardware-related performance through a series of charts.
-
-    {{<figure src="/images/netq/dev-switch-large-utilization-tab-230.png" width="500">}}
-
-4. Look at the hardware performance charts. Are there any that are reaching critical usage levels?
-
-5. Is usage high at a particular time of day?
-
-6. Change the time period. Is the performance about the same? Better? Worse? The results can guide your decisions about upgrade options.
-
-7. Open a different Switch card for a comparable switch. Is the performance similar?
-
-## View All Interfaces on a Switch
-
-You can view all of the configured interfaces on a switch in one place making it easier to see inconsistencies in the configuration, quickly see when changes were made, and the operational status.
-
-To view all interfaces:
-
-1. Open the full-screen Switch card and click **All Interfaces**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-interfaces-tab-241.png" width="700">}}
-
-2. Look for interfaces that are down, shown in the **State** column.
-
-3. Look for recent changes to the interfaces, shown in the **Last Changed** column.
-
-4. View details about each interface, shown in the **Details** column.
-
-5. Verify they are of the correct kind for their intended function, shown in the **Type** column.
-
-6. Verify the correct VRF interface is assigned to an interface, shown in the **VRF** column.
-
-7. To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
-
-## View All Software Packages on a Switch
-
-You can view all of the software installed on a given switch to quickly validate versions and total software installed.
-
-To view all software packages:
-
-1. Open the full-screen Switch card and click **Installed Packages**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-pkgs-tab-241.png" width="700">}}
-
-2. Look for packages of interest and their version and status. Sort by a particular parameter by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18"/>.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-filter-by-pkgname-241.png" width="300">}}
-
-3. Optionally, export the list by selecting all or specific packages, then clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
-
-## View Disk Storage After BTRFS Allocation
-
-Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed. For details about when a rebalance is recommended, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions" text="When to Rebalance BTRFS Partitions">}}.
-
-To view the disk state:
-
-1. Open the full-screen Switch card for a switch of interest:
-
-     - Type the switch name in the Search box, then use the card size picker to open the full-screen card, or 
-     - Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24"/> (Switches) and enter the switch name and select the full-screen card size.
-
-2. Click **BTRFS Utilization**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-btrfs-util-tab-241.png" width="700">}}
-
-3. Look for the **Rebalance Recommended** column.
-
-    If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the table to determine if you are getting close to needing a rebalance, and come back to view this table at a later time.
-
-## View SSD Utilization
-
-For NetQ servers and appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. An alarm is generated for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utiilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
+{{< tab "NetQ UI" >}}
 
 To view SSD utilization:
 
@@ -273,129 +381,90 @@ To view SSD utilization:
 
 Consider adding the switch cards that are suspect to a workbench for easy tracking.
 
-## View the Number of Types of Any Component Deployed
+{{< /tab >}}
 
-For each of the components monitored on a switch, NetQ displays the variety of those component by way of a count. For example, if you have three operating systems running on your switches, say Cumulus Linux, Ubuntu and RHEL, NetQ indicates a total unique count of three OSs. If you only use Cumulus Linux, then the count shows as one.
+{{< tab "NetQ CLI" >}}
 
-To view this count for all of the components on the switch:
+To view SDD utilization, run:
 
-1. Open the medium Switch Inventory card.
+```
+netq show cl-ssd-util [around <text-time>] [json]
+```
 
-    {{<figure src="/images/netq/inventory-switch-medium-320.png" width="200">}}
+This example shows the utilization for *spine02* which has this type of SSD.
 
-2. Note the number in the **Unique** column for each component.
+```
+cumulus@switch:~$ netq spine02 show cl-ssd-util
+Hostname        Remaining PE Cycle (%)  Current PE Cycles executed      Total PE Cycles supported       SSD Model               Last Changed
+spine02         80                      576                             2880                            M.2 (S42) 3ME3          Thu Oct 31 00:15:06 2019
+```
 
-    In the above example, there are four different disk sizes deployed, four different OSs running, four different ASIC vendors and models deployed, and so forth.
+This output indicates that this drive is in a good state overall with 80% of its PE cycles remaining. Use the `around` option to view this information around a particular time in the past.
 
-3. Scroll down to see additional components.
+{{< /tab >}}
 
-By default, the data is shown for switches with a fresh communication status. You can choose to look at the data for switches in the rotten state instead. For example, if you wanted to see if there was any correlation to a version of OS to the switch having a rotten status, you could select **Rotten Switches** from the dropdown at the top of the card and see if they all use the same OS (count would be 1). It may not be the cause of the lack of communication, but you get the idea.
+{{< /tabs >}}
 
-## View the Distribution of Any Component Deployed
+### View Disk Storage After BTRFS Allocation
 
-NetQ monitors a number of switch components. For each component you can view the distribution of versions or models or vendors deployed across your network for that component.
+Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, Cumulus Networks recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when rebalancing should be performed.
 
-To view the distribution:
+For details about when a rebalance is recommended, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions" text="When to Rebalance BTRFS Partitions">}}.
 
-1. Open the medium or large Switch Inventory card. Each component has a chart showing the distribution.  
+{{< tabs "TabID414" >}}
 
-    {{<figure src="/images/netq/inventory-switch-medium-230.png" width="200">}}
+{{< tab "NetQ UI" >}}
 
-    OR
+To view the disk state:
 
-    {{<figure src="/images/netq/inventory-switch-large-summary-tab-230.png" width="500">}}
+1. Open the full-screen Switch card for a switch of interest:
 
-2. Hover over a segment of the chart to view the name, version, model or vendor and the number of switches that have been deployed. You can also see the percentage of all switches this total represents. On the large Switch Inventory card, hovering also highlights the related components for the selected component. This is shown in blue here.
+     - Type the switch name in the Global Search box, then use the card size picker to open the full-screen card, *or* 
+     - Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24">}} (Switches), select **Open a switch card**, enter the switch name and select the full-screen card size.
 
-    {{<figure src="/images/netq/inventory-switch-large-summary-tab-hover-os-230.png" width="500">}}
+2. Click **BTRFS Utilization**.
 
-3. Point to additional segments on that component or other components to view their detail.
+    {{<figure src="/images/netq/dev-switch-fullscr-btrfs-util-tab-241.png" width="700">}}
 
-4. Scroll down to view additional components.
+3. Look for the **Rebalance Recommended** column.
 
-## View the Number of Switches with Invalid or Missing Licenses
+    If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the table to determine if you are getting close to needing a rebalance, and come back to view this table at a later time.
 
-It is important to know when you have switches that have invalid or missing Cumulus Linux licenses, as not all of the features are operational without a valid license. Simply open the medium or large Switch Inventory card, and hover over the License chart to see the count.
+{{< /tab >}}
 
-{{<figure src="/images/netq/inventory-switch-medium-hover-license-230.png" width="200">}}
+{{< tab "NetQ CLI" >}}
 
-To view which vendors and platforms have bad or missing licenses, open the large Switch Inventory card, and click {{<img src="/images/netq/platform-icon.png" height="18" width="18">}} to open the **Platform** tab. Hover over the License State bar chart to highlight the vendor and platforms with the various states.
+To view the disk utilization and whether a rebalance is recommended, run:
 
-To view *which* switches have invalid or missing licenses, either:
+```
+netq show cl-btrfs-util [around <text-time>] [json]
+```
 
-- Hover over the large Switch Inventory card and click {{<img src="/images/netq/platform-icon.png" height="18" width="18">}} to open the **Platform** tab. Above the Licenses State or the Vendor chart, click **Show All**.
-      {{< figure src="/images/netq/inventory-switch-large-platform-tab.png" width="500" >}}
-- Open the full screen Switch Inventory card. Then sort the **All Switches** tab data table by the **License State** column to locate the switches with bad or missing licenses.
-      {{< figure src="/images/netq/inventory-switch-fullscr-show-all-tab-license-highlight.png" width="700" >}}
+This example shows the utilization on the *leaf01* switch:
 
-## View the Most Commonly Deployed ASIC
+```
+cumulus@switch:~$ netq leaf01 show cl-btrfs-info
+Matching btrfs_info records:
+Hostname          Device Allocated     Unallocated Space    Largest Chunk Size   Unused Data Chunks S Rebalance Recommende Last Changed
+                                                                                 pace                 d
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+leaf01            37.79 %              3.58 GB              588.5 MB             771.91 MB            yes                  Wed Sep 16 21:25:17 2020
 
-It can be useful to know the quantity and ratio of many components deployed in your network to determine the scope of upgrade tasks, balance vendor reliance, or for detailed troubleshooting. You can view the most commonly deployed components in generally the same way. Some components have additional details contained in large card tabs.
+```
 
-To view the most commonly deployed ASIC, for example:
+Look for the **Rebalance Recommended** column. If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the output to determine if you are getting close to needing a rebalance, and come back to view this data at a later time.
 
-1. Open the medium or large Switch Inventory card.
+Optionally, use the `around` option to view the information for a particular time in the past.
 
-2. Hover over the *largest* segment in the ASIC chart. The tooltip that appears shows you the number of switches with the given ASIC and the percentage of your entire switch population with this ASIC.  
+{{< /tab >}}
 
-    {{<figure src="/images/netq/inventory-switch-medium-asic-highlight-230.png" width="200">}}
+{{< /tabs >}}
 
-    Click on any other component in a similar fashion to see the most common type of that component.
+## Physical Sensing
 
-3. If you opened the medium Switch Inventory card, switch to the large card.
+### DOM
 
-4. Hover over the card, and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core-1.svg" height="18" width="18"/> to open the **ASIC** tab. Here you can more easily view the various vendors and platforms based on the ASIC deployed.
-
-5. *Hover* over the **Vendor** pie chart to highlight which platforms are supported by the vendor and vice versa; hover over the **Model** pie chart to see which vendor supports that platform. Moving your cursor off of the charts removes the highlight.
-
-    {{<figure src="/images/netq/inventory-switch-large-asic-tab-vendor-highlight-230.png" width="500">}}
-
-6. *Click* on a segment of the **Vendor** pie chart to drill down and see only that Vendor and its supported models. A filter tag is placed at the top of the charts.
-
-    {{<figure src="/images/netq/inventory-switch-large-asic-tab-vendor-selected-230.png" width="500">}}
-
-7. To return to the complete view of vendors and platforms, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> on the filter tag.
-
-## View the Number of Switches with a Particular NetQ Agent
-
-It is recommended that when you upgrade NetQ that you also upgrade the NetQ Agents. You can determine if you have covered all of your agents using the medium or large Switch Inventory card. To view the NetQ Agent distribution by version:
-
-1. Open the medium Switch Inventory card.
-
-2. View the number in the **Unique** column next to Agent.
-
-    {{<figure src="/images/netq/inventory-switch-medium-agent-highlight-230.png" width="200">}}
-
-3. If the number is greater than one, you have multiple NetQ Agent versions deployed.
-
-4. If you have multiple versions, hover over the Agent chart to view the count of switches using each version.
-
-5. For more detail, switch to the large Switch Inventory card.
-
-6. Hover over the card and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/12-CD-Rom/cd.svg" height="20" width="20"/> to open the **Software** tab.  
-
-    {{<figure src="/images/netq/inventory-switch-large-software-tab-230.png" width="500">}}
-
-7. Hover over the chart on the right to view the number of switches using the various versions of the NetQ Agent.
-
-8. Hover over the Operating System chart to see which NetQ Agent versions are being run on each OS.  
-
-    {{<figure src="/images/netq/inventory-switch-large-software-tab-os-highlight-230.png" width="500">}}
-
-9. Click either chart to focus on a particular OS or agent version.
-
-10. To return to the full view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
-
-11. Filter the data on the card by switches that are having trouble communicating, by selecting *Rotten Switches* from the dropdown above the charts.
-
-## View a List of All Data for a Specific Component
-
-When the small, medium and large Switch Inventory cards do not provide either enough information or are not organized in a fashion that provides the information you need, open the full screen Switch Inventory card. Select the component tab of interest and filter and sort as desired. Export the data to a third-party tool, by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
-
-{{<figure src="/images/netq/inventory-switch-fullscr-show-all-tab-241.png" width="700">}}
-
-
-
+### Chassis Sensors
 
 Fan Health
 To view the health of fans in your switches, use the `netq show sensors fan` command. If you name the fans in all of your switches consistently, you can view more information at once.
@@ -445,6 +514,7 @@ Hostname          Name            Description                         State     
 ----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
 leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
 ```
+### WJH
 
 ### View PSU Health for All Switches
 

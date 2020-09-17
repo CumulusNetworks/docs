@@ -115,7 +115,7 @@ You can view hardware components deployed on all switches and hosts, or on all o
 
 ### View Components Summary
 
-Hardware and software component summary information is available from the NetQ UI and NetQ CLI.
+It can be useful to know the quantity and ratio of many components deployed in your network to determine the scope of upgrade tasks, balance vendor reliance, or for detailed troubleshooting. Hardware and software component summary information is available from the NetQ UI and NetQ CLI.
 
 - Inventory|Devices card: view ASIC, license, NetQ Agent version, OS, and platform information on all devices
 - Inventory|Switches card: view  ASIC, CPU, disk, license, NetQ Agent version, OS, and platform information on all switches
@@ -140,7 +140,7 @@ Hardware and software component summary information is available from the NetQ U
 <li>Total number of switches with that type of component deployed compared to the total number of switches</li>
 <li>Percentage of this type with respect to all component types</li></ul>
 
-    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650">}}
+{{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-230.png" width="650">}}
 
 Additionally, sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).</div>
 
@@ -2125,14 +2125,18 @@ cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
 
 NetQ Agent information is available from the NetQ UI and NetQ CLI.
 
-- Agents table
+- Agents list
     - Full-screen: view NetQ Agent version across all devices (table)
+- Inventory|Switches card
+    - Medium: view the number of unique versions of the NetQ Agent running on all devices
+    - Large: view the number of unique versions of the NetQ Agent running on all devices and the associated OS
+    - Full-screen: view NetQ Agent status and version across all devices
 - `netq show agents`
     - View NetQ Agent status, uptime, and version across all devices
 
 {{< tabs "TabID1549" >}}
 
-{{< tab "NetQ UI" >}}
+{{< tab "Agents List" >}}
 
 To view the NetQ Agents on all switches and hosts:
 
@@ -2190,7 +2194,45 @@ To view the NetQ Agents on all switches and hosts:
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "Inventory|Switches" >}}
+
+It is recommended that when you upgrade NetQ that you also upgrade the NetQ Agents. You can determine if you have covered all of your agents using the medium or large Switch Inventory card. To view the NetQ Agent distribution by version:
+
+1. Open the medium Switch Inventory card.
+
+2. View the number in the **Unique** column next to Agent.
+
+    {{<figure src="/images/netq/inventory-switch-medium-agent-highlight-230.png" width="200">}}
+
+3. If the number is greater than one, you have multiple NetQ Agent versions deployed.
+
+4. If you have multiple versions, hover over the Agent chart to view the count of switches using each version.
+
+5. For more detail, switch to the large Switch Inventory card.
+
+6. Hover over the card and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/12-CD-Rom/cd.svg" height="20" width="20"/> to open the **Software** tab.  
+
+    {{<figure src="/images/netq/inventory-switch-large-software-tab-230.png" width="500">}}
+
+7. Hover over the chart on the right to view the number of switches using the various versions of the NetQ Agent.
+
+8. Hover over the Operating System chart to see which NetQ Agent versions are being run on each OS.  
+
+    {{<figure src="/images/netq/inventory-switch-large-software-tab-os-highlight-230.png" width="500">}}
+
+9. Click either chart to focus on a particular OS or agent version.
+
+10. To return to the full view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
+
+11. Filter the data on the card by switches that are having trouble communicating, by selecting *Rotten Switches* from the dropdown above the charts.
+
+12. Open the full screen Inventory|Switches card. The **Show All** tab is displayed by default, and shows the NetQ Agent status and version for all devices.
+
+    {{<figure src="/images/netq/inventory-switch-fullscr-show-all-tab-241.png" width="700">}}
+
+{{< /tab >}}
+
+{{< tab "netq show agents" >}}
 
 To view the NetQ Agents on all switches and hosts, run:
 

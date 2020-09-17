@@ -220,6 +220,8 @@ Log files that are rotated are compressed into an archive. Processes that do not
 
 ### Enable Remote syslog
 
+By default not all log messages are sent to a remote server
+
 To send other log files (such as `switchd` logs) to a `syslog` server:
 
 1. Create a file in `/etc/rsyslog.d/`. Make sure the filename starts with a number lower than 99 so that it executes before log messages are dropped in, such as `20-clagd.conf` or `25-switchd.conf`. The example file below is called `/etc/rsyslog.d/11-remotesyslog.conf`. Add content similar to the following:
@@ -246,7 +248,20 @@ Running `syslog` over TCP places a burden on the switch to queue packets in the 
 
    {{%notice note%}}
 
-The numbering of the files in `/etc/rsyslog.d/` dictates how the rules are installed into `rsyslog.d`. If you want to remotely log only the messages in `/var/syslog` but not those in `/var/log/clagd.log` or `/var/log/switchd.log`, then name the file `98-remotesyslog.conf;` the number in the filename is lower than `/var/syslog` file `99-syslog.conf`.
+The numbering of the files in `/etc/rsyslog.d/` dictates how the
+rules are installed into `rsyslog.d`. Lower numbered rules are processed first,
+and rsyslog processing will "terminate" with the `stop` keyword.
+
+- For example the rsyslog config for FRR is stored in 45-frr.conf with
+an explicit `stop` at the bottom of the file. FRR messages will be logged to
+/var/log/frr/frr.log on the local disk only. These messages are not sent to
+a remote server using the default configuration.
+
+- In contrast to the previous example: to remotely log FRR messages in addition
+to writing FRR messages to the local disk, rename the 99-syslog.conf to be
+11-remotesyslog.conf. FRR messages will first be processed by the
+11-remotesyslog.conf rule (transmit to remote server) then continue to
+be processed by 45-frr.conf (write to local disk in /var/log/frr/frr.log).
 
    {{%/notice%}}
 

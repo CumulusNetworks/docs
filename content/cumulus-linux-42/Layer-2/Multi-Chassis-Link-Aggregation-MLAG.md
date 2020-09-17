@@ -193,9 +193,7 @@ iface bridge
 - If your MLAG configuration has **routed uplinks** (a modern approach to the data center fabric network), use the peer switch **loopback** address. When the peer link is down, the secondary switch routes towards the loopback address using uplinks (towards the spine layer). If the primary switch is also suffering a more significant problem (for example, `switchd` is unresponsive or stopped), the secondary switch eventually promotes itself to primary and traffic now flows normally. 
 
    {{%notice note%}}
-
 When using BGP, to ensure IP connectivity between the loopbacks, the MLAG peer switches must use unique BGP ASNs; if they use the same ASN, you must bypass the BGP loop prevention check on the `AS_PATH` attribute.
-
 {{%/notice%}}
 
 {{< /expand >}}
@@ -502,9 +500,9 @@ By default, Cumulus Linux uses UDP port 5342 with the backup IP address. To chan
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add interface peerlink.4094 clag args --backupPort 5400
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add interface peerlink.4094 clag args --backupPort 5400
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}

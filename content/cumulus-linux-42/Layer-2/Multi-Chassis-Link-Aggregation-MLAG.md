@@ -225,19 +225,10 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-To configure the backup link to a VRF or management VRF, include the name of the VRF or management VRF with the `backup-ip` parameter. For example:
+To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
 
 ```
 cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2 vrf RED
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To configure a backup UDP port, add the `net add interface peerlink.4094 clag args --backupPort <port>` command. For example:
-
-```
-cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2
-cumulus@switch:~$ net add interface peerlink.4094 clag args --backupPort 5400
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -271,7 +262,7 @@ iface peerlink.4094
 ...
 ```
 
-To configure the backup link to a VRF or management VRF, include the name of the VRF or management VRF with the `clagd-backup-ip` parameter. For example:
+To configure the backup link to a VRF, include the name of the VRF with the `clagd-backup-ip` parameter. The following example configures the backup link to VRF RED:
 
 ```
 ...
@@ -445,6 +436,47 @@ iface br0.10
     bridge-stp on
 ...
 ```
+
+### Configure a Backup UDP Port
+
+By default, Cumulus Linux uses UDP port 5342 with the backup IP address. To change the backup UDP port:
+
+{{< tabs "TabID444 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface peerlink.4094 clag args --backupPort 5400
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to add `clagd-args --backupPort <port>` to the `auto peerlink.4094` stanza. For example:
+
+```
+...
+auto peerlink.4094
+iface peerlink.4094
+    clagd-args --backupPort 5400
+    clagd-backup-ip 10.10.10.2
+    clagd-peer-ip linklocal
+    clagd-sys-mac 44:38:39:BE:EF:AA
+...
+```
+
+Run the `sudo ifreload -a` command to apply all the configuration changes:
+
+```
+cumulus@leaf01:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Best Practices
 
@@ -857,7 +889,7 @@ iface swp2
 
 ### MLAG and BGP Example
 
-The example configuration below consists of three bonds for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port. BGP unnumbered is configured on the leafs and spines.
+The example configuration below shows an MLAG configuration where leaf01 and leaf02 are MLAG peers, and leaf03 and leaf04 are are MLAG peers. There are three bonds configured for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port. BGP unnumbered is configured on the leafs and spines.
 
 {{< img src = "/images/cumulus-linux/mlag-config-peering.png" >}}
 
@@ -1625,6 +1657,26 @@ line vty
 
 ## Troubleshooting
 
+### Check MLAG Status
+
+To check the status of your MLAG configuration, run the NCLU `net show clag` command or the Linux `clagctl` command. For example:
+
+```
+cumulus@switch:~$ net show clag
+The peer is alive
+    Peer Priority, ID, and Role: 4096 44:38:39:FF:00:01 primary
+     Our Priority, ID, and Role: 8192 44:38:39:FF:00:02 secondary
+          Peer Interface and IP: peerlink.4094 linklocal
+                      Backup IP: 192.168.1.12 (inactive)
+                     System MAC: 44:38:39:FF:00:01
+
+CLAG Interfaces
+Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
+----------------   ----------------   -------   --------------------   -----------------
+           bond1   bond1              1         -                      -
+           bond2   bond2              2         -                      -
+```
+
 ### Show All MLAG Settings
 
 To see all MLAG settings, run the `clagctl params` command:
@@ -1685,26 +1737,6 @@ cumulus@spine01:~$ sudo tail /var/log/clagd.log
 2016-10-03T20:31:54.538435+00:00 spine01 clagd[1235]: Initial handshake done.
 2016-10-03T20:31:58.527464+00:00 spine01 clagd[1235]: leaf03-04 is now dual connected.
 2016-10-03T22:47:35.255317+00:00 spine01 clagd[1235]: leaf01-02 is now dual connected.
-```
-
-### Check MLAG Status
-
-To check the status of your MLAG configuration, run the NCLU `net show clag` command or the Linux `clagctl` command. For example:
-
-```
-cumulus@switch:~$ net show clag
-The peer is alive
-    Peer Priority, ID, and Role: 4096 44:38:39:FF:00:01 primary
-     Our Priority, ID, and Role: 8192 44:38:39:FF:00:02 secondary
-          Peer Interface and IP: peerlink.4094 linklocal
-                      Backup IP: 192.168.1.12 (inactive)
-                     System MAC: 44:38:39:FF:00:01
-
-CLAG Interfaces
-Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
-----------------   ----------------   -------   --------------------   -----------------
-           bond1   bond1              1         -                      -
-           bond2   bond2              2         -                      -
 ```
 
 ### Monitor the clagd Service

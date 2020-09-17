@@ -160,42 +160,7 @@ An {{<exlink url="https://gist.github.com/ericpulvino/5f7eabb7058e3076a7b5f2e357
 
 9.  Examine the "Depends" and "Conflicts" lines from the installed `ifupdown2` package.
 
-        root@host# grep -A 34 "Package: ifupdown2" /var/lib/dpkg/status
-        Package: ifupdown2
-        Status: install ok installed
-        Priority: optional
-        Section: admin
-        Installed-Size: 595
-        Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
-        Architecture: all
-        Version: 1.0~git20151029-1
-        Replaces: ifupdown
-        Provides: ifupdown
-        Depends: python:any (>= 2.7.5-5~), init-system-helpers (>= 1.18~), python-argcomplete, python-ipaddr
-        Suggests: python-gvgen, python-mako
-        Conflicts: ifupdown
-        Conffiles:
-         /etc/default/networking/networking.default 76a6935f125a8db5cbcddee1d422fc81
-         /etc/init.d/networking 703fab9e50c7c539efc6e1ce6b9c7633
-         /etc/network/ifupdown2/addons.conf c39be66aa58f59b4343c9dc6541043fe
-         /etc/network/ifupdown2/ifupdown2.conf 85fd2d75c77c6b68438a16888ae08510
-        Description: Network Interface Management tool similar to ifupdown
-         ifupdown2 is ifupdown re-written in Python. It replaces ifupdown and provides
-         the same user interface as ifupdown for network interface configuration.
-         Like ifupdown, ifupdown2 is a high level tool to configure (or, respectively
-         deconfigure) network interfaces based on interface definitions in
-         /etc/network/interfaces. It is capable of detecting network interface
-         dependencies and comes with several new features which are available as
-         new command options to ifup/ifdown/ifquery commands. It also comes with a new
-         command ifreload to reload interface configuration with minimum
-         disruption. Most commands are also capable of input and output in JSON format.
-         It is backward compatible with ifupdown /etc/network/interfaces format and
-         supports newer simplified format. It also supports interface templates with
-         python-mako for large scale interface deployments. See
-         /usr/share/doc/ifupdown2/README.rst for details about ifupdown2. Examples
-         are available under /usr/share/doc/ifupdown2/examples.
-        Original-Maintainer: Roopa Prabhu <roopa@cumulusnetworks.com>
-        Homepage: https://github.com/CumulusNetworks/ifupdown2
+    <pre>root@host# grep -A 34 "Package: ifupdown2" /var/lib/dpkg/status<br />Package: ifupdown2<br />Status: install ok installed<br />Priority: optional<br />Section: admin<br />Installed-Size: 595<br />Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com><br />Architecture: all<br />Version: 1.0~git20151029-1<br />Replaces: ifupdown<br />Provides: ifupdown<br /><span style="color:red;">Depends: python:any (>= 2.7.5-5~), init-system-helpers (>= 1.18~), python-argcomplete, python-ipaddr</span><br />Suggests: python-gvgen, python-mako<br /><span style="color:red;">Conflicts: ifupdown</span><br />Conffiles:<br />/etc/default/networking/networking.default 76a6935f125a8db5cbcddee1d422fc81<br />/etc/init.d/networking 703fab9e50c7c539efc6e1ce6b9c7633<br />/etc/network/ifupdown2/addons.conf c39be66aa58f59b4343c9dc6541043fe<br />/etc/network/ifupdown2/ifupdown2.conf 85fd2d75c77c6b68438a16888ae08510<br />Description: Network Interface Management tool similar to ifupdown<br /> ifupdown2 is ifupdown re-written in Python. It replaces ifupdown and provides<br /> the same user interface as ifupdown for network interface configuration.<br /> Like ifupdown, ifupdown2 is a high level tool to configure (or, respectively<br /> deconfigure) network interfaces based on interface definitions in<br /> /etc/network/interfaces. It is capable of detecting network interface<br /> dependencies and comes with several new features which are available as<br /> new command options to ifup/ifdown/ifquery commands. It also comes with a new<br /> command ifreload to reload interface configuration with minimum<br /> disruption. Most commands are also capable of input and output in JSON format.<br /> It is backward compatible with ifupdown /etc/network/interfaces format and<br /> supports newer simplified format. It also supports interface templates with<br /> python-mako for large scale interface deployments. See<br /> /usr/share/doc/ifupdown2/README.rst for details about ifupdown2. Examples<br /> are available under /usr/share/doc/ifupdown2/examples.<br /> Original-Maintainer: Roopa Prabhu <roopa@cumulusnetworks.com><br /> Homepage: https://github.com/CumulusNetworks/ifupdown2</pre>
 
 10. **Optional:** At this point you need to amend the package manager's understanding of the dependencies and conflicts for the `ifupdown2` package. This requires two very precise edits to the `/var/lib/dpkg/status` file. To ensure that those edits produce the desired changes, first confirm that that the two find-and-replaces that you will perform in Step 11 will each only have one instance to replace.
 

@@ -54,7 +54,7 @@ To configure MLAG, you need to create a bond that uses LACP on the dual-connecte
 
 Follow these steps on each peer switch in the MLAG pair:
 
-1. On the dual-connected device, such as a host or server that sends traffic to and from the switch, create a bond that uses LACP. The method you use varies with the type of device you are configuring. On the dual-connected device, the only configuration requirement is to create a bond that is managed by LACP.
+1. On the dual-connected device, such as a host or server that sends traffic to and from the switch, create a bond that uses LACP. The method you use varies with the type of device you are configuring.
 
    {{%notice note%}}
 
@@ -107,7 +107,7 @@ iface bond2
 
 3. Add a unique MLAG ID (clag-id) to each bond.
 
-   For MLAG to operate correctly, the peer switches must know which links are dual-connected or are connected to the same host or switch. You must specify a unique MLAG ID (clag-id) for every dual-connected bond on each peer switch. The value must be between 1 and 65535 and must be the same on both peer switches for the bond to be considered dual-connected.
+   You must specify a unique MLAG ID (clag-id) for every dual-connected bond on each peer switch so that switches know which links are dual-connected or are connected to the same host or switch. The value must be between 1 and 65535 and must be the same on both peer switches for the bond to be considered dual-connected.
 
    The example commands below add an MLAG ID of 1 to bond1 and 2 to bond2:
 
@@ -149,7 +149,7 @@ iface bond2
 
 {{< /tabs >}}
 
-4. Add the bonds you created above to the bridge. The example commands below add bond1 and bond2 to a VLAN-aware bridge.
+4. Add the bonds you created above to a bridge. The example commands below add bond1 and bond2 to a VLAN-aware bridge.
 
    {{< tabs "TabID150 ">}}
 
@@ -200,7 +200,7 @@ When using BGP, to ensure IP connectivity between the loopbacks, the MLAG peer s
 
 {{< /expand >}}
 
-   The following examples show commands for each MLAG peer (leaf01 and leaf02).
+   The following examples show commands for both MLAG peers (leaf01 and leaf02).
 
    {{< tabs "TabID216 ">}}
 

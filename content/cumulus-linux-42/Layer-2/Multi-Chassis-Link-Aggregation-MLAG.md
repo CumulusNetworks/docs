@@ -217,10 +217,14 @@ The following NCLU command is a macro command that:
 - Automatically creates the inter-chassis bond (`peerlink`) and the peer link VLAN subinterface (`peerlink.4094`)
 - Adds the `peerlink` bond to the bridge
 - Configures the peer link IP address (`primary` is the link-local address)
-- Adds the MLAG system MAC address 44:38:39:FF:40:94, the MLAG bond interfaces swp49 and swp50, and the backup IP address 10.10.10.2
+- Adds the MLAG system MAC address, the MLAG bond interfaces, and the backup IP address
+
+   {{< tabs "TabID222 ">}}
+
+{{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2
+cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -228,10 +232,32 @@ cumulus@leaf01:~$ net commit
 To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
 
 ```
-cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 10.10.10.2 vrf RED
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2 vrf RED
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
+
+{{< /tab >}}
+
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.1
+cumulus@leaf02:~$ net pending
+cumulus@leaf02:~$ net commit
+```
+
+To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
+
+```
+cumulus@leaf02:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.1 vrf RED
+cumulus@leaf02:~$ net pending
+cumulus@leaf02:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{< /tab >}}
 
@@ -242,8 +268,12 @@ Edit the `/etc/network/interfaces` file to add the following parameters, then ru
 - The `peerlink` bond to the bridge
 - The peer link VLAN (`peerlink.4094`) with the backup IP address, the peer link IP address (link-local), and the MLAG system MAC address (from the reserved range of addresses).
 
+   {{< tabs "TabID272 ">}}
+
+{{< tab "leaf01 ">}}
+
 ```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
+cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
 auto bridge
 iface bridge
@@ -265,23 +295,11 @@ iface peerlink.4094
 To configure the backup link to a VRF, include the name of the VRF with the `clagd-backup-ip` parameter. The following example configures the backup link to VRF RED:
 
 ```
+cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.2 vrf RED
-    clagd-peer-ip linklocal
-    clagd-sys-mac 44:38:39:BE:EF:AA
-...
-```
-
-To configure a backup UDP port, add `clagd-args --backupPort <port>` to the `auto peerlink.4094` stanza. For example:
-
-```
-...
-auto peerlink.4094
-iface peerlink.4094
-    clagd-args --backupPort 5400
-    clagd-backup-ip 10.10.10.2
     clagd-peer-ip linklocal
     clagd-sys-mac 44:38:39:BE:EF:AA
 ...
@@ -292,6 +310,52 @@ Run the `sudo ifreload -a` command to apply all the configuration changes:
 ```
 cumulus@leaf01:~$ sudo ifreload -a
 ```
+
+{{< /tab >}}
+
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ sudo nano /etc/network/interfaces
+...
+auto bridge
+iface bridge
+    bridge-ports bond1 bond2 peerlink
+    bridge-vlan-aware yes
+...
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.1
+    clagd-peer-ip linklocal
+    clagd-sys-mac 44:38:39:BE:EF:AA
+...
+```
+
+To configure the backup link to a VRF, include the name of the VRF with the `clagd-backup-ip` parameter. The following example configures the backup link to VRF RED:
+
+```
+cumulus@leaf02:~$ sudo nano /etc/network/interfaces
+...
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.1 vrf RED
+    clagd-peer-ip linklocal
+    clagd-sys-mac 44:38:39:BE:EF:AA
+...
+```
+
+Run the `sudo ifreload -a` command to apply all the configuration changes:
+
+```
+cumulus@leaf02:~$ sudo ifreload -a
+```
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{< /tab >}}
 

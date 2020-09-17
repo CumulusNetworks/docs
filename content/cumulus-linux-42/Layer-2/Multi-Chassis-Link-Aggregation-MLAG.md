@@ -664,10 +664,10 @@ If you use NCLU to create an iBGP peering across the peer link, the `net add bgp
 ### Basic Example
 
 The example below shows a basic MLAG configuration, where:
-- leaf01 and leaf02 are MLAG peers. 
-- Three bonds are configured for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port.
+- leaf01 and leaf02 are MLAG peers
+- Three bonds are configured for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port
 
-{{< img src = "/images/cumulus-linux/mlag-config.png" >}}
+{{< figure src="/images/cumulus-linux/mlag-config.png" width="450" >}}
 
 {{< tabs "TabID607 ">}}
 
@@ -942,11 +942,11 @@ iface swp2
 ### MLAG and BGP Example
 
 The example configuration below shows an MLAG configuration where:
-- leaf01 and leaf02 are MLAG peers, and leaf03 and leaf04 are are MLAG peers. 
-- Three bonds are configured for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port.
-- BGP unnumbered is configured on the leafs and spines with a routed adjacency across the `peerlink.4094` interface.
+- leaf01 and leaf02 are MLAG peers, and leaf03 and leaf04 are are MLAG peers
+- Three bonds are configured for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port
+- BGP unnumbered is configured on the leafs and spines with a routed adjacency across the `peerlink.4094` interface
 
-{{< img src = "/images/cumulus-linux/mlag-config-peering.png" >}}
+{{< figure src = "/images/cumulus-linux/mlag-config-peering.png" >}}
 
 **/etc/network/interfaces**
 
@@ -1712,6 +1712,8 @@ line vty
 
 ## Troubleshooting
 
+Use the following troubleshooting tips to check that MLAG is configured and working correctly.
+
 ### Check MLAG Status
 
 To check the status of your MLAG configuration, run the NCLU `net show clag` command or the Linux `clagctl` command. For example:
@@ -1778,7 +1780,7 @@ peerlinkLearnEnable = False
 
 ### View the MLAG Log File
 
-By default, when running, `clagd` logs status messages to the `/var/log/clagd.log` file and to `syslog`. Example log file output is shown below:
+By default, when running, the `clagd` service logs status messages to the `/var/log/clagd.log` file and to `syslog`. Example log file output is shown below:
 
 ```
 cumulus@spine01:~$ sudo tail /var/log/clagd.log
@@ -1796,11 +1798,11 @@ cumulus@spine01:~$ sudo tail /var/log/clagd.log
 
 ### Monitor the clagd Service
 
-Due to the critical nature of the `clagd` service, `systemd` continuously monitors the status of the `clagd` service by receiving notify messages every 30 seconds. If the `clagd` service terminates or becomes unresponsive for any reason and `systemd` receives no messages after 60 seconds, `systemd` restarts `clagd`. `systemd` logs these failures in the `/var/log/syslog` file and, on the first failure, also generates a `cl-support`file.
+Due to the critical nature of the `clagd` service, `systemd` continuously monitors its status by receiving notify messages every 30 seconds. If the `clagd` service terminates or becomes unresponsive for any reason and `systemd` receives no messages after 60 seconds, `systemd` restarts the `clagd` service. `systemd` logs these failures in the `/var/log/syslog` file and, on the first failure, also generates a `cl-support`file.
 
-Monitoring is configured and enabled automatically as long as `clagd` is enabled (`clagd-peer-ip` and `clagd-sys-mac` are configured for an interface) and the `clagd` service is running. If you stop `clagd` with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
+Monitoring is configured and enabled automatically as long as the `clagd` service is enabled (the peer IP address (`clagd-peer-ip`) and the MLAG system MAC address (`clagd-sys-mac`) are configured for an interface) and the `clagd` service is running. If you stop `clagd` with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
 
-You can check the status of `clagd` monitoring with the `cl-service-summary` or the `systemctl status` command:
+You can check if `clagd` is enabled and running with the `cl-service-summary` or the `systemctl status` command:
 
 ```
 cumulus@switch:~$ cl-service-summary
@@ -1839,7 +1841,7 @@ Feb 01 23:24:31 leaf01 clagd[1717]: Role is now primary; Reload timeout
 
 A large volume of packet drops across one of the peer link interfaces can be expected. These drops serve to prevent looping of BUM (broadcast, unknown unicast, multicast) packets. When a packet is received across the peer link, if the destination lookup results in an egress interface that is a dual-connected bond, the switch does not forward the packet (to prevent loops). This results in a drop being recorded on the peer link.
 
-You can detect this issue by running the the following commands:
+To check packet drops across peer link interfaces, run the following command:
 
 {{< tabs "TabID1547 ">}}
 
@@ -1872,7 +1874,7 @@ swp51           9216        0         0         0         0      292         0  
 
 {{< tab "Linux Commands ">}}
 
-Run the `ethtool -S <interface>` command.
+Run the `ethtool -S <interface>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ ethtool -S swp49
@@ -1898,7 +1900,7 @@ NIC statistics:
 
 ### Duplicate LACP Partner MAC Warning
 
-When you run `clagctl`, you might see output similar to this:
+When you run the `clagctl` command, you might see output similar to this:
 
 ```
 bond1 bond1 52 duplicate lacp - partner mac

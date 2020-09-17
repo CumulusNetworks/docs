@@ -107,7 +107,7 @@ iface bond2
 
 3. Add a unique MLAG ID (clag-id) to each bond.
 
-   You must specify a unique MLAG ID (clag-id) for every dual-connected bond on each peer switch so that switches know which links are dual-connected or are connected to the same host or switch. The value must be between 1 and 65535 and must be the same on both peer switches for the bond to be considered dual-connected.
+   You must specify a unique MLAG ID (clag-id) for every dual-connected bond on each peer switch so that switches know which links are dual-connected or are connected to the same host or switch. The value must be between 1 and 65535 and must be the same on both peer switches.
 
    The example commands below add an MLAG ID of 1 to bond1 and 2 to bond2:
 
@@ -182,7 +182,7 @@ iface bridge
 {{< /tabs >}}
 
 5. Create the inter-chassis bond and the peer link VLAN (as a VLAN subinterface). You also need to provide the peer link IP address, the MLAG bond interfaces, the MLAG system MAC address, and the backup interface.
-   - By default, the NCLU command configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Cumulus Networks recommends you use *peerlink.4094* to ensure that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
+   - By default, the NCLU command configures the inter-chassis bond with the name *peerlink* and the peer link VLAN with the name *peerlink.4094*. Cumulus Networks recommends you use *peerlink.4094* to ensure that the VLAN is independent of the bridge and spanning tree forwarding decisions.
    - The peer link IP address is an unrouteable link-local address that provides layer 3 connectivity between the peer switches.
    - Cumulus Networks provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network.
       - Do not to use a multicast MAC address.
@@ -596,16 +596,12 @@ cumulus@switch:~$ sudo ifreload -a
 
 ### STP and MLAG
 
-Cumulus Networks recommends that you always enable STP in your layer 2 network and that you enable BPDU guard on the host-facing bond interfaces. For more information about BPDU guard, see {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU Guard and Bridge Assurance">}}.
-
-{{%notice note%}}
+Cumulus Networks recommends that you always enable STP in your layer 2 network and that you enable {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU Guard">}} on the host-facing bond interfaces.
 
 - The STP global configuration must be the same on both peer switches.
 - The STP configuration for dual-connected ports must be the same on both peer switches.
 - The STP priority must be the same on both peer switches.
 - To minimize convergence times when a link transitions to the forwarding state, configure the edge ports (for tagged and untagged frames) with PortAdminEdge and BPDU guard enabled.
-
-{{%/notice%}}
 
 ### Peer Link Sizing
 
@@ -629,7 +625,7 @@ When planning for link failures for a full rack, you need only allocate enough b
 
 ### Peer Link Routing
 
-When enabling a routing protocol in an MLAG environment, it is also necessary to manage the uplinks, because by default MLAG is not aware of layer 3 uplink interfaces. If there is a peer link failure, MLAG does not remove static routes or bring down a BGP or OSPF adjacency unless you use a separate link state daemon such as `ifplugd`.
+When enabling a routing protocol in an MLAG environment, it is also necessary to manage the uplinks; by default MLAG is not aware of layer 3 uplink interfaces. If there is a peer link failure, MLAG does not remove static routes or bring down a BGP or OSPF adjacency unless you use a separate link state daemon such as `ifplugd`.
 
 When you use MLAG with VRR, Cumulus Networks recommends you set up a routed adjacency across the peerlink.4094 interface. If a routed connection is not built across the peer link, during an uplink failure on one of the switches in the MLAG pair, egress traffic might not be forwarded if the destination is on the switch whose uplinks are down.
 
@@ -667,7 +663,9 @@ If you use NCLU to create an iBGP peering across the peer link, the `net add bgp
 
 ### Basic Example
 
-The example below shows a basic MLAG configuration, where leaf01 and leaf02 are MLAG peers. There are three bonds configured for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port.
+The example below shows a basic MLAG configuration, where:
+- leaf01 and leaf02 are MLAG peers. 
+- Three bonds are configured for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port.
 
 {{< img src = "/images/cumulus-linux/mlag-config.png" >}}
 
@@ -943,7 +941,10 @@ iface swp2
 
 ### MLAG and BGP Example
 
-The example configuration below shows an MLAG configuration where leaf01 and leaf02 are MLAG peers, and leaf03 and leaf04 are are MLAG peers. There are three bonds configured for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port. BGP unnumbered is configured on the leafs and spines.
+The example configuration below shows an MLAG configuration where:
+- leaf01 and leaf02 are MLAG peers, and leaf03 and leaf04 are are MLAG peers. 
+- Three bonds are configured for MLAG, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port.
+- BGP unnumbered is configured on the leafs and spines with a routed adjacency across the `peerlink.4094` interface.
 
 {{< img src = "/images/cumulus-linux/mlag-config-peering.png" >}}
 

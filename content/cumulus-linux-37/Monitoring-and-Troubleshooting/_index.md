@@ -260,6 +260,8 @@ that do not use `rsyslog` write to their own log files within the
 
 ### Enable Remote syslog
 
+By default not all log messages are sent to a remote server 
+
 If you need to send other log files - such as `switchd` logs - to a
 `syslog` server, do the following:
 
@@ -292,11 +294,19 @@ if the remote `syslog` server becomes unavailable.
     {{%notice note%}}
 
 The numbering of the files in `/etc/rsyslog.d/` dictates how the
-rules are installed into `rsyslog.d`. If you want to remotely log
-only the messages in `/var/syslog`, and not those in
-`/var/log/clagd.log` or `/var/log/switchd.log`, for instance, then
-name the file `98-remotesyslog.conf`, since it's lower than the
-`/var/syslog` file `99-syslog.conf` only.
+rules are installed into `rsyslog.d`. Lower numbered rules are processed first, 
+and rsyslog processing will "terminate" with the `stop` keyword. 
+
+- For example the rsyslog config for FRR is stored in 45-frr.conf with 
+an explicit `stop` at the bottom of the file. FRR messages will be logged to 
+/var/log/frr/frr.log on the local disk only. These messages are not sent to 
+a remote server using the default configuration. 
+
+- In contrast to the previous example: to remotely log FRR messages in addition
+to writing FRR messages to the local disk, rename the 99-syslog.conf to be 
+11-remotesyslog.conf. FRR messages will first be processed by the 
+11-remotesyslog.conf rule (transmit to remote server) then continue to 
+be processed by 45-frr.conf (write to local disk in /var/log/frr/frr.log).
 
     {{%/notice%}}
 

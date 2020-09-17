@@ -281,46 +281,21 @@ If you need to send other log files - such as `switchd` logs - to a
     `/var/log/syslog` file, where *@* indicates UDP, *192.168.1.2* is
     the IP address of the `syslog` server, and *514* is the UDP port.
 
-    {{%notice note%}}
+   {{%notice note%}}
 
-For TCP-based syslog, use two @@ before the IP address: *@@192.168.1.2:514*.
+- For TCP-based syslog, use two @@ before the IP address *@@192.168.1.2:514*.
+- Running `syslog` over TCP places a burden on the switch to queue packets in the `syslog` buffer. This may cause detrimental effects if the remote `syslog` server becomes unavailable.
+- The numbering of the files in `/etc/rsyslog.d/` dictates how the rules are installed into `rsyslog.d`. Lower numbered rules are processed first, and `rsyslog` processing *terminates* with the `stop` keyword. For example, the `rsyslog` configuration for FRR is stored in the `45-frr.conf` file with an explicit `stop` at the bottom of the file. FRR messages are logged to the `/var/log/frr/frr.log` file on the local disk only (these messages are not sent to a remote server using the default configuration). To log FRR messages remotely in addition to writing FRR messages to the local disk, rename the `99-syslog.conf` file to `11-remotesyslog.conf`. FRR messages are first processed by the `11-remotesyslog.conf` rule (transmit to remote server), then continue to be processed by the `45-frr.conf` file (write to local disk in the `/var/log/frr/frr.log` file).
 
-Running `syslog` over TCP places a burden on the switch to queue
-packets in the `syslog` buffer. This may cause detrimental effects
-if the remote `syslog` server becomes unavailable.
+- Do not use the `imfile` module with any file written by `rsyslogd`.
 
-    {{%/notice%}}
-
-    {{%notice note%}}
-
-The numbering of the files in `/etc/rsyslog.d/` dictates how the
-rules are installed into `rsyslog.d`. Lower numbered rules are processed first, 
-and rsyslog processing will "terminate" with the `stop` keyword. 
-
-- For example the rsyslog config for FRR is stored in 45-frr.conf with 
-an explicit `stop` at the bottom of the file. FRR messages will be logged to 
-/var/log/frr/frr.log on the local disk only. These messages are not sent to 
-a remote server using the default configuration. 
-
-- In contrast to the previous example: to remotely log FRR messages in addition
-to writing FRR messages to the local disk, rename the 99-syslog.conf to be 
-11-remotesyslog.conf. FRR messages will first be processed by the 
-11-remotesyslog.conf rule (transmit to remote server) then continue to 
-be processed by 45-frr.conf (write to local disk in /var/log/frr/frr.log).
-
-    {{%/notice%}}
-
-    {{%notice note%}}
-
-Do not use the `imfile` module with any file written by `rsyslogd`.
-
-    {{%/notice%}}
+{{%/notice%}}
 
 2.  Restart `rsyslog`.
 
-```
-   cumulus@switch:~$ sudo systemctl restart rsyslog.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart rsyslog.service
+    ```
 
 ### Write to syslog with Management VRF Enabled
 

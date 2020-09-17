@@ -220,9 +220,7 @@ Log files that are rotated are compressed into an archive. Processes that do not
 
 ### Enable Remote syslog
 
-By default not all log messages are sent to a remote server
-
-To send other log files (such as `switchd` logs) to a `syslog` server:
+By default, not all log messages are sent to a remote server. To send other log files (such as `switchd` logs) to a `syslog` server, follow these steps:
 
 1. Create a file in `/etc/rsyslog.d/`. Make sure the filename starts with a number lower than 99 so that it executes before log messages are dropped in, such as `20-clagd.conf` or `25-switchd.conf`. The example file below is called `/etc/rsyslog.d/11-remotesyslog.conf`. Add content similar to the following:
 
@@ -232,42 +230,15 @@ To send other log files (such as `switchd` logs) to a `syslog` server:
    @192.168.1.2:514
    ```
 
-   This configuration sends log messages to a remote `syslog` server
-   for the following processes: `clagd`, `switchd`, `ptmd`, `rdnbrd`,
-   `netd` and `syslog`. It follows the same syntax as the
-   `/var/log/syslog` file, where *@* indicates UDP, *192.168.1.2* is
-   the IP address of the `syslog` server, and *514* is the UDP port.
+   This configuration sends log messages to a remote `syslog` server for the following processes: `clagd`, `switchd`, `ptmd`, `rdnbrd`, `netd` and `syslog`. It follows the same syntax as the `/var/log/syslog` file, where *@* indicates UDP, *192.168.12* is the IP address of the `syslog` server, and *514* is the UDP port.
 
    {{%notice note%}}
 
-For TCP-based syslog, use two @@ before the IP address *@@192.168.1.2:514*.
+- For TCP-based syslog, use two @@ before the IP address *@@192.168.1.2:514*.
+- Running `syslog` over TCP places a burden on the switch to queue packets in the `syslog` buffer. This may cause detrimental effects if the remote `syslog` server becomes unavailable.
+- The numbering of the files in `/etc/rsyslog.d/` dictates how the rules are installed into `rsyslog.d`. Lower numbered rules are processed first, and `rsyslog` processing *terminates* with the `stop` keyword. For example, the `rsyslog` configuration for FRR is stored in the `45-frr.conf` file with an explicit `stop` at the bottom of the file. FRR messages are logged to the `/var/log/frr/frr.log` file on the local disk only (these messages are not sent to a remote server using the default configuration). To log FRR messages remotely in addition to writing FRR messages to the local disk, rename the `99-syslog.conf` file to `11-remotesyslog.conf`. FRR messages are first processed by the `11-remotesyslog.conf` rule (transmit to remote server), then continue to be processed by the `45-frr.conf` file (write to local disk in the `/var/log/frr/frr.log` file).
 
-Running `syslog` over TCP places a burden on the switch to queue packets in the `syslog` buffer. This may cause detrimental effects if the remote `syslog` server becomes unavailable.
-
-   {{%/notice%}}
-
-   {{%notice note%}}
-
-The numbering of the files in `/etc/rsyslog.d/` dictates how the
-rules are installed into `rsyslog.d`. Lower numbered rules are processed first,
-and rsyslog processing will "terminate" with the `stop` keyword.
-
-- For example the rsyslog config for FRR is stored in 45-frr.conf with
-an explicit `stop` at the bottom of the file. FRR messages will be logged to
-/var/log/frr/frr.log on the local disk only. These messages are not sent to
-a remote server using the default configuration.
-
-- In contrast to the previous example: to remotely log FRR messages in addition
-to writing FRR messages to the local disk, rename the 99-syslog.conf to be
-11-remotesyslog.conf. FRR messages will first be processed by the
-11-remotesyslog.conf rule (transmit to remote server) then continue to
-be processed by 45-frr.conf (write to local disk in /var/log/frr/frr.log).
-
-   {{%/notice%}}
-
-   {{%notice note%}}
-
-Do not use the `imfile` module with any file written by `rsyslogd`.
+- Do not use the `imfile` module with any file written by `rsyslogd`.
 
    {{%/notice%}}
 

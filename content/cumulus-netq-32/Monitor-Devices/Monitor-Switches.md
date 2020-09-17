@@ -20,7 +20,7 @@ For switch inventory information for all switches (ASIC, platform, CPU, memory, 
 
 The NetQ UI provides several views that enable users to easily track the overall health of switch, some high-level metrics, and attributes of the switch.
 
-### View the Overall Health
+### View Overall Health of a Switch
 
 When you want to view an overview of the current or past health of a particular switch, open the NetQ UI small Switch card. It is unlikely that you would have this card open for every switch in your network at the same time, but it is useful for tracking selected switches that may have been problematic in the recent past or that you have recently installed. The card shows you alarm status, a summary health score, and health trend.
 
@@ -66,7 +66,7 @@ Locate or open the relevant Switch card:
 
 Also included on the card is the total alarm count for all of these metrics. You can view the key performance metrics as numerical scores or as line charts over time, by clicking **Alarms** or **Charts** at the top of the card.
 
-### View Attributes
+### View Switch Attributes
 
 For a quick look at the key attributes of a particular switch, open the large Switch card.
 
@@ -96,9 +96,56 @@ At some point in the lifecycle of a switch, you are likely to want more detail a
 
 ### View All Switch Alarms
 
+You can focus on all *critical* alarms for a given switch using the NetQ UI or NetQ CLI.
+
+{{< tabs "TabID101" >}}
+
+{{< tab "NetQ UI" >}}
+
+To view all alarms:
+
+1. Open the full-screen Switch card and click **Alarms**.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-alarms-tab-310.png" width="700">}}
+
+2. Use the filter to sort by message type.
+
+3. Use the filter to look at alarms during a different time range.
+
+4. Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view all critical alarms on the switch, run:
+
+```
+netq <hostname> show events level critical [between <text-time> and <text-endtime>] [json]
+```
+
+This example shows the critical alarms on *spine01* in the last two months.
+
+```
+cumulus@switch:~$ netq spine01 show events level critical between now and 60d
+Matching events records:
+Hostname          Message Type             Severity         Message                             Timestamp
+----------------- ------------------------ ---------------- ----------------------------------- -------------------------
+spine01           agent                    critical         Netq-agent rebooted at (Mon Aug 10  Mon Aug 10 19:55:19 2020
+                                                            19:55:07 UTC 2020)
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### View Status of All Interfaces
 
 You can view all of the configured interfaces on a switch in one place making it easier to see inconsistencies in the configuration, quickly see when changes were made, and the operational status.
+
+{{< tabs "TabID146" >}}
+
+{{< tab "NetQ UI" >}}
 
 To view all interfaces:
 
@@ -118,15 +165,216 @@ To view all interfaces:
 
 7. To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
-### View Status of All MAC Addresses
+{{< /tab >}}
 
-### View Status of All VLANs
+{{< tab "NetQ CLI" >}}
 
-### View Status of All IP Routes
+You can view all interfaces or filter by the interface type.
 
-### View Status of All IP Neighbors
+To view all interfaces, run:
 
-### View Status of All IP Addresses
+```
+netq <hostname> show interfaces [<remote-interface>] [state <remote-interface-state>] [around <text-time>] [count] [json]
+```
+
+To view interfaces of a particular type, run:
+
+```
+netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan) [state <remote-interface-state>] [around <text-time>] [count] [json]
+```
+
+This example shows all interfaces on the *spine01* switch.
+
+```
+cumulus@switch:~$ netq spine01 show interfaces
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+spine01           swp5                      swp              up         default         VLANs: ,                            Wed Sep 16 19:57:26 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: border01:sw
+                                                                                        p51
+spine01           swp6                      swp              up         default         VLANs: ,                            Wed Sep 16 19:57:26 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: border02:sw
+                                                                                        p51
+spine01           eth0                      eth              up         mgmt            MTU: 1500                           Wed Sep 16 19:57:26 2020
+spine01           lo                        loopback         up         default         MTU: 65536                          Wed Sep 16 19:57:26 2020
+spine01           vagrant                   swp              down       default         VLANs: , PVID: 0 MTU: 1500          Wed Sep 16 19:57:26 2020
+spine01           mgmt                      vrf              up                         table: 1001, MTU: 65536,            Wed Sep 16 19:57:26 2020
+                                                                                        Members:  eth0,  mgmt,
+spine01           swp1                      swp              up         default         VLANs: ,                            Wed Sep 16 19:57:26 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf01:swp5
+                                                                                        1
+spine01           swp2                      swp              up         default         VLANs: ,                            Wed Sep 16 19:57:26 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf02:swp5
+                                                                                        1
+spine01           swp3                      swp              up         default         VLANs: ,                            Wed Sep 16 19:57:26 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf03:swp5
+                                                                                        1
+spine01           swp4                      swp              up         default         VLANs: ,                            Wed Sep 16 19:57:26 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf04:swp5
+                                                                                        1
+```
+
+This example shows all *swp* type interfaces on the *spine01* switch.
+
+```
+cumulus@switch:~$ netq spine01 show interfaces type swp
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+spine01           swp5                      swp              up         default         VLANs: ,                            Wed Sep 16 19:57:26 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: border01:sw
+                                                                                        p51
+spine01           swp6                      swp              up         default         VLANs: ,                            Wed Sep 16 19:57:26 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: border02:sw
+                                                                                        p51
+spine01           vagrant                   swp              down       default         VLANs: , PVID: 0 MTU: 1500          Wed Sep 16 19:57:26 2020
+spine01           mgmt                      vrf              up                         table: 1001, MTU: 65536,            Wed Sep 16 19:57:26 2020
+                                                                                        Members:  eth0,  mgmt,
+spine01           swp1                      swp              up         default         VLANs: ,                            Wed Sep 16 19:57:26 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf01:swp5
+                                                                                        1
+spine01           swp2                      swp              up         default         VLANs: ,                            Wed Sep 16 19:57:26 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf02:swp5
+                                                                                        1
+spine01           swp3                      swp              up         default         VLANs: ,                            Wed Sep 16 19:57:26 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf03:swp5
+                                                                                        1
+spine01           swp4                      swp              up         default         VLANs: ,                            Wed Sep 16 19:57:26 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf04:swp5
+                                                                                        1
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### View All MAC Addresses on a Switch
+
+You can view all MAC address currently used by a switch using the NetQ UI or the NetQ CLI.
+
+{{< tabs "TabID256" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Open the full-screen switch card for the switch of interest.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-macaddr-tab-241.png" width="500">}}
+
+    <!-- update above image -->
+
+2. Review the addresses.
+
+3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by MAC address, VLAN, origin, or alternate time range.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+You can view all MAC addresses on a switch, or filter the list to view a particular address, only the addresses on the egress port, a particular VLAN, or those that are owned by the switch. You can also view the number addresses.
+
+Use the following commands to obtain this MAC address information:
+
+```
+netq <hostname> show macs [<mac>] [vlan <1-4096>] [origin | count] [around <text-time>] [json]
+netq <hostname> show macs egress-port <egress-port> [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
+```
+
+This example shows all of the MAC addresses on the *leaf01* switch:
+
+```
+cumulus@switch:~$ netq leaf01 show macs
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+yes    00:00:00:00:00:1a  10     leaf01            bridge                         no     Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:5d  30     leaf01            vni30030:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     46:38:39:00:00:46  20     leaf01            vni30020:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:5e  20     leaf01            vni30020:leaf03                yes    Wed Sep 16 16:16:09 2020
+yes    44:38:39:00:00:59  30     leaf01            bridge                         no     Wed Sep 16 16:16:09 2020
+yes    44:38:39:00:00:59  4001   leaf01            bridge                         no     Wed Sep 16 16:16:09 2020
+yes    44:38:39:00:00:59  4002   leaf01            bridge                         no     Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:36  30     leaf01            {bond3}:{server03}             no     Wed Sep 16 16:16:09 2020
+yes    44:38:39:00:00:59  20     leaf01            bridge                         no     Wed Sep 16 16:16:09 2020
+yes    44:38:39:be:ef:aa  4001   leaf01            bridge                         no     Wed Sep 16 16:16:09 2020
+yes    44:38:39:00:00:59  10     leaf01            bridge                         no     Wed Sep 16 16:16:09 2020
+no     46:38:39:00:00:48  30     leaf01            vni30030:leaf03                yes    Wed Sep 16 16:16:09 2020
+yes    44:38:39:be:ef:aa  4002   leaf01            bridge                         no     Wed Sep 16 16:16:09 2020
+no     46:38:39:00:00:38  10     leaf01            {bond1}:{server01}             no     Wed Sep 16 16:16:09 2020
+no     46:38:39:00:00:36  30     leaf01            {bond3}:{server03}             no     Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:34  20     leaf01            {bond2}:{server02}             no     Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:5e  30     leaf01            vni30030:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:3e  10     leaf01            vni30010:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:42  30     leaf01            vni30030:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     46:38:39:00:00:34  20     leaf01            {bond2}:{server02}             no     Wed Sep 16 16:16:09 2020
+no     46:38:39:00:00:3c  30     leaf01            {bond3}:{server03}             no     Wed Sep 16 16:16:09 2020
+no     46:38:39:00:00:3e  10     leaf01            vni30010:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:5e  10     leaf01            vni30010:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:5d  20     leaf01            vni30020:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:5d  10     leaf01            vni30010:leaf03                yes    Wed Sep 16 16:16:09 2020
+yes    00:00:00:00:00:1b  20     leaf01            bridge                         no     Wed Sep 16 16:16:09 2020
+...
+```
+
+This example shows all MAC addresses on VLAN *10* on the *leaf01* switch:
+
+```
+cumulus@switch:~$ netq leaf01 show macs
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+yes    00:00:00:00:00:1a  10     leaf01            bridge                         no     Wed Sep 16 16:16:09 2020
+yes    44:38:39:00:00:59  10     leaf01            bridge                         no     Wed Sep 16 16:16:09 2020
+no     46:38:39:00:00:38  10     leaf01            {bond1}:{server01}             no     Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:3e  10     leaf01            vni30010:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     46:38:39:00:00:3e  10     leaf01            vni30010:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:5e  10     leaf01            vni30010:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:5d  10     leaf01            vni30010:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:32  10     leaf01            {bond1}:{server01}             no     Wed Sep 16 16:16:09 2020
+no     46:38:39:00:00:44  10     leaf01            vni30010:leaf03                yes    Wed Sep 16 16:16:09 2020
+no     46:38:39:00:00:32  10     leaf01            {bond1}:{server01}             no     Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:5a  10     leaf01            {peerlink}:{leaf02}            no     Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:62  10     leaf01            vni30010:border01              yes    Wed Sep 16 16:16:09 2020
+no     44:38:39:00:00:61  10     leaf01            vni30010:border01              yes    Wed Sep 16 16:16:09 2020
+```
+
+This example shows the total number of MAC address on the *leaf01* switch:
+
+```
+cumulus@switch:~$ netq leaf01 show macs count
+Count of matching mac records: 55
+```
+
+This example show the addresses on the *bridge* egress port on the *leaf01* switch:
+
+```
+cumulus@switch:~$ netq leaf01 show macs egress-port bridge
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+yes    00:00:00:00:00:1a  10     leaf01            bridge                         no     Thu Sep 17 16:16:11 2020
+yes    44:38:39:00:00:59  4001   leaf01            bridge                         no     Thu Sep 17 16:16:11 2020
+yes    44:38:39:00:00:59  30     leaf01            bridge                         no     Thu Sep 17 16:16:11 2020
+yes    44:38:39:00:00:59  20     leaf01            bridge                         no     Thu Sep 17 16:16:11 2020
+yes    44:38:39:00:00:59  4002   leaf01            bridge                         no     Thu Sep 17 16:16:11 2020
+yes    44:38:39:00:00:59  10     leaf01            bridge                         no     Thu Sep 17 16:16:11 2020
+yes    44:38:39:be:ef:aa  4001   leaf01            bridge                         no     Thu Sep 17 16:16:11 2020
+yes    44:38:39:be:ef:aa  4002   leaf01            bridge                         no     Thu Sep 17 16:16:11 2020
+yes    00:00:00:00:00:1b  20     leaf01            bridge                         no     Thu Sep 17 16:16:11 2020
+yes    00:00:00:00:00:1c  30     leaf01            bridge                         no     Thu Sep 17 16:16:11 2020
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### View All VLANs on a Switch
+
+### View All IP Routes on a Switch
+
+### View All IP Neighbors on a Switch
+
+### View All IP Addresses on a Switch
 
 ### View All Software Packages
 
@@ -462,28 +710,339 @@ Optionally, use the `around` option to view the information for a particular tim
 
 ## Physical Sensing
 
-### DOM
+### View Chassis Health with Sensors
 
-### Chassis Sensors
+Fan, power supply unit (PSU), and temperature sensors are available to provide additional data about the switch operation.
 
-Fan Health
-To view the health of fans in your switches, use the `netq show sensors fan` command. If you name the fans in all of your switches consistently, you can view more information at once.
+Sensor information is available from the NetQ UI and NetQ CLI.
 
-In this example, we look at the state of all fans with the name *fan1*.
+- PSU Sensor card: view sensor name, current/previous state, input/output power, and input/output voltage on all devices (table)
+- Fan Sensor card: view sensor name, description, current/maximum/minimum speed, and current/previous state on all devices (table)
+- Temperature Sensor card: view sensor name, description, minimum/maximum threshold, current/critical(maximum)/lower critical (minimum) threshold, and current/previous state on all devices (table)
+- `netq show sensors`: view sensor name, description, current state, and time when data was last changed on all devices for all or one sensor type
+
+{{< tabs "TabID488" >}}
+
+{{< tab "NetQ UI" >}}
+
+#### Power Supply Unit Health
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
+
+    {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
+
+2. The PSU tab is displayed by default.
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-psu-310.png" width="700">}}
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
+
+4. Enter a hostname in the **Hostname** field.
+
+   {{<figure src="/images/netq/main-menu-sensors-filterbyhostname-320.png" width="300">}}
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-psu-single-switch-filter-310.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>PSU Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the power supply is installed</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td>Type of sensor message; always <em>PSU</em> in this table</td>
+</tr>
+<tr>
+<td>PIn(W)</td>
+<td>Input power (Watts) for the PSU on the switch or host</td>
+</tr>
+<tr>
+<td>POut(W)</td>
+<td>Output power (Watts) for the PSU on the switch or host</td>
+</tr>
+<tr>
+<td>Sensor Name</td>
+<td>User-defined name for the PSU</td>
+</tr>
+<tr>
+<td>Previous State</td>
+<td>State of the PSU when data was captured in previous window</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the PSU when data was last captured</td>
+</tr>
+<tr>
+<td>VIn(V)</td>
+<td>Input voltage (Volts) for the PSU on the switch or host</td>
+</tr>
+<tr>
+<td>VOut(V)</td>
+<td>Output voltage (Volts) for the PSU on the switch or host</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+#### Fan Health
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
+
+2. Click **Fan**.
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-fan-320.png" width="700">}}
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
+
+4. Enter a hostname in the **Hostname** field.
+
+   {{<figure src="/images/netq/main-menu-sensors-filterbyhostname-320.png" width="300">}}
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-fan-single-switch-filter-320.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>Fan Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the fan is installed</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td>Type of sensor message; always <em>Fan</em> in this table</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>User specified description of the fan</td>
+</tr>
+<tr>
+<td>Speed (RPM)</td>
+<td>Revolution rate of the fan (revolutions per minute)</td>
+</tr>
+<tr>
+<td>Max</td>
+<td>Maximum speed (RPM)</td>
+</tr>
+<tr>
+<td>Min</td>
+<td>Minimum speed (RPM)</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>Message</td>
+</tr>
+<tr>
+<td>Sensor Name</td>
+<td>User-defined name for the fan</td>
+</tr>
+<tr>
+<td>Previous State</td>
+<td>State of the fan when data was captured in previous window</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the fan when data was last captured</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+#### Temperature Information
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
+
+2. Click **Temperature**.
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-temp-320.png" width="700">}}
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
+
+4. Enter a hostname in the **Hostname** field.
+
+   {{<figure src="/images/netq/main-menu-sensors-filterbyhostname-320.png" width="300">}}
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-temp-single-switch-filter-320.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>Temperature Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the temperature sensor is installed</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td>Type of sensor message; always <em>Temp</em> in this table</td>
+</tr>
+<tr>
+<td>Critical</td>
+<td>Current critical maximum temperature (&deg;C) threshold setting</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>User specified description of the temperature sensor</td>
+</tr>
+<tr>
+<td>Lower Critical</td>
+<td>Current critical minimum temperature (&deg;C) threshold setting</td>
+</tr>
+<tr>
+<td>Max</td>
+<td>Maximum temperature threshold setting</td>
+</tr>
+<tr>
+<td>Min</td>
+<td>Minimum temperature threshold setting</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>Message</td>
+</tr>
+<tr>
+<td>Sensor Name</td>
+<td>User-defined name for the temperature sensor</td>
+</tr>
+<tr>
+<td>Previous State</td>
+<td>State of the fan when data was captured in previous window</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the fan when data was last captured</td>
+</tr>
+<tr>
+<td>Temperature(Celsius)</td>
+<td>Current temperature (&deg;C) measured by sensor</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+#### View All Sensor Information for a Switch
+
+To view information for power supplies, fans, and temperature sensors on a switch, run:
 
 ```
-cumulus@switch:~$ netq show sensors fan fan1
-Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
------------------ --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
-exit01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:17 2019
-exit02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:33 2019
-leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
-leaf02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:41 2019
-leaf03            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:44 2019
-leaf04            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:36 2019
-spine01           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:52 2019
-spine02           fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:08 2019
+netq <hostname> show sensors all [around <text-time>] [json]
 ```
+
+Use the `around` option to view sensor information for a time in the past.
+
+This example show all of the sensors on the *border01* switch.
+
+```
+cumulus@switch:~$ netq border01 show sensors all
+Matching sensors records:
+Hostname          Name            Description                         State      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ----------------------------------- -------------------------
+border01          fan3            fan tray 2, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
+border01          fan1            fan tray 1, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
+border01          fan6            fan tray 3, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
+border01          fan5            fan tray 3, fan 1                   ok                                             Wed Apr 22 17:07:56 2020
+border01          psu2fan1        psu2 fan                            ok                                             Wed Apr 22 17:07:56 2020
+border01          fan2            fan tray 1, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
+border01          fan4            fan tray 2, fan 2                   ok                                             Wed Apr 22 17:07:56 2020
+border01          psu1fan1        psu1 fan                            ok                                             Wed Apr 22 17:07:56 2020
+```
+
+#### View Only Power Supply Health
+
+To view information from all PSU sensors or PSU sensors with a given name on a given switch, run:
+
+```
+netq <hostname> show sensors psu [<psu-name>] [around <text-time>] [json]
+```
+
+Use the `psu-name` option to view all PSU sensors with a particular name. Use the `around` option to view sensor information for a time in the past.
+
+{{<notice tip>}}
+
+Use Tab completion to determine the names of the PSUs in your switches.
+
+```
+cumulus@switch:~$ netq <hostname> show sensors psu <press tab>
+around  :  Go back in time to around ...
+json    :  Provide output in JSON
+psu1    :  Power Supply
+psu2    :  Power Supply
+<ENTER>
+```
+
+{{</notice>}}
+
+This example shows information from all PSU sensors on the *border01* switch.
+
+```
+cumulus@switch:~$ netq border01 show sensor psu
+
+Matching sensors records:
+Hostname          Name            State      Pin(W)       Pout(W)        Vin(V)       Vout(V)        Message                             Last Changed
+----------------- --------------- ---------- ------------ -------------- ------------ -------------- ----------------------------------- -------------------------
+border01          psu1            ok                                                                                                     Tue Aug 25 21:45:21 2020
+border01          psu2            ok                                                                                                     Tue Aug 25
+```
+
+This example shows the state of *psu2* on the *leaf01* switch.
+
+```
+cumulus@switch:~$ netq leaf01 show sensors psu psu2
+Matching sensors records:
+Hostname          Name            State      Message                             Last Changed
+----------------- --------------- ---------- ----------------------------------- -------------------------
+leaf01            psu2            ok                                             Sun Apr 21 20:07:12 2019
+```
+
+#### View Only Fan Health
+
+To view information from all fan sensors or fan sensors with a given name on your switch, run:
+
+```
+netq <hostname> show sensors fan [<fan-name>] [around <text-time>] [json]
+```
+
+Use the `fan-name` option to view all fan sensors with a particular name. Use the `around` option to view sensor information for a time in the past.
 
 {{<notice tip>}}
 
@@ -506,78 +1065,258 @@ cumulus@switch:~$ netq show sensors fan <<press tab>>
 
 {{</notice>}}
 
-To view the status for a particular switch, use the optional `hostname` parameter.
+This example shows information from all fan sensors on the *leaf01* switch.
 
 ```
-cumulus@switch:~$ netq leaf01 show sensors fan fan1
+cumulus@switch:~$ netq leaf01 show sensors fan
+Matching sensors records:
 Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
 ----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
-leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Sun Apr 21 20:07:12 2019
+leaf01            psu2fan1        psu2 fan                            ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            fan5            fan tray 3, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            fan3            fan tray 2, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            fan6            fan tray 3, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            fan2            fan tray 1, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            psu1fan1        psu1 fan                            ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+leaf01            fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Wed Aug 26 16:14:41 2020
+
 ```
-### WJH
 
-### View PSU Health for All Switches
-
-Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ Platform operation. To view the health of PSUs in your switches, use the `netq show sensors psu` command. If you name the PSUs in all of your switches consistently, you can view more information at once.
-
-In this example, we look at the state of all PSUs with the name *psu2*.
+This example shows the state of all fans with the name *fan1* on the *leaf02* switch.
 
 ```
-cumulus@switch:~$ netq show sensors psu psu2
-Matching sensors records:
-Hostname          Name            State      Message                             Last Changed
------------------ --------------- ---------- ----------------------------------- -------------------------
-exit01            psu2            ok                                             Fri Apr 19 16:01:17 2019
-exit02            psu2            ok                                             Fri Apr 19 16:01:33 2019
-leaf01            psu2            ok                                             Sun Apr 21 20:07:12 2019
-leaf02            psu2            ok                                             Fri Apr 19 16:01:41 2019
-leaf03            psu2            ok                                             Fri Apr 19 16:01:44 2019
-leaf04            psu2            ok                                             Fri Apr 19 16:01:36 2019
-spine01           psu2            ok                                             Fri Apr 19 16:01:52 2019
-spine02           psu2            ok                                             Fri Apr 19 16:01:08 2019
+cumulus@switch:~$ netq leaf02 show sensors fan fan1
+Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
+leaf02            fan1            fan tray 1, fan 1                   ok         2500       29000    2500                                         Fri Apr 19 16:01:41 2019
 ```
+
+#### View Only Temperature Information
+
+To view information from all temperature sensors or temperature sensors with a given name on a switch, run:
+
+```
+netq <hostname> show sensors temp [<temp-name>] [around <text-time>] [json]
+```
+
+Use the `temp-name` option to view all PSU sensors with a particular name. Use the `around` option to view sensor information for a time in the past.
 
 {{<notice tip>}}
 
-Use Tab completion to determine the names of the PSUs in your switches. Use the optional <code>hostname</code> parameter to view the PSU state for a given switch.
+Use tab completion to determine the names of the temperature sensors on your devices:
+
+```
+cumulus@switch:~$ netq show sensors temp <press tab>
+    around     :  Go back in time to around ...
+    json       :  Provide output in JSON
+    psu1temp1  :  Temp Name
+    psu2temp1  :  Temp Name
+    temp1      :  Temp Name
+    temp2      :  Temp Name
+    temp3      :  Temp Name
+    temp4      :  Temp Name
+    temp5      :  Temp Name
+    <ENTER>
+```
 
 {{</notice>}}
 
-### View the Temperature in All Switches
-
-Fan, power supply unit, and temperature sensors are available to provide additional data about the NetQ Platform operation. To view the temperature sensor status, current temperature, and configured threshold values, use the `netq show sensors temp` command. If you name the temperature sensors in all of your switches consistently, you can view more information at once.
-
-In this example, we look at the state of all temperature sensors with the name *psu1temp1*.
+This example shows the state of all temperature sensors on the *leaf01* switch.
 
 ```
-cumulus@switch:~$ netq show sensors temp psu2temp1 
+cumulus@switch:~$ netq leaf01 show sensors temp
+
 Matching sensors records:
 Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
-    
 ----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
-    
-exit01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:17 2019
-
-exit02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:33 2019
-    
-leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Sun Apr 21 20:07:12 2019
-    
-leaf02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:41 2019
-    
-leaf03            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:44 2019
-    
-leaf04            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:36 2019
-    
-spine01           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:52 2019
-    
-spine02           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Fri Apr 19 16:01:08 2019
+leaf01            psu1temp1       psu1 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf01            temp5           board sensor near fan               ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf01            temp4           board sensor at front right corner  ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf01            temp1           board sensor near cpu               ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf01            temp2           board sensor near virtual switch    ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf01            temp3           board sensor at front left corner   ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
+leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
 ```
 
-{{<notice tip>}}
+This example shows the state of the *psu1temp1* temperature sensor on the *leaf01* switch.
+the name .
 
-Use Tab completion to determine the names of the temperature sensors in
-your switches. Use the optional <code>hostname</code> parameter to view the
-temperature state, current temperature, and threshold values for a given
-switch.
+```
+cumulus@switch:~$ netq leaf01 show sensors temp psu2temp1
+Matching sensors records:
+Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
+leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 16:14:41 2020
 
-{{</notice>}}
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### View Digital Optics Health
+
+Digital optics information is available from any digital optics modules on a switch using the NetQ UI and NetQ CLI.
+
+- Digital Optics card: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage (table)
+- `netq show dom type` command: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage
+
+{{< tabs "TabID925" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Digital Optics** in the **Network** heading.
+
+    {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
+
+2. The **Laser Rx Power** tab is displayed by default.
+
+    {{<figure src="/images/netq/main-menu-ntwk-dom-laserrx-power-310.png" width="700">}}
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
+
+4. Enter the hostname of the switch you want to view, and optionally an interface, then click **Apply**.
+
+   {{<figure src="/images/netq/main-menu-dom-filterbyhostname-320.png" width="300">}}
+
+   {{<figure src="/images/netq/main-menu-ntwk-dom-laserrx-power-single-switch-filter-320.png" width="700">}}
+
+5. Click another tab to view other optical parameters for a switch. Filter for the switch on each tab.
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>Laser Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the digital optics module resides</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>If Name</td>
+<td>Name of interface where the digital optics module is installed</td>
+</tr>
+<tr>
+<td>Units</td>
+<td>Measurement unit for the power (mW) or current (mA)</td>
+</tr>
+<tr>
+<td>Channel 1&ndash;8</td>
+<td>Value of the power or current on each channel where the digital optics module is transmitting</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>Module Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the digital optics module resides</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>If Name</td>
+<td>Name of interface where the digital optics module is installed</td>
+</tr>
+<tr>
+<td>Degree C</td>
+<td>Current module temperature, measured in degrees Celsius</td>
+</tr>
+<tr>
+<td>Degree F</td>
+<td>Current module temperature, measured in degrees Fahrenheit</td>
+</tr>
+<tr>
+<td>Units</td>
+<td>Measurement unit for module voltage; Volts</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>Current module voltage</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+6. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view digital optics information for a switch, run one of the following:
+
+```
+netq <hostname> show dom type (laser_rx_power|laser_output_power|laser_bias_current) [interface <text-dom-port-anchor>] [channel_id <text-channel-id>] [around <text-time>] [json]
+netq <hostname> show dom type (module_temperature|module_voltage) [interface <text-dom-port-anchor>] [around <text-time>] [json]
+```
+
+This example shows module temperature information for the *spine01* switch.
+
+```
+cumulus@switch:~$ netq spine01 show dom type module_temperature
+Matching dom records:
+Hostname          Interface  type                 high_alarm_threshold low_alarm_threshold  high_warning_thresho low_warning_threshol value                Last Updated
+                                                                                            ld                   d
+----------------- ---------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+spine01           swp53s0    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp35      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 27.82,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 82.08}
+spine01           swp55      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 26.29,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 79.32}
+spine01           swp9       module_temperature   {‘degree_c’: 78,     {‘degree_c’: -13,    {‘degree_c’: 73,     {‘degree_c’: -8,     {‘degree_c’: 25.57,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 8.6}     ‘degree_f’: 163.4}   ‘degree_f’: 17.6}    ‘degree_f’: 78.02}
+spine01           swp56      module_temperature   {‘degree_c’: 78,     {‘degree_c’: -10,    {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 29.43,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 14}      ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 84.97}
+spine01           swp53s2    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp6       module_temperature   {‘degree_c’: 80,     {‘degree_c’: -10,    {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 25.04,  Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 176}     ‘degree_f’: 14}      ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 77.07}
+spine01           swp7       module_temperature   {‘degree_c’: 85,     {‘degree_c’: -5,     {‘degree_c’: 80,     {‘degree_c’: 0,      {‘degree_c’: 24.14,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 23}      ‘degree_f’: 176}     ‘degree_f’: 32}      ‘degree_f’: 75.45}
+spine01           swp53s3    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp11      module_temperature   {‘degree_c’: 95,     {‘degree_c’: -50,    {‘degree_c’: 93,     {‘degree_c’: -48,    {‘degree_c’: 23.75,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 203}     ‘degree_f’: -58}     ‘degree_f’: 199.4}   ‘degree_f’: -54.4}   ‘degree_f’: 74.75}
+spine01           swp49      module_temperature   {‘degree_c’: 65,     {‘degree_c’: 10,     {‘degree_c’: 60,     {‘degree_c’: 15,     {‘degree_c’: 23.18,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 149}     ‘degree_f’: 50}      ‘degree_f’: 140}     ‘degree_f’: 59}      ‘degree_f’: 73.72}
+spine01           swp12      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32.31,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 90.16}
+spine01           swp53s1    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp34      module_temperature   {‘degree_c’: 80,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 24.93,  Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 176}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 76.87}
+spine01           swp3       module_temperature   {‘degree_c’: 90,     {‘degree_c’: -40,    {‘degree_c’: 85,     {‘degree_c’: -40,    {‘degree_c’: 25.15,  Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 194}     ‘degree_f’: -40}     ‘degree_f’: 185}     ‘degree_f’: -40}     ‘degree_f’: 77.27}
+spine01           swp8       module_temperature   {‘degree_c’: 78,     {‘degree_c’: -13,    {‘degree_c’: 73,     {‘degree_c’: -8,     {‘degree_c’: 24.1,   Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 8.6}     ‘degree_f’: 163.4}   ‘degree_f’: 17.6}    ‘degree_f’: 75.38}
+spine01           swp52      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 20.55,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 68.98}
+spine01           swp10      module_temperature   {‘degree_c’: 78,     {‘degree_c’: -13,    {‘degree_c’: 73,     {‘degree_c’: -8,     {‘degree_c’: 25.39,  Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 8.6}     ‘degree_f’: 163.4}   ‘degree_f’: 17.6}    ‘degree_f’: 77.7}
+spine01           swp31      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 27.05,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 80.69}
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}

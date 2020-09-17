@@ -1,18 +1,20 @@
 ---
-title: Monitor the BGP Service
+title: Monitor the BGP Service Using NetQ UI
 author: Cumulus Networks
 weight: 950
 toc: 4
 ---
-The Cumulus NetQ UI enables operators to view the health of the BGP service on a network-wide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session. They are described separately here.
+The Cumulus NetQ UI enables operators to view the health of the BGP service on a network-wide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session.
+
+For an overview and how to configure BGP to run in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/" text="Border Gateway Protocol - BGP">}}.
 
 ## Monitor the BGP Service (All Sessions)
 
-With NetQ, you can monitor the number of nodes running the BGP service, view switches with the most established and unestablished BGP sessions, and view alarms triggered by the BGP service. For an overview and how to configure BGP to run in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/" text="Border Gateway Protocol - BGP">}}.
+With NetQ UI, you can monitor the number of nodes running the BGP service, view switches with the most established and unestablished BGP sessions, and view alarms triggered by the BGP service. With the NetQ CLII, you can view the associated neighbors, ASN (autonomous system number), peer ASN, receive IP or EVPN address prefixes, and VRF assignment for each device.
 
 ### View Service Status Summary
 
-A summary of the BGP service is available from the Network Services card workflow, including the number of nodes running the service, the number of BGP-related alarms, and a distribution of those alarms.
+The Network Services card workflow is used to show a summary of the BGP service, including the number of nodes running the service, the number of BGP-related alarms, and a distribution of those alarms.
 
 To view the summary, open the small BGP Service card.
 

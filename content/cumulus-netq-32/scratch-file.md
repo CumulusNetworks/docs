@@ -5,7 +5,17 @@ weight: 0
 draft: true
 ---
 
+{{< tabs "TabIDxxx" >}}
 
+{{< tab "NetQ UI" >}}
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Switch Card/all alarms
 

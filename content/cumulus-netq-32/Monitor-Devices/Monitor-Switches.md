@@ -10,7 +10,7 @@ Three categories of performance metrics are available for switches:
 
 - **System configuration**: alarms, interfaces, IP and MAC addresses, VLANs, IP routes, IP neighbors, and installed software packages
 - **Utilization statistics**: CPU, memory, disk, ACL and forwarding resources, SSD, and BTRFS
-- **Physical sensing**: digital optics, chassis sensors, and WJH
+- **Physical sensing**: digital optics and chassis sensors
 
 For information about the health of network services and protocols (BGP, EVPN, NTP, and so forth) running on switches, refer to the relevant layer monitoring topic.
 
@@ -88,9 +88,9 @@ Attributes are displayed as the default tab on the large Switch card. You can vi
 
 {{<figure src="/images/netq/dev-switch-large-attributes-tab-230.png" width="500">}}
 
-From a performance perspective, this example shows that five interfaces are down, the NetQ Agent is communicating with the NetQ appliance or VM, and it is missing the Cumulus Linux license. It is important the license is valid, so you would want to fix this first (refer to {{<link url="https://docs.cumulusnetworks.com/cumulus-linux-42/Quick-Start-Guide/#install-the-license" text="Install the Cumulus Linux License">}}). Secondly, you would want to look more closely at the interfaces (refer to {{<link title="View Interface Statistics for a Switch" text="interface statistics">}}).
+From a performance perspective, this example shows that five interfaces are down, the NetQ Agent is communicating with the NetQ appliance or VM, and it is missing the Cumulus Linux license. It is important the license is valid, so you would want to fix this first (refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-42/Quick-Start-Guide/#install-the-license" text="Install the Cumulus Linux License">}}). Secondly, you would want to look more closely at the interfaces (refer to {{<link title="#view-interface-statistics-and-utilization" text="interface statistics">}}).
 
-## System Configuration Metrics
+## System Configuration
 
 At some point in the lifecycle of a switch, you are likely to want more detail about how the switch is configured and what software is running on it. The NetQ UI and the NetQ CLI can provide this information.
 
@@ -261,7 +261,7 @@ You can view all MAC address currently used by a switch using the NetQ UI or the
 
     {{<figure src="/images/netq/dev-switch-fullscr-macaddr-tab-241.png" width="500">}}
 
-    <!-- update above image -->
+<!-- update above image -->
 
 2. Review the addresses.
 
@@ -370,15 +370,322 @@ yes    00:00:00:00:00:1c  30     leaf01            bridge                       
 
 ### View All VLANs on a Switch
 
+You can view all VLANs running on a given switch using the NetQ UI or NetQ CLI.
+
+{{< tabs "TabID375" >}}
+
+{{< tab "NetQ UI" >}}
+
+To view all VLANs on a switch:
+
+1. Open the full-screen Switch card and click **VLANs**.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-alarms-tab-310.png" width="700">}}
+
+    <!-- capture new image -->
+
+2. Review the VLANs.
+
+3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by interface name or type.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view all VLANs on a switch, run:
+
+```
+netq <hostname> show interfaces type vlan [state <remote-interface-state>] [around <text-time>] [count] [json]
+```
+
+Filter the output for VLANs with `state` option to view VLANs that are up or down, the `around` option to view VLAN information for a time in the past, or the `count` option to view the total number of VLANs on the device.
+
+This example show all VLANs on the *leaf01* switch:
+
+```
+cumulus@switch:~$ netq leaf01 show interfaces type vlan
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+leaf01            vlan20                    vlan             up         RED             MTU: 9216                           Thu Sep 17 16:16:11 2020
+leaf01            vlan4002                  vlan             up         BLUE            MTU: 9216                           Thu Sep 17 16:16:11 2020
+leaf01            vlan4001                  vlan             up         RED             MTU: 9216                           Thu Sep 17 16:16:11 2020
+leaf01            vlan30                    vlan             up         BLUE            MTU: 9216                           Thu Sep 17 16:16:11 2020
+leaf01            vlan10                    vlan             up         RED             MTU: 9216                           Thu Sep 17 16:16:11 2020
+leaf01            peerlink.4094             vlan             up         default         MTU: 9216                           Thu Sep 17 16:16:11 2020
+```
+
+This example shows the total number of VLANs on the *leaf01* switch:
+
+```
+cumulus@switch:~$ netq leaf01 show interfaces type vlan count
+Count of matching link records: 6
+```
+
+This example shows the VLANs on the *leaf01* switch that are *down*:
+
+```
+cumulus@switch:~$ netq leaf01 show interfaces type vlan state down
+No matching link records found
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### View All IP Routes on a Switch
+
+You can view all IP routes currently used by a switch using the NetQ UI or the NetQ CLI.
+
+{{< tabs "TabID440" >}}
+
+{{< tab "NetQ UI" >}}
+
+To view all IP routes on a switch:
+
+1. Open the full-screen Switch card and click **IP Routes**.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-iproutes-tab-320.png" width="700">}}
+
+2. By default all IP routes are listed. Click **IPv6** or **IPv4** to restrict the list to only those routes.
+
+3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by VRF or view a different time period.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view all IPv4 and IPv6 routes or only IPv4 routes on a switch, run:
+
+```
+netq show ip routes [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [origin] [around <text-time>] [json]
+```
+
+Optionally, filter the output with the following options:
+
+- `ipv4` or `ipv4/prefixlen` to view a particular IPv4 route on the switch
+- `vrf` to view routes using a given VRF
+- `origin` to view routes that are owned by the switch
+- `around` to view routes at a time in the past
+
+This example shows all IP routes for the *spine01* switch:
+
+```
+cumulus@switch:~$ netq spine01 show ip routes
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+no     default         10.0.1.2/32                    spine01           169.254.0.1: swp3,                  Wed Sep 16 19:57:26 2020
+                                                                        169.254.0.1: swp4
+no     mgmt            0.0.0.0/0                      spine01           Blackhole                           Wed Sep 16 19:57:26 2020
+yes    mgmt            192.168.200.21/32              spine01           eth0                                Wed Sep 16 19:57:26 2020
+no     default         10.0.1.254/32                  spine01           169.254.0.1: swp5,                  Wed Sep 16 19:57:26 2020
+                                                                        169.254.0.1: swp6
+no     default         10.0.1.1/32                    spine01           169.254.0.1: swp1,                  Wed Sep 16 19:57:26 2020
+                                                                        169.254.0.1: swp2
+no     default         10.10.10.4/32                  spine01           169.254.0.1: swp3,                  Wed Sep 16 19:57:26 2020
+                                                                        169.254.0.1: swp4
+yes    mgmt            192.168.200.0/24               spine01           eth0                                Wed Sep 16 19:57:26 2020
+no     default         10.10.10.3/32                  spine01           169.254.0.1: swp3,                  Wed Sep 16 19:57:26 2020
+                                                                        169.254.0.1: swp4
+yes    default         10.10.10.101/32                spine01           lo                                  Wed Sep 16 19:57:26 2020
+no     default         10.10.10.64/32                 spine01           169.254.0.1: swp5,                  Wed Sep 16 19:57:26 2020
+                                                                        169.254.0.1: swp6
+no     default         10.10.10.2/32                  spine01           169.254.0.1: swp1,                  Wed Sep 16 19:57:26 2020
+                                                                        169.254.0.1: swp2
+no     default         10.10.10.63/32                 spine01           169.254.0.1: swp5,                  Wed Sep 16 19:57:26 2020
+                                                                        169.254.0.1: swp6
+no     default         10.10.10.1/32                  spine01           169.254.0.1: swp1,                  Wed Sep 16 19:57:26 2020
+                                                                        169.254.0.1: swp2
+
+```
+
+This example shows information for the IPv4 route at *10.10.10.1* on the *spine01* switch:
+
+```
+cumulus@switch:~$ netq spine01 show ip routes 10.10.10.1
+
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+no     default         10.10.10.1/32                  spine01           169.254.0.1: swp1,                  Wed Sep 16 19:57:26 2020
+                                                                        169.254.0.1: swp2
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### View All IP Neighbors on a Switch
 
+You can view all IP neighbors currently known by a switch using the NetQ UI or the NetQ CLI.
+
+{{< tabs "TabID523" >}}
+
+{{< tab "NetQ UI" >}}
+
+To view all IP neighbors on a switch:
+
+1. Open the full-screen Switch card and click **IP Neighbors**.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-iproutes-tab-320.png" width="700">}}
+
+    <!-- update image and steps below -->
+
+2. By default all IP routes are listed. Click **IPv6** or **IPv4** to restrict the list to only those routes.
+
+3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by VRF or view a different time period.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view all IP neighbors on a switch, run:
+
+```
+netq <hostname> show ip neighbors [<remote-interface>] [<ipv4>|<ipv4> vrf <vrf>|vrf <vrf>] [<mac>] [around <text-time>] [count] [json]
+```
+
+Optionally, filter the output with the following options:
+
+- `ipv4`, `ipv4 vrf`, *or* `vrf` to view the neighbor with a given IPv4 address, the neighbor with a given IPv4 address and VRF, or all neighbors using a given VRF on the switch
+- `mac` to view the neighbor with a given MAC address
+- `count` to view the total number of known IP neighbors
+- `around` to view neighbors at a time in the past
+
+This example shows all IP neighbors for the *leaf02* switch:
+
+```
+cumulus@switch:~$ netq leaf02 show ip neighbors
+Matching neighbor records:
+IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
+------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
+10.1.10.2                 leaf02            vlan10                    44:38:39:00:00:59  RED             no     Thu Sep 17 20:25:14 2020
+169.254.0.1               leaf02            swp54                     44:38:39:00:00:0f  default         no     Thu Sep 17 20:25:16 2020
+192.168.200.1             leaf02            eth0                      44:38:39:00:00:6d  mgmt            no     Thu Sep 17 20:07:59 2020
+169.254.0.1               leaf02            peerlink.4094             44:38:39:00:00:59  default         no     Thu Sep 17 20:25:16 2020
+169.254.0.1               leaf02            swp53                     44:38:39:00:00:0d  default         no     Thu Sep 17 20:25:16 2020
+10.1.20.2                 leaf02            vlan20                    44:38:39:00:00:59  RED             no     Thu Sep 17 20:25:14 2020
+169.254.0.1               leaf02            swp52                     44:38:39:00:00:0b  default         no     Thu Sep 17 20:25:16 2020
+10.1.30.2                 leaf02            vlan30                    44:38:39:00:00:59  BLUE            no     Thu Sep 17 20:25:14 2020
+169.254.0.1               leaf02            swp51                     44:38:39:00:00:09  default         no     Thu Sep 17 20:25:16 2020
+192.168.200.250           leaf02            eth0                      44:38:39:00:01:80  mgmt            no     Thu Sep 17 20:07:59 2020
+```
+
+This example shows the neighbor with a MAC address of *44:38:39:00:00:0b* on the *leaf02* switch:
+
+```
+cumulus@switch:~$ netq leaf02 show ip neighbors 44:38:39:00:00:0b
+Matching neighbor records:
+IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
+------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
+169.254.0.1               leaf02            swp52                     44:38:39:00:00:0b  default         no     Thu Sep 17 20:25:16 2020
+```
+
+This example shows the neighbor with an IP address of *10.1.10.2* on the *leaf02* switch:
+
+```
+cumulus@switch:~$ netq leaf02 show ip neighbors 10.1.10.2
+Matching neighbor records:
+IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
+------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
+10.1.10.2                 leaf02            vlan10                    44:38:39:00:00:59  RED             no     Thu Sep 17 20:25:14 2020
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### View All IP Addresses on a Switch
+
+You can view all IP addresses currently known by a switch using the NetQ UI or the NetQ CLI.
+
+{{< tabs "TabID603" >}}
+
+{{< tab "NetQ UI" >}}
+
+To view all IP addresses on a switch:
+
+1. Open the full-screen Switch card and click **IP Addresses**.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-ipaddr-tab-241.png" width="700">}}
+
+    <!-- update image and steps below -->
+
+2. By default all IP addresses are listed. Click **IPv6** or **IPv4** to restrict the list to only those addresses.
+
+3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by interface or VRF, or view a different time period.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view all IP addresses on a switch, run:
+
+```
+netq <hostname> show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
+```
+
+Optionally, filter the output with the following options:
+
+- `ipv4` or `ipv4/prefixlen` to view a particular IPv4 address on the switch
+- `vrf` to view addresses using a given VRF
+- `count` to view the total number of known IP neighbors
+- `around` to view addresses at a time in the past
+
+This example shows all IP address on the *spine01* switch:
+
+```
+cumulus@switch:~$ netq spine01 show ip addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+192.168.200.21/24         spine01           eth0                      mgmt            Thu Sep 17 20:07:49 2020
+10.10.10.101/32           spine01           lo                        default         Thu Sep 17 20:25:05 2020
+```
+
+This example shows all IP addresses on the *leaf03* switch:
+
+```
+cumulus@switch:~$ netq leaf03 show ip addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+10.1.20.2/24              leaf03            vlan20                    RED             Thu Sep 17 20:25:08 2020
+10.1.10.1/24              leaf03            vlan10-v0                 RED             Thu Sep 17 20:25:08 2020
+192.168.200.13/24         leaf03            eth0                      mgmt            Thu Sep 17 20:08:11 2020
+10.1.20.1/24              leaf03            vlan20-v0                 RED             Thu Sep 17 20:25:09 2020
+10.0.1.2/32               leaf03            lo                        default         Thu Sep 17 20:28:12 2020
+10.1.30.1/24              leaf03            vlan30-v0                 BLUE            Thu Sep 17 20:25:09 2020
+10.1.10.2/24              leaf03            vlan10                    RED             Thu Sep 17 20:25:08 2020
+10.10.10.3/32             leaf03            lo                        default         Thu Sep 17 20:25:05 2020
+10.1.30.2/24              leaf03            vlan30                    BLUE            Thu Sep 17 20:25:08 2020
+```
+
+This example shows all IP addresses using the *BLUE* VRF on the *leaf03* switch:
+
+```
+cumulus@switch:~$ netq leaf03 show ip addresses vrf BLUE
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+10.1.30.1/24              leaf03            vlan30-v0                 BLUE            Thu Sep 17 20:25:09 2020
+10.1.30.2/24              leaf03            vlan30                    BLUE            Thu Sep 17 20:25:08 2020
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### View All Software Packages
 
-You can view all of the software installed on a given switch to quickly validate versions and total software installed.
+If you are having an issue with a particular switch, you may want to verify what software is installed and whether it needs updating.
+
+You can view all of the software installed on a given switch using the NetQ UI or NetQ CLI to quickly validate versions and total software installed.
+
+{{< tabs "TabID680" >}}
+
+{{< tab "NetQ UI" >}}
 
 To view all software packages:
 
@@ -392,6 +699,59 @@ To view all software packages:
 
 3. Optionally, export the list by selecting all or specific packages, then clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view package information for a switch, run:
+
+```
+netq <hostname> show cl-pkg-info [<text-package-name>] [around <text-time>] [json]
+```
+
+Use the `text-package-name` option to narrow the results to a particular package or the `around` option to narrow the output to a particular time range.
+
+This example shows all installed software packages for *spine01*.
+
+```
+cumulus@switch:~$ netq spine01 show cl-pkg-info
+Matching package_info records:
+Hostname          Package Name             Version              CL Version           Package Status       Last Changed
+----------------- ------------------------ -------------------- -------------------- -------------------- -------------------------
+spine01           libfile-fnmatch-perl     0.02-2+b1            Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+spine01           screen                   4.2.1-3+deb8u1       Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+spine01           libudev1                 215-17+deb8u13       Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+spine01           libjson-c2               0.11-4               Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+spine01           atftp                    0.7.git20120829-1+de Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+                                           b8u1
+spine01           isc-dhcp-relay           4.3.1-6-cl3u14       Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+spine01           iputils-ping             3:20121221-5+b2      Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+spine01           base-files               8+deb8u11            Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+spine01           libx11-data              2:1.6.2-3+deb8u2     Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+spine01           onie-tools               3.2-cl3u6            Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+spine01           python-cumulus-restapi   0.1-cl3u10           Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+spine01           tasksel                  3.31+deb8u1          Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+spine01           ncurses-base             5.9+20140913-1+deb8u Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+                                           3
+spine01           libmnl0                  1.0.3-5-cl3u2        Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+spine01           xz-utils                 5.1.1alpha+20120614- Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+...
+```
+
+This example shows the *ntp* package on the *spine01* switch.
+
+```
+cumulus@switch:~$ netq spine01 show cl-pkg-info ntp
+Matching package_info records:
+Hostname          Package Name             Version              CL Version           Package Status       Last Changed
+----------------- ------------------------ -------------------- -------------------- -------------------- -------------------------
+spine01           ntp                      1:4.2.8p10-cl3u2     Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ## Utilization Statistics
 
 Utilization statistics provide a view into the operation of a switch. They indicate whether resources are becoming dangerously close to their maximum capacity or a user-defined threshold. Depending on the function of the switch, the acceptable thresholds can vary. You can use the NetQ UI or the NetQ CLI to access the utilization statistics.
@@ -400,7 +760,7 @@ Utilization statistics provide a view into the operation of a switch. They indic
 
 You can view the current utilization of CPU, memory, and disk resources to determine whether a switch is reaching its maximum load and compare its performance with other switches.
 
-{{< tabs "TabID155" >}}
+{{< tabs "TabID763" >}}
 
 {{< tab "NetQ UI" >}}
 
@@ -495,7 +855,7 @@ NetQ Agents collect performance statistics every 30 seconds for the physical int
 
 You can view these statistics and utilization data using the NetQ UI or the NetQ CLI.
 
-{{< tabs "TabID89" >}}
+{{< tabs "TabID858" >}}
 
 {{< tab "NetQ UI" >}}
 
@@ -591,7 +951,6 @@ This example shows only the transmit utilization data for the *border01* switch.
 
 ```
 cumulus@switch:~$ netq border01 show interface-utilization tx
-
 Matching port_stats records:
 Hostname          Interface                 TX Bytes (30sec)     TX Drop (30sec)      TX Errors (30sec)    TX Util (%age)       Port Speed           Last Changed
 ----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
@@ -607,7 +966,152 @@ border01          swp54                     2461                 0              
 
 ### View ACL Resource Utilization
 
+You can monitor the incoming and outgoing access control lists (ACLs) configured on a switch. This ACL resource information is available from the NetQ UI and NetQ CLI.
+
+Both the Switch card and `netq show cl-resource acl` command display the ingress/egress IPv4/IPv6 filter/mangle, ingress 802.1x filter, ingress mirror, ingress/egress PBR IPv4/IPv6 filter/mangle, ACL Regions, 18B/32B/54B Rules Key, and L4 port range checker.
+
+{{< tabs "TabID1338" >}}
+
+{{< tab "NetQ UI" >}}
+
+To view ACL resource utilization on a switch:
+
+1. Open the Switch card for a switch by searching in the **Global Search** field.
+
+2. Hover over the card and change to the full-screen card using the size picker.
+
+3. Click **ACL Resources**.
+
+<!-- insert img here; additional steps?-->
+
+4. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view ACL resource utilization on a switch, run:
+
+```
+netq <hostname> show cl-resource acl [ingress | egress] [around <text-time>] [json]
+```
+
+Use the `egress` or `ingress` options to show only the outgoing or incoming ACLs. Use the `around` option to show this information for a time in the past.
+
+This example shows the ACL resources available and currently used by the *leaf01* switch.
+
+```
+cumulus@switch:~$ netq leaf01 show cl-resource acl
+Matching cl_resource records:
+Hostname          In IPv4 filter       In IPv4 Mangle       In IPv6 filter       In IPv6 Mangle       In 8021x filter      In Mirror            In PBR IPv4 filter   In PBR IPv6 filter   Eg IPv4 filter       Eg IPv4 Mangle       Eg IPv6 filter       Eg IPv6 Mangle       ACL Regions          18B Rules Key        32B Rules Key        54B Rules Key        L4 Port range Checke Last Updated
+                                                                                                                                                                                                                                                                                                                                                                  rs
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            36,512(7%)           0,0(0%)              30,768(3%)           0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              29,256(11%)          0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              2,24(8%)             Mon Jan 13 03:34:11 2020
+```
+
+You can also view this same information in JSON format.
+
+```
+cumulus@switch:~$ netq leaf01 show cl-resource acl json
+{
+    "cl_resource": [
+        {
+            "egIpv4Filter": "29,256(11%)",
+            "egIpv4Mangle": "0,0(0%)",
+            "inIpv6Filter": "30,768(3%)",
+            "egIpv6Mangle": "0,0(0%)",
+            "inIpv4Mangle": "0,0(0%)",
+            "hostname": "leaf01",
+            "inMirror": "0,0(0%)",
+            "egIpv6Filter": "0,0(0%)",
+            "lastUpdated": 1578886451.885,
+            "54bRulesKey": "0,0(0%)",
+            "aclRegions": "0,0(0%)",
+            "in8021XFilter": "0,0(0%)",
+            "inIpv4Filter": "36,512(7%)",
+            "inPbrIpv6Filter": "0,0(0%)",
+            "18bRulesKey": "0,0(0%)",
+            "l4PortRangeCheckers": "2,24(8%)",
+            "inIpv6Mangle": "0,0(0%)",
+            "32bRulesKey": "0,0(0%)",
+            "inPbrIpv4Filter": "0,0(0%)"
+	}
+    ],
+    "truncatedResult":false
+}
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### View Forwarding Resource Utilization
+
+You can monitor the amount of forwarding resources used by a switch, currently or at a time in the past using the NetQ UI and NetQ CLI.
+
+{{< tabs "TabID1052" >}}
+
+{{< tab "NetQ UI" >}}
+
+To view forwarding resources utilization on a switch:
+
+1. Open the Switch card for a switch by searching in the **Global Search** field.
+
+2. Hover over the card and change to the full-screen card using the size picker.
+
+3. Click **Forwarding Resources**.
+
+<!-- insert img here; additional steps?-->
+
+4. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view forwarding resources utilization on a switch, run:
+
+```
+netq <hostname> show cl-resource forwarding [around <text-time>] [json]
+```
+
+Use the `around` option to show this information for a time in the past.
+
+This example shows the forwarding resources used by the *spine02* switch.
+
+```
+cumulus@switch:~$ netq spine02 show cl-resource forwarding
+Matching cl_resource records:
+Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+spine02           9,16384(0%)          0,0(0%)              290,131072(0%)       173,20480(0%)        54,16330(0%)         26,32768(0%)         0,8192(0%)           Mon Jan 13 03:34:11 2020
+```
+
+You can also view this same information in JSON format.
+
+```
+cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
+{
+    "cl_resource": [
+        {
+            "macEntries": "26,32768(0%)",
+            "ecmpNexthops": "54,16330(0%)",
+            "ipv4HostEntries": "9,16384(0%)",
+            "hostname": "spine02",
+            "lastUpdated": 1578886451.884,
+            "ipv4RouteEntries": "290,131072(0%)",
+            "ipv6HostEntries": "0,0(0%)",
+            "ipv6RouteEntries": "173,20480(0%)",
+            "totalMcastRoutes": "0,8192(0%)"
+	}
+    ],
+    "truncatedResult":false
+}
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### View SSD Utilization
 
@@ -709,6 +1213,13 @@ Optionally, use the `around` option to view the information for a particular tim
 {{< /tabs >}}
 
 ## Physical Sensing
+
+Physical sensing features provide a view into the health of the switch chassis, including:
+
+- Power supply units (PSUs)
+- Fans
+- Digital optics modules
+- Temperature in various locations
 
 ### View Chassis Health with Sensors
 

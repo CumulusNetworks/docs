@@ -649,11 +649,6 @@ cumulus@switch:~$ netq spine01 show cl-pkg-info
 Matching package_info records:
 Hostname          Package Name             Version              CL Version           Package Status       Last Changed
 ----------------- ------------------------ -------------------- -------------------- -------------------- -------------------------
-cumulus@netq-ts:~$ netq spine01 show cl-pkg-info 
-
-Matching package_info records:
-Hostname          Package Name             Version              CL Version           Package Status       Last Changed
------------------ ------------------------ -------------------- -------------------- -------------------- -------------------------
 spine01           libfile-fnmatch-perl     0.02-2+b1            Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
 spine01           screen                   4.2.1-3+deb8u1       Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
 spine01           libudev1                 215-17+deb8u13       Cumulus Linux 3.7.12 installed            Wed Aug 26 19:58:45 2020
@@ -678,7 +673,6 @@ This example shows the *ntp* package on the *spine01* switch.
 
 ```
 cumulus@switch:~$ netq spine01 show cl-pkg-info ntp
-
 Matching package_info records:
 Hostname          Package Name             Version              CL Version           Package Status       Last Changed
 ----------------- ------------------------ -------------------- -------------------- -------------------- -------------------------
@@ -755,130 +749,10 @@ act-5712-09       3.1.0                bcm                  x86_64              
 cumulus@noc-pr:~$
 
 <!-- move to switch performance -->
-### View ACL Resources for a Switch
-
-You can monitor the incoming and outgoing access control lists (ACLs) configured on a switch. This ACL resource information is available from the NetQ UI and NetQ CLI.
-
-Both the Switch card and `netq show cl-resource acl` command display the ingress/egress IPv4/IPv6 filter/mangle, ingress 802.1x filter, ingress mirror, ingress/egress PBR IPv4/IPv6 filter/mangle, ACL Regions,          18B/32B/54B Rules Key, and L4 port range checker.
-
-{{< tabs "TabID1338" >}}
-
-{{< tab "NetQ UI" >}}
-
-1. Open the Switch card for a switch by searching in the **Global Search** field or clicking {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" width="18">}} > **Open switch card**.
-
-2. Hover over the card and change to the full-screen card using the size picker.
-
-3. Click **ACL Resources**.
-
-<!-- insert img here; additional steps?-->
-
-4. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
-{{< /tab >}}
-
-{{< tab "NetQ CLI" >}}
-
-To view ACL resources on a switch, run:
-
-```
-netq <hostname> show cl-resource acl [ingress | egress] [around <text-time>] [json]
-```
-
-Use the `egress` or `ingress` options to show only the outgoing or incoming ACLs. Use the `around` option to show this information for a time in the past.
-
-This example shows the ACL resources available and currently used by the *leaf01* switch.
-
-```
-cumulus@switch:~$ netq leaf01 show cl-resource acl
-Matching cl_resource records:
-Hostname          In IPv4 filter       In IPv4 Mangle       In IPv6 filter       In IPv6 Mangle       In 8021x filter      In Mirror            In PBR IPv4 filter   In PBR IPv6 filter   Eg IPv4 filter       Eg IPv4 Mangle       Eg IPv6 filter       Eg IPv6 Mangle       ACL Regions          18B Rules Key        32B Rules Key        54B Rules Key        L4 Port range Checke Last Updated
-                                                                                                                                                                                                                                                                                                                                                                  rs
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-leaf01            36,512(7%)           0,0(0%)              30,768(3%)           0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              29,256(11%)          0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              2,24(8%)             Mon Jan 13 03:34:11 2020
-```
-
-You can also view this same information in JSON format.
-
-```
-cumulus@switch:~$ netq leaf01 show cl-resource acl json
-{
-    "cl_resource": [
-        {
-            "egIpv4Filter": "29,256(11%)",
-            "egIpv4Mangle": "0,0(0%)",
-            "inIpv6Filter": "30,768(3%)",
-            "egIpv6Mangle": "0,0(0%)",
-            "inIpv4Mangle": "0,0(0%)",
-            "hostname": "leaf01",
-            "inMirror": "0,0(0%)",
-            "egIpv6Filter": "0,0(0%)",
-            "lastUpdated": 1578886451.885,
-            "54bRulesKey": "0,0(0%)",
-            "aclRegions": "0,0(0%)",
-            "in8021XFilter": "0,0(0%)",
-            "inIpv4Filter": "36,512(7%)",
-            "inPbrIpv6Filter": "0,0(0%)",
-            "18bRulesKey": "0,0(0%)",
-            "l4PortRangeCheckers": "2,24(8%)",
-            "inIpv6Mangle": "0,0(0%)",
-            "32bRulesKey": "0,0(0%)",
-            "inPbrIpv4Filter": "0,0(0%)"
-	}
-    ],
-    "truncatedResult":false
-}
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-<!-- move to switch performance -->
-### View Forwarding Resources
-
-You can monitor the amount of forwarding resources used by one or all devices, currently or at a time in the past. Use the `netq show cl-resource forwarding` command to view this information. Use the `around` option to show this information for a time in the past.
-
-This example shows the forwarding resources used by the *spine02* switch.
-
-```
-cumulus@switch:~$ netq spine02 show cl-resource forwarding
-Matching cl_resource records:
-Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-spine02           9,16384(0%)          0,0(0%)              290,131072(0%)       173,20480(0%)        54,16330(0%)         26,32768(0%)         0,8192(0%)           Mon Jan 13 03:34:11 2020
-```
-
-You can also view this same information in JSON format.
-
-```
-cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
-{
-    "cl_resource": [
-        {
-            "macEntries": "26,32768(0%)",
-            "ecmpNexthops": "54,16330(0%)",
-            "ipv4HostEntries": "9,16384(0%)",
-            "hostname": "spine02",
-            "lastUpdated": 1578886451.884,
-            "ipv4RouteEntries": "290,131072(0%)",
-            "ipv6HostEntries": "0,0(0%)",
-            "ipv6RouteEntries": "173,20480(0%)",
-            "totalMcastRoutes": "0,8192(0%)"
-	}
-    ],
-    "truncatedResult":false
-}
-```
 
 ### Validate NetQ Agents are Running
 
-You can confirm that NetQ Agents are running on switches and hosts (if
-installed) using the `netq show agents` command. Viewing the **Status**
-column of the output indicates whether the agent is up and current,
-labelled *Fresh*, or down and stale, labelled *Rotten*. Additional
-information is provided about the agent status, including whether it is
-time synchronized, how long it has been up, and the last time its state
-changed.
+You can confirm that NetQ Agents are running on switches and hosts (if installed) using the `netq show agents` command. Viewing the **Status** column of the output indicates whether the agent is up and current, labelled *Fresh*, or down and stale, labelled *Rotten*. Additional information is provided about the agent status, including whether it is time synchronized, how long it has been up, and the last time its state changed.
 
 This example shows NetQ Agent state on all devices.
 
@@ -908,160 +782,151 @@ You can narrow your focus in several ways:
   - View the state of NetQ Agents at an earlier time using the *around*
     keyword.
 
-<!-- move to netwk/switch performance -->
 ## Monitor Software Services
 
-Cumulus Linux and NetQ run a number of services to deliver the various
-features of these products. You can monitor their status using the `netq
-show services` command. The services related to system-level operation
-are described here. Monitoring of other services, such as those related
-to routing, are described with those topics. NetQ automatically monitors
-the following services:
+Cumulus Linux and NetQ run a number of services to deliver the various features of these products. You can monitor their status using the `netq show services` command. The services related to system-level operation are described here. Monitoring of other services, such as those related to routing, are described with those topics. NetQ automatically monitors the following services:
 
-  - **bgpd**: BGP (Border Gateway Protocol) daemon
-  - **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
-  - **helpledmgrd**: Switch LED manager daemon
-  - **lldpd**: LLDP (Link Layer Discovery Protocol) daemon
-  - **mstpd**: MSTP (Multiple Spanning Tree Protocol) daemon
-  - **neighmgrd**: Neighbor Manager daemon for BGP and OSPF
-  - **netq-agent**: NetQ Agent service
-  - **netqd**: NetQ application daemon
-  - **ntp**: NTP service
-  - **ntpd**: NTP daemon
-  - **ptmd**: PTM (Prescriptive Topology Manager) daemon
-  - **pwmd**: PWM (Password Manager)
-    daemon
-  - **rsyslog**: Rocket-fast system event logging processing service
-  - **smond**: System monitor daemon
-  - **ssh**: Secure Shell service for switches and servers
-  - **status**: License validation service
-  - **syslog**: System event logging service
-  - **vrf**: VRF (Virtual Route Forwarding) service
-  - **zebra**: GNU Zebra routing daemon
+- **bgpd**: BGP (Border Gateway Protocol) daemon
+- **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
+- **helpledmgrd**: Switch LED manager daemon
+- **lldpd**: LLDP (Link Layer Discovery Protocol) daemon
+- **mstpd**: MSTP (Multiple Spanning Tree Protocol) daemon
+- **neighmgrd**: Neighbor Manager daemon for BGP and OSPF
+- **netq-agent**: NetQ Agent service
+- **netqd**: NetQ application daemon
+- **ntp**: NTP service
+- **ntpd**: NTP daemon
+- **ptmd**: PTM (Prescriptive Topology Manager) daemon
+- **pwmd**: PWM (Password Manager)
+daemon
+- **rsyslog**: Rocket-fast system event logging processing service
+- **smond**: System monitor daemon
+- **ssh**: Secure Shell service for switches and servers
+- **status**: License validation service
+- **syslog**: System event logging service
+- **vrf**: VRF (Virtual Route Forwarding) service
+- **zebra**: GNU Zebra routing daemon
 
 The CLI syntax for viewing the status of services is:
 
-    netq [<hostname>] show services [<service-name>] [vrf <vrf>] [active|monitored] [around <text-time>] [json]
-    netq [<hostname>] show services [<service-name>] [vrf <vrf>] status (ok|warning|error|fail) [around <text-time>] [json]
-    netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] type services [between <text-time> and <text-endtime>] [json]
+```
+netq [<hostname>] show services [<service-name>] [vrf <vrf>] [active|monitored] [around <text-time>] [json]
+netq [<hostname>] show services [<service-name>] [vrf <vrf>] status (ok|warning|error|fail) [around <text-time>] [json]
+netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] type services [between <text-time> and <text-endtime>] [json]
+```
 
 ### View All Services on All Devices
 
-This example shows all of the available services on each device and
-whether each is enabled, active, and monitored, along with how long the
-service has been running and the last time it was changed.
+This example shows all of the available services on each device and whether each is enabled, active, and monitored, along with how long the service has been running and the last time it was changed.
 
-{{%notice tip%}}
+{{<notice tip>}}
 
-It is useful to have colored output for this show command. To configure
-colored output, run the `netq config add color` command.
+It is useful to have colored output for this show command. To configure colored output, run the <code>netq config add color</code> command.
 
-{{%/notice%}}
+{{</notice>}}
 
-    cumulus@switch:~$ netq show services
-    Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
-    ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
-    leaf01            bgpd                 2872  default         yes     yes    yes       ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
-    leaf01            clagd                n/a   default         yes     no     yes       n/a              1d:6h:43m:35s             Fri Feb 15 17:28:48 2019
-    leaf01            ledmgrd              1850  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
-    leaf01            lldpd                2651  default         yes     yes    yes       ok               1d:6h:43m:27s             Fri Feb 15 17:28:56 2019
-    leaf01            mstpd                1746  default         yes     yes    yes       ok               1d:6h:43m:35s             Fri Feb 15 17:28:48 2019
-    leaf01            neighmgrd            1986  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
-    leaf01            netq-agent           8654  mgmt            yes     yes    yes       ok               1d:6h:43m:29s             Fri Feb 15 17:28:54 2019
-    leaf01            netqd                8848  mgmt            yes     yes    yes       ok               1d:6h:43m:29s             Fri Feb 15 17:28:54 2019
-    leaf01            ntp                  8478  mgmt            yes     yes    yes       ok               1d:6h:43m:29s             Fri Feb 15 17:28:54 2019
-    leaf01            ptmd                 2743  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
-    leaf01            pwmd                 1852  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
-    leaf01            smond                1826  default         yes     yes    yes       ok               1d:6h:43m:27s             Fri Feb 15 17:28:56 2019
-    leaf01            ssh                  2106  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
-    leaf01            syslog               8254  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
-    leaf01            zebra                2856  default         yes     yes    yes       ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
-    leaf02            bgpd                 2867  default         yes     yes    yes       ok               1d:6h:43m:55s             Fri Feb 15 17:28:28 2019
-    leaf02            clagd                n/a   default         yes     no     yes       n/a              1d:6h:43m:31s             Fri Feb 15 17:28:53 2019
-    leaf02            ledmgrd              1856  default         yes     yes    no        ok               1d:6h:43m:55s             Fri Feb 15 17:28:28 2019
-    leaf02            lldpd                2646  default         yes     yes    yes       ok               1d:6h:43m:30s             Fri Feb 15 17:28:53 2019
-    ...
+```
+cumulus@switch:~$ netq show services
+Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+leaf01            bgpd                 2872  default         yes     yes    yes       ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            clagd                n/a   default         yes     no     yes       n/a              1d:6h:43m:35s             Fri Feb 15 17:28:48 2019
+leaf01            ledmgrd              1850  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            lldpd                2651  default         yes     yes    yes       ok               1d:6h:43m:27s             Fri Feb 15 17:28:56 2019
+leaf01            mstpd                1746  default         yes     yes    yes       ok               1d:6h:43m:35s             Fri Feb 15 17:28:48 2019
+leaf01            neighmgrd            1986  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            netq-agent           8654  mgmt            yes     yes    yes       ok               1d:6h:43m:29s             Fri Feb 15 17:28:54 2019
+leaf01            netqd                8848  mgmt            yes     yes    yes       ok               1d:6h:43m:29s             Fri Feb 15 17:28:54 2019
+leaf01            ntp                  8478  mgmt            yes     yes    yes       ok               1d:6h:43m:29s             Fri Feb 15 17:28:54 2019
+leaf01            ptmd                 2743  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            pwmd                 1852  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            smond                1826  default         yes     yes    yes       ok               1d:6h:43m:27s             Fri Feb 15 17:28:56 2019
+leaf01            ssh                  2106  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            syslog               8254  default         yes     yes    no        ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf01            zebra                2856  default         yes     yes    yes       ok               1d:6h:43m:59s             Fri Feb 15 17:28:24 2019
+leaf02            bgpd                 2867  default         yes     yes    yes       ok               1d:6h:43m:55s             Fri Feb 15 17:28:28 2019
+leaf02            clagd                n/a   default         yes     no     yes       n/a              1d:6h:43m:31s             Fri Feb 15 17:28:53 2019
+leaf02            ledmgrd              1856  default         yes     yes    no        ok               1d:6h:43m:55s             Fri Feb 15 17:28:28 2019
+leaf02            lldpd                2646  default         yes     yes    yes       ok               1d:6h:43m:30s             Fri Feb 15 17:28:53 2019
+...
+```
 
 You can also view services information in JSON format:
 
-    cumulus@switch:~$ netq show services json
+```
+cumulus@switch:~$ netq show services json
+{
+    "services":[
+        {
+            "status":"ok",
+            "uptime":1550251734.0,
+            "monitored":"yes",
+            "service":"ntp",
+            "lastChanged":1550251734.4790000916,
+            "pid":"8478",
+            "hostname":"leaf01",
+            "enabled":"yes",
+            "vrf":"mgmt",
+            "active":"yes"
+        },
+        {
+            "status":"ok",
+            "uptime":1550251704.0,
+            "monitored":"no",
+            "service":"ssh",
+            "lastChanged":1550251704.0929999352,
+            "pid":"2106",
+            "hostname":"leaf01",
+            "enabled":"yes",
+        "vrf":"default",
+        "active":"yes"
+    },
     {
-        "services":[
-            {
-                "status":"ok",
-                "uptime":1550251734.0,
-                "monitored":"yes",
-                "service":"ntp",
-                "lastChanged":1550251734.4790000916,
-                "pid":"8478",
-                "hostname":"leaf01",
-                "enabled":"yes",
-                "vrf":"mgmt",
-                "active":"yes"
-            },
-            {
-                "status":"ok",
-                "uptime":1550251704.0,
-                "monitored":"no",
-                "service":"ssh",
-                "lastChanged":1550251704.0929999352,
-                "pid":"2106",
-                "hostname":"leaf01",
-                "enabled":"yes",
-                "vrf":"default",
-                "active":"yes"
-            },
-            {
-                "status":"ok",
-                "uptime":1550251736.0,
-                "monitored":"yes",
-                "service":"lldpd",
-                "lastChanged":1550251736.5160000324,
-                "pid":"2651",
-                "hostname":"leaf01",
-                "enabled":"yes",
-                "vrf":"default",
-                "active":"yes"
-            },
-            {
-                "status":"ok",
-                "uptime":1550251704.0,
-                "monitored":"yes",
-                "service":"bgpd",
-                "lastChanged":1550251704.1040000916,
-                "pid":"2872",
-                "hostname":"leaf01",
-                "enabled":"yes",
-                "vrf":"default",
-                "active":"yes"
-            },
-            {
-                "status":"ok",
-                "uptime":1550251704.0,
-                "monitored":"no",
-                "service":"neighmgrd",
-                "lastChanged":1550251704.0969998837,
-                "pid":"1986",
-                "hostname":"leaf01",
-                "enabled":"yes",
-                "vrf":"default",
-                "active":"yes"
-            },
-    ...
+        "status":"ok",
+        "uptime":1550251736.0,
+        "monitored":"yes",
+        "service":"lldpd",
+        "lastChanged":1550251736.5160000324,
+        "pid":"2651",
+        "hostname":"leaf01",
+        "enabled":"yes",
+        "vrf":"default",
+        "active":"yes"
+    },
+    {
+        "status":"ok",
+        "uptime":1550251704.0,
+        "monitored":"yes",
+        "service":"bgpd",
+        "lastChanged":1550251704.1040000916,
+        "pid":"2872",
+        "hostname":"leaf01",
+        "enabled":"yes",
+        "vrf":"default",
+        "active":"yes"
+    },
+    {
+        "status":"ok",
+        "uptime":1550251704.0,
+        "monitored":"no",
+        "service":"neighmgrd",
+        "lastChanged":1550251704.0969998837,
+        "pid":"1986",
+        "hostname":"leaf01",
+        "enabled":"yes",
+        "vrf":"default",
+        "active":"yes"
+    },
+...
+```
 
-If you want to view the service information for a given device, simply
-use the `hostname` option when running the command.
+If you want to view the service information for a given device, simply use the `hostname` option when running the command.
 
 ### View Information about a Given Service on All Devices
 
-You can view the status of a given service at the current time, at a
-prior point in time, or view the changes that have occurred for the
-service during a specified timeframe.
+You can view the status of a given service at the current time, at a prior point in time, or view the changes that have occurred for the service during a specified timeframe.
 
-This example shows how to view the status of the NTP service across the
-network. In this case, VRF is configured so the NTP service runs on both
-the default and management interface. You can perform the same command
-with the other services, such as `bgpd`, `lldpd`, and `clagd`.
+This example shows how to view the status of the NTP service across the network. In this case, VRF is configured so the NTP service runs on both the default and management interface. You can perform the same command with the other services, such as `bgpd`, `lldpd`, and `clagd`.
 
     cumulus@switch:~$ netq show services ntp
     Matching services records:
@@ -1109,11 +974,9 @@ This example shows the status of the BGP daemon.
 
 ### View Events Related to a Given Service
 
-To view changes over a given time period, use the `netq show events`
-command. For more detailed information about events, refer to {{<link url="Monitor-Events">}}.
+To view changes over a given time period, use the `netq show events` command. For more detailed information about events, refer to {{<link url="Monitor-Events">}}.
 
-In this example, we want to view changes to the bgpd service in the last
-48 hours.
+In this example, we want to view changes to the bgpd service in the last 48 hours.
 
     cumulus@switch:/$ netq show events type bgp between now and 48h
     Matching events records:

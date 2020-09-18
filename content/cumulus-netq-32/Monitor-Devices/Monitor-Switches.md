@@ -1140,7 +1140,7 @@ Consider adding the switch cards that are suspect to a workbench for easy tracki
 To view SDD utilization, run:
 
 ```
-netq show cl-ssd-util [around <text-time>] [json]
+netq <hostname> show cl-ssd-util [around <text-time>] [json]
 ```
 
 This example shows the utilization for *spine02* which has this type of SSD.

@@ -13,5 +13,3 @@ With the NetQ UI and CLI, a user can monitor the network inventory of switches a
 - How healthy are the fans and power supply?
 - What software is installed on my switches?
 - What is the ACL and forwarding resources usage?
-
-<!-- NetQ uses {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP. -->

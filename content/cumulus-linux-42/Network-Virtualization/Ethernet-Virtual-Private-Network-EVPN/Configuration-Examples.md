@@ -15,20 +15,17 @@ The configuration examples are based on the reference topology below:
 
 {{< img src = "/images/cumulus-linux/reference-topology-full.png" >}}
 
-You can see these configurations in action and explore further by selecting one of the demos in {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}} (a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action).
+<!-- You can see these configurations in action and explore further by selecting one of the demos in {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}} (a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action). -->
 
 ## Layer 2 EVPN with External Routing
 
-The following example shows a layer 2 EVPN external routing configuration with:
+The following example configures a network infrastructure that creates a layer 2 extension between racks. Inter-VXLAN routed traffic routes between VXLANs on an external device.
 
-- BGP unnumbered in the underlay
-- VXLAN encapsulation server connectivity
-- EVPN as the control plane
-- Server gateways outside the VXLAN fabric
+- MLAG is configured between leaf01 and leaf02, and leaf03 and leaf04
+- BGP unnumbered is in the underlay (configured on all leafs and spines)
+- Server gateways are outside the VXLAN fabric
 
-The example configures a network infrastructure that creates a layer 2 extension between racks. Inter-VXLAN routed traffic routes between VXLANs on an external device.
-
-{{< img src = "/images/cumulus-linux/evpn-layer2.png" >}}
+<!-- {{< img src = "/images/cumulus-linux/evpn-layer2.png" >}} -->
 
 ### /etc/network/interfaces
 
@@ -838,16 +835,13 @@ line vty
 
 ## EVPN Centralized Routing
 
-The following example shows an EVPN centralized routing configuration with:
+The following example shows an EVPN centralized routing configuration:
 
-- BGP unnumbered in the underlay
-- VXLAN encapsulation server connectivity
-- EVPN as the control plane
-- Centralized routing (SVI as gateways on the border leafs)
+- MLAG is configured between leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
+- BGP unnumbered is in the underlay (configured on all leafs and spines)
+- SVIs are configured as gateways on the border leafs
 
-The example configures a network infrastructure that creates a layer 2 extension between racks. Inter-VXLAN routed traffic routes between VXLANs on the border leafs.
-
-{{< img src = "/images/cumulus-linux/evpn-central.png" >}}
+<!-- {{< img src = "/images/cumulus-linux/evpn-central.png" >}} -->
 
 ### /etc/network/interfaces
 
@@ -1966,17 +1960,17 @@ line vty
 
 ## EVPN Symmetric Routing
 
-The following example shows an EVPN symmetric routing configuration where:
+The following example shows an EVPN symmetric routing configuration:
 
-- MLAG is configured between the leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
+- MLAG is configured between leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
-- VRF BLUE and VRF RED are configured for traffic flow.
-   The following logical diagrams show traffic flow between VRF BLUE and VRF RED, which server is on the same VLAN and which switch connects VLANs together. Each VRF is a unique layer 3 routing table.
+- VRF BLUE and VRF RED are configured on the leafs for traffic flow
+   <!-- The following logical diagrams show traffic flow between VRF BLUE and VRF RED, which server is on the same VLAN and which switch connects VLANs together. Each VRF is a unique layer 3 routing table.
 
     VRF BLUE| VRF RED |
    | ------- | ------- |
    | {{< img src="/images/cumulus-linux/evpn-symmetric-blue.png" width="450" >}} | {{< img src="/images/cumulus-linux/evpn-symmetric-red.png" width="400" >}} |
-   | <ul><li>VLAN 10 contains server01, server04, and all four leafs.</li><li>The leafs act as routers and connect to VLAN 20 (which also contain server02 and server05).</li></ul> | <ul><li>VLAN 30 contains server03 and server06, and all four leafs.</li><li>what connects VLAN 30</li></ul> |
+   | <ul><li>VLAN 10 contains server01, server04, and all four leafs.</li><li>The leafs act as routers and connect to VLAN 20 (which also contain server02 and server05).</li></ul> | <ul><li>VLAN 30 contains server03 and server06, and all four leafs.</li><li>what connects VLAN 30</li></ul> | -->
 
 ### /etc/network/interfaces
 

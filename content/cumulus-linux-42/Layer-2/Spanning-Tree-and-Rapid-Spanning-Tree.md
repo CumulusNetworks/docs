@@ -50,13 +50,13 @@ RSTP treats the MST domain as one giant switch, whereas MST treats the RSTP doma
 
 Configure the root bridge within the MST domain by changing the priority on the relevant MST switch. When MST detects an RSTP link, it falls back into RSTP mode. The MST domain choses the switch with the lowest cost to the CST root bridge as the CIST root bridge.
 
-{{%notice tip%}}
+### STP with MLAG
+
 More than one spanning tree instance enables switches to load balance and use different links for different VLANs. With RSTP, there is only one instance of spanning tree. To better utilize the links, you can configure MLAG on the switches connected to the MST or PVST domain and set up these interfaces as an MLAG port. The PVST or MST domain thinks it is connected to a single switch and utilizes all the links connected to it. Load balancing is based on the port channel hashing mechanism instead of different spanning tree instances and uses all the links between the RSTP to the PVST or MST domains. For information about configuring MLAG, see {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation - MLAG">}}.
-{{%/notice%}}
 
 ## Customize STP
 
-There are a number of ways to customize STP in Cumulus Linux. Exercise extreme caution with the settings below to prevent malfunctions in STP loop avoidance.
+There are a number of ways to customize STP in Cumulus Linux. Exercise caution when changing the settings below to prevent malfunctions in STP loop avoidance.
 
 ### Spanning Tree Priority
 
@@ -563,7 +563,7 @@ vxlan4001  forw   Desg  Yes
 
 The `mstpctl` utility provided by the `mstpd` service configures STP. The `mstpd` daemon is an open source project used by Cumulus Linux to implement IEEE802.1D 2004 and IEEE802.1Q 2011.
 
-The `mstpd` daemon starts by default when the switch boots and logs errors `/var/log/syslog`.
+The `mstpd` daemon starts by default when the switch boots and logs errors to `/var/log/syslog`.
 
 {{%notice warning%}}
 

@@ -11,12 +11,6 @@ Cumulus Linux supports RSTP, PVST, and PVRST modes:
 - *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}* operate **only** in RSTP mode.
 - *{{<link url="Traditional-Bridge-Mode" text="Traditional bridges">}}* operate in both PVST and PVRST mode. The default is set to PVRST. Each traditional bridge has its own separate STP instance.
 
-{{%notice note%}}
-
-Cumulus Linux does not support MSTP; however, you can accomplish interoperability with MSTP networks using PVRSTP or PVSTP.
-
-{{%/notice%}}
-
 ## STP for a VLAN-aware Bridge
 
 VLAN-aware bridges operate in RSTP mode only. RSTP on VLAN-aware bridges works with other modes in the following ways:
@@ -331,7 +325,7 @@ Edit the switch port interface stanza in the `/etc/network/interfaces` file to r
 
 ### BPDU Guard
 
-You can configure *BPDU guard* (Bridge Protocol Data Unit) to protect the spanning tree topology from unauthorized switches affecting the forwarding path. For example, when someone adds a new switch to an access port off a leaf switch and this new switch is configured with a low priority, it might become the new root switch and affect the forwarding path for the entire layer 2 topology.
+You can configure *BPDU guard* to protect the spanning tree topology from unauthorized switches affecting the forwarding path. For example, when someone adds a new switch to an access port off a leaf switch and this new switch is configured with a low priority, it might become the new root switch and affect the forwarding path for the entire layer 2 topology.
 
 To configure BPDU guard:
 
@@ -556,43 +550,6 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 {{< /tab >}}
 
 {{< /tabs >}}
-
-### Storm Control
-
-Storm control provides protection against excessive inbound BUM (broadcast, unknown unicast, multicast) traffic on layer 2 switch port interfaces, which can cause poor network performance.
-
-{{%notice note%}}
-
-- Storm control is *not* supported on a switch with the Tomahawk2 ASIC.
-- On Broadcom switches, ARP requests over layer 2 VXLAN bypass broadcast storm control; they are forwarded to the CPU and subjected to embedded control plane QoS instead.
-
-{{%/notice%}}
-
-You configure storm control for each physical port by editing the `/etc/cumulus/switchd.conf` file.
-
-For example, to enable broadcast storm control for swp1 at 400 packets per second (pps) and multicast storm control at 3000 pps and unknown unicast at 500 pps, edit the `/etc/cumulus/switchd.conf` file and uncomment the `storm_control.broadcast` , `storm_control.multicast` and `storm_control.unknown_unicast` lines:
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
-...
-# Storm Control setting on a port, in pps, 0 means disable
-interface.swp1.storm_control.broadcast = 400
-interface.swp1.storm_control.multicast = 3000
-interface.swp1.storm_control.unknown_unicast = 500
-...
-```
-
-When you update the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect.
-
-{{<cl/restart-switchd>}}
-
-Alternatively, you can run the following commands. The configuration below takes effect immediately, but does not persist if you reboot the switch. For a persistent configuration, edit the `/etc/cumulus/switchd.conf` file, as described above.
-
-```
-cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/broadcast'
-cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
-cumulus@switch:~$ sudo sh -c 'echo 500 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
-```
 
 ### Spanning Tree Parameter List
 

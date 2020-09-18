@@ -599,7 +599,6 @@ cumulus@switch:~$ sudo mstpctl showport bridge
 The source code for `mstpd` and `mstpctl` was written by {{<exlink url="mailto:vitas%40nppfactor.kiev.ua" text="Vitalii Demianets">}} and is hosted at the URL below.
 
 - {{<exlink url="https://github.com/mstpd/mstpd" text="GitHub - mstpd project">}}
-- {{<exlink url="http://en.wikipedia.org/wiki/Spanning_Tree_Protocol" text="Wikipedia - Spanning Tree Protocol">}}
 - brctl(8)
 - bridge-utils-interfaces(5)
 - ifupdown-addons-interfaces(5)

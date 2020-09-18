@@ -619,6 +619,50 @@ line vty
 
 {{%/notice%}}
 
+{{%notice note%}}
+
+While multiple ospf instances are only supported in the default vrf, ospfv2 is vrf aware so you can have the same ospfd instance running in multiple VRFs, each of which representing its own separate OSPF domain. For example:
+
+```
+cumulus@switch:~$  cat /etc/frr/frr.conf
+hostname zebra
+log file /var/log/frr/zebra.log
+username cumulus nopassword
+!
+service integrated-vtysh-config
+!
+...
+!
+router ospf
+ ospf router-id 2.2.2.2
+ passive-interface eth0
+ network 0.0.0.0/0 area 0
+!
+router ospf vrf internal
+ ospf router-id 2.2.2.3
+ network 0.0.0.0/0 area 0
+!
+```
+```
+cumulus@switch:~$  cat /etc/frr/daemons
+zebra=yes
+bgpd=no
+ospfd=yes
+ospf6d=no
+ripd=no
+ripngd=no
+isisd=no
+pimd=no
+ldpd=no
+nhrpd=no
+eigrpd=no
+babeld=no
+sharpd=no
+pbrd=no
+```
+
+{{%/notice%}}
+
 ## Auto-cost Reference Bandwidth
 
 When you set the *auto-cost reference bandwidth,* Cumulus Linux dynamically calculates the OSPF interface cost to cater for higher speed links. The default value is *100000* for 100Gbps link speed. The cost of interfaces with link speeds lower than 100Gbps is higher.

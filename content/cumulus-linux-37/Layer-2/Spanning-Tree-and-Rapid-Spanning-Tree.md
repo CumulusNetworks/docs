@@ -492,7 +492,7 @@ The table below describes the STP configuration parameters available in Cumulus 
 
 {{%notice note%}}
 
-Most of these parameters are blacklisted in the `ifupdown_blacklist` section of the `/etc/netd.conf` file. Before you configure these parameters, you must {{<link url="Network-Command-Line-Utility-NCLU" text="edit the file">}} to remove them from the blacklist.
+Most of these parameters are blacklisted in the `ifupdown_blacklist` section of the `/etc/netd.conf` file. Before you configure these parameters, you must {{<link url="Network-Command-Line-Utility-NCLU#edit-the-netd.conf-file" text="edit the file">}} to remove them from the blacklist.
 
 {{%/notice%}}
 

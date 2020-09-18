@@ -8,38 +8,8 @@ Spanning tree protocol (STP) identifies links in the network and shuts down redu
 
 Cumulus Linux supports RSTP, PVST, and PVRST modes:
 
-- *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}* operate **only** in RSTP mode.
 - *{{<link url="Traditional-Bridge-Mode" text="Traditional bridges">}}* operate in both PVST and PVRST mode. The default is set to PVRST. Each traditional bridge has its own separate STP instance.
-
-{{%notice note%}}
-
-Cumulus Linux does not support MSTP; however, you can accomplish interoperability with MSTP networks using PVRSTP or PVSTP.
-
-{{%/notice%}}
-
-## STP for a VLAN-aware Bridge
-
-VLAN-aware bridges operate in RSTP mode only. RSTP on VLAN-aware bridges works with other modes in the following ways:
-
-- If a bridge running RSTP (802.1w) receives a common **STP** (802.1D) BPDU, it falls back to 802.1D automatically.
-- The RSTP domain sends BPDUs on the native VLAN, whereas **PVST** sends BPDUs on a per VLAN basis. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVST domain; the spanning tree is built according to the native VLAN parameters. The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs across the network, enabling the PVST domain to maintain its spanning-tree topology and provide a loop-free network. To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVST domain on the link between the RSTP and PVST domains.
-
-   - When using RSTP together with an existing PVST network, you need to define the root bridge on the PVST domain. Either lower the priority on the PVST domain or change the priority of the RSTP switches to a higher number.
-   - When connecting a VLAN-aware bridge to a proprietary PVST+ switch using STP, you must allow VLAN 1 on all 802.1Q trunks that interconnect them, regardless of the configured *native* VLAN. Only VLAN 1 enables the switches to address the BPDU frames to the IEEE multicast MAC address. The proprietary switch might be configured like this:
-
-      ```
-      switchport trunk allowed vlan 1-100
-      ```
-
-- RSTP works with **MST** seamlessly, creating a single instance of spanning tree that transmits BPDUs on the native VLAN. RSTP treats the MST domain as one giant switch, whereas MST treats the RSTP domain as a different region (MST divides the topology into different regions; all switches share the same VLAN-to-instance mapping in the same region). To enable proper communication between the regions, MST creates a Common Spanning Tree (CST) that connects all the boundary switches and forms the overall view of the MST domain. Because changes in the CST need to be reflected in all regions, the RSTP tree is included in the CST to ensure that changes on the RSTP domain are reflected in the CST domain. This does cause topology changes on the RSTP domain to impact the rest of the network but keeps the MST domain informed of every change occurring in the RSTP domain, ensuring a loop-free network.
-
-   Configure the root bridge within the MST domain by changing the priority on the relevant MST switch. When MST detects an RSTP link, it falls back into RSTP mode. The MST domain choses the switch with the lowest cost to the CST root bridge as the CIST root bridge.
-
-{{%notice note%}}
-
-More than one spanning tree instance enables switches to load balance and use different links for different VLANs. With RSTP, there is only one instance of spanning tree. To better utilize the links, you can configure MLAG on the switches connected to the MST or PVST domain and set up these interfaces as an MLAG port. The PVST or MST domain thinks it is connected to a single switch and utilizes all the links connected to it. Load balancing is based on the port channel hashing mechanism instead of different spanning tree instances and uses all the links between the RSTP to the PVST or MST domains. For information about configuring MLAG, see {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation - MLAG">}}.
-
-{{%/notice%}}
+- *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}* operate **only** in RSTP mode.
 
 ## STP for a Traditional Mode Bridge
 
@@ -51,83 +21,40 @@ For maximum interoperability, when connected to a switch that has a native VLAN 
 
 {{%/notice%}}
 
-## Show Bridge and STP Status and Logs
+## STP for a VLAN-aware Bridge
 
-To check STP status for a bridge:
+VLAN-aware bridges operate in RSTP mode only. RSTP on VLAN-aware bridges works with other modes in the following ways:
 
-{{< tabs "TabID50 ">}}
+### RSTP and STP
 
-{{< tab "NCLU Commands ">}}
+If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU, it falls back to 802.1D automatically.
 
-Run the `net show bridge spanning-tree` command:
+### RSTP and PVST
 
-```
-cumulus@switch:~$ net show bridge spanning-tree
-Bridge info
-  enabled         yes
-  bridge id       8.000.44:38:39:FF:40:94
-    Priority:     32768
-    Address:      44:38:39:FF:40:94
-  This bridge is root.
+The RSTP domain sends BPDUs on the native VLAN, whereas PVST sends BPDUs on a per VLAN basis. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVST domain; the spanning tree is built according to the native VLAN parameters.
 
-  designated root 8.000.44:38:39:FF:40:94
-    Priority:     32768
-    Address:      44:38:39:FF:40:94
+The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs across the network, enabling the PVST domain to maintain its spanning-tree topology and provide a loop-free network. 
+- To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVST domain on the link between the RSTP and PVST domains.
+- When using RSTP together with an existing PVST network, you need to define the root bridge on the PVST domain. Either lower the priority on the PVST domain or change the priority of the RSTP switches to a higher number.
+- When connecting a VLAN-aware bridge to a proprietary PVST+ switch using STP, you must allow VLAN 1 on all 802.1Q trunks that interconnect them, regardless of the configured *native* VLAN. Only VLAN 1 enables the switches to address the BPDU frames to the IEEE multicast MAC address. The proprietary switch might be configured like this:
 
-  root port       none
-  path cost     0          internal path cost   0
-  max age       20         bridge max age       20
-  forward delay 15         bridge forward delay 15
-  tx hold count 6          max hops             20
-  hello time    2          ageing time          300
-  force protocol version     rstp
+   ```
+   switchport trunk allowed vlan 1-100
+   ```
 
-INTERFACE  STATE  ROLE  EDGE
----------  -----  ----  ----
-peerlink   forw   Desg  Yes
-vni13      forw   Desg  Yes
-vni24      forw   Desg  Yes
-vxlan4001  forw   Desg  Yes
-```
+### RSTP and MST
 
-{{< /tab >}}
+RSTP works with MST seamlessly, creating a single instance of spanning tree that transmits BPDUs on the native VLAN.
 
-{{< tab "Linux Commands ">}}
+RSTP treats the MST domain as one giant switch, whereas MST treats the RSTP domain as a different region. To enable proper communication between the regions, MST creates a Common Spanning Tree (CST) that connects all the boundary switches and forms the overall view of the MST domain. Because changes in the CST need to be reflected in all regions, the RSTP tree is included in the CST to ensure that changes on the RSTP domain are reflected in the CST domain. This does cause topology changes on the RSTP domain to impact the rest of the network but keeps the MST domain informed of every change occurring in the RSTP domain, ensuring a loop-free network.
 
-The `mstpctl` utility provided by the `mstpd` service configures STP. The `mstpd` daemon is an open source project used by Cumulus Linux to implement IEEE802.1D 2004 and IEEE802.1Q 2011.
+Configure the root bridge within the MST domain by changing the priority on the relevant MST switch. When MST detects an RSTP link, it falls back into RSTP mode. The MST domain choses the switch with the lowest cost to the CST root bridge as the CIST root bridge.
 
-The `mstpd` daemon starts by default when the switch boots. The `mstpd` logs and errors are located in `/var/log/syslog`.
-
-{{%notice warning%}}
-
-`mstpd` is the preferred utility for interacting with STP on Cumulus Linux. `brctl` also provides certain methods for configuring STP; however, they are not as complete as the tools offered in `mstpd` and output from `brctl` can be misleading in some cases.
-
+{{%notice tip%}}
+More than one spanning tree instance enables switches to load balance and use different links for different VLANs. With RSTP, there is only one instance of spanning tree. To better utilize the links, you can configure MLAG on the switches connected to the MST or PVST domain and set up these interfaces as an MLAG port. The PVST or MST domain thinks it is connected to a single switch and utilizes all the links connected to it. Load balancing is based on the port channel hashing mechanism instead of different spanning tree instances and uses all the links between the RSTP to the PVST or MST domains. For information about configuring MLAG, see {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation - MLAG">}}.
 {{%/notice%}}
 
-To show the bridge state, run the `brctl show` command:
-
-```
-cumulus@switch:~$ sudo brctl show
-  bridge name     bridge id               STP enabled     interfaces
-  bridge          8000.001401010100       yes             swp1
-                                                          swp4
-                                                          swp5
-```
-
-To show the `mstpd` bridge port state, run the `mstpctl showport bridge` command:
-
-```
-cumulus@switch:~$ sudo mstpctl showport bridge
-  E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
-    swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
-  E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-## Customize Spanning Tree Protocol
+## Customize STP
 
 There are a number of ways to customize STP in Cumulus Linux. Exercise extreme caution with the settings below to prevent malfunctions in STP loop avoidance.
 
@@ -331,7 +258,7 @@ Edit the switch port interface stanza in the `/etc/network/interfaces` file to r
 
 ### BPDU Guard
 
-You can configure *BPDU guard* (Bridge Protocol Data Unit) to protect the spanning tree topology from unauthorized switches affecting the forwarding path. For example, when someone adds a new switch to an access port off a leaf switch and this new switch is configured with a low priority, it might become the new root switch and affect the forwarding path for the entire layer 2 topology.
+You can configure *BPDU guard* to protect the spanning tree topology from unauthorized switches affecting the forwarding path. For example, when someone adds a new switch to an access port off a leaf switch and this new switch is configured with a low priority, it might become the new root switch and affect the forwarding path for the entire layer 2 topology.
 
 To configure BPDU guard:
 
@@ -557,44 +484,7 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 
 {{< /tabs >}}
 
-### Storm Control
-
-Storm control provides protection against excessive inbound BUM (broadcast, unknown unicast, multicast) traffic on layer 2 switch port interfaces, which can cause poor network performance.
-
-{{%notice note%}}
-
-- Storm control is *not* supported on a switch with the Tomahawk2 ASIC.
-- On Broadcom switches, ARP requests over layer 2 VXLAN bypass broadcast storm control; they are forwarded to the CPU and subjected to embedded control plane QoS instead.
-
-{{%/notice%}}
-
-You configure storm control for each physical port by editing the `/etc/cumulus/switchd.conf` file.
-
-For example, to enable broadcast storm control for swp1 at 400 packets per second (pps) and multicast storm control at 3000 pps and unknown unicast at 500 pps, edit the `/etc/cumulus/switchd.conf` file and uncomment the `storm_control.broadcast` , `storm_control.multicast` and `storm_control.unknown_unicast` lines:
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
-...
-# Storm Control setting on a port, in pps, 0 means disable
-interface.swp1.storm_control.broadcast = 400
-interface.swp1.storm_control.multicast = 3000
-interface.swp1.storm_control.unknown_unicast = 500
-...
-```
-
-When you update the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect.
-
-{{<cl/restart-switchd>}}
-
-Alternatively, you can run the following commands. The configuration below takes effect immediately, but does not persist if you reboot the switch. For a persistent configuration, edit the `/etc/cumulus/switchd.conf` file, as described above.
-
-```
-cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/broadcast'
-cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
-cumulus@switch:~$ sudo sh -c 'echo 500 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
-```
-
-### Spanning Tree Parameter List
+### Parameter List
 
 Spanning tree parameters are defined in the IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" text="802.1D">}} and {{<exlink url="https://standards.ieee.org/standard/802_1Q-2018.html" text="802.1Q">}} specifications.
 
@@ -627,6 +517,82 @@ Most of these parameters are blacklisted in the `ifupdown_blacklist` section of 
 | `mstpctl-bpduguard` | `net add interface <interface> stp bpduguard` | Enables or disables the BPDU guard configuration of the interface in the bridge. The default is no. See above. |
 | `mstpctl-portbpdufilter` | `net add interface <interface> stp portbpdufilter`| Enables or disables the BPDU filter functionality for an interface in the bridge. The default is no. |
 | `mstpctl-treeportcost` | `net add interface <interface> stp treeportcost <port-cost>` | Sets the spanning tree port cost to a value from 0 to 255. The default is 0. |
+
+## Troubleshooting
+
+To check STP status for a bridge:
+
+{{< tabs "TabID50 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+Run the `net show bridge spanning-tree` command:
+
+```
+cumulus@switch:~$ net show bridge spanning-tree
+Bridge info
+  enabled         yes
+  bridge id       8.000.44:38:39:FF:40:94
+    Priority:     32768
+    Address:      44:38:39:FF:40:94
+  This bridge is root.
+
+  designated root 8.000.44:38:39:FF:40:94
+    Priority:     32768
+    Address:      44:38:39:FF:40:94
+
+  root port       none
+  path cost     0          internal path cost   0
+  max age       20         bridge max age       20
+  forward delay 15         bridge forward delay 15
+  tx hold count 6          max hops             20
+  hello time    2          ageing time          300
+  force protocol version     rstp
+
+INTERFACE  STATE  ROLE  EDGE
+---------  -----  ----  ----
+peerlink   forw   Desg  Yes
+vni13      forw   Desg  Yes
+vni24      forw   Desg  Yes
+vxlan4001  forw   Desg  Yes
+```
+
+{{< /tab >}}
+
+{{< tab "Linux Commands ">}}
+
+The `mstpctl` utility provided by the `mstpd` service configures STP. The `mstpd` daemon is an open source project used by Cumulus Linux to implement IEEE802.1D 2004 and IEEE802.1Q 2011.
+
+The `mstpd` daemon starts by default when the switch boots and logs errors `/var/log/syslog`.
+
+{{%notice warning%}}
+
+`mstpd` is the preferred utility for interacting with STP on Cumulus Linux. `brctl` also provides certain tools for configuring STP; however, they are not as complete and output from `brctl` might be misleading.
+
+{{%/notice%}}
+
+To show the bridge state, run the `brctl show` command:
+
+```
+cumulus@switch:~$ sudo brctl show
+  bridge name     bridge id               STP enabled     interfaces
+  bridge          8000.001401010100       yes             swp1
+                                                          swp4
+                                                          swp5
+```
+
+To show the `mstpd` bridge port state, run the `mstpctl showport bridge` command:
+
+```
+cumulus@switch:~$ sudo mstpctl showport bridge
+  E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
+    swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
+  E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Related Information
 

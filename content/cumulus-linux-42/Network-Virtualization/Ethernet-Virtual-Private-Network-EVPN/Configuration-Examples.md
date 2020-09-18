@@ -25,8 +25,6 @@ The following example configures a network infrastructure that creates a layer 2
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
 - Server gateways are outside the VXLAN fabric
 
-<!-- {{< img src = "/images/cumulus-linux/evpn-layer2.png" >}} -->
-
 ### /etc/network/interfaces
 
 {{< tabs "TabID24 ">}}
@@ -840,8 +838,6 @@ The following example shows an EVPN centralized routing configuration:
 - MLAG is configured between leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
 - SVIs are configured as gateways on the border leafs
-
-<!-- {{< img src = "/images/cumulus-linux/evpn-central.png" >}} -->
 
 ### /etc/network/interfaces
 
@@ -1962,9 +1958,9 @@ line vty
 
 The following example shows an EVPN symmetric routing configuration:
 
-- MLAG is configured between leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
-- BGP unnumbered is in the underlay (configured on all leafs and spines)
-- VRF BLUE and VRF RED are configured on the leafs for traffic flow
+- MLAG is configured between leaf01 and leaf02, leaf03 and leaf04, and border01 and border02.
+- BGP unnumbered is in the underlay (configured on all leafs and spines).
+- VRF BLUE and VRF RED are configured on the leafs for traffic flow.
    <!-- The following logical diagrams show traffic flow between VRF BLUE and VRF RED, which server is on the same VLAN and which switch connects VLANs together. Each VRF is a unique layer 3 routing table.
 
     VRF BLUE| VRF RED |

@@ -44,7 +44,7 @@ The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs 
 
 ### RSTP and MST
 
-RSTP works with MST seamlessly, creating a single instance of spanning tree that transmits BPDUs on the native VLAN. 
+RSTP works with MST seamlessly, creating a single instance of spanning tree that transmits BPDUs on the native VLAN.
 
 RSTP treats the MST domain as one giant switch, whereas MST treats the RSTP domain as a different region. To enable proper communication between the regions, MST creates a Common Spanning Tree (CST) that connects all the boundary switches and forms the overall view of the MST domain. Because changes in the CST need to be reflected in all regions, the RSTP tree is included in the CST to ensure that changes on the RSTP domain are reflected in the CST domain. This does cause topology changes on the RSTP domain to impact the rest of the network but keeps the MST domain informed of every change occurring in the RSTP domain, ensuring a loop-free network.
 
@@ -484,7 +484,7 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 
 {{< /tabs >}}
 
-### Spanning Tree Parameter List
+### Parameter List
 
 Spanning tree parameters are defined in the IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" text="802.1D">}} and {{<exlink url="https://standards.ieee.org/standard/802_1Q-2018.html" text="802.1Q">}} specifications.
 

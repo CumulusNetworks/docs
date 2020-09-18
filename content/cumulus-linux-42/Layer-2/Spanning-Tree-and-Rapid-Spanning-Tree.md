@@ -258,7 +258,7 @@ Edit the switch port interface stanza in the `/etc/network/interfaces` file to r
 
 ### BPDU Guard
 
-You can configure *BPDU guard* to protect the spanning tree topology from unauthorized switches affecting the forwarding path. For example, when someone adds a new switch to an access port off a leaf switch and this new switch is configured with a low priority, it might become the new root switch and affect the forwarding path for the entire layer 2 topology.
+You can configure *BPDU guard* to protect the spanning tree topology from unauthorized switches affecting the forwarding path. For example, if you add a new switch to an access port off a leaf switch and this new switch is configured with a low priority, it might become the new root switch and affect the forwarding path for the entire layer 2 topology.
 
 To configure BPDU guard:
 
@@ -358,7 +358,7 @@ Bringing up the disabled port does not correct the problem if the configuration 
 
 ### Bridge Assurance
 
-On a point-to-point link where RSTP is running, if you want to detect unidirectional links and put the port in a discarding state (in error), you can enable bridge assurance on the port by enabling a port type network. The port is then in a bridge assurance inconsistent state until a BPDU is received from the peer. You need to configure the port type network on both ends of the link for bridge assurance to operate properly.
+On a point-to-point link where RSTP is running, if you want to detect unidirectional links and put the port in a discarding state, you can enable bridge assurance on the port by enabling a port type network. The port is then in a bridge assurance inconsistent state until a BPDU is received from the peer. You need to configure the port type network on both ends of the link for bridge assurance to operate properly.
 
 Bridge assurance is disabled by default.
 
@@ -503,19 +503,19 @@ Most of these parameters are blacklisted in the `ifupdown_blacklist` section of 
 | `mstpctl-fdelay` | `net add bridge stp fdelay <seconds>` | Sets the bridge forward delay time in seconds. The default value is 15. The bridge forward delay must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age. |
 | `mstpctl-maxhops` | `net add bridge stp maxhops <max-hops>` | Sets the maximum hops for the bridge. The default is 20. |
 | `mstpctl-txholdcount` |`net add bridge stp txholdcount <hold-count>` | Sets the bridge transmit hold count. The default value is 6. |
-| `mstpctl-forcevers` | `net add bridge stp forcevers RSTP`\|`STP` | Sets the force STP version of the bridge to either RSTP/STP. MSTP is not supported currently. The default is RSTP. |
-| `mstpctl-treeprio` | `net add bridge stp treeprio <priority>` | Sets the tree priority of the bridge for an MSTI (multiple spanning tree instance). The priority value is a number between 0 and 61440 and must be a multiple of 4096. The bridge with the lowest priority is elected the root bridge. The default is 32768.<br>**Note**: Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15. |
+| `mstpctl-forcevers` | `net add bridge stp forcevers RSTP`\|`STP` | Sets the force STP version of the bridge to either RSTP/STP. The default is RSTP. |
+| `mstpctl-treeprio` | `net add bridge stp treeprio <priority>` | Sets the tree priority of the bridge for an MSTI (multiple spanning tree instance). The priority value is a number between 0 and 61440 and must be a multiple of 4096. The bridge with the lowest priority is elected the root bridge. The default is 32768. See {{<link url="#spanning-tree-priority" text="Spanning Tree Priority">}} above.<br>**Note**: Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15. |
 | `mstpctl-hello` | `net add bridge stp hello <seconds>` | Sets the bridge hello time in seconds. The default is 2. |
-| `mstpctl-portpathcost` | `net add interface <interface> stp portpathcost <cost>` | Sets the port cost of the interface. The default is 0.<br>mstpd supports only long mode; 32 bits for the path cost. |
+| `mstpctl-portpathcost` | `net add interface <interface> stp portpathcost <cost>` | Sets the port cost of the interface. The default is 0.<br>`mstpd` supports only long mode; 32 bits for the path cost. |
 |`mstpctl-treeportprio` | `net add interface <interface> stp treeportprio <priority>`| Sets the priority of the interface for the MSTI. The priority value is a number between 0 and 240 and must be a multiple of 16. The default is 128.<br>**Note**: Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.|
-| `mstpctl-portadminedge` | `net add interface <interface> stp portadminedge` | Enables or disables the initial edge state of the interface in the bridge. The default is no.<br>In NCLU, to use a setting other than the default, you must specify this attribute without setting an option. |
-| `mstpctl-portautoedge` | `net add interface <interface> stp portautoedge` | Enables or disables the auto transition to and from the edge state of the interface in the bridge. PortAutoEdge is enabled by default.<br>portautoedge is an enhancement to the standard PortAdminEdge (PortFast) mode, which allows for the automatic detection of edge ports.<br>**Note**: Edge ports and access ports are not the same thing. Edge ports transition directly to the forwarding state and skip the listening and learning stages. Upstream topology change notifications are not generated when an edge port's link changes state. Access ports only forward untagged traffic; however, there is no such restriction on edge ports, which can forward both tagged and untagged traffic.<br>When a BPDU is received on a port configured with PortAutoEdge, the port ceases to be in the edge port state and transitions into a normal STP port.<br>When BPDUs are no longer received on the interface, the port becomes an edge port, and transitions through the discarding and learning states before resuming forwarding. |
+| `mstpctl-portadminedge` | `net add interface <interface> stp portadminedge` | Enables or disables the initial edge state of the interface in the bridge. The default is no.<br>In NCLU, to use a setting other than the default, you must specify this attribute without setting an option. See {{<link url="#portadminedge-(portfast-mode)" text="PortAdminEdge">}} above.|
+| `mstpctl-portautoedge` | `net add interface <interface> stp portautoedge` | Enables or disables the auto transition to and from the edge state of the interface in the bridge. PortAutoEdge is enabled by default. See {{<link url="#portautoedge" text="PortAutoEdge">}} above.|
 | `mstpctl-portp2p` | `net add interface <interface> stp portp2p yes`\|`no` | Enables or disables the point-to-point detection mode of the interface in the bridge. |
-| `mstpctl-portrestrrole` | `net add interface <interface> stp portrestrrole` | Enables or disables the ability of the interface in the bridge to take the root role. The default is no.<br>To enable this feature with the NCLU command, you specify this attribute without an option (portrestrrole). To enable this feature by editing the /etc/network/interfaces file, you specify this attribute with yes (mstpctl-portrestrrole yes). |
+| `mstpctl-portrestrrole` | `net add interface <interface> stp portrestrrole` | Enables or disables the ability of the interface in the bridge to take the root role. The default is no.<br>To enable this feature with the NCLU command, you specify this attribute without an option (`portrestrrole`). To enable this feature by editing the `/etc/network/interfaces` file, you specify `mstpctl-portrestrrole yes`. |
 | `mstpctl-portrestrtcn` | `net add interface <interface> stp portrestrtcn` | Enables or disables the ability of the interface in the bridge to propagate received topology change notifications. The default is no. |
-| `mstpctl-portnetwork` | `net add interface <interface> stp portnetwork` | Enables or disables the bridge assurance capability for a network interface. The default is no. |
-| `mstpctl-bpduguard` | `net add interface <interface> stp bpduguard` | Enables or disables the BPDU guard configuration of the interface in the bridge. The default is no. See above. |
-| `mstpctl-portbpdufilter` | `net add interface <interface> stp portbpdufilter`| Enables or disables the BPDU filter functionality for an interface in the bridge. The default is no. |
+| `mstpctl-portnetwork` | `net add interface <interface> stp portnetwork` | Enables or disables the bridge assurance capability for a network interface. The default is no. See {{<link url="#bridge-assurance" text="Bridge Assurance">}} above.|
+| `mstpctl-bpduguard` | `net add interface <interface> stp bpduguard` | Enables or disables the BPDU guard configuration of the interface in the bridge. The default is no. See {{<link url="#bpdu-guard" text="BPDU Guard">}} above. |
+| `mstpctl-portbpdufilter` | `net add interface <interface> stp portbpdufilter`| Enables or disables the BPDU filter functionality for an interface in the bridge. The default is no. See {{<link url="#bpdu-filter" text="BPDU Filter">}} above.|
 | `mstpctl-treeportcost` | `net add interface <interface> stp treeportcost <port-cost>` | Sets the spanning tree port cost to a value from 0 to 255. The default is 0. |
 
 ## Troubleshooting

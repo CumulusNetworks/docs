@@ -621,7 +621,7 @@ line vty
 
 {{%notice note%}}
 
-While multiple ospf instances are only supported in the default vrf, ospfv2 is vrf aware so you can have the same ospfd instance running in multiple VRFs, each of which representing its own separate OSPF domain. For example:
+While multiple OSPF instances are only supported in the default VRF OSPFv2 is VRF aware so you can have the same `ospfd` instance running in multiple VRFs, each of which representing its own separate OSPF domain. For example:
 
 ```
 cumulus@switch:~$  cat /etc/frr/frr.conf

@@ -45,83 +45,7 @@ For maximum interoperability, when connected to a switch that has a native VLAN 
 
 {{%/notice%}}
 
-## Show Bridge and STP Status and Logs
-
-To check STP status for a bridge:
-
-{{< tabs "TabID50 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-Run the `net show bridge spanning-tree` command:
-
-```
-cumulus@switch:~$ net show bridge spanning-tree
-Bridge info
-  enabled         yes
-  bridge id       8.000.44:38:39:FF:40:94
-    Priority:     32768
-    Address:      44:38:39:FF:40:94
-  This bridge is root.
-
-  designated root 8.000.44:38:39:FF:40:94
-    Priority:     32768
-    Address:      44:38:39:FF:40:94
-
-  root port       none
-  path cost     0          internal path cost   0
-  max age       20         bridge max age       20
-  forward delay 15         bridge forward delay 15
-  tx hold count 6          max hops             20
-  hello time    2          ageing time          300
-  force protocol version     rstp
-
-INTERFACE  STATE  ROLE  EDGE
----------  -----  ----  ----
-peerlink   forw   Desg  Yes
-vni13      forw   Desg  Yes
-vni24      forw   Desg  Yes
-vxlan4001  forw   Desg  Yes
-```
-
-{{< /tab >}}
-
-{{< tab "Linux Commands ">}}
-
-The `mstpctl` utility provided by the `mstpd` service configures STP. The `mstpd` daemon is an open source project used by Cumulus Linux to implement IEEE802.1D 2004 and IEEE802.1Q 2011.
-
-The `mstpd` daemon starts by default when the switch boots. The `mstpd` logs and errors are located in `/var/log/syslog`.
-
-{{%notice warning%}}
-
-`mstpd` is the preferred utility for interacting with STP on Cumulus Linux. `brctl` also provides certain methods for configuring STP; however, they are not as complete as the tools offered in `mstpd` and output from `brctl` can be misleading in some cases.
-
-{{%/notice%}}
-
-To show the bridge state, run the `brctl show` command:
-
-```
-cumulus@switch:~$ sudo brctl show
-  bridge name     bridge id               STP enabled     interfaces
-  bridge          8000.001401010100       yes             swp1
-                                                          swp4
-                                                          swp5
-```
-
-To show the `mstpd` bridge port state, run the `mstpctl showport bridge` command:
-
-```
-cumulus@switch:~$ sudo mstpctl showport bridge
-  E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
-    swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
-  E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-## Customize Spanning Tree Protocol
+## Customize STP
 
 There are a number of ways to customize STP in Cumulus Linux. Exercise extreme caution with the settings below to prevent malfunctions in STP loop avoidance.
 
@@ -584,6 +508,82 @@ Most of these parameters are blacklisted in the `ifupdown_blacklist` section of 
 | `mstpctl-bpduguard` | `net add interface <interface> stp bpduguard` | Enables or disables the BPDU guard configuration of the interface in the bridge. The default is no. See above. |
 | `mstpctl-portbpdufilter` | `net add interface <interface> stp portbpdufilter`| Enables or disables the BPDU filter functionality for an interface in the bridge. The default is no. |
 | `mstpctl-treeportcost` | `net add interface <interface> stp treeportcost <port-cost>` | Sets the spanning tree port cost to a value from 0 to 255. The default is 0. |
+
+## Troubleshooting
+
+To check STP status for a bridge:
+
+{{< tabs "TabID50 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+Run the `net show bridge spanning-tree` command:
+
+```
+cumulus@switch:~$ net show bridge spanning-tree
+Bridge info
+  enabled         yes
+  bridge id       8.000.44:38:39:FF:40:94
+    Priority:     32768
+    Address:      44:38:39:FF:40:94
+  This bridge is root.
+
+  designated root 8.000.44:38:39:FF:40:94
+    Priority:     32768
+    Address:      44:38:39:FF:40:94
+
+  root port       none
+  path cost     0          internal path cost   0
+  max age       20         bridge max age       20
+  forward delay 15         bridge forward delay 15
+  tx hold count 6          max hops             20
+  hello time    2          ageing time          300
+  force protocol version     rstp
+
+INTERFACE  STATE  ROLE  EDGE
+---------  -----  ----  ----
+peerlink   forw   Desg  Yes
+vni13      forw   Desg  Yes
+vni24      forw   Desg  Yes
+vxlan4001  forw   Desg  Yes
+```
+
+{{< /tab >}}
+
+{{< tab "Linux Commands ">}}
+
+The `mstpctl` utility provided by the `mstpd` service configures STP. The `mstpd` daemon is an open source project used by Cumulus Linux to implement IEEE802.1D 2004 and IEEE802.1Q 2011.
+
+The `mstpd` daemon starts by default when the switch boots and logs errors `/var/log/syslog`.
+
+{{%notice warning%}}
+
+`mstpd` is the preferred utility for interacting with STP on Cumulus Linux. `brctl` also provides certain tools for configuring STP; however, they are not as complete and output from `brctl` might be misleading.
+
+{{%/notice%}}
+
+To show the bridge state, run the `brctl show` command:
+
+```
+cumulus@switch:~$ sudo brctl show
+  bridge name     bridge id               STP enabled     interfaces
+  bridge          8000.001401010100       yes             swp1
+                                                          swp4
+                                                          swp5
+```
+
+To show the `mstpd` bridge port state, run the `mstpctl showport bridge` command:
+
+```
+cumulus@switch:~$ sudo mstpctl showport bridge
+  E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
+    swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
+  E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Related Information
 

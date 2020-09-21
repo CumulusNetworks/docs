@@ -1035,10 +1035,6 @@ spine04           swp6                      2459                 0              
                                                                                                                                                      2020
 ```
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
 ### View ACL Resource Utilization Networkwide
 
 You can monitor the incoming and outgoing access control lists (ACLs) configured on all switches and host.
@@ -1164,7 +1160,6 @@ Customers running Cumulus Linux 3.x which uses the BTRFS (b-tree file system) mi
 
 For details about when a rebalance is recommended, refer to {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360037394933-When-to-Rebalance-BTRFS-Partitions" text="When to Rebalance BTRFS Partitions">}}.
 
-
 To view the disk utilization and whether a rebalance is recommended, run:
 
 ```
@@ -1180,7 +1175,6 @@ Hostname          Device Allocated     Unallocated Space    Largest Chunk Size  
                                                                                  pace                 d
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
 leaf01            37.79 %              3.58 GB              588.5 MB             771.91 MB            yes                  Wed Sep 16 21:25:17 2020
-
 ```
 
 Look for the **Rebalance Recommended** column. If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the output to determine if you are getting close to needing a rebalance, and come back to view this data at a later time.

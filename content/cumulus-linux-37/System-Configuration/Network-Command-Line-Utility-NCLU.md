@@ -104,8 +104,7 @@ configuration with the following commands:
   from NCLU commands are cleaned up periodically with a snapper cron job.
 - `net commit delete` deletes one or more snapshots created when
   committing changes with NCLU.
-- `net del all` deletes all configurations and stops the IEEE 802.1X
-  service.
+- `net del all` deletes all configurations.
 
     {{%notice note%}}
 

@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{{$prodVersion := print .Page.Params.product " " .Page.Params.version }}
+{{$prodVersion := print .Page.Params.product " " (.Page.Params.version | default "") }}
 <title>{{ .Page.Title }} | {{ $prodVersion | default .Site.Title -}}</title>
 
 <!-- Fonts for the theme -->

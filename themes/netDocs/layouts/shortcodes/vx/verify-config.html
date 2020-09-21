@@ -1,0 +1,52 @@
+<p>Run the following commands on each switch to verify the configuration:</p>
+<div class="notices note"><p>It might take a few minutes for the LLDP information to update. If your command output is different from the output shown below, wait a few minutes, then run the command again.</p></div>
+<div class="book-tabs">
+<input type="radio" class="hidden" name="LLDP" id="LLDP -1" checked="" />
+<label for="LLDP -1">leaf01</label>
+<div class="book-tabs-content markdown-inner">
+<pre>
+cumulus@leaf01:mgmt:~$ net show lldp
+LocalPort    Speed    Mode          RemoteHost     RemotePort
+-----------  -------  ------------  ------------   ------------
+swp1         1G       Default       spine01        swp1
+swp2         1G       Default       leaf02         swp2
+swp3         1G       Default       leaf02         swp3
+</pre>
+</div>
+<input type="radio" class="hidden" name="LLDP" id="LLDP -2" />
+<label for="LLDP -2">leaf02</label>
+<div class="book-tabs-content markdown-inner">
+<pre>cumulus@leaf02:mgmt:~$ net show lldp
+LocalPort    Speed    Mode          RemoteHost     RemotePort
+-----------  -------  ------------  ------------   ------------
+swp1         1G       Default       spine01        swp2
+swp2         1G       Default       leaf01         swp2
+swp3         1G       Default       leaf01         swp3
+</pre>
+</div>
+<input type="radio" class="hidden" name="LLDP" id="LLDP -3" />
+<label for="LLDP -3">spine01</label>
+<div class="book-tabs-content markdown-inner">
+<pre>cumulus@spine01:mgmt:~$ net show lldp
+LocalPort    Speed    Mode          RemoteHost     RemotePort
+-----------  -------  ------------  ------------   ------------
+swp1         1G       Default       leaf01         swp1
+swp2         1G       Default       leaf02         swp1
+</pre>
+</div>
+</div>
+<p>Run the following commands on each switch to show system information:</p>
+<pre>
+cumulus@leaf01:mgmt:~$ net show system
+Hostname..............leaf01
+Build.................Cumulus Linux 4.2.0
+Uptime................0.00.23.740000
+Model.................Cumulus VX
+Memory................768MB
+Disk..................6GB
+Vendor Name...........Cumulus Networks
+Part Number...........4.2.0
+Base MAC Address......4:00:27:39:B1:12
+Serial Number.........4:00:27:39:B1:12
+Product Name..........VX
+</pre>

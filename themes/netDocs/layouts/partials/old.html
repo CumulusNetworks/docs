@@ -2,7 +2,7 @@
 <div class= "notices info" id = "info" >
     <p>
         {{- if .Page.Params.esr -}}
-        This documentation is for the extended support release (ESR) version of Cumulus Linux. We will continue to keep this content up to date until 21 February, 2023, when ESR support ends. For more information about ESR, please read this <a href="https://support.cumulusnetworks.com/hc/en-us/articles/217132357">knowledge base article</a>.
+        This documentation is for the extended support release (ESR) version of Cumulus Linux. We will continue to keep this content up to date until 21 February, 2023, when ESR support ends. For more information about ESR, please read this <a href="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy/">knowledge base article</a>.
         <br /><br />
         {{- end -}}
         If you are using the current version of {{ .Page.Params.product }}, the content on this page may not be up to date. The current version of the documentation is available {{ $prod := (index (sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc") 0).Section }}

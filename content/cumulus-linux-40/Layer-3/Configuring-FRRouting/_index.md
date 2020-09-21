@@ -131,11 +131,7 @@ If integrated configuration file mode is disabled, remove all the configuration 
 
 {{%/notice%}}
 
-3.  Restart FRRouting:
-
-```
-cumulus@switch:~$ sudo systemctl restart frr.service
-```
+3. {{<cl/restart-frr>}}
 
 ## Interface IP Addresses and VRFs
 
@@ -432,7 +428,7 @@ Examine the running configuration and verify that it matches the configuration i
 cumulus@switch:~$ net show configuration
 ```
 
-If the running configuration is not what you expect, {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/requests/new" text="submit a support request">}} and supply the following information:
+If the running configuration is not what you expect, {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="submit a support request">}} and supply the following information:
 
 - The current running configuration (run `net show configuration` and output the contents to a file)
 - The contents of `/etc/frr/frr.conf`

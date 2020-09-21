@@ -491,11 +491,7 @@ To configure multi-instance OSPF:
     ...
     ```
 
-2. Restart FRRouting:
-
-    ```
-    cumulus@switch:~$ sudo systemctl restart frr.service
-    ```
+2. {{<cl/restart-frr>}}
 
 3. Assign and enable an OSPF interface for each instance:
 
@@ -619,6 +615,50 @@ ipv6 forwarding
 !
 line vty
 !
+```
+
+{{%/notice%}}
+
+{{%notice note%}}
+
+While multiple OSPF instances are only supported in the default VRF OSPFv2 is VRF aware so you can have the same `ospfd` instance running in multiple VRFs, each of which representing its own separate OSPF domain. For example:
+
+```
+cumulus@switch:~$  cat /etc/frr/frr.conf
+hostname zebra
+log file /var/log/frr/zebra.log
+username cumulus nopassword
+!
+service integrated-vtysh-config
+!
+...
+!
+router ospf
+ ospf router-id 2.2.2.2
+ passive-interface eth0
+ network 0.0.0.0/0 area 0
+!
+router ospf vrf internal
+ ospf router-id 2.2.2.3
+ network 0.0.0.0/0 area 0
+!
+```
+```
+cumulus@switch:~$  cat /etc/frr/daemons
+zebra=yes
+bgpd=no
+ospfd=yes
+ospf6d=no
+ripd=no
+ripngd=no
+isisd=no
+pimd=no
+ldpd=no
+nhrpd=no
+eigrpd=no
+babeld=no
+sharpd=no
+pbrd=no
 ```
 
 {{%/notice%}}

@@ -85,7 +85,7 @@ Cumulus Linux 3.7.7 contains bug fixes only.
 
 Cumulus Linux 3.7.6 contains bug fixes, and the following new platform and power supply:
 
-- Dell N3048EP-ON (1G PoE Helix4) - Depending upon the revision of the switch you have, you might not be able to install Cumulus Linux on it. For more information, read {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360022713574" text="this knowledge base article">}}.
+- Dell N3048EP-ON (1G PoE Helix4) - Depending upon the revision of the switch you have, you might not be able to install Cumulus Linux on it. For more information, read {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Hardware-and-Platform-Issues/Dell-N3048EP-ON-Cumulus-Linux-Installation-Fails/" text="this knowledge base article">}}.
 - 48V DC PSU for the Dell Z9100-ON switch
 
 ## What's New in Cumulus Linux 3.7.5

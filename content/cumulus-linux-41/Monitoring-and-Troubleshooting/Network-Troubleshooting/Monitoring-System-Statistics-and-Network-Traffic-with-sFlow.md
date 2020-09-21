@@ -107,7 +107,7 @@ Some collectors require each source to transmit on a different port, others list
 
 ## Configure sFlow Visualization Tools
 
-For information on configuring various sFlow visualization tools, read this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools" text="Help Center article">}}.
+For information on configuring various sFlow visualization tools, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Monitoring/Configure-and-Use-sFlow-Visualization-Tools/" text="knowledge base article">}}.
 
 ## Caveats and Errata
 

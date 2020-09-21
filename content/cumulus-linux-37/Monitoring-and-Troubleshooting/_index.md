@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: 25
 pageID: 8362592
 ---
+
 This chapter introduces monitoring and troubleshooting Cumulus Linux.
 
 ## Serial Console
@@ -31,20 +32,19 @@ You must reboot the switch for the `baudrate` change to take effect.
 
 The valid values for `baudrate` are:
 
-  - 300
-  - 600
-  - 1200
-  - 2400
-  - 4800
-  - 9600
-  - 19200
-  - 38400
-  - 115200
+- 300
+- 600
+- 1200
+- 2400
+- 4800
+- 9600
+- 19200
+- 38400
+- 115200
 
 ### Configure the Serial Console on x86 Switches
 
-On x86 switches, you configure serial console baud rate by editing
-`grub`.
+On x86 switches, you configure serial console baud rate by editing `grub`.
 
 {{%notice warning%}}
 
@@ -56,15 +56,15 @@ before implementation.
 
 The valid values for the baud rate are:
 
-  - 300
-  - 600
-  - 1200
-  - 2400
-  - 4800
-  - 9600
-  - 19200
-  - 38400
-  - 115200
+- 300
+- 600
+- 1200
+- 2400
+- 4800
+- 9600
+- 19200
+- 38400
+- 115200
 
 To change the serial console baud rate:
 
@@ -73,21 +73,15 @@ To change the serial console baud rate:
     a valid value specified above in the `--speed` variable in the first
     line and in the `console` variable in the second line:
 
-```
-    GRUB_SERIAL_COMMAND="serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1"
-    GRUB_CMDLINE_LINUX="console=ttyS1,115200n8 cl_platform=accton_as5712_54x"
-```
+        GRUB_SERIAL_COMMAND="serial --port=0x2f8 --speed=115200 --word=8 --parity=no --stop=1"
+        GRUB_CMDLINE_LINUX="console=ttyS1,115200n8 cl_platform=accton_as5712_54x"
 
 2.  After you save your changes to the grub configuration, type the
     following at the command prompt:
-```
-    cumulus@switch:~$ update-grub
-```
 
-3.  If you plan on accessing the switch BIOS over the serial console,
-    you need to update the baud rate in the switch BIOS. For more
-    information, see this
-    {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/203884473" text="knowledge base article">}}.
+        cumulus@switch:~$ update-grub
+
+3.  If you plan on accessing the switch BIOS over the serial console, you need to update the baud rate in the switch BIOS. For more information, see this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Accessing-the-BIOS-on-an-x86-Switch" text="this knowledge base article">}}.
 
 4.  Reboot the switch.
 
@@ -266,6 +260,8 @@ that do not use `rsyslog` write to their own log files within the
 
 ### Enable Remote syslog
 
+By default not all log messages are sent to a remote server 
+
 If you need to send other log files - such as `switchd` logs - to a
 `syslog` server, do the following:
 
@@ -285,38 +281,21 @@ If you need to send other log files - such as `switchd` logs - to a
     `/var/log/syslog` file, where *@* indicates UDP, *192.168.1.2* is
     the IP address of the `syslog` server, and *514* is the UDP port.
 
-    {{%notice note%}}
+   {{%notice note%}}
 
-For TCP-based syslog, use two @@ before the IP address: *@@192.168.1.2:514*.
+- For TCP-based syslog, use two @@ before the IP address *@@192.168.1.2:514*.
+- Running `syslog` over TCP places a burden on the switch to queue packets in the `syslog` buffer. This may cause detrimental effects if the remote `syslog` server becomes unavailable.
+- The numbering of the files in `/etc/rsyslog.d/` dictates how the rules are installed into `rsyslog.d`. Lower numbered rules are processed first, and `rsyslog` processing *terminates* with the `stop` keyword. For example, the `rsyslog` configuration for FRR is stored in the `45-frr.conf` file with an explicit `stop` at the bottom of the file. FRR messages are logged to the `/var/log/frr/frr.log` file on the local disk only (these messages are not sent to a remote server using the default configuration). To log FRR messages remotely in addition to writing FRR messages to the local disk, rename the `99-syslog.conf` file to `11-remotesyslog.conf`. FRR messages are first processed by the `11-remotesyslog.conf` rule (transmit to remote server), then continue to be processed by the `45-frr.conf` file (write to local disk in the `/var/log/frr/frr.log` file).
 
-Running `syslog` over TCP places a burden on the switch to queue
-packets in the `syslog` buffer. This may cause detrimental effects
-if the remote `syslog` server becomes unavailable.
+- Do not use the `imfile` module with any file written by `rsyslogd`.
 
-    {{%/notice%}}
-
-    {{%notice note%}}
-
-The numbering of the files in `/etc/rsyslog.d/` dictates how the
-rules are installed into `rsyslog.d`. If you want to remotely log
-only the messages in `/var/syslog`, and not those in
-`/var/log/clagd.log` or `/var/log/switchd.log`, for instance, then
-name the file `98-remotesyslog.conf`, since it's lower than the
-`/var/syslog` file `99-syslog.conf` only.
-
-    {{%/notice%}}
-
-    {{%notice note%}}
-
-Do not use the `imfile` module with any file written by `rsyslogd`.
-
-    {{%/notice%}}
+{{%/notice%}}
 
 2.  Restart `rsyslog`.
 
-```
-   cumulus@switch:~$ sudo systemctl restart rsyslog.service
-```
+    ```
+    cumulus@switch:~$ sudo systemctl restart rsyslog.service
+    ```
 
 ### Write to syslog with Management VRF Enabled
 

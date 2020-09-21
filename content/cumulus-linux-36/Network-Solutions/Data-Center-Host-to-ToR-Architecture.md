@@ -26,7 +26,7 @@ server hosts.
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p><a href="/cumulus-linux-36/Layer-2/Bonding-Link-Aggregation">Bond</a>/Etherchannel is not configured on host to multiple switches (bonds can still occur but only to one switch at a time), so leaf01 and leaf02 see two different MAC addresses.</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
@@ -107,7 +107,7 @@ iface br-20 inet manual
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><ul>
 <li><p>None (not possible with traditional spanning tree)</p></li>
 </ul></td>
@@ -146,7 +146,7 @@ iface br-20 inet manual
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p><a href="/cumulus-linux-36/Layer-2/Multi-Chassis-Link-Aggregation-MLAG">MLAG</a> (multi-chassis link aggregation) is when both uplinks are utilized at the same time. VRR gives the ability for both spines to act as gateways simultaneously for HA (high availability) and <a href="/cumulus-linux-36/Network-Virtualization/Lightweight-Network-Virtualization-Overview/LNV-VXLAN-Active-Active-Mode">active-active mode</a> (both are being used at the same time).</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
@@ -225,7 +225,7 @@ iface vm-br10 inet manual
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><ul>
 <li><p><a href="/cumulus-linux-36/Layer-2/Virtual-Router-Redundancy-VRR/">VRR</a></p></li>
 </ul></td>
@@ -257,7 +257,7 @@ iface vm-br10 inet manual
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p>The server (physical host) has only has one link to one ToR switch.</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
@@ -309,11 +309,11 @@ iface eth1 inet static
 <li><p>For additional bandwidth links between host and leaf may be bonded</p></li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
 <td><p><strong>More Information</strong></p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><ul>
 <li><p>No redundancy, uses single ToR as gateway.</p></li>
 </ul></td>
@@ -340,8 +340,8 @@ iface eth1 inet static
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/204339077" class="external-link">Redistribute neighbor</a> daemon grabs ARP entries dynamically, utilizes redistribute table for FRRouting to grab these dynamic entries and redistribute them into the fabric.</p></td>
+<tr>
+<td><p><a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Redistribute-Neighbor/">Redistribute neighbor</a> daemon grabs ARP entries dynamically, utilizes redistribute table for FRRouting to grab these dynamic entries and redistribute them into the fabric.</p></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
 <li><p>Configuration in FRRouting is simple (route-map + redist table)</p></li>
@@ -357,11 +357,11 @@ iface eth1 inet static
 <li><p>No L2 adjacency between servers without VXLAN.</p></li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
 <td><p><strong>More Information</strong></p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><ul>
 <li><p>Equal cost route installed on server/host/hypervisor to both ToRs to load balance evenly.</p></li>
 <li><p>For host/VM/container mobility, use the same default route on all hosts (such as x.x.x.1) but don't distribute or advertise the .1 on the ToR into the fabric. This allows the VM to use the same gateway no matter which pair of leafs it is cabled to.</p></li>
@@ -389,7 +389,7 @@ iface eth1 inet static
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p>Routing on the host means there is a routing application (such as <a href="/cumulus-linux-36/Layer-3/FRRouting-Overview/">FRRouting</a>) either on the bare metal host (no VMs/containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team.</p></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
@@ -406,18 +406,17 @@ iface eth1 inet static
 <li><p>No L2 adjacnecy between servers without VXLAN</p></li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
 <td><p><strong>More Information</strong></p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><ul>
 <li><p>The first hop is still the ToR, just like redistribute neighbor</p></li>
 <li><p>A default route can be advertised by all leaf/ToRs for dynamic ECMP paths</p></li>
 </ul></td>
 <td><ul>
-<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/216805858-Routing-on-the-Host-An-Introduction" class="external-link">Routing on the Host: An Introduction</a></p></li>
-<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
+<li><p><a href="http://docs.frrouting.org/en/latest/installation.html" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
 <li><p><a href="/cumulus-linux-36/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
 </ul></td>
 </tr>
@@ -440,7 +439,7 @@ iface eth1 inet static
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p>Instead of routing on the hypervisor, each virtual machine utilizes its own routing stack.</p></td>
 <td><p><strong>Benefits</strong></p>
 <ul>
@@ -458,18 +457,17 @@ instead of one routing process, there are as many as there are VMs</p></li>
 <li><p>No L2 adjacency between servers without VXLAN</p></li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
 <td><p><strong>More Information</strong></p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><ul>
 <li><p>The first hop is still the ToR, just like redistribute neighbor</p></li>
 <li><p>Multiple ToRs (2+) can be used</p></li>
 </ul></td>
 <td><ul>
-<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/216805858-Routing-on-the-Host-An-Introduction" class="external-link">Routing on the host: An Introduction</a></p></li>
-<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
+<li><p><a href="http://docs.frrouting.org/en/latest/installation.html" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
 <li><p><a href="/cumulus-linux-36/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
 </ul></td>
 </tr>
@@ -492,7 +490,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p>Virtual router (vRouter) runs as a VM on the hypervisor/host, sends routes to the ToR using <a href="/cumulus-linux-36/Layer-3/Border-Gateway-Protocol-BGP">BGP</a> or <a href="/cumulus-linux-36/Layer-3/Open-Shortest-Path-First-OSPF-Protocol">OSPF</a>.</p></td>
 <td><p><strong><strong>Benefits</strong></strong></p>
 <p>In addition to routing on a host:</p>
@@ -506,18 +504,17 @@ instead of one routing process, there are as many as there are VMs</p></li>
 <li><p>No L2 adjacency between servers without VXLAN</p></li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
 <td><p><strong>More Information</strong></p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><ul>
 <li><p>The gateway would be the vRouter, which has two routes out (two ToRs)</p></li>
 <li><p>Multiple vRouters could be used</p></li>
 </ul></td>
 <td><ul>
-<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/216805858-Routing-on-the-Host-An-Introduction" class="external-link">Routing on the Host: An Introduction</a></p></li>
-<li><p><a href="https://support.cumulusnetworks.com/hc/en-us/articles/213177027-Installing-the-Cumulus-Linux-Quagga-Package-on-an-Ubuntu-Server" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
+<li><p><a href="http://docs.frrouting.org/en/latest/installation.html" class="external-link">Installing the Cumulus Linux FRRouting Package on an Ubuntu Server</a></p></li>
 <li><p><a href="/cumulus-linux-36/Layer-3/Configuring-FRRouting/">Configuring FRRouting</a></p></li>
 </ul></td>
 </tr>
@@ -540,7 +537,7 @@ instead of one routing process, there are as many as there are VMs</p></li>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p>In contrast to routing on the host (preferred), this method allows a user to route <strong>to</strong> the host. The ToRs are the gateway, as with redistribute neighbor, except because there is no daemon running, the networks must be manually configured under the routing process. There is a potential to black hole unless a script is run to remove the routes when the host no longer responds.</p>
 <p><strong>Configurations</strong></p>
 <p><strong>leaf01 Config</strong></p>
@@ -593,11 +590,11 @@ iface eth2 inet static
 <li><p>No L2 adjacency between servers without VXLAN</p></li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p><strong>FHR (First Hop Redundancy)</strong></p></td>
 <td><p><strong>More Information</strong></p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><ul>
 <li><p>The gateways would be the ToRs, exactly like redistribute neighbor with an equal cost route installed</p></li>
 </ul></td>
@@ -626,7 +623,7 @@ iface eth2 inet static
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><p> </p></td>
 <td><p>The host runs LACP (Etherchannel/bond) to the pair of ToRs. <a href="/cumulus-linux-36/Network-Virtualization/Lightweight-Network-Virtualization-Overview/">LNV</a> (Lightweight Network Virtualization) then transports the L2 bridges across an L3 fabric.</p>
 <p><strong>Configurations</strong></p>
@@ -693,7 +690,7 @@ iface br-10
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><ul>
 <li><p><a href="/cumulus-linux-36/Layer-2/Virtual-Router-Redundancy-VRR/">VRR</a></p></li>
 </ul></td>
@@ -702,12 +699,12 @@ iface br-10
 <li><p>ToR layer or exit leafs</p></li>
 </ul></td>
 </tr>
-<tr class="even">
+<tr>
 <td><p> </p></td>
 <td><p> </p></td>
 <td><p><strong>More Information</strong></p></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><p> </p></td>
 <td><p> </p></td>
 <td><ul>

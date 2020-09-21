@@ -37,8 +37,8 @@ This feature is fully enabled for on-premises deployments and fully disabled for
 To manage the various lifecycle management features from any workbench, click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches) in the workbench header, then select **Manage switches**.
 
 The first time you open the Manage Switch Assets view, it provides a summary card for switch inventory, uploaded Cumulus Linux images, uploaded NetQ images, NetQ configuration profiles, and switch access settings. Additional cards appear after that based on your activity.
-<!-- replace image -->
-{{<figure src="/images/netq/lcm-dashboard-310.png" width="700">}}
+
+{{<figure src="/images/netq/lcm-dashboard-320.png" width="700">}}
 
 {{<notice tip>}}
 

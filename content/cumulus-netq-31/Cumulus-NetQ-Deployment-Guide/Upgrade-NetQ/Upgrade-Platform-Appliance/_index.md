@@ -49,16 +49,7 @@ To complete the preparation:
     deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-3.1
     ```
 
-5. Update the NetQ debian packages using the following three commands.
-
-    ```
-    cumulus@<hostname>:~$ sudo dpkg --remove --force-remove-reinstreq cumulus-netq netq-apps netq-agent 2>/dev/null
-    [sudo] password for cumulus:
-    (Reading database ... 71621 files and directories currently installed.)
-    Removing netq-apps (2.4.1-ub18.04u24~1577405296.fcf3c28) ...
-    Removing netq-agent (2.4.1-ub18.04u24~1577405296.fcf3c28) ...
-    Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
-    ```
+5. Update the NetQ debian packages using the following commands.
 
     ```
     cumulus@<hostname>:~$ sudo apt-get update

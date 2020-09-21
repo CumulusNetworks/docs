@@ -9,7 +9,6 @@ This section shows the following EVPN configuration examples:
 - Layer 2 EVPN with external routing
 - EVPN centralized routing
 - EVPN symmetric routing
-<!-- - EVPN asymmetric routing -->
 
 The configuration examples are based on the reference topology below:
 
@@ -1961,12 +1960,25 @@ The following example shows an EVPN symmetric routing configuration:
 - MLAG is configured between leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
 - VRF BLUE and VRF RED are configured on the leafs for traffic flow
-   <!-- The following logical diagrams show traffic flow between VRF BLUE and VRF RED, which server is on the same VLAN and which switch connects VLANs together. Each VRF is a unique layer 3 routing table.
+  
+The following logical diagrams show traffic flow between VRF BLUE and VRF RED, which server is on the same VLAN and which switch connects VLANs together. Each VRF is a unique layer 3 routing table.
 
-    VRF BLUE| VRF RED |
-   | ------- | ------- |
-   | {{< img src="/images/cumulus-linux/evpn-symmetric-blue.png" width="450" >}} | {{< img src="/images/cumulus-linux/evpn-symmetric-red.png" width="400" >}} |
-   | <ul><li>VLAN 10 contains server01, server04, and all four leafs.</li><li>The leafs act as routers and connect to VLAN 20 (which also contain server02 and server05).</li></ul> | <ul><li>VLAN 30 contains server03 and server06, and all four leafs.</li><li>what connects VLAN 30</li></ul> | -->
+VRF BLUE| VRF RED |
+| ------- | ------- |
+| {{< img src="/images/cumulus-linux/evpn-symmetric-blue.png" width="450" >}} | {{< img src="/images/cumulus-linux/evpn-symmetric-red.png" width="400" >}} |
+| <ul><li>VLAN 10 contains server01, server04, and all four leafs.</li><li>The leafs act as routers and connect to VLAN 20 (which also contain server02 and server05).</li></ul> | <ul><li>VLAN 30 contains server03 and server06, and all four leafs.</li><li>what connects VLAN 30</li></ul> |
+
+server01 on VLAN 10 needs to communicate with Host B on
+VLAN 13. Since the destination is a different subnet from Host A, Host A sends the frame to
+its default gateway, Leaf01.
+Leaf01 recognizes that the destination MAC address is itself and uses the routing table to
+route the packet to the egress leaf (Leaf02) over the L3VNI. The MAC address of Leaf02 is
+communicated to Leaf01 via a BGP extended community. The VXLAN-encapsulated packet
+has the egress leaf's MAC as the destination MAC address and the L3VNI as the VNI.
+Leaf02 performs VXLAN decapsulation and recognizes that the destination MAC address
+is itself and routes the packet to the destination VLAN to reach the destination host. The
+return traffic is routed similarly over the same L3VNI. Routing and bridging happens on both
+the ingress leaf and the egress leaf.
 
 ### /etc/network/interfaces
 

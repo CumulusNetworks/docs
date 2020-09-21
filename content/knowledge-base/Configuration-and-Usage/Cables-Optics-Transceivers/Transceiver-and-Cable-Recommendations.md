@@ -1,7 +1,7 @@
 ---
 title: Transceiver and Cable Recommendations
 author: Cumulus Networks
-weight: 362
+weight: 332
 toc: 4
 ---
 

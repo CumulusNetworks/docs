@@ -7,6 +7,144 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31327</td>
+<td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
+To work around this issue, run the net add/del dns nameserver <span class="error">&#91;vrf &lt;name&gt;&#93;</span> command to force the DNS configuration.</p></td>
+<td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31322</td>
+<td><p>A BGP neighbor shows as down randomly because bgpd is disconnected from agentx.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31300</td>
+<td><p>If a neighbour contains a special character in PortID for LLDP, the net show interface command does not display the LLDP information or the command might fail.</p></td>
+<td>3.7.10-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31294</td>
+<td><p>When all the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
+<ul>
+	<li>clagd uses an IPv6 link-local address (LLA) to establish the TCP connection (the clagd-peer-ip linklocal command configures an IPv6 LLA connection)</li>
+	<li>bridge-ports has peerlink as the first member port (the bridge inherits the MAC address of peerlink bond. VLAN interfaces inherit the MAC address of the bridge. For example:
+
+auto bridge
+iface bridge
+        bridge-vlan-aware yes
+        bridge-ports peerlink-3 hostbond4 hostbond5 regex vx-.* regex vni.*
+
+</li>
+	<li>You delete the SVI (layer 2 VNI)<br/>
+This issue occurs because the hardware stores one entry per VRF to represent the IPv6 LLA. The hardware entry for the LLA is removed when another interface is deleted because the software interfaces are represented by a single entity in hardware. As a result, packets destined to the local IPv6 LLA address are received on the port but do not get forwarded to CPU for further processing.<br/>
+To workaround this issue, use IPv4 addresses under peerlink.4094 and configure clagd to peer on IPv4 addresses.</li>
+</ul>
+</td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31263</td>
+<td><p>RX_DRP on a bond interface increases without any data traffic while the slave port does not increase.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31257</td>
+<td><p>On the EdgeCore AS-6712-32X switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
+These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31238</td>
+<td><p>IPv6 TCP or UDP connections (sourcing from an ephemeral port in the range 34048 to 35071) are not forwarded if the switch has more than one layer 2 VNI defined. The traffic might be locally switched on the bridge and dropped. <br/>
+To work around this issue, disable ARP/ND suppression to remove the internal ACL rule that affects the ports.</p></td>
+<td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31210</td>
 <td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
 Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
@@ -106,6 +244,13 @@ Fixed: 2.6.1-2+deb8u5</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-30932</td>
+<td><p>On the EdgeCore AS5812-54X and AS5812-54T switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on. <br/>
+These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30914</td>
 <td><p>The following security vulnerabilities have been announced in the nss / libnss3 packages:<br/>
 CVE-2020-6829: Side channel attack on ECDSA signature generation<br/>
@@ -181,12 +326,6 @@ CVE-2020-15863: stack-based overflow in xgmac_enet_send() in hw/net/xgmac.c.<br/
 Vulnerable: &lt;= 2.1+dfsg-12+deb8u15<br/>
 Fixed: 2.1+dfsg-12+deb8u16</p></td>
 <td>3.0.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-30832</td>
-<td><p>The Mellanox SN2700 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
-<td>3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -369,13 +508,6 @@ DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the 
 Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29667</td>
-<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
-To work around this issue, run the systemctl restart switchd command.</p></td>
-<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -1693,7 +1825,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -2262,6 +2394,130 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31322</td>
+<td><p>A BGP neighbor shows as down randomly because bgpd is disconnected from agentx.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31300</td>
+<td><p>If a neighbour contains a special character in PortID for LLDP, the net show interface command does not display the LLDP information or the command might fail.</p></td>
+<td>3.7.10-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31294</td>
+<td><p>When all the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
+<ul>
+	<li>clagd uses an IPv6 link-local address (LLA) to establish the TCP connection (the clagd-peer-ip linklocal command configures an IPv6 LLA connection)</li>
+	<li>bridge-ports has peerlink as the first member port (the bridge inherits the MAC address of peerlink bond. VLAN interfaces inherit the MAC address of the bridge. For example:
+
+auto bridge
+iface bridge
+        bridge-vlan-aware yes
+        bridge-ports peerlink-3 hostbond4 hostbond5 regex vx-.* regex vni.*
+
+</li>
+	<li>You delete the SVI (layer 2 VNI)<br/>
+This issue occurs because the hardware stores one entry per VRF to represent the IPv6 LLA. The hardware entry for the LLA is removed when another interface is deleted because the software interfaces are represented by a single entity in hardware. As a result, packets destined to the local IPv6 LLA address are received on the port but do not get forwarded to CPU for further processing.<br/>
+To workaround this issue, use IPv4 addresses under peerlink.4094 and configure clagd to peer on IPv4 addresses.</li>
+</ul>
+</td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31263</td>
+<td><p>RX_DRP on a bond interface increases without any data traffic while the slave port does not increase.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31257</td>
+<td><p>On the EdgeCore AS-6712-32X switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
+These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31210</td>
 <td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
 Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
@@ -2358,6 +2614,13 @@ The python-pil packages are not installed by default, but are available for opti
 Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
 Fixed: 2.6.1-2+deb8u5</p></td>
 <td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30932</td>
+<td><p>On the EdgeCore AS5812-54X and AS5812-54T switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on. <br/>
+These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2825,13 +3088,6 @@ DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the 
 Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29667</td>
-<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
-To work around this issue, run the systemctl restart switchd command.</p></td>
-<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -4503,7 +4759,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -4827,6 +5083,90 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31300</td>
+<td><p>If a neighbour contains a special character in PortID for LLDP, the net show interface command does not display the LLDP information or the command might fail.</p></td>
+<td>3.7.10-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -7030,7 +7370,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -7611,6 +7951,90 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31300</td>
+<td><p>If a neighbour contains a special character in PortID for LLDP, the net show interface command does not display the LLDP information or the command might fail.</p></td>
+<td>3.7.10-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31210</td>
 <td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
 Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
@@ -10016,7 +10440,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -10090,6 +10514,84 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -12282,7 +12784,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -12995,6 +13497,84 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31210</td>
 <td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
 Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>
@@ -15694,7 +16274,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -15768,6 +16348,84 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -18367,7 +19025,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -18897,6 +19555,84 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -21786,7 +22522,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -21976,6 +22712,84 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -24580,7 +25394,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -24744,6 +25558,84 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -27195,7 +28087,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -27570,6 +28462,84 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -30093,7 +31063,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -30555,6 +31525,84 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -33154,7 +34202,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -33662,6 +34710,84 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -36104,7 +37230,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>
@@ -36273,6 +37399,84 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31454</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-25219: There was a denial of service attack in libproxy, a library to make applications HTTP proxy aware. A remote server could cause an infinite stack recursion.<br/>
+Vulnerable: &lt;= 0.4.11-4<br/>
+Fixed: 0.4.11-4+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31453</td>
+<td><p>The following vulnerability has been announced in python-pip:<br/>
+CVE-2019-20916: When an URL was given in an install command, as a Content-Disposition HTTP header was permitted to have ../ components in its filename, arbitrary local files (eg. /root/.ssh/authorized_keys) could be overidden.<br/>
+Vulnerable: &lt;= 1.5.6-5<br/>
+Fixed: 1.5.6-5+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31390</td>
+<td><p>The following vulnerabilities have been announced in libxml2:<br/>
+CVE-2017-8872: Global buffer-overflow in the htmlParseTryOrFinish function.<br/>
+CVE-2019-20388: A memory leak was found in the xmlSchemaValidateStream function of libxml2. Applications that use this library may be vulnerable to memory not being<br/>
+freed leading to a denial of service.<br/>
+CVE-2020-24977: Out-of-bounds read restricted to xmllint --htmlout.<br/>
+CVE-2020-7595: Infinite loop in xmlStringLenDecodeEntities can cause a denial of service.<br/>
+Vulnerable: &lt;= 2.9.1+dfsg1-5+deb8u8<br/>
+Fixed: 2.9.1+dfsg1-5+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31377</td>
+<td><p>The following vulnerabilities have been announced in libjpeg-turbo:<br/>
+CVE-2020-13790: Heap-based buffer over-read via a PPM input file.<br/>
+CVE-2020-14152: Improper handling of max_memory_to_use setting can lead to excessive memory consumption.<br/>
+Vulnerable: &lt;= 1.3.1-12+deb8u2<br/>
+Fixed: 1.3.1-12+deb8u3</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31321</td>
+<td><p>The following vulnerability has been announced in the libx11 libraries:<br/>
+CVE-2020-14363: Integer overflow in the init_om function of libX11, the X11 client-side library, which could lead to a double free.<br/>
+Vulnerable: &lt;= 1.6.2-3+deb8u3<br/>
+Fixed: 1.6.2-3+deb8u4</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31274</td>
+<td><p>The following vulnerability has been announced in the apache2 package:<br/>
+CVE-2020-11985: apache2 was vulnerable to IP address spoofing when proxying using mod_remoteip and mod_rewrite.<br/>
+For configurations using proxying with mod_remoteip and certain mod_rewrite rules, an attacker could spoof their IP address for logging and PHP scripts.<br/>
+Vulnerable: &lt;= 2.4.10-10+deb8u16<br/>
+Fixed: 2.4.10-10+deb8u17</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31273</td>
+<td><p>The following vulnerability has been announced in the bind9 packages:<br/>
+CVE-2020-8622: Crafted responses to TSIG-signed requests could lead to an assertion failure, causing named, a Domain Name Server, to exit. This could be done by malicious server operators or guessing attackers.<br/>
+Vulnerable: &lt;= 9.9.5.dfsg-9+deb8u19<br/>
+Fixed: 9.9.5.dfsg-9+deb8u20</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31272</td>
+<td><p>The following vulnerability has been announced in the nss / libnss3 packages:<br/>
+CVE-2020-12403: The ChaCha20 symmetric key cipher algorithm did not correctly enforce the tag length which may have led to an out-of-bounds read and a lack of confidentiality.<br/>
+Vulnerable: &lt;= 3.26-1+debu8u12<br/>
+Fixed: 3.26-1+debu8u13</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31210</td>
@@ -38707,7 +39911,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13</td>
 <td></td>
 </tr>

@@ -13,7 +13,7 @@ scheduling in hardware. There are two configuration input files:
 
     {{%notice note%}}
 
-While it's possible to change the buffer limits in the `datapath.conf` file, Cumulus Networks strongly recommends you {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/requests/new" text="work with a Cumulus support engineer">}} to do so.
+While it's possible to change the buffer limits in the `datapath.conf` file, Cumulus Networks strongly recommends you {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="work with a Cumulus support engineer">}} to do so.
 
     {{%/notice%}}
 

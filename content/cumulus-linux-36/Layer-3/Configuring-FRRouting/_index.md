@@ -439,7 +439,7 @@ in `/etc/frr/frr.conf`:
     cumulus@switch:~$ net show configuration
 
 If the running configuration is not what you expected, 
-[submit a support request](https://support.cumulusnetworks.com/hc/en-us/requests/new) 
+[submit a support request](https://support.mellanox.com/s/contact-support-page) 
 and supply the following information:
 
   - The current running configuration (run `net show configuration` and

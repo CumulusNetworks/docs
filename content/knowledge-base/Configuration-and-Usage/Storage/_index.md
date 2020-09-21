@@ -1,6 +1,6 @@
 ---
 title: Storage
 author: Cumulus Networks
-weight: 39
+weight: 45
 toc: 3
 ---

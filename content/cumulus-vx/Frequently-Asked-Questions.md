@@ -124,3 +124,21 @@ With VirtualBox or VirtualBox with Vagrant, when you create a bond, you need to 
        #required for traffic to flow on Bonds in Vbox VMs
        post-up ip link set $IFACE promisc on
    ```
+ ### Cumulus VX won't boot on Nutanix AHV
+
+ When using Nutanix AHV as a hypervisor, during the boot process of Cumulus VX, the following error is seen
+
+ ```
+ Gave up waiting for root file system device. Common problems:
+  - Boot args (cat /proc/cmdline)b302-e5056ce95126
+     - Check rootdelay= (did the system wait long enough?)
+  - Missing modules (cat /proc/modules; ls /dev)
+ALERT! UUID=92d167d9-116d-4290-8552-5ce3c50bd4a8 does not exist. Dropping to a shell!
+
+BusyBox v1.30.1 (Debian 1:1.30.1-4) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+(initramfs)
+```
+
+This is caused by using the AHV default `SCSI` disk type instead of `SATA`. Change the disk type under the VM details to SATA and restart the Cumulus VX VM.

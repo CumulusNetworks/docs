@@ -213,7 +213,7 @@ errors are located in `/var/log/syslog`.
 `mstpd` is the preferred utility for interacting with STP on Cumulus
 Linux. `brctl` also provides certain methods for configuring STP;
 however, they are not as complete as the tools offered in `mstpd` and
-[output from brctl can be misleading](https://support.cumulusnetworks.com/hc/en-us/articles/212153658-brctl-showstp-Shows-Carrier-Down-Ports-as-Blocking)
+[output from brctl can be misleading](https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/brctl-showstp-Shows-Carrier-Down-Ports-as-Blocking/)
 in some cases.
 
 {{%/notice%}}

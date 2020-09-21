@@ -794,13 +794,13 @@ with the number of applications available.
 <tr class="odd">
 <td><p>BGP peer failure</p></td>
 <td><pre><code>cumulus@switch:~$ vtysh -c &quot;show ip bgp summary json&quot;
-cumulus@switch:~$ cl-bgp summary show json</code></pre></td>
+cumulus@switch:~$ net show bgp summary json</code></pre></td>
 <td><p>60 seconds</p></td>
 </tr>
 <tr class="even">
 <td><p>BGP route table</p></td>
 <td><pre><code>cumulus@switch:~$ vtysh -c &quot;show ip bgp json&quot;
-cumulus@switch:~$ cl-bgp route show</code></pre></td>
+cumulus@switch:~$ net show route bgp json</code></pre></td>
 <td><p>600 seconds</p></td>
 </tr>
 </tbody>

@@ -1,7 +1,7 @@
 ---
 title: Link on Physical Switch Port Does not Come Up
 author: Cumulus Networks
-weight: 373
+weight: 413
 toc: 4
 ---
 

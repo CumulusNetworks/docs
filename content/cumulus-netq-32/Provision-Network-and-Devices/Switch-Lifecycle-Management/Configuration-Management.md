@@ -10,15 +10,63 @@ Workflow for config switches
 
 ## Manage Network Templates
 
+Network templates provide administrators the option to create switch configuration profiles that can be applied to multiple switches. They can help reduce inconsistencies with switch configuration and speed the process of initial configuration and upgrades. No default templates are provided.
+
 ### View Network Templates
+
+You can view existing templates using the Network Templates card.
+
+{{<figure src="/images/netq/lcm-ntwk-template-medium-320.png" width="200">}}
+
+Click **Manage** to view the list of existing switch templates.
 
 ### Create Network Templates
 
-#### SNMP
+No default templates are provided on installation of NetQ. This enables you to create configurations that match your specifications.
 
-#### NTP
+To create a network template:
 
-#### User Accounts
+1. Open the Manage Switch Assets dashboard.
+
+2. Click **Add** on the Network Templates card.
+
+3. Decide which aspects of configuration you want included in this template: SNMP, NTP, and/or User accounts.
+
+4. Configure the template using the following instructions.
+
+{{< tabs "TabID37" >}}
+
+{{< tab "SNMP" >}}
+
+SNMP provides a way to query, monitor, and manage your devices in addition to NetQ. (required fields???)
+
+1. Provide a name for the template. The maximum number of characters allowed, including spaces, is 22.
+
+2. Enter a comma-separated list of IP addresses of the SNMP Agents on the switches and hosts in your network.
+
+3. Accept the management VRF or change to the default VRF.
+
+4. Enter contact information for the SNMP system administrator (who will receive the SNMP alerts???), including an email address or phone number, their location, and name.
+
+5. Optionally, restrict the recipients that should receive the SNMP alerts to those in the Read only Community or Read only Community6.
+
+    1. Enter an email address (typically an alias for a group of operators).
+
+    2. Indicate which messages should be sent: any = send all messages; ??? = ???
+
+6. Optionally, specify specific traps to be included:
+
+7. If you are using SNMP version 3, open the V3 support section.
+
+{{< /tab >}}
+
+{{< tab "NTP" >}}
+
+{{< /tab >}}
+
+{{< tab "User Accounts" >}}
+
+{{< /tab >}}
 
 ### Modify Network Templates
 

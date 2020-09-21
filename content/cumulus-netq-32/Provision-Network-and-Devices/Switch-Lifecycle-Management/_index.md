@@ -19,11 +19,12 @@ Using the NetQ UI or CLI, lifecycle management enables you to:
 - Configure switch access credentials (required for installations and upgrades)
 - Manage Cumulus Linux switches
 - Create snapshots of the network state at various times
-- Create Cumulus Linux switch configurations (profiles?), with or without network templates
+- Create Cumulus Linux switch configurations, with or without network templates
 - Create Cumulus NetQ configuration profiles
 - Upgrade Cumulus NetQ (Agents and CLI) on Cumulus Linux switches with Cumulus NetQ Agents version 2.4.x or later
 - Install or upgrade Cumulus NetQ (Agents and CLI) on Cumulus Linux switches with or without Cumulus NetQ Agents; all in a single job
 - Upgrade Cumulus Linux on switches with Cumulus NetQ Agents version 2.4.x or later (includes upgrade of NetQ to 3.x)
+- View a result history of upgrade attempts
 
 {{<notice note>}}
 
@@ -37,11 +38,11 @@ To manage the various lifecycle management features from any workbench, click {{
 
 The first time you open the Manage Switch Assets view, it provides a summary card for switch inventory, uploaded Cumulus Linux images, uploaded NetQ images, NetQ configuration profiles, and switch access settings. Additional cards appear after that based on your activity.
 
-{{<figure src="/images/netq/lcm-dashboard-310.png" width="700">}}
+{{<figure src="/images/netq/lcm-dashboard-320.png" width="700">}}
 
 {{<notice tip>}}
 
-You can also access this view by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and selecting <strong>Upgrade Switches</strong> from the <strong>Admin</strong> section.
+You can also access this view by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and selecting <strong>Manage Switches</strong> from the <strong>Admin</strong> section.
 
 {{</notice>}}
 
@@ -49,16 +50,18 @@ You can also access this view by clicking {{<img src="https://icons.cumulusnetwo
 
 The NetQ CLI provides a number of `netq lcm` commands to perform the various LCM capabilities. The syntax of these commands is:
 
-    netq lcm upgrade name <text-job-name> cl-version <text-cumulus-linux-version> netq-version <text-netq-version> hostnames <text-switch-hostnames> [run-restore-on-failure] [run-before-after]
-    netq lcm add credentials username <text-switch-username> (password <text-switch-password> | ssh-key <text-ssh-key>)
-    netq lcm add role (superspine | spine | leaf | exit) switches <text-switch-hostnames>
-    netq lcm del credentials
-    netq lcm show credentials [json]
-    netq lcm show switches [version <text-cumulus-linux-version>] [json]
-    netq lcm show status <text-lcm-job-id> [json]
-    netq lcm add cl-image <text-image-path>
-    netq lcm del cl-image <text-image-id>
-    netq lcm add netq-image <text-image-path>
-    netq lcm del netq-image <text-image-path>
-    netq lcm show images [<text-image-id>] [json]
-    netq lcm show upgrade-jobs [json]
+```
+netq lcm upgrade name <text-job-name> cl-version <text-cumulus-linux-version> netq-version <text-netq-version> hostnames <text-switch-hostnames> [run-restore-on-failure] [run-before-after]
+netq lcm add credentials username <text-switch-username> (password <text-switch-password> | ssh-key <text-ssh-key>)
+netq lcm add role (superspine | spine | leaf | exit) switches <text-switch-hostnames>
+netq lcm del credentials
+netq lcm show credentials [json]
+netq lcm show switches [version <text-cumulus-linux-version>] [json]
+netq lcm show status <text-lcm-job-id> [json]
+netq lcm add cl-image <text-image-path>
+netq lcm add netq-image <text-image-path>
+netq lcm del image <text-image-id>
+netq lcm show images [<text-image-id>] [json]
+netq lcm show upgrade-jobs [json]
+netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] type lcm [between <text-time> and <text-endtime>] [json]
+```

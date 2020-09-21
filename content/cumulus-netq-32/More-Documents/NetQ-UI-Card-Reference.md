@@ -426,6 +426,624 @@ The full screen Switch Inventory card provides tabs for all components, ASIC, pl
 
 {{<figure src="/images/netq/inventory-switch-fullscr-show-all-tab-241.png" width="700">}}
 
+
+With NetQ, you can monitor the number of nodes running the LLDP service, view nodes with the most LLDP neighbor nodes, those nodes with the least neighbor nodes, and view alarms triggered by the LLDP service. For an overview and how to configure LLDP in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="Link Layer Discovery Protocol">}}.
+
+## LLDP Service Card
+
+The small LLDP Service card displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-small-230.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>LLDP: All LLDP Sessions, or the LLDP Service.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches with the LLDP service enabled during the designated time period.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of LLDP-related alarms received during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td>Chart</td>
+<td>Distribution of LLDP-related alarms received during the designated time period.</td>
+</tr>
+</tbody>
+</table>
+
+The medium LLDP Service card displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>LLDP: All LLDP Sessions, or the LLDP Service.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches with the LLDP service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of LLDP-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Nodes Running chart</td>
+<td><p>Distribution of switches and hosts with the LLDP service enabled during the designated time period, and a total number of nodes running the service currently.</p>
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running LLDP last week or last month might be more or less than the number of nodes running LLDP currently.</p></td>
+</tr>
+<tr class="odd">
+<td>Total Open Alarms chart</td>
+<td><p>Distribution of LLDP-related alarms received during the designated time period, and the total number of current LLDP-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
+</tr>
+<tr class="even">
+<td>Total Sessions chart</td>
+<td>Distribution of LLDP sessions running during the designated time period, and the total number of sessions running on the network currently.</td>
+</tr>
+</tbody>
+</table>
+
+The large LLDP service card contains two tabs.
+
+The *Sessions Summary* tab which displays:
+
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-300.png" width="500">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Sessions Summary (Network Services | All LLDP Sessions).</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches with the LLDP service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of LLDP-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Nodes Running chart</td>
+<td><p>Distribution of switches and hosts with the LLDP service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running LLDP last week or last month might be more or less than the number of nodes running LLDP currently.</p></td>
+</tr>
+<tr class="odd">
+<td>Total Sessions chart</td>
+<td>Distribution of LLDP sessions running during the designated time period, and the total number of sessions running on the network currently.</td>
+</tr>
+<tr class="even">
+<td>Total Sessions with No Nbr chart</td>
+<td>Distribution of LLDP sessions missing neighbor information during the designated time period, and the total number of session missing neighbors in the network currently.</td>
+</tr>
+<tr class="odd">
+<td>Table/Filter options</td>
+<td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of session count-devices with the largest number of sessions are listed first.</p>
+<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of unestablished session count-devices with the largest number of unestablished sessions are listed first.</p></td>
+</tr>
+<tr class="even">
+<td>Show All Sessions</td>
+<td>Link to view all LLDP sessions in the full screen card.</td>
+</tr>
+</tbody>
+</table>
+
+The *Alarms* tab which displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in header)</td>
+<td>Indicates data is all alarms for all LLDP sessions.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Alarms (visible when you hover over card).</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches with the LLDP service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in summary bar)</td>
+<td>Total number of LLDP-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Alarms chart</td>
+<td><p>Distribution of LLDP-related alarms received during the designated time period, and the total number of current LLDP-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
+</tr>
+<tr class="odd">
+<td>Table/Filter options</td>
+<td>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of alarm count-devices with the largest number of sessions are listed first</td>
+</tr>
+<tr class="even">
+<td>Show All Sessions</td>
+<td>Link to view all LLDP sessions in the full screen card.</td>
+</tr>
+</tbody>
+</table>
+
+The full screen LLDP Service card provides tabs for all switches, all sessions, and all alarms.
+
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-allsess-tab-241.png" width="700">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | LLDP.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>All Switches tab</td>
+<td>Displays all switches and hosts running the LLDP service. By default, the device list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each device:
+<ul>
+<li><strong>Agent</strong>
+<ul>
+<li>State: Indicates communication state of the NetQ Agent on a given device. Values include Fresh (heard from recently) and Rotten (not heard from recently).</li>
+<li>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</li>
+</ul></li>
+<li><strong>ASIC</strong>
+<ul>
+<li>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</li>
+<li>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</li>
+<li>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</li>
+<li>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</li>
+<li>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</li>
+</ul></li>
+<li><strong>CPU</strong>
+<ul>
+<li>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</li>
+<li>Max Freq: Highest rated frequency for CPU. Example values include  2.40 GHz and 1.74 GHz.</li>
+<li>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</li>
+<li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
+</ul></li>
+<li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
+<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
+<li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
+<li><strong>OS</strong>
+<ul>
+<li>Vendor: Operating System manufacturer. Values include Cumulus Networks, RedHat, Ubuntu, and CentOS.</li>
+<li>Version: Software version number of the OS. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
+<li>Version Id: Identifier of the OS version. For Cumulus, this is the same as the <em>Version</em> (3.7.x).</li>
+</ul></li>
+<li><strong>Platform</strong>
+<ul>
+<li>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</li>
+<li>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</li>
+<li>Model: Manufacturer's model name. Examples include AS7712-32X and S4048-ON.</li>
+<li>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</li>
+<li>Revision: Release version of the platform.</li>
+<li>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</li>
+<li>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</li>
+</ul></li>
+<li><strong>Time:</strong> Date and time the data was collected from device.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>All Sessions tab</td>
+<td>Displays all LLDP sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<ul>
+<li><strong>Ifname</strong>: Name of the host interface where LLDP session is running</li>
+<li><strong>LLDP Peer</strong>:
+<ul>
+<li>Os: Operating system (OS) used by peer device. Values include Cumulus Linux, RedHat, Ubuntu, and CentOS.</li>
+<li>Osv: Version of the OS used by peer device. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
+<li>Bridge: Indicates whether the peer device is a bridge (true) or not (false)</li>
+<li>Router: Indicates whether the peer device is a router (true) or not (false)</li>
+<li>Station: Indicates whether the peer device is a station (true) or not (false)</li>
+</ul></li>
+<li><strong>Peer</strong>:
+<ul>
+<li>Hostname: User-defined name for the peer device</li>
+<li>Ifname: Name of the peer interface where the session is running</li>
+</ul></li>
+<li><strong>Timestamp</strong>: Date and time that the session was started, deleted, updated, or marked dead (device is down)</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>All Alarms tab</td>
+<td>Displays all LLDP events network-wide. By default, the event list is sorted by time, with the most recent events listed first. The tab provides the following additional data about each event:
+<ul>
+<li><strong>Message</strong>: Text description of a LLDP-related event. Example: LLDP Session with host leaf02 swp6 modified fields leaf06 swp21.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>lldp</em> in this card workflow.</li>
+</ul></td>
+</tr>
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+## LLDP Session Card
+
+The small LLDP Session card displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-small-230.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>LLDP Session.</td>
+</tr>
+<tr class="odd">
+<td> </td>
+<td>Host and peer devices in session. Host is shown on top, with peer below.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> no peer.</td>
+</tr>
+</tbody>
+</table>
+
+The medium LLDP Session card displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-medium-230.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>LLDP Session.</td>
+</tr>
+<tr class="even">
+<td> </td>
+<td>Host and peer devices in session. Arrow points from host to peer.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> no peer.</td>
+</tr>
+<tr class="even">
+<td>Time period</td>
+<td>Range of time for the distribution chart.</td>
+</tr>
+<tr class="odd">
+<td>Heat map</td>
+<td>Distribution of neighbor availability (detected or undetected) during this given time period.</td>
+</tr>
+<tr class="even">
+<td>Hostname</td>
+<td>User-defined name of the host device.</td>
+</tr>
+<tr class="odd">
+<td>Interface Name</td>
+<td>Software interface on the host device where the session is running.</td>
+</tr>
+<tr class="even">
+<td>Peer Hostname</td>
+<td>User-defined name of the peer device.</td>
+</tr>
+<tr class="odd">
+<td>Peer Interface Name</td>
+<td>Software interface on the peer where the session is running.</td>
+</tr>
+</tbody>
+</table>
+
+The large LLDP Session card contains two tabs.
+
+The *Session Summary* tab displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-large-summary-tab-231.png" width="500">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Summary Session (Network Services | LLDP Session).</td>
+</tr>
+<tr class="even">
+<td> </td>
+<td>Host and peer devices in session. Arrow points from host to peer.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> no peer.</td>
+</tr>
+<tr class="even">
+<td>Heat map</td>
+<td>Distribution of neighbor state (detected or undetected) during this given time period.</td>
+</tr>
+<tr class="odd">
+<td>Alarm Count chart</td>
+<td>Distribution and count of LLDP alarm events during the given time period.</td>
+</tr>
+<tr class="even">
+<td>Info Count chart</td>
+<td>Distribution and count of LLDP info events during the given time period.</td>
+</tr>
+<tr class="odd">
+<td>Host Interface Name</td>
+<td>Software interface on the host where the session is running.</td>
+</tr>
+<tr class="even">
+<td>Peer Hostname</td>
+<td>User-defined name of the peer device.</td>
+</tr>
+<tr class="odd">
+<td>Peer Interface Name</td>
+<td>Software interface on the peer where the session is running.</td>
+</tr>
+</tbody>
+</table>
+
+The *Configuration File Evolution* tab displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-large-config-tab-230.png" width="500">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/></td>
+<td>Indicates configuration file information for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>(Network Services | LLDP Session) Configuration File Evolution.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
+<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open associated device card.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> no peer.</td>
+</tr>
+<tr class="even">
+<td>Timestamps</td>
+<td>When changes to the configuration file have occurred, the date and time are indicated. Click the time to see the changed file.</td>
+</tr>
+<tr class="odd">
+<td>Configuration File</td>
+<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown. When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
+<p><strong>Note</strong>: If no configuration file changes have been made, the card shows no results.</p></td>
+</tr>
+</tbody>
+</table>
+
+The full screen LLDP Session card provides tabs for all LLDP sessions and all events.
+
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-allsess-tab-241.png" width="700">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | LLDP.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>All LLDP Sessions tab</td>
+<td>Displays all LLDP sessions on the host device. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<ul>
+<li><strong>Ifname</strong>: Name of the host interface where LLDP session is running.</li>
+<li><strong>LLDP</strong> <strong>Peer</strong>:
+<ul>
+<li>Os: Operating system (OS) used by peer device. Values include Cumulus Linux, RedHat, Ubuntu, and CentOS.</li>
+<li>Osv: Version of the OS used by peer device. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
+<li>Bridge: Indicates whether the peer device is a bridge (true) or not (false).</li>
+<li>Router: Indicates whether the peer device is a router (true) or not (false).</li>
+<li>Station: Indicates whether the peer device is a station (true) or not (false).</li>
+</ul></li>
+<li><strong>Peer</strong>:
+<ul>
+<li>Hostname: User-defined name for the peer device.</li>
+<li>Ifname: Name of the peer interface where the session is running.</li>
+</ul></li>
+<li><strong>Timestamp</strong>: Date and time that the session was started, deleted, updated, or marked dead (device is down).</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>All Events tab</td>
+<td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<ul>
+<li><strong>Message</strong>: Text description of an event. Example: LLDP Session with host leaf02 swp6 modified fields leaf06 swp21.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>lldp</em> in this card workflow.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
 ## Switch Card
 
 Viewing detail about a particular switch is essential when troubleshooting performance issues. With NetQ you can view the overall performance and drill down to view attributes of the switch, interface performance and the events associated with a switch. This is accomplished through the Switches card.

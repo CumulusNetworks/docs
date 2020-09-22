@@ -97,13 +97,11 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 7. Click **Done**.
 
-8. Click **Uploaded** tab to verify the image is in the repository.
+8. Click **Uploaded** to verify the image is in the repository.
 
     {{<figure src="/images/netq/lcm-import-linux-image-uploaded-320.png" width="700">}}
 
-9. Repeat Steps 1-8 until all of the missing images are uploaded to the repository. When all of the missing images have been uploaded, the Missing list will be empty.
-
-10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
+9. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
 
     The Cumulus Linux Images card now shows the number of images you uploaded.
 
@@ -119,6 +117,8 @@ If you have already specified a default image, you must click <strong>Manage</st
     cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.1.0-vx-amd64.bin
     ```
 
+3. Repeat Step 2 for each image you need to upload to the LCM repository.
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -129,7 +129,7 @@ For *Cumulus NetQ* images:
 
 {{< tab "NetQ UI" >}}
 
-1. On the NetQ Images card, click the *View missing NetQ images* link to see what images you need. This opens the list of missing images.
+1. On the NetQ Images card, click the *View # missing NetQ images* link to see what images you need. This opens the list of missing images.
 
     {{<figure src="/images/netq/lcm-netq-images-missinglink-310.png" width="200">}}
 
@@ -137,7 +137,7 @@ For *Cumulus NetQ* images:
 If you have already specified a default image, you must click <strong>Manage</strong> and then <strong>Missing</strong> to see the missing images.
     {{</notice>}}</div>
 
-2. Select one of the missing images and make note of the OS version, CPU architecture, and image type. Remember that you need both image types for NetQ to perform the installation or upgrade.
+2. Select one or all of the missing images and make note of the OS version, CPU architecture, and image type. Remember that you need both image types for NetQ to perform the installation or upgrade.
 
     {{<figure src="/images/netq/lcm-netq-images-missing-list-310.png" width="700">}}
 
@@ -145,25 +145,25 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 4. Back in the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Image) above the table.
 
-    {{<figure src="/images/netq/lcm-import-netq-image-dialog-310.png" width="250">}}
+    {{<figure src="/images/netq/lcm-import-netq-image-dialog-320.png" width="250">}}
 
-5. Provide the *.deb* file from an external drive that matches the criteria for the selected image, either by dragging and dropping it onto the dialog or by selecting it from a directory.
+5. Provide the *.deb* file(s) from an external drive that matches the criteria for the selected image, either by dragging and dropping it onto the dialog or by selecting it from a directory.
 
 6. Click **Import**.
 
-    {{<figure src="/images/netq/lcm-import-netq-image-in-process-310.png" width="250">}}
+    {{<figure src="/images/netq/lcm-import-netq-image-in-process-320.png" width="250">}}
 
 <div style="padding-left: 18px;">On successful completion, you receive confirmation of the upload.</div>
 
-    {{<figure src="/images/netq/lcm-import-netq-image-success-310.png" width="250">}}
+    {{<figure src="/images/netq/lcm-import-netq-image-success-320.png" width="250">}}
 
 <div style="padding-left: 18px;">If the upload was not successful, an <em>Image Import Failed</em> message is shown. Close the Import Image dialog and try uploading the file again.</div>
 
 7. Click **Done**.
 
-8. Click **Uploaded** tab to verify the image is in the repository.
+8. Click **Uploaded** to verify the images are in the repository.
 
-9. Repeat Steps 1-8 until all of the missing images are uploaded to the repository. When all of the missing images have been uploaded, the Missing list will be empty.
+    When all of the missing images have been uploaded, the Missing list will be empty.
 
 10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
 
@@ -205,7 +205,7 @@ Then continue with the instructions here based on whether you want to use the Ne
 
     {{<img src="/images/netq/lcm-linux-images-card-at-install-addimage-300.png" width="200">}} {{<img src="/images/netq/lcm-netq-images-card-at-install-addimage-310.png" width="200">}}
 
-2. Provide one or more images from an external drive, either by dragging and dropping it onto the dialog or by selecting it from a directory.
+2. Provide one or more images from an external drive, either by dragging and dropping onto the dialog or by selecting from a directory.
 
     {{<figure src="/images/netq/lcm-import-linux-image-dialog-320.png" width="250">}}
 
@@ -215,13 +215,15 @@ Then continue with the instructions here based on whether you want to use the Ne
 
 4. Monitor the progress until it completes. Click **Done**.
 
-5. Repeat Steps 1-4 to upload additional images as needed.
+5. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
+
+    The NetQ Images card is updated to show the number of additional images you uploaded.
 
 {{< /tab >}}
 
 {{< tab "NetQ CLI" >}}
 
-Use the `netq lcm add cl-image <text-image-path>` and `netq lcm add netq-image <text-image-path>` commands to upload the images.
+Use the `netq lcm add cl-image <text-image-path>` and `netq lcm add netq-image <text-image-path>` commands to upload the images. Run the relevant command for each image that needs to be uploaded.
 
 Cumulus Linux images:
 
@@ -254,7 +256,7 @@ To specify a default Cumulus Linux or Cumulus NetQ version in the NetQ UI:
 
 3. Click **Save**. The default version is now displayed on the relevant Images card.
 
-    {{<figure src="/images/netq/lcm-images-cards-default-assigned-320.png" width="200">}}
+    {{<figure src="/images/netq/lcm-images-cards-default-assigned-320.png" width="400">}}
 
 After you have specified a default version, you have the option to change it.
 
@@ -296,11 +298,28 @@ To export image listings:
 
 {{< tab "NetQ CLI" >}}
 
-Use the `json` option with the `netq lcm show images` command to output a list of the image files stored in the LCM repository.
+Use the `json` option with the `netq lcm show images` command to output a list of the Cumulus Linux image files stored in the LCM repository.
 
 ```
 cumulus@switch:~$ netq lcm show images json
-
+[
+    {
+        "id": "image_cc97be3955042ca41857c4d0fe95296bcea3e372b437a535a4ad23ca300d52c3",
+        "name": "cumulus-linux-4.2.0-vx-amd64-1594775435.dirtyzc24426ca.bin",
+        "clVersion": "4.2.0",
+        "cpu": "x86_64",
+        "asic": "VX",
+        "lastChanged": 1600726385400.0
+    },
+    {
+        "id": "image_c6e812f0081fb03b9b8625a3c0af14eb82c35d79997db4627c54c76c973ce1ce",
+        "name": "cumulus-linux-4.1.0-vx-amd64.bin",
+        "clVersion": "4.1.0",
+        "cpu": "x86_64",
+        "asic": "VX",
+        "lastChanged": 1600717860685.0
+    }
+]
 ```
 
 {{< /tab >}}
@@ -321,7 +340,7 @@ To remove images:
 
 2. Click **Manage** on the Cumulus Linux Images or NetQ Images card.
 
-3. On the **Uploaded** tab, select the images you want to remove. Use the filter option above the table to narrow down a large listing of images.
+3. On **Uploaded**, select the images you want to remove. Use the filter option above the table to narrow down a large listing of images.
 
     {{<figure src="/images/netq/lcm-images-uploaded-tab-300.png" width="700">}}
 
@@ -333,7 +352,7 @@ To remove images:
 
 {{< tab "NetQ CLI" >}}
 
-To remove images, run:
+To remove Cumulus Linux images, run:
 
 ```
 netq lcm show images [json]
@@ -344,12 +363,46 @@ netq lcm del image <text-image-id>
 
     ```
     cumulus@switch:~$ netq lcm show images
+    [
+        {
+            "id": "image_cc97be3955042ca41857c4d0fe95296bcea3e372b437a535a4ad23ca300d52c3",
+            "name": "cumulus-linux-4.2.0-vx-amd64-1594775435.dirtyzc24426ca.bin",
+            "clVersion": "4.2.0",
+            "cpu": "x86_64",
+            "asic": "VX",
+            "lastChanged": 1600726385400.0
+        },
+        {
+            "id": "image_c6e812f0081fb03b9b8625a3c0af14eb82c35d79997db4627c54c76c973ce1ce",
+            "name": "cumulus-linux-4.1.0-vx-amd64.bin",
+            "clVersion": "4.1.0",
+            "cpu": "x86_64",
+            "asic": "VX",
+            "lastChanged": 1600717860685.0
+        }
+    ]
     ```
 
-2. Remove the image.
+2. Remove the image you no longer need.
 
     ```
-    cumulus@switch:~$ netq lcm del image <text-image-id>
+    cumulus@switch:~$ netq lcm del image image_c6e812f0081fb03b9b8625a3c0af14eb82c35d79997db4627c54c76c973ce1ce
+    ```
+
+3. Verify it has been removed.
+
+    ```
+    cumulus@switch:~$ netq lcm show images
+    [
+        {
+            "id": "image_cc97be3955042ca41857c4d0fe95296bcea3e372b437a535a4ad23ca300d52c3",
+            "name": "cumulus-linux-4.2.0-vx-amd64-1594775435.dirtyzc24426ca.bin",
+            "clVersion": "4.2.0",
+            "cpu": "x86_64",
+            "asic": "VX",
+            "lastChanged": 1600726385400.0
+        }
+    ]
     ```
 
 {{< /tab >}}

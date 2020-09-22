@@ -16,7 +16,7 @@ EVPN-MH uses BGP-EVPN type-1, type-2 and type-4 routes for discovering Ethernet 
 
 Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es-sys-mac`) and a local Ethernet segment ID (`local-es-id`) on a static or LACP bond. The `es-sys-mac` and `local-es-id` are used to build a type-3 `es-id`. This `es-id` must be globally unique across all the EVPN VTEPs. The same `es-sys-mac` can be configured on multiple interfaces.
 
-{{%notice note%}}
+{{%notice info%}}
 
 When using Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group.
 
@@ -46,7 +46,7 @@ In order to use EVPN-MH, you must remove any MLAG configuration on the switch. T
 
 ## Configure EVPN-MH
 
-To configure EVPN-MH, first you need to enable the `evpn.multihoming.enable` variable in `switchd`. Then you need to specify the following required settings:
+To configure EVPN-MH, first you need to enable the `evpn.multihoming.enable` variable in `switchd.conf`. Then you need to specify the following required settings:
 
 - The Ethernet segment ID (`es-id`)
 - The Ethernet segment system MAC address (`es-sys-mac`)

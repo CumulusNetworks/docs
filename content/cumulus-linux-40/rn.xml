@@ -2899,7 +2899,7 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG environment, a packet from a dually connected host might ingress on one switch but the MAC DA is destined to the router on the peer switch. The packet will traverse the peer link but is not excluded from port isolation (or egress mask) filtering. Similarly, an IP multicast packet might traverse the peer link and need to be routed.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
 <td>3.6.2-3.7.13</td>
 </tr>
 <tr>

@@ -1955,24 +1955,23 @@ line vty
 
 ## EVPN Symmetric Routing
 
-The following example shows an EVPN symmetric routing configuration:
+In EVPN symmetric mode, both the ingress VTEP and egress VTEP route the packets; bi-directional traffic is able to travel on the same VNI. A layer 3 VNI is used for all routed VXLAN traffic. All traffic that needs to be routed is routed onto the layer 3 VNI, tunneled across the layer 3 infrastructure, routed off the layer 3 VNI to the appropriate VLAN and ultimately bridged to the destination.
+
+On the ingress VTEP, the source VNI determines the VRF which also provides the layer 3 transit VNI to be used. On the egress VTEP, the layer 3 VNI in the packet determines the VRF to be used in the route table lookup. Each VTEP has to learn and maintain ARP and MAC address information only for VNIs in which it has membership.
+
+The following example shows an EVPN symmetric routing configuration, where:
 
 - MLAG is configured between leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
 - VRF BLUE and VRF RED are configured on the leafs for traffic flow
+- server01, server04, and all four leafs are in VLAN 10. The leafs act as routers and connect to VLAN 20 (which also contain server02 and server05)
+- server03 and server06 are on VLAN 30
   
-   The following logical diagrams show traffic flow between VRF BLUE and VRF RED. Each VRF is a unique layer 3 routing table.
+IMAGE
 
-  IMAGE
-
-   - VLAN 10 contains server01, server04, and all four leafs. The leafs act as routers and connect to VLAN 20 (which also contain server02 and server05).
-   - When server01 on VLAN10 needs to communicate with server02 in VLAN20, because both servers are in VRF BLUE, ???When server01 on VLAN10 in VRF BLUE needs to communicate with server03 on VLAN30 in VRF RED, the traffic needs to go to an external device to allow traffic between VRFs.
-   - VLAN 30 contains server03 and server06, and all four leafs.
-
-EVPN symmetric mode routes and bridges on both the ingress and the egress leafs. This results in bi-directional traffic being able to travel on the same VNI. A layer 3 VNI is used for all routed VXLAN traffic, called the layer 3 VNI. All traffic that needs to be routed is routed onto the layer 3 VNI, tunneled across the layer 3 infrastructure, routed off the layer 3 VNI to the appropriate VLAN and ultimately bridged to the destination.
-
-server01 on VLAN 10 needs to communicate with server02 on VLAN 20. Because the destination (server02) is on a different subnet, server01 sends the frame to its default gateway, leaf01. leaf01 recognizes that the destination MAC address is itself and uses the routing table to route the packet to the egress leaf (leaf02) over the layer 3 VNI. The MAC address of leaf02 is communicated to leaf01 via a BGP extended community. The VXLAN-encapsulated packet has the egress leaf's MAC address as the destination MAC address and the layer 3 VNI as the VNI. leaf02 performs VXLAN decapsulation and recognizes that the destination MAC address is itself and routes the packet to the destination VLAN to reach the destination host. The
-return traffic is routed similarly over the same layer 3 VNI. Routing and bridging happens on both the ingress leaf and the egress leaf.
+|    |    |
+| -- | -- |
+| | |
 
 ### /etc/network/interfaces
 

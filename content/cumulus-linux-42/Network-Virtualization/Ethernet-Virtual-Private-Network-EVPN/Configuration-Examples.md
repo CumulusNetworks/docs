@@ -1955,23 +1955,16 @@ line vty
 
 ## EVPN Symmetric Routing
 
-In EVPN symmetric mode, both the ingress VTEP and egress VTEP route the packets; bi-directional traffic is able to travel on the same VNI. A layer 3 VNI is used for all routed VXLAN traffic. All traffic that needs to be routed is routed onto the layer 3 VNI, tunneled across the layer 3 infrastructure, routed off the layer 3 VNI to the appropriate VLAN and ultimately bridged to the destination.
-
-On the ingress VTEP, the source VNI determines the VRF which also provides the layer 3 transit VNI to be used. On the egress VTEP, the layer 3 VNI in the packet determines the VRF to be used in the route table lookup. Each VTEP has to learn and maintain ARP and MAC address information only for VNIs in which it has membership.
-
 The following example shows an EVPN symmetric routing configuration, where:
 
 - MLAG is configured between leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
 - VRF BLUE and VRF RED are configured on the leafs for traffic flow
-- server01, server04, and all four leafs are in VLAN 10. The leafs act as routers and connect to VLAN 20 (which also contain server02 and server05)
-- server03 and server06 are on VLAN 30
+- server01 and server04 are in VLAN 10 in VRF BLUE
+- server02 and server05 are in VLAN 20 in VRF BLUE
+- server03 and server06 are on VLAN 30 in VRF RED
   
 IMAGE
-
-|    |    |
-| -- | -- |
-| | |
 
 ### /etc/network/interfaces
 

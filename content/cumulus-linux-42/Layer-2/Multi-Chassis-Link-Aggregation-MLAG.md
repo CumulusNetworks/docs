@@ -596,7 +596,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 ### STP and MLAG
 
-Cumulus Networks recommends that you always enable STP in your layer 2 network and that you enable {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard" text="BPDU Guard">}} on the host-facing bond interfaces.
+Cumulus Networks recommends that you always enable STP in your layer 2 network and that you enable {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP#bpdu-guard" text="BPDU Guard">}} on the host-facing bond interfaces.
 
 - The STP global configuration must be the same on both peer switches.
 - The STP configuration for dual-connected ports must be the same on both peer switches.

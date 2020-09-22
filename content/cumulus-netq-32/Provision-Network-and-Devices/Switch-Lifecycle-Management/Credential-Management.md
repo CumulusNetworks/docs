@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 640
 toc: 4
 ---
-Switch access credentials are needed for performing upgrades. You can choose between basic authentication (SSH password) and SSH (Public/Private key) authentication. These credentials apply to all switches.
+Switch access credentials are needed for performing installations and upgrades of software. You can choose between basic authentication (SSH username/password) and SSH (Public/Private key) authentication. These credentials apply to all switches. If some of your switches have alternate access credentials, you must change them or modify the credential information before attempting installations or upgrades with the lifecycle management feature.
 
 ## Specify Switch Credentials
 
@@ -18,7 +18,7 @@ To specify access credentials:
 
 1. Open the LCM dashboard.
 
-2. Click the *Click here to add switch access* link on the Access card.
+2. Click the *Click here to add Switch access* link on the Access card.
 
     {{<figure src="/images/netq/lcm-access-card-no-auth-300.png" width="200">}}
 
@@ -187,9 +187,11 @@ To change your access credentials:
     - **Basic**: Enter a new username and/or password
     - **SSH**: Copy and paste a new SSH private key
 
-    {{<notice tip>}}
+<div style="padding-left: 18px;">
+{{<notice tip>}}
 Refer to {{<link title="#Specify Switch Credentials" text="Specify Switch Credentials">}} for details.
-    {{</notice>}}
+{{</notice>}}
+</div>
 
 5. Click **Save**.
 
@@ -234,6 +236,4 @@ You must have sudoer permission to properly configure switches when using the SS
 
 You can remove the access credentials for switches using the NetQ CLI. Note that without valid credentials, you will not be able to upgrade your switches.
 
-To remove the credentials, run `netq lcm del credentials`.
-
-<!-- Verify by running netq lcm show creds? -->
+To remove the credentials, run `netq lcm del credentials`. Verify they are removed by running `netq lcm show credentials`.

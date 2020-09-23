@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 650
 toc: 4
 ---
-On initial installation, this lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ 3.x and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.6 or later and Cumulus NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
+On initial installation, the lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ 3.x and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.6 or later and Cumulus NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
 
 ## View the LCM Switch Inventory
 
@@ -16,13 +16,15 @@ The switch inventory can be viewed from the NetQ UI and the NetQ CLI.
 
 A count of the switches NetQ was able to discover and the Cumulus Linux versions that are running on those switches is available from the LCM dashboard.
 
-{{<figure src="/images/netq/lcm-switches-card-300.png" width="400">}}
+{{<figure src="/images/netq/lcm-switches-card-with-labels-320.png" width="400">}}
 
 To view a list of all switches known to lifecycle management, click **Manage** on the Switches card.
 
 {{<figure src="/images/netq/lcm-switch-mgmt-list-300.png" width="700">}}
 
-Review the list, filtering as needed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}}) to determine if the switches you want to upgrade are included.
+Review the list:
+- Sort the list by any column; hover over column title and click to toggle between ascending and descending order
+- Filter the list: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}} and enter parameter value of interest
 
 {{<notice tip>}}
 If you have more than one Cumulus Linux version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
@@ -40,35 +42,36 @@ netq lcm show switches [version <text-cumulus-linux-version>] [json]
 
 Use the `version` option to only show switches with a given Cumulus Linux version, X.Y.Z.
 
-This example shows the role of all switches and Cumulus Linux versions in the **Role** column of the listing.
+This example shows all switches known by lifecycle management.
 
 ```
 cumulus@switch:~$ netq lcm show switches
 Hostname          Role       IP Address                MAC Address        CPU      CL Version           NetQ Version             Last Changed
 ----------------- ---------- ------------------------- ------------------ -------- -------------------- ------------------------ -------------------------
-fw1               exit       192.168.200.61            44:38:39:00:01:8C  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:22:05 2020
-                                                                                                        c5bc079
-spine02           spine      192.168.200.22            44:38:39:00:01:92  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 17:51:28 2020
-                                                                                                        c5bc079
-spine03           spine      192.168.200.23            44:38:39:00:01:70  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 17:51:30 2020
-                                                                                                        c5bc079
-leaf03            leaf       192.168.200.13            44:38:39:00:01:84  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:07:06 2020
-                                                                                                        c5bc079
-border02          exit       192.168.200.64            44:38:39:00:01:7C  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:17:22 2020
-                                                                                                        c5bc079
-leaf04            leaf       192.168.200.14            44:38:39:00:01:8A  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:06:36 2020
-                                                                                                        c5bc079
-fw2               exit       192.168.200.62            44:38:39:00:01:8E  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:36:30 2020
-                                                                                                        c5bc079
-leaf01            leaf       192.168.200.11            44:38:39:00:01:7A  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:07:48 2020
-                                                                                                        c5bc079
-spine01           spine      192.168.200.21            44:38:39:00:01:82  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 17:55:56 2020
-                                                                                                        c5bc079
-spine04           spine      192.168.200.24            44:38:39:00:01:6C  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 17:49:26 2020
-                                                                                                        c5bc079
-border01          exit       192.168.200.63            44:38:39:00:01:74  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:18:31 2020
-                                                                                                        c5bc079
-leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:06:36 2020
+leaf01                       192.168.200.11            44:38:39:00:01:7A  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:16:02 2020
+                                                                                                        78b9e438
+spine04                      192.168.200.24            44:38:39:00:01:6C  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:20:54 2020
+                                                                                                        78b9e438
+leaf03                       192.168.200.13            44:38:39:00:01:84  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:20:57 2020
+                                                                                                        78b9e438
+leaf04                       192.168.200.14            44:38:39:00:01:8A  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:20:59 2020
+                                                                                                        78b9e438
+border02                     192.168.200.64            44:38:39:00:01:7C  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:03 2020
+                                                                                                        78b9e438
+border01                     192.168.200.63            44:38:39:00:01:74  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:02 2020
+                                                                                                        78b9e438
+fw2                          192.168.200.62            44:38:39:00:01:8E  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:20:55 2020
+                                                                                                        78b9e438
+spine01                      192.168.200.21            44:38:39:00:01:82  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:03 2020
+                                                                                                        78b9e438
+spine02                      192.168.200.22            44:38:39:00:01:92  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:29 2020
+                                                                                                        78b9e438
+spine03                      192.168.200.23            44:38:39:00:01:70  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:28 2020
+                                                                                                        78b9e438
+fw1                          192.168.200.61            44:38:39:00:01:8C  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:13 2020
+                                                                                                        78b9e438
+leaf02                       192.168.200.12            44:38:39:00:01:78  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:28 2020
+                                                                                                        78b9e438
 ```
 
 {{< /tab >}}
@@ -118,13 +121,13 @@ Roles can be assigned to one or more switches using the NetQ UI or the NetQ CLI.
 
 5. Select the role that applies to the selected switch(es).
 
-    {{<figure src="/images/netq/lcm-role-assign-role-selection-300.png" width="300">}}
+    {{<figure src="/images/netq/lcm-role-assign-role-selection-320.png" width="300">}}
 
 6. Click **Assign**.
 
     Note that the **Role** column is updated with the role assigned to the selected switch(es).
 
-    {{<figure src="/images/netq/lcm-switches-listing-300.png" width="700">}}
+    {{<figure src="/images/netq/lcm-switches-listing-role-assigned-320.png" width="700">}}
 
 7. Continue selecting switches and assigning roles until most or all switches have roles assigned.
 
@@ -134,7 +137,7 @@ A bonus of assigning roles to switches is that you can then filter the list of s
 
 {{< tab "NetQ CLI" >}}
 
-To add roles to one or more switches, run:
+To add a role to one or more switches, run:
 
 ```
 netq lcm add role (superspine | spine | leaf | exit) switches <text-switch-hostnames>
@@ -184,35 +187,36 @@ netq lcm show switches [version <text-cumulus-linux-version>] [json]
 
 Use the `version` option to only show switches with a given Cumulus Linux version, X.Y.Z.
 
-This example shows the role of all switches and Cumulus Linux versions in the **Role** column of the listing.
+This example shows the role of all switches in the **Role** column of the listing.
 
 ```
 cumulus@switch:~$ netq lcm show switches
 Hostname          Role       IP Address                MAC Address        CPU      CL Version           NetQ Version             Last Changed
 ----------------- ---------- ------------------------- ------------------ -------- -------------------- ------------------------ -------------------------
-fw1               exit       192.168.200.61            44:38:39:00:01:8C  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:22:05 2020
-                                                                                                        c5bc079
-spine02           spine      192.168.200.22            44:38:39:00:01:92  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 17:51:28 2020
-                                                                                                        c5bc079
-spine03           spine      192.168.200.23            44:38:39:00:01:70  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 17:51:30 2020
-                                                                                                        c5bc079
-leaf03            leaf       192.168.200.13            44:38:39:00:01:84  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:07:06 2020
-                                                                                                        c5bc079
-border02          exit       192.168.200.64            44:38:39:00:01:7C  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:17:22 2020
-                                                                                                        c5bc079
-leaf04            leaf       192.168.200.14            44:38:39:00:01:8A  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:06:36 2020
-                                                                                                        c5bc079
-fw2               exit       192.168.200.62            44:38:39:00:01:8E  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:36:30 2020
-                                                                                                        c5bc079
-leaf01            leaf       192.168.200.11            44:38:39:00:01:7A  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:07:48 2020
-                                                                                                        c5bc079
-spine01           spine      192.168.200.21            44:38:39:00:01:82  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 17:55:56 2020
-                                                                                                        c5bc079
-spine04           spine      192.168.200.24            44:38:39:00:01:6C  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 17:49:26 2020
-                                                                                                        c5bc079
-border01          exit       192.168.200.63            44:38:39:00:01:74  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:18:31 2020
-                                                                                                        c5bc079
-leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64   3.7.12               3.0.0-cl3u27~1587646213. Mon Apr 27 18:06:36 2020
+leaf01                       192.168.200.11            44:38:39:00:01:7A  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:16:02 2020
+                                                                                                        78b9e438
+spine04                      192.168.200.24            44:38:39:00:01:6C  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:20:54 2020
+                                                                                                        78b9e438
+leaf03                       192.168.200.13            44:38:39:00:01:84  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:20:57 2020
+                                                                                                        78b9e438
+leaf04                       192.168.200.14            44:38:39:00:01:8A  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:20:59 2020
+                                                                                                        78b9e438
+border02                     192.168.200.64            44:38:39:00:01:7C  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:03 2020
+                                                                                                        78b9e438
+border01                     192.168.200.63            44:38:39:00:01:74  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:02 2020
+                                                                                                        78b9e438
+fw2                          192.168.200.62            44:38:39:00:01:8E  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:20:55 2020
+                                                                                                        78b9e438
+spine01                      192.168.200.21            44:38:39:00:01:82  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:03 2020
+                                                                                                        78b9e438
+spine02                      192.168.200.22            44:38:39:00:01:92  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:29 2020
+                                                                                                        78b9e438
+spine03                      192.168.200.23            44:38:39:00:01:70  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:28 2020
+                                                                                                        78b9e438
+fw1                          192.168.200.61            44:38:39:00:01:8C  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:13 2020
+                                                                                                        78b9e438
+leaf02                       192.168.200.12            44:38:39:00:01:78  x86_64   4.1.0                3.1.1-cl4u29~1599111056. Mon Sep 21 18:21:28 2020
+                                                                                                        78b9e438
 ```
 
 {{< /tab >}}
@@ -233,11 +237,11 @@ To change a switch role:
 
 2. On the Switches card, click **Manage**.
 
-3. Select the switch with the incorrect role from the list.
+3. Select the switches with the incorrect role from the list.
 
 4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
 
-5. Select the correct role. (Note that you can select **No Role** here as well to remove the role from the switch(es).)
+5. Select the correct role. (Note that you can select **No Role** here as well to remove the role from the switches.)
 
 6. Click **Assign**.
 

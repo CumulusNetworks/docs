@@ -56,9 +56,10 @@
                 </span>
             </div>
         </form>
+        {{- if .Params.version -}}
         <div id="dropdown" class="dropdown">
             <button class="btn" type="button" id="dropdownMenuButton">
-                v{{.Page.Params.version}}
+                    v{{.Page.Params.version}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <!-- Sort our list of versions so it's high to low -->
@@ -73,5 +74,6 @@
                 {{ end }}
             </div>
         </div>
+        {{- end -}}
     </div>
 </div>

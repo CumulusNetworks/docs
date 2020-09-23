@@ -44,7 +44,11 @@ Your LCM dashboard should look similar to this after you have completed the abov
 
 1. Verify or add {{<link title="Manage Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
 
+<<<<<<< HEAD
 2. Configure {{<link title="Manage Switch Credentials/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
+=======
+2. Configure {{<link title="Manage Switch Credentials/Manage Switch Inventory and Roles/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
+>>>>>>> nq320-lcm
 
 3. Upload the {{<link title="Manage Cumulus Linux and NetQ Images/#upload-upgrade-images" text="Cumulus Linux install images">}}.
 

@@ -1,0 +1,32 @@
+<p>Run these commands on each switch to be able to run NCLU commands without <code>sudo</code>, change the hostname and bring up the interfaces. Exit the switch, then log back in to see the new hostname at the prompt.</p>
+<div class="book-tabs">
+<input type="radio" class="hidden" name="interfaces" id="interfaces -1" checked="" />
+<label for="interfaces -1">leaf01</label>
+<div class="book-tabs-content markdown-inner">
+<pre>cumulus@cumulus:mgmt:~$ sudo usermod -a -G netedit vagrant
+cumulus@cumulus:mgmt:~$ net add hostname leaf01
+cumulus@cumulus:mgmt:~$ net add interface swp1,swp2,swp3
+cumulus@cumulus:mgmt:~$ net commit
+cumulus@cumulus:mgmt:~$ exit</pre>
+</div>
+<input type="radio" class="hidden" name="interfaces" id="interfaces -2" />
+<label for="interfaces -2">leaf02</label>
+<div class="book-tabs-content markdown-inner">
+<pre>cumulus@cumulus:mgmt:~$ sudo usermod -a -G netedit vagrant
+cumulus@cumulus:mgmt:~$ net add hostname leaf02
+cumulus@cumulus:mgmt:~$ net add interface swp1,swp2,swp3
+cumulus@cumulus:mgmt:~$ net commit
+cumulus@cumulus:mgmt:~$ exit
+</pre>
+</div>
+<input type="radio" class="hidden" name="interfaces" id="interfaces -3" />
+<label for="interfaces -3">spine01</label>
+<div class="book-tabs-content markdown-inner">
+<pre>cumulus@cumulus:mgmt:~$ sudo usermod -a -G netedit vagrant
+cumulus@cumulus:mgmt:~$ net add hostname spine01
+cumulus@cumulus:mgmt:~$ net add interface swp1,swp2
+cumulus@cumulus:mgmt:~$ net commit
+cumulus@cumulus:mgmt:~$ exit
+</pre>
+</div>
+</div>

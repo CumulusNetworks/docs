@@ -20,27 +20,29 @@
               </ul>
             </li>
           </ul>
-        </div> 
-      </div>
-      <div class="version-dropdown">
-        <div id="dropdown" class="dropdown">
-          <button class="btn" type="button" id="dropdownMenuButton">
-            v{{- .Page.Params.version -}}
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            {{- range where .Site.Sections "Params.product" $currentProduct -}}
-              <a class = "dropdown-item" href = "{{- .Permalink -}}"> v{{- .Params.version -}}</a>
-            {{- end -}}
-            {{- range where .Site.Pages "Section" "version" -}}
-              {{- if eq .Params.product $currentProduct -}}
-                {{- if .Params.subsection -}}
-                  <a class = "dropdown-item" href = "{{ .Permalink }}"> v{{- .Params.version -}}</a>
-                {{- end -}}
-              {{- end -}}
-            {{- end -}}
-          </div>
         </div>
       </div>
+      {{- if .Params.version -}}
+        <div class="version-dropdown">
+          <div id="dropdown" class="dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton">
+              v{{- .Page.Params.version -}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {{- range where .Site.Sections "Params.product" $currentProduct -}}
+                <a class = "dropdown-item" href = "{{- .Permalink -}}"> v{{- .Params.version -}}</a>
+              {{- end -}}
+              {{- range where .Site.Pages "Section" "version" -}}
+                {{- if eq .Params.product $currentProduct -}}
+                  {{- if .Params.subsection -}}
+                    <a class = "dropdown-item" href = "{{ .Permalink }}"> v{{- .Params.version -}}</a>
+                  {{- end -}}
+                {{- end -}}
+              {{- end -}}
+            </div>
+          </div>
+        </div>
+      {{- end -}}
     </div>
   </div>
 
@@ -56,5 +58,5 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>search-1</title><circle class="a" cx="10.5" cy="10.5" r="10"/><line class="a" x1="23.5" y1="23.5" x2="17.571" y2="17.571"/></svg>
       </a>
     </div>
-  </div> 
+  </div>
 </div>

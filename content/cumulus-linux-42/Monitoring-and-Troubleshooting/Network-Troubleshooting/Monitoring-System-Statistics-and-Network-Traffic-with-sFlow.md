@@ -116,7 +116,7 @@ You can check to see which agent IP was selected using:
 
 ## Configure sFlow Visualization Tools
 
-For information on configuring various sFlow visualization tools, read this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/201787866--WIP-Configuring-and-using-sFlow-visualization-tools" text="Help Center article">}}.
+For information on configuring various sFlow visualization tools, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Monitoring/Configure-and-Use-sFlow-Visualization-Tools/" text="knowledge base article">}}.
 
 ## Considerations
 

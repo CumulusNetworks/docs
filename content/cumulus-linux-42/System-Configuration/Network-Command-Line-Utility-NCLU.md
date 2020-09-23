@@ -45,7 +45,7 @@ When you have a running configuration, you can review and update the configurati
 - `net commit confirm` requires you to press *Enter* to commit changes using NCLU. If you run `net commit confirm` but do not press *Enter* within 10 seconds, the commit automatically reverts and no changes are made.
 - `net commit description <description>` enables you to provide a descriptive summary of the changes you are about to commit.
 - `net commit permanent` retains the {{<link url="Back-up-and-Restore" text="backup file">}} taken when committing the change. Otherwise, the backup files created from NCLU commands are cleaned up periodically.
-- `net del all` deletes all configurations and stops the IEEE 802.1X service.
+- `net del all` deletes all configurations.
 
     {{%notice note%}}
 

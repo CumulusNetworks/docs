@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 70
 toc: 3
 ---
-You can back up the current configuration on a switch and restore the configuration on the same switch or on another Cumulus Linux switch of the same type and release. The backup is a compressed tar file that includes all configuration files installed by Debian packages and marked as configuration files. In addition, the backup contains files in the `/etc` directory that are not installed by a Debian package but are modified when you install a new image or enable/disable certain services (such as the Cumulus license file).
+You can back up the current configuration on a switch and restore the configuration on the **same switch** or on another Cumulus Linux switch of the **same type and release**. The backup is a compressed tar file that includes all configuration files installed by Debian packages and marked as configuration files. In addition, the backup contains files in the `/etc` directory that are not installed by a Debian package but are modified when you install a new image or enable/disable certain services (such as the Cumulus license file).
 
 Cumulus Linux automatically creates a backup of the configuration files on the switch after you install the Cumulus Linux image, in case you want to return to the initial switch configuration. NCLU automatically
 creates a backup of the configuration files when you run the `net commit` command and restores a previous configuration when you run the `net rollback` command.
@@ -62,7 +62,7 @@ cumulus@switch:~$ sudo config-backup -pv
 
 ## Restore Backup Files
 
-You can restore a backup to the same switch or to a different switch. When restoring to a different switch, the switch must be of the same type and release. For example, you can restore a backup from a Broadcom Trident3 switch to a Broadcom Trident3 switch; however, you cannot restore a backup from a Broadcom Trident3 switch to a Mellanox Spectrum or to a Broadcom Tomahawk2 switch.
+You can restore a backup to the same switch or to a different switch. When restoring to a different switch, the switch must be of the **same type and release**. For example, you can restore a backup from a Broadcom Trident3 switch to a Broadcom Trident3 switch; however, you cannot restore a backup from a Broadcom Trident3 switch to a Mellanox Spectrum or to a Broadcom Tomahawk2 switch.
 
 To restore a backup file, run the `config-restore` command with a specific filename (`-b <filename>`), file number (`-n <number>`), *or* the `-N` option, which restores the most recent backup file.
 

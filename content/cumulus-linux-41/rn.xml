@@ -7,10 +7,138 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31374</td>
+<td><p>CVE-2020-15166: ZeroMQ, a lightweight messaging kernel library<br/>
+does not properly handle connecting peers before a handshake is<br/>
+completed. A remote, unauthenticated client connecting to an application<br/>
+using the libzmq library, running with a socket listening with CURVE<br/>
+encryption/authentication enabled can take advantage of this flaw to<br/>
+cause a denial of service affecting authenticated and encrypted clients.<br/>
+Vulnerable: &lt;= 4.3.1-4+deb10u1<br/>
+Fixed: 4.3.1-4+deb10u2</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31373</td>
+<td><p>The following vulnerabilities have been announced in the qemu packages, which are available for optional installation:<br/>
+CVE-2020-12829: An integer overflow in the sm501 display device may result in denial of service.<br/>
+CVE-2020-14364: An out-of-bounds write in the USB emulation code may result in guest-to-host code execution.<br/>
+CVE-2020-15863: A buffer overflow in the XGMAC network device may result in denial of service or the execution of arbitrary code.<br/>
+CVE-2020-16092: A triggerable assert in the e1000e and vmxnet3 devices may result in denial of service.<br/>
+Vulnerable: &lt;= 3.1+dfsg-8+deb10u7<br/>
+Fixed: 3.1+dfsg-8+deb10u8</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31327</td>
+<td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
+To work around this issue, run the net add/del dns nameserver <span class="error">&#91;vrf &lt;name&gt;&#93;</span> command to force the DNS configuration.</p></td>
+<td>3.7.13, 4.1.1-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31225</td>
+<td><p>The following vulnerabilities have been announced in the BIND9 server, which is available for optional installation:<br/>
+CVE-2020-8619: an asterisk character in an empty non-terminal can cause an assertion failure, resulting in denial of service.<br/>
+CVE-2020-8622: a truncated TSIG response can lead to an assertion failure, resulting in denial of service.<br/>
+CVE-2020-8623: a flaw in the native PKCS#11 code can lead to a remotely triggerable assertion failure, resulting in denial of service.<br/>
+CVE-2020-8624: update-policy rules of type "subdomain" are enforced incorrectly, allowing updates to all parts of the zone along with the intended subdomain.<br/>
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u1<br/>
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u2</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31192</td>
+<td><p>CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.14.2-2+deb10u2<br/>
+Fixed: 1.14.2-2+deb10u3</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31174</td>
+<td><p>The following vulnerabilities have been announced in the ghostscript libgs9 package, which is available for optional installation. These can allow an attacker to elevate privileges or cause a denial of service with crafted PS/EPS/PDF files.<br/>
+CVE-2020-16287 CVE-2020-16288 CVE-2020-16289 CVE-2020-16290 CVE-2020-16291 CVE-2020-16292 CVE-2020-16293 CVE-2020-16294 CVE-2020-16295 CVE-2020-16296 CVE-2020-16297 CVE-2020-16298 CVE-2020-16299 CVE-2020-16300 CVE-2020-16301 CVE-2020-16302 CVE-2020-16303 CVE-2020-16304 CVE-2020-16305 CVE-2020-16306 CVE-2020-16307 CVE-2020-16308 CVE-2020-16309 CVE-2020-16310 CVE-2020-17538<br/>
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u3<br/>
+Fixed: 9.27~dfsg-2+deb10u4</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31120</td>
+<td><p>In a traditional bridge configuration with ip-forward off, neighbors are synchronized to hardware with a switchd restart but are cleared when you flap the bridge interface.</p></td>
+<td>3.7.10-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31073</td>
+<td><p>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.<br/>
+To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31056</td>
+<td><p>After configuring multiple dhcrelay6 instances, then restarting the dhcrelay6 relay service, replies are sent on the incorrect VLAN.<br/>
+This problem does not occur if you only have one instance of dhcrelay6.</p>
+
+<p>Restart on both instances.</p></td>
+<td>4.1.1-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.1u1,  5.8.0-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31038</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20795: iproute2 has a use-after-free in get_netnsid_from_name in ip/ipnetns.c.<br/>
+Vulnerable: &lt;= 4.19.0-cl4u3</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31028</td>
+<td><p>Ingress SPAN/ERSPAN does not mirror packets when the next hop is EVPN encapsulated.</p></td>
+<td>3.7.7-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30957</td>
+<td><p>The following vulnerability has been announced in the json-c / libjson_c3 packages:<br/>
+CVE-2020-12762: json-c through 0.14 has an integer overflow and out-of-bounds write via a large JSON file, as demonstrated by printbuf_memappend.<br/>
+Vulnerable: 0.12.1+ds-2<br/>
+Fixed: 0.12.1+ds-2+deb10u1</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30879</td>
 <td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
 </td>
-<td>3.7.12-3.7.13, 4.1.1-4.2.0</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -24,7 +152,7 @@ CVE-2020-14311: An integer overflow in grub_ext2_read_link may lead to a heap-ba
 CVE-2020-15706: script: Avoid a use-after-free when redefining a function during execution.<br/>
 CVE-2020-15707: An integer overflow flaw was found in the initrd size handling.<br/>
 Vulnerable: &lt;= 2.02+dfsg1-20, &lt;= 2.02+dfsg1-cl4u1<br/>
-Fixed: 2.02+dfsg1-20+deb10u2, 2.02+dfsg1-cl4u1+20+deb10u2</p></td>
+Fixed: 2.02+dfsg1-20+deb10u2, 2.02+dfsg1-cl4.2.1u1</p></td>
 <td>4.0.0-4.2.0</td>
 <td></td>
 </tr>
@@ -42,10 +170,17 @@ To disable scp completely, use /bin/chmod 0 /usr/bin/scp .</p></td>
 </tr>
 <tr>
 <td>CM-30856</td>
-<td><p>The following vulnerability have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default NGINX configuration is not vulnerable, as it does not configure error_page redirection):<br/>
+<td><p>The following vulnerability has been announced in NGINX, which is installed by default on Cumulus Linux (however, the default NGINX configuration is not vulnerable, as it does not configure error_page redirection):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
-To work around this issue, do not use error_page redirection in the vulnerable configuration.  <a href="https://bertjwregeer.keybase.pub/2019-12-10%20-%20error_page%20request%20smuggling.pdf" class="external-link" rel="nofollow">https://bertjwregeer.keybase.pub/2019-12-10%20-%20error_page%20request%20smuggling.pdf</a> describes the vulnerability and the vulnerable configuration.</p></td>
+To work around this issue, do not use error_page redirection in the vulnerable configuration.  <a href="https://bertjwregeer.keybase.pub/2019-12-10%20-%20error_page%20request%20smuggling.pdf" class="external-link" rel="nofollow">https://bertjwregeer.keybase.pub/2019-12-10%20-%20error_page%20request%20smuggling.pdf</a> describes the vulnerability and the vulnerable configuration.<br/>
+Fixed: 1.14.2-2+deb10u2</p></td>
 <td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30832</td>
+<td><p>The Mellanox SN2700 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
+<td>4.1.1-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -100,20 +235,42 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 <tr>
 <td>CM-30504</td>
 <td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
-<td>3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30503</td>
 <td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
-<td>3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30498</td>
+<td><p>There is a change to the default OVSDB bootstrapping process, where the script created now defaults to VLAN-aware bridge mode. If you want to use traditional bride mode, you need to force it by editing the ovs-vtep-ctl script generated by the bootstrap process.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30486</td>
 <td><p>A host migrated to an 802.1X MAB port within the same broadcast domain fails to have the correct FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.<br/>
 To work around this issue, manually delete the dynamic FDB entry that is associated with the uplink trunk port.</p></td>
 <td>3.7.12-3.7.13, 4.1.1-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30484</td>
+<td><p>Multiple vulnerabilities have been discovered in the Xen hypervisor, which might result in denial of service, guest-to-host privilege escalation, or information leaks.<br/>
+The CVE IDs are CVE-2020-11739, CVE-2020-11740, CVE-2020-11741, CVE-2020-11742, CVE-2020-11743, CVE-2020-15563, CVE-2020-15564, CVE-2020-15565, CVE-2020-15566, CVE-2020-15567.<br/>
+Xen packages are not installed by default on Cumulus Linux, but some libxen* packages are in the repository for optional installation.<br/>
+Vulnerable: &lt;= 4.11.3+24-g14b62ab3e5-1~deb10u1<br/>
+Fixed: 4.11.4+24-gddaaccbbab-1~deb10u1</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -206,6 +363,13 @@ Because the modules listed above do not return to their default values correctly
 <td><p>dot1qVlanIndex in the dot1qVlanStaticTable of the SNMP Q-BRIDGE-MIB does not use VLAN ID and does not comply with RFC 4363.</p></td>
 <td>4.1.1-4.2.0</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-30240</td>
+<td><p>switchd memory utilization might continue to increase if there are excessive and continuous link flaps over a long period of time.<br/>
+To work around this issue, correct the cause of the frequent link flaps. You can restart switchd with the sudo systemctl restart switchd command to recover memory; this operation is impactful to all traffic on the switch during the restart.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.2.0</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-30231</td>
@@ -330,6 +494,13 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <td></td>
 </tr>
 <tr>
+<td>CM-30052</td>
+<td><p>Configuring the subinterface of a VXLAN uplink under another traditional bridge, which also has the VXLAN VNI enslaved, causes switchd to use high CPU due to very frequent VXLAN tunnel sync events.<br/>
+To work around this issue, do not enslave the subinterface of a VXLAN layer 3 uplink under a traditional bridge in a VXLAN configuration.</p></td>
+<td>4.1.1-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30038</td>
 <td><p>The following vulnerability has been announced that affects GnuTLS:<br/>
 CVE-2020-13777: GnuTLS 3.6.x before 3.6.14 uses incorrect cryptography for encrypting a session ticket (a loss of confidentiality in TLS 1.2, and an authentication bypass in TLS 1.3). The earliest affected version is 3.6.4 (2018-09-24) because of an error in a 2018-09-18 commit. Until the first key rotation, the TLS server always uses wrong data in place of an encryption key derived from an application.<br/>
@@ -349,6 +520,12 @@ UPDATE Message Error/Optional Attribute Error
 To work around this issue, apply an extended community with a route map using import &lt;vrf&gt; route-map &lt;name&gt; in the importing VRF address family. Make sure that the route map contains the set extended community rt &lt;value:vaue&gt; command; for example, set extended community rt 11:22.</p></td>
 <td>4.1.0-4.1.1</td>
 <td>4.2.0</td>
+</tr>
+<tr>
+<td>CM-29982</td>
+<td><p>A VRRP role change over the EVPN network causes excessive BGP updates and connectivity issues to VIP for about one minute.</p></td>
+<td>4.1.1-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>
@@ -392,6 +569,12 @@ Fixed: 1.9.0-2+deb10u2</p></td>
 To work around this issue, restart switchd.</p></td>
 <td>3.7.10-4.1.1</td>
 <td>4.2.0</td>
+</tr>
+<tr>
+<td>CM-29809</td>
+<td><p>You might see a three second traffic outage after an MLAG secondary reboot when the MLAG bonds become dual-connected again.</p></td>
+<td>4.1.1-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29808</td>
@@ -449,13 +632,6 @@ Fixed: 1.8.2.1</p></td>
 <td>4.2.0</td>
 </tr>
 <tr>
-<td>CM-29667</td>
-<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
-To work around this issue, run the systemctl restart switchd command.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29652</td>
 <td><p>The ACCTON-DIAG option under the Cumulus Linux GRUB menu does not work. When you select this option, you see the following error:</p>
 
@@ -482,12 +658,6 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 
 <p>To work around this issue,  run the ifreload -a command a second time.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29591</td>
-<td><p>When you add an IPv4 route with an IPv6 next hop, switchd crashes.</p></td>
-<td>4.1.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1460,12 +1630,6 @@ See /var/log/netd.log for more details.
 <td>3.7.11-4.0.0, 4.2.0</td>
 </tr>
 <tr>
-<td>CM-26139</td>
-<td><p>Selective ERSPAN does not work when you specify a bridge port.</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-26138</td>
 <td><p>You cannot specify a source and destination MAC address in an ERSPAN ebtables rule. For example, the following rule does not work:</p>
 
@@ -1572,20 +1736,6 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
 <td>3.7.5-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
- 
- 
- cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
- cumulus@switch:~$ sudo reboot 
- 
- 
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
-The workaround only works when an out-of-band network is present.</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1919,14 +2069,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td></td>
 </tr>
 <tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-21785</td>
 <td><p>The source address of the ICMPv6 time exceeded message (traceroute hop) is sourced from the wrong VRF when the traceroute target resides on the same switch but in a different VRF.</p></td>
 <td>3.6.2-3.7.13, 4.0.0-4.2.0</td>
@@ -2008,12 +2150,6 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
-<td>CM-18192</td>
-<td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-17934</td>
 <td><p>FRR tracks interface speed based on the value it learns from the Linux kernel for that interface. If the interface speed changes, FRR does not update its interface speed cache. This can lead to issues for routing protocols that derive metrics from interface speed as the cost can become out of sync with the interface speed.<br/>
 To work around this issue, manually define the routing protocol metric for these interfaces or restart FRR.</p></td>
@@ -2023,7 +2159,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
@@ -2049,7 +2185,7 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <tr>
 <td>CM-29151</td>
 <td><p>The following security vulnerability in the gnutls28 / libgnutls* packages has been announced for Cumulus Linux 4.x (Cumulus Linux 3.x is not vulnerable):<br/>
-CVE-2020-15501: GnuTLS 3.6.x before 3.6.13 uses incorrect cryptography for DTLS. The earliest affected version is 3.6.3 (2018-07-16) because of an error in a 2017-10-06 commit. The DTLS client always uses 32 '\0' bytes instead of a random value, and thus contributes no randomness to a DTLS negotiation. This breaks the security guarantees of the DTLS protocol.<br/>
+CVE-2020-11501: GnuTLS 3.6.x before 3.6.13 uses incorrect cryptography for DTLS. The earliest affected version is 3.6.3 (2018-07-16) because of an error in a 2017-10-06 commit. The DTLS client always uses 32 '\0' bytes instead of a random value, and thus contributes no randomness to a DTLS negotiation. This breaks the security guarantees of the DTLS protocol.<br/>
 Vulnerable: &lt;= 3.6.7-4+deb10u2<br/>
 Not vulnerable: 3.6.7-4+deb10u3</p></td>
 <td>4.0.0-4.1.0</td>
@@ -2121,6 +2257,125 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31374</td>
+<td><p>CVE-2020-15166: ZeroMQ, a lightweight messaging kernel library<br/>
+does not properly handle connecting peers before a handshake is<br/>
+completed. A remote, unauthenticated client connecting to an application<br/>
+using the libzmq library, running with a socket listening with CURVE<br/>
+encryption/authentication enabled can take advantage of this flaw to<br/>
+cause a denial of service affecting authenticated and encrypted clients.<br/>
+Vulnerable: &lt;= 4.3.1-4+deb10u1<br/>
+Fixed: 4.3.1-4+deb10u2</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31373</td>
+<td><p>The following vulnerabilities have been announced in the qemu packages, which are available for optional installation:<br/>
+CVE-2020-12829: An integer overflow in the sm501 display device may result in denial of service.<br/>
+CVE-2020-14364: An out-of-bounds write in the USB emulation code may result in guest-to-host code execution.<br/>
+CVE-2020-15863: A buffer overflow in the XGMAC network device may result in denial of service or the execution of arbitrary code.<br/>
+CVE-2020-16092: A triggerable assert in the e1000e and vmxnet3 devices may result in denial of service.<br/>
+Vulnerable: &lt;= 3.1+dfsg-8+deb10u7<br/>
+Fixed: 3.1+dfsg-8+deb10u8</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31225</td>
+<td><p>The following vulnerabilities have been announced in the BIND9 server, which is available for optional installation:<br/>
+CVE-2020-8619: an asterisk character in an empty non-terminal can cause an assertion failure, resulting in denial of service.<br/>
+CVE-2020-8622: a truncated TSIG response can lead to an assertion failure, resulting in denial of service.<br/>
+CVE-2020-8623: a flaw in the native PKCS#11 code can lead to a remotely triggerable assertion failure, resulting in denial of service.<br/>
+CVE-2020-8624: update-policy rules of type "subdomain" are enforced incorrectly, allowing updates to all parts of the zone along with the intended subdomain.<br/>
+Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u1<br/>
+Fixed: 9.11.5.P4+dfsg-5.1+deb10u2</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31192</td>
+<td><p>CVE-2020-11724: An issue was discovered in OpenResty before 1.15.8.4. ngx_http_lua_subrequest.c allows HTTP request smuggling, as demonstrated by the ngx.location.capture API.<br/>
+Vulnerable: &lt;= 1.14.2-2+deb10u2<br/>
+Fixed: 1.14.2-2+deb10u3</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31174</td>
+<td><p>The following vulnerabilities have been announced in the ghostscript libgs9 package, which is available for optional installation. These can allow an attacker to elevate privileges or cause a denial of service with crafted PS/EPS/PDF files.<br/>
+CVE-2020-16287 CVE-2020-16288 CVE-2020-16289 CVE-2020-16290 CVE-2020-16291 CVE-2020-16292 CVE-2020-16293 CVE-2020-16294 CVE-2020-16295 CVE-2020-16296 CVE-2020-16297 CVE-2020-16298 CVE-2020-16299 CVE-2020-16300 CVE-2020-16301 CVE-2020-16302 CVE-2020-16303 CVE-2020-16304 CVE-2020-16305 CVE-2020-16306 CVE-2020-16307 CVE-2020-16308 CVE-2020-16309 CVE-2020-16310 CVE-2020-17538<br/>
+Vulnerable: &lt;= 9.27~dfsg-2+deb10u3<br/>
+Fixed: 9.27~dfsg-2+deb10u4</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31120</td>
+<td><p>In a traditional bridge configuration with ip-forward off, neighbors are synchronized to hardware with a switchd restart but are cleared when you flap the bridge interface.</p></td>
+<td>3.7.10-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31073</td>
+<td><p>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.<br/>
+To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31057</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31055</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
+Fixed:  5.8.0-cl4.2.1u1,  5.8.0-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31038</td>
+<td><p>The following vulnerability has been announced:<br/>
+CVE-2019-20795: iproute2 has a use-after-free in get_netnsid_from_name in ip/ipnetns.c.<br/>
+Vulnerable: &lt;= 4.19.0-cl4u3</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31028</td>
+<td><p>Ingress SPAN/ERSPAN does not mirror packets when the next hop is EVPN encapsulated.</p></td>
+<td>3.7.7-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31016</td>
+<td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
+To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30957</td>
+<td><p>The following vulnerability has been announced in the json-c / libjson_c3 packages:<br/>
+CVE-2020-12762: json-c through 0.14 has an integer overflow and out-of-bounds write via a large JSON file, as demonstrated by printbuf_memappend.<br/>
+Vulnerable: 0.12.1+ds-2<br/>
+Fixed: 0.12.1+ds-2+deb10u1</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30879</td>
+<td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
+</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30872</td>
 <td><p>Several vulnerabilities have been discovered in the GRUB2 bootloader.<br/>
 CVE-2020-10713: A flaw in the grub.cfg parsing code was found allowing to break UEFI Secure Boot and load arbitrary code. Details can be found at <a href="https://www.eclypsium.com/2020/07/29/theres-a-hole-in-the-boot/" class="external-link" rel="nofollow">https://www.eclypsium.com/2020/07/29/theres-a-hole-in-the-boot/</a><br/>
@@ -2131,7 +2386,7 @@ CVE-2020-14311: An integer overflow in grub_ext2_read_link may lead to a heap-ba
 CVE-2020-15706: script: Avoid a use-after-free when redefining a function during execution.<br/>
 CVE-2020-15707: An integer overflow flaw was found in the initrd size handling.<br/>
 Vulnerable: &lt;= 2.02+dfsg1-20, &lt;= 2.02+dfsg1-cl4u1<br/>
-Fixed: 2.02+dfsg1-20+deb10u2, 2.02+dfsg1-cl4u1+20+deb10u2</p></td>
+Fixed: 2.02+dfsg1-20+deb10u2, 2.02+dfsg1-cl4.2.1u1</p></td>
 <td>4.0.0-4.2.0</td>
 <td></td>
 </tr>
@@ -2149,9 +2404,10 @@ To disable scp completely, use /bin/chmod 0 /usr/bin/scp .</p></td>
 </tr>
 <tr>
 <td>CM-30856</td>
-<td><p>The following vulnerability have been announced in NGINX, which is installed by default on Cumulus Linux (however, the default NGINX configuration is not vulnerable, as it does not configure error_page redirection):<br/>
+<td><p>The following vulnerability has been announced in NGINX, which is installed by default on Cumulus Linux (however, the default NGINX configuration is not vulnerable, as it does not configure error_page redirection):<br/>
 CVE-2019-20372: NGINX before 1.17.7, with certain error_page configurations, allows HTTP request smuggling, as demonstrated by the ability of an attacker to read unauthorized web pages in environments where NGINX is being fronted by a load balancer.<br/>
-To work around this issue, do not use error_page redirection in the vulnerable configuration.  <a href="https://bertjwregeer.keybase.pub/2019-12-10%20-%20error_page%20request%20smuggling.pdf" class="external-link" rel="nofollow">https://bertjwregeer.keybase.pub/2019-12-10%20-%20error_page%20request%20smuggling.pdf</a> describes the vulnerability and the vulnerable configuration.</p></td>
+To work around this issue, do not use error_page redirection in the vulnerable configuration.  <a href="https://bertjwregeer.keybase.pub/2019-12-10%20-%20error_page%20request%20smuggling.pdf" class="external-link" rel="nofollow">https://bertjwregeer.keybase.pub/2019-12-10%20-%20error_page%20request%20smuggling.pdf</a> describes the vulnerability and the vulnerable configuration.<br/>
+Fixed: 1.14.2-2+deb10u2</p></td>
 <td>4.0.0-4.2.0</td>
 <td></td>
 </tr>
@@ -2207,14 +2463,36 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 <tr>
 <td>CM-30504</td>
 <td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
-<td>3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30503</td>
 <td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
-<td>3.7.12, 4.0.0-4.2.0</td>
-<td>3.7.13</td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30498</td>
+<td><p>There is a change to the default OVSDB bootstrapping process, where the script created now defaults to VLAN-aware bridge mode. If you want to use traditional bride mode, you need to force it by editing the ovs-vtep-ctl script generated by the bootstrap process.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30484</td>
+<td><p>Multiple vulnerabilities have been discovered in the Xen hypervisor, which might result in denial of service, guest-to-host privilege escalation, or information leaks.<br/>
+The CVE IDs are CVE-2020-11739, CVE-2020-11740, CVE-2020-11741, CVE-2020-11742, CVE-2020-11743, CVE-2020-15563, CVE-2020-15564, CVE-2020-15565, CVE-2020-15566, CVE-2020-15567.<br/>
+Xen packages are not installed by default on Cumulus Linux, but some libxen* packages are in the repository for optional installation.<br/>
+Vulnerable: &lt;= 4.11.3+24-g14b62ab3e5-1~deb10u1<br/>
+Fixed: 4.11.4+24-gddaaccbbab-1~deb10u1</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-30479</td>
+<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<td>3.7.2-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-30473</td>
@@ -2273,6 +2551,13 @@ Fixed: 2.5.5-3+deb10u2</p></td>
 <td><p>On a Mellanox SN2010 switch, the Locator LED is on after you upgrade Cumulus Linux.</p></td>
 <td>4.1.0-4.2.0</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-30240</td>
+<td><p>switchd memory utilization might continue to increase if there are excessive and continuous link flaps over a long period of time.<br/>
+To work around this issue, correct the cause of the frequent link flaps. You can restart switchd with the sudo systemctl restart switchd command to recover memory; this operation is impactful to all traffic on the switch during the restart.</p></td>
+<td>3.7.11-3.7.12, 4.0.0-4.2.0</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-30231</td>
@@ -2467,13 +2752,6 @@ Fixed: 1.8.2.1</p></td>
 <td>4.2.0</td>
 </tr>
 <tr>
-<td>CM-29667</td>
-<td><p>After installing Cumulus Linux on the Mellanox SN2100 switch, if you break out a port (for example, if you break out swp1 into four ports: swp1s0, swp1s1, swp1s2, swp1s3) in the /etc/cumulus/ports.conf file, then run the systemctl start switchd command, the update does not take effect.<br/>
-To work around this issue, run the systemctl restart switchd command.</p></td>
-<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29594</td>
 <td><p>When you run an Ansible script to replace the /etc/network/interfaces file, then run the ifreload -a command, you see errors similar to the following:</p>
 
@@ -2483,12 +2761,6 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 
 <p>To work around this issue,  run the ifreload -a command a second time.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29591</td>
-<td><p>When you add an IPv4 route with an IPv6 next hop, switchd crashes.</p></td>
-<td>4.1.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2703,7 +2975,7 @@ cumulus@switch:~$ sudo echo 0 &gt; /var/run/hw-management/config/suspend
 <tr>
 <td>CM-29151</td>
 <td><p>The following security vulnerability in the gnutls28 / libgnutls* packages has been announced for Cumulus Linux 4.x (Cumulus Linux 3.x is not vulnerable):<br/>
-CVE-2020-15501: GnuTLS 3.6.x before 3.6.13 uses incorrect cryptography for DTLS. The earliest affected version is 3.6.3 (2018-07-16) because of an error in a 2017-10-06 commit. The DTLS client always uses 32 '\0' bytes instead of a random value, and thus contributes no randomness to a DTLS negotiation. This breaks the security guarantees of the DTLS protocol.<br/>
+CVE-2020-11501: GnuTLS 3.6.x before 3.6.13 uses incorrect cryptography for DTLS. The earliest affected version is 3.6.3 (2018-07-16) because of an error in a 2017-10-06 commit. The DTLS client always uses 32 '\0' bytes instead of a random value, and thus contributes no randomness to a DTLS negotiation. This breaks the security guarantees of the DTLS protocol.<br/>
 Vulnerable: &lt;= 3.6.7-4+deb10u2<br/>
 Not vulnerable: 3.6.7-4+deb10u3</p></td>
 <td>4.0.0-4.1.0</td>
@@ -3478,12 +3750,6 @@ See /var/log/netd.log for more details.
 <td>3.7.11-4.0.0, 4.2.0</td>
 </tr>
 <tr>
-<td>CM-26139</td>
-<td><p>Selective ERSPAN does not work when you specify a bridge port.</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-26138</td>
 <td><p>You cannot specify a source and destination MAC address in an ERSPAN ebtables rule. For example, the following rule does not work:</p>
 
@@ -3590,20 +3856,6 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
 <td>3.7.5-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-24803</td>
-<td><p>On the Dell N3048EP-ON or the Delta AG6248 switch, when you execute the following command, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The Cumulus Linux image is still in /var/lib/cumulus/installer, which causes issues with cl-support. </p>
- 
- 
- cumulus@switch:~$ sudo onie-install -fai http://&lt;path to image&gt; 
- cumulus@switch:~$ sudo reboot 
- 
- 
-<p>To work around this issue, use the onie-select command to access ONIE, and then use the nos-install command in ONIE to install a new Cumulus Linux image. <br/>
-The workaround only works when an out-of-band network is present.</p></td>
-<td>3.7.6-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3937,14 +4189,6 @@ To work around this issue, use dynamic signaling (joins) to manage IP multicast 
 <td></td>
 </tr>
 <tr>
-<td>CM-21927</td>
-<td><p>When running ifreload on Mellanox Spectrum devices, after updating an interface configuration, sometimes VLANs are not programmed into the hardware data plane. The Linux control plane looks normal but the VLAN has not been programmed into the hardware and packets that arrive for the VLAN might be dropped. <br/>
-To work around this issue, remove and re-add the affected VLANs from the port. </p>
-</td>
-<td>3.5.3-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-21785</td>
 <td><p>The source address of the ICMPv6 time exceeded message (traceroute hop) is sourced from the wrong VRF when the traceroute target resides on the same switch but in a different VRF.</p></td>
 <td>3.6.2-3.7.13, 4.0.0-4.2.0</td>
@@ -4026,12 +4270,6 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
-<td>CM-18192</td>
-<td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
-<td>3.7.11-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-17934</td>
 <td><p>FRR tracks interface speed based on the value it learns from the Linux kernel for that interface. If the interface speed changes, FRR does not update its interface speed cache. This can lead to issues for routing protocols that derive metrics from interface speed as the cost can become out of sync with the interface speed.<br/>
 To work around this issue, manually define the routing protocol metric for these interfaces or restart FRR.</p></td>
@@ -4041,7 +4279,7 @@ To work around this issue, manually define the routing protocol metric for these
 <tr>
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
-To work around this issue, change the value of arp_ignore to 2. See <a href="https://support.cumulusnetworks.com/hc/en-us/articles/203859616-Default-ARP-Settings-in-Cumulus-Linux" class="external-link" rel="nofollow">Default ARP Settings in Cumulus Linux</a> for more information.</p></td>
+To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
 <td>3.3.2-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
@@ -4740,6 +4978,11 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <td>CM-18727</td>
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
+</tr>
+<tr>
+<td>CM-18192</td>
+<td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
+<td>3.7.11-4.0.0</td>
 </tr>
 </table>
 </tables>

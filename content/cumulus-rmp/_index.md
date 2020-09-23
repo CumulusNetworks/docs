@@ -45,10 +45,6 @@ features:
   - [Change bond mode to IEEE 802.3ad](/cumulus-linux-37/Layer-2/Bonding-Link-Aggregation/) link
         aggregation mode
 
-For further information regarding bug fixes and known issues present in
-the 3.7 release, refer to the [product release
-notes](https://support.cumulusnetworks.com/hc/en-us/articles/360009508373-Cumulus-RMP-3-7-Release-Notes).
-
 ### What's New in Cumulus RMP 3.6.2
 
 Cumulus RMP 3.6.2 contains several bug fixes and the following new
@@ -56,20 +52,12 @@ feature:
 
 - NCLU commands available for [configuring traditional mode bridges](/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode/)
 
-For further information regarding bug fixes and known issues present in
-the 3.6.2 release, refer to the 
-[product release notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003646974-Cumulus-RMP-3-6-Release-Notes).
-
 ### What's New in Cumulus RMP 3.6.0
 
 Cumulus RMP 3.6.0 contains several bug fixes and the following new
 feature:
 
 - Support for a combination of `local-as` and `allowas-in` commands
-
-For further information regarding bug fixes and known issues present in
-the 3.6.0 release, refer to the [product release
-notes](https://support.cumulusnetworks.com/hc/en-us/articles/360003646974-Cumulus-RMP-3-6-Release-Notes).
 
 ## Cumulus RMP Features
 

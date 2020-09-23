@@ -10,6 +10,19 @@ To enter single user mode:
 
 1. Boot the switch, then as soon as you see the GRUB menu, use the arrow keys to select **Advanced options for Cumulus Linux GNU/Linux**.
 
+   {{%notice info%}}
+**Before** the GRUB menu appears, the switch goes through the boot cycle. Do **not** interrupt this autoboot process when you see the following lines; wait until you see the GRUB menu.
+
+```
+...
+CLOCKS:ARM Core=1000Hz, AXI=500Hz, APB=125Hz, Peripheral=500Hz
+USB0:  Bringing USB2 host out of reset...
+Net:   eth-0
+SF:    MX25L6405D with page size 4 KiB, total 8 MiB
+Hit any key to stop autoboot:  2
+```
+{{%/notice%}}
+
     ```
                     GNU GRUB  version 2.02+dfsg1-20
 

@@ -30,12 +30,7 @@ QinQ is available on the following switches:
 
 ## Removing the Early Access QinQ Metapackage
 
-If you are upgrading Cumulus Linux from a version earlier than 3.4.0 and
-had installed the early access QinQ metapackage, you need to remove the
-`cumulus-qinq` metapackage before upgrading to Cumulus Linux 3.4.0 or
-later. To remove the `cumulus-qinq` metapackage, read the 
-[early access feature](https://support.cumulusnetworks.com/hc/en-us/articles/202933878)
-article.
+If you are upgrading Cumulus Linux from a version earlier than 3.4.0 and had installed the early access QinQ metapackage, you need to remove the `cumulus-qinq` metapackage before upgrading to Cumulus Linux 3.4.0 or later. To remove the `cumulus-qinq` metapackage, read the  [early access feature](https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/) article.
 
 ## Configuring Single Tag Translation
 
@@ -334,7 +329,7 @@ If the bridge is not VXLAN-enabled, the configuration looks like this:
         configured for VLAN protocol 802.1ad.
       - The peerlink cannot be used as a backup datapath in the event
         that one of the MLAG peers loses all uplinks.
-  - For switches with the Spectrum ASIC (but not the Spectrum 2), when
+  - For switches with any type of Spectrum ASIC, when
     the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, either:
       - All bridge ports are access ports, except for the MLAG peerlink.
       - All bridge ports are VLAN trunks.

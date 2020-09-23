@@ -1,0 +1,7 @@
+{{ if eq .Page.Params.product "Cumulus Networks Knowledge Base" }}
+<ul>
+    {{range .Pages}}
+            <li><a href="{{.Permalink}}">{{.Title}}</a></li>
+    {{ end }}
+</ul>
+{{ end }}

@@ -4,9 +4,10 @@ author: Cumulus Networks
 weight: 555
 toc: 4
 ---
+
 {{%notice warning%}}
 
-EVPN multihoming is an {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/202933878" text="early access feature">}}.
+EVPN multihoming is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
 
 {{%/notice%}}
 
@@ -68,7 +69,7 @@ NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The co
 
 {{%notice info%}}
 
-In addition to the `es-id` and the `es-sys-mac`, you need to specify a unique SVI IP address for each VTEP across the racks. These IP addresses must be reachable from remote VTEPs. You enable these IP addresses using the `advertise-svi-ip` option. See the leaf configurations in the {{<link title="#Example Configuration" text="example configuration">}} below.
+In addition to the `es-id` and the `es-sys-mac`, you need to specify a unique SVI IP address for each VTEP across the racks. These IP addresses must be reachable from remote VTEPs. You enable the advertisement of these IP addresses using the `advertise-svi-ip` option, under the BGP EVPN address family. See the leaf configurations in the {{<link title="#Example Configuration" text="example configuration">}} below.
 
 {{%/notice%}}
 

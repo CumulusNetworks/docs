@@ -491,11 +491,7 @@ To configure multi-instance OSPF:
    ...
    ```
 
-2. Restart FRRouting:
-
-   ```
-   cumulus@switch:~$ sudo systemctl restart frr.service
-   ```
+2. {{<cl/restart-frr>}}
 
 3. Assign and enable an OSPF interface for each instance:
 

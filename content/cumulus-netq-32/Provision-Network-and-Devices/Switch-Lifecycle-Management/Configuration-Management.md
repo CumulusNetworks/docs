@@ -4,7 +4,11 @@ author: Cumulus Networks
 weight: 660
 toc: 4
 ---
-You can use the NetQ UI to configure switches using one or more switch configurations. To enable consistent application of configurations, switch configurations can contain network templates for SNMP, NTP, and user accounts. You can also specify configuration profiles for Cumulus NetQ Agents.
+You can use the NetQ UI to configure switches using one or more switch configurations. To enable consistent application of configurations, switch configurations can contain network templates for SNMP, NTP, and user accounts, and configuration profiles for Cumulus NetQ Agents.
+
+If you intend to use network templates or configuration profiles, the recommended workflow is as follows:
+
+{{<figure src="/images/netq/lcm-switch-config-workflow-320.png" width="350">}}
 
 ## Manage Network Templates
 
@@ -285,7 +289,7 @@ You can view, add, and remove NetQ configuration profiles at any time.
 
 To view existing profiles:
 
-1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**.
+1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Manage Switches**.
 
 2. Click **Manage** on the NetQ Configurations card.
 
@@ -306,15 +310,15 @@ You can specify four options when creating NetQ configuration profiles:
 
 To create a profile:
 
-1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**.
+1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Manage Switches**.
 
 2. Click **Manage** on the NetQ Configurations card.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18" alt="Add Config Profile">}} (Add Config).
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18" alt="Add Config Profile">}} (Add Config) above the listing.
 
     {{<figure src="/images/netq/lcm-netq-config-profile-create-310.png" width="450">}}
 
-4. Enter a name for the profile.
+4. Enter a name for the profile. This is required.
 
 5. If you do not want NetQ Agent to run in the management VRF, select either *Default* or *Custom*. The Custom option lets you enter the name of a user-defined VRF.
 
@@ -338,7 +342,7 @@ To create a profile:
 
 To remove a NetQ configuration profile:
 
-1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**.
+1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Manage Switches**.
 
 2. Click **Manage** on the NetQ Configurations card.
 
@@ -378,13 +382,13 @@ To create a switch configuration profile:
 
 4. Decide which aspects of configuration you want included in this template: CL configuration, NetQ Agent configuration, and/or Switches.
 
-5. Configure the template using the following instructions.
+5. Specify the settings for each using the following instructions.
 
 {{< tabs "TabID383" >}}
 
 {{< tab "Cumulus Linux" >}}
 
-Three configuration options are available for the Cumulus Linux configuration portion of the switch configuration profile. Specify those that are desired for the purpose of this profile.
+Three configuration options are available for the Cumulus Linux configuration portion of the switch configuration profile. Note that two of those are required.
 
 1. Select either the *Default* or *Management* interface to be used for communications with the switches with this profile assigned. Typically the default interface is xxx and the management interface is either *eth0* or *eth1*.
 
@@ -427,6 +431,24 @@ In either case, if you change your mind about including network settings, click 
 {{< /tab >}}
 
 {{< tab "NetQ Agent" >}}
+
+1. Click NetQ Agent Configuration.
+
+    {{<figure src="/images/netq/lcm-switch-config-nqagent-config-320.png" width="700">}}
+
+2. Select an existing NetQ Configuration profile or create a custom one.
+
+    <em>To use an existing network template as a starting point:</em>
+
+    1. Select the configuration profile from the dropdown.
+
+    2. Modify any of the parameters as needed or click **Continue**.
+
+    <em>To create a new configuration profile:</em>
+
+    1. Select values as appropriate for your situation. Refer to {{<link title="#create-cumulus-netq-configuration-profiles">}} for descriptions of these parameters.
+
+    2. Click **Continue**.
 
 {{< /tab >}}
 

@@ -1968,7 +1968,7 @@ The following image shows traffic flow between VRFs.
 
 |     |     |     |
 | --- | --- | --- |
-| {{< img src = "/images/cumulus-linux/EVPN-same-VLAN.png" >}} |{{< img src = "/images/cumulus-linux/EVPN-different-VLAN.png" >}} | {{< img src = "/images/cumulus-linux/EVPN-different-VRF.png" >}} | 
+| {{< img src="/images/cumulus-linux/EVPN-same-VLAN.png" width="700" >}} |{{< img src="/images/cumulus-linux/EVPN-different-VLAN.png" width="700" >}} | {{< img src="/images/cumulus-linux/EVPN-different-VRF.png" width="700" >}} |
 
 ### /etc/network/interfaces
 

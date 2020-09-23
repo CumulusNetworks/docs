@@ -24,7 +24,7 @@ The following table summarizes the new commands available with this release. The
 | netq lcm show switches [version &lt;text-cumulus-linux-version>] [json] | Displays all the switches running Cumulus Linux that are managed under LCM. | 3.0.0 |
 | netq lcm show upgrade-jobs [json] | Displays all the LCM upgrade jobs and their status. | 3.0.0 |
 | netq lcm upgrade name &lt;text-job-name> image-id &lt;text-image-id> license &lt;text-cumulus-license> hostnames &lt;text-switch-hostnames> [order &lt;text-upgrade-order>] [run-before-after] | Creates and runs a new upgrade job. | 3.0.0 |
-| netq config add agent command service-key &lt;text-service-key-anchor> [poll-period &lt;text-cmd-periodicity>] [command &lt;text-cmd-text>] [enable True \| enable False] | Configures, enables and disables {{<link url="Modular-NetQ-Agent-Commands" text="modular agent commands">}} that the NetQ agent runs at preset intervals. | 3.0.0 |
+| netq config add agent command service-key &lt;text-service-key-anchor> [poll-period &lt;text-cmd-periodicity>] [command &lt;text-cmd-text>] [enable True \| enable False] | Configures, enables and disables {{<link title="Manage NetQ Agents#change-netq-agent-polling-data-and-frequency" text="modular agent commands">}} that the NetQ agent runs at preset intervals. | 3.0.0 |
 | netq config agent factory-reset commands | Restores modular agent commands to their defaults. | 3.0.0 |
 | netq config del agent command service-key &lt;text-service-key-anchor> | Deletes a modular agent command. | 3.0.0 |
 | netq config show agent commands [service-key &lt;text-service-key-anchor>] [json] | Displays the modular agent commands. | 3.0.0 |

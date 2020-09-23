@@ -12,7 +12,7 @@ The upgrade workflow includes the following steps:
 
 {{<notice info>}}
 
-Upgrades can be performed from NetQ Agents of 2.4.x, 3.0.0, and 3.1.0 releases to the NetQ 3.2.0 release. <em>Lifecycle management does not support upgrades from NetQ 2.3.1 or earlier releases; you must perform a new installation in these cases.</em> Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}}.
+Upgrades can be performed from NetQ Agents of 2.4.x, 3.0.0, and 3.1.0 releases to the NetQ 3.2.0 release. <em>Lifecycle management does not support upgrades from NetQ 2.3.1 or earlier releases; you must perform a new installation in these cases.</em> Refer to {{<link title="Install NetQ Agents">}}.
 
 {{</notice>}}
 
@@ -44,7 +44,7 @@ Your LCM dashboard should look similar to this after you have completed the abov
 
 1. Verify or add {{<link title="Manage Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
 
-2. Configure {{<link title="Manage Switch Inventory and Roles/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
+2. Configure {{<link title="Manage Switch Credentials/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
 
 3. Upload the {{<link title="Manage Cumulus Linux and NetQ Images/#upload-upgrade-images" text="Cumulus Linux install images">}}.
 
@@ -76,7 +76,7 @@ You can upgrade Cumulus NetQ Agents on switches as follows:
 
 6. Review each switch:
 
-    - Is the NetQ Agent version 2.4.x, 3.0.0, or 3.1.0? If not, this switch can only be upgraded through the {{<link url="Lifecycle-Management/#switch-discovery" text="switch discovery">}} process.
+    - Is the NetQ Agent version 2.4.x, 3.0.0, or 3.1.0? If not, this switch can only be upgraded through the {{<link title="Upgrade Cumulus Linux Using LCM/#upgrade-cumulus-linux-on-switches-without-netq-agent-installed" text="switch discovery">}} process.
     - Is the configuration profile the one you want to apply? If not, click **Change config**, then select an alternate profile to apply to all selected switches.
 
 <div style="padding-left: 18px;">
@@ -192,7 +192,7 @@ This example shows that all four of the selected switches were upgraded successf
 
 ### Sample Failed NetQ Agent Upgrade
 
-This example shows that an error has occurred trying to upgrade two of the four switches in a job. The error indicates that the access permissions for the switches are invalid. In this case, you need to modify the {{<link url="Switch-Management/#modify-switch-credentials" text="switch access credentials">}} and then create a new upgrade job.
+This example shows that an error has occurred trying to upgrade two of the four switches in a job. The error indicates that the access permissions for the switches are invalid. In this case, you need to modify the {{<link title="Manage Switch Inventory and Roles/#modify-switch-credentials" text="switch access credentials">}} and then create a new upgrade job.
 
 {{<figure src="/images/netq/lcm-netq-upgrade-example-failure-310.png" width="700">}}
 

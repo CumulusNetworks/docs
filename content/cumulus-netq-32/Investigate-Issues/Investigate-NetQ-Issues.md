@@ -22,12 +22,10 @@ Try looking at the specific protocol or service, or particular devices as well. 
 
 ## Browse Configuration and Log Files
 
-To aid in troubleshooting issues with NetQ, there are the following
-configuration and log files that can provide insight into the root cause
-of the issue:
+To aid in troubleshooting issues with NetQ, there are the following configuration and log files that can provide insight into the root cause of the issue:
 
 | File | Description |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| ---- | ---- |
 | `/etc/netq/netq.yml` | The NetQ configuration file. This file appears only if you installed either the `netq-apps` package or the NetQ Agent on the system. |
 | `/var/log/netqd.log` | The NetQ daemon log file for the NetQ CLI. This log file appears only if you installed the `netq-apps` package on the system. |
 | `/var/log/netq-agent.log` | The NetQ Agent log file. This log file appears only if you installed the NetQ Agent on the system.                                   |

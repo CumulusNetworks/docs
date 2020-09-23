@@ -6,7 +6,7 @@ toc: 4
 ---
 The following table lists all system event messages organized by type. These messages can be viewed through third-party notification applications. For details about configuring notifications, refer to {{<link title="Configure Notifications">}}.
 
-For a list of threshold-based events supported, refer to {{<link title="Supported Events" text="TCA Supported Events">}}. For a list of What Just Happened events supported, refer to {{<link title="View What Just Happened Metrics" text="WJH Supported Events">}}.
+For a list of threshold-based events supported, refer to {{<link title="Configure Notifications#supported-events" text="TCA Supported Events">}}. For a list of What Just Happened events supported, refer to {{<link title="Configure and Monitor What Just Happened Metrics/#view-what-just-happened-metrics" text="WJH Supported Events">}}.
 
 <table>
 <colgroup>

@@ -38,4 +38,4 @@ No matter how you answer the questions above, the installation workflow can be s
 
 ## Where to Go Next
 
-Follow the instructions in {{<link title="Install NetQ System" text="Install the NetQ System">}} to begin installation of Cumulus NetQ.
+Follow the instructions in {{<link title="Install the NetQ System" text="Install the NetQ System">}} to begin installation of Cumulus NetQ.

@@ -160,7 +160,7 @@ Where to go next depends on what data you see, but a few options include:
 
 - Change the time period for the data to compare with a prior time.
 
-    If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switches">}}.
+    If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switch Performance">}}.
 
 - Click **Show All Sessions** to investigate all LLDP sessions with events in the full screen card.
 

@@ -19,11 +19,11 @@ You can upgrade from NetQ 2.4.x, 3.0.0, and 3.1.0 releases to NetQ 3.2.0. Upgrad
 
 <!-- UPDATE FOR 3.2 -->
 
-- {{<link url="Lifecycle-Management" text="Lifecycle Management">}} support for Cumulus Linux upgrade on monitored switches (NetQ UI or CLI)
+- {{<link title="Upgrade Cumulus Linux Using LCM" text="Lifecycle Management">}} support for Cumulus Linux upgrade on monitored switches (NetQ UI or CLI)
     - Simple NetQ UI workflow to prepare, run upgrade jobs, and evaluate results
     - Option to automatically generate before and after network snapshots for comparison
     - Option to roll back to previous CL version in the event of upgrade failure
-- Manage {{<link url="Application-Management/#specify-notification-channels" text="notification channels">}} for threshold-based events through NetQ UI
+- Manage {{<link title="Configure Notifications/#-change-add-or-remove-the-channels-on-a-tca-rule" text="notification channels">}} for threshold-based events through NetQ UI
 - Embedded NetQ UI application help, with step-by-step instructions and link to user documentation
 - Password change required on first login to NetQ UI
 - Display all addresses in a subnet, supernet or layer 3 gateway of an address using `netq show ip addresses` and `netq show ipv6 addresses` commands

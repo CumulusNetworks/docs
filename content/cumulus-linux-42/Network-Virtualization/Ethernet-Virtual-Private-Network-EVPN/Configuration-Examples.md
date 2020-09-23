@@ -1960,15 +1960,17 @@ The following example shows an EVPN symmetric routing configuration, where:
 - MLAG is configured between leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
 - VRF BLUE and VRF RED are configured on the leafs for traffic flow
-- server01 and server04 are in VLAN 10 in VRF BLUE
-- server02 and server05 are in VLAN 20 in VRF BLUE
-- server03 and server06 are on VLAN 30 in VRF RED
+   - server01 and server04 are in VLAN 10 in VRF BLUE
+   - server02 and server05 are in VLAN 20 in VRF BLUE
+   - server03 and server06 are on VLAN 30 in VRF RED
 
-The following image shows traffic flow between VRFs.
+   The following image shows traffic flow between VRFs:
 
-|     |     |     |
-| --- | --- | --- |
-| {{< img src="/images/cumulus-linux/EVPN-same-VLAN.png" width="700" >}} |{{< img src="/images/cumulus-linux/EVPN-different-VLAN.png" width="700" >}} | {{< img src="/images/cumulus-linux/EVPN-different-VRF.png" width="700" >}} |
+   |     |     |
+   | --- | --- |
+   | <img width=800/> {{< img src="/images/cumulus-linux/EVPN-same-VLAN.png" width="700" >}} | <br><br><br><br><br><br><ul><li>server01 and server04 are in the same VLAN and the same VRF so traffic is sent over layer 2</li></ul>|
+   | {{< img src="/images/cumulus-linux/EVPN-different-VLAN.png" width="800" >}} | <br><br><br><br><br><br><ul><li>server01 and server02 are in the same VRF but in different VLANs</li><br><li>Traffic is sent from server01 to the leafs over layer 2 but over layer 3 from the leafs to server02</li></ul> |
+   | {{< img src="/images/cumulus-linux/EVPN-different-VRF.png" width="800" >}} | <br><br><br><br><br><br><ul><li>server01 and server06 are in different VLANs and different VRFs. </li><br><li>Traffic from server01 is sent to the leafs over layer 2 but is sent over layer 3 from the leafs to server06 via a forwarding device</li></ul>|
 
 ### /etc/network/interfaces
 

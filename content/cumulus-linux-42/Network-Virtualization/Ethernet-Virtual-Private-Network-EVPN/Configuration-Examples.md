@@ -1963,8 +1963,12 @@ The following example shows an EVPN symmetric routing configuration, where:
 - server01 and server04 are in VLAN 10 in VRF BLUE
 - server02 and server05 are in VLAN 20 in VRF BLUE
 - server03 and server06 are on VLAN 30 in VRF RED
-  
-IMAGE
+
+The following image shows traffic flow between VRFs.
+
+|     |     |     |
+| --- | --- | --- |
+| {{< img src = "/images/cumulus-linux/EVPN-same-VLAN.png" >}} |{{< img src = "/images/cumulus-linux/EVPN-different-VLAN.png" >}} | {{< img src = "/images/cumulus-linux/EVPN-different-VRF.png" >}} | 
 
 ### /etc/network/interfaces
 

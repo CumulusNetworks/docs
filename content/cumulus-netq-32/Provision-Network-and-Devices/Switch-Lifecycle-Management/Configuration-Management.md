@@ -14,9 +14,13 @@ Network templates provide administrators the option to create switch configurati
 
 You can view existing templates using the Network Templates card.
 
-{{<figure src="/images/netq/lcm-ntwk-template-medium-320.png" width="200">}}
+1. Open the lifecycle management (Manage Switch Assets) dashboard.
 
-Click **Manage** to view the list of existing switch templates.
+2. Locate the Network Templates card.
+
+    {{<figure src="/images/netq/lcm-ntwk-template-medium-320.png" width="200">}}
+
+3. Click **Manage** to view the list of existing switch templates.
 
 ### Create Network Templates
 
@@ -24,7 +28,7 @@ No default templates are provided on installation of NetQ. This enables you to c
 
 To create a network template:
 
-1. Open the Manage Switch Assets dashboard.
+1. Open the lifecycle management (Manage Switch Assets) dashboard.
 
 2. Click **Add** on the Network Templates card.
 
@@ -36,9 +40,15 @@ To create a network template:
 
 4. Decide which aspects of configuration you want included in this template: SNMP, NTP, and/or User accounts.
 
+    {{<notice tip>}}
+
+You can specify your template in any order, but to complete the configuration, you must open the User form to click <strong>Save and Finish</strong>.
+
+    {{</notice>}}
+
 5. Configure the template using the following instructions.
 
-{{< tabs "TabID37" >}}
+{{< tabs "TabID51" >}}
 
 {{< tab "SNMP" >}}
 
@@ -185,7 +195,7 @@ To create a network template with user parameters included:
 
     5. Identify this account as a system account. Toggle **Is system account**.
 
-    6. To specify a group this user or account belongs to, enter the group name in the **Groups** field. 
+    6. To specify a group this user or account belongs to, enter the group name in the **Groups** field.
 
         Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add additional groups.
 
@@ -195,7 +205,9 @@ To create a network template with user parameters included:
 
 {{< /tabs >}}
 
-6. Once you have finished the template configuration, you are returned to the templates library.
+6. Once you have finished the template configuration, you are returned to the network templates library.
+
+    This shows the new template you created and which forms have been included in the template. You may only have one or two of the forms in a given template.
 
     {{<figure src="/images/netq/lcm-ntwk-template-library-320.png" width="700">}}
 
@@ -205,31 +217,61 @@ For each template that you have created, you can edit, clone, or discard it alto
 
 #### Edit a Network Template
 
-Click xxx, then select xxx (edit). Edit enables you to modify....
+You can change a switch configuration template at any time. The process is similar to creating the template.
+
+To edit a network template:
+
+1. Enter template edit mode in one of two ways:
+
+    - Hover over the template , then click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} (edit).
+
+        {{<figure src="/images/netq/lcm-ntwk-template-edit-320.png" width="200">}}
+
+    - Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18">}}, then select *Edit*.
+
+        {{<figure src="/images/netq/lcm-ntwk-template-edit-menu-320.png" width="200">}}
+
+2. Modify the parameters of the SNMP, NTP, or User forms in the same manner as when you created the template.
+
+3. Click **User**, then **Save and Finish**.
 
 #### Clone a Network Template
 
-Click xxx, then select xxx (clone).
+You can take advantage of a template that is significantly similar to another template that you want to create by cloning an existing template. This can save significant time and reduce errors.
+
+To clone a network template:
+
+1. Enter template clone mode in one of two ways:
+
+    - Hover over the template , then click {{<img src="https://icons.cumulusnetworks.com/12-Design/07-Layers/layers-front.svg" height="18" width="18">}} (clone).
+
+        {{<figure src="/images/netq/lcm-ntwk-template-clone-320.png" width="200">}}
+
+    - Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18">}}, then select *Clone*.
+
+        {{<figure src="/images/netq/lcm-ntwk-template-edit-menu-320.png" width="200">}}
+
+2. Modify the parameters of the SNMP, NTP, or User forms in the same manner as when you created the template to create the new template.
+
+3. Click **User**, then **Save and Finish**.
+
+    The newly cloned template is now visible on the template library.
 
 #### Delete a Network Template
 
-Click xxx, then xxx (trash).
+You can remove a template when it is no longer needed.
 
-## Manage Switch Configuration Profiles
+To delete a network template, do one of the following:
 
-### View Switch Configuration Profiles
+- Hover over the template , then click {{<img src="https://icons.cumulusnetworks.com/12-Design/07-Layers/layers-front.svg" height="18" width="18">}} (delete).
 
-### Create Switch Configuration Profiles
+    {{<figure src="/images/netq/lcm-ntwk-template-delete-320.png" width="200">}}
 
-### Assign Switch Configuration Profiles
+- Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18">}}, then select *Delete*.
 
-### Change Switch Configuration Profile Assignment
+    {{<figure src="/images/netq/lcm-ntwk-template-edit-menu-320.png" width="200">}}
 
-#### Modify Assignment
-
-#### Remove Assignment
-
-### View Switch Configuration History
+The template is no longer visible in the network templates library.
 
 ## Manage NetQ Configuration Profiles
 
@@ -278,7 +320,7 @@ To create a profile:
 
 6. Optionally enable WJH.
 
-    Refer to {{<link url="Monitor-Network-Elements/#view-what-just-happened" text="WJH">}} for information about this feature. *WJH is only available on Mellanox switches.*
+    Refer to {{<link title="Configure and Monitor What Just Happened Metrics/#view-what-just-happened" text="WJH">}} for information about this feature. *WJH is only available on Mellanox switches.*
 
 7. To set a logging level, click **Advanced**, then choose the desired level.
 
@@ -301,3 +343,107 @@ To remove a NetQ configuration profile:
 2. Click **Manage** on the NetQ Configurations card.
 
 3. Select the profile(s) you want to remove and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18">}} (Delete).
+
+## Manage Switch Configuration Profiles
+
+To ease the consistent configuration of your switches, NetQ enables you to create and manage multiple switch configuration profiles. Each configuration can contain Cumulus Linux-, NetQ Agent-, and switch-related settings. These can then be applied to a group of switches during software upgrades based on the desired configuration or role of the switch.
+
+You can view, create, and modify switch configuration profiles and their assignments at any time using the Switch Configurations card.
+
+### View Switch Configuration Profiles
+
+You can view existing switch configuration profiles using the Switch Configurations card.
+
+1. Open the lifecycle management (Manage Switch Assets) dashboard.
+
+2. Locate the Switch Configurations card.
+
+    {{<figure src="/images/netq/lcm-switch-config-medium-card-320.png" width="200">}}
+
+3. Click **Manage** to view the list of existing switch templates.
+
+### Create Switch Configuration Profiles
+
+No default configurations are provided on installation of NetQ. This enables you to create configurations that match your specifications.
+
+To create a switch configuration profile:
+
+1. Open the lifecycle management (Manage Switch Assets) dashboard.
+
+2. Click **Add** on the Switch Configurations card.
+
+    {{<figure src="/images/netq/lcm-switch-config-add-320.png" width="200">}}
+
+3. Enter a name for the configuration. This is required and must be a maximum of 22 characters, including spaces.
+
+4. Decide which aspects of configuration you want included in this template: CL configuration, NetQ Agent configuration, and/or Switches.
+
+5. Configure the template using the following instructions.
+
+{{< tabs "TabID383" >}}
+
+{{< tab "Cumulus Linux" >}}
+
+Three configuration options are available for the Cumulus Linux configuration portion of the switch configuration profile. Specify those that are desired for the purpose of this profile.
+
+1. Select either the *Default* or *Management* interface to be used for communications with the switches with this profile assigned. Typically the default interface is xxx and the management interface is either *eth0* or *eth1*.
+
+2. Select the type of switch that will have this configuration assigned from the **Choose Switch type** dropdown. Currently this includes Mellanox SN series of switches.
+
+3. If you want to include network settings in this configuration, click **Add**.
+
+    This opens the Network Template forms. You can select an existing network template to pre-populate the parameters already specified in that template, or you can start from scratch to create a different set of network settings.
+
+    {{<figure src="/images/netq/lcm-switch-config-ntwk-template-config-320.png" width="700">}}
+
+<div style="padding-left: 18px;"><em>To use an existing network template as a starting point:</em>
+
+1. Select the template from the dropdown.
+
+2. If you have selected a network template that has any SNMP parameters specified, you must specify the additional required parameters, then click **Continue** or click **NTP**.
+
+3. If the selected network template has any NTP parameters specified, you must specify the additional required parameters, then click **Continue** or click **User**.
+
+4. If the selected network template has any User parameters specified, you must specify the additional required parameters, then click **Done**.
+
+5. If you think this Cumulus Linux configuration is one that you will use regularly, you can make it a template. Enter a name for the configuration and click **Yes**.
+
+    {{<figure src="/images/netq/lcm-switch-config-save-as-template-dialog-320.png" width="200">}}
+
+</div>
+
+<div style="padding-left: 18px;"><em>To create a new set of network settings:</em>
+
+1. Select the SNMP, NTP, or User forms to specify parameters for this configuration. Note that selected parameters are required on each form, noted by red asterisks (*). Refer to {{<link title="Manage Switch Configurations/#create-network-templates" text="Create Network Templates">}} for a description of the fields.
+
+2. When you have completed the network settings, click Done.
+
+    If you are not on the User form, you need to go to that tab for the Done option to appear.
+
+In either case, if you change your mind about including network settings, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-circle.svg" height="18" width="18">}} to exit the form.
+
+</div>
+
+{{< /tab >}}
+
+{{< tab "NetQ Agent" >}}
+
+{{< /tab >}}
+
+{{< tab "Switches" >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Assign Switch Configuration Profiles
+
+### Change Switch Configuration Profile Assignment
+
+#### Modify Assignment
+
+#### Remove Assignment
+
+### View Switch Configuration History
+
+

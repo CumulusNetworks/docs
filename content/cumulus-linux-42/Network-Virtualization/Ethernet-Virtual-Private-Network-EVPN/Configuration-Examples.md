@@ -1956,21 +1956,26 @@ line vty
 ## EVPN Symmetric Routing
 
 The following example shows an EVPN symmetric routing configuration, where:
-
 - MLAG is configured between leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
 - VRF BLUE and VRF RED are configured on the leafs for traffic flow
-   - server01 and server04 are in VLAN 10 in VRF BLUE
-   - server02 and server05 are in VLAN 20 in VRF BLUE
-   - server03 and server06 are on VLAN 30 in VRF RED
+- server01 and server04 are in VLAN 10 in VRF BLUE
+- server02 and server05 are in VLAN 20 in VRF BLUE
+- server03 and server06 are on VLAN 30 in VRF RED
 
-   The following image shows traffic flow between VRFs:
+The following images shows traffic flow between tenants for traffic isolation. The spines and other devices are omited in the images below for simplicity.
 
-   |     |     |
-   | --- | --- |
-   | <img width=800/> {{< img src="/images/cumulus-linux/EVPN-same-VLAN.png" width="700" >}} | <br><br><br><br><br><br><ul><li>server01 and server04 are in the same VLAN and the same VRF so traffic is sent over layer 2</li></ul>|
-   | {{< img src="/images/cumulus-linux/EVPN-different-VLAN.png" width="800" >}} | <br><br><br><br><br><br><ul><li>server01 and server02 are in the same VRF but in different VLANs</li><br><li>Traffic is sent from server01 to the leafs over layer 2 but over layer 3 from the leafs to server02</li></ul> |
-   | {{< img src="/images/cumulus-linux/EVPN-different-VRF.png" width="800" >}} | <br><br><br><br><br><br><ul><li>server01 and server06 are in different VLANs and different VRFs. </li><br><li>Traffic from server01 is sent to the leafs over layer 2 but is sent over layer 3 from the leafs to server06 via a forwarding device</li></ul>|
+|   Traffic Flow between server01 and server04  |     |
+| --- | --- |
+| <img width=1000/> {{< img src="/images/cumulus-linux/EVPN-same-VLAN.png" >}} | server01 and server04 are in the same VRF and the same VLAN but are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup and has the MAC address for server04 in VNI 10, through leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server04 in VLAN 10.</li></ul>|
+
+|  Traffic Flow between server01 and server05   |     |
+| --- | --- |
+| <img width=1150/> {{< img src="/images/cumulus-linux/EVPN-different-VLAN.png"  >}} | server01 and server05 are in the same VRF, different VLANs, and are located across different leafs.<br><ol><li>server01 makes an LACP hash decision to reach the default gateway and forwards traffic to leaf01.</li><li>leaf01 does a layer 3 lookup in VRF BLUE and has a route in VNIBLUE through leaf04.</li><li>The VXLAN encapsulated packet arrives on leaf04, which does a layer 3 lookup in VRF BLUE and has a route through VLAN 20 to server05.</li></ul> |
+
+|   Traffic Flow between server01 and server06  |     |
+| --- | --- |
+| <img width=1300/> {{< img src="/images/cumulus-linux/EVPN-different-VRF.png"  >}} | server01 and server06 are in different VRFs, different VLANs, and are located across different leafs.<br><ol><li>server01 makes an LACP hash decision to reach the default gateway and forwards traffic to leaf01.</li><li>leaf01 does a layer 3 lookup in VRF BLUE and has a route in VNIBLUE through border01.</li><li>The VXLAN encapsulated packet arrives on border01, which does a layer 3 lookup in VRF BLUE and has a route through VLAN 30 to fw01 (the policy device).</li><li>fw01 does a layer 3 lookup (without any VRFs) and has a route in VLAN40, through border02.</li><li>border02 does a layer 3 lookup in VRF RED and has a route in VNIRED, through leaf04.</li><li>The VXLAN encapsulated packet arrives on leaf04, which does a layer 3 lookup in VRF RED and has a route in VLAN 30 to server06.</ul>|
 
 ### /etc/network/interfaces
 

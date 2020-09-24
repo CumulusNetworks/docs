@@ -124,6 +124,16 @@ By default, the NetQ Agent and CLI are upgraded on the selected switches. If you
 <p>If all of the pre-checks pass, click <strong>Upgrade</strong> to initiate the upgrade job.</p>
 </div>
 
+12. Watch the progress of the upgrade job.
+
+    {{<figure src="/images/netq/lcm-netq-upgrade-success-320.png" width="700">}}
+
+13. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the lifecycle management dashboard.
+
+    The NetQ Install and Upgrade History card is now visible and shows the status of this upgrade job.
+
+    {{<figure src="/images/netq/lcm-netq-upgrade-success-history-card-320.png" width="200">}}
+
 {{< /tab >}}
 
 {{< tab "NetQ CLI" >}}

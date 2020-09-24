@@ -8,7 +8,7 @@ You can use the NetQ UI to configure switches using one or more switch configura
 
 If you intend to use network templates or configuration profiles, the recommended workflow is as follows:
 
-{{<figure src="/images/netq/lcm-switch-config-workflow-320.png" width="350">}}
+{{<figure src="/images/netq/lcm-switch-config-workflow-320.png" width="400">}}
 
 ## Manage Network Templates
 
@@ -348,9 +348,9 @@ To remove a NetQ configuration profile:
 
 3. Select the profile(s) you want to remove and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18">}} (Delete).
 
-## Manage Switch Configuration Profiles
+## Manage Switch Configuration
 
-To ease the consistent configuration of your switches, NetQ enables you to create and manage multiple switch configuration profiles. Each configuration can contain Cumulus Linux-, NetQ Agent-, and switch-related settings. These can then be applied to a group of switches during software upgrades based on the desired configuration or role of the switch.
+To ease the consistent configuration of your switches, NetQ enables you to create and manage multiple switch configuration profiles. Each configuration can contain Cumulus Linux- and NetQ Agent-related settings. These can then be applied to a group of switches at once.
 
 You can view, create, and modify switch configuration profiles and their assignments at any time using the Switch Configurations card.
 
@@ -380,7 +380,7 @@ To create a switch configuration profile:
 
 3. Enter a name for the configuration. This is required and must be a maximum of 22 characters, including spaces.
 
-4. Decide which aspects of configuration you want included in this template: CL configuration, NetQ Agent configuration, and/or Switches.
+4. Decide which aspects of configuration you want included in this template: CL configuration and/or NetQ Agent configuration profiles.
 
 5. Specify the settings for each using the following instructions.
 
@@ -420,9 +420,9 @@ Three configuration options are available for the Cumulus Linux configuration po
 
 1. Select the SNMP, NTP, or User forms to specify parameters for this configuration. Note that selected parameters are required on each form, noted by red asterisks (*). Refer to {{<link title="Manage Switch Configurations/#create-network-templates" text="Create Network Templates">}} for a description of the fields.
 
-2. When you have completed the network settings, click Done.
+2. When you have completed the network settings, click **Done**.
 
-    If you are not on the User form, you need to go to that tab for the Done option to appear.
+    If you are not on the User form, you need to go to that tab for the **Done** option to appear.
 
 In either case, if you change your mind about including network settings, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-circle.svg" height="18" width="18">}} to exit the form.
 
@@ -446,7 +446,7 @@ In either case, if you change your mind about including network settings, click 
 
     <em>To create a new configuration profile:</em>
 
-    1. Select values as appropriate for your situation. Refer to {{<link title="#create-cumulus-netq-configuration-profiles">}} for descriptions of these parameters.
+    1. Select values as appropriate for your situation. Refer to {{<link title="Manage Switch Configurations/#create-cumulus-netq-configuration-profiles" text="Create NetQ Configuration Profiles">}} for descriptions of these parameters.
 
     2. Click **Continue**.
 
@@ -454,18 +454,243 @@ In either case, if you change your mind about including network settings, click 
 
 {{< tab "Switches" >}}
 
+The final step is to assign the switch configuration that you have just created to one or more switches.
+
+To assign the configuration:
+
+1. Click **Switches**.
+
+    A few items to note on this tab:
+    - Above the switches (left), the number of switches that can be assigned and the number of switches that have already been assigned
+    - Above the switches (right), management tools to help find the switches you want to assign with this configuration, including select all, clear, filter, and search.
+
+    {{<figure src="/images/netq/lcm-switch-config-switch-assign-320.png" width="700">}}
+
+2. Select the switches to be assigned this configuration.
+
+    In this example, we searched for all leaf switches, then clicked select all.
+
+    {{<figure src="/images/netq/lcm-switch-config-switch-selection-320.png" width="700">}}
+
+3. Click **Save and Finish**.
+
+4. To run the job to apply the configuration, you first have the option to change the hostnames of the selected switches.
+
+    Either change the hostnames and then click **Continue** or just click **Continue** without changing the hostnames.
+
+5. Enter a name for the job (maximum of 22 characters including spaces), then click **Continue**.
+
+    This opens the monitoring page for the assignment jobs, similar to the upgrade jobs. The job title bar indicates the name of the switch configuration being applied and the number of switches that to be assigned with the configuration. (After you have mulitple switch configurations created, you might have more than one configuration being applied in a single job.) Each switch element indicates its hostname, IP address, installed Cumulus Linux and NetQ versions, a note indicating this is a new assignment, the switch configuration being applied, and a menu that provides the detailed steps being executed. The last is useful when the assignment fails as any errors are included in this popup.
+
+    {{<figure src="/images/netq/lcm-switch-config-assign-job-success-320.png" width="700">}}
+
+    {{<figure src="/images/netq/lcm-switch-config-assign-job-status-popup-320.png" width="300">}}
+
+6. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the switch configuration page where you can either create another configuration and apply it. If you are finished assigning switch configurations to switches, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/remove-circle.svg" height="18" width="18">}} to return to the lifecycle management dashboard.
+
+7. When you return the dashboard, your Switch Configurations card shows the new configurations and the Config Assignment History card appears that shows a summary status of all configuration assignment jobs attempted.
+
+    {{<figure src="/images/netq/lcm-switch-config-post-assign-config-hist-320.png" width="420">}}
+
+8. Click **View** on the Config Assignment History card to open the details of all assignment jobs. Refer to {{<link title="Manage Switch Configurations/#view-switch-configuration-history">}} for more detail about this card.
+
 {{< /tab >}}
 
 {{< /tabs >}}
 
-### Assign Switch Configuration Profiles
+### Edit a Switch Configuration
 
-### Change Switch Configuration Profile Assignment
+You can edit a switch configuration at any time. After you have made changes to the configuration, you can apply it to the same set of switches or modify the switches using the configuration as part of the editing process.
 
-#### Modify Assignment
+To edit a switch configuration:
 
-#### Remove Assignment
+1. Locate the Switch Configurations card on the lifecycle management dashboard.
+
+2. Click **Manage**.
+
+3. Locate the configuration you want to edit. Scroll down or filter the listing to help find the configuration when there are multiple configurations.
+
+4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18">}}, then select *Edit*.
+
+5. Follow the instructions in {{<link title="Manage Switch Configurations/#create-switch-configuration-profiles" text="Create Switch Configuration Profiles">}}, starting at Step 5, to make any required edits.
+
+### Clone a Switch Configuration
+
+You can clone a switch configuration assignment job at any time.
+
+To clone an assignment job:
+
+1. Locate the Switch Configurations card on the lifecycle management dashboard.
+
+2. Click **Manage**.
+
+3. Locate the configuration you want to clone. Scroll down or filter the listing to help find the configuration when there are multiple configurations.
+
+4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18">}}, then select *Clone*.
+
+5. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18">}}, then select *Edit*.
+
+6. Change the Configuration Name.
+
+7. Follow the instructions in {{<link title="Manage Switch Configurations/#create-switch-configuration-profiles" text="Create Switch Configuration Profiles">}}, starting at Step 5, to make any required edits.
+
+### Remove a Switch Configuration
+
+You can remove a switch configuration at any time; however if there are switches with the given configuration assigned, you must first assign an alternate configuration to those switches.
+
+To remove a switch configuration:
+
+1. Locate the Switch Configurations card on the lifecycle management dashboard.
+
+2. Click **Manage**.
+
+3. Locate the configuration you want to remove. Scroll down or filter the listing to help find the configuration when there are multiple configurations.
+
+4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18">}}, then select *Delete*.
+
+    - If any switches are assigned to this configuration, an error message appears. Assign a different switch configuration to the relevant switches and repeat the removal steps.
+
+        {{<figure src="/images/netq/lcm-switch-config-del-config-error-320.png" width="400">}}
+
+    - Otherwise, confirm the removal by clicking **Yes**.
+
+        {{<figure src="/images/netq/lcm-switch-config-del-config-confirmation-320.png" width="400">}}
+
+### Assign Existing Switch Configuration Profiles
+
+You can assign existing switch configurations to one or more switches at any time. You can also change the switch configuration already assigned to a switch.
+
+If you need to create a new switch configuration, follow the instructions in {{<link title="Manage Switch Configurations/#create-switch-configuration-profiles" text="Create Switch Configuration Profiles">}}.
+
+#### Add an Assignment
+
+As new switches are added to your network, you might want to use a switch configuration to speed the process and make sure it matches the configuration of similarly designated switches.
+
+To assign an existing switch configuration to switches:
+
+1. Locate the Switch Configurations card on the lifecycle management dashboard.
+
+2. Click **Manage**.
+
+    {{<figure src="/images/netq/lcm-switch-config-manage-320.png" width="700">}}
+
+3. Locate the configuration you want to assign.
+
+    Scroll down or filter the listing by:
+    - **Time Range**: Enter a range of time in which the switch configuration was created, then click **Done**.
+    - **All switches**: Search for or select individual switches from the list, then click **Done**.
+    - **All switch types**: Search for or select individual switch series, then click **Done**.
+    - **All users**: Search for or select individual users who created a switch configuration, then click **Done**.
+    - **All filters**: Display all filters at once to apply multiple filters at once. Additional filter options are included here. Click **Done** when satisfied with your filter criteria.
+
+    By default, filters show *all* of that items of the given filter type until it is restricted by these settings.
+
+4. Click **Select switches** in the switch configuration summary.
+
+    {{<figure src="/images/netq/lcm-switch-config-manage-select-switches-320.png" width="700">}}
+
+5. Select the switches that you want to assign to the switch configuration.
+
+    Scroll down or use the **select all**, **clear**, filter , and **Search** options to help find the switches of interest. You can filter by role, Cumulus Linux version, or NetQ version. The badge on the filter icon indicates the number of filters applied. Colors on filter options are only used to distinguish between options. No other indication is intended.
+
+    In this example, we have one role defined, and we have selected that role.
+
+    {{<figure src="/images/netq/lcm-switch-config-manage-select-switches-filter-320.png" width="300">}}
+
+    The result is two switches. Note that only the switches that meet the criteria and have no switch configuration assigned are shown. In this example, there are two additional switches with the spine role, but they already have a switch configuration assigned to them. Click on the link above the list to view those switches.
+
+    Continue narrowing the list of switches until all or most of the switches are visible.
+
+6. Hover over the switches and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} or click **select all**.
+
+    {{<figure src="/images/netq/lcm-switch-config-manage-selected-switches-320.png" width="700">}}
+
+7. Click **Done**.
+
+8. To run the job to apply the configuration, you first have the option to change the hostnames of the selected switches.
+
+    Either change the hostnames and then click **Continue** or just click **Continue** without changing the hostnames.
+
+9. If you have additional switches that you want to assign a different switch configuration, follow Steps 3-7 for each switch configuration.
+
+    If you do this, multiple assignment configurations are listed in the bottom area of the page. They all become part of a single assignment job.
+
+10. When you have all the assignments configured, click **Start Assignment** to start the job.
+
+    {{<figure src="/images/netq/lcm-switch-config-manage-start-assign-320.png" width="700">}}
+
+11. Enter a name for the job (maximum of 22 characters including spaces), then click **Continue**.
+
+    {{<figure src="/images/netq/lcm-switch-config-manage-job-name-320.png" width="275">}}
+
+12. Watch the progress or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the switch configuration page where you can either create another configuration and apply it. If you are finished assigning switch configurations to switches, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/remove-circle.svg" height="18" width="18">}} to return to the lifecycle management dashboard.
+
+    The Config Assignment History card is updated to include the status of the job you just ran.
+
+#### Change the Configuration Assignment on a Switch
+
+You can change the switch configuration assignment at any time. For example you might have a switch that is starting to experience reduced performance, so you want to run What Just Happened on it to see if there is a particular problem area. You can reassign this switch to a new configuration with WJH enabled on the NetQ Agent while you test it. Then you can change it back to its original assignment.
+
+To change the configuration assignment on a switch:
+
+1. Locate the Switch Configurations card on the lifecycle management dashboard.
+
+2. Click **Manage**.
+
+    {{<figure src="/images/netq/lcm-switch-config-manage-320.png" width="700">}}
+
+3. Locate the configuration you want to assign. Scroll down or filter the listing to help find the configuration when there are multiple configurations.
+
+4. Click **Select switches** in the switch configuration summary.
+
+    {{<figure src="/images/netq/lcm-switch-config-manage-select-switches-320.png" width="700">}}
+
+5. Select the switches that you want to assign to the switch configuration.
+
+    Scroll down or use the **select all**, **clear**, filter , and **Search** options to help find the switch(es) of interest.
+
+6. Hover over the switches and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} or click **select all**.
+
+7. Click **Done**.
+
+8. Click **Start Assignment**.
+
+9. Watch the progress.
+
+    On completion, each switch shows the previous assignment and the newly applied configuration assignment.
+
+    {{<figure src="/images/netq/lcm-switch-config-manage-assign-changed-320.png" width="700">}}
+
+10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the switch configuration page where you can either create another configuration and apply it. If you are finished assigning switch configurations to switches, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/remove-circle.svg" height="18" width="18">}} to return to the lifecycle management dashboard.
+
+    The Config Assignment History card is updated to include the status of the job you just ran.
+
+<!-- #### Remove Assignment
+
+You can remove a switch configuration assignment on a switch at any time. 
+
+To remove an assignment:
+
+1. Locate the Switch Configurations card on the lifecycle management dashboard.
+
+2. Click **Manage**.
+
+3. Locate the configuration you want to assign. Scroll down or filter the listing to help find the configuration when there are multiple configurations.
+
+4. Click **Select switches** in the switch configuration summary.
+
+5.  -->
 
 ### View Switch Configuration History
 
+You can view a history of switch configuration assignments using the Config Assignment History card.
 
+To view a summary, locate the Config Assignment History card on the lifecycle management dashboard.
+
+{{<figure src="/images/netq/lcm-config-assign-history-card-320.png" width="200">}}
+
+To view details of the assignment jobs, click **View**.
+
+{{<figure src="/images/netq/lcm-config-assign-history-job-listing-320.png" width="700">}}
+
+Above the jobs, a number of filters are provided to help you find a particular job. To the right of those is a status summary of all jobs. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="14" width="14"/> in the job listing to see the details of that job. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the lifecycle management dashboard.

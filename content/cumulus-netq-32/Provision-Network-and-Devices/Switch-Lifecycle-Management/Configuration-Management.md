@@ -550,11 +550,11 @@ To remove a switch configuration:
 
     - If any switches are assigned to this configuration, an error message appears. Assign a different switch configuration to the relevant switches and repeat the removal steps.
 
-        {{<figure src="/images/netq/lcm-switch-config-del-config-error-320.png" width="400">}}
+        {{<figure src="/images/netq/lcm-switch-config-del-config-error-320.png" width="300">}}
 
     - Otherwise, confirm the removal by clicking **Yes**.
 
-        {{<figure src="/images/netq/lcm-switch-config-del-config-confirmation-320.png" width="400">}}
+        {{<figure src="/images/netq/lcm-switch-config-del-config-confirmation-320.png" width="300">}}
 
 ### Assign Existing Switch Configuration Profiles
 

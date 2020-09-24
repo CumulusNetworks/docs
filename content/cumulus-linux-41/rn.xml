@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31545</td>
+<td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
+To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
+</td>
+<td>3.7.10-3.7.13, 4.1.1-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31374</td>
 <td><p>CVE-2020-15166: ZeroMQ, a lightweight messaging kernel library<br/>
 does not properly handle connecting peers before a handshake is<br/>
@@ -65,6 +73,13 @@ CVE-2020-16287 CVE-2020-16288 CVE-2020-16289 CVE-2020-16290 CVE-2020-16291 CVE-2
 Vulnerable: &lt;= 9.27~dfsg-2+deb10u3<br/>
 Fixed: 9.27~dfsg-2+deb10u4</p></td>
 <td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31150</td>
+<td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1279,7 +1294,7 @@ To work around this issue, execute the vtysh -f &lt;file&gt; command in the auto
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<td><p>switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
 <ul>
 	<li>The default route is leaked from VRF1 to VRF2</li>
 	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
@@ -2308,6 +2323,13 @@ CVE-2020-16287 CVE-2020-16288 CVE-2020-16289 CVE-2020-16290 CVE-2020-16291 CVE-2
 Vulnerable: &lt;= 9.27~dfsg-2+deb10u3<br/>
 Fixed: 9.27~dfsg-2+deb10u4</p></td>
 <td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31150</td>
+<td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3399,7 +3421,7 @@ To work around this issue, execute the vtysh -f &lt;file&gt; command in the auto
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<td><p>switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
 <ul>
 	<li>The default route is leaked from VRF1 to VRF2</li>
 	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>

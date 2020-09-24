@@ -7,6 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31545</td>
+<td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
+To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
+</td>
+<td>3.7.10-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31504</td>
+<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
+To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -41,6 +56,12 @@ Fixed: 1.5.6-5+deb8u1</p></td>
 <td>CM-31420</td>
 <td><p>On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.</p></td>
 <td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31407</td>
+<td><p>You cannot configure SNMPv3 trap-destinations in non-default VRFs with an authentication username that contains fewer than eight characters.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -179,6 +200,13 @@ CVE-2019-20907: Opening a crafted tar file could result in an infinite loop due 
 Vulnerable: &lt;= 2.7.9-2-ds1+deb8u5<br/>
 Fixed: 2.7.9-2-ds1+deb8u6</p></td>
 <td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31150</td>
+<td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2310,7 +2338,7 @@ CVE-2020-1711: block: iscsi: OOB heap access via an unexpected response of iSCSI
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<td><p>switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
 <ul>
 	<li>The default route is leaked from VRF1 to VRF2</li>
 	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
@@ -2414,6 +2442,21 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31545</td>
+<td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
+To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
+</td>
+<td>3.7.10-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31504</td>
+<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
+To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -2442,6 +2485,12 @@ CVE-2019-20916: When an URL was given in an install command, as a Content-Dispos
 Vulnerable: &lt;= 1.5.6-5<br/>
 Fixed: 1.5.6-5+deb8u1</p></td>
 <td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31407</td>
+<td><p>You cannot configure SNMPv3 trap-destinations in non-default VRFs with an authentication username that contains fewer than eight characters.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2566,6 +2615,13 @@ CVE-2019-20907: Opening a crafted tar file could result in an infinite loop due 
 Vulnerable: &lt;= 2.7.9-2-ds1+deb8u5<br/>
 Fixed: 2.7.9-2-ds1+deb8u6</p></td>
 <td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31150</td>
+<td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -3725,7 +3781,7 @@ To work around this issue, execute the vtysh -f &lt;file&gt; command in the auto
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<td><p>switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
 <ul>
 	<li>The default route is leaked from VRF1 to VRF2</li>
 	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
@@ -5119,6 +5175,14 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31545</td>
+<td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
+To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
+</td>
+<td>3.7.10-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -6178,7 +6242,7 @@ To work around this issue, execute the vtysh -f &lt;file&gt; command in the auto
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<td><p>switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
 <ul>
 	<li>The default route is leaked from VRF1 to VRF2</li>
 	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
@@ -7998,6 +8062,14 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31545</td>
+<td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
+To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
+</td>
+<td>3.7.10-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -8827,7 +8899,7 @@ To work around this issue, power cycle the switch. A software reboot does not re
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<td><p>switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
 <ul>
 	<li>The default route is leaked from VRF1 to VRF2</li>
 	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>

@@ -1960,7 +1960,7 @@ The following example shows an EVPN symmetric routing configuration, where:
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
 - VRF BLUE and VRF RED are configured on the leafs for traffic flow between tenants for traffic isolation
 
-The following images shows traffic flow between tenants. The spines and other devices are omited in the images below for simplicity.
+The following images shows traffic flow between tenants. The spines and other devices are omited for simplicity.
 
 |   Traffic Flow between server01 and server04  |     |
 | --- | --- |

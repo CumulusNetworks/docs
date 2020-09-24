@@ -7,6 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31545</td>
+<td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
+To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
+</td>
+<td>3.7.10-3.7.13, 4.1.1-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31469</td>
+<td><p>When you delete a layer 2 VNI and VLAN, the layer 3 VNI reports an incorrect layer 2 VNI number.<br/>
+To work around this issue, either restart FRR or delete the VNI interface first, then delete the VLAN/SVI.</p></td>
+<td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31418</td>
 <td><p>The default NTP configuration is to use eth0 as the NTP source interfaces. In Cumulus Linux releases where eth0 is in the mgmt VRF by default, the ntp service automatically runs in the management VRF. <br/>
 It is not recommended to run NTP with a source interface other than eth0 as this can be a security vulnerability.<br/>
@@ -14,6 +29,12 @@ Changing the NTP source interface name with NCLU to a non-management VRF interfa
 might result in NTP not functioning since the ntp service is still running in the mgmt VRF.</p>
 </td>
 <td>4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31407</td>
+<td><p>You cannot configure SNMPv3 trap-destinations in non-default VRFs with an authentication username that contains fewer than eight characters.</p></td>
+<td>3.7.12-3.7.13, 4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -99,6 +120,13 @@ CVE-2020-16287 CVE-2020-16288 CVE-2020-16289 CVE-2020-16290 CVE-2020-16291 CVE-2
 Vulnerable: &lt;= 9.27~dfsg-2+deb10u3<br/>
 Fixed: 9.27~dfsg-2+deb10u4</p></td>
 <td>4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31150</td>
+<td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2122,7 +2150,7 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<td><p>switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
 <ul>
 	<li>The default route is leaked from VRF1 to VRF2</li>
 	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>

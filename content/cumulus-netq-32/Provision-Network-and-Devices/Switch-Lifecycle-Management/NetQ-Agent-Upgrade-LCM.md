@@ -12,7 +12,7 @@ The upgrade workflow includes the following steps:
 
 {{<notice info>}}
 
-Upgrades can be performed from NetQ Agents of 2.4.x, 3.0.0, and 3.1.0 releases to the NetQ 3.2.0 release. <em>Lifecycle management does not support upgrades from NetQ 2.3.1 or earlier releases; you must perform a new installation in these cases.</em> Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}}.
+Upgrades can be performed from NetQ Agents of 2.4.x, 3.0.0, and 3.1.0 releases to the NetQ 3.2.0 release. <em>Lifecycle management does not support upgrades from NetQ 2.3.1 or earlier releases; you must perform a new installation in these cases.</em> Refer to {{<link title="Install NetQ Agents">}}.
 
 {{</notice>}}
 
@@ -192,7 +192,7 @@ This example shows that all four of the selected switches were upgraded successf
 
 ### Sample Failed NetQ Agent Upgrade
 
-This example shows that an error has occurred trying to upgrade two of the four switches in a job. The error indicates that the access permissions for the switches are invalid. In this case, you need to modify the {{<link url="Switch-Management/#modify-switch-credentials" text="switch access credentials">}} and then create a new upgrade job.
+This example shows that an error has occurred trying to upgrade two of the four switches in a job. The error indicates that the access permissions for the switches are invalid. In this case, you need to modify the {{<link title="Manage Switch Inventory and Roles/#modify-switch-credentials" text="switch access credentials">}} and then create a new upgrade job.
 
 {{<figure src="/images/netq/lcm-netq-upgrade-example-failure-310.png" width="700">}}
 

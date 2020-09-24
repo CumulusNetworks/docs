@@ -45,7 +45,7 @@ You can upgrade Cumulus Linux on switches that already have a NetQ Agent (versio
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches) in any workbench header, then click **Manage switches**.
 
-2. Upload the Cumulus Linux {{<link title="Manage Cumulus Linux and NetQ Images/#Upload Upgrade Images" text="upgrade images">}}.
+2. Upload the Cumulus Linux {{<link title="Manage Cumulus Linux and NetQ Images/#upload-upgrade-images" text="upgrade images">}}.
 
 3. Optionally, specify a {{<link title="Manage Cumulus Linux and NetQ Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
@@ -638,7 +638,7 @@ Click **Remove** if you decide to use a different file or want to use IP address
 
     {{< /tabs >}}
 
-5. Note that the switch access credentials defined in {{<link url="Credentials-Management" text="Credentials Management">}} are used to access these switches. If you have issues accessing the switches, you may need to update your credentials.
+5. Note that the switch access credentials defined in {{<link title="Manage Switch Credentials">}} are used to access these switches. If you have issues accessing the switches, you may need to update your credentials.
 
 6. Click **Next**.
 

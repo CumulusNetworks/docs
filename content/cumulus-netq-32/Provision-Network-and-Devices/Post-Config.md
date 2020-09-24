@@ -55,7 +55,7 @@ Adding additional worker nodes increases availability, but does not increase sca
 
 To add more worker nodes:
 
-1. Prepare the nodes. Refer to the relevant server cluster instructions in {{<link title="Install NetQ System Platform" text="Install NetQ System Platform">}}.
+1. Prepare the nodes. Refer to the relevant server cluster instructions in {{<link title="Install the NetQ System">}}.
 
 2. Open the Admin UI by entering *https://\<master-hostname-or-ipaddress\>:8443* in your browser address field.
 

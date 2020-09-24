@@ -324,7 +324,11 @@ To create a profile:
 
 6. Optionally enable WJH.
 
+<<<<<<< HEAD
+    Refer to {{<link title="Configure and Monitor What Just Happened Metrics/#view-what-just-happened-metrics" text="WJH">}} for information about this feature. *WJH is only available on Mellanox switches.*
+=======
     Refer to {{<link title="Configure and Monitor What Just Happened Metrics/#view-what-just-happened" text="WJH">}} for information about this feature. *WJH is only available on Mellanox switches.*
+>>>>>>> nq320-lcm
 
 7. To set a logging level, click **Advanced**, then choose the desired level.
 

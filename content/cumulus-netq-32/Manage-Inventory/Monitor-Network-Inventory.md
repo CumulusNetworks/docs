@@ -17,8 +17,6 @@ The commands and cards available to obtain this type of information help you to 
 
 To monitor the inventory of a given switch, refer to {{<link title="Monitor Switch Inventory">}}.
 
-To view the network or device performance data, refer to {{<link title="Monitor Network and Device Performance">}}.
-
 ## Access Networkwide Inventory Data
 
 The Cumulus NetQ UI provides the Inventory|Devices card for monitoring network-wide inventory information for all switches and hosts. The Inventory|Switches card provides a more detailed view of inventory information for all switches (no hosts) on a network-wide basis.
@@ -2480,7 +2478,7 @@ This example shows the status of the BGP daemon.
 ### View Events Related to a Given Service
 
 To view changes over a given time period, use the `netq show events`
-command. For more detailed information about events, refer to {{<link url="Monitor-Events">}}.
+command. For more detailed information about events, refer to {{<link title="Manage Events and Notifications">}}.
 
 In this example, we want to view changes to the bgpd service in the last
 48 hours.

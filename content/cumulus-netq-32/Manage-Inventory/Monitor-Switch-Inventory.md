@@ -14,9 +14,7 @@ The commands and cards available to obtain this type of information help you to 
 - What software is installed on my switch?
 - What is the ACL and forwarding resources usage?
 
-To monitor network-wide inventory, refer to {{<link title="Monitor Network Inventory">}}.
-
-To view the network or device performance data, refer to {{<link title="Monitor Network and Device Performance">}}.
+To monitor network-wide inventory, refer to {{<link title="Monitor Networkwide Inventory">}}.
 
 ## Access Switch Inventory Data
 
@@ -974,7 +972,7 @@ This example shows the status of the BGP daemon.
 
 ### View Events Related to a Given Service
 
-To view changes over a given time period, use the `netq show events` command. For more detailed information about events, refer to {{<link url="Monitor-Events">}}.
+To view changes over a given time period, use the `netq show events` command. For more detailed information about events, refer to {{<link title="Manage Events and Notifications">}}.
 
 In this example, we want to view changes to the bgpd service in the last 48 hours.
 

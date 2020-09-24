@@ -438,7 +438,7 @@ The medium Validation Result card displays:
 </tr>
 <tr class="odd">
 <td>Open &lt;Service&gt;  Card</td>
-<td>Click to open the corresponding medium Network Services card, where available. Refer to {{<link title="Monitor Network Performance">}} for details about these cards and workflows.</td>
+<td>Click to open the corresponding medium Network Services card, where available.</td>
 </tr>
 </tbody>
 </table>
@@ -509,7 +509,7 @@ The *Summary* tab displays:
 </tr>
 <tr class="odd">
 <td>Open &lt;Service&gt; Card</td>
-<td>Click to open the corresponding medium Network Services card, when available. Refer to {{<link title="Monitor Network Performance">}} for details about these cards and workflows.</td>
+<td>Click to open the corresponding medium Network Services card, when available.</td>
 </tr>
 <tr class="even">
 <td>Table/Filter options</td>
@@ -777,7 +777,7 @@ The medium Scheduled Validation Result card displays:
 </tr>
 <tr class="even">
 <td>Open &lt;Service&gt; Card</td>
-<td>Click to open the corresponding medium Network Services card, when available. Refer to {{<link title="Monitor Network Performance">}} for details about these cards and workflows.</td>
+<td>Click to open the corresponding medium Network Services card, when available.</td>
 </tr>
 </tbody>
 </table>
@@ -831,7 +831,7 @@ The large Scheduled Validation Result card contains two tabs.
 </tr>
 <tr class="odd">
 <td>Open &lt;Service&gt; Card</td>
-<td>Click to open the corresponding medium Network Services card, when available. Refer to {{<link title="Monitor Network Performance">}} for details about these cards and workflows.</td>
+<td>Click to open the corresponding medium Network Services card, when available.</td>
 </tr>
 <tr class="even">
 <td>Table/Filter options</td>

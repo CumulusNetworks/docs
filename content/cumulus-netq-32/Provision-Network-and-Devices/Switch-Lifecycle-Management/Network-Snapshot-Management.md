@@ -4,11 +4,7 @@ author: Cumulus Networks
 weight: 690
 toc: 4
 ---
-Creating and comparing network snapshots can be used at various times; typically when you are upgrading or changing the configuration of your switches in some way. The instructions here describe how to create and compare network snapshots at any time using the NetQ UI.
-
-The NetQ CLI can only create network snapshots during a Cumulus Linux upgrade. The results are only visible from the NetQ UI.
-
-Refer to {{<link title="#Image Installation and Upgrade" text="Image Installation and Upgrade">}} to see how snapshots are automatically created during upgrades to validate that the network state has not changed unexpectedly after an upgrade.
+Creating and comparing network snapshots can be useful to validate that the network state has not changed. Snapshots are typically created when you upgrade or change the configuration of your switches in some way.  This section describes the Snapshot card and content, as well as how to create and compare network snapshots at any time. Snapshots can be automatically created during the upgrade process for Cumulus Linux. Refer to {{<link title="Upgrade Cumulus Linux Using LCM#perform-a-cumulus-linux-upgrade" text="Perform a Cumulus Linux Upgrade">}}.
 
 ## Create a Network Snapshot
 
@@ -18,15 +14,40 @@ To create a snapshot:
 
 1. From any workbench in the NetQ UI, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
 
+    {{<figure src="/images/netq/snapshot-choose-action-modal-320.png" width="400">}}
+
 2. Click **Create Snapshot**.
 
 3. Enter a name for the snapshot.
 
-    {{<figure src="/images/netq/snapshot-create-snap-modal-ex-300.png" width="450">}}
+    {{<figure src="/images/netq/snapshot-create-snap-modal-320.png" width="400">}}
 
-4. Accept the time provided or enter a previous date and time.
+4. Choose the time for the snapshot:
 
-5. Optionally, add a descriptive note for the snapshot.
+    - For the current network state, click **Now**.
+
+        {{<figure src="/images/netq/snapshot-create-snap-dialog-now-310.png" width="400">}}
+
+    - For the network state at a previous date and time, click **Past**, then click in **Start Time** field to use the calendar to step through selection of the date and time. You may need to scroll down to see the entire calendar.
+
+        {{<figure src="/images/netq/snapshot-create-snap-dialog-past-310.png" width="400">}}
+
+5. Choose the services to include in the snapshot.
+
+    In the **Choose options** field, click any service name to remove that service from the snapshot. This would be appropriate if you do not support a particular service, or you are concerned that including that service might cause the snapshot to take an excessive amount of time to complete if included. The checkmark next to the service and the service itself is grayed out when the service is removed. Click any service again to re-include the service in the snapshot. The checkmark is highlighted in green next to the service name and is no longer grayed out.
+
+    {{<notice note>}}
+The Node and Services options are mandatory, and cannot be selected or unselected.
+    {{</notice>}}
+    {{<notice info>}}
+If you remove services, be aware that snapshots taken in the past or future may not be equivalent when performing a network state comparison.
+    {{</notice>}}
+
+    This example removes the OSPF and Route services from the snapshot being created.
+
+    {{<figure src="/images/netq/snapshot-create-snap-dialog-svcs-removed-310.png" width="400">}}
+
+6. Optionally, scroll down and click in the **Notes** field to add descriptive text for the snapshot to remind you of its purpose. For example: "This was taken before adding MLAG pairs," or "Taken after removing the leaf36 switch."
 
 6. Click **Finish**.
 
@@ -38,9 +59,11 @@ To create a snapshot:
 If you have already created other snapshots, <strong>Compare</strong> is active. Otherwise it is inactive (grayed-out).
     {{</notice>}}
 
+7. When you are finished viewing the snapshot, click **Dismiss** to close the snapshot. The snapshot is not deleted, merely removed from the workbench.
+
 ## Compare Network Snapshots
 
-You can compare the state of your network before and after an upgrade or other configuration change to validate the changes.
+You can compare the state of your network before and after an upgrade or other configuration change to validate that the changes have not created an unwanted change in your network state.
 
 To compare network snapshots:
 
@@ -50,36 +73,55 @@ To compare network snapshots:
 
 3. Create a second snapshot.
 
-4. Compare the results of the two snapshots. Depending on what, if any, cards are open on your workbench:
+4. Compare the results of the two snapshots.
 
-    - If you have the two desired snapshot cards open:
-        - Simply put them next to each other to view a high-level comparison.
-        - Scroll down to see all of the items.
-        - To view a more detailed comparison, click **Compare** on one of the cards. Select the other snapshot from the list.
+    Depending on what, if any, cards are open on your workbench:
 
-        {{<figure src="/images/netq/snapshot-compare-snap-results-300.png" width="425">}}
+{{< tabs "TabID80" >}}
 
-    - If you have only one of the cards open:
-        - Click **Compare** on the open card.
-        - Select the other snapshot to compare.
+{{< tab "Two snapshots open" >}}
 
-        {{<figure src="/images/netq/snapshot-compare-select-fr-open-card-300.png" width="250">}}
+1. Put the cards next to each other to view a high-level comparison. Scroll down to see all of the items.
 
-    - If no snapshot cards are open (you may have created them some time before):
-        - Click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}}.
-        - Click **Compare Snapshots**.
-        - Click on the two snapshots you want to compare.
-        - Click **Finish**. Note that two snapshots must be selected before **Finish** is active.
+2. To view a more detailed comparison, click **Compare** on one of the cards. Select the other snapshot from the list.
 
-        {{<figure src="/images/netq/snapshot-compare-selection-modal-300.png" width="500">}}
+    {{<figure src="/images/netq/snapshot-compare-snap-results-300.png" width="425">}}
 
-    In the latter two cases, the large Snapshot card opens. The only difference is in the card title. If you opened the comparison card from a snapshot on your workbench, the title includes the name of that card. If you open the comparison card through the Snapshot menu, the title is generic, indicating a comparison only. Functionally, you have reached the same point.
+{{< /tab >}}
 
-    {{<figure src="/images/netq/snapshot-large-compare-titles-230.png" width="200">}}
+{{< tab "One snapshot open" >}}
 
-    {{<figure src="/images/netq/snapshot-large-compare-from-modal-300.png" width="500">}}
+1. Click **Compare** on the open card.
 
-    Scroll down to view all element comparisons.
+2. Select the other snapshot to compare.
+
+    {{<figure src="/images/netq/snapshot-compare-select-fr-open-card-300.png" width="250">}}
+
+{{< /tab >}}
+
+{{< tab "No snapshots open" >}}
+
+1. Click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}}.
+
+2. Click **Compare Snapshots**.
+
+3. Click on the two snapshots you want to compare.
+
+4. Click **Finish**. Note that two snapshots must be selected before **Finish** is active.
+
+    {{<figure src="/images/netq/snapshot-compare-selection-modal-300.png" width="500">}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+In the latter two cases, the large Snapshot card opens. The only difference is in the card title. If you opened the comparison card from a snapshot on your workbench, the title includes the name of that card. If you open the comparison card through the Snapshot menu, the title is generic, indicating a comparison only. Functionally, you have reached the same point.
+
+{{<figure src="/images/netq/snapshot-large-compare-titles-230.png" width="200">}}
+
+{{<figure src="/images/netq/snapshot-large-compare-from-modal-300.png" width="500">}}
+
+Scroll down to view all element comparisons.
 
 ### Interpreting the Comparison Data
 

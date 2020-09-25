@@ -16,7 +16,7 @@ EVPN-MH uses BGP-EVPN type-1, type-2 and type-4 routes for discovering Ethernet 
 
 Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es-sys-mac`) and a local Ethernet segment ID (`local-es-id`) on a static or LACP bond. The `es-sys-mac` and `local-es-id` are used to build a type-3 `es-id`. This `es-id` must be globally unique across all the EVPN VTEPs. The same `es-sys-mac` can be configured on multiple interfaces.
 
-{{%notice note%}}
+{{%notice info%}}
 
 When using Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group.
 
@@ -46,7 +46,7 @@ In order to use EVPN-MH, you must remove any MLAG configuration on the switch. T
 
 ## Configure EVPN-MH
 
-To configure EVPN-MH, first you need to enable the `evpn.multihoming.enable` variable in `switchd`. Then you need to specify the following required settings:
+To configure EVPN-MH, first you need to enable the `evpn.multihoming.enable` variable in `switchd.conf`. Then you need to specify the following required settings:
 
 - The Ethernet segment ID (`es-id`)
 - The Ethernet segment system MAC address (`es-sys-mac`)
@@ -431,9 +431,11 @@ Fast failover is also triggered by:
 - Rebooting a leaf switch or VTEP.
 - Uplink failure. When all uplinks are down, the Ethernet segment bonds on the switch are protodowned or error disabled.
 
-### Disable Next Hop Groups
+### Disable Next Hop Group Sharing in the ASIC
 
 Container sharing for both layer 2 and layer 3 next hop groups is enabled by default when EVPN-MH is configured. These settings are stored in the `evpn.multihoming.shared_l2_groups` and `evpn.multihoming.shared_l3_groups` variables.
+
+Disabling container sharing allows for faster failover when an Ethernet segment link flaps.
 
 To disable either setting, edit `switchd.conf`, set the variable to _FALSE_, then restart the `switchd` service. For example, to disable container sharing for layer 3 next hop groups, do the following:
 
@@ -447,6 +449,25 @@ evpn.multihoming.shared_l3_groups = FALSE
 
 cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
+
+### Disable EAD-per-EVI Route Advertisements
+
+{{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} requires type-1/EAD (Ethernet Auto-discovery) routes to be advertised two ways:
+
+- As EAD-per-ES (Ethernet Auto-discovery per Ethernet segment) routes
+- As EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes
+
+Some third party switch vendors don't advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
+
+To remove the dependency on EAD-per-EVI routes and activate the PE upon receiving the EAD-per-ES route, run:
+
+    cumulus@switch:~$ net add bgp l2vpn evpn disable-ead-evi-rx
+    cumulus@switch:~$ net commit
+
+To suppress the advertisement of EAD-per-EVI routes, run:
+
+    cumulus@switch:~$ net add bgp l2vpn evpn disable-ead-evi-tx
+    cumulus@switch:~$ net commit
 
 ## Troubleshooting
 

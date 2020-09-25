@@ -62,17 +62,17 @@ The BGP path selection algorithm looks at multiple factors to determine exactly 
 
 The order of the BGP algorithm process is as follows:
 
-- **Highest Weight**: Weight is a value from 0 to 65535. Weight is not carried in a BGP update but is used locally to influence the best path selection. Locally generated routes will have a weight of 32768.
+- **Highest Weight**: Weight is a value from 0 to 65535. Weight is not carried in a BGP update but is used locally to influence the best path selection. Locally generated routes have a weight of 32768.
 
-- **Highest Local Preference**: Local Preference is exchanged between iBGP neighbors only. Routes received from eBGP peers will be assigned a Local Preference of 0. Whereas weight is used to make route selections without sending additional information to peers, Local Preference can be used to influence routing to iBGP peers.
+- **Highest Local Preference**: Local Preference is exchanged between iBGP neighbors only. Routes received from eBGP peers are assigned a Local Preference of 0. Whereas weight is used to make route selections without sending additional information to peers, Local Preference can be used to influence routing to iBGP peers.
 
-- **Locally Originated Routes**: Any route that we are responsible for placing into BGP will be selected as best. This includes static routes, aggregate routes and redistributed routes.
+- **Locally Originated Routes**: Any route that we are responsible for placing into BGP is selected as best. This includes static routes, aggregate routes and redistributed routes.
 
-- **Shortest AS Path**: The path received with the fewest number of ASN hops will be selected.
+- **Shortest AS Path**: The path received with the fewest number of ASN hops is selected.
 
 - **Origin Check**: Prefer routes with an IGP origin (those routes placed into BGP with a `network` statement) over Incomplete origins (routes places into BGP through redistribution). The EGP origin attribute is no longer used.
 
-- **Lowest MED**: The Multi-Exit Discriminator or MED is sent to eBGP peers to indicate a preference on how traffic should enter an AS. A MED received from an eBGP peer will be exchanged with iBGP peers but will be reset to a value of 0 before advertising a prefix to another AS. 
+- **Lowest MED**: The Multi-Exit Discriminator or MED is sent to eBGP peers to indicate a preference on how traffic enters an AS. A MED received from an eBGP peer is exchanged with iBGP peers but is reset to a value of 0 before advertising a prefix to another AS.
 
 - **eBGP Routes**: A route received from an eBGP peer is prefered over a route learned from an iBGP peer.
 
@@ -82,13 +82,13 @@ The order of the BGP algorithm process is as follows:
 
 - **Oldest Route**: Prefer the oldest route in the BGP table.
 
-- **Lowest RouterID**: Prefer the route received from the peer with the lowest Router ID attribute. If the route was received from a route reflector, the `ORIGINATOR_ID` attribute will be used to compare.
+- **Lowest RouterID**: Prefer the route received from the peer with the lowest Router ID attribute. If the route is received from a route reflector, the `ORIGINATOR_ID` attribute is used to compare.
 
 - **Shortest Route Reflector Cluster List**: If a route has passed through multiple route reflectors, prefer the route with the shortested route reflector cluster list.
 
-- **Highest Peer IP Address**: Prefer the route received from the peer with the highest IP address. 
+- **Highest Peer IP Address**: Prefer the route received from the peer with the highest IP address.
 
-Cumulus Linux provides the reason it is selecting one path over another in output of the NCLU `net show bgp` and vtysh `show ip bgp` commands for a specific prefix.
+Cumulus Linux provides the reason it is selecting one path over another in NCLU `net show bgp` and vtysh `show ip bgp` command output for a specific prefix.
 
 When BGP multipath is in use, if multiple paths are equal, BGP still selects a single best path to advertise to peers. This path is indicated as best with the reason, although multiple paths might be installed into the routing table.
 
@@ -128,45 +128,45 @@ The following procedure provides example commands:
       cumulus@switch:~$ net add bgp auto spine
       ```
 
-    The auto BGP leaf and spine keywords are only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
+      The auto BGP leaf and spine keywords are only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
 
 2. Assign the router ID:
 
     ```
-    cumulus@switch:~$ net add bgp router-id 0.0.0.1
+    cumulus@switch:~$ net add bgp router-id 10.10.10.1
     ```
 
 3. Specify where to disseminate routing information:
 
     ```
-    cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as external
+    cumulus@switch:~$ net add bgp neighbor 10.10.10.2 remote-as external
     cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
     ```
 
     For an iBGP session, the `remote-as` is the same as the local AS:
 
     ```
-    cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as internal
+    cumulus@switch:~$ net add bgp neighbor 10.10.10.2 remote-as internal
     cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as internal
     ```
 
     Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
     ```
-    cumulus@switch:~$ net add bgp ipv4 unicast neighbor 10.0.0.2
+    cumulus@switch:~$ net add bgp ipv4 unicast neighbor 10.10.10.2
     cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
     ```
 
 4. Specify BGP session properties:
 
     ```
-    cumulus@switch:~$ net add bgp neighbor 10.0.0.2 next-hop-self
+    cumulus@switch:~$ net add bgp neighbor 10.10.10.2 next-hop-self
     ```
 
     If this is a route reflector client, it can be specified as follows:
 
     ```
-    cumulus@switchRR:~$ net add bgp neighbor 10.0.0.1 route-reflector-client
+    cumulus@switchRR:~$ net add bgp neighbor 10.10.10.1 route-reflector-client
     ```
 
     {{%notice note%}}
@@ -197,20 +197,20 @@ When configuring a router to be a route reflector client, you must specify the c
 
     switch# configure terminal
     switch(config)# router bgp 65000
-    switch(config-router)# bgp router-id 0.0.0.1
+    switch(config-router)# bgp router-id 10.10.10.1
     ```
 
 3. Specify where to disseminate routing information:
 
     ```
-    switch(config-router)# neighbor 10.0.0.2 remote-as external
+    switch(config-router)# neighbor 10.10.10.2 remote-as external
     switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
     ```
 
     For an iBGP session, the `remote-as` is the same as the local AS:
 
     ```
-    switch(config-router)# neighbor 10.0.0.2 remote-as internal
+    switch(config-router)# neighbor 10.10.10.2 remote-as internal
     switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as internal
     ```
 
@@ -218,7 +218,7 @@ When configuring a router to be a route reflector client, you must specify the c
 
     ```
     switch(config-router)# address-family ipv4 unicast
-    switch(config-router-af)# neighbor 10.0.0.2
+    switch(config-router-af)# neighbor 10.10.10.2
     switch(config-router-af)# exit
     switch(config-router)# address-family ipv6
     switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
@@ -230,13 +230,13 @@ When configuring a router to be a route reflector client, you must specify the c
     ```
     switch(config-router)#
 
-    switch(config-router-af)# neighbor 10.0.0.2 next-hop-self
+    switch(config-router-af)# neighbor 10.10.10.2 next-hop-self
     ```
 
     If this is a route reflector client, it can be specified as follows:
 
     ```
-    switchRR(config-router-af)# neighbor 10.0.0.1 route-reflector-client
+    switchRR(config-router-af)# neighbor 10.10.10.2 route-reflector-client
     ```
 
     {{%notice note%}}
@@ -267,13 +267,13 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ```
 ...
 router bgp 65000
-  bgp router-id 0.0.0.1
-  neighbor 10.0.0.2 remote-as external
+  bgp router-id 10.10.10.1
+  neighbor 10.10.10.2 remote-as external
   !
   address-family ipv4 unicast
   network 192.0.2.0/24
   network 203.0.113.1/24
-  neighbor 10.0.0.2 next-hop-self
+  neighbor 10.10.10.2 next-hop-self
   exit-address-family
 ...
 ```
@@ -537,7 +537,7 @@ cumulus@switch:~$ net add bgp neighbor swp1 interface peer-group group1
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 switch(config-router)# neighbor swp1 interface peer-group group1

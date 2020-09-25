@@ -6,7 +6,7 @@ toc: 4
 ---
 With NetQ, you can monitor the hardware and software components installed and running on the switches and hosts across the entire network at once. This is extremely useful for understanding the dependence on various vendors and versions, when planning upgrades or the scope of any other required changes.
 
-You can still monitor the components on a per-switch basis when needed. Refer to {{<link title="Monitor Switch Inventory">}}.
+You can still monitor the components on a per-switch basis when needed. Refer to {{<link title="Monitor Switches">}}.
 
 Refer to {{<link title="Monitor Devices">}} for related CLI commands and UI cards used in the tasks in this topic.
 

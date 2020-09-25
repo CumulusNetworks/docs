@@ -1452,7 +1452,7 @@ AGENT NOTIFIER COMMANDS
    netq config (start|stop|status|restart) agent
    netq config add agent loglevel [debug|info|warning|error]
    netq config del agent loglevel
-   netq config show agent [kubernetes-monitor|docker-monitor|loglevel|stats|sensors] [json]
+   netq config show agent [kubernetes-monitor|loglevel|stats|sensors|frr-monitor|wjh|wjh-threshold|cpu-limit] [json]
 netq config add agent docker-monitor [poll-period <text-duration-period>]
 netq config del agent docker-monitor
 netq config ts add notifier slack <text-notifier-name> webhook <text-webhook-url> [severity info | severity warning | severity error | severity debug | severity info] [tag <text-slack-tag>]

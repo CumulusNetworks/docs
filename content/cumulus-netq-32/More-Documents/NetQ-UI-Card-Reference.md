@@ -1508,7 +1508,7 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="odd">
 <td>What Just Happened</td>
-<td>Displays displays events based on conditions detected in the data plane on the switch. Refer to {{<link url="Monitor-Network-Elements#view-what-just-happened" text="What Just Happened" >}} for descriptions of the fields in this table.</td>
+<td>Displays displays events based on conditions detected in the data plane on the switch. Refer to {{<link title="Configure and Monitor What Just Happened Metrics/#view-what-just-happened-metrics" text="What Just Happened" >}} for descriptions of the fields in this table.</td>
 </tr>
 <tr class="even">
 <td>Sensors</td>

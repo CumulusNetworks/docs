@@ -585,7 +585,7 @@ You can preview the impact on the service availabilty based on the loss of parti
 
 ## View Kubernetes Cluster Configuration in the Past
 
-You can use the {{<link url="Investigate-NetQ-Issues/#use-netq-as-a-time-machine" text="\"time machine\" features">}} of NetQ on a Kubernetes cluster, using the `around` option to go back in time to check the network status and identify any changes that occurred on the network.
+You can use the `around` option to go back in time to check the network status and identify any changes that occurred on the network.
 
 This example shows the current state of the network. Notice there is a node named *server23*. server23 is there because the node *server22* went down and Kubernetes spun up a third replica on a different host to satisfy the deployment requirement.
 

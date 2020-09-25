@@ -380,7 +380,7 @@ When a rule is filtered by more than one parameter, each is displayed on the car
 
 ### Specify Notification Channels
 
-The notification channel specified by a TCA rule tells NetQ where to send the notification message. Refer to {{<link title="Manage Notification Channels">}}.
+The notification channel specified by a TCA rule tells NetQ where to send the notification message. Refer to {{<link title="Configure Notifications/#create-a-channel" text="Create a Channel">}}.
 
 ### Create a TCA Rule
 

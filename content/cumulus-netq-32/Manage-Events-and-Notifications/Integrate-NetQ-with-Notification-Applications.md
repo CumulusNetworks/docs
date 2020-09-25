@@ -34,9 +34,9 @@ Notifications are generated for the following types of events:
 
 Event filters are based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold.
 
-Refer to the {{<link title="Events Reference">}} for descriptions and examples of these events.
+Refer to the {{<link title="System Event Messages Reference">}} for descriptions and examples of these events.
 
-### Event Message Format
+## Event Message Format
 
 Messages have the following structure:
 `<message-type><timestamp><opid><hostname><severity><message>`
@@ -433,7 +433,7 @@ netq add notification rule <text-rule-name> key <text-rule-key> value <text-rule
 netq show notification rule [json]
 ```
 
-Refer to {{<link title="Create Rules">}} for a list of available keys and values.
+Refer to {{<link title="#create-rules">}} for a list of available keys and values.
 
 This example creates a rule named *all-interfaces*, using the key *ifname* and the value *ALL* to indicate that all events from all interfaces should be sent to any channel with this rule.
 
@@ -448,7 +448,7 @@ Name            Rule Key         Rule Value
 all-interfaces  ifname           ALL
 ```
 
-Refer to {{<link title="Configure Threshold-based Event Notifications" text="Advanced Configuration">}} to create rules based on thresholds.
+Refer to {{<link title="#Configure Threshold-based Event Notifications" text="Advanced Configuration">}} to create rules based on thresholds.
 
 ### Create a Filter
 
@@ -461,7 +461,7 @@ netq add notification filter <text-filter-name> rule <text-rule-name-anchor> cha
 netq show notification filter [json]
 ```
 
-These examples use the channels created in the {{<link title="Create a Channel">}} topic and the rule created in the {{<link title="Create a Rule">}} topic.
+These examples use the channels created in the {{<link title="#Create a Channel">}} topic and the rule created in the {{<link title="#Create a Rule">}} topic.
 
 {{< tabs "TabID466" >}}
 
@@ -529,7 +529,7 @@ notify-all-ifs  1          info             onprem-email all-ifs
 
 NetQ is now configured to send all interface events to your selected channel.
 
-Refer to {{<link title="Configure Threshold-based Event Notifications" text="Advanced Configuration">}} to create filters for threshold-based events.
+Refer to {{<link title="#Configure Threshold-based Event Notifications" text="Advanced Configuration">}} to create filters for threshold-based events.
 
 ## Configure Advanced NetQ Event Notifications
 
@@ -1901,7 +1901,7 @@ For example:
 
 You might need to modify event notification configurations at some point in the lifecycle of your deployment. You can add and remove channels, rules, filters, and a proxy at any time.
 
-For integrations with threshold-based event notifications, refer to {{<link title="Manage Threshold-based Event Notifications">}}.
+For integrations with threshold-based event notifications, refer to {{<link title="#Manage Threshold-based Event Notifications">}}.
 
 ### Remove an Event Notification Channel
 

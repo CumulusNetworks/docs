@@ -250,6 +250,8 @@ Resilient hashing behaves slightly differently depending upon whether you are ru
 - Resilient hashing prevents disruptions when next hops are removed. It does not prevent disruption when next hops are added.
 - Resilient hashing is supported only on switches with the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Broadcom Tomahawk, Trident II, Trident II+, and Trident3 as well as Mellanox Spectrum">}} chipsets. You can run `net show system` to determine the chipset.
 
+### Resilient Hashing on Broadcom Switches
+
 - When a next hop is removed, the assigned buckets are distributed to the remaining next hops.
 - When a next hop is added, **some** buckets assigned to other next hops are migrated to the new next hop.
 - The algorithm assigns buckets to next hops so as to make the number of buckets per next hop as close to equal as possible.

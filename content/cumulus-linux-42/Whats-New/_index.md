@@ -21,7 +21,7 @@ Cumulus Linux 4.2.1 provides bug fixes and contains feature enhancements.
 
 ### Enhancements
 
-- The Mellanox SN3700 Spectrum-2 switch now supports 200G (up to 100G was supported previously)
+- The Mellanox SN3700 Spectrum-2 switch now supports 200G (100G was supported previously)
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming">}} is now generally available on Mellanox switches
 - {{<link url="Virtual-Routing-and-Forwarding-VRF/#vrf-route-leaking" text="Inter-VRF route leaking">}} is now ASIC accelerated by default
 

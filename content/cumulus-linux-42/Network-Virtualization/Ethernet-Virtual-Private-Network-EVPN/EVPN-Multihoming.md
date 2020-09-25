@@ -459,7 +459,7 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 
 Some third party switch vendors don't advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
 
-To remove the dependency on EAD-per-EVI routes and activate the PE upon receiving the EAD-per-ES route, run:
+To remove the dependency on EAD-per-EVI routes and activate the VTEP upon receiving the EAD-per-ES route, run:
 
     cumulus@switch:~$ net add bgp l2vpn evpn disable-ead-evi-rx
     cumulus@switch:~$ net commit

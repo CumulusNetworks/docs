@@ -12,12 +12,11 @@ This document supports the Cumulus Linux 4.2 release, and lists new platforms an
 
 ## What's New in Cumulus Linux 4.2.1
 
-Cumulus Linux 4.2.1 provides bug fixes and contains feature enhancements.
-<!-- Cumulus Linux 4.2.1 supports new platforms, provides bug fixes, and contains certain enhancements.
+Cumulus Linux 4.2.1 supports new platforms, provides bug fixes, and contains certain enhancements.
 
 ### New Platforms
 
-- Mellanox SN4700 (Spectrum-3) -->
+- Mellanox SN4700 (Spectrum-3)
 
 ### Enhancements
 

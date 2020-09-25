@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 810
 toc: 3
 ---
-BGP is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. Specifically, BGP:
+BGP is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. BGP:
 
 - Does not require the routing state to be periodically refreshed, unlike OSPF.
 - Is less chatty than its link-state siblings. For example, a link or node transition can result in a bestpath change, causing BGP to send updates.
@@ -12,9 +12,11 @@ BGP is the routing protocol that runs the Internet. It is an increasingly popula
 - Has many robust vendor implementations.
 - Is very mature as a protocol and comes with many years of operational experience.
 
-{{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center.
+## How does BGP Work?
 
-## Autonomous System Number (ASN)
+Intro
+
+### Autonomous System
 
 An {{<exlink url="https://en.wikipedia.org/wiki/Autonomous_System_%28Internet%29" text="autonomous system">}} is defined as a set of routers under a common administration. Because BGP was originally designed to peer between independently managed enterprises and/or service providers, each such enterprise is treated as an autonomous system, responsible for a set of network addresses. Each such autonomous system is given a unique number called an *autonomous* *system number* (ASN). ASNs are handed out by a central authority (ICANN); however, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or using the single ASN you own.
 
@@ -28,7 +30,7 @@ In a VRF-lite deployment (where multiple independent routing tables working simu
 
 {{%/notice%}}
 
-## Auto BGP
+### Auto BGP
 
 In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit ASN numbers automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and path hunting, which occurs when you assign the wrong spine ASNs. Auto BGP makes no changes to standard BGP behavior or configuration.
 
@@ -44,7 +46,7 @@ Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294.
 
 {{%/notice%}}
 
-## eBGP and iBGP
+### eBGP and iBGP
 
 When BGP is used to peer between autonomous systems, the peering is referred to as *external BGP* or eBGP. When BGP is used within an autonomous system, the peering used is referred to as *internal BGP* or iBGP. eBGP peers have different ASNs while iBGP peers have the same ASN.
 
@@ -52,7 +54,7 @@ The heart of the protocol is the same when used as eBGP or iBGP but there is a k
 
 All iBGP speakers need to be peered with each other in a full mesh. In a large network, this requirement can quickly become unscalable. The most popular method to scale iBGP networks is to introduce a *route reflector*. See {{<link url="#route-reflectors" text="Route Reflectors">}} below.
 
-## BGP Path Selection
+### BGP Path Selection
 
 BGP is a path-vector routing algorithm and does not rely on a single routing metric to determine the lowest cost route, unlike interior gateway protocols (IGPs) like OSPF.
 
@@ -3214,6 +3216,7 @@ FRR does not add BGP `ttl-security` to either the running configuration or to th
 
 ## Related Information
 
+{{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center
 - {{<exlink url="https://cumulusnetworks.com/lp/bgp-ebook/" text="BGP in the Data Center by Dinesh G. Dutt">}} - a complete guide to Border Gateway Protocol for the modern data center
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="Bidirectional forwarding detection">}} (BFD) and BGP
 - {{<exlink url="http://en.wikipedia.org/wiki/Border_Gateway_Protocol" text="Wikipedia entry for BGP">}} (includes list of useful RFCs)

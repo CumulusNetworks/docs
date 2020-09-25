@@ -102,9 +102,9 @@ This will tear down any other layer 3 sessions and affect network traffic!
 
 {{%/notice%}}
 
-8.  Confirm this worked using `cl-bgp summary`:  
+8.  Confirm this worked using `net show bgp summary`:  
 
-        cumulus@switch:~$ sudo cl-bgp summary 
+        cumulus@switch:~$ net show bgp summary 
         BGP router identifier 192.0.2.2, local AS number 65001
         RIB entries 0, using 0 bytes of memory
         Peers 1, using 6652 bytes of memory
@@ -142,7 +142,7 @@ This will tear down any other layer 3 sessions and affect network traffic!
 
 {{%/notice%}}
 
-14. Confirm this worked using `cl-bgp summary`:  
+14. Confirm this worked using `net show bgp summary`:  
 
         BGP router identifier 192.0.2.5, local AS number 65000
         RIB entries 0, using 0 bytes of memory

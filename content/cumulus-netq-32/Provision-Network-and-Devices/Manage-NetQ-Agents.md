@@ -69,7 +69,7 @@ netq-ts           Fresh            yes      3.1.0-ub18.04u28~1594095612.8f00ba1 
 You can view the current configuration of a NetQ Agent to determine what data is being collected and where it is being sent. To view this configuration, run:
 
 ```
-netq config show agent [kubernetes-monitor|loglevel|stats|sensors|frr-monitor|wjh|cpu-limit] [json]
+netq config show agent [kubernetes-monitor|loglevel|stats|sensors|frr-monitor|wjh|wjh-threshold|cpu-limit] [json]
 ```
 
 This example shows a NetQ Agent in an on-premises deployment, talking to an appliance or VM at 127.0.0.1 using the default ports and VRF. No special configuration is included to monitor kubernetes, FRR, interface statistics, sensors, WJH. No limit has been set on the CPU usage or alter the default logging level.

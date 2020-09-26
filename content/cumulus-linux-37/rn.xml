@@ -2121,6 +2121,14 @@ The service starts automatically but there is an impact to POE devices momentari
 <td>3.7.12</td>
 </tr>
 <tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+</tr>
+<tr>
 <td>CM-29518</td>
 <td><p>The following vulnerability affects the ruby2.1 package, which is installed by default:<br/>
 CVE-2020-10663: The JSON gem through 2.2.0 for Ruby, as used in Ruby 2.1 has an unsafe object creation vulnerability. This is quite similar to CVE-2013-0269, but does not rely on poor garbage-collection behavior within Ruby. Specifically, use of JSON parsing methods can lead to creation of a malicious object within the interpreter, with adverse effects that are application-dependent.<br/>
@@ -3179,6 +3187,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29652</td>
@@ -5687,6 +5704,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -8557,6 +8583,15 @@ Fixed: 4.84.2-2+deb8u7</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-29556</td>
 <td><p>The following vulnerability has been announced that affects ntp:<br/>
 CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
@@ -11107,6 +11142,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -14103,6 +14147,15 @@ Fixed: 4.84.2-2+deb8u7</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-29556</td>
 <td><p>The following vulnerability has been announced that affects ntp:<br/>
 CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
@@ -16954,6 +17007,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -20163,6 +20225,15 @@ Fixed: 4.84.2-2+deb8u7</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-29556</td>
 <td><p>The following vulnerability has been announced that affects ntp:<br/>
 CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
@@ -23333,6 +23404,15 @@ Fixed: 4.84.2-2+deb8u7</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-29556</td>
 <td><p>The following vulnerability has been announced that affects ntp:<br/>
 CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
@@ -26190,6 +26270,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -29107,6 +29196,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -32175,6 +32273,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -35363,6 +35470,15 @@ Fixed: 4.84.2-2+deb8u7</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-29556</td>
 <td><p>The following vulnerability has been announced that affects ntp:<br/>
 CVE-2020-11868: ntpd in ntp before 4.2.8p14 and 4.3.x before 4.3.100 allows an off-path attacker to block unauthenticated synchronization via a server mode packet with a spoofed source IP address, because transmissions are rescheduled even when a packet lacks a valid origin timestamp.<br/>
@@ -38063,6 +38179,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>

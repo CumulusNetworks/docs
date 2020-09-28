@@ -2300,27 +2300,18 @@ Scopes are defined and displayed as regular expressions. The definition and disp
 {{< tab "NetQ UI" >}}
 
 Scopes are displayed in TCA rule cards using the following format.
-<!-- Fill in ACL, forwarding and digital optics items -->
+
 | Scope | Display in Card | Result |
 | ------- | ------------------- | ------- |
 | All devices | hostname = * | Show events for all devices |
 | All interfaces | ifname = * | Show events for all devices and all interfaces |
 | All sensors | s_name = * | Show events for all devices and all sensors |
-| All ACLs | hostname = * | Show events for all ACL resources |
-| All forwarding | xxx | Show events for all forwarding resources |
-| All digital optical modules | xxx | Show events for all digital optics |
 | Particular device | hostname = leaf01 | Show events for *leaf01* switch |
 | Particular interface | ifname = swp14 | Show events for *swp14* interface |
 | Particular sensor | s_name = fan2 | Show events for the *fan2* fan |
-| Particular ACL resource | xxx | Show events for the *xxx* ACL resource |
-| Particular forwarding resource | xxx | Show events for the *xxx* forwarding resource |
-| Particular digital optical module | xxx | Show events for the *xxx* digital optics module |
 | Set of devices | hostname ^ leaf | Show events for switches having names starting with *leaf* |
 | Set of interfaces | ifname ^ swp | Show events for interfaces having names starting with *swp* |
 | Set of sensors | s_name ^ fan | Show events for sensors having names starting with *fan* |
-| Set of ACL resources | xxx | Show events for xxx |
-| Set of forwarding resources | xxx | Show events for xxx |
-| Set of digital optical modules | xxx | Show events for xxx |
 
 When a rule is filtered by more than one parameter, each is displayed on the card. Leaving a value blank for a parameter defaults to all; all hostnames, interfaces, sensors, forwarding resources, ACL resources, and digital optics.
 

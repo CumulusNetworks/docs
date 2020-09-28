@@ -130,7 +130,7 @@ The following procedure provides example commands:
 
       The auto BGP leaf and spine keywords are only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
 
-2. Assign the router ID:
+2. Assign the router ID. The router ID is a 32-bit value and typically the address of the loopback interface on the switch.
 
     ```
     cumulus@switch:~$ net add bgp router-id 10.10.10.1

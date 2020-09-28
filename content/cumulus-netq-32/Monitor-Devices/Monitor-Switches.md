@@ -1668,14 +1668,47 @@ leaf01            psu2temp1       psu2 temp sensor                    ok        
 
 ### View Digital Optics Health
 
-Digital optics information is available from any digital optics modules on a switch using the NetQ UI and NetQ CLI.
+Digital optics module information is available regarding the performance degradation or complete outage of any digital optics modules on a switch using the NetQ UI and NetQ CLI.
 
+- Switch card:
+    - Large: view trends of laser bias current, laser output power, received signal average optical power, and module temperature/voltage for given interface (graphics)
+    - Full screen: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage (table)
 - Digital Optics card: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage (table)
 - `netq show dom type` command: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage
 
 {{< tabs "TabID925" >}}
 
-{{< tab "NetQ UI" >}}
+{{< tab "Switch card" >}}
+
+1. Open a switch card by searching for a switch by hostname in **Global Search**.
+
+2. Hover over the card and change to the large card using the card size picker.
+
+3. Hover over card and click {{<img src="/images/netq/dom.svg" width="18" height="18">}}.
+
+4. Select the interface of interest.
+
+    Click the interface name if visible in the list on the left, scroll down the list to find it, or search for interface.
+
+5. Choose the digital optical monitoring (DOM) parameter of interest from the dropdown. The cart is updated according to your selections.
+
+    {{<figure src="/images/netq/dev-switch-large-dom-tab-320.png" width="500">}}
+
+6. Choose alternate interfaces and DOM parameters to view other charts.
+
+7. Hover over the card and change to the full-screen card using the card size picker.
+
+8. Click **Digital Optics**.
+
+9. Click the DOM parameter at the top.
+
+    {{<figure src="/images/netq/dev-switch-fullscr-dom-tab-320.png" width="500">}}
+
+10. Review the laser parameter values by interface and channel. Review the module parameters by interface.
+
+{{< /tab >}}
+
+{{< tab "DOM card" >}}
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Digital Optics** in the **Network** heading.
 
@@ -1771,7 +1804,7 @@ Digital optics information is available from any digital optics modules on a swi
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "netq show dom type" >}}
 
 To view digital optics information for a switch, run one of the following:
 

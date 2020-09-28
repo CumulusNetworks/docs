@@ -24,7 +24,7 @@ You can set the following DSCP operations by editing the `/etc/cumulus/switchd.c
 | `vxlan.def_encap_dscp_value`| If the `vxlan.def_encap_dscp_action` option is `set`, you must specify a value. |
 | `xlan.def_decap_dscp_action` | Sets the VXLAN decapsulation DSCP/COS action. You can specify one of the following options:<br>- `copy` (if the inner packet is IP)<br>- `preserve` (the inner DSCP is unchanged)<br>- `derive` (from the switch priority) |
 
-After you modify the the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect.
+After you modify `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect.
 
 {{<cl/restart-switchd>}}
 

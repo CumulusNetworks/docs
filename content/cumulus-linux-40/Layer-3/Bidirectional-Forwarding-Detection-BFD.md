@@ -148,7 +148,7 @@ To configure BFD in OSPF, run the following commands.
 
 {{< tab "NCLU Commands" >}}
 
-The following example configures BFD in OSPFv3 for interface swp1 and sets the the interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
+The following example configures BFD in OSPFv3 for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
 ```
 cumulus@switch:~$ net add interface swp1 ospf6 bfd 4 400 400
@@ -160,7 +160,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "vtysh Commands" >}}
 
-The following example configures BFD in OSPFv3 for interface swp1 and sets the the interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
+The following example configures BFD in OSPFv3 for interface swp1 and sets interval multiplier to 4, the minimum interval between *received* BFD control packets to 400, and the minimum interval for *sending* BFD control packets to 400.
 
 ```
 cumulus@switch:~$ sudo vtysh

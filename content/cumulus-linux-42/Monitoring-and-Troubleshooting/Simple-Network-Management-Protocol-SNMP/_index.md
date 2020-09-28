@@ -523,7 +523,7 @@ When client SNMP programs (such as `snmpget`, `snmpwalk`, or `snmptrap`) are run
 
 {{%/notice%}}
 
-For more information, read the the `snmp.conf` man page:
+For more information, read `snmp.conf` man page:
 
 ```
 clientaddr [<transport-specifier>:]<transport-address>
@@ -746,7 +746,7 @@ The default frequency for checking link up/down is 60 seconds. You can change th
 
 #### Configure Temperature Notifications
 
-Temperature sensor information for each available sensor is maintained in the the lmSensors MIB. Each platform can contain a different number of temperature sensors. The example below generates a trap event when any temperature sensor exceeds a threshold of 68 degrees (centigrade). It monitors each `lmTempSensorsValue`. When the threshold value is checked and exceeds the `lmTempSensorsValue`, a trap is generated. The `-o lmTempSenesorsDevice` option is used to instruct SNMP to also include the lmTempSensorsDevice MIB in the generated trap. The default frequency for the `monitor` directive is 600 seconds. You can change the default frequency with the `-r` option:
+Temperature sensor information for each available sensor is maintained in lmSensors MIB. Each platform can contain a different number of temperature sensors. The example below generates a trap event when any temperature sensor exceeds a threshold of 68 degrees (centigrade). It monitors each `lmTempSensorsValue`. When the threshold value is checked and exceeds the `lmTempSensorsValue`, a trap is generated. The `-o lmTempSenesorsDevice` option is used to instruct SNMP to also include the lmTempSensorsDevice MIB in the generated trap. The default frequency for the `monitor` directive is 600 seconds. You can change the default frequency with the `-r` option:
 
 ```
 monitor lmTemSensor -o lmTempSensorsDevice lmTempSensorsValue > 68000

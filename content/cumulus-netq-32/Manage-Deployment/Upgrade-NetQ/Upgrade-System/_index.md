@@ -126,11 +126,11 @@ netq bootstrap master upgrade /mnt/installables/NetQ-3.0.0-opta.tgz
 
     {{<figure src="/images/netq/adminui-health-tab-onprem-320.png" width="700">}}
 
-3. Click **Upgrade**.
+4. Click **Upgrade**.
 
     {{<figure src="/images/netq/adminui-upgrade-begin-300.png" width="700" caption="On-premises deployment (cloud deployment only has Node and Pod cards)">}}
 
-4. Enter *NetQ-3.0.0.tgz* or *NetQ-3.0.0-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+5. Enter *NetQ-3.0.0.tgz* or *NetQ-3.0.0-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/adminui-upgrade-enter-tar-300.png" width="700">}}
 
@@ -138,13 +138,13 @@ netq bootstrap master upgrade /mnt/installables/NetQ-3.0.0-opta.tgz
 The <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> is only visible after you enter your tar file information.
     {{</notice>}}
 
-5. Monitor the progress. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-circle-down.svg" height="18" width="18"/> to monitor each step in the jobs.
+6. Monitor the progress. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-circle-down.svg" height="18" width="18"/> to monitor each step in the jobs.
 
     The following example is for an on-premises upgrade. The jobs for a cloud upgrade are slightly different.
 
     {{<figure src="/images/netq/adminui-upgrade-progress-241.png" width="700">}}
 
-5. When it completes, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> to be returned to the Health dashboard.
+7. When it completes, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/> to be returned to the Health dashboard.
 
 ## Upgrade Your Platform Using the NetQ CLI
 

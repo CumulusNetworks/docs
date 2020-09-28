@@ -20,7 +20,7 @@ To install NetQ:
 
 2. Enter your NetQ credentials to enter the application.
 
-    The default username is admin and the default password in admin.
+    The default username is *admin* and the default password in *admin*.
 
     {{<figure src="/images/netq/adminui-health-tab-onprem-320.png" width="700">}}
 

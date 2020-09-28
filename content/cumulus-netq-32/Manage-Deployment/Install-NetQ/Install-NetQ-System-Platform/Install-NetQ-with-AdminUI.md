@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 240
 toc: 5
 ---
-You can now install the NetQ software using the Admin UI.
+You can now install the NetQ software using the Admin UI using the default basic installation or an advanced installation.
 
 {{<notice info>}}
 This is the final set of steps for installing NetQ. If you have not already performed the installation preparation steps, go to {{<link title="Install the NetQ System">}} before continuing here.
@@ -16,15 +16,19 @@ To install NetQ:
 
     In your browser address field, enter *https://\<hostname-or-ipaddr\>:8443*.
 
-    This opens the Admin UI.
+    {{<figure src="/images/netq/adminui-login-page-320.png" width="700">}}
 
-    {{<figure src="/images/netq/adminui-main-page-241.png" width="700">}}
+2. Enter your NetQ credentials to enter the application.
+
+    The default username is admin and the default password in admin.
+
+    {{<figure src="/images/netq/adminui-health-tab-onprem-320.png" width="700">}}
 
 2. Step through the UI.
 
     Having made your installation choices during the preparation steps, you can quickly select the correct path through the UI.
 
-    1. Select your deployment type.
+    1. Select yourSelect your deployment type.
 
         Choose which type of deployment model you want to use. Both options provide secure access to data and features useful for monitoring and troubleshooting your network.
 

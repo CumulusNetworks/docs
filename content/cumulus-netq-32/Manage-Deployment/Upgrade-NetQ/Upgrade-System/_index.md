@@ -120,6 +120,12 @@ netq bootstrap master upgrade /mnt/installables/NetQ-3.0.0-opta.tgz
 
 2. Open the Admin UI by entering *http://\<hostname-or-ipaddress\>:8443* in your browser address field.
 
+3. Enter your NetQ credentials to enter the application.
+
+    The default username is *admin* and the default password in *admin*.
+
+    {{<figure src="/images/netq/adminui-health-tab-onprem-320.png" width="700">}}
+
 3. Click **Upgrade**.
 
     {{<figure src="/images/netq/adminui-upgrade-begin-300.png" width="700" caption="On-premises deployment (cloud deployment only has Node and Pod cards)">}}

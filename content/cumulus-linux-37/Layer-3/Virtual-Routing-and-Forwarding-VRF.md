@@ -487,7 +487,7 @@ For the imported routes, the community is set to 11:11 in VRF `rocket`.
 
 When you configure dynamic VRF route leaking to leak routes between
 VRFs, especially in an EVPN deployment where subnets are extended across
-racks, be aware of the the following considerations:
+racks, be aware of following considerations:
 
 - If end systems (hosts or VMs) are present in one VRF at the router
   where route leaking is configured that need to be reached from

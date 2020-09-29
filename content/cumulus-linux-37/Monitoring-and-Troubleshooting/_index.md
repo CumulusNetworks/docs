@@ -106,7 +106,7 @@ Only messages with a value lower than the level specified are printed to the con
 cumulus@switch:~$ sudo dmesg -n 3
 ```
 
-Alternatively, you can run the the `dmesg --console-level <level>` command, where the log levels are `emerg`, `alert`, `crit`, `err`, `warn`,  `notice`, `info`, or `debug`. For example, to print critical conditions, run the following command:
+Alternatively, you can run `dmesg --console-level <level>` command, where the log levels are `emerg`, `alert`, `crit`, `err`, `warn`,  `notice`, `info`, or `debug`. For example, to print critical conditions, run the following command:
 
 ```
 cumulus@switch:~$ sudo dmesg --console-level crit

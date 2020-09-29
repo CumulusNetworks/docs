@@ -1029,7 +1029,7 @@ bind to this address.
 
 {{%/notice%}}
 
-For more information, read the the `snmp.conf` man page:
+For more information, read `snmp.conf` man page:
 
     clientaddr [<transport-specifier>:]<transport-address>
                   specifies the source address to be used by command-line applica-
@@ -1250,7 +1250,7 @@ for details.
 #### Configure Temperature Notifications
 
 Temperature sensor information for each available sensor is maintained
-in the the lmSensors MIB. Each platform can contain a different number
+in lmSensors MIB. Each platform can contain a different number
 of temperature sensors. The example below generates a trap event when
 any temperature sensor exceeds a threshold of 68 degrees (centigrade).
 It monitors each `lmTempSensorsValue`. When the threshold value is

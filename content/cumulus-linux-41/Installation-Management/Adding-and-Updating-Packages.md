@@ -136,7 +136,7 @@ The search commands look for the search terms not only in the package name but i
 
 ## List Packages Installed on the System
 
-The the `apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system with their versions, run the following commands.
+`apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system with their versions, run the following commands.
 
 {{< tabs "TabID143 ">}}
 

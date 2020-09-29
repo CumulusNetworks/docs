@@ -61,6 +61,13 @@ Fixed: 9.27~dfsg-2+deb10u4</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-31150</td>
+<td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31120</td>
 <td><p>In a traditional bridge configuration with ip-forward off, neighbors are synchronized to hardware with a switchd restart but are cleared when you flap the bridge interface.</p></td>
 <td>3.7.10-3.7.13, 4.0.0-4.2.0</td>
@@ -1216,7 +1223,7 @@ Fixed version: 4.11.3+24-g14b62ab3e5-1~deb10u1.</p></td>
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<td><p>switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
 <ul>
 	<li>The default route is leaked from VRF1 to VRF2</li>
 	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>

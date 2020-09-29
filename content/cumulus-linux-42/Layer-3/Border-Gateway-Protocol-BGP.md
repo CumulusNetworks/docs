@@ -4,19 +4,18 @@ author: Cumulus Networks
 weight: 810
 toc: 3
 ---
-BGP is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. Specifically, BGP:
+BGP is the routing protocol that runs the Internet. It manages how packets get routed from network to network by exchanging routing and reachability information.
 
-- Does not require the routing state to be periodically refreshed, unlike OSPF.
-- Is less chatty than its link-state siblings. For example, a link or node transition can result in a bestpath change, causing BGP to send updates.
-- Is multi-protocol and extensible.
-- Has many robust vendor implementations.
-- Is very mature as a protocol and comes with many years of operational experience.
+BGP is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology.
 
-{{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center.
+## How does BGP Work?
 
-## Autonomous System Number (ASN)
+BGP directs packets between autonomous systems (AS), which are a set of routers under a common administration.
+Each router maintains a routing table that controls how packets are forwarded. The BGP process on the router generates information in the routing table based on information coming from other routers and from information in the BGP routing information base (RIB). The RIB is a database that stores routes and continually updates the routing table as changes occur.
 
-An {{<exlink url="https://en.wikipedia.org/wiki/Autonomous_System_%28Internet%29" text="autonomous system">}} is defined as a set of routers under a common administration. Because BGP was originally designed to peer between independently managed enterprises and/or service providers, each such enterprise is treated as an autonomous system, responsible for a set of network addresses. Each such autonomous system is given a unique number called an *autonomous* *system number* (ASN). ASNs are handed out by a central authority (ICANN); however, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or using the single ASN you own.
+### Autonomous System
+
+Because BGP was originally designed to peer between independently managed enterprises and/or service providers, each such enterprise is treated as an autonomous system, responsible for a set of network addresses. Each such autonomous system is given a unique number called an *autonomous system number* (ASN). ASNs are handed out by a central authority (ICANN); however, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or using the single ASN you own.
 
 The ASN is central to how BGP builds a forwarding topology. A BGP route advertisement carries  with it not only the ASN of the originator, but also the list of ASNs that this route advertisement passes through. When forwarding a route advertisement, a BGP speaker adds itself to this list. This list of ASNs is called the *AS path*. BGP uses the AS path to detect and avoid loops.
 
@@ -44,7 +43,7 @@ Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294.
 
 {{%/notice%}}
 
-## eBGP and iBGP
+### eBGP and iBGP
 
 When BGP is used to peer between autonomous systems, the peering is referred to as *external BGP* or eBGP. When BGP is used within an autonomous system, the peering used is referred to as *internal BGP* or iBGP. eBGP peers have different ASNs while iBGP peers have the same ASN.
 
@@ -52,52 +51,50 @@ The heart of the protocol is the same when used as eBGP or iBGP but there is a k
 
 All iBGP speakers need to be peered with each other in a full mesh. In a large network, this requirement can quickly become unscalable. The most popular method to scale iBGP networks is to introduce a *route reflector*. See {{<link url="#route-reflectors" text="Route Reflectors">}} below.
 
-## BGP Path Selection
+### BGP Path Selection
 
-BGP is a path-vector routing algorithm and does not rely on a single routing metric to determine the lowest cost route, unlike interior gateway protocols (IGPs) like OSPF.
+BGP is a path-vector routing algorithm that does not rely on a single routing metric to determine the lowest cost route, unlike interior gateway protocols (IGPs) like OSPF.
 
-The BGP path selection algorithm looks at multiple factors to determine exactly which path is best and only the best path is installed in the routing table and advertised to other BGP peers. If {{<link url="#ecmp-with-bgp" text="BGP ECMP">}} is configured multiple equal cost routes may be installed in the routing table but only a single route will be advertised to BGP peers.
+The BGP path selection algorithm looks at multiple factors to determine exactly which path is best. {{<link url="#set-ecmp-options" text="BGP multipath">}} is enabled by default in Cumulus Linux so that multiple equal cost routes can be installed in the routing table but only a single route is advertised to BGP peers.
 
 The order of the BGP algorithm process is as follows:
 
-- **Highest Weight**: Weight is a value from 0 to 65535. Weight is not carried in a BGP update but is used locally to influence the best path selection. Locally generated routes will have a weight of 32768.
+- **Highest Weight**: Weight is a value from 0 to 65535. Weight is not carried in a BGP update but is used locally to influence the best path selection. Locally generated routes have a weight of 32768.
 
-- **Highest Local Preference**: Local Preference is exchanged between iBGP neighbors only. Routes received from eBGP peers will be assigned a Local Preference of 0. Whereas weight is used to make route selections without sending additional information to peers, Local Preference can be used to influence routing to iBGP peers.
+- **Highest Local Preference**: Local Preference is exchanged between iBGP neighbors only. Routes received from eBGP peers are assigned a Local Preference of 0. Whereas weight is used to make route selections without sending additional information to peers, Local Preference can be used to influence routing to iBGP peers.
 
-- **Locally Originated Routes**: Any route that we are responsible for placing into BGP will be selected as best. This includes static routes, aggregate routes and redistributed routes.
+- **Locally Originated Routes**: Any route that we are responsible for placing into BGP is selected as best. This includes static routes, aggregate routes and redistributed routes.
 
-- **Shortest AS Path**: The path received with the fewest number of ASN hops will be selected.
+- **Shortest AS Path**: The path received with the fewest number of ASN hops is selected.
 
 - **Origin Check**: Prefer routes with an IGP origin (those routes placed into BGP with a `network` statement) over Incomplete origins (routes places into BGP through redistribution). The EGP origin attribute is no longer used.
 
-- **Lowest MED**: The Multi-Exit Discriminator or MED is sent to eBGP peers to indicate a preference on how traffic should enter an AS. A MED received from an eBGP peer will be exchanged with iBGP peers but will be reset to a value of 0 before advertising a prefix to another AS. 
+- **Lowest MED**: The Multi-Exit Discriminator or MED is sent to eBGP peers to indicate a preference on how traffic enters an AS. A MED received from an eBGP peer is exchanged with iBGP peers but is reset to a value of 0 before advertising a prefix to another AS.
 
 - **eBGP Routes**: A route received from an eBGP peer is prefered over a route learned from an iBGP peer.
 
 - **Lowest IGP Cost to the next hop**: The route with the lowest IGP metric to reach the BGP next hop.
 
-- **iBGP ECMP over eBGP ECMP**: If  {{<link url="#ecmp-with-bgp" text="BGP Multipath">}} is configured, prefer equal iBGP routes over equal eBGP routes, unless `as-path multipath-relax` is also configured.
+- **iBGP ECMP over eBGP ECMP**: If {{<link url="#set-ecmp-options" text="BGP Multipath">}} is configured, prefer equal iBGP routes over equal eBGP routes, unless {{<link url="#set-ecmp-options" text="as-path multipath-relax">}} is also configured.
 
 - **Oldest Route**: Prefer the oldest route in the BGP table.
 
-- **Lowest RouterID**: Prefer the route received from the peer with the lowest Router ID attribute. If the route was received from a route reflector, the `ORIGINATOR_ID` attribute will be used to compare.
+- **Lowest RouterID**: Prefer the route received from the peer with the lowest Router ID attribute. If the route is received from a route reflector, the `ORIGINATOR_ID` attribute is used to compare.
 
 - **Shortest Route Reflector Cluster List**: If a route has passed through multiple route reflectors, prefer the route with the shortested route reflector cluster list.
 
-- **Highest Peer IP Address**: Prefer the route received from the peer with the highest IP address. 
+- **Highest Peer IP Address**: Prefer the route received from the peer with the highest IP address.
 
-### BGP Path Selection Reason
-
-Cumulus Linux provides the reason it is selecting one path over another in output of the NCLU `net show bgp` and vtysh `show ip bgp` commands for a specific prefix.
+Cumulus Linux provides the reason it is selecting one path over another in NCLU `net show bgp` and vtysh `show ip bgp` command output for a specific prefix.
 
 When BGP multipath is in use, if multiple paths are equal, BGP still selects a single best path to advertise to peers. This path is indicated as best with the reason, although multiple paths might be installed into the routing table.
 
-## Configure BGP
+## Basic Configuration
 
 To configure BGP, you need to:
 
 - Assign an ASN to identify the BGP node. In a two-tier leaf and spine environment, you can use {{<link url="#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically. Auto BGP is supported with NCLU only.
-- Assign a router ID to the BGP node.
+- Assign a router ID to the BGP node. The router ID is a 32-bit value and is typically the address of the loopback interface on the switch.
 - Specify where to disseminate routing information.
 - Set BGP session properties.
 - Specify which prefixes to originate.
@@ -128,45 +125,45 @@ The following procedure provides example commands:
       cumulus@switch:~$ net add bgp auto spine
       ```
 
-    The auto BGP leaf and spine keywords are only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
+      The auto BGP leaf and spine keywords are only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
 
-2. Assign the router ID:
+2. Assign the router ID.
 
     ```
-    cumulus@switch:~$ net add bgp router-id 0.0.0.1
+    cumulus@switch:~$ net add bgp router-id 10.10.10.1
     ```
 
 3. Specify where to disseminate routing information:
 
     ```
-    cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as external
+    cumulus@switch:~$ net add bgp neighbor 10.10.10.2 remote-as external
     cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
     ```
 
     For an iBGP session, the `remote-as` is the same as the local AS:
 
     ```
-    cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as internal
+    cumulus@switch:~$ net add bgp neighbor 10.10.10.2 remote-as internal
     cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as internal
     ```
 
     Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
     ```
-    cumulus@switch:~$ net add bgp ipv4 unicast neighbor 10.0.0.2
+    cumulus@switch:~$ net add bgp ipv4 unicast neighbor 10.10.10.2
     cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
     ```
 
 4. Specify BGP session properties:
 
     ```
-    cumulus@switch:~$ net add bgp neighbor 10.0.0.2 next-hop-self
+    cumulus@switch:~$ net add bgp neighbor 10.10.10.2 next-hop-self
     ```
 
     If this is a route reflector client, it can be specified as follows:
 
     ```
-    cumulus@switchRR:~$ net add bgp neighbor 10.0.0.1 route-reflector-client
+    cumulus@switchRR:~$ net add bgp neighbor 10.10.10.1 route-reflector-client
     ```
 
     {{%notice note%}}
@@ -197,20 +194,20 @@ When configuring a router to be a route reflector client, you must specify the c
 
     switch# configure terminal
     switch(config)# router bgp 65000
-    switch(config-router)# bgp router-id 0.0.0.1
+    switch(config-router)# bgp router-id 10.10.10.1
     ```
 
 3. Specify where to disseminate routing information:
 
     ```
-    switch(config-router)# neighbor 10.0.0.2 remote-as external
+    switch(config-router)# neighbor 10.10.10.2 remote-as external
     switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
     ```
 
     For an iBGP session, the `remote-as` is the same as the local AS:
 
     ```
-    switch(config-router)# neighbor 10.0.0.2 remote-as internal
+    switch(config-router)# neighbor 10.10.10.2 remote-as internal
     switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as internal
     ```
 
@@ -218,7 +215,7 @@ When configuring a router to be a route reflector client, you must specify the c
 
     ```
     switch(config-router)# address-family ipv4 unicast
-    switch(config-router-af)# neighbor 10.0.0.2
+    switch(config-router-af)# neighbor 10.10.10.2
     switch(config-router-af)# exit
     switch(config-router)# address-family ipv6
     switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
@@ -230,20 +227,20 @@ When configuring a router to be a route reflector client, you must specify the c
     ```
     switch(config-router)#
 
-    switch(config-router-af)# neighbor 10.0.0.2 next-hop-self
+    switch(config-router-af)# neighbor 10.10.10.2 next-hop-self
     ```
 
     If this is a route reflector client, it can be specified as follows:
 
     ```
-    switchRR(config-router-af)# neighbor 10.0.0.1 route-reflector-client
+    switchRR(config-router-af)# neighbor 10.10.10.2 route-reflector-client
     ```
 
     {{%notice note%}}
 
 When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 
-    {{%/notice%}}
+{{%/notice%}}
 
 5. Specify which prefixes to originate:
 
@@ -267,13 +264,13 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ```
 ...
 router bgp 65000
-  bgp router-id 0.0.0.1
-  neighbor 10.0.0.2 remote-as external
+  bgp router-id 10.10.10.1
+  neighbor 10.10.10.2 remote-as external
   !
   address-family ipv4 unicast
   network 192.0.2.0/24
   network 203.0.113.1/24
-  neighbor 10.0.0.2 next-hop-self
+  neighbor 10.10.10.2 next-hop-self
   exit-address-family
 ...
 ```
@@ -284,15 +281,62 @@ When using auto BGP, there are no references to `leaf` or `spine` in the configu
 
 {{%/notice%}}
 
-## ECMP with BGP
+## Optional Configuration
 
-BGP supports equal-cost multipathing (ECMP). If a BGP node hears a prefix **p** from multiple peers, it has all the information necessary to program the routing table to forward traffic for that prefix **p** through all of these peers.
+This section describes optional configuration procedures.
 
-In Cumulus Linux, the BGP `maximum-paths` setting is enabled by default, so multiple routes are already installed. The default setting is 64 paths.
+### Set ECMP Options
 
-Unlike OSPF, which has separate versions of the protocol to announce IPv4 and IPv6 routes, BGP is a multi-protocol routing engine, capable of announcing both IPv4 and IPv6 prefixes. It supports announcing IPv4 prefixes over an IPv4 session and IPv6 prefixes over an IPv6 session. It also supports announcing prefixes of both these address families over a single IPv4 session or over a single IPv6 session.
+BGP supports equal-cost multipathing (ECMP). If a BGP node hears a certain prefix from multiple peers, it has all the information necessary to program the routing table and forward traffic for that prefix through all of these peers. BGP typically choses one best path for each prefix and installs that route in the forwarding table.
 
-To enable ECMP in BGP, run the following command:
+In Cumulus Linux, the *BGP multipath* option is enabled by default with the maximum number of paths set to 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links.
+
+To change the number of paths allowed, run the following commands. The example commands change the maximum number of paths to 120. You can set a value between 1 and 256. 1 disables the BGP multipath option.
+
+{{< tabs "297 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp maximum-paths 120
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65000
+switch(config-router)# address-family ipv4
+switch(config-router-af)# maximum-paths 120
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+!
+address-family ipv4 unicast
+redistribute connected
+maximum-paths 120
+exit-address-family
+...
+```
+
+When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors, you need to set the *bestpath as-path multipath-relax* option.
 
 {{< tabs "12 ">}}
 
@@ -336,19 +380,19 @@ router bgp 65000
 
 {{%notice note%}}
 
-When you disable the `bgp bestpath as-path multipath relax` option, EVPN type-5 routes do not use the updated configuration. Type-5 routes will continue to use all available ECMP paths in the underlay fabric, regardless of ASN.
+When you disable the *bestpath as-path multipath-relax* option, EVPN type-5 routes do not use the updated configuration. Type-5 routes continue to use all available ECMP paths in the underlay fabric, regardless of ASN.
 
 {{%/notice%}}
 
-## Route Reflectors
+### Configure Route Reflector Cluster IDs
 
-In a two-tier Clos network, the leaf (or tier 1) switches are the only ones connected to end stations. The spines themselves do not have any routes to announce; they are merely **reflecting** the routes announced by one leaf to the other leaves. Therefore, the spine switches function as route reflectors while the leaf switches serve as route reflector clients.
+In a two-tier Clos network, the leaf (or tier 1) switches are the only ones connected to end stations. The spines themselves do not have any routes to announce; they are merely **reflecting** the routes announced by one leaf to the other leafs. Therefore, the spine switches function as route reflectors while the leaf switches serve as route reflector clients.
 
 In a three-tier network, the tier 2 nodes (or mid-tier spines) act as both route reflector servers and route reflector clients. They act as route reflectors because they announce the routes learned from the tier 1 nodes to other tier 1 nodes and to tier 3 nodes. They also act as route reflector clients to the tier 3 nodes, receiving routes learned from other tier 2 nodes. Tier 3 nodes act only as route reflectors.
 
-In the following illustration, tier 2 node 2.1 is acting as a route reflector server, announcing the routes between tier 1 nodes 1.1 and 1.2 to tier 1 node 1.3. It is also a route reflector client, learning the routes between tier 2 nodes 2.2 and 2.3 from the tier 3 node, 3.1.
+In the following illustration, tier 2 node spine01 is acting as a route reflector server, announcing the routes between tier 1 nodes leaf01 and leaf02 to tier 1 node leaf03. spine01 is also a route reflector client, learning the routes between tier 2 nodes spine02 and spine03 from the tier 3 node, superspine01.
 
-{{< img src = "/images/cumulus-linux/bgp-route-reflectors.png" >}}
+{{< img src = "/images/cumulus-linux/bgp-route-reflectors-example.png" >}}
 
 {{%notice info%}}
 
@@ -362,7 +406,7 @@ To configure a cluster ID on a route reflector, run the following commands. You 
 
 {{< tabs "70 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 The following example configures a cluster ID on a route reflector in IP address format:
 
@@ -382,7 +426,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 The following example configures a cluster ID on a route reflector in IP address format:
 
@@ -426,23 +470,22 @@ router bgp 65000
 ...
 ```
 
-## Unnumbered Interfaces
+### Unnumbered Interfaces
 
 Unnumbered interfaces are interfaces without unique IP addresses. In BGP, you configure unnumbered interfaces using *extended next hop encoding* (ENHE), which is defined by {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}}. BGP unnumbered interfaces provide a means of advertising an IPv4 route with an IPv6 next hop. Prior to RFC 5549, an IPv4 route could be advertised only with an IPv4 next hop.
 
 BGP unnumbered interfaces are particularly useful in deployments where IPv4 prefixes are advertised through BGP over a section without any IPv4 address configuration on links. As a result, the routing entries are also IPv4 for destination lookup and have IPv6 next hops for forwarding purposes.
 
-### BGP and Extended Next Hop Encoding
-
 When enabled and active, BGP makes use of the available IPv6 next hops for advertising any IPv4 prefixes. BGP learns the prefixes, calculates the routes and installs them in IPv4 AFI to IPv6 AFI format. However, ENHE in Cumulus Linux does not install routes into the kernel in IPv4 prefix to IPv6 next hop format. For link-local peerings enabled by dynamically learning the other end's link-local address using IPv6 neighbor discovery router advertisements, an IPv6 next hop is converted into an IPv4 link-local address and a static neighbor entry is installed for this IPv4 link-local address with the MAC address derived from the link-local address of the other end.
 
 {{%notice note%}}
 
-It is assumed that the IPv6 implementation on the peering device uses the MAC address as the interface ID when assigning the IPv6 link-local address, as suggested by RFC 4291.
+- Interface-based peering with separate IPv4 and IPv6 sessions is not supported.
+- If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 link-local peering.
+- BGP unnumbered only works with two switches at a time, as it is meant to work with PTP (point-to-point protocol).
+- It is assumed that the IPv6 implementation on the peering device uses the MAC address as the interface ID when assigning the IPv6 link-local address, as suggested by RFC 4291.
 
 {{%/notice%}}
-
-### Configure BGP Unnumbered Interfaces
 
 To configure a BGP unnumbered interface, you must enable IPv6 neighbor discovery router advertisements. The `interval` you specify is measured in seconds and defaults to 10 seconds.
 
@@ -450,7 +493,7 @@ The following example commands show how to configure a BGP unnumbered interface.
 
 {{< tabs "14 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp autonomous-system 65020
@@ -471,7 +514,7 @@ cumulus@switch:~$ net add bgp neighbor swp30 interface peer-group fabric
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -526,7 +569,7 @@ For an unnumbered configuration, you can use a single command to configure a nei
 
 {{< tabs "16 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp neighbor swp1 interface peer-group group1
@@ -534,7 +577,7 @@ cumulus@switch:~$ net add bgp neighbor swp1 interface peer-group group1
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 switch(config-router)# neighbor swp1 interface peer-group group1
@@ -544,9 +587,7 @@ switch(config-router)# neighbor swp1 interface peer-group group1
 
 {{< /tabs >}}
 
-### Manage Unnumbered Interfaces
-
-Use the following commands to show IPv6 next hops and interface names for an IPv4 prefix, routes, and how a IPv4 link-local address is used to install a route and static neighbor entry.
+TROUBLESHOOTING ?? Use the following commands to show IPv6 next hops and interface names for an IPv4 prefix, routes, and how a IPv4 link-local address is used to install a route and static neighbor entry.
 
 All the relevant BGP commands show IPv6 next hops and/or the interface name for any IPv4 prefix. Run the NCLU `net show bgp` command or the vtysh `show ip bgp` command. For example:
 
@@ -615,7 +656,7 @@ FIB entry for 10.0.0.12
   nexthop via 169.254.0.1  dev swp52 weight 1 onlink
 ```
 
-### How traceroute Interacts with BGP Unnumbered Interfaces
+#### How traceroute Interacts with BGP Unnumbered Interfaces
 
 Every router or end host must have an IPv4 address to complete a `traceroute` of IPv4 addresses. In this case, the IPv4 address used is that of the loopback device.
 
@@ -626,9 +667,7 @@ Even if ENHE is not used in the data center, link addresses are not typically ad
 
 Assigning an IP address to the loopback device is essential.
 
-### Advanced: How Next Hop Fields Are Set
-
-{{< expand "Click to expand... "  >}}
+{{< expand "Advanced: How Next Hop Fields Are Set "  >}}
 
 This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ({{<exlink url="https://www.ietf.org/rfc/rfc2858.txt" text="multiprotocol reachable NLRI">}}) initiated by the system, which applies whether IPv6 prefixes or IPv4 prefixes are exchanged with ENHE. There are two main aspects to determine: how many IPv6 next hops are included in the MP\_REACH\_NLRI (the RFC allows either one or two next hops) and the values of the next hops. This section also describes how a received MP\_REACH\_NLRI is handled as far as processing IPv6 next hops.
 
@@ -659,19 +698,11 @@ The above rules imply that there are scenarios where a generated update has two 
 
 {{< /expand >}}
 
-### Limitations
-
-- Interface-based peering with separate IPv4 and IPv6 sessions is not supported.
-- If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 link-local peering.
-- BGP unnumbered only works with two switches at a time, as it is meant to work with PTP (point-to-point protocol).
-
-## RFC 5549 Support with Global IPv6 Peers
+### RFC 5549 Support with Global IPv6 Peers
 
 {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}} defines the method used for BGP to advertise IPv4 prefixes with IPv6 next hops. The RFC does not make a distinction between whether the IPv6 peering and next hop values should be global unicast addresses (GUA) or link-local addresses. Cumulus Linux supports advertising IPv4 prefixes with IPv6 global unicast and link-local next hop addresses, with either *unnumbered* or *numbered* BGP.
 
 When BGP peering uses IPv6 global addresses and IPv4 prefixes are being advertised and installed, IPv6 route advertisements are used to derive the MAC address of the peer so that FRR can create an IPv4 route with a link-local IPv4 next hop address (defined by RFC 3927). This is required to install the route into the kernel. These route advertisement settings are configured automatically when FRR receives an update from a BGP peer using IPv6 global addresses that contain an IPv4 prefix with an IPv6 next hop, and the enhanced-next hop capability has been negotiated.
-
-### Configure RFC 5549 Support with Global IPv6 Peers
 
 To enable advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings, add the `extended-nexthop` capability to the global IPv6 neighbor statements on each end of the BGP sessions.
 
@@ -767,7 +798,7 @@ exit-address-family
 ...
 ```
 
-### Show IPv4 Prefixes Learned with IPv6 Next Hops
+TROUBLESHOOTING??? Show IPv4 Prefixes Learned with IPv6 Next Hops
 
 To show IPv4 prefixes learned with IPv6 next hops, run the following commands:
 
@@ -1152,11 +1183,11 @@ C>* 172.16.10.0/24 is directly connected, swp3, 3d00h26m
 
 {{< /tabs >}}
 
-## BGP add-path
+### BGP add-path
 
 Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
 
-### BGP add-path RX
+#### BGP add-path RX
 
 *BGP add-path RX* allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. No additional configuration is required for BGP add-path RX.
 
@@ -1324,7 +1355,7 @@ Paths: (6 available, best #6, table Default-IP-Routing-Table)
 
 {{< /tabs >}}
 
-### BGP add-path TX
+#### BGP add-path TX
 
 AddPath TX allows BGP to advertise more than just the bestpath for a prefix. Consider the following topology:
 
@@ -1527,155 +1558,7 @@ Paths: (3 available, best #3, table Default-IP-Routing-Table)
 
 {{< /tabs >}}
 
-## Fast Convergence Design Considerations
-
-Cumulus Networks strongly recommends the following use of addresses in the design of a BGP-based data center network:
-
-- Set up BGP sessions only using interface-scoped addresses. This allows BGP to react quickly to link failures.
-- Use of next hop-self so that every BGP node says that it knows how to forward traffic to the prefixes it is announcing. This reduces the requirement to announce interface-specific addresses and reduces the size of the forwarding table.
-
-When you configure BGP for the neighbors of a given interface, you can specify the interface name instead of its IP address. All the other `neighbor` command options remain the same.
-
-This is equivalent to BGP peering to the link-local IPv6 address of the neighbor on the given interface. The link-local address is learned via IPv6 neighbor discovery router advertisements.
-
-Consider the following example configuration in the `/etc/frr/frr.conf` file:
-
-```
-...
-router bgp 65000
-  bgp router-id 10.0.0.1
-  neighbor swp1 interface
-  neighbor swp1 remote-as internal
-  neighbor swp1 next-hop-self
-!
-  address-family ipv6
-  neighbor swp1 activate
-  exit-address-family
-...
-```
-
-You create the above configuration with the following commands:
-
-{{< tabs "30 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp autonomous-system 65000
-cumulus@switch:~$ net add bgp router-id 10.0.0.1
-cumulus@switch:~$ net add bgp neighbor swp1 interface
-cumulus@switch:~$ net add bgp neighbor swp1 remote-as internal
-cumulus@switch:~$ net add bgp neighbor swp1 next-hop-self
-cumulus@switch:~$ net add bgp ipv6 unicast neighbor swp1 activate
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65000
-switch(config-router)# bgp router-id 10.0.0.1
-switch(config-router)# neighbor swp1 interface
-switch(config-router)# neighbor swp1 remote-as internal
-switch(config-router)# neighbor swp1 next-hop-self
-switch(config-router)# address-family ipv6
-switch(config-router-af)# neighbor swp1 activate
-switch(config-router-af)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-By default, Cumulus Linux sends IPv6 neighbor discovery router advertisements. Cumulus Networks recommends you adjust the interval of the router advertisement to a shorter value to address scenarios when nodes come up and miss router advertisement processing to relay the neighbor's link-local address to BGP. The `interval` is measured in seconds and defaults to 10 seconds. The following example commands set the router advertisement to 5 seconds.
-
-{{< tabs "32 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp1 ipv6 nd ra-interval 5
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# interface swp1
-switch(config-if)# ipv6 nd ra-interval 5
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-## Peer Groups to Simplify Configuration
-
-When a switch has many peers to connect to, the amount of redundant configuration becomes overwhelming. For example, repeating the `activate` and `next-hop-self` commands for even 60 neighbors makes for a very long configuration file. To address this problem, you can use
-`peer-group`.
-
-Instead of specifying properties of each individual peer, FRRouting allows you to define one or more peer groups and associate all the attributes common to that peer session to a peer group. A peer needs to be attached to a peer group only once, when it then inherits all address families activated for that peer group.
-
-After you attach a peer to a peer group, you need to associate an IP address with the peer group. The following example shows how to define and use peer groups:
-
-{{< tabs "34 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp neighbor tier-2 peer-group
-cumulus@switch:~$ net add bgp neighbor tier-2 next-hop-self
-cumulus@switch:~$ net add bgp neighbor 10.0.0.2 peer-group tier-2
-cumulus@switch:~$ net add bgp neighbor 192.0.2.2 peer-group tier-2
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65000
-switch(config-router)# neighbor tier-2 peer-group
-switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# neighbor tier-2 next-hop-self
-switch(config-router-af)# exit
-switch(config-router)# neighbor 10.0.0.2 peer-group tier-2
-switch(config-router)# neighbor 192.0.2.2 peer-group tier-2
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-{{%notice note%}}
-
-BGP peer-group restrictions have been replaced with update-groups, which dynamically examine all peers and group them if they have the same outbound policy.
-
-{{%/notice%}}
-
-## Configure BGP Dynamic Neighbors
+### Configure BGP Dynamic Neighbors
 
 *BGP dynamic neighbor* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
 
@@ -1744,7 +1627,7 @@ router bgp 65001
   bgp listen range 10.1.1.0/24 peer-group SPINE
 ```
 
-## Configure BGP Peering Relationships across Switches
+### Configure BGP Peering Relationships across Switches
 
 A BGP peering relationship is typically initiated with the `neighbor x.x.x.x remote-as [internal|external]` command.
 
@@ -1905,15 +1788,15 @@ switch(config-router)# neighbor 192.0.2.4 peer-group EBGP
 
 {{< /tabs >}}
 
-## Configure MD5-enabled BGP Neighbors
+### Configure MD5-enabled BGP Neighbors
 
 The following sections outline how to configure an MD5-enabled BGP neighbor. Each process assumes that FRRouting is used as the routing platform, and consists of two switches (`AS 65011` and `AS 65020`), connected by the link 10.0.0.100/30.
 
-### To manually configure an MD5-enabled BGP neighbor:
+To manually configure an MD5-enabled BGP neighbor:
 
 {{< tabs "40 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 1. From leaf01, configure the password for the neighbor:
 
@@ -1954,7 +1837,7 @@ The following sections outline how to configure an MD5-enabled BGP neighbor. Eac
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 1. From leaf01, configure the password for the neighbor:
 
@@ -1997,7 +1880,7 @@ The MD5 password configured against a BGP listen-range peer group (used to accep
 
 {{%/notice%}}
 
-## Configure eBGP Multihop
+### Configure eBGP Multihop
 
 The eBGP multihop option lets you use BGP to exchange routes with an external peer that is more than one hop away.
 
@@ -2088,7 +1971,7 @@ Estimated round trip time: 1 ms
 Read thread: on  Write thread: on
 ```
 
-## Configure BGP TTL Security
+### Configure BGP TTL Security
 
 Configure BGP TTL security to specify the minimum number of seconds allowed before the switch no longer accepts incoming IP packets from a specific eBGP peer. You can specify a value between 1 and 254 seconds.
 
@@ -2184,7 +2067,7 @@ Hostname: leaf01
   Read thread: on  Write thread: on
 ```
 
-## Configure Graceful BGP Shutdown
+### Configure Graceful BGP Shutdown
 
 To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the node.
 
@@ -2269,7 +2152,7 @@ Paths: (2 available, best #1, table Default-IP-Routing-Table)
       Last update: Mon Sep 18 17:01:18 2017
 ```
 
-## Enable Read-only Mode
+### Enable Read-only Mode
 
 As BGP peers are established and updates are received, prefixes might be installed in the RIB and advertised to BGP peers even though the information from all peers is not yet received and processed. Depending on the timing of the updates, prefixes might be installed and propagated through BGP, and then immediately withdrawn and replaced with new routing information. Read-only mode minimizes this BGP route churn in both the local RIB and with BGP peers.
 
@@ -2331,7 +2214,7 @@ To show information about the state of the update delay, run the NCLU
 `net show bgp summary` command or the vtysh `show ip bgp summary`
 command.
 
-## Apply a Route Map for Route Updates
+### Apply a Route Map for Route Updates
 
 You can apply {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route maps">}} in BGP in one of two ways
 
@@ -2344,7 +2227,7 @@ In NCLU, you can only set the community number in a route map. You cannot set ot
 This is a known limitation in `network-docopt`, which NCLU uses to parse commands.
 {{%/notice%}}
 
-### Filter Routes from BGP into Zebra
+#### Filter Routes from BGP into Zebra
 
 You can apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations for this attach-point are limited to metric and next hop only. Any operation of this feature does not affect the BGP internal RIB.
 
@@ -2382,7 +2265,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-### Filter Routes from Zebra into the Linux Kernel
+#### Filter Routes from Zebra into the Linux Kernel
 
 To apply a route map to filter route updates from Zebra into the Linux kernel, run the following commands:
 
@@ -2416,23 +2299,6 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-## Configuration Tips
-
-### BGP Advertisement Best Practices
-
-As a best practice, limit the exchange of routing information at various parts in the network. The following image illustrates one way you can do so in a typical Clos architecture:
-
-{{< img src = "/images/cumulus-linux/bgp-advertisement-best-practices.png" >}}
-
-### Multiple Routing Tables and Forwarding
-
-You can run multiple routing tables (one for in-band/data plane traffic and one for out-of-band management plane traffic) on the same switch using {{<link url="Management-VRF" text="management VRF">}} (multiple routing tables and forwarding).
-
-{{%notice note%}}
-
-BGP and static routing (IPv4 and IPv6) are supported within a VRF context. For more information, refer to {{<link title="Virtual Routing and Forwarding - VRF">}}.
-
-{{%/notice%}}
 
 ### BGP Community Lists
 
@@ -2532,7 +2398,173 @@ switch# exit
 cumulus@switch:~$
 ```
 
-## Protocol Tuning
+## Best Practices
+
+Cumulus Networks recommends you follow these best practices when configuring MLAG on your switches.
+
+### Fast Convergence Design Considerations
+
+Cumulus Networks strongly recommends the following use of addresses in the design of a BGP-based data center network:
+
+- Set up BGP sessions only using interface-scoped addresses. This allows BGP to react quickly to link failures.
+- Use of next hop-self so that every BGP node says that it knows how to forward traffic to the prefixes it is announcing. This reduces the requirement to announce interface-specific addresses and reduces the size of the forwarding table.
+
+When you configure BGP for the neighbors of a given interface, you can specify the interface name instead of its IP address. All the other `neighbor` command options remain the same.
+
+This is equivalent to BGP peering to the link-local IPv6 address of the neighbor on the given interface. The link-local address is learned via IPv6 neighbor discovery router advertisements.
+
+Consider the following example configuration in the `/etc/frr/frr.conf` file:
+
+```
+...
+router bgp 65000
+  bgp router-id 10.0.0.1
+  neighbor swp1 interface
+  neighbor swp1 remote-as internal
+  neighbor swp1 next-hop-self
+!
+  address-family ipv6
+  neighbor swp1 activate
+  exit-address-family
+...
+```
+
+You create the above configuration with the following commands:
+
+{{< tabs "30 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp autonomous-system 65000
+cumulus@switch:~$ net add bgp router-id 10.0.0.1
+cumulus@switch:~$ net add bgp neighbor swp1 interface
+cumulus@switch:~$ net add bgp neighbor swp1 remote-as internal
+cumulus@switch:~$ net add bgp neighbor swp1 next-hop-self
+cumulus@switch:~$ net add bgp ipv6 unicast neighbor swp1 activate
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65000
+switch(config-router)# bgp router-id 10.0.0.1
+switch(config-router)# neighbor swp1 interface
+switch(config-router)# neighbor swp1 remote-as internal
+switch(config-router)# neighbor swp1 next-hop-self
+switch(config-router)# address-family ipv6
+switch(config-router-af)# neighbor swp1 activate
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+By default, Cumulus Linux sends IPv6 neighbor discovery router advertisements. Cumulus Networks recommends you adjust the interval of the router advertisement to a shorter value to address scenarios when nodes come up and miss router advertisement processing to relay the neighbor's link-local address to BGP. The `interval` is measured in seconds and defaults to 10 seconds. The following example commands set the router advertisement to 5 seconds.
+
+{{< tabs "32 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface swp1 ipv6 nd ra-interval 5
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface swp1
+switch(config-if)# ipv6 nd ra-interval 5
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Configure Peer Groups
+
+When a switch has many peers to connect to, the amount of redundant configuration becomes overwhelming. For example, repeating the `activate` and `next-hop-self` commands for even 60 neighbors makes for a very long configuration file. To address this problem, you can use
+`peer-group`.
+
+Instead of specifying properties of each individual peer, FRRouting allows you to define one or more peer groups and associate all the attributes common to that peer session to a peer group. A peer needs to be attached to a peer group only once, when it then inherits all address families activated for that peer group.
+
+After you attach a peer to a peer group, you need to associate an IP address with the peer group. The following example shows how to define and use peer groups:
+
+{{< tabs "34 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor tier-2 peer-group
+cumulus@switch:~$ net add bgp neighbor tier-2 next-hop-self
+cumulus@switch:~$ net add bgp neighbor 10.0.0.2 peer-group tier-2
+cumulus@switch:~$ net add bgp neighbor 192.0.2.2 peer-group tier-2
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65000
+switch(config-router)# neighbor tier-2 peer-group
+switch(config-router)# address-family ipv4 unicast
+switch(config-router-af)# neighbor tier-2 next-hop-self
+switch(config-router-af)# exit
+switch(config-router)# neighbor 10.0.0.2 peer-group tier-2
+switch(config-router)# neighbor 192.0.2.2 peer-group tier-2
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{%notice note%}}
+
+BGP peer-group restrictions have been replaced with update-groups, which dynamically examine all peers and group them if they have the same outbound policy.
+
+{{%/notice%}}
+
+### BGP Advertisement
+
+As a best practice, limit the exchange of routing information at various parts in the network. The following image illustrates one way you can do so in a typical Clos architecture:
+
+{{< img src = "/images/cumulus-linux/bgp-advertisement-best-practices.png" >}}
+
+### Multiple Routing Tables and Forwarding
+
+You can run multiple routing tables (one for in-band/data plane traffic and one for out-of-band management plane traffic) on the same switch using {{<link url="Management-VRF" text="management VRF">}} (multiple routing tables and forwarding).
+
+{{%notice note%}}
+
+BGP and static routing (IPv4 and IPv6) are supported within a VRF context. For more information, refer to {{<link title="Virtual Routing and Forwarding - VRF">}}.
+
+{{%/notice%}}
 
 ### Converge Quickly On Link Failures
 
@@ -2586,7 +2618,9 @@ router bgp 65000
 ...
 ```
 
-### Converge Quickly On Soft Failures
+### Protocol Tuning
+
+#### Converge Quickly On Soft Failures
 
 It is possible that the link is up but the neighboring BGP process is hung or has crashed. In this case, the FRRouting `watchfrr` daemon, which monitors the various FRRouting daemons, attempts to restart it. BGP itself has a keepalive interval that is exchanged between neighbors. By default, this keepalive interval is set to 3 seconds. You can increase this interval to a higher value, which decreases CPU load, especially in the presence of a lot of neighbors. The keepalive interval is the periodicity with which the keepalive message is sent. The hold time specifies how many keepalive messages can be lost before the connection is considered invalid. It is typically set to three times the keepalive time and defaults to 9 seconds. The following examples commands change the keepalive interval to 10 seconds and the hold time to 30 seconds.
 
@@ -2630,7 +2664,7 @@ router bgp 65000
 ...
 ```
 
-### Reconnect Quickly
+#### Reconnect Quickly
 
 A BGP process attempts to connect to a peer after a failure (or on startup) every `connect-time` seconds. By default, this is 10 seconds. To modify this value, run the following commands.
 
@@ -2679,7 +2713,7 @@ router bgp 65000
 ...
 ```
 
-### Advertisement Interval
+#### Advertisement Interval
 
 By default, BGP chooses stability over fast convergence, which is very useful when routing for the Internet. For example, unlike link-state protocols, BGP typically waits a number of seconds before sending consecutive updates to a neighbor. This advertisement interval ensures that an unstable neighbor flapping routes are not propagated throughout the network. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see {{<exlink url="http://tools.ietf.org/html/draft-jakma-mrai-02" text="this IETF draft">}}.
 
@@ -3222,6 +3256,7 @@ FRR does not add BGP `ttl-security` to either the running configuration or to th
 
 ## Related Information
 
+{{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center
 - {{<exlink url="https://cumulusnetworks.com/lp/bgp-ebook/" text="BGP in the Data Center by Dinesh G. Dutt">}} - a complete guide to Border Gateway Protocol for the modern data center
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="Bidirectional forwarding detection">}} (BFD) and BGP
 - {{<exlink url="http://en.wikipedia.org/wiki/Border_Gateway_Protocol" text="Wikipedia entry for BGP">}} (includes list of useful RFCs)

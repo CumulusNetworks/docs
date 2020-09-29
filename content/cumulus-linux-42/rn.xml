@@ -7,6 +7,34 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31615</td>
+<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31605</td>
+<td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
+
+cumulus@switch:mgmt-vrf:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
+adding the following line to /var/lib/snmp/snmpd.conf:           
+   createUser userSHAwithAES SHA "shaauthpass" AES "aesprivpass"       
+adding the following line to /snmp/snmpd.conf:                           
+   rwuser userSHAwithAES                                           
+touch: cannot touch ‘/snmp/snmpd.conf’: No such file or directory
+/usr/bin/net-snmp-create-v3-user: 144: /usr/bin/net-snmp-create-v3-user: cannot create /snmp/snmpd.conf: Directory nonexistent
+
+
+<p>To work around this issue, use the NCLU command to configure SNMPv3 user parameters; for example:</p>
+
+cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
+
+
+<p>Alternatively, directly edit the /etc/snmp/snmpd.conf file as described in the documentation.</p></td>
+<td>3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31545</td>
 <td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
@@ -1693,6 +1721,34 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31615</td>
+<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31605</td>
+<td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
+
+cumulus@switch:mgmt-vrf:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
+adding the following line to /var/lib/snmp/snmpd.conf:           
+   createUser userSHAwithAES SHA "shaauthpass" AES "aesprivpass"       
+adding the following line to /snmp/snmpd.conf:                           
+   rwuser userSHAwithAES                                           
+touch: cannot touch ‘/snmp/snmpd.conf’: No such file or directory
+/usr/bin/net-snmp-create-v3-user: 144: /usr/bin/net-snmp-create-v3-user: cannot create /snmp/snmpd.conf: Directory nonexistent
+
+
+<p>To work around this issue, use the NCLU command to configure SNMPv3 user parameters; for example:</p>
+
+cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
+
+
+<p>Alternatively, directly edit the /etc/snmp/snmpd.conf file as described in the documentation.</p></td>
+<td>3.7.13, 4.0.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31545</td>

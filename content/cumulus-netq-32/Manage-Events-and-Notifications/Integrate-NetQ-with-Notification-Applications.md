@@ -2060,18 +2060,32 @@ The following events are supported:
 
 {{< tab "Digital Optics" >}}
 
+{{<notice info>}}
+Some of the event IDs have changed. If you have TCA rules configured for digital optics for a previous release, verify that they are using the correct event IDs. You might need to remove and recreate some of the events.
+{{</notice>}}
+
 | Event ID | Description |
 | ---------- | -------------- |
-| TCA_INPUT_POWER_UPPER | Transceiver Input power (mW) for the digital optical module on a given switch or host is greater than maximum threshold |
-| TCA_INPUT_POWER_LOWER | Transceiver Input power (mW) for the digital optical module on a given switch or host is less than minimum threshold |
-| TCA_LASER_BIAS_UPPER | Laser bias current (mA) for the digital optical module on a given switch or host is greater than maximum threshold |
-| TCA_LASER_BIAS_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host is less than minimum threshold |
-| TCA_LASER_OUTPUT_POWER_UPPER | Laser output power (mW) for the digital optical module on a given switch or host is greater than maximum threshold |
-| TCA_LASER_OUTPUT_POWER_LOWER | Laser output power (mW) for the digital optical module on a given switch or host is less than minimum threshold |
-| TCA_MODULE_TEMPERATURE_UPPER | Digital optical module temperature (&deg;C) on a given switch or host is greater than maximum threshold |
-| TCA_MODULE_TEMPERATURE_LOWER | Digital optical module temperature (&deg;C) on a given switch or host is less than minimum threshold |
-| TCA_TRANSCEIVER_VOLTAGE_UPPER | Transceiver voltage (mV) on a given switch or host is greater than maximum threshold |
-| TCA_TRANSCEIVER_VOLTAGE_LOWER | Transceiver voltage (mV) on a given switch or host is less than minimum threshold |
+| TCA_DOM_RX_POWER_ALARM_UPPER | Transceiver Input power (mW) for the digital optical module on a given switch or host interface is greater than the maximum alarm threshold |
+| TCA_DOM_RX_POWER_ALARM_LOWER | Transceiver Input power (mW) for the digital optical module on a given switch or host is less than minimum alarm threshold |
+| TCA_DOM_RX_POWER_WARNING_UPPER | Transceiver Input power (mW) for the digital optical module on a given switch or host is greater than specified warning threshold |
+| TCA_DOM_RX_POWER_WARNING_LOWER | Transceiver Input power (mW) for the digital optical module on a given switch or host is less than minimum warning threshold |
+| TCA_DOM_BIAS_CURRENT_ALARM_UPPER | Laser bias current (mA) for the digital optical module on a given switch or host is greater than maximum alarm threshold |
+| TCA_DOM_BIAS__CURRENT_ALARM_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host is less than minimum alarm threshold |
+| TCA_DOM_BIAS_CURRENT_WARNING_UPPER | Laser bias current (mA) for the digital optical module on a given switch or host is greater than maximum warning threshold |
+| TCA_DOM_BIAS__CURRENT_WARNING_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host is less than minimum warning threshold |
+| TCA_DOM_OUTPUT_POWER_ALARM_UPPER | Laser output power (mW) for the digital optical module on a given switch or host is greater than maximum alarm threshold |
+| TCA_DOM_OUTPUT_POWER_ALARM_LOWER | Laser output power (mW) for the digital optical module on a given switch or host is less than minimum alarm threshold |
+| TCA_DOM_OUTPUT_POWER_WARNING_UPPER | Laser output power (mW) for the digital optical module on a given switch or host is greater than maximum warning threshold |
+| TCA_DOM_OUTPUT_POWER_WARNING_LOWER | Laser output power (mW) for the digital optical module on a given switch or host is less than minimum warning threshold |
+| TCA_DOM_MODULE_TEMPERATURE_ALARM_UPPER | Digital optical module temperature (&deg;C) on a given switch or host is greater than maximum alarm threshold |
+| TCA_DOM_MODULE_TEMPERATURE_ALARM_LOWER | Digital optical module temperature (&deg;C) on a given switch or host is less than minimum alarm threshold |
+| TCA_DOM_MODULE_TEMPERATURE_WARNING_UPPER | Digital optical module temperature (&deg;C) on a given switch or host is greater than maximum warning threshold |
+| TCA_DOM_MODULE_TEMPERATURE_WARNING_LOWER | Digital optical module temperature (&deg;C) on a given switch or host is less than minimum warning threshold |
+| TCA_DOM_MODULE_VOLTAGE_ALARM_UPPER | Transceiver voltage (mV) on a given switch or host is greater than maximum alarm threshold |
+| TCA_DOM_MODULE_VOLTAGE_ALARM_LOWER | Transceiver voltage (mV) on a given switch or host is less than minimum alarm threshold |
+| TCA_DOM_MODULE_VOLTAGE_WARNING_UPPER | Transceiver voltage (mV) on a given switch or host is greater than maximum warning threshold |
+| TCA_DOM_MODULE_VOLTAGE_WARNING_LOWER | Transceiver voltage (mV) on a given switch or host is less than minimum warning threshold |
 
 {{< /tab >}}
 
@@ -2090,6 +2104,18 @@ The following events are supported:
 
 {{< /tab >}}
 
+{{< tab "Interface Errors" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_HW_IF_OVERSIZE_ERRORS | Number of times a frame is longer than maximum size (1518 Bytes) |
+| TCA_HW_IF_UNDERSIZE_ERRORS | Number of times a frame is shorter than minimum size (64 Bytes) |
+| TCA_HW_IF_ALIGNMENT_ERRORS | Number of times a frame has an uneven byte count and a CRC error |
+| TCA_HW_IF_JABBER_ERRORS | Number of times a frame is longer than maximum size (1518 bytes) and has a CRC error |
+| TCA_HW_IF_SYMBOL_ERRORS | Number of times undefined or invalid symbols have been detected |
+
+{{< /tab >}}
+
 {{< tab "Interface Statistics" >}}
 
 | Event ID | Description |
@@ -2100,6 +2126,14 @@ The following events are supported:
 | TCA_TXBROADCAST_UPPER |  tx_broadcast bytes per second on a given switch or host is greater than maximum threshold |
 | TCA_TXBYTES_UPPER     |  tx_bytes per second on a given switch or host is greater than maximum threshold |
 | TCA_TXMULTICAST_UPPER |  tx_multicast bytes per second on a given switch or host is greater than maximum threshold |
+
+{{< /tab >}}
+
+{{< tab "Link Flaps" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_LINK | Number of link flaps is greater than the maximum threshold |
 
 {{< /tab >}}
 
@@ -2161,20 +2195,29 @@ You can filter rules based on the following filter parameters.
 {{< /tab >}}
 
 {{< tab "Digital Optics" >}}
-<!-- any other params besides hostname? -->
 
 | Event ID | Scope Parameters |
 | ---------- | -------------- |
-| TCA_INPUT_POWER_UPPER  | Hostname |
-| TCA_INPUT_POWER_LOWER  |  Hostname |
-| TCA_LASER_BIAS_UPPER  |  Hostname |
-| TCA_LASER_BIAS_LOWER  |  Hostname |
-| TCA_LASER_OUTPUT_POWER_UPPER  |  Hostname |
-| TCA_LASER_OUTPUT_POWER_LOWER  |  Hostname |
-| TCA_MODULE_TEMPERATURE_UPPER  |  Hostname |
-| TCA_MODULE_TEMPERATURE_LOWER  |  Hostname |
-| TCA_TRANSCEIVER_VOLTAGE_UPPER  |  Hostname |
-| TCA_TRANSCEIVER_VOLTAGE_LOWER  |  Hostname |
+| TCA_DOM_RX_POWER_ALARM_UPPER | Hostname, Interface |
+| TCA_DOM_RX_POWER_ALARM_LOWER | Hostname, Interface |
+| TCA_DOM_RX_POWER_WARNING_UPPER | Hostname, Interface |
+| TCA_DOM_RX_POWER_WARNING_LOWER | Hostname, Interface |
+| TCA_DOM_BIAS_CURRENT_ALARM_UPPER | Hostname, Interface |
+| TCA_DOM_BIAS_CURRENT_ALARM_LOWER | Hostname, Interface |
+| TCA_DOM_BIAS_CURRENT_WARNING_UPPER | Hostname, Interface |
+| TCA_DOM_BIAS_CURRENT_WARNING_LOWER | Hostname, Interface |
+| TCA_DOM_OUTPUT_POWER_ALARM_UPPER | Hostname, Interface |
+| TCA_DOM_OUTPUT_POWER_ALARM_LOWER | Hostname, Interface |
+| TCA_DOM_OUTPUT_POWER_WARNING_UPPER | Hostname, Interface |
+| TCA_DOM_OUTPUT_POWER_WARNING_LOWER | Hostname, Interface |
+| TCA_DOM_MODULE_TEMPERATURE_ALARM_UPPER | Hostname, Interface |
+| TCA_DOM_MODULE_TEMPERATURE_ALARM_LOWER | Hostname, Interface |
+| TCA_DOM_MODULE_TEMPERATURE_WARNING_UPPER | Hostname, Interface |
+| TCA_DOM_MODULE_TEMPERATURE_WARNING_LOWER | Hostname, Interface |
+| TCA_DOM_MODULE_VOLTAGE_ALARM_UPPER | Hostname, Interface |
+| TCA_DOM_MODULE_VOLTAGE_ALARM_LOWER | Hostname, Interface |
+| TCA_DOM_MODULE_VOLTAGE_WARNING_UPPER | Hostname, Interface |
+| TCA_DOM_MODULE_VOLTAGE_WARNING_LOWER | Hostname, Interface |
 
 {{< /tab >}}
 
@@ -2193,6 +2236,18 @@ You can filter rules based on the following filter parameters.
 
 {{< /tab >}}
 
+{{< tab "Interface Errors" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_HW_IF_OVERSIZE_ERRORS | Hostname, Interface |
+| TCA_HW_IF_UNDERSIZE_ERRORS | Hostname, Interface |
+| TCA_HW_IF_ALIGNMENT_ERRORS | Hostname, Interface |
+| TCA_HW_IF_JABBER_ERRORS | Hostname, Interface |
+| TCA_HW_IF_SYMBOL_ERRORS | Hostname, Interface |
+
+{{< /tab >}}
+
 {{< tab "Interface Statistics" >}}
 
 | Event ID | Scope Parameters |
@@ -2203,6 +2258,14 @@ You can filter rules based on the following filter parameters.
 | TCA_TXBROADCAST_UPPER | Hostname, Interface |
 | TCA_TXBYTES_UPPER | Hostname, Interface |
 | TCA_TXMULTICAST_UPPER | Hostname, Interface |
+
+{{< /tab >}}
+
+{{< tab "Link Flaps" >}}
+
+| Event ID | Description |
+| ---------- | -------------- |
+| TCA_LINK | Hostname, Interface |
 
 {{< /tab >}}
 
@@ -2237,29 +2300,20 @@ Scopes are defined and displayed as regular expressions. The definition and disp
 {{< tab "NetQ UI" >}}
 
 Scopes are displayed in TCA rule cards using the following format.
-<!-- Fill in ACL, forwarding and digital optics items -->
+
 | Scope | Display in Card | Result |
 | ------- | ------------------- | ------- |
 | All devices | hostname = * | Show events for all devices |
 | All interfaces | ifname = * | Show events for all devices and all interfaces |
 | All sensors | s_name = * | Show events for all devices and all sensors |
-| All ACLs | hostname = * | Show events for all ACL resources |
-| All forwarding | xxx | Show events for all forwarding resources |
-| All digital optical modules | xxx | Show events for all digital optics |
 | Particular device | hostname = leaf01 | Show events for *leaf01* switch |
 | Particular interface | ifname = swp14 | Show events for *swp14* interface |
 | Particular sensor | s_name = fan2 | Show events for the *fan2* fan |
-| Particular ACL resource | xxx | Show events for the *xxx* ACL resource |
-| Particular forwarding resource | xxx | Show events for the *xxx* forwarding resource |
-| Particular digital optical module | xxx | Show events for the *xxx* digital optics module |
 | Set of devices | hostname ^ leaf | Show events for switches having names starting with *leaf* |
 | Set of interfaces | ifname ^ swp | Show events for interfaces having names starting with *swp* |
 | Set of sensors | s_name ^ fan | Show events for sensors having names starting with *fan* |
-| Set of ACL resources | xxx | Show events for xxx |
-| Set of forwarding resources | xxx | Show events for xxx |
-| Set of digital optical modules | xxx | Show events for xxx |
 
-When a rule is filtered by more than one parameter, each is displayed on the card. Leaving a value blank for a parameter defaults to all; all hostnames, interfaces, sensors, forwarding resources, ACL resources, and digital optics.
+When a rule is filtered by more than one parameter, each is displayed on the card. Leaving a value blank for a parameter defaults to *all*; all hostnames, interfaces, sensors, forwarding resources, ACL resources, and so forth.
 
 {{< /tab >}}
 
@@ -2311,8 +2365,6 @@ Scopes are defined with regular expressions, as follows. When two paramaters are
 
 {{< /tabs >}}
 
-<!-- ADD New params for acl and forwarding resources, dom? -->
-
 ### Create a TCA Rule
 
 Now that you know which events are supported and how to set the scope, you can create a basic rule to deliver one of the TCA events to a notification channel. This can be done using either the NetQ UI or the NetQ CLI.
@@ -2333,33 +2385,39 @@ To create a TCA rule:
 
     The Create TCA Rule dialog opens. Four steps create the rule.
 
-    {{<figure src="/images/netq/tca-create-rule-details-tab-300.png" width="400">}}
+    {{<figure src="/images/netq/tca-create-rule-details-tab-320.png" width="400">}}
 
-    {{<notice tip>}}
+<div style="padding-left: 18px;">
+{{<notice tip>}}
 You can move forward and backward until you are satisfied with your rule definition.
-    {{</notice>}}
+{{</notice>}}
+</div>
 
 4. On the **Enter Details** step, enter a name for your rule, choose your TCA event type, and assign a severity.
 
-    {{<notice note>}}
+<div style="padding-left: 18px;">
+{{<notice note>}}
 The rule name has a maximum of 20 characters (including spaces).
-    {{</notice>}}
+{{</notice>}}
+</div>
 
 5. Click **Next**.
 
-6. On the **Choose Event** step, select the attribute to measure against.
+6. On the **Choose Attribute** step, select the attribute to measure against.
 
-    {{<figure src="/images/netq/tca-create-rule-event-tab-300.png" width="400">}}
+    {{<figure src="/images/netq/tca-create-rule-attribute-tab-320.png" width="400">}}
 
-    {{<notice note>}}
+<div style="padding-left: 18px;">
+{{<notice note>}}
 The attributes presented depend on the event type chosen in the <em>Enter Details</em> step. This example shows the attributes available when <em>Resource Utilization</em> was selected.
-    {{</notice>}}
+{{</notice>}}
+</div>
 
 7. Click **Next**.
 
 8. On the **Set Threshold** step, enter a threshold value.
 
-    {{<figure src="/images/netq/tca-create-rule-threshold-tab-300.png" width="400">}}
+    {{<figure src="/images/netq/tca-create-rule-threshold-tab-320.png" width="400">}}
 
 9. Define the scope of the rule.
 
@@ -2371,7 +2429,9 @@ The attributes presented depend on the event type chosen in the <em>Enter Detail
 
 10. Click **Next**.
 
-11. Optionally, select a notification channel where you want the events to be sent. If no channel is select, the notifications are only available from the database. You can add a channel at a later time. Refer to {{<link title="#Modify TCA Rules" text="Modify TCA Rules">}}.
+11. Optionally, select a notification channel where you want the events to be sent.
+
+    Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time. Refer to {{<link title="#Modify TCA Rules" text="Modify TCA Rules">}}.
 
 12. Click **Finish**.
 
@@ -2445,7 +2505,7 @@ And so forth.
 
 In the NetQ UI you create multiple rules by adding mulitple rule cards. Refer to {{<link title="#Create a TCA Rule" text="Create a TCA Rule">}}.
 
-In the NetQ CLI, you also add multiple rules. This example shows the creation of three additional rules for the max temperature sensor.
+In the NetQ CLI, you can also add multiple rules. This example shows the creation of three additional rules for the max temperature sensor.
 
 ```
 netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf*,temp1 channel syslog-netq threshold 32

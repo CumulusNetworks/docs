@@ -4,21 +4,18 @@ author: Cumulus Networks
 weight: 810
 toc: 3
 ---
-BGP is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. BGP:
+BGP is the routing protocol that runs the Internet. It manages how packets get routed from network to network by exchanging routing and reachability information.
 
-- Does not require the routing state to be periodically refreshed, unlike OSPF.
-- Is less chatty than its link-state siblings. For example, a link or node transition can result in a bestpath change, causing BGP to send updates.
-- Is multi-protocol and extensible.
-- Has many robust vendor implementations.
-- Is very mature as a protocol and comes with many years of operational experience.
+BGP is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology.
 
 ## How does BGP Work?
 
-Intro
+BGP directs packets between autonomous systems (AS), which are a set of routers under a common administration.
+Each router maintains a routing table that controls how packets are forwarded. The BGP process on the router generates information in the routing table based on information coming from other routers and from information in the BGP routing information base (RIB). The RIB is a database that stores routes and continually updates the routing table as changes occur.
 
 ### Autonomous System
 
-An {{<exlink url="https://en.wikipedia.org/wiki/Autonomous_System_%28Internet%29" text="autonomous system">}} is defined as a set of routers under a common administration. Because BGP was originally designed to peer between independently managed enterprises and/or service providers, each such enterprise is treated as an autonomous system, responsible for a set of network addresses. Each such autonomous system is given a unique number called an *autonomous* *system number* (ASN). ASNs are handed out by a central authority (ICANN); however, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or using the single ASN you own.
+Because BGP was originally designed to peer between independently managed enterprises and/or service providers, each such enterprise is treated as an autonomous system, responsible for a set of network addresses. Each such autonomous system is given a unique number called an *autonomous system number* (ASN). ASNs are handed out by a central authority (ICANN); however, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or using the single ASN you own.
 
 The ASN is central to how BGP builds a forwarding topology. A BGP route advertisement carries  with it not only the ASN of the originator, but also the list of ASNs that this route advertisement passes through. When forwarding a route advertisement, a BGP speaker adds itself to this list. This list of ASNs is called the *AS path*. BGP uses the AS path to detect and avoid loops.
 
@@ -56,9 +53,9 @@ All iBGP speakers need to be peered with each other in a full mesh. In a large n
 
 ### BGP Path Selection
 
-BGP is a path-vector routing algorithm and does not rely on a single routing metric to determine the lowest cost route, unlike interior gateway protocols (IGPs) like OSPF.
+BGP is a path-vector routing algorithm that does not rely on a single routing metric to determine the lowest cost route, unlike interior gateway protocols (IGPs) like OSPF.
 
-The BGP path selection algorithm looks at multiple factors to determine exactly which path is best and only the best path is installed in the routing table and advertised to other BGP peers. If {{<link url="#ecmp-with-bgp" text="BGP ECMP">}} is configured multiple equal cost routes may be installed in the routing table but only a single route will be advertised to BGP peers.
+The BGP path selection algorithm looks at multiple factors to determine exactly which path is best. {{<link url="#set-ecmp-options" text="BGP multipath">}} is enabled by default in Cumulus Linux so that multiple equal cost routes can be installed in the routing table but only a single route is advertised to BGP peers.
 
 The order of the BGP algorithm process is as follows:
 
@@ -78,7 +75,7 @@ The order of the BGP algorithm process is as follows:
 
 - **Lowest IGP Cost to the next hop**: The route with the lowest IGP metric to reach the BGP next hop.
 
-- **iBGP ECMP over eBGP ECMP**: If  {{<link url="#ecmp-with-bgp" text="BGP Multipath">}} is configured, prefer equal iBGP routes over equal eBGP routes, unless `as-path multipath-relax` is also configured.
+- **iBGP ECMP over eBGP ECMP**: If {{<link url="#set-ecmp-options" text="BGP Multipath">}} is configured, prefer equal iBGP routes over equal eBGP routes, unless {{<link url="#set-ecmp-options" text="as-path multipath-relax">}} is also configured.
 
 - **Oldest Route**: Prefer the oldest route in the BGP table.
 
@@ -97,7 +94,7 @@ When BGP multipath is in use, if multiple paths are equal, BGP still selects a s
 To configure BGP, you need to:
 
 - Assign an ASN to identify the BGP node. In a two-tier leaf and spine environment, you can use {{<link url="#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically. Auto BGP is supported with NCLU only.
-- Assign a router ID to the BGP node.
+- Assign a router ID to the BGP node. The router ID is a 32-bit value and is typically the address of the loopback interface on the switch.
 - Specify where to disseminate routing information.
 - Set BGP session properties.
 - Specify which prefixes to originate.
@@ -130,7 +127,7 @@ The following procedure provides example commands:
 
       The auto BGP leaf and spine keywords are only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
 
-2. Assign the router ID. The router ID is a 32-bit value and typically the address of the loopback interface on the switch.
+2. Assign the router ID.
 
     ```
     cumulus@switch:~$ net add bgp router-id 10.10.10.1
@@ -393,9 +390,9 @@ In a two-tier Clos network, the leaf (or tier 1) switches are the only ones conn
 
 In a three-tier network, the tier 2 nodes (or mid-tier spines) act as both route reflector servers and route reflector clients. They act as route reflectors because they announce the routes learned from the tier 1 nodes to other tier 1 nodes and to tier 3 nodes. They also act as route reflector clients to the tier 3 nodes, receiving routes learned from other tier 2 nodes. Tier 3 nodes act only as route reflectors.
 
-In the following illustration, tier 2 node 2.1 is acting as a route reflector server, announcing the routes between tier 1 nodes 1.1 and 1.2 to tier 1 node 1.3. It is also a route reflector client, learning the routes between tier 2 nodes 2.2 and 2.3 from the tier 3 node, 3.1.
+In the following illustration, tier 2 node spine01 is acting as a route reflector server, announcing the routes between tier 1 nodes leaf01 and leaf02 to tier 1 node leaf03. spine01 is also a route reflector client, learning the routes between tier 2 nodes spine02 and spine03 from the tier 3 node, superspine01.
 
-{{< img src = "/images/cumulus-linux/bgp-route-reflectors.png" >}}
+{{< img src = "/images/cumulus-linux/bgp-route-reflectors-example.png" >}}
 
 {{%notice info%}}
 

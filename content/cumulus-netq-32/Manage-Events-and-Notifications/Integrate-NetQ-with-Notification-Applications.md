@@ -2108,11 +2108,11 @@ Some of the event IDs have changed. If you have TCA rules configured for digital
 
 | Event ID | Description |
 | ---------- | -------------- |
-| TCA_OVERSIZE_ERRORS | Packet was bigger than expected packet size |
-| TCA_UNDERSIZE_ERRORS | Packet was bigger than expected packet size |
-| TCA_ALIGNMENT_ERRORS | xxx |
-| TCA_JABBER_ERRORS | xxx |
-| TCA_SYMBOL_ERRORS | xxx |
+| TCA_HW_IF_OVERSIZE_ERRORS | Number of times a frame is longer than maximum size (1518 Bytes) |
+| TCA_HW_IF_UNDERSIZE_ERRORS | Number of times a frame is shorter than minimum size (64 Bytes) |
+| TCA_HW_IF_ALIGNMENT_ERRORS | Number of times a frame has an uneven byte count and a CRC error |
+| TCA_HW_IF_JABBER_ERRORS | Number of times a frame is longer than maximum size (1518 bytes) and has a CRC error |
+| TCA_HW_IF_SYMBOL_ERRORS | Number of times undefined or invalid symbols have been detected |
 
 {{< /tab >}}
 
@@ -2240,11 +2240,11 @@ You can filter rules based on the following filter parameters.
 
 | Event ID | Description |
 | ---------- | -------------- |
-| TCA_OVERSIZE_ERRORS | Hostname, Interface |
-| TCA_UNDERSIZE_ERRORS | Hostname, Interface |
-| TCA_ALIGNMENT_ERRORS | Hostname, Interface |
-| TCA_JABBER_ERRORS | Hostname, Interface |
-| TCA_SYMBOL_ERRORS | Hostname, Interface |
+| TCA_HW_IF_OVERSIZE_ERRORS | Hostname, Interface |
+| TCA_HW_IF_UNDERSIZE_ERRORS | Hostname, Interface |
+| TCA_HW_IF_ALIGNMENT_ERRORS | Hostname, Interface |
+| TCA_HW_IF_JABBER_ERRORS | Hostname, Interface |
+| TCA_HW_IF_SYMBOL_ERRORS | Hostname, Interface |
 
 {{< /tab >}}
 
@@ -2300,29 +2300,20 @@ Scopes are defined and displayed as regular expressions. The definition and disp
 {{< tab "NetQ UI" >}}
 
 Scopes are displayed in TCA rule cards using the following format.
-<!-- Fill in ACL, forwarding and digital optics items -->
+
 | Scope | Display in Card | Result |
 | ------- | ------------------- | ------- |
 | All devices | hostname = * | Show events for all devices |
 | All interfaces | ifname = * | Show events for all devices and all interfaces |
 | All sensors | s_name = * | Show events for all devices and all sensors |
-| All ACLs | hostname = * | Show events for all ACL resources |
-| All forwarding | xxx | Show events for all forwarding resources |
-| All digital optical modules | xxx | Show events for all digital optics |
 | Particular device | hostname = leaf01 | Show events for *leaf01* switch |
 | Particular interface | ifname = swp14 | Show events for *swp14* interface |
 | Particular sensor | s_name = fan2 | Show events for the *fan2* fan |
-| Particular ACL resource | xxx | Show events for the *xxx* ACL resource |
-| Particular forwarding resource | xxx | Show events for the *xxx* forwarding resource |
-| Particular digital optical module | xxx | Show events for the *xxx* digital optics module |
 | Set of devices | hostname ^ leaf | Show events for switches having names starting with *leaf* |
 | Set of interfaces | ifname ^ swp | Show events for interfaces having names starting with *swp* |
 | Set of sensors | s_name ^ fan | Show events for sensors having names starting with *fan* |
-| Set of ACL resources | xxx | Show events for xxx |
-| Set of forwarding resources | xxx | Show events for xxx |
-| Set of digital optical modules | xxx | Show events for xxx |
 
-When a rule is filtered by more than one parameter, each is displayed on the card. Leaving a value blank for a parameter defaults to all; all hostnames, interfaces, sensors, forwarding resources, ACL resources, and digital optics.
+When a rule is filtered by more than one parameter, each is displayed on the card. Leaving a value blank for a parameter defaults to *all*; all hostnames, interfaces, sensors, forwarding resources, ACL resources, and so forth.
 
 {{< /tab >}}
 
@@ -2374,8 +2365,6 @@ Scopes are defined with regular expressions, as follows. When two paramaters are
 
 {{< /tabs >}}
 
-<!-- ADD New params for acl and forwarding resources, dom? -->
-
 ### Create a TCA Rule
 
 Now that you know which events are supported and how to set the scope, you can create a basic rule to deliver one of the TCA events to a notification channel. This can be done using either the NetQ UI or the NetQ CLI.
@@ -2398,15 +2387,19 @@ To create a TCA rule:
 
     {{<figure src="/images/netq/tca-create-rule-details-tab-320.png" width="400">}}
 
-    {{<notice tip>}}
+<div style="padding-left: 18px;">
+{{<notice tip>}}
 You can move forward and backward until you are satisfied with your rule definition.
-    {{</notice>}}
+{{</notice>}}
+</div>
 
 4. On the **Enter Details** step, enter a name for your rule, choose your TCA event type, and assign a severity.
 
-    {{<notice note>}}
+<div style="padding-left: 18px;">
+{{<notice note>}}
 The rule name has a maximum of 20 characters (including spaces).
-    {{</notice>}}
+{{</notice>}}
+</div>
 
 5. Click **Next**.
 
@@ -2414,9 +2407,11 @@ The rule name has a maximum of 20 characters (including spaces).
 
     {{<figure src="/images/netq/tca-create-rule-attribute-tab-320.png" width="400">}}
 
-    {{<notice note>}}
+<div style="padding-left: 18px;">
+{{<notice note>}}
 The attributes presented depend on the event type chosen in the <em>Enter Details</em> step. This example shows the attributes available when <em>Resource Utilization</em> was selected.
-    {{</notice>}}
+{{</notice>}}
+</div>
 
 7. Click **Next**.
 
@@ -2510,7 +2505,7 @@ And so forth.
 
 In the NetQ UI you create multiple rules by adding mulitple rule cards. Refer to {{<link title="#Create a TCA Rule" text="Create a TCA Rule">}}.
 
-In the NetQ CLI, you also add multiple rules. This example shows the creation of three additional rules for the max temperature sensor.
+In the NetQ CLI, you can also add multiple rules. This example shows the creation of three additional rules for the max temperature sensor.
 
 ```
 netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf*,temp1 channel syslog-netq threshold 32

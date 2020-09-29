@@ -7,6 +7,34 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31615</td>
+<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31605</td>
+<td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
+
+cumulus@switch:mgmt-vrf:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
+adding the following line to /var/lib/snmp/snmpd.conf:           
+   createUser userSHAwithAES SHA "shaauthpass" AES "aesprivpass"       
+adding the following line to /snmp/snmpd.conf:                           
+   rwuser userSHAwithAES                                           
+touch: cannot touch ‘/snmp/snmpd.conf’: No such file or directory
+/usr/bin/net-snmp-create-v3-user: 144: /usr/bin/net-snmp-create-v3-user: cannot create /snmp/snmpd.conf: Directory nonexistent
+
+
+<p>To work around this issue, use the NCLU command to configure SNMPv3 user parameters; for example:</p>
+
+cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
+
+
+<p>Alternatively, directly edit the /etc/snmp/snmpd.conf file as described in the documentation.</p></td>
+<td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31545</td>
 <td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
@@ -2033,6 +2061,16 @@ Fixed: 4.2-3+dev8u4</p></td>
 <td>3.0.0-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+</tr>
+<tr>
 <td>CM-30240</td>
 <td><p>switchd memory utilization might continue to increase if there are excessive and continuous link flaps over a long period of time.<br/>
 To work around this issue, correct the cause of the frequent link flaps. You can restart switchd with the sudo systemctl restart switchd command to recover memory; this operation is impactful to all traffic on the switch during the restart.</p></td>
@@ -2448,6 +2486,12 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31615</td>
+<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31545</td>
@@ -2989,6 +3033,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 To work around this issue, either use NCLU or vtysh commands to remove the BFD configuration, or restart FRR with the new /etc/frr/frr.conf file.</p></td>
 <td>3.7.7-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-30240</td>
@@ -5574,6 +5629,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 To work around this issue, either use NCLU or vtysh commands to remove the BFD configuration, or restart FRR with the new /etc/frr/frr.conf file.</p></td>
 <td>3.7.7-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-30240</td>
@@ -8472,6 +8538,17 @@ To work around this issue, either use NCLU or vtysh commands to remove the BFD c
 <td></td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -11038,6 +11115,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 To work around this issue, either use NCLU or vtysh commands to remove the BFD configuration, or restart FRR with the new /etc/frr/frr.conf file.</p></td>
 <td>3.7.7-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-30064</td>
@@ -14043,6 +14131,17 @@ To work around this issue, either use NCLU or vtysh commands to remove the BFD c
 <td></td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -16916,6 +17015,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 To work around this issue, either use NCLU or vtysh commands to remove the BFD configuration, or restart FRR with the new /etc/frr/frr.conf file.</p></td>
 <td>3.7.7-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-30064</td>
@@ -20134,6 +20244,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -23313,6 +23434,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -26177,6 +26309,17 @@ Fixed: 0.13.62-3+deb8u2</p></td>
 <td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
 Vulnerable: &lt;= 4.2-3+deb8u3<br/>
 Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
 </tr>
@@ -29103,6 +29246,17 @@ Fixed: 0.13.62-3+deb8u2</p></td>
 <td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
 Vulnerable: &lt;= 4.2-3+deb8u3<br/>
 Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
 </tr>
@@ -32188,6 +32342,17 @@ Fixed: 0.13.62-3+deb8u2</p></td>
 <td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
 Vulnerable: &lt;= 4.2-3+deb8u3<br/>
 Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
 </tr>
@@ -35387,6 +35552,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -38094,6 +38270,17 @@ Fixed: 0.13.62-3+deb8u2</p></td>
 <td><p>CVE-2017-10790: The _asn1_check_identifier function in GNU Libtasn1 through 4.12 causes a NULL pointer dereference and crash when reading crafted input that triggers assignment of a NULL value within an asn1_node structure. It may lead to a remote denial of service attack.<br/>
 Vulnerable: &lt;= 4.2-3+deb8u3<br/>
 Fixed: 4.2-3+dev8u4</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
 </tr>

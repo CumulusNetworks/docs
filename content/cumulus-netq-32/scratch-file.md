@@ -19,6 +19,32 @@ draft: true
 
 <div style="padding-left: 18px;">
 
+-------------
+
+cumulus@tor-1:mgmt:~$ netq tor-1 show wjh-drop between now and 7d
+
+Matching wjh records:
+Drop type          Aggregate Count
+------------------ ------------------------------
+L1                 560
+Buffer             224
+Router             144
+L2                 0
+ACL                0
+Tunnel             0
+cumulus@tor-1:mgmt:~$ netq tor-1 show wjh-drop details between now and 7d
+
+Matching wjh records:
+Drop type          Aggregate Count                Reason
+------------------ ------------------------------ ---------------------------------------------
+L1                 556                            None
+Buffer             196                            WRED
+Router             144                            Blackhole route
+Buffer             14                             Packet Latency Threshold Crossed
+Buffer             14                             Port TC Congestion Threshold
+L1                 4                              Oper down
+
+
 <div style="padding-left: 18px;">When multiple jobs are running, scroll down or use the filters above the jobs to find the jobs of interest:
 <ul>
 <li><strong>Time Range</strong>: Enter a range of time in which the upgrade job was created, then click <strong>Done</strong>.</li>

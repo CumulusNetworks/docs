@@ -91,12 +91,12 @@ When BGP multipath is in use, if multiple paths are equal, BGP still selects a s
 
 ## Basic Configuration
 
-To configure BGP, you need to:
+To configure BGP on a switch, you need to:
 
 - Assign an ASN to identify the BGP node. In a two-tier leaf and spine environment, you can use {{<link url="#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically. Auto BGP is supported with NCLU only.
-- Assign a router ID to the BGP node. The router ID is a 32-bit value and is typically the address of the loopback interface on the switch.
-- Specify where to disseminate routing information.
-- Set BGP session properties.
+- Assign a router ID, which is a 32-bit value and is typically the address of the loopback interface on the switch.
+- Specify where to disseminate routing information by providing the IP address and ASN of the neighbor. You can provide the ASN, or specify `internal` for a switch in the same AS or `external` for a switch in a different AS.
+- For an iBGP peer, configure the `next-hop-self` option to set the IP address of the switch as the next hop address. You do not need to use this option for eBGP peers; by default, routes advertised to eBGP peers have the next-Hop attribute changed to the eBGP session’s source IP address.
 - Specify which prefixes to originate.
 
 The following procedure provides example commands:
@@ -154,23 +154,11 @@ The following procedure provides example commands:
     cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
     ```
 
-4. Specify BGP session properties:
+4. For an iBGP peer, set the next-hop-self option:
 
     ```
     cumulus@switch:~$ net add bgp neighbor 10.10.10.2 next-hop-self
     ```
-
-    If this is a route reflector client, it can be specified as follows:
-
-    ```
-    cumulus@switchRR:~$ net add bgp neighbor 10.10.10.1 route-reflector-client
-    ```
-
-    {{%notice note%}}
-
-When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command otherwise, the `route-reflector-client` command is ignored.
-
-    {{%/notice%}}
 
 5. Specify which prefixes to originate:
 
@@ -222,25 +210,12 @@ When configuring a router to be a route reflector client, you must specify the c
     switch(config-router-af)# exit
     ```
 
-4. Specify BGP session properties:
+4. For an iBGP peer, set the `next-hop-self` option:
 
     ```
     switch(config-router)#
-
     switch(config-router-af)# neighbor 10.10.10.2 next-hop-self
     ```
-
-    If this is a route reflector client, it can be specified as follows:
-
-    ```
-    switchRR(config-router-af)# neighbor 10.10.10.2 route-reflector-client
-    ```
-
-    {{%notice note%}}
-
-When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
-
-{{%/notice%}}
 
 5. Specify which prefixes to originate:
 
@@ -384,7 +359,7 @@ When you disable the *bestpath as-path multipath-relax* option, EVPN type-5 rout
 
 {{%/notice%}}
 
-### Configure Route Reflector Cluster IDs
+### Configure Route Reflector Options
 
 In a two-tier Clos network, the leaf (or tier 1) switches are the only ones connected to end stations. The spines themselves do not have any routes to announce; they are merely **reflecting** the routes announced by one leaf to the other leafs. Therefore, the spine switches function as route reflectors while the leaf switches serve as route reflector clients.
 
@@ -396,7 +371,13 @@ In the following illustration, tier 2 node spine01 is acting as a route reflecto
 
 {{%notice info%}}
 
-When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored. See {{<link url="#configure-bgp" text="Configure BGP">}}.
+When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
+
+ If this is a route reflector client, it can be specified as follows:
+
+    ```
+    cumulus@switchRR:~$ net add bgp neighbor 10.10.10.1 route-reflector-client
+    ```
 
 {{%/notice%}}
 

@@ -240,7 +240,7 @@ When configuring a router to be a route reflector client, you must specify the c
 
 When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 
-    {{%/notice%}}
+{{%/notice%}}
 
 5. Specify which prefixes to originate:
 
@@ -406,7 +406,7 @@ To configure a cluster ID on a route reflector, run the following commands. You 
 
 {{< tabs "70 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 The following example configures a cluster ID on a route reflector in IP address format:
 
@@ -426,7 +426,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 The following example configures a cluster ID on a route reflector in IP address format:
 

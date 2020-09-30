@@ -2,6 +2,8 @@
 title: NetQ CLI Reference
 author: Cumulus Networks
 weight: 1100
+bookhidden: true
+pdfhidden: true
 ---
 This reference provides details about each of the NetQ CLI commands, starting with the xxx release. For an overview of the CLI structure and usage, read {{<link title="NetQ Command Line Overview">}}.
 

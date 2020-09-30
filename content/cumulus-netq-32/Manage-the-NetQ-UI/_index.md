@@ -152,9 +152,9 @@ To delete one or more user accounts:
 
 3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> to remove the accounts.
 
-## Manage User Login Requirements
+<!-- ## Manage User Login Requirements
 
-<!-- new content here -->
+ new content here -->
 
 ## Manage Scheduled Traces
 

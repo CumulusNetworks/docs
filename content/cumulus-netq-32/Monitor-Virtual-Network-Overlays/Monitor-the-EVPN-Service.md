@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 980
 toc: 4
 ---
-The Cumulus NetQ UI enables operators to view the health of the EVPN service on a network-wide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session. They are described separately here.
+The Cumulus NetQ UI enables operators to view the health of the EVPN service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session. They are described separately here.
 
 ## Monitor the EVPN Service (All Sessions)
 
@@ -163,7 +163,7 @@ The *Sessions Summary* tab which displays:
 </tr>
 <tr class="even">
 <td>Show All Sessions</td>
-<td>Link to view data for all EVPN sessions network-wide in the full screen card.</td>
+<td>Link to view data for all EVPN sessions networkwide in the full screen card.</td>
 </tr>
 </tbody>
 </table>
@@ -304,7 +304,7 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 </tr>
 <tr class="even">
 <td>All Sessions tab</td>
-<td>Displays all EVPN sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<td>Displays all EVPN sessions networkwide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
 <ul>
 <li><strong>Adv All Vni</strong>: Indicates whether the VNI state is advertising all VNIs (true) or not (false).</li>
 <li><strong>Adv Gw Ip</strong>: Indicates whether the host device is advertising the gateway IP address (true) or not (false).</li>
@@ -322,7 +322,7 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 </tr>
 <tr class="odd">
 <td>All Alarms tab</td>
-<td>Displays all EVPN events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<td>Displays all EVPN events networkwide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
 <li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
@@ -481,7 +481,7 @@ Where to go next depends on what data you see, but a few options include:
 
 - Hover over the Total Alarms chart to focus on the switches exhibiting alarms during that smaller time slice. The table content changes to match the hovered content. Click on the chart to persist the table changes.
 - Change the time period for the data to compare with a prior time. If the same switches are consistently indicating the most alarms, you might want to look more carefully at those switches using the Switches card workflow.
-- Click **Show All Sessions** to investigate all EVPN sessions network-wide in the full screen card.
+- Click **Show All Sessions** to investigate all EVPN sessions networkwide in the full screen card.
 
 ### View All EVPN Events
 
@@ -756,7 +756,7 @@ and all events.
 </tr>
 <tr class="odd">
 <td>All EVPN Sessions tab</td>
-<td>Displays all EVPN sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<td>Displays all EVPN sessions networkwide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
 <ul>
 <li><strong>Adv All Vni</strong>: Indicates whether the VNI state is advertising all VNIs (true) or not (false).</li>
 <li><strong>Adv Gw Ip</strong>: Indicates whether the host device is advertising the gateway IP address (true) or not (false).</li>
@@ -774,7 +774,7 @@ and all events.
 </tr>
 <tr class="even">
 <td>All Events tab</td>
-<td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<td>Displays all events networkwide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
 <li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
@@ -835,7 +835,7 @@ To view the count for a given EVPN session on the *large* EVPN Session card, fol
 
 ### View All EVPN Session Details
 
-You can view all stored attributes of all of the EVPN sessions running network-wide.
+You can view all stored attributes of all of the EVPN sessions running networkwide.
 
 To view all session details, open the full screen EVPN Session card and click the **All EVPN Sessions** tab.
 

@@ -14,7 +14,7 @@ The commands and cards available to obtain this type of information help you to 
 - What software is installed on my switch?
 - What is the ACL and forwarding resources usage?
 
-To monitor network-wide inventory, refer to {{<link title="Monitor Networkwide Inventory">}}.
+To monitor networkwide inventory, refer to {{<link title="Monitor Networkwide Inventory">}}.
 
 ## Access Switch Inventory Data
 
@@ -516,7 +516,7 @@ leaf02            CL              3.7.5                                Fri Apr 1
 This example shows the OS information for the NetQ On-premises or Cloud Appliance.
 
 ```
-cumulus@netq-ts:~$ netq show inventory os opta
+cumulus@switch:~$ netq show inventory os opta
 
 Matching inventory records:
 Hostname          Name            Version                              Last Changed

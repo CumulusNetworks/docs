@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 960
 toc: 4
 ---
-The Cumulus NetQ UI enables operators to view the health of the OSPF service on a network-wide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session. They are described separately here.
+The Cumulus NetQ UI enables operators to view the health of the OSPF service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session. They are described separately here.
 
 ## Monitor the OSPF Service (All Sessions)
 
@@ -480,7 +480,7 @@ and all events.
 </tr>
 <tr class="even">
 <td>All Events tab</td>
-<td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<td>Displays all events networkwide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
 <li><strong>Message</strong>: Text description of a OSPF-related event. Example: OSPF session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>

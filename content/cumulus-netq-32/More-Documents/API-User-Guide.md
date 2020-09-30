@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 1110
 toc: 3
 ---
-The NetQ API provides access to key telemetry and system monitoring data gathered about the performance and operation of your network and devices so that you can view that data in your internal or third-party analytic tools. The API gives you access to the health of individual switches, network protocols and services, trace and validation results, and views of network-wide inventory and events.
+The NetQ API provides access to key telemetry and system monitoring data gathered about the performance and operation of your network and devices so that you can view that data in your internal or third-party analytic tools. The API gives you access to the health of individual switches, network protocols and services, trace and validation results, and views of networkwide inventory and events.
 
 This guide provides an overview of the NetQ API framework, the basics of using Swagger UI 2.0 or bash plus curl to view and test the APIs. Descriptions of each endpoint and model parameter are contained in individual API .JSON files.
 
@@ -196,7 +196,7 @@ The following HTTP status codes might be presented in the API responses:
 
 Some command requests and their responses are shown here, but feel free to run your own requests. To run a request, you will need your authorization token. When using the curl commands, the responses have been piped through a python tool to make them more readable. You may chose to do so as well.
 
-### Validate Network-wide Status of the BGP Service
+### Validate networkwide Status of the BGP Service
 
 Make your request to the *bgp* endpoint to obtain validate the operation of the BGP service  all nodes running the service.
 

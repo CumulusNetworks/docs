@@ -722,7 +722,7 @@ The full screen LLDP Service card provides tabs for all switches, all sessions, 
 </tr>
 <tr class="even">
 <td>All Sessions tab</td>
-<td>Displays all LLDP sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<td>Displays all LLDP sessions networkwide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
 <ul>
 <li><strong>Ifname</strong>: Name of the host interface where LLDP session is running</li>
 <li><strong>LLDP Peer</strong>:
@@ -743,7 +743,7 @@ The full screen LLDP Service card provides tabs for all switches, all sessions, 
 </tr>
 <tr class="odd">
 <td>All Alarms tab</td>
-<td>Displays all LLDP events network-wide. By default, the event list is sorted by time, with the most recent events listed first. The tab provides the following additional data about each event:
+<td>Displays all LLDP events networkwide. By default, the event list is sorted by time, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
 <li><strong>Message</strong>: Text description of a LLDP-related event. Example: LLDP Session with host leaf02 swp6 modified fields leaf06 swp21.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
@@ -1029,7 +1029,7 @@ The full screen LLDP Session card provides tabs for all LLDP sessions and all ev
 </tr>
 <tr class="even">
 <td>All Events tab</td>
-<td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<td>Displays all events networkwide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
 <li><strong>Message</strong>: Text description of an event. Example: LLDP Session with host leaf02 swp6 modified fields leaf06 swp21.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
@@ -2242,7 +2242,7 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 </tr>
 <tr class="even">
 <td>All Sessions tab</td>
-<td>Displays all BGP sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<td>Displays all BGP sessions networkwide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
 <ul>
 <li><strong>ASN</strong>: Autonomous System Number, identifier for a collection of IP networks and routers. Example values include 633284,655435.</li>
 <li><strong>Conn Dropped</strong>: Number of dropped connections for a given session.</li>
@@ -2273,7 +2273,7 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 </tr>
 <tr class="odd">
 <td>All Alarms tab</td>
-<td>Displays all BGP events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<td>Displays all BGP events networkwide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
 <li><strong>Message</strong>: Text description of a BGP-related event. Example: BGP session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
@@ -2582,7 +2582,7 @@ The full screen OSPF Service card provides tabs for all switches, all sessions, 
 </tr>
 <tr class="even">
 <td>All Sessions tab</td>
-<td>Displays all OSPF sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<td>Displays all OSPF sessions networkwide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
 <ul>
 <li><strong>Area</strong>: Routing domain for this host device. Example values include 0.0.0.1, 0.0.0.23.</li>
 <li><strong>Ifname</strong>: Name of the interface on host device where session resides. Example values include swp5, peerlink-1.</li>
@@ -2599,7 +2599,7 @@ The full screen OSPF Service card provides tabs for all switches, all sessions, 
 </tr>
 <tr class="odd">
 <td>All Alarms tab</td>
-<td>Displays all OSPF events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<td>Displays all OSPF events networkwide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
 <li><strong>Message</strong>: Text description of a OSPF-related event. Example: swp4 area ID mismatch with peer leaf02</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event</li>
@@ -2911,7 +2911,7 @@ The full screen BGP Session card provides tabs for all BGP sessions and all even
 </tr>
 <tr class="even">
 <td>All Events tab</td>
-<td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<td>Displays all events networkwide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
 <li><strong>Message</strong>: Text description of a BGP-related event. Example: BGP session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>

@@ -93,7 +93,7 @@ Viewing the status of all interfaces at once can be helpful when you are
 trying to compare configuration or status of a set of links, or
 generally when changes have been made.
 
-This example shows all interfaces network-wide.
+This example shows all interfaces networkwide.
 
     cumulus@switch:~$ netq show interfaces 
     Matching link records:
@@ -231,7 +231,7 @@ switch.
 
 If you suspect that an interface is not working as expected, seeing a
 drop in performance or a large number of dropped messages for example,
-you can view changes that have been made to interfaces network-wide.
+you can view changes that have been made to interfaces networkwide.
 
 This example shows info level events for all interfaces in your network:
 

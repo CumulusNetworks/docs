@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 950
 toc: 4
 ---
-The Cumulus NetQ UI enables operators to view the health of the BGP service on a network-wide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session.
+The Cumulus NetQ UI enables operators to view the health of the BGP service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session.
 
 For an overview and how to configure BGP to run in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/" text="Border Gateway Protocol - BGP">}}.
 

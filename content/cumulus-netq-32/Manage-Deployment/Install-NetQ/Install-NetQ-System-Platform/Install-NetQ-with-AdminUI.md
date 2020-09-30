@@ -90,10 +90,10 @@ If the installation fails, a failure indication is given.
 Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-circle.svg" height="18" width="18"/> to close the dialog or click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/> to download an error file in JSON format.
 </div>
 
-2. Based on whether the error can be resolved by moving to the advanced configuration flow:
+2. Can the error can be resolved by moving to the advanced configuration flow:
 
-    - If not: close the Admin UI, resolve the error, then reopen the Admin UI to start installation again.
-    - If possible: click <img src="/images/netq/adminui-install-advanced-icon-320.png" height="18" width="18"/> to be taken to the advanced installation flow and retry the failed task. Refer to the **Advanced** tab for instructions.
+    - **No**: close the Admin UI, resolve the error, then reopen the Admin UI to start installation again.
+    - **Yes**: click <img src="/images/netq/adminui-install-advanced-icon-320.png" height="18" width="18"/> to be taken to the advanced installation flow and retry the failed task. Refer to the **Advanced** tab for instructions.
 
 {{< /tab >}}
 
@@ -111,9 +111,11 @@ Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form
 
 3. Monitor the initialization of the master node. When complete, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
-    {{<figure src="/images/netq/adminui-init-master-advanced-320.png" width="600">}}
+    {{<figure src="/images/netq/adminui-init-master-advanced-320.png" width="600" caption="On-premises deployment">}}
 
-4. Select your install method.
+    {{<figure src="/images/netq/adminui-init-master-cloud-advanced-320.png" width="600" caption="Cloud deployment">}}
+
+4. For on-premises deployments only, select your install method. For cloud deployments, skip to Step 5.
 
     Choose between restoring data from a previous version of NetQ or performing a fresh installation.
 
@@ -139,7 +141,7 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
 
     Select whether you want to deploy your infrastructure as a single stand-alone server or as a cluster of servers.
 
-    {{<figure src="/images/netq/adminui-server-arrange-advanced-320.png" width="700">}}
+    {{<figure src="/images/netq/adminui-server-arrange-advanced-320.png" width="600">}}
 
 {{< tabs "TabID137" >}}
 
@@ -147,15 +149,35 @@ If you are moving from a standalone to a server cluster arrangement, you can onl
 
 Monitor the master configuration. When complete click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
-    {{<figure src="/images/netq/adminui-master-config-advanced-320.png" width="700">}}
+{{<figure src="/images/netq/adminui-master-config-advanced-320.png" width="600">}}
 
 {{< /tab >}}
 
 {{< tab "Server Cluster" >}}
 
-If you select a server cluster, use the private IP addresses that you used when setting up the first two worker nodes. Refer to {{<link title="Post Installation Configuration Options/#add-more-nodes-to-your-server-cluster" text="Add More Nodes to Your Server Cluster">}} to add additional worker nodes.
+Use the private IP addresses that you assigned to the nodes being used as worker nodes to add the worker nodes to the server cluster.
 
-{{<figure src="/images/netq/adminui-cluster-config-240.png" width="700" caption="Add worker nodes to a server cluster">}}
+{{<figure src="/images/netq/adminui-cluster-config-320.png" width="600">}}
+
+Click **Add Worker Node**. Enter the private IP address for the first worker node. Click **Add**.
+
+{{<figure src="/images/netq/adminui-cluster-config-add-worker-320.png" width="400">}}
+
+Monitor the progress. When complete click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+
+{{<figure src="/images/netq/adminui-cluster-config-add-worker-inprocess-320.png" width="400">}}
+
+Repeat these steps for the second worker node.
+
+Click **Create Cluster**. When complete click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+
+If either of the add worker jobs fail, an indication is given. For example, the IP address provided for the worker node was unreachable. You can see this by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" height="18" width="18"/> to open the error file.
+
+{{<figure src="/images/netq/adminui-cluster-config-add-worker-failure-320.png" width="400">}}
+
+{{<figure src="/images/netq/adminui-cluster-config-add-worker-error-file-320.png" width="400">}}
+
+Refer to {{<link title="Post Installation Configuration Options/#add-more-nodes-to-your-server-cluster" text="Add More Nodes to Your Server Cluster">}} to add additional worker nodes *after* NetQ installation is complete.
 
 {{< /tab >}}
 
@@ -163,15 +185,15 @@ If you select a server cluster, use the private IP addresses that you used when 
 
 6. Install the NetQ software.
 
-    You install the NetQ software using the installation files (`NetQ-3.2.0-tgz` for on-premises deployments or `NetQ-3.2.0-opta.tgz` for cloud deployments)  that you downloaded and stored previously.
+    You install the NetQ software using the installation files (`NetQ-3.2.0-tgz` for on-premises deployments or `NetQ-3.2.0-opta.tgz` for cloud deployments) that you downloaded and stored previously.
 
-    *For on-premises*: Accept the filename suggested, or enter an alternate filename in the field provided, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+    *For on-premises*: Accept the path and filename suggested, or modify these to reflect where you stored your installation file, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>. Alternately, upload the file.
 
     {{<figure src="/images/netq/adminui-install-onprem-advanced-320.png" width="600">}}
 
 <div style="padding-left: 18px;">
 
-<em>For cloud</em>: Accept the filename suggested, or enter an alternate filename in the field provided. Enter your configuration key. Then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+<em>For cloud</em>: Accept the path and filename suggested, or modify these to reflect where you stored your installation file. Enter your configuration key. Then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
 {{<figure src="/images/netq/adminui-install-onprem-advanced-320.png" width="600">}}
 
@@ -197,6 +219,17 @@ Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/0
 
 ## View NetQ System Health
 
-When the installation and activation is complete, the NetQ System Health dashboard is visible for tracking the status of key components in the system. Single server deployments display two cards, one for the server, and one for Kubernetes pods. Server cluster deployments display additional cards, including one each for the Cassandra database, Kafka, and Zookeeper services.
+When the installation and activation is complete, the NetQ System Health dashboard is visible for tracking the status of key components in the system. The cards displayed represent the deployment chosen:
 
-{{<figure src="/images/netq/adminui-health-db-onprem-300.png" width="700" caption="On-premises deployment">}}
+| Server Arrangement | Deployment Type | Node Card | Pod Card | Kafka Card | Zookeeper Card | Cassandra Card |
+| ---- | ---- | ---- | :----: | :----: | :----: | :----: |
+| Standalone server | On-premises | 1 node (master) | n pods | 1 instance | 1 instance | 1 instance |
+| Standalone server | Cloud | 1 node (master) | n pods | na | na | na |
+| Server cluster | On-premises | n nodes (master, 2+ workers) | n pods | 1 instance | 1 instance | 1 instance |
+| Server cluster | Cloud | n nodes (master, 2+ workers) | n pods | na | na | na |
+
+This example shows a standalone server in an on-premises deployment.
+
+{{<figure src="/images/netq/adminui-health-standalone-onprem-320.png" width="700">}}
+
+Click **Open NetQ** to enter the NetQ application.

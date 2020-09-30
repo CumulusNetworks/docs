@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 920
 toc: 4
 ---
-The Cumulus NetQ UI enables operators to view the health of the MLAG service on a network-wide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session. They are described separately here.
+The Cumulus NetQ UI enables operators to view the health of the MLAG service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session. They are described separately here.
 
 {{%notice note%}}
 **MLAG or CLAG?**
@@ -317,7 +317,7 @@ sessions, and all alarms.
 </tr>
 <tr class="even">
 <td>All Sessions tab</td>
-<td>Displays all MLAG sessions network-wide. By default, the session list is sorted by hostname. This tab provides the following additional data about each session:
+<td>Displays all MLAG sessions networkwide. By default, the session list is sorted by hostname. This tab provides the following additional data about each session:
 <ul>
 <li><strong>Backup Ip</strong>: IP address of the interface to use if the peerlink (or bond) goes down.</li>
 <li><strong>Backup Ip Active</strong>: Indicates whether the backup IP address has been specified and is active (true) or not (false).</li>
@@ -342,7 +342,7 @@ sessions, and all alarms.
 </tr>
 <tr class="odd">
 <td>All Alarms tab</td>
-<td>Displays all MLAG events network-wide. By default, the event list is sorted by time, with the most recent events listed first. The tab provides the following additional data about each event:
+<td>Displays all MLAG events networkwide. By default, the event list is sorted by time, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
 <li><strong>Message</strong>: Text description of a MLAG-related event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
@@ -804,7 +804,7 @@ and all events.
 </tr>
 <tr class="even">
 <td>All Events tab</td>
-<td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<td>Displays all events networkwide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
 <li><strong>Message</strong>: Text description of an event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>

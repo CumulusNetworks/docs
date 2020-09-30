@@ -38,7 +38,7 @@ The small Validation Request card displays:
 </tr>
 <tr class="even">
 <td>Validation</td>
-<td><p>Select a scheduled request to run that request on-demand. A default validation is provided for each supported network protocol and service, which runs a network-wide validation check. These validations run every 60 minutes, but you may run them on-demand at any time.</p>
+<td><p>Select a scheduled request to run that request on-demand. A default validation is provided for each supported network protocol and service, which runs a networkwide validation check. These validations run every 60 minutes, but you may run them on-demand at any time.</p>
 <p><strong>Note</strong>: No new requests can be configured from this size card.</p></td>
 </tr>
 <tr class="odd">
@@ -74,7 +74,7 @@ The medium Validation Request card displays:
 </tr>
 <tr class="odd">
 <td>Validation</td>
-<td><p>Select a scheduled request to run that request on-demand. A default validation is provided for each supported network protocol and service, which runs a network-wide validation check. These validations run every 60 minutes, but you may run them on-demand at any time.</p>
+<td><p>Select a scheduled request to run that request on-demand. A default validation is provided for each supported network protocol and service, which runs a networkwide validation check. These validations run every 60 minutes, but you may run them on-demand at any time.</p>
 <p><strong>Note</strong>: No new requests can be configured from this size card.</p></td>
 </tr>
 <tr class="even">
@@ -120,7 +120,7 @@ The large Validation Request card displays:
 <td>Validation</td>
 <td>Depending on user intent, this field is used to:
 <ul>
-<li>Select a scheduled request to run that request on-demand. A default validation is provided for each supported network protocol and service, which runs a network-wide validation check. These validations run every 60 minutes, but you may run them on-demand at any time.</li>
+<li>Select a scheduled request to run that request on-demand. A default validation is provided for each supported network protocol and service, which runs a networkwide validation check. These validations run every 60 minutes, but you may run them on-demand at any time.</li>
 <li>Leave as is to create a new scheduled validation request.</li>
 <li>Select a scheduled request to modify.</li>
 </ul></td>

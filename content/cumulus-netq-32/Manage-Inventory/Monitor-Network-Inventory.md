@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 730
 toc: 4
 ---
-With the NetQ UI and CLI, a user can monitor the inventory on a network-wide basis for all switches and hosts, or all switches. Inventory includes such items as the number of each device and what operating systems are installed. Additional details are available about the hardware and software components on individual switches, such as  the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. This is extremely useful for understanding the dependence on various vendors and versions when planning upgrades or evaluating the scope of any other required changes.
+With the NetQ UI and CLI, a user can monitor the inventory on a networkwide basis for all switches and hosts, or all switches. Inventory includes such items as the number of each device and what operating systems are installed. Additional details are available about the hardware and software components on individual switches, such as  the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. This is extremely useful for understanding the dependence on various vendors and versions when planning upgrades or evaluating the scope of any other required changes.
 
 The commands and cards available to obtain this type of information help you to answer questions such as:
 
@@ -19,7 +19,7 @@ To monitor the inventory of a given switch, refer to {{<link title="Monitor Swit
 
 ## Access Networkwide Inventory Data
 
-The Cumulus NetQ UI provides the Inventory|Devices card for monitoring network-wide inventory information for all switches and hosts. The Inventory|Switches card provides a more detailed view of inventory information for all switches (no hosts) on a network-wide basis.
+The Cumulus NetQ UI provides the Inventory|Devices card for monitoring networkwide inventory information for all switches and hosts. The Inventory|Switches card provides a more detailed view of inventory information for all switches (no hosts) on a networkwide basis.
 
 Access these card from the Cumulus Workbench, or add them to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Devices card or Inventory|Switches card > **Open Cards**.
 
@@ -1277,7 +1277,7 @@ cumulus@switch:~$ netq show sensors temp <press tab>
 This example shows the state of all temperature sensors.
 
 ```
-cumulus@oob-mgmt-server:~$ netq show sensor temp
+cumulus@switch:~$ netq show sensor temp
 
 Matching sensors records:
 Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
@@ -1840,7 +1840,7 @@ fw1               libopts25                1:5.18.4-3           Cumulus Linux 3.
 This example shows the installed *switchd* package version.
 
 ```
-cumulus@netq-ts:~$ netq spine01 show cl-pkg-info switchd
+cumulus@switch:~$ netq spine01 show cl-pkg-info switchd
 
 Matching package_info records:
 Hostname          Package Name             Version              CL Version           Package Status       Last Changed

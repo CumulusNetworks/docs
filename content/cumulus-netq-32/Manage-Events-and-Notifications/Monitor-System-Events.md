@@ -42,7 +42,7 @@ This example shows all system and TCA events between now and an hour ago.
 
 ```
 netq show events
-cumulus@netq-ts:~$ netq show events
+cumulus@switch:~$ netq show events
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
@@ -64,7 +64,7 @@ This example shows all events between now and 24 hours ago.
 
 ```
 netq show events between now and 24hr
-cumulus@netq-ts:~$ netq show events between now and 24hr
+cumulus@switch:~$ netq show events between now and 24hr
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
@@ -849,7 +849,7 @@ This example shows all system and TCA events between now and 24 hours ago.
 
 ```
 netq show events between now and 24hr
-cumulus@netq-ts:~$ netq show events between now and 24hr
+cumulus@switch:~$ netq show events between now and 24hr
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
@@ -892,7 +892,7 @@ leaf01            btrfsinfo                critical         data storage efficie
 This example shows all system and TCA events between one and three days ago.
 
 ```
-cumulus@netq-ts:~$ netq show events between 1d and 3d
+cumulus@switch:~$ netq show events between 1d and 3d
 
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp

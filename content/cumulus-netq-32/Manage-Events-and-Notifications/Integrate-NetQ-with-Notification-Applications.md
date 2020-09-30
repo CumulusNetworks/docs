@@ -361,7 +361,7 @@ Successfully added/updated channel onprem-email
 4. Verify the configuration.
 
     ```
-    cumulus@netq-ts:~$ netq show notification channel
+    cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
@@ -397,7 +397,7 @@ Successfully added/updated channel cloud-email
 2. Verify the configuration.
 
     ```
-    cumulus@netq-ts:~$ netq show notification channel
+    cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
@@ -803,7 +803,7 @@ This example creates an email channel named *onprem-email* that uses the *smtpse
 4. Verify the configuration.
 
     ```
-    cumulus@netq-ts:~$ netq show notification channel
+    cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
@@ -844,7 +844,7 @@ This example creates an email channel named *cloud-email* that uses the NetQ SMT
 2. Verify the configuration.
 
     ```
-    cumulus@netq-ts:~$ netq show notification channel
+    cumulus@switch:~$ netq show notification channel
     Matching config_notify records:
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
@@ -2677,7 +2677,7 @@ This example changes the scope for the rule *TCA_CPU_UTILIZATION_UPPER* to apply
 cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope hostname^leaf threshold 95
 Successfully added/updated tca
 
-cumulus@netq-ts:~$ netq show tca
+cumulus@switch:~$ netq show tca
 
 Matching config_tca records:
 TCA Name                     Event Name           Scope                      Severity         Channel/s          Active Threshold          Suppress Until

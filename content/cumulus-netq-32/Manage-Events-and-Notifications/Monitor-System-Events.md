@@ -10,7 +10,7 @@ Refer to {{<link title="Configure Notifications" text="Configure Notifications">
 
 Refer to the {{<link title="NetQ UI Card Reference" text="NetQ UI Card Reference">}} for details of the cards used with the following procedures.
 
-Refer to the {{<link title="NetQ CLI Reference" text="NetQ CLI Reference">}} for details about commands used in the following procedures.
+<!-- Refer to the {{<link title="NetQ CLI Reference" text="NetQ CLI Reference">}} for details about commands used in the following procedures. -->
 
 ## Monitor All System and TCA Events Networkwide
 

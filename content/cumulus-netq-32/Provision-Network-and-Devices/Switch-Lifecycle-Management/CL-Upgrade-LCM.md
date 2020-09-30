@@ -533,14 +533,14 @@ Expand the following dropdown to view common failures, their causes and correcti
 <td>Service &lt;service-name&gt; is missing on Host &lt;hostname&gt; for &lt;VRF default|VRF mgmt&gt;.</td>
 <td>Warning</td>
 <td>A given service is not yet running on the upgraded host. For example: Service ntp is missing on Host Leaf01 for VRF default.</td>
-<td>Wait for up to x more minutes to see if the specified services come up. If they do not, xxx.</td>
+<td>Wait for up to x more minutes to see if the specified services come up.</td>
 </tr>
 <tr>
 <td>Switch Connectivity</td>
 <td>Service &lt;service-name&gt; is missing on Host &lt;hostname&gt; for &lt;VRF default|VRF mgmt&gt;.</td>
 <td>Warning</td>
 <td>A given service is not yet running on the upgraded host. For example: Service ntp is missing on Host Leaf01 for VRF default.</td>
-<td>Wait for up to x more minutes to see if the specified services come up. If they do not, xxx.</td>
+<td>Wait for up to x more minutes to see if the specified services come up.</td>
 </tr>
 </tbody>
 </table>

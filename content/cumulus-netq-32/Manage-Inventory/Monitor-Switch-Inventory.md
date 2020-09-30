@@ -586,12 +586,6 @@ Hostname          Name            State      Last Changed
 leaf02            Cumulus Linux   ok         Fri Apr 19 16:01:46 2020
 ```
 
-This example shows the license status for the NetQ On-premises or Cloud Appliance.
-
-```
-xxx
-```
-
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -679,7 +673,7 @@ spine01           ntp                      1:4.2.8p10-cl3u2     Cumulus Linux 3.
 
 ### View Recommended Software Packages
 
-If you have a software manifest [installed?], you can determine what software packages and versions are recommended based on the Cumulus Linux release. You can then compare that to what is installed on your switch(es) to determine if it differs from the manifest. Such a difference might occur if one or more packages have been upgraded separately from the Cumulus Linux software itself.
+If you have a software manifest, you can determine what software packages and versions are recommended based on the Cumulus Linux release. You can then compare that to what is installed on your switch(es) to determine if it differs from the manifest. Such a difference might occur if one or more packages have been upgraded separately from the Cumulus Linux software itself.
 
 To view recommended package information for a switch, run:
 
@@ -700,7 +694,7 @@ leaf12            3.7.1                vx                   x86_64              
 This example shows packages that are recommended for upgrade on the *server01* switch, namely *lldpd*.
 
 ```
-cumulus@switch:~$ netq server01 show recommended-pkg-version 
+cumulus@switch:~$ netq server01 show recommended-pkg-version
 Matching manifest records:
 Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------

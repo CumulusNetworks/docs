@@ -301,7 +301,7 @@ You can use the NetQ UI or the NetQ CLI to create an Email channel.
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
 
-    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+    {{<figure src="/images/netq/main-menu-channels-selected-320.png" width="600">}}
 
 2. Click **Email**.
 

@@ -23,9 +23,7 @@ To configure the display settings:
 
 4. In the **Theme** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/> to select your choice of theme. This figure shows the light theme. Switch back and forth as desired.
 
-    {{<figure src="/images/netq/user-settings-profile-prefs-light-theme-222.png" width="700">}}
-
-    <!-- Need to update this figure -->
+    {{<figure src="/images/netq/user-settings-profile-prefs-light-theme-320.png" width="700">}}
 
 5. In the **Time Zone** field, click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/> to change the time zone from the default.  
     By default, the time zone is set to the user's local time zone. If a time zone has not been selected, NetQ defaults to the current local time zone where NetQ is installed. All time values are based on this setting. This is displayed in the application header, and is based on Greenwich Mean Time (GMT).  

@@ -3,9 +3,771 @@ title: NetQ UI Card Reference
 author: Cumulus Networks
 weight: 1090
 ---
-This reference describes the cards available with the NetQ 3.2 graphical user interface (NetQ UI). Each item and field on the four sizes of cards is shown.
+This reference describes the cards available with the NetQ {{<version>}} graphical user interface (NetQ UI). Each item and field on the four sizes of cards is shown.
 
-## Inventory|Devices Card
+## Health Cards
+
+As with any network, one of the challenges is keeping track of all of the moving parts. With the NetQ GUI, you can view the overall health of your network at a glance and then delve deeper for periodic checks or as conditions arise that require attention. For a general understanding of how well your network is operating, the Network Health card workflow is the best place to start as it contains the highest view and performance roll-ups.
+
+### Network Health Card
+
+The small Network Health card displays:
+
+{{< figure src="/images/netq/ntwk-hlth-small-230.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>
+<img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg" height="18" width="18"/></td>
+<td>Indicates data is for overall Network Health</td>
+</tr>
+<tr class="even">
+<td>Health trend</td>
+<td>Trend of overall network health, represented by an arrow:
+<ul>
+<li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend</li>
+<li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend</li>
+<li><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady</li>
+</ul>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="odd">
+<td>Health score</td>
+<td><p>Average of health scores for system health, network services health, and interface health during the last data collection window. The health score for each category is calculated as the percentage of items which passed validations versus the number of items checked.</p>
+<p>The collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="even">
+<td>Health rating</td>
+<td>Performance rating based on the health score during the time window:
+<ul>
+<li><strong>Low</strong>: Health score is less than 40%</li>
+<li><strong>Med</strong>: Health score is between 40% and 70%</li>
+<li><strong>High</strong>: Health score is greater than 70%</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Chart</td>
+<td>Distribution of overall health status during the designated time period</td>
+</tr>
+</tbody>
+</table>
+
+The medium Network Health card displays the distribution, score, and
+trend of the:
+
+{{< figure src="/images/netq/ntwk-hlth-medium-230.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat.svg" height="18" width="18"/></td>
+<td>Indicates data is for overall Network Health.</td>
+</tr>
+<tr class="odd">
+<td>Health trend</td>
+<td>Trend of system, network service, and interface health, represented by an arrow:
+<ul>
+<li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend.</li>
+<li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend.</li>
+<li><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady.</li>
+</ul>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="even">
+<td>Health score</td>
+<td>Percentage of devices which passed validation versus the number of devices checked during the time window for:
+<ul>
+<li><strong>System health</strong>: NetQ Agent health, Cumulus Linux license status, and sensors</li>
+<li><strong>Network services health</strong>: BGP, CLAG, EVPN, NTP, OSPF, and VXLAN health</li>
+<li><strong>Interface health</strong>: interfaces MTU, VLAN health.</li>
+</ul>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="odd">
+<td>Chart</td>
+<td>Distribution of overall health status during the designated time period.</td>
+</tr>
+</tbody>
+</table>
+
+The large Network Health card contains three tabs.
+
+The *System Health* tab displays:
+
+{{< figure src="/images/netq/ntwk-hlth-large-sys-hlth-tab-241.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/12-Apps/app-window-heart.svg" height="18" width="18"/></td>
+<td>Indicates data is for System Health.</td>
+</tr>
+<tr class="odd">
+<td>Health trend</td>
+<td>Trend of NetQ Agents, Cumulus Linux licenses, and sensor health, represented by an arrow:
+<ul>
+<li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend.</li>
+<li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend.</li>
+<li><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady.</li>
+</ul>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="even">
+<td>Health score</td>
+<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for NetQ Agents, Cumulus Linux license status, and platform sensors.</p>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="odd">
+<td>Charts</td>
+<td>Distribution of health score for NetQ Agents, Cumulus Linux license status, and platform sensors during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Table</td>
+<td>Listing of items that match the filter selection:
+<ul>
+<li><strong>Most Failures</strong>: Devices with the most validation failures are listed at the top.</li>
+<li><strong>Recent Failures</strong>: Most recent validation failures are listed at the top.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Show All Validations</td>
+<td>Opens full screen Network Health card with a listing of validations performed by network service and protocol.</td>
+</tr>
+</tbody>
+</table>
+
+The *Network Service Health* tab displays:
+
+{{< figure src="/images/netq/ntwk-hlth-large-ntwk-hlth-tab-241.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-heart.svg" height="18" width="18"/></td>
+<td>Indicates data is for Network Protocols and Services Health.</td>
+</tr>
+<tr class="odd">
+<td>Health trend</td>
+<td>Trend of BGP, CLAG, EVPN, NTP, OSPF, and VXLAN services health, represented by an arrow:
+<ul>
+<li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend.</li>
+<li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend.</li>
+<li><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady.</li>
+</ul>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="even">
+<td>Health score</td>
+<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for BGP, CLAG, EVPN, NTP, and VXLAN protocols and services.</p>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="odd">
+<td>Charts</td>
+<td>Distribution of passing validations for BGP, CLAG, EVPN, NTP, and VXLAN services during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Table</td>
+<td>Listing of devices that match the filter selection:
+<ul>
+<li><strong>Most Failures</strong>: Devices with the most validation failures are listed at the top.</li>
+<li><strong>Recent Failures</strong>: Most recent validation failures are listed at the top.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Show All Validations</td>
+<td>Opens full screen Network Health card with a listing of validations performed by network service and protocol.</td>
+</tr>
+</tbody>
+</table>
+
+The *Interface Health* tab displays:
+
+{{< figure src="/images/netq/ntwk-hlth-large-if-hlth-tab-241.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="/images/netq/ntwk-health-if-health-icon.png" height="20" width="20"/></td>
+<td>Indicates data is for Interface Health.</td>
+</tr>
+<tr class="odd">
+<td>Health trend</td>
+<td>Trend of interfaces, VLAN, and MTU health, represented by an arrow:
+<ul>
+<li><strong>Pointing upward and green</strong>: Health score in the most recent window is higher than in the last two data collection windows, an increasing trend.</li>
+<li><strong>Pointing downward and bright pink</strong>: Health score in the most recent window is lower than in the last two data collection windows, a decreasing trend.</li>
+<li><strong>No arrow</strong>: Health score is unchanged over the last two data collection windows, trend is steady.</li>
+</ul>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="even">
+<td>Health score</td>
+<td><p>Percentage of devices which passed validation versus the number of devices checked during the time window for interfaces, VLAN, and MTU protocols and ports.</p>
+<p>The data collection window varies based on the time period of the card. For a 24 hour time period (default), the window is one hour. This gives you current, hourly, updates about your network health.</p></td>
+</tr>
+<tr class="odd">
+<td>Charts</td>
+<td>Distribution of passing validations for interfaces, VLAN, and MTU protocols and ports during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Table</td>
+<td>Listing of devices that match the filter selection:
+<ul>
+<li><strong>Most Failures</strong>: Devices with the most validation failures are listed at the top.</li>
+<li><strong>Recent Failures</strong>: Most recent validation failures are listed at the top.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Show All Validations</td>
+<td>Opens full screen Network Health card with a listing of validations performed by network service and protocol.</td>
+</tr>
+</tbody>
+</table>
+
+The full screen Network Health card displays all events in the network.
+
+{{< figure src="/images/netq/ntwk-hlth-fullscr-bgp-tab-241.png" width="700" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Network Health.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Default Time</td>
+<td>Range of time in which the displayed data was collected.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>Network protocol or service tab</td>
+<td>Displays results of that network protocol or service validations that occurred during the designated time period. By default, the requests list is sorted by the date and time that the validation was completed (<strong>Time</strong>). This tab provides the following additional data about all protocols and services:
+<ul>
+<li><strong>Validation Label</strong>: User-defined name of a validation or Default validation</li>
+<li><strong>Total Node Count</strong>: Number of nodes running the protocol or service</li>
+<li><strong>Checked Node Count</strong>: Number of nodes running the protocol or service included in the validation</li>
+<li><strong>Failed Node Count</strong>: Number of nodes that failed the validation</li>
+<li><strong>Rotten Node Count</strong>: Number of nodes that were unreachable during the validation run</li>
+<li><strong>Warning Node Count</strong>: Number of nodes that had errors during the validation run</li>
+</ul>
+<p>The following protocols and services have additional data:<ul>
+<li>BGP<ul>
+<li><strong>Total Session Count</strong>: Number of sessions running BGP included in the validation</li>
+<li><strong>Failed Session Count</strong>: Number of BGP sessions that failed the validation</li></ul></li>
+<li>EVPN<ul>
+<li><strong>Total Session Count</strong>: Number of sessions running BGP included in the validation</li>
+<li><strong>Checked VNIs Count</strong>: Number of VNIs included in the validation</li>
+<li><strong>Failed BGP Session Count</strong>: Number of BGP sessions that failed the validation</li></ul></li>
+<li>Interfaces<ul>
+<li><strong>Checked Port Count</strong>: Number of ports included in the validation</li>
+<li><strong>Failed Port Count</strong>: Number of ports that failed the validation.</li>
+<li><strong>Unverified Port Count</strong>: Number of ports where a peer could not be identified</li></ul></li>
+<li>Licenses<ul>
+<li><strong>Checked License Count</strong>: Number of licenses included in the validation</li>
+<li><strong>Failed License Count</strong>: Number of licenses that failed the validation</li></ul></li>
+<li>MTU<ul>
+<li><strong>Total Link Count</strong>: Number of links included in the validation</li>
+<li><strong>Failed Link Count</strong>: Number of links that failed the validation</li></ul></li>
+<li>NTP<ul>
+<li><strong>Unknown Node Count</strong>: Number of nodes that NetQ sees but are not in its inventory an thus not included in the validation</li></ul></li>
+<li>OSPF<ul>
+<li><strong>Total Adjacent Count</strong>: Number of adjacencies included in the validation</li>
+<li><strong>Failed Adjacent Count</strong>: Number of adjacencies that failed the validation</li></ul></li>
+<li>Sensors<ul>
+<li><strong>Checked Sensor Count</strong>: Number of sensors included in the validation</li>
+<li><strong>Failed Sensor Count</strong>: Number of sensors that failed the validation</li></ul></li>
+<li>VLAN<ul>
+<li><strong>Total Link Count</strong>: Number of links included in the validation</li>
+<li><strong>Failed Link Count</strong>: Number of links that failed the validation</li></ul></li>
+</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+## Event Cards
+
+### Events|Alarms Card
+
+You can easily monitor critical events occurring across your network using the Alarms card. You can determine the number of events for the various system, interface, and network protocols and services components in the network.
+
+The small Alarms card displays:
+
+{{< figure src="/images/netq/events-alarms-small-231.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
+<td>Indicates data is for all critical severity events in the network.</td>
+</tr>
+<tr class="even">
+<td>Alarm trend</td>
+<td>Trend of alarm count, represented by an arrow:
+<ul>
+<li><strong>Pointing upward and <strong>bright pink</strong></strong>: alarm count is higher than the last two time periods, an increasing trend</li>
+<li><strong>Pointing downward and <strong>green</strong></strong>: alarm count is lower than the last two time periods, a decreasing trend</li>
+<li><strong>No arrow</strong>: alarm count is unchanged over the last two time periods, trend is steady</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Alarm score</td>
+<td>Current count of alarms during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Alarm rating</td>
+<td>Count of alarms relative to the average count of alarms during the designated time period:
+<ul>
+<li><strong>Low</strong>: Count of alarms is below the average count; a nominal count</li>
+<li><strong>Med</strong>: Count of alarms is in range of the average count; some room for improvement</li>
+<li><strong>High</strong>: Count of alarms is above the average count; user intervention recommended</li>
+</ul>
+<p>{{< figure src="/images/netq/alarms-perf-rating.png" width="350" >}}</p></td>
+</tr>
+<tr class="odd">
+<td>Chart</td>
+<td>Distribution alarms received during the designated time period and a total count of all alarms present in the system.</td>
+</tr>
+</tbody>
+</table>
+
+The medium Alarms card displays:
+
+{{< figure src="/images/netq/events-alarms-medium-222.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
+<td>Indicates data is for all critical events in the network.</td>
+</tr>
+<tr class="odd">
+<td>Count</td>
+<td>Total number of alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Alarm score</td>
+<td>Current count of alarms received from each category (overall, system, interface, and network services) during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td>Chart</td>
+<td>Distribution of all alarms received from each category during the designated time period.</td>
+</tr>
+</tbody>
+</table>
+
+The large Alarms card has one tab.
+
+The *Alarm Summary* tab displays:
+
+{{< figure src="/images/netq/events-alarms-large-summ-tab-231.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-clock.svg", height="18", width="18"/></td>
+<td>Indicates data is for all system, trace and interface critical events in the network.</td>
+</tr>
+<tr class="odd">
+<td>Alarm Distribution</td>
+<td><p><strong>Chart</strong>: Distribution of all alarms received from each category during the designated time period:
+<ul><li>NetQ Agent</li><li>BTRFS Information</li><li>CL Support</li><li>Config Diff</li><li>CL License</li><li>Installed Packages</li><li>Link</li><li>LLDP</li><li>MTU</li><li>Node</li><li>Port</li><li>Resource</li><li>Running Config Diff</li><li>Sensor</li><li>Services</li><li>SSD Utilization</li><li>TCA Interface Stats</li><li>TCA Resource Utilization</li><li>TCA Sensors</li></ul>  
+The categories are displayed in descending order based on total count of alarms, with the largest number of alarms is shown at the top, followed by the next most, down to the chart with the fewest alarms.</p>
+<p><strong>Count</strong>: Total number of alarms received from each category during the designated time period.</p></td>
+</tr>
+<tr class="even">
+<td>Table</td>
+<td>Listing of items that match the filter selection for the selected alarm categories:
+<ul>
+<li><strong>Events by Most Recent</strong>: Most recent event are listed at the top</li>
+<li><strong>Devices by Event Count</strong>: Devices with the most events are listed at the top</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Show All Events</td>
+<td>Opens full screen Events | Alarms card with a listing of all events.</td>
+</tr>
+</tbody>
+</table>
+
+The full screen Alarms card provides tabs for all events.
+
+{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab-300.png" width="700" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Events | Alarms</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Default Time</td>
+<td>Range of time in which the displayed data was collected.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>All Events</td>
+<td>Displays all events (both alarms and info) received in the time period. By default, the requests list is sorted by the date and time that the event occurred (<strong>Time</strong>). This tab provides the following additional data about each request:
+<ul>
+<li><strong>Source</strong>: Hostname of the given event</li>
+<li><strong>Message</strong>: Text describing the alarm or info event that occurred</li>
+<li><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</li>
+<li><strong>Severity</strong>: Importance of the event-critical, warning, info, or debug</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+### Events|Info Card
+
+You can easily monitor warning, info, and debug severity events occurring across your network using the Info card. You can determine the number of events for the various system, interface, and network protocols and services components in the network.
+
+The small Info card displays:
+
+{{<figure src="/images/netq/events-info-small-222.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg" height="18" width="18"/></td>
+<td>Indicates data is for all warning, info, and debug severity events in the network</td>
+</tr>
+<tr class="even">
+<td>Info count</td>
+<td>Number of info events received during the designated time period</td>
+</tr>
+<tr class="odd">
+<td>Alarm count</td>
+<td>Number of alarm events received during the designated time period</td>
+</tr>
+<tr class="even">
+<td>Chart</td>
+<td>Distribution of all info events and alarms received during the designated time period</td>
+</tr>
+</tbody>
+</table>
+
+The medium Info card displays:
+
+{{<figure src="/images/netq/events-info-medium-222.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-1.svg" height="18" width="18"/></td>
+<td>Indicates data is for all warning, info, and debug severity events in the network.</td>
+</tr>
+<tr class="odd">
+<td>Types of Info</td>
+<td>Chart which displays the services that have triggered events during the designated time period. Hover over chart to view a count for each type.</td>
+</tr>
+<tr class="even">
+<td>Distribution of Info</td>
+<td>Info Status
+<ul>
+<li><strong>Count</strong>: Number of info events received during the designated time period.</li>
+<li><strong>Chart</strong>: Distribution of all info events received during the designated time period.</li>
+</ul>
+Alarms Status
+<ul>
+<li><strong>Count</strong>: Number of alarm events received during the designated time period.</li>
+<li><strong>Chart</strong>: Distribution of all alarm events received during the designated time period.</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+The large Info card displays:
+
+{{<figure src="/images/netq/events-info-large-222.png" width="500">}}
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-1.svg" height="18" width="18"/></td>
+<td>Indicates data is for all warning, info, and debug severity events in the network.</td>
+</tr>
+<tr class="odd">
+<td>Types of Info</td>
+<td>Chart which displays the services that have triggered events during the designated time period. Hover over chart to view a count for each type.</td>
+</tr>
+<tr class="even">
+<td>Distribution of Info</td>
+<td>Info Status
+<ul>
+<li><strong>Count</strong>: Current number of info events received during the designated time period.</li>
+<li><strong>Chart</strong>: Distribution of all info events received during the designated time period.</li>
+</ul>
+Alarms Status
+<ul>
+<li><strong>Count</strong>: Current number of alarm events received during the designated time period.</li>
+<li><strong>Chart</strong>: Distribution of all alarm events received during the designated time period.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Table</td>
+<td>Listing of items that match the filter selection:
+<ul>
+<li><strong>Events by Most Recent</strong>: Most recent event are listed at the top.</li>
+<li><strong>Devices by Event Count</strong>: Devices with the most events are listed at the top.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Show All Events</td>
+<td>Opens full screen Events | Info card with a listing of all events.</td>
+</tr>
+</tbody>
+</table>
+
+The full screen Info card provides tabs for all events.
+
+{{<figure src="/images/netq/events-info-fullscr-300.png" width="700">}}
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Events | Info</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Default Time</td>
+<td>Range of time in which the displayed data was collected.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>All Events</td>
+<td>Displays all events (both alarms and info) received in the time period. By default, the requests list is sorted by the date and time that the event occurred (<strong>Time</strong>). This tab provides the following additional data about each request:
+<ul>
+<li><strong>Source</strong>: Hostname of the given event</li>
+<li><strong>Message</strong>: Text describing the alarm or info event that occurred</li>
+<li><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</li>
+<li><strong>Severity</strong>: Importance of the event-critical, warning, info, or debug</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+## Inventory Cards
+
+### Inventory|Devices Card
 
 The small Devices Inventory card displays:
 
@@ -212,7 +974,7 @@ The full screen Devices Inventory card provides tabs for all switches and all ho
 </tbody>
 </table>
 
-## Inventory|Switch Card
+### Inventory|Switch Card
 
 Knowing what components are included on all of your switches aids in upgrade, compliance, and other planning tasks. Viewing this data is accomplished through the Switch Inventory card.
 
@@ -425,624 +1187,6 @@ The *Software* tab displays:
 The full screen Switch Inventory card provides tabs for all components, ASIC, platform, CPU, memory, disk, and OS components.
 
 {{<figure src="/images/netq/inventory-switch-fullscr-show-all-tab-241.png" width="700">}}
-
-
-With NetQ, you can monitor the number of nodes running the LLDP service, view nodes with the most LLDP neighbor nodes, those nodes with the least neighbor nodes, and view alarms triggered by the LLDP service. For an overview and how to configure LLDP in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="Link Layer Discovery Protocol">}}.
-
-## LLDP Service Card
-
-The small LLDP Service card displays:
-
-{{< figure src="/images/netq/ntwk-svcs-all-lldp-small-230.png" width="200" >}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
-<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
-</tr>
-<tr class="even">
-<td>Title</td>
-<td>LLDP: All LLDP Sessions, or the LLDP Service.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches with the LLDP service enabled during the designated time period.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
-<td>Total number of LLDP-related alarms received during the designated time period.</td>
-</tr>
-<tr class="odd">
-<td>Chart</td>
-<td>Distribution of LLDP-related alarms received during the designated time period.</td>
-</tr>
-</tbody>
-</table>
-
-The medium LLDP Service card displays:
-
-{{< figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
-<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
-</tr>
-<tr class="odd">
-<td>Title</td>
-<td>LLDP: All LLDP Sessions, or the LLDP Service.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches with the LLDP service enabled during the designated time period.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
-<td>Total number of LLDP-related alarms received during the designated time period.</td>
-</tr>
-<tr class="even">
-<td>Total Nodes Running chart</td>
-<td><p>Distribution of switches and hosts with the LLDP service enabled during the designated time period, and a total number of nodes running the service currently.</p>
-<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running LLDP last week or last month might be more or less than the number of nodes running LLDP currently.</p></td>
-</tr>
-<tr class="odd">
-<td>Total Open Alarms chart</td>
-<td><p>Distribution of LLDP-related alarms received during the designated time period, and the total number of current LLDP-related alarms in the network.</p>
-<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
-</tr>
-<tr class="even">
-<td>Total Sessions chart</td>
-<td>Distribution of LLDP sessions running during the designated time period, and the total number of sessions running on the network currently.</td>
-</tr>
-</tbody>
-</table>
-
-The large LLDP service card contains two tabs.
-
-The *Sessions Summary* tab which displays:
-
-{{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-300.png" width="500">}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
-<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
-</tr>
-<tr class="odd">
-<td>Title</td>
-<td>Sessions Summary (Network Services | All LLDP Sessions).</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches with the LLDP service enabled during the designated time period.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
-<td>Total number of LLDP-related alarms received during the designated time period.</td>
-</tr>
-<tr class="even">
-<td>Total Nodes Running chart</td>
-<td><p>Distribution of switches and hosts with the LLDP service enabled during the designated time period, and a total number of nodes running the service currently.
-<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running LLDP last week or last month might be more or less than the number of nodes running LLDP currently.</p></td>
-</tr>
-<tr class="odd">
-<td>Total Sessions chart</td>
-<td>Distribution of LLDP sessions running during the designated time period, and the total number of sessions running on the network currently.</td>
-</tr>
-<tr class="even">
-<td>Total Sessions with No Nbr chart</td>
-<td>Distribution of LLDP sessions missing neighbor information during the designated time period, and the total number of session missing neighbors in the network currently.</td>
-</tr>
-<tr class="odd">
-<td>Table/Filter options</td>
-<td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of session count-devices with the largest number of sessions are listed first.</p>
-<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of unestablished session count-devices with the largest number of unestablished sessions are listed first.</p></td>
-</tr>
-<tr class="even">
-<td>Show All Sessions</td>
-<td>Link to view all LLDP sessions in the full screen card.</td>
-</tr>
-</tbody>
-</table>
-
-The *Alarms* tab which displays:
-
-{{< figure src="/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in header)</td>
-<td>Indicates data is all alarms for all LLDP sessions.</td>
-</tr>
-<tr class="odd">
-<td>Title</td>
-<td>Alarms (visible when you hover over card).</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches with the LLDP service enabled during the designated time period.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in summary bar)</td>
-<td>Total number of LLDP-related alarms received during the designated time period.</td>
-</tr>
-<tr class="even">
-<td>Total Alarms chart</td>
-<td><p>Distribution of LLDP-related alarms received during the designated time period, and the total number of current LLDP-related alarms in the network.</p>
-<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
-</tr>
-<tr class="odd">
-<td>Table/Filter options</td>
-<td>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of alarm count-devices with the largest number of sessions are listed first</td>
-</tr>
-<tr class="even">
-<td>Show All Sessions</td>
-<td>Link to view all LLDP sessions in the full screen card.</td>
-</tr>
-</tbody>
-</table>
-
-The full screen LLDP Service card provides tabs for all switches, all sessions, and all alarms.
-
-{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-allsess-tab-241.png" width="700">}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Title</td>
-<td>Network Services | LLDP.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench.</td>
-</tr>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
-<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
-</tr>
-<tr class="even">
-<td>Results</td>
-<td>Number of results found for the selected tab.</td>
-</tr>
-<tr class="odd">
-<td>All Switches tab</td>
-<td>Displays all switches and hosts running the LLDP service. By default, the device list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each device:
-<ul>
-<li><strong>Agent</strong>
-<ul>
-<li>State: Indicates communication state of the NetQ Agent on a given device. Values include Fresh (heard from recently) and Rotten (not heard from recently).</li>
-<li>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</li>
-</ul></li>
-<li><strong>ASIC</strong>
-<ul>
-<li>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</li>
-<li>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</li>
-<li>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</li>
-<li>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</li>
-<li>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</li>
-</ul></li>
-<li><strong>CPU</strong>
-<ul>
-<li>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</li>
-<li>Max Freq: Highest rated frequency for CPU. Example values include  2.40 GHz and 1.74 GHz.</li>
-<li>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</li>
-<li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
-</ul></li>
-<li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
-<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
-<li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
-<li><strong>OS</strong>
-<ul>
-<li>Vendor: Operating System manufacturer. Values include Cumulus Networks, RedHat, Ubuntu, and CentOS.</li>
-<li>Version: Software version number of the OS. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
-<li>Version Id: Identifier of the OS version. For Cumulus, this is the same as the <em>Version</em> (3.7.x).</li>
-</ul></li>
-<li><strong>Platform</strong>
-<ul>
-<li>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</li>
-<li>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</li>
-<li>Model: Manufacturer's model name. Examples include AS7712-32X and S4048-ON.</li>
-<li>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</li>
-<li>Revision: Release version of the platform.</li>
-<li>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</li>
-<li>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</li>
-</ul></li>
-<li><strong>Time:</strong> Date and time the data was collected from device.</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td>All Sessions tab</td>
-<td>Displays all LLDP sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
-<ul>
-<li><strong>Ifname</strong>: Name of the host interface where LLDP session is running</li>
-<li><strong>LLDP Peer</strong>:
-<ul>
-<li>Os: Operating system (OS) used by peer device. Values include Cumulus Linux, RedHat, Ubuntu, and CentOS.</li>
-<li>Osv: Version of the OS used by peer device. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
-<li>Bridge: Indicates whether the peer device is a bridge (true) or not (false)</li>
-<li>Router: Indicates whether the peer device is a router (true) or not (false)</li>
-<li>Station: Indicates whether the peer device is a station (true) or not (false)</li>
-</ul></li>
-<li><strong>Peer</strong>:
-<ul>
-<li>Hostname: User-defined name for the peer device</li>
-<li>Ifname: Name of the peer interface where the session is running</li>
-</ul></li>
-<li><strong>Timestamp</strong>: Date and time that the session was started, deleted, updated, or marked dead (device is down)</li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td>All Alarms tab</td>
-<td>Displays all LLDP events network-wide. By default, the event list is sorted by time, with the most recent events listed first. The tab provides the following additional data about each event:
-<ul>
-<li><strong>Message</strong>: Text description of a LLDP-related event. Example: LLDP Session with host leaf02 swp6 modified fields leaf06 swp21.</li>
-<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
-<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>lldp</em> in this card workflow.</li>
-</ul></td>
-</tr>
-<td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
-</tr>
-</tbody>
-</table>
-
-## LLDP Session Card
-
-The small LLDP Session card displays:
-
-{{<figure src="/images/netq/ntwk-svcs-single-lldp-small-230.png" width="200">}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
-<td>Indicates data is for a single session of a Network Service or Protocol.</td>
-</tr>
-<tr class="even">
-<td>Title</td>
-<td>LLDP Session.</td>
-</tr>
-<tr class="odd">
-<td> </td>
-<td>Host and peer devices in session. Host is shown on top, with peer below.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
-<td>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> no peer.</td>
-</tr>
-</tbody>
-</table>
-
-The medium LLDP Session card displays:
-
-{{<figure src="/images/netq/ntwk-svcs-single-lldp-medium-230.png" width="200">}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
-<td>Indicates data is for a single session of a Network Service or Protocol.</td>
-</tr>
-<tr class="odd">
-<td>Title</td>
-<td>LLDP Session.</td>
-</tr>
-<tr class="even">
-<td> </td>
-<td>Host and peer devices in session. Arrow points from host to peer.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
-<td>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> no peer.</td>
-</tr>
-<tr class="even">
-<td>Time period</td>
-<td>Range of time for the distribution chart.</td>
-</tr>
-<tr class="odd">
-<td>Heat map</td>
-<td>Distribution of neighbor availability (detected or undetected) during this given time period.</td>
-</tr>
-<tr class="even">
-<td>Hostname</td>
-<td>User-defined name of the host device.</td>
-</tr>
-<tr class="odd">
-<td>Interface Name</td>
-<td>Software interface on the host device where the session is running.</td>
-</tr>
-<tr class="even">
-<td>Peer Hostname</td>
-<td>User-defined name of the peer device.</td>
-</tr>
-<tr class="odd">
-<td>Peer Interface Name</td>
-<td>Software interface on the peer where the session is running.</td>
-</tr>
-</tbody>
-</table>
-
-The large LLDP Session card contains two tabs.
-
-The *Session Summary* tab displays:
-
-{{<figure src="/images/netq/ntwk-svcs-single-lldp-large-summary-tab-231.png" width="500">}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
-<td>Indicates data is for a single session of a Network Service or Protocol.</td>
-</tr>
-<tr class="odd">
-<td>Title</td>
-<td>Summary Session (Network Services | LLDP Session).</td>
-</tr>
-<tr class="even">
-<td> </td>
-<td>Host and peer devices in session. Arrow points from host to peer.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
-<td>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> no peer.</td>
-</tr>
-<tr class="even">
-<td>Heat map</td>
-<td>Distribution of neighbor state (detected or undetected) during this given time period.</td>
-</tr>
-<tr class="odd">
-<td>Alarm Count chart</td>
-<td>Distribution and count of LLDP alarm events during the given time period.</td>
-</tr>
-<tr class="even">
-<td>Info Count chart</td>
-<td>Distribution and count of LLDP info events during the given time period.</td>
-</tr>
-<tr class="odd">
-<td>Host Interface Name</td>
-<td>Software interface on the host where the session is running.</td>
-</tr>
-<tr class="even">
-<td>Peer Hostname</td>
-<td>User-defined name of the peer device.</td>
-</tr>
-<tr class="odd">
-<td>Peer Interface Name</td>
-<td>Software interface on the peer where the session is running.</td>
-</tr>
-</tbody>
-</table>
-
-The *Configuration File Evolution* tab displays:
-
-{{<figure src="/images/netq/ntwk-svcs-single-lldp-large-config-tab-230.png" width="500">}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/></td>
-<td>Indicates configuration file information for a single session of a Network Service or Protocol.</td>
-</tr>
-<tr class="odd">
-<td>Title</td>
-<td>(Network Services | LLDP Session) Configuration File Evolution.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
-<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open associated device card.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
-<td>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> no peer.</td>
-</tr>
-<tr class="even">
-<td>Timestamps</td>
-<td>When changes to the configuration file have occurred, the date and time are indicated. Click the time to see the changed file.</td>
-</tr>
-<tr class="odd">
-<td>Configuration File</td>
-<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown. When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
-<p><strong>Note</strong>: If no configuration file changes have been made, the card shows no results.</p></td>
-</tr>
-</tbody>
-</table>
-
-The full screen LLDP Session card provides tabs for all LLDP sessions and all events.
-
-{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-allsess-tab-241.png" width="700">}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Title</td>
-<td>Network Services | LLDP.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench.</td>
-</tr>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
-<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
-</tr>
-<tr class="even">
-<td>Results</td>
-<td>Number of results found for the selected tab.</td>
-</tr>
-<tr class="odd">
-<td>All LLDP Sessions tab</td>
-<td>Displays all LLDP sessions on the host device. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
-<ul>
-<li><strong>Ifname</strong>: Name of the host interface where LLDP session is running.</li>
-<li><strong>LLDP</strong> <strong>Peer</strong>:
-<ul>
-<li>Os: Operating system (OS) used by peer device. Values include Cumulus Linux, RedHat, Ubuntu, and CentOS.</li>
-<li>Osv: Version of the OS used by peer device. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
-<li>Bridge: Indicates whether the peer device is a bridge (true) or not (false).</li>
-<li>Router: Indicates whether the peer device is a router (true) or not (false).</li>
-<li>Station: Indicates whether the peer device is a station (true) or not (false).</li>
-</ul></li>
-<li><strong>Peer</strong>:
-<ul>
-<li>Hostname: User-defined name for the peer device.</li>
-<li>Ifname: Name of the peer interface where the session is running.</li>
-</ul></li>
-<li><strong>Timestamp</strong>: Date and time that the session was started, deleted, updated, or marked dead (device is down).</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td>All Events tab</td>
-<td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
-<ul>
-<li><strong>Message</strong>: Text description of an event. Example: LLDP Session with host leaf02 swp6 modified fields leaf06 swp21.</li>
-<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
-<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>lldp</em> in this card workflow.</li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
-</tr>
-</tbody>
-</table>
 
 ## Switch Card
 
@@ -1563,395 +1707,9 @@ The full screen Switch card provides multiple tabs.
 </tbody>
 </table>
 
-You can easily monitor warning, info, and debug severity events occurring across your network using the Info card. You can determine the number of events for the various system, interface, and network protocols and services components in the network. The content of the cards in the workflow is described first, and then followed by common tasks you would perform using this card workflow.
+## Network Services Cards
 
-## Events|Info Card Workflow Summary
-
-The Info card workflow enables users to easily view and track informational alarms occurring anywhere in your network.
-
-The small Info card displays:
-
-{{<figure src="/images/netq/events-info-small-222.png" width="200">}}
-
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-plain-1.svg" height="18" width="18"/></td>
-<td>Indicates data is for all warning, info, and debug severity events in the network</td>
-</tr>
-<tr class="even">
-<td>Info count</td>
-<td>Number of info events received during the designated time period</td>
-</tr>
-<tr class="odd">
-<td>Alarm count</td>
-<td>Number of alarm events received during the designated time period</td>
-</tr>
-<tr class="even">
-<td>Chart</td>
-<td>Distribution of all info events and alarms received during the designated time period</td>
-</tr>
-</tbody>
-</table>
-
-The medium Info card displays:
-
-{{<figure src="/images/netq/events-info-medium-222.png" width="200">}}
-
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-1.svg" height="18" width="18"/></td>
-<td>Indicates data is for all warning, info, and debug severity events in the network.</td>
-</tr>
-<tr class="odd">
-<td>Types of Info</td>
-<td>Chart which displays the services that have triggered events during the designated time period. Hover over chart to view a count for each type.</td>
-</tr>
-<tr class="even">
-<td>Distribution of Info</td>
-<td>Info Status
-<ul>
-<li><strong>Count</strong>: Number of info events received during the designated time period.</li>
-<li><strong>Chart</strong>: Distribution of all info events received during the designated time period.</li>
-</ul>
-Alarms Status
-<ul>
-<li><strong>Count</strong>: Number of alarm events received during the designated time period.</li>
-<li><strong>Chart</strong>: Distribution of all alarm events received during the designated time period.</li>
-</ul></td>
-</tr>
-</tbody>
-</table>
-
-The large Info card displays:
-
-{{<figure src="/images/netq/events-info-large-222.png" width="500">}}
-
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/13-Flags/flag-1.svg" height="18" width="18"/></td>
-<td>Indicates data is for all warning, info, and debug severity events in the network.</td>
-</tr>
-<tr class="odd">
-<td>Types of Info</td>
-<td>Chart which displays the services that have triggered events during the designated time period. Hover over chart to view a count for each type.</td>
-</tr>
-<tr class="even">
-<td>Distribution of Info</td>
-<td>Info Status
-<ul>
-<li><strong>Count</strong>: Current number of info events received during the designated time period.</li>
-<li><strong>Chart</strong>: Distribution of all info events received during the designated time period.</li>
-</ul>
-Alarms Status
-<ul>
-<li><strong>Count</strong>: Current number of alarm events received during the designated time period.</li>
-<li><strong>Chart</strong>: Distribution of all alarm events received during the designated time period.</li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td>Table</td>
-<td>Listing of items that match the filter selection:
-<ul>
-<li><strong>Events by Most Recent</strong>: Most recent event are listed at the top.</li>
-<li><strong>Devices by Event Count</strong>: Devices with the most events are listed at the top.</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td>Show All Events</td>
-<td>Opens full screen Events | Info card with a listing of all events.</td>
-</tr>
-</tbody>
-</table>
-
-The full screen Info card provides tabs for all events.
-
-{{<figure src="/images/netq/events-info-fullscr-300.png" width="700">}}
-
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Title</td>
-<td>Events | Info</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench.</td>
-</tr>
-<tr class="odd">
-<td>Default Time</td>
-<td>Range of time in which the displayed data was collected.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
-<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
-</tr>
-<tr class="even">
-<td>Results</td>
-<td>Number of results found for the selected tab.</td>
-</tr>
-<tr class="odd">
-<td>All Events</td>
-<td>Displays all events (both alarms and info) received in the time period. By default, the requests list is sorted by the date and time that the event occurred (<strong>Time</strong>). This tab provides the following additional data about each request:
-<ul>
-<li><strong>Source</strong>: Hostname of the given event</li>
-<li><strong>Message</strong>: Text describing the alarm or info event that occurred</li>
-<li><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</li>
-<li><strong>Severity</strong>: Importance of the event-critical, warning, info, or debug</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
-</tr>
-</tbody>
-</table>
-
-You can easily monitor critical events occurring across your network using the Alarms card. You can determine the number of events for the various system, interface, and network protocols and services components in the network. The content of the cards in the workflow is described first, and then followed by common tasks you would perform using this card workflow.
-
-## Events|Alarms Card Workflow Summary
-
-The small Alarms card displays:
-
-{{< figure src="/images/netq/events-alarms-small-231.png" width="200" >}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
-<td>Indicates data is for all critical severity events in the network.</td>
-</tr>
-<tr class="even">
-<td>Alarm trend</td>
-<td>Trend of alarm count, represented by an arrow:
-<ul>
-<li><strong>Pointing upward and <strong>bright pink</strong></strong>: alarm count is higher than the last two time periods, an increasing trend</li>
-<li><strong>Pointing downward and <strong>green</strong></strong>: alarm count is lower than the last two time periods, a decreasing trend</li>
-<li><strong>No arrow</strong>: alarm count is unchanged over the last two time periods, trend is steady</li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td>Alarm score</td>
-<td>Current count of alarms during the designated time period.</td>
-</tr>
-<tr class="even">
-<td>Alarm rating</td>
-<td>Count of alarms relative to the average count of alarms during the designated time period:
-<ul>
-<li><strong>Low</strong>: Count of alarms is below the average count; a nominal count</li>
-<li><strong>Med</strong>: Count of alarms is in range of the average count; some room for improvement</li>
-<li><strong>High</strong>: Count of alarms is above the average count; user intervention recommended</li>
-</ul>
-<p>{{< figure src="/images/netq/alarms-perf-rating.png" width="350" >}}</p></td>
-</tr>
-<tr class="odd">
-<td>Chart</td>
-<td>Distribution alarms received during the designated time period and a total count of all alarms present in the system.</td>
-</tr>
-</tbody>
-</table>
-
-The medium Alarms card displays:
-
-{{< figure src="/images/netq/events-alarms-medium-222.png" width="200" >}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg", height="18", width="18"/></td>
-<td>Indicates data is for all critical events in the network.</td>
-</tr>
-<tr class="odd">
-<td>Count</td>
-<td>Total number of alarms received during the designated time period.</td>
-</tr>
-<tr class="even">
-<td>Alarm score</td>
-<td>Current count of alarms received from each category (overall, system, interface, and network services) during the designated time period.</td>
-</tr>
-<tr class="odd">
-<td>Chart</td>
-<td>Distribution of all alarms received from each category during the designated time period.</td>
-</tr>
-</tbody>
-</table>
-
-The large Alarms card has one tab.
-
-The *Alarm Summary* tab displays:
-
-{{< figure src="/images/netq/events-alarms-large-summ-tab-231.png" width="500" >}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-clock.svg", height="18", width="18"/></td>
-<td>Indicates data is for all system, trace and interface critical events in the network.</td>
-</tr>
-<tr class="odd">
-<td>Alarm Distribution</td>
-<td><p><strong>Chart</strong>: Distribution of all alarms received from each category during the designated time period:
-<ul><li>NetQ Agent</li><li>BTRFS Information</li><li>CL Support</li><li>Config Diff</li><li>CL License</li><li>Installed Packages</li><li>Link</li><li>LLDP</li><li>MTU</li><li>Node</li><li>Port</li><li>Resource</li><li>Running Config Diff</li><li>Sensor</li><li>Services</li><li>SSD Utilization</li><li>TCA Interface Stats</li><li>TCA Resource Utilization</li><li>TCA Sensors</li></ul>  
-The categories are displayed in descending order based on total count of alarms, with the largest number of alarms is shown at the top, followed by the next most, down to the chart with the fewest alarms.</p>
-<p><strong>Count</strong>: Total number of alarms received from each category during the designated time period.</p></td>
-</tr>
-<tr class="even">
-<td>Table</td>
-<td>Listing of items that match the filter selection for the selected alarm categories:
-<ul>
-<li><strong>Events by Most Recent</strong>: Most recent event are listed at the top</li>
-<li><strong>Devices by Event Count</strong>: Devices with the most events are listed at the top</li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td>Show All Events</td>
-<td>Opens full screen Events | Alarms card with a listing of all events.</td>
-</tr>
-</tbody>
-</table>
-
-The full screen Alarms card provides tabs for all events.
-
-{{< figure src="/images/netq/events-alarms-fullscr-allevents-tab-300.png" width="700" >}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Title</td>
-<td>Events | Alarms</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench.</td>
-</tr>
-<tr class="odd">
-<td>Default Time</td>
-<td>Range of time in which the displayed data was collected.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
-<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
-</tr>
-<tr class="even">
-<td>Results</td>
-<td>Number of results found for the selected tab.</td>
-</tr>
-<tr class="odd">
-<td>All Events</td>
-<td>Displays all events (both alarms and info) received in the time period. By default, the requests list is sorted by the date and time that the event occurred (<strong>Time</strong>). This tab provides the following additional data about each request:
-<ul>
-<li><strong>Source</strong>: Hostname of the given event</li>
-<li><strong>Message</strong>: Text describing the alarm or info event that occurred</li>
-<li><strong>Type</strong>: Name of network protocol and/or service that triggered the given event</li>
-<li><strong>Severity</strong>: Importance of the event-critical, warning, info, or debug</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
-</tr>
-</tbody>
-</table>
-
-## BGP Service Card Workflow
+### BGP Service Card
 
 The small BGP Service card displays:
 
@@ -2242,7 +2000,7 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 </tr>
 <tr class="even">
 <td>All Sessions tab</td>
-<td>Displays all BGP sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<td>Displays all BGP sessions networkwide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
 <ul>
 <li><strong>ASN</strong>: Autonomous System Number, identifier for a collection of IP networks and routers. Example values include 633284,655435.</li>
 <li><strong>Conn Dropped</strong>: Number of dropped connections for a given session.</li>
@@ -2273,7 +2031,7 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 </tr>
 <tr class="odd">
 <td>All Alarms tab</td>
-<td>Displays all BGP events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<td>Displays all BGP events networkwide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
 <li><strong>Message</strong>: Text description of a BGP-related event. Example: BGP session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
@@ -2288,333 +2046,7 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 </tbody>
 </table>
 
-## OSPF Service Card Workflow
-
-The small OSPF Service card displays:
-
-{{< figure src="/images/netq/ntwk-svcs-all-ospf-small-230.png" width="200" >}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
-<td>Indicates data is for all sessions of a Network Service or Protocol</td>
-</tr>
-<tr class="even">
-<td>Title</td>
-<td>OSPF: All OSPF Sessions, or the OSPF Service</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches and hosts with the OSPF service enabled during the designated time period</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
-<td>Total number of OSPF-related alarms received during the designated time period</td>
-</tr>
-<tr class="odd">
-<td>Chart</td>
-<td>Distribution of OSPF-related alarms received during the designated time period</td>
-</tr>
-</tbody>
-</table>
-
-The medium OSPF Service card displays:
-
-{{< figure src="/images/netq/ntwk-svcs-all-ospf-medium-230.png" width="200" >}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
-<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
-</tr>
-<tr class="odd">
-<td>Title</td>
-<td>Network Services | All OSPF Sessions.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches and hosts with the OSPF service enabled during the designated time period.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
-<td>Total number of OSPF-related alarms received during the designated time period.</td>
-</tr>
-<tr class="even">
-<td>Total Nodes Running chart</td>
-<td><p>Distribution of switches and hosts with the OSPF service enabled during the designated time period, and a total number of nodes running the service currently.
-<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running OSPF last week or last month might be more or less than the number of nodes running OSPF currently.</p></td>
-</tr>
-<tr class="odd">
-<td>Total Sessions Not Established chart</td>
-<td><p>Distribution of unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
-<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of unestablished session last week or last month might be more of less than the number of nodes with unestablished sessions currently.</p></td>
-</tr>
-<tr class="even">
-<td>Total Sessions chart</td>
-<td>Distribution of OSPF sessions during the designated time period, and the total number of sessions running on the network currently.</td>
-</tr>
-</tbody>
-</table>
-
-The large OSPF service card contains two tabs.
-
-The *Sessions Summary* tab displays:  
-
-{{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-300.png" width="500" >}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
-<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
-</tr>
-<tr class="odd">
-<td>Title</td>
-<td>Sessions Summary (visible when you hover over card).</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches and hosts with the OSPF service enabled during the designated time period.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
-<td>Total number of OSPF-related alarms received during the designated time period.</td>
-</tr>
-<tr class="even">
-<td>Total Nodes Running chart</td>
-<td><p>Distribution of switches and hosts with the OSPF service enabled during the designated time period, and a total number of nodes running the service currently.
-<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running OSPF last week or last month might be more or less than the number of nodes running OSPF currently.</p></td>
-</tr>
-<tr class="odd">
-<td>Total Sessions chart</td>
-<td>Distribution of OSPF sessions during the designated time period, and the total number of sessions running on the network currently.</td>
-</tr>
-<tr class="even">
-<td>Total Sessions Not Established chart</td>
-<td><p>Distribution of unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
-<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of unestablished session last week or last month might be more of less than the number of nodes with unestablished sessions currently.</p></td>
-</tr>
-<tr class="odd">
-<td>Table/Filter options</td>
-<td><p>When the <strong>Switches with Most Sessions</strong> filter option is selected, the table displays the switches and hosts running OSPF sessions in decreasing order of session count-devices with the largest number of sessions are listed first</p>
-<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter option is selected, the table switches and hosts running OSPF sessions in decreasing order of unestablished sessions-devices with the largest number of unestablished sessions are listed first</p></td>
-</tr>
-<tr class="even">
-<td>Show All Sessions</td>
-<td>Link to view data for all OSPF sessions in the full screen card.</td>
-</tr>
-</tbody>
-</table>
-
-The *Alarms* tab displays:
-
-{{< figure src="/images/netq/ntwk-svcs-all-ospf-large-alarms-tab-230.png" width="500" >}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in header)</td>
-<td>Indicates data is all alarms for all OSPF sessions.</td>
-</tr>
-<tr class="odd">
-<td>Title</td>
-<td>Alarms (visible when you hover over card).</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
-<td>Total number of switches and hosts with the OSPF service enabled during the designated time period.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in summary bar)</td>
-<td>Total number of OSPF-related alarms received during the designated time period.</td>
-</tr>
-<tr class="even">
-<td>Total Alarms chart</td>
-<td><p>Distribution of OSPF-related alarms received during the designated time period, and the total number of current OSPF-related alarms in the network.</p>
-<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
-</tr>
-<tr class="odd">
-<td>Table/Filter options</td>
-<td>When the selected filter option is <strong>Switches with Most Alarms</strong>, the table displays <strong></strong> switches and hosts running OSPF in decreasing order of the count of alarms-devices with the largest number of OSPF alarms are listed first</td>
-</tr>
-<tr class="even">
-<td>Show All Sessions</td>
-<td>Link to view data for all OSPF sessions in the full screen card.</td>
-</tr>
-</tbody>
-</table>
-
-The full screen OSPF Service card provides tabs for all switches, all sessions, and all alarms.
-
-{{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-allswitches-tab-241.png" width="700">}}
-
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Title</td>
-<td>Network Services | OSPF.</td>
-</tr>
-<tr class="even">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
-<td>Closes full screen card and returns to workbench.</td>
-</tr>
-<tr class="odd">
-<td>Time period</td>
-<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
-</tr>
-<tr class="odd">
-<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
-<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
-</tr>
-<tr class="even">
-<td>Results</td>
-<td>Number of results found for the selected tab</td>
-</tr>
-<tr class="odd">
-<td>All Switches tab</td>
-<td>Displays all switches and hosts running the OSPF service. By default, the device list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each device:
-<ul>
-<li><strong>Agent</strong>
-<ul>
-<li>State: Indicates communication state of the NetQ Agent on a given device. Values include Fresh (heard from recently) and Rotten (not heard from recently).</li>
-<li>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</li>
-</ul></li>
-<li><strong>ASIC</strong>
-<ul>
-<li>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</li>
-<li>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</li>
-<li>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</li>
-<li>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</li>
-<li>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</li>
-</ul></li>
-<li><strong>CPU</strong>
-<ul>
-<li>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</li>
-<li>Max Freq: Highest rated frequency for CPU. Example values include 2.40 GHz and 1.74 GHz.</li>
-<li>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</li>
-<li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
-</ul></li>
-<li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
-<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
-<li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
-<li><strong>OS</strong>
-<ul>
-<li>Vendor: Operating System manufacturer. Values include Cumulus Networks, RedHat, Ubuntu, and CentOS.</li>
-<li>Version: Software version number of the OS. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
-<li>Version Id: Identifier of the OS version. For Cumulus, this is the same as the <em>Version</em> (3.7.x).</li>
-</ul></li>
-<li><strong>Platform</strong>
-<ul>
-<li>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</li>
-<li>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</li>
-<li>Model: Manufacturer's model name. Examples values include AS7712-32X and S4048-ON.</li>
-<li>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</li>
-<li>Revision: Release version of the platform.</li>
-<li>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</li>
-<li>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</li>
-</ul></li>
-<li><strong>Time:</strong> Date and time the data was collected from device.</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td>All Sessions tab</td>
-<td>Displays all OSPF sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
-<ul>
-<li><strong>Area</strong>: Routing domain for this host device. Example values include 0.0.0.1, 0.0.0.23.</li>
-<li><strong>Ifname</strong>: Name of the interface on host device where session resides. Example values include swp5, peerlink-1.</li>
-<li><strong>Is IPv6</strong>: Indicates whether the address of the host device is IPv6 (true) or IPv4 (false).</li>
-<li><strong>Peer</strong>
-<ul>
-<li>Address: IPv4 or IPv6 address of the peer device.</li>
-<li>Hostname: User-defined name for peer device.</li>
-<li>ID: Network subnet address of router with access to the peer device.</li>
-</ul></li>
-<li><strong>State</strong>: Current state of OSPF. Values include Full, 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</li>
-<li><strong>Timestamp</strong>: Date and time session was started, deleted, updated or marked dead (device is down)</li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td>All Alarms tab</td>
-<td>Displays all OSPF events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
-<ul>
-<li><strong>Message</strong>: Text description of a OSPF-related event. Example: swp4 area ID mismatch with peer leaf02</li>
-<li><strong>Source</strong>: Hostname of network device that generated the event</li>
-<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
-<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>OSPF</em> in this card workflow.</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
-</tr>
-</tbody>
-</table>
-
-## BGP Session Card Workflow Summary
+### BGP Session Card
 
 The small BGP Session card displays:
 
@@ -2911,7 +2343,7 @@ The full screen BGP Session card provides tabs for all BGP sessions and all even
 </tr>
 <tr class="even">
 <td>All Events tab</td>
-<td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<td>Displays all events networkwide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
 <ul>
 <li><strong>Message</strong>: Text description of a BGP-related event. Example: BGP session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
 <li><strong>Source</strong>: Hostname of network device that generated the event.</li>
@@ -2926,3 +2358,3989 @@ The full screen BGP Session card provides tabs for all BGP sessions and all even
 </tbody>
 </table>
 
+With NetQ, you can monitor the number of nodes running the EVPN service, view switches with the sessions, total number of VNIs, and alarms triggered by the EVPN service. For an overview and how to configure EVPN in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Ethernet Virtual Private Network-EVPN">}}.
+
+### EVPN Service Card
+
+The small EVPN Service card displays:
+
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-small-230.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>EVPN: All EVPN Sessions, or the EVPN Service</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches and hosts with the EVPN service enabled during the designated time period</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of EVPN-related alarms received during the designated time period</td>
+</tr>
+<tr class="odd">
+<td>Chart</td>
+<td>Distribution of EVPN-related alarms received during the designated time period</td>
+</tr>
+</tbody>
+</table>
+
+The medium EVPN Service card displays:
+
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-medium-230.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | All EVPN Sessions.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches and hosts with the EVPN service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of EVPN-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Nodes Running chart</td>
+<td><p>Distribution of switches and hosts with the EVPN service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running EVPN last week or last month might be more or less than the number of nodes running EVPN currently.</p></td>
+</tr>
+<tr class="odd">
+<td>Total Open Alarms chart</td>
+<td><p>Distribution of EVPN-related alarms received during the designated time period, and the total number of current EVPN-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
+</tr>
+<tr class="even">
+<td>Total Sessions chart</td>
+<td>Distribution of EVPN sessions during the designated time period, and the total number of sessions running on the network currently.</td>
+</tr>
+</tbody>
+</table>
+
+The large EVPN service card contains two tabs.
+
+The *Sessions Summary* tab which displays:
+
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-300.png" width="500">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Sessions Summary (visible when you hover over card).</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches and hosts with the EVPN service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of EVPN-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Nodes Running chart</td>
+<td><p>Distribution of switches and hosts with the EVPN service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running EVPN last week or last month might be more or less than the number of nodes running EVPN currently.</p></td>
+</tr>
+<tr class="odd">
+<td>Total Sessions chart</td>
+<td>Distribution of EVPN sessions during the designated time period, and the total number of sessions running on the network currently.</td>
+</tr>
+<tr class="even">
+<td>Total L3 VNIs chart</td>
+<td>Distribution of layer 3 VXLAN Network Identifiers during this time period, and the total number of VNIs in the network currently.</td>
+</tr>
+<tr class="odd">
+<td>Table/Filter options</td>
+<td><p>When the <strong>Top Switches with Most Sessions</strong> filter is selected, the table displays devices running EVPN sessions in decreasing order of session count-devices with the largest number of sessions are listed first.</p>
+<p>When the <strong>Switches with Most L2 EVPN</strong> filter is selected, the table displays devices running layer 2 EVPN sessions in decreasing order of session count-devices with the largest number of sessions are listed first.</p>
+<p>When the <strong>Switches with</strong> <strong>Most L3 EVPN</strong> filter is selected, the table displays devices running layer 3 EVPN sessions in decreasing order of session count-devices with the largest number of sessions are listed first.</p></td>
+</tr>
+<tr class="even">
+<td>Show All Sessions</td>
+<td>Link to view data for all EVPN sessions network-wide in the full screen card.</td>
+</tr>
+</tbody>
+</table>
+
+The *Alarms* tab which displays:
+
+{{< figure src="/images/netq/ntwk-svcs-allevpn-large-alarms-tab.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in header)</td>
+<td>Indicates data is for all alarms for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Alarms (visible when you hover over card).</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches and hosts with the EVPN service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in summary bar)</td>
+<td>Total number of EVPN-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Alarms chart</td>
+<td><p>Distribution of EVPN-related alarms received during the designated time period, and the total number of current BGP-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
+</tr>
+<tr class="odd">
+<td>Table/Filter options</td>
+<td>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays devices running EVPN sessions in decreasing order of alarm count-devices with the largest number of alarms are listed first.</td>
+</tr>
+<tr class="even">
+<td>Show All Sessions</td>
+<td>Link to view data for all EVPN sessions in the full screen card.</td>
+</tr>
+</tbody>
+</table>
+
+The full screen EVPN Service card provides tabs for all switches, all sessions, all alarms.
+
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-allsess-tab-241.png" width="700">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | EVPN</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>All Switches tab</td>
+<td>Displays all switches and hosts running the EVPN service. By default, the device list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each device:
+<ul>
+<li><strong>Agent</strong>
+<ul>
+<li>State: Indicates communication state of the NetQ Agent on a given device. Values include Fresh (heard from recently) and Rotten (not heard from recently).</li>
+<li>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</li>
+</ul></li>
+<li><strong>ASIC</strong>
+<ul>
+<li>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</li>
+<li>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</li>
+<li>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</li>
+<li>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</li>
+<li>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</li>
+</ul></li>
+<li><strong>CPU</strong>
+<ul>
+<li>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</li>
+<li>Max Freq: Highest rated frequency for CPU. Example values include  2.40 GHz and 1.74 GHz.</li>
+<li>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</li>
+<li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
+</ul></li>
+<li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
+<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
+<li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
+<li><strong>OS</strong>
+<ul>
+<li>Vendor: Operating System manufacturer. Values include Cumulus Networks, RedHat, Ubuntu, and CentOS.</li>
+<li>Version: Software version number of the OS. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
+<li>Version Id: Identifier of the OS version. For Cumulus, this is the same as the <em>Version</em> (3.7.x).</li>
+</ul></li>
+<li><strong>Platform</strong>
+<ul>
+<li>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</li>
+<li>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</li>
+<li>Model: Manufacturer's model name. Examples include AS7712-32X and S4048-ON.</li>
+<li>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</li>
+<li>Revision: Release version of the platform.</li>
+<li>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</li>
+<li>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</li>
+</ul></li>
+<li><strong>Time:</strong> Date and time the data was collected from device.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>All Sessions tab</td>
+<td>Displays all EVPN sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<ul>
+<li><strong>Adv All Vni</strong>: Indicates whether the VNI state is advertising all VNIs (true) or not (false).</li>
+<li><strong>Adv Gw Ip</strong>: Indicates whether the host device is advertising the gateway IP address (true) or not (false).</li>
+<li><strong>DB State</strong>: Session state of the DB.</li>
+<li><strong>Export RT</strong>: IP address and port of the export route target used in the filtering mechanism for BGP route exchange.</li>
+<li><strong>Import RT</strong>: IP address and port of the import route target used in the filtering mechanism for BGP route exchange.</li>
+<li><strong>In Kernel</strong>: Indicates whether the associated VNI is in the kernel (in kernel) or not (not in kernel).</li>
+<li><strong>Is L3</strong>: Indicates whether the session is part of a layer 3 configuration (true) or not (false).</li>
+<li><strong>Origin Ip</strong>: Host device's local VXLAN tunnel IP address for the EVPN instance.</li>
+<li><strong>OPID</strong>: LLDP service identifier.</li>
+<li><strong>Rd</strong>: Route distinguisher used in the filtering mechanism for BGP route exchange.</li>
+<li><strong>Timestamp</strong>: Date and time the session was started, deleted, updated or marked as dead (device is down).</li>
+<li><strong>Vni</strong>: Name of the VNI where session is running.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>All Alarms tab</td>
+<td>Displays all EVPN events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<ul>
+<li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>evpn</em> in this card workflow.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+### EVPN Session Card
+
+The small EVPN Session card displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-evpn-small-230.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for an EVPN session</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>EVPN Session</td>
+</tr>
+<tr class="odd">
+<td>VNI Name</td>
+<td>Name of the VNI (virtual network instance) used for this EVPN session</td>
+</tr>
+<tr class="even">
+<td>Current VNI Nodes</td>
+<td>Total number of VNI nodes participating in the EVPN session currently</td>
+</tr>
+</tbody>
+</table>
+
+The medium EVPN Session card displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-evpn-medium-230.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for an EVPN session</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | EVPN Session</td>
+</tr>
+<tr class="even">
+<td>Summary bar</td>
+<td>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI nodes participating in the EVPN session currently</td>
+</tr>
+<tr class="odd">
+<td>VTEP Count Over Time chart</td>
+<td>Distribution of VTEP counts during the designated time period</td>
+</tr>
+<tr class="even">
+<td>VNI Name</td>
+<td>Name of the VNI used for this EVPN session</td>
+</tr>
+<tr class="odd">
+<td>Type</td>
+<td>Indicates whether the session is established as part of a layer 2 or layer 3 overlay network</td>
+</tr>
+</tbody>
+</table>
+
+The large EVPN Session card contains two tabs.
+
+The *Session Summary* tab displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-evpn-large-summary-tab-231.png" width="500">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for an EVPN session</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Session Summary (Network Services | EVPN Session)</td>
+</tr>
+<tr class="even">
+<td>Summary bar</td>
+<td>VTEP (VXLAN Tunnel EndPoint) Count: Total number of VNI devices participating in the EVPN session currently</td>
+</tr>
+<tr class="odd">
+<td>VTEP Count Over Time chart</td>
+<td>Distribution of VTEPs during the designated time period</td>
+</tr>
+<tr class="even">
+<td>Alarm Count chart</td>
+<td>Distribution of alarms during the designated time period</td>
+</tr>
+<tr class="odd">
+<td>Info Count chart</td>
+<td>Distribution of info events during the designated time period</td>
+</tr>
+<tr class="even">
+<td>Table</td>
+<td>VRF (for layer 3) or VLAN (for layer 2) identifiers by device</td>
+</tr>
+</tbody>
+</table>
+
+The *Configuration File Evolution* tab displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-evpn-large-config-tab-230.png" width="500">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/></td>
+<td>Indicates configuration file information for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>(Network Services | EVPN Session) Configuration File Evolution.</td>
+</tr>
+<tr class="even">
+<td>{{<img src="/images/netq/ntwk-svcs-single-evpn-vtep-count-icon-230.png" width="20" height="20">}}</td>
+<td>VTEP count (currently).</td>
+</tr>
+<tr class="odd">
+<td>Timestamps</td>
+<td>When changes to the configuration file have occurred, the date and time are indicated. Click the time to see the changed file.</td>
+</tr>
+<tr class="even">
+<td>Configuration File</td>
+<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown.</p>
+<p>When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
+<p><strong>Note</strong>: If no configuration file changes have been made, only the original file date is shown.</p></td>
+</tr>
+</tbody>
+</table>
+
+The full screen EVPN Session card provides tabs for all EVPN sessions
+and all events.
+
+{{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-allsess-tab-241.png" width="700">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | EVPN.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>All EVPN Sessions tab</td>
+<td>Displays all EVPN sessions network-wide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<ul>
+<li><strong>Adv All Vni</strong>: Indicates whether the VNI state is advertising all VNIs (true) or not (false).</li>
+<li><strong>Adv Gw Ip</strong>: Indicates whether the host device is advertising the gateway IP address (true) or not (false).</li>
+<li><strong>DB State</strong>: Session state of the DB.</li>
+<li><strong>Export RT</strong>: IP address and port of the export route target used in the filtering mechanism for BGP route exchange.</li>
+<li><strong>Import RT</strong>: IP address and port of the import route target used in the filtering mechanism for BGP route exchange.</li>
+<li><strong>In Kernel</strong>: Indicates whether the associated VNI is in the kernel (in kernel) or not (not in kernel).</li>
+<li><strong>Is L3</strong>: Indicates whether the session is part of a layer 3 configuration (true) or not (false).</li>
+<li><strong>Origin Ip</strong>: Host device's local VXLAN tunnel IP address for the EVPN instance.</li>
+<li><strong>OPID</strong>: LLDP service identifier.</li>
+<li><strong>Rd</strong>: Route distinguisher used in the filtering mechanism for BGP route exchange.</li>
+<li><strong>Timestamp</strong>: Date and time the session was started, deleted, updated or marked as dead (device is down).</li>
+<li><strong>Vni</strong>: Name of the VNI where session is running.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>All Events tab</td>
+<td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<ul>
+<li><strong>Message</strong>: Text description of a EVPN-related event. Example: VNI 3 kernel state changed from down to up.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>evpn</em> in this card workflow.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+### LLDP Service Card
+
+With NetQ, you can monitor the number of nodes running the LLDP service, view nodes with the most LLDP neighbor nodes, those nodes with the least neighbor nodes, and view alarms triggered by the LLDP service. For an overview and how to configure LLDP in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="Link Layer Discovery Protocol">}}.
+
+The small LLDP Service card displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-small-230.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>LLDP: All LLDP Sessions, or the LLDP Service.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches with the LLDP service enabled during the designated time period.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of LLDP-related alarms received during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td>Chart</td>
+<td>Distribution of LLDP-related alarms received during the designated time period.</td>
+</tr>
+</tbody>
+</table>
+
+The medium LLDP Service card displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>LLDP: All LLDP Sessions, or the LLDP Service.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches with the LLDP service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of LLDP-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Nodes Running chart</td>
+<td><p>Distribution of switches and hosts with the LLDP service enabled during the designated time period, and a total number of nodes running the service currently.</p>
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running LLDP last week or last month might be more or less than the number of nodes running LLDP currently.</p></td>
+</tr>
+<tr class="odd">
+<td>Total Open Alarms chart</td>
+<td><p>Distribution of LLDP-related alarms received during the designated time period, and the total number of current LLDP-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
+</tr>
+<tr class="even">
+<td>Total Sessions chart</td>
+<td>Distribution of LLDP sessions running during the designated time period, and the total number of sessions running on the network currently.</td>
+</tr>
+</tbody>
+</table>
+
+The large LLDP service card contains two tabs.
+
+The *Sessions Summary* tab which displays:
+
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-300.png" width="500">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Sessions Summary (Network Services | All LLDP Sessions).</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches with the LLDP service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of LLDP-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Nodes Running chart</td>
+<td><p>Distribution of switches and hosts with the LLDP service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running LLDP last week or last month might be more or less than the number of nodes running LLDP currently.</p></td>
+</tr>
+<tr class="odd">
+<td>Total Sessions chart</td>
+<td>Distribution of LLDP sessions running during the designated time period, and the total number of sessions running on the network currently.</td>
+</tr>
+<tr class="even">
+<td>Total Sessions with No Nbr chart</td>
+<td>Distribution of LLDP sessions missing neighbor information during the designated time period, and the total number of session missing neighbors in the network currently.</td>
+</tr>
+<tr class="odd">
+<td>Table/Filter options</td>
+<td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of session count-devices with the largest number of sessions are listed first.</p>
+<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of unestablished session count-devices with the largest number of unestablished sessions are listed first.</p></td>
+</tr>
+<tr class="even">
+<td>Show All Sessions</td>
+<td>Link to view all LLDP sessions in the full screen card.</td>
+</tr>
+</tbody>
+</table>
+
+The *Alarms* tab which displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-lldp-large-alarms-tab.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in header)</td>
+<td>Indicates data is all alarms for all LLDP sessions.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Alarms (visible when you hover over card).</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches with the LLDP service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in summary bar)</td>
+<td>Total number of LLDP-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Alarms chart</td>
+<td><p>Distribution of LLDP-related alarms received during the designated time period, and the total number of current LLDP-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
+</tr>
+<tr class="odd">
+<td>Table/Filter options</td>
+<td>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays switches running LLDP sessions in decreasing order of alarm count-devices with the largest number of sessions are listed first</td>
+</tr>
+<tr class="even">
+<td>Show All Sessions</td>
+<td>Link to view all LLDP sessions in the full screen card.</td>
+</tr>
+</tbody>
+</table>
+
+The full screen LLDP Service card provides tabs for all switches, all sessions, and all alarms.
+
+{{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-allsess-tab-241.png" width="700">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | LLDP.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>All Switches tab</td>
+<td>Displays all switches and hosts running the LLDP service. By default, the device list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each device:
+<ul>
+<li><strong>Agent</strong>
+<ul>
+<li>State: Indicates communication state of the NetQ Agent on a given device. Values include Fresh (heard from recently) and Rotten (not heard from recently).</li>
+<li>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</li>
+</ul></li>
+<li><strong>ASIC</strong>
+<ul>
+<li>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</li>
+<li>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</li>
+<li>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</li>
+<li>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</li>
+<li>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</li>
+</ul></li>
+<li><strong>CPU</strong>
+<ul>
+<li>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</li>
+<li>Max Freq: Highest rated frequency for CPU. Example values include  2.40 GHz and 1.74 GHz.</li>
+<li>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</li>
+<li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
+</ul></li>
+<li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
+<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
+<li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
+<li><strong>OS</strong>
+<ul>
+<li>Vendor: Operating System manufacturer. Values include Cumulus Networks, RedHat, Ubuntu, and CentOS.</li>
+<li>Version: Software version number of the OS. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
+<li>Version Id: Identifier of the OS version. For Cumulus, this is the same as the <em>Version</em> (3.7.x).</li>
+</ul></li>
+<li><strong>Platform</strong>
+<ul>
+<li>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</li>
+<li>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</li>
+<li>Model: Manufacturer's model name. Examples include AS7712-32X and S4048-ON.</li>
+<li>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</li>
+<li>Revision: Release version of the platform.</li>
+<li>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</li>
+<li>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</li>
+</ul></li>
+<li><strong>Time:</strong> Date and time the data was collected from device.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>All Sessions tab</td>
+<td>Displays all LLDP sessions networkwide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<ul>
+<li><strong>Ifname</strong>: Name of the host interface where LLDP session is running</li>
+<li><strong>LLDP Peer</strong>:
+<ul>
+<li>Os: Operating system (OS) used by peer device. Values include Cumulus Linux, RedHat, Ubuntu, and CentOS.</li>
+<li>Osv: Version of the OS used by peer device. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
+<li>Bridge: Indicates whether the peer device is a bridge (true) or not (false)</li>
+<li>Router: Indicates whether the peer device is a router (true) or not (false)</li>
+<li>Station: Indicates whether the peer device is a station (true) or not (false)</li>
+</ul></li>
+<li><strong>Peer</strong>:
+<ul>
+<li>Hostname: User-defined name for the peer device</li>
+<li>Ifname: Name of the peer interface where the session is running</li>
+</ul></li>
+<li><strong>Timestamp</strong>: Date and time that the session was started, deleted, updated, or marked dead (device is down)</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>All Alarms tab</td>
+<td>Displays all LLDP events networkwide. By default, the event list is sorted by time, with the most recent events listed first. The tab provides the following additional data about each event:
+<ul>
+<li><strong>Message</strong>: Text description of a LLDP-related event. Example: LLDP Session with host leaf02 swp6 modified fields leaf06 swp21.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>lldp</em> in this card workflow.</li>
+</ul></td>
+</tr>
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+### LLDP Session Card
+
+The small LLDP Session card displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-small-230.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>LLDP Session.</td>
+</tr>
+<tr class="odd">
+<td> </td>
+<td>Host and peer devices in session. Host is shown on top, with peer below.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> no peer.</td>
+</tr>
+</tbody>
+</table>
+
+The medium LLDP Session card displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-medium-230.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>LLDP Session.</td>
+</tr>
+<tr class="even">
+<td> </td>
+<td>Host and peer devices in session. Arrow points from host to peer.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> no peer.</td>
+</tr>
+<tr class="even">
+<td>Time period</td>
+<td>Range of time for the distribution chart.</td>
+</tr>
+<tr class="odd">
+<td>Heat map</td>
+<td>Distribution of neighbor availability (detected or undetected) during this given time period.</td>
+</tr>
+<tr class="even">
+<td>Hostname</td>
+<td>User-defined name of the host device.</td>
+</tr>
+<tr class="odd">
+<td>Interface Name</td>
+<td>Software interface on the host device where the session is running.</td>
+</tr>
+<tr class="even">
+<td>Peer Hostname</td>
+<td>User-defined name of the peer device.</td>
+</tr>
+<tr class="odd">
+<td>Peer Interface Name</td>
+<td>Software interface on the peer where the session is running.</td>
+</tr>
+</tbody>
+</table>
+
+The large LLDP Session card contains two tabs.
+
+The *Session Summary* tab displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-large-summary-tab-231.png" width="500">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Summary Session (Network Services | LLDP Session).</td>
+</tr>
+<tr class="even">
+<td> </td>
+<td>Host and peer devices in session. Arrow points from host to peer.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> no peer.</td>
+</tr>
+<tr class="even">
+<td>Heat map</td>
+<td>Distribution of neighbor state (detected or undetected) during this given time period.</td>
+</tr>
+<tr class="odd">
+<td>Alarm Count chart</td>
+<td>Distribution and count of LLDP alarm events during the given time period.</td>
+</tr>
+<tr class="even">
+<td>Info Count chart</td>
+<td>Distribution and count of LLDP info events during the given time period.</td>
+</tr>
+<tr class="odd">
+<td>Host Interface Name</td>
+<td>Software interface on the host where the session is running.</td>
+</tr>
+<tr class="even">
+<td>Peer Hostname</td>
+<td>User-defined name of the peer device.</td>
+</tr>
+<tr class="odd">
+<td>Peer Interface Name</td>
+<td>Software interface on the peer where the session is running.</td>
+</tr>
+</tbody>
+</table>
+
+The *Configuration File Evolution* tab displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-large-config-tab-230.png" width="500">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/></td>
+<td>Indicates configuration file information for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>(Network Services | LLDP Session) Configuration File Evolution.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
+<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open associated device card.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indicates whether the host sees the peer or not; <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> has a peer, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> no peer.</td>
+</tr>
+<tr class="even">
+<td>Timestamps</td>
+<td>When changes to the configuration file have occurred, the date and time are indicated. Click the time to see the changed file.</td>
+</tr>
+<tr class="odd">
+<td>Configuration File</td>
+<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown. When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
+<p><strong>Note</strong>: If no configuration file changes have been made, the card shows no results.</p></td>
+</tr>
+</tbody>
+</table>
+
+The full screen LLDP Session card provides tabs for all LLDP sessions and all events.
+
+{{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-allsess-tab-241.png" width="700">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | LLDP.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>All LLDP Sessions tab</td>
+<td>Displays all LLDP sessions on the host device. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<ul>
+<li><strong>Ifname</strong>: Name of the host interface where LLDP session is running.</li>
+<li><strong>LLDP</strong> <strong>Peer</strong>:
+<ul>
+<li>Os: Operating system (OS) used by peer device. Values include Cumulus Linux, RedHat, Ubuntu, and CentOS.</li>
+<li>Osv: Version of the OS used by peer device. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
+<li>Bridge: Indicates whether the peer device is a bridge (true) or not (false).</li>
+<li>Router: Indicates whether the peer device is a router (true) or not (false).</li>
+<li>Station: Indicates whether the peer device is a station (true) or not (false).</li>
+</ul></li>
+<li><strong>Peer</strong>:
+<ul>
+<li>Hostname: User-defined name for the peer device.</li>
+<li>Ifname: Name of the peer interface where the session is running.</li>
+</ul></li>
+<li><strong>Timestamp</strong>: Date and time that the session was started, deleted, updated, or marked dead (device is down).</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>All Events tab</td>
+<td>Displays all events networkwide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<ul>
+<li><strong>Message</strong>: Text description of an event. Example: LLDP Session with host leaf02 swp6 modified fields leaf06 swp21.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>lldp</em> in this card workflow.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+### MLAG Service Card
+
+The small MLAG Service card displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-mlag-small-230.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>MLAG: All MLAG Sessions, or the MLAG Service</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches with the MLAG service enabled during the designated time period</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of MLAG-related alarms received during the designated time period</td>
+</tr>
+<tr class="odd">
+<td>Chart</td>
+<td>Distribution of MLAG-related alarms received during the designated time period</td>
+</tr>
+</tbody>
+</table>
+
+The medium MLAG Service card displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-mlag-medium-230.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | All MLAG Sessions.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches with the MLAG service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of MLAG-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/11-Pins-Style%20Two/style-two-pin-off-map.svg" height="18" width="18"/></td>
+<td>Total number of sessions with an inactive backup IP address during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/27-Link-Unlink/link-broken-1.svg" height="18" width="18"/></td>
+<td>Total number of bonds with only a single connection during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Nodes Running chart</td>
+<td><p>Distribution of switches and hosts with the MLAG service enabled during the designated time period, and a total number of nodes running the service currently.</p>
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running MLAG last week or last month might be more or less than the number of nodes running MLAG currently.</p></td>
+</tr>
+<tr class="odd">
+<td>Total Open Alarms chart</td>
+<td><p>Distribution of MLAG-related alarms received during the designated time period, and the total number of current MLAG-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
+</tr>
+<tr class="even">
+<td>Total Sessions chart</td>
+<td>Distribution of MLAG sessions running during the designated time period, and the total number of sessions running on the network currently.</td>
+</tr>
+</tbody>
+</table>
+
+The large MLAG service card contains two tabs.
+
+The *All MLAG Sessions* summary tab which displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-mlag-large-230.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>All MLAG Sessions Summary</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches with the MLAG service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of MLAG-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Nodes Running chart</td>
+<td><p>Distribution of switches and hosts with the MLAG service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running MLAG last week or last month might be more or less than the number of nodes running MLAG currently.</p></td>
+</tr>
+<tr class="odd">
+<td>Total Sessions chart</td>
+<td><p>Distribution of MLAG sessions running during the designated time period, and the total number of sessions running on the network currently.</p></td>
+</tr>
+<tr class="even">
+<td>Total Sessions with Inactive-backup-ip chart</td>
+<td>Distribution of sessions without an active backup IP defined during the designated time period, and the total number of these sessions running on the network currently.</td>
+</tr>
+<tr class="odd">
+<td>Table/Filter options</td>
+<td><p>When the <strong>Switches with Most Sessions</strong> filter is selected, the table displays switches running MLAG sessions in decreasing order of session count-devices with the largest number of sessions are listed first.</p>
+<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter is selected, the table displays switches running MLAG sessions in decreasing order of unestablished session count-devices with the largest number of unestablished sessions are listed first.</p></td>
+</tr>
+<tr class="even">
+<td>Show All Sessions</td>
+<td>Link to view all MLAG sessions in the full screen card.</td>
+</tr>
+</tbody>
+</table>
+
+The *All MLAG Alarms* tab which displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-mlag-large-alarms-tab-230.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in header)</td>
+<td>Indicates alarm data for all MLAG sessions.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | All MLAG Alarms (visible when you hover over card).</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches with the MLAG service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in summary bar)</td>
+<td>Total number of MLAG-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Alarms chart</td>
+<td><p>Distribution of MLAG-related alarms received during the designated time period, and the total number of current MLAG-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
+</tr>
+<tr class="odd">
+<td>Table/Filter options</td>
+<td>When the <strong>Events by Most Active Device</strong> filter is selected, the table displays switches running MLAG sessions in decreasing order of alarm count-devices with the largest number of sessions are listed first.</td>
+</tr>
+<tr class="even">
+<td>Show All Sessions</td>
+<td>Link to view all MLAG sessions in the full screen card.</td>
+</tr>
+</tbody>
+</table>
+
+The full screen MLAG Service card provides tabs for all switches, all
+sessions, and all alarms.
+
+{{<figure src="/images/netq/ntwk-svcs-all-mlag-fullscr-allsess-tab-241.png" width="700">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | MLAG.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>All Switches tab</td>
+<td>Displays all switches and hosts running the MLAG service. By default, the device list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each device:
+<ul>
+<li><strong>Agent</strong>
+<ul>
+<li>State: Indicates communication state of the NetQ Agent on a given device. Values include Fresh (heard from recently) and Rotten (not heard from recently).</li>
+<li>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</li>
+</ul></li>
+<li><strong>ASIC</strong>
+<ul>
+<li>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</li>
+<li>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</li>
+<li>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</li>
+<li>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</li>
+<li>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</li>
+</ul></li>
+<li><strong>CPU</strong>
+<ul>
+<li>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</li>
+<li>Max Freq: Highest rated frequency for CPU. Example values include 2.40 GHz and 1.74 GHz.</li>
+<li>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</li>
+<li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
+</ul></li>
+<li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
+<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
+<li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
+<li><strong>OS</strong>
+<ul>
+<li>Vendor: Operating System manufacturer. Values include Cumulus Networks, RedHat, Ubuntu, and CentOS.</li>
+<li>Version: Software version number of the OS. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
+<li>Version Id: Identifier of the OS version. For Cumulus, this is the same as the <em>Version</em> (3.7.x).</li>
+</ul></li>
+<li><strong>Platform</strong>
+<ul>
+<li>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</li>
+<li>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</li>
+<li>Model: Manufacturer's model name. Examples values include AS7712-32X and S4048-ON.</li>
+<li>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</li>
+<li>Revision: Release version of the platform.</li>
+<li>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</li>
+<li>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</li>
+</ul></li>
+<li><strong>Time:</strong> Date and time the data was collected from device.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>All Sessions tab</td>
+<td>Displays all MLAG sessions network-wide. By default, the session list is sorted by hostname. This tab provides the following additional data about each session:
+<ul>
+<li><strong>Backup Ip</strong>: IP address of the interface to use if the peerlink (or bond) goes down.</li>
+<li><strong>Backup Ip Active</strong>: Indicates whether the backup IP address has been specified and is active (true) or not (false).</li>
+<li><strong>Bonds</strong>
+<ul>
+<li>Conflicted: Identifies the set of interfaces in a bond that do not match on each end of the bond.</li>
+<li>Single: Identifies a set of interfaces connecting to only one of the two switches.</li>
+<li>Dual: Identifies a set of interfaces connecting to both switches.</li>
+<li>Proto Down: Interface on the switch brought down by the <code>clagd</code> service. Value is blank if no interfaces are down due to <code>clagd</code> service.</li>
+</ul></li>
+<li><strong>Clag Sysmac</strong>: Unique MAC address for each bond interface pair. <strong>Note</strong>: Must be a value between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff.</li>
+<li><strong>Peer</strong>:
+<ul>
+<li>If: Name of the peer interface.</li>
+<li>Role: Role of the peer device. Values include primary and secondary.</li>
+<li>State: Indicates if peer device is up (true) or down (false).</li>
+</ul></li>
+<li><strong>Role</strong>: Role of the host device. Values include primary and secondary.</li>
+<li><strong>Timestamp</strong>: Date and time the MLAG session was started, deleted, updated, or marked dead (device went down).</li>
+<li><strong>Vxlan Anycast</strong>: Anycast IP address used for VXLAN termination.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>All Alarms tab</td>
+<td>Displays all MLAG events network-wide. By default, the event list is sorted by time, with the most recent events listed first. The tab provides the following additional data about each event:
+<ul>
+<li><strong>Message</strong>: Text description of a MLAG-related event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>clag</em> in this card workflow.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+### MLAG Session Card
+
+The small MLAG Session card displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-mlag-small-230.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>CLAG Session.</td>
+</tr>
+<tr class="odd">
+<td> </td>
+<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/>.</td>
+</tr>
+</tbody>
+</table>
+
+The medium MLAG Session card displays:
+
+{{< figure src="/images/netq/ntwk-svcs-single-mlag-medium-230.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period (in header)</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | MLAG Session.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
+<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open associated device card.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/>.</td>
+</tr>
+<tr class="even">
+<td>Time period (above chart)</td>
+<td>Range of time for data displayed in peer status chart.</td>
+</tr>
+<tr class="odd">
+<td>Peer Status chart</td>
+<td>Distribution of peer availability, alive or not alive, during the designated time period. The number of time segments in a time period varies according to the length of the time period.</td>
+</tr>
+<tr class="even">
+<td>Role</td>
+<td>Role that host device is playing. Values include primary and secondary.</td>
+</tr>
+<tr class="odd">
+<td>CLAG sysmac</td>
+<td>System MAC address of the MLAG session.</td>
+</tr>
+<tr class="even">
+<td>Peer Role</td>
+<td>Role that peer device is playing. Values include primary and secondary.</td>
+</tr>
+<tr class="odd">
+<td>Peer State</td>
+<td>Operational state of the peer, up (true) or down (false).</td>
+</tr>
+</tbody>
+</table>
+
+The large MLAG Session card contains two tabs.
+
+The *Session Summary* tab displays:
+
+{{< figure src="/images/netq/ntwk-svcs-single-mlag-large-sess-sum-tab-231.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>(Network Services | MLAG Session) Session Summary.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
+<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open associated device card.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/>.</td>
+</tr>
+<tr class="even">
+<td>Alarm Count Chart</td>
+<td>Distribution and count of CLAG alarm events over the given time period.</td>
+</tr>
+<tr class="odd">
+<td>Info Count Chart</td>
+<td>Distribution and count of CLAG info events over the given time period.</td>
+</tr>
+<tr class="even">
+<td>Peer Status chart</td>
+<td>Distribution of peer availability, alive or not alive, during the designated time period. The number of time segments in a time period varies according to the length of the time period.</td>
+</tr>
+<tr class="odd">
+<td>Backup IP</td>
+<td>IP address of the interface to use if the peerlink (or bond) goes down.</td>
+</tr>
+<tr class="even">
+<td>Backup IP Active</td>
+<td>Indicates whether the backup IP address is configured.</td>
+</tr>
+<tr class="odd">
+<td>CLAG SysMAC</td>
+<td>System MAC address of the MLAG session.</td>
+</tr>
+<tr class="even">
+<td>Peer State</td>
+<td>Operational state of the peer, up (true) or down (false).</td>
+</tr>
+<tr class="odd">
+<td>Count of Dual Bonds</td>
+<td>Number of bonds connecting to both switches.</td>
+</tr>
+<tr class="even">
+<td>Count of Single Bonds</td>
+<td>Number of bonds connecting to only one switch.</td>
+</tr>
+<tr class="odd">
+<td>Count of Protocol Down Bonds</td>
+<td>Number of bonds with interfaces that were brought down by the <code>clagd</code> service.</td>
+</tr>
+<tr class="even">
+<td>Count of Conflicted Bonds</td>
+<td>Number of bonds which have a set of interfaces that are not the same on both switches.</td>
+</tr>
+</tbody>
+</table>
+
+The *Configuration File Evolution* tab displays:
+
+{{< figure src="/images/netq/ntwk-svcs-single-mlag-large-config-tab-230.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/></td>
+<td>Indicates configuration file information for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>(Network Services | MLAG Session) Configuration File Evolution.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
+<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open associated device card.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Indication of host role, primary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> or secondary <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/>.</td>
+</tr>
+<tr class="even">
+<td>Timestamps</td>
+<td>When changes to the configuration file have occurred, the date and time are indicated. Click the time to see the changed file.</td>
+</tr>
+<tr class="odd">
+<td>Configuration File</td>
+<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown.</p>
+<p>When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+The full screen MLAG Session card provides tabs for all MLAG sessions
+and all events.
+
+{{<figure src="/images/netq/ntwk-svcs-single-mlag-fullscr-allsess-tab-241.png" width="700">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | MLAG</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab</td>
+</tr>
+<tr class="odd">
+<td>All MLAG Sessions tab</td>
+<td>Displays all MLAG sessions for the given session. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<ul>
+<li><strong>Backup Ip</strong>: IP address of the interface to use if the peerlink (or bond) goes down.</li>
+<li><strong>Backup Ip Active</strong>: Indicates whether the backup IP address has been specified and is active (true) or not (false).</li>
+<li><strong>Bonds</strong>
+<ul>
+<li>Conflicted: Identifies the set of interfaces in a bond that do not match on each end of the bond.</li>
+<li>Single: Identifies a set of interfaces connecting to only one of the two switches.</li>
+<li>Dual: Identifies a set of interfaces connecting to both switches.</li>
+<li>Proto Down: Interface on the switch brought down by the <code>clagd</code> service. Value is blank if no interfaces are down due to <code>clagd</code> service.</li>
+</ul></li>
+<li><strong>Mlag Sysmac</strong>: Unique MAC address for each bond interface pair. <strong>Note</strong>: Must be a value between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff.</li>
+<li><strong>Peer</strong>:
+<ul>
+<li>If: Name of the peer interface.</li>
+<li>Role: Role of the peer device. Values include primary and secondary.</li>
+<li>State: Indicates if peer device is up (true) or down (false).</li>
+</ul></li>
+<li><strong>Role</strong>: Role of the host device. Values include primary and secondary.</li>
+<li><strong>Timestamp</strong>: Date and time the MLAG session was started, deleted, updated, or marked dead (device went down).</li>
+<li><strong>Vxlan Anycast</strong>: Anycast IP address used for VXLAN termination.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>All Events tab</td>
+<td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<ul>
+<li><strong>Message</strong>: Text description of an event. Example: Clag conflicted bond changed from swp7 swp8 to swp9 swp10.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>clag</em> in this card workflow.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+### OSPF Service Card
+
+The small OSPF Service card displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-ospf-small-230.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>OSPF: All OSPF Sessions, or the OSPF Service</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches and hosts with the OSPF service enabled during the designated time period</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of OSPF-related alarms received during the designated time period</td>
+</tr>
+<tr class="odd">
+<td>Chart</td>
+<td>Distribution of OSPF-related alarms received during the designated time period</td>
+</tr>
+</tbody>
+</table>
+
+The medium OSPF Service card displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-ospf-medium-230.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | All OSPF Sessions.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches and hosts with the OSPF service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of OSPF-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Nodes Running chart</td>
+<td><p>Distribution of switches and hosts with the OSPF service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running OSPF last week or last month might be more or less than the number of nodes running OSPF currently.</p></td>
+</tr>
+<tr class="odd">
+<td>Total Sessions Not Established chart</td>
+<td><p>Distribution of unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of unestablished session last week or last month might be more of less than the number of nodes with unestablished sessions currently.</p></td>
+</tr>
+<tr class="even">
+<td>Total Sessions chart</td>
+<td>Distribution of OSPF sessions during the designated time period, and the total number of sessions running on the network currently.</td>
+</tr>
+</tbody>
+</table>
+
+The large OSPF service card contains two tabs.
+
+The *Sessions Summary* tab displays:  
+
+{{< figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-300.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/01-Worldwide-Web/network-information.svg" height="18" width="18"/></td>
+<td>Indicates data is for all sessions of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Sessions Summary (visible when you hover over card).</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches and hosts with the OSPF service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/></td>
+<td>Total number of OSPF-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Nodes Running chart</td>
+<td><p>Distribution of switches and hosts with the OSPF service enabled during the designated time period, and a total number of nodes running the service currently.
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of nodes running OSPF last week or last month might be more or less than the number of nodes running OSPF currently.</p></td>
+</tr>
+<tr class="odd">
+<td>Total Sessions chart</td>
+<td>Distribution of OSPF sessions during the designated time period, and the total number of sessions running on the network currently.</td>
+</tr>
+<tr class="even">
+<td>Total Sessions Not Established chart</td>
+<td><p>Distribution of unestablished OSPF sessions during the designated time period, and the total number of unestablished sessions in the network currently.</p>
+<p><strong>Note</strong>: The node count here may be different than the count in the summary bar. For example, the number of unestablished session last week or last month might be more of less than the number of nodes with unestablished sessions currently.</p></td>
+</tr>
+<tr class="odd">
+<td>Table/Filter options</td>
+<td><p>When the <strong>Switches with Most Sessions</strong> filter option is selected, the table displays the switches and hosts running OSPF sessions in decreasing order of session count-devices with the largest number of sessions are listed first</p>
+<p>When the <strong>Switches with Most Unestablished Sessions</strong> filter option is selected, the table switches and hosts running OSPF sessions in decreasing order of unestablished sessions-devices with the largest number of unestablished sessions are listed first</p></td>
+</tr>
+<tr class="even">
+<td>Show All Sessions</td>
+<td>Link to view data for all OSPF sessions in the full screen card.</td>
+</tr>
+</tbody>
+</table>
+
+The *Alarms* tab displays:
+
+{{< figure src="/images/netq/ntwk-svcs-all-ospf-large-alarms-tab-230.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in header)</td>
+<td>Indicates data is all alarms for all OSPF sessions.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Alarms (visible when you hover over card).</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/04-Programing-Apps-Websites/10-Apps/monitor-play.svg" height="18" width="18"/></td>
+<td>Total number of switches and hosts with the OSPF service enabled during the designated time period.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> (in summary bar)</td>
+<td>Total number of OSPF-related alarms received during the designated time period.</td>
+</tr>
+<tr class="even">
+<td>Total Alarms chart</td>
+<td><p>Distribution of OSPF-related alarms received during the designated time period, and the total number of current OSPF-related alarms in the network.</p>
+<p><strong>Note</strong>: The alarm count here may be different than the count in the summary bar. For example, the number of new alarms received in this time period does not take into account alarms that have already been received and are still active. You might have no new alarms, but still have a total number of alarms present on the network of 10.</p></td>
+</tr>
+<tr class="odd">
+<td>Table/Filter options</td>
+<td>When the selected filter option is <strong>Switches with Most Alarms</strong>, the table displays <strong></strong> switches and hosts running OSPF in decreasing order of the count of alarms-devices with the largest number of OSPF alarms are listed first</td>
+</tr>
+<tr class="even">
+<td>Show All Sessions</td>
+<td>Link to view data for all OSPF sessions in the full screen card.</td>
+</tr>
+</tbody>
+</table>
+
+The full screen OSPF Service card provides tabs for all switches, all sessions, and all alarms.
+
+{{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-allswitches-tab-241.png" width="700">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | OSPF.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab</td>
+</tr>
+<tr class="odd">
+<td>All Switches tab</td>
+<td>Displays all switches and hosts running the OSPF service. By default, the device list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each device:
+<ul>
+<li><strong>Agent</strong>
+<ul>
+<li>State: Indicates communication state of the NetQ Agent on a given device. Values include Fresh (heard from recently) and Rotten (not heard from recently).</li>
+<li>Version: Software version number of the NetQ Agent on a given device. This should match the version number of the NetQ software loaded on your server or appliance; for example, 2.1.0.</li>
+</ul></li>
+<li><strong>ASIC</strong>
+<ul>
+<li>Core BW: Maximum sustained/rated bandwidth. Example values include 2.0 T and 720 G.</li>
+<li>Model: Chip family. Example values include Tomahawk, Trident, and Spectrum.</li>
+<li>Model Id: Identifier of networking ASIC model. Example values include BCM56960 and BCM56854.</li>
+<li>Ports: Indicates port configuration of the switch. Example values include 32 x 100G-QSFP28, 48 x 10G-SFP+, and 6 x 40G-QSFP+.</li>
+<li>Vendor: Manufacturer of the chip. Example values include Broadcom and Mellanox.</li>
+</ul></li>
+<li><strong>CPU</strong>
+<ul>
+<li>Arch: Microprocessor architecture type. Values include x86_64 (Intel), ARMv7 (AMD), and PowerPC.</li>
+<li>Max Freq: Highest rated frequency for CPU. Example values include 2.40 GHz and 1.74 GHz.</li>
+<li>Model: Chip family. Example values include Intel Atom C2538 and Intel Atom C2338.</li>
+<li>Nos: Number of cores. Example values include 2, 4, and 8.</li>
+</ul></li>
+<li><strong>Disk Total Size</strong>: Total amount of storage space in physical disks (not total available). Example values: 10 GB, 20 GB, 30 GB.</li>
+<li><strong>License State</strong>: Indicator of validity. Values include ok and bad.</li>
+<li><strong>Memory Size</strong>: Total amount of local RAM. Example values include 8192 MB and 2048 MB.</li>
+<li><strong>OS</strong>
+<ul>
+<li>Vendor: Operating System manufacturer. Values include Cumulus Networks, RedHat, Ubuntu, and CentOS.</li>
+<li>Version: Software version number of the OS. Example values include 3.7.3, 2.5.x, 16.04, 7.1.</li>
+<li>Version Id: Identifier of the OS version. For Cumulus, this is the same as the <em>Version</em> (3.7.x).</li>
+</ul></li>
+<li><strong>Platform</strong>
+<ul>
+<li>Date: Date and time the platform was manufactured. Example values include 7/12/18 and 10/29/2015.</li>
+<li>MAC: System MAC address. Example value: 17:01:AB:EE:C3:F5.</li>
+<li>Model: Manufacturer's model name. Examples values include AS7712-32X and S4048-ON.</li>
+<li>Number: Manufacturer part number. Examples values include FP3ZZ7632014A, 0J09D3.</li>
+<li>Revision: Release version of the platform.</li>
+<li>Series: Manufacturer serial number. Example values include D2060B2F044919GD000060, CN046MRJCES0085E0004.</li>
+<li>Vendor: Manufacturer of the platform. Example values include Cumulus Express, Dell, EdgeCore, Lenovo, Mellanox.</li>
+</ul></li>
+<li><strong>Time:</strong> Date and time the data was collected from device.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>All Sessions tab</td>
+<td>Displays all OSPF sessions networkwide. By default, the session list is sorted by <strong>hostname</strong>. This tab provides the following additional data about each session:
+<ul>
+<li><strong>Area</strong>: Routing domain for this host device. Example values include 0.0.0.1, 0.0.0.23.</li>
+<li><strong>Ifname</strong>: Name of the interface on host device where session resides. Example values include swp5, peerlink-1.</li>
+<li><strong>Is IPv6</strong>: Indicates whether the address of the host device is IPv6 (true) or IPv4 (false).</li>
+<li><strong>Peer</strong>
+<ul>
+<li>Address: IPv4 or IPv6 address of the peer device.</li>
+<li>Hostname: User-defined name for peer device.</li>
+<li>ID: Network subnet address of router with access to the peer device.</li>
+</ul></li>
+<li><strong>State</strong>: Current state of OSPF. Values include Full, 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</li>
+<li><strong>Timestamp</strong>: Date and time session was started, deleted, updated or marked dead (device is down)</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>All Alarms tab</td>
+<td>Displays all OSPF events networkwide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<ul>
+<li><strong>Message</strong>: Text description of a OSPF-related event. Example: swp4 area ID mismatch with peer leaf02</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event</li>
+<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of <em>OSPF</em> in this card workflow.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+### OSPF Session Card
+
+The small OSPF Session card displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-small-230.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>OSPF Session.</td>
+</tr>
+<tr class="odd">
+<td> </td>
+<td>Hostnames of the two devices in a session. Host appears on top with peer below.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/></td>
+<td>Current state of OSPF. <br>
+<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> Full or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/> 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
+</tr>
+</tbody>
+</table>
+
+The medium OSPF Session card displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-medium-230.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | OSPF Session.</td>
+</tr>
+<tr class="even">
+<td> </td>
+<td>Hostnames of the two devices in a session. Host appears on top with peer below.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/></td>
+<td>Current state of OSPF.<br>
+<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> Full or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/> 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
+</tr>
+<tr class="even">
+<td>Time period for chart</td>
+<td>Time period for the chart data.</td>
+</tr>
+<tr class="odd">
+<td>Session State Changes Chart</td>
+<td>Heat map of the state of the given session over the given time period. The status is sampled at a rate consistent with the time period. For example, for a 24 hour period, a status is collected every hour. Refer to {{<link url="#granularity-of-data-shown-based-on-time-period" text="Granularity of Data Shown Based on Time Period">}}.</td>
+</tr>
+<tr class="even">
+<td>Ifname</td>
+<td>Interface name on or hostname for host device where session resides.</td>
+</tr>
+<tr class="odd">
+<td>Peer Address</td>
+<td>IP address of the peer device.</td>
+</tr>
+<tr class="even">
+<td>Peer ID</td>
+<td>IP address of router with access to the peer device.</td>
+</tr>
+</tbody>
+</table>
+
+The large OSPF Session card contains two tabs.
+
+The *Session Summary* tab displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-large-summary-tab-231.png" width="500">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr>
+<td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/05-Network/signal-loading.svg" height="22" width="22"/></td>
+<td>Indicates data is for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>Session Summary (Network Services | OSPF Session).</td>
+</tr>
+<tr>
+<td>Summary bar</td>
+<td><p>Hostnames of the two devices in a session. Arrow points in the direction of the session.</p>
+<p>Current state of OSPF. <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> Full or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/> 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</p></td>
+</tr>
+<tr>
+<td>Session State Changes Chart</td>
+<td>Heat map of the state of the given session over the given time period. The status is sampled at a rate consistent with the time period. For example, for a 24 hour period, a status is collected every hour. Refer to {{<link url="#granularity-of-data-shown-based-on-time-period" text="Granularity of Data Shown Based on Time Period">}}.</td>
+</tr>
+<tr>
+<td>Alarm Count Chart</td>
+<td>Distribution and count of OSPF alarm events over the given time period.</td>
+</tr>
+<tr>
+<td>Info Count Chart</td>
+<td>Distribution and count of OSPF info events over the given time period.</td>
+</tr>
+<tr>
+<td>Ifname</td>
+<td>Name of the interface on the host device where the session resides.</td>
+</tr>
+<tr>
+<td>State</td>
+<td>Current state of OSPF. <br><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> Full or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/> 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
+</tr>
+<tr>
+<td>Is Unnumbered</td>
+<td>Indicates if the session is part of an unnumbered OSPF configuration (true) or part of a numbered OSPF configuration (false).</td>
+</tr>
+<tr>
+<td>Nbr Count</td>
+<td>Number of routers in the OSPF configuration.</td>
+</tr>
+<tr>
+<td>Is Passive</td>
+<td>Indicates if the host is in a passive state (true) or active state (false).</td>
+</tr>
+<tr>
+<td>Peer ID</td>
+<td>IP address of router with access to the peer device.</td>
+</tr>
+<tr>
+<td>Is IPv6</td>
+<td>Indicates if the IP address of the host device is IPv6 (true) or IPv4 (false).</td>
+</tr>
+<tr>
+<td>If Up</td>
+<td>Indicates if the interface on the host is up (true) or down (false).</td>
+</tr>
+<tr>
+<td>Nbr Adj Count</td>
+<td>Number of adjacent routers for this host.</td>
+</tr>
+<tr>
+<td>MTU</td>
+<td>Maximum transmission unit (MTU) on shortest path between the host and peer.</td>
+</tr>
+<tr>
+<td>Peer Address</td>
+<td>IP address of the peer device.</td>
+</tr>
+<tr>
+<td>Area</td>
+<td>Routing domain of the host device.</td>
+</tr>
+<tr>
+<td>Network Type</td>
+<td>Architectural design of the network. Values include Point-to-Point and Broadcast.</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Shortest path through the network between the host and peer devices.</td>
+</tr>
+<tr>
+<td>Dead Time</td>
+<td>
+Countdown timer, starting at 40 seconds, that is constantly reset as messages are heard from the neighbor. If the dead time gets to zero, the neighbor is presumed dead, the adjacency is torn down, and the link removed from SPF calculations in the OSPF database.</td>
+</tr>
+</tbody>
+</table>
+
+The *Configuration File Evolution* tab displays:
+
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-large-config-tab-file-selected-230.png" width="500">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/></td>
+<td>Indicates configuration file information for a single session of a Network Service or Protocol.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>(Network Services | OSPF Session) Configuration File Evolution.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/></td>
+<td>Device identifiers (hostname, IP address, or MAC address) for host and peer in session. Arrow points from the host to the peer. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to open associated device card.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/></td>
+<td>Current state of OSPF.<br>
+<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> Full or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/> 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</td>
+</tr>
+<tr class="even">
+<td>Timestamps</td>
+<td>When changes to the configuration file have occurred, the date and time are indicated. Click the time to see the changed file.</td>
+</tr>
+<tr class="odd">
+<td>Configuration File</td>
+<td><p>When <strong>File</strong> is selected, the configuration file as it was at the selected time is shown.</p>
+<p> When <strong>Diff</strong> is selected, the configuration file at the selected time is shown on the left and the configuration file at the previous timestamp is shown on the right. Differences are highlighted.</p></td>
+</tr>
+</tbody>
+</table>
+
+The full screen OSPF Session card provides tabs for all OSPF sessions
+and all events.
+
+{{<figure src="/images/netq/ntwk-svcs-single-ospf-fullscr-sessions-tab-222.png" width="700">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Network Services | OSPF.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>All OSPF Sessions tab</td>
+<td>Displays all OSPF sessions running on the host device. The session list is sorted by <strong>hostname</strong> by default. This tab provides the following additional data about each session:
+<ul>
+<li><strong>Area</strong>: Routing domain for this host device. Example values include 0.0.0.1, 0.0.0.23.</li>
+<li><strong>Ifname</strong>: Name of the interface on host device where session resides. Example values include swp5, peerlink-1.</li>
+<li><strong>Is IPv6</strong>: Indicates whether the address of the host device is IPv6 (true) or IPv4 (false).</li>
+<li><strong>Peer</strong>
+<ul>
+<li>Address: IPv4 or IPv6 address of the peer device.</li>
+<li>Hostname: User-defined name for peer device.</li>
+<li>ID: Network subnet address of router with access to the peer device.</li>
+</ul></li>
+<li><strong>State</strong>: Current state of OSPF. Values include Full, 2-way, Attempt, Down, Exchange, Exstart, Init, and Loading.</li>
+<li><strong>Timestamp</strong>: Date and time session was started, deleted, updated or marked dead (device is down).</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>All Events tab</td>
+<td>Displays all events network-wide. By default, the event list is sorted by <strong>time</strong>, with the most recent events listed first. The tab provides the following additional data about each event:
+<ul>
+<li><strong>Message</strong>: Text description of a OSPF-related event. Example: OSPF session with peer tor-1 swp7 vrf default state changed from failed to Established.</li>
+<li><strong>Source</strong>: Hostname of network device that generated the event.</li>
+<li><strong>Severity</strong>: Importance of the event. Values include critical, warning, info, and debug.</li>
+<li><strong>Type</strong>: Network protocol or service generating the event. This always has a value of OSPF in this card workflow.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+## Validation Cards
+
+### Validation Request Card
+
+The small Validation Request card displays:
+
+{{< figure src="/images/netq/valid-request-small-230.png" width="200" >}}
+<p> </p>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/05-Love-it/love-it-check.svg" height="18" width="18"/></td>
+<td>Indicates a validation request.</td>
+</tr>
+<tr class="even">
+<td>Validation</td>
+<td><p>Select a scheduled request to run that request on-demand. A default validation is provided for each supported network protocol and service, which runs a network-wide validation check. These validations run every 60 minutes, but you may run them on-demand at any time.</p>
+<p><strong>Note</strong>: No new requests can be configured from this size card.</p></td>
+</tr>
+<tr class="odd">
+<td>GO</td>
+<td>Start the validation request. The corresponding On-demand Validation Result cards are opened on your workbench, one per protocol and service.</td>
+</tr>
+</tbody>
+</table>
+
+The medium Validation Request card displays:
+
+{{< figure src="/images/netq/valid-request-medium-230.png" width="200" >}}
+<p> </p>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/05-Love-it/love-it-check.svg" height="18" width="18"/></td>
+<td>Indicates a validation request.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>Validation Request.</td>
+</tr>
+<tr class="odd">
+<td>Validation</td>
+<td><p>Select a scheduled request to run that request on-demand. A default validation is provided for each supported network protocol and service, which runs a network-wide validation check. These validations run every 60 minutes, but you may run them on-demand at any time.</p>
+<p><strong>Note</strong>: No new requests can be configured from this size card.</p></td>
+</tr>
+<tr class="even">
+<td>Protocols</td>
+<td>The protocols included in a selected validation request are listed here.</td>
+</tr>
+<tr class="odd">
+<td>Schedule</td>
+<td>For a selected scheduled validation, the schedule and the time of the last run are displayed.</td>
+</tr>
+<tr class="even">
+<td>Start the validation request</td>
+<td>Run Now.</td>
+</tr>
+</tbody>
+</table>
+
+The large Validation Request card displays:
+
+{{< figure src="/images/netq/valid-request-large-222.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/22-Social-Medias-Rewards-Rating/05-Love-it/love-it-check.svg" height="18" width="18"/></td>
+<td>Indicates a validation request.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>Validation Request.</td>
+</tr>
+<tr class="odd">
+<td>Validation</td>
+<td>Depending on user intent, this field is used to:
+<ul>
+<li>Select a scheduled request to run that request on-demand. A default validation is provided for each supported network protocol and service, which runs a network-wide validation check. These validations run every 60 minutes, but you may run them on-demand at any time.</li>
+<li>Leave as is to create a new scheduled validation request.</li>
+<li>Select a scheduled request to modify.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Protocols</td>
+<td>For a selected scheduled validation, the protocols included in a validation request are listed here. For new on-demand or scheduled validations, click these to include them in the validation.</td>
+</tr>
+<tr class="odd">
+<td>Schedule</td>
+<td>For a selected scheduled validation, the schedule and the time of the last run are displayed. For new scheduled validations, select the frequency and starting date and time.
+<ul>
+<li><strong>Run Every</strong>: Select how often to run the request. Choose from 30 minutes, 1, 3, 6, or 12 hours, or 1 day.</li>
+<li><strong>Starting</strong>: Select the date and time to start the first request in the series.</li>
+<li><strong>Last Run</strong>: Timestamp of when the selected validation was started.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Scheduled Validations</td>
+<td>Count of scheduled validations that are currently scheduled compared to the maximum of 15 allowed.</td>
+</tr>
+<tr class="odd">
+<td>Run Now</td>
+<td>Start the validation request.</td>
+</tr>
+<tr class="even">
+<td>Update</td>
+<td>When changes are made to a selected validation request, <strong>Update</strong> becomes available so that you can save your changes.
+<p>{{%notice info%}}</p>
+<p>Be aware, that if you update a previously saved validation request, the historical data collected will no longer match the data results of future runs of the request. If your intention is to leave this request unchanged and create a new request, click <strong>Save As New</strong> instead.</p>
+<p>{{%/notice%}}</p></td>
+</tr>
+<tr class="odd">
+<td>Save As New</td>
+<td>When changes are made to a previously saved validation request, <strong>Save As New</strong> becomes available so that you can save the modified request as a new request.</td>
+</tr>
+</tbody>
+</table>
+
+The full screen Validation Request card displays all scheduled
+validation requests.
+
+{{< figure src="/images/netq/valid-request-fullscr-300.png" width="700" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Validation Request.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Default Time</td>
+<td>No time period is displayed for this card as each validation request has its own time relationship.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>Validation Requests</td>
+<td>Displays all <em>scheduled</em> validation requests. By default, the requests list is sorted by the date and time that it was originally created (<strong>Created At</strong>). This tab provides the following additional data about each request:
+<ul>
+<li><strong>Name</strong>: Text identifier of the validation.</li>
+<li><strong>Type</strong>: Name of network protocols and/or services included in the validation.</li>
+<li><strong>Start Time</strong>: Data and time that the validation request was run.</li>
+<li><strong>Last Modified</strong>: Date and time of the most recent change made to the validation request.</li>
+<li><strong>Cadence (Min)</strong>: How often, in minutes, the validation is scheduled to run. This is empty for new on-demand requests.</li>
+<li><strong>Is Active</strong>: Indicates whether the request is currently running according to its schedule (<em>true</em>) or it is not running (<em>false</em>).</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+### On-Demand Validation Result Card
+
+The small Validation Result card displays:
+
+{{<figure src="/images/netq/valid-result-on-demand-bgp-small-222.png" width="200">}}
+<p> </p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat-search.svg" height="18" width="18"/></td>
+<td>Indicates an on-demand validation result.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>On-demand Result &lt;Network Protocol or Service Name&gt; Validation.</td>
+</tr>
+<tr class="odd">
+<td>Timestamp</td>
+<td>Date and time the validation was completed.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Status of the validation job, where:
+<ul>
+<li><strong>Good</strong>: Job ran successfully. One or more warnings may have occurred during the run.</li>
+<li><strong>Failed</strong>: Job encountered errors which prevented the job from completing, or job ran successfully, but errors occurred during the run.</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+The medium Validation Result card displays:
+
+{{<figure src="/images/netq/valid-result-on-demand-bgp-medium-222.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat-search.svg" height="18" width="18"/></td>
+<td>Indicates an on-demand validation result.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>On-demand Validation Result | &lt;Network Protocol or Service Name&gt;.</td>
+</tr>
+<tr class="odd">
+<td>Timestamp</td>
+<td>Date and time the validation was completed.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Status of the validation job, where:
+<ul>
+<li><strong>Good</strong>: Job ran successfully.</li>
+<li><strong>Warning</strong>: Job encountered issues, but it did complete its run.</li>
+<li><strong>Failed</strong>: Job encountered errors which prevented the job from completing.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Devices Tested</td>
+<td>Chart with the total number of devices included in the validation and the distribution of the results.
+<ul>
+<li><strong>Pass</strong>: Number of devices tested that had successful results.</li>
+<li><strong>Warn</strong>: Number of devices tested that had successful results, but also had at least one warning event.</li>
+<li><strong>Fail</strong>: Number of devices tested that had one or more protocol or service failures.</li>
+</ul>
+<p>Hover over chart to view the number of devices and the percentage of all tested devices for each result category.</p></td>
+</tr>
+<tr class="even">
+<td>Sessions Tested</td>
+<td><p>For BGP, chart with total number of BGP sessions included in the validation and the distribution of the overall results.</p>
+<p>For EVPN, chart with total number of BGP sessions included in the validation and the distribution of the overall results.</p>
+<p>For Interfaces, chart with total number of ports included in the validation and the distribution of the overall results.</p>
+<p>In each of these charts:</p>
+<ul>
+<li><strong>Pass</strong>: Number of sessions or ports tested that had successful results.</li>
+<li><strong>Warn</strong>: Number of sessions or ports tested that had successful results, but also had at least one warning event.</li>
+<li><strong>Fail</strong>: Number of sessions or ports tested that had one or more failure events.</li>
+</ul>
+<p>Hover over chart to view the number of devices, sessions, or ports and the percentage of all tested devices, sessions, or ports for each result category.</p>
+<p>This chart does not apply to other Network Protocols and Services, and thus is not displayed for those cards.</p></td>
+</tr>
+<tr class="odd">
+<td>Open &lt;Service&gt;  Card</td>
+<td>Click to open the corresponding medium Network Services card, where available.</td>
+</tr>
+</tbody>
+</table>
+
+The large Validation Result card contains two tabs.
+
+The *Summary* tab displays:
+
+{{< figure src="/images/netq/od-valid-result-bgp-large.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/35-Health-Beauty/07-Monitoring/monitor-heart-beat-search.svg" height="18" width="18"/></td>
+<td>Indicates an on-demand validation result.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>On-demand Validation Result | Summary | &lt;Network Protocol or Service Name&gt;.</td>
+</tr>
+<tr class="odd">
+<td>Date</td>
+<td>Day and time when the validation completed.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Status of the validation job, where:
+<ul>
+<li><strong>Good</strong>: Job ran successfully.</li>
+<li><strong>Warning</strong>: Job encountered issues, but it did complete its run.</li>
+<li><strong>Failed</strong>: Job encountered errors which prevented the job from completing.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Devices Tested</td>
+<td>Chart with the total number of devices included in the validation and the distribution of the results.
+<ul>
+<li><strong>Pass</strong>: Number of devices tested that had successful results.</li>
+<li><strong>Warn</strong>: Number of devices tested that had successful results, but also had at least one warning event.</li>
+<li><strong>Fail</strong>: Number of devices tested that had one or more protocol or service failures.</li>
+</ul>
+<p>Hover over chart to view the number of devices and the percentage of all tested devices for each result category.</p></td>
+</tr>
+<tr class="even">
+<td>Sessions Tested</td>
+<td><p>For BGP, chart with total number of BGP sessions included in the validation and the distribution of the overall results.</p>
+<p>For EVPN, chart with total number of BGP sessions included in the validation and the distribution of the overall results.</p>
+<p>For Interfaces, chart with total number of ports included in the validation and the distribution of the overall results.</p>
+<p>For OSPF, chart with total number of OSPF sessions included in the validation and the distribution of the overall results.</p>
+<p>In each of these charts:</p>
+<ul>
+<li><strong>Pass</strong>: Number of sessions or ports tested that had successful results.</li>
+<li><strong>Warn</strong>: Number of sessions or ports tested that had successful results, but also had at least one warning event.</li>
+<li><strong>Fail</strong>: Number of sessions or ports tested that had one or more failure events.</li>
+</ul>
+<p>Hover over chart to view the number of devices, sessions, or ports and the percentage of all tested devices, sessions, or ports for each result category.</p>
+<p>This chart does not apply to other Network Protocols and Services, and thus is not displayed for those cards.</p></td>
+</tr>
+<tr class="odd">
+<td>Open &lt;Service&gt; Card</td>
+<td>Click to open the corresponding medium Network Services card, when available.</td>
+</tr>
+<tr class="even">
+<td>Table/Filter options</td>
+<td><p>When the <strong>Most Active</strong> filter option is selected, the table displays switches and hosts running the given service or protocol in decreasing order of alarm counts. Devices with the largest number of warnings and failures are listed first. You can click on the device name to open its switch card on your workbench.</p>
+<p>When the <strong>Most Recent</strong> filter option is selected, the table displays switches and hosts running the given service or protocol sorted by <strong>timestamp</strong>, with the device with the most recent warning or failure listed first. The table provides the following additional information:</p>
+<ul>
+<li><strong>Hostname</strong>: User-defined name for switch or host.</li>
+<li><strong>Message Type</strong>: Network protocol or service which triggered the event.</li>
+<li><strong>Message</strong>: Short description of the event.</li>
+<li><strong>Severity</strong>: Indication of importance of event; values in decreasing severity include critical, warning, error, info, debug.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Show All Results</td>
+<td>Click to open the full screen card with all on-demand validation results sorted by timestamp.</td>
+</tr>
+</tbody>
+</table>
+
+The *Configuration* tab displays:
+
+{{< figure src="/images/netq/od-valid-result-bgp-large-config-tab-230.png" width="500" >}}
+<p> </p>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/></td>
+<td>Indicates an on-demand validation request configuration.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>On-demand Validation Result | Configuration | &lt;Network Protocol or Service Name&gt;.</td>
+</tr>
+<tr class="odd">
+<td>Validations</td>
+<td>List of network protocols or services included in the request that produced these results.</td>
+</tr>
+<tr class="even">
+<td>Schedule</td>
+<td>Not relevant to on-demand validation results. Value is always N/A.</td>
+</tr>
+</tbody>
+</table>
+
+The full screen Validation Result card provides a tab for all on-demand validation results.
+
+{{< figure src="/images/netq/od-valid-result-bgp-fullscr-300.png" width="700" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Validation Results | On-demand.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>On-demand Validation Result | &lt;network protocol or service&gt;</td>
+<td>Displays all unscheduled validation results. By default, the results list is sorted by <strong>Timestamp</strong>. This tab provides the following additional data about each result:
+<ul>
+<li><strong>Job ID</strong>: Internal identifier of the validation job that produced the given results</li>
+<li><strong>Timestamp</strong>: Date and time the validation completed</li>
+<li><strong>Type</strong>: Network protocol or service type</li>
+<li><strong>Total Node Count</strong>: Total number of nodes running the given network protocol or service</li>
+<li><strong>Checked Node Count</strong>: Number of nodes on which the validation ran</li>
+<li><strong>Failed Node Count</strong>: Number of checked nodes that had protocol or service failures</li>
+<li><strong>Rotten Node Count</strong>: Number of nodes that could not be reached during the validation</li>
+<li><strong>Unknown Node Count</strong>: Applies only to the Interfaces service. Number of nodes with unknown port states.</li>
+<li><strong>Failed Adjacent Count</strong>: Number of adjacent nodes that had protocol or service failures</li>
+<li><strong>Total Session Count</strong>: Total number of sessions running for the given network protocol or service</li>
+<li><strong>Failed Session Count</strong>: Number of sessions that had session failures</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+### Scheduled Validation Result Card
+
+The small Scheduled Validation Result card displays:
+
+{{< figure src="/images/netq/sch-valid-result-small-4cards-230.png" width="700" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph-line.svg" height="18" width="18"/></td>
+<td>Indicates a scheduled validation result.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>Scheduled Result &lt;Network Protocol or Service Name&gt; Validation.</td>
+</tr>
+<tr class="odd">
+<td>Results</td>
+<td>Summary of validation results:
+<ul>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/21-Date-Calendar/calendar-refresh.svg" height="18" width="18"/> Number of validation runs completed in the designated time period.</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/> Number of runs with warnings.</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> Number of runs with errors.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/></td>
+<td>Status of the validation job, where:
+<ul>
+<li><strong>Pass</strong>: Job ran successfully. One or more warnings may have occurred during the run.</li>
+<li><strong>Failed</strong>: Job encountered errors which prevented the job from completing, or job ran successfully, but errors occurred during the run.</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+The medium Scheduled Validation Result card displays:
+
+{{<figure src="/images/netq/sch-valid-result-medium-222.png" width="425">}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph-line.svg" height="18" width="18"/></td>
+<td>Indicates a scheduled validation result.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Scheduled Validation Result | &lt;Network Protocol or Service Name&gt;.</td>
+</tr>
+<tr class="even">
+<td>Summary</td>
+<td>Summary of validation results:
+<ul>
+<li>Name of scheduled validation.</li>
+<li>Status of the validation job, where:
+<ul>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> <strong>Pass</strong>: Job ran successfully. One or more warnings may have occurred during the run.</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> <strong>Failed</strong>: Job encountered errors which prevented the job from completing, or job ran successfully, but errors occurred during the run.</li>
+</ul></li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Chart</td>
+<td>Validation results, where:
+<ul>
+<li><strong>Time period</strong>: Range of time in which the data on the heat map was collected.</li>
+<li><strong>Heat map</strong>: A time segmented view of the results. For each time segment, the color represents the percentage of warning, passing, and failed results. Refer to {{<link title="#Granularity of Data Shown Based on Time Period">}} for details on how to interpret the results.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Open &lt;Service&gt; Card</td>
+<td>Click to open the corresponding medium Network Services card, when available.</td>
+</tr>
+</tbody>
+</table>
+
+The large Scheduled Validation Result card contains two tabs.
+
+   The *Summary* tab displays:
+
+   {{< figure src="/images/netq/sch-valid-result-large-sum-tab-222.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph-line.svg" height="18" width="18"/></td>
+<td>Indicates a scheduled validation result.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>Validation Summary (Scheduled Validation Result | &lt;Network Protocol or Service Name&gt;).</td>
+</tr>
+<tr class="odd">
+<td>Summary</td>
+<td>Summary of validation results:
+<ul>
+<li>Name of scheduled validation.</li>
+<li>Status of the validation job, where:
+<ul>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/> <strong>Pass</strong>: Job ran successfully. One or more warnings may have occurred during the run.</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> <strong>Failed</strong>: Job encountered errors which prevented the job from completing, or job ran successfully, but errors occurred during the run.</li>
+</ul></li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg" height="18" width="18"/> <strong>Expand/Collapse</strong>: Expand the heat map to full width of card, collapse the heat map to the left.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Chart</td>
+<td>Validation results, where:
+<ul>
+<li><strong>Time period</strong>: Range of time in which the data on the heat map was collected.</li>
+<li><strong>Heat map</strong>: A time segmented view of the results. For each time segment, the color represents the percentage of warning, passing, and failed results. Refer to {{<link title="#Granularity of Data Shown Based on Time Period">}} for details on how to interpret the results.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Open &lt;Service&gt; Card</td>
+<td>Click to open the corresponding medium Network Services card, when available.</td>
+</tr>
+<tr class="even">
+<td>Table/Filter options</td>
+<td><p>When the <strong>Most Active</strong> filter option is selected, the table displays switches and hosts running the given service or protocol in decreasing order of alarm counts-devices with the largest number of warnings and failures are listed first.</p>
+<p>When the <strong>Most Recent</strong> filter option is selected, the table displays switches and hosts running the given service or protocol sorted by <strong>timestamp</strong>, with the device with the most recent warning or failure listed first. The table provides the following additional information:</p>
+<ul>
+<li><strong>Hostname</strong>: User-defined name for switch or host.</li>
+<li><strong>Message Type</strong>: Network protocol or service which triggered the event.</li>
+<li><strong>Message</strong>: Short description of the event.</li>
+<li><strong>Severity</strong>: Indication of importance of event; values in decreasing severity include critical, warning, error, info, debug.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Show All Results</td>
+<td>Click to open the full screen card with all scheduled validation results sorted by timestamp.</td>
+</tr>
+</tbody>
+</table>
+
+The *Configuration* tab displays:
+
+{{< figure src="/images/netq/sch-valid-result-large-config-tab-222.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/></td>
+<td>Indicates a scheduled validation configuration</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>Configuration (Scheduled Validation Result | &lt;Network Protocol or Service Name&gt;)</td>
+</tr>
+<tr class="odd">
+<td>Name</td>
+<td>User-defined name for this scheduled validation</td>
+</tr>
+<tr class="even">
+<td>Validations</td>
+<td>List of validations included in the validation request that created this result</td>
+</tr>
+<tr class="odd">
+<td>Schedule</td>
+<td>User-defined schedule for the validation request that created this result</td>
+</tr>
+<tr class="even">
+<td>Open Schedule Card</td>
+<td>Opens the large Validation Request card for editing this configuration</td>
+</tr>
+</tbody>
+</table>
+
+The full screen Scheduled Validation Result card provides tabs for all scheduled
+validation results for the service.
+
+{{< figure src="/images/netq/sch-valid-result-fullscr-300.png" width="700" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Scheduled Validation Results | &lt;Network Protocol or Service&gt;.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/></td>
+<td>Displays data refresh status. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" height="18" width="18"/> to pause data refresh. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" height="18" width="18"/> to resume data refresh. Current refresh rate is visible by hovering over icon. </td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>Scheduled Validation Result | &lt;network protocol or service&gt;</td>
+<td>Displays all unscheduled validation results. By default, the results list is sorted by timestamp. This tab provides the following additional data about each result:
+<ul>
+<li><strong>Job ID</strong>: Internal identifier of the validation job that produced the given results</li>
+<li><strong>Timestamp</strong>: Date and time the validation completed</li>
+<li><strong>Type:</strong> Protocol of Service Name</li>
+<li><strong>Total Node Count</strong>: Total number of nodes running the given network protocol or service</li>
+<li><strong>Checked Node Count</strong>: Number of nodes on which the validation ran</li>
+<li><strong>Failed Node Count</strong>: Number of checked nodes that had protocol or service failures</li>
+<li><strong>Rotten Node Count</strong>: Number of nodes that could not be reached during the validation</li>
+<li><strong>Unknown Node Count</strong>: Applies only to the Interfaces service. Number of nodes with unknown port states.</li>
+<li><strong>Failed Adjacent Count</strong>: Number of adjacent nodes that had protocol or service failures</li>
+<li><strong>Total Session Count</strong>: Total number of sessions running for the given network protocol or service</li>
+<li><strong>Failed Session Count</strong>: Number of sessions that had session failures</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+## Trace Cards
+
+### Trace Request Card
+
+The small Trace Request card displays:
+
+{{<figure src="/images/old_doc_images/trace-request-small-card.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/06-Trip/trip-pins.svg" height="18" width="18"/></td>
+<td>Indicates a trace request</td>
+</tr>
+<tr class="even">
+<td>Select Trace list</td>
+<td>Select a scheduled trace request from the list</td>
+</tr>
+<tr class="odd">
+<td>Go</td>
+<td>Click to start the trace now</td>
+</tr>
+</tbody>
+</table>
+
+The medium Trace Request card displays:
+
+{{<figure src="/images/netq/trace-request-medium-231.png" width="200">}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/06-Trip/trip-pins.svg" height="18" width="18"/></td>
+<td>Indicates a trace request.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>New Trace Request.</td>
+</tr>
+<tr class="odd">
+<td>New Trace Request</td>
+<td>Create a new layer 3 trace request. Use the large Trace Request card to create a new layer 2 or 3 request.</td>
+</tr>
+<tr class="even">
+<td>Source</td>
+<td>(Required) Hostname or IP address of device where to begin the trace.</td>
+</tr>
+<tr class="odd">
+<td>Destination</td>
+<td>(Required) IP address of device where to end the trace.</td>
+</tr>
+<tr class="even">
+<td>Run Now</td>
+<td>Start the trace now.</td>
+</tr>
+</tbody>
+</table>
+
+The large Trace Request card displays:
+
+{{< figure src="/images/netq/trace-request-large-222.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/48-Maps-Navigation/06-Trip/trip-pins.svg" height="18" width="18"/></td>
+<td>Indicates a trace request.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>New Trace Request.</td>
+</tr>
+<tr class="odd">
+<td>Trace selection</td>
+<td>Leave <em>New Trace Request</em> selected to create a new request, or choose a scheduled request from the list.</td>
+</tr>
+<tr class="even">
+<td>Source</td>
+<td>(Required) Hostname or IP address of device where to begin the trace.</td>
+</tr>
+<tr class="odd">
+<td>Destination</td>
+<td>(Required) Ending point for the trace. For layer 2 traces, value must be a MAC address. For layer 3 traces, value must be an IP address.</td>
+</tr>
+<tr class="even">
+<td>VRF</td>
+<td>Optional for layer 3 traces. Virtual Route Forwarding interface to be used as part of the trace path.</td>
+</tr>
+<tr class="odd">
+<td>VLAN ID</td>
+<td>Required for layer 2 traces. Virtual LAN to be used as part of the trace path.</td>
+</tr>
+<tr class="even">
+<td>Schedule</td>
+<td>Sets the frequency with which to run a new trace (<strong>Run every</strong>) and when to start the trace for the first time (<strong>Starting</strong>).</td>
+</tr>
+<tr class="odd">
+<td>Run Now</td>
+<td>Start the trace now.</td>
+</tr>
+<tr class="even">
+<td>Update</td>
+<td><strong>Update</strong> is available when a scheduled trace request is selected from the dropdown list and you make a change to its configuration. Clicking <strong>Update</strong> saves the changes to the <em>existing</em> scheduled trace.</td>
+</tr>
+<tr class="odd">
+<td>Save As New</td>
+<td><strong>Save As New</strong> is available in two instances:
+<ul>
+<li>When you enter a source, destination, and schedule for a new trace. Clicking <strong>Save As New</strong> in this instance saves the new scheduled trace.</li>
+<li>When changes are made to a selected scheduled trace request. Clicking <strong>Save As New</strong> in this instance saves the modified scheduled trace <em>without</em> changing the original trace on which it was based.</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+The full screen Trace Request card displays:
+
+{{< figure src="/images/netq/trace-request-fullscr-preview-tab-222.png" width="700" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Trace Request.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>Schedule Preview tab</td>
+<td>Displays all scheduled trace requests for the given user. By default, the listing is sorted by <strong>Start Time</strong>, with the most recently started traces listed at the top. The tab provides the following additional data about each event:
+<ul>
+<li><strong>Action</strong>: Indicates latest action taken on the trace job. Values include Add, Deleted, Update.</li>
+<li><strong>Frequency</strong>: How often the trace is scheduled to run</li>
+<li><strong>Active</strong>: Indicates if trace is actively running (true), or stopped from running (false)</li>
+<li><strong>ID</strong>: Internal system identifier for the trace job</li>
+<li><strong>Trace Name</strong>: User-defined name for a trace</li>
+<li><strong>Trace Params</strong>: Indicates source and destination, optional VLAN or VRF specified, and whether to alert on failure</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>
+
+### On-demand Trace Results Card
+
+The small On-demand Trace Results card
+displays:
+
+{{< figure src="/images/netq/od-trace-result-small-230.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/06-Business-Products/13-Data-Files/data-file-bars-search.svg" height="18" width="18"/></td>
+<td>Indicates an on-demand trace result.</td>
+</tr>
+<tr class="even">
+<td> </td>
+<td>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/></td>
+<td>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</td>
+</tr>
+</tbody>
+</table>
+
+The medium On-demand Trace Results card displays:
+
+{{< figure src="/images/netq/od-trace-result-medium-230.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/06-Business-Products/13-Data-Files/data-file-bars-search.svg" height="18" width="18"/></td>
+<td>Indicates an on-demand trace result.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>On-demand Trace Result.</td>
+</tr>
+<tr class="odd">
+<td> </td>
+<td>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/></td>
+<td>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</td>
+</tr>
+<tr class="odd">
+<td>Total Paths Found</td>
+<td>Number of paths found between the two devices.</td>
+</tr>
+<tr class="even">
+<td>MTU Overall</td>
+<td>Average size of the maximum transmission unit for all paths.</td>
+</tr>
+<tr class="odd">
+<td>Minimum Hops</td>
+<td>Smallest number of hops along a path between the devices.</td>
+</tr>
+<tr class="even">
+<td>Maximum Hops</td>
+<td>Largest number of hops along a path between the devices.</td>
+</tr>
+</tbody>
+</table>
+
+The large On-demand Trace Results card contains two tabs.
+
+The *On-demand Trace Result* tab displays:
+
+{{< figure src="/images/netq/od-trace-result-large-summary-tab-230.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/06-Business-Products/13-Data-Files/data-file-bars-search.svg" height="18" width="18"/></td>
+<td>Indicates an on-demand trace result.</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>On-demand Trace Result.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>, <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18"/></td>
+<td>Indicates success or failure of the trace request. A successful result implies all paths were successful without any warnings or failures. A failure result implies there was at least one path with warnings or errors.</td>
+</tr>
+<tr class="even">
+<td> </td>
+<td>Source and destination of the trace, identified by their address or hostname. Source is listed on top with arrow pointing to destination.</td>
+</tr>
+<tr class="odd">
+<td>Distribution by Hops chart</td>
+<td>Displays the distributions of various hop counts for the available paths.</td>
+</tr>
+<tr class="even">
+<td>Distribution by MTU chart</td>
+<td>Displays the distribution of MTUs used on the interfaces used in the available paths.</td>
+</tr>
+<tr class="odd">
+<td>Table</td>
+<td>Provides detailed path information, sorted by the route identifier, including:
+<ul>
+<li><strong>Route ID</strong>: Identifier of each path</li>
+<li><strong>MTU</strong>: Average speed of the interfaces used</li>
+<li><strong>Hops</strong>: Number of hops to get from the source to the destination device</li>
+<li><strong>Warnings</strong>: Number of warnings encountered during the trace on a given path</li>
+<li><strong>Errors</strong>: Number of errors encountered during the trace on a given path</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Total Paths Found</td>
+<td>Number of paths found between the two devices.</td>
+</tr>
+<tr class="odd">
+<td>MTU Overall</td>
+<td>Average size of the maximum transmission unit for all paths.</td>
+</tr>
+<tr class="even">
+<td>Minimum Hops</td>
+<td>Smallest number of hops along a path between the devices.</td>
+</tr>
+</tbody>
+</table>
+
+The *On-demand Trace Settings* tab displays:
+
+{{< figure src="/images/netq/od-trace-result-large-config-tab-230.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/></td>
+<td>Indicates an on-demand trace setting</td>
+</tr>
+<tr class="even">
+<td>Title</td>
+<td>On-demand Trace Settings</td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td>Starting point for the trace</td>
+</tr>
+<tr class="even">
+<td>Destination</td>
+<td>Ending point for the trace</td>
+</tr>
+<tr class="odd">
+<td>Schedule</td>
+<td>Does not apply to on-demand traces</td>
+</tr>
+<tr class="even">
+<td>VRF</td>
+<td>Associated virtual route forwarding interface, when used with layer 3 traces</td>
+</tr>
+<tr class="odd">
+<td>VLAN</td>
+<td>Associated virtual local area network, when used with layer 2 traces</td>
+</tr>
+<tr class="even">
+<td>Job ID</td>
+<td>Identifier of the job; used internally</td>
+</tr>
+<tr class="odd">
+<td>Re-run Trace</td>
+<td>Clicking this button runs the trace again</td>
+</tr>
+</tbody>
+</table>
+
+The full screen On-demand Trace Results card displays:
+
+{{< figure src="/images/netq/od-trace-result-fullscr-240.png" width="700" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>On-demand Trace Results</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/></td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab</td>
+</tr>
+<tr class="even">
+<td>Trace Results tab</td>
+<td>Provides detailed path information, sorted by the <strong>Resolution Time</strong> (date and time results completed), including:
+<ul>
+<li><strong>SCR.IP</strong>: Source IP address</li>
+<li><strong>DST.IP</strong>: Destination IP address</li>
+<li><strong>Max Hop Count</strong>: Largest number of hops along a path between the devices</li>
+<li><strong>Min Hop Count</strong>: Smallest number of hops along a path between the devices</li>
+<li><strong>Total Paths</strong>: Number of paths found between the two devices</li>
+<li><strong>PMTU</strong>: Average size of the maximum transmission unit for all interfaces along the paths</li>
+<li><strong>Errors</strong>: Message provided for analysis when a trace fails</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}</td>
+</tr>
+</tbody>
+</table>
+
+### Scheduled Trace Results Card
+
+The small Scheduled Trace Results card displays:
+
+{{< figure src="/images/netq/sch-trace-result-small.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph.svg" height="18" width="18"/></td>
+<td>Indicates a scheduled trace result.</td>
+</tr>
+<tr class="even">
+<td> </td>
+<td>Source and destination of the trace, identified by their address or hostname. Source is listed on left with arrow pointing to destination.</td>
+</tr>
+<tr class="odd">
+<td>Results</td>
+<td>Summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.
+<ul>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/21-Date-Calendar/calendar-refresh.svg" height="18" width="18"/> Number of trace runs completed in the designated time period</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/> Number of runs with warnings</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> Number of runs with errors</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+The medium Scheduled Trace Results card displays:
+
+{{< figure src="/images/netq/sch-trace-result-medium.png" width="200" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph.svg" height="18" width="18"/></td>
+<td>Indicates a scheduled trace result.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Scheduled Trace Result.</td>
+</tr>
+<tr class="even">
+<td>Summary</td>
+<td>Name of scheduled validation and summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.
+<ul>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/21-Date-Calendar/calendar-refresh.svg" height="18" width="18"/> Number of trace runs completed in the designated time period</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/> Number of runs with warnings</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> Number of runs with errors</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Charts</td>
+<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to {{<link url="#granularity-of-data-shown-based-on-time-period" text="Granularity of Data Shown Based on Time Period">}} for details on how to interpret the results.</p>
+<p><strong>Unique Bad Nodes</strong>: Distribution of unique nodes that generated the indicated warnings and/or failures.</p></td>
+</tr>
+</tbody>
+</table>
+
+The large Scheduled Trace Results card contains two tabs:
+
+The *Results* tab displays:
+
+{{< figure src="/images/netq/sch-trace-result-large-sum-tab.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/01-Smart-Watches/smart-watch-square-graph.svg" height="18" width="18"/></td>
+<td>Indicates a scheduled trace result.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Scheduled Trace Result.</td>
+</tr>
+<tr class="even">
+<td>Summary</td>
+<td>Name of scheduled validation and summary of trace results: a successful result implies all paths were successful without any warnings or failures; a failure result implies there was at least one path with warnings or errors.
+<ul>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/21-Date-Calendar/calendar-refresh.svg" height="18" width="18"/> Number of trace runs completed in the designated time period</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/14-Alerts/alert-triangle.svg" height="18" width="18"/> Number of runs with warnings</li>
+<li><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/remove-shield.svg" height="18" width="18"/> Number of runs with errors</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Charts</td>
+<td><p><strong>Heat map:</strong> A time segmented view of the results. For each time segment, the color represents the percentage of warning and failed results. Refer to {{<link url="#granularity-of-data-shown-based-on-time-period" text="Granularity of Data Shown Based on Time Period">}} for details on how to interpret the results.</p>
+<p><strong>Small charts</strong>: Display counts for each item during the same time period, for the purpose of correlating with the warnings and errors shown in the heat map.</p></td>
+</tr>
+<tr class="even">
+<td>Table/Filter options</td>
+<td><p>When the <strong>Failures</strong> filter option is selected, the table displays the failure messages received for each run.</p>
+<p>When the <strong>Paths</strong> filter option is selected, the table displays all of the paths tried during each run.</p>
+<p>When the <strong>Warning</strong> filter option is selected, the table displays the warning messages received for each run.</p></td>
+</tr>
+</tbody>
+</table>
+
+The *Configuration* tab displays:
+
+{{< figure src="/images/netq/sch-trace-result-large-config-tab.png" width="500" >}}
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes.</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/></td>
+<td>Indicates a scheduled trace configuration.</td>
+</tr>
+<tr class="odd">
+<td>Title</td>
+<td>Scheduled Trace Configuration (Scheduled Trace Result).</td>
+</tr>
+<tr class="even">
+<td>Source</td>
+<td>Address or hostname of the device where the trace was started.</td>
+</tr>
+<tr class="odd">
+<td>Destination</td>
+<td>Address of the device where the trace was stopped.</td>
+</tr>
+<tr class="even">
+<td>Schedule</td>
+<td>The frequency and starting date and time to run the trace.</td>
+</tr>
+<tr class="odd">
+<td>VRF</td>
+<td>Virtual Route Forwarding interface, when defined.</td>
+</tr>
+<tr class="even">
+<td>VLAN</td>
+<td>Virtual LAN identifier, when defined.</td>
+</tr>
+<tr class="odd">
+<td>Name</td>
+<td>User-defined name of the scheduled trace.</td>
+</tr>
+<tr class="even">
+<td>Run Now</td>
+<td>Start the trace now.</td>
+</tr>
+<tr class="odd">
+<td>Edit</td>
+<td>Modify the trace. Opens Trace Request card with this information pre-populated.</td>
+</tr>
+</tbody>
+</table>
+
+The full screen Scheduled Trace Results card displays:
+
+{{< figure src="/images/netq/sch-trace-result-fullscr-230.png" width="700" >}}
+
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td>Scheduled Trace Results</td>
+</tr>
+<tr class="even">
+<td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
+<td>Closes full screen card and returns to workbench.</td>
+</tr>
+<tr class="odd">
+<td>Time period</td>
+<td>Range of time in which the displayed data was collected; applies to all card sizes; select an alternate time period by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" height="14" width="14"/>.</td>
+</tr>
+<tr class="even">
+<td>Results</td>
+<td>Number of results found for the selected tab.</td>
+</tr>
+<tr class="odd">
+<td>Scheduled Trace Results tab</td>
+<td>Displays the basic information about the trace, including:
+<ul>
+<li><strong>Resolution Time</strong>: Time that trace was run</li>
+<li><strong>SRC.IP</strong>: IP address of the source device</li>
+<li><strong>DST.IP</strong>: Address of the destination device</li>
+<li><strong>Max Hop Count</strong>: Maximum number of hops across all paths between the devices</li>
+<li><strong>Min Hop Count</strong>: Minimum number of hops across all paths between the devices</li>
+<li><strong>Total Paths</strong>: Number of available paths found between the devices</li>
+<li><strong>PMTU</strong>: Average of the maximum transmission units for all paths</li>
+<li><strong>Errors</strong>: Message provided for analysis if trace fails</li>
+</ul>
+<p>Click on a result to open a detailed view of the results.</p></td>
+</tr>
+<tr class="even">
+<td>Table Actions</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+</tr>
+</tbody>
+</table>

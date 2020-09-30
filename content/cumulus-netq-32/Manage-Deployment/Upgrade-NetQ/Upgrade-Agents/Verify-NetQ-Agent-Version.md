@@ -14,7 +14,7 @@ Run the following command to view the NetQ Agent version.
 cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-{{<netq-install/agent-version version="3.0.0" opsys="cl">}}
+{{<netq-install/agent-version version="3.2.0" opsys="cl">}}
 
 If you see an older version, refer to {{<link title="Upgrade NetQ Agents on Cumulus Linux Switches">}}.
 
@@ -26,7 +26,7 @@ Run the following command to view the NetQ Agent version.
 root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-{{<netq-install/agent-version version="3.0.0" opsys="ub">}}
+{{<netq-install/agent-version version="3.2.0" opsys="ub">}}
 
 If you see an older version, refer to {{<link title="Upgrade NetQ Agents on Ubuntu Servers">}}.
 
@@ -38,6 +38,6 @@ Run the following command to view the NetQ Agent version.
 root@rhel7:~# rpm -q -netq-agent
 ```
 
-{{<netq-install/agent-version version="3.0.0" opsys="rh">}}
+{{<netq-install/agent-version version="3.2.0" opsys="rh">}}
 
 If you see an older version, refer to {{<link title="Upgrade NetQ Agents on RHEL or CentOS Servers">}}.

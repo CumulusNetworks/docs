@@ -7,6 +7,11 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td>CM-31615</td>
 <td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
@@ -43,6 +48,10 @@ To work around this issue, restart FRR with the sudo systemctl restart frr.servi
 <td></td>
 </tr>
 <tr>
+<<<<<<< HEAD
+>>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td>CM-31374</td>
 <td><p>CVE-2020-15166: ZeroMQ, a lightweight messaging kernel library<br/>
 does not properly handle connecting peers before a handshake is<br/>
@@ -53,7 +62,15 @@ cause a denial of service affecting authenticated and encrypted clients.<br/>
 Vulnerable: &lt;= 4.3.1-4+deb10u1<br/>
 Fixed: 4.3.1-4+deb10u2</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td></td>
+=======
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31373</td>
@@ -65,13 +82,29 @@ CVE-2020-16092: A triggerable assert in the e1000e and vmxnet3 devices may resul
 Vulnerable: &lt;= 3.1+dfsg-8+deb10u7<br/>
 Fixed: 3.1+dfsg-8+deb10u8</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td></td>
+=======
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31327</td>
 <td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
 To work around this issue, run the net add/del dns nameserver <span class="error">&#91;vrf &lt;name&gt;&#93;</span> command to force the DNS configuration.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.13, 4.1.1-4.2.0</td>
+=======
 <td>3.7.13, 4.1.1-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.13, 4.1.1-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -84,7 +117,15 @@ CVE-2020-8624: update-policy rules of type "subdomain" are enforced incorrectly,
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u1<br/>
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u2</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td></td>
+=======
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31192</td>
@@ -92,7 +133,15 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u2</p></td>
 Vulnerable: &lt;= 1.14.2-2+deb10u2<br/>
 Fixed: 1.14.2-2+deb10u3</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td></td>
+=======
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31174</td>
@@ -101,6 +150,11 @@ CVE-2020-16287 CVE-2020-16288 CVE-2020-16289 CVE-2020-16290 CVE-2020-16291 CVE-2
 Vulnerable: &lt;= 9.27~dfsg-2+deb10u3<br/>
 Fixed: 9.27~dfsg-2+deb10u4</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td>4.2.1</td>
 </tr>
 <tr>
@@ -108,11 +162,28 @@ Fixed: 9.27~dfsg-2+deb10u4</p></td>
 <td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
 To work around this issue, restart switchd.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<<<<<<< HEAD
+>>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
 <td>CM-31120</td>
 <td><p>In a traditional bridge configuration with ip-forward off, neighbors are synchronized to hardware with a switchd restart but are cleared when you flap the bridge interface.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.10-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31073</td>
+<td><p>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.<br/>
+To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+=======
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td>3.7.10-3.7.13, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
@@ -128,14 +199,28 @@ To work around this issue, bounce the bond or shutdown the new interface and use
 <td><p>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.<br/>
 To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<<<<<<< HEAD
+>>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
 <td>CM-31057</td>
 <td><p>The following vulnerability has been announced:<br/>
 CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
 <td>3.0.0-4.2.0</td>
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.0.0-4.2.0</td>
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31056</td>
@@ -143,7 +228,15 @@ CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.
 This problem does not occur if you only have one instance of dhcrelay6.</p>
 
 <p>Restart on both instances.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>4.1.1-4.2.0</td>
+=======
 <td>4.1.1-4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.1.1-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -151,8 +244,18 @@ This problem does not occur if you only have one instance of dhcrelay6.</p>
 <td><p>The following vulnerability has been announced:<br/>
 CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
 Fixed:  5.8.0-cl4.2.1u1,  5.8.0-cl3.7.14u1</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
 <td>3.0.0-4.2.0</td>
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.0.0-4.2.0</td>
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31038</td>
@@ -160,20 +263,46 @@ Fixed:  5.8.0-cl4.2.1u1,  5.8.0-cl3.7.14u1</p></td>
 CVE-2019-20795: iproute2 has a use-after-free in get_netnsid_from_name in ip/ipnetns.c.<br/>
 Vulnerable: &lt;= 4.19.0-cl4u3</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td></td>
+=======
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31028</td>
 <td><p>Ingress SPAN/ERSPAN does not mirror packets when the next hop is EVPN encapsulated.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.7-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.7.7-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.7-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
 <td>CM-31016</td>
 <td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
 To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
 <td>3.0.0-4.2.0</td>
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.0.0-4.2.0</td>
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30957</td>
@@ -182,13 +311,29 @@ CVE-2020-12762: json-c through 0.14 has an integer overflow and out-of-bounds wr
 Vulnerable: 0.12.1+ds-2<br/>
 Fixed: 0.12.1+ds-2+deb10u1</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td></td>
+=======
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30879</td>
 <td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
 </td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -291,20 +436,50 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 <tr>
 <td>CM-30504</td>
 <td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
 <td>3.7.12-4.2.0</td>
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.12-4.2.0</td>
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30503</td>
 <td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
 <td>3.7.12-4.2.0</td>
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.12-4.2.0</td>
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30498</td>
 <td><p>There is a change to the default OVSDB bootstrapping process, where the script created now defaults to VLAN-aware bridge mode. If you want to use traditional bride mode, you need to force it by editing the ovs-vtep-ctl script generated by the bootstrap process.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
 <td>3.7.12-4.2.0</td>
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.12-4.2.0</td>
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30486</td>
@@ -425,7 +600,15 @@ Because the modules listed above do not return to their default values correctly
 <td><p>switchd memory utilization might continue to increase if there are excessive and continuous link flaps over a long period of time.<br/>
 To work around this issue, correct the cause of the frequent link flaps. You can restart switchd with the sudo systemctl restart switchd command to recover memory; this operation is impactful to all traffic on the switch during the restart.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.13</td>
+=======
 <td>3.7.13, 4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.13, 4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30231</td>
@@ -685,7 +868,15 @@ CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/t
 Vulnerable: &lt;= 1.8.2<br/>
 Fixed: 1.8.2.1</p></td>
 <td>4.0.0-4.1.1</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>4.2.0</td>
+=======
 <td>4.2.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-29652</td>
@@ -713,7 +904,15 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 
 
 <p>To work around this issue,  run the ifreload -a command a second time.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -1683,7 +1882,15 @@ See /var/log/netd.log for more details.
  
 </td>
 <td>3.7.6-3.7.10, 4.1.0-4.1.1</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.11-4.0.0, 4.2.0</td>
+=======
 <td>3.7.11-4.0.0, 4.2.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.11-4.0.0, 4.2.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-26138</td>
@@ -1791,7 +1998,15 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
 <tr>
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.5-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -2121,7 +2336,15 @@ When the driver recovers, it automatically resumes the transmit queues. In most 
 <td>CM-22020</td>
 <td><p>On the Trident3 switch, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.<br/>
 To work around this issue, use dynamic signaling (joins) to manage IP multicast traffic.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.0-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -2202,7 +2425,15 @@ To work around this issue, use net show interface command for LLDP output when c
 <td>CM-19454</td>
 <td><p>When you use NCLU to bring a bond admin down (net add bond &lt;bond&gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.<br/>
 To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.5.0-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.5.0-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.5.0-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -2216,7 +2447,15 @@ To work around this issue, manually define the routing protocol metric for these
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
 To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.3.2-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.3.2-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.3.2-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -2313,6 +2552,11 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td>CM-31615</td>
 <td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
@@ -2341,6 +2585,10 @@ cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999
 <td></td>
 </tr>
 <tr>
+<<<<<<< HEAD
+>>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td>CM-31374</td>
 <td><p>CVE-2020-15166: ZeroMQ, a lightweight messaging kernel library<br/>
 does not properly handle connecting peers before a handshake is<br/>
@@ -2351,7 +2599,15 @@ cause a denial of service affecting authenticated and encrypted clients.<br/>
 Vulnerable: &lt;= 4.3.1-4+deb10u1<br/>
 Fixed: 4.3.1-4+deb10u2</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td></td>
+=======
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31373</td>
@@ -2363,7 +2619,15 @@ CVE-2020-16092: A triggerable assert in the e1000e and vmxnet3 devices may resul
 Vulnerable: &lt;= 3.1+dfsg-8+deb10u7<br/>
 Fixed: 3.1+dfsg-8+deb10u8</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td></td>
+=======
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31225</td>
@@ -2375,7 +2639,15 @@ CVE-2020-8624: update-policy rules of type "subdomain" are enforced incorrectly,
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u1<br/>
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u2</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td></td>
+=======
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31192</td>
@@ -2383,7 +2655,15 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u2</p></td>
 Vulnerable: &lt;= 1.14.2-2+deb10u2<br/>
 Fixed: 1.14.2-2+deb10u3</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td></td>
+=======
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31174</td>
@@ -2392,6 +2672,11 @@ CVE-2020-16287 CVE-2020-16288 CVE-2020-16289 CVE-2020-16290 CVE-2020-16291 CVE-2
 Vulnerable: &lt;= 9.27~dfsg-2+deb10u3<br/>
 Fixed: 9.27~dfsg-2+deb10u4</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td>4.2.1</td>
 </tr>
 <tr>
@@ -2399,11 +2684,28 @@ Fixed: 9.27~dfsg-2+deb10u4</p></td>
 <td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
 To work around this issue, restart switchd.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<<<<<<< HEAD
+>>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
 <td>CM-31120</td>
 <td><p>In a traditional bridge configuration with ip-forward off, neighbors are synchronized to hardware with a switchd restart but are cleared when you flap the bridge interface.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.10-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31073</td>
+<td><p>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.<br/>
+To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+=======
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td>3.7.10-3.7.13, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
@@ -2419,22 +2721,46 @@ To work around this issue, bounce the bond or shutdown the new interface and use
 <td><p>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.<br/>
 To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<<<<<<< HEAD
+>>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
 <td>CM-31057</td>
 <td><p>The following vulnerability has been announced:<br/>
 CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
 <td>3.0.0-4.2.0</td>
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.0.0-4.2.0</td>
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31055</td>
 <td><p>The following vulnerability has been announced:<br/>
 CVE-2019-20892: net-snmp before 5.8.1.pre1 has a double free in usm_free_usmStateReference in snmplib/snmpusm.c via an SNMPv3 GetBulk request. <br/>
 Fixed:  5.8.0-cl4.2.1u1,  5.8.0-cl3.7.14u1</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
 <td>3.0.0-4.2.0</td>
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.0.0-4.2.0</td>
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31038</td>
@@ -2442,20 +2768,46 @@ Fixed:  5.8.0-cl4.2.1u1,  5.8.0-cl3.7.14u1</p></td>
 CVE-2019-20795: iproute2 has a use-after-free in get_netnsid_from_name in ip/ipnetns.c.<br/>
 Vulnerable: &lt;= 4.19.0-cl4u3</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td></td>
+=======
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-31028</td>
 <td><p>Ingress SPAN/ERSPAN does not mirror packets when the next hop is EVPN encapsulated.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.7-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.7.7-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.7-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
 <td>CM-31016</td>
 <td><p>Changing the order of the bridge ports might cause the bridge MAC address to change, which flaps the bridge and its ports.<br/>
 To work around this issue, manually set the MAC address of the bridge interface by adding hwaddress &lt;mac-address&gt; to the bridge stanza in the /etc/network/interfaces file.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.0.0-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
 <td>3.0.0-4.2.0</td>
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.0.0-4.2.0</td>
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30957</td>
@@ -2464,13 +2816,29 @@ CVE-2020-12762: json-c through 0.14 has an integer overflow and out-of-bounds wr
 Vulnerable: 0.12.1+ds-2<br/>
 Fixed: 0.12.1+ds-2+deb10u1</p></td>
 <td>4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td></td>
+=======
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30879</td>
 <td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
 </td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -2567,18 +2935,45 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 <tr>
 <td>CM-30504</td>
 <td><p>When the OVSDB VTEP scale increases, the CPU utilization increases and eventually the switch (ptmd) fails to respond to the BFD, causing the BFD session to go down. As a result OVSDB cannot read the BFD socket status and outputs a warning in the ovs-vtepd debugs: PTM socket error: Bad file descriptor.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
 <td>3.7.12-4.2.0</td>
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.12-4.2.0</td>
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30503</td>
 <td><p>In OVSDB high availability mode, if you create, then delete a binding, the FDB entry is not replaced and you see an error.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
 <td>3.7.12-4.2.0</td>
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.12-4.2.0</td>
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30498</td>
 <td><p>There is a change to the default OVSDB bootstrapping process, where the script created now defaults to VLAN-aware bridge mode. If you want to use traditional bride mode, you need to force it by editing the ovs-vtep-ctl script generated by the bootstrap process.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td>3.7.12-4.2.0</td>
 <td>4.2.1</td>
 </tr>
@@ -2588,22 +2983,49 @@ Fixed: 3.42.1-1+deb10u3</p></td>
 To work around this issue, manually delete the dynamic FDB entry that is associated with the uplink trunk port.</p></td>
 <td>3.7.12-4.2.0</td>
 <td>4.2.1</td>
+<<<<<<< HEAD
+>>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30484</td>
 <td><p>Multiple vulnerabilities have been discovered in the Xen hypervisor, which might result in denial of service, guest-to-host privilege escalation, or information leaks.<br/>
 The CVE IDs are CVE-2020-11739, CVE-2020-11740, CVE-2020-11741, CVE-2020-11742, CVE-2020-11743, CVE-2020-15563, CVE-2020-15564, CVE-2020-15565, CVE-2020-15566, CVE-2020-15567.<br/>
 Xen packages are not installed by default on Cumulus Linux, but some libxen* packages are in the repository for optional installation.<br/>
+<<<<<<< HEAD
+<<<<<<< HEAD
+Vulnerable: &lt;= 4.11.3+24-g14b62ab3e5-1~deb10u1<br/>
+Fixed: 4.11.4+24-gddaaccbbab-1~deb10u1</p></td>
+<td>4.0.0-4.2.0</td>
+<td></td>
+=======
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 Vulnerable: &lt; 4.11.3+24-g14b62ab3e5-1~deb10u1<br/>
 Fixed: 4.11.4+24-gddaaccbbab-1~deb10u1</p></td>
 <td>4.0.0-4.2.0</td>
 <td>4.2.1</td>
+<<<<<<< HEAD
+>>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30479</td>
 <td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.2-3.7.13, 4.0.0-4.2.0</td>
+<td></td>
+=======
 <td>3.7.2-4.2.0</td>
 <td>4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.2-4.2.0</td>
+<td>4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30473</td>
@@ -2668,7 +3090,15 @@ Fixed: 2.5.5-3+deb10u2</p></td>
 <td><p>switchd memory utilization might continue to increase if there are excessive and continuous link flaps over a long period of time.<br/>
 To work around this issue, correct the cause of the frequent link flaps. You can restart switchd with the sudo systemctl restart switchd command to recover memory; this operation is impactful to all traffic on the switch during the restart.</p></td>
 <td>3.7.11-3.7.12, 4.0.0-4.2.0</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.13</td>
+=======
 <td>3.7.13, 4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.13, 4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-30231</td>
@@ -2866,7 +3296,15 @@ CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/t
 Vulnerable: &lt;= 1.8.2<br/>
 Fixed: 1.8.2.1</p></td>
 <td>4.0.0-4.1.1</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>4.2.0</td>
+=======
 <td>4.2.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>4.2.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-29594</td>
@@ -2877,7 +3315,15 @@ warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLI
 
 
 <p>To work around this issue,  run the ifreload -a command a second time.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.12-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -3884,7 +4330,15 @@ See /var/log/netd.log for more details.
  
 </td>
 <td>3.7.6-3.7.10, 4.1.0-4.1.1</td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.11-4.0.0, 4.2.0</td>
+=======
 <td>3.7.11-4.0.0, 4.2.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.11-4.0.0, 4.2.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 </tr>
 <tr>
 <td>CM-26138</td>
@@ -3992,7 +4446,15 @@ cumulus@switch:~$ net add bridge mybridge vlan-protocol 802.1ad
 <tr>
 <td>CM-24894</td>
 <td><p>The maximum-prefix configuration under the IPv4 address family has an optional restart value, which you can configure. This configuration is ignored and, instead of restarting the sessions every x minutes, the peer constantly changes between established and idle due to the prefix count being exceeded. </p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.5-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.5-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -4322,7 +4784,15 @@ When the driver recovers, it automatically resumes the transmit queues. In most 
 <td>CM-22020</td>
 <td><p>On the Trident3 switch, static PIM with IIF based on a layer 2 bridge does not work reliably. PIM Join via signaling is required for IPMC to work properly.<br/>
 To work around this issue, use dynamic signaling (joins) to manage IP multicast traffic.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.7.0-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.7.0-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -4403,7 +4873,15 @@ To work around this issue, use net show interface command for LLDP output when c
 <td>CM-19454</td>
 <td><p>When you use NCLU to bring a bond admin down (net add bond &lt;bond&gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.<br/>
 To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.5.0-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.5.0-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.5.0-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>
@@ -4417,7 +4895,15 @@ To work around this issue, manually define the routing protocol metric for these
 <td>CM-17494</td>
 <td><p>In certain cases, a peer device sends an ARP request from a source IP address that is not on the connected subnet and the switch creates a STALE neighbor entry. Eventually, the switch attempts to keep the entry fresh and sends ARP requests to the host. If the host responds, the switch has REACHABLE neighbor entries for hosts that are not on the connected subnet. <br/>
 To work around this issue, change the value of arp_ignore to 2. See <a href="https://docs.cumulusnetworks.com/cumulus-linux/Layer-3/Address-Resolution-Protocol-ARP/" class="external-link" rel="nofollow">Address Resolution Protocol in the Cumulus Linux user guide</a> for more information.</p></td>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<td>3.3.2-3.7.13, 4.0.0-4.2.0</td>
+=======
 <td>3.3.2-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> stage
+=======
+<td>3.3.2-3.7.13, 4.0.0-4.2.1</td>
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td></td>
 </tr>
 <tr>

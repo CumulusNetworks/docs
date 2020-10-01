@@ -5,7 +5,15 @@ weight: 611
 toc: 4
 ---
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+The Cumulus Linux license has a simple format. Managing your license keys should is very easy, as you can use the same license file for all your licensed Cumulus Linux switches.
+=======
 The Cumulus Linux license has a simple format. Managing your license keys is very easy, as you can use the same license file for all your licensed Cumulus Linux switches.
+>>>>>>> stage
+=======
+The Cumulus Linux license has a simple format. Managing your license keys is very easy, as you can use the same license file for all your licensed Cumulus Linux switches.
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 In addition, there is no need to replace the license file when you renew or purchase additional licenses.
 

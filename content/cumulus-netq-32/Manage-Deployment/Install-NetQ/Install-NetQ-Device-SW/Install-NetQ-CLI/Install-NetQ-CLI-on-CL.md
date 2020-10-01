@@ -83,6 +83,8 @@ Two methods are available for configuring the NetQ CLI on a switch:
 - Run NetQ CLI commands on the switch; refer to the next section
 - Edit the configuration file on the switch; refer to {{<link title="#Configure NetQ CLI Using a Configuration File" text="Configure NetQ CLI Using a Configuration File">}}
 
+{{<netq-install/cli-config opsys="cl">}}
+
 ### Configure NetQ CLI Using the CLI
 
 The steps to configure the CLI are different depending on whether the NetQ software has been installed for an on-premises or cloud deployment. Follow the instructions for your deployment type.

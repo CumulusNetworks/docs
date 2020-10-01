@@ -480,7 +480,7 @@ When entering a time value, you must include a numeric value *and* the unit of m
 For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{%/notice%}}
 
-This example shows how to view a full chronology of changes for a MAC Address. The carrot (^) notation indicates no change in this value from the row above.
+This example shows how to view a full chronology of changes for a MAC Address. The caret (^) notation indicates no change in this value from the row above.
 
 ```
 cumulus@switch:~$ netq show mac-history 00:03:00:11:11:77 vlan 13
@@ -498,7 +498,7 @@ Mon Nov  4 20:22:40 2019  leaf02            13     no     vni13            10.0.
 Mon Nov  4 20:22:40 2019  leaf01            13     no     vni13            10.0.0.134             yes    no
 ```
 
-This example shows how to view the history of a MAC address by hostname. The carrot (^) notation indicates no change in this value from the row above.
+This example shows how to view the history of a MAC address by hostname. The caret (^) notation indicates no change in this value from the row above.
 
 ```
 cumulus@switch:~$ netq show mac-history 00:03:00:11:11:77 vlan 13 listby hostname
@@ -516,7 +516,7 @@ Mon Nov  4 20:21:13 2019  leaf04            13     no     vni13            10.0.
 Mon Nov  4 20:22:40 2019  leaf04            ^      ^      bond03                                  no     ^
 ```
 
-This example shows show to view the history of a MAC address between now and two hours ago. The carrot (^) notation indicates no change in this value from the row above.
+This example shows show to view the history of a MAC address between now and two hours ago. The caret (^) notation indicates no change in this value from the row above.
 
 ```
 cumulus@switch:~$ netq show mac-history 00:03:00:11:11:77 vlan 13 between now and 2h

@@ -2,7 +2,8 @@
 title: Scratch
 author: Cumulus Networks
 weight: 0
-draft: true
+bookhidden: true
+pdfhidden: true
 ---
 
 {{< tabs "TabIDxxx" >}}

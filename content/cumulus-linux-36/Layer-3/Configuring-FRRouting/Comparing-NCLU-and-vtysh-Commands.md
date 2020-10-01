@@ -8,7 +8,7 @@ Using
 [NCLU](/cumulus-linux-36/System-Configuration/Network-Command-Line-Utility-NCLU/)
 is the primary way to 
 [configure routing](/cumulus-linux-36/Layer-3/Configuring-FRRouting/) 
-in Cumulus Linux. However, an alternative exists in the the `vtysh` modal
+in Cumulus Linux. However, an alternative exists in `vtysh` modal
 CLI. The available commands are as follows:
 
 ## Comparing vtysh and NCLU Commands

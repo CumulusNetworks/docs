@@ -370,7 +370,7 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
        resilient_hash_entries_ecmp = 256
 
 1. **(Optional)** On {{<link url="#resilient-hashing-on-mellanox-switches" text="Mellanox switches">}},
-  configure timers in the the `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf​`
+  configure timers in `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/mlx/datapath.conf​`
   file.
 
 1. Restart the `switchd` service:

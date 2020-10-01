@@ -108,7 +108,7 @@ NCLU commands are not currently available for this feature. Use the following Li
 
 {{%/notice%}}
 
-- To configure the DHCP relay to inject the ingress *SVI interface* against which the relayed DHCP discover packet is processed, edit the the `/etc/default/isc-dhcp-relay` file and add `-a` to the `OPTIONS` line. For example:
+- To configure the DHCP relay to inject the ingress *SVI interface* against which the relayed DHCP discover packet is processed, edit `/etc/default/isc-dhcp-relay` file and add `-a` to the `OPTIONS` line. For example:
 
    ```
    cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -126,7 +126,7 @@ NCLU commands are not currently available for this feature. Use the following Li
    OPTIONS="-a --use-pif-circuit-id"
    ```
 
-- To customize the Remote ID sub-option, edit the the `/etc/default/isc-dhcp-relay` file and add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters that is used for the Remote ID. For example:
+- To customize the Remote ID sub-option, edit `/etc/default/isc-dhcp-relay` file and add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters that is used for the Remote ID. For example:
 
    ```
    cumulus@switch:~$ sudo nano /etc/default/isc-dhcp-relay

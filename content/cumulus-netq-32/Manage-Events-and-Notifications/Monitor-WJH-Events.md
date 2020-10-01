@@ -218,7 +218,7 @@ The What Just Happened view displays events based on conditions detected in the 
 </ul></td>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>

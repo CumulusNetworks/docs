@@ -1,5 +1,5 @@
 ---
-title: Upgrade NetQ Agents on Ubuntu Servers
+title: Upgrade NetQ Agents and CLI on Ubuntu Servers
 author: Cumulus Networks
 weight: 500
 toc: 5
@@ -19,13 +19,14 @@ root@ubuntu:~# sudo apt-get update
 3. Install the agent software.
 
 ```
-root@ubuntu:~# sudo apt-get install -y netq-agent
+root@ubuntu:~# sudo apt-get install -y netq-agent netq-apps
 ```
 
 4. Restart the NetQ Agent.
 
 ```
 root@ubuntu:~# netq config restart agent
+root@ubuntu:~# netq config restart cli
 ```
 
 Refer to {{<link title="Install and Configure the NetQ Agent on Ubuntu Servers">}} to complete the upgrade.

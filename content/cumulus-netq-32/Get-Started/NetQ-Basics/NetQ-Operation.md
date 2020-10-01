@@ -5,7 +5,7 @@ weight: 80
 toc: 4
 ---
 
-In either in-band or out-of-band deployments, NetQ offers network-wide configuration
+In either in-band or out-of-band deployments, NetQ offers networkwide configuration
 and device management, proactive monitoring capabilities, and
 performance diagnostics for complete management of your network. Each
 component of the solution provides a critical element to make this
@@ -90,8 +90,8 @@ from the Network Service component and Event service. The Network
 Service component is continually validating the connectivity and
 configuration of the devices and protocols running on the network. Using
 the `netq check` and `netq show` commands displays the status of the
-various components and services on a network-wide and complete software
-stack basis. For example, you can perform a network-wide check on all
+various components and services on a networkwide and complete software
+stack basis. For example, you can perform a networkwide check on all
 sessions of BGP with a single `netq check bgp` command. The command
 lists any devices that have misconfigurations or other operational
 errors in seconds. When errors or misconfigurations are present, using

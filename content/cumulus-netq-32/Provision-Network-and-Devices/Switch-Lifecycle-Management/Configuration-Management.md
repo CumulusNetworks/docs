@@ -134,7 +134,7 @@ To create a network template with NTP parameters included:
 
 6. Specify advanced parameters:
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}}.
+    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} **Advanced**.
 
     2. Specify the location of a Drift file containing the frequency offset between the NTP server clock and the UTC clock. It is used to adjust the system clock frequency on every system or service start. Be sure that the location you enter can be written by the NTP daemon.
 
@@ -181,7 +181,7 @@ To create a network template with user parameters included:
 
     1. Enter a username and password for the individual or account.
 
-    2. Provide a description of the user. (any char limits???)
+    2. Provide a description of the user.
 
     3. Toggle **Should Expire** to require changes to the password to expire on a given date.
 

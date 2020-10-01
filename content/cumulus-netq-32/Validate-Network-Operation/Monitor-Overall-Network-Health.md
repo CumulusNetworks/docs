@@ -295,7 +295,7 @@ Agent Health Test   : passed
 
 ### Perform a BGP Validation
 
-The default validation runs a network-wide BGP connectivity and configuration check on all nodes running the BGP service:
+The default validation runs a networkwide BGP connectivity and configuration check on all nodes running the BGP service:
 
 ```
 cumulus@switch:~$ netq check bgp
@@ -468,7 +468,7 @@ cumulus@switch:~$ netq check bgp json
 
 ### Perform a CLAG Validation
 
-The default validation runs a network-wide CLAG connectivity and configuration check on all nodes running the CLAG service. This example shows results for a fully successful validation.
+The default validation runs a networkwide CLAG connectivity and configuration check on all nodes running the CLAG service. This example shows results for a fully successful validation.
 
 ```
 cumulus@switch:~$ netq check clag
@@ -620,7 +620,7 @@ Cumulus Linux Image Version Test   : passed
 
 ### Perform an EVPN Validation
 
-The default validation runs a network-wide EVPN connectivity and configuration check on all nodes running the EVPN service. This example shows results for a fully successful validation.
+The default validation runs a networkwide EVPN connectivity and configuration check on all nodes running the EVPN service. This example shows results for a fully successful validation.
 
 ```
 cumulus@switch:~$ netq check evpn
@@ -770,7 +770,7 @@ Vrf Consistency Test             : skipped
 
 ### Perform an Interfaces Validation
 
-The default validation runs a network-wide connectivity and configuration check on all interfaces. This example shows results for a fully successful validation.
+The default validation runs a networkwide connectivity and configuration check on all interfaces. This example shows results for a fully successful validation.
 
 ```
 cumulus@switch:~$ netq check interfaces
@@ -885,7 +885,7 @@ Bridge interface Test       : passed,
 
 ### Perform an MLAG Validation
 
-The default validation runs a network-wide MLAG connectivity and configuration check on all nodes running the MLAG service. This example shows results for a fully successful validation.
+The default validation runs a networkwide MLAG connectivity and configuration check on all nodes running the MLAG service. This example shows results for a fully successful validation.
 
 ```
 cumulus@switch:~$ netq check mlag
@@ -1047,7 +1047,7 @@ server04          no       2019-09-17 19:21:47
 
 ### Perform an OSPF Validation
 
-The default validation runs a network-wide OSPF connectivity and configuration check on all nodes running the OSPF service. This example shows results several errors in the Timers and Interface MTU tests.
+The default validation runs a networkwide OSPF connectivity and configuration check on all nodes running the OSPF service. This example shows results several errors in the Timers and Interface MTU tests.
 
 ```
 cumulus@switch:~# netq check ospf

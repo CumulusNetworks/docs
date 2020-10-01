@@ -43,6 +43,19 @@ Router             144                            Blackhole route
 Buffer             14                             Packet Latency Threshold Crossed
 Buffer             14                             Port TC Congestion Threshold
 L1                 4                              Oper down
+----------
+
+install prep, cloud:
+cumulus@ip-10-150-10-10:~$ netq bootstrap reset purge-db
+Successfully reset the node. Please bootstrap the node again before continuing.
+cumulus@ip-10-150-10-10:~$ netq bootstrap master interface eth0 tarball 's3://netq-archives/latest/netq-bootstrap-'3.2.0-SNAPSHOT.tgz
+2020-09-29 15:53:40.295564: master-node-installer: Extracting tarball s3://netq-archives/latest/netq-bootstrap-3.2.0-SNAPSHOT.tgz
+2020-09-29 15:55:15.991860: master-node-installer: Checking package requirements
+2020-09-29 15:55:16.217339: master-node-installer: Using IP: 10.150.10.10
+2020-09-29 15:55:18.300543: master-node-installer: Initializing kubernetes cluster
+-----------------------------------------
+Successfully bootstrapped the master node
+cumulus@ip-10-150-10-10:~$ 
 
 
 <div style="padding-left: 18px;">When multiple jobs are running, scroll down or use the filters above the jobs to find the jobs of interest:

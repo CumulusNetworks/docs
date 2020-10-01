@@ -83,14 +83,14 @@ Full-screen cards are most effective for viewing all available data about an asp
 
 The UI provides a number of card workflows. Card workflows focus on a particular aspect of your network and are a linked set of each size card-a small card, a medium card, one or more large cards, and one or more full screen cards. The following card workflows are available:
 
-- **Network Health**: network-wide view of network health
+- **Network Health**: networkwide view of network health
 - **Devices|Switches**: health of a given switch
 - **Inventory|Devices**: information about all switches and hosts in the network
 - **Inventory|Switches**: information about the components on a given switch
 - **Events|Alarms**: information about all critical severity events in the system
 - **Events|Info**: information about all warning, info, and debug events in the system
 - **Network Services**: information about the network services and sessions
-- **Validation Request** (and Results): network-wide validation of network protocols and services
+- **Validation Request** (and Results): networkwide validation of network protocols and services
 - **Trace Request** (and Results): find available paths between two devices in the network fabric
 - **Network Snapshot**: view and compare the network state at various times
 

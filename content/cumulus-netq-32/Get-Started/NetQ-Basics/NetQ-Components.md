@@ -106,7 +106,7 @@ thresholds, and events.
 ### Network Services
 
 The network services component monitors protocols and services operation
-individually and on a network-wide basis and stores status details.
+individually and on a networkwide basis and stores status details.
 
 ### User Interfaces
 

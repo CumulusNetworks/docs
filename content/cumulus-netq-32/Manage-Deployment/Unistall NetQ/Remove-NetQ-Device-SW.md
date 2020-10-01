@@ -3,6 +3,8 @@ title: Remove the NetQ Device Software
 author: Cumulus Networks
 weight: 580
 toc: 3
+bookhidden: true
+pdfhidden: true
 ---
 
 If you need to remove the NetQ agent and/or the NetQ CLI from a Cumulus Linux switch or Linux host, follow the steps below.

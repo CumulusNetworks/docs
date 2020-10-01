@@ -43,7 +43,7 @@ overlay one box at a time. You are unable to correlate what events
 (configuration changes, power outages, etc.) may have caused problems in
 the network and when they occurred. Only a sampling of data is available
 to use for your analysis. By contrast, with Cumulus NetQ deployed, you
-have a network-wide view of the overlay network, can correlate events
+have a networkwide view of the overlay network, can correlate events
 with what is happening now or in the past, and have real-time data to
 fill out the complete picture of your network health and operation.
 
@@ -51,7 +51,7 @@ In summary:
 
 | Without NetQ                               | With NetQ                                                           |
 | ------------------------------------------ | ------------------------------------------------------------------- |
-| Difficult to debug overlay network         | View network-wide status of overlay network                         |
+| Difficult to debug overlay network         | View networkwide status of overlay network                         |
 | Hard to find out what happened in the past | View historical activity with time-machine view                     |
 | Periodically sampled data                  | Real-time collection of telemetry data for a more complete data set |
 

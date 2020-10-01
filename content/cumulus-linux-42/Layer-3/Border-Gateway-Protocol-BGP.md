@@ -229,7 +229,7 @@ When using auto BGP, there are no references to `leaf` or `spine` in the configu
 
 This section describes optional configuration procedures.
 
-### Set ECMP Options
+### ECMP Options
 
 BGP supports equal-cost multipathing (ECMP). If a BGP node hears a certain prefix from multiple peers, it has all the information necessary to program the routing table and forward traffic for that prefix through all of these peers. BGP typically choses one best path for each prefix and installs that route in the forwarding table.
 
@@ -329,7 +329,7 @@ When you disable the *bestpath as-path multipath-relax* option, EVPN type-5 rout
 
 {{%/notice%}}
 
-### Configure Route Reflector Options
+### Route Reflectors
 
 In a two-tier Clos network, the leaf (or tier 1) switches are the only ones connected to end stations. The spines themselves do not have any routes to announce; they are merely **reflecting** the routes announced by one leaf to the other leafs. Therefore, the spine switches function as route reflectors while the leaf switches serve as route reflector clients.
 
@@ -467,7 +467,7 @@ router bgp 65199
 
 Unnumbered interfaces are interfaces without unique IP addresses. In BGP, you configure unnumbered interfaces using *extended next hop encoding* (ENHE), which is defined by {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}}. BGP unnumbered interfaces provide a means of advertising an IPv4 route with an IPv6 next hop. Prior to RFC 5549, an IPv4 route could be advertised only with an IPv4 next hop.
 
-BGP unnumbered interfaces are particularly useful in deployments where IPv4 prefixes are advertised through BGP over a section without any IPv4 address configuration on links. As a result, the routing entries are also IPv4 for destination lookup and have IPv6 next hops for forwarding purposes.
+BGP unnumbered interfaces are useful in deployments where IPv4 prefixes are advertised through BGP over a section without any IPv4 address configuration on links. As a result, the routing entries are also IPv4 for destination lookup and have IPv6 next hops for forwarding purposes.
 
 When enabled and active, BGP makes use of the available IPv6 next hops for advertising any IPv4 prefixes. BGP learns the prefixes, calculates the routes and installs them in IPv4 AFI to IPv6 AFI format. However, ENHE in Cumulus Linux does not install routes into the kernel in IPv4 prefix to IPv6 next hop format. For link-local peerings enabled by dynamically learning the other end's link-local address using IPv6 neighbor discovery router advertisements, an IPv6 next hop is converted into an IPv4 link-local address and a static neighbor entry is installed for this IPv4 link-local address with the MAC address derived from the link-local address of the other end.
 
@@ -475,7 +475,7 @@ When enabled and active, BGP makes use of the available IPv6 next hops for adver
 
 - Interface-based peering with separate IPv4 and IPv6 sessions is not supported.
 - If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 link-local peering.
-- BGP unnumbered only works with two switches at a time, as it is meant to work with PTP (point-to-point protocol).
+- BGP unnumbered only works with two switches at a time, as is designed to work with PTP (point-to-point protocol).
 - It is assumed that the IPv6 implementation on the peering device uses the MAC address as the interface ID when assigning the IPv6 link-local address, as suggested by RFC 4291.
 
 {{%/notice%}}
@@ -580,7 +580,7 @@ switch(config-router)# neighbor swp1 interface peer-group group1
 
 {{< /tabs >}}
 
-#### How traceroute Interacts with BGP Unnumbered Interfaces
+{{%notice note%}}
 
 Every router or end host must have an IPv4 address to complete a `traceroute` of IPv4 addresses. In this case, the IPv4 address used is that of the loopback device.
 
@@ -590,6 +590,8 @@ Even if extended next-hop encoding (ENHE) is not used in the data center, link a
 - Link addresses expose an additional attack vector for intruders to use to either break in or engage in DDOS attacks.
 
 Assigning an IP address to the loopback device is essential.
+
+{{%/notice%}}
 
 {{< expand "Advanced: How Next Hop Fields Are Set "  >}}
 
@@ -1276,7 +1278,7 @@ router bgp 500
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 To connect to **the same AS** using the `neighbor` command:
 
@@ -1289,7 +1291,7 @@ switch(config-router)# neighbor 192.168.1.2 remote-as internal
 switch(config-router)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$ 
+cumulus@switch:~$
 ```
 
 To connect to a **different AS** using the `neighbor` command:
@@ -1419,7 +1421,7 @@ The MD5 password configured against a BGP listen-range peer group (used to accep
 
 {{%/notice%}}
 
-### Configure eBGP Multihop
+### eBGP Multihop
 
 The eBGP multihop option lets you use BGP to exchange routes with an external peer that is more than one hop away.
 
@@ -1510,7 +1512,7 @@ Estimated round trip time: 1 ms
 Read thread: on  Write thread: on
 ```
 
-### Configure BGP TTL Security
+### BGP TTL Security
 
 Configure BGP TTL security to specify the minimum number of seconds allowed before the switch no longer accepts incoming IP packets from a specific eBGP peer. You can specify a value between 1 and 254 seconds.
 
@@ -1518,7 +1520,7 @@ To set BGP TTL security to 200 seconds on a switch:
 
 {{< tabs "44 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp autonomous-system 65000
@@ -1529,7 +1531,7 @@ cumulus@leaf01:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -1540,7 +1542,7 @@ leaf01(config-router)# neighbor 10.0.0.1 ttl-security hops 200
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
-cumulus@leaf01:~$ 
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -1606,7 +1608,7 @@ Hostname: leaf01
   Read thread: on  Write thread: on
 ```
 
-### Configure Graceful BGP Shutdown
+### Graceful BGP Shutdown
 
 To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the node.
 
@@ -1701,7 +1703,7 @@ To enable read-only mode:
 
 {{< tabs "48 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 Run the `net add bgp update-delay <seconds> [<establish-wait-seconds>]` command, where the update delay and establish wait can be any value between 0 and 3600 seconds.   The following example command enables read-only mode, sets the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
 
@@ -1713,7 +1715,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 Run the `update-delay <seconds> [<establish-wait-seconds>]` command, where the update delay and establish wait can be any value between 0 and 3600 seconds. The following example command enables read-only mode, sets the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
 
@@ -1776,7 +1778,7 @@ To apply a route map to filter route updates from BGP into Zebra, run the follow
 
 {{< tabs "50 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp table-map routemap1
@@ -1786,7 +1788,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1820,7 +1822,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1837,7 +1839,6 @@ cumulus@switch:~$
 {{< /tab >}}
 
 {{< /tabs >}}
-
 
 ### BGP Community Lists
 
@@ -1921,7 +1922,7 @@ The following options are enabled by default in Cumulus Linux:
 - `bgp show-hostname`, which displays the hostname in show command output.
 - `bgp network import-check`, which enables the advertising of the BGP network in IGP.
 
-### Configure BGP Neighbor Maximum Prefixes
+### Neighbor Maximum Prefixes
 
 To configure the maximum number of route announcements (prefixes) that can be received from a BGP neighbor, run the `neighbor <peer> maximum-prefix <value>` command from the `vtysh` shell. For example:
 
@@ -2042,7 +2043,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-### Configure Peer Groups
+### Peer Groups
 
 When a switch has many peers to connect to, the amount of redundant configuration becomes overwhelming. For example, repeating the `activate` and `next-hop-self` commands for even 60 neighbors makes for a very long configuration file. To address this problem, you can use
 `peer-group`.
@@ -2165,7 +2166,7 @@ It is possible that the link is up but the neighboring BGP process is hung or ha
 
 {{< tabs "64 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp neighbor 10.0.0.2 timers 10 30
@@ -2175,7 +2176,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -2205,7 +2206,7 @@ router bgp 65000
 
 #### Reconnect Quickly
 
-A BGP process attempts to connect to a peer after a failure (or on startup) every `connect-time` seconds. By default, this is 10 seconds. To modify this value, run the following commands.
+A BGP process attempts to connect to a peer after a failure (or on startup) every `connect-time` seconds. By default, this is 10 seconds. To change this value, run the following commands.
 
 {{%notice note%}}
 
@@ -2215,7 +2216,7 @@ You must specify this command for each neighbor.
 
 {{< tabs "66 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp neighbor 10.0.0.2 timers connect 30
@@ -2225,7 +2226,7 @@ cumulus@switch:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -2332,10 +2333,10 @@ Use the following commands to troubleshoot BGP.
 
 {{< tabs "58 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net show bgp summary 
+cumulus@switch:~$ net show bgp summary
 show bgp ipv4 unicast summary
 =============================
 BGP router identifier 10.0.0.11, local AS number 65011 vrf-id 0
@@ -2365,9 +2366,9 @@ To view the routing table as defined by BGP:
 cumulus@switch:~$ net show bgp ipv4
 ERROR: Command not found
 Use 'net help KEYWORD(s)' to list all options that use KEYWORD(s)
-cumulus@leaf01:~$ net show bgp ipv4 
+cumulus@leaf01:~$ net show bgp ipv4
     unicast  :  add help text
-cumulus@leaf01:~$ net show bgp ipv4 unicast 
+cumulus@leaf01:~$ net show bgp ipv4 unicast
 BGP table version is 8, local router ID is 10.0.0.11
 Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
               i internal, r RIB-failure, S Stale, R Removed
@@ -2467,7 +2468,7 @@ The above example shows that the routing table prefix seen by BGP is 10.0.0.11/3
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 The most common starting point for troubleshooting BGP is to view the summary of neighbors connected to and some information about these connections:
 

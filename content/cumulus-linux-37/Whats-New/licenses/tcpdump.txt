@@ -36,7 +36,7 @@ updated.  See the following document for more details:
    <URL: ftp://ftp.cs.berkeley.edu/pub/4bsd/README.Impt.License.Change>
 
 Other files under the 4-clause BSD license and whose copyright doesn't
-belong to the The Regents of the University of California are listed
+belong to Regents of the University of California are listed
 below:
 - aodv.h, Copyright (c) 2003 Bruce M. Simpson
 - atmuni31.h, Copyright (c) 1997 Yen Yen Lim and North Dakota State University

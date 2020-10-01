@@ -388,7 +388,7 @@ In this example, the overall health is relatively good, but improving compared t
 
 Overall network health is a calculated average of several key health metrics: System, Network Services, and Interface health.
 
-To view these key metrics, open the medium Network Health card. Each metric is shown with the the percentage of successful validations, a trend indicator, and a distribution of the validation results.
+To view these key metrics, open the medium Network Health card. Each metric is shown with percentage of successful validations, a trend indicator, and a distribution of the validation results.
 
 {{<figure src="/images/netq/ntwk-hlth-medium-230.png" width="200">}}
 

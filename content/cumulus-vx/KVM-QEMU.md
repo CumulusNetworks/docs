@@ -66,7 +66,11 @@ local@host:~$ sudo /usr/bin/kvm -curses -vga virtio -name leaf01 -pidfile leaf01
 {{< tab "leaf02.qcow2 ">}}
 
 ```
+<<<<<<< HEAD
 local@host:~$ sudo /usr/bin/kvm -curses -vga virtio -name leaf02 -pidfile leaf02.pid -smp 1 -m 768 -net nic,macaddr=00:01:00:00:02:00,model=virtio -net user,net=192.168.0.0/24,hostfwd=tcp::1402-:22 -netdev socket,udp=127.0.0.1:1604,localaddr=127.0.0.1:1603,id=dev0 -device virtio-net-pci,mac=00:02:00:00:00:03,addr=6.0,multifunction=on,netdev=dev0,id=swp1 -netdev socket,udp=127.0.0.1:1608,localaddr=127.0.0.1:1607,id=dev1 -device virtio-net-pci,mac=00:02:00:00:00:04,addr=6.1,multifunction=off,netdev=dev1,id=swp2 -netdev socket,udp=127.0.0.1:1612,localaddr=127.0.0.1:1611,id=dev2 -device virtio-net-pci,mac=00:02:00:00:00:10,addr=6.2,multifunction=off,netdev=dev2,id=swp3 /var/lib/libvirt/images/leaf02.qcow2
+=======
+local@host:~$ sudo /usr/bin/kvm -curses -vga virtio -name leaf02 -pidfile leaf02.pid -smp 1 -m 768 -net nic,macaddr=00:01:00:00:02:00,model=virtio -net user,net=192.168.0.0/24,hostfwd=tcp::1402-:22 -netdev socket,udp=127.0.0.1:1604,localaddr=127.0.0.1:1603,id=dev0 -device virtio-net-pci,mac=00:02:00:00:00:03,addr=6.0,multifunction=on,netdev=dev0,id=swp1 -netdev socket,udp=127.0.0.1:1605,localaddr=127.0.0.1:1606,id=dev1 -device virtio-net-pci,mac=00:02:00:00:00:04,addr=6.1,multifunction=off,netdev=dev1,id=swp2 -netdev socket,udp=127.0.0.1:1609,localaddr=127.0.0.1:1610,id=dev2 -device virtio-net-pci,mac=00:02:00:00:00:10,addr=6.2,multifunction=off,netdev=dev2,id=swp3 /var/lib/libvirt/images/leaf02.qcow2
+>>>>>>> stage
 ```
 
 {{< /tab >}}

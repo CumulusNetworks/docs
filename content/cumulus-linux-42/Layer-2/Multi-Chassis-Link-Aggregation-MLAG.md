@@ -104,10 +104,14 @@ iface bond2
 {{< /tab >}}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 To prevent MAC address conflicts with other interfaces in the same bridged network, Cumulus Networks has reserved a range of MAC addresses specifically to use with MLAG. This range of MAC addresses is 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff.
 =======
 {{< /tabs >}}
 >>>>>>> stage
+=======
+{{< /tabs >}}
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 3. Add a unique MLAG ID (clag-id) to each bond.
 
@@ -152,6 +156,7 @@ iface bond2
 {{< /tab >}}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 - Choose an unused VLAN (also known as a *switched virtual interface* or *SVI* here).
 - Assign the SVI an unrouteable link-local address to give the peer switches layer 3 connectivity between each other.
 - Configure the VLAN as a {{<link url="Interface-Configuration-and-Management" text="VLAN subinterface">}} on the peer link bond instead of the VLAN-aware bridge, called *peerlink*. If you configure the subinterface with {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}, the VLAN subinterface is named 4094 by default (the subinterface named *peerlink.4094* below). If you are configuring the peer link  without NCLU, Cumulus Networks still recommends you use 4094 for the peer link VLAN if possible. This ensures that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
@@ -160,6 +165,9 @@ iface bond2
 =======
 {{< /tabs >}}
 >>>>>>> stage
+=======
+{{< /tabs >}}
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 4. Add the bonds you created above to a bridge. The example commands below add bond1 and bond2 to a VLAN-aware bridge.
 
@@ -169,6 +177,7 @@ iface bond2
 
 ```
 <<<<<<< HEAD
+<<<<<<< HEAD
 cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 192.0.2.50
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
@@ -177,6 +186,11 @@ cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 >>>>>>> stage
+=======
+cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 ```
 
 {{< /tab >}}
@@ -510,6 +524,7 @@ iface br0.10
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 For a deeper comparison of traditional versus VLAN-aware bridge modes, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="knowledge base article">}}.
 
 ## Peer Link Interfaces and the protodown State
@@ -518,6 +533,9 @@ In addition to the standard UP and DOWN administrative states, an interface that
 =======
 ### Configure a Backup UDP Port
 >>>>>>> stage
+=======
+### Configure a Backup UDP Port
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 By default, Cumulus Linux uses UDP port 5342 with the backup IP address. To change the backup UDP port:
 
@@ -680,6 +698,7 @@ cumulus@switch:~$ net commit
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 {{%notice tip%}}
 
 Be aware of an existing issue when you use NCLU to create an iBGP peering, it creates an eBGP peering instead. For more information, see {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-37/Whats-New/rn/#CM-23417" text="this release note">}}.
@@ -694,6 +713,8 @@ IGMP snooping is enabled by default on the bridge. IGMP snooping multicast datab
 
 =======
 >>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 {{%notice note%}}
 
 If you use NCLU to create an iBGP peering across the peer link, the `net add bgp l2vpn evpn neighbor peerlink.4094 activate` command creates a new eBGP neighborship when one is already configured for iBGP. The existing iBGP configuration is still valid.
@@ -751,15 +772,21 @@ iface vlan20
     vlan-id 20
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 To get a better understanding of how STP and LACP behave in response to various failover redundancy scenarios, read
 {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="this knowledge base article">}}.
 =======
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 auto vlan30
 iface vlan30
     address 10.1.30.2/24
     vlan-raw-device bridge
     vlan-id 30
+<<<<<<< HEAD
 >>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 auto swp51
 iface swp51
@@ -851,6 +878,7 @@ iface mgmt
     address ::1/128
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 - The STP global configuration must be the same on both peer switches.
 - The STP configuration for dual-connected ports must be the same on both peer switches.
 - The STP priority must be the same on both peer switches.
@@ -860,6 +888,11 @@ auto eth0
 iface eth0 inet dhcp
     vrf mgmt
 >>>>>>> stage
+=======
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 auto bridge
 iface bridge

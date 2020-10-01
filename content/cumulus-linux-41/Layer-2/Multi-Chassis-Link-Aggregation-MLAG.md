@@ -104,10 +104,14 @@ iface bond2
 {{< /tab >}}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 To prevent MAC address conflicts with other interfaces in the same bridged network, Cumulus Networks has reserved a range of MAC addresses specifically to use with MLAG. This range of MAC addresses is 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff.
 =======
 {{< /tabs >}}
 >>>>>>> stage
+=======
+{{< /tabs >}}
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 3. Add a unique MLAG ID (clag-id) to each bond.
 
@@ -152,6 +156,7 @@ iface bond2
 {{< /tab >}}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 - Choose an unused VLAN (also known as a *switched virtual interface* or *SVI* here).
 - Assign the SVI an unrouteable link-local address to give the peer switches layer 3 connectivity between each other.
 - Configure the VLAN as a {{<link url="Interface-Configuration-and-Management" text="VLAN subinterface">}} on the peer link bond instead of the VLAN-aware bridge, called *peerlink*. If you configure the subinterface with {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}, the VLAN subinterface is named 4094 by default (the subinterface named *peerlink.4094* below). If you are configuring the peer link  without NCLU, Cumulus Networks still recommends you use 4094 for the peer link VLAN if possible. This ensures that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
@@ -160,6 +165,9 @@ iface bond2
 =======
 {{< /tabs >}}
 >>>>>>> stage
+=======
+{{< /tabs >}}
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 4. Add the bonds you created above to a bridge. The example commands below add bond1 and bond2 to a VLAN-aware bridge.
 
@@ -169,6 +177,7 @@ iface bond2
 
 ```
 <<<<<<< HEAD
+<<<<<<< HEAD
 cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 192.0.2.50
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
@@ -177,6 +186,11 @@ cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 >>>>>>> stage
+=======
+cumulus@leaf01:~$ net add bridge bridge ports bond1,bond2
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 ```
 
 {{< /tab >}}
@@ -1195,6 +1209,7 @@ iface bond2
     mstpctl-portadminedge yes
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 auto vlan100
 iface vlan100
     address 172.16.1.4/24
@@ -1436,11 +1451,16 @@ You cannot use the VRF on a peer link subinterface.
 
 {{< tab "NCLU Commands ">}}
 =======
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 auto swp3
 iface swp3
     alias bond member of bond3
     mtu 9000
+<<<<<<< HEAD
 >>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 auto bond3
 iface bond3
@@ -1597,15 +1617,21 @@ iface eth0 inet dhcp
     vrf mgmt
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Be aware of an existing issue when you use NCLU to create an iBGP peering, it creates an eBGP peering instead. For more information, see {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-37/Whats-New/rn/#CM-23417" text="this release note">}}.
 =======
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 auto bridge
 iface bridge
     bridge-ports peerlink
     bridge-ports bond1 bond2 bond3
     bridge-vids 10 20 30
     bridge-vlan-aware yes
+<<<<<<< HEAD
 >>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 auto vlan10
 iface vlan10
@@ -1813,10 +1839,14 @@ line vty
 {{< /tab >}}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 To get a better understanding of how STP and LACP behave in response to various failover redundancy scenarios, read {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="this knowledge base article">}}.
 =======
 {{< tab "leaf02 ">}}
 >>>>>>> stage
+=======
+{{< tab "leaf02 ">}}
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 ```
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
@@ -1984,6 +2014,7 @@ line vty
 Use the following troubleshooting tips to check that MLAG is configured and working correctly.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 - The STP global configuration must be the same on both peer switches.
 - The STP configuration for dual-connected ports must be the same on both peer switches.
 - The STP priority must be the same on both peer switches.
@@ -1991,6 +2022,9 @@ Use the following troubleshooting tips to check that MLAG is configured and work
 =======
 ### Check MLAG Status
 >>>>>>> stage
+=======
+### Check MLAG Status
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 To check the status of your MLAG configuration, run the NCLU `net show clag` command or the Linux `clagctl` command. For example:
 

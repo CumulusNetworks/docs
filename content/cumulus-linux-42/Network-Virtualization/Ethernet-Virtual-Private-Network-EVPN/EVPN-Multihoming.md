@@ -5,6 +5,7 @@ weight: 555
 toc: 4
 ---
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 {{%notice warning%}}
 
@@ -13,6 +14,8 @@ EVPN multihoming is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge
 {{%/notice%}}
 =======
 >>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 *EVPN multihoming* (EVPN-MH) provides support for active-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG:
 

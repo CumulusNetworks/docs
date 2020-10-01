@@ -232,7 +232,10 @@ Fixed: 2.7.9-2-ds1+deb8u6</p></td>
 </tr>
 <tr>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td>CM-31150</td>
 <td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
 To work around this issue, restart switchd.</p></td>
@@ -240,7 +243,10 @@ To work around this issue, restart switchd.</p></td>
 <td></td>
 </tr>
 <tr>
+<<<<<<< HEAD
 >>>>>>> stage
+=======
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <td>CM-31148</td>
 <td><p>Counters for IPROUTER rules do not increase when traffic is forwarded to the CPU because there is no IP neighbor.</p></td>
 <td>3.7.2-3.7.13</td>

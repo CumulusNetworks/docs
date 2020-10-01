@@ -48,7 +48,7 @@ You can ignore the note on the image card because, unlike during installation, y
     deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-3.1
     ```
 
-5. Update the NetQ debian packages.
+5. Update the NetQ debian packages using the following commands.
 
     ```
     cumulus@<hostname>:~$ sudo apt-get update

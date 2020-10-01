@@ -213,7 +213,7 @@ def build_markdown_header(product, version):
     if product == "Cumulus Linux":
         weight = "-30"
     elif product == "Cumulus NetQ":
-        weight = "635"
+        weight = "30"
     output = []
 
     output.append("---\n")

@@ -57,9 +57,9 @@ And switch2's configuration looks like this:
 
         frr# configure terminal
         frr(config)# router bgp 65001
-        frr(config-router)# neighbor 192.0.2.102 password mypassword
+        frr(config-router)# neighbor 192.0.2.102 password mypassword
 
-5.  When both sides are configured properly, BGP should reestablish automatically; confirm using `show ip bgp summary` on each switch. Here is the output from switch2:  
+5.  When both sides are configured properly, BGP should reestablish automatically; confirm using `show ip bgp summary` on each switch. Here is the output from switch2:  
 
         frr# show ip bgp summary  
         BGP router identifier 192.0.2.5, local AS number 65000
@@ -102,21 +102,9 @@ This will tear down any other layer 3 sessions and affect network traffic!
 
 {{%/notice%}}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-8.  Confirm this worked using `cl-bgp summary`:  
-
-        cumulus@switch:~$ sudo cl-bgp summary 
-=======
-8.  Confirm this worked using `net show bgp summary`:  
+8.  Confirm this worked using `net show bgp summary`:  
 
         cumulus@switch:~$ net show bgp summary 
->>>>>>> stage
-=======
-8.  Confirm this worked using `net show bgp summary`:  
-
-        cumulus@switch:~$ net show bgp summary 
->>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
         BGP router identifier 192.0.2.2, local AS number 65001
         RIB entries 0, using 0 bytes of memory
         Peers 1, using 6652 bytes of memory
@@ -154,15 +142,7 @@ This will tear down any other layer 3 sessions and affect network traffic!
 
 {{%/notice%}}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-14. Confirm this worked using `cl-bgp summary`:  
-=======
-14. Confirm this worked using `net show bgp summary`:  
->>>>>>> stage
-=======
-14. Confirm this worked using `net show bgp summary`:  
->>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
+14. Confirm this worked using `net show bgp summary`:  
 
         BGP router identifier 192.0.2.5, local AS number 65000
         RIB entries 0, using 0 bytes of memory

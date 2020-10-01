@@ -96,7 +96,7 @@ To configure BGP on a switch, you need to:
 - Assign an ASN to identify this BGP node. In a two-tier leaf and spine configuration, you can use {{<link url="#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically. Auto BGP is supported with NCLU only.
 - Assign a router ID, which is a 32-bit value and is typically the address of the loopback interface on the switch.
 - Specify where to distribute routing information by providing the IP address and ASN of the neighbor.
-  - Instead of an IP address, you can specify an interface, VLAN, or BGP peer-group name.
+  - Instead of an IP address, you can specify an interface or BGP peer-group name.
   - Instead of an ASN (a number), you can specify `internal` for a neighbor in the same AS or `external` for a neighbor in a different AS.
 - Specify which prefixes to originate from this BGP node.
 

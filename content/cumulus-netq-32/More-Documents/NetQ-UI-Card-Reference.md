@@ -370,7 +370,7 @@ The full screen Network Health card displays all events in the network.
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -566,7 +566,7 @@ The full screen Alarms card provides tabs for all events.
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -757,7 +757,7 @@ The full screen Info card provides tabs for all events.
 </ul></td>
 </tr>
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -969,7 +969,7 @@ The full screen Devices Inventory card provides tabs for all switches and all ho
 </ul></td>
 </tr>
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -1762,7 +1762,7 @@ The full screen Switch card provides multiple tabs.
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -2101,7 +2101,7 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -2413,7 +2413,7 @@ The full screen BGP Session card provides tabs for all BGP sessions and all even
 </tr>
 <tr class="odd">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -3326,7 +3326,7 @@ The full screen LLDP Service card provides tabs for all switches, all sessions, 
 </ul></td>
 </tr>
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -3613,7 +3613,7 @@ The full screen LLDP Session card provides tabs for all LLDP sessions and all ev
 </tr>
 <tr class="odd">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -3955,7 +3955,7 @@ sessions, and all alarms.
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -4268,7 +4268,7 @@ and all events.
 </tr>
 <tr class="odd">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -4594,7 +4594,7 @@ The full screen OSPF Service card provides tabs for all switches, all sessions, 
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -4923,7 +4923,7 @@ and all events.
 </tr>
 <tr class="odd">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -5119,7 +5119,7 @@ validation requests.
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -5409,7 +5409,7 @@ The full screen Validation Result card provides a tab for all on-demand validati
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -5683,7 +5683,7 @@ validation results for the service.
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -5879,7 +5879,7 @@ The full screen Trace Request card displays:
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -6139,7 +6139,7 @@ The full screen On-demand Trace Results card displays:
 </tr>
 <tr class="odd">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}</td>
 </tr>
 </tbody>
 </table>
@@ -6392,7 +6392,7 @@ The full screen Scheduled Trace Results card displays:
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>

@@ -19,7 +19,6 @@ The following table summarizes the new commands available with this release. The
 | netq config add agent wjh-threshold (latency\|congestion) &lt;text-tc-list> &lt;text-port-list> &lt;text-th-hi> &lt;text-th-lo> | Configures latency and congestion thresholds for Mellanox What Just Happened (WJH). | 3.2.0 |
 | netq config del agent wjh-threshold (latency\|congestion) &lt;text-tc-list>  | Removes a Mellanox WJH threshold configuration. | 3.2.0 |
 | netq config select cli premise &lt;text-premise> | Specifies which premise to use. | 3.2.0 |
-|  |  | 3.2.0 |
 
 ## Modified Commands
 
@@ -34,4 +33,3 @@ The following table summarizes the commands that have been changed with this rel
 | netq [&lt;hostname>] show dom type (module_temp\|module_voltage) [interface &lt;text-dom-port-anchor>] [around &lt;text-time>] [json] | netq [&lt;hostname>] show dom type (module_temperature\|module_voltage) [interface &lt;text-dom-port-anchor>] [around &lt;text-time>] [json] | Renamed the `module_temperature` variable to `module_temp`. | 3.2.0 |
 | netq [&lt;hostname>] show wjh-drop &lt;text-drop-type> [ingress-port &lt;text-ingress-port>] [severity &lt;text-severity>] [reason &lt;text-reason>] [src-ip &lt;text-src-ip>] [dst-ip &lt;text-dst-ip>] [proto &lt;text-proto>] [src-port &lt;text-src-port>] [dst-port &lt;text-dst-port>] [src-mac &lt;text-src-mac>] [dst-mac &lt;text-dst-mac>] [egress-port &lt;text-egress-port>] [traffic-class &lt;text-traffic-class>] [rule-id-acl &lt;text-rule-id-acl>] [between &lt;text-time> and &lt;text-endtime>] [around &lt;text-time>] [json] | netq [&lt;hostname>] show wjh-drop &lt;text-drop-type> [ingress-port &lt;text-ingress-port>] [reason &lt;text-reason>] [src-ip &lt;text-src-ip>] [dst-ip &lt;text-dst-ip>] [proto &lt;text-proto>] [src-port &lt;text-src-port>] [dst-port &lt;text-dst-port>] [src-mac &lt;text-src-mac>] [dst-mac &lt;text-dst-mac>] [egress-port &lt;text-egress-port>] [traffic-class &lt;text-traffic-class>] [rule-id-acl &lt;text-rule-id-acl>] [between &lt;text-time> and &lt;text-endtime>] [around &lt;text-time>] [json] | Added the `severity <text-severity>` option. | 3.2.0 |
 | netq [&lt;hostname>] show wjh-drop [ingress-port &lt;text-ingress-port>] [severity &lt;text-severity>] [details] [between &lt;text-time> and &lt;text-endtime>] [around &lt;text-time>] [json]  | netq [&lt;hostname>] show wjh-drop [ingress-port &lt;text-ingress-port>] [details] [between &lt;text-time> and &lt;text-endtime>] [around &lt;text-time>] [json] | Added the `severity <text-severity>` option. | 3.2.0 |
-|  |  |  | 3.2.0 |

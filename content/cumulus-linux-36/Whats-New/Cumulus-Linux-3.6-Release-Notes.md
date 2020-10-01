@@ -1015,11 +1015,7 @@ RN-994 (CM-21332)</td>
 <td><span id="RN995"></span> <a href="#RN995"><img src="/images/knowledge-base/RT-mono.svg" width="32" /></a><br />
 RN-995 (CM-21373)</td>
 <td>Debian Security advisory DSA-4231-1/CVE-2018-0495 for libgcrypt20 package</td>
-<<<<<<< HEAD
-<td><p>Debian issued the following security advisory, DSA-4231-1, which affects the libgcrypt20 package. This advisory applies only to the the Debian Stretch release.</p>
-=======
 <td><p>Debian issued the following security advisory, DSA-4231-1, which affects the libgcrypt20 package. This advisory applies only to Debian Stretch release.</p>
->>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <p>Debian Jessie, upon which Cumulus Linux 3.0 - 3.6.2 is based, is vulnerable, but the vulnerability has not been fixed upstream in Debian yet.</p>
 <p>-------------------------------------------------------------------------</p>
 <p>Debian Security Advisory DSA-4231-1 security@debian.org</p>
@@ -2808,11 +2804,7 @@ RN-656 (CM-17617)</td>
 <td><span id="rn744"></span> <a href="#rn744"><img src="/images/knowledge-base/RT-mono.svg" width="32" /></a><br />
 RN-744 (CM-18986)</td>
 <td>Unable to modify BGP ASN for a VRF associated with layer 3 VNI</td>
-<<<<<<< HEAD
-<td><p>After editing the <code>frr.conf file</code> to modify the the BGP ASN for a VRF associated with a layer 3 VNI, the change is not applied.</p>
-=======
 <td><p>After editing the <code>frr.conf file</code> to modify BGP ASN for a VRF associated with a layer 3 VNI, the change is not applied.</p>
->>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 <p>To work around this issue, first delete the layer 3 VNI, then try to modify the BGP VRF instance.</p></td>
 </tr>
 <tr class="even">

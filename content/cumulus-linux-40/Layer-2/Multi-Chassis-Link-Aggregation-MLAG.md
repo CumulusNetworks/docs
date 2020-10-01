@@ -147,15 +147,7 @@ iface bond2
 
 {{< /tab >}}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-To prevent MAC address conflicts with other interfaces in the same bridged network, Cumulus Networks has reserved a range of MAC addresses specifically to use with MLAG. This range of MAC addresses is 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff.
-=======
 {{< /tabs >}}
->>>>>>> stage
-=======
-{{< /tabs >}}
->>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 4. Add the bonds you created above to a bridge. The example commands below add bond1 and bond2 to a VLAN-aware bridge.
 
@@ -217,19 +209,7 @@ The NCLU command is a macro command that:
 - Configures the peer link IP address (`primary` is the link-local address)
 - Adds the MLAG system MAC address, the MLAG bond interfaces, and the backup IP address you specify
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-- Choose an unused VLAN (also known as a *switched virtual interface* or *SVI* here).
-- Assign the SVI an unrouteable link-local address to give the peer switches layer 3 connectivity between each other.
-- Configure the VLAN as a {{<link url="Interface-Configuration-and-Management" text="VLAN subinterface">}} on the peer link bond instead of the VLAN-aware bridge, called *peerlink*. If you configure the subinterface with {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}, the VLAN subinterface is named 4094 by default (the subinterface named *peerlink.4094* below). If you are configuring the peer link  without NCLU, Cumulus Networks still recommends you use 4094 for the peer link VLAN if possible. This ensures that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
-- Include untagged traffic on the peer link, as this avoids issues with STP.
-- Specify a backup interface, which is any layer 3 backup interface for your peer links in case the peer link goes down. More information about configuring the {{<link url="#specify-a-backup-link" text="backup link">}} and understanding various {{<link url="#failover-redundancy-scenarios" text="redundancy scenarios">}} is available below.
-=======
    {{< tabs "TabID222 ">}}
->>>>>>> stage
-=======
-   {{< tabs "TabID222 ">}}
->>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 {{< tab "leaf01 ">}}
 
@@ -242,21 +222,9 @@ cumulus@leaf01:~$ net commit
 To configure the backup link to a VRF, include the name of the VRF with the `backup-ip` parameter. The following example configures the backup link to VRF RED:
 
 ```
-<<<<<<< HEAD
-<<<<<<< HEAD
-cumulus@switch:~$ net add clag peer sys-mac 44:38:39:FF:40:94 interface swp49-50 primary backup-ip 192.0.2.50
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-=======
 cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2 vrf RED
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
->>>>>>> stage
-=======
-cumulus@leaf01:~$ net add clag peer sys-mac 44:38:39:BE:EF:AA interface swp49-50 primary backup-ip 10.10.10.2 vrf RED
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
->>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 ```
 
 {{< /tab >}}
@@ -1107,71 +1075,6 @@ iface bond3
 
 {{< tab "leaf02 ">}}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-To check the status of your MLAG configuration, run the NCLU `net show clag` command or the Linux `clagctl` command. For example:
-
-``` 
-cumulus@switch:~$ net show clag 
-The peer is alive
-    Peer Priority, ID, and Role: 4096 44:38:39:FF:00:01 primary
-     Our Priority, ID, and Role: 8192 44:38:39:FF:00:02 secondary
-          Peer Interface and IP: peerlink.4094 linklocal
-                      Backup IP: 192.168.1.12 (inactive)
-                     System MAC: 44:38:39:FF:00:01
-
-CLAG Interfaces
-Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
-----------------   ----------------   -------   --------------------   -----------------
-         server1   server1            1         -                      -
-         server2   server2            2         -                      -
-```
-
-## Configure MLAG with a Bridge in Traditional Mode
-
-To configure MLAG with a traditional mode bridge instead of {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}, the peer link and all dual-connected links must be configured as {{<link url="Traditional-Bridge-Mode" text="untagged/native">}} ports on a bridge (note the absence of any VLANs in the bridge-ports line and the lack of the bridge-vlan-aware parameter below):
-
-```
-...
-auto br0
-iface br0
-    bridge-ports peerlink spine1-2 host1 host2
-...
-```
-
-The following example shows you how to allow VLAN 100 across the peer link:
-
-```
-...
-auto br0.100
-iface br0.100
-    bridge-ports peerlink.100 bond1.100
-    bridge-stp on
-...
-```
-
-For a deeper comparison of traditional versus VLAN-aware bridge modes, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode/" text="knowledge base article">}}.
-
-## Peer Link Interfaces and the protodown State
-
-In addition to the standard UP and DOWN administrative states, an interface that is a member of an MLAG bond can also be in a `protodown` state. When MLAG detects a problem that might result in connectivity issues, it can put that interface into `protodown` state. Such connectivity issues include:
-
-- When the peer link goes down but the peer switch is up (the backup link is active).
-- When the bond is configured with an MLAG ID, but the `clagd` service is not running (whether it was deliberately stopped or simply dies).
-- When an MLAG-enabled node is booted or rebooted, the MLAG bonds are placed in a `protodown` state until the node establishes a connection to its peer switch, or five minutes have elapsed.
-
-When an interface goes into a `protodown` state, it results in a local OPER DOWN (carrier down) on the interface.
-
-To show an interface in `protodown` state, run the NCLU `net show bridge link` command or the Linux `ip link show` command. For example:
-
-```
-cumulus@switch:~$ net show bridge link
-3: swp1 state DOWN: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> mtu 9216 master pfifo_fast master host-bond1 state DOWN mode DEFAULT qlen 500 protodown on
-    link/ether 44:38:39:00:69:84 brd ff:ff:ff:ff:ff:ff
-=======
->>>>>>> stage
-=======
->>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 ```
 cumulus@leaf02:~$ cat /etc/network/interfaces
 auto lo
@@ -1428,19 +1331,9 @@ iface mgmt
     address 127.0.0.1/8
     address ::1/128
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-Be aware of an existing issue when you use NCLU to create an iBGP peering, it creates an eBGP peering instead. For more information, see {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux-37/Whats-New/rn/#CM-23417" text="this release note">}}.
-=======
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
->>>>>>> stage
-=======
-auto eth0
-iface eth0 inet dhcp
-    vrf mgmt
->>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 auto bridge
 iface bridge
@@ -1654,15 +1547,7 @@ line vty
 
 {{< /tab >}}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-To get a better understanding of how STP and LACP behave in response to various failover redundancy scenarios, read {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Interfaces/MLAG-Redundancy-Scenarios/" text="this knowledge base article">}}.
-=======
 {{< tab "leaf02 ">}}
->>>>>>> stage
-=======
-{{< tab "leaf02 ">}}
->>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 ```
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
@@ -1829,18 +1714,7 @@ line vty
 
 Use the following troubleshooting tips to check that MLAG is configured and working correctly.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-- The STP global configuration must be the same on both peer switches.
-- The STP configuration for dual-connected ports must be the same on both peer switches.
-- The STP priority must be the same on both peer switches.
-- To minimize convergence times when a link transitions to the forwarding state, configure the edge ports (for tagged and untagged frames) with PortAdminEdge and BPDU guard enabled.
-=======
 ### Check MLAG Status
->>>>>>> stage
-=======
-### Check MLAG Status
->>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 To check the status of your MLAG configuration, run the NCLU `net show clag` command or the Linux `clagctl` command. For example:
 

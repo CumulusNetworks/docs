@@ -428,10 +428,10 @@ monitored nodes and their configuration information, as follows:
      
     [
       {
-        "hostname": "exit-1",
+        "hostname": "border01",
         "timestamp": 1556037425658,
         "asic_model": "A-Z",
-        "agent_version": "2.1.1-cl3u16~1556035513.afedb69",
+        "agent_version": "3.2.0-cl4u30~1601403318.104fb9ed",
         "os_version": "A.2.0",
         "license_state": "ok",
         "disk_total_size": "10 GB",
@@ -459,7 +459,7 @@ monitored nodes and their configuration information, as follows:
         "hostname": "exit-2",
         "timestamp": 1556037432361,
         "asic_model": "C-Z",
-        "agent_version": "2.1.1-cl3u16~1556035513.afedb69",
+        "agent_version": "3.2.0-cl4u30~1601403318.104fb9ed",
         "os_version": "C.2.0",
         "license_state": "N/A",
         "disk_total_size": "30 GB",

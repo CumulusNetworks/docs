@@ -187,8 +187,8 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
         ```
         cumulus@<hostname>:~$ dpkg -l | grep netq
-        ii  netq-agent   3.2.0-ub18.04u30~1601400261.104fb9e_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-        ii  netq-apps    3.2.0-ub18.04u30~1601400261.104fb9e_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+        ii  netq-agent   3.2.0-ub18.04u30~1601400975.104fb9e_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+        ii  netq-apps    3.2.0-ub18.04u30~1601400975.104fb9e_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
 
         cumulus@<hostname>:~$ cd /mnt/installables/
         cumulus@<hostname>:/mnt/installables$ ls

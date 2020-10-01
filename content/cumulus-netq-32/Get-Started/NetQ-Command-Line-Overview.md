@@ -140,7 +140,7 @@ As you enter commands, you can get help with command syntax by entering `help` a
 ```
 cumulus@switch:~$ netq check bgp help
 Commands:
-    netq check bgp [hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
+    netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
 ```
 
 To see an exhaustive list of commands, run:
@@ -299,6 +299,7 @@ details about the current or historical configuration and status of the
 various protocols or services. The configuration and status can be shown
 for the following:
 
+- **address-history**: Address history info for a IP address / prefix
 - **agents**: NetQ Agents status on switches and hosts
 - **bgp**: BGP status across the network fabric
 - **cl-btrfs-info**: BTRFS file system data for monitored Cumulus Linux switches
@@ -307,8 +308,10 @@ for the following:
 - **cl-resource**: ACL and forwarding information
 - **cl-ssd-util**: SSD utilization information
 - **clag**: CLAG/MLAG status
+- **dom**: Digital Optical Monitoring
 - **ethtool-stats**: Interface statistics
 - **events**: Display changes over time
+- **events-config**: Events configured for suppression
 - **evpn**: EVPN status
 - **interface-stats**: Interface statistics
 - **interface-utilization**: Interface statistics plus utilization
@@ -319,10 +322,12 @@ for the following:
 - **job-status**: status of upgrade jobs running on the appliance or VM
 - **kubernetes**: Kubernetes cluster, daemon, pod, node, service and replication status
 - **lldp**: LLDP status
+- **mac-commentary**: MAC commentary info for a MAC address
 - **mac-history**: Historical information for a MAC address
 - **macs**: MAC table or address information
 - **mlag**: MLAG status (an alias for CLAG)
-- **notification**: Slack or PagerDuty notification configurations
+- **neighbor-history**:  Neighbor history info for an IP address
+- **notification**: Send notifications to Slack or PagerDuty
 - **ntp**: NTP status
 - **opta-health**: Display health of apps on the OPTA
 - **opta-platform**: NetQ Appliance version information and uptime

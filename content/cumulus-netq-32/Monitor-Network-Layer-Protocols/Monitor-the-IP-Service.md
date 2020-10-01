@@ -408,6 +408,158 @@ node.
     cumulus@switch:~$ netq leaf01 show ipv6 routes count
     Count of matching routes records: 5
 
+### View the History of an IP Address
+
+It is useful when debugging to be able to see when the IP address configuration changed for an interface. The `netq show address-history` command makes this information available. It enables you to see:
+
+- each change that was made chronologically
+- changes made between two points in time, using the `between` option
+- only the difference between to points in time using the `diff` option
+- to order the output by selected output fields using the `listby` option
+- each change that was made for the IP address on a particular interface, using the `ifname` option
+
+And as with many NetQ commands, the default time range used is now to one hour ago. You can view the output in JSON format as well.
+
+The syntax of the command is:
+
+```
+netq [<hostname>] show address-history <text-prefix> [ifname <text-ifname>] [vrf <text-vrf>] [diff] [between <text-time> and <text-endtime>] [listby <text-list-by>] [json]
+```
+
+{{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
+
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
+
+For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+
+{{%/notice%}}
+
+This example shows how to view a full chronology of changes for an IP address. If a caret (^) notation appeared, it would indicate that there was no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show address-history 10.1.10.2/24
+
+Matching addresshistory records:
+Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
+------------------------- ----------------- ------------ ------------------------------ -------- ---------------
+Tue Sep 29 15:35:21 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 15:35:24 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:24:59 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:24:59 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:05 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:05 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:07 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:08 2020  leaf01            vlan10       10.1.10.2                      24       RED
+```
+
+This example shows how to view the history of an IP address by hostname. If a caret (^) notation appeared, it would indicate that there was no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show address-history 10.1.10.2/24 listby hostname
+
+Matching addresshistory records:
+Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
+------------------------- ----------------- ------------ ------------------------------ -------- ---------------
+Tue Sep 29 17:25:08 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:07 2020  leaf03            vlan10       10.1.10.2                      24       RED
+```
+
+This example shows show to view the history of an IP address between now and two hours ago. If a caret (^) notation appeared, it would indicate that there was no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show address-history 10.1.10.2/24 between 2h and now
+
+Matching addresshistory records:
+Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
+------------------------- ----------------- ------------ ------------------------------ -------- ---------------
+Tue Sep 29 15:35:21 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 15:35:24 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:24:59 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:24:59 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:05 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:05 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:07 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:08 2020  leaf01            vlan10       10.1.10.2                      24       RED
+```
+
+### View the Neighbor History for an IP Address
+
+It is useful when debugging to be able to see when the neighbor configuration changed for an IP address. The `netq show neighbor-history` command makes this information available. It enables you to see:
+
+- each change that was made chronologically
+- changes made between two points in time, using the `between` option
+- only the difference between to points in time using the `diff` option
+- to order the output by selected output fields using the `listby` option
+- each change that was made for the IP address on a particular interface, using the `ifname` option
+
+And as with many NetQ commands, the default time range used is now to one hour ago. You can view the output in JSON format as well.
+
+The syntax of the command is:
+
+```
+netq [<hostname>] show neighbor-history <text-ipaddress> [ifname <text-ifname>] [diff] [between <text-time> and <text-endtime>] [listby <text-list-by>] [json]
+```
+
+{{%notice note%}}
+When entering a time value, you must include a numeric value *and* the unit of measure:
+
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
+
+For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+
+{{%/notice%}}
+
+This example shows how to view a full chronology of changes for an IP address neighbor. If a caret (^) notation appeared, it would indicate that there was no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show neighbor-history 10.1.10.2
+
+Matching neighborhistory records:
+Last Changed              Hostname          Ifname       Vrf             Remote Ifindex        Mac Address        Ipv6     Ip Address
+------------------------- ----------------- ------------ --------------- ------ -------------- ------------------ -------- -------------------------
+Tue Sep 29 17:25:08 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 17:25:17 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+```
+
+This example shows how to view the history of an IP address neighbor by hostname. If a caret (^) notation appeared, it would indicate that there was no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show neighbor-history 10.1.10.2 listby hostname
+
+Matching neighborhistory records:
+Last Changed              Hostname          Ifname       Vrf             Remote Ifindex        Mac Address        Ipv6     Ip Address
+------------------------- ----------------- ------------ --------------- ------ -------------- ------------------ -------- -------------------------
+Tue Sep 29 17:25:08 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 17:25:17 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+```
+
+This example shows show to view the history of an IP address neighbor between now and two hours ago. If a caret (^) notation appeared, it would indicate that there was no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show neighbor-history 10.1.10.2 between 2h and now
+
+Matching neighborhistory records:
+Last Changed              Hostname          Ifname       Vrf             Remote Ifindex        Mac Address        Ipv6     Ip Address
+------------------------- ----------------- ------------ --------------- ------ -------------- ------------------ -------- -------------------------
+Tue Sep 29 15:35:18 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 15:35:22 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+Tue Sep 29 17:25:00 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 17:25:08 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+Tue Sep 29 17:25:08 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 17:25:14 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+```
+
 ## Monitor BGP Configuration
 
 If you have BGP running on your switches and hosts, you can monitor its

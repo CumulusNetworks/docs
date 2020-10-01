@@ -9,7 +9,6 @@ cascade:
     version: "3.2"
     imgData: cumulus-netq
     siteSlug: cumulus-netq
-    draft: true
 ---
 Cumulus NetQ {{<version>}} eases your customers deployment and maintenance activities for their data center networks with new configuration, performance, and security features and improvements.
 

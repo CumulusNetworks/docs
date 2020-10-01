@@ -80,76 +80,6 @@ The first step is to create a PagerDuty, Slack, syslog, or Email channel to rece
 
 {{< tabs "TabID81" >}}
 
-{{< tab "PagerDuty" >}}
-
-You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
-
-{{< tabs "TabID125" >}}
-
-{{< tab "NetQ UI" >}}
-
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
-
-    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
-
-    {{<figure src="/images/netq/channels-nopagerduty-created-320.png" width="700">}}
-
-2. Click **PagerDuty**.
-
-    {{<figure src="/images/netq/channels-nopagerduty-created-320.png" width="700">}}
-
-3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
-
-4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
-
-    {{<figure src="/images/netq/channels-add-pagerduty-300.png" width="250">}}
-
-5. Obtain and enter an integration key (also called a service key or routing key).
-
-6. Click **Add**.
-
-7. Verify it is correctly configured.
-
-8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
-
-{{< /tab >}}
-
-{{< tab "NetQ CLI" >}}
-
-To create and verify the specification of a PagerDuty channel, run:
-
-```
-netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
-netq show notification channel [json]
-```
-
-This example shows the creation of a *pd-netq-events* channel and verifies the configuration.
-
-1. Obtain an integration key as described in this PagerDuty {{<exlink url="https://support.pagerduty.com/docs/services-and-integrations#section-events-api-v2" text="support page">}}.
-
-2. Create the channel.
-
-    ```
-    cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
-    Successfully added/updated channel pd-netq-events
-    ```
-3. Verify the configuration.
-
-    ```
-    cumulus@switch:~$ netq show notification channel
-    Matching config_notify records:
-    Name            Type             Severity         Channel Info
-    --------------- ---------------- ---------------- ------------------------
-    pd-netq-events  pagerduty        info             integration-key: c6d666e
-                                                    210a8425298ef7abde0d1998
-    ```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-{{< /tab >}}
-
 {{< tab "Slack" >}}
 
 You can use the NetQ UI or the NetQ CLI to create a Slack channel.
@@ -160,13 +90,16 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
 
-    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+    {{<figure src="/images/netq/main-menu-channels-selected-320.png" width="600">}}
 
 2. The **Slack** tab is displayed by default.
 
-    {{<figure src="/images/netq/channels-none-created-300.png" width="700">}}
+    {{<figure src="/images/netq/channels-noslack-created-320.png" width="700">}}
 
-3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+3. Add a channel.
+
+    - When no channels have been specified, click **Add Slack Channel**.
+    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
 
 4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
 
@@ -176,9 +109,13 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 6. Click **Add**.
 
-    {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
+7. To verify the channel configuration, click **Test**.
 
-7. Verify the channel configuration.
+    {{<figure src="/images/netq/channels-verify-slack-320.png" width="250">}}
+
+<div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
+
+    {{<figure src="/images/netq/channels-slack-created-320.png" width="700">}}
 
 8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
@@ -222,6 +159,83 @@ This example shows the creation of a *slk-netq-events* channel and verifies the 
 
 {{< /tab >}}
 
+{{< tab "PagerDuty" >}}
+
+You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
+
+{{< tabs "TabID125" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
+
+    {{<figure src="/images/netq/main-menu-channels-selected-320.png" width="600">}}
+
+2. Click **PagerDuty**.
+
+    {{<figure src="/images/netq/channels-nopagerduty-created-320.png" width="700">}}
+
+3. Add a channel.
+
+    - When no channels have been specified, click **Add PagerDuty Channel**.
+    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+
+4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
+
+    {{<figure src="/images/netq/channels-add-pagerduty-300.png" width="250">}}
+
+5. Obtain and enter an integration key (also called a service key or routing key).
+
+6. Click **Add**.
+
+7. Verify it is correctly configured.
+
+    {{<figure src="/images/netq/channels-verify-pagerduty-320.png" width="250">}}
+
+<div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
+
+    {{<figure src="/images/netq/channels-pagerduty-created-320.png" width="700">}}
+
+8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To create and verify the specification of a PagerDuty channel, run:
+
+```
+netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
+netq show notification channel [json]
+```
+
+This example shows the creation of a *pd-netq-events* channel and verifies the configuration.
+
+1. Obtain an integration key as described in this PagerDuty {{<exlink url="https://support.pagerduty.com/docs/services-and-integrations#section-events-api-v2" text="support page">}}.
+
+2. Create the channel.
+
+    ```
+    cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
+    Successfully added/updated channel pd-netq-events
+    ```
+3. Verify the configuration.
+
+    ```
+    cumulus@switch:~$ netq show notification channel
+    Matching config_notify records:
+    Name            Type             Severity         Channel Info
+    --------------- ---------------- ---------------- ------------------------
+    pd-netq-events  pagerduty        info             integration-key: c6d666e
+                                                    210a8425298ef7abde0d1998
+    ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
 {{< tab "Syslog" >}}
 
 You can use the NetQ UI or the NetQ CLI to create a Slack channel.
@@ -232,13 +246,16 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Channels** in the **Notifications** column.
 
-    {{<figure src="/images/netq/main-menu-channels-selected-300.png" width="600">}}
+    {{<figure src="/images/netq/main-menu-channels-selected-320.png" width="600">}}
 
 2. Click **Syslog**.
 
     {{<figure src="/images/netq/channels-nosyslog-created-320.png" width="700">}}
 
-3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+3. Add a channel.
+
+    - When no channels have been specified, click **Add Syslog Channel**.
+    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
 
 4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
 
@@ -248,7 +265,13 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 6. Click **Add**.
 
-7. Verify the channel configuration.
+7. To verify the channel configuration, click **Test**.
+
+    {{<figure src="/images/netq/channels-verify-syslog-320.png" width="250">}}
+
+<div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
+
+    {{<figure src="/images/netq/channels-syslog-created-320.png" width="700">}}
 
 8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
@@ -305,23 +328,41 @@ You can use the NetQ UI or the NetQ CLI to create an Email channel.
 
 2. Click **Email**.
 
-    {{<figure src="/images/netq/channels-nosyslog-created-320.png" width="700">}}
-<!-- change to noemail -->
+    {{<figure src="/images/netq/channels-noemail-created-320.png" width="700">}}
 
-3. When no channels have been specified, click on the note. When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+3. Add a channel.
+
+    - When no channels have been specified, click **Add Email Channel**.
+    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
 
 4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
 
-    {{<figure src="/images/netq/channels-add-syslog-300.png" width="250">}}
-<!-- change to email modal -->
+    {{<figure src="/images/netq/channels-add-email-320.png" width="250">}}
 
-5. On prem vs cloud steps
+5. Enter a list of emails for the persons who you want to receive the notifications from this channel.
 
-6. Click **Add**.
+    Enter the emails separated by commas, and no spaces. For example: `user1@domain.com,user2@domain.com,user3@domain.com`.
 
-7. Verify the channel configuration.
+6. The first time you configure an Email channel, you must also specify the SMTP server information:
 
-8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
+    - **Host**: hostname or IP address of the SMTP server
+    - **Port**: port of the SMTP server; typically 587
+    - **User ID/Password**: your administrative credentials
+    - **From**: email address that indicates who sent the event messages
+
+    After the first time, any additional email channels you create can use this configuration, by clicking **Existing**.
+
+7. Click **Add**.
+
+8. To verify the channel configuration, click **Test**.
+
+    {{<figure src="/images/netq/channels-verify-email-320.png" width="250">}}
+
+<div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
+
+    {{<figure src="/images/netq/channels-email-created-320.png" width="700">}}
+
+9. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
 {{< /tab >}}
 

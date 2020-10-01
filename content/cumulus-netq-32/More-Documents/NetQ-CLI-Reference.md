@@ -860,64 +860,30 @@ Sample Usage
 View status of all nodes with NetQ Agent installed
 cumulus@ts:~$ netq show agents 
 Matching agents records:
-Hostname          Status   Ntp Sync Version                              Sys Uptime       Agent Uptime     Reinitialize Time Last Changed
------------------ -------- -------- ------------------------------------ ---------------- ---------------- ----------------- ----------------
-leaf01            Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:3h:2m:2s      5d:22h:45m:51s   2d:4h:41m:40s     28.137927s
-leaf02            Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:3h:1m:8s      5d:22h:45m:51s   5d:22h:45m:51s    34.329079s
-leaf03            Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:2h:51m:27s    5d:22h:45m:51s   5d:22h:45m:51s    34.255498s
-leaf04            Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:2h:17m:9s     5d:22h:45m:51s   3d:1h:13m:54s     28.157356s
-switch   Fresh    yes      1.4.0-cl3u10~1525711818.58b9c8f      3d:11h:11m:17s   3d:2h:27m:15s    1h:35m:45s        7.403976s
-server01          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:45m:22s   5d:22h:45m:10s   1h:29m:55s        14.419982s
-server02          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:45m:23s   5d:22h:45m:11s   5d:22h:45m:11s    27.308800s
-server03          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:45m:23s   5d:22h:45m:11s   5d:22h:45m:11s    32.846753s
-server04          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:45m:23s   5d:22h:45m:11s   5d:22h:45m:11s    13.621251s
-spine01           Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:1h:43m:48s    5d:22h:45m:51s   1h:35m:51s        34.732541s
-spine02           Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:1h:17m:45s    5d:22h:45m:51s   5d:22h:45m:51s    33.547232s
-View the changes made to all nodes with NetQ Agents
-cumulus@ts:~$ netq show agents changes
-Matching agents records:
-Hostname          Status   Ntp Sync Version                              Sys Uptime       Agent Uptime     Reinitialize Time DbState Last Changed
------------------ -------- -------- ------------------------------------ ---------------- ---------------- ----------------- ------- ----------------
-leaf01            Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:3h:10m:21s    5d:22h:54m:10s   2d:4h:49m:59s     Add     4.663792s
-leaf04            Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:2h:25m:28s    5d:22h:54m:10s   3d:1h:22m:13s     Add     4.684531s
-spine02           Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:1h:26m:4s     5d:22h:54m:10s   5d:22h:54m:10s    Add     10.170339s
-leaf02            Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:3h:9m:27s     5d:22h:54m:10s   5d:22h:54m:10s    Add     11.16940s
-leaf03            Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:2h:59m:46s    5d:22h:54m:10s   5d:22h:54m:10s    Add     11.26031s
-spine01           Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:1h:52m:7s     5d:22h:54m:10s   1h:44m:10s        Add     11.425411s
-server02          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:53m:42s   5d:22h:53m:30s   5d:22h:53m:30s    Add     15.534822s
-server03          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:53m:42s   5d:22h:53m:30s   5d:22h:53m:30s    Add     21.55112s
-switch   Fresh    yes      1.4.0-cl3u10~1525711818.58b9c8f      3d:11h:19m:36s   3d:2h:35m:34s    1h:44m:4s         Add     25.864434s
-server04          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:53m:42s   5d:22h:53m:30s   5d:22h:53m:30s    Add     31.892525s
-server01          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:53m:41s   5d:22h:53m:29s   1h:38m:14s        Add     32.629745s
-server01          Fresh    no       1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:53m:41s   5d:22h:53m:29s   1h:38m:14s        Add     12m:33.830s
-server02          Fresh    no       1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:53m:42s   5d:22h:53m:30s   5d:22h:53m:30s    Add     1h:20m:22s
-server04          Fresh    no       1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:53m:42s   5d:22h:53m:30s   5d:22h:53m:30s    Add     1h:21m:9s
-spine01           Fresh    no       1.3.0-cl3u9~1522970647.b08ca60       6d:1h:52m:7s     5d:22h:54m:10s   1h:44m:10s        Add     1h:27m:15s
-server03          Fresh    no       1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:53m:42s   5d:22h:53m:30s   5d:22h:53m:30s    Add     1h:28m:59s
-leaf02            Fresh    no       1.3.0-cl3u9~1522970647.b08ca60       6d:3h:9m:27s     5d:22h:54m:10s   5d:22h:54m:10s    Add     1h:32m:25s
-leaf04            Fresh    no       1.3.0-cl3u9~1522970647.b08ca60       6d:2h:25m:28s    5d:22h:54m:10s   3d:1h:22m:13s     Add     1h:33m:19s
-leaf01            Fresh    no       1.3.0-cl3u9~1522970647.b08ca60       6d:3h:10m:21s    5d:22h:54m:10s   2d:4h:49m:59s     Add     1h:34m:51s
-spine02           Fresh    no       1.3.0-cl3u9~1522970647.b08ca60       6d:1h:26m:4s     5d:22h:54m:10s   5d:22h:54m:10s    Add     1h:35m:26s
-leaf03            Fresh    no       1.3.0-cl3u9~1522970647.b08ca60       6d:2h:59m:46s    5d:22h:54m:10s   5d:22h:54m:10s    Add     1h:35m:59s
-switch   Fresh    no       1.4.0-cl3u10~1525711818.58b9c8f      3d:11h:19m:36s   3d:2h:35m:34s    1h:44m:4s         Add     1h:39m:32s
-server01          Fresh    no       1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:53m:41s   5d:22h:53m:29s   5d:22h:53m:29s    Add     3h:2m:4s
-server01          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   5d:22h:53m:41s   5d:22h:53m:29s   5d:22h:53m:29s    Add     3h:4m:34s
-switch   Fresh    no       1.4.0-cl3u10~1525711818.58b9c8f      3d:11h:19m:36s   3d:2h:35m:34s    3d:2h:35m:34s     Add     3h:7m:53s
-spine01           Fresh    no       1.3.0-cl3u9~1522970647.b08ca60       6d:1h:52m:7s     5d:22h:54m:10s   1d:5h:28m:25s     Add     3h:8m:2s
-switch   Fresh    yes      1.4.0-cl3u10~1525711818.58b9c8f      3d:11h:19m:36s   3d:2h:35m:34s    3d:2h:35m:34s     Add     1d:2h:19m:37s
-spine01           Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:1h:52m:7s     5d:22h:54m:10s   1d:5h:28m:25s     Add     1d:2h:21m:50s
-spine01           Fresh    no       1.3.0-cl3u9~1522970647.b08ca60       6d:1h:52m:7s     5d:22h:54m:10s   2d:4h:49m:56s     Add     1d:6h:25m:14s
-spine01           Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:1h:52m:7s     5d:22h:54m:10s   2d:4h:49m:56s     Add     1d:20h:35m:21s
-spine01           Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:1h:52m:7s     5d:22h:54m:10s   5d:22h:54m:10s    Add     2d:20h:56m:47s
-leaf01            Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:3h:10m:21s    5d:22h:54m:10s   5d:22h:54m:10s    Add     2d:20h:56m:51s
-leaf01            Fresh    no       1.3.0-cl3u9~1522970647.b08ca60       6d:3h:10m:21s    5d:22h:54m:10s   5d:22h:54m:10s    Add     3d:0h:31m:27s
-spine01           Fresh    no       1.3.0-cl3u9~1522970647.b08ca60       6d:1h:52m:7s     5d:22h:54m:10s   5d:22h:54m:10s    Add     3d:1h:32m:17s
-leaf04            Fresh    yes      1.3.0-cl3u9~1522970647.b08ca60       6d:2h:25m:28s    5d:22h:54m:10s   5d:22h:54m:10s    Add     3d:1h:33m:3s
-leaf04            Fresh    no       1.3.0-cl3u9~1522970647.b08ca60       6d:2h:25m:28s    5d:22h:54m:10s   5d:22h:54m:10s    Add     3d:1h:39m:42s
-server03          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   6d:0h:5m:11s     5d:22h:54m:47s   5d:22h:54m:47s    Add     5d:22h:54m:14s
-server01          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   6d:0h:13m:1s     5d:22h:54m:47s   5d:22h:54m:47s    Add     5d:22h:54m:14s
-server02          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   6d:0h:11m:53s    5d:22h:54m:47s   5d:22h:54m:47s    Add     5d:22h:54m:14s
-server04          Fresh    yes      1.3.0-ub16.04u9~1522971904.b08ca60   6d:0h:2m:5s      5d:22h:54m:47s   5d:22h:54m:47s    Add     5d:22h:54m:14s
+Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
+----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
+border01          Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:54 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:38 2020
+border02          Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:57 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:33 2020
+fw1               Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:44 2020  Tue Sep 29 21:24:48 2020  Tue Sep 29 21:24:48 2020   Thu Oct  1 16:07:26 2020
+fw2               Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:42 2020  Tue Sep 29 21:24:48 2020  Tue Sep 29 21:24:48 2020   Thu Oct  1 16:07:22 2020
+leaf01            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 16:49:04 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:07:10 2020
+leaf02            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:14 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:07:30 2020
+leaf03            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:37 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:07:24 2020
+leaf04            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:35 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:13 2020
+oob-mgmt-server   Fresh            yes      3.1.1-ub18.04u29~1599111022.78b9e43  Mon Sep 21 16:43:58 2020  Mon Sep 21 17:55:00 2020  Mon Sep 21 17:55:00 2020   Thu Oct  1 16:07:31 2020
+server01          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:16 2020
+server02          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:24 2020
+server03          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:56 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:12 2020
+server04          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:17 2020
+server05          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:25 2020
+server06          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:21 2020
+server07          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:06:48 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:28 2020
+server08          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:06:45 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:31 2020
+spine01           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:34 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:20 2020
+spine02           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:33 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:16 2020
+spine03           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:34 2020  Tue Sep 29 21:25:07 2020  Tue Sep 29 21:25:07 2020   Thu Oct  1 16:07:20 2020
+spine04           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:32 2020  Tue Sep 29 21:25:07 2020  Tue Sep 29 21:25:07 2020   Thu Oct  1 16:07:33 2020
+
 View status of all nodes with NetQ Agents, and display the results in JSON format
 cumulus@ts:~$ netq show agents json
 {

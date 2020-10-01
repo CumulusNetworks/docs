@@ -282,11 +282,11 @@ the timestamp.
 When retrieving the timestamp, command outputs display the time in three
 ways:
 
-  - For non-JSON output when the timestamp represents the Last Changed
-    time, time is displayed in actual date and time when the time change occurred
-  - For non-JSON output when the timestamp represents an Uptime, time is
-    displayed as days, hours, minutes, and seconds from the current time
-  - For JSON output, time is displayed in microseconds that have passed since the Epoch time (January 1, 1970 at 00:00:00 GMT)
+- For non-JSON output when the timestamp represents the Last Changed
+time, time is displayed in actual date and time when the time change occurred
+- For non-JSON output when the timestamp represents an Uptime, time is
+displayed as days, hours, minutes, and seconds from the current time
+- For JSON output, time is displayed in microseconds that have passed since the Epoch time (January 1, 1970 at 00:00:00 GMT)
 
 This example shows the difference between the timestamp displays.
 
@@ -308,100 +308,244 @@ This example shows the difference between the timestamp displays.
     Matching agents records:
     Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
     ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-    leaf01            Fresh            yes      2.0.0-cl3u11~1549993210.e902a94      2h:32m:33s                2h:26m:19s                2h:26m:19s                 Tue Feb 12 18:13:28 2019
-    leaf02            Fresh            yes      2.0.0-cl3u11~1549993210.e902a94      2h:32m:33s                2h:26m:14s                2h:26m:14s                 Tue Feb 12 18:13:33 2019
-    leaf11            Fresh            yes      2.0.0-ub16.04u11~1549993314.e902a94  2h:32m:28s                2h:25m:49s                2h:25m:49s                 Tue Feb 12 18:17:32 2019
-    leaf12            Fresh            yes      2.0.0-rh7u11~1549992132.c42c08f      2h:32m:0s                 2h:25m:44s                2h:25m:44s                 Tue Feb 12 18:17:36 2019
-    leaf21            Fresh            yes      2.0.0-ub16.04u11~1549993314.e902a94  2h:32m:28s                2h:25m:39s                2h:25m:39s                 Tue Feb 12 18:17:42 2019
-    leaf22            Fresh            yes      2.0.0-rh7u11~1549992132.c42c08f      2h:32m:0s                 2h:25m:35s                2h:25m:35s                 Tue Feb 12 18:17:46 2019
-    spine01           Fresh            yes      2.0.0-cl3u11~1549993210.e902a94      2h:32m:33s                2h:27m:11s                2h:27m:11s                 Tue Feb 12 18:13:06 2019
-    spine02           Fresh            yes      2.0.0-cl3u11~1549993210.e902a94      2h:32m:33s                2h:27m:6s                 2h:27m:6s                  Tue Feb 12 18:13:11 2019
-    ...
+    border01          Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:54 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:38 2020
+    border02          Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:57 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:33 2020
+    fw1               Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:44 2020  Tue Sep 29 21:24:48 2020  Tue Sep 29 21:24:48 2020   Thu Oct  1 16:07:26 2020
+    fw2               Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:42 2020  Tue Sep 29 21:24:48 2020  Tue Sep 29 21:24:48 2020   Thu Oct  1 16:07:22 2020
+    leaf01            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 16:49:04 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:07:10 2020
+    leaf02            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:14 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:07:30 2020
+    leaf03            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:37 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:07:24 2020
+    leaf04            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:35 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:13 2020
+    oob-mgmt-server   Fresh            yes      3.1.1-ub18.04u29~1599111022.78b9e43  Mon Sep 21 16:43:58 2020  Mon Sep 21 17:55:00 2020  Mon Sep 21 17:55:00 2020   Thu Oct  1 16:07:31 2020
+    server01          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:16 2020
+    server02          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:24 2020
+    server03          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:56 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:12 2020
+    server04          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:17 2020
+    server05          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:25 2020
+    server06          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:21 2020
+    server07          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:06:48 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:28 2020
+    server08          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:06:45 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:31 2020
+    spine01           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:34 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:20 2020
+    spine02           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:33 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:16 2020
+    spine03           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:34 2020  Tue Sep 29 21:25:07 2020  Tue Sep 29 21:25:07 2020   Thu Oct  1 16:07:20 2020
+    spine04           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:32 2020  Tue Sep 29 21:25:07 2020  Tue Sep 29 21:25:07 2020   Thu Oct  1 16:07:33 2020
      
     cumulus@switch:~$ netq show agents json
     {
         "agents":[
             {
+                "hostname":"border01",
                 "status":"Fresh",
-                "lastChanged":1549995208.3039999008,
-                "reinitializeTime":1549995146.0,
+                "ntpSync":"yes",
+                "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+                "sysUptime":1600707894.0,
+                "agentUptime":1601414698.0,
+                "reinitializeTime":1601414698.0,
+                "lastChanged":1601568519.0
+            },
+            {
+                "hostname":"border02",
+                "status":"Fresh",
+                "ntpSync":"yes",
+                "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+                "sysUptime":1600707897.0,
+                "agentUptime":1601414698.0,
+                "reinitializeTime":1601414698.0,
+                "lastChanged":1601568515.0
+            },
+            {
+                "hostname":"fw1",
+                "status":"Fresh",
+                "ntpSync":"yes",
+                "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+                "sysUptime":1600707884.0,
+                "agentUptime":1601414688.0,
+                "reinitializeTime":1601414688.0,
+                "lastChanged":1601568506.0
+            },
+            {
+                "hostname":"fw2",
+                "status":"Fresh",
+                "ntpSync":"yes",
+                "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+                "sysUptime":1600707882.0,
+                "agentUptime":1601414688.0,
+                "reinitializeTime":1601414688.0,
+                "lastChanged":1601568503.0
+            },
+            {
                 "hostname":"leaf01",
-                "version":"2.0.0-cl3u11~1549993210.e902a94",
-                "sysUptime":1549994772.0,
+                "status":"Fresh",
                 "ntpSync":"yes",
-                "agentUptime":1549995146.0
+                "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+                "sysUptime":1600706944.0,
+                "agentUptime":1601414689.0,
+                "reinitializeTime":1601414689.0,
+                "lastChanged":1601568522.0
             },
             {
-                "status":"Fresh",
-                "lastChanged":1549995213.3399999142,
-                "reinitializeTime":1549995151.0,
                 "hostname":"leaf02",
-                "version":"2.0.0-cl3u11~1549993210.e902a94",
-                "sysUptime":1549994772.0,
+                "status":"Fresh",
                 "ntpSync":"yes",
-                "agentUptime":1549995151.0
+                "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+                "sysUptime":1600707794.0,
+                "agentUptime":1601414689.0,
+                "reinitializeTime":1601414689.0,
+                "lastChanged":1601568512.0
             },
             {
+                "hostname":"leaf03",
                 "status":"Fresh",
-                "lastChanged":1549995434.3559999466,
-                "reinitializeTime":1549995157.0,
-                "hostname":"leaf11",
-                "version":"2.0.0-ub16.04u11~1549993314.e902a94",
-                "sysUptime":1549994772.0,
                 "ntpSync":"yes",
-                "agentUptime":1549995157.0
+                "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+                "sysUptime":1600707817.0,
+                "agentUptime":1601414689.0,
+                "reinitializeTime":1601414689.0,
+                "lastChanged":1601568505.0
             },
             {
+                "hostname":"leaf04",
                 "status":"Fresh",
-                "lastChanged":1549995439.3770000935,
-                "reinitializeTime":1549995164.0,
-                "hostname":"leaf12",
-                "version":"2.0.0-rh7u11~1549992132.c42c08f",
-                "sysUptime":1549994809.0,
                 "ntpSync":"yes",
-                "agentUptime":1549995164.0
+                "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+                "sysUptime":1600707815.0,
+                "agentUptime":1601414698.0,
+                "reinitializeTime":1601414698.0,
+                "lastChanged":1601568525.0
             },
             {
+                "hostname":"oob-mgmt-server",
                 "status":"Fresh",
-                "lastChanged":1549995452.6830000877,
-                "reinitializeTime":1549995176.0,
-                "hostname":"leaf21",
-                "version":"2.0.0-ub16.04u11~1549993314.e902a94",
-                "sysUptime":1549994777.0,
                 "ntpSync":"yes",
-                "agentUptime":1549995176.0
+                "version":"3.1.1-ub18.04u29~1599111022.78b9e43",
+                "sysUptime":1600706638.0,
+                "agentUptime":1600710900.0,
+                "reinitializeTime":1600710900.0,
+                "lastChanged":1601568511.0
             },
             {
+                "hostname":"server01",
                 "status":"Fresh",
-                "lastChanged":1549995456.4500000477,
-                "reinitializeTime":1549995181.0,
-                "hostname":"leaf22",
-                "version":"2.0.0-rh7u11~1549992132.c42c08f",
-                "sysUptime":1549994805.0,
                 "ntpSync":"yes",
-                "agentUptime":1549995181.0
+                "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+                "sysUptime":1600708797.0,
+                "agentUptime":1601413987.0,
+                "reinitializeTime":1601413987.0,
+                "lastChanged":1601568527.0
             },
             {
+                "hostname":"server02",
                 "status":"Fresh",
-                "lastChanged":1549995186.3090000153,
-                "reinitializeTime":1549995094.0,
+                "ntpSync":"yes",
+                "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+                "sysUptime":1600708797.0,
+                "agentUptime":1601413987.0,
+                "reinitializeTime":1601413987.0,
+                "lastChanged":1601568504.0
+            },
+            {
+                "hostname":"server03",
+                "status":"Fresh",
+                "ntpSync":"yes",
+                "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+                "sysUptime":1600708796.0,
+                "agentUptime":1601413987.0,
+                "reinitializeTime":1601413987.0,
+                "lastChanged":1601568522.0
+            },
+            {
+                "hostname":"server04",
+                "status":"Fresh",
+                "ntpSync":"yes",
+                "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+                "sysUptime":1600708797.0,
+                "agentUptime":1601413987.0,
+                "reinitializeTime":1601413987.0,
+                "lastChanged":1601568497.0
+            },
+            {
+                "hostname":"server05",
+                "status":"Fresh",
+                "ntpSync":"yes",
+                "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+                "sysUptime":1600708797.0,
+                "agentUptime":1601413990.0,
+                "reinitializeTime":1601413990.0,
+                "lastChanged":1601568506.0
+            },
+            {
+                "hostname":"server06",
+                "status":"Fresh",
+                "ntpSync":"yes",
+                "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+                "sysUptime":1600708797.0,
+                "agentUptime":1601413990.0,
+                "reinitializeTime":1601413990.0,
+                "lastChanged":1601568501.0
+            },
+            {
+                "hostname":"server07",
+                "status":"Fresh",
+                "ntpSync":"yes",
+                "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+                "sysUptime":1600708008.0,
+                "agentUptime":1601413990.0,
+                "reinitializeTime":1601413990.0,
+                "lastChanged":1601568508.0
+            },
+            {
+                "hostname":"server08",
+                "status":"Fresh",
+                "ntpSync":"yes",
+                "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+                "sysUptime":1600708005.0,
+                "agentUptime":1601413990.0,
+                "reinitializeTime":1601413990.0,
+                "lastChanged":1601568511.0
+            },
+            {
                 "hostname":"spine01",
-                "version":"2.0.0-cl3u11~1549993210.e902a94",
-                "sysUptime":1549994772.0,
+                "status":"Fresh",
                 "ntpSync":"yes",
-                "agentUptime":1549995094.0
+                "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+                "sysUptime":1600707814.0,
+                "agentUptime":1601414698.0,
+                "reinitializeTime":1601414698.0,
+                "lastChanged":1601568502.0
             },
             {
-                "status":"Fresh",
-                "lastChanged":1549995191.4530000687,
-                "reinitializeTime":1549995099.0,
                 "hostname":"spine02",
-                "version":"2.0.0-cl3u11~1549993210.e902a94",
-                "sysUptime":1549994772.0,
+                "status":"Fresh",
                 "ntpSync":"yes",
-                "agentUptime":1549995099.0
+                "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+                "sysUptime":1600707813.0,
+                "agentUptime":1601414698.0,
+                "reinitializeTime":1601414698.0,
+                "lastChanged":1601568497.0
             },
-    ...
+            {
+                "hostname":"spine03",
+                "status":"Fresh",
+                "ntpSync":"yes",
+                "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+                "sysUptime":1600707814.0,
+                "agentUptime":1601414707.0,
+                "reinitializeTime":1601414707.0,
+                "lastChanged":1601568501.0
+            },
+            {
+                "hostname":"spine04",
+                "status":"Fresh",
+                "ntpSync":"yes",
+                "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+                "sysUptime":1600707812.0,
+                "agentUptime":1601414707.0,
+                "reinitializeTime":1601414707.0,
+                "lastChanged":1601568514.0
+            }
+        ],
+        "truncatedResult":false
+    }
 
 {{%notice note%}}
 
@@ -418,9 +562,9 @@ once again relative to the start time of the Agent.
 
 Data from the NetQ Platform can be exported in a couple of ways:
 
-  - use the `json` option to output command results to JSON format for
-    parsing in other applications
-  - use the UI to export data from the full screen cards
+- use the `json` option to output command results to JSON format for
+parsing in other applications
+- use the UI to export data from the full screen cards
 
 **Example Using the CLI**
 

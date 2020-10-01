@@ -2742,7 +2742,7 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 </tr>
 <tr class="even">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
@@ -2996,7 +2996,7 @@ and all events.
 </tr>
 <tr class="odd">
 <td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
+<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>

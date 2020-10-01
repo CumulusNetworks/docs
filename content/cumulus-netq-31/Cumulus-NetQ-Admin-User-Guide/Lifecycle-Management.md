@@ -30,7 +30,6 @@ You can access the lifecycle management features from several places in NetQ. Al
      - Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**
     - Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" height="18" width="18"/> (Upgrade) in the workbench header (this option is planned for removal in later releases)
 
-
 The first time you open the Manage Switch Assets view, it provides a summary card for switch inventory, uploaded Cumulus Linux images, uploaded NetQ images, NetQ configuration profiles, and switch access settings. Additional cards appear after that based on your activity.
 
 {{<figure src="/images/netq/lcm-dashboard-310.png" width="700">}}

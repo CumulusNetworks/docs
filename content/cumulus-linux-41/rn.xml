@@ -229,7 +229,7 @@ Fixed: 1.14.2-2+deb10u2</p></td>
 </tr>
 <tr>
 <td>CM-30832</td>
-<td><p>The Mellanox SN2700 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
+<td><p>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
 <td>4.1.1-4.2.1</td>
 <td></td>
 </tr>

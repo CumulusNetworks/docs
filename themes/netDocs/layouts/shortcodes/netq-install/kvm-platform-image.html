@@ -29,7 +29,7 @@
     <li>On the <a href="https://cumulusnetworks.com/downloads/">Cumulus Downloads</a> page, select <em>NetQ</em> from the <strong>Product</strong> list.</li>
     <li>Click <em>3.0</em> from the <strong>Version</strong> list, and then select <em>3.0.0</em> from the submenu.</li><li>Select <em>KVM</em> from the <strong>HyperVisor/Platform</strong> list.
     <p><img src="/images/netq/netq-300-download-kvm.png" width="500"></p></li>
-    <li>Scroll down to view the image, and click <strong>Download</strong>.
+    <li>Scroll down to view the image, and click <strong>Download</strong>. This downloads the  NetQ-3.0.0.tgz installation package.
     <p><img src="/images/netq/netq-vm-dwnld-kvm-300.png" width="200"></p></li>
 </ol>
 {{ end }}
@@ -39,7 +39,7 @@
     <li>On the <a href="https://cumulusnetworks.com/downloads/">Cumulus Downloads</a> page, select <em>NetQ</em> from the <strong>Product</strong> list.</li>
     <li>Click <em>3.0</em> from the <strong>Version</strong> list, and then select <em>3.0.0</em> from the submenu.</li><li>Select <em>KVM (Cloud)</em> from the <strong>HyperVisor/Platform</strong> list.
     <p><img src="/images/netq/netq-300-download-kvm-cld.png" width="500"></p></li>
-    <li>Scroll down to view the image, and click <strong>Download</strong>.
+    <li>Scroll down to view the image, and click <strong>Download</strong>. This downloads the  NetQ-3.0.0-opta.tgz installation package.
     <p><img src="/images/netq/netq-vm-dwnld-kvmcld-300.png" width="200"></p></li>
 </ol>
 {{ end }}
@@ -53,7 +53,7 @@
     <li>On the <a href="https://cumulusnetworks.com/downloads/">Cumulus Downloads</a> page, select <em>NetQ</em> from the <strong>Product</strong> list.</li>
     <li>Click <em>3.1</em> from the <strong>Version</strong> list, and then select <em>3.1.0</em> from the submenu.</li><li>Select <em>KVM</em> from the <strong>HyperVisor/Platform</strong> list.
     <p><img src="/images/netq/netq-310-download-kvm.png" width="500"></p></li>
-    <li>Scroll down to view the image, and click <strong>Download</strong>.
+    <li>Scroll down to view the image, and click <strong>Download</strong>. This downloads the  NetQ-3.1.0.tgz installation package.
     <p><img src="/images/netq/netq-vm-dwnld-kvm-310.png" width="200"></p></li>
 </ol>
 {{ end }}
@@ -63,8 +63,32 @@
     <li>On the <a href="https://cumulusnetworks.com/downloads/">Cumulus Downloads</a> page, select <em>NetQ</em> from the <strong>Product</strong> list.</li>
     <li>Click <em>3.1</em> from the <strong>Version</strong> list, and then select <em>3.1.0</em> from the submenu.</li><li>Select <em>KVM (Cloud)</em> from the <strong>HyperVisor/Platform</strong> list.
     <p><img src="/images/netq/netq-310-download-kvm-cld.png" width="500"></p></li>
-    <li>Scroll down to view the image, and click <strong>Download</strong>.
+    <li>Scroll down to view the image, and click <strong>Download</strong>. This downloads the  NetQ-3.1.0-opta.tgz installation package.
     <p><img src="/images/netq/netq-vm-dwnld-kvmcld-310.png" width="200"></p></li>
+</ol>
+{{ end }}
+
+{{ end }}
+
+{{- if eq (.Get "version") "3.2.0" -}}
+
+{{- if eq (.Get "deployment") "onprem" -}}
+<ol>
+    <li>On the <a href="https://cumulusnetworks.com/downloads/">Cumulus Downloads</a> page, select <em>NetQ</em> from the <strong>Product</strong> list.</li>
+    <li>Click <em>3.2</em> from the <strong>Version</strong> list, and then select <em>3.2.0</em> from the submenu.</li><li>Select <em>KVM</em> from the <strong>HyperVisor/Platform</strong> list.
+    <p><img src="/images/netq/netq-320-download-kvm.png" width="500"></p></li>
+    <li>Scroll down to view the image, and click <strong>Download</strong>. This downloads the  NetQ-3.2.0.tgz installation package.
+    <p><img src="/images/netq/netq-vm-dwnld-kvm-320.png" width="200"></p></li>
+</ol>
+{{ end }}
+
+{{- if eq (.Get "deployment") "cloud" -}}
+<ol>
+    <li>On the <a href="https://cumulusnetworks.com/downloads/">Cumulus Downloads</a> page, select <em>NetQ</em> from the <strong>Product</strong> list.</li>
+    <li>Click <em>3.2</em> from the <strong>Version</strong> list, and then select <em>3.2.0</em> from the submenu.</li><li>Select <em>KVM (Cloud)</em> from the <strong>HyperVisor/Platform</strong> list.
+    <p><img src="/images/netq/netq-320-download-kvm-cld.png" width="500"></p></li>
+    <li>Scroll down to view the image, and click <strong>Download</strong>. This downloads the  NetQ-3.2.0-opta.tgz installation package.
+    <p><img src="/images/netq/netq-vm-dwnld-kvmcld-320.png" width="200"></p></li>
 </ol>
 {{ end }}
 

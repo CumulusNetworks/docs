@@ -167,7 +167,15 @@ Orphan ports attached to the primary peer are out of service until the primary i
 
 Just as in the peer link failure scenario, when `clagd-backup-ip` is not active, the secondary peer cannot continue to use the common `clagd-sys-mac` address as its LACP system ID. Therefore the secondary switch now starts using the bond interface MAC address for the LACP system ID.
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+In this case, since the the primary is indeed down, the bonds from the secondary will come up. The secondary will also begin to use its local interface MAC instead of `clagd-sys-mac` form the STP bridge ID on all ports.
+=======
 In this case, since primary is indeed down, the bonds from the secondary will come up. The secondary will also begin to use its local interface MAC instead of `clagd-sys-mac` form the STP bridge ID on all ports.
+>>>>>>> stage
+=======
+In this case, since primary is indeed down, the bonds from the secondary will come up. The secondary will also begin to use its local interface MAC instead of `clagd-sys-mac` form the STP bridge ID on all ports.
+>>>>>>> bf22446f52d7b1e4cc698ff3374690acdcb14189
 
 ### Scenario 5: Primary Reboot via reboot Command
 

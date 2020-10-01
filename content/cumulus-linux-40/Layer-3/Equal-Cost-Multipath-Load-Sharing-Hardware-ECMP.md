@@ -145,7 +145,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands" >}}
 
-Edit the the `/etc/cumulus/datapath/traffic.conf` file. For example:
+Edit `/etc/cumulus/datapath/traffic.conf` file. For example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf

@@ -243,7 +243,7 @@ following steps to enable sFlow.
     
         cumulus@switch:~$ sudo systemctl daemon-reload
 
-5.  Start `hsflowd` in the the management VRF:
+5.  Start `hsflowd` in management VRF:
     
         cumulus@switch:~$ sudo systemctl start hsflowd@mgmt.service
 

@@ -7,6 +7,49 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31615</td>
+<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31605</td>
+<td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
+
+cumulus@switch:mgmt-vrf:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
+adding the following line to /var/lib/snmp/snmpd.conf:           
+   createUser userSHAwithAES SHA "shaauthpass" AES "aesprivpass"       
+adding the following line to /snmp/snmpd.conf:                           
+   rwuser userSHAwithAES                                           
+touch: cannot touch ‘/snmp/snmpd.conf’: No such file or directory
+/usr/bin/net-snmp-create-v3-user: 144: /usr/bin/net-snmp-create-v3-user: cannot create /snmp/snmpd.conf: Directory nonexistent
+
+
+<p>To work around this issue, use the NCLU command to configure SNMPv3 user parameters; for example:</p>
+
+cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
+
+
+<p>Alternatively, directly edit the /etc/snmp/snmpd.conf file as described in the documentation.</p></td>
+<td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31545</td>
+<td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
+To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
+</td>
+<td>3.7.10-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31504</td>
+<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
+To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -41,6 +84,12 @@ Fixed: 1.5.6-5+deb8u1</p></td>
 <td>CM-31420</td>
 <td><p>On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.</p></td>
 <td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31407</td>
+<td><p>You cannot configure SNMPv3 trap-destinations in non-default VRFs with an authentication username that contains fewer than eight characters.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -179,6 +228,13 @@ CVE-2019-20907: Opening a crafted tar file could result in an infinite loop due 
 Vulnerable: &lt;= 2.7.9-2-ds1+deb8u5<br/>
 Fixed: 2.7.9-2-ds1+deb8u6</p></td>
 <td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31150</td>
+<td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2005,6 +2061,16 @@ Fixed: 4.2-3+dev8u4</p></td>
 <td>3.0.0-3.7.12</td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+</tr>
+<tr>
 <td>CM-30240</td>
 <td><p>switchd memory utilization might continue to increase if there are excessive and continuous link flaps over a long period of time.<br/>
 To work around this issue, correct the cause of the frequent link flaps. You can restart switchd with the sudo systemctl restart switchd command to recover memory; this operation is impactful to all traffic on the switch during the restart.</p></td>
@@ -2091,6 +2157,14 @@ May 20 10:48:04.671299 leaf01 poed<span class="error">&#91;8012&#93;</span>: poe
 May 20 10:48:04.708620 leaf01 systemd<span class="error">&#91;1&#93;</span>: cumulus-poe.service: main process exited, code=exited, status=1/FAILURE<br/>
 The service starts automatically but there is an impact to POE devices momentarily.</p></td>
 <td>3.7.12</td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
 </tr>
 <tr>
 <td>CM-29518</td>
@@ -2310,7 +2384,7 @@ CVE-2020-1711: block: iscsi: OOB heap access via an unexpected response of iSCSI
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<td><p>switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
 <ul>
 	<li>The default route is leaked from VRF1 to VRF2</li>
 	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
@@ -2414,6 +2488,27 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31615</td>
+<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31545</td>
+<td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
+To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
+</td>
+<td>3.7.10-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31504</td>
+<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
+To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -2442,6 +2537,12 @@ CVE-2019-20916: When an URL was given in an install command, as a Content-Dispos
 Vulnerable: &lt;= 1.5.6-5<br/>
 Fixed: 1.5.6-5+deb8u1</p></td>
 <td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31407</td>
+<td><p>You cannot configure SNMPv3 trap-destinations in non-default VRFs with an authentication username that contains fewer than eight characters.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2566,6 +2667,13 @@ CVE-2019-20907: Opening a crafted tar file could result in an infinite loop due 
 Vulnerable: &lt;= 2.7.9-2-ds1+deb8u5<br/>
 Fixed: 2.7.9-2-ds1+deb8u6</p></td>
 <td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31150</td>
+<td><p>On the Mellanox SN2410 switch, you see switchd core and GBIN_MALLOC errors.<br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2927,6 +3035,17 @@ To work around this issue, either use NCLU or vtysh commands to remove the BFD c
 <td></td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30240</td>
 <td><p>switchd memory utilization might continue to increase if there are excessive and continuous link flaps over a long period of time.<br/>
 To work around this issue, correct the cause of the frequent link flaps. You can restart switchd with the sudo systemctl restart switchd command to recover memory; this operation is impactful to all traffic on the switch during the restart.</p></td>
@@ -3123,6 +3242,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29652</td>
@@ -3725,7 +3853,7 @@ To work around this issue, execute the vtysh -f &lt;file&gt; command in the auto
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<td><p>switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
 <ul>
 	<li>The default route is leaked from VRF1 to VRF2</li>
 	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
@@ -5119,6 +5247,14 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31545</td>
+<td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
+To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
+</td>
+<td>3.7.10-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -5495,6 +5631,17 @@ To work around this issue, either use NCLU or vtysh commands to remove the BFD c
 <td></td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30240</td>
 <td><p>switchd memory utilization might continue to increase if there are excessive and continuous link flaps over a long period of time.<br/>
 To work around this issue, correct the cause of the frequent link flaps. You can restart switchd with the sudo systemctl restart switchd command to recover memory; this operation is impactful to all traffic on the switch during the restart.</p></td>
@@ -5623,6 +5770,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -6178,7 +6334,7 @@ To work around this issue, execute the vtysh -f &lt;file&gt; command in the auto
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<td><p>switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
 <ul>
 	<li>The default route is leaked from VRF1 to VRF2</li>
 	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
@@ -7998,6 +8154,14 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31545</td>
+<td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
+To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
+</td>
+<td>3.7.10-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -8374,6 +8538,17 @@ To work around this issue, either use NCLU or vtysh commands to remove the BFD c
 <td></td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -8483,6 +8658,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -8827,7 +9011,7 @@ To work around this issue, power cycle the switch. A software reboot does not re
 </tr>
 <tr>
 <td>CM-27982</td>
-<td><p>On Broadcom switches, switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
+<td><p>switchd crashes when dynamic VRF route leaking is enabled and the following is true:</p>
 <ul>
 	<li>The default route is leaked from VRF1 to VRF2</li>
 	<li>Hardware-based dynamic VRF route leaking is configured (vrf_route_leak_enable_dynamic is set to TRUE in the /etc/cumulus/switchd.conf file).<br/>
@@ -10933,6 +11117,17 @@ To work around this issue, either use NCLU or vtysh commands to remove the BFD c
 <td></td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -11035,6 +11230,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -13927,6 +14131,17 @@ To work around this issue, either use NCLU or vtysh commands to remove the BFD c
 <td></td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -14029,6 +14244,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -16793,6 +17017,17 @@ To work around this issue, either use NCLU or vtysh commands to remove the BFD c
 <td></td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -16882,6 +17117,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -20000,6 +20244,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -20089,6 +20344,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -23170,6 +23434,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -23259,6 +23534,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -26029,6 +26313,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -26118,6 +26413,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -28946,6 +29250,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -29035,6 +29350,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -32022,6 +32346,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -32103,6 +32438,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -35208,6 +35552,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -35289,6 +35644,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>
@@ -37910,6 +38274,17 @@ Fixed: 4.2-3+dev8u4</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-30274</td>
+<td><p>CVE-2016-2774: ISC DHCP 4.1.x before 4.1-ESV-R13 and 4.2.x and 4.3.x before 4.3.4 does not restrict the number of concurrent TCP sessions, which allows remote attackers to cause a denial of service (INSIST assertion failure or request-processing outage) by establishing many sessions.</p>
+
+<p>On Cumulus Linux, the isc-dhcp-server is installed by default, but is not enabled by default.</p>
+
+<p>Vulnerable: &lt;= 4.3.1-6-cl3u14<br/>
+Fixed: 4.3.1-6-cl3u15</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
+</tr>
+<tr>
 <td>CM-30064</td>
 <td><p>The following security vulnerability has been found in BlueZ, in which the libbluetooth3 library is available in the repository for optional installation in Cumulus Linux:<br/>
 CVE-2020-0556: Improper access control in subsystem for BlueZ before version 5.54 may allow an unauthenticated user to potentially enable escalation of privilege and denial of service via adjacent access.<br/>
@@ -37991,6 +38366,15 @@ Vulnerable: &lt;= 4.84.2-2+deb8u6<br/>
 Fixed: 4.84.2-2+deb8u7</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29692</td>
+<td><p>The following vulnerability has been announced in the apt package:<br/>
+CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
+Vulnerable: &lt;= 1.0.9.8.5-cl3u1<br/>
+Fixed: 1.0.9.8.5-cl3u2</p></td>
+<td>3.0.0-3.7.12</td>
+<td>3.7.13</td>
 </tr>
 <tr>
 <td>CM-29556</td>

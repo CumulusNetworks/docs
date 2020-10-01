@@ -1301,7 +1301,7 @@ cumulus@switch:~$ netq show [TAB]
     wjh-drop                 :  add help text
 ```
 
-For example, to validate the the status of the NetQ agents running in the fabric, run `netq show agents`. A *Fresh* status indicates the Agent is running as expected. The Agent sends a heartbeat every 30 seconds, and if three consecutive heartbeats are missed, its status changes to
+For example, to validate status of the NetQ agents running in the fabric, run `netq show agents`. A *Fresh* status indicates the Agent is running as expected. The Agent sends a heartbeat every 30 seconds, and if three consecutive heartbeats are missed, its status changes to
 *Rotten*.
 
 ```

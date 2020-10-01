@@ -520,7 +520,7 @@ ERROR: 'getpwuid(): uid not found: 0922'
 See /var/log/netd.log for more details
 ```
 
-To add the the user to the `netshow` or `netedit` NCLU group in the LDAP database, either edit the `/etc/group` file manually or use the `sudo adduser USERNAME netshow` command, then restart `netd`. For example, to add the user bill to the `netshow` group:
+To add user to the `netshow` or `netedit` NCLU group in the LDAP database, either edit the `/etc/group` file manually or use the `sudo adduser USERNAME netshow` command, then restart `netd`. For example, to add the user bill to the `netshow` group:
 
 ```
 cumulus@switch:~$ sudo adduser hsolo netshow

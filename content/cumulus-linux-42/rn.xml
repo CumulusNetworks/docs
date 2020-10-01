@@ -179,7 +179,7 @@ To disable scp completely, use /bin/chmod 0 /usr/bin/scp .</p></td>
 </tr>
 <tr>
 <td>CM-30832</td>
-<td><p>The Mellanox SN2700 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
+<td><p>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
 <td>4.1.1-4.2.1</td>
 <td></td>
 </tr>
@@ -2247,14 +2247,8 @@ Fixed: 1.14.2-2+deb10u2</p></td>
 </tr>
 <tr>
 <td>CM-30832</td>
-<td><p>The Mellanox SN2700 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
+<td><p>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
 <td>4.1.1-4.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-30832</td>
-<td><p>The Mellanox SN2700 switch intermittently reports PSU fan state changes with Unable to read from device/fan1_input/pwm1 syslog messages.</p></td>
-<td>4.1.1-4.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2278,12 +2272,6 @@ Fixed: 3.1+dfsg-8+deb10u7</p></td>
 <td><p>ifupdown2 does not account for link status or link down configuration when running dhclient. For example, ifupdown2 ignores link-down yes during ifup/ifreload and runs the DHCP module if inet dhcp is configured on the interface. ifupdown2 also runs the DHCP module even when the physical link configured for DHCP is down.</p></td>
 <td>3.7.12-4.2.0</td>
 <td>4.2.1</td>
-</tr>
-<tr>
-<td>CM-30580</td>
-<td><p>ifupdown2 does not account for link status or link down configuration when running dhclient. For example, ifupdown2 ignores link-down yes during ifup/ifreload and runs the DHCP module if inet dhcp is configured on the interface. ifupdown2 also runs the DHCP module even when the physical link configured for DHCP is down.</p></td>
-<td>3.7.12-3.7.13, 4.2.0</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-30565</td>
@@ -2402,22 +2390,6 @@ Fixed: 4.11.4+24-gddaaccbbab-1~deb10u1</p></td>
 <td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
 <td>3.7.2-4.2.0</td>
 <td>4.2.1</td>
-</tr>
-<tr>
-<td>CM-30484</td>
-<td><p>Multiple vulnerabilities have been discovered in the Xen hypervisor, which might result in denial of service, guest-to-host privilege escalation, or information leaks.<br/>
-The CVE IDs are CVE-2020-11739, CVE-2020-11740, CVE-2020-11741, CVE-2020-11742, CVE-2020-11743, CVE-2020-15563, CVE-2020-15564, CVE-2020-15565, CVE-2020-15566, CVE-2020-15567.<br/>
-Xen packages are not installed by default on Cumulus Linux, but some libxen* packages are in the repository for optional installation.<br/>
-Vulnerable: &lt;= 4.11.3+24-g14b62ab3e5-1~deb10u1<br/>
-Fixed: 4.11.4+24-gddaaccbbab-1~deb10u1</p></td>
-<td>4.0.0-4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-30479</td>
-<td><p>When you restart clagd, the edge port setting on the peer link changes.</p></td>
-<td>3.7.2-3.7.13, 4.0.0-4.2.0</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-30473</td>
@@ -2719,12 +2691,6 @@ To work around this issue, look for your string in the output of the net show co
 <td>CM-29809</td>
 <td><p>You might see a three second traffic outage after an MLAG secondary reboot when the MLAG bonds become dual-connected again.</p></td>
 <td>4.1.1-4.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29809</td>
-<td><p>You might see a three second traffic outage after an MLAG secondary reboot when the MLAG bonds become dual-connected again.</p></td>
-<td>4.1.1-4.2.0</td>
 <td></td>
 </tr>
 <tr>

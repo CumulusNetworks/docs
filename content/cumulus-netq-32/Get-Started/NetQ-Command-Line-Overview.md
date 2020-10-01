@@ -140,7 +140,7 @@ As you enter commands, you can get help with command syntax by entering `help` a
 ```
 cumulus@switch:~$ netq check bgp help
 Commands:
-    netq check bgp [hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
+    netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
 ```
 
 To see an exhaustive list of commands, run:
@@ -299,6 +299,7 @@ details about the current or historical configuration and status of the
 various protocols or services. The configuration and status can be shown
 for the following:
 
+- **address-history**: Address history info for a IP address / prefix
 - **agents**: NetQ Agents status on switches and hosts
 - **bgp**: BGP status across the network fabric
 - **cl-btrfs-info**: BTRFS file system data for monitored Cumulus Linux switches
@@ -307,8 +308,10 @@ for the following:
 - **cl-resource**: ACL and forwarding information
 - **cl-ssd-util**: SSD utilization information
 - **clag**: CLAG/MLAG status
+- **dom**: Digital Optical Monitoring
 - **ethtool-stats**: Interface statistics
 - **events**: Display changes over time
+- **events-config**: Events configured for suppression
 - **evpn**: EVPN status
 - **interface-stats**: Interface statistics
 - **interface-utilization**: Interface statistics plus utilization
@@ -319,10 +322,12 @@ for the following:
 - **job-status**: status of upgrade jobs running on the appliance or VM
 - **kubernetes**: Kubernetes cluster, daemon, pod, node, service and replication status
 - **lldp**: LLDP status
+- **mac-commentary**: MAC commentary info for a MAC address
 - **mac-history**: Historical information for a MAC address
 - **macs**: MAC table or address information
 - **mlag**: MLAG status (an alias for CLAG)
-- **notification**: Slack or PagerDuty notification configurations
+- **neighbor-history**:  Neighbor history info for an IP address
+- **notification**: Send notifications to Slack or PagerDuty
 - **ntp**: NTP status
 - **opta-health**: Display health of apps on the OPTA
 - **opta-platform**: NetQ Appliance version information and uptime
@@ -348,25 +353,27 @@ cumulus@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-border01          Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:16:00 2020  Wed Apr 29 16:38:24 2020  Wed Apr 29 16:38:24 2020   Tue May 26 16:46:44 2020
-border02          Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:10:31 2020  Wed Apr 29 16:38:22 2020  Wed Apr 29 16:38:22 2020   Tue May 26 23:03:22 2020
-fw1               Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:20:18 2020  Wed Apr 29 16:38:35 2020  Wed Apr 29 16:38:35 2020   Tue May 26 16:46:12 2020
-fw2               Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:35:24 2020  Wed Apr 29 16:38:29 2020  Wed Apr 29 16:38:29 2020   Tue May 26 16:47:42 2020
-leaf01            Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:05:01 2020  Wed Apr 29 16:38:23 2020  Wed Apr 29 16:38:23 2020   Tue May 26 16:48:04 2020
-leaf02            Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:59:26 2020  Wed Apr 29 16:38:32 2020  Wed Apr 29 16:38:32 2020   Tue May 26 23:04:03 2020
-leaf03            Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:05:01 2020  Wed Apr 29 16:38:11 2020  Wed Apr 29 16:38:11 2020   Tue May 26 17:35:21 2020
-oob-mgmt-server   Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 00:31:08 2020  Fri Apr 24 00:31:20 2020  Wed Apr 29 16:39:15 2020   Tue May 26 16:47:09 2020
-server01          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Fri May 15 20:47:24 2020  Fri May 15 20:47:24 2020   Tue May 26 20:50:52 2020
-server02          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Fri May 15 20:47:25 2020  Fri May 15 20:47:25 2020   Tue May 26 20:50:07 2020
-server03          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Fri May 15 20:47:24 2020  Fri May 15 20:47:24 2020   Tue May 26 20:50:38 2020
-server04          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Fri May 15 20:47:25 2020  Fri May 15 20:47:25 2020   Tue May 26 20:50:03 2020
-server05          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:13 2020  Fri May 15 20:47:27 2020  Fri May 15 20:47:27 2020   Tue May 26 20:51:27 2020
-server06          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 01:30:12 2020  Fri May 15 20:47:30 2020  Fri May 15 20:47:30 2020   Tue May 26 20:50:59 2020
-server07          Fresh            yes      2.4.1-ub18.04u26~1581351889.c5ec3e5  Fri Apr 24 00:43:05 2020  Fri May 15 20:47:30 2020  Fri May 15 20:47:30 2020   Wed May 27 15:18:40 2020
-spine01           Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:54:53 2020  Wed Apr 29 16:38:18 2020  Wed Apr 29 16:38:18 2020   Wed May 27 12:51:22 2020
-spine02           Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:49:37 2020  Wed Apr 29 16:38:28 2020  Wed Apr 29 16:38:28 2020   Tue May 26 23:04:26 2020
-spine03           Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:49:40 2020  Wed Apr 29 16:38:12 2020  Wed Apr 29 16:38:12 2020   Tue May 26 23:04:49 2020
-spine04           Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 17:48:20 2020  Wed Apr 29 16:38:24 2020  Wed Apr 29 16:38:24 2020   Tue May 26 23:03:07 2020
+border01          Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:54 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:38 2020
+border02          Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:57 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:33 2020
+fw1               Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:44 2020  Tue Sep 29 21:24:48 2020  Tue Sep 29 21:24:48 2020   Thu Oct  1 16:07:26 2020
+fw2               Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:42 2020  Tue Sep 29 21:24:48 2020  Tue Sep 29 21:24:48 2020   Thu Oct  1 16:07:22 2020
+leaf01            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 16:49:04 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:07:10 2020
+leaf02            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:14 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:07:30 2020
+leaf03            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:37 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:07:24 2020
+leaf04            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:35 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:13 2020
+oob-mgmt-server   Fresh            yes      3.1.1-ub18.04u29~1599111022.78b9e43  Mon Sep 21 16:43:58 2020  Mon Sep 21 17:55:00 2020  Mon Sep 21 17:55:00 2020   Thu Oct  1 16:07:31 2020
+server01          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:16 2020
+server02          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:24 2020
+server03          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:56 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:12 2020
+server04          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:17 2020
+server05          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:25 2020
+server06          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:21 2020
+server07          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:06:48 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:28 2020
+server08          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:06:45 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:31 2020
+spine01           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:34 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:20 2020
+spine02           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:33 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:16 2020
+spine03           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:34 2020  Tue Sep 29 21:25:07 2020  Tue Sep 29 21:25:07 2020   Thu Oct  1 16:07:20 2020
+spine04           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:32 2020  Tue Sep 29 21:25:07 2020  Tue Sep 29 21:25:07 2020   Thu Oct  1 16:07:33 2020
 ```
 ```
 cumulus@switch:~$ netq show agents json
@@ -376,60 +383,223 @@ cumulus@switch:~$ netq show agents json
             "hostname":"border01",
             "status":"Fresh",
             "ntpSync":"yes",
-            "version":"3.0.0-cl3u27~1587646213.c5bc079",
-            "sysUptime":1588011360.0,
-            "agentUptime":1588178304.0,
-            "reinitializeTime":1588178304.0,
-            "lastChanged":1590511604.0
+            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+            "sysUptime":1600707894.0,
+            "agentUptime":1601414698.0,
+            "reinitializeTime":1601414698.0,
+            "lastChanged":1601568519.0
         },
         {
             "hostname":"border02",
             "status":"Fresh",
             "ntpSync":"yes",
-            "version":"3.0.0-cl3u27~1587646213.c5bc079",
-            "sysUptime":1588011031.0,
-            "agentUptime":1588178302.0,
-            "reinitializeTime":1588178302.0,
-            "lastChanged":1590534202.0
+            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+            "sysUptime":1600707897.0,
+            "agentUptime":1601414698.0,
+            "reinitializeTime":1601414698.0,
+            "lastChanged":1601568515.0
         },
         {
             "hostname":"fw1",
             "status":"Fresh",
             "ntpSync":"yes",
-            "version":"3.0.0-cl3u27~1587646213.c5bc079",
-            "sysUptime":1588011618.0,
-            "agentUptime":1588178315.0,
-            "reinitializeTime":1588178315.0,
-            "lastChanged":1590511572.0
+            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+            "sysUptime":1600707884.0,
+            "agentUptime":1601414688.0,
+            "reinitializeTime":1601414688.0,
+            "lastChanged":1601568506.0
         },
         {
             "hostname":"fw2",
             "status":"Fresh",
             "ntpSync":"yes",
-            "version":"3.0.0-cl3u27~1587646213.c5bc079",
-            "sysUptime":1588012524.0,
-            "agentUptime":1588178309.0,
-            "reinitializeTime":1588178309.0,
-            "lastChanged":1590511662.0
+            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+            "sysUptime":1600707882.0,
+            "agentUptime":1601414688.0,
+            "reinitializeTime":1601414688.0,
+            "lastChanged":1601568503.0
         },
         {
             "hostname":"leaf01",
             "status":"Fresh",
             "ntpSync":"yes",
-            "version":"3.0.0-cl3u27~1587646213.c5bc079",
-            "sysUptime":1588010701.0,
-            "agentUptime":1588178303.0,
-            "reinitializeTime":1588178303.0,
-            "lastChanged":1590511684.0
+            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+            "sysUptime":1600706944.0,
+            "agentUptime":1601414689.0,
+            "reinitializeTime":1601414689.0,
+            "lastChanged":1601568522.0
         },
-...
+        {
+            "hostname":"leaf02",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+            "sysUptime":1600707794.0,
+            "agentUptime":1601414689.0,
+            "reinitializeTime":1601414689.0,
+            "lastChanged":1601568512.0
+        },
+        {
+            "hostname":"leaf03",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+            "sysUptime":1600707817.0,
+            "agentUptime":1601414689.0,
+            "reinitializeTime":1601414689.0,
+            "lastChanged":1601568505.0
+        },
+        {
+            "hostname":"leaf04",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+            "sysUptime":1600707815.0,
+            "agentUptime":1601414698.0,
+            "reinitializeTime":1601414698.0,
+            "lastChanged":1601568525.0
+        },
+        {
+            "hostname":"oob-mgmt-server",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.1.1-ub18.04u29~1599111022.78b9e43",
+            "sysUptime":1600706638.0,
+            "agentUptime":1600710900.0,
+            "reinitializeTime":1600710900.0,
+            "lastChanged":1601568511.0
+        },
+        {
+            "hostname":"server01",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+            "sysUptime":1600708797.0,
+            "agentUptime":1601413987.0,
+            "reinitializeTime":1601413987.0,
+            "lastChanged":1601568527.0
+        },
+        {
+            "hostname":"server02",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+            "sysUptime":1600708797.0,
+            "agentUptime":1601413987.0,
+            "reinitializeTime":1601413987.0,
+            "lastChanged":1601568504.0
+        },
+        {
+            "hostname":"server03",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+            "sysUptime":1600708796.0,
+            "agentUptime":1601413987.0,
+            "reinitializeTime":1601413987.0,
+            "lastChanged":1601568522.0
+        },
+        {
+            "hostname":"server04",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+            "sysUptime":1600708797.0,
+            "agentUptime":1601413987.0,
+            "reinitializeTime":1601413987.0,
+            "lastChanged":1601568497.0
+        },
+        {
+            "hostname":"server05",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+            "sysUptime":1600708797.0,
+            "agentUptime":1601413990.0,
+            "reinitializeTime":1601413990.0,
+            "lastChanged":1601568506.0
+        },
+        {
+            "hostname":"server06",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+            "sysUptime":1600708797.0,
+            "agentUptime":1601413990.0,
+            "reinitializeTime":1601413990.0,
+            "lastChanged":1601568501.0
+        },
+        {
+            "hostname":"server07",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+            "sysUptime":1600708008.0,
+            "agentUptime":1601413990.0,
+            "reinitializeTime":1601413990.0,
+            "lastChanged":1601568508.0
+        },
+        {
+            "hostname":"server08",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-ub18.04u30~1601393774.104fb9e",
+            "sysUptime":1600708005.0,
+            "agentUptime":1601413990.0,
+            "reinitializeTime":1601413990.0,
+            "lastChanged":1601568511.0
+        },
+        {
+            "hostname":"spine01",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+            "sysUptime":1600707814.0,
+            "agentUptime":1601414698.0,
+            "reinitializeTime":1601414698.0,
+            "lastChanged":1601568502.0
+        },
+        {
+            "hostname":"spine02",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+            "sysUptime":1600707813.0,
+            "agentUptime":1601414698.0,
+            "reinitializeTime":1601414698.0,
+            "lastChanged":1601568497.0
+        },
+        {
+            "hostname":"spine03",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+            "sysUptime":1600707814.0,
+            "agentUptime":1601414707.0,
+            "reinitializeTime":1601414707.0,
+            "lastChanged":1601568501.0
+        },
+        {
+            "hostname":"spine04",
+            "status":"Fresh",
+            "ntpSync":"yes",
+            "version":"3.2.0-cl4u30~1601410518.104fb9ed",
+            "sysUptime":1600707812.0,
+            "agentUptime":1601414707.0,
+            "reinitializeTime":1601414707.0,
+            "lastChanged":1601568514.0
+	}
+    ],
+    "truncatedResult":false
+}
 ```
+
 ```
 cumulus@switch:~$ netq leaf01 show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-leaf01            Fresh            yes      3.0.0-cl3u27~1587646213.c5bc079      Mon Apr 27 18:05:01 2020  Wed Apr 29 16:38:23 2020  Wed Apr 29 16:38:23 2020   Tue May 26 16:48:04 2020
+leaf01            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 16:49:04 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:26:33 2020
 ```
 
 ### Configuration Commands

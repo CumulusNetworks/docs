@@ -57,7 +57,7 @@ def rn_location(product, version):
     '''
     directory = get_hugo_folder(product, version)
 
-    print("Product: {}, version: {}".format(product, version_string(version)))
+    # NetQ moved the location of the RN file in 3.2 and later.
     if product == "netq" and version_string(version) in ["2.4", "3.0", "3.1"]:
         return "content/{}/More-Documents/rn.md".format(directory)
     else:

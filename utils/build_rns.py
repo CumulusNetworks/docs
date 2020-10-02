@@ -139,6 +139,14 @@ def sanatize_rn_for_markdown(string):
     # NetQ-5774 Fix. The use of "<>" in a string inside a code (<pre>) block disappears
     output_string = output_string.replace("<ipaddr>", "\<ipaddr\>")
 
+    # NETQ-7489 Fix. Similar to above
+    output_string = output_string.replace("<cloud-appliance-IP-address>", "\<cloud-appliance-IP-address\>")
+    output_string = output_string.replace("<default/mgmt>", "\<default/mgmt\>")
+    output_string = output_string.replace("<customer-premise>", "\<customer-premise\>")
+    output_string = output_string.replace("<customer-email-address>", "\<customer-email-address\>")
+    output_string = output_string.replace("<password>", "\<password\>")
+    output_string = output_string.replace("<opid-here>", "\<opid-here\>")
+
     # Special Linux command, CM-29033
     output_string = output_string.replace("&amp;&amp;", "&&")
 

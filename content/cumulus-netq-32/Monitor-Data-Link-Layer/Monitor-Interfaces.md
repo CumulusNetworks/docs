@@ -467,6 +467,29 @@ Mon Nov  4 20:22:40 2019  leaf02            13     no     vni13            10.0.
 Mon Nov  4 20:22:40 2019  leaf01            13     no     vni13            10.0.0.134             yes    no
 ```
 
+## View MAC Address Commentary
+
+You can get more descriptive information about MAC addresses. Commentary is provided for the following MAC address-related events:
+
+- When a MAC address is configured or unconfigured
+- When a bond enslaved or removed as a slave
+- When bridge membership changes
+- When a MAC address is learned or installed by control plane on tunnel interface
+- When a MAC address is flushed or expires
+- When a MAC address moves
+
+To see MAC address commentary, use the `netq show mac-commentary` command:
+
+```
+cumulus@switch:~$ netq show mac-commentary 44:38:39:be:ef:ff vlan 4002
+
+Matching mac_commentary records:
+Last Updated              Hostname         VLAN   Commentary
+------------------------- ---------------- ------ --------------------------------------------------------------------------------
+Thu Oct  1 14:25:18 2020  border01         4002   44:38:39:be:ef:ff configured on interface bridge
+Thu Oct  1 14:25:18 2020  border02         4002   44:38:39:be:ef:ff configured on interface bridge
+```
+
 ## Monitor MLAG Configurations
 
 Multi-Chassis Link Aggregation (MLAG) is used to enable a server or

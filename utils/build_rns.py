@@ -45,6 +45,24 @@ def product_string(product):
         print("Unknown product {}".format(product))
         exit(1)
 
+def rn_location(product, version):
+    '''
+    Deals with the fact sometimes we move the location of RNs.
+    All the exception cases of what product+version for the rn file location should live here.
+
+    Takes in a product_string() and version_string()
+
+    Returns:
+    string path of rn file location
+    '''
+    directory = get_hugo_folder(product, version)
+
+    # NetQ moved the location of the RN file in 3.2 and later.
+    if product == "netq" and version_string(version) in ["2.4", "3.0", "3.1"]:
+        return "content/{}/More-Documents/rn.md".format(directory)
+    else:
+        return "content/{}/Whats-New/rn.md".format(directory)
+
 def version_string(version):
     '''
     Take in the semver product version and return just the major.minor
@@ -120,6 +138,14 @@ def sanatize_rn_for_markdown(string):
 
     # NetQ-5774 Fix. The use of "<>" in a string inside a code (<pre>) block disappears
     output_string = output_string.replace("<ipaddr>", "\<ipaddr\>")
+
+    # NETQ-7489 Fix. Similar to above
+    output_string = output_string.replace("<cloud-appliance-IP-address>", "\<cloud-appliance-IP-address\>")
+    output_string = output_string.replace("<default/mgmt>", "\<default/mgmt\>")
+    output_string = output_string.replace("<customer-premise>", "\<customer-premise\>")
+    output_string = output_string.replace("<customer-email-address>", "\<customer-email-address\>")
+    output_string = output_string.replace("<password>", "\<password\>")
+    output_string = output_string.replace("<opid-here>", "\<opid-here\>")
 
     # Special Linux command, CM-29033
     output_string = output_string.replace("&amp;&amp;", "&&")
@@ -242,12 +268,8 @@ def read_markdown_header(product, version):
 
     Returns a list of strings that are the existing front matter.
     '''
-    directory = get_hugo_folder(product, version)
 
-    if product == "cl":
-        input_file = "content/{}/Whats-New/rn.md".format(directory)
-    elif product == "netq":
-        input_file = "content/{}/More-Documents/rn.md".format(directory)
+    input_file = rn_location(product, version)
 
     look_for_end_of_header = True
     header_lines = []
@@ -286,14 +308,10 @@ def write_rns(output, file_type, product, version):
         # Moving it into the product specific folder makes generating xls much more complicated.
         output_file = "content/{}/rn.{}".format(directory, file_type)
 
+    else:
+        output_file = rn_location(product, version)
 
-    if file_type == "md":
-        if product == "cl":
-            output_file = "content/{}/Whats-New/rn.{}".format(directory, file_type)
-        if product == "netq":
-            output_file = "content/{}/More-Documents/rn.{}".format(directory, file_type)
-
-    with open(output_file, "w") as out_file:
+    with open(output_file, "w+") as out_file:
         for line in output:
             out_file.write(line)
 
@@ -331,7 +349,10 @@ def build_rn_markdown_files(product, version_list):
 
         # We only want to generate the frontmatter once per minor
         #version_output.extend(build_markdown_header(product_string(product), major))
-        version_output.extend(read_markdown_header(product, major))
+        try:
+            version_output.extend(read_markdown_header(product, major))
+        except FileNotFoundError:
+            version_output.extend(build_markdown_header(product_string(product), major))
         hugo_dir = get_hugo_folder(product, major)
         link = "<a href=\"/{}/rn.xls\">".format(hugo_dir)
         version_output.append("{}<img src=\"/images/xls_icon.png\" height=\"20px\" width=\"20px\" alt=\"Download {} Release Notes xls\" /></a>&nbsp;&nbsp;&nbsp;&nbsp;{}Download all {} release notes as .xls</a>\n".format(link, major, link, major))

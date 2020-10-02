@@ -60,10 +60,10 @@ root@rhel7:~# sudo yum remove netq-agent netq-apps
 Loaded plugins: fastestmirror
 Resolving Dependencies
 --> Running transaction check
----> Package netq-agent.x86_64 0:3.0.0-rh7u27~1588050478.0e20d33 will be erased
---> Processing Dependency: netq-agent >= 3.0.0 for package: cumulus-netq-3.0.0-rh7u27~1588054943.10fa7f6.x86_64
+---> Package netq-agent.x86_64 0:3.1.0-rh7u28~1594097110.8f00ba1 will be erased
+--> Processing Dependency: netq-agent >= 3.2.0 for package: cumulus-netq-3.1.0-rh7u28~1594097110.8f00ba1.x86_64
 --> Running transaction check
----> Package cumulus-netq.x86_64 0:3.0.0-rh7u27~1588054943.10fa7f6 will be erased
+---> Package cumulus-netq.x86_64 0:3.1.0-rh7u28~1594097110.8f00ba1 will be erased
 --> Finished Dependency Resolution
 
 Dependencies Resolved
@@ -71,10 +71,10 @@ Dependencies Resolved
 ...
 
 Removed:
-  netq-agent.x86_64 0:3.0.0-rh7u27~1588050478.0e20d33
+  netq-agent.x86_64 0:3.1.0-rh7u28~1594097110.8f00ba1
 
 Dependency Removed:
-  cumulus-netq.x86_64 0:3.0.0-rh7u27~1588054943.10fa7f6
+  cumulus-netq.x86_64 0:3.1.0-rh7u28~1594097110.8f00ba1
 
 Complete!
 

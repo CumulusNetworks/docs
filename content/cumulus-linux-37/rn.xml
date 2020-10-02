@@ -7,6 +7,45 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31615</td>
 <td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
 <td>3.7.12-3.7.13</td>
@@ -2486,6 +2525,45 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31615</td>
@@ -5245,6 +5323,45 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31545</td>
@@ -8154,6 +8271,45 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31545</td>
 <td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
@@ -10758,6 +10914,45 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31475</td>
@@ -13774,6 +13969,45 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -16658,6 +16892,45 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31475</td>
@@ -19900,6 +20173,45 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -23090,6 +23402,45 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -25967,6 +26318,45 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31475</td>
@@ -28904,6 +29294,45 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31475</td>
@@ -32000,6 +32429,45 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31475</td>
@@ -35220,6 +35688,45 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -37940,6 +38447,45 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31674</td>
+<td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
+CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
+CVE-2020-26116: Avoid injection of HTTP headers via the HTTP method without rejecting newline characters.<br/>
+Vulnerable: &lt;= 3.4.2-1+deb8u8<br/>
+Fixed: 3.4.2-1+deb8u9</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31673</td>
+<td><p>CVE-2016-7949, CVE-2016-7950: The libxrender library has issues in the way various X client libraries handle the responses they receive from servers. Insufficient validation of data from the X server could cause out of boundary memory writes in the libXrender library potentially allowing the user to escalate their privileges.<br/>
+Vulnerable: 0.9.8-1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31631</td>
+<td><p>Several vulnerabilities were discovered in the Perl5 Database Interface (DBI). An attacker could trigger a denial-of-service (DoS), information disclosure and possibly execute arbitrary code.<br/>
+CVE-2013-7490: Using many arguments to methods for Callbacks may lead to memory corruption.<br/>
+CVE-2014-10401: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute.<br/>
+CVE-2019-20919: The hv_fetch() documentation requires checking for NULL and the code does that. But, shortly thereafter, it calls SvOK(profile), causing a NULL pointer dereference.<br/>
+CVE-2020-14392: An untrusted pointer dereference flaw was found in Perl-DBI. A local attacker who is able to manipulate calls to dbd_db_login6_sv() could cause memory corruption, affecting the service’s availability.<br/>
+CVE-2020-14393: A buffer overflow on via an overlong DBD class name in dbih_setup_handle function may lead to data be written past the intended limit.<br/>
+Vulnerable: 1.631-3<br/>
+Fixed: 1.631-3+deb8u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31622</td>
+<td><p>The following vulnerability has been announced in curl:<br/>
+CVE-2020-8231: In rare circumstances, when using the multi API of curl in combination with CURLOPT_CONNECT_ONLY, the wrong connection might be used when transfering data later.<br/>
+Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
+Fixed: 7.38.0-4+deb8u18</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31475</td>

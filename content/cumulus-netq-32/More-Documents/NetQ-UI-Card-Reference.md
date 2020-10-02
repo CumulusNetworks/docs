@@ -5694,7 +5694,7 @@ validation results for the service.
 
 The small Trace Request card displays:
 
-{{<figure src="/images/old_doc_images/trace-request-small-card.png" width="200">}}
+{{<figure src="/images/netq/trace-request-small-card.png" width="200">}}
 
 <table>
 <colgroup>

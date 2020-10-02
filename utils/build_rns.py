@@ -244,10 +244,12 @@ def read_markdown_header(product, version):
     '''
     directory = get_hugo_folder(product, version)
 
-    if product == "cl":
-        input_file = "content/{}/Whats-New/rn.md".format(directory)
-    elif product == "netq":
+    # In NetQ 3.2 and later the RNs are located in the same place for both CL and NetQ
+    if product == "netq" and version in ["2.4", "3.0", "3.1"]:
         input_file = "content/{}/More-Documents/rn.md".format(directory)
+    else:
+        input_file = "content/{}/Whats-New/rn.md".format(directory)
+
 
     look_for_end_of_header = True
     header_lines = []

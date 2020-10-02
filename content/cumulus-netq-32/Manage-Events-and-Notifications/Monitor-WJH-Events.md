@@ -57,15 +57,97 @@ Using <em>wjh_dump.py</em> on a Mellanox platform that is running Cumulus Linux 
 
 {{</notice>}}
 
+### Configure Latency and Congestion Thresholds
+
+WJH latency and congestion metrics depend on threshold settings to trigger the events. Packet latency is measured as the time spent inside a single system (switch). Congestion is measured as a percentage of buffer occupancy on the switch. When WJH triggers events when the high and low thresholds are crossed.
+
+To configure these thresholds, run:
+
+```
+netq config add agent wjh-threshold (latency|congestion) <text-tc-list> <text-port-list> <text-th-hi> <text-th-lo>
+```
+
+You can specify multiple traffic classes and multiple ports by separating the classes or ports by a comma (no spaces).
+
+This example creates latency thresholds for Class *3* traffic on port *swp1* where the upper threshold is *10* and the lower threshold is *1*.
+
+```
+cumulus@switch:~$ netq config add agent wjh-threshold latency 3 swp1 10 1
+```
+
+This example creates congestion thresholds for Class *4* traffic on port *swp1* where the upper threshold is *200* and the lower threshold is *10*.
+
+```
+cumulus@switch:~$ netq config add agent wjh-threshold congestion 4 swp1 200 10
+```
+
 ### View What Just Happened Metrics
 
-<!-- Give examples here and move drop reasons to reference?
+You can view the WJH metrics from the NetQ UI or the NetQ CLI.
 
-[netq ui] add how to access card -->
+{{< tabs "TabID88" >}}
 
-The What Just Happened view displays events based on conditions detected in the data plane. The most recent 1000 events from the last 24 hours are presented for each drop category.
+{{< tab "NetQ UI" >}}
 
-{{<figure src="/images/netq/main-menu-ntwk-wjh-l1-240.png" width="700">}}
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+
+2. Click **What Just Happened** under the **Network** column.
+
+    This view displays events based on conditions detected in the data plane. The most recent 1000 events from the last 24 hours are presented for each drop category.
+
+    {{<figure src="/images/netq/main-menu-ntwk-wjh-l1-240.png" width="700">}}
+
+3. By default the layer 1 drops are shown. Click one of the other drop categories to view those drops for all devices.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+Run one of the following commands:
+
+```
+netq [<hostname>] show wjh-drop <text-drop-type> [ingress-port <text-ingress-port>] [severity <text-severity>] [reason <text-reason>] [src-ip <text-src-ip>] [dst-ip <text-dst-ip>] [proto <text-proto>] [src-port <text-src-port>] [dst-port <text-dst-port>] [src-mac <text-src-mac>] [dst-mac <text-dst-mac>] [egress-port <text-egress-port>] [traffic-class <text-traffic-class>] [rule-id-acl <text-rule-id-acl>] [between <text-time> and <text-endtime>] [around <text-time>] [json]
+netq [<hostname>] show wjh-drop [ingress-port <text-ingress-port>] [severity <text-severity>] [details] [between <text-time> and <text-endtime>] [around <text-time>] [json]
+```
+
+Use the various options to restrict the output accordingly.
+
+This example uses the first form of the command to show drops on switch *leaf03* for the past week.
+
+```
+cumulus@switch:~$ netq leaf03 show wjh-drop between now and 7d
+Matching wjh records:
+Drop type          Aggregate Count
+------------------ ------------------------------
+L1                 560
+Buffer             224
+Router             144
+L2                 0
+ACL                0
+Tunnel             0
+```
+
+This example uses the second form of the command to show drops on switch *leaf03* for the past week *including* the drop reasons.
+
+```
+cumulus@switch:~$ netq leaf03 show wjh-drop details between now and 7d
+
+Matching wjh records:
+Drop type          Aggregate Count                Reason
+------------------ ------------------------------ ---------------------------------------------
+L1                 556                            None
+Buffer             196                            WRED
+Router             144                            Blackhole route
+Buffer             14                             Packet Latency Threshold Crossed
+Buffer             14                             Port TC Congestion Threshold
+L1                 4                              Oper down
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+This table lists all of the supported metrics and provides a brief description of each.
 
 <table>
 <colgroup>
@@ -202,6 +284,8 @@ The What Just Happened view displays events based on conditions detected in the 
 <li><strong>Reason</strong>: Reason why the buffer dropped packet.
 <ul><li>Tail drop: Tail drop is enabled, and buffer queue is filled to maximum capacity.</li>
 <li>WRED: Weighted Random Early Detection is enabled, and buffer queue is filled to maximum capacity or the RED engine dropped the packet as of random congestion prevention.</li>
+<li>Port TC Congestion Threshold Crossed: Percentage of the occupancy buffer exceeded or dropped below the specified high or low threshold</li>
+<li>Packet Latency Threshold Crossed: Time a packet spent within the switch exceeded or dropped below the specified high or low threshold</li>
 </ul></li>
 </ul></td>
 <tr class="even">

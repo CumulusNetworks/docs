@@ -1972,7 +1972,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -5031,7 +5033,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -7722,7 +7726,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -10872,7 +10878,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -13288,7 +13296,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -16850,7 +16860,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -19673,7 +19685,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -23242,7 +23256,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -26186,7 +26202,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -28951,7 +28969,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -31999,7 +32019,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -35216,7 +35238,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -38322,7 +38346,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -41075,7 +41101,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>

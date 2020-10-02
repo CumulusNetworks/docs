@@ -38,18 +38,14 @@ cumulus@switch:~# rm -f /etc/netq/.login.aes
 <td>NETQ-7489</td>
 <td><p>CLI: When the NetQ Collector is configured with a proxy server for the CLI to access cloud APIs the SSL certificate validation fails because the proxy provides its own self-signed certificate. This causes the CLI to fail with the following error:</p>
 
-
 cumulus@switch:~# netq show agents
 Failed to process command. Check /var/log/netqd.log for more details.
 
 
-
 <p>You also see an error in <em>/var/log/netqd.log</em> similar to this:</p>
-
 
 2020-10-01T01:44:51.534875+00:00 leaf01 netqd[4782]: ERROR: GET request failed https://st-ts-01:32708/netq/telemetry/v1/object/bgp?count=2000&amp;offset=0
 2020-10-01T01:44:51.535251+00:00 leaf01 netqd[4782]: ERROR: HTTPSConnectionPool(host='st-ts-01', port=32708): Max retries exceeded with url: /netq/telemetry/v1/object/bgp?count=2000&amp;offset=0 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: {color:#d04437}CERTIFICATE_VERIFY_FAILED{color}] certificate verify failed: self signed certificate (_ssl.c:1056)')))
-
 
 
 <p>Two options are available to work around this issue:</p>
@@ -60,10 +56,6 @@ cumulus@switch:~# netq config add cli server api.netq.cumulusnetworks.com port 4
 cumulus@switch:~# netq config restart cli
    
 </li>
-</ul>
-
-
-<ul>
 	<li>To use the proxy server:<br/>
    1. Delete the token file. Run sudo rm /tmp/token.aes.<br/>
    2. Edit the <em>/etc/netq/netq.yml</em> file as follows. The password is entered as cleartext.

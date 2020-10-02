@@ -286,9 +286,132 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>VNI @vni vni state changed from @old_adv_all_vni_state to @new_adv_all_vni_state</td>
 <td>VNI 11 vni state changed from false to true</td>
 </tr>
-
-<!-- add lcm events here -->
-
+<tr>
+<td>lcm</td>
+<td>Cumulus Linux backup started for a switch or host</td>
+<td>Info</td>
+<td>CL configuration backup started for hostname @hostname</td>
+<td>CL configuration backup started for hostname spine01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Cumulus Linux backup completed for a switch or host</td>
+<td>Info</td>
+<td>CL configuration backup completed for hostname @hostname</td>
+<td>CL configuration backup completed for hostname spine01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Cumulus Linux backup failed for a switch or host</td>
+<td>Critical</td>
+<td>CL configuration backup failed for hostname @hostname</td>
+<td>CL configuration backup failed for hostname spine01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Cumulus Linux upgrade from one version to a newer version has started for a switch or host</td>
+<td>Critical</td>
+<td>CL Image upgrade from version @old_cl_version to version @new_cl_version started for hostname @hostname</td>
+<td>CL Image upgrade from version 4.1.0 to version 4.2.1 started for hostname server01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Cumulus Linux upgrade from one version to a newer version has completed successfully for a switch or host</td>
+<td>Info</td>
+<td>CL Image upgrade from version @old_cl_version to version @new_cl_version completed for hostname @hostname</td>
+<td>CL Image upgrade from version 4.1.0 to version 4.2.1 completed for hostname server01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Cumulus Linux upgrade from one version to a newer version has failed for a switch or host</td>
+<td>Critical</td>
+<td>CL Image upgrade from version @old_cl_version to version @new_cl_version failed for hostname @hostname</td>
+<td>CL Image upgrade from version 4.1.0 to version 4.2.1 failed for hostname server01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Restoration of a Cumulus Linux configuration started for a switch or host</td>
+<td>Info</td>
+<td>CL configuration restore started for hostname @hostname</td>
+<td>CL configuration restore started for hostname leaf01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Restoration of a Cumulus Linux configuration completed successfully for a switch or host</td>
+<td>Info</td>
+<td>CL configuration restore completed for hostname @hostname</td>
+<td>CL configuration restore completed for hostname leaf01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Restoration of a Cumulus Linux configuration failed for a switch or host</td>
+<td>Critical</td>
+<td>CL configuration restore failed for hostname @hostname</td>
+<td>CL configuration restore failed for hostname leaf01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Rollback of a Cumulus Linux image has started for a switch or host</td>
+<td>Critical</td>
+<td>CL Image rollback from version @old_cl_version to version @new_cl_version started for hostname @hostname</td>
+<td>CL Image rollback from version 4.2.1 to version 4.1.0 started for hostname leaf01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Rollback of a Cumulus Linux image has completed successfully for a switch or host</td>
+<td>Info</td>
+<td>CL Image rollback from version @old_cl_version to version @new_cl_version completed for hostname @hostname</td>
+<td>CL Image rollback from version 4.2.1 to version 4.1.0 completed for hostname leaf01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Rollback of a Cumulus Linux image has failed for a switch or host</td>
+<td>Critical</td>
+<td>CL Image rollback from version @old_cl_version to version @new_cl_version failed for hostname @hostname</td>
+<td>CL Image rollback from version 4.2.1 to version 4.1.0 failed for hostname leaf01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Installation of a Cumulus NetQ image has started for a switch or host</td>
+<td>Info</td>
+<td>NetQ Image version @netq_version installation started for hostname @hostname</td>
+<td>NetQ Image version 3.2.0 installation started for hostname spine02</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Installation of a Cumulus NetQ image has completed successfully for a switch or host</td>
+<td>Info</td>
+<td>NetQ Image version @netq_version installation completed for hostname @hostname</td>
+<td>NetQ Image version 3.2.0 installation completed for hostname spine02</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Installation of a Cumulus NetQ image has failed for a switch or host</td>
+<td>Critical</td>
+<td>NetQ Image version @netq_version installation failed for hostname @hostname</td>
+<td>NetQ Image version 3.2.0 installation failed for hostname spine02</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Upgrade of a Cumulus NetQ image has started for a switch or host</td>
+<td>Info</td>
+<td>NetQ Image upgrade from version @old_netq_version to version @netq_version started for hostname @hostname</td>
+<td>NetQ Image upgrade from version 3.1.0 to version 3.2.0 started for hostname spine02</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Upgrade of a Cumulus NetQ image has completed successfully for a switch or host</td>
+<td>Info</td>
+<td>NetQ Image upgrade from version @old_netq_version to version @netq_version completed for hostname @hostname</td>
+<td>NetQ Image upgrade from version 3.1.0 to version 3.2.0 completed for hostname spine02</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Upgrade of a Cumulus NetQ image has failed for a switch or host</td>
+<td>Critical</td>
+<td>NetQ Image upgrade from version @old_netq_version to version @netq_version failed for hostname @hostname</td>
+<td>NetQ Image upgrade from version 3.1.0 to version 3.2.0 failed for hostname spine02</td>
+</tr>
 <tr>
 <td>license</td>
 <td>License state is missing or invalid</td>

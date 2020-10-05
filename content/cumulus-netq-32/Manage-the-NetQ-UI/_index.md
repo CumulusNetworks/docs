@@ -166,7 +166,9 @@ To configure these login policies:
 
     {{<figure src="/images/netq/netq-mgmt-login-mgmt-config-modal-320.png" width="400" >}}
 
-4. Select how long a user may be logged in before logging in again; 30 minutes, 1, 3, 5, or 8 hours. Default is unspecified.
+4. Select how long a user may be logged in before logging in again; 30 minutes, 1, 3, 5, or 8 hours.
+
+    Default for on-premises deployments is 6 hours. Default for cloud deployments is 30 minutes.
 
 5. Indicate the number of times (between 1 and 100) the application can be refreshed before the user must log in again. Default is unspecified.
 

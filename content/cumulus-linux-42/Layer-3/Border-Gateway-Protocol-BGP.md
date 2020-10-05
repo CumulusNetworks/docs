@@ -4,19 +4,18 @@ author: Cumulus Networks
 weight: 810
 toc: 3
 ---
-BGP is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. Specifically, BGP:
+BGP is the routing protocol that runs the Internet. It manages how packets get routed from network to network by exchanging routing and reachability information.
 
-- Does not require the routing state to be periodically refreshed, unlike OSPF.
-- Is less chatty than its link-state siblings. For example, a link or node transition can result in a bestpath change, causing BGP to send updates.
-- Is multi-protocol and extensible.
-- Has many robust vendor implementations.
-- Is very mature as a protocol and comes with many years of operational experience.
+BGP is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology.
 
-{{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center.
+## How does BGP Work?
 
-## Autonomous System Number (ASN)
+BGP directs packets between autonomous systems (AS), which are a set of routers under a common administration.
+Each router maintains a routing table that controls how packets are forwarded. The BGP process on the router generates information in the routing table based on information coming from other routers and from information in the BGP routing information base (RIB). The RIB is a database that stores routes and continually updates the routing table as changes occur.
 
-An {{<exlink url="https://en.wikipedia.org/wiki/Autonomous_System_%28Internet%29" text="autonomous system">}} is defined as a set of routers under a common administration. Because BGP was originally designed to peer between independently managed enterprises and/or service providers, each such enterprise is treated as an autonomous system, responsible for a set of network addresses. Each such autonomous system is given a unique number called an *autonomous* *system number* (ASN). ASNs are handed out by a central authority (ICANN); however, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or using the single ASN you own.
+### Autonomous System
+
+Because BGP was originally designed to peer between independently managed enterprises and/or service providers, each such enterprise is treated as an autonomous system, responsible for a set of network addresses. Each such autonomous system is given a unique number called an *autonomous system number* (ASN). ASNs are handed out by a central authority (ICANN); however, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or using the single ASN you own.
 
 The ASN is central to how BGP builds a forwarding topology. A BGP route advertisement carries  with it not only the ASN of the originator, but also the list of ASNs that this route advertisement passes through. When forwarding a route advertisement, a BGP speaker adds itself to this list. This list of ASNs is called the *AS path*. BGP uses the AS path to detect and avoid loops.
 
@@ -44,7 +43,7 @@ Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294.
 
 {{%/notice%}}
 
-## eBGP and iBGP
+### eBGP and iBGP
 
 When BGP is used to peer between autonomous systems, the peering is referred to as *external BGP* or eBGP. When BGP is used within an autonomous system, the peering used is referred to as *internal BGP* or iBGP. eBGP peers have different ASNs while iBGP peers have the same ASN.
 
@@ -52,141 +51,157 @@ The heart of the protocol is the same when used as eBGP or iBGP but there is a k
 
 All iBGP speakers need to be peered with each other in a full mesh. In a large network, this requirement can quickly become unscalable. The most popular method to scale iBGP networks is to introduce a *route reflector*. See {{<link url="#route-reflectors" text="Route Reflectors">}} below.
 
-## BGP Path Selection
+### BGP Path Selection
 
-BGP is a path-vector routing algorithm and does not rely on a single routing metric to determine the lowest cost route, unlike interior gateway protocols (IGPs) like OSPF.
+BGP is a path-vector routing algorithm that does not rely on a single routing metric to determine the lowest cost route, unlike interior gateway protocols (IGPs) like OSPF.
 
-The BGP path selection algorithm looks at multiple factors to determine exactly which path is best and only the best path is installed in the routing table and advertised to other BGP peers. If {{<link url="#ecmp-with-bgp" text="BGP ECMP">}} is configured multiple equal cost routes may be installed in the routing table but only a single route will be advertised to BGP peers.
+The BGP path selection algorithm looks at multiple factors to determine exactly which path is best. {{<link url="#set-ecmp-options" text="BGP multipath">}} is enabled by default in Cumulus Linux so that multiple equal cost routes can be installed in the routing table but only a single route is advertised to BGP peers.
 
 The order of the BGP algorithm process is as follows:
 
-- **Highest Weight**: Weight is a value from 0 to 65535. Weight is not carried in a BGP update but is used locally to influence the best path selection. Locally generated routes will have a weight of 32768.
+- **Highest Weight**: Weight is a value from 0 to 65535. Weight is not carried in a BGP update but is used locally to influence the best path selection. Locally generated routes have a weight of 32768.
 
-- **Highest Local Preference**: Local Preference is exchanged between iBGP neighbors only. Routes received from eBGP peers will be assigned a Local Preference of 0. Whereas weight is used to make route selections without sending additional information to peers, Local Preference can be used to influence routing to iBGP peers.
+- **Highest Local Preference**: Local Preference is exchanged between iBGP neighbors only. Routes received from eBGP peers are assigned a Local Preference of 0. Whereas weight is used to make route selections without sending additional information to peers, Local Preference can be used to influence routing to iBGP peers.
 
-- **Locally Originated Routes**: Any route that we are responsible for placing into BGP will be selected as best. This includes static routes, aggregate routes and redistributed routes.
+- **Locally Originated Routes**: Any route that we are responsible for placing into BGP is selected as best. This includes static routes, aggregate routes and redistributed routes.
 
-- **Shortest AS Path**: The path received with the fewest number of ASN hops will be selected.
+- **Shortest AS Path**: The path received with the fewest number of ASN hops is selected.
 
 - **Origin Check**: Prefer routes with an IGP origin (those routes placed into BGP with a `network` statement) over Incomplete origins (routes places into BGP through redistribution). The EGP origin attribute is no longer used.
 
-- **Lowest MED**: The Multi-Exit Discriminator or MED is sent to eBGP peers to indicate a preference on how traffic should enter an AS. A MED received from an eBGP peer will be exchanged with iBGP peers but will be reset to a value of 0 before advertising a prefix to another AS. 
+- **Lowest MED**: The Multi-Exit Discriminator or MED is sent to eBGP peers to indicate a preference on how traffic enters an AS. A MED received from an eBGP peer is exchanged with iBGP peers but is reset to a value of 0 before advertising a prefix to another AS.
 
 - **eBGP Routes**: A route received from an eBGP peer is prefered over a route learned from an iBGP peer.
 
 - **Lowest IGP Cost to the next hop**: The route with the lowest IGP metric to reach the BGP next hop.
 
-- **iBGP ECMP over eBGP ECMP**: If  {{<link url="#ecmp-with-bgp" text="BGP Multipath">}} is configured, prefer equal iBGP routes over equal eBGP routes, unless `as-path multipath-relax` is also configured.
+- **iBGP ECMP over eBGP ECMP**: If {{<link url="#set-ecmp-options" text="BGP Multipath">}} is configured, prefer equal iBGP routes over equal eBGP routes, unless {{<link url="#set-ecmp-options" text="as-path multipath-relax">}} is also configured.
 
 - **Oldest Route**: Prefer the oldest route in the BGP table.
 
-- **Lowest RouterID**: Prefer the route received from the peer with the lowest Router ID attribute. If the route was received from a route reflector, the `ORIGINATOR_ID` attribute will be used to compare.
+- **Lowest RouterID**: Prefer the route received from the peer with the lowest Router ID attribute. If the route is received from a route reflector, the `ORIGINATOR_ID` attribute is used to compare.
 
 - **Shortest Route Reflector Cluster List**: If a route has passed through multiple route reflectors, prefer the route with the shortested route reflector cluster list.
 
-- **Highest Peer IP Address**: Prefer the route received from the peer with the highest IP address. 
+- **Highest Peer IP Address**: Prefer the route received from the peer with the highest IP address.
 
-### BGP Path Selection Reason
-
-Cumulus Linux provides the reason it is selecting one path over another in output of the NCLU `net show bgp` and vtysh `show ip bgp` commands for a specific prefix.
+Cumulus Linux provides the reason it is selecting one path over another in NCLU `net show bgp` and vtysh `show ip bgp` command output for a specific prefix.
 
 When BGP multipath is in use, if multiple paths are equal, BGP still selects a single best path to advertise to peers. This path is indicated as best with the reason, although multiple paths might be installed into the routing table.
 
-## Configure BGP
+## Basic Configuration
 
-To configure BGP, you need to:
+To configure BGP on a switch, you need to:
 
-- Assign an ASN to identify the BGP node. In a two-tier leaf and spine environment, you can use {{<link url="#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically. Auto BGP is supported with NCLU only.
-- Assign a router ID to the BGP node.
-- Specify where to disseminate routing information.
-- Set BGP session properties.
-- Specify which prefixes to originate.
+- Assign an ASN to identify this BGP node. In a two-tier leaf and spine configuration, you can use {{<link url="#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically. Auto BGP is supported with NCLU only.
+- Assign a router ID, which is a 32-bit value and is typically the address of the loopback interface on the switch.
+- Specify where to distribute routing information by providing the IP address and ASN of the neighbor. The ASN can be a number, or `internal` for a neighbor in the same AS or `external` for a neighbor in a different AS.
+- Specify which prefixes to originate from this BGP node.
 
-The following procedure provides example commands:
+The following procedure provides example commands for two switches, leaf01 and spine01, which are eBPG peers:
 
 {{< tabs "10 ">}}
 
 {{< tab "NCLU Commands ">}}
 
-1. Identify the BGP node by assigning an ASN. Either assign the ASN manually or use auto BGP to assign the ASN automatically.
+{{< tabs "109 ">}}
+
+{{< tab " leaf01 ">}}
+
+1. Identify the BGP node by assigning an ASN.
 
     - To assign an ASN manually:
 
       ```
-      cumulus@switch:~$ net add bgp autonomous-system 65000
+      cumulus@switch:~$ net add bgp autonomous-system 65101
       ```
 
-    - To use auto BGP to assign an ASN automatically on a leaf:
+    - To use auto BGP to assign an ASN automatically on the leaf:
 
       ```
       cumulus@switch:~$ net add bgp auto leaf
       ```
 
-      To use auto BGP to assign an ASN automatically on a spine:
+      The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
+
+2. Assign the router ID.
+
+    ```
+    cumulus@switch:~$ net add bgp router-id 10.10.10.1
+    ```
+
+3. Specify the BGP neighbor to which you want to distribute routing information.
+
+    ```
+    cumulus@switch:~$ net add bgp neighbor 10.10.10.101 remote-as external
+    ```
+
+    For an iBGP session, the `remote-as` is the same as the local AS.
+
+4. Specify which prefixes to originate:
+
+    ```
+    cumulus@switch:~$ net add bgp ipv4 unicast network 10.10.10.1/32
+    cumulus@switch:~$ net add bgp ipv4 unicast network 10.1.10.0/24
+    cumulus@switch:~$ net pending
+    cumulus@switch:~$ net commit
+
+   ```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+1. Identify the BGP node by assigning an ASN.
+
+    - To assign an ASN manually:
+
+      ```
+      cumulus@switch:~$ net add bgp autonomous-system 65199
+      ```
+
+      To use auto BGP to assign an ASN automatically on the spine:
 
       ```
       cumulus@switch:~$ net add bgp auto spine
       ```
 
-    The auto BGP leaf and spine keywords are only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
+      The auto BGP `spine` keyword is only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
 
-2. Assign the router ID:
-
-    ```
-    cumulus@switch:~$ net add bgp router-id 0.0.0.1
-    ```
-
-3. Specify where to disseminate routing information:
+2. Assign the router ID.
 
     ```
-    cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as external
-    cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
+    cumulus@switch:~$ net add bgp router-id 10.10.10.101
     ```
 
-    For an iBGP session, the `remote-as` is the same as the local AS:
+3. Specify the BGP neighbor to which you want to distribute routing information.
 
     ```
-    cumulus@switch:~$ net add bgp neighbor 10.0.0.2 remote-as internal
-    cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as internal
+    cumulus@switch:~$ net add bgp neighbor 10.10.10.1 remote-as external
     ```
 
-    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
+    For an iBGP session, the `remote-as` is the same as the local AS.
+
+4. Specify which prefixes to originate:
 
     ```
-    cumulus@switch:~$ net add bgp ipv4 unicast neighbor 10.0.0.2
-    cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
-    ```
-
-4. Specify BGP session properties:
-
-    ```
-    cumulus@switch:~$ net add bgp neighbor 10.0.0.2 next-hop-self
-    ```
-
-    If this is a route reflector client, it can be specified as follows:
-
-    ```
-    cumulus@switchRR:~$ net add bgp neighbor 10.0.0.1 route-reflector-client
-    ```
-
-    {{%notice note%}}
-
-When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command otherwise, the `route-reflector-client` command is ignored.
-
-    {{%/notice%}}
-
-5. Specify which prefixes to originate:
-
-    ```
-    cumulus@switch:~$ net add bgp ipv4 unicast network 192.0.2.0/24
-    cumulus@switch:~$ net add bgp ipv4 unicast network 203.0.113.1/24
+    cumulus@switch:~$ net add bgp ipv4 unicast network 10.10.10.101/32
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
-    ```
+
+   ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{< /tab >}}
 
 {{< tab "vtysh Commands ">}}
+
+{{< tabs "205 ">}}
+
+{{< tab " leaf01 ">}}
 
 1. Enable the `bgpd` daemon as described in {{<link title="Configure FRRouting">}}.
 
@@ -196,63 +211,60 @@ When configuring a router to be a route reflector client, you must specify the c
     cumulus@switch:~$ sudo vtysh
 
     switch# configure terminal
-    switch(config)# router bgp 65000
-    switch(config-router)# bgp router-id 0.0.0.1
+    switch(config)# router bgp 65101
+    switch(config-router)# bgp router-id 10.10.10.1
     ```
 
-3. Specify where to disseminate routing information:
+3. Specify where to distribute routing information:
 
     ```
-    switch(config-router)# neighbor 10.0.0.2 remote-as external
-    switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
+    switch(config-router)# neighbor 10.10.10.101 remote-as external
     ```
 
-    For an iBGP session, the `remote-as` is the same as the local AS:
-
-    ```
-    switch(config-router)# neighbor 10.0.0.2 remote-as internal
-    switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as internal
-    ```
-
-    Specifying the IP address of the peer allows BGP to set up a TCP socket with this peer. You must specify the `activate` command for the IPv6 address family that is being announced by the BGP session to distribute any prefixes to it. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
-
-    ```
-    switch(config-router)# address-family ipv4 unicast
-    switch(config-router-af)# neighbor 10.0.0.2
-    switch(config-router-af)# exit
-    switch(config-router)# address-family ipv6
-    switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
-    switch(config-router-af)# exit
-    ```
-
-4. Specify BGP session properties:
-
-    ```
-    switch(config-router)#
-
-    switch(config-router-af)# neighbor 10.0.0.2 next-hop-self
-    ```
-
-    If this is a route reflector client, it can be specified as follows:
-
-    ```
-    switchRR(config-router-af)# neighbor 10.0.0.1 route-reflector-client
-    ```
-
-    {{%notice note%}}
-
-When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
-
-    {{%/notice%}}
+    For an iBGP session, the `remote-as` is the same as the local AS.
 
 5. Specify which prefixes to originate:
 
     ```
-    switch(config-router-af)# network 192.0.2.0/24
-    switch(config-router-af)# network 203.0.113.1/24
-    switch(config-router-af)# exit
-    switch(config-router)# exit
-    switch(config)# exit
+    switch(config-router)# address-family ipv4
+    switch(config-router-af)# network 10.10.10.1/32
+    switch(config-router-af)# network 10.1.10.0/24
+    switch(config-router-af)# end
+    switch# write memory
+    switch# exit
+    cumulus@switch:~$
+    ```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+1. Enable the `bgpd` daemon as described in {{<link title="Configure FRRouting">}}.
+
+2. Identify the BGP node by assigning an ASN and the router ID:
+
+    ```
+    cumulus@switch:~$ sudo vtysh
+
+    switch# configure terminal
+    switch(config)# router bgp 65199
+    switch(config-router)# bgp router-id 10.10.10.101
+    ```
+
+3. Specify where to distribute routing information:
+
+    ```
+    switch(config-router)# neighbor 10.10.10.1 remote-as external
+    ```
+
+    For an iBGP session, the `remote-as` is the same as the local AS.
+
+5. Specify which prefixes to originate:
+
+    ```
+    switch(config-router)# address-family ipv4
+    switch(config-router-af)# network 10.10.10.101/32
+    switch(config-router-af)# end
     switch# write memory
     switch# exit
     cumulus@switch:~$
@@ -262,21 +274,48 @@ When configuring a router to be a route reflector client, you must specify the c
 
 {{< /tabs >}}
 
+{{< /tab >}}
+
+{{< /tabs >}}
+
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+{{< tabs "2286 ">}}
+
+{{< tab " leaf01 ">}}
 
 ```
 ...
-router bgp 65000
-  bgp router-id 0.0.0.1
-  neighbor 10.0.0.2 remote-as external
-  !
-  address-family ipv4 unicast
-  network 192.0.2.0/24
-  network 203.0.113.1/24
-  neighbor 10.0.0.2 next-hop-self
-  exit-address-family
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor 10.10.10.101 remote-as external
+ !
+ address-family ipv4 unicast
+  network 10.10.10.1/32
+  network 10.1.10.0/24
+ exit-address-family
 ...
 ```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor 10.10.10.1 remote-as external
+ !
+ address-family ipv4 unicast
+  network 10.10.10.101/32
+ exit-address-family
+...
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -284,15 +323,257 @@ When using auto BGP, there are no references to `leaf` or `spine` in the configu
 
 {{%/notice%}}
 
-## ECMP with BGP
+## BGP Unnumbered Configuration
 
-BGP supports equal-cost multipathing (ECMP). If a BGP node hears a prefix **p** from multiple peers, it has all the information necessary to program the routing table to forward traffic for that prefix **p** through all of these peers.
+BGP unnumbered enables you to advertise an IPv4 route with an IPv6 next hop.
 
-In Cumulus Linux, the BGP `maximum-paths` setting is enabled by default, so multiple routes are already installed. The default setting is 64 paths.
+Historically, peers connect through IPv4 over TCP port 179 and after they establish a session, they exchange prefixes. When a BGP peer advertises an IPv4 prefix, it must include an IPv4 next hop address, which is usually the address of the advertising router. This requires that each BGP peer has an IPv4 address, which in a large network can consume a lot of address space, requiring a separate IP address for each peer-facing interface.
 
-Unlike OSPF, which has separate versions of the protocol to announce IPv4 and IPv6 routes, BGP is a multi-protocol routing engine, capable of announcing both IPv4 and IPv6 prefixes. It supports announcing IPv4 prefixes over an IPv4 session and IPv6 prefixes over an IPv6 session. It also supports announcing prefixes of both these address families over a single IPv4 session or over a single IPv6 session.
+The BGP unnumbered standard, specified in {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}} uses *extended next hop encoding* (ENHE) and no longer requires an IPv4 prefix to be advertised along with an IPv4 next hop. This means that you can set up BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch; the interfaces used by BGP are unnumbered.
 
-To enable ECMP in BGP, run the following command:
+The next hop address for each prefix is an IPv6 link-local address, which is assigned automatically to each interface. Using the IPv6 link-local address as a next hop instead of an IPv4 unicast address, BGP unnumbered saves you from having to configure IPv4 addresses on each interface.
+
+When you use BGP unnumbered, BGP learns the prefixes, calculates the routes and installs them in IPv4 AFI to IPv6 AFI format. ENHE in Cumulus Linux does not install routes into the kernel in IPv4 prefix to IPv6 next hop format. For link-local peerings enabled by dynamically learning the other end's link-local address using IPv6 neighbor discovery router advertisements, an IPv6 next hop is converted into an IPv4 link-local address and a static neighbor entry is installed for this IPv4 link-local address with the MAC address derived from the link-local address of the other end.
+
+{{%notice note%}}
+
+- Interface-based peering with separate IPv4 and IPv6 sessions is not supported.
+- If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 link-local peering.
+- BGP unnumbered only works with two switches at a time, as it is designed to work with PTP (point-to-point protocol).
+- The IPv6 implementation on the peering device uses the MAC address as the interface ID when assigning the IPv6 link-local address, as suggested by RFC 4291.
+
+{{%/notice%}}
+
+The following example commands show a basic BGP unnumbered configuration for two switches, leaf01 and spine01, which are eBPG peers.
+
+The only difference between this BGP unnumbered configuration and the basic BGP configuration shown above, is that the BGP neighbour is specified as an interface (insead of an IP address).
+
+{{< tabs "354 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+{{< tabs "358 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+cumulus@switch:~$ net add bgp autonomous-system 65101
+cumulus@switch:~$ net add bgp router-id 10.10.10.1
+cumulus@switch:~$ net add bgp neighbor swp51 remote-as external
+cumulus@switch:~$ net add bgp ipv4 unicast network 10.10.10.1/32
+cumulus@switch:~$ net add bgp ipv4 unicast network 10.1.10.0/24
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@switch:~$ net add bgp autonomous-system 65199
+cumulus@switch:~$ net add bgp router-id 10.10.10.101
+cumulus@switch:~$ net add bgp neighbor swp1 remote-as external
+cumulus@switch:~$ net add bgp ipv4 unicast network 10.10.10.101/32
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+{{< tabs "390 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# bgp router-id 10.10.10.1
+switch(config-router)# neighbor swp1 remote-as external
+switch(config-router)# address-family ipv4
+switch(config-router-af)# network 10.10.10.1/32
+switch(config-router-af)# network 10.1.10.0/24
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65199
+switch(config-router)# bgp router-id 10.10.10.101
+switch(config-router)# neighbor swp1 remote-as external
+switch(config-router)# address-family ipv4
+switch(config-router-af)# network 10.10.10.101/32
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+{{< tabs "416 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor swp51 remote-as external
+ !
+ address-family ipv4 unicast
+  network 10.10.10.1/32
+  network 10.1.10.0/24
+ exit-address-family
+...
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp1 remote-as external
+ !
+ address-family ipv4 unicast
+  network 10.10.10.101/32
+ exit-address-family
+...
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{%notice note%}}
+
+Every router or end host must have an IPv4 address to complete a `traceroute` of IPv4 addresses. In this case, the IPv4 address used is that of the loopback device.
+
+Even if extended next-hop encoding (ENHE) is not used in the data center, link addresses are not typically advertised because:
+
+- Link addresses take up valuable FIB resources. In a large Clos environment, the number of such addresses can be quite large.
+- Link addresses expose an additional attack vector for intruders to use to either break in or engage in DDOS attacks.
+
+Assigning an IP address to the loopback device is essential.
+
+{{%/notice%}}
+
+{{< expand "Advanced: How Next Hop Fields Are Set "  >}}
+
+This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ({{<exlink url="https://www.ietf.org/rfc/rfc2858.txt" text="multiprotocol reachable NLRI">}}) initiated by the system, which applies whether IPv6 prefixes or IPv4 prefixes are exchanged with ENHE. There are two main aspects to determine: how many IPv6 next hops are included in the MP\_REACH\_NLRI (the RFC allows either one or two next hops) and the values of the next hops. This section also describes how a received MP\_REACH\_NLRI is handled as far as processing IPv6 next hops.
+
+- When peering to a global IPv6 address or link-local IPv6 address, whether to send one or two next hops is determined as follows:
+    - If reflecting the route, two next hops are sent only if the peer has `nexthop-local unchanged` configured and the attribute of the received route has an IPv6 link-local next hop  otherwise, only one next hop is sent.
+    - If not reflecting the route, two next hops are sent if explicitly configured (`nexthop-local unchanged`) or the peer is directly connected (either peering is on link-local address or the global IPv4 or IPv6 address is *directly connected*) and the route is either a local/self-originated route or the peer is an eBGP peer.
+    - In all other cases, only one next hop is sent, unless an outbound route map adds another next hop.
+- `route-map` can impose two next hops in scenarios where Cumulus Linux only sends one next hop - by specifying `set ipv6 nexthop link-local`.
+- For all routes to eBGP peers and self-originated routes to iBGP peers, the global next hop (first value) is the peering address of the local system. If the peering is on the link-local address, this is the global IPv6 address on the peering interface, if present; otherwise, it is the link-local IPv6 address on the peering interface.
+- For other routes to iBGP peers (eBGP to iBGP or reflected), the global next hop will be the global next hop in the received attribute.
+
+    {{%notice note%}}
+
+If this address is a link-local IPv6 address, it is reset so that the link-local IPv6 address of the eBGP peer is not passed along to an iBGP peer, which most likely is on a different link.
+
+{{%/notice%}}
+
+- `route-map` and/or the peer configuration can change the above behavior. For example, `route-map` can set the global IPv6 next hop or the peer configuration can set it to *self* - which is relevant for *iBGP* peers. The route map or peer configuration can also set the next hop to unchanged, which ensures the source IPv6 global next hop is passed around - which is relevant for *eBGP* peers.
+- Whenever two next hops are being sent, the link-local next hop (the second value of the two) is the link-local IPv6 address on the peering interface unless it is due to `nh-local-unchanged` or `route-map` has set the link-local next hop.
+- Network administrators cannot set {{<exlink url="http://en.wikipedia.org/wiki/Martian_packet" text="martian values">}} for IPv6 next hops in `route-map`. Also, global and link-local next hops are validated to ensure they match the respective address types.
+- In a received update, a martian check is imposed for the IPv6 global next hop. If the check fails, it gets treated as an implicit withdraw.
+- If two next hops are received in an update and the second next hop is not a link-local address, it gets ignored and the update is treated as if only one next hop was received.
+- Whenever two next hops are received in an update, the second next hop is used to install the route into `zebra`. As per the previous point, it is already assured that this is a link-local IPv6 address. Currently, this is assumed to be reachable and is not registered with NHT.
+- When `route-map` specifies the next hop as `peer-address`, the global IPv6 next hop as well as the link-local IPv6 next hop (if it's being sent) is set to the *peering address*. If the peering is on a link-local address, the former could be the link-local address on the peering interface, unless there is a global IPv6 address present on this interface.
+- When using iBGP unnumbered with IPv6 Link Local Addresses (the default), FRR rewrites the BGP next hop to be the adjacent link. This is similar behavior to eBGP next hops. However, iBGP route advertisement rules do not change and a full mesh or route reflectors is still required.
+
+The above rules imply that there are scenarios where a generated update has two IPv6 next hops, and both of them are the IPv6 link-local address of the peering interface on the local system. If you are peering with a switch or router that is not running Cumulus Linux and expects the first next hop to be a global IPv6 address, a route map can be used on the sender to specify a global IPv6 address. This conforms with the recommendations in the Internet draft {{<exlink url="https://tools.ietf.org/html/draft-kato-bgp-ipv6-link-local-00" text="draft-kato-bgp-ipv6-link-local-00.txt">}}, "BGP4+ Peering Using IPv6 Link-local Address."
+
+{{< /expand >}}
+
+## Optional Configuration
+
+This section describes optional configuration procedures.
+
+### ECMP
+
+BGP supports equal-cost multipathing (ECMP). If a BGP node hears a certain prefix from multiple peers, it has all the information necessary to program the routing table and forward traffic for that prefix through all of these peers. BGP typically choses one best path for each prefix and installs that route in the forwarding table.
+
+In Cumulus Linux, the *BGP multipath* option is enabled by default with the maximum number of paths set to 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links.
+
+To change the number of paths allowed, run the following commands. The example commands change the maximum number of paths to 120. You can set a value between 1 and 256. 1 disables the BGP multipath option.
+
+{{< tabs "297 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp maximum-paths 120
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# address-family ipv4
+switch(config-router-af)# maximum-paths 120
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+!
+address-family ipv4 unicast
+ network 192.0.2.0/24
+ network 203.0.113.1/24
+ maximum-paths 120
+exit-address-family
+...
+```
+
+When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors, you need to set the *bestpath as-path multipath-relax* option.
 
 {{< tabs "12 ">}}
 
@@ -312,7 +593,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router bgp 65000
+switch(config)# router bgp 65101
 switch(config-router)# bgp bestpath as-path multipath-relax
 switch(config-router)# end
 switch# write memory
@@ -328,7 +609,7 @@ The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` fi
 
 ```
 ...
-router bgp 65000
+router bgp 65101
   bgp router-id 10.0.0.1
   bgp bestpath as-path multipath-relax
 ...
@@ -336,76 +617,104 @@ router bgp 65000
 
 {{%notice note%}}
 
-When you disable the `bgp bestpath as-path multipath relax` option, EVPN type-5 routes do not use the updated configuration. Type-5 routes will continue to use all available ECMP paths in the underlay fabric, regardless of ASN.
+When you disable the *bestpath as-path multipath-relax* option, EVPN type-5 routes do not use the updated configuration. Type-5 routes continue to use all available ECMP paths in the underlay fabric, regardless of ASN.
 
 {{%/notice%}}
 
-## Route Reflectors
+### Route Reflectors
 
-In a two-tier Clos network, the leaf (or tier 1) switches are the only ones connected to end stations. The spines themselves do not have any routes to announce; they are merely **reflecting** the routes announced by one leaf to the other leaves. Therefore, the spine switches function as route reflectors while the leaf switches serve as route reflector clients.
+iBGP rules state that a route learned from an iBGP peer can not be sent to another iBGP peer. In a datacenter spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, BGP introduced the concept of a *route reflector* that selectively violates this rule; when an iBGP speaker is configured as a route reflector, it *can* send iBGP learned routes to other iBGP peers.
 
-In a three-tier network, the tier 2 nodes (or mid-tier spines) act as both route reflector servers and route reflector clients. They act as route reflectors because they announce the routes learned from the tier 1 nodes to other tier 1 nodes and to tier 3 nodes. They also act as route reflector clients to the tier 3 nodes, receiving routes learned from other tier 2 nodes. Tier 3 nodes act only as route reflectors.
+In the following example, spine01 is acting as a route reflector. The leaf switches, leaf01, leaf02 and leaf03 are *route reflector clients*. Any route that spine01 learns from a route reflector client is sent to other route reflector clients.
 
-In the following illustration, tier 2 node 2.1 is acting as a route reflector server, announcing the routes between tier 1 nodes 1.1 and 1.2 to tier 1 node 1.3. It is also a route reflector client, learning the routes between tier 2 nodes 2.2 and 2.3 from the tier 3 node, 3.1.
+{{< img src = "/images/cumulus-linux/bgp-route-reflectors-example.png" >}}
 
-{{< img src = "/images/cumulus-linux/bgp-route-reflectors.png" >}}
+To configure the BGP node as a route reflector, set the `route-reflector-client` option. The following example sets spine01 shown in the illustration above to be a route reflector for leaf01:
+
+{{< tabs "344 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@spine01:~$ net add bgp neighbor 10.10.10.1 route-reflector-client
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@spine01:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65199
+switch(config-router)# address-family ipv4
+switch(config-router-af)# neighbor 10.10.10.1 route-reflector-client
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor 10.10.10.1 remote-as external
+ !
+ address-family ipv4 unicast
+  network 192.0.2.0/24
+  neighbor 10.10.10.1 route-reflector-client
+ exit-address-family
+...
+```
 
 {{%notice info%}}
 
-When configuring a router to be a route reflector client, you must specify the configuration commands in a specific order. You must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored. See {{<link url="#configure-bgp" text="Configure BGP">}}.
+For IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored. See {{<link url="#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 prefixes with IPv6 Next Hops">}} below.
 
 {{%/notice%}}
 
-A **cluster consists of route reflectors (RRs) and their clients** and is used in iBGP environments where multiple sets of route reflectors and their clients are configured. Configuring a unique ID per cluster (on the route reflector server and clients) prevents looping as a route reflector does not accept routes from another that has the same cluster ID. Additionally, because all route reflectors in the cluster recognize updates from peers in the same cluster, they do not install routes from a route reflector in the same cluster; this reduces the number of updates that need to be stored in BGP routing tables.
+### IPv6 Neighbors
 
-To configure a cluster ID on a route reflector, run the following commands. You can enter the cluster ID as an IP address or as a 32-bit quantity.
+ADD
 
-{{< tabs "70 ">}}
+### Advertise IPv4 prefixes with IPv6 Next Hops
 
-{{< tab "NCLU Commands ">}} 
+{{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}} defines the method used for BGP to advertise IPv4 prefixes with IPv6 next hops. The RFC does not make a distinction between whether the IPv6 peering and next hop values should be global unicast addresses (GUA) or link-local addresses. Cumulus Linux supports advertising IPv4 prefixes with IPv6 global unicast and link-local next hop addresses, with either *unnumbered* or *numbered* BGP.
 
-The following example configures a cluster ID on a route reflector in IP address format:
+When BGP peering uses IPv6 global addresses and IPv4 prefixes are being advertised and installed, IPv6 route advertisements are used to derive the MAC address of the peer so that FRR can create an IPv4 route with a link-local IPv4 next hop address (defined by RFC 3927). This is required to install the route into the kernel. These route advertisement settings are configured automatically when FRR receives an update from a BGP peer using IPv6 global addresses that contain an IPv4 prefix with an IPv6 next hop, and the enhanced-next hop capability has been negotiated.
 
-```
-cumulus@switch:~$ net add bgp cluster-id 14.0.0.9
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+To enable advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings, add the `extended-nexthop` capability to the global IPv6 neighbor statements on each end of the BGP sessions.
 
-The following example configures a cluster ID on a route reflector as a 32-bit quantity:
+{{< tabs "18 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp cluster-id 321
+cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
-
-The following example configures a cluster ID on a route reflector in IP address format:
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router bgp 65000
-switch(config-router)# bgp cluster-id 10.0.0.9
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-The following example configures a cluster ID on a route reflector as a 32-bit quantity:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65000
-switch(config-router)# bgp cluster-id 321
+switch(config)# router bgp 65101
+switch(config-router)# neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
 switch(config-router)# end
 switch# write memory
 switch# exit
@@ -417,56 +726,1224 @@ cumulus@switch:~$
 {{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+  ...
+  neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
+...
+```
+
+Ensure that the IPv6 peers are activated under the IPv4 unicast address family; otherwise, all peers are activated in the IPv4 unicast address family by default. If `no bgp default ipv4-unicast` is configured, you need to explicitly activate the IPv6 neighbor under the IPv4 unicast address family as shown below:
+
+{{< tabs "20 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
+cumulus@switch:~$ net add bgp ipv4 unicast neighbor 2001:db8:0002::0a00:0002 activate
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
+switch(config-router)# address-family ipv4 unicast
+switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
+switch(config-router-af)# end
+switch(config)# exit
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+router-id 10.0.0.11
+no bgp default ipv4-unicast
+neighbor 2001:db8:0002::0a00:0002 remote-as external
+neighbor 2001:db8:0002::0a00:0002 capability extended-nexthop
+!
+address-family ipv4 unicast
+  neighbor 2001:db8:0002::0a00:0002 activate
+exit-address-family
+...
+```
+
+### BGP add-path
+
+Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
+
+#### BGP add-path RX
+
+*BGP add-path RX* allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. No additional configuration is required for BGP add-path RX.
+
+{{%notice note%}}
+
+BGP advertises the add-path RX capability by default. Add-Path TX requires an administrator to enable it. Enabling TX resets the session.
+
+{{%/notice%}}
+
+To view the existing capabilities, run the following commands. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
+
+{{< tabs "24 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net show bgp neighbor
+BGP neighbor on swp51: e80::7c41:fff:fe93:b711, remote AS 65199, local AS 65101, external link
+Hostname: spine01
+  Member of peer-group fabric for session parameters
+  BGP version 4, remote router ID 10.10.10.101
+  BGP state = Established, up for 1d01h15m
+  Last read 00:00:00, Last write 1d01h15m
+  Hold time is 3, keepalive interval is 1 seconds
+  Configured hold time is 3, keepalive interval is 1 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    AddPath:
+      IPv4 Unicast: RX advertised IPv4 Unicast and received
+    Extended nexthop: advertised and received
+      Address families by peer:
+                    IPv4 Unicast
+    Route refresh: advertised and received(old & new)
+    Address family IPv4 Unicast: advertised and received
+    Hostname Capability: advertised and received
+    Graceful Restart Capabilty: advertised and received
+      Remote Restart timer is 120 seconds
+      Address families by peer:
+        none
+...
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+switch# show ip bgp neighbors
+
+BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65199, local AS 65101, external link
+Hostname: spine01
+  Member of peer-group fabric for session parameters
+  BGP version 4, remote router ID 10.10.10.101
+  BGP state = Established, up for 1d01h15m
+  Last read 00:00:00, Last write 1d01h15m
+  Hold time is 3, keepalive interval is 1 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    AddPath:
+      IPv4 Unicast: RX advertised IPv4 Unicast and received
+    Extended nexthop: advertised and received
+      Address families by peer:
+                    IPv4 Unicast
+    Route refresh: advertised and received(old & new)
+    Address family IPv4 Unicast: advertised and received
+    Hostname Capability: advertised and received
+    Graceful Restart Capabilty: advertised and received
+      Remote Restart timer is 120 seconds
+      Address families by peer:
+        none
+...
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The example output above shows that additional BGP paths can be sent and received (TX and RX are advertised). It also shows that the BGP neighbor, fe80::4638:39ff:fe00:5c, supports both.
+
+To view the current additional paths, run the following commands.
+
+{{< tabs "26 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
+
+```
+cumulus@leaf01:mgmt:~$ net show bgp 10.10.10.1
+BGP routing table entry for 10.10.10.1/32
+Paths: (1 available, best #1, table default)
+  Advertised to non peer-group peers:
+  spine01(swp51) spine02(swp52) spine03(swp53) spine04(swp54) leaf02(peerlink.4094)
+  Local
+    0.0.0.0 from 0.0.0.0 (10.10.10.1)
+      Origin incomplete, metric 0, weight 32768, valid, sourced, bestpath-from-AS Local, best (First path received)
+      Last update: Fri Oct  2 03:56:33 2020
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+The example output shows five additional paths that have been added by the TX node for receiving. All the paths have a unique AddPath ID.
+
+```
+switch# show ip bgp 10.0.0.12
+BGP routing table entry for 10.10.10.1/32
+Paths: (1 available, best #1, table default)
+  Advertised to non peer-group peers:
+  spine01(swp51) spine02(swp52) spine03(swp53) spine04(swp54) leaf02(peerlink.4094)
+  Local
+    0.0.0.0 from 0.0.0.0 (10.10.10.1)
+      Origin incomplete, metric 0, weight 32768, valid, sourced, bestpath-from-AS Local, best (First path received)
+      Last update: Fri Oct  2 03:56:33 2020
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+#### BGP add-path TX
+
+AddPath TX allows BGP to advertise more than just the bestpath for a prefix. Consider the following topology:
+
+```
+          r8
+          |
+          |
+  r1 ----    ---- r6
+  r2 ---- r7 ---- r5
+          ||
+          ||
+        r3 r4
+```
+
+In this topology:
+
+- r1 and r2 are in AS 100
+- r3 and r4 are in AS 300
+- r5 and r6 are in AS 500
+- r7 is in AS 700
+- r8 is in AS 800
+- r7 learns 1.1.1.1/32 from r1, r2, r3, r4, r5, and r6; r7 picks the path from r1 as the bestpath for 1.1.1.1/32
+
+{{< tabs "28 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+The example below configures the r7 session to advertise the bestpath learned from each AS. In this case, a path from AS 100, a path from AS 300, and a path from AS 500. The `net show bgp 1.1.1.1/32` from r7 has `bestpath-from-AS 100` so you can see what the bestpath is from each AS:
+
+```
+cumulus@r7:~$ net add bgp autonomous-system 700
+cumulus@r7:~$ net add bgp neighbor 192.0.2.2 addpath-tx-bestpath-per-AS
+cumulus@r7:~$ net pending
+cumulus@r7:~$ net commit
+```
+
+The output below shows the result on r8:
+
+```
+cumulus@r8:~$ net show bgp 1.1.1.1/32
+BGP routing table entry for 1.1.1.1/32
+Paths: (3 available, best #3, table Default-IP-Routing-Table)
+  Advertised to non peer-group peers:
+  r7(10.7.8.1)
+  700 100
+    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
+      Origin IGP, localpref 100, valid, external
+      Community: 1:1
+      AddPath ID: RX 2, TX 4
+      Last update: Thu Jun  2 00:57:14 2016
+
+  700 300
+    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
+      Origin IGP, localpref 100, valid, external
+      Community: 3:3
+      AddPath ID: RX 4, TX 3
+      Last update: Thu Jun  2 00:57:14 2016
+
+  700 500
+    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
+      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best (First path received)
+      Community: 5:5
+      AddPath ID: RX 6, TX 2
+      Last update: Thu Jun  2 00:57:14 2016
+```
+
+The example below shows the results when r7 is configured to advertise all paths to r8:
+
+```
+cumulus@r7:~$ net add bgp autonomous-system 700
+cumulus@r7:~$ net add bgp neighbor 192.0.2.2 addpath-tx-all-paths
+cumulus@r7:~$ net pending
+cumulus@r7:~$ net commit
+```
+
+The output below shows the result on r8:
+
+```
+cumulus@r8:~$ net show bgp 1.1.1.1/32
+BGP routing table entry for 1.1.1.1/32
+Paths: (3 available, best #3, table Default-IP-Routing-Table)
+  Advertised to non peer-group peers:
+  r7(10.7.8.1)
+  700 100
+    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
+      Origin IGP, localpref 100, valid, external
+      Community: 1:1
+      AddPath ID: RX 2, TX 4
+      Last update: Thu Jun  2 00:57:14 2016
+
+  700 300
+    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
+      Origin IGP, localpref 100, valid, external
+      Community: 3:3
+      AddPath ID: RX 4, TX 3
+      Last update: Thu Jun  2 00:57:14 2016
+
+  700 500
+    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
+      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best (First path received)
+      Community: 5:5
+      AddPath ID: RX 6, TX 2
+      Last update: Thu Jun  2 00:57:14 2016
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+The example below configures the r7 session to advertise the bestpath learned from each AS. In this case, a path from AS 100, a path from AS 300, and a path from AS 500. The `show ip bgp 1.1.1.1/32` from r7 has
+`bestpath-from-AS 100` so you can see what the bestpath is from each AS:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+r7# configure terminal
+r7(config)# router bgp 700
+r7(config-router)# neighbor 192.0.2.2 addpath-tx-bestpath-per-AS
+r7(config-router)#
+```
+
+The output below shows the result on r8:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+r8# show ip bgp 1.1.1.1/32
+BGP routing table entry for 1.1.1.1/32
+Paths: (3 available, best #3, table Default-IP-Routing-Table)
+  Advertised to non peer-group peers:
+  r7(10.7.8.1)
+  700 100
+    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
+      Origin IGP, localpref 100, valid, external
+      Community: 1:1
+      AddPath ID: RX 2, TX 4
+      Last update: Thu Jun  2 00:57:14 2016
+
+  700 300
+    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
+      Origin IGP, localpref 100, valid, external
+      Community: 3:3
+      AddPath ID: RX 4, TX 3
+      Last update: Thu Jun  2 00:57:14 2016
+
+  700 500
+    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
+      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best
+      Community: 5:5
+      AddPath ID: RX 6, TX 2
+      Last update: Thu Jun  2 00:57:14 2016
+
+r8#
+```
+
+The example below shows the results when r7 is configured to advertise all paths to r8:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+r7# configure terminal
+r7(config)# router bgp 700
+r7(config-router)# neighbor 192.0.2.2 addpath-tx-all-paths
+r7(config-router)#
+```
+
+The output below shows the result on r8:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+r8# show ip bgp 1.1.1.1/32
+BGP routing table entry for 1.1.1.1/32
+Paths: (3 available, best #3, table Default-IP-Routing-Table)
+  Advertised to non peer-group peers:
+  r7(10.7.8.1)
+  700 100
+    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
+      Origin IGP, localpref 100, valid, external
+      Community: 1:1
+      AddPath ID: RX 2, TX 4
+      Last update: Thu Jun  2 00:57:14 2016
+
+  700 300
+    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
+      Origin IGP, localpref 100, valid, external
+      Community: 3:3
+      AddPath ID: RX 4, TX 3
+      Last update: Thu Jun  2 00:57:14 2016
+
+  700 500
+    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
+      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best
+      Community: 5:5
+      AddPath ID: RX 6, TX 2
+      Last update: Thu Jun  2 00:57:14 2016
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Configure BGP Dynamic Neighbors
+
+*BGP dynamic neighbor* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
+
+You configure dynamic neighbors using the `bgp listen range <ip-address> peer-group <group>` command. After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor in the IP address range and mapped to a peer group.
+
+{{< tabs "36 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp autonomous-system 65101
+cumulus@switch:~$ net add bgp neighbor SPINE peer-group
+cumulus@switch:~$ net add bgp neighbor SPINE remote-as 65000
+cumulus@switch:~$ net add bgp listen limit 5
+cumulus@switch:~$ net add bgp listen range 10.10.10.100/24 peer-group SPINE
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The `net add bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# bgp listen range 10.10.10.100/24 peer-group SPINE
+switch(config-router)# bgp listen limit 5
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+The `bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+These commands produce an IPv4 configuration that looks like this:
+
+```
+router bgp 65101
+  neighbor SPINE peer-group
+  neighbor SPINE remote-as 65000
+  bgp listen limit 5
+  bgp listen range 10.10.10.100/24 peer-group SPINE
+```
+
+### Configure MD5-enabled BGP Neighbors
+
+You can authenticate your BGP peer connection to prevent interference with your routing tables.
+
+To enable MD5 authentication for BGP peers, set the same password on the each peer.
+
+The following example commands set the password *mypassword* on BGP peers leaf01 and spine01:
+
+{{< tabs "40 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+{{< tabs "1273 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor swp51 password mypassword
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ net add bgp neighbor swp1 password mypassword
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+{{< tabs "1295 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 password mypassword
+leaf01(config-router)# exit
+leaf01(config)# exit
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ sudo vtysh
+
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# neighbor swp1 password mypassword
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
+cumulus@spine01:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+You can confirm the configuration with the NCLU `net show bgp neighbor` command or the with the vtysh `show ip bgp neighbor` command. The following example shows that a session with the peer is established and that authentication is enabled (the output shows `Peer Authentication Enabled` towards the end):
+
+```
+cumulus@spine01:~$ net show bgp neighbor swp51
+BGP neighbor on swp51: fe80::2294:15ff:fe02:7bbf, remote AS 65101, local AS 65199, external link
+Hostname: leaf01
+  BGP version 4, remote router ID 10.10.10.1, local router ID 10.10.10.101
+  BGP state = Established, up for 00:00:39
+  Last read 00:00:00, Last write 00:00:00
+  Hold time is 9, keepalive interval is 3 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    AddPath:
+      IPv4 Unicast: RX advertised IPv4 Unicast and received
+    Route refresh: advertised and received(old & new)
+    Address Family IPv4 Unicast: advertised and received
+    Hostname Capability: advertised (name: spine01,domain name: n/a) received (name: leaf01,domain name: n/a)
+    Graceful Restart Capability: advertised and received
+      Remote Restart timer is 120 seconds
+      Address families by peer:
+        none
+  Graceful restart information:
+    End-of-RIB send: IPv4 Unicast
+    End-of-RIB received: IPv4 Unicast
+  Message statistics:
+    Inq depth is 0
+    Outq depth is 0
+                         Sent       Rcvd
+    Opens:                  2          2
+    Notifications:          0          2
+    Updates:              424        369
+    Keepalives:           633        633
+    Route Refresh:          0          0
+    Capability:             0          0
+    Total:               1059       1006
+  Minimum time between advertisement runs is 0 seconds
+  For address family: IPv4 Unicast
+  Update group 1, subgroup 1
+  Packet Queue length 0
+  Community attribute sent to this neighbor(all)
+  3 accepted prefixes
+  Connections established 2; dropped 1
+  Last reset 00:02:37,   Notification received (Cease/Other Configuration Change)
+Local host: fe80::7c41:fff:fe93:b711, Local port: 45586
+Foreign host: fe80::2294:15ff:fe02:7bbf, Foreign port: 179
+Nexthop: 10.10.10.101
+Nexthop global: fe80::7c41:fff:fe93:b711
+Nexthop local: fe80::7c41:fff:fe93:b711
+BGP connection: shared network
+BGP Connect Retry Timer in Seconds: 10
+Peer Authentication Enabled
+Read thread: on  Write thread: on  FD used: 27
+```
+
+{{%notice note%}}
+
+The MD5 password configured against a BGP listen-range peer group (used to accept and create dynamic BGP neighbors) is not enforced. This means that connections are accepted from peers that do not specify a password.
+
+{{%/notice%}}
+
+### eBGP Multihop
+
+The eBGP multihop option lets you use BGP to exchange routes with an external peer that is more than one hop away.
+
+To establish a connection between two eBGP peers that are not directly connected:
+
+{{< tabs "42 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor 10.10.10.103 remote-as external
+cumulus@switch:~$ net add bgp neighbor 10.10.10.103 ebgp-multihop
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@spine01:~$ sudo vtysh
+
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# neighbor 10.10.10.103 remote-as external
+spine01(config-router)# neighbor 10.10.10.103 ebgp-multihop
+spine01(config)# exit
+spine01# write memory
+spine01# exit
+cumulus@spine01:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+To confirm the configuration, run the NCLU `net show bgp neighbor <ip-address>` command or the vtysh `show ip bgp neighbor <ip-address>` command. For example:
+
+```
+cumulus@switch:~$ net show bgp neighbor 10.10.10.103
+BGP neighbor is 10.10.10.103, remote AS 65199, local AS 65101, external link
+Hostname: leaf01
+  BGP version 4, remote router ID 10.0.0.11
+  BGP state = Established, up for 00:02:54
+  Last read 00:00:00, Last write 00:00:00
+  Hold time is 9, keepalive interval is 3 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    AddPath:
+      IPv4 Unicast: RX advertised IPv4 Unicast and received
+    Route refresh: advertised and received(old & new)
+    Address Family IPv4 Unicast: advertised and received
+    Hostname Capability: advertised (name: leaf02,domain name: n/a) received (name: leaf01,domain name: n/a)
+    Graceful Restart Capability: advertised and received
+      Remote Restart timer is 120 seconds
+      Address families by peer:
+        none
+  Graceful restart informations:
+    End-of-RIB send: IPv4 Unicast
+    End-of-RIB received: IPv4 Unicast
+  Message statistics:
+    Inq depth is 0
+    Outq depth is 0
+                          Sent       Rcvd
+    Opens:                  1          1
+    Notifications:          0          0
+    Updates:             2868       2872
+    Keepalives:            60         60
+    Route Refresh:          0          0
+    Capability:             0          0
+    Total:               2929       2933
+  Minimum time between advertisement runs is 0 seconds
+  For address family: IPv4 Unicast
+  Update group 2, subgroup 4
+  Packet Queue length 0
+  Community attribute sent to this neighbor(all)
+  9 accepted prefixes
+  Connections established 1; dropped 0
+  Last reset never
+  External BGP neighbor may be up to 255 hops away.
+Local host: 10.0.0.12, Local port: 40135
+Foreign host: 10.0.0.11, Foreign port: 179
+Nexthop: 10.0.0.12
+Nexthop global: ::
+Nexthop local: ::
+BGP connection: non shared network
+BGP Connect Retry Timer in Seconds: 10
+Estimated round trip time: 1 ms
+Read thread: on  Write thread: on
+```
+
+### BGP TTL Security
+
+Configure BGP TTL security to specify the minimum number of seconds allowed before the switch no longer accepts incoming IP packets from a specific eBGP peer. You can specify a value between 1 and 254 seconds.
+
+To set BGP TTL security to 200 seconds on a switch:
+
+{{< tabs "44 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp neighbor 10.10.10.101 ttl-security hops 200
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor 10.10.10.101 ttl-security hops 200
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+To confirm the configuration, run the NCLU `net` `show bgp neighbor` command or the vtysh `show ip bgp neighbor` command. For example:
+
+```
+cumulus@spine01:~$ net show bgp neighbor swp1
+BGP neighbor on swp51: fe80::4638:39ff:fe00:5b, remote AS 65199, local AS 65101, external link
+Hostname: spine01
+  BGP version 4, remote router ID 10.10.10.101
+  BGP state = Established, up for 00:10:45
+  Last read 00:00:03, Last write 00:00:03
+  Hold time is 9, keepalive interval is 3 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    AddPath:
+      IPv4 Unicast: RX advertised IPv4 Unicast and received
+    Extended nexthop: advertised and received
+      Address families by peer:
+                    IPv4 Unicast
+    Route refresh: advertised and received(old & new)
+    Address Family IPv4 Unicast: advertised and received
+    Hostname Capability: advertised (name: spine01,domain name: n/a) received (name: leaf01,domain name: n/a)
+    Graceful Restart Capabilty: advertised and received
+      Remote Restart timer is 120 seconds
+      Address families by peer:
+        none
+  Graceful restart informations:
+    End-of-RIB send: IPv4 Unicast
+    End-of-RIB received: IPv4 Unicast
+  Message statistics:
+    Inq depth is 0
+    Outq depth is 0
+                          Sent       Rcvd
+    Opens:                 46          2
+    Notifications:         41          0
+    Updates:               38         34
+    Keepalives:         49334      49331
+    Route Refresh:          0          0
+    Capability:             0          0
+    Total:              49459      49367
+  Minimum time between advertisement runs is 0 seconds
+
+  For address family: IPv4 Unicast
+  Update group 1, subgroup 1
+  Packet Queue length 0
+  Community attribute sent to this neighbor(all)
+  3 accepted prefixes
+
+  Connections established 2; dropped 1
+  Last reset 00:17:37, due to NOTIFICATION sent (Hold Timer Expired)
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fe80::4638:39ff:fe00:5c, Local port: 35564
+  Foreign host: fe80::4638:39ff:fe00:5b, Foreign port: 179
+  Nexthop: 10.0.0.21
+  Nexthop global: fe80::4638:39ff:fe00:5c
+  Nexthop local: fe80::4638:39ff:fe00:5c
+  BGP connection: shared network
+  BGP Connect Retry Timer in Seconds: 10
+  Read thread: on  Write thread: on
+```
+
+### Graceful BGP Shutdown
+
+To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the node.
+
+To configure graceful BGP shutdown:
+
+{{< tabs "Graceful BGP shutdown">}}
+
+{{< tab "NCLU Commands ">}}
+
+To enable graceful shutdown:
+
+```
+cumulus@switch:~$ net add bgp graceful-shutdown
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+To disable graceful shutdown:
+
+```
+cumulus@switch:~$ net del bgp graceful-shutdown
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+To enable graceful shutdown:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65001
+switch(config-router)# bgp graceful-shutdown
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+To disable graceful shutdown:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65001
+switch(config-router)# no bgp graceful-shutdown
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to _0_. To see the configuration, run the NCLU `net show bgp <address>` command or the vtysh `show ip bgp <address>` command. For example:
+
+```
+cumulus@switch:~$ net show bgp 10.1.3.0/24
+BGP routing table entry for 10.1.3.0/24
+Paths: (2 available, best #1, table Default-IP-Routing-Table)
+  Advertised to non peer-group peers:
+  bottom0(10.1.2.2)
+  30 20
+    10.1.1.2 (metric 10) from top1(10.1.1.2) (10.1.1.2)
+      Origin IGP, localpref 100, valid, internal, bestpath-from-AS 30, best
+      Community: 99:1
+      AddPath ID: RX 0, TX 52
+      Last update: Mon Sep 18 17:01:18 2017
+
+  20
+    10.1.2.2 from bottom0(10.1.2.2) (10.1.1.1)
+      Origin IGP, metric 0, localpref 0, valid, external, bestpath-from-AS 20
+      Community: 99:1 graceful-shutdown
+      AddPath ID: RX 0, TX 2
+      Last update: Mon Sep 18 17:01:18 2017
+```
+
+### Enable Read-only Mode
+
+As BGP peers are established and updates are received, prefixes might be installed in the RIB and advertised to BGP peers even though the information from all peers is not yet received and processed. Depending on the timing of the updates, prefixes might be installed and propagated through BGP, and then immediately withdrawn and replaced with new routing information. Read-only mode minimizes this BGP route churn in both the local RIB and with BGP peers.
+
+Enable read-only mode to reduce CPU and network usage when you restart the BGP process, or when you issue the `clear` `ip bgp` command. Because intermediate best paths are possible for the same prefix as peers get established and start receiving updates at different times, read-only mode is particularly useful in topologies where BGP learns a prefix from many peers and the network has a high number of prefixes.
+
+To enable read-only mode:
+
+{{< tabs "48 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+Run the `net add bgp update-delay <seconds> [<establish-wait-seconds>]` command, where the update delay and establish wait can be any value between 0 and 3600 seconds. The following example command enables read-only mode, sets the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
+
+```
+cumulus@switch:~$ net add bgp update-delay 300 90
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+Run the `update-delay <seconds> [<establish-wait-seconds>]` command, where the update delay and establish wait can be any value between 0 and 3600 seconds. The following example command enables read-only mode, sets the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# update-delay 300 90
+switch(config-router)# end
+switch# write memory
+switch# switch
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{%notice note%}}
+
+The default value for max-delay is 0, which disables read-only mode. The `establish-wait` setting is optional; however, if specified, it must be shorter than the `max-delay`.
+
+{{%/notice%}}
+
+Read-only mode begins as soon as the first peer reaches its established state and the `max-delay` timer starts, and continues until either of the following two conditions are met:
+
+- All the configured peers (except the shutdown peers) have sent an explicit EOR (End-Of-RIB) or an implicit EOR. The first keep-alive after BGP has reached the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends.
+
+  The minimum set of established peers for which EOR is expected are the peers that are established during the `establish-wait window,` not necessarily all the configured neighbors.
+
+- The timer reaches the configured `max-delay`.
+
+While in read-only mode, BGP does not run best-path or generate any updates to its peers.
+
+To show information about the state of the update delay, run the NCLU `net show bgp summary` command or the vtysh `show ip bgp summary` command.
+
+### Apply a Route Map for Route Updates
+
+You can apply {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route maps">}} in BGP in one of two ways
+
+- Filter routes from BGP into Zebra
+- Filter routes from Zebra into the Linux kernel
+
+{{%notice info%}}
+In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`.
+
+This is a known limitation in `network-docopt`, which NCLU uses to parse commands.
+{{%/notice%}}
+
+#### Filter Routes from BGP into Zebra
+
+You can apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations for this attach-point are limited to metric and next hop only. Any operation of this feature does not affect the BGP internal RIB.
+
+Both IPv4 and IPv6 address families are supported. Route maps work on multi-paths; however, the metric setting is based on the best path only.
+
+To apply a route map to filter route updates from BGP into Zebra, run the following command:
+
+{{< tabs "50 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp table-map routemap1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# table-map routemap1
+switch(config-router)# end
+switch# write memory
+switch# switch
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+#### Filter Routes from Zebra into the Linux Kernel
+
+To apply a route map to filter route updates from Zebra into the Linux kernel, run the following commands:
+
+{{< tabs "52 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing protocol bgp route-map routemap1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# bgp route-map routemap1
+switch(config-router)# end
+switch# write memory
+switch# switch
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### BGP Community Lists
+
+You can use *{{<exlink url="http://docs.frrouting.org/en/latest/bgp.html#community-lists" text="community lists">}}* to define a BGP community to tag one or more routes. You can then use the communities to apply acroute policy on either egress or ingress.
+
+The BGP community list can be either *standard* or *expanded.* The standard BGP community list is a pair of values (such as *100:100*) that can be tagged on a specific prefix and advertised to other neighbors or applied on route ingress. Or, it can be one of four BGP default communities:
+
+- *internet*: a BGP community that matches all routes
+- *local-AS*: a BGP community that restricts routes to your confederation's sub-AS
+- *no-advertise*: a BGP community that is not advertised to anyone
+- *no-export*: a BGP community that is not advertised to the eBGP peer
+
+An expanded BGP community list takes a regular expression of communities and matches the listed communities.
+
+When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
+
+Here is an example of a standard community list filter:
+
+{{< tabs "54 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# bgp community-list standard COMMUNITY1 permit 100:100
+switch(config)# exit
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+You can apply the community list to a route map to define the routing policy:
+
+{{< tabs "Apply community list to route map">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp table-map ROUTE-MAP1
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65011
+switch(config-router)# table-map ROUTE-MAP1
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Neighbor Maximum Prefixes
+
+To configure the maximum number of route announcements (prefixes) that can be received from a BGP neighbor, run the `neighbor <peer> maximum-prefix <value>` command from the `vtysh` shell. For example:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65001
+switch(config-router)# neighbor 10.1.0.13 maximum-prefix 3000
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+## Best Practices
+
+Cumulus Networks recommends you follow these best practices when configuring MLAG on your switches.
+
+### Fast Convergence Design Considerations
+
+Cumulus Networks strongly recommends the following use of addresses in the design of a BGP-based data center network:
+
+- Set up BGP sessions only using interface-scoped addresses. This allows BGP to react quickly to link failures.
+- Use of next hop-self so that every BGP node says that it knows how to forward traffic to the prefixes it is announcing. This reduces the requirement to announce interface-specific addresses and reduces the size of the forwarding table.
+
+When you configure BGP for the neighbors of a given interface, you can specify the interface name instead of its IP address. All the other `neighbor` command options remain the same.
+
+This is equivalent to BGP peering to the link-local IPv6 address of the neighbor on the given interface. The link-local address is learned via IPv6 neighbor discovery router advertisements.
+
+Consider the following example configuration in the `/etc/frr/frr.conf` file:
 
 ```
 ...
 router bgp 65000
   bgp router-id 10.0.0.1
-  bgp cluster-id 10.0.0.9
+  neighbor swp1 interface
+  neighbor swp1 remote-as internal
+  neighbor swp1 next-hop-self
+!
+  address-family ipv6
+  neighbor swp1 activate
+  exit-address-family
 ...
 ```
 
-## Unnumbered Interfaces
+You create the above configuration with the following commands:
 
-Unnumbered interfaces are interfaces without unique IP addresses. In BGP, you configure unnumbered interfaces using *extended next hop encoding* (ENHE), which is defined by {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}}. BGP unnumbered interfaces provide a means of advertising an IPv4 route with an IPv6 next hop. Prior to RFC 5549, an IPv4 route could be advertised only with an IPv4 next hop.
+{{< tabs "30 ">}}
 
-BGP unnumbered interfaces are particularly useful in deployments where IPv4 prefixes are advertised through BGP over a section without any IPv4 address configuration on links. As a result, the routing entries are also IPv4 for destination lookup and have IPv6 next hops for forwarding purposes.
+{{< tab "NCLU Commands ">}}
 
-### BGP and Extended Next Hop Encoding
+```
+cumulus@switch:~$ net add bgp autonomous-system 65000
+cumulus@switch:~$ net add bgp router-id 10.0.0.1
+cumulus@switch:~$ net add bgp neighbor swp1 interface
+cumulus@switch:~$ net add bgp neighbor swp1 remote-as internal
+cumulus@switch:~$ net add bgp neighbor swp1 next-hop-self
+cumulus@switch:~$ net add bgp ipv6 unicast neighbor swp1 activate
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
 
-When enabled and active, BGP makes use of the available IPv6 next hops for advertising any IPv4 prefixes. BGP learns the prefixes, calculates the routes and installs them in IPv4 AFI to IPv6 AFI format. However, ENHE in Cumulus Linux does not install routes into the kernel in IPv4 prefix to IPv6 next hop format. For link-local peerings enabled by dynamically learning the other end's link-local address using IPv6 neighbor discovery router advertisements, an IPv6 next hop is converted into an IPv4 link-local address and a static neighbor entry is installed for this IPv4 link-local address with the MAC address derived from the link-local address of the other end.
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65000
+switch(config-router)# bgp router-id 10.0.0.1
+switch(config-router)# neighbor swp1 interface
+switch(config-router)# neighbor swp1 remote-as internal
+switch(config-router)# neighbor swp1 next-hop-self
+switch(config-router)# address-family ipv6
+switch(config-router-af)# neighbor swp1 activate
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+By default, Cumulus Linux sends IPv6 neighbor discovery router advertisements. Cumulus Networks recommends you adjust the interval of the router advertisement to a shorter value to address scenarios when nodes come up and miss router advertisement processing to relay the neighbor's link-local address to BGP. The `interval` is measured in seconds and defaults to 10 seconds. The following example commands set the router advertisement to 5 seconds.
+
+{{< tabs "32 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface swp1 ipv6 nd ra-interval 5
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface swp1
+switch(config-if)# ipv6 nd ra-interval 5
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}ß
+
+### Converge Quickly On Link Failures
+
+In the Clos topology, Cumulus Networks recommends that you only use interface addresses to set up peering sessions. This means that when the link fails, the BGP session is torn down immediately, triggering route updates to propagate through the network quickly. This requires the `link-detect` and `ttl-security hops` commands to be enabled for all links. The `ttl-security hops` command specifies how many hops away the neighbor is. For example, in a Clos topology, every peer is at most 1 hop away.
 
 {{%notice note%}}
 
-It is assumed that the IPv6 implementation on the peering device uses the MAC address as the interface ID when assigning the IPv6 link-local address, as suggested by RFC 4291.
+See {{<link url="#considerations" text="Considerations">}} below for information about `ttl-security hops`.
 
 {{%/notice%}}
 
-### Configure BGP Unnumbered Interfaces
+To set the `ttl-security hops`:
 
-To configure a BGP unnumbered interface, you must enable IPv6 neighbor discovery router advertisements. The `interval` you specify is measured in seconds and defaults to 10 seconds.
-
-The following example commands show how to configure a BGP unnumbered interface.
-
-{{< tabs "14 ">}}
+{{< tabs "62 ">}}
 
 {{< tab "NCLU Commands ">}} 
 
 ```
-cumulus@switch:~$ net add bgp autonomous-system 65020
-cumulus@switch:~$ net add bgp router-id 10.0.0.21
-cumulus@switch:~$ net add bgp bestpath as-path multipath-relax
-cumulus@switch:~$ net add bgp bestpath compare-routerid
-cumulus@switch:~$ net add bgp neighbor fabric peer-group
-cumulus@switch:~$ net add bgp neighbor fabric remote-as external
-cumulus@switch:~$ net add bgp neighbor fabric description Internal Fabric Network
-cumulus@switch:~$ net add bgp neighbor fabric capability extended-nexthop
-cumulus@switch:~$ net add bgp neighbor swp1 interface peer-group fabric
-cumulus@switch:~$ net add bgp neighbor swp2 interface peer-group fabric
-cumulus@switch:~$ net add bgp neighbor swp3 interface peer-group fabric
-cumulus@switch:~$ net add bgp neighbor swp4 interface peer-group fabric
-cumulus@switch:~$ net add bgp neighbor swp29 interface peer-group fabric
-cumulus@switch:~$ net add bgp neighbor swp30 interface peer-group fabric
+cumulus@switch:~$ net add bgp neighbor 10.0.0.2 ttl-security hops 1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}
@@ -477,20 +1954,102 @@ cumulus@switch:~$ net add bgp neighbor swp30 interface peer-group fabric
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router bgp 65020
-switch(config-router)# bgp router-id 10.0.0.21
-switch(config-router)# bgp bestpath as-path multipath-relax
-switch(config-router)# bgp bestpath compare-routerid
-switch(config-router)# neighbor fabric peer-group
-switch(config-router)# neighbor fabric remote-as external
-switch(config-router)# neighbor fabric description Internal Fabric Network
-switch(config-router)# neighbor fabric capability extended-nexthop
-switch(config-router)# neighbor swp1 interface peer-group fabric
-switch(config-router)# neighbor swp2 interface peer-group fabric
-switch(config-router)# neighbor swp3 interface peer-group fabric
-switch(config-router)# neighbor swp4 interface peer-group fabric
-switch(config-router)# neighbor swp29 interface peer-group fabric
-switch(config-router)# neighbor swp30 interface peer-group fabric
+switch(config)# router bgp
+switch(config-router)# neighbor 10.0.0.2 ttl-security hops 1
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65000
+  ...
+  neighbor 10.0.0.2 ttl-security hops 1
+...
+```
+
+#### Converge Quickly On Soft Failures
+
+It is possible that the link is up but the neighboring BGP process is hung or has crashed. In this case, the FRRouting `watchfrr` daemon, which monitors the various FRRouting daemons, attempts to restart it. BGP itself has a keepalive interval that is exchanged between neighbors. By default, this keepalive interval is set to 3 seconds. You can increase this interval to a higher value, which decreases CPU load, especially in the presence of a lot of neighbors. The keepalive interval is the periodicity with which the keepalive message is sent. The hold time specifies how many keepalive messages can be lost before the connection is considered invalid. It is typically set to three times the keepalive time and defaults to 9 seconds. The following examples commands change the keepalive interval to 10 seconds and the hold time to 30 seconds.
+
+{{< tabs "64 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor 10.0.0.2 timers 10 30
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# neighbor 10.0.0.2 timers 10 30
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65000
+  ...
+  neighbor 10.0.0.2 timers 10 30
+...
+```
+
+#### Reconnect Quickly
+
+A BGP process attempts to connect to a peer after a failure (or on startup) every `connect-time` seconds. By default, this is 10 seconds. To change this value, run the following commands.
+
+{{%notice note%}}
+
+You must specify this command for each neighbor.
+
+{{%/notice%}}
+
+{{< tabs "66 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor 10.0.0.2 timers connect 30
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# neighbor 10.0.0.2 timers connect 30
 switch(config-router)# end
 switch# write memory
 switch# exit
@@ -502,31 +2061,66 @@ cumulus@switch:~$
 {{< /tabs >}}
 
 The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+```
+...
+router bgp 65000
+  ...
+  neighbor 10.0.0.2 timers connect 30
+...
+```
+
+### Peer Groups
+
+When a switch has many peers to connect to, the amount of redundant configuration becomes overwhelming. For example, repeating the `activate` and `next-hop-self` commands for even 60 neighbors makes for a very long configuration file. To address this problem, you can use
+`peer-group`.
+
+Instead of specifying properties of each individual peer, FRRouting allows you to define one or more peer groups and associate all the attributes common to that peer session to a peer group. A peer needs to be attached to a peer group only once, when it then inherits all address families activated for that peer group.
+
+After you attach a peer to a peer group, you need to associate an IP address with the peer group. The following example shows how to define and use peer groups:
+
+{{< tabs "34 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
-...
-router bgp 65020
-  bgp router-id 10.0.0.21
-  bgp bestpath as-path multipath-relax
-  bgp bestpath compare-routerid
-  neighbor fabric peer-group
-  neighbor fabric remote-as external
-  neighbor fabric description Internal Fabric Network
-  neighbor fabric capability extended-nexthop
-  neighbor swp1 interface peer-group fabric
-  neighbor swp2 interface peer-group fabric
-  neighbor swp3 interface peer-group fabric
-  neighbor swp4 interface peer-group fabric
-  neighbor swp29 interface peer-group fabric
-  neighbor swp30 interface peer-group fabric
-...
+cumulus@switch:~$ net add bgp neighbor tier-2 peer-group
+cumulus@switch:~$ net add bgp neighbor tier-2 next-hop-self
+cumulus@switch:~$ net add bgp neighbor 10.0.0.2 peer-group tier-2
+cumulus@switch:~$ net add bgp neighbor 192.0.2.2 peer-group tier-2
 ```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65000
+switch(config-router)# neighbor tier-2 peer-group
+switch(config-router)# address-family ipv4 unicast
+switch(config-router-af)# neighbor tier-2 next-hop-self
+switch(config-router-af)# exit
+switch(config-router)# neighbor 10.0.0.2 peer-group tier-2
+switch(config-router)# neighbor 192.0.2.2 peer-group tier-2
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{%notice note%}}
+
+BGP peer-group restrictions have been replaced with update-groups, which dynamically examine all peers and group them if they have the same outbound policy.
+
+{{%/notice%}}
 
 For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a {{<link url="#peer-groups-to-simplify-configuration" text="peer group">}}.
 
 {{< tabs "16 ">}}
 
-{{< tab "NCLU Commands ">}} 
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add bgp neighbor swp1 interface peer-group group1
@@ -534,7 +2128,7 @@ cumulus@switch:~$ net add bgp neighbor swp1 interface peer-group group1
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}} 
+{{< tab "vtysh Commands ">}}
 
 ```
 switch(config-router)# neighbor swp1 interface peer-group group1
@@ -544,7 +2138,527 @@ switch(config-router)# neighbor swp1 interface peer-group group1
 
 {{< /tabs >}}
 
-### Manage Unnumbered Interfaces
+### BGP Advertisement
+
+As a best practice, limit the exchange of routing information at various parts in the network. The following image illustrates one way you can do so in a typical Clos architecture:
+
+{{< img src = "/images/cumulus-linux/bgp-advertisement-best-practices.png" >}}
+
+### Multiple Routing Tables and Forwarding
+
+You can run multiple routing tables (one for in-band/data plane traffic and one for out-of-band management plane traffic) on the same switch using {{<link url="Management-VRF" text="management VRF">}} (multiple routing tables and forwarding).
+
+{{%notice note%}}
+
+BGP and static routing (IPv4 and IPv6) are supported within a VRF context. For more information, refer to {{<link title="Virtual Routing and Forwarding - VRF">}}.
+
+{{%/notice%}}
+
+#### Advertisement Interval
+
+By default, BGP chooses stability over fast convergence, which is very useful when routing for the Internet. For example, unlike link-state protocols, BGP typically waits a number of seconds before sending consecutive updates to a neighbor. This advertisement interval ensures that an unstable neighbor flapping routes are not propagated throughout the network. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see {{<exlink url="http://tools.ietf.org/html/draft-jakma-mrai-02" text="this IETF draft">}}.
+
+To modify the advertisement interval, run the following commands:
+
+{{< tabs "68 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 advertisement-interval 5
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# neighbor swp51 advertisement-interval 5
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the
+`/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65000
+  ...
+  neighbor swp51 advertisement-interval 5
+...
+```
+
+To show the keepalive interval, hold time, and advertisement interval, you can run the NCLU `net show bgp neighbor <peer>` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
+
+```
+cumulus@switch:~$ net show bgp neighbor swp51 
+BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link
+Hostname: spine01
+  Member of peer-group fabric for session parameters
+  BGP version 4, remote router ID 0.0.0.0
+  BGP state = Connect
+  Last read 00:04:37, Last write 00:44:07
+  Hold time is 30, keepalive interval is 10 seconds
+  Configured hold time is 30, keepalive interval is 10 seconds
+  Message statistics:
+    Inq depth is 0
+    Outq depth is 0
+                          Sent       Rcvd
+    Opens:                  1          1
+    Notifications:          1          0
+    Updates:                7          6
+    Keepalives:          2374       2373
+    Route Refresh:          0          0
+    Capability:             0          0
+    Total:               2383       2380
+  Minimum time between advertisement runs is 5 seconds
+...
+```
+
+## Troubleshooting
+
+Use the following commands to troubleshoot BGP.
+
+{{< tabs "58 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net show bgp summary
+show bgp ipv4 unicast summary
+=============================
+BGP router identifier 10.0.0.11, local AS number 65011 vrf-id 0
+BGP table version 8
+RIB entries 11, using 1320 bytes of memory
+Peers 2, using 36 KiB of memory
+Peer groups 1, using 56 bytes of memory
+Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+spine01(swp51)  4 65020     549     551        0    0    0 00:09:03        3
+spine02(swp52)  4 65020     548     550        0    0    0 00:09:02        3
+Total number of neighbors 2
+
+show bgp ipv6 unicast summary
+=============================
+No IPv6 neighbor is configured
+```
+
+{{%notice tip%}}
+
+To determine if the sessions above are iBGP or eBGP sessions, look at the ASNs.
+
+{{%/notice%}}
+
+To view the routing table as defined by BGP:
+
+```
+cumulus@switch:~$ net show bgp ipv4
+ERROR: Command not found
+Use 'net help KEYWORD(s)' to list all options that use KEYWORD(s)
+cumulus@leaf01:~$ net show bgp ipv4
+    unicast  :  add help text
+cumulus@leaf01:~$ net show bgp ipv4 unicast
+BGP table version is 8, local router ID is 10.0.0.11
+Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
+              i internal, r RIB-failure, S Stale, R Removed
+Origin codes: zi - IGP, e - EGP, ? - incomplete
+    Network          Next Hop            Metric LocPrf Weight Path
+*> 10.0.0.11/32     0.0.0.0                  0         32768 ?
+*= 10.0.0.12/32     swp52                         0 65020 65012 ?
+*>                  swp51                         0 65020 65012 ?
+*> 10.0.0.21/32     swp51           0             0 65020 ?
+*> 10.0.0.22/32     swp52           0             0 65020 ?
+*> 172.16.1.0/24    0.0.0.0                  0         32768 i
+*= 172.16.2.0/24    swp52                         0 65020 65012 i
+*>                  swp51                         0 65020 65012 i
+Total number of prefixes 6
+```
+
+To show a more detailed breakdown of a specific neighbor:
+
+```
+cumulus@switch:~$ net show bgp neighbor swp51
+BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link
+Hostname: spine01
+  Member of peer-group fabric for session parameters
+  BGP version 4, remote router ID 10.0.0.21
+  BGP state = Established, up for 00:11:30
+  Last read 00:00:00, Last write 00:11:26
+  Hold time is 3, keepalive interval is 1 seconds
+  Configured hold time is 3, keepalive interval is 1 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    AddPath:
+      IPv4 Unicast: RX advertised IPv4 Unicast and received
+    Extended nexthop: advertised and received
+      Address families by peer:
+                    IPv4 Unicast
+    Route refresh: advertised and received(old & new)
+    Address family IPv4 Unicast: advertised and received
+    Hostname Capability: advertised and received
+    Graceful Restart Capabilty: advertised and received
+      Remote Restart timer is 120 seconds
+      Address families by peer:
+        none
+  Graceful restart informations:
+    End-of-RIB send: IPv4 Unicast
+    End-of-RIB received: IPv4 Unicast
+  Message statistics:
+    Inq depth is 0
+    Outq depth is 0
+                          Sent       Rcvd
+    Opens:                  1          1
+    Notifications:          0          0
+    Updates:                7          6
+    Keepalives:           690        689
+    Route Refresh:          0          0
+    Capability:             0          0
+    Total:                698        696
+  Minimum time between advertisement runs is 0 seconds
+  For address family: IPv4 Unicast
+  fabric peer-group member
+  Update group 1, subgroup 1
+  Packet Queue length 0
+  Community attribute sent to this neighbor(both)
+  Inbound path policy configured
+  Outbound path policy configured
+  Incoming update prefix filter list is *dc-leaf-in
+  Outgoing update prefix filter list is *dc-leaf-out
+  3 accepted prefixes
+  Connections established 1; dropped 0
+  Last reset never
+Local host: fe80::4638:39ff:fe00:5b, Local port: 48424
+Foreign host: fe80::4638:39ff:fe00:5c, Foreign port: 179
+Nexthop: 10.0.0.11
+Nexthop global: fe80::4638:39ff:fe00:5b
+Nexthop local: fe80::4638:39ff:fe00:5b
+BGP connection: shared network
+BGP Connect Retry Timer in Seconds: 3
+Estimated round trip time: 3 ms
+Read thread: on  Write thread: off
+```
+
+To see details of a specific route, such as from where it is received and where it is sent:
+
+```
+cumulus@switch:~$ net show bgp 10.0.0.11/32
+BGP routing table entry for 10.0.0.11/32
+Paths: (1 available, best #1, table Default-IP-Routing-Table)
+  Advertised to non peer-group peers:
+  spine01(swp51) spine02(swp52)
+  Local
+    0.0.0.0 from 0.0.0.0 (10.0.0.11)
+      Origin incomplete, metric 0, localpref 100, weight 32768, valid, sourced, bestpath-from-AS Local, best
+      AddPath ID: RX 0, TX 9
+          Last update: Fri Nov 18 01:48:17 2016
+```
+
+The above example shows that the routing table prefix seen by BGP is 10.0.0.11/32, that this route is advertised to two neighbors, and that it is not heard by any neighbors.
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+The most common starting point for troubleshooting BGP is to view the summary of neighbors connected to and some information about these connections:
+
+```
+switch# show ip bgp summary
+BGP router identifier 10.0.0.21, local AS number 65020 vrf-id 0
+BGP table version 15
+RIB entries 17, using 2040 bytes of memory
+Peers 6, using 97 KiB of memory
+Peer groups 1, using 56 bytes of memory
+
+Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+leaf01(swp1)    4 65011    2684    2693        0    0    0 02:14:04        2
+leaf02(swp2)    4 65012    2684    2694        0    0    0 02:14:05        2
+leaf03(swp3)    4 65013    2684    2693        0    0    0 02:14:04        2
+leaf04(swp4)    4 65014    2684    2694        0    0    0 02:14:05        2
+edge01(swp29)   4 65051    8058    8054        0    0    0 02:14:06        3
+edge01(swp30)   4 65051    8055    8052        0    0    0 02:14:04        3
+
+Total number of neighbors 6
+```
+
+{{%notice tip%}}
+
+To determine if the sessions above are iBGP or eBGP sessions, look at the ASNs.
+
+{{%/notice%}}
+
+To view the routing table as defined by BGP:
+
+```
+switch# show ip bgp
+BGP table version is 15, local router ID is 10.0.0.21
+Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
+              i internal, r RIB-failure, S Stale, R Removed
+Origin codes: i - IGP, e - EGP, ? - incomplete
+
+    Network          Next Hop            Metric LocPrf Weight Path
+*= 0.0.0.0          swp30                         0 65051 i
+*>                  swp29                         0 65051 i
+*> 10.0.0.1/32      swp29                         0 65051 65001 i
+*=                  swp30                         0 65051 65001 i
+*> 10.0.0.11/32     swp1            0             0 65011 i
+*> 10.0.0.12/32     swp2            0             0 65012 i
+*> 10.0.0.13/32     swp3            0             0 65013 i
+*> 10.0.0.14/32     swp4            0             0 65014 i
+*> 10.0.0.21/32     0.0.0.0                  0         32768 i
+*= 10.0.0.51/32     swp30           0             0 65051 i
+*>                  swp29           0             0 65051 i
+*> 172.16.1.0/24    swp1            0             0 65011 i
+*=                  swp2            0             0 65012 i
+*> 172.16.3.0/24    swp3            0             0 65013 i
+*=                  swp4            0             0 65014 i
+
+Total number of prefixes 10
+```
+
+To show a more detailed breakdown of a specific neighbor:
+
+```
+switch# show ip bgp neighbor 10.0.0.2
+BGP neighbor is 10.0.0.2, remote AS 65000, local AS 65000, internal link
+BGP version 4, remote router ID 0.0.0.5
+BGP state = Established, up for 00:14:03
+Last read 14:52:31, hold time is 18, keepalive interval is 6 seconds
+Neighbor capabilities:
+  4 Byte AS: advertised and received
+  Route refresh: advertised and received(old & new)
+  Address family IPv4 Unicast: advertised and received
+Message statistics:
+  Inq depth is 0
+  Outq depth is 0
+                        Sent       Rcvd
+  Opens:                  1          1
+  Notifications:          0          0
+  Updates:                1          3
+  Keepalives:            16         15
+  Route Refresh:          0          0
+  Capability:             0          0
+  Total:                 18         19
+Minimum time between advertisement runs is 5 seconds
+
+For address family: IPv4 Unicast
+  NEXT_HOP is always this router
+  Community attribute sent to this neighbor(both)
+  3 accepted prefixes
+
+  Connections established 1; dropped 0
+  Last reset never
+Local host: 10.0.0.1, Local port: 35258
+Foreign host: 10.0.0.2, Foreign port: 179
+Nexthop: 10.0.0.1
+Nexthop global: fe80::202:ff:fe00:19
+Nexthop local: ::
+BGP connection: non shared network
+Read thread: on  Write thread: off
+```
+
+To see details of a specific route, such as from where it is received and where it is sent:
+
+```
+switch# show ip bgp 192.0.2.0
+BGP routing table entry for 192.0.2.0/24
+Paths: (2 available, best #1, table Default-IP-Routing-Table)
+  Not advertised to any peer
+  Local
+    10.0.0.2 (metric 1) from 10.0.0.2 (0.0.0.10)
+      Origin IGP, metric 0, localpref 100, valid, internal, best
+      Originator: 0.0.0.10, Cluster list: 0.0.0.5
+      Last update: Mon Jul  8 10:12:17 2013
+  Local
+    192.0.2.2 (metric 1) from 192.0.2.2 (0.0.0.10)
+      Origin IGP, metric 0, localpref 100, valid, internal
+      Originator: 0.0.0.10, Cluster list: 0.0.0.6
+      Last update: Mon Jul  8 10:12:17 2013
+```
+
+This shows that the routing table prefix seen by BGP is 192.0.2.0/24, that this route was not advertised to any neighbor, and that it was heard by two neighbors, *10.0.0.2* and *192.0.2.2*.
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Log Neighbor State Changes
+
+To log the changes that a neighbor goes through so that you can troubleshoot issues associated with that neighbor, run the `log-neighbor-changes` command, which is enabled by default.
+
+The output is sent to the specified log file, usually `/var/log/frr/bgpd.log`, and looks like this:
+
+```
+2016/07/08 10:12:06.572827 BGP: %NOTIFICATION: sent to neighbor 10.0.0.2 6/3 (Cease/Peer Unconfigured) 0 bytes
+2016/07/08 10:12:06.572954 BGP: Notification sent to neighbor 10.0.0.2: type 6/3
+2016/07/08 10:12:16.682071 BGP: %ADJCHANGE: neighbor 192.0.2.2 Up
+2016/07/08 10:12:16.682660 BGP: %ADJCHANGE: neighbor 10.0.0.2 Up
+```
+
+### Troubleshoot Link-local Addresses
+
+To verify that `frr` learned the neighboring link-local IPv6 address via the IPv6 neighbor discovery router advertisements on a given interface, run following commands. If `ipv6 nd suppress-ra` is not enabled on both ends of the interface, then `Neighbor address(s):` has the other end's link-local address (the address that BGP uses when BGP is enabled on that interface).
+
+{{%notice note%}}
+
+IPv6 route advertisements (RAs) are automatically enabled on an interface with IPv6 addresses; the `no ipv6 nd suppress-ra` command is not needed for BGP unnumbered.
+
+{{%/notice%}}
+
+{{< tabs "60 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net show interface swp1
+Interface swp1 is up, line protocol is up
+  Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  PTM status: disabled
+  vrf: Default-IP-Routing-Table
+  index 4 metric 0 mtu 1500
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  HWaddr: 44:38:39:00:00:5c
+  inet6 fe80::4638:39ff:fe00:5c/64
+  ND advertised reachable time is 0 milliseconds
+  ND advertised retransmit interval is 0 milliseconds
+  ND router advertisements are sent every 10 seconds
+  ND router advertisements lifetime tracks ra-interval
+  ND router advertisement default router preference is medium
+  Hosts use stateless autoconfig for addresses.
+  Neighbor address(s):
+  inet6 fe80::4638:39ff:fe00:5b/128
+```
+
+Instead of the IPv6 address, the peering interface name is displayed in the `net show bgp summary` command and wherever else applicable:
+
+```
+cumulus@switch:~$ net show bgp summary
+BGP router identifier 10.0.0.21, local AS number 65020 vrf-id 0
+BGP table version 15
+RIB entries 17, using 2040 bytes of memory
+Peers 6, using 97 KiB of memory
+Peer groups 1, using 56 bytes of memory
+
+Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+leaf01(swp1)    4 65011    2834    2843        0    0    0 02:21:35        2
+leaf02(swp2)    4 65012    2834    2844        0    0    0 02:21:36        2
+leaf03(swp3)    4 65013    2834    2843        0    0    0 02:21:35        2
+leaf04(swp4)    4 65014    2834    2844        0    0    0 02:21:36        2
+edge01(swp29)   4 65051    8509    8505        0    0    0 02:21:37        3
+edge01(swp30)   4 65051    8506    8503        0    0    0 02:21:35        3
+
+Total number of neighbors 6
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}} 
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# show interface swp1
+Interface swp1 is up, line protocol is up
+  Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  PTM status: disabled
+  vrf: Default-IP-Routing-Table
+  index 4 metric 0 mtu 1500
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  HWaddr: 44:38:39:00:00:5c
+  inet6 fe80::4638:39ff:fe00:5c/64
+  ND advertised reachable time is 0 milliseconds
+  ND advertised retransmit interval is 0 milliseconds
+  ND router advertisements are sent every 10 seconds
+  ND router advertisements lifetime tracks ra-interval
+  ND router advertisement default router preference is medium
+  Hosts use stateless autoconfig for addresses.
+  Neighbor address(s):
+  inet6 fe80::4638:39ff:fe00:5b/128
+```
+
+Instead of the IPv6 address, the peering interface name is displayed in the `show ip bgp summary` command and wherever else applicable:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# show ip bgp summary
+BGP router identifier 10.0.0.21, local AS number 65020 vrf-id 0
+BGP table version 15
+RIB entries 17, using 2040 bytes of memory
+Peers 6, using 97 KiB of memory
+Peer groups 1, using 56 bytes of memory
+
+Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+leaf01(swp1)    4 65011    2834    2843        0    0    0 02:21:35        2
+leaf02(swp2)    4 65012    2834    2844        0    0    0 02:21:36        2
+leaf03(swp3)    4 65013    2834    2843        0    0    0 02:21:35        2
+leaf04(swp4)    4 65014    2834    2844        0    0    0 02:21:36        2
+edge01(swp29)   4 65051    8509    8505        0    0    0 02:21:37        3
+edge01(swp30)   4 65051    8506    8503        0    0    0 02:21:35        3
+
+Total number of neighbors 6
+```
+
+Most of the `show ip bgp` commands can take the interface name instead of the IP address:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# show ip bgp neighbor swp51
+BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link
+Hostname: spine01
+  Member of peer-group fabric for session parameters
+  BGP version 4, remote router ID 0.0.0.0
+  BGP state = Connect
+  Last read 20:16:21, Last write 20:55:51
+  Hold time is 30, keepalive interval is 10 seconds
+  Configured hold time is 30, keepalive interval is 10 seconds
+  Message statistics:
+    Inq depth is 0
+    Outq depth is 0
+                          Sent       Rcvd
+    Opens:                  1          1
+    Notifications:          1          0
+    Updates:                7          6
+    Keepalives:          2374       2373
+    Route Refresh:          0          0
+    Capability:             0          0
+    Total:               2383       2380
+  Minimum time between advertisement runs is 5 seconds
+  For address family: IPv4 Unicast
+  fabric peer-group member
+  Not part of any update group
+  Community attribute sent to this neighbor(both)
+  Inbound path policy configured
+  Outbound path policy configured
+  Incoming update prefix filter list is *dc-leaf-in
+  Outgoing update prefix filter list is *dc-leaf-out
+  0 accepted prefixes
+  Connections established 1; dropped 1
+  Last reset 20:16:20, due to NOTIFICATION sent (Cease/Other Configuration Change)
+BGP Connect Retry Timer in Seconds: 3
+Next connect timer due in 1 seconds
+Read thread: on  Write thread: on
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Troubleshoot BGP Unnumbered Configuration
 
 Use the following commands to show IPv6 next hops and interface names for an IPv4 prefix, routes, and how a IPv4 link-local address is used to install a route and static neighbor entry.
 
@@ -613,158 +2727,6 @@ FIB entry for 10.0.0.12
 10.0.0.12  proto zebra  metric 20
   nexthop via 169.254.0.1  dev swp51 weight 1 onlink
   nexthop via 169.254.0.1  dev swp52 weight 1 onlink
-```
-
-### How traceroute Interacts with BGP Unnumbered Interfaces
-
-Every router or end host must have an IPv4 address to complete a `traceroute` of IPv4 addresses. In this case, the IPv4 address used is that of the loopback device.
-
-Even if ENHE is not used in the data center, link addresses are not typically advertised because:
-
-- Link addresses take up valuable FIB resources. In a large Clos environment, the number of such addresses can be quite large.
-- Link addresses expose an additional attack vector for intruders to use to either break in or engage in DDOS attacks.
-
-Assigning an IP address to the loopback device is essential.
-
-### Advanced: How Next Hop Fields Are Set
-
-{{< expand "Click to expand... "  >}}
-
-This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ({{<exlink url="https://www.ietf.org/rfc/rfc2858.txt" text="multiprotocol reachable NLRI">}}) initiated by the system, which applies whether IPv6 prefixes or IPv4 prefixes are exchanged with ENHE. There are two main aspects to determine: how many IPv6 next hops are included in the MP\_REACH\_NLRI (the RFC allows either one or two next hops) and the values of the next hops. This section also describes how a received MP\_REACH\_NLRI is handled as far as processing IPv6 next hops.
-
-- When peering to a global IPv6 address or link-local IPv6 address, whether to send one or two next hops is determined as follows:
-    - If reflecting the route, two next hops are sent only if the peer has `nexthop-local unchanged` configured and the attribute of the received route has an IPv6 link-local next hop  otherwise, only one next hop is sent.
-    - If not reflecting the route, two next hops are sent if explicitly configured (`nexthop-local unchanged`) or the peer is directly connected (either peering is on link-local address or the global IPv4 or IPv6 address is *directly connected*) and the route is either a local/self-originated route or the peer is an eBGP peer.
-    - In all other cases, only one next hop is sent, unless an outbound route map adds another next hop.
-- `route-map` can impose two next hops in scenarios where Cumulus Linux only sends one next hop - by specifying `set ipv6 nexthop link-local`.
-- For all routes to eBGP peers and self-originated routes to iBGP peers, the global next hop (first value) is the peering address of the local system. If the peering is on the link-local address, this is the global IPv6 address on the peering interface, if present; otherwise, it is the link-local IPv6 address on the peering interface.
-- For other routes to iBGP peers (eBGP to iBGP or reflected), the global next hop will be the global next hop in the received attribute.
-
-    {{%notice note%}}
-
-If this address is a link-local IPv6 address, it is reset so that the link-local IPv6 address of the eBGP peer is not passed along to an iBGP peer, which most likely is on a different link.
-
-{{%/notice%}}
-
-- `route-map` and/or the peer configuration can change the above behavior. For example, `route-map` can set the global IPv6 next hop or the peer configuration can set it to *self* - which is relevant for *iBGP* peers. The route map or peer configuration can also set the next hop to unchanged, which ensures the source IPv6 global next hop is passed around - which is relevant for *eBGP* peers.
-- Whenever two next hops are being sent, the link-local next hop (the second value of the two) is the link-local IPv6 address on the peering interface unless it is due to `nh-local-unchanged` or `route-map` has set the link-local next hop.
-- Network administrators cannot set {{<exlink url="http://en.wikipedia.org/wiki/Martian_packet" text="martian values">}} for IPv6 next hops in `route-map`. Also, global and link-local next hops are validated to ensure they match the respective address types.
-- In a received update, a martian check is imposed for the IPv6 global next hop. If the check fails, it gets treated as an implicit withdraw.
-- If two next hops are received in an update and the second next hop is not a link-local address, it gets ignored and the update is treated as if only one next hop was received.
-- Whenever two next hops are received in an update, the second next hop is used to install the route into `zebra`. As per the previous point, it is already assured that this is a link-local IPv6 address. Currently, this is assumed to be reachable and is not registered with NHT.
-- When `route-map` specifies the next hop as `peer-address`, the global IPv6 next hop as well as the link-local IPv6 next hop (if it's being sent) is set to the *peering address*. If the peering is on a link-local address, the former could be the link-local address on the peering interface, unless there is a global IPv6 address present on this interface.
-- When using iBGP unnumbered with IPv6 Link Local Addresses (the default), FRR rewrites the BGP next hop to be the adjacent link. This is similar behavior to eBGP next hops. However, iBGP route advertisement rules do not change and a full mesh or route reflectors is still required.
-
-The above rules imply that there are scenarios where a generated update has two IPv6 next hops, and both of them are the IPv6 link-local address of the peering interface on the local system. If you are peering with a switch or router that is not running Cumulus Linux and expects the first next hop to be a global IPv6 address, a route map can be used on the sender to specify a global IPv6 address. This conforms with the recommendations in the Internet draft {{<exlink url="https://tools.ietf.org/html/draft-kato-bgp-ipv6-link-local-00" text="draft-kato-bgp-ipv6-link-local-00.txt">}}, "BGP4+ Peering Using IPv6 Link-local Address."
-
-{{< /expand >}}
-
-### Limitations
-
-- Interface-based peering with separate IPv4 and IPv6 sessions is not supported.
-- If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 link-local peering.
-- BGP unnumbered only works with two switches at a time, as it is meant to work with PTP (point-to-point protocol).
-
-## RFC 5549 Support with Global IPv6 Peers
-
-{{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}} defines the method used for BGP to advertise IPv4 prefixes with IPv6 next hops. The RFC does not make a distinction between whether the IPv6 peering and next hop values should be global unicast addresses (GUA) or link-local addresses. Cumulus Linux supports advertising IPv4 prefixes with IPv6 global unicast and link-local next hop addresses, with either *unnumbered* or *numbered* BGP.
-
-When BGP peering uses IPv6 global addresses and IPv4 prefixes are being advertised and installed, IPv6 route advertisements are used to derive the MAC address of the peer so that FRR can create an IPv4 route with a link-local IPv4 next hop address (defined by RFC 3927). This is required to install the route into the kernel. These route advertisement settings are configured automatically when FRR receives an update from a BGP peer using IPv6 global addresses that contain an IPv4 prefix with an IPv6 next hop, and the enhanced-next hop capability has been negotiated.
-
-### Configure RFC 5549 Support with Global IPv6 Peers
-
-To enable advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings, add the `extended-nexthop` capability to the global IPv6 neighbor statements on each end of the BGP sessions.
-
-{{< tabs "18 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp neighbor 2001:1:1::3 capability extended-nexthop 
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65000
-switch(config-router)# neighbor 2001:1:1::3 capability extended-nexthop
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65002
-  ...
-  neighbor 2001:1:1::3 capability extended-nexthop
-...
-```
-
-Ensure that the IPv6 peers are activated under the IPv4 unicast address family; otherwise, all peers are activated in the IPv4 unicast address family by default. If `no bgp default ipv4-unicast` is configured, you need to explicitly activate the IPv6 neighbor under the IPv4 unicast address family as shown below:
-
-{{< tabs "20 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp neighbor 2001:1:1::3 capability extended-nexthop
-cumulus@switch:~$ net add bgp ipv4 unicast neighbor 2001:1:1::3 activate
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# neighbor 2001:1:1::3 capability extended-nexthop
-switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# neighbor 2001:1:1::3 activate
-switch(config-router-af)# end
-switch(config)# exit
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 1 bgp
-router-id 10.0.0.11
-no bgp default ipv4-unicast
-neighbor 2001:1:1::3 remote-as external
-neighbor 2001:1:1::3 capability extended-nexthop
-!
-address-family ipv4 unicast
-  neighbor 2001:1:1::3 activate
-exit-address-family
-...
 ```
 
 ### Show IPv4 Prefixes Learned with IPv6 Next Hops
@@ -1152,2037 +3114,6 @@ C>* 172.16.10.0/24 is directly connected, swp3, 3d00h26m
 
 {{< /tabs >}}
 
-## BGP add-path
-
-Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
-
-### BGP add-path RX
-
-*BGP add-path RX* allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. No additional configuration is required for BGP add-path RX.
-
-{{%notice note%}}
-
-BGP advertises the add-path RX capability by default. Add-Path TX requires an administrator to enable it. Enabling TX resets the session.
-
-{{%/notice%}}
-
-To view the existing capabilities, run the following commands. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
-
-{{< tabs "24 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net show bgp neighbor
-BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link
-Hostname: spine01
-  Member of peer-group fabric for session parameters
-  BGP version 4, remote router ID 10.0.0.21
-  BGP state = Established, up for 1d01h15m
-  Last read 00:00:00, Last write 1d01h15m
-  Hold time is 3, keepalive interval is 1 seconds
-  Configured hold time is 3, keepalive interval is 1 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    AddPath:
-      IPv4 Unicast: RX advertised IPv4 Unicast and received
-    Extended nexthop: advertised and received
-      Address families by peer:
-                    IPv4 Unicast
-    Route refresh: advertised and received(old & new)
-    Address family IPv4 Unicast: advertised and received
-    Hostname Capability: advertised and received
-    Graceful Restart Capabilty: advertised and received
-      Remote Restart timer is 120 seconds
-      Address families by peer:
-        none
-...
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-switch# show ip bgp neighbors
-
-BGP neighbor on swp1: fe80::4638:39ff:fe00:5b, remote AS 65011, local AS 65020, external link
-Hostname: leaf01
-  Member of peer-group fabric for session parameters
-  BGP version 4, remote router ID 10.0.0.11
-  BGP state = Established, up for 00:59:17
-  Last read 00:00:02, Last write 00:59:16
-  Hold time is 9, keepalive interval is 3 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    AddPath:
-      IPv4 Unicast: RX advertised IPv4 Unicast and received
-    Extended nexthop: advertised and received
-      Address families by peer:
-                    IPv4 Unicast
-    Route refresh: advertised and received(old & new)
-    Address family IPv4 Unicast: advertised and received
-    Hostname Capability: advertised and received
-    Graceful Restart Capabilty: advertised and received
-      Remote Restart timer is 120 seconds
-      Address families by peer:
-        none
-...
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The example output above shows that additional BGP paths can be sent and received (TX and RX are advertised). It also shows that the BGP neighbor, fe80::4638:39ff:fe00:5c, supports both.
-
-To view the current additional paths, run the following commands.
-
-{{< tabs "26 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
-
-```
-cumulus@switch:~$ net show bgp 10.0.0.12
-BGP routing table entry for 10.0.0.12/32
-Paths: (2 available, best #1, table Default-IP-Routing-Table)
-  Advertised to non peer-group peers:
-  spine01(swp51) spine02(swp52)
-  65020 65012
-    fe80::4638:39ff:fe00:5c from spine01(swp51) (10.0.0.21)
-    (fe80::4638:39ff:fe00:5c) (used)
-      Origin incomplete, localpref 100, valid, external, multipath, bestpath-from-AS 65020, best (Older Path)
-      AddPath ID: RX 0, TX 6
-      Last update: Wed Nov 16 22:47:00 2016
-  65020 65012
-    fe80::4638:39ff:fe00:2b from spine02(swp52) (10.0.0.22)
-    (fe80::4638:39ff:fe00:2b) (used)
-      Origin incomplete, localpref 100, valid, external, multipath
-      AddPath ID: RX 0, TX 3
-      Last update: Wed Nov 16 22:47:00 2016
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-The example output shows five additional paths that have been added by the TX node for receiving. All the paths have a unique AddPath ID.
-
-```
-switch# show ip bgp 10.0.0.12
-BGP routing table entry for 10.0.0.12/32
-Paths: (6 available, best #6, table Default-IP-Routing-Table)
-  500
-    10.7.6.2 from r6(10.7.6.2) (10.0.0.6)
-      Origin IGP, metric 0, localpref 100, valid, external
-      Community: 6:6
-      AddPath ID: RX 0, TX 7
-      Last update: Thu Jun  2 00:57:16 2016
-
-  500
-    10.7.5.2 from r5(10.7.5.2) (10.0.0.5)
-      Origin IGP, metric 0, localpref 100, valid, external, bestpath-from-AS 500
-      Community: 5:5
-      AddPath ID: RX 0, TX 6
-      Advertised to: r8(10.7.8.2)
-      Last update: Thu Jun  2 00:57:16 2016
-  
-  300
-    10.7.4.2 from r4(10.7.4.2) (10.0.0.4)
-      Origin IGP, metric 0, localpref 100, valid, external
-      Community: 4:4
-      AddPath ID: RX 0, TX 5
-      Last update: Thu Jun  2 00:57:16 2016
-
-  300
-    10.7.3.2 from r3(10.7.3.2) (10.0.0.3)
-      Origin IGP, metric 0, localpref 100, valid, external, bestpath-from-AS 300
-      Community: 3:3
-      AddPath ID: RX 0, TX 4
-      Advertised to: r8(10.7.8.2)
-      Last update: Thu Jun  2 00:57:16 2016
-
-  100
-    10.7.2.2 from r2(10.7.2.2) (10.0.0.2)
-      Origin IGP, metric 0, localpref 100, valid, external, multipath
-      Community: 2:2
-      AddPath ID: RX 0, TX 3
-      Last update: Thu Jun  2 00:57:16 2016
-
-  100
-    10.7.1.2 from r1(10.7.1.2) (10.0.0.1)
-      Origin IGP, metric 0, localpref 100, valid, external, multipath, bestpath-from-AS 100, best
-      Community: 1:1
-      AddPath ID: RX 0, TX 2
-      Advertised to: r1(10.7.1.2) r2(10.7.2.2) r3(10.7.3.2) r4(10.7.4.2) r5(10.7.5.2) r6(10.7.6.2) r8(10.7.8.2)
-      Last update: Thu Jun  2 00:57:16 2016
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-### BGP add-path TX
-
-AddPath TX allows BGP to advertise more than just the bestpath for a prefix. Consider the following topology:
-
-```
-          r8
-          |
-          |
-  r1 ----    ---- r6
-  r2 ---- r7 ---- r5
-          ||
-          ||
-        r3 r4
-```
-
-In this topology:
-
-- r1 and r2 are in AS 100
-- r3 and r4 are in AS 300
-- r5 and r6 are in AS 500
-- r7 is in AS 700
-- r8 is in AS 800
-- r7 learns 1.1.1.1/32 from r1, r2, r3, r4, r5, and r6; r7 picks the path from r1 as the bestpath for 1.1.1.1/32
-
-{{< tabs "28 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-The example below configures the r7 session to advertise the bestpath learned from each AS. In this case, a path from AS 100, a path from AS 300, and a path from AS 500. The `net show bgp 1.1.1.1/32` from r7 has `bestpath-from-AS 100` so you can see what the bestpath is from each AS:
-
-```
-cumulus@r7:~$ net add bgp autonomous-system 700
-cumulus@r7:~$ net add bgp neighbor 192.0.2.2 addpath-tx-bestpath-per-AS
-cumulus@r7:~$ net pending
-cumulus@r7:~$ net commit
-```
-
-The output below shows the result on r8:
-
-```
-cumulus@r8:~$ net show bgp 1.1.1.1/32
-BGP routing table entry for 1.1.1.1/32
-Paths: (3 available, best #3, table Default-IP-Routing-Table)
-  Advertised to non peer-group peers:
-  r7(10.7.8.1)
-  700 100
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 1:1
-      AddPath ID: RX 2, TX 4
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 300
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 3:3
-      AddPath ID: RX 4, TX 3
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 500
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best (First path received)
-      Community: 5:5
-      AddPath ID: RX 6, TX 2
-      Last update: Thu Jun  2 00:57:14 2016
-```
-
-The example below shows the results when r7 is configured to advertise all paths to r8:
-
-```
-cumulus@r7:~$ net add bgp autonomous-system 700
-cumulus@r7:~$ net add bgp neighbor 192.0.2.2 addpath-tx-all-paths
-cumulus@r7:~$ net pending
-cumulus@r7:~$ net commit
-```
-
-The output below shows the result on r8:
-
-```
-cumulus@r8:~$ net show bgp 1.1.1.1/32
-BGP routing table entry for 1.1.1.1/32
-Paths: (3 available, best #3, table Default-IP-Routing-Table)
-  Advertised to non peer-group peers:
-  r7(10.7.8.1)
-  700 100
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 1:1
-      AddPath ID: RX 2, TX 4
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 300
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 3:3
-      AddPath ID: RX 4, TX 3
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 500
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best (First path received)
-      Community: 5:5
-      AddPath ID: RX 6, TX 2
-      Last update: Thu Jun  2 00:57:14 2016
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-The example below configures the r7 session to advertise the bestpath learned from each AS. In this case, a path from AS 100, a path from AS 300, and a path from AS 500. The `show ip bgp 1.1.1.1/32` from r7 has
-`bestpath-from-AS 100` so you can see what the bestpath is from each AS:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-r7# configure terminal
-r7(config)# router bgp 700
-r7(config-router)# neighbor 192.0.2.2 addpath-tx-bestpath-per-AS
-r7(config-router)#
-```
-
-The output below shows the result on r8:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-r8# show ip bgp 1.1.1.1/32
-BGP routing table entry for 1.1.1.1/32
-Paths: (3 available, best #3, table Default-IP-Routing-Table)
-  Advertised to non peer-group peers:
-  r7(10.7.8.1)
-  700 100
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 1:1
-      AddPath ID: RX 2, TX 4
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 300
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 3:3
-      AddPath ID: RX 4, TX 3
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 500
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best
-      Community: 5:5
-      AddPath ID: RX 6, TX 2
-      Last update: Thu Jun  2 00:57:14 2016
-
-r8#
-```
-
-The example below shows the results when r7 is configured to advertise all paths to r8:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-r7# configure terminal
-r7(config)# router bgp 700
-r7(config-router)# neighbor 192.0.2.2 addpath-tx-all-paths
-r7(config-router)#
-```
-
-The output below shows the result on r8:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-r8# show ip bgp 1.1.1.1/32
-BGP routing table entry for 1.1.1.1/32
-Paths: (3 available, best #3, table Default-IP-Routing-Table)
-  Advertised to non peer-group peers:
-  r7(10.7.8.1)
-  700 100
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 1:1
-      AddPath ID: RX 2, TX 4
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 300
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 3:3
-      AddPath ID: RX 4, TX 3
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 500
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best
-      Community: 5:5
-      AddPath ID: RX 6, TX 2
-      Last update: Thu Jun  2 00:57:14 2016
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-## Fast Convergence Design Considerations
-
-Cumulus Networks strongly recommends the following use of addresses in the design of a BGP-based data center network:
-
-- Set up BGP sessions only using interface-scoped addresses. This allows BGP to react quickly to link failures.
-- Use of next hop-self so that every BGP node says that it knows how to forward traffic to the prefixes it is announcing. This reduces the requirement to announce interface-specific addresses and reduces the size of the forwarding table.
-
-When you configure BGP for the neighbors of a given interface, you can specify the interface name instead of its IP address. All the other `neighbor` command options remain the same.
-
-This is equivalent to BGP peering to the link-local IPv6 address of the neighbor on the given interface. The link-local address is learned via IPv6 neighbor discovery router advertisements.
-
-Consider the following example configuration in the `/etc/frr/frr.conf` file:
-
-```
-...
-router bgp 65000
-  bgp router-id 10.0.0.1
-  neighbor swp1 interface
-  neighbor swp1 remote-as internal
-  neighbor swp1 next-hop-self
-!
-  address-family ipv6
-  neighbor swp1 activate
-  exit-address-family
-...
-```
-
-You create the above configuration with the following commands:
-
-{{< tabs "30 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp autonomous-system 65000
-cumulus@switch:~$ net add bgp router-id 10.0.0.1
-cumulus@switch:~$ net add bgp neighbor swp1 interface
-cumulus@switch:~$ net add bgp neighbor swp1 remote-as internal
-cumulus@switch:~$ net add bgp neighbor swp1 next-hop-self
-cumulus@switch:~$ net add bgp ipv6 unicast neighbor swp1 activate
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65000
-switch(config-router)# bgp router-id 10.0.0.1
-switch(config-router)# neighbor swp1 interface
-switch(config-router)# neighbor swp1 remote-as internal
-switch(config-router)# neighbor swp1 next-hop-self
-switch(config-router)# address-family ipv6
-switch(config-router-af)# neighbor swp1 activate
-switch(config-router-af)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-By default, Cumulus Linux sends IPv6 neighbor discovery router advertisements. Cumulus Networks recommends you adjust the interval of the router advertisement to a shorter value to address scenarios when nodes come up and miss router advertisement processing to relay the neighbor's link-local address to BGP. The `interval` is measured in seconds and defaults to 10 seconds. The following example commands set the router advertisement to 5 seconds.
-
-{{< tabs "32 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add interface swp1 ipv6 nd ra-interval 5
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# interface swp1
-switch(config-if)# ipv6 nd ra-interval 5
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-## Peer Groups to Simplify Configuration
-
-When a switch has many peers to connect to, the amount of redundant configuration becomes overwhelming. For example, repeating the `activate` and `next-hop-self` commands for even 60 neighbors makes for a very long configuration file. To address this problem, you can use
-`peer-group`.
-
-Instead of specifying properties of each individual peer, FRRouting allows you to define one or more peer groups and associate all the attributes common to that peer session to a peer group. A peer needs to be attached to a peer group only once, when it then inherits all address families activated for that peer group.
-
-After you attach a peer to a peer group, you need to associate an IP address with the peer group. The following example shows how to define and use peer groups:
-
-{{< tabs "34 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp neighbor tier-2 peer-group
-cumulus@switch:~$ net add bgp neighbor tier-2 next-hop-self
-cumulus@switch:~$ net add bgp neighbor 10.0.0.2 peer-group tier-2
-cumulus@switch:~$ net add bgp neighbor 192.0.2.2 peer-group tier-2
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65000
-switch(config-router)# neighbor tier-2 peer-group
-switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# neighbor tier-2 next-hop-self
-switch(config-router-af)# exit
-switch(config-router)# neighbor 10.0.0.2 peer-group tier-2
-switch(config-router)# neighbor 192.0.2.2 peer-group tier-2
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-{{%notice note%}}
-
-BGP peer-group restrictions have been replaced with update-groups, which dynamically examine all peers and group them if they have the same outbound policy.
-
-{{%/notice%}}
-
-## Configure BGP Dynamic Neighbors
-
-*BGP dynamic neighbor* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
-
-You configure dynamic neighbors using the `bgp listen range <ip-address> peer-group <group>` command. After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor in the IP address range and mapped to a peer group.
-
-{{< tabs "36 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp autonomous-system 65001
-cumulus@switch:~$ net add bgp listen range 10.1.1.0/24 peer-group SPINE
-```
-
-To limit the number of dynamic peers, specify the limit in the `net add bgp listen limit` command. The default value is *100*:
-
-```
-cumulus@switch:~$ net add bgp listen limit 5
-```
-
-Collectively, a sample configuration for IPv4 looks like this:
-
-```
-cumulus@switch:~$ net add bgp autonomous-system 65001
-cumulus@switch:~$ net add bgp neighbor SPINE peer-group
-cumulus@switch:~$ net add bgp neighbor SPINE remote-as 65000
-cumulus@switch:~$ net add bgp listen limit 5
-cumulus@switch:~$ net add bgp listen range 10.1.1.0/24 peer-group SPINE
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65001
-switch(config-router)# bgp listen range 10.1.1.0/24 peer-group SPINE
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-You can limit the number of dynamic peers by specifying that limit in the `bgp listen limit` command:
-
-```
-switch(config-router)# bgp listen limit 5
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-These commands produce an IPv4 configuration that looks like this:
-
-```
-router bgp 65001
-  neighbor SPINE peer-group
-  neighbor SPINE remote-as 65000
-  bgp listen limit 5
-  bgp listen range 10.1.1.0/24 peer-group SPINE
-```
-
-## Configure BGP Peering Relationships across Switches
-
-A BGP peering relationship is typically initiated with the `neighbor x.x.x.x remote-as [internal|external]` command.
-
-Specifying *internal* signifies an iBGP peering; that is, the neighbor only creates or accepts a connection with the specified neighbor if the remote peer AS number matches this BGP AS number.
-
-Specifying *external* signifies an eBGP peering; that is, the neighbor will only create a connection with the neighbor if the remote peer AS number does **not** match this BGP AS number.
-
-You can make this distinction using the `neighbor` command or the `peer-group` command.
-
-In general, use the following syntax with the `neighbor` command:
-
-{{< tabs "38 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-For example, to connect to **the same AS** using the `neighbor` command:
-
-```
-cumulus@switch:~$ net add bgp autonomous-system 500
-cumulus@switch:~$ net add bgp neighbor 192.168.1.2 remote-as internal
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following configuration snippet:
-
-```
-...
-router bgp 500
-  neighbor 192.168.1.2 remote-as internal
-...
-```
-
-To connect to a **different AS** using the `neighbor` command:
-
-```
-cumulus@switch:~$ net add bgp autonomous-system 500
-cumulus@switch:~$ net add bgp neighbor 192.168.1.2 remote-as external
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following configuration snippet:
-
-```
-...
-router bgp 500
-  neighbor 192.168.1.2 remote-as external
-...
-```
-
-To connect to **the same AS** using the `peer-group` command:
-
-```
-cumulus@switch:~$ net add bgp autonomous-system 500
-cumulus@switch:~$ net add bgp neighbor swp1 interface
-cumulus@switch:~$ net add bgp neighbor IBGP peer-group
-cumulus@switch:~$ net add bgp neighbor IBGP remote-as internal
-cumulus@switch:~$ net add bgp neighbor swp1 interface peer-group IBGP
-cumulus@switch:~$ net add bgp neighbor 192.0.2.3 peer-group IBGP
-cumulus@switch:~$ net add bgp neighbor 192.0.2.4 peer-group IBGP
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following configuration snippet:
-
-```
-...
-router bgp 500
-  neighbor swp1 interface
-  neighbor IBGP peer-group
-  neighbor IBGP remote-as internal
-  neighbor swp1 peer-group IBGP
-  neighbor 192.0.2.3 peer-group IBGP
-  neighbor 192.0.2.4 peer-group IBGP
-...
-```
-
-To connect to a **different AS** using the `peer-group` command:
-
-```
-cumulus@switch:~$ net add bgp autonomous-system 500
-cumulus@switch:~$ net add bgp neighbor swp2 interface
-cumulus@switch:~$ net add bgp neighbor EBGP peer-group
-cumulus@switch:~$ net add bgp neighbor EBGP remote-as external
-cumulus@switch:~$ net add bgp neighbor 192.0.2.2 peer-group EBGP
-cumulus@switch:~$ net add bgp neighbor swp2 interface peer-group EBGP
-cumulus@switch:~$ net add bgp neighbor 192.0.2.4 peer-group EBGP
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-These commands create the following configuration snippet:
-
-```
-...
-router bgp 500
-  neighbor swp2 interface
-  neighbor EBGP peer-group
-  neighbor EBGP remote-as external
-  neighbor 192.0.2.2 peer-group EBGP
-  neighbor swp2 peer-group EBGP
-  neighbor 192.0.2.4 peer-group EBGP
-...
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-To connect to **the same AS** using the `neighbor` command:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 500
-switch(config-router)# neighbor 192.168.1.2 remote-as internal
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$ 
-```
-
-To connect to a **different AS** using the `neighbor` command:
-
-```
-switch(config)# router bgp 500
-switch(config-router)# neighbor 192.168.1.2 remote-as external
-```
-
-To connect to **the same AS** using the `peer-group` command:
-
-```
-switch(config)# router bgp 500
-switch(config-router)# neighbor swp1 interface
-switch(config-router)# neighbor IBGP peer-group
-switch(config-router)# neighbor IBGP remote-as internal
-switch(config-router)# neighbor swp1 peer-group IBGP
-switch(config-router)# neighbor 192.0.2.3 peer-group IBGP
-switch(config-router)# neighbor 192.0.2.4 peer-group IBGP
-```
-
-To connect to a **different AS** using the `peer-group` command:
-
-```
-switch(config)# router bgp 500
-switch(config-router)# neighbor swp2 interface
-switch(config-router)# neighbor EBGP peer-group
-switch(config-router)# neighbor EBGP remote-as external
-switch(config-router)# neighbor 192.0.2.2 peer-group EBGP
-switch(config-router)# neighbor swp2 peer-group EBGP
-switch(config-router)# neighbor 192.0.2.4 peer-group EBGP
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-## Configure MD5-enabled BGP Neighbors
-
-The following sections outline how to configure an MD5-enabled BGP neighbor. Each process assumes that FRRouting is used as the routing platform, and consists of two switches (`AS 65011` and `AS 65020`), connected by the link 10.0.0.100/30.
-
-### To manually configure an MD5-enabled BGP neighbor:
-
-{{< tabs "40 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-1. From leaf01, configure the password for the neighbor:
-
-    ```
-    cumulus@leaf01:~$ net add bgp neighbor 10.0.0.102 password mypassword
-    ```
-
-2. Confirm the configuration with the `net show bgp summary` command. For example:
-
-    ```
-    cumulus@leaf01:~$ net show bgp summary
-    show bgp ipv4 unicast summary
-    =============================
-    BGP router identifier 10.0.0.11, local AS number 65011 vrf-id 0
-    BGP table version 18
-    RIB entries 11, using 1320 bytes of memory
-    Peers 2, using 36 KiB of memory
-    Peer groups 1, using 56 bytes of memory
-    Neighbor        V         AS     MsgRcvd  MsgSent   TblVer  InQ  OutQ     Up/Down  State/PfxRcd
-    spine01(swp51)  4 65020   96144    96146        0        0    0  00:30:29                   3
-    spine02(swp52)  4 65020   96209    96217        0        0    0  1d02h44m                   3
-    Total number of neighbors 2
-
-    show bgp ipv6 unicast summary
-    =============================
-    No IPv6 neighbor is configured
-    ```
-
-3. From spine01, configure the password for the neighbor:
-
-    ```
-    cumulus@spine01:~$ net add bgp neighbor 10.0.0.101 password mypassword
-    cumulus@spine01:~$ net pending
-    cumulus@spine01:~$ net commit
-    ```
-
-4. Confirm the configuration with the `net show bgp summary` command.
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-1. From leaf01, configure the password for the neighbor:
-
-    ```
-    cumulus@leaf01:~$ sudo vtysh
-
-    leaf01# configure terminal
-    leaf01(config)# router bgp 65011
-    leaf01(config-router)# neighbor 10.0.0.102 password mypassword
-    leaf01(config-router)# exit
-    leaf01(config)# exit
-    leaf01# write memory
-    leaf01# exit
-    cumulus@leaf01:~$
-    ```
-
-2. From spine01, configure the password for the neighbor:
-
-    ```
-    cumulus@spine01:~$ sudo vtysh
-
-    spine01# configure terminal
-    spine01(config)# router bgp 65020
-    spine01(config-router)# neighbor 10.0.0.101 password mypassword
-    spine01(config-router)# end
-    spine01# write memory
-    spine01# exit
-    cumulus@spine01:~$
-    ```
-
-3. Confirm the configuration with the `show ip` `bgp summary` command.
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-{{%notice note%}}
-
-The MD5 password configured against a BGP listen-range peer group (used to accept and create dynamic BGP neighbors) is not enforced. This means that connections are accepted from peers that do not specify a password.
-
-{{%/notice%}}
-
-## Configure eBGP Multihop
-
-The eBGP multihop option lets you use BGP to exchange routes with an external peer that is more than one hop away.
-
-To establish a connection between two eBGP peers that are not directly connected:
-
-{{< tabs "42 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net add bgp neighbor <ip-address> remote-as external
-cumulus@switch:~$ net add bgp neighbor <ip-address> ebgp-multihop
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-```
-cumulus@spine01:~$ sudo vtysh
-
-spine01# configure terminal
-spine01(config)# router bgp 65020
-spine01(config-router)# neighbor <ip> remote-as external
-spine01(config-router)# neighbor <ip> ebgp-multihop
-spine01(config)# exit
-spine01# write memory
-spine01# exit
-cumulus@spine01:~$ 
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-To confirm the configuration, run the NCLU `net show bgp neighbor <ip-address>` command or the vtysh `show ip bgp neighbor <ip-address>` command. For example:
-
-```
-cumulus@switch:~$ net show bgp neighbor 10.0.0.11
-BGP neighbor is 10.0.0.11, remote AS 65011, local AS 65012, external link
-Hostname: leaf01
-  BGP version 4, remote router ID 10.0.0.11
-  BGP state = Established, up for 00:02:54
-  Last read 00:00:00, Last write 00:00:00
-  Hold time is 9, keepalive interval is 3 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    AddPath:
-      IPv4 Unicast: RX advertised IPv4 Unicast and received
-    Route refresh: advertised and received(old & new)
-    Address Family IPv4 Unicast: advertised and received
-    Hostname Capability: advertised (name: leaf02,domain name: n/a) received (name: leaf01,domain name: n/a)
-    Graceful Restart Capability: advertised and received
-      Remote Restart timer is 120 seconds
-      Address families by peer:
-        none
-  Graceful restart informations:
-    End-of-RIB send: IPv4 Unicast
-    End-of-RIB received: IPv4 Unicast
-  Message statistics:
-    Inq depth is 0
-    Outq depth is 0
-                          Sent       Rcvd
-    Opens:                  1          1
-    Notifications:          0          0
-    Updates:             2868       2872
-    Keepalives:            60         60
-    Route Refresh:          0          0
-    Capability:             0          0
-    Total:               2929       2933
-  Minimum time between advertisement runs is 0 seconds
-  For address family: IPv4 Unicast
-  Update group 2, subgroup 4
-  Packet Queue length 0
-  Community attribute sent to this neighbor(all)
-  9 accepted prefixes
-  Connections established 1; dropped 0
-  Last reset never
-  External BGP neighbor may be up to 255 hops away.
-Local host: 10.0.0.12, Local port: 40135
-Foreign host: 10.0.0.11, Foreign port: 179
-Nexthop: 10.0.0.12
-Nexthop global: ::
-Nexthop local: ::
-BGP connection: non shared network
-BGP Connect Retry Timer in Seconds: 10
-Estimated round trip time: 1 ms
-Read thread: on  Write thread: on
-```
-
-## Configure BGP TTL Security
-
-Configure BGP TTL security to specify the minimum number of seconds allowed before the switch no longer accepts incoming IP packets from a specific eBGP peer. You can specify a value between 1 and 254 seconds.
-
-To set BGP TTL security to 200 seconds on a switch:
-
-{{< tabs "44 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net add bgp autonomous-system 65000
-cumulus@leaf01:~$ net add bgp neighbor 10.0.0.1 ttl-security hops 200
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-```
-cumulus@leaf01:~$ sudo vtysh
-
-leaf01# configure terminal
-leaf01(config)# router bgp 65000
-leaf01(config-router)# neighbor 10.0.0.1 ttl-security hops 200
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:~$ 
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-To confirm the configuration, run the NCLU `net` `show bgp neighbor` command or the vtysh `show ip bgp neighbor` command. For example:
-
-```
-cumulus@spine01:~$ net show bgp neighbor swp1
-BGP neighbor on swp1: fe80::4638:39ff:fe00:5b, remote AS 65011, local AS 65020, external link
-Hostname: leaf01
-  BGP version 4, remote router ID 10.0.0.11
-  BGP state = Established, up for 00:10:45
-  Last read 00:00:03, Last write 00:00:03
-  Hold time is 9, keepalive interval is 3 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    AddPath:
-      IPv4 Unicast: RX advertised IPv4 Unicast and received
-    Extended nexthop: advertised and received
-      Address families by peer:
-                    IPv4 Unicast
-    Route refresh: advertised and received(old & new)
-    Address Family IPv4 Unicast: advertised and received
-    Hostname Capability: advertised (name: spine01,domain name: n/a) received (name: leaf01,domain name: n/a)
-    Graceful Restart Capabilty: advertised and received
-      Remote Restart timer is 120 seconds
-      Address families by peer:
-        none
-  Graceful restart informations:
-    End-of-RIB send: IPv4 Unicast
-    End-of-RIB received: IPv4 Unicast
-  Message statistics:
-    Inq depth is 0
-    Outq depth is 0
-                          Sent       Rcvd
-    Opens:                 46          2
-    Notifications:         41          0
-    Updates:               38         34
-    Keepalives:         49334      49331
-    Route Refresh:          0          0
-    Capability:             0          0
-    Total:              49459      49367
-  Minimum time between advertisement runs is 0 seconds
-
-  For address family: IPv4 Unicast
-  Update group 1, subgroup 1
-  Packet Queue length 0
-  Community attribute sent to this neighbor(all)
-  3 accepted prefixes
-
-  Connections established 2; dropped 1
-  Last reset 00:17:37, due to NOTIFICATION sent (Hold Timer Expired)
-  External BGP neighbor may be up to 1 hops away.
-  Local host: fe80::4638:39ff:fe00:5c, Local port: 35564
-  Foreign host: fe80::4638:39ff:fe00:5b, Foreign port: 179
-  Nexthop: 10.0.0.21
-  Nexthop global: fe80::4638:39ff:fe00:5c
-  Nexthop local: fe80::4638:39ff:fe00:5c
-  BGP connection: shared network
-  BGP Connect Retry Timer in Seconds: 10
-  Read thread: on  Write thread: on
-```
-
-## Configure Graceful BGP Shutdown
-
-To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the node.
-
-To configure graceful BGP shutdown:
-
-{{< tabs "Graceful BGP shutdown">}}
-
-{{< tab "NCLU Commands ">}}
-
-To enable graceful shutdown:
-
-```
-cumulus@switch:~$ net add bgp graceful-shutdown
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To disable graceful shutdown:
-
-```
-cumulus@switch:~$ net del bgp graceful-shutdown
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-To enable graceful shutdown:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65001
-switch(config-router)# bgp graceful-shutdown
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-To disable graceful shutdown:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65001
-switch(config-router)# no bgp graceful-shutdown
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to _0_. To see the configuration, run the NCLU `net show bgp <address>` command or the vtysh `show ip bgp <address>` command. For example:
-
-```
-cumulus@switch:~$ net show bgp 10.1.3.0/24
-BGP routing table entry for 10.1.3.0/24
-Paths: (2 available, best #1, table Default-IP-Routing-Table)
-  Advertised to non peer-group peers:
-  bottom0(10.1.2.2)
-  30 20
-    10.1.1.2 (metric 10) from top1(10.1.1.2) (10.1.1.2)
-      Origin IGP, localpref 100, valid, internal, bestpath-from-AS 30, best
-      Community: 99:1
-      AddPath ID: RX 0, TX 52
-      Last update: Mon Sep 18 17:01:18 2017
-
-  20
-    10.1.2.2 from bottom0(10.1.2.2) (10.1.1.1)
-      Origin IGP, metric 0, localpref 0, valid, external, bestpath-from-AS 20
-      Community: 99:1 graceful-shutdown
-      AddPath ID: RX 0, TX 2
-      Last update: Mon Sep 18 17:01:18 2017
-```
-
-## Enable Read-only Mode
-
-As BGP peers are established and updates are received, prefixes might be installed in the RIB and advertised to BGP peers even though the information from all peers is not yet received and processed. Depending on the timing of the updates, prefixes might be installed and propagated through BGP, and then immediately withdrawn and replaced with new routing information. Read-only mode minimizes this BGP route churn in both the local RIB and with BGP peers.
-
-Enable read-only mode to reduce CPU and network usage when you restart the BGP process, or when you issue the `clear` `ip bgp` command. Because intermediate best paths are possible for the same prefix as peers get established and start receiving updates at different times, read-only mode is particularly useful in topologies where BGP learns a prefix from many peers and the network has a high number of prefixes.
-
-To enable read-only mode:
-
-{{< tabs "48 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-Run the `net add bgp update-delay <seconds> [<establish-wait-seconds>]` command, where the update delay and establish wait can be any value between 0 and 3600 seconds.   The following example command enables read-only mode, sets the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
-
-```
-cumulus@switch:~$ net add bgp update-delay 300 90
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-Run the `update-delay <seconds> [<establish-wait-seconds>]` command, where the update delay and establish wait can be any value between 0 and 3600 seconds. The following example command enables read-only mode, sets the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# update-delay 300 90
-switch(config-router)# end
-switch# write memory
-switch# switch
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-{{%notice note%}}
-
-The default value for max-delay is 0, which disables read-only mode. The `establish-wait` option is optional; however, if specified, the `establish-wait` option must be shorter than the `max-delay`.
-
-{{%/notice%}}
-
-Read-only mode begins as soon as the first peer reaches its established state and the `max-delay` timer starts, and continues until either of the following two conditions are met:
-
-- All the configured peers (except the shutdown peers) have sent an explicit EOR (End-Of-RIB) or an implicit EOR. The first keep-alive after BGP has reached the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends.
-
-  The minimum set of established peers for which EOR is expected are the peers that are established during the `establish-wait window,` not necessarily all the configured neighbors.
-
-- The timer reaches the configured `max-delay`.
-
-While in read-only mode, BGP does not run best-path or generate any updates to its peers.
-
-To show information about the state of the update delay, run the NCLU
-`net show bgp summary` command or the vtysh `show ip bgp summary`
-command.
-
-## Apply a Route Map for Route Updates
-
-You can apply {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route maps">}} in BGP in one of two ways
-
-- Filter routes from BGP into Zebra
-- Filter routes from Zebra into the Linux kernel
-
-{{%notice info%}}
-In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`.
-
-This is a known limitation in `network-docopt`, which NCLU uses to parse commands.
-{{%/notice%}}
-
-### Filter Routes from BGP into Zebra
-
-You can apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations for this attach-point are limited to metric and next hop only. Any operation of this feature does not affect the BGP internal RIB.
-
-Both IPv4 and IPv6 address families are supported. Route maps work on multi-paths; however, the metric setting is based on the best path only.
-
-To apply a route map to filter route updates from BGP into Zebra, run the following command:
-
-{{< tabs "50 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net add bgp table-map routemap1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# table-map routemap1
-switch(config-router)# end
-switch# write memory
-switch# switch
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-### Filter Routes from Zebra into the Linux Kernel
-
-To apply a route map to filter route updates from Zebra into the Linux kernel, run the following commands:
-
-{{< tabs "52 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net add routing protocol bgp route-map routemap1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# bgp route-map routemap1
-switch(config-router)# end
-switch# write memory
-switch# switch
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-## Configuration Tips
-
-### BGP Advertisement Best Practices
-
-As a best practice, limit the exchange of routing information at various parts in the network. The following image illustrates one way you can do so in a typical Clos architecture:
-
-{{< img src = "/images/cumulus-linux/bgp-advertisement-best-practices.png" >}}
-
-### Multiple Routing Tables and Forwarding
-
-You can run multiple routing tables (one for in-band/data plane traffic and one for out-of-band management plane traffic) on the same switch using {{<link url="Management-VRF" text="management VRF">}} (multiple routing tables and forwarding).
-
-{{%notice note%}}
-
-BGP and static routing (IPv4 and IPv6) are supported within a VRF context. For more information, refer to {{<link title="Virtual Routing and Forwarding - VRF">}}.
-
-{{%/notice%}}
-
-### BGP Community Lists
-
-You can use *{{<exlink url="http://docs.frrouting.org/en/latest/bgp.html#community-lists" text="community lists">}}* to define a BGP community to tag one or more routes. You can then use the communities to apply route policy on either egress or ingress.
-
-The BGP community list can be either *standard* or *expanded.* The standard BGP community list is a pair of values (such as *100:100*) that can be tagged on a specific prefix and advertised to other neighbors or applied on route ingress. Or, it can be one of four BGP default communities:
-
-- *internet*: a BGP community that matches all routes
-- *local-AS*: a BGP community that restrict routes to your confederation's sub-AS
-- *no-advertise*: a BGP community that isn't advertised to anyone
-- *no-export*: a BGP community that isn't advertised to the eBGP peer
-
-An expanded BGP community list takes a regular expression of communities and matches the listed communities.
-
-When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
-
-Here is an example of a standard community list filter:
-
-{{< tabs "54 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# bgp community-list standard COMMUNITY1 permit 100:100
-switch(config)# exit
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-You can apply the community list to a route map to define the routing policy:
-
-{{< tabs "Apply community list to route map">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp table-map ROUTE-MAP1
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65011
-switch(config-router)# table-map ROUTE-MAP1
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-### Additional Default Settings
-
-The following options are enabled by default in Cumulus Linux:
-
-- `bgp deterministic-med`, which ensures path ordering no longer impacts bestpath selection.
-- `bgp show-hostname`, which displays the hostname in show command output.
-- `bgp network import-check`, which enables the advertising of the BGP network in IGP.
-
-### Configure BGP Neighbor Maximum Prefixes
-
-To configure the maximum number of route announcements (prefixes) that can be received from a BGP neighbor, run the `neighbor <peer> maximum-prefix <value>` command from the `vtysh` shell. For example:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65001
-switch(config-router)# neighbor 10.1.0.13 maximum-prefix 3000
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-## Protocol Tuning
-
-### Converge Quickly On Link Failures
-
-In the Clos topology, Cumulus Networks recommends that you only use interface addresses to set up peering sessions. This means that when the link fails, the BGP session is torn down immediately, triggering route updates to propagate through the network quickly. This requires the `link-detect` and `ttl-security hops` commands to be enabled for all links. The `ttl-security hops` command specifies how many hops away the neighbor is. For example, in a Clos topology, every peer is at most 1 hop away.
-
-{{%notice note%}}
-
-See {{<link url="#considerations" text="Considerations">}} below for information about `ttl-security hops`.
-
-{{%/notice%}}
-
-To set the `ttl-security hops`:
-
-{{< tabs "62 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net add bgp neighbor 10.0.0.2 ttl-security hops 1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# neighbor 10.0.0.2 ttl-security hops 1
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65000
-  ...
-  neighbor 10.0.0.2 ttl-security hops 1
-...
-```
-
-### Converge Quickly On Soft Failures
-
-It is possible that the link is up but the neighboring BGP process is hung or has crashed. In this case, the FRRouting `watchfrr` daemon, which monitors the various FRRouting daemons, attempts to restart it. BGP itself has a keepalive interval that is exchanged between neighbors. By default, this keepalive interval is set to 3 seconds. You can increase this interval to a higher value, which decreases CPU load, especially in the presence of a lot of neighbors. The keepalive interval is the periodicity with which the keepalive message is sent. The hold time specifies how many keepalive messages can be lost before the connection is considered invalid. It is typically set to three times the keepalive time and defaults to 9 seconds. The following examples commands change the keepalive interval to 10 seconds and the hold time to 30 seconds.
-
-{{< tabs "64 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net add bgp neighbor 10.0.0.2 timers 10 30
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# neighbor 10.0.0.2 timers 10 30
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65000
-  ...
-  neighbor 10.0.0.2 timers 10 30
-...
-```
-
-### Reconnect Quickly
-
-A BGP process attempts to connect to a peer after a failure (or on startup) every `connect-time` seconds. By default, this is 10 seconds. To modify this value, run the following commands.
-
-{{%notice note%}}
-
-You must specify this command for each neighbor.
-
-{{%/notice%}}
-
-{{< tabs "66 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net add bgp neighbor 10.0.0.2 timers connect 30
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# neighbor 10.0.0.2 timers connect 30
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-```
-...
-router bgp 65000
-  ...
-  neighbor 10.0.0.2 timers connect 30
-...
-```
-
-### Advertisement Interval
-
-By default, BGP chooses stability over fast convergence, which is very useful when routing for the Internet. For example, unlike link-state protocols, BGP typically waits a number of seconds before sending consecutive updates to a neighbor. This advertisement interval ensures that an unstable neighbor flapping routes are not propagated throughout the network. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see {{<exlink url="http://tools.ietf.org/html/draft-jakma-mrai-02" text="this IETF draft">}}.
-
-To modify the advertisement interval, run the following commands:
-
-{{< tabs "68 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp neighbor swp51 advertisement-interval 5
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# neighbor swp51 advertisement-interval 5
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the
-`/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65000
-  ...
-  neighbor swp51 advertisement-interval 5
-...
-```
-
-To show the keepalive interval, hold time, and advertisement interval, you can run the NCLU `net show bgp neighbor <peer>` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
-
-```
-cumulus@switch:~$ net show bgp neighbor swp51 
-BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link
-Hostname: spine01
-  Member of peer-group fabric for session parameters
-  BGP version 4, remote router ID 0.0.0.0
-  BGP state = Connect
-  Last read 00:04:37, Last write 00:44:07
-  Hold time is 30, keepalive interval is 10 seconds
-  Configured hold time is 30, keepalive interval is 10 seconds
-  Message statistics:
-    Inq depth is 0
-    Outq depth is 0
-                          Sent       Rcvd
-    Opens:                  1          1
-    Notifications:          1          0
-    Updates:                7          6
-    Keepalives:          2374       2373
-    Route Refresh:          0          0
-    Capability:             0          0
-    Total:               2383       2380
-  Minimum time between advertisement runs is 5 seconds
-...
-```
-
-## Troubleshooting
-
-Use the following commands to troubleshoot BGP.
-
-{{< tabs "58 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net show bgp summary 
-show bgp ipv4 unicast summary
-=============================
-BGP router identifier 10.0.0.11, local AS number 65011 vrf-id 0
-BGP table version 8
-RIB entries 11, using 1320 bytes of memory
-Peers 2, using 36 KiB of memory
-Peer groups 1, using 56 bytes of memory
-Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
-spine01(swp51)  4 65020     549     551        0    0    0 00:09:03        3
-spine02(swp52)  4 65020     548     550        0    0    0 00:09:02        3
-Total number of neighbors 2
-
-show bgp ipv6 unicast summary
-=============================
-No IPv6 neighbor is configured
-```
-
-{{%notice tip%}}
-
-To determine if the sessions above are iBGP or eBGP sessions, look at the ASNs.
-
-{{%/notice%}}
-
-To view the routing table as defined by BGP:
-
-```
-cumulus@switch:~$ net show bgp ipv4
-ERROR: Command not found
-Use 'net help KEYWORD(s)' to list all options that use KEYWORD(s)
-cumulus@leaf01:~$ net show bgp ipv4 
-    unicast  :  add help text
-cumulus@leaf01:~$ net show bgp ipv4 unicast 
-BGP table version is 8, local router ID is 10.0.0.11
-Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
-              i internal, r RIB-failure, S Stale, R Removed
-Origin codes: zi - IGP, e - EGP, ? - incomplete
-    Network          Next Hop            Metric LocPrf Weight Path
-*> 10.0.0.11/32     0.0.0.0                  0         32768 ?
-*= 10.0.0.12/32     swp52                         0 65020 65012 ?
-*>                  swp51                         0 65020 65012 ?
-*> 10.0.0.21/32     swp51           0             0 65020 ?
-*> 10.0.0.22/32     swp52           0             0 65020 ?
-*> 172.16.1.0/24    0.0.0.0                  0         32768 i
-*= 172.16.2.0/24    swp52                         0 65020 65012 i
-*>                  swp51                         0 65020 65012 i
-Total number of prefixes 6
-```
-
-To show a more detailed breakdown of a specific neighbor:
-
-```
-cumulus@switch:~$ net show bgp neighbor swp51
-BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link
-Hostname: spine01
-  Member of peer-group fabric for session parameters
-  BGP version 4, remote router ID 10.0.0.21
-  BGP state = Established, up for 00:11:30
-  Last read 00:00:00, Last write 00:11:26
-  Hold time is 3, keepalive interval is 1 seconds
-  Configured hold time is 3, keepalive interval is 1 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    AddPath:
-      IPv4 Unicast: RX advertised IPv4 Unicast and received
-    Extended nexthop: advertised and received
-      Address families by peer:
-                    IPv4 Unicast
-    Route refresh: advertised and received(old & new)
-    Address family IPv4 Unicast: advertised and received
-    Hostname Capability: advertised and received
-    Graceful Restart Capabilty: advertised and received
-      Remote Restart timer is 120 seconds
-      Address families by peer:
-        none
-  Graceful restart informations:
-    End-of-RIB send: IPv4 Unicast
-    End-of-RIB received: IPv4 Unicast
-  Message statistics:
-    Inq depth is 0
-    Outq depth is 0
-                          Sent       Rcvd
-    Opens:                  1          1
-    Notifications:          0          0
-    Updates:                7          6
-    Keepalives:           690        689
-    Route Refresh:          0          0
-    Capability:             0          0
-    Total:                698        696
-  Minimum time between advertisement runs is 0 seconds
-  For address family: IPv4 Unicast
-  fabric peer-group member
-  Update group 1, subgroup 1
-  Packet Queue length 0
-  Community attribute sent to this neighbor(both)
-  Inbound path policy configured
-  Outbound path policy configured
-  Incoming update prefix filter list is *dc-leaf-in
-  Outgoing update prefix filter list is *dc-leaf-out
-  3 accepted prefixes
-  Connections established 1; dropped 0
-  Last reset never
-Local host: fe80::4638:39ff:fe00:5b, Local port: 48424
-Foreign host: fe80::4638:39ff:fe00:5c, Foreign port: 179
-Nexthop: 10.0.0.11
-Nexthop global: fe80::4638:39ff:fe00:5b
-Nexthop local: fe80::4638:39ff:fe00:5b
-BGP connection: shared network
-BGP Connect Retry Timer in Seconds: 3
-Estimated round trip time: 3 ms
-Read thread: on  Write thread: off
-```
-
-To see details of a specific route, such as from where it is received and where it is sent:
-
-```
-cumulus@switch:~$ net show bgp 10.0.0.11/32
-BGP routing table entry for 10.0.0.11/32
-Paths: (1 available, best #1, table Default-IP-Routing-Table)
-  Advertised to non peer-group peers:
-  spine01(swp51) spine02(swp52)
-  Local
-    0.0.0.0 from 0.0.0.0 (10.0.0.11)
-      Origin incomplete, metric 0, localpref 100, weight 32768, valid, sourced, bestpath-from-AS Local, best
-      AddPath ID: RX 0, TX 9
-          Last update: Fri Nov 18 01:48:17 2016
-```
-
-The above example shows that the routing table prefix seen by BGP is 10.0.0.11/32, that this route is advertised to two neighbors, and that it is not heard by any neighbors.
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-The most common starting point for troubleshooting BGP is to view the summary of neighbors connected to and some information about these connections:
-
-```
-switch# show ip bgp summary
-BGP router identifier 10.0.0.21, local AS number 65020 vrf-id 0
-BGP table version 15
-RIB entries 17, using 2040 bytes of memory
-Peers 6, using 97 KiB of memory
-Peer groups 1, using 56 bytes of memory
-
-Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
-leaf01(swp1)    4 65011    2684    2693        0    0    0 02:14:04        2
-leaf02(swp2)    4 65012    2684    2694        0    0    0 02:14:05        2
-leaf03(swp3)    4 65013    2684    2693        0    0    0 02:14:04        2
-leaf04(swp4)    4 65014    2684    2694        0    0    0 02:14:05        2
-edge01(swp29)   4 65051    8058    8054        0    0    0 02:14:06        3
-edge01(swp30)   4 65051    8055    8052        0    0    0 02:14:04        3
-
-Total number of neighbors 6
-```
-
-{{%notice tip%}}
-
-To determine if the sessions above are iBGP or eBGP sessions, look at the ASNs.
-
-{{%/notice%}}
-
-To view the routing table as defined by BGP:
-
-```
-switch# show ip bgp
-BGP table version is 15, local router ID is 10.0.0.21
-Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
-              i internal, r RIB-failure, S Stale, R Removed
-Origin codes: i - IGP, e - EGP, ? - incomplete
-
-    Network          Next Hop            Metric LocPrf Weight Path
-*= 0.0.0.0          swp30                         0 65051 i
-*>                  swp29                         0 65051 i
-*> 10.0.0.1/32      swp29                         0 65051 65001 i
-*=                  swp30                         0 65051 65001 i
-*> 10.0.0.11/32     swp1            0             0 65011 i
-*> 10.0.0.12/32     swp2            0             0 65012 i
-*> 10.0.0.13/32     swp3            0             0 65013 i
-*> 10.0.0.14/32     swp4            0             0 65014 i
-*> 10.0.0.21/32     0.0.0.0                  0         32768 i
-*= 10.0.0.51/32     swp30           0             0 65051 i
-*>                  swp29           0             0 65051 i
-*> 172.16.1.0/24    swp1            0             0 65011 i
-*=                  swp2            0             0 65012 i
-*> 172.16.3.0/24    swp3            0             0 65013 i
-*=                  swp4            0             0 65014 i
-
-Total number of prefixes 10
-```
-
-To show a more detailed breakdown of a specific neighbor:
-
-```
-switch# show ip bgp neighbor 10.0.0.2
-BGP neighbor is 10.0.0.2, remote AS 65000, local AS 65000, internal link
-BGP version 4, remote router ID 0.0.0.5
-BGP state = Established, up for 00:14:03
-Last read 14:52:31, hold time is 18, keepalive interval is 6 seconds
-Neighbor capabilities:
-  4 Byte AS: advertised and received
-  Route refresh: advertised and received(old & new)
-  Address family IPv4 Unicast: advertised and received
-Message statistics:
-  Inq depth is 0
-  Outq depth is 0
-                        Sent       Rcvd
-  Opens:                  1          1
-  Notifications:          0          0
-  Updates:                1          3
-  Keepalives:            16         15
-  Route Refresh:          0          0
-  Capability:             0          0
-  Total:                 18         19
-Minimum time between advertisement runs is 5 seconds
-
-For address family: IPv4 Unicast
-  NEXT_HOP is always this router
-  Community attribute sent to this neighbor(both)
-  3 accepted prefixes
-
-  Connections established 1; dropped 0
-  Last reset never
-Local host: 10.0.0.1, Local port: 35258
-Foreign host: 10.0.0.2, Foreign port: 179
-Nexthop: 10.0.0.1
-Nexthop global: fe80::202:ff:fe00:19
-Nexthop local: ::
-BGP connection: non shared network
-Read thread: on  Write thread: off
-```
-
-To see details of a specific route, such as from where it is received and where it is sent:
-
-```
-switch# show ip bgp 192.0.2.0
-BGP routing table entry for 192.0.2.0/24
-Paths: (2 available, best #1, table Default-IP-Routing-Table)
-  Not advertised to any peer
-  Local
-    10.0.0.2 (metric 1) from 10.0.0.2 (0.0.0.10)
-      Origin IGP, metric 0, localpref 100, valid, internal, best
-      Originator: 0.0.0.10, Cluster list: 0.0.0.5
-      Last update: Mon Jul  8 10:12:17 2013
-  Local
-    192.0.2.2 (metric 1) from 192.0.2.2 (0.0.0.10)
-      Origin IGP, metric 0, localpref 100, valid, internal
-      Originator: 0.0.0.10, Cluster list: 0.0.0.6
-      Last update: Mon Jul  8 10:12:17 2013
-```
-
-This shows that the routing table prefix seen by BGP is 192.0.2.0/24, that this route was not advertised to any neighbor, and that it was heard by two neighbors, *10.0.0.2* and *192.0.2.2*.
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-### Log Neighbor State Changes
-
-To log the changes that a neighbor goes through so that you can troubleshoot issues associated with that neighbor, run the `log-neighbor-changes` command, which is enabled by default.
-
-The output is sent to the specified log file, usually `/var/log/frr/bgpd.log`, and looks like this:
-
-```
-2016/07/08 10:12:06.572827 BGP: %NOTIFICATION: sent to neighbor 10.0.0.2 6/3 (Cease/Peer Unconfigured) 0 bytes
-2016/07/08 10:12:06.572954 BGP: Notification sent to neighbor 10.0.0.2: type 6/3
-2016/07/08 10:12:16.682071 BGP: %ADJCHANGE: neighbor 192.0.2.2 Up
-2016/07/08 10:12:16.682660 BGP: %ADJCHANGE: neighbor 10.0.0.2 Up
-```
-
-### Troubleshoot Link-local Addresses
-
-To verify that `frr` learned the neighboring link-local IPv6 address via the IPv6 neighbor discovery router advertisements on a given interface, run the following commands. If `ipv6 nd suppress-ra` is not enabled on both ends of the interface, then `Neighbor address(s):` has the other end's link-local address (the address that BGP uses when BGP is enabled on that interface).
-
-{{%notice note%}}
-
-IPv6 route advertisements (RAs) are automatically enabled on an interface with IPv6 addresses; the `no ipv6 nd suppress-ra` command is not needed for BGP unnumbered.
-
-{{%/notice%}}
-
-{{< tabs "60 ">}}
-
-{{< tab "NCLU Commands ">}} 
-
-```
-cumulus@switch:~$ net show interface swp1
-Interface swp1 is up, line protocol is up
-  Link ups:       0    last: (never)
-  Link downs:     0    last: (never)
-  PTM status: disabled
-  vrf: Default-IP-Routing-Table
-  index 4 metric 0 mtu 1500
-  flags: <UP,BROADCAST,RUNNING,MULTICAST>
-  HWaddr: 44:38:39:00:00:5c
-  inet6 fe80::4638:39ff:fe00:5c/64
-  ND advertised reachable time is 0 milliseconds
-  ND advertised retransmit interval is 0 milliseconds
-  ND router advertisements are sent every 10 seconds
-  ND router advertisements lifetime tracks ra-interval
-  ND router advertisement default router preference is medium
-  Hosts use stateless autoconfig for addresses.
-  Neighbor address(s):
-  inet6 fe80::4638:39ff:fe00:5b/128
-```
-
-Instead of the IPv6 address, the peering interface name is displayed in the `net show bgp summary` command and wherever else applicable:
-
-```
-cumulus@switch:~$ net show bgp summary
-BGP router identifier 10.0.0.21, local AS number 65020 vrf-id 0
-BGP table version 15
-RIB entries 17, using 2040 bytes of memory
-Peers 6, using 97 KiB of memory
-Peer groups 1, using 56 bytes of memory
-
-Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
-leaf01(swp1)    4 65011    2834    2843        0    0    0 02:21:35        2
-leaf02(swp2)    4 65012    2834    2844        0    0    0 02:21:36        2
-leaf03(swp3)    4 65013    2834    2843        0    0    0 02:21:35        2
-leaf04(swp4)    4 65014    2834    2844        0    0    0 02:21:36        2
-edge01(swp29)   4 65051    8509    8505        0    0    0 02:21:37        3
-edge01(swp30)   4 65051    8506    8503        0    0    0 02:21:35        3
-
-Total number of neighbors 6
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}} 
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# show interface swp1
-Interface swp1 is up, line protocol is up
-  Link ups:       0    last: (never)
-  Link downs:     0    last: (never)
-  PTM status: disabled
-  vrf: Default-IP-Routing-Table
-  index 4 metric 0 mtu 1500
-  flags: <UP,BROADCAST,RUNNING,MULTICAST>
-  HWaddr: 44:38:39:00:00:5c
-  inet6 fe80::4638:39ff:fe00:5c/64
-  ND advertised reachable time is 0 milliseconds
-  ND advertised retransmit interval is 0 milliseconds
-  ND router advertisements are sent every 10 seconds
-  ND router advertisements lifetime tracks ra-interval
-  ND router advertisement default router preference is medium
-  Hosts use stateless autoconfig for addresses.
-  Neighbor address(s):
-  inet6 fe80::4638:39ff:fe00:5b/128
-```
-
-Instead of the IPv6 address, the peering interface name is displayed in the `show ip bgp summary` command and wherever else applicable:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# show ip bgp summary
-BGP router identifier 10.0.0.21, local AS number 65020 vrf-id 0
-BGP table version 15
-RIB entries 17, using 2040 bytes of memory
-Peers 6, using 97 KiB of memory
-Peer groups 1, using 56 bytes of memory
-
-Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
-leaf01(swp1)    4 65011    2834    2843        0    0    0 02:21:35        2
-leaf02(swp2)    4 65012    2834    2844        0    0    0 02:21:36        2
-leaf03(swp3)    4 65013    2834    2843        0    0    0 02:21:35        2
-leaf04(swp4)    4 65014    2834    2844        0    0    0 02:21:36        2
-edge01(swp29)   4 65051    8509    8505        0    0    0 02:21:37        3
-edge01(swp30)   4 65051    8506    8503        0    0    0 02:21:35        3
-
-Total number of neighbors 6
-```
-
-Most of the `show ip bgp` commands can take the interface name instead of the IP address:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# show ip bgp neighbor swp51
-BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link
-Hostname: spine01
-  Member of peer-group fabric for session parameters
-  BGP version 4, remote router ID 0.0.0.0
-  BGP state = Connect
-  Last read 20:16:21, Last write 20:55:51
-  Hold time is 30, keepalive interval is 10 seconds
-  Configured hold time is 30, keepalive interval is 10 seconds
-  Message statistics:
-    Inq depth is 0
-    Outq depth is 0
-                          Sent       Rcvd
-    Opens:                  1          1
-    Notifications:          1          0
-    Updates:                7          6
-    Keepalives:          2374       2373
-    Route Refresh:          0          0
-    Capability:             0          0
-    Total:               2383       2380
-  Minimum time between advertisement runs is 5 seconds
-  For address family: IPv4 Unicast
-  fabric peer-group member
-  Not part of any update group
-  Community attribute sent to this neighbor(both)
-  Inbound path policy configured
-  Outbound path policy configured
-  Incoming update prefix filter list is *dc-leaf-in
-  Outgoing update prefix filter list is *dc-leaf-out
-  0 accepted prefixes
-  Connections established 1; dropped 1
-  Last reset 20:16:20, due to NOTIFICATION sent (Cease/Other Configuration Change)
-BGP Connect Retry Timer in Seconds: 3
-Next connect timer due in 1 seconds
-Read thread: on  Write thread: on
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
 ## Considerations
 
 ### Removing a BGP neighbor on an Interface that Belongs to a VRF
@@ -3222,6 +3153,7 @@ FRR does not add BGP `ttl-security` to either the running configuration or to th
 
 ## Related Information
 
+- {{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center
 - {{<exlink url="https://cumulusnetworks.com/lp/bgp-ebook/" text="BGP in the Data Center by Dinesh G. Dutt">}} - a complete guide to Border Gateway Protocol for the modern data center
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="Bidirectional forwarding detection">}} (BFD) and BGP
 - {{<exlink url="http://en.wikipedia.org/wiki/Border_Gateway_Protocol" text="Wikipedia entry for BGP">}} (includes list of useful RFCs)

@@ -285,11 +285,7 @@ BGP advertises the add-path RX capability by default. Add-Path TX requires an ad
 
 {{%/notice%}}
 
-To view the existing capabilities, run the following commands. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
-
-{{< tabs "24 ">}}
-
-{{< tab "NCLU Commands ">}}
+To view the existing capabilities, run the NCLU `net show bgp neighbor` command or the vtysh `show ip bgp neighbors` command. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
 
 ```
 cumulus@leaf01:~$ net show bgp neighbor
@@ -318,48 +314,9 @@ Hostname: spine01
 ...
 ```
 
-{{< /tab >}}
+The example output above shows that additional BGP paths can be sent and received (TX and RX are advertised). It also shows that the BGP neighbor, e80::7c41:fff:fe93:b711, supports both.
 
-{{< tab "vtysh Commands ">}}
-
-```
-switch# show ip bgp neighbors
-
-BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65199, local AS 65101, external link
-Hostname: spine01
-  Member of peer-group fabric for session parameters
-  BGP version 4, remote router ID 10.10.10.101
-  BGP state = Established, up for 1d01h15m
-  Last read 00:00:00, Last write 1d01h15m
-  Hold time is 3, keepalive interval is 1 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    AddPath:
-      IPv4 Unicast: RX advertised IPv4 Unicast and received
-    Extended nexthop: advertised and received
-      Address families by peer:
-                    IPv4 Unicast
-    Route refresh: advertised and received(old & new)
-    Address family IPv4 Unicast: advertised and received
-    Hostname Capability: advertised and received
-    Graceful Restart Capabilty: advertised and received
-      Remote Restart timer is 120 seconds
-      Address families by peer:
-        none
-...
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The example output above shows that additional BGP paths can be sent and received (TX and RX are advertised). It also shows that the BGP neighbor, fe80::4638:39ff:fe00:5c, supports both.
-
-To view the current additional paths, run the following commands.
-
-{{< tabs "26 ">}}
-
-{{< tab "NCLU Commands ">}}
+To view the current additional paths, run the NCLU `net show bgp <router-id>` command or the `vtysh show ip bgp <router-id>` command.
 
 The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
 
@@ -374,28 +331,6 @@ Paths: (1 available, best #1, table default)
       Origin incomplete, metric 0, weight 32768, valid, sourced, bestpath-from-AS Local, best (First path received)
       Last update: Fri Oct  2 03:56:33 2020
 ```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-The example output shows five additional paths that have been added by the TX node for receiving. All the paths have a unique AddPath ID.
-
-```
-switch# show ip bgp 10.0.0.12
-BGP routing table entry for 10.10.10.1/32
-Paths: (1 available, best #1, table default)
-  Advertised to non peer-group peers:
-  spine01(swp51) spine02(swp52) spine03(swp53) spine04(swp54) leaf02(peerlink.4094)
-  Local
-    0.0.0.0 from 0.0.0.0 (10.10.10.1)
-      Origin incomplete, metric 0, weight 32768, valid, sourced, bestpath-from-AS Local, best (First path received)
-      Last update: Fri Oct  2 03:56:33 2020
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
 
 #### BGP add-path TX
 
@@ -611,9 +546,6 @@ You configure dynamic neighbors using the `bgp listen range <ip-address> peer-gr
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp autonomous-system 65101
-cumulus@switch:~$ net add bgp neighbor SPINE peer-group
-cumulus@switch:~$ net add bgp neighbor SPINE remote-as 65000
 cumulus@switch:~$ net add bgp listen limit 5
 cumulus@switch:~$ net add bgp listen range 10.10.10.100/24 peer-group SPINE
 cumulus@switch:~$ net pending
@@ -949,23 +881,23 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to _0_. To see the configuration, run the NCLU `net show bgp <address>` command or the vtysh `show ip bgp <address>` command. For example:
+When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to `0`. To see the configuration, run the NCLU `net show bgp <address>` command or the vtysh `show ip bgp <address>` command. For example:
 
 ```
-cumulus@switch:~$ net show bgp 10.1.3.0/24
-BGP routing table entry for 10.1.3.0/24
+cumulus@switch:~$ net show bgp 10.10.10.0/24
+BGP routing table entry for 10.10.10.0/24
 Paths: (2 available, best #1, table Default-IP-Routing-Table)
   Advertised to non peer-group peers:
-  bottom0(10.1.2.2)
+  bottom0(10.10.10.2)
   30 20
-    10.1.1.2 (metric 10) from top1(10.1.1.2) (10.1.1.2)
+    10.10.10.2 (metric 10) from top1(10.10.10.2) (10.10.10.2)
       Origin IGP, localpref 100, valid, internal, bestpath-from-AS 30, best
       Community: 99:1
       AddPath ID: RX 0, TX 52
       Last update: Mon Sep 18 17:01:18 2017
 
   20
-    10.1.2.2 from bottom0(10.1.2.2) (10.1.1.1)
+    10.10.10.3 from bottom0(10.10.10.32) (10.10.10.10)
       Origin IGP, metric 0, localpref 0, valid, external, bestpath-from-AS 20
       Community: 99:1 graceful-shutdown
       AddPath ID: RX 0, TX 2

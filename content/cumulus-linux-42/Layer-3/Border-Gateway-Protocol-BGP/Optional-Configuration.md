@@ -53,8 +53,8 @@ The NCLU and vtysh commands save the configuration in the `address-family` stanz
 ...
 !
 address-family ipv4 unicast
- network 192.0.2.0/24
- network 203.0.113.1/24
+ network 10.1.10.0/24
+ network 10.10.10.1/32
  maximum-paths 120
 exit-address-family
 ...
@@ -158,7 +158,7 @@ router bgp 65199
  neighbor 10.10.10.1 remote-as external
  !
  address-family ipv4 unicast
-  network 192.0.2.0/24
+  network 10.10.10.101/32
   neighbor 10.10.10.1 route-reflector-client
  exit-address-family
 ...
@@ -166,7 +166,7 @@ router bgp 65199
 
 {{%notice info%}}
 
-- For IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored. See {{<link url="#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 prefixes with IPv6 Next Hops">}} below.
+- For IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 - In certain topologies that use BGP and route reflectors, next hop resolution might be impacted by advertising the spine-leaf link addresses from the leafs themselves. The problem is seen primarily with multiple links between each pair of spine and leaf switches, and redistribute connected configured on the leafs. To work around this issue, only advertise the spine to leaf addresses from the spine switches (or use IGP for next-hop propagation). You can use network statements for the interface addresses that you need to advertise to limit the addresses advertised by the leaf switches. Or, define redistribute connected with route maps to filter the outbound updates and remove the spine to leaf addresses from being sent from the leafs.
 
 {{%/notice%}}

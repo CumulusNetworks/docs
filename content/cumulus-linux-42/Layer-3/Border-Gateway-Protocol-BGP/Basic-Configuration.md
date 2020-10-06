@@ -52,6 +52,15 @@ To configure numbered BGP on a switch, you need to:
     cumulus@switch:~$ net add bgp neighbor 10.10.10.101 remote-as external
     ```
 
+    For BGP to advertise IPv6 prefixes with IPv6 next hops, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
+
+    ```
+    cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
+    cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
+    ```
+
+    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
+
 4. Specify which prefixes to originate:
 
     ```
@@ -94,6 +103,12 @@ To configure numbered BGP on a switch, you need to:
     cumulus@switch:~$ net add bgp neighbor 10.10.10.1 remote-as external
     ```
 
+    For BGP to advertise IPv6 prefixes with IPv6 next hops, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
+
+    ```
+    cumulus@switch:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
+    cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
+
 4. Specify which prefixes to originate:
 
     ```
@@ -120,7 +135,7 @@ To configure numbered BGP on a switch, you need to:
 2. Identify the BGP node by assigning an ASN and the router ID:
 
     ```
-    cumulus@switch:~$ sudo vtysh
+    cumulus@leaf01:~$ sudo vtysh
 
     switch# configure terminal
     switch(config)# router bgp 65101
@@ -129,11 +144,17 @@ To configure numbered BGP on a switch, you need to:
 
 3. Specify where to distribute routing information:
 
-    ```
-    switch(config-router)# neighbor 10.10.10.101 remote-as external
-    ```
+   ```
+   switch(config-router)# neighbor 10.10.10.101 remote-as external
+   ```
 
-    For an iBGP session, the `remote-as` is the same as the local AS.
+   For BGP to advertise IPv6 prefixes with IPv6 next hops, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
+
+   ```
+   switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
+   switch(config-router)# address-family ipv6 unicast
+   switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
+   ```
 
 5. Specify which prefixes to originate:
 
@@ -156,7 +177,7 @@ To configure numbered BGP on a switch, you need to:
 2. Identify the BGP node by assigning an ASN and the router ID:
 
     ```
-    cumulus@switch:~$ sudo vtysh
+    cumulus@spine01:~$ sudo vtysh
 
     switch# configure terminal
     switch(config)# router bgp 65199
@@ -168,6 +189,14 @@ To configure numbered BGP on a switch, you need to:
     ```
     switch(config-router)# neighbor 10.10.10.1 remote-as external
     ```
+
+   For BGP to advertise IPv6 prefixes with IPv6 next hops, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
+
+   ```
+   switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
+   switch(config-router)# address-family ipv6 unicast
+   switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
+   ```
 
 5. Specify which prefixes to originate:
 

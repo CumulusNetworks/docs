@@ -46,12 +46,6 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-31615</td>
-<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
-<td>3.7.12-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31605</td>
 <td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
 
@@ -2558,12 +2552,6 @@ CVE-2020-8231: In rare circumstances, when using the multi API of curl in combin
 Vulnerable: &lt;= 7.38.0-4+deb8u17<br/>
 Fixed: 7.38.0-4+deb8u18</p></td>
 <td>3.0.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31615</td>
-<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
-<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>

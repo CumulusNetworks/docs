@@ -1,6 +1,96 @@
 //Cumulus gotham font import
 @import url("https://cloud.typography.com/7905356/6161172/css/fonts.css");
 
+// Import DIN PRO webfont
+@font-face { 
+  font-family: "DIN-Web-Pro";
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light.eot"); /* IE9 Compat Modes */
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light.ttf") format("truetype"), /* Safari, Android, iOS */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light.woff") format("woff"), /* Modern Browsers */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: 300; /* Light */
+  font-style: normal;
+}
+
+@font-face { 
+  font-family: "DIN-Web-Pro";
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light-Italic.eot"); /* IE9 Compat Modes */
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light-Italic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light-Italic.ttf") format("truetype"), /* Safari, Android, iOS */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light-Italic.woff") format("woff"), /* Modern Browsers */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Light-Italic.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: 300; /* Light */
+  font-style: italic;
+}
+
+@font-face { 
+  font-family: "DIN-Web-Pro";
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular.eot"); /* IE9 Compat Modes */
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular.ttf") format("truetype"), /* Safari, Android, iOS */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular.woff") format("woff"), /* Modern Browsers */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+@font-face { 
+  font-family: "DIN-Web-Pro";
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular-Italic.eot"); /* IE9 Compat Modes */
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular-Italic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular-Italic.ttf") format("truetype"), /* Safari, Android, iOS */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular-Italic.woff") format("woff"), /* Modern Browsers */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Regular-Italic.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: 400; /* Regular */
+  font-style: italic;
+}
+
+@font-face { 
+  font-family: "DIN-Web-Pro";
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium.eot"); /* IE9 Compat Modes */
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium.ttf") format("truetype"), /* Safari, Android, iOS */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium.woff") format("woff"), /* Modern Browsers */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+@font-face { 
+  font-family: "DIN-Web-Pro";
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium-Italic.eot"); /* IE9 Compat Modes */
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium-Italic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium-Italic.ttf") format("truetype"), /* Safari, Android, iOS */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium-Italic.woff") format("woff"), /* Modern Browsers */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Medium-Italic.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: 500; /* Medium */
+  font-style: italic;
+}
+
+@font-face { 
+  font-family: "DIN-Web-Pro";
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold.eot"); /* IE9 Compat Modes */
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold.ttf") format("truetype"), /* Safari, Android, iOS */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold.woff") format("woff"), /* Modern Browsers */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+@font-face { 
+  font-family: "DIN-Web-Pro";
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold-Italic.eot"); /* IE9 Compat Modes */
+  src: url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold-Italic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold-Italic.ttf") format("truetype"), /* Safari, Android, iOS */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold-Italic.woff") format("woff"), /* Modern Browsers */
+       url("https://static.cumulusnetworks.com/static/fonts/DIN-Web-Pro/DIN-Web-Pro-Bold-Italic.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: 700; /* Bold */
+  font-style: italic;
+}
+
+
 $padding-1: 1px;
 $padding-4: 0.25rem;
 $padding-8: 0.5rem;

@@ -20,7 +20,7 @@ $(function() {
 
     // Check if dismissNvidiaAnnouncementBlogPost cookie exists
     if ( !$.cookie('dismissNvidiaAnnouncementBlogPost') ) {    
-        $('<div class="cta announcement-bar nvidia-green text-md-center d-block"> <a href="javascript:void(0)" class="close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg replaced-svg"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>close</title><line class="a" x1="0.5" y1="0.499" x2="23.5" y2="23.499"></line><line class="a" x1="23.5" y1="0.499" x2="0.5" y2="23.499"></line></svg></a> <p>Cumulus Networks is now NVIDIA&reg;. <a href="https://blogs.nvidia.com/blog/2020/06/16/cumulus-programming-networks/" target="_blank">Learn more</a></p></div>').insertAfter('.globalNav');
+        $('<div class="cta announcement-bar nvidia-green text-md-center d-block"> <a href="javascript:void(0)" class="close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg replaced-svg"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>close</title><line class="a" x1="0.5" y1="0.499" x2="23.5" y2="23.499"></line><line class="a" x1="23.5" y1="0.499" x2="0.5" y2="23.499"></line></svg></a> <p>Cumulus Networks is now NVIDIA&reg;</p></div>').insertAfter('.globalNav');
         $('head').append('<style>body{transition: all 0.5s; -webkit-transition: all 0.5s;}.globalNav{top: 0;}.globalNav.snapp {top: -48px;}.globalNav.snapp~.cta.announcement-bar {top: 77px}.globalNav.snapp~.cta.announcement-bar~.docs-wrapper .book-toc>.toc {top: 124px;} @media only screen and (max-width: 576px){ body{top: 125px;}}</style>');
     }
 

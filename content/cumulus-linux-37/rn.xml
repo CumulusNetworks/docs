@@ -559,13 +559,6 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <td></td>
 </tr>
 <tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.13</td>
@@ -3192,13 +3185,6 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.13</td>
@@ -5807,13 +5793,6 @@ Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
-</tr>
-<tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>
@@ -8738,13 +8717,6 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.13</td>
@@ -11356,13 +11328,6 @@ Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
-</tr>
-<tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>
@@ -14411,13 +14376,6 @@ Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
-</tr>
-<tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>

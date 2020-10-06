@@ -4,11 +4,9 @@ author: Cumulus Networks
 weight: 814
 toc: 3
 ---
-## Optional Configuration
-
 This section describes optional configuration procedures.
 
-### ECMP
+## ECMP
 
 BGP supports equal-cost multipathing (ECMP). If a BGP node hears a certain prefix from multiple peers, it has all the information necessary to program the routing table and forward traffic for that prefix through all of these peers. BGP typically choses one best path for each prefix and installs that route in the forwarding table.
 
@@ -108,7 +106,7 @@ When you disable the *bestpath as-path multipath-relax* option, EVPN type-5 rout
 
 {{%/notice%}}
 
-### Route Reflectors
+## Route Reflectors
 
 iBGP rules state that a route learned from an iBGP peer can not be sent to another iBGP peer. In a datacenter spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, BGP introduced the concept of a *route reflector* that selectively violates this rule; when an iBGP speaker is configured as a route reflector, it *can* send iBGP learned routes to other iBGP peers.
 
@@ -171,7 +169,7 @@ router bgp 65199
 
 {{%/notice%}}
 
-### RFC 5549 Support with Global IPv6 Peers
+## RFC 5549 Support with Global IPv6 Peers
 
 {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}} defines the method used for BGP to advertise IPv4 prefixes with IPv6 next hops. The RFC does not make a distinction between whether the IPv6 peering and next hop values should be global unicast addresses (GUA) or link-local addresses. Cumulus Linux supports advertising IPv4 prefixes with IPv6 global unicast and link-local next hop addresses, with either *unnumbered* or *numbered* BGP.
 
@@ -271,11 +269,11 @@ exit-address-family
 ...
 ```
 
-### BGP add-path
+## BGP add-path
 
 Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
 
-#### BGP add-path RX
+### BGP add-path RX
 
 *BGP add-path RX* allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. No additional configuration is required for BGP add-path RX.
 
@@ -289,14 +287,11 @@ To view the existing capabilities, run the NCLU `net show bgp neighbor` command 
 
 ```
 cumulus@leaf01:~$ net show bgp neighbor
-BGP neighbor on swp51: e80::7c41:fff:fe93:b711, remote AS 65199, local AS 65101, external link
-Hostname: spine01
-  Member of peer-group fabric for session parameters
-  BGP version 4, remote router ID 10.10.10.101
-  BGP state = Established, up for 1d01h15m
-  Last read 00:00:00, Last write 1d01h15m
-  Hold time is 3, keepalive interval is 1 seconds
-  Configured hold time is 3, keepalive interval is 1 seconds
+BGP neighbor is 10.10.10.101, remote AS 0, local AS 65101, external link
+  BGP version 4, remote router ID 10.10.10.101, local router ID 10.10.10.1
+  BGP state = Active
+  Last read 00:04:13, Last write never
+  Hold time is 9, keepalive interval is 3 seconds
   Neighbor capabilities:
     4 Byte AS: advertised and received
     AddPath:
@@ -332,7 +327,7 @@ Paths: (1 available, best #1, table default)
       Last update: Fri Oct  2 03:56:33 2020
 ```
 
-#### BGP add-path TX
+### BGP add-path TX
 
 AddPath TX allows BGP to advertise more than just the bestpath for a prefix. Consider the following topology:
 
@@ -535,7 +530,7 @@ Paths: (3 available, best #3, table Default-IP-Routing-Table)
 
 {{< /tabs >}}
 
-### Configure BGP Dynamic Neighbors
+## BGP Dynamic Neighbors
 
 *BGP dynamic neighbor* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
 
@@ -587,7 +582,7 @@ router bgp 65101
   bgp listen range 10.10.10.100/24 peer-group SPINE
 ```
 
-### Configure MD5-enabled BGP Neighbors
+## MD5-enabled BGP Neighbors
 
 You can authenticate your BGP peer connection to prevent interference with your routing tables.
 
@@ -728,7 +723,7 @@ The MD5 password configured against a BGP listen-range peer group (used to accep
 
 {{%/notice%}}
 
-### eBGP Multihop
+## eBGP Multihop
 
 The eBGP multihop option lets you use BGP to exchange routes with an external peer that is more than one hop away.
 
@@ -765,7 +760,7 @@ cumulus@spine01:~$
 
 {{< /tabs >}}
 
-### BGP TTL Security
+## BGP TTL Security
 
 Configure BGP TTL security to specify the minimum number of seconds allowed before the switch no longer accepts incoming IP packets from a specific eBGP peer. You can specify a value between 1 and 254 seconds.
 
@@ -819,7 +814,7 @@ cumulus@leaf01:~$
 
 {{%/notice%}}
 
-### Graceful BGP Shutdown
+## Graceful BGP Shutdown
 
 To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the node.
 
@@ -904,7 +899,7 @@ Paths: (2 available, best #1, table Default-IP-Routing-Table)
       Last update: Mon Sep 18 17:01:18 2017
 ```
 
-### Enable Read-only Mode
+## Enable Read-only Mode
 
 As BGP peers are established and updates are received, prefixes might be installed in the RIB and advertised to BGP peers even though the information from all peers is not yet received and processed. Depending on the timing of the updates, prefixes might be installed and propagated through BGP, and then immediately withdrawn and replaced with new routing information. Read-only mode minimizes this BGP route churn in both the local RIB and with BGP peers.
 
@@ -964,7 +959,7 @@ While in read-only mode, BGP does not run best-path or generate any updates to i
 
 To show information about the state of the update delay, run the NCLU `net show bgp summary` command or the vtysh `show ip bgp summary` command.
 
-### Apply a Route Map for Route Updates
+## Apply a Route Map for Route Updates
 
 You can apply {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route maps">}} in BGP in one of two ways
 
@@ -977,7 +972,7 @@ In NCLU, you can only set the community number in a route map. You cannot set ot
 This is a known limitation in `network-docopt`, which NCLU uses to parse commands.
 {{%/notice%}}
 
-#### Filter Routes from BGP into Zebra
+### Filter Routes from BGP into Zebra
 
 You can apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations for this attach-point are limited to metric and next hop only. Any operation of this feature does not affect the BGP internal RIB.
 
@@ -1015,7 +1010,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-#### Filter Routes from Zebra into the Linux Kernel
+### Filter Routes from Zebra into the Linux Kernel
 
 To apply a route map to filter route updates from Zebra into the Linux kernel, run the following commands:
 
@@ -1049,7 +1044,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-### BGP Community Lists
+## BGP Community Lists
 
 You can use *{{<exlink url="http://docs.frrouting.org/en/latest/bgp.html#community-lists" text="community lists">}}* to define a BGP community to tag one or more routes. You can then use the communities to apply acroute policy on either egress or ingress.
 
@@ -1123,7 +1118,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-### Neighbor Maximum Prefixes
+## Neighbor Maximum Prefixes
 
 To configure the maximum number of route announcements (prefixes) that can be received from a BGP neighbor, run the `neighbor <peer> maximum-prefix <value>` command from the `vtysh` shell. For example:
 

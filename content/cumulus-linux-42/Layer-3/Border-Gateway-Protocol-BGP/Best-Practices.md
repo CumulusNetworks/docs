@@ -52,7 +52,7 @@ router bgp 65101
 ...
 ```
 
-### Converge Quickly On Soft Failures
+## Converge Quickly On Soft Failures
 
 It is possible that the link is up but the neighboring BGP process is hung or has crashed. In this case, the FRRouting `watchfrr` daemon, which monitors the various FRRouting daemons, attempts to restart it. BGP itself has a keepalive interval that is exchanged between neighbors. By default, this keepalive interval is set to 3 seconds. You can increase this interval to a higher value, which decreases CPU load, especially in the presence of a lot of neighbors. The keepalive interval is the periodicity with which the keepalive message is sent. The hold time specifies how many keepalive messages can be lost before the connection is considered invalid. It is typically set to three times the keepalive time and defaults to 9 seconds. The following examples commands change the keepalive interval to 10 seconds and the hold time to 30 seconds.
 
@@ -96,7 +96,7 @@ router bgp 65000
 ...
 ```
 
-### Reconnect Quickly After a Failure
+## Reconnect Quickly After a Failure
 
 By default, the BGP process attempts to connect to a peer after a failure (or on startup) every 10 seconds. To change this value, run the following commands on each neighbor.
 

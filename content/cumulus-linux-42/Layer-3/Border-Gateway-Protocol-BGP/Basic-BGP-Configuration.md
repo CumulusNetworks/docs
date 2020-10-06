@@ -1,18 +1,18 @@
 ---
-title: Basic Configuration
+title: Basic BGP Configuration
 author: Cumulus Networks
 weight: 812
 toc: 3
 ---
-This section describes basic configuration for BGP *numbered* and BGP *unnumbered*.
+This section describes how to configure BGP using either BGP *numbered* or BGP *unnumbered*. With BGP *unnumbered*, you can set up BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch.
 
 ## BGP Numbered
 
-To configure numbered BGP on a switch, you need to:
+To configure BGP numbered on a BGP node, you need to:
 
 - Assign an ASN to identify this BGP node. In a two-tier leaf and spine configuration, you can use {{<link title="Border Gateway Protocol - BGP#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically.
 - Assign a router ID, which is a 32-bit value and is typically the address of the loopback interface on the switch.
-- Specify where to distribute routing information by providing the IP address and ASN of the neighbor. The ASN can be a number, or `internal` for a neighbor in the same AS or `external` for a neighbor in a different AS. For an iBGP session, the `remote-as` is the same as the local AS.
+- Specify where to distribute routing information by providing the IP address and ASN of the neighbor. The ASN can be a number, or `internal` for a neighbor in the same AS or `external` for a neighbor in a different AS.
 
 - Specify which prefixes to originate from this BGP node.
 
@@ -59,7 +59,7 @@ To configure numbered BGP on a switch, you need to:
     cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
     ```
 
-    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
+    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {<link {url="Optional-BGP-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
 
 4. Specify which prefixes to originate:
 
@@ -110,7 +110,7 @@ To configure numbered BGP on a switch, you need to:
     cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
     ```
 
-    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
+    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
 
 4. Specify which prefixes to originate:
 
@@ -159,7 +159,7 @@ To configure numbered BGP on a switch, you need to:
    switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
    ```
 
-   For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
+   For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
 
 5. Specify which prefixes to originate:
 
@@ -203,7 +203,7 @@ To configure numbered BGP on a switch, you need to:
    switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
    ```
 
-   For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
+   For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
 
 5. Specify which prefixes to originate:
 

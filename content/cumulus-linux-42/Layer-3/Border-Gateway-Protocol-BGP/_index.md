@@ -31,7 +31,7 @@ In a VRF-lite deployment (where multiple independent routing tables working simu
 
 In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit ASN numbers automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and path hunting, which occurs when you assign the wrong spine ASNs. Auto BGP makes no changes to standard BGP behavior or configuration.
 
-Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294. This is the private space defined in {{<exlink url="https://tools.ietf.org/html/rfc6996" text="RFC 6996">}}. Each leaf is assigned a random and unique value in the range 4200000001 through 4294967294. Each spine is assigned 4200000000; the first number in the range. For information about configuring auto BGP, refer to {{<link url="Basic-Configuration#Configure-BGP" text="Configure BGP">}} below.
+Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294. This is the private space defined in {{<exlink url="https://tools.ietf.org/html/rfc6996" text="RFC 6996">}}. Each leaf is assigned a random and unique value in the range 4200000001 through 4294967294. Each spine is assigned 4200000000; the first number in the range. For information about configuring auto BGP, refer to {{<link url="Basic-BGP-Configuration" text="Basic BGP Configuration">}} below.
 
 {{%notice note%}}
 
@@ -49,13 +49,13 @@ When BGP is used to peer between autonomous systems, the peering is referred to 
 
 The heart of the protocol is the same when used as eBGP or iBGP but there is a key difference in the protocol behavior between eBGP and iBGP. To prevent loops, an iBGP speaker does not forward routing information learned from one iBGP peer to another iBGP peer. eBGP prevents loops using the `AS_Path` attribute.
 
-All iBGP speakers need to be peered with each other in a full mesh. In a large network, this requirement can quickly become unscalable. The most popular method to scale iBGP networks is to introduce a *route reflector*. See {{<link url="#Optional-Configuration#route-reflectors" text="Route Reflectors">}} below.
+All iBGP speakers need to be peered with each other in a full mesh. In a large network, this requirement can quickly become unscalable. The most popular method to scale iBGP networks is to introduce a *route reflector*. See {{<link url="#Optional-BGP-Configuration#route-reflectors" text="Route Reflectors">}} below.
 
 ### BGP Path Selection
 
 BGP is a path-vector routing algorithm that does not rely on a single routing metric to determine the lowest cost route, unlike interior gateway protocols (IGPs) like OSPF.
 
-The BGP path selection algorithm looks at multiple factors to determine exactly which path is best. {{<link url="Optional-Configuration#ecmp" text="BGP multipath">}} is enabled by default in Cumulus Linux so that multiple equal cost routes can be installed in the routing table but only a single route is advertised to BGP peers.
+The BGP path selection algorithm looks at multiple factors to determine exactly which path is best. {{<link url="Optional-BGP-Configuration#ecmp" text="BGP multipath">}} is enabled by default in Cumulus Linux so that multiple equal cost routes can be installed in the routing table but only a single route is advertised to BGP peers.
 
 The order of the BGP algorithm process is as follows:
 
@@ -75,7 +75,7 @@ The order of the BGP algorithm process is as follows:
 
 - **Lowest IGP Cost to the next hop**: The route with the lowest IGP metric to reach the BGP next hop.
 
-- **iBGP ECMP over eBGP ECMP**: If {{<link url="Optional-Configuration#ecmp" text="BGP Multipath">}} is configured, prefer equal iBGP routes over equal eBGP routes, unless {{<link url="Optional-Configuration#ecmp" text="as-path multipath-relax">}} is also configured.
+- **iBGP ECMP over eBGP ECMP**: If {{<link url="Optional-BGP-Configuration#ecmp" text="BGP Multipath">}} is configured, prefer equal iBGP routes over equal eBGP routes, unless {{<link url="Optional-BGP-Configuration#ecmp" text="as-path multipath-relax">}} is also configured.
 
 - **Oldest Route**: Prefer the oldest route in the BGP table.
 

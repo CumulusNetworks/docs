@@ -929,11 +929,7 @@ iface eth0 inet dhcp
 auto swp1
 iface swp1
     alias leaf to spine
-
-- The STP global configuration must be the same on both peer switches.
-- The STP configuration for dual-connected ports must be the same on both peer switches.
-- The STP priority must be the same on both peer switches.
-- To minimize convergence times when a link transitions to the forwarding state, configure the edge ports (for tagged and untagged frames) with PortAdminEdge and BPDU guard enabled.
+```
 
 {{< /tab >}}
 
@@ -1800,7 +1796,7 @@ cumulus@spine01:~$ sudo tail /var/log/clagd.log
 
 Due to the critical nature of the `clagd` service, `systemd` continuously monitors its status by receiving notify messages every 30 seconds. If the `clagd` service terminates or becomes unresponsive for any reason and `systemd` receives no messages after 60 seconds, `systemd` restarts the `clagd` service. `systemd` logs these failures in the `/var/log/syslog` file and, on the first failure, also generates a `cl-support`file.
 
-Monitoring is configured and enabled automatically as long as the `clagd` service is enabled (the peer IP address (`clagd-peer-ip`) and the MLAG system MAC address (`clagd-sys-mac`) are configured for an interface) and the `clagd` service is running. If you stop `clagd` with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
+Monitoring is configured and enabled automatically as long as the `clagd` service is enabled (the peer IP address (`clagd-peer-ip`), the MLAG system MAC address (`clagd-sys-mac`), and the backup IP address (`clagd-backup-ip`) are configured for an interface) and the `clagd` service is running. If you stop `clagd` with the `systemctl stop clagd.service` command, `clagd` monitoring also stops.
 
 You can check if `clagd` is enabled and running with the `cl-service-summary` or the `systemctl status` command:
 

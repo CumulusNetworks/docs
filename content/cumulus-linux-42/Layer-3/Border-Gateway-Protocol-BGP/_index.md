@@ -6,7 +6,7 @@ toc: 3
 ---
 BGP is the routing protocol that runs the Internet. It manages how packets get routed from network to network by exchanging routing and reachability information.
 
-BGP is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. See {{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center.
+BGP is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. {{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details about using BGP in the data center.
 
 ## How does BGP Work?
 

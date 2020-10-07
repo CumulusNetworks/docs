@@ -14,7 +14,7 @@ The NetQ Management workbench is accessed from the main menu. For the user(s) re
 
 To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and select *Management* under the **Admin** column.
 
-{{<figure src="/images/netq/netq-mgmt-wb-onprem-320.png" width="700">}}
+{{<figure src="/images/netq/netq-mgmt-wb-onprem-300.png" width="700">}}
 
 {{<notice note>}}
 For cloud deployments, the LDAP Server Info card is not available. Refer to {{<link url="Integrate-NetQ-with-Your-LDAP-Server" text="Integrate NetQ with Your LDAP server">}} for details.
@@ -152,44 +152,9 @@ To delete one or more user accounts:
 
 3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> to remove the accounts.
 
-## Manage User Login Policies
+<!-- ## Manage User Login Requirements
 
-NetQ application administrators can configure a session expiration time and the number of times users can refresh before requiring users to re-login to the NetQ application.
-
-To configure these login policies:
-
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), and select **Management** under the **Admin** column.
-
-2. Locate the Login Management card.
-
-3. Click **Manage**.
-
-    {{<figure src="/images/netq/netq-mgmt-login-mgmt-config-modal-320.png" width="400" >}}
-
-4. Select how long a user may be logged in before logging in again; 30 minutes, 1, 3, 5, or 8 hours.
-
-    Default for on-premises deployments is 6 hours. Default for cloud deployments is 30 minutes.
-
-5. Indicate the number of times (between 1 and 100) the application can be refreshed before the user must log in again. Default is unspecified.
-
-6. Enter your admin password.
-
-7. Click **Update** to save the changes, or click **Cancel** to discard them.
-
-    The Login Management card shows the configuration.
-
-    {{<figure src="/images/netq/netq-mgmt-login-mgmt-card-configd-320.png" width="200" >}}
-
-## Monitor User Activity
-
-NetQ application administrators can audit user activity in the application using the Activity Log.
-
-To view the log, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Activity Log** under the **Admin** column.
-
-{{<figure src="/images/netq/main-menu-ntwk-activity-log-320.png" width="700" >}}
-
-Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter the log by username, action, resource, and time period.
-Click x to export the log a page at a time.
+ new content here -->
 
 ## Manage Scheduled Traces
 

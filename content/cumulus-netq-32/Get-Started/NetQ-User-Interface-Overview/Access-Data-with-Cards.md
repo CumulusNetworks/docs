@@ -300,7 +300,7 @@ You can manipulate the data in a data grid in a full-screen card in several ways
 
 When there are numerous items in a table, NetQ loads the first 25 by default and provides the rest in additional table pages. In this case, pagination is shown under the table.
 
-{{<figure src="/images/netq/table-pagination-320.png" width="400">}}
+{{<figure src="/images/netq/table-pagination-241.png" width="400">}}
 
 From there, you can:
 
@@ -312,26 +312,6 @@ From there, you can:
 #### Change Order of Columns
 
 You can rearrange the columns within a table. Click and hold on a column header, then drag it to the location where you want it.
-
-#### Sort Table Data by Column
-
-You can sort table data by a given column for tables on full-screen cards. The data is sorted in ascending or descending order; A to Z, Z to A, 1 to n, or n to 1.
-
-To sort table data by column:
-
-1. Open a full-screen card.
-
-2. Hover over a column header.
-
-3. Click the header to toggle between ascending and descending sort order.
-
-For example, this IP Addresses table is sorted by hostname in a descending order. Click the **Hostname** header to sort the data in ascending order. Click the **IfName** header to sort the same table by interface name.
-
-{{<figure src="/images/netq/table-column-sort-descend-320.png" width="700" caption="Sorted by descending hostname">}}
-
-{{<figure src="/images/netq/table-column-sort-ascend-320.png" width="700" caption="Sorted by ascending hostname">}}
-
-{{<figure src="/images/netq/table-column-sort-descend-ifname-320.png" width="700" caption="Sorted by descending interface name">}}
 
 #### Filter Table Data
 

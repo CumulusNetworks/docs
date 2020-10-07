@@ -46,6 +46,12 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-31615</td>
+<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31605</td>
 <td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
 
@@ -550,6 +556,13 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <td>CM-30101</td>
 <td><p>The NCLU net show bridge spanning-tree command displays the aging timer incorrectly. </p></td>
 <td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2555,6 +2568,12 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-31615</td>
+<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31545</td>
 <td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
@@ -3171,6 +3190,13 @@ Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>
@@ -5781,6 +5807,13 @@ Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>
@@ -8705,6 +8738,13 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.13</td>
@@ -11316,6 +11356,13 @@ Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>
@@ -14364,6 +14411,13 @@ Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
+</tr>
+<tr>
+<td>CM-29993</td>
+<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
+To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
+<td>3.7.8-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>

@@ -120,7 +120,7 @@ This section describes how the IPv6 next hops are set in the MP\_REACH\_NLRI ({{
 - For all routes to eBGP peers and self-originated routes to iBGP peers, the global next hop (first value) is the peering address of the local system. If the peering is on the link-local address, this is the global IPv6 address on the peering interface, if present; otherwise, it is the link-local IPv6 address on the peering interface.
 - For other routes to iBGP peers (eBGP to iBGP or reflected), the global next hop is the global next hop in the received attribute.
 
-    {{%notice note%}}
+{{%notice note%}}
 
 If this address is a link-local IPv6 address, it is reset so that the link-local IPv6 address of the eBGP peer is not passed along to an iBGP peer, which is typically on a different link.
 

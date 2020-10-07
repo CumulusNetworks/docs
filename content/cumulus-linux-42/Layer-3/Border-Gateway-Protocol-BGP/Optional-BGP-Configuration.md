@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 814
 toc: 3
 ---
-This section describes optional configuration procedures. The steps provided in this section assume that you have followed the basic configuration steps described in {{<link url="Basic-BGP-Configuration" >}}.
+This section describes optional configuration procedures. The steps provided in this section assume that you already configured basic BGP as described in {{<link url="Basic-BGP-Configuration" >}}.
 
 ## ECMP
 

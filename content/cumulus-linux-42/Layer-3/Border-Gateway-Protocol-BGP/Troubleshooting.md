@@ -232,13 +232,13 @@ The following examples show an IPv4 prefix learned from a BGP peer over an IPv6 
 
 ```
 cumulus@spine01:~$ net show bgp ipv4 unicast summary
-BGP router identifier 10.0.0.11, local AS number 1 vrf-id 0
+BGP router identifier 0.10.10.101, local AS number 65199 vrf-id 0
 BGP table version 3
 RIB entries 1, using 152 bytes of memory
 Peers 1, using 19 KiB of memory
 
-Neighbor            V AS MsgRcvd MsgSent TblVer InQ OutQ Up/Down  State/PfxRcd
-Leaf01(2001:1:1::3) 4 3   6432    6431    0      0   0   05:21:25           1
+Neighbor                         V AS MsgRcvd MsgSent TblVer InQ OutQ Up/Down  State/PfxRcd
+Leaf01(2001:db8:0002::0a00:0002) 4 3   6432    6431    0      0   0   05:21:25           1
 
 Total number of neighbors 1
 ```
@@ -246,7 +246,7 @@ Total number of neighbors 1
 ```
 cumulus@spine01:~$ net show bgp ipv4 unicast
 BGP table version is 3,
-local router ID is 10.0.0.11
+local router ID is 10.10.10.101
 Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
               i internal, r RIB-failure, S Stale, R Removed
 Origin codes: i - IGP, e - EGP, ?   - incomplete

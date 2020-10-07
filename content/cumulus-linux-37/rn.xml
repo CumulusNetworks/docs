@@ -247,6 +247,18 @@ To work around this issue, disable ARP/ND suppression to remove the internal ACL
 <td></td>
 </tr>
 <tr>
+<td>CM-31226</td>
+<td><p>Mellanox Spectrum 1 switches fail to read PSU Fan/Temp sensors and report them as Absent. The following messages are observed in syslog:</p>
+
+
+2020-08-21T07:17:39.068160+00:00 cumulus : /usr/sbin/smond : : PSU1Temp1(PSU1 Temp Sensor): state changed from UNKNOWN to ABSENT
+2020-08-21T07:17:39.068911+00:00 cumulus : /usr/sbin/smond : : PSU2Temp1(PSU2 Temp Sensor): state changed from UNKNOWN to ABSENT
+
+</td>
+<td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31210</td>
 <td><p>CVE-2020-14350: In PostgreSQL 9.4, an uncontrolled search path could allow users to run arbitrary SQL functions with elevated priviledges when a superuser runs certain &apos;CREATE EXTENSION’ statements.<br/>
 Vulnerable: &lt;= 9.4.26-0+deb8u2<br/>

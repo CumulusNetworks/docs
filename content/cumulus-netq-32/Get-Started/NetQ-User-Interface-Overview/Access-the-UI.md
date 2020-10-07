@@ -65,11 +65,11 @@ For cloud deployments, you can reset your password if it has been forgotten.
 
 To reset a password:
 
-1. Enter *https://netq.cumulusnetworks.com* in your browser.
+1. Enter *https://netq.cumulusnetworks.com* in your browser to open the login page.
 
     {{<figure src="/images/netq/access-ui-cld-login-320.png" width="250">}}
 
-2. Click **Forgot Password?**.
+2. Click **Forgot Password?**
 
 3. Enter an email address where you want instructions to be sent for resetting the password.
 
@@ -77,13 +77,11 @@ To reset a password:
 
     {{<figure src="/images/netq/access-ui-reset-email-sent-320.png" width="250">}}
 
-5. Log in to the email account where you sent the reset message. Look for a message with a subject of *NetQ Password Reset Link*.
+5. Log in to the email account where you sent the reset message. Look for a message with a subject of *NetQ Password Reset Link* from *netq-sre@cumulusnetworks.com*.
 
 6. Click on the link provided to open the Reset Password dialog.
 
-    {{<figure src="/images/netq/access-ui-reset-pswd-310.png" width="250">}}
-
-<!-- NEED TO SEE ACTUAL DIALOG, THINK THIS NEEDS UPDATING -->
+    {{<figure src="/images/netq/access-ui-reset-forgotten-pswd-320.png" width="250">}}
 
 7. Enter a new password.
 
@@ -91,7 +89,11 @@ To reset a password:
 
 9. Click **Reset**.
 
-10. Log in to NetQ with your username and new password.
+    A confirmation message is shown on successful reset.
+
+    {{<figure src="/images/netq/access-ui-reset-pswd-success-320.png" width="250">}}
+
+10. Click **Login** to access NetQ with your username and new password.
 
 ## Log Out of NetQ
 

@@ -15,7 +15,7 @@ Cumulus Linux uses FRRouting to provide the routing protocols for dynamic routin
 
 The FRRouting suite consists of various protocol-specific daemons and a protocol-independent daemon called `zebra`. Each of the protocol-specific daemons are responsible for running the relevant protocol and building the routing table based on the information exchanged.
 
-It is not uncommon to have more than one protocol daemon running at the same time. For example, at the edge of an enterprise, protocols internal to an enterprise (called IGP for Interior Gateway Protocol) such as {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF text">}} or RIP run alongside the protocols that connect an enterprise to the rest of the world (called EGP or Exterior Gateway Protocol) such as {{<link url="Border-Gateway-Protocol-BGP" text="BGP text">}}.
+It is not uncommon to have more than one protocol daemon running at the same time. For example, at the edge of an enterprise, protocols internal to an enterprise (called IGP for Interior Gateway Protocol) such as {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF text">}} or RIP run alongside the protocols that connect an enterprise to the rest of the world (called EGP or Exterior Gateway Protocol) such as {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}.
 
 ## About zebra
 

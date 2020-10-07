@@ -12,8 +12,9 @@ To configure BGP numbered on a BGP node, you need to:
 
 - Assign an ASN to identify this BGP node. In a two-tier leaf and spine configuration, you can use {{<link title="Border Gateway Protocol - BGP#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically.
 - Assign a router ID, which is a 32-bit value and is typically the address of the loopback interface on the switch.
-- Specify where to distribute routing information by providing the IP address and ASN of the neighbor. The ASN can be a number, or `internal` for a neighbor in the same AS or `external` for a neighbor in a different AS.
-
+- Specify where to distribute routing information by providing the IP address and ASN of the neighbor.
+  - For BGP numbered, the interface between the two peers must have an IP address configured on each side.
+  - The ASN can be a number, or `internal` for a neighbor in the same AS or `external` for a neighbor in a different AS.
 - Specify which prefixes to originate from this BGP node.
 
 {{< tabs "10 ">}}
@@ -49,7 +50,7 @@ To configure BGP numbered on a BGP node, you need to:
 3. Specify the BGP neighbor to which you want to distribute routing information.
 
     ```
-    cumulus@switch:~$ net add bgp neighbor 10.10.10.101 remote-as external
+    cumulus@switch:~$ net add bgp neighbor 169.254.10.101 remote-as external
     ```
 
     For BGP to advertise IPv6 prefixes, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
@@ -59,7 +60,7 @@ To configure BGP numbered on a BGP node, you need to:
     cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
     ```
 
-    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {<link {url="Optional-BGP-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
+    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
 
 4. Specify which prefixes to originate:
 
@@ -100,7 +101,7 @@ To configure BGP numbered on a BGP node, you need to:
 3. Specify the BGP neighbor to which you want to distribute routing information.
 
     ```
-    cumulus@switch:~$ net add bgp neighbor 10.10.10.1 remote-as external
+    cumulus@switch:~$ net add bgp neighbor 169.254.10.1 remote-as external
     ```
 
     For BGP to advertise IPv6 prefixes, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
@@ -110,7 +111,7 @@ To configure BGP numbered on a BGP node, you need to:
     cumulus@switch:~$ net add bgp ipv6 unicast neighbor 2001:db8:0002::0a00:0002 activate
     ```
 
-    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
+    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
 
 4. Specify which prefixes to originate:
 
@@ -148,7 +149,7 @@ To configure BGP numbered on a BGP node, you need to:
 3. Specify where to distribute routing information:
 
    ```
-   switch(config-router)# neighbor 10.10.10.101 remote-as external
+   switch(config-router)# neighbor 169.254.10.101 remote-as external
    ```
 
    For BGP to advertise IPv6 prefixes, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
@@ -192,7 +193,7 @@ To configure BGP numbered on a BGP node, you need to:
 3. Specify where to distribute routing information:
 
     ```
-    switch(config-router)# neighbor 10.10.10.1 remote-as external
+    switch(config-router)# neighbor 169.254.10.1 remote-as external
     ```
 
    For BGP to advertise IPv6 prefixes, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
@@ -234,7 +235,7 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ...
 router bgp 65101
  bgp router-id 10.10.10.1
- neighbor 10.10.10.101 remote-as external
+ neighbor 169.254.10.101 remote-as external
  !
  address-family ipv4 unicast
   network 10.10.10.1/32
@@ -251,7 +252,7 @@ router bgp 65101
 ...
 router bgp 65199
  bgp router-id 10.10.10.101
- neighbor 10.10.10.1 remote-as external
+ neighbor 169.254.10.1 remote-as external
  !
  address-family ipv4 unicast
   network 10.10.10.101/32
@@ -273,7 +274,7 @@ When using auto BGP, there are no references to `leaf` or `spine` in the configu
 
 The following example commands show a basic BGP unnumbered configuration for two switches, leaf01 and spine01, which are eBPG peers.
 
-The only difference between this BGP unnumbered configuration and the BGP numbered configuration shown above, is that the BGP neighbour is specified as an interface (insead of an IP address).
+The only difference between this BGP unnumbered configuration and the BGP numbered configuration shown above, is that the BGP neighbour is specified as an interface (insead of an IP address). The interface between the two peers does **not** need to have an IP address configured on each side.
 
 {{< tabs "354 ">}}
 

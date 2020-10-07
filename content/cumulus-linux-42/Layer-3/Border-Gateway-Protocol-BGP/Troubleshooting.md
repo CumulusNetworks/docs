@@ -8,21 +8,28 @@ Use the following commands to troubleshoot BGP.
 
 ## Basic Troubleshooting Commands
 
+The following example commands run on a BGP unnumbered configuration and show IPv6 next hops or the interface name for any IPv4 prefix.
+
 To show a summary of the BGP configuration on the switch, run the NCLU `net show bgp summary` command or the vtysh `show ip bgp summary`. For example:
 
 ```
 cumulus@switch:~$ net show bgp summary
-show bgp ipv4 unicast summary
+how bgp ipv4 unicast summary
 =============================
 BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
-BGP table version 0
-RIB entries 3, using 576 bytes of memory
-Peers 1, using 21 KiB of memory
+BGP table version 88
+RIB entries 25, using 4800 bytes of memory
+Peers 5, using 106 KiB of memory
+Peer groups 1, using 64 bytes of memory
 
-Neighbor        V     AS    MsgRcvd   MsgSent   TblVer  InQ  OutQ    Up/Down    State/PfxRcd
-10.10.10.101    4  65101       1614      1616        0    0     0   01:17:22               7
+Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
+spine01(swp51)        4      65199     31122     31194        0    0    0 1d01h44m            7
+spine02(swp52)        4      65199     31060     31151        0    0    0 01:47:13            7
+spine03(swp53)        4      65199     31150     31207        0    0    0 01:48:31            7
+spine04(swp54)        4      65199     31042     31098        0    0    0 01:46:57            7
+leaf02(peerlink.4094) 4      65101     30919     30913        0    0    0 01:47:43           12
 
-Total number of neighbors 1
+Total number of neighbors 5
 
 
 show bgp ipv6 unicast summary
@@ -40,7 +47,7 @@ To view the routing table as defined by BGP, run the NCLU `net show bgp ipv4 uni
 
 ```
 cumulus@leaf01:~$ net show bgp ipv4 unicast
-BGP table version is 13, local router ID is 10.10.10.1, vrf id 0
+GP table version is 88, local router ID is 10.10.10.1, vrf id 0
 Default local pref 100, local AS 65101
 Status codes:  s suppressed, d damped, h history, * valid, > best, = multipath,
                i internal, r RIB-failure, S Stale, R Removed
@@ -48,8 +55,28 @@ Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
 Origin codes:  i - IGP, e - EGP, ? - incomplete
 
    Network          Next Hop            Metric LocPrf Weight Path
-   10.1.10.0/24     0.0.0.0                  0         32768 i
-   10.10.10.1/32    0.0.0.0                  0         32768 i
+* i10.0.1.1/32      peerlink.4094            0    100      0 ?
+*>                  0.0.0.0                  0         32768 ?
+*= 10.0.1.2/32      swp54                                  0 65199 65102 ?
+*=                  swp52                                  0 65199 65102 ?
+* i                 peerlink.4094                 100      0 65199 65102 ?
+*=                  swp53                                  0 65199 65102 ?
+*>                  swp51                                  0 65199 65102 ?
+*= 10.0.1.254/32    swp54                                  0 65199 65132 ?
+*=                  swp52                                  0 65199 65132 ?
+* i                 peerlink.4094                 100      0 65199 65132 ?
+*=                  swp53                                  0 65199 65132 ?
+*>                  swp51                                  0 65199 65132 ?
+*> 10.10.10.1/32    0.0.0.0                  0         32768 ?
+*>i10.10.10.2/32    peerlink.4094            0    100      0 ?
+*= 10.10.10.3/32    swp54                                  0 65199 65102 ?
+*=                  swp52                                  0 65199 65102 ?
+* i                 peerlink.4094                 100      0 65199 65102 ?
+*=                  swp53                                  0 65199 65102 ?
+*>                  swp51                                  0 65199 65102 ?
+...
+
+Displayed  13 routes and 42 total paths
 ```
 
 To show a more detailed breakdown of a specific neighbor, run the NCLU `net show bgp neighbor <neighbor>` command or the vtysh `show ip bgp neighbor <neighbor>` command:
@@ -60,8 +87,8 @@ GP neighbor on swp51: fe80::7c41:fff:fe93:b711, remote AS 65199, local AS 65101,
 Hostname: spine01
  Member of peer-group underlay for session parameters
   BGP version 4, remote router ID 10.10.10.101, local router ID 10.10.10.1
-  BGP state = Established, up for 12:43:38
-  Last read 00:00:02, Last write 00:00:03
+  BGP state = Established, up for 1d01h47m
+  Last read 00:00:00, Last write 00:00:00
   Hold time is 9, keepalive interval is 3 seconds
   Neighbor capabilities:
     4 Byte AS: advertised and received
@@ -87,11 +114,11 @@ Hostname: spine01
                          Sent       Rcvd
     Opens:                  2          1
     Notifications:          0          0
-    Updates:              185        151
-    Keepalives:         15271      15273
+    Updates:              309        237
+    Keepalives:         30942      30943
     Route Refresh:          0          0
     Capability:             0          0
-    Total:              15458      15425
+    Total:              31253      31181
   Minimum time between advertisement runs is 0 seconds
 
  For address family: IPv4 Unicast
@@ -102,7 +129,7 @@ Hostname: spine01
   7 accepted prefixes
 
   Connections established 1; dropped 0
-  Last reset 12:43:39,  No AFI/SAFI activated for peer
+  Last reset 1d01h47m,  No AFI/SAFI activated for peer
 Local host: fe80::2294:15ff:fe02:7bbf, Local port: 179
 Foreign host: fe80::7c41:fff:fe93:b711, Foreign port: 45548
 Nexthop: 10.10.10.1
@@ -113,37 +140,43 @@ BGP Connect Retry Timer in Seconds: 10
 Read thread: on  Write thread: on  FD used: 30
 ```
 
-To see details of a specific route, such as from where it is received and where it is sent, run the NCLU `net show bgp <route>` command or the vtysh `show ip bgp <route>` command. For example:
+To see details of a specific route, such as from where it is received and where it is sent, run the NCLU `net show bgp <route>` command or the vtysh `show ip bgp <route>` command.
 
 ```
-cumulus@switch:~$ net show bgp 10.10.10.2/32
-BGP routing table entry for 10.10.10.2/32
-Paths: (1 available, best #1, table Default-IP-Routing-Table)
+cumulus@switch:~$ net show bgp 10.10.10.3/32
+GP routing table entry for 10.10.10.3/32
+Paths: (5 available, best #5, table default)
   Advertised to non peer-group peers:
-  spine01(swp51) spine02(swp52)
-  Local
-    0.0.0.0 from 0.0.0.0 (10.10.10.2)
-      Origin incomplete, metric 0, localpref 100, weight 32768, valid, sourced, bestpath-from-AS Local, best
-      AddPath ID: RX 0, TX 9
-          Last update: Mon Oct 5 15:51:34 2020
+  spine01(swp51) spine02(swp52) spine03(swp53) spine04(swp54) leaf02(peerlink.4094)
+  65199 65102
+    fe80::8e24:2bff:fe79:7d46 from spine04(swp54) (10.10.10.104)
+    (fe80::8e24:2bff:fe79:7d46) (used)
+      Origin incomplete, valid, external, multipath
+      Last update: Wed Oct  7 13:13:13 2020
+  65199 65102
+    fe80::841:43ff:fe27:caf from spine02(swp52) (10.10.10.102)
+    (fe80::841:43ff:fe27:caf) (used)
+      Origin incomplete, valid, external, multipath
+      Last update: Wed Oct  7 13:13:14 2020
+  65199 65102
+    fe80::90b1:7aff:fe00:3121 from leaf02(peerlink.4094) (10.10.10.2)
+      Origin incomplete, localpref 100, valid, internal
+      Last update: Wed Oct  7 13:13:08 2020
+  65199 65102
+    fe80::48e7:fbff:fee9:5bcf from spine03(swp53) (10.10.10.103)
+    (fe80::48e7:fbff:fee9:5bcf) (used)
+      Origin incomplete, valid, external, multipath
+      Last update: Wed Oct  7 13:13:13 2020
+  65199 65102
+    fe80::7c41:fff:fe93:b711 from spine01(swp51) (10.10.10.101)
+    (fe80::7c41:fff:fe93:b711) (used)
+      Origin incomplete, valid, external, multipath, bestpath-from-AS 65199, best (Older Path)
+      Last update: Wed Oct  7 13:13:13 2020
 ```
 
-The above example shows that the routing table prefix seen by BGP is 10.10.10.2/32, that this route is advertised to two neighbors, and that it is not heard by any neighbors.
+## Troubleshoot Link-local Addresses
 
-### Neighbor State Change Log
-
-The changes that a neighbor goes through are logged in the `/var/log/frr/frr.log` file. For example:
-
-```
-2016/07/08 10:12:06.572827 BGP: %NOTIFICATION: sent to neighbor 10.0.0.2 6/3 (Cease/Peer Unconfigured) 0 bytes
-2016/07/08 10:12:06.572954 BGP: Notification sent to neighbor 10.0.0.2: type 6/3
-2016/07/08 10:12:16.682071 BGP: %ADJCHANGE: neighbor 192.0.2.2 Up
-2016/07/08 10:12:16.682660 BGP: %ADJCHANGE: neighbor 10.0.0.2 Up
-```
-
-### Troubleshoot Link-local Addresses
-
-To verify that `frr` learned the neighboring link-local IPv6 address via the IPv6 neighbor discovery router advertisements on a given interface, run the NCLU `net show interface <interface>` command or the vtysh `show interface <interface>` command. 
+To verify that `frr` learned the neighboring link-local IPv6 address via the IPv6 neighbor discovery router advertisements on a given interface, run the NCLU `net show interface <interface>` command or the vtysh `show interface <interface>` command.
 
 If `ipv6 nd suppress-ra` is not enabled on both ends of the interface, `Neighbor address(s):` has the other end's link-local address (the address that BGP uses when BGP is enabled on that interface).
 
@@ -187,103 +220,7 @@ Routing
   protodown: off
 ```
 
-Instead of the IPv6 address, the peering interface name is displayed in the `net show bgp summary` command and wherever else applicable.
-
-Most of the `show ip bgp` commands can take the interface name instead of the IP address.
-
-### Troubleshoot BGP Unnumbered Configuration
-
-Use the following commands to show IPv6 next hops and interface names for an IPv4 prefix, routes, and how a IPv4 link-local address is used to install a route and static neighbor entry.
-
-All the relevant BGP commands show IPv6 next hops and/or the interface name for any IPv4 prefix. Run the NCLU `net show bgp` command or the vtysh `show ip bgp` command. For example:
-
-```
-cumulus@switch:~$ net show bgp
-show bgp ipv4 unicast
-=====================
-BGP table version is 47, local router ID is 10.10.10.1, vrf id 0
-Default local pref 100, local AS 65101
-Status codes:  s suppressed, d damped, h history, * valid, > best, = multipath,
-               i internal, r RIB-failure, S Stale, R Removed
-Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
-Origin codes:  i - IGP, e - EGP, ? - incomplete
-
-   Network          Next Hop            Metric LocPrf Weight Path
-* i10.0.1.1/32      peerlink.4094            0    100      0 ?
-*>                  0.0.0.0                  0         32768 ?
-*= 10.0.1.2/32      swp54                                  0 65199 65102 ?
-*=                  swp52                                  0 65199 65102 ?
-* i                 peerlink.4094                 100      0 65199 65102 ?
-*>                  swp51                                  0 65199 65102 ?
-*=                  swp53                                  0 65199 65102 ?
-*= 10.0.1.254/32    swp54                                  0 65199 65132 ?
-*=                  swp52                                  0 65199 65132 ?
-* i                 peerlink.4094                 100      0 65199 65132 ?
-*=                  swp51                                  0 65199 65132 ?
-*>                  swp53                                  0 65199 65132 ?
-*> 10.10.10.1/32    0.0.0.0                  0         32768 ?
-*>i10.10.10.2/32    peerlink.4094            0    100      0 ?
-*= 10.10.10.3/32    swp54                                  0 65199 65102 ?
-*=                  swp52                                  0 65199 65102 ?
-* i                 peerlink.4094                 100      0 65199 65102 ?
-*=                  swp53                                  0 65199 65102 ?
-*>                  swp51                                  0 65199 65102 ?
-* i10.10.10.4/32    peerlink.4094                 100      0 65199 65102 ?
-*=                  swp53                                  0 65199 65102 ?
-*=                  swp52                                  0 65199 65102 ?
-*>                  swp51                                  0 65199 65102 ?
-*=                  swp54                                  0 65199 65102 ?
-*= 10.10.10.63/32   swp54                                  0 65199 65132 ?
-*=                  swp52                                  0 65199 65132 ?
-* i                 peerlink.4094                 100      0 65199 65132 ?
-*>                  swp51                                  0 65199 65132 ?
-*=                  swp53                                  0 65199 65132 ?
-*= 10.10.10.64/32   swp54                                  0 65199 65132 ?
-*=                  swp52                                  0 65199 65132 ?
-* i                 peerlink.4094                 100      0 65199 65132 ?
-*=                  swp51                                  0 65199 65132 ?
-*>                  swp53                                  0 65199 65132 ?
-* i10.10.10.101/32  peerlink.4094            0    100      0 65199 ?
-*>                  swp51                    0             0 65199 ?
-*> 10.10.10.102/32  swp52                    0             0 65199 ?
-* i                 peerlink.4094            0    100      0 65199 ?
-* i10.10.10.103/32  peerlink.4094            0    100      0 65199 ?
-*>                  swp53                    0             0 65199 ?
-* i10.10.10.104/32  peerlink.4094            0    100      0 65199 ?
-*>                  swp54                    0             0 65199 ?
-
-Displayed  13 routes and 42 total paths
-
-show bgp ipv6 unicast
-=====================
-No BGP prefixes displayed, 0 exist
-```
-
-The following commands show how the IPv4 link-local address *169.254.0.1* is used to install the route and static neighbor entry to facilitate proper forwarding without having to install an IPv4 prefix with IPv6 next hop in the kernel. Run the NCLU `net show route <address>` command or the vtysh `show ip route <address>` command. For example:
-
-```
-cumulus@switch:~$ net show route 10.10.10.13
-IB entry for 10.10.10.3
-========================
-Routing entry for 10.10.10.3/32
-  Known via "bgp", distance 20, metric 0, best
-  Last update 01:11:33 ago
-  * fe80::841:43ff:fe27:caf, via swp52, weight 1
-  * fe80::48e7:fbff:fee9:5bcf, via swp53, weight 1
-  * fe80::7c41:fff:fe93:b711, via swp51, weight 1
-  * fe80::8e24:2bff:fe79:7d46, via swp54, weight 1
-
-
-FIB entry for 10.10.10.3
-========================
-10.10.10.3 proto bgp metric 20
-        nexthop via 169.254.0.1 dev swp52 weight 1 onlink
-        nexthop via 169.254.0.1 dev swp53 weight 1 onlink
-        nexthop via 169.254.0.1 dev swp51 weight 1 onlink
-        nexthop via 169.254.0.1 dev swp54 weight 1 onlink
-```
-
-### Show IPv4 Prefixes Learned with IPv6 Next Hops
+## Show IPv4 Prefixes Learned with IPv6 Next Hops
 
 To show IPv4 prefixes learned with IPv6 next hops, run the following commands:
 
@@ -667,3 +604,21 @@ C>* 172.16.10.0/24 is directly connected, swp3, 3d00h26m
 {{< /tab >}}
 
 {{< /tabs >}}
+
+## Neighbor State Change Log
+
+Cumulus Linux records the changes that a neighbor goes through in the `/var/log/frr/frr.log` file. For example:
+
+```
+020-10-05T15:51:32.621773-07:00 leaf01 bgpd[10104]: %NOTIFICATION: sent to neighbor peerlink.4094 6/7 (Cease/Connection collision resolution) 0 bytes
+2020-10-05T15:51:32.623023-07:00 leaf01 bgpd[10104]: %ADJCHANGE: neighbor peerlink.4094(leaf02) in vrf default Up
+2020-10-05T15:51:32.623156-07:00 leaf01 bgpd[10104]: %NOTIFICATION: sent to neighbor peerlink.4094 6/7 (Cease/Connection collision resolution) 0 bytes
+2020-10-05T15:51:32.623496-07:00 leaf01 bgpd[10104]: %ADJCHANGE: neighbor peerlink.4094(leaf02) in vrf default Down No AFI/SAFI activated for peer
+2020-10-05T15:51:33.040332-07:00 leaf01 bgpd[10104]: [EC 33554454] swp53 [Error] bgp_read_packet error: Connection reset by peer
+2020-10-05T15:51:33.279468-07:00 leaf01 bgpd[10104]: [EC 33554454] swp52 [Error] bgp_read_packet error: Connection reset by peer
+2020-10-05T15:51:33.339487-07:00 leaf01 bgpd[10104]: %ADJCHANGE: neighbor swp54(spine04) in vrf default Up
+2020-10-05T15:51:33.340893-07:00 leaf01 bgpd[10104]: %ADJCHANGE: neighbor swp53(spine03) in vrf default Up
+2020-10-05T15:51:33.341648-07:00 leaf01 bgpd[10104]: %ADJCHANGE: neighbor swp52(spine02) in vrf default Up
+2020-10-05T15:51:33.342369-07:00 leaf01 bgpd[10104]: %ADJCHANGE: neighbor swp51(spine01) in vrf default Up
+2020-10-05T15:51:33.627958-07:00 leaf01 bgpd[10104]: %ADJCHANGE: neighbor peerlink.4094(leaf02) in vrf default Up
+```

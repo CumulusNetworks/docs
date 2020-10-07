@@ -169,7 +169,7 @@ router bgp 65199
 
 {{%/notice%}}
 
-## RFC 5549 Support with Global IPv6 Peers
+## Advertise IPv4 Prefixes with IPv6 Next Hops
 
 {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}} defines the method used for BGP to advertise IPv4 prefixes with IPv6 next hops. The RFC does not make a distinction between whether the IPv6 peering and next hop values should be global unicast addresses (GUA) or link-local addresses. Cumulus Linux supports advertising IPv4 prefixes with IPv6 global unicast and link-local next hop addresses, with either *unnumbered* or *numbered* BGP.
 

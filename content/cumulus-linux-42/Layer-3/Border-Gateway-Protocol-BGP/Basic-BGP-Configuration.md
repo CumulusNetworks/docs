@@ -290,7 +290,7 @@ When you use BGP unnumbered, BGP learns the prefixes, calculates the routes and 
 
 The following example commands show a basic BGP unnumbered configuration for two switches, leaf01 and spine01, which are eBPG peers.
 
-The only difference between this BGP unnumbered configuration and the basic BGP configuration shown above, is that the BGP neighbour is specified as an interface (insead of an IP address).
+The only difference between this BGP unnumbered configuration and the BGP numbered configuration shown above, is that the BGP neighbour is specified as an interface (insead of an IP address).
 
 {{< tabs "354 ">}}
 

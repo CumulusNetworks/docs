@@ -164,8 +164,7 @@ router bgp 65199
 
 {{%notice info%}}
 
-- For IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
-- In certain topologies that use BGP and route reflectors, next hop resolution might be impacted by advertising the spine-leaf link addresses from the leafs themselves. The problem is seen primarily with multiple links between each pair of spine and leaf switches, and redistribute connected configured on the leafs. To work around this issue, only advertise the spine to leaf addresses from the spine switches (or use IGP for next-hop propagation). You can use network statements for the interface addresses that you need to advertise to limit the addresses advertised by the leaf switches. Or, define redistribute connected with route maps to filter the outbound updates and remove the spine to leaf addresses from being sent from the leafs.
+For IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 
 {{%/notice%}}
 
@@ -548,8 +547,10 @@ You configure dynamic neighbors using the `bgp listen range <ip-address> peer-gr
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp listen limit 5
+cumulus@switch:~$ net add bgp neighbor SPINE peer-group
+cumulus@switch:~$ net add bgp neighbor SPINE remote-as external
 cumulus@switch:~$ net add bgp listen range 169.254.10.101/24 peer-group SPINE
+cumulus@switch:~$ net add bgp listen limit 5
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -584,7 +585,7 @@ These commands produce an IPv4 configuration that looks like this:
 ```
 router bgp 65101
   neighbor SPINE peer-group
-  neighbor SPINE remote-as 65000
+  neighbor SPINE remote-as external
   bgp listen limit 5
   bgp listen range 169.254.10.101/24 peer-group SPINE
 ```
@@ -741,7 +742,7 @@ To establish a connection between two eBGP peers that are not directly connected
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 ebgp-multihop
+cumulus@switch:~$ net add bgp neighbor 10.10.10.101 ebgp-multihop
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -751,12 +752,12 @@ cumulus@switch:~$ net commit
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@spine01:~$ sudo vtysh
+cumulus@switch:~$ sudo vtysh
 
 spine01# configure terminal
-spine01(config)# router bgp 65199
-spine01(config-router)# neighbor swp51 remote-as external
-spine01(config-router)# neighbor swp51 ebgp-multihop
+spine01(config)# router bgp 65101
+spine01(config-router)# neighbor 10.10.10.101 remote-as external
+spine01(config-router)# neighbor 10.10.10.101 ebgp-multihop
 spine01(config)# exit
 spine01# write memory
 spine01# exit

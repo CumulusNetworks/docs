@@ -121,7 +121,7 @@ To configure the BGP node as a route reflector, set the `route-reflector-client`
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@spine01:~$ net add bgp neighbor 10.10.10.1 route-reflector-client
+cumulus@spine01:~$ net add bgp neighbor swp51 route-reflector-client
 cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
@@ -136,7 +136,7 @@ cumulus@spine01:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65199
 switch(config-router)# address-family ipv4
-switch(config-router-af)# neighbor 10.10.10.1 route-reflector-client
+switch(config-router-af)# neighbor swp51 route-reflector-client
 switch(config-router-af)# end
 switch# write memory
 switch# exit
@@ -153,11 +153,11 @@ The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` fi
 ...
 router bgp 65199
  bgp router-id 10.10.10.101
- neighbor 10.10.10.1 remote-as external
+ neighbor swp51 remote-as external
  !
  address-family ipv4 unicast
   network 10.10.10.101/32
-  neighbor 10.10.10.1 route-reflector-client
+  neighbor swp51 route-reflector-client
  exit-address-family
 ...
 ```
@@ -287,10 +287,12 @@ To view the existing capabilities, run the NCLU `net show bgp neighbor` command 
 
 ```
 cumulus@leaf01:~$ net show bgp neighbor
-BGP neighbor is 10.10.10.101, remote AS 0, local AS 65101, external link
+BGP neighbor on swp51: fe80::7c41:fff:fe93:b711, remote AS 65199, local AS 65101, external link
+Hostname: spine01
+ Member of peer-group underlay for session parameters
   BGP version 4, remote router ID 10.10.10.101, local router ID 10.10.10.1
-  BGP state = Active
-  Last read 00:04:13, Last write never
+  BGP state = Established, up for 1d12h39m
+  Last read 00:00:03, Last write 00:00:01
   Hold time is 9, keepalive interval is 3 seconds
   Neighbor capabilities:
     4 Byte AS: advertised and received
@@ -298,18 +300,15 @@ BGP neighbor is 10.10.10.101, remote AS 0, local AS 65101, external link
       IPv4 Unicast: RX advertised IPv4 Unicast and received
     Extended nexthop: advertised and received
       Address families by peer:
-                    IPv4 Unicast
+                   IPv4 Unicast
     Route refresh: advertised and received(old & new)
-    Address family IPv4 Unicast: advertised and received
-    Hostname Capability: advertised and received
-    Graceful Restart Capabilty: advertised and received
-      Remote Restart timer is 120 seconds
-      Address families by peer:
-        none
+    Address Family IPv4 Unicast: advertised and received
+    Hostname Capability: advertised (name: leaf01,domain name: n/a) received (name: spine01,domain name: n/a)
+    Graceful Restart Capability: advertised and received
 ...
 ```
 
-The example output above shows that additional BGP paths can be sent and received (TX and RX are advertised). It also shows that the BGP neighbor, e80::7c41:fff:fe93:b711, supports both.
+The example output above shows that additional BGP paths can be sent and received (TX and RX are advertised). It also shows that the BGP neighbor, fe80::7c41:fff:fe93:b711, supports both.
 
 To view the current additional paths, run the NCLU `net show bgp <router-id>` command or the `vtysh show ip bgp <router-id>` command.
 
@@ -318,12 +317,20 @@ The example output shows an additional path that has been added by the TX node f
 ```
 cumulus@leaf01:mgmt:~$ net show bgp 10.10.10.1
 BGP routing table entry for 10.10.10.1/32
-Paths: (1 available, best #1, table default)
+Paths: (2 available, best #1, table Default-IP-Routing-Table)
   Advertised to non peer-group peers:
-  spine01(swp51) spine02(swp52) spine03(swp53) spine04(swp54) leaf02(peerlink.4094)
-  Local
-    0.0.0.0 from 0.0.0.0 (10.10.10.1)
-      Origin incomplete, metric 0, weight 32768, valid, sourced, bestpath-from-AS Local, best (First path received)
+  spine01(swp51) spine02(swp52)
+  65020 65012
+    fe80::4638:39ff:fe00:5c from spine01(swp51) (10.0.0.21)
+    (fe80::4638:39ff:fe00:5c) (used)
+      Origin incomplete, localpref 100, valid, external, multipath, bestpath-from-AS 65020, best (Older Path)
+      AddPath ID: RX 0, TX 6
+      Last update: Wed Nov 16 22:47:00 2016
+  65020 65012
+    fe80::4638:39ff:fe00:2b from spine02(swp52) (10.0.0.22)
+    (fe80::4638:39ff:fe00:2b) (used)
+      Origin incomplete, localpref 100, valid, external, multipath
+      AddPath ID: RX 0, TX 3
       Last update: Fri Oct  2 03:56:33 2020
 ```
 
@@ -542,7 +549,7 @@ You configure dynamic neighbors using the `bgp listen range <ip-address> peer-gr
 
 ```
 cumulus@switch:~$ net add bgp listen limit 5
-cumulus@switch:~$ net add bgp listen range 10.10.10.100/24 peer-group SPINE
+cumulus@switch:~$ net add bgp listen range 169.254.10.101/24 peer-group SPINE
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -558,7 +565,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp 65101
-switch(config-router)# bgp listen range 10.10.10.100/24 peer-group SPINE
+switch(config-router)# bgp listen range 169.254.10.101/24 peer-group SPINE
 switch(config-router)# bgp listen limit 5
 switch(config-router)# end
 switch# write memory
@@ -579,7 +586,7 @@ router bgp 65101
   neighbor SPINE peer-group
   neighbor SPINE remote-as 65000
   bgp listen limit 5
-  bgp listen range 10.10.10.100/24 peer-group SPINE
+  bgp listen range 169.254.10.101/24 peer-group SPINE
 ```
 
 ## MD5-enabled BGP Neighbors
@@ -734,7 +741,7 @@ To establish a connection between two eBGP peers that are not directly connected
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor 10.10.10.103 ebgp-multihop
+cumulus@switch:~$ net add bgp neighbor swp51 ebgp-multihop
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -748,8 +755,8 @@ cumulus@spine01:~$ sudo vtysh
 
 spine01# configure terminal
 spine01(config)# router bgp 65199
-spine01(config-router)# neighbor 10.10.10.103 remote-as external
-spine01(config-router)# neighbor 10.10.10.103 ebgp-multihop
+spine01(config-router)# neighbor swp51 remote-as external
+spine01(config-router)# neighbor swp51 ebgp-multihop
 spine01(config)# exit
 spine01# write memory
 spine01# exit
@@ -771,7 +778,7 @@ To set BGP TTL security to 200 seconds on a switch:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@leaf01:~$ net add bgp neighbor 10.10.10.101 ttl-security hops 200
+cumulus@leaf01:~$ net add bgp neighbor swp51 ttl-security hops 200
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -785,7 +792,7 @@ cumulus@leaf01:~$ sudo vtysh
 
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
-leaf01(config-router)# neighbor 10.10.10.101 ttl-security hops 200
+leaf01(config-router)# neighbor swp51 ttl-security hops 200
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
@@ -1127,7 +1134,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp 65001
-switch(config-router)# neighbor 10.10.10.101 maximum-prefix 3000
+switch(config-router)# neighbor swp51 maximum-prefix 3000
 switch(config-router)# end
 switch# write memory
 switch# exit

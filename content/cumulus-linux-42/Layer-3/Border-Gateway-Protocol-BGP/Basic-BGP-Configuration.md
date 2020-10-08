@@ -274,7 +274,7 @@ When using auto BGP, there are no references to `leaf` or `spine` in the configu
 
 The following example commands show a basic BGP unnumbered configuration for two switches, leaf01 and spine01, which are eBPG peers.
 
-The only difference between this BGP unnumbered configuration and the BGP numbered configuration shown above, is that the BGP neighbour is specified as an interface (insead of an IP address). The interface between the two peers does **not** need to have an IP address configured on each side.
+The only difference between this BGP unnumbered configuration and the BGP numbered configuration shown above is that the BGP neighbour is specified as an interface (insead of an IP address). The interface between the two peers does **not** need to have an IP address configured on each side.
 
 {{< tabs "354 ">}}
 
@@ -403,7 +403,7 @@ router bgp 65199
 
 {{%notice note%}}
 
-Every router or end host must have an IPv4 address to complete a `traceroute` of IPv4 addresses. In this case, the IPv4 address used is that of the loopback device.
+Every switch or end host must have an IPv4 address to complete a `traceroute` of IPv4 addresses. In this case, the IPv4 address used is that of the loopback device.
 
 Even if extended next-hop encoding (ENHE) is not used in the data center, link addresses are not typically advertised because:
 
@@ -416,6 +416,6 @@ Assigning an IP address to the loopback device is essential.
 
 {{%notice note%}}
 
-The NCLU command to remove a BGP neighbor does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed.
+The NCLU command to remove a BGP neighbor (`net del bgp neighbor <neighbor> remote-as <as>`) does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed.
 
 {{%/notice%}}

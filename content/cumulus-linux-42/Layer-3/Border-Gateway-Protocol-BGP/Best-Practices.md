@@ -17,7 +17,7 @@ To set the `ttl-security hops`:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor 10.10.10.101 ttl-security hops 1
+cumulus@switch:~$ net add bgp neighbor swp51 ttl-security hops 1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -31,7 +31,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp
-switch(config-router)# neighbor 10.10.10.101 ttl-security hops 1
+switch(config-router)# neighbor swp51 ttl-security hops 1
 switch(config-router)# end
 switch# write memory
 switch# exit
@@ -48,7 +48,7 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ...
 router bgp 65101
   ...
-  neighbor 10.10.10.101 ttl-security hops 1
+  neighbor swp51 ttl-security hops 1
 ...
 ```
 
@@ -61,7 +61,7 @@ It is possible that the link is up but the neighboring BGP process is hung or ha
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor 10.10.10.101 timers 10 30
+cumulus@switch:~$ net add bgp neighbor swp51 timers 10 30
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -75,7 +75,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp
-switch(config-router)# neighbor 10.10.10.101 timers 10 30
+switch(config-router)# neighbor swp51 timers 10 30
 switch(config-router)# end
 switch# write memory
 switch# exit
@@ -92,7 +92,7 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ...
 router bgp 65000
   ...
-  neighbor 10.10.10.101 timers 10 30
+  neighbor swp51 timers 10 30
 ...
 ```
 
@@ -105,7 +105,7 @@ By default, the BGP process attempts to connect to a peer after a failure (or on
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor 10.10.10.101 timers connect 30
+cumulus@switch:~$ net add bgp neighbor swp51 timers connect 30
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -119,7 +119,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router bgp
-switch(config-router)# neighbor 10.10.10.101 timers connect 30
+switch(config-router)# neighbor swp51 timers connect 30
 switch(config-router)# end
 switch# write memory
 switch# exit
@@ -135,7 +135,7 @@ The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` fi
 ...
 router bgp 65101
   ...
-  neighbor 10.10.10.101 timers connect 30
+  neighbor swp51 timers connect 30
 ...
 ```
 
@@ -152,8 +152,8 @@ After you attach a peer to a peer group, you need to associate an IP address wit
 ```
 cumulus@switch:~$ net add bgp neighbor tier-2 peer-group
 cumulus@switch:~$ net add bgp neighbor tier-2 next-hop-self
-cumulus@switch:~$ net add bgp neighbor 10.0.0.101 peer-group tier-2
-cumulus@switch:~$ net add bgp neighbor 10.0.0.102 peer-group tier-2
+cumulus@switch:~$ net add bgp neighbor swp51 peer-group tier-2
+cumulus@switch:~$ net add bgp neighbor swp51 peer-group tier-2
 ```
 
 {{< /tab >}}
@@ -169,8 +169,8 @@ switch(config-router)# neighbor tier-2 peer-group
 switch(config-router)# address-family ipv4 unicast
 switch(config-router-af)# neighbor tier-2 next-hop-self
 switch(config-router-af)# exit
-switch(config-router)# neighbor 10.10.10.101 peer-group tier-2
-switch(config-router)# neighbor 10.10.10.102 peer-group tier-2
+switch(config-router)# neighbor swp51 peer-group tier-2
+switch(config-router)# neighbor swp51 peer-group tier-2
 ```
 
 {{< /tab >}}
@@ -190,7 +190,7 @@ For an unnumbered configuration, you can use a single command to configure a nei
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp1 interface peer-group tier-2
+cumulus@switch:~$ net add bgp neighbor swp51 interface peer-group tier-2
 ```
 
 {{< /tab >}}
@@ -198,7 +198,7 @@ cumulus@switch:~$ net add bgp neighbor swp1 interface peer-group tier-2
 {{< tab "vtysh Commands ">}}
 
 ```
-switch(config-router)# neighbor swp1 interface peer-group tier-2
+switch(config-router)# neighbor swp51 interface peer-group tier-2
 ```
 
 {{< /tab >}}
@@ -270,7 +270,7 @@ router bgp 65000
 To show the keepalive interval, hold time, and advertisement interval, you can run the NCLU `net show bgp neighbor <peer>` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
 
 ```
-cumulus@switch:~$ net show bgp neighbor swp51 
+cumulus@switch:~$ net show bgp neighbor swp51
 BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link
 Hostname: spine01
   Member of peer-group fabric for session parameters

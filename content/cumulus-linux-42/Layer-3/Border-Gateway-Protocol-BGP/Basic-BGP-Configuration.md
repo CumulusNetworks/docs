@@ -71,7 +71,7 @@ To configure BGP numbered on a BGP node, you need to:
     cumulus@leaf01:~$ net commit
    ```
 
-   For IPv6 prefixes:
+   IPv6 prefix example:
 
    ```
    cumulus@leaf01:~$ net add bgp ipv6 unicast network 2001:db8::1/128
@@ -128,7 +128,7 @@ To configure BGP numbered on a BGP node, you need to:
     cumulus@spine01:~$ net commit
    ```
 
-   IPv6
+   IPv6 prefix example:
 
    ```
    cumulus@spine01:~$ net add bgp ipv6 unicast network 2001:db8::101/128
@@ -155,23 +155,23 @@ To configure BGP numbered on a BGP node, you need to:
     ```
     cumulus@leaf01:~$ sudo vtysh
 
-    switch# configure terminal
-    switch(config)# router bgp 65101
-    switch(config-router)# bgp router-id 10.10.10.1
+    leaf01# configure terminal
+    leaf01(config)# router bgp 65101
+    leaf01(config-router)# bgp router-id 10.10.10.1
     ```
 
 3. Specify where to distribute routing information:
 
    ```
-   switch(config-router)# neighbor 169.254.10.101 remote-as external
+   leaf01(config-router)# neighbor 169.254.10.101 remote-as external
    ```
 
    For BGP to advertise IPv6 prefixes, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
 
    ```
-   switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
-   switch(config-router)# address-family ipv6 unicast
-   switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
+   leaf01(config-router)# neighbor 2001:db8:0002::0a00:1 remote-as external
+   leaf01(config-router)# address-family ipv6 unicast
+   leaf01(config-router-af)# neighbor 2001:db8:0002::0a00:1 activate
    ```
 
    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
@@ -179,12 +179,23 @@ To configure BGP numbered on a BGP node, you need to:
 5. Specify which prefixes to originate:
 
     ```
-    switch(config-router)# address-family ipv4
-    switch(config-router-af)# network 10.10.10.1/32
-    switch(config-router-af)# network 10.1.10.0/24
-    switch(config-router-af)# end
-    switch# write memory
-    switch# exit
+    leaf01(config-router)# address-family ipv4
+    leaf01(config-router-af)# network 10.10.10.1/32
+    leaf01(config-router-af)# network 10.1.10.0/24
+    leaf01(config-router-af)# end
+    leaf01# write memory
+    leaf01# exit
+    cumulus@switch:~$
+    ```
+
+    IPv6 prefix example:
+
+    ```
+    leaf01(config-router)# address-family ipv4
+    leaf01(config-router-af)# network 2001:db8::1/128
+    leaf01(config-router-af)# end
+    leaf01# write memory
+    leaf01# exit
     cumulus@switch:~$
     ```
 
@@ -199,23 +210,23 @@ To configure BGP numbered on a BGP node, you need to:
     ```
     cumulus@spine01:~$ sudo vtysh
 
-    switch# configure terminal
-    switch(config)# router bgp 65199
-    switch(config-router)# bgp router-id 10.10.10.101
+    spine01# configure terminal
+    spine01(config)# router bgp 65199
+    spine01(config-router)# bgp router-id 10.10.10.101
     ```
 
 3. Specify where to distribute routing information:
 
     ```
-    switch(config-router)# neighbor 169.254.10.1 remote-as external
+    spine01(config-router)# neighbor 169.254.10.1 remote-as external
     ```
 
    For BGP to advertise IPv6 prefixes, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
 
    ```
-   switch(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
-   switch(config-router)# address-family ipv6 unicast
-   switch(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
+   spine01(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
+   spine01(config-router)# address-family ipv6 unicast
+   spine01(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
    ```
 
    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
@@ -223,12 +234,23 @@ To configure BGP numbered on a BGP node, you need to:
 5. Specify which prefixes to originate:
 
     ```
-    switch(config-router)# address-family ipv4
-    switch(config-router-af)# network 10.10.10.101/32
-    switch(config-router-af)# end
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$
+    spine01(config-router)# address-family ipv4
+    spine01(config-router-af)# network 10.10.10.101/32
+    spine01(config-router-af)# end
+    spine01# write memory
+    spine01# exit
+    cumulus@spine01:~$
+    ```
+
+    IPv6 prefixes:
+
+    ```
+    spine01(config-router)# address-family ipv4
+    spine01(config-router-af)# network 2001:db8::101/128
+    spine01(config-router-af)# end
+    spine01# write memory
+    spine01# exit
+    cumulus@spine01:~$
     ```
 
 {{< /tab >}}
@@ -299,13 +321,13 @@ The only difference between this BGP unnumbered configuration and the BGP number
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@switch:~$ net add bgp autonomous-system 65101
-cumulus@switch:~$ net add bgp router-id 10.10.10.1
-cumulus@switch:~$ net add bgp neighbor swp51 remote-as external
-cumulus@switch:~$ net add bgp ipv4 unicast network 10.10.10.1/32
-cumulus@switch:~$ net add bgp ipv4 unicast network 10.1.10.0/24
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
+cumulus@leaf01:~$ net add bgp neighbor swp51 remote-as external
+cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.10.10.1/32
+cumulus@leaf01:~$ net add bgp ipv4 unicast network 10.1.10.0/24
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -313,12 +335,12 @@ cumulus@switch:~$ net commit
 {{< tab "spine01 ">}}
 
 ```
-cumulus@switch:~$ net add bgp autonomous-system 65199
-cumulus@switch:~$ net add bgp router-id 10.10.10.101
-cumulus@switch:~$ net add bgp neighbor swp1 remote-as external
-cumulus@switch:~$ net add bgp ipv4 unicast network 10.10.10.101/32
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@spine01:~$ net add bgp autonomous-system 65199
+cumulus@spine01:~$ net add bgp router-id 10.10.10.101
+cumulus@spine01:~$ net add bgp neighbor swp1 remote-as external
+cumulus@spine01:~$ net add bgp ipv4 unicast network 10.10.10.101/32
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -336,17 +358,17 @@ cumulus@switch:~$ net commit
 ```
 cumulus@switch:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# bgp router-id 10.10.10.1
-switch(config-router)# neighbor swp1 remote-as external
-switch(config-router)# address-family ipv4
-switch(config-router-af)# network 10.10.10.1/32
-switch(config-router-af)# network 10.1.10.0/24
-switch(config-router-af)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp router-id 10.10.10.1
+leaf01(config-router)# neighbor swp1 remote-as external
+leaf01(config-router)# address-family ipv4
+leaf01(config-router-af)# network 10.10.10.1/32
+leaf01(config-router-af)# network 10.1.10.0/24
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -354,18 +376,18 @@ cumulus@switch:~$
 {{< tab "spine01 ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@spine01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65199
-switch(config-router)# bgp router-id 10.10.10.101
-switch(config-router)# neighbor swp1 remote-as external
-switch(config-router)# address-family ipv4
-switch(config-router-af)# network 10.10.10.101/32
-switch(config-router-af)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+spine01# configure terminal
+spine01(config)# router bgp 65199
+spine01(config-router)# bgp router-id 10.10.10.101
+spine01(config-router)# neighbor swp1 remote-as external
+spine01(config-router)# address-family ipv4
+spine01(config-router-af)# network 10.10.10.101/32
+spine01(config-router-af)# end
+spine01# write memory
+spine01# exit
+cumulus@spine01:~$
 ```
 
 {{< /tab >}}

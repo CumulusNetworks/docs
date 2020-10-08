@@ -768,60 +768,6 @@ cumulus@spine01:~$
 
 {{< /tabs >}}
 
-## BGP TTL Security
-
-Configure BGP TTL security to specify the minimum number of seconds allowed before the switch no longer accepts incoming IP packets from a specific eBGP peer. You can specify a value between 1 and 254 seconds.
-
-To set BGP TTL security to 200 seconds on a switch:
-
-{{< tabs "44 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp neighbor swp51 ttl-security hops 200
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:~$ sudo vtysh
-
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# neighbor swp51 ttl-security hops 200
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-{{%notice note%}}
-
-- When you configure BGP TTL security on a peer group instead of a specific neighbor, FRR does not add BGP `ttl-security` to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security` to individual neighbors instead of the peer group.
-- Enabling `ttl-security` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware. For example, configure a file, such as `/etc/cumulus/acl/policy.d/01control_plane_bgp.rules`, with a rule similar to the following:
-
-   ```
-   INGRESS_INTF = swp1
-       INGRESS_CHAIN = INPUT, FORWARD
-
-       [iptables]
-       -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp -m ttl --ttl 255 POLICE --set-mode pkt --set-rate 2000 --set-burst 1000
-   -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp DROP
-   ```
-
-   For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
-
-{{%/notice%}}
-
 ## Graceful BGP Shutdown
 
 To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the node.
@@ -1140,6 +1086,288 @@ switch(config-router)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$
+```
+
+## Peer Groups
+
+Instead of specifying properties of each individual peer, you can define one or more peer groups and associate all the attributes common to that peer session to a peer group. A peer needs to be attached to a peer group only once, when it then inherits all address families activated for that peer group.
+
+After you attach a peer to a peer group, you need to associate an IP address with the peer group. The following example shows how to define and use peer groups:
+
+{{< tabs "34 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor tier-2 peer-group
+cumulus@switch:~$ net add bgp neighbor tier-2 next-hop-self
+cumulus@switch:~$ net add bgp neighbor swp51 peer-group tier-2
+cumulus@switch:~$ net add bgp neighbor swp51 peer-group tier-2
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# neighbor tier-2 peer-group
+switch(config-router)# address-family ipv4 unicast
+switch(config-router-af)# neighbor tier-2 next-hop-self
+switch(config-router-af)# exit
+switch(config-router)# neighbor swp51 peer-group tier-2
+switch(config-router)# neighbor swp51 peer-group tier-2
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{%notice note%}}
+
+BGP peer-group restrictions have been replaced with update-groups, which dynamically examine all peers and group them if they have the same outbound policy.
+
+{{%/notice%}}
+
+For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a peer group.
+
+{{< tabs "16 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 interface peer-group tier-2
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+switch(config-router)# neighbor swp51 interface peer-group tier-2
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+## Confifgure BGP Timers
+
+### BGP TTL Security
+
+TTL security hops is enabled for all links so that BGP only establishes eBGP peering or maintains sessions if the TTL value in the IP packet header is equal to or greater than the TTL value configured for the neighbor. The hop count is used to configure the number of hops separating the two peers.
+
+To change the TTL security hop count:
+
+{{< tabs "44 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor swp51 ttl-security hops 200
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 ttl-security hops 200
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{%notice note%}}
+
+- When you configure BGP TTL security on a peer group instead of a specific neighbor, FRR does not add BGP `ttl-security` to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security` to individual neighbors instead of the peer group.
+- Enabling `ttl-security` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware. For example, configure a file, such as `/etc/cumulus/acl/policy.d/01control_plane_bgp.rules`, with a rule similar to the following:
+
+   ```
+   INGRESS_INTF = swp1
+       INGRESS_CHAIN = INPUT, FORWARD
+
+       [iptables]
+       -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp -m ttl --ttl 255 POLICE --set-mode pkt --set-rate 2000 --set-burst 1000
+   -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp DROP
+   ```
+
+   For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
+
+{{%/notice%}}
+
+### Keepalive Interval
+
+It is possible that the link is up but the neighboring BGP process is hung or has crashed. In this case, the FRRouting `watchfrr` daemon, which monitors the various FRRouting daemons, attempts to restart it. BGP itself has a keepalive interval that is exchanged between neighbors. By default, this keepalive interval is set to 3 seconds. You can increase this interval to a higher value, which decreases CPU load, especially in the presence of a lot of neighbors. The keepalive interval is the periodicity with which the keepalive message is sent. The hold time specifies how many keepalive messages can be lost before the connection is considered invalid. It is typically set to three times the keepalive time and defaults to 9 seconds. The following examples commands change the keepalive interval to 10 seconds and the hold time to 30 seconds.
+
+{{< tabs "64 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 timers 10 30
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# neighbor swp51 timers 10 30
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65000
+  ...
+  neighbor swp51 timers 10 30
+...
+```
+
+### Reconnect Interval
+
+By default, the BGP process attempts to connect to a peer after a failure (or on startup) every 10 seconds. To change this value, run the following commands on each neighbor.
+
+{{< tabs "204 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 timers connect 30
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# neighbor swp51 timers connect 30
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+```
+...
+router bgp 65101
+  ...
+  neighbor swp51 timers connect 30
+...
+```
+
+### Advertisement Interval
+
+By default, BGP chooses stability over fast convergence, which is very useful when routing for the Internet. For example, unlike link-state protocols, BGP typically waits a number of seconds before sending consecutive updates to a neighbor. This advertisement interval ensures that an unstable neighbor flapping routes are not propagated throughout the network. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see {{<exlink url="http://tools.ietf.org/html/draft-jakma-mrai-02" text="this IETF draft">}}.
+
+To modify the advertisement interval, run the following commands:
+
+{{< tabs "68 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 advertisement-interval 5
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp
+switch(config-router)# neighbor swp51 advertisement-interval 5
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65000
+  ...
+  neighbor swp51 advertisement-interval 5
+...
+```
+
+To show the keepalive interval, hold time, and advertisement interval, you can run the NCLU `net show bgp neighbor <peer>` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
+
+```
+cumulus@switch:~$ net show bgp neighbor swp51
+BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link
+Hostname: spine01
+  Member of peer-group fabric for session parameters
+  BGP version 4, remote router ID 0.0.0.0
+  BGP state = Connect
+  Last read 00:04:37, Last write 00:44:07
+  Hold time is 30, keepalive interval is 10 seconds
+  Configured hold time is 30, keepalive interval is 10 seconds
+  Message statistics:
+    Inq depth is 0
+    Outq depth is 0
+                          Sent       Rcvd
+    Opens:                  1          1
+    Notifications:          1          0
+    Updates:                7          6
+    Keepalives:          2374       2373
+    Route Refresh:          0          0
+    Capability:             0          0
+    Total:               2383       2380
+  Minimum time between advertisement runs is 5 seconds
+...
 ```
 
 ## Related Information

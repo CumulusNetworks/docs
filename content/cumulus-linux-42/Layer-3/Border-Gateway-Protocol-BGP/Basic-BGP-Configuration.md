@@ -13,7 +13,7 @@ To configure BGP numbered on a BGP node, you need to:
 - Assign an ASN to identify this BGP node. In a two-tier leaf and spine configuration, you can use {{<link title="Border Gateway Protocol - BGP#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically.
 - Assign a router ID, which is a 32-bit value and is typically the address of the loopback interface on the switch.
 - Specify where to distribute routing information by providing the IP address and ASN of the neighbor.
-  - For BGP numbered, the interface between the two peers must have an IP address configured on each side.
+  - For BGP numbered, this is the IP address of the the interface between the two peers; the interface must be a layer 3 access port.
   - The ASN can be a number, or `internal` for a neighbor in the same AS or `external` for a neighbor in a different AS.
 - Specify which prefixes to originate from this BGP node.
 

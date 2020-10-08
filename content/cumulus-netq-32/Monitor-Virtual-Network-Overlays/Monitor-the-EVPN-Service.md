@@ -4,47 +4,212 @@ author: Cumulus Networks
 weight: 980
 toc: 4
 ---
-The Cumulus NetQ UI enables operators to view the health of the EVPN service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished through two card workflows, one for the service and one for the session. They are described separately here.
+EVPN (Ethernet Virtual Private Network) enables network administrators in the data center to deploy a virtual layer 2 bridge overlay on top of layer 3 IP networks creating access, or tunnel, between two locations. This connects devices in different layer 2 domains or sites running VXLANs and their associated underlays. For an overview and how to configure EVPN in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Ethernet Virtual Private Network-EVPN">}}.
+
+Cumulus NetQ enables operators to view the health of the EVPN service on a networkwide and a per session basis, giving greater insight into all aspects of the service. This is accomplished in the NetQ UI through two card workflows, one for the service and one for the session and in the NetQ CLI with the `netq show evpn` command.
 
 ## Monitor the EVPN Service (All Sessions)
 
-With NetQ, you can monitor the number of nodes running the EVPN service, view switches with the sessions, total number of VNIs, and alarms triggered by the EVPN service. For an overview and how to configure EVPN in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/" text="Ethernet Virtual Private Network-EVPN">}}.
+With NetQ, you can monitor EVPN performance accross the network:
+
+- Network Services|All EVPN Sessions
+    - Small: view number of nodes running EPVN service and number of alarms
+    - Medium: view number of nodes running EVPN service, number of sessions, and number of alarms
+    - Large: view number of nodes running EVPN service, number of sessions, number of VNIs, switches with the most sessions, and alarms
+    - Full-screen: view all switches, all sessions, and all alarms
+- `netq show evpn` command: view the configuration and status for all devices, including associated VNI, VTEP address, import and export route (showing BGP ASN and VNI path), and last time a change was made for each device running EVPN
 
 ### View Service Status Summary
 
-A summary of the EVPN service is available from the Network Services card workflow, including the number of nodes running the service, the number of EVPN-related alarms, and a distribution of those alarms.
+You can view a summary of the EVPN service from the following:
 
-To view the summary, open the small EVPN Network Service card.
+{{< tabs "TabID26" >}}
 
-{{< figure src="/images/netq/ntwk-svcs-all-evpn-small-230.png" width="200" >}}
+{{< tab "NetQ UI" >}}
 
-For more detail, select a different size EVPN Network Service card.
+Open the small All EVPN Services card.
+
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-small-230.png" width="200" >}}
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view EVPN service status, run:
+
+```
+netq show evpn
+```
+
+This example uses the Cumulus reference topology, where EVPN runs on all border and leaf switches.
+
+```
+cumulus@switch:~$ netq show evpn
+Matching evpn records:
+Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
+----------------- ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
+border01          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Wed Oct  7 00:49:27 2020
+border01          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Wed Oct  7 00:49:27 2020
+border02          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Wed Oct  7 00:48:47 2020
+border02          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Wed Oct  7 00:48:47 2020
+leaf01            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Wed Oct  7 00:49:30 2020
+leaf01            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Wed Oct  7 00:49:30 2020
+leaf01            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Wed Oct  7 00:49:30 2020
+leaf01            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Wed Oct  7 00:49:30 2020
+leaf01            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Wed Oct  7 00:49:30 2020
+leaf02            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Wed Oct  7 00:48:25 2020
+leaf02            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Wed Oct  7 00:48:25 2020
+leaf02            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Wed Oct  7 00:48:25 2020
+leaf02            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Wed Oct  7 00:48:25 2020
+leaf02            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Wed Oct  7 00:48:25 2020
+leaf03            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Wed Oct  7 00:50:13 2020
+leaf03            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Wed Oct  7 00:50:13 2020
+leaf03            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:13 2020
+leaf03            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct  7 00:50:13 2020
+leaf03            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Wed Oct  7 00:50:13 2020
+leaf04            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Wed Oct  7 00:50:09 2020
+leaf04            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Wed Oct  7 00:50:09 2020
+leaf04            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct  7 00:50:09 2020
+leaf04            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Wed Oct  7 00:50:09 2020
+leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:09 2020
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### View the Distribution of Sessions and Alarms
 
-It is useful to know the number of network nodes running the EVPN protocol over a period of time, as it gives you insight into the amount of traffic associated with and breadth of use of the protocol. It is also useful to compare the number of nodes running EVPN with the alarms present at the same time to determine if there is any correlation between the issues and the ability to establish an EVPN session.
+It is useful to know the number of network nodes running the EVPN protocol over a period of time, as it gives you insight into the amount of traffic associated with and breadth of use of the protocol.
 
-To view these distributions, open the medium EVPN Service card.
+It is also useful to compare the number of nodes running EVPN with the alarms present at the same time to determine if there is any correlation between the issues and the ability to establish an EVPN session. This is visible with the NetQ UI.
+
+{{< tabs "TabID87" >}}
+
+{{< tab "NetQ UI" >}}
+
+Open the medium EVPN Service card.
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-medium-230.png" width="200">}}
 
-If a visual correlation is apparent, you can dig a little deeper with the large EVPN Service card tabs.
+If a visual correlation is apparent, you can dig a little deeper with the large card tabs.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view the number of switches running the EVPN service, run:
+
+```
+netq show evpn
+```
+
+Count the switches in the output.
+
+This example shows two border switches and four leaf switches are running the EVPN service.
+
+```
+cumulus@switch:~$ netq show evpn
+Matching evpn records:
+Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
+----------------- ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
+border01          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Wed Oct  7 00:49:27 2020
+border01          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Wed Oct  7 00:49:27 2020
+border02          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Wed Oct  7 00:48:47 2020
+border02          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Wed Oct  7 00:48:47 2020
+leaf01            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Wed Oct  7 00:49:30 2020
+leaf01            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Wed Oct  7 00:49:30 2020
+leaf01            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Wed Oct  7 00:49:30 2020
+leaf01            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Wed Oct  7 00:49:30 2020
+leaf01            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Wed Oct  7 00:49:30 2020
+leaf02            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Wed Oct  7 00:48:25 2020
+leaf02            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Wed Oct  7 00:48:25 2020
+leaf02            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Wed Oct  7 00:48:25 2020
+leaf02            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Wed Oct  7 00:48:25 2020
+leaf02            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Wed Oct  7 00:48:25 2020
+leaf03            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Wed Oct  7 00:50:13 2020
+leaf03            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Wed Oct  7 00:50:13 2020
+leaf03            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:13 2020
+leaf03            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct  7 00:50:13 2020
+leaf03            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Wed Oct  7 00:50:13 2020
+leaf04            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Wed Oct  7 00:50:09 2020
+leaf04            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Wed Oct  7 00:50:09 2020
+leaf04            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct  7 00:50:09 2020
+leaf04            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Wed Oct  7 00:50:09 2020
+leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:09 2020
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### View the Distribution of Layer 3 VNIs
 
 It is useful to know the number of layer 3 VNIs, as it gives you insight into the complexity of the VXLAN.
 
-To view this distribution, open the large EVPN Service card and view the bottom chart on the left.
+{{< tabs "TabID150" >}}
+
+{{< tab "NetQ UI" >}}
+
+To view this distribution, open the large Network Services|All EVPN Services card and view the bottom chart on the left.
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-vni-chart-300.png" width="500">}}
 
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view the distribution of switches running layer 3 VNIs, run:
+
+```
+netq show evpn
+```
+
+Count the switches using layer 3 VNIs (shown in the VNI and Type columns). Compare that to the total number of VNIs (count these from the VNI column) to determine the ratio of layer 3 versus the total VNIs.
+
+This example shows 2 layer 3 VNIs (4001 and 4002) and a total of 5 VNIs (4001, 4002, 10, 20, 30). This then gives a distribution of 2/5 of the total, or 40%.
+
+```
+cumulus@switch:~$ netq show evpn
+Matching evpn records:
+Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
+----------------- ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
+border01          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Wed Oct  7 00:49:27 2020
+border01          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Wed Oct  7 00:49:27 2020
+border02          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Wed Oct  7 00:48:47 2020
+border02          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Wed Oct  7 00:48:47 2020
+leaf01            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Wed Oct  7 00:49:30 2020
+leaf01            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Wed Oct  7 00:49:30 2020
+leaf01            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Wed Oct  7 00:49:30 2020
+leaf01            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Wed Oct  7 00:49:30 2020
+leaf01            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Wed Oct  7 00:49:30 2020
+leaf02            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Wed Oct  7 00:48:25 2020
+leaf02            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Wed Oct  7 00:48:25 2020
+leaf02            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Wed Oct  7 00:48:25 2020
+leaf02            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Wed Oct  7 00:48:25 2020
+leaf02            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Wed Oct  7 00:48:25 2020
+leaf03            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Wed Oct  7 00:50:13 2020
+leaf03            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Wed Oct  7 00:50:13 2020
+leaf03            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:13 2020
+leaf03            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct  7 00:50:13 2020
+leaf03            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Wed Oct  7 00:50:13 2020
+leaf04            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Wed Oct  7 00:50:09 2020
+leaf04            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Wed Oct  7 00:50:09 2020
+leaf04            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct  7 00:50:09 2020
+leaf04            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Wed Oct  7 00:50:09 2020
+leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:09 2020
+```
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### View Devices with the Most EVPN Sessions
 
-You can view the load from EVPN on your switches and hosts using the large EVPN Service card. This data enables you to see which switches are handling the most EVPN traffic currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
+You can view the load from EVPN on your switches and hosts using the large Network Services|All EVPN Sessions card. This data enables you to see which switches are handling the most EVPN traffic currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
 
 To view switches and hosts with the most EVPN sessions:
 
-1. Open the large EVPN Service card.
+1. Open the large Network Services|All EVPN Sessions card.
 
 2. Select **Top Switches with Most Sessions** from the filter above the table.
 
@@ -54,13 +219,13 @@ To view switches and hosts with the most EVPN sessions:
 
 To compare this data with the same data at a previous time:
 
-1. Open another large EVPN Service card.
+1. Open another large Network Services|All EVPN Sessions card.
 
 2. Move the new card next to the original card if needed.
 
 3. Change the time period for the data on the new card by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
 
-4.  Select the time period that you want to compare with the current time.  
+4. Select the time period that you want to compare with the current time.  
 
     You can now see whether there are significant differences between this time period and the previous time period.  
 

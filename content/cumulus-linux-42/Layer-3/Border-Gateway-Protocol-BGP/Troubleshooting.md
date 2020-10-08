@@ -174,7 +174,7 @@ Paths: (5 available, best #5, table default)
       Last update: Wed Oct  7 13:13:13 2020
 ```
 
-## Troubleshoot Link-local Addresses
+## Troubleshoot BGP Unnumbered
 
 To verify that `frr` learned the neighboring link-local IPv6 address via the IPv6 neighbor discovery router advertisements on a given interface, run the NCLU `net show interface <interface>` command or the vtysh `show interface <interface>` command.
 
@@ -220,7 +220,7 @@ Routing
   protodown: off
 ```
 
-## Show IPv4 Prefixes Learned with IPv6 Next Hops
+## Troubleshoot IPv4 Prefixes Learned with IPv6 Next Hops
 
 To show IPv4 prefixes learned with IPv6 next hops, run the following commands:
 

@@ -768,6 +768,88 @@ cumulus@spine01:~$
 
 {{< /tabs >}}
 
+## Neighbor Maximum Prefixes
+
+To configure the maximum number of route announcements (prefixes) that can be received from a BGP neighbor, run the `neighbor <peer> maximum-prefix <value>` command from the `vtysh` shell. For example:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65001
+switch(config-router)# neighbor swp51 maximum-prefix 3000
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+## Peer Groups
+
+Instead of specifying properties of each individual peer, you can define one or more peer groups and associate all the attributes common to that peer session to a peer group. A peer needs to be attached to a peer group only once, when it then inherits all address families activated for that peer group.
+
+After you attach a peer to a peer group, you need to associate an IP address with the peer group. The following example shows how to define and use peer groups:
+
+{{< tabs "34 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor tier-2 peer-group
+cumulus@switch:~$ net add bgp neighbor tier-2 next-hop-self
+cumulus@switch:~$ net add bgp neighbor swp51 peer-group tier-2
+cumulus@switch:~$ net add bgp neighbor swp51 peer-group tier-2
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# neighbor tier-2 peer-group
+switch(config-router)# address-family ipv4 unicast
+switch(config-router-af)# neighbor tier-2 next-hop-self
+switch(config-router-af)# exit
+switch(config-router)# neighbor swp51 peer-group tier-2
+switch(config-router)# neighbor swp51 peer-group tier-2
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{%notice note%}}
+
+BGP peer-group restrictions have been replaced with update-groups, which dynamically examine all peers and group them if they have the same outbound policy.
+
+{{%/notice%}}
+
+For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a peer group.
+
+{{< tabs "16 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 interface peer-group tier-2
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+switch(config-router)# neighbor swp51 interface peer-group tier-2
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ## Graceful BGP Shutdown
 
 To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the node.
@@ -1072,89 +1154,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-## Neighbor Maximum Prefixes
-
-To configure the maximum number of route announcements (prefixes) that can be received from a BGP neighbor, run the `neighbor <peer> maximum-prefix <value>` command from the `vtysh` shell. For example:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65001
-switch(config-router)# neighbor swp51 maximum-prefix 3000
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-## Peer Groups
-
-Instead of specifying properties of each individual peer, you can define one or more peer groups and associate all the attributes common to that peer session to a peer group. A peer needs to be attached to a peer group only once, when it then inherits all address families activated for that peer group.
-
-After you attach a peer to a peer group, you need to associate an IP address with the peer group. The following example shows how to define and use peer groups:
-
-{{< tabs "34 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp neighbor tier-2 peer-group
-cumulus@switch:~$ net add bgp neighbor tier-2 next-hop-self
-cumulus@switch:~$ net add bgp neighbor swp51 peer-group tier-2
-cumulus@switch:~$ net add bgp neighbor swp51 peer-group tier-2
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# neighbor tier-2 peer-group
-switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# neighbor tier-2 next-hop-self
-switch(config-router-af)# exit
-switch(config-router)# neighbor swp51 peer-group tier-2
-switch(config-router)# neighbor swp51 peer-group tier-2
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-{{%notice note%}}
-
-BGP peer-group restrictions have been replaced with update-groups, which dynamically examine all peers and group them if they have the same outbound policy.
-
-{{%/notice%}}
-
-For an unnumbered configuration, you can use a single command to configure a neighbor and attach it to a peer group.
-
-{{< tabs "16 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp neighbor swp51 interface peer-group tier-2
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-switch(config-router)# neighbor swp51 interface peer-group tier-2
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-## Confifgure BGP Timers
+## BGP Timers
 
 ### BGP TTL Security
 

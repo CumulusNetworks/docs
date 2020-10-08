@@ -6,6 +6,10 @@ toc: 3
 ---
 This section describes how to configure BGP using either BGP *numbered* or BGP *unnumbered*. With BGP *unnumbered*, you can set up BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch.
 
+{{%notice note%}}
+BGP *unnumbered* simplifies configuration and is recommended for data center deployments.
+{{%/notice%}}
+
 ## BGP Numbered
 
 To configure BGP numbered on a BGP node, you need to:

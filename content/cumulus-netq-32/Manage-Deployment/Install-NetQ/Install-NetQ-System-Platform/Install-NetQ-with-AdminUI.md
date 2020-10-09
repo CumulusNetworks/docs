@@ -221,12 +221,12 @@ Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/0
 
 When the installation and activation is complete, the NetQ System Health dashboard is visible for tracking the status of key components in the system. The cards displayed represent the deployment chosen:
 
-| Server Arrangement | Deployment Type | Node Card | Pod Card | Kafka Card | Zookeeper Card | Cassandra Card |
+| Server Arrangement | Deployment Type | Node Card/s | Pod Card | Kafka Card | Zookeeper Card | Cassandra Card |
 | ---- | ---- | ---- | :----: | :----: | :----: | :----: |
 | Standalone server | On-premises | Master | Yes | Yes | Yes | Yes |
 | Standalone server | Cloud | Master | Yes | No | No | No |
-| Server cluster | On-premises | Master, 2+ Workers) | Yes | Yes | Yes | Yes |
-| Server cluster | Cloud | n nodes (Master, 2+ Workers) | Yes | No | No | No |
+| Server cluster | On-premises | Master, 2+ Workers | Yes | Yes | Yes | Yes |
+| Server cluster | Cloud | Master, 2+ Workers | Yes | No | No | No |
 
 This example shows a standalone server in an on-premises deployment.
 

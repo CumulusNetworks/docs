@@ -348,7 +348,7 @@ To have only IPv6 global addresses used for route installation into the FRR RIB,
 With this additional configuration, the output in the FRR RIB changes in the direct neighbor case as shown below:
 
 ```
-router bgp 1
+router bgp 65101
   bgp router-id 10.10.10.1
   neighbor 2001:2:2::4 remote-as internal
   neighbor 2001:2:2::4 capability extended-nexthop
@@ -383,7 +383,7 @@ C>* 172.16.10.0/24 is directly connected, swp3, 5d18h32m
 When the route is learned through a route reflector, it appears like this:
 
 ```
-router bgp 1
+router bgp 65101
   bgp router-id 10.10.10.1
   neighbor 2001:1:1::1 remote-as internal
   neighbor 2001:1:1::1 capability extended-nexthop

@@ -24,11 +24,11 @@ The following example commands create a peer group called SPINE that includes tw
 
 ```
 cumulus@leaf01:~$ net add bgp neighbor SPINE peer-group
-cumulus@switch:~$ net add bgp neighbor SPINE remote-as external
-cumulus@switch:~$ net add bgp neighbor 169.254.10.101 peer-group SPINE
-cumulus@switch:~$ net add bgp neighbor 169.254.10.102 peer-group SPINE
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp neighbor SPINE remote-as external
+cumulus@leaf01:~$ net add bgp neighbor 169.254.10.101 peer-group SPINE
+cumulus@leaf01:~$ net add bgp neighbor 169.254.10.102 peer-group SPINE
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -36,18 +36,18 @@ cumulus@switch:~$ net commit
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# neighbor SPINE peer-group
-switch(config-router)# neighbor SPINE remote-as external
-switch(config-router)# neighbor 169.254.10.101 peer-group SPINE
-switch(config-router)# neighbor 169.254.10.102 peer-group SPINE
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor SPINE peer-group
+leaf01(config-router)# neighbor SPINE remote-as external
+leaf01(config-router)# neighbor 169.254.10.101 peer-group SPINE
+leaf01(config-router)# neighbor 169.254.10.102 peer-group SPINE
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 
 ```
 
@@ -62,7 +62,7 @@ For an unnumbered configuration, you can use a single command to configure a nei
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 interface peer-group SPINE
+cumulus@leaf01:~$ net add bgp neighbor swp51 interface peer-group SPINE
 ```
 
 {{< /tab >}}
@@ -70,7 +70,7 @@ cumulus@switch:~$ net add bgp neighbor swp51 interface peer-group SPINE
 {{< tab "vtysh Commands ">}}
 
 ```
-switch(config-router)# neighbor swp51 interface peer-group SPINE
+leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 ```
 
 {{< /tab >}}
@@ -144,10 +144,10 @@ To establish a connection between two eBGP peers that are not directly connected
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor 10.10.10.101 remote-as external
-cumulus@switch:~$ net add bgp neighbor 10.10.10.101 ebgp-multihop
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp neighbor 10.10.10.101 remote-as external
+cumulus@leaf01:~$ net add bgp neighbor 10.10.10.101 ebgp-multihop
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -155,16 +155,16 @@ cumulus@switch:~$ net commit
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-spine01# configure terminal
-spine01(config)# router bgp 65101
-spine01(config-router)# neighbor 10.10.10.101 remote-as external
-spine01(config-router)# neighbor 10.10.10.101 ebgp-multihop
-spine01(config)# exit
-spine01# write memory
-spine01# exit
-cumulus@spine01:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor 10.10.10.101 remote-as external
+leaf01(config-router)# neighbor 10.10.10.101 ebgp-multihop
+leaf01(config)# exit
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -252,11 +252,15 @@ cumulus@spine01:~$
 
 {{< /tabs >}}
 
-You can confirm the configuration with the NCLU `net show bgp neighbor` command or the with the vtysh `show ip bgp neighbor` command. The following example shows that a session with the peer is established and that authentication is enabled (the output shows `Peer Authentication Enabled` towards the end):
+You can confirm the configuration with the NCLU `net show bgp neighbor <neighbor>` command or the with the vtysh `show ip bgp neighbor <neighbor>` command.
+
+{{< expand "net show bgp neighbor <neighbor> example" >}}
+
+The following example shows that a session with the peer is established and that authentication is enabled (the output shows `Peer Authentication Enabled` towards the end):
 
 ```
-cumulus@spine01:~$ net show bgp neighbor swp51
-BGP neighbor on swp51: fe80::2294:15ff:fe02:7bbf, remote AS 65101, local AS 65199, external link
+cumulus@spine01:~$ net show bgp neighbor swp1
+BGP neighbor on swp1: fe80::2294:15ff:fe02:7bbf, remote AS 65101, local AS 65199, external link
 Hostname: leaf01
   BGP version 4, remote router ID 10.10.10.1, local router ID 10.10.10.101
   BGP state = Established, up for 00:00:39
@@ -305,6 +309,8 @@ BGP Connect Retry Timer in Seconds: 10
 Peer Authentication Enabled
 Read thread: on  Write thread: on  FD used: 27
 ```
+
+{{< /expand >}}
 
 {{%notice note%}}
 
@@ -517,15 +523,15 @@ exit-address-family
 To configure the maximum number of route announcements (prefixes) that can be received from a BGP neighbor, run the vtysh `neighbor <peer> maximum-prefix <value>` command. For example:
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65001
-switch(config-router)# neighbor swp51 maximum-prefix 3000
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65001
+leaf01(config-router)# neighbor swp51 maximum-prefix 3000
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 ## BGP Timers
@@ -591,24 +597,24 @@ It is possible that the link is up but the neighboring BGP process is hung or ha
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 timers 10 30
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp neighbor swp51 timers 10 30
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# neighbor swp51 timers 10 30
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp
+leaf01(config-router)# neighbor swp51 timers 10 30
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -618,7 +624,7 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 
 ```
 ...
-router bgp 65000
+router bgp 65101
   ...
   neighbor swp51 timers 10 30
 ...
@@ -636,24 +642,24 @@ The following example commands set the reconnect value to 30 seconds:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 timers connect 30
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp neighbor swp51 timers connect 30
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# neighbor swp51 timers connect 30
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp
+leaf01(config-router)# neighbor swp51 timers connect 30
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -678,24 +684,24 @@ The following example commands set the advertisement interval to 5 seconds:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp neighbor swp51 advertisement-interval 5
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp neighbor swp51 advertisement-interval 5
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# neighbor swp51 advertisement-interval 5
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp
+leaf01(config-router)# neighbor swp51 advertisement-interval 5
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -705,7 +711,7 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 
 ```
 ...
-router bgp 65000
+router bgp 65101
   ...
   neighbor swp51 advertisement-interval 5
 ...
@@ -714,8 +720,8 @@ router bgp 65000
 To show the keepalive interval, hold time, and advertisement interval, you can run the NCLU `net show bgp neighbor <peer>` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
 
 ```
-cumulus@switch:~$ net show bgp neighbor swp51
-BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65020, local AS 65011, external link
+cumulus@leaf01:~$ net show bgp neighbor swp51
+BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65199, local AS 65101, external link
 Hostname: spine01
   Member of peer-group fabric for session parameters
   BGP version 4, remote router ID 0.0.0.0
@@ -1074,17 +1080,17 @@ To configure graceful BGP shutdown:
 To enable graceful shutdown:
 
 ```
-cumulus@switch:~$ net add bgp graceful-shutdown
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp graceful-shutdown
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 To disable graceful shutdown:
 
 ```
-cumulus@switch:~$ net del bgp graceful-shutdown
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net del bgp graceful-shutdown
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -1094,36 +1100,36 @@ cumulus@switch:~$ net commit
 To enable graceful shutdown:
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# bgp graceful-shutdown
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp graceful-shutdown
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@v:~$
 ```
 
 To disable graceful shutdown:
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# no bgp graceful-shutdown
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# no bgp graceful-shutdown
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
 
 {{< /tabs >}}
 
-When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to `0`. To see the configuration, run the NCLU `net show bgp <address>` command or the vtysh `show ip bgp <address>` command. For example:
+When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to `0`. To see the configuration, run the NCLU `net show bgp <route>` command or the vtysh `show ip bgp <route>` command. For example:
 
 ```
 cumulus@switch:~$ net show bgp 10.10.10.0/24

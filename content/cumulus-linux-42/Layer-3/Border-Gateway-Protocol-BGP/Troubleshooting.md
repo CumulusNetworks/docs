@@ -176,13 +176,13 @@ Paths: (5 available, best #5, table default)
 
 ## Troubleshoot BGP Unnumbered
 
-To verify that `frr` learned the neighboring link-local IPv6 address via the IPv6 neighbor discovery router advertisements on a given interface, run the NCLU `net show interface <interface>` command or the vtysh `show interface <interface>` command.
+To verify that FRR learned the neighboring link-local IPv6 address via the IPv6 neighbor discovery router advertisements on a given interface, run the NCLU `net show interface <interface>` command or the vtysh `show interface <interface>` command.
 
 If `ipv6 nd suppress-ra` is not enabled on both ends of the interface, `Neighbor address(s):` has the other end's link-local address (the address that BGP uses when BGP is enabled on that interface).
 
 {{%notice note%}}
 
-IPv6 route advertisements (RAs) are automatically enabled on an interface with IPv6 addresses; the `no ipv6 nd suppress-ra` command is not needed for BGP unnumbered.
+IPv6 route advertisements (RAs) are automatically enabled on an interface with IPv6 addresses. The `no ipv6 nd suppress-ra` command is not needed for BGP unnumbered.
 
 {{%/notice%}}
 
@@ -232,7 +232,7 @@ The following examples show an IPv4 prefix learned from a BGP peer over an IPv6 
 
 ```
 cumulus@spine01:~$ net show bgp ipv4 unicast summary
-BGP router identifier 0.10.10.101, local AS number 65199 vrf-id 0
+BGP router identifier 10.10.10.101, local AS number 65199 vrf-id 0
 BGP table version 3
 RIB entries 1, using 152 bytes of memory
 Peers 1, using 19 KiB of memory
@@ -291,7 +291,7 @@ If an IPv4 prefix is learned with only an IPv6 global next hop address (for exam
 
 ```
 cumulus@leaf01:~$ net show bgp ipv4 unicast summary
-BGP router identifier 10.0.0.13, local AS number 1 vrf-id 0
+BGP router identifier 10.10.10.1, local AS number 1 vrf-id 0
 BGP table version 1
 RIB entries 1, using 152 bytes of memory
 Peers 1, using 19 KiB of memory
@@ -304,7 +304,7 @@ Total number of neighbors 1
 
 ```
 cumulus@leaf01:~$ net show bgp ipv4 unicast
-  BGP table version is 1, local router ID is 10.0.0.13
+  BGP table version is 1, local router ID is 10.10.10.1
   Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
                 i internal, r RIB-failure, S Stale, R Removed
   Origin codes: i - IGP, e - EGP, ? - incomplete
@@ -349,7 +349,7 @@ With this additional configuration, the output in the FRR RIB changes in the dir
 
 ```
 router bgp 1
-  bgp router-id 10.0.0.11
+  bgp router-id 10.10.10.1
   neighbor 2001:2:2::4 remote-as internal
   neighbor 2001:2:2::4 capability extended-nexthop
   !
@@ -384,7 +384,7 @@ When the route is learned through a route reflector, it appears like this:
 
 ```
 router bgp 1
-  bgp router-id 10.0.0.13
+  bgp router-id 10.10.10.1
   neighbor 2001:1:1::1 remote-as internal
   neighbor 2001:1:1::1 capability extended-nexthop
   !
@@ -423,7 +423,7 @@ The following examples show an IPv4 prefix learned from a BGP peer over an IPv6 
 
 ```
 switch# show bgp ipv4 unicast summary
-BGP router identifier 10.0.0.11, local AS number 1 vrf-id 0
+BGP router identifier 10.10.10.101, local AS number 65199 vrf-id 0
 BGP table version 3
 RIB entries 1, using 152 bytes of memory
 Peers 1, using 19 KiB of memory
@@ -437,7 +437,7 @@ Total number of neighbors 1
 ```
 switch# show bgp ipv4 unicast
 BGP table version is 3,
-local router ID is 10.0.0.11
+local router ID is 10.10.10.101
 Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
               i internal, r RIB-failure, S Stale, R Removed
 Origin codes: i - IGP, e - EGP, ?   - incomplete
@@ -482,7 +482,7 @@ If an IPv4 prefix is learned with only an IPv6 global next hop address (for exam
 
 ```
 switch# show bgp ipv4 unicast summary
-BGP router identifier 10.0.0.13, local AS number 1 vrf-id 0
+BGP router identifier 10.10.10.1, local AS number 1 vrf-id 0
 BGP table version 1
 RIB entries 1, using 152 bytes of memory
 Peers 1, using 19 KiB of memory
@@ -493,7 +493,7 @@ Spine01(2001:1:1::1) 4 1   74       68         0     0     0     00:00:45      1
 Total number of neighbors 1
 
 switch# show bgp ipv4 unicast
-BGP table version is 1, local router ID is 10.0.0.13
+BGP table version is 1, local router ID is 10.10.10.1
 Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
               i internal, r RIB-failure, S Stale, R Removed
 Origin codes: i - IGP, e - EGP, ? - incomplete
@@ -534,8 +534,8 @@ With this additional configuration, the output in the FRR RIB changes in the dir
 
 ```
 ...
-router bgp 1
-  bgp router-id 10.0.0.11
+router bgp 65199
+  bgp router-id 10.10.10.101
   neighbor 2001:2:2::4 remote-as internal
   neighbor 2001:2:2::4 capability extended-nexthop
   !
@@ -571,8 +571,8 @@ When the route is learned through a route reflector, it appears like
 this:
 
 ```
-router bgp 1
-  bgp router-id 10.0.0.13
+router bgp 65199
+  bgp router-id 10.10.10.101
   neighbor 2001:1:1::1 remote-as internal
   neighbor 2001:1:1::1 capability extended-nexthop
   !

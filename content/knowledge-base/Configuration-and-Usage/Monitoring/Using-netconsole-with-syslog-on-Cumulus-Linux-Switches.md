@@ -57,7 +57,7 @@ You must reboot the switch at the end of this process to apply the changes.
 
            10.230.130.20 dev eth0 table mgmt src 10.230.130.211 uid 1000
 
-       then the `syslog` server is on the same Ethernet segment. The value to use for the <dev> parameter is the "dev" value reported in the output, "eth0" in this example. The _nexthop ip_ is the first field.
+       then the `syslog` server is on the same Ethernet segment. The value to use for the &lt;dev> parameter is the "dev" value reported in the output, "eth0" in this example. The _nexthop ip_ is the first field.
 
        If the output of the `ip rou get` command is of the following form (with a "via" keyword):
 

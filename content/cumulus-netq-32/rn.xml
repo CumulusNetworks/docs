@@ -7,6 +7,17 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>NETQ-7546</td>
+<td><p>Infra: In an on-premises deployment, the Kafka change logs can fill the NetQ appliance or VM disk space rapidly on systems with a large number of MAC or neighbor entries. If the disk usage exceeds 90%, the NetQ service is partially or completely disrupted. To workaround this issue, reduce the retention setting for log cleanup to 30 minutes by running the following script on your NetQ appliance/VM or the master server in a clustered arrangement:</p>
+
+
+MASTER_IP=&apos;cat /mnt/admin/master_ip&apos; ; topics=<span class="code-quote">"netq-app-route-route_key_v1-changelog netq-app-macs-macs_key-changelog netq-app-neighbor-neighbor_key_v1-changelog netq-app-macfdb-macfdb_key_v3-changelog"</span> ; <span class="code-keyword">for</span> topic in $topics ; <span class="code-keyword">do</span> kubectl exec -it rc/kafka-broker-rc-0 -- kafka-topics --zookeeper $MASTER_IP --topic $topic --alter --config delete.retention.ms=1800000 ; done 
+
+</td>
+<td>3.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>NETQ-7506</td>
 <td><p>CLI: For an on-premises deployment, an access_key and secret_key are not needed for the CLI to access the NetQ Collector. When these keys are configured NetQ assumes the system is in a cloud deployment and tries to validate the SSL certificates. This fails because for NetQ Collectors, the SSL certificates are usually self signed. As a result, the CLI fails with the following error:</p>
 

@@ -8,10 +8,11 @@ The first step in upgrading your NetQ 2.4.x or 3.x installation to NetQ 3.2.0 is
 
 ## Prepare for Upgrade
 
-Two important steps are required to prepare for upgrade of your NetQ Platform:
+Three important steps are required to prepare for upgrade of your NetQ Platform:
 
 - Download the necessary software tarballs
 - Update the Debian packages on physical server and VMs
+- For Cloud VM deployments, increase the root volume disk image size
 
 Optionally, you can choose to back up your NetQ Data before performing the upgrade.
 
@@ -82,6 +83,137 @@ You can ignore the note on the image card because, unlike during installation, y
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ``````
+
+6. If you are upgrading NetQ as a VM in the cloud from version 3.0.0 or earlier, you must increase the root volume disk image size for proper operation of the lifecycle management feature.
+
+    {{< tabs "TabID89" >}}
+
+{{< tab "VMware" >}}
+
+1. Check the size of the existing disk to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
+
+    ```
+    cumulus@netq-310-cloud:~$ df -hm /
+    Filesystem     1M-blocks  Used Available Use% Mounted on
+    /dev/sda1          31583  4771     26797  16% /
+    ```
+
+2. Shutdown the VM.
+
+    {{<figure src="/images/netq/upgrade-root-disk-shutdown-vm-320.png" width="700" caption="Shutting down VMware VM using Shut down button in ESX">}}
+
+3. After the VM is shutdown (Shut down button is grayed out), click **Edit**.
+
+    {{<figure src="/images/netq/upgrade-root-disk-edit-vm-320.png" width="700">}}
+
+4. In the **Edit settings** > **Virtual Hardware** > **Hard disk** field, change the 32 to 64.
+
+    {{<figure src="/images/netq/upgrade-root-disk-edit-size-320.png" width="400">}}
+
+5. Click **Save**.
+
+6. Start the VM, log back in.
+
+7. From step 1 we know the name of the root disk is */dev/sda1*. Use that to run the following commands on the partition.
+
+    ```
+    cumulus@netq-310-cloud:~$ sudo growpart /dev/sda 1
+    CHANGED: partition=1 start=227328 old: size=66881503 end=67108831 new: size=133990367,end=134217695
+
+    cumulus@netq-310-cloud:~$ sudo resize2fs /dev/sda1
+    resize2fs 1.44.1 (24-Mar-2018)
+    Filesystem at /dev/sda1 is mounted on /; on-line resizing required
+    old_desc_blocks = 4, new_desc_blocks = 8
+    The filesystem on /dev/sda1 is now 16748795 (4k) blocks long.
+    ```
+
+6. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB.
+
+    ```
+    cumulus@netq-310-cloud:~$ df -hm /
+    Filesystem     1M-blocks  Used Available Use% Mounted on
+    /dev/sda1          63341  4772     58554   8% /
+    ```
+
+{{< /tab >}}
+
+{{< tab "KVM" >}}
+
+1. Check the size of the existing hard disk to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
+
+    ```
+    cumulus@netq-310-cloud:~$ df -hm /
+    Filesystem     1M-blocks  Used Available Use% Mounted on
+    /dev/vda1          31583  1192     30375   4% /
+    ```
+
+2. Shutdown the VM.
+
+2. Check the size of the existing disk to confirm it is 32 GB. In this example, the size is shown in the **virtual size** field.
+
+    ```
+    root@server:/var/lib/libvirt/images# qemu-img info netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
+    image: netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
+    file format: qcow2
+    virtual size: 32G (34359738368 bytes)
+    disk size: 1.3G
+    cluster_size: 65536
+    Format specific information:
+        compat: 1.1
+        lazy refcounts: false
+        refcount bits: 16
+        corrupt: false
+    ```
+
+4. Add 32 GB to the image.
+
+    ```
+    root@server:/var/lib/libvirt/images# qemu-img resize netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2 +32G
+    Image resized.
+    ```
+
+5. Verify the change.
+
+    ```
+    root@server:/var/lib/libvirt/images# qemu-img info netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
+    image: netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
+    file format: qcow2
+    virtual size: 64G (68719476736 bytes)
+    disk size: 1.3G
+    cluster_size: 65536
+    Format specific information:
+        compat: 1.1
+        lazy refcounts: false
+        refcount bits: 16
+        corrupt: false
+    ```
+
+5. Start the VM and log back in.
+
+6. From step 1 we know the name of the root disk is */dev/vda 1*. Use that to run the following commands on the partition.
+
+    ```
+    cumulus@netq-310-cloud:~$ sudo growpart /dev/vda 1
+    CHANGED: partition=1 start=227328 old: size=66881503 end=67108831 new: size=133990367,end=134217695
+
+    cumulus@netq-310-cloud:~$ sudo resize2fs /dev/vda1
+    resize2fs 1.44.1 (24-Mar-2018)
+    Filesystem at /dev/vda1 is mounted on /; on-line resizing required
+    old_desc_blocks = 4, new_desc_blocks = 8
+    The filesystem on /dev/vda1 is now 16748795 (4k) blocks long.
+    ```
+
+7. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB.
+
+```
+cumulus@netq-310-cloud:~$ df -hm /
+Filesystem     1M-blocks  Used Available Use% Mounted on
+/dev/vda1          63341  1193     62132   2% /
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 You can now upgrade your appliance using the NetQ Admin UI, in the next section. Alternately, you can upgrade using the CLI here: {{<link title="#Upgrade Your Platform Using the NetQ CLI" text="Upgrade Your Platform Using the NetQ CLI">}}.
 

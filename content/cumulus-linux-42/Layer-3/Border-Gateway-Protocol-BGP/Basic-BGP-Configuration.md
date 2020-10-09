@@ -17,7 +17,7 @@ To configure BGP numbered on a BGP node, you need to:
 - Assign an ASN to identify this BGP node. In a two-tier leaf and spine configuration, you can use {{<link title="Border Gateway Protocol - BGP#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically.
 - Assign a router ID, which is a 32-bit value and is typically the address of the loopback interface on the switch.
 - Specify where to distribute routing information by providing the IP address and ASN of the neighbor.
-  - For BGP numbered, this is the IP address of the the interface between the two peers; the interface must be a layer 3 access port.
+  - For BGP numbered, this is the IP address of the interface between the two peers; the interface must be a layer 3 access port.
   - The ASN can be a number, or `internal` for a neighbor in the same AS or `external` for a neighbor in a different AS.
 - Specify which prefixes to originate from this BGP node.
 
@@ -57,7 +57,7 @@ To configure BGP numbered on a BGP node, you need to:
     cumulus@leaf01:~$ net add bgp neighbor 169.254.10.101 remote-as external
     ```
 
-    For BGP to advertise IPv6 prefixes, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family:
 
     ```
     cumulus@leaf01:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
@@ -115,7 +115,7 @@ To configure BGP numbered on a BGP node, you need to:
     cumulus@spine01:~$ net add bgp neighbor 169.254.10.1 remote-as external
     ```
 
-    For BGP to advertise IPv6 prefixes, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family:
 
     ```
     cumulus@spine01:~$ net add bgp neighbor 2001:db8:0002::0a00:1 remote-as external
@@ -170,7 +170,7 @@ To configure BGP numbered on a BGP node, you need to:
    leaf01(config-router)# neighbor 169.254.10.101 remote-as external
    ```
 
-   For BGP to advertise IPv6 prefixes, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
+   For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family:
 
    ```
    leaf01(config-router)# neighbor 2001:db8:0002::0a00:1 remote-as external
@@ -200,7 +200,7 @@ To configure BGP numbered on a BGP node, you need to:
     leaf01(config-router-af)# end
     leaf01# write memory
     leaf01# exit
-    cumulus@switch:~$
+    cumulus@leaf01:~$
     ```
 
 {{< /tab >}}
@@ -225,7 +225,7 @@ To configure BGP numbered on a BGP node, you need to:
     spine01(config-router)# neighbor 169.254.10.1 remote-as external
     ```
 
-   For BGP to advertise IPv6 prefixes, you need to an additional command to activate the BGP neighbor under the IPv6 address family:
+   For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family:
 
    ```
    spine01(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
@@ -272,6 +272,7 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 {{< tab " leaf01 ">}}
 
 ```
+cumulus@leaf01:~$  sudo cat /etc/frr/frr.conf
 ...
 router bgp 65101
  bgp router-id 10.10.10.1
@@ -289,6 +290,7 @@ router bgp 65101
 {{< tab "spine01 ">}}
 
 ```
+cumulus@spine01:~$  sudo cat /etc/frr/frr.conf
 ...
 router bgp 65199
  bgp router-id 10.10.10.101
@@ -360,7 +362,7 @@ cumulus@spine01:~$ net commit
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
@@ -409,6 +411,7 @@ The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` fi
 {{< tab "leaf01 ">}}
 
 ```
+cumulus@leaf01:~$  sudo cat /etc/frr/frr.conf
 ...
 router bgp 65101
  bgp router-id 10.10.10.1
@@ -426,6 +429,7 @@ router bgp 65101
 {{< tab "spine01 ">}}
 
 ```
+cumulus@spine01:~$  sudo cat /etc/frr/frr.conf
 ...
 router bgp 65199
  bgp router-id 10.10.10.101
@@ -443,19 +447,6 @@ router bgp 65199
 
 {{%notice note%}}
 
-Every router or end host must have an IPv4 address to complete a `traceroute` of IPv4 addresses. In this case, the IPv4 address used is that of the loopback device.
-
-Even if extended next-hop encoding (ENHE) is not used in the data center, link addresses are not typically advertised because:
-
-- Link addresses take up valuable FIB resources. In a large Clos environment, the number of such addresses can be quite large.
-- Link addresses expose an additional attack vector for intruders to use to either break in or engage in DDOS attacks.
-
-Assigning an IP address to the loopback device is essential.
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-The NCLU command to remove a BGP neighbor does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed.
+The NCLU command to remove a BGP neighbor (`net del bgp neighbor <interface> remote-as <asn>`) does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed.
 
 {{%/notice%}}

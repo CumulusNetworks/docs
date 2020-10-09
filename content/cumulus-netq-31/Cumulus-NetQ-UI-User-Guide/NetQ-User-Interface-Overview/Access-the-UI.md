@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 240
 toc: 4
 ---
-Logging in to the NetQ UI is as easy as opening any web page.
+The NetQ UI is a web-based application. Logging in and logging out are simple and quick.
 
 To log in to the UI:
 

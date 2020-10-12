@@ -227,12 +227,6 @@ To work around this issue, remove, then add the VRRP configuration with NCLU com
 <td></td>
 </tr>
 <tr>
-<td>CM-30358</td>
-<td><p>The Mellanox Spectrum-3 switch takes approximately fifteen seconds for ports to move from an admin up state to an operational up state. Also, restarting switchd takes more than 120 seconds.</p></td>
-<td>4.2.0-4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-30312</td>
 <td><p>When TACACS+ is configured and the management VRF is enabled, users with privilege level 13 are prevented from running ip and cat commands.</p></td>
 <td>4.0.0-4.2.1</td>
@@ -2181,12 +2175,6 @@ To work around this issue, remove, then add the VRRP configuration with NCLU com
 <td>CM-30361</td>
 <td><p>On Mellanox switches with the Spectrum-2 switch, the lpm-balanced forwarding profile does not work.</p></td>
 <td>4.1.1-4.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-30358</td>
-<td><p>The Mellanox Spectrum-3 switch takes approximately fifteen seconds for ports to move from an admin up state to an operational up state. Also, restarting switchd takes more than 120 seconds.</p></td>
-<td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>

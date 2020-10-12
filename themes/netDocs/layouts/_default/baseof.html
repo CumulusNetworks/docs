@@ -3,6 +3,7 @@
 
 <head>
   {{ partial "head" . }}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tablesaw/3.1.2/tablesaw.min.css" integrity="sha512-FW7xwIsGt3iCswNR3o4kcXqkKDvN8Q7obwdxFODRT+L6XkRtScLElfvobA7bjiC2iTgG/sRaBUqdrhqx0RTauw==" crossorigin="anonymous" />
 </head>
 
 
@@ -59,6 +60,7 @@
 {{ $jsAnnouncementBar := resources.Get "js/announcement-bar.js" }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src = "{{ $jsAnnouncementBar.Permalink }}"> </script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/stacktable.js/1.0.2/stacktable.js"></script> -->
 
 <!-- The following Javascript does not play well with PDF output tools -->
 

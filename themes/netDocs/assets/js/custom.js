@@ -138,7 +138,11 @@ $(document).ready(function() {
 				window.localStorage.setItem('layout','default');
   			mainTag.classList.add('default');
   		}
-  		e.preventDefault();
+			e.preventDefault();
+			
+			if($("h3[id^='open-issues-in-'] + table").length) {
+				resizeTable()
+			}
   	});
   });
 
@@ -198,6 +202,29 @@ $(document).ready(function() {
   window.addEventListener('resize', function () {
     setViewportWidth();
     getClickedLink();
-  }, false);
+	}, false);
+
+	function resizeTable() {
+		var containerWidth = $('.markdown').width();
+		var table = $("h3[id^='open-issues-in-'] + table");
+		$("h3[id^='open-issues-in-'] + table").width(containerWidth)
+	
+		$("h3[id^='open-issues-in-'] + table tbody>tr").each(function () {
+			$(this).find('td').eq(0).css({maxWidth: containerWidth * 0.12 + 'px'})
+			$(this).find('td').eq(1).css({maxWidth: containerWidth * 0.6 + 'px'})
+			$(this).find('td').eq(2).css({maxWidth: containerWidth * 0.24 + 'px'})
+			$(this).find('td').eq(3).css({maxWidth: containerWidth * 0.12 + 'px'})
+		})
+	}
+	if($("h3[id^='open-issues-in-'] + table").length) {
+		resizeTable()
+	}
+
+	$(window).resize(function () {
+		if($("h3[id^='open-issues-in-'] + table").length) {
+			resizeTable()
+		}
+	}) 
+
 
 });

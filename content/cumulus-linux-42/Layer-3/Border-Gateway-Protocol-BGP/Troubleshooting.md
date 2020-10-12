@@ -222,82 +222,87 @@ Routing
 
 ## Troubleshoot IPv4 Prefixes Learned with IPv6 Next Hops
 
-To show IPv4 prefixes learned with IPv6 next hops, run the following commands:
-
-{{< tabs "22 ">}}
-
-{{< tab "NCLU Commands ">}}
+To show IPv4 prefixes learned with IPv6 next hops, run the following commands.
 
 The following examples show an IPv4 prefix learned from a BGP peer over an IPv6 session using IPv6 global addresses, but where the next hop installed by BGP is a link-local IPv6 address. This occurs when the session is directly between peers and both link-local and global IPv6 addresses are included as next hops in the BGP update for the prefix. If both global and link-local next hops exist, BGP prefers the link-local address for route installation.
 
 ```
-cumulus@spine01:~$ net show bgp ipv4 unicast summary
+cumulus@spine01:mgmt:~$ net show bgp ipv4 unicast summary
 BGP router identifier 10.10.10.101, local AS number 65199 vrf-id 0
 BGP table version 3
-RIB entries 1, using 152 bytes of memory
-Peers 1, using 19 KiB of memory
+RIB entries 3, using 576 bytes of memory
+Peers 1, using 21 KiB of memory
 
-Neighbor                         V AS MsgRcvd MsgSent TblVer InQ OutQ Up/Down  State/PfxRcd
-Leaf01(2001:db8:0002::0a00:0002) 4 3   6432    6431    0      0   0   05:21:25           1
+Neighbor                   V      AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
+leaf01(2001:db8:2::a00:1) 4     65101       22        22        0    0    0  00:01:00           0
 
 Total number of neighbors 1
 ```
 
-```
-cumulus@spine01:~$ net show bgp ipv4 unicast
-BGP table version is 3,
-local router ID is 10.10.10.101
-Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
-              i internal, r RIB-failure, S Stale, R Removed
-Origin codes: i - IGP, e - EGP, ?   - incomplete
-
-Network         Next Hop                 Metric LocPrf Weight Path
-*> 172.16.3.0/24 fe80::a00:27ff:fea6:b9fe  0       0       3     i
-
-Displayed 1 routes and 1 total paths
-```
+The equivalent vtysh command is `show bgp ipv4 unicast summary`.
 
 ```
-cumulus@spine01:~$ net show bgp ipv4 unicast 172.16.3.0/24
-BGP routing table entry for 172.16.3.0/24
+cumulus@spine01:mgmt:~$ net show bgp ipv4 unicast
+BGP table version is 3, local router ID is 10.10.10.101, vrf id 0
+Default local pref 100, local AS 65199
+Status codes:  s suppressed, d damped, h history, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+
+   Network          Next Hop                Metric LocPrf Weight Path
+   10.10.10.101/32   fe80::a00:27ff:fea6:b9fe      0     0   32768 i
+
+Displayed  1 routes and 1 total paths
+```
+
+The equivalent vtysh command is `show bgp ipv4 unicast`.
+
+```
+cumulus@spine01:~$ net show bgp ipv4 unicast 10.10.10.101/32
+BGP routing table entry for 10.10.10.101/32
 Paths: (1 available, best #1, table default)
   Advertised to non peer-group peers:
-  Leaf01(2001:1:1::3)
+  Leaf01(2001:db8:0002::0a00:1)
   3
-    2001:1:1::3 from Leaf01(2001:1:1::3) (10.0.0.13)
+    2001:db8:0002::0a00:1 from Leaf01(2001:db8:0002::0a00:1) (10.10.10.101)
     (fe80::a00:27ff:fea6:b9fe) (used)
       Origin IGP, metric 0, valid, external, bestpath-from-AS 3, best (First path received)
       AddPath ID: RX 0, TX 3
       Last update: Mon Oct 22 08:09:22 2018
 ```
 
+The equivalent vtysh command is `show bgp ipv4 unicast 10.10.10.101/32`.
+
 The example output below shows the results of installing the route in the FRR RIB as well as the kernel FIB. Note that the next hop used for installation in the FRR RIB is the link-local IPv6 address, but then it is converted into an IPv4 link-local address as required for installation into the kernel FIB.
 
 ```
-cumulus@spine01:~$ net show route 172.16.3.0/24
-RIB entry for 172.16.3.0/24
+cumulus@spine01:~$ net show route 10.10.10.101/32
+RIB entry for 10.10.10.101/32
 ===========================
-Routing entry for 172.16.3.0/24
+Routing entry for 10.10.10.101/32
   Known via "bgp", distance 20, metric 0, best
   Last update 2d17h05m ago
   * fe80::a00:27ff:fea6:b9fe, via swp1
 
-FIB entry for 172.16.3.0/24
+FIB entry for 10.10.10.101/32
 ===========================
-172.16.3.0/24 via 169.254.0.1 dev swp1 proto bgp metric 20 onlink
+10.10.10.101/32 via 169.254.0.1 dev swp1 proto bgp metric 20 onlink
 ```
+
+The equivalent vtysh command is `show route 10.10.10.101/32`.
 
 If an IPv4 prefix is learned with only an IPv6 global next hop address (for example, when the route is learned through a route reflector), the command output shows the IPv6 global address as the next hop value and shows that it is learned recursively through the link-local address of the route reflector. Note that when a global IPv6 address is used as a next hop for route installation in the FRR RIB, it is still converted into an IPv4 link-local address for installation into the kernel.
 
 ```
 cumulus@leaf01:~$ net show bgp ipv4 unicast summary
-BGP router identifier 10.10.10.1, local AS number 1 vrf-id 0
+BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
 BGP table version 1
 RIB entries 1, using 152 bytes of memory
 Peers 1, using 19 KiB of memory
 
 Neighbor             V AS MsgRcvd  MsgSent  TblVer  InQ  OutQ  Up/Down  State/PfxRcd
-Spine01(2001:1:1::1) 4 1   74       68         0     0     0     00:00:45      1
+Spine01(2001:db8:0002::0a00:2) 4 1   74       68         0     0     0     00:00:45      1
 
 Total number of neighbors 1
 ```
@@ -309,38 +314,38 @@ cumulus@leaf01:~$ net show bgp ipv4 unicast
                 i internal, r RIB-failure, S Stale, R Removed
   Origin codes: i - IGP, e - EGP, ? - incomplete
 
-Network Next Hop Metric LocPrf Weight Path
-*>i172.16.4.0/24 2001:2:2::4 0 100 0 i
+Network          Next Hop    Metric LocPrf Weight Path
+*>i10.1.10.0/24 2001:2:2::4       0    100      0    i
 
 Displayed 1 routes and 1 total paths
 ```
 
 ```
-cumulus@leaf01:~$ net show bgp ipv4 unicast 172.16.4.0/24
-BGP routing table entry for 172.16.4.0/24
+cumulus@leaf01:~$ net show bgp ipv4 unicast 10.10.10.101/32
+BGP routing table entry for 10.10.10.101/32
 Paths: (1 available, best #1, table default)
   Not advertised to any peer
   Local
-  2001:2:2::4 from Spine01(2001:1:1::1) (10.0.0.14)
+  2001:2:2::4 from Spine01(2001:1:1::1) (10.10.10.104)
     Origin IGP, metric 0, localpref 100, valid, internal, bestpath-from-AS Local, best (First path received)
-    Originator: 10.0.0.14, Cluster list: 10.0.0.11
+    Originator: 10.0.0.14, Cluster list: 10.10.10.111
     AddPath ID: RX 0, TX 5
     Last update: Mon Oct 22 14:25:30 2018
 ```
 
 ```
-cumulus@leaf01:~$ net show route 172.16.4.0/24
-RIB entry for 172.16.4.0/24
+cumulus@leaf01:~$ net show route 10.10.10.1/32
+RIB entry for 10.10.10.1/32
 ===========================
-Routing entry for 172.16.4.0/24
+Routing entry for 10.10.10.1/32
   Known via "bgp", distance 200, metric 0, best
   Last update 00:01:13 ago
   2001:2:2::4 (recursive)
   * fe80::a00:27ff:fe5a:84ae, via swp1
 
-FIB entry for 172.16.4.0/24
+FIB entry for 10.10.10.1/32
 ===========================
-172.16.4.0/24 via 169.254.0.1 dev swp1 proto bgp metric 20 onlink
+10.10.10.1/32 via 169.254.0.1 dev swp1 proto bgp metric 20 onlink
 ```
 
 To have only IPv6 global addresses used for route installation into the FRR RIB, you must add an additional route map to the neighbor or peer group statement in the appropriate address family. When the route map command `set ipv6 next-hop prefer-global` is applied to a neighbor, if both a link-local and global IPv6 address are in the BGP update for a prefix, the IPv6 global address is preferred for route installation.
@@ -350,11 +355,11 @@ With this additional configuration, the output in the FRR RIB changes in the dir
 ```
 router bgp 65101
   bgp router-id 10.10.10.1
-  neighbor 2001:2:2::4 remote-as internal
-  neighbor 2001:2:2::4 capability extended-nexthop
+  neighbor 2001:db8:2::a00:1 remote-as internal
+  neighbor 2001:db8:2::a00:1 capability extended-nexthop
   !
   address-family ipv4 unicast
-  neighbor 2001:2:2::4 route-map GLOBAL in
+  neighbor 2001:db8:2::a00:1 route-map GLOBAL in
   exit-address-family
 !
 route-map GLOBAL permit 20
@@ -369,14 +374,14 @@ cumulus@leaf01:~$ net show route
 Codes: K - kernel route, C - connected, S - static, R - RIP,
     O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
     T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
-    F - PBR, 
+    F - PBR,
     > - selected route, * - FIB route
 
 B 0.0.0.0/0 [200/0] via 2001:2:2::4, swp2, 00:01:00
 K 0.0.0.0/0 [0/0] via 10.0.2.2, eth0, 1d02h29m
 C>* 10.0.0.9/32 is directly connected, lo, 5d18h32m
 C>* 10.0.2.0/24 is directly connected, eth0, 03:51:31
-B>* 172.16.4.0/24 [200/0] via 2001:2:2::4, swp2, 00:01:00
+B>* 172.16.4.0/24 [200/0] via 2001:2:2::4, swp2, 00:01:00ß
 C>* 172.16.10.0/24 is directly connected, swp3, 5d18h32m
 ```
 
@@ -385,12 +390,12 @@ When the route is learned through a route reflector, it appears like this:
 ```
 router bgp 65101
   bgp router-id 10.10.10.1
-  neighbor 2001:1:1::1 remote-as internal
-  neighbor 2001:1:1::1 capability extended-nexthop
+  neighbor 2001:db8:2::a00:2 remote-as internal
+  neighbor 2001:db8:2::a00:2 capability extended-nexthop
   !
   address-family ipv6 unicast
-  neighbor 2001:1:1::1 activate
-  neighbor 2001:1:1::1 route-map GLOBAL in
+  neighbor 2001:db8:2::a00:2 activate
+  neighbor 2001:db8:2::a00:2 route-map GLOBAL in
   exit-address-family
 !
 route-map GLOBAL permit 10
@@ -414,196 +419,6 @@ B>  172.16.4.0/24 [200/0] via 2001:2:2::4 (recursive), 00:00:01
   *                         via 2001:1:1::1, swp1, 00:00:01
 C>* 172.16.10.0/24 is directly connected, swp3, 3d00h26m
 ```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-The following examples show an IPv4 prefix learned from a BGP peer over an IPv6 session using IPv6 global addresses, but where the next hop installed by BGP is a link-local IPv6 address. This occurs when the session is directly between peers and both link-local and global IPv6 addresses are included as next hops in the BGP update for the prefix. If both global and link-local next hops exist, BGP prefers the link-local address for route installation.
-
-```
-switch# show bgp ipv4 unicast summary
-BGP router identifier 10.10.10.101, local AS number 65199 vrf-id 0
-BGP table version 3
-RIB entries 1, using 152 bytes of memory
-Peers 1, using 19 KiB of memory
-
-Neighbor            V AS MsgRcvd MsgSent TblVer InQ OutQ Up/Down  State/PfxRcd
-Leaf01(2001:1:1::3) 4 3   6432    6431    0      0   0   05:21:25           1
-
-Total number of neighbors 1
-```
-
-```
-switch# show bgp ipv4 unicast
-BGP table version is 3,
-local router ID is 10.10.10.101
-Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
-              i internal, r RIB-failure, S Stale, R Removed
-Origin codes: i - IGP, e - EGP, ?   - incomplete
-
-  Network         Next Hop                 Metric LocPrf Weight Path
-*> 172.16.3.0/24 fe80::a00:27ff:fea6:b9fe  0       0       3     i
-
-Displayed 1 routes and 1 total paths
-```
-
-```
-switch# show bgp ipv4 unicast 172.16.3.0/24
-BGP routing table entry for 172.16.3.0/24
-Paths: (1 available, best #1, table default)
-  Advertised to non peer-group peers:
-  Leaf01(2001:1:1::3)
-  3
-    2001:1:1::3 from Leaf01(2001:1:1::3) (10.0.0.13)
-    (fe80::a00:27ff:fea6:b9fe) (used)
-      Origin IGP, metric 0, valid, external, bestpath-from-AS 3, best
-      AddPath ID: RX 0, TX 3
-      Last update: Mon Oct 22 08:09:22 2018
-```
-
-The example output below shows the results of installing the route in the FRR RIB as well as the kernel FIB. Note that the next hop used for installation in the FRR RIB is the link-local IPv6 address, but then it is converted into an IPv4 link-local address as required for installation into the kernel FIB.
-
-```
-switch# show route 172.16.3.0/24
-RIB entry for 172.16.3.0/24
-===========================
-Routing entry for 172.16.3.0/24
-  Known via "bgp", distance 20, metric 0, best
-  Last update 2d17h05m ago
-  * fe80::a00:27ff:fea6:b9fe, via swp1
-
-FIB entry for 172.16.3.0/24
-===========================
-172.16.3.0/24 via 169.254.0.1 dev swp1 proto bgp metric 20 onlink
-```
-
-If an IPv4 prefix is learned with only an IPv6 global next hop address (for example, when the route is learned through a route reflector), the command output shows the IPv6 global address as the next hop value and shows that it is learned recursively through the link-local address of the route reflector. Note that when a global IPv6 address is used as a next hop for route installation in the FRR RIB, it is still converted into an IPv4 link-local address for installation into the kernel.
-
-```
-switch# show bgp ipv4 unicast summary
-BGP router identifier 10.10.10.1, local AS number 1 vrf-id 0
-BGP table version 1
-RIB entries 1, using 152 bytes of memory
-Peers 1, using 19 KiB of memory
-
-Neighbor             V AS MsgRcvd  MsgSent  TblVer  InQ  OutQ  Up/Down  State/PfxRcd
-Spine01(2001:1:1::1) 4 1   74       68         0     0     0     00:00:45      1
-
-Total number of neighbors 1
-
-switch# show bgp ipv4 unicast
-BGP table version is 1, local router ID is 10.10.10.1
-Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
-              i internal, r RIB-failure, S Stale, R Removed
-Origin codes: i - IGP, e - EGP, ? - incomplete
-  
-Network Next Hop Metric LocPrf Weight Path
-*>i172.16.4.0/24 2001:2:2::4 0 100 0 i
-
-Displayed 1 routes and 1 total paths
-
-switch# show bgp ipv4 unicast 172.16.4.0/24
-BGP routing table entry for 172.16.4.0/24
-Paths: (1 available, best #1, table default)
-  Not advertised to any peer
-  Local
-  2001:2:2::4 from Spine01(2001:1:1::1) (10.0.0.14)
-    Origin IGP, metric 0, localpref 100, valid, internal, bestpath-from-AS Local, best
-    Originator: 10.0.0.14, Cluster list: 10.0.0.11
-    AddPath ID: RX 0, TX 5
-    Last update: Mon Oct 22 14:25:30 2018
-
-switch# show route 172.16.4.0/24
-RIB entry for 172.16.4.0/24
-===========================
-Routing entry for 172.16.4.0/24
-  Known via "bgp", distance 200, metric 0, best
-  Last update 00:01:13 ago
-  2001:2:2::4 (recursive)
-  * fe80::a00:27ff:fe5a:84ae, via swp1
-
-FIB entry for 172.16.4.0/24
-===========================
-172.16.4.0/24 via 169.254.0.1 dev swp1 proto bgp metric 20 onlink
-```
-
-To have only IPv6 global addresses used for route installation into the FRR RIB, you must add an additional route map to the neighbor or peer group statement in the appropriate address family. When the route map command `set ipv6 next-hop prefer-global` is applied to a neighbor, if both a link-local and global IPv6 address are in the BGP update for a prefix, the IPv6 global address is preferred for route installation.
-
-With this additional configuration, the output in the FRR RIB changes in the direct neighbor case as shown below:
-
-```
-...
-router bgp 65199
-  bgp router-id 10.10.10.101
-  neighbor 2001:2:2::4 remote-as internal
-  neighbor 2001:2:2::4 capability extended-nexthop
-  !
-  address-family ipv4 unicast
-  neighbor 2001:2:2::4 route-map GLOBAL in
-  exit-address-family
-!
-route-map GLOBAL permit 20
-  set ipv6 next-hop prefer-global
-!
-...
-```
-
-The resulting FRR RIB output is as follows:
-
-```
-switch# show ip route
-Codes: K - kernel route, C - connected, S - static, R - RIP,
-       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
-       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
-       F - PBR,
-       > - selected route, * - FIB route
-
-B 0.0.0.0/0 [200/0] via 2001:2:2::4, swp2, 00:01:00
-K 0.0.0.0/0 [0/0] via 10.0.2.2, eth0, 1d02h29m
-C>* 10.0.0.9/32 is directly connected, lo, 5d18h32m
-C>* 10.0.2.0/24 is directly connected, eth0, 03:51:31
-B>* 172.16.4.0/24 [200/0] via 2001:2:2::4, swp2, 00:01:00
-C>* 172.16.10.0/24 is directly connected, swp3, 5d18h32m
-```
-
-When the route is learned through a route reflector, it appears like
-this:
-
-```
-router bgp 65199
-  bgp router-id 10.10.10.101
-  neighbor 2001:1:1::1 remote-as internal
-  neighbor 2001:1:1::1 capability extended-nexthop
-  !
-  address-family ipv6 unicast
-  neighbor 2001:1:1::1 activate
-  neighbor 2001:1:1::1 route-map GLOBAL in
-  exit-address-family
-!
-route-map GLOBAL permit 10
-  set ipv6 next-hop prefer-global
-
-switch# show ip route
-Codes: K - kernel route, C - connected, S - static, R - RIP,
-       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
-       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
-       F - PBR,
-       > - selected route, * - FIB route
-
-B   0.0.0.0/0 [200/0] via 2001:2:2::4, 00:00:01
-K   0.0.0.0/0 [0/0] via 10.0.2.2, eth0, 3d00h26m
-C>* 10.0.0.8/32 is directly connected, lo, 3d00h26m
-C>* 10.0.2.0/24 is directly connected, eth0, 03:39:18
-C>* 172.16.3.0/24 is directly connected, swp2, 3d00h26m
-B>  172.16.4.0/24 [200/0] via 2001:2:2::4 (recursive), 00:00:01
-  *                         via 2001:1:1::1, swp1, 00:00:01
-C>* 172.16.10.0/24 is directly connected, swp3, 3d00h26m
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
 
 ## Neighbor State Change Log
 

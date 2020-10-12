@@ -316,7 +316,7 @@ When using auto BGP, there are no references to `leaf` or `spine` in the configu
 
 The following example commands show a basic BGP unnumbered configuration for two switches, leaf01 and spine01, which are eBPG peers.
 
-The only difference between this BGP unnumbered configuration and the BGP numbered configuration shown above, is that the BGP neighbour is specified as an interface (insead of an IP address). The interface between the two peers does **not** need to have an IP address configured on each side.
+The only difference between a BGP unnumbered configuration and the BGP numbered configuration shown above, is that the BGP neighbour is specified as an interface (insead of an IP address). The interface between the two peers does **not** need to have an IP address configured on each side.
 
 {{< tabs "354 ">}}
 

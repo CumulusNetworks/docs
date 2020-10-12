@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 814
 toc: 3
 ---
-This section describes optional configuration procedures. The steps provided in this section assume that you already configured basic BGP as described in {{<link url="Basic-BGP-Configuration" >}}.
+This section describes optional configuration. The steps provided in this section assume that you already configured basic BGP as described in {{<link url="Basic-BGP-Configuration" >}}.
 
 ## Peer Groups
 
@@ -540,9 +540,14 @@ BGP includes several timers that you can configure.
 
 ### BGP TTL Security Hop Count
 
-TTL security hops is enabled for all links so that BGP only establishes eBGP peering or maintains sessions if the TTL value in the IP packet header is equal to or greater than the TTL value configured for the neighbor. The hop count is used to configure the number of hops separating the two peers.
+You can use the TTL security hop count option to prevent attacks against eBGP, such as denial of service (DoS) attacks.
+By default, BGP messages are sent to eBGP neighbors with an IP time-to-live (TTL) of 1, which requires the peer to be directly connected, otherwise, the packets expire along the way. (You can adjust the TTL with {{<link url="#ebgp-multihop" text="eBGP multihop">}} option.) An attacker can easily adjust the TTL of packets so that they appear to originating from a peer that is directly connected.
 
-To change the TTL security hop count:
+The BGP TTL security hops option inverts the direction in which the TTL is counted. Instead of accepting only packets with a TTL set to 1, only BGP messages with a TTL greater than or equal to 255 minus the specified hop count are accepted.
+
+When TTL security is in use, eBGP multihop is no longer needed.
+
+The following command example sets the TTL security hop count value to 200:
 
 {{< tabs "44 ">}}
 {{< tab "NCLU Commands ">}}
@@ -571,10 +576,20 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+  ...
+  neighbor swp51 ttl-security hops 200
+...
+```
+
 {{%notice note%}}
 
-- When you configure BGP TTL security on a peer group instead of a specific neighbor, FRR does not add BGP `ttl-security` to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security` to individual neighbors instead of the peer group.
-- Enabling `ttl-security` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware. For example, configure a file, such as `/etc/cumulus/acl/policy.d/01control_plane_bgp.rules`, with a rule similar to the following:
+- When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
+- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware. For example, configure a file, such as `/etc/cumulus/acl/policy.d/01control_plane_bgp.rules`, with a rule similar to the following:
 
    ```
    INGRESS_INTF = swp1
@@ -591,7 +606,9 @@ cumulus@leaf01:~$
 
 ### Keepalive Interval
 
-It is possible that the link is up but the neighboring BGP process is hung or has crashed. In this case, the FRRouting `watchfrr` daemon, which monitors the various FRRouting daemons, attempts to restart it. BGP itself has a keepalive interval that is exchanged between neighbors. By default, this keepalive interval is set to 3 seconds. You can increase this interval to a higher value, which decreases CPU load, especially in the presence of a lot of neighbors. The keepalive interval is the periodicity with which the keepalive message is sent. The hold time specifies how many keepalive messages can be lost before the connection is considered invalid, and is typically set to three times the keepalive time and defaults to 9 seconds. The following example commands set the keepalive interval to 10 seconds and the hold time to 30 seconds.
+If a link is up but the neighboring BGP process hangs or crashes, the FRRouting `watchfrr` daemon, which monitors the various FRRouting daemons, attempts to restart it. BGP itself has a keepalive interval that is exchanged between neighbors. By default, this keepalive interval is set to 3 seconds. You can increase this interval to a higher value, which decreases CPU load, especially in the presence of a lot of neighbors. The keepalive interval is the periodicity with which the keepalive message is sent. The hold time specifies how many keepalive messages can be lost before the connection is considered invalid, and is typically set to three times the keepalive time and defaults to 9 seconds.
+
+The following example commands set the keepalive interval to 10 seconds and the hold time to 30 seconds.
 
 {{< tabs "64 ">}}
 {{< tab "NCLU Commands ">}}
@@ -714,33 +731,6 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 router bgp 65101
   ...
   neighbor swp51 advertisement-interval 5
-...
-```
-
-To show the keepalive interval, hold time, and advertisement interval, you can run the NCLU `net show bgp neighbor <peer>` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
-
-```
-cumulus@leaf01:~$ net show bgp neighbor swp51
-BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65199, local AS 65101, external link
-Hostname: spine01
-  Member of peer-group fabric for session parameters
-  BGP version 4, remote router ID 0.0.0.0
-  BGP state = Connect
-  Last read 00:04:37, Last write 00:44:07
-  Hold time is 30, keepalive interval is 10 seconds
-  Configured hold time is 30, keepalive interval is 10 seconds
-  Message statistics:
-    Inq depth is 0
-    Outq depth is 0
-                          Sent       Rcvd
-    Opens:                  1          1
-    Notifications:          1          0
-    Updates:                7          6
-    Keepalives:          2374       2373
-    Route Refresh:          0          0
-    Capability:             0          0
-    Total:               2383       2380
-  Minimum time between advertisement runs is 5 seconds
 ...
 ```
 
@@ -1069,9 +1059,7 @@ Paths: (3 available, best #3, table Default-IP-Routing-Table)
 
 ## Graceful BGP Shutdown
 
-To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the node.
-
-To configure graceful BGP shutdown:
+To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the BGP node:
 
 {{< tabs "Graceful BGP shutdown">}}
 
@@ -1156,9 +1144,9 @@ Paths: (2 available, best #1, table Default-IP-Routing-Table)
 
 As BGP peers are established and updates are received, prefixes might be installed in the RIB and advertised to BGP peers even though the information from all peers is not yet received and processed. Depending on the timing of the updates, prefixes might be installed and propagated through BGP, and then immediately withdrawn and replaced with new routing information. Read-only mode minimizes this BGP route churn in both the local RIB and with BGP peers.
 
-Enable read-only mode to reduce CPU and network usage when you restart the BGP process. Because intermediate best paths are possible for the same prefix as peers get established and start receiving updates at different times, read-only mode is particularly useful in topologies where BGP learns a prefix from many peers and the network has a high number of prefixes.
+Enable read-only mode to reduce CPU and network usage when restarting the BGP process. Because intermediate best paths are possible for the same prefix as peers get established and start receiving updates at different times, read-only mode is particularly useful in topologies where BGP learns a prefix from many peers and the network has a high number of prefixes.
 
-The following example commands enable read-only mode, set the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
+The following example commands enable read-only mode, sets the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
 
 The default value for max-delay is 0, which disables read-only mode. The update delay and establish wait can be any value between 0 and 3600 seconds. The `establish-wait` setting is optional; however, if specified, it must be shorter than the `max-delay`.
 
@@ -1194,7 +1182,7 @@ cumulus@switch:~$
 
 Read-only mode begins as soon as the first peer reaches its established state and the `max-delay` timer starts, and continues until either of the following two conditions are met:
 
-- All the configured peers (except the shutdown peers) have sent an explicit EOR (End-Of-RIB) or an implicit EOR. The first keep-alive after BGP has reached the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends.
+- All the configured peers (except the shutdown peers) have sent an explicit EOR (End-Of-RIB) or an implicit EOR. The first keep-alive after BGP reaches the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends.
 
   The minimum set of established peers for which EOR is expected are the peers that are established during the `establish-wait window,` not necessarily all the configured neighbors.
 
@@ -1212,9 +1200,7 @@ You can apply {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" 
 - Filter routes from Zebra into the Linux kernel
 
 {{%notice info%}}
-In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`.
-
-This is a known limitation in `network-docopt`, which NCLU uses to parse commands.
+In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`. This is a known limitation in `network-docopt`, which NCLU uses to parse commands.
 {{%/notice%}}
 
 ### Filter Routes from BGP into Zebra
@@ -1291,7 +1277,7 @@ cumulus@switch:~$
 
 ## BGP Community Lists
 
-You can use *{{<exlink url="http://docs.frrouting.org/en/latest/bgp.html#community-lists" text="community lists">}}* to define a BGP community to tag one or more routes. You can then use the communities to apply acroute policy on either egress or ingress.
+You can use *{{<exlink url="http://docs.frrouting.org/en/latest/bgp.html#community-lists" text="community lists">}}* to define a BGP community to tag one or more routes. You can then use the communities to apply a route policy on either egress or ingress.
 
 The BGP community list can be either *standard* or *expanded.* The standard BGP community list is a pair of values (such as *100:100*) that can be tagged on a specific prefix and advertised to other neighbors or applied on route ingress. Or, it can be one of four BGP default communities:
 

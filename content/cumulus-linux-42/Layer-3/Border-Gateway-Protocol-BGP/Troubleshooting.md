@@ -420,6 +420,35 @@ B>  172.16.4.0/24 [200/0] via 2001:2:2::4 (recursive), 00:00:01
 C>* 172.16.10.0/24 is directly connected, swp3, 3d00h26m
 ```
 
+## Check BGP Timer Settings
+
+To check BGP timers, such as the the BGP keepalive interval, hold time, and advertisement interval, run the NCLU `net show bgp neighbor <peer>` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
+
+```
+cumulus@leaf01:~$ net show bgp neighbor swp51
+BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65199, local AS 65101, external link
+Hostname: spine01
+  Member of peer-group fabric for session parameters
+  BGP version 4, remote router ID 0.0.0.0
+  BGP state = Connect
+  Last read 00:04:37, Last write 00:44:07
+  Hold time is 30, keepalive interval is 10 seconds
+  Configured hold time is 30, keepalive interval is 10 seconds
+  Message statistics:
+    Inq depth is 0
+    Outq depth is 0
+                          Sent       Rcvd
+    Opens:                  1          1
+    Notifications:          1          0
+    Updates:                7          6
+    Keepalives:          2374       2373
+    Route Refresh:          0          0
+    Capability:             0          0
+    Total:               2383       2380
+  Minimum time between advertisement runs is 5 seconds
+...
+```
+
 ## Neighbor State Change Log
 
 Cumulus Linux records the changes that a neighbor goes through in the `/var/log/frr/frr.log` file. For example:

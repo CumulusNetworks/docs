@@ -1192,6 +1192,10 @@ div.notices.note {
     font-size: .882rem;
     line-height: 1.764rem;
     padding: 1.6rem 0 0;
+
+    ~p {
+      padding: 0
+    }
   }
 
   a {
@@ -1664,7 +1668,10 @@ footer {
 }
 
 .markdown td {
-  font-size: 0.76rem;
+  font-size: .882rem;
+  code,pre {
+    font-size: .882rem;
+  }
 }
 
 .book-tabs input[type="radio"] {
@@ -1805,5 +1812,4 @@ footer {
     }
   }
 }
-  
 

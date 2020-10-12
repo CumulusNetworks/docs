@@ -90,7 +90,7 @@ You can ignore the note on the image card because, unlike during installation, y
 
 {{< tab "VMware" >}}
 
-1. Check the size of the existing disk to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
+1. Check the size of the existing disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
 
     ```
     cumulus@netq-310-cloud:~$ df -hm /
@@ -106,7 +106,7 @@ You can ignore the note on the image card because, unlike during installation, y
 
     {{<figure src="/images/netq/upgrade-root-disk-edit-vm-320.png" width="700">}}
 
-4. In the **Edit settings** > **Virtual Hardware** > **Hard disk** field, change the 32 to 64.
+4. In the **Edit settings** > **Virtual Hardware** > **Hard disk** field, change the 32 to 64 on the server hosting the VM.
 
     {{<figure src="/images/netq/upgrade-root-disk-edit-size-320.png" width="400">}}
 
@@ -139,7 +139,7 @@ You can ignore the note on the image card because, unlike during installation, y
 
 {{< tab "KVM" >}}
 
-1. Check the size of the existing hard disk to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
+1. Check the size of the existing hard disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
 
     ```
     cumulus@netq-310-cloud:~$ df -hm /
@@ -149,7 +149,7 @@ You can ignore the note on the image card because, unlike during installation, y
 
 2. Shutdown the VM.
 
-2. Check the size of the existing disk to confirm it is 32 GB. In this example, the size is shown in the **virtual size** field.
+2. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size is shown in the **virtual size** field.
 
     ```
     root@server:/var/lib/libvirt/images# qemu-img info netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2

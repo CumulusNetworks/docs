@@ -5,7 +5,7 @@ weight: 555
 toc: 4
 ---
 
-*EVPN multihoming* (EVPN-MH) provides support for active-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG:
+*EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG:
 
 - Eliminates the need for peerlinks or inter-switch links between the top of rack switches
 - Allows more than two TOR switches to participate in a redundancy group
@@ -26,7 +26,7 @@ However, when using Spectrum A1 switches, a maximum of two switches can particip
 
 ## Supported Features
 
-- Known unicast traffic multihoming via type-1/EAD (Ethernet auto discovery) routes and type-2 (non-zero ESI) routes. Includes active-active redundancy via aliasing and support for fast failover.
+- Known unicast traffic multihoming via type-1/EAD (Ethernet auto discovery) routes and type-2 (non-zero ESI) routes. Includes all-active redundancy via aliasing and support for fast failover.
 - EVPN BUM traffic handling with {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes, which includes split-horizon-filtering and designated forwarder election.
 
   {{%notice warning%}}

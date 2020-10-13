@@ -115,7 +115,7 @@ To configure BGP numbered on a BGP node, you need to:
     cumulus@spine01:~$ net add bgp neighbor 169.254.10.1 remote-as external
     ```
 
-    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family:
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange
 
     ```
     cumulus@spine01:~$ net add bgp neighbor 2001:db8:0002::0a00:1 remote-as external
@@ -225,7 +225,7 @@ To configure BGP numbered on a BGP node, you need to:
     spine01(config-router)# neighbor 169.254.10.1 remote-as external
     ```
 
-   For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family:
+   For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
    ```
    spine01(config-router)# neighbor 2001:db8:0002::0a00:0002 remote-as external
@@ -444,9 +444,3 @@ router bgp 65199
 {{< /tab >}}
 
 {{< /tabs >}}
-
-{{%notice note%}}
-
-The NCLU command to remove a BGP neighbor (`net del bgp neighbor <interface> remote-as <asn>`) does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed.
-
-{{%/notice%}}

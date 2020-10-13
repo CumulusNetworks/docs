@@ -176,7 +176,7 @@ Paths: (5 available, best #5, table default)
 
 ## Troubleshoot BGP Unnumbered
 
-To verify that FRR learned the neighboring link-local IPv6 address via the IPv6 neighbor discovery router advertisements on a given interface, run the NCLU `net show interface <interface>` command or the vtysh `show interface <interface>` command.
+To verify that FRR learned the neighboring link-local IPv6 address through the IPv6 neighbor discovery router advertisements on a given interface, run the NCLU `net show interface <interface>` command or the vtysh `show interface <interface>` command.
 
 If `ipv6 nd suppress-ra` is not enabled on both ends of the interface, `Neighbor address(s):` has the other end's link-local address (the address that BGP uses when BGP is enabled on that interface).
 
@@ -239,8 +239,6 @@ leaf01(2001:db8:2::a00:1) 4     65101       22        22        0    0    0  00:
 Total number of neighbors 1
 ```
 
-The equivalent vtysh command is `show bgp ipv4 unicast summary`.
-
 ```
 cumulus@spine01:mgmt:~$ net show bgp ipv4 unicast
 BGP table version is 3, local router ID is 10.10.10.101, vrf id 0
@@ -256,8 +254,6 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete
 Displayed  1 routes and 1 total paths
 ```
 
-The equivalent vtysh command is `show bgp ipv4 unicast`.
-
 ```
 cumulus@spine01:~$ net show bgp ipv4 unicast 10.10.10.101/32
 BGP routing table entry for 10.10.10.101/32
@@ -271,8 +267,6 @@ Paths: (1 available, best #1, table default)
       AddPath ID: RX 0, TX 3
       Last update: Mon Oct 22 08:09:22 2018
 ```
-
-The equivalent vtysh command is `show bgp ipv4 unicast 10.10.10.101/32`.
 
 The example output below shows the results of installing the route in the FRR RIB as well as the kernel FIB. Note that the next hop used for installation in the FRR RIB is the link-local IPv6 address, but then it is converted into an IPv4 link-local address as required for installation into the kernel FIB.
 
@@ -289,8 +283,6 @@ FIB entry for 10.10.10.101/32
 ===========================
 10.10.10.101/32 via 169.254.10.101 dev swp1 proto bgp metric 20 onlink
 ```
-
-The equivalent vtysh command is `show route 10.10.10.101/32`.
 
 If an IPv4 prefix is learned with only an IPv6 global next hop address (for example, when the route is learned through a route reflector), the command output shows the IPv6 global address as the next hop value and shows that it is learned recursively through the link-local address of the route reflector. Note that when a global IPv6 address is used as a next hop for route installation in the FRR RIB, it is still converted into an IPv4 link-local address for installation into the kernel.
 
@@ -422,7 +414,7 @@ C>* 172.16.10.0/24 is directly connected, swp3, 3d00h26m
 
 ## Check BGP Timer Settings
 
-To check BGP timers, such as the the BGP keepalive interval, hold time, and advertisement interval, run the NCLU `net show bgp neighbor <peer>` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
+To check BGP timers, such as the BGP keepalive interval, hold time, and advertisement interval, run the NCLU `net show bgp neighbor <peer>` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
 
 ```
 cumulus@leaf01:~$ net show bgp neighbor swp51

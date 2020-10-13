@@ -256,7 +256,7 @@ You can confirm the configuration with the NCLU `net show bgp neighbor <neighbor
 
 {{< expand "net show bgp neighbor <neighbor> example" >}}
 
-The following example shows that a session with the peer is established and that authentication is enabled (the output shows `Peer Authentication Enabled` towards the end):
+The following example shows that a session with the peer is established and that authentication is enabled. The output shows `Peer Authentication Enabled` towards the end.
 
 ```
 cumulus@spine01:~$ net show bgp neighbor swp1
@@ -314,13 +314,13 @@ Read thread: on  Write thread: on  FD used: 27
 
 {{%notice note%}}
 
-The MD5 password configured against a BGP listen-range peer group (used to accept and create dynamic BGP neighbors) is not enforced. This means that connections are accepted from peers that do not specify a password.
+The MD5 password configured against a BGP listen-range peer group (used to accept and create dynamic BGP neighbors) is not enforced; connections are accepted from peers that do not specify a password.
 
 {{%/notice%}}
 
 ## Remove Private ASNs
 
-If you use private ASNs in the datacenter, any routes you send out to the internet contain these private ASNs. You can remove all the private ASNs from routes to a specific neighbor.
+If you use private ASNs in the datacenter, any routes you send out to the internet contain your private ASNs. You can remove all the private ASNs from routes to a specific neighbor.
 
 The following example command removes private ASNs from routes sent to the neighbor on swp51 (an unnumbered interface):
 

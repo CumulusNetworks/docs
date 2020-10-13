@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 812
 toc: 3
 ---
-This section describes how to configure BGP using either BGP *numbered* or BGP *unnumbered*. With BGP *unnumbered*, you can set up BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch.
+This section describes how to configure BGP using either BGP numbered or {{<link title="Border Gateway Protocol - BGP#bgp-unnumbered" text="BGP unnumbered">}}. With BGP *unnumbered*, you can set up BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch.
 
 {{%notice note%}}
 BGP *unnumbered* simplifies configuration and is recommended for data center deployments.
@@ -313,7 +313,7 @@ When using auto BGP, there are no references to `leaf` or `spine` in the configu
 
 ## BGP Unnumbered
 
-The following example commands show a basic BGP unnumbered configuration for two switches, leaf01 and spine01, which are eBPG peers.
+The following example commands show a basic {{<link title="Border Gateway Protocol - BGP#bgp-unnumbered" text="BGP unnumbered">}} configuration for two switches, leaf01 and spine01, which are eBPG peers.
 
 The only difference between a BGP unnumbered configuration and the BGP numbered configuration shown above, is that the BGP neighbour is specified as an interface (insead of an IP address). The interface between the two peers does **not** need to have an IP address configured on each side.
 

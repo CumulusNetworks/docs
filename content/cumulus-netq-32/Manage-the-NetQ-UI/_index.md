@@ -189,7 +189,7 @@ To view the log, click <img src="https://icons.cumulusnetworks.com/01-Interface-
 {{<figure src="/images/netq/main-menu-ntwk-activity-log-320.png" width="700" >}}
 
 Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter the log by username, action, resource, and time period.
-Click x to export the log a page at a time.
+Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" width="18" height="18">}} to export the log a page at a time.
 
 ## Manage Scheduled Traces
 

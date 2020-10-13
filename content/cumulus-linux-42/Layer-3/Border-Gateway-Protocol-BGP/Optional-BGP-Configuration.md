@@ -318,6 +318,22 @@ The MD5 password configured against a BGP listen-range peer group (used to accep
 
 {{%/notice%}}
 
+## Remove Private ASNs
+
+If you use private ASNs in the datacenter, any routes you send out to the internet contain these private ASNs. You can remove all the private ASNs from routes to a specific neighbor.
+
+The following example command removes private ASNs from routes sent to the neighbor on swp51 (an unnumbered interface):
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS
+```
+
+You can replace the private ASNs with your public ASN with the following command:
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
+```
+
 ## ECMP
 
 BGP supports equal-cost multipathing (ECMP). If a BGP node hears a certain prefix from multiple peers, it has all the information necessary to program the routing table and forward traffic for that prefix through all of these peers. BGP typically choses one best path for each prefix and installs that route in the forwarding table.
@@ -532,6 +548,26 @@ leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
+```
+
+## Aggregate Addresses
+
+To minimize the size of the routing table and save bandwidth, you can aggregate a range of networks in your routing table into a single prefix.
+
+The following example command aggregates a range of addresses, such as 10.1.1.0/24, 10.1.2.0/24, 10.1.3.0/24 into the single prefix 10.1.0.0/16.
+
+```
+cumulus@switch:~$ net add bgp aggregate-address 10.1.0.0/16
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The `summary-only` option ensures that longer-prefixes inside the aggregate address are suppressed before sending BGP updates:
+
+```
+cumulus@switch:~$ net add bgp aggregate-address 10.1.0.0/16 summary-only
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 ## BGP Timers

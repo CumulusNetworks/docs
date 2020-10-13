@@ -24,7 +24,7 @@ When using a VM, the following system resources must be allocated:
 <tr class="odd">
 <td>Memory</td>
 {{- if eq (.Get "deployment") "onprem" -}}
-<td>64 GB RAM</td>
+<td>32 GB RAM</td>
 {{ end }}
 {{- if eq (.Get "deployment") "cloud" -}}
 <td>8 GB RAM</td>

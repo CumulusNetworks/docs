@@ -35,6 +35,13 @@ cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999
 <td></td>
 </tr>
 <tr>
+<td>CM-31565</td>
+<td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
+To work around this issue, disable IGMP snooping on the switch.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31374</td>
 <td><p>CVE-2020-15166: ZeroMQ, a lightweight messaging kernel library<br/>
 does not properly handle connecting peers before a handshake is<br/>

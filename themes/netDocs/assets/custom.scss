@@ -1162,6 +1162,10 @@ div.notices.note {
     font-size: .882rem;
     line-height: 1.764rem;
     padding: 1.6rem 0 0;
+
+    ~p {
+      padding: 0
+    }
   }
 
   a {
@@ -1676,7 +1680,10 @@ footer {
 }
 
 .markdown td {
-  font-size: 0.76rem;
+  font-size: .882rem;
+  code,pre {
+    font-size: .882rem;
+  }
 }
 
 .book-tabs input[type="radio"] {
@@ -1801,79 +1808,6 @@ footer {
   .m-bottom-promo-banner {
     padding-top: 40px;
   }
-}
-.m-bottom-promo-banner h3 {
-  color: #FFF;
-  margin-top: 0;
-  margin-bottom: 25px;
-  font-family: "Gotham A", "Gotham B";
-  font-size: 22px;
-  font-weight: 300;
-  letter-spacing: -0.15px;
-  line-height: 34px;
-}
-.m-bottom-promo-banner a.close .svg {
-  color: #FFF;
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  top: 25px;
-  right: 25px;
-}
-.m-bottom-promo-banner.active {
-  bottom: 0;
-}
-.m-button {
-  display: inline-block;
-  background-color: white;
-  height: 43px;
-  line-height: 43px;
-  padding: 0px 16px;
-  font-weight: 600;
-  font-size: 13px;
-  font-family: "Gotham A", "Gotham B";
-  color: #FFF;
-  text-shadow: none;
-  margin: 0;
-  min-width: 169px;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  vertical-align: middle;
-}
-.m-button:hover, .m-button:focus, .m-button:active, .m-button.is-active, .m-button.active {
-  text-decoration: none;
-}
-.m-button:hover, .m-button:focus {
-  color: #FFF;
-  background-color: white;
-}
-.m-button:active, .m-button.is-active, .m-button.active {
-  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4);
-  background: white;
-  color: #cccccc;
-  transition-duration: 0s;
-}
-.m-button:focus {
-  outline: none;
-}
-.m-button-white {
-  background-color: #FFF;
-  border-color: #e6e6e6;
-  color: #00AD69;
-  text-shadow: none;
-  opacity: 1;
-  transition: 0.2s all;
-}
-.m-button-white:hover, .m-button-white:focus {
-  background-color: #FFF;
-  color: #00AD69;
-  opacity: 0.8;
-}
-.m-button-white:active, .m-button-white.is-active, .m-button-white.active {
-  background: white;
-  color: #cccccc;
-  transition-duration: 0s;
 }
 
 .m-button-medium {

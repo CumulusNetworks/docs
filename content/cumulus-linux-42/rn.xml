@@ -35,6 +35,13 @@ cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999
 <td></td>
 </tr>
 <tr>
+<td>CM-31565</td>
+<td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
+To work around this issue, disable IGMP snooping on the switch.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31545</td>
 <td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
@@ -80,7 +87,7 @@ might result in NTP not functioning since the ntp service is still running in th
 <tr>
 <td>CM-31327</td>
 <td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
-To work around this issue, run the net add/del dns nameserver <span class="error">&#91;vrf &lt;name&gt;&#93;</span> command to force the DNS configuration.</p></td>
+To work around this issue, run the net add/del dns nameserver vrf &lt;name&gt; command to force the DNS configuration.</p></td>
 <td>3.7.13, 4.1.1-4.2.1</td>
 <td></td>
 </tr>
@@ -223,12 +230,6 @@ To work around this issue, remove, then add the VRRP configuration with NCLU com
 <td>CM-30361</td>
 <td><p>On Mellanox switches with the Spectrum-2 switch, the lpm-balanced forwarding profile does not work.</p></td>
 <td>4.1.1-4.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-30358</td>
-<td><p>The Mellanox Spectrum-3 switch takes approximately fifteen seconds for ports to move from an admin up state to an operational up state. Also, restarting switchd takes more than 120 seconds.</p></td>
-<td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1751,6 +1752,13 @@ cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999
 <td></td>
 </tr>
 <tr>
+<td>CM-31565</td>
+<td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
+To work around this issue, disable IGMP snooping on the switch.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31545</td>
 <td><p>In an MLAG configuration with a layer 3 VNI, when you bounce the peer link, all layer 2 VNIs listed under the layer 3 VNI are duplicated. <br/>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
@@ -1815,7 +1823,7 @@ Fixed: 3.1+dfsg-8+deb10u8</p></td>
 <tr>
 <td>CM-31327</td>
 <td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
-To work around this issue, run the net add/del dns nameserver <span class="error">&#91;vrf &lt;name&gt;&#93;</span> command to force the DNS configuration.</p></td>
+To work around this issue, run the net add/del dns nameserver vrf &lt;name&gt; command to force the DNS configuration.</p></td>
 <td>3.7.13, 4.1.1-4.2.1</td>
 <td></td>
 </tr>
@@ -2179,12 +2187,6 @@ To work around this issue, remove, then add the VRRP configuration with NCLU com
 <td>CM-30361</td>
 <td><p>On Mellanox switches with the Spectrum-2 switch, the lpm-balanced forwarding profile does not work.</p></td>
 <td>4.1.1-4.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-30358</td>
-<td><p>The Mellanox Spectrum-3 switch takes approximately fifteen seconds for ports to move from an admin up state to an operational up state. Also, restarting switchd takes more than 120 seconds.</p></td>
-<td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>

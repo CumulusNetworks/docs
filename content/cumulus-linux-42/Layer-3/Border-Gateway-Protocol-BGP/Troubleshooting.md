@@ -287,7 +287,7 @@ Routing entry for 10.10.10.101/32
 
 FIB entry for 10.10.10.101/32
 ===========================
-10.10.10.101/32 via 169.254.0.1 dev swp1 proto bgp metric 20 onlink
+10.10.10.101/32 via 169.254.10.101 dev swp1 proto bgp metric 20 onlink
 ```
 
 The equivalent vtysh command is `show route 10.10.10.101/32`.
@@ -345,7 +345,7 @@ Routing entry for 10.10.10.1/32
 
 FIB entry for 10.10.10.1/32
 ===========================
-10.10.10.1/32 via 169.254.0.1 dev swp1 proto bgp metric 20 onlink
+10.10.10.1/32 via 169.254.10.101 dev swp1 proto bgp metric 20 onlink
 ```
 
 To have only IPv6 global addresses used for route installation into the FRR RIB, you must add an additional route map to the neighbor or peer group statement in the appropriate address family. When the route map command `set ipv6 next-hop prefer-global` is applied to a neighbor, if both a link-local and global IPv6 address are in the BGP update for a prefix, the IPv6 global address is preferred for route installation.
@@ -426,27 +426,55 @@ To check BGP timers, such as the the BGP keepalive interval, hold time, and adve
 
 ```
 cumulus@leaf01:~$ net show bgp neighbor swp51
-BGP neighbor on swp51: fe80::4638:39ff:fe00:5c, remote AS 65199, local AS 65101, external link
+GP neighbor on swp51: fe80::f208:5fff:fe12:cc8c, remote AS 65199, local AS 65101, external link
 Hostname: spine01
-  Member of peer-group fabric for session parameters
-  BGP version 4, remote router ID 0.0.0.0
-  BGP state = Connect
-  Last read 00:04:37, Last write 00:44:07
-  Hold time is 30, keepalive interval is 10 seconds
-  Configured hold time is 30, keepalive interval is 10 seconds
+ Member of peer-group underlay for session parameters
+  BGP version 4, remote router ID 10.10.10.101, local router ID 10.10.10.1
+  BGP state = Established, up for 06:50:58
+  Last read 00:00:03, Last write 00:00:03
+  Hold time is 9, keepalive interval is 3 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    AddPath:
+      IPv4 Unicast: RX advertised IPv4 Unicast and received
+    Extended nexthop: advertised and received
+      Address families by peer:
+                   IPv4 Unicast
+    Route refresh: advertised and received(old & new)
+    Address Family IPv4 Unicast: advertised and received
+    Hostname Capability: advertised (name: leaf01,domain name: n/a) received (name: spine01,domain name: n/a)
+    Graceful Restart Capability: advertised and received
+      Remote Restart timer is 120 seconds
+      Address families by peer:
+        none
+  Graceful restart information:
+    End-of-RIB send: IPv4 Unicast
+    End-of-RIB received: IPv4 Unicast
+    Local GR Mode: Helper*
+    Remote GR Mode: Helper
+    R bit: True
+    Timers:
+      Configured Restart Time(sec): 120
+      Received Restart Time(sec): 120
+    IPv4 Unicast:
+      F bit: False
+      End-of-RIB sent: Yes
+      End-of-RIB sent after update: No
+      End-of-RIB received: Yes
+      Timers:
+        Configured Stale Path Time(sec): 360
   Message statistics:
     Inq depth is 0
     Outq depth is 0
-                          Sent       Rcvd
-    Opens:                  1          1
-    Notifications:          1          0
-    Updates:                7          6
-    Keepalives:          2374       2373
+                         Sent       Rcvd
+    Opens:                  2          1
+    Notifications:          0          0
+    Updates:               54         59
+    Keepalives:          8219       8219
     Route Refresh:          0          0
     Capability:             0          0
-    Total:               2383       2380
-  Minimum time between advertisement runs is 5 seconds
-...
+    Total:               8275       8279
+  Minimum time between advertisement runs is 0 seconds
 ```
 
 ## Neighbor State Change Log

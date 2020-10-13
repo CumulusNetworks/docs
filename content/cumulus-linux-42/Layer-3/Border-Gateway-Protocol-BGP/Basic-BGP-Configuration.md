@@ -414,6 +414,7 @@ cumulus@leaf01:~$  sudo cat /etc/frr/frr.conf
 ...
 router bgp 65101
  bgp router-id 10.10.10.1
+ neighbor swp51 interface
  neighbor swp51 remote-as external
  !
  address-family ipv4 unicast
@@ -432,6 +433,7 @@ cumulus@spine01:~$  sudo cat /etc/frr/frr.conf
 ...
 router bgp 65199
  bgp router-id 10.10.10.101
+ neighbor swp1 interface
  neighbor swp1 remote-as external
  !
  address-family ipv4 unicast

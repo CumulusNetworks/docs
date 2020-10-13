@@ -797,11 +797,7 @@ Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
 
 ### BGP add-path RX
 
-*BGP add-path RX* allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. No additional configuration is required for BGP add-path RX.
-
-{{%notice note%}}
-BGP advertises the add-path RX capability by default. Add-Path TX requires an administrator to enable it. Enabling TX resets the session.
-{{%/notice%}}
+*BGP add-path RX* allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. BGP add-path RX is enabled by default; no additional configuration is required.
 
 To view the existing capabilities, run the NCLU `net show bgp neighbor` command or the vtysh `show ip bgp neighbors` command. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
 
@@ -835,19 +831,19 @@ To view the current additional paths, run the NCLU `net show bgp <router-id>` co
 The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
 
 ```
-cumulus@leaf01:mgmt:~$ net show bgp 10.10.10.1
-BGP routing table entry for 10.10.10.1/32
+cumulus@leaf01:mgmt:~$ net show bgp 10.10.10.9
+BGP routing table entry for 10.10.10.9/32
 Paths: (2 available, best #1, table Default-IP-Routing-Table)
   Advertised to non peer-group peers:
   spine01(swp51) spine02(swp52)
   65020 65012
-    fe80::4638:39ff:fe00:5c from spine01(swp51) (10.0.0.21)
+    fe80::4638:39ff:fe00:5c from spine01(swp51) (10.10.10.12)
     (fe80::4638:39ff:fe00:5c) (used)
       Origin incomplete, localpref 100, valid, external, multipath, bestpath-from-AS 65020, best (Older Path)
       AddPath ID: RX 0, TX 6
       Last update: Wed Nov 16 22:47:00 2016
   65020 65012
-    fe80::4638:39ff:fe00:2b from spine02(swp52) (10.0.0.22)
+    fe80::4638:39ff:fe00:2b from spine02(swp52) (10.10.10.12)
     (fe80::4638:39ff:fe00:2b) (used)
       Origin incomplete, localpref 100, valid, external, multipath
       AddPath ID: RX 0, TX 3

@@ -948,6 +948,19 @@ To work around this issue, restart FRR.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-28219</td>
+<td><p>The following vulnerability affects sudo, which is installed by default on Cumulus Linux.  It is potentially exploitable on Cumulus Linux if pwfeedback (which is NOT enabled by default) is enabled in the /etc/sudoers file.<br/>
+CVE-2019-18634: In Sudo before 1.8.26, if pwfeedback is enabled in /etc/sudoers, users can trigger a stack-based buffer overflow in the privileged sudo process. The attacker needs to deliver a long string to the stdin of getln() in tgetpass.c.<br/>
+For more information, refer to:<br/>
+<a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
+<a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
+<a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
+Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28212</td>
 <td><p>The hsflowd service sends an undefined header protocol 0 in the sampled flow sample to the collector, which is not recognized by the sFlow tool. You see errors similar to the following:</p>
 
@@ -3894,6 +3907,19 @@ CVE-2020-1711: block: iscsi: OOB heap access via an unexpected response of iSCSI
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-28219</td>
+<td><p>The following vulnerability affects sudo, which is installed by default on Cumulus Linux.  It is potentially exploitable on Cumulus Linux if pwfeedback (which is NOT enabled by default) is enabled in the /etc/sudoers file.<br/>
+CVE-2019-18634: In Sudo before 1.8.26, if pwfeedback is enabled in /etc/sudoers, users can trigger a stack-based buffer overflow in the privileged sudo process. The attacker needs to deliver a long string to the stdin of getln() in tgetpass.c.<br/>
+For more information, refer to:<br/>
+<a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
+<a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
+<a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
+Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28212</td>
 <td><p>The hsflowd service sends an undefined header protocol 0 in the sampled flow sample to the collector, which is not recognized by the sFlow tool. You see errors similar to the following:</p>
 
@@ -5139,18 +5165,6 @@ Fixed: 2.1+dfsg-12+deb8u13</p></td>
 <td>3.0.0-3.7.11</td>
 </tr>
 <tr>
-<td>CM-28219</td>
-<td><p>The following vulnerability affects sudo, which is installed by default on Cumulus Linux.  It is potentially exploitable on Cumulus Linux if pwfeedback (which is NOT enabled by default) is enabled in the /etc/sudoers file.<br/>
-CVE-2019-18634: In Sudo before 1.8.26, if pwfeedback is enabled in /etc/sudoers, users can trigger a stack-based buffer overflow in the privileged sudo process. The attacker needs to deliver a long string to the stdin of getln() in tgetpass.c.<br/>
-For more information, refer to:<br/>
-<a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
-<a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
-<a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-</tr>
-<tr>
 <td>CM-28169</td>
 <td><p>On the Dell Z9264F-ON switch, the CPU core temperature sensors report ABSENT.</p></td>
 <td>3.7.11</td>
@@ -6362,10 +6376,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28212</td>
@@ -9167,10 +9181,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28160</td>
@@ -11770,10 +11784,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28160</td>
@@ -14829,10 +14843,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -17755,10 +17769,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -21041,10 +21055,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -24283,10 +24297,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -27215,10 +27229,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -30205,10 +30219,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -33346,10 +33360,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -36611,10 +36625,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -39392,10 +39406,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>

@@ -72,7 +72,7 @@ This `sample-playbook.yml` contains one variable, two tasks, and a handler. Each
 | hosts:leaf1 | Only run this playbook on the host leaf1. |
 | vars | These are the variables defined for the playbook. There is only one variable, called `description`. |
 | remote\_user | This is the user who will run the playbook on the remote system. |
-| tasks | There are two tasks listed, one uses the {{<exlink url="http://docs.ansible.com/template_module.html" text="template module">}} and one uses the {{<exlink url="http://docs.ansible.com/service_module.html" text="service module">}}. |
+| tasks | There are two tasks listed, one uses the {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html" text="template module">}} and one uses the {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html" text="service module">}}. |
 | handlers | Handlers are tasks that only run if a task notifies it. A task will only notify it if something has changed. In this example, FRR gets restarted only if `frr.conf` changes. |
   
 ### jinja2 Template File

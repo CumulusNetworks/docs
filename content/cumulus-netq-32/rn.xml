@@ -7,6 +7,17 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>NETQ-7546</td>
+<td><p>Infra: In an on-premises deployment, the Kafka change logs can fill the NetQ appliance or VM disk space rapidly on systems with a large number of MAC or neighbor entries. If the disk usage exceeds 90%, the NetQ service is partially or completely disrupted. To workaround this issue, reduce the retention setting for log cleanup to 30 minutes by running the following script on your NetQ appliance/VM or the master server in a clustered arrangement:</p>
+
+
+MASTER_IP=&apos;cat /mnt/admin/master_ip&apos; ; topics=<span class="code-quote">"netq-app-route-route_key_v1-changelog netq-app-macs-macs_key-changelog netq-app-neighbor-neighbor_key_v1-changelog netq-app-macfdb-macfdb_key_v3-changelog"</span> ; <span class="code-keyword">for</span> topic in $topics ; <span class="code-keyword">do</span> kubectl exec -it rc/kafka-broker-rc-0 -- kafka-topics --zookeeper $MASTER_IP --topic $topic --alter --config delete.retention.ms=1800000 ; done 
+
+</td>
+<td>3.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>NETQ-7506</td>
 <td><p>CLI: For an on-premises deployment, an access_key and secret_key are not needed for the CLI to access the NetQ Collector. When these keys are configured NetQ assumes the system is in a cloud deployment and tries to validate the SSL certificates. This fails because for NetQ Collectors, the SSL certificates are usually self signed. As a result, the CLI fails with the following error:</p>
 
@@ -38,18 +49,14 @@ cumulus@switch:~# rm -f /etc/netq/.login.aes
 <td>NETQ-7489</td>
 <td><p>CLI: When the NetQ Collector is configured with a proxy server for the CLI to access cloud APIs the SSL certificate validation fails because the proxy provides its own self-signed certificate. This causes the CLI to fail with the following error:</p>
 
-
 cumulus@switch:~# netq show agents
 Failed to process command. Check /var/log/netqd.log for more details.
 
 
-
 <p>You also see an error in <em>/var/log/netqd.log</em> similar to this:</p>
-
 
 2020-10-01T01:44:51.534875+00:00 leaf01 netqd[4782]: ERROR: GET request failed https://st-ts-01:32708/netq/telemetry/v1/object/bgp?count=2000&amp;offset=0
 2020-10-01T01:44:51.535251+00:00 leaf01 netqd[4782]: ERROR: HTTPSConnectionPool(host='st-ts-01', port=32708): Max retries exceeded with url: /netq/telemetry/v1/object/bgp?count=2000&amp;offset=0 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: {color:#d04437}CERTIFICATE_VERIFY_FAILED{color}] certificate verify failed: self signed certificate (_ssl.c:1056)')))
-
 
 
 <p>Two options are available to work around this issue:</p>
@@ -60,10 +67,6 @@ cumulus@switch:~# netq config add cli server api.netq.cumulusnetworks.com port 4
 cumulus@switch:~# netq config restart cli
    
 </li>
-</ul>
-
-
-<ul>
 	<li>To use the proxy server:<br/>
    1. Delete the token file. Run sudo rm /tmp/token.aes.<br/>
    2. Edit the <em>/etc/netq/netq.yml</em> file as follows. The password is entered as cleartext.

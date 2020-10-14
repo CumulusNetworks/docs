@@ -7,6 +7,33 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31674</td>
 <td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
 CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
@@ -46,12 +73,6 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-31615</td>
-<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
-<td>3.7.12-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31605</td>
 <td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
 
@@ -71,6 +92,13 @@ cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999
 
 <p>Alternatively, directly edit the /etc/snmp/snmpd.conf file as described in the documentation.</p></td>
 <td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31565</td>
+<td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
+To work around this issue, disable IGMP snooping on the switch.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -157,7 +185,7 @@ Fixed: 1.3.1-12+deb8u3</p></td>
 <tr>
 <td>CM-31327</td>
 <td><p>After you manually edit the /etc/resolv.conf file to change or remove a VRF for a given DNS server, ifreload does not remove IP rules created for DNS servers in the VRF. <br/>
-To work around this issue, run the net add/del dns nameserver <span class="error">&#91;vrf &lt;name&gt;&#93;</span> command to force the DNS configuration.</p></td>
+To work around this issue, run the net add/del dns nameserver vrf &lt;name&gt; command to force the DNS configuration.</p></td>
 <td>3.7.13</td>
 <td></td>
 </tr>
@@ -249,6 +277,17 @@ These messages and the light are cosmetic issues only and do not otherwise impac
 <td>CM-31238</td>
 <td><p>IPv6 TCP or UDP connections (sourcing from an ephemeral port in the range 34048 to 35071) are not forwarded if the switch has more than one layer 2 VNI defined. The traffic might be locally switched on the bridge and dropped. <br/>
 To work around this issue, disable ARP/ND suppression to remove the internal ACL rule that affects the ports.</p></td>
+<td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31226</td>
+<td><p>Mellanox switches with the Spectrum ASIC fail to read PSU Fan/Temp sensors and report them as Absent. The following messages are observed in syslog:</p>
+
+2020-08-21T07:17:39.068160+00:00 cumulus : /usr/sbin/smond : : PSU1Temp1(PSU1 Temp Sensor): state changed from UNKNOWN to ABSENT
+2020-08-21T07:17:39.068911+00:00 cumulus : /usr/sbin/smond : : PSU2Temp1(PSU2 Temp Sensor): state changed from UNKNOWN to ABSENT
+
+</td>
 <td>3.7.13</td>
 <td></td>
 </tr>
@@ -556,13 +595,6 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <td>CM-30101</td>
 <td><p>The NCLU net show bridge spanning-tree command displays the aging timer incorrectly. </p></td>
 <td>3.7.12-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -922,6 +954,19 @@ To work around this issue, restart FRR.</p></td>
 <td>CM-28372</td>
 <td><p>On the EdgeCore AS7326-56X switch, the default fan speed, which is defined in the thermal specification, results in excessive fan noise.</p></td>
 <td>3.7.11-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-28219</td>
+<td><p>The following vulnerability affects sudo, which is installed by default on Cumulus Linux.  It is potentially exploitable on Cumulus Linux if pwfeedback (which is NOT enabled by default) is enabled in the /etc/sudoers file.<br/>
+CVE-2019-18634: In Sudo before 1.8.26, if pwfeedback is enabled in /etc/sudoers, users can trigger a stack-based buffer overflow in the privileged sudo process. The attacker needs to deliver a long string to the stdin of getln() in tgetpass.c.<br/>
+For more information, refer to:<br/>
+<a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
+<a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
+<a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -1972,7 +2017,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -2527,6 +2574,33 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31674</td>
 <td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
 CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
@@ -2566,8 +2640,9 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-31615</td>
-<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
+<td>CM-31565</td>
+<td><p>Multicast traffic on a VPN is sent to remote VTEPs that are not part of the VPN and the remote VTEPs receive multicast traffic encapsulated in a VXLAN ID that doesn't exist.<br/>
+To work around this issue, disable IGMP snooping on the switch.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
@@ -3188,13 +3263,6 @@ Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
-</tr>
-<tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>
@@ -3857,6 +3925,19 @@ CVE-2020-1711: block: iscsi: OOB heap access via an unexpected response of iSCSI
 <td>3.7.13</td>
 </tr>
 <tr>
+<td>CM-28219</td>
+<td><p>The following vulnerability affects sudo, which is installed by default on Cumulus Linux.  It is potentially exploitable on Cumulus Linux if pwfeedback (which is NOT enabled by default) is enabled in the /etc/sudoers file.<br/>
+CVE-2019-18634: In Sudo before 1.8.26, if pwfeedback is enabled in /etc/sudoers, users can trigger a stack-based buffer overflow in the privileged sudo process. The attacker needs to deliver a long string to the stdin of getln() in tgetpass.c.<br/>
+For more information, refer to:<br/>
+<a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
+<a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
+<a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-28212</td>
 <td><p>The hsflowd service sends an undefined header protocol 0 in the sampled flow sample to the collector, which is not recognized by the sFlow tool. You see errors similar to the following:</p>
 
@@ -5031,7 +5112,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -5097,18 +5180,6 @@ This might causes incorrect forwarding behavior.</p></td>
 CVE-2020-7039: tcp_emu in tcp_subr.c in libslirp 4.1.0, as used in QEMU 4.2.0, mismanages memory, as demonstrated by IRC DCC commands in EMU_IRC. This can cause a heap-based buffer overflow or other out-of-bounds access which can lead to a DoS or potential execute arbitrary code.<br/>
 Vulnerable: &lt;= 2.1+dfsg-12+deb8u12<br/>
 Fixed: 2.1+dfsg-12+deb8u13</p></td>
-<td>3.0.0-3.7.11</td>
-</tr>
-<tr>
-<td>CM-28219</td>
-<td><p>The following vulnerability affects sudo, which is installed by default on Cumulus Linux.  It is potentially exploitable on Cumulus Linux if pwfeedback (which is NOT enabled by default) is enabled in the /etc/sudoers file.<br/>
-CVE-2019-18634: In Sudo before 1.8.26, if pwfeedback is enabled in /etc/sudoers, users can trigger a stack-based buffer overflow in the privileged sudo process. The attacker needs to deliver a long string to the stdin of getln() in tgetpass.c.<br/>
-For more information, refer to:<br/>
-<a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
-<a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
-<a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
 <td>3.0.0-3.7.11</td>
 </tr>
 <tr>
@@ -5323,6 +5394,33 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31674</td>
@@ -5803,13 +5901,6 @@ Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
-</tr>
-<tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>
@@ -6312,10 +6403,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28212</td>
@@ -7722,7 +7813,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -8271,6 +8364,33 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31674</td>
 <td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
 CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
@@ -8732,13 +8852,6 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.13</td>
@@ -9104,10 +9217,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28160</td>
@@ -10872,7 +10985,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -10914,6 +11029,33 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31674</td>
@@ -11350,13 +11492,6 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.13</td>
@@ -11694,10 +11829,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28160</td>
@@ -13288,7 +13423,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -13969,6 +14106,33 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31674</td>
 <td><p>The following vulnerabilities have been announced in the python3.4 packages:<br/>
 CVE-2019-20907: Avoid infinite loop with crafted tar file by improving header validation.<br/>
@@ -14403,13 +14567,6 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.13</td>
@@ -14740,10 +14897,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -16850,7 +17007,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -16892,6 +17051,33 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31674</td>
@@ -17646,10 +17832,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -19673,7 +19859,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -20171,6 +20359,33 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31674</td>
@@ -20912,10 +21127,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -23242,7 +23457,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -23400,6 +23617,33 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31674</td>
@@ -24134,10 +24378,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -26186,7 +26430,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -26318,6 +26564,33 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31674</td>
@@ -27046,10 +27319,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -28951,7 +29224,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -29294,6 +29569,33 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31674</td>
@@ -30016,10 +30318,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -31999,7 +32301,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -32429,6 +32733,33 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31674</td>
@@ -33137,10 +33468,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -35216,7 +35547,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -35686,6 +36019,33 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31674</td>
@@ -36382,10 +36742,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -38322,7 +38682,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>
@@ -38447,6 +38809,33 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31696</td>
+<td><p>The following vulnerability has been announced in libproxy:<br/>
+CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
+Vulnerable: &lt;= 0.4.11-4+deb8u1<br/>
+Fixed: 0.4.11-4+deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31695</td>
+<td><p>The following vulnerability has been announced in the ruby2.1 packages:<br/>
+CVE-2020-25613: WEBrick (bundled along with ruby2.1) was too tolerant against an invalid Transfer-Encoding header. This may lead to inconsistent interpretation between WEBrick and some HTTP proxy servers, which may allow the attacker to “smuggle” a request.<br/>
+Vulnerable: &lt;= 2.1.5-2+deb8u10<br/>
+Fixed: 2.1.5-2+deb8u11.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31674</td>
@@ -39143,10 +39532,10 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6<br/>
-Fixed: 1.8.10p3-1+deb8u7</p></td>
-<td>3.0.0-3.7.11</td>
-<td>3.7.12-3.7.13</td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-28091</td>
@@ -41075,7 +41464,9 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 </tr>
 <tr>
 <td>CM-15601</td>
-<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p></td>
+<td><p>On a Mellanox switch in an MLAG configuration, routed packets that arrive on one switch to be forwarded to a destination MAC across the peer link are dropped due to MLAG loop prevention. This affects both routed unicast and multicast packets.</p>
+
+<p>To work around this issue, modify the routing design or policy such that routes do not have a next hop of an MLAG peer switch that traverses the MLAG peer link. </p></td>
 <td>3.6.2-3.7.13</td>
 <td></td>
 </tr>

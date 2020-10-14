@@ -7,7 +7,9 @@ Cumulus Linux 3.7.9 and later provides the Time Domain Reflectometer (TDR) cable
 
 {{%notice note%}}
 
-TDR is currently supported only on the EdgeCore AS4610. Pluggable modules are not supported.
+- TDR is supported on the EdgeCore AS4610 switch.
+- In Cumulus Linux 3.7.12 and later, TDR is also supported on the Dell N3248PXE switch.
+- Pluggable modules are not supported.
 
 {{%/notice%}}
 

@@ -16,7 +16,7 @@ For PIM-SM, type-3 routes do not result in any forwarding entries. Cumulus Linux
 
 {{%notice note%}}
 
-EVPN-PIM is supported on Broadcom Trident3 and Trident 2+ switches, and Mellanox Spectrum and Spectrum-2 switches.
+EVPN-PIM is supported on Broadcom Trident3 and Trident 2+ switches, and Mellanox Spectrum, Spectrum-2 and Spectrum-3 switches.
 
 {{%/notice%}}
 

@@ -1078,7 +1078,7 @@ bind to this address.
 
 {{%/notice%}}
 
-For more information, read the the `snmp.conf` man page:
+For more information, read `snmp.conf` man page:
 
     clientaddr [<transport-specifier>:]<transport-address>
                   specifies the source address to be used by command-line applica-
@@ -1299,7 +1299,7 @@ for details.
 #### Configuring Temperature Notifications
 
 Temperature sensor information for each available sensor is maintained
-in the the lmSensors MIB. Each platform can contain a different number
+in lmSensors MIB. Each platform can contain a different number
 of temperature sensors. The example below generates a trap event when
 any temperature sensor exceeds a threshold of 68 degrees (centigrade).
 It monitors each `lmTempSensorsValue`. When the threshold value is
@@ -1485,8 +1485,8 @@ for them. The overall Cumulus Linux MIB is defined in the
 <td><p>Users, storage, interfaces, process info, run parameters</p></td>
 </tr>
 <tr>
-<td><p><a href="https://cumulusnetworks.com/static/mibs/IEEE8021-BRIDGE-MIB.txt" class="external-link">IEEE8021-BRIDGE-MIB</a></p>
-<p><a href="https://cumulusnetworks.com/static/mibs/IEEE8021-Q-BRIDGE-MIB.txt" class="external-link">IEEE8021-Q-BRIDGE-MIB</a></p></td>
+<td><p><a href="https://cumulusnetworks.com/static/mibs/BRIDGE-MIB.txt" class="external-link">IEEE8021-BRIDGE-MIB</a></p>
+<p><a href="https://cumulusnetworks.com/static/mibs/Q-BRIDGE-MIB.txt" class="external-link">IEEE8021-Q-BRIDGE-MIB</a></p></td>
 <td><p>The <code>dot1dBasePortEntry</code> and <code>dot1dBasePortIfIndex</code> tables in the BRIDGE-MIB and <code>dot1qBase</code>, <code>dot1qFdbEntry</code>, <code>dot1qTpFdbEntry</code>, <code>dot1qTpFdbStatus</code>, and <code>dot1qVlanStaticName</code> tables in the Q-BRIDGE-MIB tables. You must uncomment the <code>bridge_pp.py pass_persist</code> script in <code>/etc/snmp/snmpd.conf</code>.</p></td>
 </tr>
 <tr>

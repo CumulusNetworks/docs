@@ -3033,7 +3033,7 @@ The output is sent to the specified log file, usually `/var/log/frr/bgpd.log`, a
 
 ### Troubleshoot Link-local Addresses
 
-To verify that `frr` learned the neighboring link-local IPv6 address via the IPv6 neighbor discovery router advertisements on a given interface, run the the following commands. If `ipv6 nd suppress-ra` is not enabled on both ends of the interface, then `Neighbor address(s):` has the other end's link-local address (the address that BGP uses when BGP is enabled on that interface).
+To verify that `frr` learned the neighboring link-local IPv6 address via the IPv6 neighbor discovery router advertisements on a given interface, run the following commands. If `ipv6 nd suppress-ra` is not enabled on both ends of the interface, then `Neighbor address(s):` has the other end's link-local address (the address that BGP uses when BGP is enabled on that interface).
 
 {{%notice note%}}
 

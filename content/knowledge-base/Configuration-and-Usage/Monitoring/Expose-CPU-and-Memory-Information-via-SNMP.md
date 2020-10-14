@@ -1,7 +1,7 @@
 ---
 title: Expose CPU and Memory Information via SNMP
 author: Cumulus Networks
-weight: 352
+weight: 372
 toc: 4
 ---
 

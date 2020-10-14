@@ -1,7 +1,7 @@
 ---
 title: Configure and Use sFlow Visualization Tools
 author: Cumulus Networks
-weight: 354
+weight: 374
 toc: 4
 ---
 
@@ -32,7 +32,7 @@ Many organizations have existing systems to monitor servers. One of these, {{<l
 
 Tools that specialize in network traffic also exist for sFlow. These tools can also ingest netflow data, for compatibility with any network gear which does not yet support sFlow. These tools also will show more network specific information such as flow data. Two popular open source projects are {{<exlink url="http://www.pmacct.net/" text="pmacct">}} and {{<exlink url="http://nfsen.sourceforge.net/" text="NfSen">}} (described in more detail below).
 
-Some popular commercial options are {{<exlink url="http://www.inmon.com/products/trafficsentinel.php" text="Traffic Sentinel">}} (described in more detail below), {{<exlink url="http://www.arbornetworks.com/products/peakflow" text="Arbor Peakflow">}} and {{<exlink url="http://www.solarwinds.com/netflow-traffic-analyzer.aspx" text="Solarwinds NetFlow Traffic Analyzer">}}.
+Some popular commercial options are {{<exlink url="http://www.inmon.com/products/trafficsentinel.php" text="Traffic Sentinel">}} (described in more detail below), {{<exlink url="http://www.arbornetworks.com/products/peakflow" text="Arbor Peakflow">}} and {{<exlink url="https://www.solarwinds.com/netflow-traffic-analyzer" text="Solarwinds NetFlow Traffic Analyzer">}}.
 
 ## NfSen
 

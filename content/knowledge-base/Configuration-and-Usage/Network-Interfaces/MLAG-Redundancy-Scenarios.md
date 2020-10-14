@@ -1,13 +1,13 @@
 ---
 title: MLAG Redundancy Scenarios
 author: Cumulus Networks
-weight: 376
+weight: 416
 toc: 4
 ---
 
 ## Issue
 
-Cumulus Linux Multi-Chassis Link Aggregation (MLAG) enables two switches to operate at layer 2 as if they are a single logical L2 switch in order to provide greater throughput and redundancy. This article discusses expected LACP and STP behavior during common failure redundancy scenarios. It is assumed the reader has a working knowledge of Cumulus Linux MLAG, LACP bonding, and STP. MLAG capabilities and configuration instructions are provided in the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Cumulus Linux user guide">}}.
+Cumulus Linux Multi-Chassis Link Aggregation (MLAG) enables two switches to operate at layer 2 as if they are a single logical L2 switch in order to provide greater throughput and redundancy. This article discusses expected LACP and STP behavior during common failure redundancy scenarios. It is assumed the reader has a working knowledge of Cumulus Linux MLAG, LACP bonding, and STP. MLAG capabilities and configuration instructions are provided in the {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Multi-Chassis-Link-Aggregation-MLAG/" text="Cumulus Linux user guide">}}.
 
 ## Environment
 
@@ -17,9 +17,9 @@ Cumulus Linux Multi-Chassis Link Aggregation (MLAG) enables two switches to oper
 
 Each MLAG peer switch considers bond interfaces as either single- or dual-attached. A single-attached bond is an LACP bond interface that is configured with a `clag-id` but is currently active on just one peer.
 
-A dual-attached bond is an LACP bond that is configured with a `clag-id` and is currently active on both MLAG peers. A dual-attached bond can be identified by the *D* flag in the **LACP Information** field of `clagctl -v` output.
+A dual-attached bond is an LACP bond that is configured with a `clag-id` and is currently active on both MLAG peers. A dual-attached bond can be identified by the *D* flag in the **LACP Information** field of `clagctl -v` output.
 
-In the following example, Bond1 is dual-attached. Bond2 is currently down on sw28. Therefore, Bond2 is single-attached to sw27.
+In the following example, Bond1 is dual-attached. Bond2 is currently down on sw28. Therefore, Bond2 is single-attached to sw27.
 
     cumulus@switch$ ip link show bond1
     root@sw27:~ # clagctl -v
@@ -48,11 +48,11 @@ In the following example, Bond1 is dual-attached. Bond2 is currently down on sw
     Bond1            00:e0:ec:27:36:37 None        81      None     D 
     Bond2            00:00:00:00:00:00 None        82      None     -
 
-In the steady state, the local LACP system ID used for MLAG bonds is the `clagd-sys-mac` address.
+In the steady state, the local LACP system ID used for MLAG bonds is the `clagd-sys-mac` address.
 
-A peer switch may also have additional *orphan ports* &mdash; layer 2 interfaces or bonds not configured with a `clag-id`. The LACP system ID for these bonds is the bond MAC address. Orphan ports can participate in STP along with the MLAG bond members.
+A peer switch may also have additional *orphan ports* &mdash; layer 2 interfaces or bonds not configured with a `clag-id`. The LACP system ID for these bonds is the bond MAC address. Orphan ports can participate in STP along with the MLAG bond members.
 
-In the following example, the bridge *vlans* contains the two MLAG bonds, Bond1 and Bond2, and also two orphan ports, swp28 and bond3, which is not in the MLAG pair.
+In the following example, the bridge *vlans* contains the two MLAG bonds, Bond1 and Bond2, and also two orphan ports, swp28 and bond3, which is not in the MLAG pair.
 
     root@sw27:~ # brctl show
     bridge name bridge id STP enabled interfaces
@@ -82,15 +82,15 @@ When a bond is single-connected, the MLAG dual-connected MAC address is null.
 
 ### Scenario 1: Peer Link Failure, clagd-backup-ip Is Active
 
-Cumulus Networks recommends specifying a backup link to check the health of the peer switch in the event that the peer link goes down. The backup link serves to distinguish between a peer-link failure and a peer switch failure.
+Cumulus Networks recommends specifying a backup link to check the health of the peer switch in the event that the peer link goes down. The backup link serves to distinguish between a peer-link failure and a peer switch failure.
 
-You configure the backup link using `clagd-backup-ip`. If `clagd-backup-ip` is active (that is, the backup IP address is reachable) when a peer link failure occurs, the secondary switch uses it to determine whether the primary peer is still active (or alive — the switch is up; however, the peer link could be down). Since the primary is still active, the primary peer will continue to use pre-existing LACP system IDs for all bonds. The primary will also continue to use `clagd-sys-mac` as the STP bridge ID for all ports.
+You configure the backup link using `clagd-backup-ip`. If `clagd-backup-ip` is active (that is, the backup IP address is reachable) when a peer link failure occurs, the secondary switch uses it to determine whether the primary peer is still active (or alive — the switch is up; however, the peer link could be down). Since the primary is still active, the primary peer will continue to use pre-existing LACP system IDs for all bonds. The primary will also continue to use `clagd-sys-mac` as the STP bridge ID for all ports.
 
 In this scenario, the secondary switch cannot continue to operate as single switch with its peer. Accordingly, the secondary peer shuts down the member links for the dual-connected bonds. Since the primary peer is indeed up in this scenario, the primary switch continues to maintain its LACP sessions with the remote systems. As a result, traffic flow to and from the dual-attached bonds transitions to the primary peer.
 
 Orphan ports attached to the secondary switch remain up. However, the secondary switch starts to use its local interface MAC address instead of the `clagd-sys-mac` for the STP bridge ID on all ports.
 
-The following `tcpdump` output shows the bridge ID changing from the `clagd-sys-mac` (44:39:39:ff:00:01) to the local MAC (70:72:cf:9d:4e:36):
+The following `tcpdump` output shows the bridge ID changing from the `clagd-sys-mac` (44:39:39:ff:00:01) to the local MAC (70:72:cf:9d:4e:36):
 
     root@sw20:~ # tcpdump -i swp26s1 stp 
     tcpdump: WARNING: swp26s1: no IPv4 address assigned
@@ -167,7 +167,7 @@ Orphan ports attached to the primary peer are out of service until the primary i
 
 Just as in the peer link failure scenario, when `clagd-backup-ip` is not active, the secondary peer cannot continue to use the common `clagd-sys-mac` address as its LACP system ID. Therefore the secondary switch now starts using the bond interface MAC address for the LACP system ID.
 
-In this case, since the the primary is indeed down, the bonds from the secondary will come up. The secondary will also begin to use its local interface MAC instead of `clagd-sys-mac` form the STP bridge ID on all ports.
+In this case, since primary is indeed down, the bonds from the secondary will come up. The secondary will also begin to use its local interface MAC instead of `clagd-sys-mac` form the STP bridge ID on all ports.
 
 ### Scenario 5: Primary Reboot via reboot Command
 

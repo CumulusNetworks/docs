@@ -201,6 +201,33 @@ rip      Routing Information Protocol
 router   IP router interface commands
 ```
 
+To search for specific `vtysh` commands so that you can identify the correct syntax to use, run the `sudo vtysh -c 'find <term>'` command. For example, to show only commands that include `mlag`:
+
+```
+cumulus@leaf01:mgmt:~$ sudo vtysh -c 'find mlag'
+  (view)  show ip pim [mlag] vrf all interface [detail|WORD] [json]
+  (view)  show ip pim [vrf NAME] interface [mlag] [detail|WORD] [json]
+  (view)  show ip pim [vrf NAME] mlag upstream [A.B.C.D [A.B.C.D]] [json]
+  (view)  show ip pim mlag summary [json]
+  (view)  show ip pim vrf all mlag upstream [json]
+  (view)  show zebra mlag
+  (enable)  [no$no] debug zebra mlag
+  (enable)  debug pim mlag
+  (enable)  no debug pim mlag
+  (enable)  test zebra mlag <none$none|primary$primary|secondary$secondary>
+  (enable)  show ip pim [mlag] vrf all interface [detail|WORD] [json]
+  (enable)  show ip pim [vrf NAME] interface [mlag] [detail|WORD] [json]
+  (enable)  show ip pim [vrf NAME] mlag upstream [A.B.C.D [A.B.C.D]] [json]
+  (enable)  show ip pim mlag summary [json]
+  (enable)  show ip pim vrf all mlag upstream [json]
+  (enable)  show zebra mlag
+  (config)  [no$no] debug zebra mlag
+  (config)  debug pim mlag
+  (config)  ip pim mlag INTERFACE role [primary|secondary] state [up|down] addr A.B.C.D
+  (config)  no debug pim mlag
+  (config)  no ip pim mlag
+```
+
 Displaying state can be done at any level, including the top level. For example, to see the routing table as seen by `zebra`:
 
 ```
@@ -424,7 +451,7 @@ Examine the running configuration and verify that it matches the configuration i
 cumulus@switch:~$ net show configuration
 ```
 
-If the running configuration is not what you expect, {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/requests/new" text="submit a support request">}} and supply the following information:
+If the running configuration is not what you expect, {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="submit a support request">}} and supply the following information:
 
 - The current running configuration (run `net show configuration` and output the contents to a file)
 - The contents of `/etc/frr/frr.conf`

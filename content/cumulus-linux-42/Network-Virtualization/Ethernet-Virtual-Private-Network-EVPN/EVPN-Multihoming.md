@@ -5,13 +5,7 @@ weight: 555
 toc: 4
 ---
 
-{{%notice warning%}}
-
-EVPN multihoming is an {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined/" text="early access feature">}}.
-
-{{%/notice%}}
-
-*EVPN multihoming* (EVPN-MH) provides support for active-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG:
+*EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG:
 
 - Eliminates the need for peerlinks or inter-switch links between the top of rack switches
 - Allows more than two TOR switches to participate in a redundancy group
@@ -22,21 +16,30 @@ EVPN-MH uses BGP-EVPN type-1, type-2 and type-4 routes for discovering Ethernet 
 
 Configuring EVPN-MH involves setting an Ethernet segment system MAC address (`es-sys-mac`) and a local Ethernet segment ID (`local-es-id`) on a static or LACP bond. The `es-sys-mac` and `local-es-id` are used to build a type-3 `es-id`. This `es-id` must be globally unique across all the EVPN VTEPs. The same `es-sys-mac` can be configured on multiple interfaces.
 
-{{%notice tip%}}
+{{%notice info%}}
 
-An Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group.
+When using Spectrum 2 or Spectrum 3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group.
+
+However, when using Spectrum A1 switches, a maximum of two switches can participate in a redundancy group or Ethernet segment.
 
 {{%/notice%}}
 
 ## Supported Features
 
-- Known unicast traffic multihoming via type-1/EAD (Ethernet auto discovery) routes and type-2 (non-zero ESI) routes. Includes active-active redundancy via aliasing and support for fast failover.
+- Known unicast traffic multihoming via type-1/EAD (Ethernet auto discovery) routes and type-2 (non-zero ESI) routes. Includes all-active redundancy via aliasing and support for fast failover.
 - EVPN BUM traffic handling with {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} on multihomed sites via Type-4/ESR routes, which includes split-horizon-filtering and designated forwarder election.
+
+  {{%notice warning%}}
+
+Head-end replication is not supported with multihoming, so you must use EVPN-PIM for BUM traffic handling.
+
+{{%/notice%}}
+
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}} only.
 - {{<link url="Inter-subnet-Routing/#symmetric-routing" text="Distributed symmetric routing">}}.
 - {{<link url="Basic-Configuration/#arp-and-nd-suppression" text="ARP suppression">}} must be enabled.
 - EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
-- Supported RIOT-capable {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Mellanox Spectrum A1, Spectrum 2 and Spectrum 3.
+- Supported {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Mellanox Spectrum A1, Spectrum 2 and Spectrum 3.
 
 {{%notice warning%}}
 
@@ -50,7 +53,7 @@ In order to use EVPN-MH, you must remove any MLAG configuration on the switch. T
 
 ## Configure EVPN-MH
 
-There are two required settings for an EVPN multihoming configuration:
+To configure EVPN-MH, first you need to enable the `evpn.multihoming.enable` variable in `switchd.conf`. Then you need to specify the following required settings:
 
 - The Ethernet segment ID (`es-id`)
 - The Ethernet segment system MAC address (`es-sys-mac`)
@@ -72,6 +75,21 @@ NCLU generates the EVPN-MH configuration and reloads FRR and `ifupdown2`. The co
 In addition to the `es-id` and the `es-sys-mac`, you need to specify a unique SVI IP address for each VTEP across the racks. These IP addresses must be reachable from remote VTEPs. You enable the advertisement of these IP addresses using the `advertise-svi-ip` option, under the BGP EVPN address family. See the leaf configurations in the {{<link title="#Example Configuration" text="example configuration">}} below.
 
 {{%/notice%}}
+
+### Enable EVPN-MH in switchd
+
+To enable EVPN-MH in `switchd`, set the `evpn.multihoming.enable` variable in `switchd.conf` to _TRUE_, then restart the `switchd` service. The variable is disabled by default.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+
+evpn.multihoming.enable = TRUE
+
+...
+
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
 
 ### Configure the EVPN-MH Bonds
 
@@ -170,10 +188,10 @@ interface hostbond3
 
 There are a few global settings for EVPN multihoming you can set, including:
 
-- `mac-holdtime`: MAC hold time, in seconds. This is the duration for which a switch maintains SYNC MAC entries after the Ethernet segment peer's EVPN type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the MAC on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
-- `neigh-holdtime`:  Neighbor entry hold time, in seconds. The duration for which a switch maintains SYNC neigh entries after the Ethernet segment peer's EVPN type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
+- `mac-holdtime`: MAC hold time, in seconds. This is the duration for which a switch maintains SYNC MAC entries after the Ethernet segment peer's EVPN type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the MAC on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
+- `neigh-holdtime`:  Neighbor entry hold time, in seconds. The duration for which a switch maintains SYNC neigh entries after the Ethernet segment peer's EVPN type-2 route is deleted. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.
 - `redirect-off`: **Cumulus VX only.** Disables fast failover of traffic destined to the access port via the VXLAN overlay. This knob only applies to Cumulus VX, since fast failover is only supported on the ASIC.
-- `startup-delay`:  Startup delay. The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. The delay can be between 0 and 216000 seconds. The default is 180 seconds.
+- `startup-delay`:  Startup delay. The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. The delay can be between 0 and 216000 seconds. The default is 180 seconds.
 
 To configure a MAC hold time for 1000 seconds, run the following commands:
 
@@ -419,6 +437,44 @@ Fast failover is also triggered by:
 
 - Rebooting a leaf switch or VTEP.
 - Uplink failure. When all uplinks are down, the Ethernet segment bonds on the switch are protodowned or error disabled.
+
+### Disable Next Hop Group Sharing in the ASIC
+
+Container sharing for both layer 2 and layer 3 next hop groups is enabled by default when EVPN-MH is configured. These settings are stored in the `evpn.multihoming.shared_l2_groups` and `evpn.multihoming.shared_l3_groups` variables.
+
+Disabling container sharing allows for faster failover when an Ethernet segment link flaps.
+
+To disable either setting, edit `switchd.conf`, set the variable to _FALSE_, then restart the `switchd` service. For example, to disable container sharing for layer 3 next hop groups, do the following:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+
+evpn.multihoming.shared_l3_groups = FALSE
+
+...
+
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
+### Disable EAD-per-EVI Route Advertisements
+
+{{<exlink url="https://tools.ietf.org/html/rfc7432" text="RFC 7432">}} requires type-1/EAD (Ethernet Auto-discovery) routes to be advertised two ways:
+
+- As EAD-per-ES (Ethernet Auto-discovery per Ethernet segment) routes
+- As EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes
+
+Some third party switch vendors don't advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
+
+To remove the dependency on EAD-per-EVI routes and activate the VTEP upon receiving the EAD-per-ES route, run:
+
+    cumulus@switch:~$ net add bgp l2vpn evpn disable-ead-evi-rx
+    cumulus@switch:~$ net commit
+
+To suppress the advertisement of EAD-per-EVI routes, run:
+
+    cumulus@switch:~$ net add bgp l2vpn evpn disable-ead-evi-tx
+    cumulus@switch:~$ net commit
 
 ## Troubleshooting
 

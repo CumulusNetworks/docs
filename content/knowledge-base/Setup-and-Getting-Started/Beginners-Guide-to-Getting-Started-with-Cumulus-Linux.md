@@ -5,7 +5,7 @@ weight: 103
 toc: 3
 ---
 
-This simple document provides a checklist for users like network administrators, who may be new to Linux in general, or Cumulus Linux specifically. Refer to this list when you power on your Cumulus Linux switch for the first time. It links to Cumulus Linux technical documentation, other Help Center articles, and to external sites, and covers topics like configuration, comparing Cumulus Linux to other vendors' CLI, and validated design guides.
+This simple document provides a checklist for users like network administrators, who may be new to Linux in general, or Cumulus Linux specifically. Refer to this list when you power on your Cumulus Linux switch for the first time. It links to Cumulus Linux technical documentation, other knowledge base articles, and to external sites, and covers topics like configuration, comparing Cumulus Linux to other vendors' CLI, and validated design guides.
 
 ## Adding and Managing User Accounts
 
@@ -42,7 +42,7 @@ Learn how to use the nano text editor ([cheat sheet --- external link](http://ww
 
 ## ACL/IP Rules
 
-1.  [Allow SSH from specific subnets only](/hc/communities/public/questions/203381337-I-want-to-only-allow-SSH-from-specific-subnets-how-can-I-do-this-)
+1.  [Allow SSH from specific subnets only](https://support.cumulusnetworks.com/hc/en-us/community/posts/203381337-I-want-to-only-allow-SSH-from-specific-subnets-how-can-I-do-this-)
 2.  [[Cumulus Linux ACL example rules](https://docs.cumulusnetworks.com/cumulus-linux/System-Configuration/Netfilter-ACLs/#example-configuration)
 
 ## Networking with Cumulus Linux

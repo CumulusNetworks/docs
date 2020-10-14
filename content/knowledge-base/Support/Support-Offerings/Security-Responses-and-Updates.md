@@ -19,7 +19,7 @@ Every Cumulus Linux release will include all applicable security patches availab
 
 ## Upgrading Cumulus Linux for Security Updates
 
-When {{<link url="Cumulus-Linux-Security-Announcements" text="Cumulus Networks">}} or {{<exlink url="https://lists.debian.org/debian-security-announce/" text="Debian.org">}} issues a critical security update, Cumulus Networks will update Cumulus Linux and describe the nature of the update in {{<link url="Security" text="an article in the Security section of the Help Center">}}. Other security fixes are added to the Cumulus repositories without announcements (Debian announces all security updates).
+When {{<link url="Cumulus-Linux-Security-Announcements" text="Cumulus Networks">}} or {{<exlink url="https://lists.debian.org/debian-security-announce/" text="Debian.org">}} issues a critical security update, Cumulus Networks will update Cumulus Linux and describe the nature of the update in {{<link url="Security" text="an article in the Security section of the knowledge base">}}. Other security fixes are added to the Cumulus repositories without announcements (Debian announces all security updates).
 
 If the article **does not specify a procedure for upgrading Cumulus Linux**, follow these steps instead:
 

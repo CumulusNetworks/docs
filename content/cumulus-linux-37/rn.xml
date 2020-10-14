@@ -7,6 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -955,8 +964,8 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
-Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
 </tr>
@@ -2565,6 +2574,15 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -3914,8 +3932,8 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
-Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
 </tr>
@@ -5378,6 +5396,15 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -6376,8 +6403,8 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
-Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
 </tr>
@@ -8337,6 +8364,15 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -9181,8 +9217,8 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
-Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
 </tr>
@@ -10995,6 +11031,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -11784,8 +11829,8 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
-Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
 </tr>
@@ -14059,6 +14104,15 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31696</td>
@@ -16997,6 +17051,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31696</td>
@@ -20298,6 +20361,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -23547,6 +23619,15 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -26483,6 +26564,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31696</td>
@@ -29479,6 +29569,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31696</td>
@@ -32634,6 +32733,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31696</td>
@@ -35913,6 +36021,15 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -38692,6 +38809,15 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31696</td>

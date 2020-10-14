@@ -39,7 +39,7 @@ Head-end replication is not supported with multihoming, so you must use EVPN-PIM
 - {{<link url="Inter-subnet-Routing/#symmetric-routing" text="Distributed symmetric routing">}}.
 - {{<link url="Basic-Configuration/#arp-and-nd-suppression" text="ARP suppression">}} must be enabled.
 - EVI (*EVPN virtual instance*). Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
-- Supported RIOT-capable {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Mellanox Spectrum A1, Spectrum 2 and Spectrum 3.
+- Supported {{<exlink url="https://cumulusnetworks.com/hcl" text="ASICs">}} include Mellanox Spectrum A1, Spectrum 2 and Spectrum 3.
 
 {{%notice warning%}}
 

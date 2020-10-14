@@ -51,9 +51,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2
-    bridge-ports vni10 vni20
+    bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -174,9 +172,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2
-    bridge-ports vni10 vni20
+    bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -296,9 +292,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2
-    bridge-ports vni10 vni20
+    bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -419,9 +413,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2
-    bridge-ports vni10 vni20
+    bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -610,7 +602,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65101
  bgp router-id 10.10.10.1
  bgp bestpath as-path multipath-relax
@@ -620,7 +611,6 @@ router bgp 65101
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -629,8 +619,6 @@ router bgp 65101
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
-
 !
 line vty
 !
@@ -647,7 +635,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65101
  bgp router-id 10.10.10.2
  bgp bestpath as-path multipath-relax
@@ -657,7 +644,6 @@ router bgp 65101
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -666,8 +652,6 @@ router bgp 65101
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
-
 !
 line vty
 !
@@ -684,7 +668,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65102
  bgp router-id 10.10.10.3
  bgp bestpath as-path multipath-relax
@@ -693,8 +676,6 @@ router bgp 65102
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
-
- !
  !
  address-family ipv4 unicast
   redistribute connected
@@ -704,8 +685,6 @@ router bgp 65102
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
-
 !
 line vty
 !
@@ -722,7 +701,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65102
  bgp router-id 10.10.10.4
  bgp bestpath as-path multipath-relax
@@ -732,7 +710,6 @@ router bgp 65102
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -741,8 +718,6 @@ router bgp 65102
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
-
 !
 line vty
 !
@@ -759,7 +734,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
@@ -772,7 +746,6 @@ router bgp 65199
  neighbor swp5 interface peer-group underlay
  neighbor swp6 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -780,8 +753,6 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
-
 !
 line vty
 !
@@ -798,7 +769,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
@@ -811,7 +781,6 @@ router bgp 65199
  neighbor swp5 interface peer-group underlay
  neighbor swp6 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -819,8 +788,6 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
-
 !
 line vty
 !
@@ -864,9 +831,7 @@ iface eth0 inet dhcp
     vrf mgmt
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2
-    bridge-ports vni10 vni20
+    bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -987,9 +952,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2
-    bridge-ports vni10 vni20
+    bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -1110,9 +1073,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2
-    bridge-ports vni10 vni20
+    bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -1233,9 +1194,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2
-    bridge-ports vni10 vni20
+    bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -1448,9 +1407,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond3
-    bridge-ports vni10 vni20
+    bridge-ports peerlink bond3 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -1555,9 +1512,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond3
-    bridge-ports vni10 vni20
+    bridge-ports peerlink bond3 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -1654,7 +1609,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65101
  bgp router-id 10.10.10.1
  bgp bestpath as-path multipath-relax
@@ -1666,7 +1620,6 @@ router bgp 65101
  neighbor swp53 interface peer-group underlay
  neighbor swp54 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -1674,8 +1627,6 @@ router bgp 65101
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
-
 !
 line vty
 !
@@ -1692,7 +1643,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65101
  bgp router-id 10.10.10.2
  bgp bestpath as-path multipath-relax
@@ -1704,7 +1654,6 @@ router bgp 65101
  neighbor swp53 interface peer-group underlay
  neighbor swp54 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -1712,8 +1661,6 @@ router bgp 65101
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
-
 !
 line vty
 !
@@ -1730,7 +1677,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65102
  bgp router-id 10.10.10.3
  bgp bestpath as-path multipath-relax
@@ -1742,7 +1688,6 @@ router bgp 65102
  neighbor swp53 interface peer-group underlay
  neighbor swp54 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -1750,8 +1695,6 @@ router bgp 65102
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
-
 !
 line vty
 !
@@ -1768,7 +1711,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65102
  bgp router-id 10.10.10.4
  bgp bestpath as-path multipath-relax
@@ -1780,7 +1722,6 @@ router bgp 65102
  neighbor swp53 interface peer-group underlay
  neighbor swp54 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -1788,8 +1729,6 @@ router bgp 65102
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
-
 !
 line vty
 !
@@ -1806,7 +1745,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
@@ -1819,7 +1757,6 @@ router bgp 65199
  neighbor swp5 interface peer-group underlay
  neighbor swp6 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -1827,8 +1764,6 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
-
 !
 line vty
 !
@@ -1845,7 +1780,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
@@ -1858,7 +1792,6 @@ router bgp 65199
  neighbor swp5 interface peer-group underlay
  neighbor swp6 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -1866,8 +1799,6 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
-
 !
 line vty
 !
@@ -1884,7 +1815,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65132
  bgp router-id 10.10.10.63
  bgp bestpath as-path multipath-relax
@@ -1893,7 +1823,6 @@ router bgp 65132
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
- !
  !
  address-family ipv4 unicast
   redistribute connected
@@ -1904,8 +1833,6 @@ router bgp 65132
   advertise-all-vni
   advertise-default-gw
  exit-address-family
-!
-
 !
 line vty
 !
@@ -1922,7 +1849,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65132
  bgp router-id 10.10.10.64
  bgp bestpath as-path multipath-relax
@@ -1931,7 +1857,6 @@ router bgp 65132
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
- !
  !
  address-family ipv4 unicast
   redistribute connected
@@ -1942,8 +1867,6 @@ router bgp 65132
   advertise-all-vni
   advertise-default-gw
  exit-address-family
-!
-
 !
 line vty
 !
@@ -1968,11 +1891,11 @@ The following images shows traffic flow between tenants. The spines and other de
 
 |  Traffic Flow between server01 and server05   |     |
 | --- | --- |
-| <img width=1150/> {{< img src="/images/cumulus-linux/EVPN-different-VLAN.png"  >}} | server01 and server05 are in the same VRF, different VLANs, and are located across different leafs.<br><ol><li>server01 makes an LACP hash decision to reach the default gateway and forwards traffic to leaf01.</li><li>leaf01 does a layer 3 lookup in VRF BLUE and has a route out VNIBLUE through leaf04.</li><li>The VXLAN encapsulated packet arrives on leaf04, which does a layer 3 lookup in VRF BLUE and has a route through VLAN 20 to server05.</li></ul> |
+| <img width=1150/> {{< img src="/images/cumulus-linux/EVPN-different-VLAN.png"  >}} | server01 and server05 are in the same VRF, different VLANs, and are located across different leafs.<br><ol><li>server01 makes an LACP hash decision to reach the default gateway and forwards traffic to leaf01.</li><li>leaf01 does a layer 3 lookup in VRF RED and has a route out VNIRED through leaf04.</li><li>The VXLAN encapsulated packet arrives on leaf04, which does a layer 3 lookup in VRF RED and has a route through VLAN 20 to server05.</li></ul> |
 
 |   Traffic Flow between server01 and server06  |     |
 | --- | --- |
-| <img width=1300/> {{< img src="/images/cumulus-linux/EVPN-different-VRF.png"  >}} | server01 and server06 are in different VRFs, different VLANs, and are located across different leafs.<br><ol><li>server01 makes an LACP hash decision to reach the default gateway and forwards traffic to leaf01.</li><li>leaf01 does a layer 3 lookup in VRF BLUE and has a route out VNIBLUE through border01.</li><li>The VXLAN encapsulated packet arrives on border01, which does a layer 3 lookup in VRF BLUE and has a route through VLAN 30 to fw01 (the policy device).</li><li>fw01 does a layer 3 lookup (without any VRFs) and has a route in VLAN40, through border02.</li><li>border02 does a layer 3 lookup in VRF RED and has a route out VNIRED, through leaf04.</li><li>The VXLAN encapsulated packet arrives on leaf04, which does a layer 3 lookup in VRF RED and has a route in VLAN 30 to server06.</ul>|
+| <img width=1300/> {{< img src="/images/cumulus-linux/EVPN-different-VRF.png"  >}} | server01 and server06 are in different VRFs, different VLANs, and are located across different leafs.<br><ol><li>server01 makes an LACP hash decision to reach the default gateway and forwards traffic to leaf01.</li><li>leaf01 does a layer 3 lookup in VRF RED and has a route out VNIRED through border01.</li><li>The VXLAN encapsulated packet arrives on border01, which does a layer 3 lookup in VRF RED and has a route through VLAN 30 to fw01 (the policy device).</li><li>fw01 does a layer 3 lookup (without any VRFs) and has a route in VLAN40, through border02.</li><li>border02 does a layer 3 lookup in VRF BLUE and has a route out VNIBLUE, through leaf04.</li><li>The VXLAN encapsulated packet arrives on leaf04, which does a layer 3 lookup in VRF BLUE and has a route in VLAN 30 to server06.</ul>|
 
 ### /etc/network/interfaces
 
@@ -2008,9 +1931,7 @@ iface BLUE
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
-    bridge-ports vni10 vni20 vni30 vniRED vniBLUE
+    bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
     bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
 
@@ -2070,7 +1991,7 @@ iface vlan10
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
-    address-virtual 00:00:00:00:00:1b 10.1.20.1/24
+    address-virtual 00:00:00:00:00:1a 10.1.20.1/24
     vrf RED
     vlan-raw-device bridge
     vlan-id 20
@@ -2078,21 +1999,21 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.2/24
-    address-virtual 00:00:00:00:00:1c 10.1.30.1/24
+    address-virtual 00:00:00:00:00:1a 10.1.30.1/24
     vrf BLUE
     vlan-raw-device bridge
     vlan-id 30
 
 auto vlan4001
 iface vlan4001
-    hwaddress 44:38:39:BE:EF:AA
+    address-virtual 44:38:39:BE:EF:AA
     vrf RED
     vlan-raw-device bridge
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
-    hwaddress 44:38:39:BE:EF:AA
+    address-virtual 44:38:39:BE:EF:AA
     vrf BLUE
     vlan-raw-device bridge
     vlan-id 4002
@@ -2214,9 +2135,7 @@ iface BLUE
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
-    bridge-ports vni10 vni20 vni30 vniRED vniBLUE
+    bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
     bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
 
@@ -2276,7 +2195,7 @@ iface vlan10
 auto vlan20
 iface vlan20
     address 10.1.20.3/24
-    address-virtual 00:00:00:00:00:1b 10.1.20.1/24
+    address-virtual 00:00:00:00:00:1a 10.1.20.1/24
     vrf RED
     vlan-raw-device bridge
     vlan-id 20
@@ -2284,21 +2203,21 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.3/24
-    address-virtual 00:00:00:00:00:1c 10.1.30.1/24
+    address-virtual 00:00:00:00:00:1a 10.1.30.1/24
     vrf BLUE
     vlan-raw-device bridge
     vlan-id 30
 
 auto vlan4001
 iface vlan4001
-    hwaddress 44:38:39:BE:EF:AA
+    address-virtual 44:38:39:BE:EF:AA
     vrf RED
     vlan-raw-device bridge
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
-    hwaddress 44:38:39:BE:EF:AA
+    address-virtual 44:38:39:BE:EF:AA
     vrf BLUE
     vlan-raw-device bridge
     vlan-id 4002
@@ -2420,9 +2339,7 @@ iface BLUE
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
-    bridge-ports vni10 vni20 vni30 vniRED vniBLUE
+    bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
     bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
 
@@ -2482,7 +2399,7 @@ iface vlan10
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
-    address-virtual 00:00:00:00:00:1b 10.1.20.1/24
+    address-virtual 00:00:00:00:00:1a 10.1.20.1/24
     vrf RED
     vlan-raw-device bridge
     vlan-id 20
@@ -2490,21 +2407,21 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.2/24
-    address-virtual 00:00:00:00:00:1c 10.1.30.1/24
+    address-virtual 00:00:00:00:00:1a 10.1.30.1/24
     vrf BLUE
     vlan-raw-device bridge
     vlan-id 30
 
 auto vlan4001
 iface vlan4001
-    hwaddress 44:38:39:BE:EF:BB
+    address-virtual 44:38:39:BE:EF:BB
     vrf RED
     vlan-raw-device bridge
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
-    hwaddress 44:38:39:BE:EF:BB
+    address-virtual 44:38:39:BE:EF:BB
     vrf BLUE
     vlan-raw-device bridge
     vlan-id 4002
@@ -2625,9 +2542,7 @@ iface BLUE
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
-    bridge-ports vni10 vni20 vni30 vniRED vniBLUE
+    bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
     bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
 
@@ -2687,7 +2602,7 @@ iface vlan10
 auto vlan20
 iface vlan20
     address 10.1.20.3/24
-    address-virtual 00:00:00:00:00:1b 10.1.20.1/24
+    address-virtual 00:00:00:00:00:1a 10.1.20.1/24
     vrf RED
     vlan-raw-device bridge
     vlan-id 20
@@ -2695,21 +2610,21 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.3/24
-    address-virtual 00:00:00:00:00:1c 10.1.30.1/24
+    address-virtual 00:00:00:00:00:1a 10.1.30.1/24
     vrf BLUE
     vlan-raw-device bridge
     vlan-id 30
 
 auto vlan4001
 iface vlan4001
-    hwaddress 44:38:39:BE:EF:BB
+    address-virtual 44:38:39:BE:EF:BB
     vrf RED
     vlan-raw-device bridge
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
-    hwaddress 44:38:39:BE:EF:BB
+    address-virtual 44:38:39:BE:EF:BB
     vrf BLUE
     vlan-raw-device bridge
     vlan-id 4002
@@ -3015,9 +2930,7 @@ iface BLUE
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond3
-    bridge-ports vniRED vniBLUE
+    bridge-ports peerlink bond3 vniRED vniBLUE
     bridge-vids 4001 4002  
     bridge-vlan-aware yes
 
@@ -3041,14 +2954,14 @@ iface vniBLUE
 
 auto vlan4001
 iface vlan4001
-    hwaddress 44:38:39:BE:EF:FF
+    address-virtual 44:38:39:BE:EF:FF
     vrf RED
     vlan-raw-device bridge
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
-    hwaddress 44:38:39:BE:EF:FF
+    address-virtual 44:38:39:BE:EF:FF
     vrf BLUE
     vlan-raw-device bridge
     vlan-id 4002
@@ -3138,9 +3051,7 @@ iface BLUE
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond3
-    bridge-ports vniRED vniBLUE
+    bridge-ports peerlink bond3 vniRED vniBLUE
     bridge-vids 4001 4002  
     bridge-vlan-aware yes
 
@@ -3164,14 +3075,14 @@ iface vniBLUE
 
 auto vlan4001
 iface vlan4001
-    hwaddress 44:38:39:BE:EF:FF
+    address-virtual 44:38:39:BE:EF:FF
     vrf RED
     vlan-raw-device bridge
     vlan-id 4001
 
 auto vlan4002
 iface vlan4002
-    hwaddress 44:38:39:BE:EF:FF
+    address-virtual 44:38:39:BE:EF:FF
     vrf BLUE
     vlan-raw-device bridge
     vlan-id 4002
@@ -3261,7 +3172,6 @@ router bgp 65101
  neighbor swp53 interface peer-group underlay
  neighbor swp54 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -3270,8 +3180,6 @@ router bgp 65101
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
-
 !
 line vty
 !
@@ -3304,7 +3212,6 @@ router bgp 65101
  neighbor swp53 interface peer-group underlay
  neighbor swp54 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -3313,8 +3220,6 @@ router bgp 65101
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
-
 !
 line vty
 !
@@ -3347,7 +3252,6 @@ router bgp 65102
  neighbor swp53 interface peer-group underlay
  neighbor swp54 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -3356,8 +3260,6 @@ router bgp 65102
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
-
 !
 line vty
 !
@@ -3390,7 +3292,6 @@ router bgp 65102
  neighbor swp53 interface peer-group underlay
  neighbor swp54 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -3399,8 +3300,6 @@ router bgp 65102
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
-
 !
 line vty
 !
@@ -3417,7 +3316,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
@@ -3430,7 +3328,6 @@ router bgp 65199
  neighbor swp5 interface peer-group underlay
  neighbor swp6 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -3438,8 +3335,6 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
-
 !
 line vty
 !
@@ -3456,7 +3351,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
@@ -3469,7 +3363,6 @@ router bgp 65199
  neighbor swp5 interface peer-group underlay
  neighbor swp6 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -3477,8 +3370,6 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
-
 !
 line vty
 !
@@ -3495,7 +3386,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65199
  bgp router-id 10.10.10.103
  bgp bestpath as-path multipath-relax
@@ -3508,7 +3398,6 @@ router bgp 65199
  neighbor swp5 interface peer-group underlay
  neighbor swp6 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -3516,8 +3405,6 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
-
 !
 line vty
 !
@@ -3534,7 +3421,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65199
  bgp router-id 10.10.10.104
  bgp bestpath as-path multipath-relax
@@ -3547,7 +3433,6 @@ router bgp 65199
  neighbor swp5 interface peer-group underlay
  neighbor swp6 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -3555,8 +3440,6 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
-
 !
 line vty
 !
@@ -3589,7 +3472,6 @@ router bgp 65132
  neighbor swp53 interface peer-group underlay
  neighbor swp54 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -3622,8 +3504,6 @@ router bgp 65132 vrf BLUE
  address-family l2vpn evpn
   advertise ipv4 unicast
  exit-address-family
-!
-
 !
 line vty
 !
@@ -3656,7 +3536,6 @@ router bgp 65132
  neighbor swp53 interface peer-group underlay
  neighbor swp54 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -3689,8 +3568,6 @@ router bgp 65132 vrf BLUE
  address-family l2vpn evpn
   advertise ipv4 unicast
  exit-address-family
-!
-
 !
 line vty
 !

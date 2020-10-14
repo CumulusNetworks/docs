@@ -315,7 +315,7 @@ You can rearrange the columns within a table. Click and hold on a column header,
 
 #### Sort Table Data by Column
 
-You can sort table data by a given column for tables on full-screen cards. The data is sorted in ascending or descending order; A to Z, Z to A, 1 to n, or n to 1.
+You can sort tables (with up to 10,000 rows) by a given column for tables on full-screen cards. The data is sorted in ascending or descending order; A to Z, Z to A, 1 to n, or n to 1.
 
 To sort table data by column:
 

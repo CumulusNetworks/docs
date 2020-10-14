@@ -888,206 +888,76 @@ Paths: (2 available, best #1, table Default-IP-Routing-Table)
 
 ### BGP add-path TX
 
-AddPath TX allows BGP to advertise more than just the bestpath for a prefix. Consider the following topology:
+Add-path TX enables BGP to advertise more than just the bestpath for a prefix. Cumulus Linux includes two options:
+- `addpath-tx-all-paths` advertises all known paths to a neighbor
+- `addpath-tx-bestpath-per-AS` advertises only the best path learned from each AS to a neighbor
 
-```
-          r8
-          |
-          |
-  r1 ----    ---- r6
-  r2 ---- r7 ---- r5
-          ||
-          ||
-        r3 r4
-```
+The following example commands configure leaf01 to advertise the best path learned from each AS to its neighbor 169.254.10.2:
 
-In this topology:
-
-- r1 and r2 are in AS 100
-- r3 and r4 are in AS 300
-- r5 and r6 are in AS 500
-- r7 is in AS 700
-- r8 is in AS 800
-- r7 learns 1.1.1.1/32 from r1, r2, r3, r4, r5, and r6; r7 picks the path from r1 as the bestpath for 1.1.1.1/32
-
-{{< tabs "28 ">}}
+{{< tabs "897 ">}}
 
 {{< tab "NCLU Commands ">}}
 
-The example below configures the r7 session to advertise the bestpath learned from each AS. In this case, a path from AS 100, a path from AS 300, and a path from AS 500. The `net show bgp 1.1.1.1/32` from r7 has `bestpath-from-AS 100` so you can see what the bestpath is from each AS:
-
 ```
-cumulus@r7:~$ net add bgp autonomous-system 700
-cumulus@r7:~$ net add bgp neighbor 192.0.2.2 addpath-tx-bestpath-per-AS
-cumulus@r7:~$ net pending
-cumulus@r7:~$ net commit
-```
-
-The output below shows the result on r8:
-
-```
-cumulus@r8:~$ net show bgp 1.1.1.1/32
-BGP routing table entry for 1.1.1.1/32
-Paths: (3 available, best #3, table Default-IP-Routing-Table)
-  Advertised to non peer-group peers:
-  r7(10.7.8.1)
-  700 100
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 1:1
-      AddPath ID: RX 2, TX 4
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 300
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 3:3
-      AddPath ID: RX 4, TX 3
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 500
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best (First path received)
-      Community: 5:5
-      AddPath ID: RX 6, TX 2
-      Last update: Thu Jun  2 00:57:14 2016
-```
-
-The example below shows the results when r7 is configured to advertise all paths to r8:
-
-```
-cumulus@r7:~$ net add bgp autonomous-system 700
-cumulus@r7:~$ net add bgp neighbor 192.0.2.2 addpath-tx-all-paths
-cumulus@r7:~$ net pending
-cumulus@r7:~$ net commit
-```
-
-The output below shows the result on r8:
-
-```
-cumulus@r8:~$ net show bgp 1.1.1.1/32
-BGP routing table entry for 1.1.1.1/32
-Paths: (3 available, best #3, table Default-IP-Routing-Table)
-  Advertised to non peer-group peers:
-  r7(10.7.8.1)
-  700 100
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 1:1
-      AddPath ID: RX 2, TX 4
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 300
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 3:3
-      AddPath ID: RX 4, TX 3
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 500
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best (First path received)
-      Community: 5:5
-      AddPath ID: RX 6, TX 2
-      Last update: Thu Jun  2 00:57:14 2016
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp neighbor 169.254.10.2 addpath-tx-bestpath-per-AS
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
 
 {{< tab "vtysh Commands ">}}
 
-The example below configures the r7 session to advertise the bestpath learned from each AS. In this case, a path from AS 100, a path from AS 300, and a path from AS 500. The `show ip bgp 1.1.1.1/32` from r7 has
-`bestpath-from-AS 100` so you can see what the bestpath is from each AS:
-
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-r7# configure terminal
-r7(config)# router bgp 700
-r7(config-router)# neighbor 192.0.2.2 addpath-tx-bestpath-per-AS
-r7(config-router)#
-```
-
-The output below shows the result on r8:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-r8# show ip bgp 1.1.1.1/32
-BGP routing table entry for 1.1.1.1/32
-Paths: (3 available, best #3, table Default-IP-Routing-Table)
-  Advertised to non peer-group peers:
-  r7(10.7.8.1)
-  700 100
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 1:1
-      AddPath ID: RX 2, TX 4
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 300
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 3:3
-      AddPath ID: RX 4, TX 3
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 500
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best
-      Community: 5:5
-      AddPath ID: RX 6, TX 2
-      Last update: Thu Jun  2 00:57:14 2016
-
-r8#
-```
-
-The example below shows the results when r7 is configured to advertise all paths to r8:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-r7# configure terminal
-r7(config)# router bgp 700
-r7(config-router)# neighbor 192.0.2.2 addpath-tx-all-paths
-r7(config-router)#
-```
-
-The output below shows the result on r8:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-r8# show ip bgp 1.1.1.1/32
-BGP routing table entry for 1.1.1.1/32
-Paths: (3 available, best #3, table Default-IP-Routing-Table)
-  Advertised to non peer-group peers:
-  r7(10.7.8.1)
-  700 100
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 1:1
-      AddPath ID: RX 2, TX 4
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 300
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external
-      Community: 3:3
-      AddPath ID: RX 4, TX 3
-      Last update: Thu Jun  2 00:57:14 2016
-
-  700 500
-    10.7.8.1 from r7(10.7.8.1) (10.0.0.7)
-      Origin IGP, localpref 100, valid, external, bestpath-from-AS 700, best
-      Community: 5:5
-      AddPath ID: RX 6, TX 2
-      Last update: Thu Jun  2 00:57:14 2016
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor 169.254.10.2 addpath-tx-bestpath-per-AS
+leaf01(config-router)#
 ```
 
 {{< /tab >}}
 
 {{< /tabs >}}
+
+The following example commands configure leaf01 to advertise all paths learned from each AS to its neighbor 169.254.10.2:
+
+{{< tabs "927 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp neighbor 169.254.10.2 addpath-tx-all-paths
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor 169.254.10.2 addpath-tx-all-paths
+leaf01(config-router)#
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The following example configuration shows how BGP add-path TX is used to advertise the best path learned from each AS:
+
+|    |    |
+| -- | -- |
+| {{< img src = "/images/cumulus-linux/bgp-add-path-tx.png" >}} | <ul><li>Every leaf and every spine has a different ASN</li><li>eBGP is configured between:<ul><li>leaf01 and spine01, spine02, and spine03</li><li>leaf03 and spine01, spine02, and spine03</li><li>leaf01 and leaf02 (leaf02 only has a single peer, leaf01)</li></ul>|
+| <pre> | <ul><li>leaf01 is configured to advertise the bestpath learned from each AS to its neighbor leaf02</li><li>Leaf03 generates a loopback IP into BGP with a network statement</li><li>The `show ip bgp 10.10.10.3/32` command output shows the leaf03 loopback.</li></ul> |
 
 ## Graceful BGP Shutdown
 

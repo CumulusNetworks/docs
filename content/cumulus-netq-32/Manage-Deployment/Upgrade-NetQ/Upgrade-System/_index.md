@@ -84,7 +84,7 @@ You can ignore the note on the image card because, unlike during installation, y
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ``````
 
-6. If you are upgrading NetQ as a VM in the cloud from version 3.0.0 or earlier, you must increase the root volume disk image size for proper operation of the lifecycle management feature.
+6. If you are upgrading NetQ as a VM in the cloud from version 3.1.0 or earlier, you must increase the root volume disk image size for proper operation of the lifecycle management feature.
 
     {{< tabs "TabID89" >}}
 

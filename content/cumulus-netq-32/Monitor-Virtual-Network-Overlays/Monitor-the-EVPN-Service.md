@@ -30,7 +30,7 @@ When entering a time value in the <code>netq show evpn</code> command, you must 
 <li><strong>now</strong>
 </ul>
 
-For the `between` option, the start (`<text-time>`) and end time (`text-endtime>`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+When using the <code>between</code> option, the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{</notice>}}
 
 ### View Service Status Summary
@@ -856,7 +856,7 @@ leaf01            4001       10.0.1.1         L3               Vrf RED        ye
 
 ### View VTEP Count
 
-You can view the count of VTEPs (VXLAN Tunnel Endpoints) for a given EVPN session from the medium and large Network Services|EVPN Session cards.
+You can view the number of VTEPs (VXLAN Tunnel Endpoints) for a given EVPN session from the medium and large Network Services|EVPN Session cards.
 
 To view the count for a given EVPN session, on the *medium* EVPN Session
 card:
@@ -877,21 +877,62 @@ card:
 
 This card also shows the associated VRF (layer 3) or VLAN (layer 2) on each device participating in this session. </div>
 
-### View All EVPN Session Details
+### View VTEP IP Address
 
-You can view all stored attributes of all of the EVPN sessions running networkwide.
+You can view the IP address of the VTEP used in a given session using the `netq show evpn` command.
 
-To view all session details, open the full screen EVPN Session card and click the **All EVPN Sessions** tab.
+This example shows a VTEP address of *10.0.1.1* for the *leaf01:VNI 4001* EVPN session.
+
+```
+cumulus@switch:~$ netq leaf01 show evpn vni 4001
+Matching evpn records:
+Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
+----------------- ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
+leaf01            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Tue Oct 13 04:21:15 2020
+```
+
+### View All EVPN Sessions on a VNI
+
+You can view the attributes of all of the EVPN sessions for a given VNI using the NetQ UI or NetQ CLI.
+
+{{< tabs "TabIDxxx" >}}
+
+{{< tab "NetQ UI" >}}
+
+To view the sessions, open the full-screen Network Services|EVPN Session card and click the **All EVPN Sessions** tab.
 
 {{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-allsess-tab-241.png" width="700">}}
 
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right of the card.
 
-### View All Events
+{{< /tab >}}
 
-You can view all of the alarm and info events occurring network wide.
+{{< tab "NetQ CLI" >}}
 
-To view all events, open the full screen EVPN Session card and click the **All Events** tab.
+To view the sessions, run `netq show evpn` with the `vni` option.
+
+This example shows all sessions for VNI *20*.
+
+```
+cumulus@switch:~$ netq show evpn vni 20
+Matching evpn records:
+Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
+----------------- ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
+leaf01            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Wed Oct 14 04:56:31 2020
+leaf02            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Wed Oct 14 04:54:29 2020
+leaf03            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct 14 04:58:57 2020
+leaf04            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct 14 04:58:46 2020
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### View All Session Events
+
+You can view all of the alarm and info events for a given session with the NetQ UI.
+
+To view all events, open the full-screen Network Services|EVPN Session card and click the **All Events** tab.
 
 {{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-events-tab-241.png" width="700">}}
 

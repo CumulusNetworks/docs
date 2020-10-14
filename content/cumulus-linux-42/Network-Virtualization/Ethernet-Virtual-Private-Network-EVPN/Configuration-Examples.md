@@ -805,6 +805,12 @@ The following example shows an EVPN centralized routing configuration:
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
 - SVIs are configured as gateways on the border leafs
 
+The following images shows traffic flow between tenants. The spines and other devices are omitted for simplicity.
+
+|   Traffic Flow between server01 and server05  |     |
+| --- | --- |
+| <img width=1000/> {{< img src="/images/cumulus-linux/evpn-central-diagram.png" >}} | server01 and server05 are in a different VLAN and are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup and has a route out through border01.</li><li>what happens here </li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server04 in VLAN 20.</li></ul>|
+
 ### /etc/network/interfaces
 
 {{< tabs "TabID894 ">}}

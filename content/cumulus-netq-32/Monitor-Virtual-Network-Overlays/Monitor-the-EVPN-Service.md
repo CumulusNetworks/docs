@@ -595,7 +595,7 @@ You can view the status of the EVPN service on a single VNI using the full-scree
 
 3. Page forward and backward to find the VNI of interest and then view the status of the service for that VNI.
 
-{{<link src="/images/netq/ntwk-svcs-all-evpn-fullscr-allsessions-tab-byVNI-320.png" width="700">}}
+{{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-allsessions-tab-byVNI-320.png" width="700">}}
 
 {{< /tab >}}
 

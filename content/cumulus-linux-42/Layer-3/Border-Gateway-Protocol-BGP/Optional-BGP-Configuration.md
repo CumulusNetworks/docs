@@ -578,7 +578,7 @@ Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
 
 ### BGP add-path RX
 
-*BGP add-path RX* allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. BGP add-path RX is enabled by default; no additional configuration is required.
+BGP add-path RX allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. BGP add-path RX is enabled by default; no additional configuration is required.
 
 To view the existing capabilities, run the NCLU `net show bgp neighbor` command or the vtysh `show ip bgp neighbors` command. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
 
@@ -606,9 +606,7 @@ Hostname: spine01
 ...
 ```
 
-To view the current additional paths, run the NCLU `net show bgp <router-id>` command or the `vtysh show ip bgp <router-id>` command.
-
-The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
+To view the current additional paths, run the NCLU `net show bgp <router-id>` command or the `vtysh show ip bgp <router-id>` command. The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp 10.10.10.9
@@ -632,7 +630,7 @@ Paths: (2 available, best #1, table Default-IP-Routing-Table)
 
 ### BGP add-path TX
 
-Add-path TX enables BGP to advertise more than just the best path for a prefix. Cumulus Linux includes two options:
+BGP add-path TX enables BGP to advertise more than just the best path for a prefix. Cumulus Linux includes two options:
 - `addpath-tx-all-paths` advertises all known paths to a neighbor
 - `addpath-tx-bestpath-per-AS` advertises only the best path learned from each AS to a neighbor
 
@@ -696,7 +694,7 @@ leaf01(config-router)#
 
 {{< /tabs >}}
 
-The following example configuration shows how BGP add-path TX is used to advertise the best path learned from each AS:
+The following example configuration shows how BGP add-path TX is used to advertise the best path learned from each AS.
 
 | <div style="width:500px">   |    |
 | -- | -- |
@@ -731,7 +729,7 @@ BGP includes several timers that you can configure.
 ### BGP TTL Security Hop Count
 
 You can use the TTL security hop count option to prevent attacks against eBGP, such as denial of service (DoS) attacks.
-By default, BGP messages are sent to eBGP neighbors with an IP time-to-live (TTL) of 1, which requires the peer to be directly connected, otherwise, the packets expire along the way. (You can adjust the TTL with {{<link url="#ebgp-multihop" text="eBGP multihop">}} option.) An attacker can easily adjust the TTL of packets so that they appear to originating from a peer that is directly connected.
+By default, BGP messages are sent to eBGP neighbors with an IP time-to-live (TTL) of 1, which requires the peer to be directly connected, otherwise, the packets expire along the way. (You can adjust the TTL with the {{<link url="#ebgp-multihop" text="eBGP multihop">}} option.) An attacker can easily adjust the TTL of packets so that they appear to originating from a peer that is directly connected.
 
 The BGP TTL security hops option inverts the direction in which the TTL is counted. Instead of accepting only packets with a TTL set to 1, only BGP messages with a TTL greater than or equal to 255 minus the specified hop count are accepted.
 
@@ -839,9 +837,7 @@ router bgp 65101
 
 ### Reconnect Interval
 
-By default, the BGP process attempts to connect to a peer after a failure (or on startup) every 10 seconds.
-
-To change this value, run the following commands on each neighbor.
+By default, the BGP process attempts to connect to a peer after a failure (or on startup) every 10 seconds. You can change this value to suit your needs.
 
 The following example commands set the reconnect value to 30 seconds:
 
@@ -978,7 +974,7 @@ router bgp 65199
 ```
 
 {{%notice info%}}
-For IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
+When configuring BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 {{%/notice%}}
 
 ## Graceful BGP Shutdown

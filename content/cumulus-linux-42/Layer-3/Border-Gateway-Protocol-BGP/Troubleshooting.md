@@ -10,7 +10,7 @@ Use the following commands to troubleshoot BGP.
 
 The following example commands run on a BGP unnumbered configuration and show IPv6 next hops or the interface name for any IPv4 prefix.
 
-To show a summary of the BGP configuration on the switch, run the NCLU `net show bgp summary` command or the vtysh `show ip bgp summary`. For example:
+To show a summary of the BGP configuration on the switch, run the NCLU `net show bgp summary` command or the vtysh `show ip bgp summary` command. For example:
 
 ```
 cumulus@switch:~$ net show bgp summary
@@ -284,7 +284,7 @@ FIB entry for 10.10.10.101/32
 10.10.10.101/32 via 169.254.10.101 dev swp1 proto bgp metric 20 onlink
 ```
 
-If an IPv4 prefix is learned with only an IPv6 global next hop address (for example, when the route is learned through a route reflector), the command output shows the IPv6 global address as the next hop value and shows that it is learned recursively through the link-local address of the route reflector. Note that when a global IPv6 address is used as a next hop for route installation in the FRR RIB, it is still converted into an IPv4 link-local address for installation into the kernel.
+If an IPv4 prefix is learned with only an IPv6 global next hop address (for example, when the route is learned through a route reflector), the command output shows the IPv6 global address as the next hop value and shows that it is learned recursively through the link-local address of the route reflector. When a global IPv6 address is used as a next hop for route installation in the FRR RIB, it is still converted into an IPv4 link-local address for installation into the kernel.
 
 ```
 cumulus@leaf01:~$ net show bgp ipv4 unicast summary
@@ -471,7 +471,7 @@ Hostname: spine01
 
 ## Neighbor State Change Log
 
-Cumulus Linux records the changes that a neighbor goes through in the `/var/log/frr/frr.log` file. For example:
+Cumulus Linux records the changes that a neighbor goes through in `syslog` and in the `/var/log/frr/frr.log` file. For example:
 
 ```
 020-10-05T15:51:32.621773-07:00 leaf01 bgpd[10104]: %NOTIFICATION: sent to neighbor peerlink.4094 6/7 (Cease/Connection collision resolution) 0 bytes

@@ -32,8 +32,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
+    bridge-ports peerlink bond1 bond2 bond3
     bridge-vids 10 20 30
     bridge-vlan-aware yes
 
@@ -154,8 +153,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
+    bridge-ports peerlink bond1 bond2 bond3
     bridge-vids 10 20 30
     bridge-vlan-aware yes
 
@@ -276,8 +274,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
+    bridge-ports peerlink bond1 bond2 bond3
     bridge-vids 10 20 30
     bridge-vlan-aware yes
 
@@ -397,8 +394,7 @@ iface eth0 inet dhcp
 
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2 bond3
+    bridge-ports peerlink bond1 bond2 bond3
     bridge-vids 10 20 30
     bridge-vlan-aware yes
 
@@ -595,12 +591,10 @@ router bgp 65101
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
  !
-!
 line vty
 !
 ```
@@ -625,14 +619,10 @@ router bgp 65101
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
  !
-!
-
-!
 line vty
 !
 ```
@@ -657,16 +647,12 @@ router bgp 65102
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
 !
-
-!
 line vty
 !
-
 ```
 
 {{< /tab >}}
@@ -689,13 +675,10 @@ router bgp 65102
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
  !
-
-!
 line vty
 !
 ```
@@ -711,7 +694,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
@@ -722,12 +704,9 @@ router bgp 65199
  neighbor swp3 interface peer-group underlay
  neighbor swp4 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
-!
-
 !
 line vty
 !
@@ -744,7 +723,6 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-!
 router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
@@ -755,12 +733,9 @@ router bgp 65199
  neighbor swp3 interface peer-group underlay
  neighbor swp4 interface peer-group underlay
  !
- !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
-!
-
 !
 line vty
 !

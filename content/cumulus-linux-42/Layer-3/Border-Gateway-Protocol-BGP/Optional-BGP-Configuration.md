@@ -386,7 +386,7 @@ exit-address-family
 ...
 ```
 
-When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors, you need to set the *bestpath as-path multipath-relax* option.
+When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors, you need to set the `bestpath as-path multipath-relax`*` option.
 
 {{< tabs "12 ">}}
 
@@ -860,7 +860,7 @@ Hostname: spine01
 ...
 ```
 
-The example output above shows that additional BGP paths can be sent and received (TX and RX are advertised). It also shows that the BGP neighbor, fe80::7c41:fff:fe93:b711, supports both.
+The example output above shows that additional BGP paths can be sent and received (TX and RX are advertised). It also shows that the BGP neighbor on swp51, supports both.
 
 To view the current additional paths, run the NCLU `net show bgp <router-id>` command or the `vtysh show ip bgp <router-id>` command.
 
@@ -888,11 +888,11 @@ Paths: (2 available, best #1, table Default-IP-Routing-Table)
 
 ### BGP add-path TX
 
-Add-path TX enables BGP to advertise more than just the bestpath for a prefix. Cumulus Linux includes two options:
+Add-path TX enables BGP to advertise more than just the best path for a prefix. Cumulus Linux includes two options:
 - `addpath-tx-all-paths` advertises all known paths to a neighbor
 - `addpath-tx-bestpath-per-AS` advertises only the best path learned from each AS to a neighbor
 
-The following example commands configure leaf01 to advertise the best path learned from each AS to its neighbor 169.254.10.2:
+The following example commands configure leaf01 to advertise the best path learned from each AS to the BGP neighbor on swp50:
 
 {{< tabs "897 ">}}
 
@@ -900,7 +900,7 @@ The following example commands configure leaf01 to advertise the best path learn
 
 ```
 cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp neighbor 169.254.10.2 addpath-tx-bestpath-per-AS
+cumulus@leaf01:~$ net add bgp neighbor swp50 addpath-tx-bestpath-per-AS
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -914,7 +914,7 @@ cumulus@leaf01:~$ sudo vtysh
 
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
-leaf01(config-router)# neighbor 169.254.10.2 addpath-tx-bestpath-per-AS
+leaf01(config-router)# neighbor swp50 addpath-tx-bestpath-per-AS
 leaf01(config-router)#
 ```
 
@@ -922,7 +922,7 @@ leaf01(config-router)#
 
 {{< /tabs >}}
 
-The following example commands configure leaf01 to advertise all paths learned from each AS to its neighbor 169.254.10.2:
+The following example commands configure leaf01 to advertise all paths learned from each AS to the BGP neighbor on swp50:
 
 {{< tabs "927 ">}}
 
@@ -930,7 +930,7 @@ The following example commands configure leaf01 to advertise all paths learned f
 
 ```
 cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp neighbor 169.254.10.2 addpath-tx-all-paths
+cumulus@leaf01:~$ net add bgp neighbor swp50 addpath-tx-all-paths
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -944,7 +944,7 @@ cumulus@leaf01:~$ sudo vtysh
 
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
-leaf01(config-router)# neighbor 169.254.10.2 addpath-tx-all-paths
+leaf01(config-router)# neighbor swp50 addpath-tx-all-paths
 leaf01(config-router)#
 ```
 
@@ -954,10 +954,31 @@ leaf01(config-router)#
 
 The following example configuration shows how BGP add-path TX is used to advertise the best path learned from each AS:
 
-|    |    |
+| <div style="width:500px">   |    |
 | -- | -- |
-| {{< img src = "/images/cumulus-linux/bgp-add-path-tx.png" >}} | <ul><li>Every leaf and every spine has a different ASN</li><li>eBGP is configured between:<ul><li>leaf01 and spine01, spine02, and spine03</li><li>leaf03 and spine01, spine02, and spine03</li><li>leaf01 and leaf02 (leaf02 only has a single peer, leaf01)</li></ul>|
-| <pre> | <ul><li>leaf01 is configured to advertise the bestpath learned from each AS to its neighbor leaf02</li><li>Leaf03 generates a loopback IP into BGP with a network statement</li><li>The `show ip bgp 10.10.10.3/32` command output shows the leaf03 loopback.</li></ul> |
+| {{< img src = "/images/cumulus-linux/bgp-add-path-tx.png" >}} | In this configuration:<ul><li>Every leaf and every spine has a different ASN</li><li>eBGP is configured between:<ul><li>leaf01 and spine01, spine02</li><li>leaf03 and spine01, spine02</li><li>leaf01 and leaf02 (leaf02 only has a single peer, which is leaf01)</li></ul><li>leaf01 is configured to advertise the best path learned from each AS to BGP neighbor leaf02</li><li>leaf03 generates a loopback IP address (10.10.10.3/32) into BGP with a network statement</li></ul>|
+
+When you run the `net show bgp 10.10.10.3/32` command on leaf02, the command output shows the leaf03 loopback IP address:
+
+```
+cumulus@leaf02:mgmt:~$ net show bgp 10.10.10.3/32
+BGP routing table entry for 10.10.10.3/32
+Paths: (2 available, best #2, table default)
+       Advertised to non peer-group peers:
+       leaf01(swp50)
+  65101 65199 65103
+    fe80::4638:39ff:fe00:13 from leaf01(swp50) (10.10.10.1)
+    (fe80::4638:39ff:fe00:13) (used)
+      Origin IGP, valid, external
+      AddPath ID: RX 4, TX-All 0 TX-Best-Per-AS 0
+      Last update: Thu Oct 15 18:31:46 2020
+  65101 65198 65103
+    fe80::4638:39ff:fe00:13 from leaf01(swp50) (10.10.10.1)
+    (fe80::4638:39ff:fe00:13) (used)
+      Origin IGP, valid, external, bestpath-from-AS 65101, best (Nothing left to compare)
+      AddPath ID: RX 3, TX-All 0 TX-Best-Per-AS 0
+      Last update: Thu Oct 15 18:31:46 2020
+```
 
 ## Graceful BGP Shutdown
 

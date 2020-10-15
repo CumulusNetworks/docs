@@ -582,6 +582,8 @@ Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
 
 To view the existing capabilities, run the NCLU `net show bgp neighbor` command or the vtysh `show ip bgp neighbors` command. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
 
+The following example output shows that additional BGP paths can be sent and received and that the BGP neighbor on swp51 supports both.
+
 ```
 cumulus@leaf01:~$ net show bgp neighbor
 BGP neighbor on swp51: fe80::7c41:fff:fe93:b711, remote AS 65199, local AS 65101, external link
@@ -603,8 +605,6 @@ Hostname: spine01
     Graceful Restart Capability: advertised and received
 ...
 ```
-
-The example output above shows that additional BGP paths can be sent and received (TX and RX are advertised). It also shows that the BGP neighbor on swp51, supports both.
 
 To view the current additional paths, run the NCLU `net show bgp <router-id>` command or the `vtysh show ip bgp <router-id>` command.
 

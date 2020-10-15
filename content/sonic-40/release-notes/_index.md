@@ -55,6 +55,7 @@ This software supports the switch systems listed below.
 ###	SONiC Versions
 
 | Branch| Hash | Location |
+| ----- | ---- | -------- |
 | SONiC 201911_MUR4 | bea968bb2be64c739ed0bae7cfdcc40eccf6988b | https://github.com/Azure/sonic-buildimage/tree/201911 |
 
 ###	Package Content

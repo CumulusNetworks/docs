@@ -830,7 +830,6 @@ Setting the default MTU also applies to the management interface. Be sure to add
 ## Breakout Ports
 
 Cumulus Linux lets you:
-
 - Break out 100G switch ports into 2x50G, 4x25G, or 4x10G with breakout cables.
 - Break out 40G switch ports into four separate 10G ports (4x10G) for use with breakout cables.
 - Combine (*aggregate* or *gang*) four 10G switch ports into one 40G port for use with a breakout cable ({{<link url="Bonding-Link-Aggregation" text="not to be confused with a bond">}}).
@@ -838,12 +837,12 @@ Cumulus Linux lets you:
 {{%notice note%}}
 
 - For Broadcom switches with ports that support 100G speeds, you *cannot* have more than 128 logical ports.
-
 - Mellanox switches with the Spectrum ASIC have a limit of 64 logical ports. 64-port Broadcom switches with the Tomahawk2 ASIC have a limit of 128 total logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
 
   These restrictions do *not* apply to a 2x50G breakout configuration.
+- On Mellanox switches with the Spectrum ASIC running in *nonatomic* ACL mode, if you break out a port, then reload the `switchd` service, temporary disruption to traffic occurs while the ACLs are reinstalled.
 
 {{%/notice%}}
 

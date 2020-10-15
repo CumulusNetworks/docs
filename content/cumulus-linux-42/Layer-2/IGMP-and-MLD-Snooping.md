@@ -67,18 +67,6 @@ Cumulus Networks recommends that you also configure IGMP/MLD querier. See {{<lin
 
 To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.
 
-**Additional Configuration for Spectrum Switches**
-
-For switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, the IGMP reports received over VXLAN from remote hosts are not forwarded to the kernel, which, in certain cases, might result in local receivers not responding to the IGMP query. To workaround this issue, you need to apply certain ACL rules to avoid the IGMP report packets being sent across to the hosts:
-
-Add the following lines to the `/etc/cumulus/acl/policy.d/23_acl_test.rules` file (where `<swp>` is the port connected to the access host), then run the `cl-acltool -i` command:
-
-```
-[ebtables]
--A FORWARD -p IPv4 -o #<swp> --ip-proto igmp -j ACCEPT --ip-destination 224.0.0.0/24
--A FORWARD -p IPv4 -o #<swp> --ip-proto igmp -j DROP
-```
-
 ## Configure IGMP/MLD Querier
 
 If no multicast router is sending queries to configure IGMP/MLD querier on the switch, you can add a configuration similar to the following in the `/etc/network/interfaces` file. To enable IGMP and MLD snooping for a bridge, set `bridge-mcquerier` to *1* in the bridge stanza. By default, the source IP address of IGMP queries is 0.0.0.0.

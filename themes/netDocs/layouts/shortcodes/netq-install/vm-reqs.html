@@ -24,7 +24,7 @@ When using a VM, the following system resources must be allocated:
 <tr class="odd">
 <td>Memory</td>
 {{- if eq (.Get "deployment") "onprem" -}}
-<td>32 GB RAM</td>
+<td>64 GB RAM</td>
 {{ end }}
 {{- if eq (.Get "deployment") "cloud" -}}
 <td>8 GB RAM</td>
@@ -46,7 +46,7 @@ When using a VM, the following system resources must be allocated:
 <tr class="even">
 <td>Hypervisor</td>
 {{- if eq (.Get "hypervisor") "vmware" -}}
-<td>VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux, CentOS, Ubuntu and RedHat operating systems</td> 
+<td>VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux, CentOS, Ubuntu and RedHat operating systems</td>
 {{ end }}
 {{- if eq (.Get "hypervisor") "kvm" -}}
 <td>KVM/QCOW (QEMU Copy on Write) image for servers running CentOS, Ubuntu and RedHat operating systems </td>

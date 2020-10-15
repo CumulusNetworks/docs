@@ -386,7 +386,7 @@ exit-address-family
 ...
 ```
 
-When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors, you need to set the `bestpath as-path multipath-relax`*` option.
+When *BGP multipath* is enabled, only BGP routes from the same AS are load balanced. If the routes go across several different AS neighbors, even if the AS path length is the same, they are not load balanced. To be able to load balance between multiple paths received from different AS neighbors, you need to set the `bestpath as-path multipath-relax` option.
 
 {{< tabs "12 ">}}
 
@@ -536,7 +536,9 @@ exit-address-family
 
 ## Neighbor Maximum Prefixes
 
-To configure the maximum number of route announcements (prefixes) that can be received from a BGP neighbor, run the vtysh `neighbor <peer> maximum-prefix <value>` command. For example:
+To protect against an internal network connectivity disruption caused by BGP, you can control how many route announcements (prefixes) can be received from a BGP neighbor.
+
+The following example commands set the maximum number of prefixes allowed from the BGP neighbor on swp51 to 3000:
 
 ```
 cumulus@leaf01:~$ sudo vtysh

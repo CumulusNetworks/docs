@@ -29,7 +29,7 @@ This article outlines the process for using {{<exlink url="http://www.ansible.co
         user at server in ~
         $
 
-2.  Utilize the {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/setup_module.html" text="Ansible setup command">}}, where sw1 is the DNS name of your switch1, where `-m` means which module you are selecting to run, `--ask-pass` will prompt you for the password (most automation environments {{<exlink url="https://wiki.archlinux.org/index.php/SSH_Keys#Simple_method" text="utilize SSH keys for authentication">}} instead of passwords), `-vvvv` gives you all the debugs (not needed but will help you troubleshoot) and `-u root` makes the user root instead of your login to the host device running Ansible.
+2.  Utilize the {{<exlink url="http://docs.ansible.com/setup_module.html" text="Ansible setup command">}}, where sw1 is the DNS name of your switch1, where `-m` means which module you are selecting to run, `--ask-pass` will prompt you for the password (most automation environments {{<exlink url="https://wiki.archlinux.org/index.php/SSH_Keys#Simple_method" text="utilize SSH keys for authentication">}} instead of passwords), `-vvvv` gives you all the debugs (not needed but will help you troubleshoot) and `-u root` makes the user root instead of your login to the host device running Ansible.
 
         ansible sw1 -m setup --ask-pass -vvvv -u root
 

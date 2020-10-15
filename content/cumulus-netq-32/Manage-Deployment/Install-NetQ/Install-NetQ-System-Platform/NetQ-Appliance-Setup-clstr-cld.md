@@ -15,11 +15,11 @@ Inside each box that was shipped to you, you'll find:
 
 For more detail about hardware specifications (including LED layouts and FRUs like the power supply or fans and accessories like included cables) or safety and environmental information, refer to the {{<exlink url="https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf" text="user manual">}}.
 
-## Install Each Appliance
+#### Install Each Appliance
 
 {{<netq-install/appliance-setup deployment="cloud">}}
 
-## Configure the Password, Hostname and IP Address
+#### Configure the Password, Hostname and IP Address
 
 Change the password and specify the hostname and IP address for each appliance before installing the NetQ software.
 
@@ -81,7 +81,7 @@ Change the password and specify the hostname and IP address for each appliance b
 
 5. Repeat these steps for each of the worker node appliances.
 
-## Verify NetQ Software and Appliance Readiness
+#### Verify NetQ Software and Appliance Readiness
 
 Now that the appliances are up and running, verify that the software is available and each appliance is ready for installation.
 
@@ -128,12 +128,6 @@ Make a note of the private IP addresses you assign to the master and worker node
     {{<netq-install/bootstrap server="cluster" version="3.2.0" deployment="cloud" platform="appliance">}}
 
 11. Repeat Steps 5-10 for each additional worker NetQ Cloud Appliance.
-
-## Considerations for Container Environments
-
-{{<netq-install/container>}}
-
-## Install and Activate the NetQ Software
 
 The final step is to install and activate the Cumulus NetQ software on each appliance in your cluster.  You can do this using the Admin UI or the CLI.
 

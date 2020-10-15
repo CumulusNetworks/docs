@@ -33,7 +33,7 @@
     <p>Re-run the Bootstrap CLI. This example uses interface <em>eth0</em>. Replace this with your updated IP address, hostname or interface using the <code>interface</code> or <code>ip-addr</code> option.</p>
     <pre>cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-2.4.1.tgz</pre></div>
 
-{{ end }}
+{{ end}}
 
 {{- if  eq (.Get "platform") "appliance" -}}
 
@@ -342,7 +342,7 @@
     <div class="notices note"><p>If you have changed the IP address or hostname of the NetQ Cloud Appliance <em>after</em> this step, you need to re-register this address with NetQ as follows:</p>
     
     <p>Reset the appliance.</p>
-    <pre>cumulus@hostname:~$ netq bootstrap reset</pre></div>
+    <pre>cumulus@hostname:~$ netq bootstrap reset</pre>
 
 {{ end }}
 

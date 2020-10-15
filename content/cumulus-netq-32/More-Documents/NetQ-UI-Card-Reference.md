@@ -2810,7 +2810,7 @@ The medium EVPN Session card displays:
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services|EVPN Session</td>
+<td>Network Services | EVPN Session</td>
 </tr>
 <tr class="even">
 <td>Summary bar</td>
@@ -2826,7 +2826,7 @@ The medium EVPN Session card displays:
 </tr>
 <tr class="odd">
 <td>Type</td>
-<td>Indicates whether the session is established as part of a layer 2 (L2) or layer 3 (L3) overlay network</td>
+<td>Indicates whether the session is established as part of a layer 2 or layer 3 overlay network</td>
 </tr>
 </tbody>
 </table>
@@ -2929,7 +2929,8 @@ The *Configuration File Evolution* tab displays:
 </tbody>
 </table>
 
-The full-screen EVPN Session card provides tabs for all EVPN sessions and all events.
+The full screen EVPN Session card provides tabs for all EVPN sessions
+and all events.
 
 {{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-allsess-tab-241.png" width="700">}}
 

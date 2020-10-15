@@ -30,7 +30,7 @@ accomplished via `apt-get`:
 
 ## Use decode-syseeprom to Verify Hardware Model, Version and Other Vendor-specific Details
 
-Similar to how Cisco offers the `show idprom` command for IOS and `show sprom` for NX-OS, Cumulus Networks created the `decode-syseeprom` command to provide a universal {{<exlink url="http://en.wikipedia.org/wiki/EEPROM" text="EEPROM">}} format that delivers a consistent way to display hardware platform-specific information. All vendors approved on the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Linux hardware compatibility list">}} adhere to this EEPROM format to be certified for Cumulus Linux.
+Similar to how Cisco offers the `{{<exlink url="http://www.cisco.com/en/US/docs%20/ios/fundamentals/command/reference/cf_s2.html#wp1075721" text="show idprom">}}` command for IOS and `{{<exlink url="http://www.cisco.com/web/techdoc/dc/reference/cli/nxos/commands/%20fund/show_sprom.html" text="show sprom">}}` for NX-OS, Cumulus Networks created the `decode-syseeprom` command to provide a universal {{<exlink url="http://en.wikipedia.org/wiki/EEPROM" text="EEPROM">}} format that delivers a consistent way to display hardware platform-specific information. All vendors approved on the {{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Linux hardware compatibility list">}} adhere to this EEPROM format to be certified for Cumulus Linux.
 
 For example:
 

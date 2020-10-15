@@ -570,6 +570,158 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
+## BGP add-path
+
+Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
+
+### BGP add-path RX
+
+*BGP add-path RX* allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. BGP add-path RX is enabled by default; no additional configuration is required.
+
+To view the existing capabilities, run the NCLU `net show bgp neighbor` command or the vtysh `show ip bgp neighbors` command. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
+
+```
+cumulus@leaf01:~$ net show bgp neighbor
+BGP neighbor on swp51: fe80::7c41:fff:fe93:b711, remote AS 65199, local AS 65101, external link
+Hostname: spine01
+  BGP version 4, remote router ID 10.10.10.101, local router ID 10.10.10.1
+  BGP state = Established, up for 1d12h39m
+  Last read 00:00:03, Last write 00:00:01
+  Hold time is 9, keepalive interval is 3 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    AddPath:
+      IPv4 Unicast: RX advertised IPv4 Unicast and received
+    Extended nexthop: advertised and received
+      Address families by peer:
+                   IPv4 Unicast
+    Route refresh: advertised and received(old & new)
+    Address Family IPv4 Unicast: advertised and received
+    Hostname Capability: advertised (name: leaf01,domain name: n/a) received (name: spine01,domain name: n/a)
+    Graceful Restart Capability: advertised and received
+...
+```
+
+The example output above shows that additional BGP paths can be sent and received (TX and RX are advertised). It also shows that the BGP neighbor on swp51, supports both.
+
+To view the current additional paths, run the NCLU `net show bgp <router-id>` command or the `vtysh show ip bgp <router-id>` command.
+
+The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
+
+```
+cumulus@leaf01:mgmt:~$ net show bgp 10.10.10.9
+BGP routing table entry for 10.10.10.9/32
+Paths: (2 available, best #1, table Default-IP-Routing-Table)
+  Advertised to non peer-group peers:
+  spine01(swp51) spine02(swp52)
+  65020 65012
+    fe80::4638:39ff:fe00:5c from spine01(swp51) (10.10.10.12)
+    (fe80::4638:39ff:fe00:5c) (used)
+      Origin incomplete, localpref 100, valid, external, multipath, bestpath-from-AS 65020, best (Older Path)
+      AddPath ID: RX 0, TX 6
+      Last update: Wed Nov 16 22:47:00 2016
+  65020 65012
+    fe80::4638:39ff:fe00:2b from spine02(swp52) (10.10.10.12)
+    (fe80::4638:39ff:fe00:2b) (used)
+      Origin incomplete, localpref 100, valid, external, multipath
+      AddPath ID: RX 0, TX 3
+      Last update: Fri Oct  2 03:56:33 2020
+```
+
+### BGP add-path TX
+
+Add-path TX enables BGP to advertise more than just the best path for a prefix. Cumulus Linux includes two options:
+- `addpath-tx-all-paths` advertises all known paths to a neighbor
+- `addpath-tx-bestpath-per-AS` advertises only the best path learned from each AS to a neighbor
+
+The following example commands configure leaf01 to advertise the best path learned from each AS to the BGP neighbor on swp50:
+
+{{< tabs "897 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp neighbor swp50 addpath-tx-bestpath-per-AS
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp50 addpath-tx-bestpath-per-AS
+leaf01(config-router)#
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The following example commands configure leaf01 to advertise all paths learned from each AS to the BGP neighbor on swp50:
+
+{{< tabs "927 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp neighbor swp50 addpath-tx-all-paths
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp50 addpath-tx-all-paths
+leaf01(config-router)#
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The following example configuration shows how BGP add-path TX is used to advertise the best path learned from each AS:
+
+| <div style="width:500px">   |    |
+| -- | -- |
+| {{< img src = "/images/cumulus-linux/bgp-add-path-tx.png" >}} | In this configuration:<ul><li>Every leaf and every spine has a different ASN</li><li>eBGP is configured between:<ul><li>leaf01 and spine01, spine02</li><li>leaf03 and spine01, spine02</li><li>leaf01 and leaf02 (leaf02 only has a single peer, which is leaf01)</li></ul><li>leaf01 is configured to advertise the best path learned from each AS to BGP neighbor leaf02</li><li>leaf03 generates a loopback IP address (10.10.10.3/32) into BGP with a network statement</li></ul>|
+
+When you run the `net show bgp 10.10.10.3/32` command on leaf02, the command output shows the leaf03 loopback IP address and that two BGP paths are learned, both from leaf01:
+
+```
+cumulus@leaf02:mgmt:~$ net show bgp 10.10.10.3/32
+BGP routing table entry for 10.10.10.3/32
+Paths: (2 available, best #2, table default)
+       Advertised to non peer-group peers:
+       leaf01(swp50)
+  65101 65199 65103
+    fe80::4638:39ff:fe00:13 from leaf01(swp50) (10.10.10.1)
+    (fe80::4638:39ff:fe00:13) (used)
+      Origin IGP, valid, external
+      AddPath ID: RX 4, TX-All 0 TX-Best-Per-AS 0
+      Last update: Thu Oct 15 18:31:46 2020
+  65101 65198 65103
+    fe80::4638:39ff:fe00:13 from leaf01(swp50) (10.10.10.1)
+    (fe80::4638:39ff:fe00:13) (used)
+      Origin IGP, valid, external, bestpath-from-AS 65101, best (Nothing left to compare)
+      AddPath ID: RX 3, TX-All 0 TX-Best-Per-AS 0
+      Last update: Thu Oct 15 18:31:46 2020
+```
+
 ## BGP Timers
 
 BGP includes several timers that you can configure.
@@ -826,159 +978,6 @@ router bgp 65199
 {{%notice info%}}
 For IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 {{%/notice%}}
-
-## BGP add-path
-
-Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
-
-### BGP add-path RX
-
-*BGP add-path RX* allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. BGP add-path RX is enabled by default; no additional configuration is required.
-
-To view the existing capabilities, run the NCLU `net show bgp neighbor` command or the vtysh `show ip bgp neighbors` command. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
-
-```
-cumulus@leaf01:~$ net show bgp neighbor
-BGP neighbor on swp51: fe80::7c41:fff:fe93:b711, remote AS 65199, local AS 65101, external link
-Hostname: spine01
- Member of peer-group underlay for session parameters
-  BGP version 4, remote router ID 10.10.10.101, local router ID 10.10.10.1
-  BGP state = Established, up for 1d12h39m
-  Last read 00:00:03, Last write 00:00:01
-  Hold time is 9, keepalive interval is 3 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    AddPath:
-      IPv4 Unicast: RX advertised IPv4 Unicast and received
-    Extended nexthop: advertised and received
-      Address families by peer:
-                   IPv4 Unicast
-    Route refresh: advertised and received(old & new)
-    Address Family IPv4 Unicast: advertised and received
-    Hostname Capability: advertised (name: leaf01,domain name: n/a) received (name: spine01,domain name: n/a)
-    Graceful Restart Capability: advertised and received
-...
-```
-
-The example output above shows that additional BGP paths can be sent and received (TX and RX are advertised). It also shows that the BGP neighbor on swp51, supports both.
-
-To view the current additional paths, run the NCLU `net show bgp <router-id>` command or the `vtysh show ip bgp <router-id>` command.
-
-The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
-
-```
-cumulus@leaf01:mgmt:~$ net show bgp 10.10.10.9
-BGP routing table entry for 10.10.10.9/32
-Paths: (2 available, best #1, table Default-IP-Routing-Table)
-  Advertised to non peer-group peers:
-  spine01(swp51) spine02(swp52)
-  65020 65012
-    fe80::4638:39ff:fe00:5c from spine01(swp51) (10.10.10.12)
-    (fe80::4638:39ff:fe00:5c) (used)
-      Origin incomplete, localpref 100, valid, external, multipath, bestpath-from-AS 65020, best (Older Path)
-      AddPath ID: RX 0, TX 6
-      Last update: Wed Nov 16 22:47:00 2016
-  65020 65012
-    fe80::4638:39ff:fe00:2b from spine02(swp52) (10.10.10.12)
-    (fe80::4638:39ff:fe00:2b) (used)
-      Origin incomplete, localpref 100, valid, external, multipath
-      AddPath ID: RX 0, TX 3
-      Last update: Fri Oct  2 03:56:33 2020
-```
-
-### BGP add-path TX
-
-Add-path TX enables BGP to advertise more than just the best path for a prefix. Cumulus Linux includes two options:
-- `addpath-tx-all-paths` advertises all known paths to a neighbor
-- `addpath-tx-bestpath-per-AS` advertises only the best path learned from each AS to a neighbor
-
-The following example commands configure leaf01 to advertise the best path learned from each AS to the BGP neighbor on swp50:
-
-{{< tabs "897 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp neighbor swp50 addpath-tx-bestpath-per-AS
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:~$ sudo vtysh
-
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# neighbor swp50 addpath-tx-bestpath-per-AS
-leaf01(config-router)#
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The following example commands configure leaf01 to advertise all paths learned from each AS to the BGP neighbor on swp50:
-
-{{< tabs "927 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp autonomous-system 65101
-cumulus@leaf01:~$ net add bgp neighbor swp50 addpath-tx-all-paths
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:~$ sudo vtysh
-
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# neighbor swp50 addpath-tx-all-paths
-leaf01(config-router)#
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The following example configuration shows how BGP add-path TX is used to advertise the best path learned from each AS:
-
-| <div style="width:500px">   |    |
-| -- | -- |
-| {{< img src = "/images/cumulus-linux/bgp-add-path-tx.png" >}} | In this configuration:<ul><li>Every leaf and every spine has a different ASN</li><li>eBGP is configured between:<ul><li>leaf01 and spine01, spine02</li><li>leaf03 and spine01, spine02</li><li>leaf01 and leaf02 (leaf02 only has a single peer, which is leaf01)</li></ul><li>leaf01 is configured to advertise the best path learned from each AS to BGP neighbor leaf02</li><li>leaf03 generates a loopback IP address (10.10.10.3/32) into BGP with a network statement</li></ul>|
-
-When you run the `net show bgp 10.10.10.3/32` command on leaf02, the command output shows the leaf03 loopback IP address and that two BGP paths are learned, both from leaf01:
-
-```
-cumulus@leaf02:mgmt:~$ net show bgp 10.10.10.3/32
-BGP routing table entry for 10.10.10.3/32
-Paths: (2 available, best #2, table default)
-       Advertised to non peer-group peers:
-       leaf01(swp50)
-  65101 65199 65103
-    fe80::4638:39ff:fe00:13 from leaf01(swp50) (10.10.10.1)
-    (fe80::4638:39ff:fe00:13) (used)
-      Origin IGP, valid, external
-      AddPath ID: RX 4, TX-All 0 TX-Best-Per-AS 0
-      Last update: Thu Oct 15 18:31:46 2020
-  65101 65198 65103
-    fe80::4638:39ff:fe00:13 from leaf01(swp50) (10.10.10.1)
-    (fe80::4638:39ff:fe00:13) (used)
-      Origin IGP, valid, external, bestpath-from-AS 65101, best (Nothing left to compare)
-      AddPath ID: RX 3, TX-All 0 TX-Best-Per-AS 0
-      Last update: Thu Oct 15 18:31:46 2020
-```
 
 ## Graceful BGP Shutdown
 

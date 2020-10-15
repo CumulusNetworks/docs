@@ -842,7 +842,7 @@ Cumulus Linux lets you:
   - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
 
   These restrictions do *not* apply to a 2x50G breakout configuration.
-- On Mellanox switches with the Spectrum ASIC running in *nonatomic* ACL mode, if you break out a port, then restart the `switchd` service, temporary disruption to traffic occurs while the ACLs are reinstalled.
+- On Mellanox switches with the Spectrum ASIC running in *nonatomic* ACL mode, if you break out a port, then reload the `switchd` service, temporary disruption to traffic occurs while the ACLs are reinstalled.
 
 {{%/notice%}}
 

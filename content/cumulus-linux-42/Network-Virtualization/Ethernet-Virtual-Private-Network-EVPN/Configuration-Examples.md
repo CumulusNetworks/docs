@@ -24,6 +24,12 @@ The following example configures a network infrastructure that creates a layer 2
 - BGP unnumbered is in the underlay (configured on all leafs and spines)
 - Server gateways are outside the VXLAN fabric
 
+The following images shows traffic flow between tenants. The spines and other devices are omitted for simplicity.
+
+|   Traffic Flow between server01 and server04  |     |
+| --- | --- |
+| <img width=1000/> {{< img src="/images/cumulus-linux/evpn-layer2-diagram.png" >}} | server01 and server04 are in the same VLAN but are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup and has the MAC address for server04 in VNI 10, through leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server04 in VLAN 10.</li></ul>|
+
 ### /etc/network/interfaces
 
 {{< tabs "TabID24 ">}}
@@ -95,6 +101,14 @@ auto swp52
 iface swp52
     alias leaf to spine
 
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
 auto swp49
 iface swp49
     alias peerlink
@@ -159,7 +173,6 @@ iface lo inet loopback
     address 10.10.10.2/32
     clagd-vxlan-anycast-ip 10.0.1.1
     vxlan-local-tunnelip 10.10.10.2
-
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -169,10 +182,11 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-
 auto bridge
 iface bridge
-    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-ports peerlink
+    bridge-ports bond1 bond2
+    bridge-ports vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -216,6 +230,14 @@ auto swp52
 iface swp52
     alias leaf to spine
 
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
 auto swp49
 iface swp49
     alias peerlink
@@ -223,6 +245,7 @@ iface swp49
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
@@ -254,8 +277,8 @@ auto swp2
 iface swp2
     alias bond member of bond2
     mtu 9000
-auto bond2
 
+auto bond2
 iface bond2
     alias bond2 on swp2
     mtu 9000
@@ -279,7 +302,6 @@ iface lo inet loopback
     address 10.10.10.3/32
     clagd-vxlan-anycast-ip 10.0.1.2
     vxlan-local-tunnelip 10.10.10.3
-
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -289,7 +311,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 vni10 vni20
@@ -334,6 +355,14 @@ iface swp51
 
 auto swp52
 iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
     alias leaf to spine
 
 auto swp49
@@ -410,7 +439,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 vni10 vni20
@@ -455,6 +483,14 @@ iface swp51
 
 auto swp52
 iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
     alias leaf to spine
 
 auto swp49
@@ -514,12 +550,9 @@ iface bond2
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ cat /etc/network/interfaces
-
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
-
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -544,6 +577,14 @@ iface swp3
 
 auto swp4
 iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
     alias leaf to spine
 ```
 
@@ -567,7 +608,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-
 auto swp1
 iface swp1
     alias leaf to spine
@@ -582,6 +622,14 @@ iface swp3
 
 auto swp4
 iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
     alias leaf to spine
 ```
 
@@ -610,6 +658,8 @@ router bgp 65101
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
@@ -643,6 +693,8 @@ router bgp 65101
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
@@ -676,6 +728,8 @@ router bgp 65102
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
@@ -709,6 +763,8 @@ router bgp 65102
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
@@ -809,7 +865,7 @@ The following images shows traffic flow between tenants. The spines and other de
 
 |   Traffic Flow between server01 and server05  |     |
 | --- | --- |
-| <img width=1000/> {{< img src="/images/cumulus-linux/evpn-central-diagram.png" >}} | server01 and server05 are in a different VLAN and are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup and has the MAC address for server05 in VNI 20, through border01.</li><li>what happens here </li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server04 in VLAN 20.</li></ul>|
+| <img width=1000/> {{< img src="/images/cumulus-linux/evpn-central-diagram.png" >}} | server01 and server05 are in a different VLAN and are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup and forwards to server01's default gateway (border01) out VNI10.</li><li>border01 does a layer 3 lookup in VNI20 and forwards to leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server05 in VLAN 20.</li></ul>|
 
 ### /etc/network/interfaces
 

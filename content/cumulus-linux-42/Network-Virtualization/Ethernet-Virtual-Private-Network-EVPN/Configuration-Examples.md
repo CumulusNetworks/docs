@@ -184,9 +184,7 @@ iface eth0 inet dhcp
     vrf mgmt
 auto bridge
 iface bridge
-    bridge-ports peerlink
-    bridge-ports bond1 bond2
-    bridge-ports vni10 vni20
+    bridge-ports peerlink bond1 bond2 vni10 vni20
     bridge-vids 10 20  
     bridge-vlan-aware yes
 
@@ -302,6 +300,7 @@ iface lo inet loopback
     address 10.10.10.3/32
     clagd-vxlan-anycast-ip 10.0.1.2
     vxlan-local-tunnelip 10.10.10.3
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -891,6 +890,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 vni10 vni20
@@ -935,6 +935,14 @@ iface swp51
 
 auto swp52
 iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
     alias leaf to spine
 
 auto swp49
@@ -1001,7 +1009,6 @@ iface lo inet loopback
     address 10.10.10.2/32
     clagd-vxlan-anycast-ip 10.0.1.1
     vxlan-local-tunnelip 10.10.10.2
-
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -1011,7 +1018,6 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
-
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 vni10 vni20
@@ -1056,6 +1062,14 @@ iface swp51
 
 auto swp52
 iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
     alias leaf to spine
 
 auto swp49
@@ -1179,6 +1193,14 @@ auto swp52
 iface swp52
     alias leaf to spine
 
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
 auto swp49
 iface swp49
     alias peerlink
@@ -1298,6 +1320,14 @@ iface swp51
 
 auto swp52
 iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
     alias leaf to spine
 
 auto swp49
@@ -1470,7 +1500,7 @@ iface eth0 inet dhcp
 auto bridge
 iface bridge
     bridge-ports peerlink bond3 vni10 vni20
-    bridge-vids 10 20  
+    bridge-vids 10 20
     bridge-vlan-aware yes
 
 auto vni10
@@ -1511,6 +1541,14 @@ iface swp51
 
 auto swp52
 iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
     alias leaf to spine
 
 auto swp49
@@ -1575,7 +1613,7 @@ iface eth0 inet dhcp
 auto bridge
 iface bridge
     bridge-ports peerlink bond3 vni10 vni20
-    bridge-vids 10 20  
+    bridge-vids 10 20
     bridge-vlan-aware yes
 
 auto vni10
@@ -1616,6 +1654,14 @@ iface swp51
 
 auto swp52
 iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
     alias leaf to spine
 
 auto swp49
@@ -1885,6 +1931,8 @@ router bgp 65132
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
@@ -1919,6 +1967,8 @@ router bgp 65132
  neighbor peerlink.4094 interface remote-as internal
  neighbor swp51 interface peer-group underlay
  neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected

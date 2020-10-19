@@ -123,7 +123,7 @@ The `bgp listen limit` command limits the number of dynamic peers. The default v
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 router bgp 65101
@@ -174,7 +174,7 @@ cumulus@leaf01:~$
 ## BGP TTL Security Hop Count
 
 You can use the TTL security hop count option to prevent attacks against eBGP, such as denial of service (DoS) attacks.
-By default, BGP messages are sent to eBGP neighbors with an IP time-to-live (TTL) of 1, which requires the peer to be directly connected, otherwise, the packets expire along the way. (You can adjust the TTL with the {{<link url="#ebgp-multihop" text="eBGP multihop">}} option.) An attacker can easily adjust the TTL of packets so that they appear to originating from a peer that is directly connected.
+By default, BGP messages are sent to eBGP neighbors with an IP time-to-live (TTL) of 1, which requires the peer to be directly connected, otherwise, the packets expire along the way. (You can adjust the TTL with the {{<link url="#ebgp-multihop" text="eBGP multihop">}} option.) An attacker can easily adjust the TTL of packets so that they appear to be originating from a peer that is directly connected.
 
 The BGP TTL security hops option inverts the direction in which the TTL is counted. Instead of accepting only packets with a TTL set to 1, only BGP messages with a TTL greater than or equal to 255 minus the specified hop count are accepted.
 
@@ -230,7 +230,7 @@ router bgp 65101
 
 You can authenticate your BGP peer connection to prevent interference with your routing tables.
 
-To enable MD5 authentication for BGP peers, set the same password on the each peer.
+To enable MD5 authentication for BGP peers, set the same password on each peer.
 
 The following example commands set the password *mypassword* on BGP peers leaf01 and spine01:
 
@@ -307,7 +307,7 @@ cumulus@spine01:~$
 
 {{< /tabs >}}
 
-You can confirm the configuration with the NCLU `net show bgp neighbor <neighbor>` command or the with the vtysh `show ip bgp neighbor <neighbor>` command.
+You can confirm the configuration with the NCLU command `net show bgp neighbor <neighbor>` or with the `vtysh` command `show ip bgp neighbor <neighbor>`.
 
 {{< expand "net show bgp neighbor <neighbor> example" >}}
 
@@ -375,7 +375,7 @@ The MD5 password configured against a BGP listen-range peer group (used to accep
 
 ## Remove Private ASNs
 
-If you use private ASNs in the datacenter, any routes you send out to the internet contain your private ASNs. You can remove all the private ASNs from routes to a specific neighbor.
+If you use private ASNs in the data center, any routes you send out to the internet contain your private ASNs. You can remove all the private ASNs from routes to a specific neighbor.
 
 The following example command removes private ASNs from routes sent to the neighbor on swp51 (an unnumbered interface):
 
@@ -391,7 +391,7 @@ cumulus@switch:~$ net add bgp neighbor swp51 remove-private-AS replace-AS
 
 ## ECMP
 
-BGP supports equal-cost multipathing (ECMP). If a BGP node hears a certain prefix from multiple peers, it has all the information necessary to program the routing table and forward traffic for that prefix through all of these peers. BGP typically choses one best path for each prefix and installs that route in the forwarding table.
+BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}}). If a BGP node hears a certain prefix from multiple peers, it has all the information necessary to program the routing table and forward traffic for that prefix through all of these peers. BGP typically choses one best path for each prefix and installs that route in the forwarding table.
 
 In Cumulus Linux, the *BGP multipath* option is enabled by default with the maximum number of paths set to 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links. You can change the number of paths allowed, according to your needs.
 
@@ -428,7 +428,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `address-family` stanza of the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -473,7 +473,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -527,7 +527,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -573,7 +573,7 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -635,7 +635,7 @@ Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
 
 BGP add-path RX allows BGP to receive multiple paths for the same prefix. A path identifier is used so that additional paths do not override previously advertised paths. BGP add-path RX is enabled by default; no additional configuration is required.
 
-To view the existing capabilities, run the NCLU `net show bgp neighbor` command or the vtysh `show ip bgp neighbors` command. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
+To view the existing capabilities, run the NCLU command `net show bgp neighbor` or the `vtysh` command `show ip bgp neighbors`. The existing capabilities are listed in the subsection *Add Path*, below *Neighbor capabilities.*
 
 The following example output shows that additional BGP paths can be sent and received and that the BGP neighbor on swp51 supports both.
 
@@ -661,7 +661,7 @@ Hostname: spine01
 ...
 ```
 
-To view the current additional paths, run the NCLU `net show bgp <prefix>` command or the `vtysh show ip bgp <prefix>` command. The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
+To view the current additional paths, run the NCLU command `net show bgp <prefix>` or the `vtysh` command `show ip bgp <prefix>`. The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp 10.10.10.9
@@ -857,7 +857,7 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 ```
 ...
 router bgp 65101
@@ -911,7 +911,7 @@ router bgp 65101
 
 ## Route Reflectors
 
-iBGP rules state that a route learned from an iBGP peer can not be sent to another iBGP peer. In a datacenter spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, BGP introduced the concept of a *route reflector* that selectively ignores this rule so that when an iBGP speaker is configured as a route reflector, it *can* send iBGP learned routes to other iBGP peers.
+iBGP rules state that a route learned from an iBGP peer can not be sent to another iBGP peer. In a data center spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, BGP introduced the concept of a *route reflector* that selectively ignores this rule so that when an iBGP speaker is configured as a route reflector, it *can* send iBGP learned routes to other iBGP peers.
 
 In the following example, spine01 is acting as a route reflector. The leaf switches, leaf01, leaf02 and leaf03 are *route reflector clients*. Any route that spine01 learns from a route reflector client is sent to other route reflector clients.
 
@@ -947,7 +947,7 @@ cumulus@spine01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...
@@ -1026,7 +1026,7 @@ cumulus@leaf01:~$
 
 {{< /tabs >}}
 
-When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to `0`. To see the configuration, run the NCLU `net show bgp <route>` command or the vtysh `show ip bgp <route>` command. For example:
+When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to `0`. To see the configuration, run the NCLU command `net show bgp <route>` or the `vtysh` command `show ip bgp <route>`. For example:
 
 ```
 cumulus@switch:~$ net show bgp 10.10.10.0/24
@@ -1099,7 +1099,7 @@ Read-only mode begins as soon as the first peer reaches its established state an
 
 While in read-only mode, BGP does not run best-path or generate any updates to its peers.
 
-To show information about the state of the update delay, run the NCLU `net show bgp summary` command or the vtysh `show ip bgp summary` command.
+To show information about the state of the update delay, run the NCLU command `net show bgp summary` or the `vtysh` command `show ip bgp summary`.
 
 ## Route Maps for Route Updates
 

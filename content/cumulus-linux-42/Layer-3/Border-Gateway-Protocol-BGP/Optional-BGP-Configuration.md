@@ -171,6 +171,61 @@ cumulus@leaf01:~$
 
 {{< /tabs >}}
 
+## BGP TTL Security Hop Count
+
+You can use the TTL security hop count option to prevent attacks against eBGP, such as denial of service (DoS) attacks.
+By default, BGP messages are sent to eBGP neighbors with an IP time-to-live (TTL) of 1, which requires the peer to be directly connected, otherwise, the packets expire along the way. (You can adjust the TTL with the {{<link url="#ebgp-multihop" text="eBGP multihop">}} option.) An attacker can easily adjust the TTL of packets so that they appear to originating from a peer that is directly connected.
+
+The BGP TTL security hops option inverts the direction in which the TTL is counted. Instead of accepting only packets with a TTL set to 1, only BGP messages with a TTL greater than or equal to 255 minus the specified hop count are accepted.
+
+When TTL security is in use, eBGP multihop is no longer needed.
+
+The following command example sets the TTL security hop count value to 200:
+
+{{< tabs "44 ">}}
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@leaf01:~$ net add bgp neighbor swp51 ttl-security hops 200
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 ttl-security hops 200
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+  ...
+  neighbor swp51 ttl-security hops 200
+...
+```
+
+{{%notice note%}}
+
+- When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
+- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
+
+{{%/notice%}}
+
 ## MD5-enabled BGP Neighbors
 
 You can authenticate your BGP peer connection to prevent interference with your routing tables.
@@ -725,61 +780,6 @@ Paths: (2 available, best #2, table default)
 ## BGP Timers
 
 BGP includes several timers that you can configure.
-
-### BGP TTL Security Hop Count
-
-You can use the TTL security hop count option to prevent attacks against eBGP, such as denial of service (DoS) attacks.
-By default, BGP messages are sent to eBGP neighbors with an IP time-to-live (TTL) of 1, which requires the peer to be directly connected, otherwise, the packets expire along the way. (You can adjust the TTL with the {{<link url="#ebgp-multihop" text="eBGP multihop">}} option.) An attacker can easily adjust the TTL of packets so that they appear to originating from a peer that is directly connected.
-
-The BGP TTL security hops option inverts the direction in which the TTL is counted. Instead of accepting only packets with a TTL set to 1, only BGP messages with a TTL greater than or equal to 255 minus the specified hop count are accepted.
-
-When TTL security is in use, eBGP multihop is no longer needed.
-
-The following command example sets the TTL security hop count value to 200:
-
-{{< tabs "44 ">}}
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@leaf01:~$ net add bgp neighbor swp51 ttl-security hops 200
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:~$ sudo vtysh
-
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# neighbor swp51 ttl-security hops 200
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
-cumulus@leaf01:~$
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65101
-  ...
-  neighbor swp51 ttl-security hops 200
-...
-```
-
-{{%notice note%}}
-
-- When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
-- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
-
-{{%/notice%}}
 
 ### Keepalive Interval and Hold Time
 

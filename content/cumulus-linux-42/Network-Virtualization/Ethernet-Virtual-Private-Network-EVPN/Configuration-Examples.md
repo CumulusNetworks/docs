@@ -173,6 +173,7 @@ iface lo inet loopback
     address 10.10.10.2/32
     clagd-vxlan-anycast-ip 10.0.1.1
     vxlan-local-tunnelip 10.10.10.2
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -182,6 +183,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 vni10 vni20
@@ -310,6 +312,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 vni10 vni20
@@ -438,6 +441,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 vni10 vni20
@@ -552,6 +556,7 @@ iface bond2
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -634,6 +639,314 @@ iface swp6
 
 {{< /tab >}}
 
+{{< tab "spine03 ">}}
+
+```
+auto lo
+iface lo inet loopback
+    address 10.10.10.103/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+auto swp1
+iface swp1
+    alias leaf to spine
+
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "spine04 ">}}
+
+```
+auto lo
+iface lo inet loopback
+    address 10.10.10.104/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto swp1
+iface swp1
+    alias leaf to spine
+
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "border01 ">}}
+
+```
+auto lo
+iface lo inet loopback
+    address 10.10.10.63/32
+    clagd-vxlan-anycast-ip 10.0.1.254
+    vxlan-local-tunnelip 10.10.10.63
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto bridge
+iface bridge
+    bridge-ports peerlink
+    bridge-ports bond3
+    bridge-ports vni10 vni20
+    bridge-vids 10 20  
+    bridge-vlan-aware yes
+
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
+    vlan-raw-device bridge
+    vlan-id 10
+    ip-forward off
+    ip6-forward off
+
+auto vlan20
+iface vlan20
+    vlan-raw-device bridge
+    vlan-id 20
+    ip-forward off
+    ip6-forward off
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.64
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:FF
+
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 1
+    bridge-vids 10 20
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+```
+
+{{< /tab >}}
+
+{{< tab "border02 ">}}
+
+```
+auto lo
+iface lo inet loopback
+    address 10.10.10.64/32
+    clagd-vxlan-anycast-ip 10.0.1.254
+    vxlan-local-tunnelip 10.10.10.64
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto bridge
+iface bridge
+    bridge-ports peerlink
+    bridge-ports bond3
+    bridge-ports vni10 vni20
+    bridge-vids 10 20  
+    bridge-vlan-aware yes
+
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+auto vlan10
+iface vlan10
+    vlan-raw-device bridge
+    vlan-id 10
+    ip-forward off
+    ip6-forward off
+
+auto vlan20
+iface vlan20
+    vlan-raw-device bridge
+    vlan-id 20
+    ip-forward off
+    ip6-forward off
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+auto swp50
+iface swp50
+    alias peerlink
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.63
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:FF
+
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 1
+    bridge-vids 10 20
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ### /etc/frr/frr.conf
@@ -645,8 +958,6 @@ iface swp6
 ```
 cumulus@leaf01:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
 !
 router bgp 65101
@@ -670,7 +981,6 @@ router bgp 65101
  exit-address-family
 !
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -681,6 +991,7 @@ line vty
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65101
  bgp router-id 10.10.10.2
  bgp bestpath as-path multipath-relax
@@ -700,6 +1011,7 @@ router bgp 65101
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
+!
 line vty
 ```
 
@@ -711,6 +1023,7 @@ line vty
 cumulus@leaf03:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65102
  bgp router-id 10.10.10.3
  bgp bestpath as-path multipath-relax
@@ -730,6 +1043,7 @@ router bgp 65102
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
+!
 line vty
 ```
 
@@ -741,6 +1055,7 @@ line vty
 cumulus@leaf04:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65102
  bgp router-id 10.10.10.4
  bgp bestpath as-path multipath-relax
@@ -760,6 +1075,7 @@ router bgp 65102
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
+!
 line vty
 ```
 
@@ -771,6 +1087,7 @@ line vty
 cumulus@spine01:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
@@ -790,6 +1107,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
+!
 line vty
 ```
 
@@ -801,6 +1119,7 @@ line vty
 cumulus@spine02:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
@@ -820,6 +1139,131 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "spine03 ">}}
+
+```
+...
+log syslog informational
+!
+router bgp 65199
+ bgp router-id 10.10.10.103
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "spine04 ">}}
+
+```
+...
+log syslog informational
+!
+router bgp 65199
+ bgp router-id 10.10.10.104
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "border01 ">}}
+
+```
+...
+log syslog informational
+!
+router bgp 65132
+ bgp router-id 10.10.10.63
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "border02 ">}}
+
+```
+...
+log syslog informational
+!
+router bgp 65132
+ bgp router-id 10.10.10.64
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
 line vty
 ```
 
@@ -984,6 +1428,7 @@ iface lo inet loopback
     address 10.10.10.2/32
     clagd-vxlan-anycast-ip 10.0.1.1
     vxlan-local-tunnelip 10.10.10.2
+
 auto mgmt
 iface mgmt
     vrf-table auto
@@ -993,6 +1438,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 vni10 vni20
@@ -1451,6 +1897,92 @@ iface swp6
 
 {{< /tab >}}
 
+{{< tab "spine03 ">}}
+
+```
+auto lo
+iface lo inet loopback
+    address 10.10.10.103/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+auto swp1
+iface swp1
+    alias leaf to spine
+
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "spine04 ">}}
+
+```
+auto lo
+iface lo inet loopback
+    address 10.10.10.104/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+auto swp1
+iface swp1
+    alias leaf to spine
+
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
 {{< tab "border01 ">}}
 
 ```
@@ -1689,6 +2221,7 @@ iface bond3
 cumulus@leaf01:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65101
  bgp router-id 10.10.10.1
  bgp bestpath as-path multipath-relax
@@ -1707,6 +2240,7 @@ router bgp 65101
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
+!
 line vty
 ```
 
@@ -1718,6 +2252,7 @@ line vty
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65101
  bgp router-id 10.10.10.2
  bgp bestpath as-path multipath-relax
@@ -1736,6 +2271,7 @@ router bgp 65101
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
+!
 line vty
 ```
 
@@ -1747,6 +2283,7 @@ line vty
 cumulus@leaf03:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65102
  bgp router-id 10.10.10.3
  bgp bestpath as-path multipath-relax
@@ -1765,6 +2302,7 @@ router bgp 65102
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
+!
 line vty
 ```
 
@@ -1776,6 +2314,7 @@ line vty
 cumulus@leaf04:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65102
  bgp router-id 10.10.10.4
  bgp bestpath as-path multipath-relax
@@ -1794,6 +2333,7 @@ router bgp 65102
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
+!
 line vty
 ```
 
@@ -1805,6 +2345,7 @@ line vty
 cumulus@spine01:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
@@ -1824,6 +2365,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
+!
 line vty
 ```
 
@@ -1835,6 +2377,7 @@ line vty
 cumulus@spine02:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
@@ -1854,6 +2397,71 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "spine03 ">}}
+
+```
+cumulus@spine03:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65199
+ bgp router-id 10.10.10.103
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "spine04 ">}}
+
+```
+cumulus@spine04:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65199
+ bgp router-id 10.10.10.104
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
 line vty
 ```
 
@@ -1865,6 +2473,7 @@ line vty
 cumulus@border01:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65132
  bgp router-id 10.10.10.63
  bgp bestpath as-path multipath-relax
@@ -1885,6 +2494,7 @@ router bgp 65132
   advertise-all-vni
   advertise-default-gw
  exit-address-family
+!
 line vty
 ```
 
@@ -1896,6 +2506,7 @@ line vty
 cumulus@border02:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65132
  bgp router-id 10.10.10.64
  bgp bestpath as-path multipath-relax
@@ -1916,6 +2527,7 @@ router bgp 65132
   advertise-all-vni
   advertise-default-gw
  exit-address-family
+!
 line vty
 ```
 
@@ -1968,6 +2580,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto RED
 iface RED
   vrf-table auto
@@ -2579,6 +3192,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto RED
 iface RED
   vrf-table auto
@@ -3013,7 +3627,7 @@ iface vlan4002
     vlan-raw-device bridge
     vlan-id 4002
 
- auto swp51
+auto swp51
 iface swp51
     alias leaf to spine
 
@@ -3200,6 +3814,7 @@ iface bond3
 cumulus@leaf01:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 vrf RED
   vni 4001
 vrf BLUE
@@ -3224,6 +3839,7 @@ router bgp 65101
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
+!
 line vty
 ```
 
@@ -3235,6 +3851,7 @@ line vty
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 vrf RED
   vni 4001
 vrf BLUE
@@ -3259,6 +3876,7 @@ router bgp 65101
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
+!
 line vty
 ```
 
@@ -3270,6 +3888,7 @@ line vty
 cumulus@leaf03:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 vrf RED
   vni 4001
 vrf BLUE
@@ -3294,6 +3913,7 @@ router bgp 65102
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
+!
 line vty
 ```
 
@@ -3305,6 +3925,7 @@ line vty
 cumulus@leaf04:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 vrf RED
   vni 4001
 vrf BLUE
@@ -3329,6 +3950,7 @@ router bgp 65102
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
+!
 line vty
 ```
 
@@ -3340,6 +3962,7 @@ line vty
 cumulus@spine01:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
@@ -3359,6 +3982,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
+!
 line vty
 ```
 
@@ -3370,6 +3994,7 @@ line vty
 cumulus@spine02:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
@@ -3389,6 +4014,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
+!
 line vty
 ```
 
@@ -3400,6 +4026,7 @@ line vty
 cumulus@spine03:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65199
  bgp router-id 10.10.10.103
  bgp bestpath as-path multipath-relax
@@ -3419,6 +4046,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
+!
 line vty
 ```
 
@@ -3430,6 +4058,7 @@ line vty
 cumulus@spine04:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 router bgp 65199
  bgp router-id 10.10.10.104
  bgp bestpath as-path multipath-relax
@@ -3449,6 +4078,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
+!
 line vty
 ```
 
@@ -3460,6 +4090,7 @@ line vty
 cumulus@border01:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 vrf RED
   vni 4001
 vrf BLUE
@@ -3508,6 +4139,7 @@ router bgp 65132 vrf BLUE
  address-family l2vpn evpn
   advertise ipv4 unicast
  exit-address-family
+!
 line vty
 ```
 
@@ -3519,6 +4151,7 @@ line vty
 cumulus@border02:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
+!
 vrf RED
   vni 4001
 vrf BLUE
@@ -3567,6 +4200,7 @@ router bgp 65132 vrf BLUE
  address-family l2vpn evpn
   advertise ipv4 unicast
  exit-address-family
+!
 line vty
 ```
 

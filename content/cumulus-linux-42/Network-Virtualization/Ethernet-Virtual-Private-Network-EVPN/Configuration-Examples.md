@@ -614,6 +614,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -659,6 +660,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -1929,6 +1931,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -1974,6 +1977,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine

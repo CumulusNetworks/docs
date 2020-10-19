@@ -190,13 +190,17 @@ IPv6 route advertisements (RAs) are automatically enabled on an interface with I
 cumulus@switch:~$ net show interface swp51
     Name   MAC                Speed  MTU   Mode
 --  -----  -----------------  -----  ----  -------
-UP  swp51  44:38:39:00:00:01  1G     9216  Default
+UP  swp51  10:d8:68:d4:a6:81  1G     9216  Default
+
+Alias
+-----
+leaf to spine
 
 cl-netstat counters
 -------------------
 RX_OK  RX_ERR  RX_DRP  RX_OVR  TX_OK  TX_ERR  TX_DRP  TX_OVR
 -----  ------  ------  ------  -----  ------  ------  ------
-  150       0       0       0    161       0       0       0
+ 1874       0       0       0   1252       0       0       0
 
 LLDP Details
 ------------
@@ -211,13 +215,24 @@ Routing
   Link downs:     0    last: (never)
   PTM status: disabled
   vrf: default
-  index 12 metric 0 mtu 9216 speed 1000
+  OS Description: leaf to spine
+  index 8 metric 0 mtu 9216 speed 1000
   flags: <UP,BROADCAST,RUNNING,MULTICAST>
   Type: Ethernet
-  HWaddr: 44:38:39:00:00:01
-  inet6 fe80::4638:39ff:fe00:1/64
+  HWaddr: 10:d8:68:d4:a6:81
+  inet6 fe80::12d8:68ff:fed4:a681/64
   Interface Type Other
   protodown: off
+  ND advertised reachable time is 0 milliseconds
+  ND advertised retransmit interval is 0 milliseconds
+  ND advertised hop-count limit is 64 hops
+  ND router advertisements sent: 217 rcvd: 216
+  ND router advertisements are sent every 10 seconds
+  ND router advertisements lifetime tracks ra-interval
+  ND router advertisement default router preference is medium
+  Hosts use stateless autoconfig for addresses.
+  Neighbor address(s):
+  inet6 fe80::f208:5fff:fe12:cc8c/128
 ```
 
 ## Troubleshoot IPv4 Prefixes Learned with IPv6 Next Hops

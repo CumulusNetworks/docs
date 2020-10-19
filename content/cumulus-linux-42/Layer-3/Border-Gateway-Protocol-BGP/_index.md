@@ -119,16 +119,12 @@ This section describes how the IPv6 next hops are set in the MP_REACH_NLRI ({{<e
 - For all routes to eBGP peers and self-originated routes to iBGP peers, the global next hop (first value) is the peering address of the local system. If the peering is on the link-local address, this is the global IPv6 address on the peering interface, if present; otherwise, it is the link-local IPv6 address on the peering interface.
 - For other routes to iBGP peers (eBGP to iBGP or reflected), the global next hop is the global next hop in the received attribute.
 
-{{%notice note%}}
-
-If this address is a link-local IPv6 address, it is reset so that the link-local IPv6 address of the eBGP peer is not passed along to an iBGP peer, which is typically on a different link.
-
-{{%/notice%}}
+   If this address is a link-local IPv6 address, it is reset so that the link-local IPv6 address of the eBGP peer is not passed along to an iBGP peer, which is typically on a different link.
 
 - `route-map` and the peer configuration can change the above behavior. For example, `route-map` can set the global IPv6 next hop or the peer configuration can set it to *self*, which is relevant for *iBGP* peers. The route map or peer configuration can also set the next hop to unchanged, which ensures the source IPv6 global next hop is passed around, which is relevant for *eBGP* peers.
 - Whenever two next hops are sent, the link-local next hop (the second value of the two) is the link-local IPv6 address on the peering interface unless it is due to `nh-local-unchanged` or `route-map` has set the link-local next hop.
 - You cannot set {{<exlink url="http://en.wikipedia.org/wiki/Martian_packet" text="martian values">}} for IPv6 next hops in `route-map`. Also, global and link-local next hops are validated to ensure they match the respective address types.
-- In a received update, a martian check is imposed for the IPv6 global next hop. If the check fails, it gets treated as an implicit withdraw.
+- In a received update, a martian check is imposed for the IPv6 global next hop. If the check fails, it is treated as an implicit withdraw.
 - If two next hops are received in an update and the second next hop is not a link-local address, it is ignored and the update is treated as if only one next hop is received.
 - Whenever two next hops are received in an update, the second next hop is used to install the route into `zebra`. It is already assured that this is a link-local IPv6 address. Currently, this is assumed to be reachable and is not registered with NHT.
 - When `route-map` specifies the next hop as `peer-address`, the global IPv6 next hop as well as the link-local IPv6 next hop (if it is being sent) is set to the *peering address*. If the peering is on a link-local address, the global IPv6 next hop can be the link-local address on the peering interface, unless there is a global IPv6 address present on this interface.

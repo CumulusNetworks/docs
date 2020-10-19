@@ -814,6 +814,7 @@ iface swp54
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
@@ -894,6 +895,7 @@ iface vni20
     mstpctl-bpduguard yes
     bridge-learning off
     bridge-arp-nd-suppress on
+
 auto vlan10
 iface vlan10
     vlan-raw-device bridge
@@ -927,12 +929,15 @@ iface swp54
 auto swp49
 iface swp49
     alias peerlink
+
 auto swp50
 iface swp50
     alias peerlink
+
 auto peerlink
 iface peerlink
     bond-slaves swp49 swp50
+
 auto peerlink.4094
 iface peerlink.4094
     clagd-backup-ip 10.10.10.63
@@ -3217,11 +3222,11 @@ iface eth0 inet dhcp
 
 auto RED
 iface RED
-  vrf-table auto
+    vrf-table auto
 
 auto BLUE
 iface BLUE
-  vrf-table auto
+    vrf-table auto
 
 auto bridge
 iface bridge

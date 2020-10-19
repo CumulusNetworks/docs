@@ -93,7 +93,7 @@ When BGP multipath is in use, if multiple paths are equal, BGP still selects a s
 
 Historically, peers connect over IPv4 and TCP port 179, and after they establish a session, they exchange prefixes. When a BGP peer advertises an IPv4 prefix, it must include an IPv4 next hop address, which is usually the address of the advertising router. This requires that each BGP peer has an IPv4 address, which in a large network can consume a lot of address space, requiring a separate IP address for each peer-facing interface.
 
-The BGP unnumbered standard, specified in {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}} uses *extended next hop encoding* (ENHE) and no longer requires an IPv4 prefix to be advertised along with an IPv4 next hop. This means that you can set up BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch; the interfaces that BGP uses are unnumbered.
+The BGP unnumbered standard, specified in {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}}, uses *extended next hop encoding* (ENHE) and no longer requires an IPv4 prefix to be advertised along with an IPv4 next hop. This means that you can set up BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch; the interfaces that BGP uses are unnumbered.
 
 The next hop address for each prefix is an IPv6 link-local address, which is assigned automatically to each interface. Using the IPv6 link-local address as a next hop instead of an IPv4 unicast address, BGP unnumbered saves you from having to configure IPv4 addresses on each interface.
 
@@ -101,7 +101,6 @@ When you use BGP unnumbered, BGP learns the prefixes, calculates the routes and 
 
 {{%notice note%}}
 
-- Interface-based peering with separate IPv4 and IPv6 sessions is not supported.
 - If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 link-local peering.
 - BGP unnumbered only works with two switches at a time, as it is designed to work with PTP (point-to-point protocol).
 - The IPv6 implementation on the peering device uses the MAC address as the interface ID when assigning the IPv6 link-local address, as suggested by RFC 4291.

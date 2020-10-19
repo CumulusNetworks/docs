@@ -77,13 +77,13 @@ The order of the BGP algorithm process is as follows:
 
 - **iBGP ECMP over eBGP ECMP**: If {{<link url="Optional-BGP-Configuration#ecmp" text="BGP multipath">}} is configured, prefer equal iBGP routes over equal eBGP routes, unless {{<link url="Optional-BGP-Configuration#ecmp" text="as-path multipath-relax">}} is also configured.
 
-- **Oldest Route**: Prefer the oldest route in the BGP table.
+- **Oldest Route**: Preference is given to the oldest route in the BGP table.
 
-- **Lowest Router ID**: Prefer the route received from the peer with the lowest Router ID attribute. If the route is received from a route reflector, the `ORIGINATOR_ID` attribute is used for comparison.
+- **Lowest Router ID**: Preference is given to the route received from the peer with the lowest Router ID attribute. If the route is received from a route reflector, the `ORIGINATOR_ID` attribute is used for comparison.
 
 - **Shortest Route Reflector Cluster List**: If a route passes through multiple route reflectors, prefer the route with the shortest route reflector cluster list.
 
-- **Highest Peer IP Address**: Prefer the route received from the peer with the highest IP address.
+- **Highest Peer IP Address**: Preference is given to the route received from the peer with the highest IP address.
 
 Cumulus Linux provides the reason it selects one path over another in NCLU `net show bgp` and vtysh `show ip bgp` command output for a specific prefix.
 

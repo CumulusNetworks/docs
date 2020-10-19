@@ -177,7 +177,7 @@ To configure BGP numbered on a BGP node, you need to:
    leaf01(config-router-af)# neighbor 2001:db8:0002::0a00:1 activate
    ```
 
-   For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
+   For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
 
 4. Specify which prefixes to originate:
 
@@ -232,7 +232,7 @@ To configure BGP numbered on a BGP node, you need to:
    spine01(config-router-af)# neighbor 2001:db8:0002::0a00:0002 activate
    ```
 
-   For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
+   For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#advertise-ipv4-prefixes-with-ipv6-next-hops" text="Advertise IPv4 Prefixes with IPv6 Next Hops">}}.
 
 4. Specify which prefixes to originate:
 
@@ -313,9 +313,9 @@ When using auto BGP, there are no references to `leaf` or `spine` in the configu
 
 ## BGP Unnumbered
 
-The following example commands show a basic {{<link title="Border Gateway Protocol - BGP#bgp-unnumbered" text="BGP unnumbered">}} configuration for two switches, leaf01 and spine01, which are eBPG peers.
+The following example commands show a basic {{<link title="Border Gateway Protocol - BGP#bgp-unnumbered" text="BGP unnumbered">}} configuration for two switches, leaf01 and spine01, which are eBGP peers.
 
-The only difference between a BGP unnumbered configuration and the BGP numbered configuration shown above, is that the BGP neighbour is specified as an interface (insead of an IP address). The interface between the two peers does **not** need to have an IP address configured on each side.
+The only difference between a BGP unnumbered configuration and the BGP numbered configuration shown above is that the BGP neighbor is specified as an interface (insead of an IP address). The interface between the two peers does **not** need to have an IP address configured on each side.
 
 {{< tabs "354 ">}}
 

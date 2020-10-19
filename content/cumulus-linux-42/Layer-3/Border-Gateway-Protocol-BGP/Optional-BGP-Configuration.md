@@ -81,7 +81,7 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 
 *BGP dynamic neighbor* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
 
-You configure dynamic neighbors using the `bgp listen range <ip-address> peer-group <group>` command. After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor in the IP address range and mapped to a peer group.
+You configure dynamic neighbors using the `bgp listen range <ip-address> peer-group <group>` command. After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and is mapped to a peer group.
 
 The following example commands create the peer group SPINE and configure BGP peering to remote neighbors within the address range 169.254.10.101/24.
 
@@ -123,7 +123,7 @@ The `bgp listen limit` command limits the number of dynamic peers. The default v
 
 {{< /tabs >}}
 
-These commands produce an IPv4 configuration that looks like this:
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 router bgp 65101
@@ -794,7 +794,7 @@ router bgp 65101
 
 ### Keepalive Interval
 
-If a link is up but the neighboring BGP process hangs or crashes, the FRRouting `watchfrr` daemon, which monitors the various FRRouting daemons, attempts to restart it. BGP itself has a keepalive interval that is exchanged between neighbors. By default, this keepalive interval is set to 3 seconds. You can increase this interval to a higher value, which decreases CPU load, especially in the presence of a lot of neighbors. The keepalive interval is the periodicity with which the keepalive message is sent. The hold time specifies how many keepalive messages can be lost before the connection is considered invalid, and is typically set to three times the keepalive time and defaults to 9 seconds.
+If a link is up but the neighboring BGP process hangs or crashes, the FRRouting `watchfrr` daemon, which monitors the various FRRouting daemons, attempts to restart it. BGP itself has a keepalive interval that is exchanged between neighbors. By default, this keepalive interval is set to 3 seconds. You can increase this interval to a higher value, which decreases CPU load, especially in the presence of a lot of neighbors. The keepalive interval is the periodicity with which the keepalive message is sent. The hold time specifies how many keepalive messages can be lost before the connection is considered invalid. The hold time is typically set to three times the keepalive time and defaults to 9 seconds.
 
 The following example commands set the keepalive interval to 10 seconds and the hold time to 30 seconds.
 
@@ -922,7 +922,7 @@ router bgp 65101
 
 ## Route Reflectors
 
-iBGP rules state that a route learned from an iBGP peer can not be sent to another iBGP peer. In a datacenter spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, BGP introduced the concept of a *route reflector* that selectively violates this rule; when an iBGP speaker is configured as a route reflector, it *can* send iBGP learned routes to other iBGP peers.
+iBGP rules state that a route learned from an iBGP peer can not be sent to another iBGP peer. In a datacenter spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, BGP introduced the concept of a *route reflector* that selectively ignores this rule so that when an iBGP speaker is configured as a route reflector, it *can* send iBGP learned routes to other iBGP peers.
 
 In the following example, spine01 is acting as a route reflector. The leaf switches, leaf01, leaf02 and leaf03 are *route reflector clients*. Any route that spine01 learns from a route reflector client is sent to other route reflector clients.
 

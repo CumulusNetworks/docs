@@ -61,13 +61,13 @@ The order of the BGP algorithm process is as follows:
 
 - **Highest Weight**: Weight is a value from 0 to 65535. Weight is not carried in a BGP update but is used locally to influence the best path selection. Locally generated routes have a weight of 32768.
 
-- **Highest Local Preference**: Local Preference is exchanged between iBGP neighbors only. Routes received from eBGP peers are assigned a Local Preference of 0. Whereas weight is used to make route selections without sending additional information to peers, Local Preference can be used to influence routing to iBGP peers.
+- **Highest Local Preference**: Local preference is exchanged between iBGP neighbors only. Routes received from eBGP peers are assigned a local preference of 0. Whereas weight is used to make route selections without sending additional information to peers, local preference can be used to influence routing to iBGP peers.
 
 - **Locally Originated Routes**: Any route that the local switch is responsible for placing into BGP is selected as best. This includes static routes, aggregate routes and redistributed routes.
 
 - **Shortest AS Path**: The path received with the fewest number of ASN hops is selected.
 
-- **Origin Check**: Prefer routes with an IGP origin (routes placed into BGP with a `network` statement) over Incomplete origins (routes places into BGP through redistribution). The EGP origin attribute is no longer used.
+- **Origin Check**: Preference is given to routes with an IGP origin (routes placed into BGP with a `network` statement) over incomplete origins (routes places into BGP through redistribution). The EGP origin attribute is no longer used.
 
 - **Lowest MED**: The Multi-Exit Discriminator or MED is sent to eBGP peers to indicate a preference on how traffic enters an AS. A MED received from an eBGP peer is exchanged with iBGP peers but is reset to a value of 0 before advertising a prefix to another AS.
 

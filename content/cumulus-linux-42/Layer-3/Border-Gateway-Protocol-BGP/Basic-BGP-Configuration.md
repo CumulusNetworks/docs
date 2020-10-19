@@ -94,7 +94,7 @@ To configure BGP numbered on a BGP node, you need to:
       cumulus@spine01:~$ net add bgp autonomous-system 65199
       ```
 
-      To use auto BGP to assign an ASN automatically on the spine:
+    - To use auto BGP to assign an ASN automatically on the spine:
 
       ```
       cumulus@spine01:~$ net add bgp auto spine

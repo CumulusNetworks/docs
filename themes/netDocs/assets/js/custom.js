@@ -188,7 +188,10 @@ $(document).ready(function() {
       });      
     } else {
       document.querySelectorAll('.book-toc nav a').forEach(anc => {
-        anc.onclick = function() { 
+        anc.onclick = function(e) { 
+					var elem = document.getElementById(anc.hash.replace('#',''));
+					$('html,body').animate({scrollTop: elem.offsetTop + 120},100)
+					e.preventDefault()
         };
       });
     };
@@ -225,6 +228,30 @@ $(document).ready(function() {
 			resizeTable()
 		}
 	}) 
+});
 
+function checkHash() {
+	if($('.docs').length) {
+		if(window.location.hash) {
 
+			var elem = document.getElementById(window.location.hash.replace('#',''));
+			$('html,body').animate({scrollTop: elem.offsetTop + 120},100)
+		}
+	}
+}
+
+function isScrollToFinished() {
+	const checkIfScrollToIsFinished = setInterval(() => {
+			if ($(window).scrollTop() === 0) {
+					clearInterval(checkIfScrollToIsFinished);
+					checkHash();
+			}
+	}, 25);
+}
+
+window.addEventListener('DOMContentLoaded', (event) => {
+	isScrollToFinished();
+	setTimeout(function() {
+    window.scrollTo(0, 0);
+  }, 1);
 });

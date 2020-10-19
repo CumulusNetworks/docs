@@ -71,15 +71,15 @@ The order of the BGP algorithm process is as follows:
 
 - **Lowest MED**: The Multi-Exit Discriminator or MED is sent to eBGP peers to indicate a preference on how traffic enters an AS. A MED received from an eBGP peer is exchanged with iBGP peers but is reset to a value of 0 before advertising a prefix to another AS.
 
-- **eBGP Routes**: A route received from an eBGP peer is prefered over a route learned from an iBGP peer.
+- **eBGP Routes**: A route received from an eBGP peer is preferred over a route learned from an iBGP peer.
 
-- **Lowest IGP Cost to the next hop**: The route with the lowest IGP metric to reach the BGP next hop.
+- **Lowest IGP Cost to the Next Hop**: The route with the lowest IGP metric to reach the BGP next hop.
 
-- **iBGP ECMP over eBGP ECMP**: If {{<link url="Optional-BGP-Configuration#ecmp" text="BGP Multipath">}} is configured, prefer equal iBGP routes over equal eBGP routes, unless {{<link url="Optional-BGP-Configuration#ecmp" text="as-path multipath-relax">}} is also configured.
+- **iBGP ECMP over eBGP ECMP**: If {{<link url="Optional-BGP-Configuration#ecmp" text="BGP multipath">}} is configured, prefer equal iBGP routes over equal eBGP routes, unless {{<link url="Optional-BGP-Configuration#ecmp" text="as-path multipath-relax">}} is also configured.
 
 - **Oldest Route**: Prefer the oldest route in the BGP table.
 
-- **Lowest RouterID**: Prefer the route received from the peer with the lowest Router ID attribute. If the route is received from a route reflector, the `ORIGINATOR_ID` attribute is used to compare.
+- **Lowest Router ID**: Prefer the route received from the peer with the lowest Router ID attribute. If the route is received from a route reflector, the `ORIGINATOR_ID` attribute is used for comparison.
 
 - **Shortest Route Reflector Cluster List**: If a route passes through multiple route reflectors, prefer the route with the shortest route reflector cluster list.
 

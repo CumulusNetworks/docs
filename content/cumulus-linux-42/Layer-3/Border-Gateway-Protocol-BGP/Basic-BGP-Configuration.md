@@ -42,7 +42,7 @@ To configure BGP numbered on a BGP node, you need to:
       cumulus@leaf01:~$ net add bgp auto leaf
       ```
 
-      The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
+      The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `net show` commands display the AS number.
 
 2. Assign the router ID.
 
@@ -100,7 +100,7 @@ To configure BGP numbered on a BGP node, you need to:
       cumulus@spine01:~$ net add bgp auto spine
       ```
 
-      The auto BGP `spine` keyword is only used to configure the ASN. The configuration files and `net show` commands display the ASN number only.
+      The auto BGP `spine` keyword is only used to configure the ASN. The configuration files and `net show` commands display the AS number.
 
 2. Assign the router ID.
 

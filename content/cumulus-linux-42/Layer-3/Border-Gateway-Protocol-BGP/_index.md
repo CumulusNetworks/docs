@@ -23,23 +23,23 @@ ASNs were originally 16-bit numbers, but were later modified to be 32-bit. FRRou
 
 {{%notice note%}}
 
-In a VRF-lite deployment (where multiple independent routing tables working simultaneously on the same switch), Cumulus Linux supports multiple ASNs.
+In a VRF-lite deployment (where multiple independent routing tables work simultaneously on the same switch), Cumulus Linux supports multiple ASNs.
 
 {{%/notice%}}
 
 ### Auto BGP
 
-In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit ASN numbers automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and path hunting, which occurs when you assign the wrong spine ASNs. Auto BGP makes no changes to standard BGP behavior or configuration.
+In a two-tier leaf and spine environment, you can use *auto BGP* to generate 32-bit ASNs automatically so that you don't have to think about which numbers to allocate. Auto BGP helps build optimal ASN configurations in your data center to avoid suboptimal routing and path hunting, which occurs when you assign the wrong spine ASNs. Auto BGP makes no changes to standard BGP behavior or configuration.
 
-Auto BGP assigns private ASN numbers in the range 4200000000 through 4294967294. This is the private space defined in {{<exlink url="https://tools.ietf.org/html/rfc6996" text="RFC 6996">}}. Each leaf is assigned a random and unique value in the range 4200000001 through 4294967294. Each spine is assigned 4200000000; the first number in the range. For information about configuring auto BGP, refer to {{<link url="Basic-BGP-Configuration" text="Basic BGP Configuration">}}.
+Auto BGP assigns private ASNs in the range 4200000000 through 4294967294. This is the private space defined in {{<exlink url="https://tools.ietf.org/html/rfc6996" text="RFC 6996">}}. Each leaf is assigned a random and unique value in the range 4200000001 through 4294967294. Each spine is assigned 4200000000; the first number in the range. For information about configuring auto BGP, refer to {{<link url="Basic-BGP-Configuration" text="Basic BGP Configuration">}}.
 
 {{%notice note%}}
 
 - Cumulus Networks recommends you use auto BGP in new deployments to avoid conflicting ASNs in an existing configuration.
-- It is not necessary to use auto BGP across all switches in your configuration. For example, you can use auto BGP to configure one switch but allocate ASN numbers manually to other switches.
+- It is not necessary to use auto BGP across all switches in your configuration. For example, you can use auto BGP to configure one switch but allocate ASNs manually to other switches.
 - Auto BGP is intended for use in two-tier spine and leaf networks. Using auto BGP in three-tier networks with superspines might result in incorrect ASN assignments.
 - The `leaf` keyword generates the ASN based on a hash of the switch MAC address. The ASN assigned might change after a switch replacement.
-- Auto BGP is supported for NCLU only.
+- You can configure auto BGP with NCLU only.
 
 {{%/notice%}}
 

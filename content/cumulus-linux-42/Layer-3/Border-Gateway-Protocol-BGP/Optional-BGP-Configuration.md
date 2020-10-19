@@ -1055,6 +1055,16 @@ As BGP peers are established and updates are received, prefixes might be install
 
 Enable read-only mode to reduce CPU and network usage when restarting the BGP process. Because intermediate best paths are possible for the same prefix as peers get established and start receiving updates at different times, read-only mode is particularly useful in topologies where BGP learns a prefix from many peers and the network has a high number of prefixes.
 
+Read-only mode begins as soon as the first peer reaches its established state and the `max-delay` timer starts, and continues until either of the following two conditions are met:
+
+- All the configured peers (except the shutdown peers) have sent an explicit EOR (End-Of-RIB) or an implicit EOR. The first keep-alive after BGP reaches the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends.
+
+  The minimum set of established peers for which EOR is expected are the peers that are established during the `establish-wait window,` not necessarily all the configured neighbors.
+
+- The timer reaches the configured `max-delay`.
+
+While in read-only mode, BGP does not run best-path or generate any updates to its peers.
+
 The default value for max-delay is 0, which disables read-only mode. The update delay and establish wait can be any value between 0 and 3600 seconds. The `establish-wait` setting is optional; however, if specified, it must be shorter than the `max-delay`.
 
 The following example commands enable read-only mode, set the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
@@ -1088,16 +1098,6 @@ cumulus@switch:~$
 {{< /tab >}}
 
 {{< /tabs >}}
-
-Read-only mode begins as soon as the first peer reaches its established state and the `max-delay` timer starts, and continues until either of the following two conditions are met:
-
-- All the configured peers (except the shutdown peers) have sent an explicit EOR (End-Of-RIB) or an implicit EOR. The first keep-alive after BGP reaches the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends.
-
-  The minimum set of established peers for which EOR is expected are the peers that are established during the `establish-wait window,` not necessarily all the configured neighbors.
-
-- The timer reaches the configured `max-delay`.
-
-While in read-only mode, BGP does not run best-path or generate any updates to its peers.
 
 To show information about the state of the update delay, run the NCLU command `net show bgp summary` or the `vtysh` command `show ip bgp summary`.
 

@@ -680,10 +680,7 @@ line vty
 ```
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65101
  bgp router-id 10.10.10.2
  bgp bestpath as-path multipath-relax
@@ -703,9 +700,7 @@ router bgp 65101
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -715,10 +710,7 @@ line vty
 ```
 cumulus@leaf03:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65102
  bgp router-id 10.10.10.3
  bgp bestpath as-path multipath-relax
@@ -738,9 +730,7 @@ router bgp 65102
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -750,10 +740,7 @@ line vty
 ```
 cumulus@leaf04:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65102
  bgp router-id 10.10.10.4
  bgp bestpath as-path multipath-relax
@@ -773,9 +760,7 @@ router bgp 65102
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -785,10 +770,7 @@ line vty
 ```
 cumulus@spine01:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
@@ -808,9 +790,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -820,10 +800,7 @@ line vty
 ```
 cumulus@spine02:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
@@ -843,9 +820,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -1713,10 +1688,7 @@ iface bond3
 ```
 cumulus@leaf01:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65101
  bgp router-id 10.10.10.1
  bgp bestpath as-path multipath-relax
@@ -1735,9 +1707,7 @@ router bgp 65101
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -1747,10 +1717,7 @@ line vty
 ```
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65101
  bgp router-id 10.10.10.2
  bgp bestpath as-path multipath-relax
@@ -1769,9 +1736,7 @@ router bgp 65101
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -1781,10 +1746,7 @@ line vty
 ```
 cumulus@leaf03:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65102
  bgp router-id 10.10.10.3
  bgp bestpath as-path multipath-relax
@@ -1803,9 +1765,7 @@ router bgp 65102
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -1815,10 +1775,7 @@ line vty
 ```
 cumulus@leaf04:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65102
  bgp router-id 10.10.10.4
  bgp bestpath as-path multipath-relax
@@ -1837,9 +1794,7 @@ router bgp 65102
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -1849,10 +1804,7 @@ line vty
 ```
 cumulus@spine01:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
@@ -1872,9 +1824,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -1884,10 +1834,7 @@ line vty
 ```
 cumulus@spine02:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
@@ -1907,9 +1854,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -1919,10 +1864,7 @@ line vty
 ```
 cumulus@border01:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65132
  bgp router-id 10.10.10.63
  bgp bestpath as-path multipath-relax
@@ -1943,9 +1885,7 @@ router bgp 65132
   advertise-all-vni
   advertise-default-gw
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -1955,10 +1895,7 @@ line vty
 ```
 cumulus@border02:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65132
  bgp router-id 10.10.10.64
  bgp bestpath as-path multipath-relax
@@ -1979,9 +1916,7 @@ router bgp 65132
   advertise-all-vni
   advertise-default-gw
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -3264,10 +3199,7 @@ iface bond3
 ```
 cumulus@leaf01:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 vrf RED
   vni 4001
 vrf BLUE
@@ -3292,9 +3224,7 @@ router bgp 65101
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -3304,10 +3234,7 @@ line vty
 ```
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 vrf RED
   vni 4001
 vrf BLUE
@@ -3332,9 +3259,7 @@ router bgp 65101
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -3344,10 +3269,7 @@ line vty
 ```
 cumulus@leaf03:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 vrf RED
   vni 4001
 vrf BLUE
@@ -3372,9 +3294,7 @@ router bgp 65102
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -3384,10 +3304,7 @@ line vty
 ```
 cumulus@leaf04:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 vrf RED
   vni 4001
 vrf BLUE
@@ -3412,9 +3329,7 @@ router bgp 65102
   neighbor underlay activate
   advertise-all-vni
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -3424,10 +3339,7 @@ line vty
 ```
 cumulus@spine01:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65199
  bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
@@ -3447,9 +3359,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -3459,10 +3369,7 @@ line vty
 ```
 cumulus@spine02:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65199
  bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
@@ -3482,9 +3389,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -3494,10 +3399,7 @@ line vty
 ```
 cumulus@spine03:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65199
  bgp router-id 10.10.10.103
  bgp bestpath as-path multipath-relax
@@ -3517,9 +3419,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -3529,10 +3429,7 @@ line vty
 ```
 cumulus@spine04:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 router bgp 65199
  bgp router-id 10.10.10.104
  bgp bestpath as-path multipath-relax
@@ -3552,9 +3449,7 @@ router bgp 65199
  address-family l2vpn evpn
   neighbor underlay activate
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -3564,10 +3459,7 @@ line vty
 ```
 cumulus@border01:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 vrf RED
   vni 4001
 vrf BLUE
@@ -3616,9 +3508,7 @@ router bgp 65132 vrf BLUE
  address-family l2vpn evpn
   advertise ipv4 unicast
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -3628,10 +3518,7 @@ line vty
 ```
 cumulus@border02:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
-!
 vrf RED
   vni 4001
 vrf BLUE
@@ -3680,9 +3567,7 @@ router bgp 65132 vrf BLUE
  address-family l2vpn evpn
   advertise ipv4 unicast
  exit-address-family
-!
 line vty
-!
 ```
 
 {{< /tab >}}

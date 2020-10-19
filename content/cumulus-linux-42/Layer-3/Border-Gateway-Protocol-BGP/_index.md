@@ -15,7 +15,7 @@ Each router maintains a routing table that controls how packets are forwarded. T
 
 ### Autonomous System
 
-Because BGP was originally designed to peer between independently managed enterprises and service providers, each such enterprise is treated as an autonomous system, responsible for a set of network addresses. Each such autonomous system is given a unique number called an *autonomous system number* (ASN). ASNs are handed out by a central authority (ICANN); however, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or using the single ASN you own.
+Because BGP was originally designed to peer between independently managed enterprises and service providers, each such enterprise is treated as an autonomous system responsible for a set of network addresses. Each such autonomous system is given a unique number called an *autonomous system number* (ASN). ASNs are handed out by a central authority (ICANN); however, ASNs between 64512 and 65535 are reserved for private use. Using BGP within the data center relies on either using this number space or using the single ASN you own.
 
 The ASN is central to how BGP builds a forwarding topology. A BGP route advertisement carries  with it not only the ASN of the originator, but also the list of ASNs that this route advertisement passes through. When forwarding a route advertisement, a BGP speaker adds itself to this list. This list of ASNs is called the *AS path*. BGP uses the AS path to detect and avoid loops.
 
@@ -23,7 +23,7 @@ ASNs were originally 16-bit numbers, but were later modified to be 32-bit. FRRou
 
 {{%notice note%}}
 
-In a VRF-lite deployment (where multiple independent routing tables work simultaneously on the same switch), Cumulus Linux supports multiple ASNs.
+In a VRF-lite deployment (where multiple independent routing tables work simultaneously on the same switch), Cumulus Linux supports multiple ASNs. Multiple ASNs are not supported in deployments that use EVPN or VRF route leaking.
 
 {{%/notice%}}
 
@@ -102,7 +102,7 @@ When you use BGP unnumbered, BGP learns the prefixes, calculates the routes and 
 {{%notice note%}}
 
 - If an IPv4 /30 or /31 IP address is assigned to the interface, IPv4 peering is used over IPv6 link-local peering.
-- BGP unnumbered only works with two switches at a time, as it is designed to work with PTP (point-to-point protocol).
+- BGP unnumbered only works with two switches at a time, as it is designed to work with point-to-point links.
 - The IPv6 implementation on the peering device uses the MAC address as the interface ID when assigning the IPv6 link-local address, as suggested by RFC 4291.
 - Every router or end host must have an IPv4 address to complete a `traceroute` of IPv4 addresses. In this case, the IPv4 address used is that of the loopback device. Even if extended next-hop encoding (ENHE) is not used in the data center, link addresses are not typically advertised because they take up valuable FIB resources and also expose an additional attack vector for intruders to use to either break in or engage in DDOS attacks. Assigning an IP address to the loopback device is essential.
 

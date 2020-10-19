@@ -56,7 +56,7 @@ To configure BGP numbered on a BGP node, you need to:
     cumulus@leaf01:~$ net add bgp neighbor 169.254.10.101 remote-as external
     ```
 
-    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family:
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
     ```
     cumulus@leaf01:~$ net add bgp neighbor 2001:db8:0002::0a00:0002 remote-as external
@@ -114,7 +114,7 @@ To configure BGP numbered on a BGP node, you need to:
     cumulus@spine01:~$ net add bgp neighbor 169.254.10.1 remote-as external
     ```
 
-    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange
+    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
     ```
     cumulus@spine01:~$ net add bgp neighbor 2001:db8:0002::0a00:1 remote-as external
@@ -169,7 +169,7 @@ To configure BGP numbered on a BGP node, you need to:
    leaf01(config-router)# neighbor 169.254.10.101 remote-as external
    ```
 
-   For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family:
+   For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
 
    ```
    leaf01(config-router)# neighbor 2001:db8:0002::0a00:1 remote-as external
@@ -179,7 +179,7 @@ To configure BGP numbered on a BGP node, you need to:
 
    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
 
-5. Specify which prefixes to originate:
+4. Specify which prefixes to originate:
 
     ```
     leaf01(config-router)# address-family ipv4
@@ -194,7 +194,7 @@ To configure BGP numbered on a BGP node, you need to:
     IPv6 prefix example:
 
     ```
-    leaf01(config-router)# address-family ipv4
+    leaf01(config-router)# address-family ipv6
     leaf01(config-router-af)# network 2001:db8::1/128
     leaf01(config-router-af)# end
     leaf01# write memory
@@ -234,7 +234,7 @@ To configure BGP numbered on a BGP node, you need to:
 
    For BGP to advertise *IPv4* prefixes with IPv6 next hops, see {{<link url="Optional-BGP-Configuration#rfc-5549-support-with-global-ipv6-peers" text="RFC 5549 Support with Global IPv6 Peers">}}.
 
-5. Specify which prefixes to originate:
+4. Specify which prefixes to originate:
 
     ```
     spine01(config-router)# address-family ipv4

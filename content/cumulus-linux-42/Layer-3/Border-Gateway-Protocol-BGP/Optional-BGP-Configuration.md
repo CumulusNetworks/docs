@@ -83,7 +83,7 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 
 You configure dynamic neighbors using the `bgp listen range <ip-address> peer-group <group>` command. After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and is mapped to a peer group.
 
-The following example commands create the peer group SPINE and configure BGP peering to remote neighbors within the address range 169.254.10.101/24.
+The following example commands create the peer group SPINE and configure BGP peering to remote neighbors within the address range 169.254.10.0/24.
 
 {{< tabs "36 ">}}
 
@@ -92,7 +92,7 @@ The following example commands create the peer group SPINE and configure BGP pee
 ```
 cumulus@leaf01:~$ net add bgp neighbor SPINE peer-group
 cumulus@leaf01:~$ net add bgp neighbor SPINE remote-as external
-cumulus@leaf01:~$ net add bgp listen range 169.254.10.101/24 peer-group SPINE
+cumulus@leaf01:~$ net add bgp listen range 169.254.10.0/24 peer-group SPINE
 cumulus@leaf01:~$ net add bgp listen limit 5
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
@@ -109,7 +109,7 @@ cumulus@leaf01:~$ sudo vtysh
 
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp listen range 169.254.10.101/24 peer-group SPINE
+leaf01(config-router)# bgp listen range 169.254.10.0/24 peer-group SPINE
 leaf01(config-router)# bgp listen limit 5
 leaf01(config-router)# end
 leaf01# write memory
@@ -130,7 +130,7 @@ router bgp 65101
   neighbor SPINE peer-group
   neighbor SPINE remote-as external
   bgp listen limit 5
-  bgp listen range 169.254.10.101/24 peer-group SPINE
+  bgp listen range 169.254.10.0/24 peer-group SPINE
 ```
 
 ## eBGP Multihop
@@ -606,7 +606,7 @@ Hostname: spine01
 ...
 ```
 
-To view the current additional paths, run the NCLU `net show bgp <router-id>` command or the `vtysh show ip bgp <router-id>` command. The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
+To view the current additional paths, run the NCLU `net show bgp <prefix>` command or the `vtysh show ip bgp <prefix>` command. The example output shows an additional path that has been added by the TX node for receiving. Each path has a unique AddPath ID.
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp 10.10.10.9
@@ -777,24 +777,13 @@ router bgp 65101
 {{%notice note%}}
 
 - When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
-- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware. For example, configure a file, such as `/etc/cumulus/acl/policy.d/01control_plane_bgp.rules`, with a rule similar to the following:
-
-   ```
-   INGRESS_INTF = swp1
-       INGRESS_CHAIN = INPUT, FORWARD
-
-       [iptables]
-       -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp -m ttl --ttl 255 POLICE --set-mode pkt --set-rate 2000 --set-burst 1000
-   -A $INGRESS_CHAIN --in-interface $INGRESS_INTF -p tcp --dport bgp DROP
-   ```
-
-   For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
+- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
 
 {{%/notice%}}
 
-### Keepalive Interval
+### Keepalive Interval and Hold Time
 
-If a link is up but the neighboring BGP process hangs or crashes, the FRRouting `watchfrr` daemon, which monitors the various FRRouting daemons, attempts to restart it. BGP itself has a keepalive interval that is exchanged between neighbors. By default, this keepalive interval is set to 3 seconds. You can increase this interval to a higher value, which decreases CPU load, especially in the presence of a lot of neighbors. The keepalive interval is the periodicity with which the keepalive message is sent. The hold time specifies how many keepalive messages can be lost before the connection is considered invalid. The hold time is typically set to three times the keepalive time and defaults to 9 seconds.
+By default, BGP exchanges periodic keepalive messages to measure and ensure that a peer is still alive and functioning. If a keepalive or update message is not received from the peer within the hold time, the peer is declared down and all routes received by this peer are withdrawn from the local BGP table. By default, the keepalive interval is set to 3 seconds and the hold time is set to 9 seconds. To decrease CPU load, especially in the presence of a lot of neighbors, you can increase the values of these timers or disable the exchange of keepalives entirely. When manually configuring new values, the keepalive interval can be less than or equal to one third of the hold time, but cannot be less than 1 second. Setting the keepalive and hold time values to 0 disables the exchange of keepalives.
 
 The following example commands set the keepalive interval to 10 seconds and the hold time to 30 seconds.
 
@@ -879,7 +868,7 @@ router bgp 65101
 
 ### Advertisement Interval
 
-By default, BGP chooses stability over fast convergence, which is very useful when routing for the Internet. For example, unlike link-state protocols, BGP typically waits a number of seconds before sending consecutive updates to a neighbor. This advertisement interval ensures that an unstable neighbor flapping routes are not propagated throughout the network. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see {{<exlink url="http://tools.ietf.org/html/draft-jakma-mrai-02" text="this IETF draft">}}.
+After making a new best path decision for a prefix, BGP can optionally insert a delay before advertising the new results to a peer. This delay is used to rate limit the amount of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. By default, this interval is set to 0 seconds for both eBGP and iBGP sessions, which allows for very fast convergence. For more information about the advertisement interval, see {{<exlink url="http://tools.ietf.org/html/draft-jakma-mrai-02" text="this IETF draft">}}.
 
 The following example commands set the advertisement interval to 5 seconds:
 
@@ -1066,9 +1055,9 @@ As BGP peers are established and updates are received, prefixes might be install
 
 Enable read-only mode to reduce CPU and network usage when restarting the BGP process. Because intermediate best paths are possible for the same prefix as peers get established and start receiving updates at different times, read-only mode is particularly useful in topologies where BGP learns a prefix from many peers and the network has a high number of prefixes.
 
-The following example commands enable read-only mode, sets the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
-
 The default value for max-delay is 0, which disables read-only mode. The update delay and establish wait can be any value between 0 and 3600 seconds. The `establish-wait` setting is optional; however, if specified, it must be shorter than the `max-delay`.
+
+The following example commands enable read-only mode, set the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
 
 {{< tabs "48 ">}}
 

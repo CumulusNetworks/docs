@@ -146,7 +146,6 @@ iface mgmt
     address 127.0.0.1/8
     address ::1/128
 
-
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
@@ -266,7 +265,6 @@ iface mgmt
     vrf-table auto
     address 127.0.0.1/8
     address ::1/128
-
 
 auto eth0
 iface eth0 inet dhcp
@@ -511,6 +509,7 @@ iface mgmt
 auto eth0
 iface eth0 inet dhcp
     vrf mgmt
+
 auto swp1
 iface swp1
     alias leaf to spine
@@ -578,8 +577,6 @@ iface swp4
 ```
 cumulus@leaf01:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
 !
 router bgp 65101
@@ -594,9 +591,8 @@ router bgp 65101
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
- !
-line vty
 !
+line vty
 ```
 
 {{< /tab >}}
@@ -606,8 +602,6 @@ line vty
 ```
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
 !
 router bgp 65101
@@ -622,9 +616,8 @@ router bgp 65101
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
- !
-line vty
 !
+line vty
 ```
 
 {{< /tab >}}
@@ -634,8 +627,6 @@ line vty
 ```
 cumulus@leaf03:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
 !
 router bgp 65102
@@ -652,7 +643,6 @@ router bgp 65102
  exit-address-family
 !
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -662,8 +652,6 @@ line vty
 ```
 cumulus@leaf04:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
 !
 router bgp 65102
@@ -678,9 +666,8 @@ router bgp 65102
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
- !
-line vty
 !
+line vty
 ```
 
 {{< /tab >}}
@@ -690,8 +677,6 @@ line vty
 ```
 cumulus@spine01:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
 !
 router bgp 65199
@@ -709,7 +694,6 @@ router bgp 65199
  exit-address-family
 !
 line vty
-!
 ```
 
 {{< /tab >}}
@@ -719,8 +703,6 @@ line vty
 ```
 cumulus@spine02:~$ cat /etc/frr/frr.conf
 ...
-service integrated-vtysh-config
-!
 log syslog informational
 !
 router bgp 65199
@@ -738,7 +720,6 @@ router bgp 65199
  exit-address-family
 !
 line vty
-!
 ```
 
 {{< /tab >}}

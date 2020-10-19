@@ -128,9 +128,9 @@ This section describes how the IPv6 next hops are set in the MP_REACH_NLRI ({{<e
 - If two next hops are received in an update and the second next hop is not a link-local address, it is ignored and the update is treated as if only one next hop is received.
 - Whenever two next hops are received in an update, the second next hop is used to install the route into `zebra`. It is already assured that this is a link-local IPv6 address. Currently, this is assumed to be reachable and is not registered with NHT.
 - When `route-map` specifies the next hop as `peer-address`, the global IPv6 next hop as well as the link-local IPv6 next hop (if it is being sent) is set to the *peering address*. If the peering is on a link-local address, the global IPv6 next hop can be the link-local address on the peering interface, unless there is a global IPv6 address present on this interface.
-- When using iBGP unnumbered with IPv6 link local addresses (the default), FRR rewrites the BGP next hop to be the adjacent link. This is similar behavior to eBGP next hops. However, iBGP route advertisement rules do not change and a full mesh or route reflectors is still required.
+- When using iBGP unnumbered with IPv6 link local addresses (the default), FRR rewrites the BGP next hop to be the adjacent link. This is similar behavior to eBGP next hops. However, iBGP route advertisement rules do not change and a full mesh or route reflector is still required.
 
-The above rules imply that a generated update has two IPv6 next hops and both of them are the IPv6 link-local address of the peering interface on the local system. If you are peering with a switch or router that is not running Cumulus Linux and expects the first next hop to be a global IPv6 address, you can use a route map on the sender to specify a global IPv6 address. This conforms with the recommendations in this {{<exlink url="https://tools.ietf.org/html/draft-kato-bgp-ipv6-link-local-00" text="Internet draft">}}.
+The above rules imply that a generated update has two IPv6 next hops and both of them are the IPv6 link-local address of the peering interface on the local system. If you are peering with a switch or router that is not running Cumulus Linux and it expects the first next hop to be a global IPv6 address, you can use a route map on the sender to specify a global IPv6 address. This conforms with the recommendations in this {{<exlink url="https://tools.ietf.org/html/draft-kato-bgp-ipv6-link-local-00" text="Internet draft">}}.
 
 {{< /expand >}}
 
@@ -156,4 +156,4 @@ The above rules imply that a generated update has two IPv6 next hops and both of
 - {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549, Advertising IPv4 Network Layer Reachability Information with an IPv6 Next Hop">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc6793" text="RFC 6793, BGP Support for Four-Octet Autonomous System (AS) Number Space">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc7911" text="RFC 7911, Advertisement of Multiple Paths in BGP">}}
-- {{<exlink url="https://tools.ietf.org/html/draft-walton-bgp-hostname-capability-00" text="draft-walton-bgp-hostname-capability-02, Fully Qualified Domain Name Capability for BGP">}}
+- {{<exlink url="https://tools.ietf.org/html/draft-walton-bgp-hostname-capability-02" text="draft-walton-bgp-hostname-capability-02, Fully Qualified Domain Name Capability for BGP">}}

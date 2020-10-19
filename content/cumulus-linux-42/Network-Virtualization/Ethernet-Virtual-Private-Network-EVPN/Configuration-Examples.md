@@ -553,6 +553,8 @@ iface bond2
 {{< tab "spine01 ">}}
 
 ```
+cumulus@spine01:~$ cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.101/32
@@ -642,6 +644,8 @@ iface swp6
 {{< tab "spine03 ">}}
 
 ```
+cumulus@spine03:~$ cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.103/32
@@ -685,6 +689,8 @@ iface swp6
 {{< tab "spine04 ">}}
 
 ```
+cumulus@spine04:~$ cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.104/32
@@ -729,6 +735,8 @@ iface swp6
 {{< tab "border01 ">}}
 
 ```
+cumulus@border01:~$ cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.63/32
@@ -841,6 +849,8 @@ iface bond3
 {{< tab "border02 ">}}
 
 ```
+cumulus@border02:~$ cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.64/32
@@ -1148,6 +1158,7 @@ line vty
 {{< tab "spine03 ">}}
 
 ```
+cumulus@spine03:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
 !
@@ -1179,6 +1190,7 @@ line vty
 {{< tab "spine04 ">}}
 
 ```
+cumulus@spine04:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
 !
@@ -1210,6 +1222,7 @@ line vty
 {{< tab "border01 ">}}
 
 ```
+cumulus@border01:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
 !
@@ -1241,6 +1254,7 @@ line vty
 {{< tab "border02 ">}}
 
 ```
+cumulus@border02:~$ cat /etc/frr/frr.conf
 ...
 log syslog informational
 !
@@ -1900,6 +1914,8 @@ iface swp6
 {{< tab "spine03 ">}}
 
 ```
+cumulus@spine03:~$ cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.103/32
@@ -1943,6 +1959,8 @@ iface swp6
 {{< tab "spine04 ">}}
 
 ```
+cumulus@spine04:~$ cat /etc/network/interfaces
+
 auto lo
 iface lo inet loopback
     address 10.10.10.104/32

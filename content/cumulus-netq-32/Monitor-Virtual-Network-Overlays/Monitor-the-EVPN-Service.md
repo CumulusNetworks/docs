@@ -20,7 +20,7 @@ With NetQ, you can monitor EVPN performance across the network:
 - `netq show evpn` command: view configuration and status for all devices, including associated VNI, VTEP address, import and export route (showing BGP ASN and VNI path), and last time a change was made for each device running EVPN
 
 {{<notice note>}}
-When entering a time value in the <code>netq show evpn</code> command, you must include a numeric value <em>and</em> the unit of measure:
+<p>When entering a time value in the <code>netq show evpn</code> command, you must include a numeric value <em>and</em> the unit of measure:
 <ul>
 <li><strong>w</strong>: week(s)</li>
 <li><strong>d</strong>: day(s)</li>
@@ -29,8 +29,8 @@ When entering a time value in the <code>netq show evpn</code> command, you must 
 <li><strong>s</strong>: second(s)</li>
 <li><strong>now</strong>
 </ul>
-
-When using the <code>between</code> option, the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+</p>
+<p>When using the <code>between</code> option, the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p>
 {{</notice>}}
 
 ### View Service Status Summary

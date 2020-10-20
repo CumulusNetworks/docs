@@ -27,9 +27,9 @@ To configure an EVPN route exchange with a BGP peer, activate the peer or peer g
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp autonomous-system 65000
-cumulus@switch:~$ net add bgp neighbor swp1 interface remote-as external
-cumulus@switch:~$ net add bgp l2vpn evpn neighbor swp1 activate
+cumulus@switch:~$ net add bgp autonomous-system 65101
+cumulus@switch:~$ net add bgp neighbor swp51 interface remote-as external
+cumulus@switch:~$ net add bgp l2vpn evpn neighbor swp51 activate
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -42,10 +42,10 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router bgp 65000
-switch(config-router)# neighbor swp1 interface remote-as external
+switch(config)# router bgp 65101
+switch(config-router)# neighbor swp51 interface remote-as external
 switch(config-router)# address-family l2vpn evpn
-switch(config-router-af)# neighbor swp1 activate
+switch(config-router-af)# neighbor swp51 activate
 switch(config-router-af)# end
 switch)# write memory
 switch)# exit
@@ -66,10 +66,10 @@ The above commands create the following configuration snippet in the `/etc/frr/f
 
 ```
 ...
-router bgp 65000
-  neighbor swp1 interface remote-as external
+router bgp 65101
+  neighbor swp51 interface remote-as external
   address-family l2vpn evpn
-  neighbor swp1 activate
+  neighbor swp51 activate
 ...
 ```
 
@@ -103,7 +103,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router bgp 65000
+switch(config)# router bgp 65101
 switch(config-router)# address-family l2vpn evpn
 switch(config-router-af)# advertise-all-vni
 switch(config-router-af)# end
@@ -120,10 +120,10 @@ The above commands create the following configuration snippet in the `/etc/frr/f
 
 ```
 ...
-router bgp 65000
-  neighbor swp1 interface remote-as external
+router bgp 65101
+  neighbor swp51 interface remote-as external
   address-family l2vpn evpn
-  neighbor swp1 activate
+  neighbor swp51 activate
   advertise-all-vni
 ...
 ```

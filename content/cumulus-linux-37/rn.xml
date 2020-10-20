@@ -85,12 +85,6 @@ Fixed: 7.38.0-4+deb8u18</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-31615</td>
-<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
-<td>3.7.12-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31605</td>
 <td><p>When you configure an SNMPv3 user with the net-snmp-config configuration command from the libsnmp-dev package, you get an error message similar to the one below:</p>
 
@@ -286,7 +280,7 @@ Fixed: 3.26-1+debu8u13</p></td>
 </tr>
 <tr>
 <td>CM-31257</td>
-<td><p>On the EdgeCore AS-6712-32X switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
+<td><p>On the EdgeCore AS-6712-32X, AS5812-54X and AS5812-54T switch models, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
 These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
@@ -413,13 +407,6 @@ The python-pil packages are not installed by default, but are available for opti
 Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
 Fixed: 2.6.1-2+deb8u5</p></td>
 <td>3.0.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-30932</td>
-<td><p>On the EdgeCore AS5812-54X and AS5812-54T switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on. <br/>
-These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
-<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -613,13 +600,6 @@ To work around this issue, either do not set acl.non_atomic_update_mode = TRUE i
 <td>CM-30101</td>
 <td><p>The NCLU net show bridge spanning-tree command displays the aging timer incorrectly. </p></td>
 <td>3.7.12-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -989,8 +969,8 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
-Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
 </tr>
@@ -2837,7 +2817,7 @@ Fixed: 3.26-1+debu8u13</p></td>
 </tr>
 <tr>
 <td>CM-31257</td>
-<td><p>On the EdgeCore AS-6712-32X switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
+<td><p>On the EdgeCore AS-6712-32X, AS5812-54X and AS5812-54T switch models, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
 These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
@@ -2946,13 +2926,6 @@ The python-pil packages are not installed by default, but are available for opti
 Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
 Fixed: 2.6.1-2+deb8u5</p></td>
 <td>3.0.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-30932</td>
-<td><p>On the EdgeCore AS5812-54X and AS5812-54T switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on. <br/>
-These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
-<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -3300,13 +3273,6 @@ Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
-</tr>
-<tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>
@@ -3976,8 +3942,8 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
-Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
 </tr>
@@ -5440,6 +5406,15 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -5936,13 +5911,6 @@ Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
-</tr>
-<tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>
@@ -6445,8 +6413,8 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
-Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
 </tr>
@@ -8406,6 +8374,15 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -8885,13 +8862,6 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.13</td>
@@ -9257,8 +9227,8 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
-Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
 </tr>
@@ -11071,6 +11041,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -11523,13 +11502,6 @@ Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.7.13</td>
 </tr>
 <tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29978</td>
 <td><p>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</p></td>
 <td>3.7.8-3.7.13</td>
@@ -11867,8 +11839,8 @@ For more information, refer to:<br/>
 <a href="https://security-tracker.debian.org/tracker/source-package/sudo" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/source-package/sudo</a><br/>
 <a href="https://security-tracker.debian.org/tracker/CVE-2019-18634" class="external-link" rel="nofollow">https://security-tracker.debian.org/tracker/CVE-2019-18634</a><br/>
 <a href="https://www.sudo.ws/alerts/pwfeedback.html" class="external-link" rel="nofollow">https://www.sudo.ws/alerts/pwfeedback.html</a><br/>
-Vulnerable: &lt;= 1.8.10p3-1+deb8u6, &lt;= 1.8.10p4-cl3u6<br/>
-Fixed: 1.8.10p3-1+deb8u7, 1.8.10p4-cl3.7.14u1</p></td>
+Vulnerable: &lt;= 1.8.10p4-cl3u6<br/>
+Fixed: 1.8.10p4-cl3.7.14u1</p></td>
 <td>3.0.0-3.7.13</td>
 <td></td>
 </tr>
@@ -14144,6 +14116,15 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -14594,13 +14575,6 @@ Vulnerable: &lt;= 1.8.22-0+deb8u2<br/>
 Fixed: 1.8.22-0+deb8u3</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13</td>
-</tr>
-<tr>
-<td>CM-29993</td>
-<td><p>When bond-downdelay is enabled on a bond, flapping the underlying switch port leads to traffic loss across the bond.<br/>
-To work around this issue, flap the bond or do not use bond-downdelay.</p></td>
-<td>3.7.8-3.7.13</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29978</td>
@@ -17087,6 +17061,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31696</td>
@@ -20388,6 +20371,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -23637,6 +23629,15 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -26573,6 +26574,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31696</td>
@@ -29569,6 +29579,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31696</td>
@@ -32724,6 +32743,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31696</td>
@@ -36003,6 +36031,15 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -38782,6 +38819,15 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-31863</td>
+<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
+Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
+Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
+Fixed: 0.12.5-1+deb8u8</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31696</td>

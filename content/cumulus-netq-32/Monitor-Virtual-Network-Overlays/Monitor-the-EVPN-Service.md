@@ -176,6 +176,28 @@ include:
 - Export the data for use in another analytics tool, by selecting all or some of the events and clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 - Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> at the top right to return to your workbench.
 
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To view all EVPN alarms, run:
+
+```
+netq show events [level info | level error | level warning | level critical | level debug] type evpn [between <text-time> and <text-endtime>] [json]
+```
+
+Use the `level` option to set the severity of the events to show.  Use the `between` option to show events within a given time range.
+
+This example shows critical EVPN events in the past three days.
+
+```
+cumulus@switch:~$ netq show events level critical type evpn between now and 3d
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ### View Details for All Devices Running EVPN
 
 You can view all stored attributes of all switches running EVPN in your network in the full screen card.

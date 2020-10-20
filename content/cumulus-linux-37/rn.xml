@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31898</td>
+<td><p>The SNMP BRIDGE-MIB returns incorrect information.</p></td>
+<td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -286,7 +292,7 @@ Fixed: 3.26-1+debu8u13</p></td>
 </tr>
 <tr>
 <td>CM-31257</td>
-<td><p>On the EdgeCore AS-6712-32X switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
+<td><p>On the EdgeCore AS-6712-32X, AS5812-54X and AS5812-54T switch models, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
 These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
@@ -413,13 +419,6 @@ The python-pil packages are not installed by default, but are available for opti
 Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
 Fixed: 2.6.1-2+deb8u5</p></td>
 <td>3.0.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-30932</td>
-<td><p>On the EdgeCore AS5812-54X and AS5812-54T switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on. <br/>
-These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
-<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2837,7 +2836,7 @@ Fixed: 3.26-1+debu8u13</p></td>
 </tr>
 <tr>
 <td>CM-31257</td>
-<td><p>On the EdgeCore AS-6712-32X switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
+<td><p>On the EdgeCore AS-6712-32X, AS5812-54X and AS5812-54T switch models, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
 These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
@@ -2946,13 +2945,6 @@ The python-pil packages are not installed by default, but are available for opti
 Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
 Fixed: 2.6.1-2+deb8u5</p></td>
 <td>3.0.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-30932</td>
-<td><p>On the EdgeCore AS5812-54X and AS5812-54T switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on. <br/>
-These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
-<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>

@@ -917,13 +917,13 @@ In the following example, spine01 is acting as a route reflector. The leaf switc
 
 {{< img src = "/images/cumulus-linux/bgp-route-reflectors-example.png" >}}
 
-To configure the BGP node as a route reflector, set the `route-reflector-client` option. The following example sets spine01 shown in the illustration above to be a route reflector for leaf01:
+To configure the BGP node as a route reflector for a BGP peer, set the neighbor `route-reflector-client` option. The following example sets spine01 shown in the illustration above to be a route reflector for leaf01 (on swp1), which is a route reflector client. No configuration is required on the client.
 
 {{< tabs "344 ">}}
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@spine01:~$ net add bgp neighbor swp51 route-reflector-client
+cumulus@spine01:~$ net add bgp neighbor swp1 route-reflector-client
 cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
@@ -937,7 +937,7 @@ cumulus@spine01:~$ sudo vtysh
 switch# configure terminal
 switch(config)# router bgp 65199
 switch(config-router)# address-family ipv4
-switch(config-router-af)# neighbor swp51 route-reflector-client
+switch(config-router-af)# neighbor swp1 route-reflector-client
 switch(config-router-af)# end
 switch# write memory
 switch# exit

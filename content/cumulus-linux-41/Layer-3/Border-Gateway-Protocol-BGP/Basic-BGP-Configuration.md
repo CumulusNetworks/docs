@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 812
 toc: 3
 ---
-This section describes how to configure BGP using either BGP numbered or {{<link title="Border Gateway Protocol-BGP#bgp-unnumbered" text="BGP unnumbered">}}. With BGP *unnumbered*, you can set up BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch.
+This section describes how to configure BGP using either BGP numbered or {{<link title="Border Gateway Protocol - BGP#bgp-unnumbered" text="BGP unnumbered">}}. With BGP *unnumbered*, you can set up BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch.
 
 {{%notice note%}}
 BGP *unnumbered* simplifies configuration and is recommended for data center deployments.
@@ -206,7 +206,7 @@ To configure BGP numbered on a BGP node, you need to:
 
 {{< tab "spine01 ">}}
 
-1. Enable the `bgpd` daemon as described in {{<link title="Configure FRRouting">}}.
+1. Enable the `bgpd` daemon as described in {{<link title="Configuring FRRouting">}}.
 
 2. Identify the BGP node by assigning an ASN and the router ID:
 

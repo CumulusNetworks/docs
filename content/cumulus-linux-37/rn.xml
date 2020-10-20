@@ -286,7 +286,7 @@ Fixed: 3.26-1+debu8u13</p></td>
 </tr>
 <tr>
 <td>CM-31257</td>
-<td><p>On the EdgeCore AS-6712-32X switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
+<td><p>On the EdgeCore AS-6712-32X, AS5812-54X and AS5812-54T switch models, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
 These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
@@ -413,13 +413,6 @@ The python-pil packages are not installed by default, but are available for opti
 Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
 Fixed: 2.6.1-2+deb8u5</p></td>
 <td>3.0.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-30932</td>
-<td><p>On the EdgeCore AS5812-54X and AS5812-54T switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on. <br/>
-These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
-<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2830,7 +2823,7 @@ Fixed: 3.26-1+debu8u13</p></td>
 </tr>
 <tr>
 <td>CM-31257</td>
-<td><p>On the EdgeCore AS-6712-32X switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
+<td><p>On the EdgeCore AS-6712-32X, AS5812-54X and AS5812-54T switch models, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on due to this issue.<br/>
 These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
@@ -2939,13 +2932,6 @@ The python-pil packages are not installed by default, but are available for opti
 Vulnerable: &lt;= 2.6.1-2+deb8u4<br/>
 Fixed: 2.6.1-2+deb8u5</p></td>
 <td>3.0.0-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-30932</td>
-<td><p>On the EdgeCore AS5812-54X and AS5812-54T switch, the temp sensors (DIMM temp sensor) show ABSENT. The amber diagnostic light on the front of the switch might also be turned on. <br/>
-These messages and the light are cosmetic issues only and do not otherwise impact the function of the switch.</p></td>
-<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>

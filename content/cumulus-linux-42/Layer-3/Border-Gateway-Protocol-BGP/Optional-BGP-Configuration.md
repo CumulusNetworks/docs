@@ -1055,19 +1055,21 @@ As BGP peers are established and updates are received, prefixes might be install
 
 Enable read-only mode to reduce CPU and network usage when restarting the BGP process. Because intermediate best paths are possible for the same prefix as peers get established and start receiving updates at different times, read-only mode is particularly useful in topologies where BGP learns a prefix from many peers and the network has a high number of prefixes.
 
-Read-only mode begins as soon as the first peer reaches its established state and the `max-delay` timer starts, and continues until either of the following two conditions are met:
-
-- All the configured peers (except the shutdown peers) have sent an explicit EOR (End-Of-RIB) or an implicit EOR. The first keep-alive after BGP reaches the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends.
-
-  The minimum set of established peers for which EOR is expected are the peers that are established during the `establish-wait window,` not necessarily all the configured neighbors.
-
-- The timer reaches the configured `max-delay`.
+{{%notice note%}}
 
 While in read-only mode, BGP does not run best-path or generate any updates to its peers.
 
-The default value for max-delay is 0, which disables read-only mode. The update delay and establish wait can be any value between 0 and 3600 seconds. The `establish-wait` setting is optional; however, if specified, it must be shorter than the `max-delay`.
+{{%/notice%}}
 
-The following example commands enable read-only mode, set the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
+To enable read-only mode, you set the `max-delay` timer and, optionally, the `establish-wait` timer. Read-only mode begins as soon as the first peer reaches its established state and the `max-delay` timer starts, and continues until either of the following two conditions are met:
+
+- All the configured peers (except the shutdown peers) have sent an explicit EOR (End-Of-RIB) or an implicit EOR. The first keep-alive after BGP reaches the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends. The minimum set of established peers for which EOR is expected are the peers that are established during the `establish-wait` window, not necessarily all the configured neighbors.
+
+- The timer reaches the configured `max-delay`.
+
+The default value for `max-delay` is 0, which disables read-only mode. The `update delay` and `establish wait` can be any value between 0 and 3600 seconds. The `establish-wait` setting is optional; however, if specified, it must be shorter than the `max-delay`.
+
+The following example commands enable read-only mode by setting the `max-delay` timer to 300 seconds and the `establish-wait` timer to 90 seconds.
 
 {{< tabs "48 ">}}
 
@@ -1114,7 +1116,7 @@ In NCLU, you can only set the community number in a route map. You cannot set ot
 
 ### Filter Routes from BGP into Zebra
 
-You can apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations for this attach-point are limited to metric and next hop only. Any operation of this feature does not affect the BGP internal RIB.
+You can apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations are limited to metric and next hop only. Applying a route map on route updates from BGP to Zebra does not affect the BGP internal RIB.
 
 Both IPv4 and IPv6 address families are supported. Route maps work on multi-paths; however, the metric setting is based on the best path only.
 
@@ -1207,6 +1209,7 @@ Here is an example of a standard community list filter:
 
 ```
 cumulus@switch:~$ net add routing community-list standard COMMUNITY1 permit 100:100
+
 ```
 
 {{< /tab >}}
@@ -1236,6 +1239,8 @@ You can apply the community list to a route map to define the routing policy:
 
 ```
 cumulus@switch:~$ net add bgp table-map ROUTE-MAP1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
 ```
 
 {{< /tab >}}

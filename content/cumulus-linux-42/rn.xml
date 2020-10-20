@@ -7,18 +7,9 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-31898</td>
-<td><p>The SNMP BRIDGE-MIB returns incorrect information.</p></td>
-<td>3.7.13, 4.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31864</td>
-<td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
-Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
-Vulnerable: 0.14.0-1.3<br/>
-Fixed: 0.14.0-1.3+deb10u1</p></td>
-<td>4.0.0-4.2.1</td>
+<td>CM-31615</td>
+<td><p>The EdgeCore AS5812-54X switch doesn't recognize a dual rate network interface type correctly.</p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>

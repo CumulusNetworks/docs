@@ -268,7 +268,7 @@ router bgp <as> vrf tenant1
 
 {{%notice note%}}
 
-The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
+The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See {{<link url="Basic-Configuration#define-rds-and-rts" text="Define RDs and RTs">}}.
 
 {{%/notice%}}
 

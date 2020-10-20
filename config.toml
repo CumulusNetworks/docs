@@ -23,19 +23,19 @@ disableKinds = ["RSS"]
 [menu]
   [[menu.subnav]]
     identifier = "cumulus-linux"
-    title = "NVIDIA Cumulus Linux"
+    title = "Cumulus Linux"
     url = "/cumulus-linux-42/"
     weight = 10
 
   [[menu.subnav]]
     identifier = "cumulus-netq"
-    title = "NVIDIA NetQ"
+    title = "Cumulus NetQ"
     url = "/cumulus-netq-32/"
     weight = 20
 
   [[menu.subnav]]
     identifier = "cumulus-vx"
-    title = "NVIDIA Cumulus VX"
+    title = "Cumulus VX"
     url = "/cumulus-vx/"
     weight = 30
 

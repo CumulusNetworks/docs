@@ -151,7 +151,7 @@ To configure BGP numbered on a BGP node, you need to:
 
 {{< tab " leaf01 ">}}
 
-1. Enable the `bgpd` daemon as described in {{<link title="Configure FRRouting">}}.
+1. Enable the `bgpd` daemon as described in {{<link title="Configuring FRRouting">}}.
 
 2. Identify the BGP node by assigning an ASN and the router ID:
 

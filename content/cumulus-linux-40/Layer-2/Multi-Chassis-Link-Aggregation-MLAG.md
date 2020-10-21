@@ -354,7 +354,7 @@ cumulus@leaf02:~$ sudo ifreload -a
 {{%notice note%}}
 
 - Do *not* add VLAN 4094 to the bridge VLAN list; VLAN 4094 for the peer link subinterface **cannot** be configured as a bridged VLAN with bridge VIDs under the bridge.
-- Do not use 169.254.0.1 as the MLAG peer link IP address; Cumulus Linux uses this address exclusively for {{<link url="Border-Gateway-Protocol-BGP" text="BGP unnumbered">}} interfaces.
+- Do not use 169.254.0.1 as the MLAG peer link IP address; Cumulus Linux uses this address exclusively for {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP unnumbered">}} interfaces.
 - When you configure MLAG manually in the `/etc/network/interfaces` file, the changes take effect when you bring the peer link interface up with the `sudo ifreload -a` command. Do **not** use `systemctl restart clagd.service` to apply the new configuration.
 
 {{%/notice%}}
@@ -629,7 +629,7 @@ When enabling a routing protocol in an MLAG environment, it is also necessary to
 
 When you use MLAG with VRR, Cumulus Networks recommends you set up a routed adjacency across the peerlink.4094 interface. If a routed connection is not built across the peer link, during an uplink failure on one of the switches in the MLAG pair, egress traffic might not be forwarded if the destination is on the switch whose uplinks are down.
 
-To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#unnumbered" text="BGP">}} or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} unnumbered peering, as appropriate for your network.
+To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP">}} or {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} unnumbered peering, as appropriate for your network.
 
 For BGP, use a configuration like this:
 

@@ -90,10 +90,10 @@ To create a network template with SNMP parameters included:
 
         | Parameter | Description |
         | ---- | ---- |
-        | Load(1 min) | Threshold CPU load must cross within a minute to trigger a trap |
+        | Load(1 min) | Name of the xxx |
         | Trap link down frequency | Toggle on to set the frequency at which to collect link down trap information. Default value is 60 seconds. |
         | Trap link up frequency | Toggle on to set the frequency at which to collect link up trap information. Default value is 60 seconds.  |
-        | IQuery Secname | Security name for SNMP query |
+        | IQuery Secname | xxx |
         | Trap Destination IP | IPv4 or IPv6 address where the trap information is to be sent. This can be a local host or other valid location. |
         | Community Password | Authorization password. Any valid string, where an exclamation mark (!) is the only allowed special character. |
         | Version | SNMP version to use |

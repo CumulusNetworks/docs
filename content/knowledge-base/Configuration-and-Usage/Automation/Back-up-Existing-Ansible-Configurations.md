@@ -26,10 +26,10 @@ This type of model can be beneficial for:
 
 The two examples below primarily use these four core Ansible modules:
 
-- {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/fetch_module.html" text="Fetch">}}
-- {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html" text="Copy">}}
-- {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html" text="Command">}}
-- {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html" text="Service">}}
+- {{<exlink url="http://docs.ansible.com/ansible/fetch_module.html" text="Fetch">}}
+- {{<exlink url="http://docs.ansible.com/ansible/copy_module.html" text="Copy">}}
+- {{<exlink url="http://docs.ansible.com/ansible/command_module.html" text="Command">}}
+- {{<exlink url="http://docs.ansible.com/ansible/service_module.html" text="Service">}}
 
 ## Example Fetch
 

@@ -346,8 +346,8 @@ Cumulus Networks recommends that you keep ARP and ND suppression enabled to redu
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add vxlan vni100 bridge arp-nd-suppress off
-cumulus@switch:~$ net add vxlan vni200 bridge arp-nd-suppress off
+cumulus@switch:~$ net del vxlan vni100 bridge arp-nd-suppress
+cumulus@switch:~$ net del vxlan vni200 bridge arp-nd-suppress
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 
@@ -357,7 +357,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands ">}}
 
-Edit the /etc/network/interfaces file.
+Edit the `/etc/network/interfaces` file to remove `bridge-arp-nd-suppress on` from the VNI.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -366,14 +366,12 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 auto vni100
 iface vni100
     bridge-access 100
-    bridge-arp-nd-suppress off
     vxlan-id 10100
     vxlan-local-tunnelip 10.0.0.1
 
 auto vni200
 iface vni200
       bridge-access 200
-      bridge-arp-nd-suppress off
       vxlan-id 10200
       vxlan-local-tunnelip 10.0.0.1
 ...

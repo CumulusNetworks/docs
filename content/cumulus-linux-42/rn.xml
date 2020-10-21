@@ -7,9 +7,9 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-31898</td>
-<td><p>The SNMP BRIDGE-MIB returns incorrect information.</p></td>
-<td>3.7.13, 4.2.1</td>
+<td>CM-31904</td>
+<td><p>The output of the net show commit command does not show the last commit or the specified commit number but is empty instead.</p></td>
+<td>4.2.1</td>
 <td></td>
 </tr>
 <tr>

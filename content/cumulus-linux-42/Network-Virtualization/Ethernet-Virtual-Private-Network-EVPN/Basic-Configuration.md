@@ -8,7 +8,7 @@ The following sections provide the basic configuration needed to use EVPN as the
 
 {{%notice note%}}
 
-In Cumulus Linux 4.0 and later, MAC learning is disabled and ARP/ND suppression is enabled by default. This is a change from earlier Cumulus Linux releases, where MAC learning is *enabled* and ARP/ND suppression *disabled* by default. Be sure to update any configuration scripts, if necessary.
+In Cumulus Linux 4.0, MAC learning is disabled and ARP/ND suppression is enabled by default. This is a change from earlier Cumulus Linux releases, where MAC learning is *enabled* and ARP/ND suppression *disabled* by default. Be sure to update any configuration scripts, if necessary.
 
 {{%/notice%}}
 
@@ -121,9 +121,9 @@ The above commands create the following configuration snippet in the `/etc/frr/f
 ```
 ...
 router bgp 65101
-  neighbor swp1 interface remote-as external
+  neighbor swp51 interface remote-as external
   address-family l2vpn evpn
-  neighbor swp1 activate
+  neighbor swp51 activate
   advertise-all-vni
 ...
 ```
@@ -153,4 +153,4 @@ For information about active-active VTEPs and anycast IP behavior, and for failu
 - You must configure the overlay (tenants) in a specific VRF and separate from the underlay, which resides in the default VRF. Layer 3 VNI mapping for the default VRF is not supported.
 - In an EVPN deployment, Cumulus Linux supports a single BGP ASN which represents the ASN of the core as well as the ASN for any tenant VRFs if they have BGP peerings. If you need to change the ASN, you must first remove the layer 3 VNI in the `/etc/frr/frr.conf` file, modify the BGP ASN, then add back the layer 3 VNI in the `/etc/frr/frr.conf` file.
 - EVPN is not supported when {{<link title="Redistribute Neighbor" >}} is also configured. Enabling both features simultaneously causes instability in IPv4 and IPv6 neighbor entries.
-- To conform to {{<exlink url="https://tools.ietf.org/html/rfc6514#section-5" text="RFC 6514">}}, Cumulus Linux implements a stricter check on a received type-3 route to ensure that it has the PMSI attribute with the replication type set to *ingress-replication*.
+- Cumulus Linux implements a stricter check on a received type-3 route to ensure that it has the PMSI attribute with the replication type set to *ingress-replication* in order to conform to {{<exlink url="https://tools.ietf.org/html/rfc6514#section-5" text="RFC 6514">}}.

@@ -15,11 +15,11 @@ Inside the box that was shipped to you, you'll find:
 
 For more detail about hardware specifications (including LED layouts and FRUs like the power supply or fans, and accessories like included cables) or safety and environmental information, refer to the {{<exlink url="https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf" text="user manual">}} and {{<exlink url="https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf" text="quick reference guide">}}.
 
-## Install the Appliance
+#### Install the Appliance
 
 {{<netq-install/appliance-setup deployment="onprem">}}
 
-## Configure the Password, Hostname and IP Address
+#### Configure the Password, Hostname and IP Address
 
 Change the password and specify the hostname and IP address for the appliance before installing the NetQ software.
 
@@ -39,13 +39,7 @@ Change the password and specify the hostname and IP address for the appliance be
     passwd: password updated successfully
     ```
 
-3. The default hostname for the NetQ On-premises Appliance is *netq-appliance*. Change the hostname to fit your naming conventions while meeting Internet and Kubernetes naming standards.
-
-    Kubernetes requires that hostnames are composed of a sequence of labels concatenated with dots. For example, "en.wikipedia.org" is a hostname. Each label must be from 1 to 63 characters long. The entire hostname, including the delimiting dots, has a maximum of 253 ASCII characters.
-
-    The Internet standards (RFCs) for protocols specify that labels may contain only the ASCII letters a through z (in lower case), the digits 0 through 9, and the hyphen-minus character ('-').
-
-    Use the following command:
+3. The default hostname for the NetQ On-premises Appliance is *netq-appliance*. Change the hostname to fit your naming conventions using the following command:
 
     ```
     cumulus@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
@@ -85,7 +79,7 @@ Change the password and specify the hostname and IP address for the appliance be
     cumulus@hostname:~$ sudo netplan apply
     ```
 
-## Verify NetQ Software and Appliance Readiness
+#### Verify NetQ Software and Appliance Readiness
 
 Now that the appliance is up and running, verify that the software is available and the appliance is ready for installation.
 
@@ -104,12 +98,6 @@ Now that the appliance is up and running, verify that the software is available 
 4. Run the Bootstrap CLI. Be sure to replace the *eno1* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap server="single" version="3.2.0" platform="appliance" deployment="onprem">}}
-
-## Considerations for Container Environments
-
-{{<netq-install/container>}}
-
-## Install and Activate the NetQ Software
 
 The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the NetQ CLI.
 

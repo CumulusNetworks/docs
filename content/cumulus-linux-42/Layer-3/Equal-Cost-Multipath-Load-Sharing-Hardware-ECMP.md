@@ -26,7 +26,7 @@ For routes to be considered equal they must:
 
 {{%notice info%}}
 
-In Cumulus Linux, the BGP `maximum-paths` setting is enabled, so multiple routes are installed by default. See the {{<link url="Border-Gateway-Protocol-BGP#ecmp-with-bgp" text="ECMP section">}} of the BGP chapter for more information.
+In Cumulus Linux, the BGP `maximum-paths` setting is enabled, so multiple routes are installed by default. See the {{<link url="Optional-BGP-Configuration#ecmp" text="ECMP section">}} of the BGP chapter for more information.
 
 {{%/notice%}}
 

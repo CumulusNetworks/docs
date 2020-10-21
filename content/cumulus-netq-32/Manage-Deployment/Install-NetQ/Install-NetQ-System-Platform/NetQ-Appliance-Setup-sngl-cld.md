@@ -15,11 +15,11 @@ Inside the box that was shipped to you, you'll find:
 
 If you're looking for hardware specifications (including LED layouts and FRUs like the power supply or fans and accessories like included cables) or safety and environmental information, check out the appliance's {{<exlink url="https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf" text="user manual">}}.
 
-## Install the Appliance
+#### Install the Appliance
 
 {{<netq-install/appliance-setup deployment="cloud">}}
 
-## Configure the Password, Hostname and IP Address
+#### Configure the Password, Hostname and IP Address
 
 1. Log in to the appliance using the default login credentials:
 
@@ -37,13 +37,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
     passwd: password updated successfully
     ```
 
-3. The default hostname for the NetQ Cloud Appliance is *netq-appliance*. Change the hostname to fit your naming conventions while meeting Internet and Kubernetes naming standards.
-
-    Kubernetes requires that hostnames are composed of a sequence of labels concatenated with dots. For example, "en.wikipedia.org" is a hostname. Each label must be from 1 to 63 characters long. The entire hostname, including the delimiting dots, has a maximum of 253 ASCII characters.
-
-    The Internet standards (RFCs) for protocols specify that labels may contain only the ASCII letters a through z (in lower case), the digits 0 through 9, and the hyphen-minus character ('-').
-
-    Use the following command:
+3. The default hostname for the NetQ Cloud Appliance is *netq-appliance*. Change the hostname to fit your naming conventions using the following command:
 
     ```
     cumulus@hostname:~$ sudo hostnamectl set-hostname NEW_HOSTNAME
@@ -83,7 +77,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
     cumulus@hostname:~$ sudo netplan apply
     ```
 
-## Verify NetQ Software and Appliance Readiness
+#### Verify NetQ Software and Appliance Readiness
 
 Now that the appliance is up and running, verify that the software is available and the appliance is ready for installation.
 
@@ -103,13 +97,7 @@ Now that the appliance is up and running, verify that the software is available 
 
     {{<netq-install/bootstrap server="single" version="3.2.0" platform="appliance" deployment="cloud">}}
 
-## Considerations for Container Environments
-
-{{<netq-install/container>}}
-
-## Install and Activate the NetQ Software
-
-The final step is to install and activate the Cumulus NetQ software. You can do this using the Admin UI or the NetQ CLI.
+The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the NetQ CLI.
 
 Click the installation and activation method you want to use to complete installation:
 

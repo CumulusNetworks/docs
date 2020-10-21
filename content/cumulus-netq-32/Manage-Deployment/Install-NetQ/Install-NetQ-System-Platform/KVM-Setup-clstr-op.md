@@ -53,11 +53,7 @@ Make a note of the private IP address you assign to the worker node. It is neede
 
 12. Repeat Steps 7 through 11 for each additional worker node you want in your cluster.
 
-## Considerations for Container Environments
-
-{{<netq-install/container>}}
-
-## Install and Activate the NetQ Software
+#### Install and Activate the NetQ Software
 
 The final step is to install and activate the Cumulus NetQ software. You can do this using the Admin UI or the CLI.
 

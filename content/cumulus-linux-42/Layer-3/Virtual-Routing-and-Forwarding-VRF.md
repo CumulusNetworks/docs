@@ -636,7 +636,7 @@ router ospf vrf vrf1
 
 ## BGP Unnumbered Interfaces with VRF
 
-{{<link url="Border-Gateway-Protocol-BGP#unnumbered-interfaces" text="BGP unnumbered interface configurations">}} are supported with VRF. In BGP unnumbered, there are no addresses on any interface. However, debugging tools like `traceroute` need at least a single IP address per node as the node's source IP address. Typically, this address is assigned to the loopback device. With VRF, you need a loopback device for each VRF table since VRF is based on interfaces, not IP addresses. While Linux does not support multiple loopback devices, it does support the concept of a dummy interface, which is used to achieve the same goal.
+{{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered" text="BGP unnumbered interface configurations">}} are supported with VRF. In BGP unnumbered, there are no addresses on any interface. However, debugging tools like `traceroute` need at least a single IP address per node as the node's source IP address. Typically, this address is assigned to the loopback device. With VRF, you need a loopback device for each VRF table since VRF is based on interfaces, not IP addresses. While Linux does not support multiple loopback devices, it does support the concept of a dummy interface, which is used to achieve the same goal.
 
 An IP address can be associated with the VRF device, which will then act as the dummy (loopback-like) interface for that VRF.
 
@@ -1480,3 +1480,4 @@ You can also show routes in a VRF using the `ip [-6] route show vrf <vrf-name>` 
 - Setting the router ID outside of BGP using the `router-id` option causes all BGP instances to get the same router ID. If you want each BGP instance to have its own router ID, specify the `router-id` under the BGP instance using `bgp router-id`. If both are specified, the one under the BGP instance overrides the one provided outside BGP.
 - You cannot configure {{<link url="Basic-Configuration/#enable-evpn-between-bgp-neighbors" text="EVPN address families">}} within a VRF.
 - When you take down a VRF using `ifdown`, Cumulus Linux removes all routes associated with that VRF from FRR but it does *not* remove the routes from the kernel.
+- The NCLU command to remove a BGP neighbor (`net del bgp neighbor <interface> remote-as <asn>`) does not remove the BGP neighbor statement in the `/etc/network/interfaces` file when the BGP unnumbered interface belongs to a VRF. However, if the interface belongs to the default VRF, the BGP neighbor statement is removed.

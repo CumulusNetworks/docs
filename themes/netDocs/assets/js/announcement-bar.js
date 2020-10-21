@@ -1,14 +1,5 @@
 $(function() {
 
-    var globalNav = $('.globalNav'),
-		globalNavHeight = globalNav.outerHeight(); 
-
-    $( window ).scroll(function() { // on Scroll
-        navScroll = ($(window).scrollTop() > globalNavHeight) ? true : false;
-        globalNav.toggleClass('snapp', navScroll);
-    });
-
-
     ///////////////////////////////////////////
     // TOP ANNOUNCEMENT BAR //////////////////
     /////////////////////////////////////////
@@ -19,18 +10,48 @@ $(function() {
     }
 
     // Check if dismissNvidiaAnnouncementBlogPost cookie exists
-    if ( !$.cookie('dismissNvidiaAnnouncementBlogPost') ) {    
-        $('<div class="cta announcement-bar nvidia-green text-md-center d-block"> <a href="javascript:void(0)" class="close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg replaced-svg"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>close</title><line class="a" x1="0.5" y1="0.499" x2="23.5" y2="23.499"></line><line class="a" x1="23.5" y1="0.499" x2="0.5" y2="23.499"></line></svg></a> <p>Cumulus Networks is now NVIDIA&reg;</p></div>').insertAfter('.globalNav');
-        $('head').append('<style>body{transition: all 0.5s; -webkit-transition: all 0.5s;}.globalNav{top: 0;}.globalNav.snapp {top: -48px;}.globalNav.snapp~.cta.announcement-bar {top: 77px}.globalNav.snapp~.cta.announcement-bar~.docs-wrapper .book-toc>.toc {top: 124px;} @media only screen and (max-width: 576px){ body{top: 125px;}}</style>');
+    if ( !$.cookie('dismissNvidiaAnnouncementBlogPost') ) {
+        $('body').prepend('<div class="cta announcement-bar nvidia-green"> <a href="javascript:void(0)" class="close"><img src="//icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" alt="Close" class="svg"></a> <p>Cumulus Networks is now NVIDIA&reg;. <a href="https://blogs.nvidia.com/blog/2020/06/16/cumulus-programming-networks/"  target="_blank">Learn more</a>.</p></div>');
+        $('head').append('<style>@media screen and (min-width: 992px){body{transition: all 0.5s; -webkit-transition: all 0.5s;}.globalNav{top: 60px;}.globalNav.snapp {top: 12px;}body{position: relative; top: 60px;}}</style>');
     }
 
     // Close the announcement bar when the user hits the X button
     $('body').on('click','.cta.announcement-bar a.close', function(e){
         $('.cta.announcement-bar').css('top', '-60px');
-        $('.docs-wrapper').css({marginTop: 125})
-        $('.docs-home header + section').css('padding', '73px 0 120px');
-        //$('.globalNav, body').css('top', '0');
+        $('.globalNav, body').css('top', '0');
         setdismissNvidiaAnnouncementBlogPost();
         e.preventDefault();
     });
+
+    //////////////////////////////////////////////
+    // BOTTOM ANNOUNCEMENT BAR //////////////////
+    ////////////////////////////////////////////
+
+    var banner = null;
+
+    // Show the banner
+    if ( !$.cookie('dismissNvidiaAnnouncementBlogPostMobile') && !$('.m-bottom-promo-banner').length) {
+
+        banner = '<div class="m-bottom-promo-banner nvidia-green"><a href="" class="close"><img src="//icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" alt="Close" class="svg close-banner"></a><h3>Cumulus Networks is now NVIDIA&reg;.</h3><a href="https://blogs.nvidia.com/blog/2020/06/16/cumulus-programming-networks/" class="m-button m-button-white m-button-medium" target="_blank" style="color: rgb(94, 94, 94);">Learn more</a>.</div>';
+
+        $(banner).insertBefore('footer');
+
+        setTimeout(function(){
+            $('.m-bottom-promo-banner').addClass('active');
+        },500);
+
+    }
+
+    // Create mobile cookie. Expiration date is determined in Wagtail.
+    function setdismissNvidiaAnnouncementBlogPostMobile() {
+        $.cookie('dismissNvidiaAnnouncementBlogPostMobile', 'true', { expires: 5, path: '/' });
+    }
+
+    // Close the banner when the user hits the X button
+    $('body').on('click','.m-bottom-promo-banner a.close', function(e){
+        $('.m-bottom-promo-banner').remove();
+        setdismissNvidiaAnnouncementBlogPostMobile();
+        e.preventDefault();
+    }); 
+
 });

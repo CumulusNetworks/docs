@@ -35,7 +35,7 @@ When using the <code>between</code> option, the start time (<code>text-time</cod
 
 ### View Service Status Summary
 
-You can view a summary of the EVPN service from the following:
+You can view a summary of the EVPN service from the NetQ UI or the NetQ CLI.
 
 {{< tabs "TabID26" >}}
 
@@ -153,6 +153,8 @@ leaf04            10         10.0.1.2         L2               Vlan 10        ye
 leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:09 2020
 ```
 
+To compare this count with the count at another time, run the `netq show evpn` command with the `around` option. Count the devices running EVPN at that time. Repeat with another time to collect a picture of changes over time.
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -252,7 +254,7 @@ To compare this data with the same data at a previous time:
 
     {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-past-week-230.png" width="500" >}}
 
-If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
+You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
 
 {{< /tab >}}
 

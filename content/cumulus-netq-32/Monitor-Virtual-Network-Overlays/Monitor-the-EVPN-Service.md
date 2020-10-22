@@ -895,7 +895,7 @@ leaf01            4001       10.0.1.1         L3               Vrf RED        ye
 
 You can view the attributes of all of the EVPN sessions for a given VNI using the NetQ UI or NetQ CLI.
 
-{{< tabs "TabIDxxx" >}}
+{{< tabs "TabID898" >}}
 
 {{< tab "NetQ UI" >}}
 

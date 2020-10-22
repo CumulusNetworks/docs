@@ -59,6 +59,10 @@ For more detail, select a different size EVPN Network Service card.
 
 It is useful to know the number of network nodes running the EVPN protocol over a period of time, as it gives you insight into the amount of traffic associated with and breadth of use of the protocol. It is also useful to compare the number of nodes running EVPN with the alarms present at the same time to determine if there is any correlation between the issues and the ability to establish an EVPN session.
 
+{{< tabs "TabID62" >}}
+
+{{< tab "NetQ UI" >}}
+
 To view these distributions, open the medium EVPN Service card.
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-medium-230.png" width="200">}}
@@ -379,7 +383,27 @@ To view the count for a given EVPN session on the *large* EVPN Session card, fol
 
 {{<figure src="/images/netq/ntwk-svcs-single-evpn-large-summary-tab-vtep-cnt-230.png" width="500">}}
 
-### View All EVPN Session Details
+This card also shows the associated VRF (layer 3) or VLAN (layer 2) on each device participating in this session. </div>
+
+### View VTEP IP Address
+
+You can view the IP address of the VTEP used in a given session using the `netq show evpn` command.
+
+This example shows a VTEP address of *10.0.1.1* for the *leaf01:VNI 4001* EVPN session.
+
+```
+cumulus@switch:~$ netq leaf01 show evpn vni 4001
+Matching evpn records:
+Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
+----------------- ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
+leaf01            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Tue Oct 13 04:21:15 2020
+```
+
+### View All EVPN Sessions on a VNI
+
+You can view the attributes of all of the EVPN sessions for a given VNI using the NetQ UI or NetQ CLI.
+
+{{< tabs "TabID898" >}}
 
 You can view all stored attributes of all of the EVPN sessions running networkwide.
 

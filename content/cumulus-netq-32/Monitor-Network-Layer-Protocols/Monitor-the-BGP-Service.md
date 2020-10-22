@@ -38,7 +38,7 @@ When entering a time value in the <code>netq show evpn</code> command, you must 
 <li><strong>now</strong>
 </ul>
 
-When using the <code>between</code> option, the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+<p>When using the <code>between</code> option, the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p>
 {{</notice>}}
 
 ### View Service Status Summary

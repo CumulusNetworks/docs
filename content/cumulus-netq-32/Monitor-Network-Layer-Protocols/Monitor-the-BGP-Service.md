@@ -802,17 +802,17 @@ leaf04            swp51(spine01)               default         65102      65199 
 
 ### View BGP Session State Changes
 
-You can view the state of a given BGP session from the medium and large BGP Session Network Service cards in the NetQ UI. For a given time period, you can determine the stability of the BGP session between two devices. If you experienced connectivity issues at a particular time, you can use these cards to help verify the state of the session. If it was not established more than it was established, you can then investigate further into possible causes.
+You can view the state of a given BGP session from the medium and large Network Service|All BGP Sessions card in the NetQ UI. For a given time period, you can determine the stability of the BGP session between two devices. If you experienced connectivity issues at a particular time, you can use these cards to help verify the state of the session. If it was not established more than it was established, you can then investigate further into possible causes.
 
 To view the state transitions for a given BGP session, on the *medium* BGP Session card:
 
 1. Open or add the Network Services|All BGP Sessions card.
 
-2. Switch to the full-screen card.
+2. Switch to the full-screen card using the card size picker.
 
 3. Click the **All Sessions** tab.
 
-4. Double-click the session of interest. The full-screen card closes automatically.
+4. Select the session of interest. The full-screen card closes automatically.
 
     {{<figure src="/images/netq/ntwk-svcs-single-bgp-medium-session-status-highlight-230.png" width="200">}}
 
@@ -820,17 +820,11 @@ To view the state transitions for a given BGP session, on the *medium* BGP Sessi
 
     From this card, you can also view the Peer ASN, name, hostname and router id identifying the session in more detail.
 
-To view the state transitions for a given BGP session on the large BGP Session card:
+To view the state transitions for a given BGP session on the *large* BGP Session card:
 
-1. Open or add the Network Services|All BGP Sessions card.
+1. Open a Network Services|BGP Session card.
 
-2. Switch to the full-screen card.
-
-3. Click the **All Sessions** tab.
-
-4. Double-click the session of interest. The full-screen card closes automatically.
-
-5. Hover over the card, and change to the large card using the card size picker.
+2. Hover over the card, and change to the large card using the card size picker.
 
     {{<figure src="/images/netq/ntwk-svcs-single-bgp-large-session-status-highlight-320.png" width="500">}}
 
@@ -848,7 +842,7 @@ To view the configuration file changes:
 
 3. Click the **All Sessions** tab.
 
-4. Double-click the session of interest. The full-screen card closes automatically.
+4. Select the session of interest. The full-screen card closes automatically.
 
 5. Hover over the card, and change to the large card using the card size picker.
 
@@ -882,7 +876,7 @@ To view all session details:
 
 3. Click the **All Sessions** tab.
 
-4. Double-click the session of interest. The full-screen card closes automatically.
+4. Select the session of interest. The full-screen card closes automatically.
 
 5. Hover over the card, and change to the full-screen card using the card size picker.
 
@@ -925,7 +919,7 @@ To view all events:
 
 3. Click the **All Sessions** tab.
 
-4. Double-click the session of interest. The full-screen card closes automatically.
+4. Select the session of interest. The full-screen card closes automatically.
 
 5. Hover over the card, and change to the full-screen card using the card size picker.
 

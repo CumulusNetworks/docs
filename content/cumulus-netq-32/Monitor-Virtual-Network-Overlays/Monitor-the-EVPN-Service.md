@@ -35,7 +35,7 @@ With NetQ, you can monitor EVPN performance across the network:
 
 ### View Service Status Summary
 
-You can view a summary of the EVPN service from the following:
+You can view a summary of the EVPN service from the NetQ UI or the NetQ CLI.
 
 {{< tabs "TabID26" >}}
 
@@ -153,6 +153,8 @@ leaf04            10         10.0.1.2         L2               Vlan 10        ye
 leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:09 2020
 ```
 
+To compare this count with the count at another time, run the `netq show evpn` command with the `around` option. Count the devices running EVPN at that time. Repeat with another time to collect a picture of changes over time.
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -252,7 +254,7 @@ To compare this data with the same data at a previous time:
 
     {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-past-week-230.png" width="500" >}}
 
-If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
+You can now see whether there are significant differences between this time and the original time. If the changes are unexpected, you can investigate further by looking at another time frame, determining if more nodes are now running EVPN than previously, looking for changes in the topology, and so forth.
 
 {{< /tab >}}
 
@@ -745,8 +747,6 @@ To view all session details, open the full-screen Network Services|All EVPN Sess
 To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> at the top right.
 
 Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail.
-
-To return to original display of results, click the associated tab.
 
 {{< /tab >}}
 

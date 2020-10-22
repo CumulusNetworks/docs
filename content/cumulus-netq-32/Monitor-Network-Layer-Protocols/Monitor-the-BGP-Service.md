@@ -536,7 +536,7 @@ The Network Services|All BGP Sessions card workflow and the `netq show events ty
 
 To view all BGP events:
 
-1. Open the full screen BGP Service card.
+1. Open the full screen Network Services|All BGP Sessions card.
 
 2. Click **All Alarms** tab in the navigation panel.  
 
@@ -610,7 +610,7 @@ leaf01            bgp          info     BGP session with peer spine01 @desc 2h:1
 
 You can view all stored attributes of all switches and hosts running BGP in your network in the full-screen Network Services|All BGP Sessions card in the NetQ UI.
 
-To view all device details, open the full-screen BGP Service card and click the **All Switches** tab.
+To view all device details, open the full-screen Network Services|All BGP Sessions card and click the **All Switches** tab.
 
 {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsw-tab-300.png" width="700">}}
 

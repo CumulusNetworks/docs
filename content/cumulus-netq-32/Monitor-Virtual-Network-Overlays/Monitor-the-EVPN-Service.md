@@ -748,8 +748,6 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 
 Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail.
 
-To return to original display of results, click the associated tab.
-
 {{< /tab >}}
 
 {{< tab "NetQ CLI" >}}

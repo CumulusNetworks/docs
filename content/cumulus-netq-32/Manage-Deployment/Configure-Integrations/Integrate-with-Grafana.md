@@ -4,99 +4,92 @@ author: Cumulus Networks
 weight: 550
 toc: 3
 ---
-Switches collect statistics about the performance of their interfaces.
-The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ
-Server or Appliance.
+Switches collect statistics about the performance of their interfaces. The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ Appliance or Virtual Machine.
 
-NetQ only collects statistics for physical interfaces; it does not
-collect statistics for virtual (non-physical) interfaces, such as bonds, bridges,
-and VXLANs. Specifically, the NetQ Agent collects the following
-interface statistics:
+NetQ collects statistics for *physical* interfaces; it does not collect statistics for *virtual* interfaces, such as bonds, bridges, and VXLANs.  It collects these statistics from two data sources: procdevstats and ethtool.
 
-  - **Transmit**: tx\_bytes, tx\_carrier, tx\_colls, tx\_drop, tx\_errs,
-    tx\_packets
+From procdevstats:
 
-  - **Receive**: rx\_bytes, rx\_drop, rx\_errs, rx\_frame,
-    rx\_multicast, rx\_packets
+- **Transmit** with *tx\_* prefix: bytes, carrier, colls, drop, errs, packets
+- **Receive** with *rx\_* prefix: bytes, drop, errs, frame, multicast, packets
 
-You can use {{<exlink url="https://grafana.com/" text="Grafana">}}, an open source analytics and monitoring tool, to view the interface statistics collected by the NetQ Agents. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then importing the prepared NetQ dashboard.
+From ethtool:
+
+- **Hardware Transmit** with *hw\_if\_out\_* prefix: octets, ucast_pckts, mcast_pkts, bcast_pkts, discards, errors, q_drops, non_q_drops, q_len, pause_pkt, pfc[0-7]_pkt, wred_drops, q[0-9]_wred_drops
+- **Hardware Receive** with *hw\_if\_in\_* prefix: octets, ucast_pckts, mcast_pkts, bcast_pkts, discards, l3_drops, buffer_drops, acl_drops, errors, dot3_length_errors, dot3_frame_errors, pause_pkt, pfc[0-7]_pkt
+- **Software Transmit** with *soft\_out\_* prefix: errors, drops, tx_fifo_full
+- **Software Receive** with *soft\_in\_* prefix: errors, frame_errors, drops
+
+You can use Grafana, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then importing the prepared NetQ dashboard.  
+
+{{%notice note%}}
+
+If you do not have Grafana installed already, refer to {{<exlink url="https://grafana.com/" text="grafana.com">}} for instructions on installing and configuring the Grafana tool.
+
+{{%/notice%}}
 
 ## Install NetQ Plug-in for Grafana
 
-The first step is to install the NetQ plug-in on your NetQ server or appliance. There are three ways to install the plug-in:
+Use the Grafana CLI to install the NetQ plug-in. For more detail about this command, refer to the {{<exlink url="https://grafana.com/docs/grafana/latest/administration/cli/" text="Grafana CLI documentation">}}.
 
-- **Docker File**: Add the following to your existing Dockerfile.
-    ```
-    # grafana docker file
-    FROM grafana/grafana:6.2.2
-    RUN grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
-    ```
-- **Grafana Docker Image**: Download and run the plug-in in your Grafana Docker container.
-    ```
-    $ docker run -d -p 3000:3000 --name=grafana -e "GF_INSTALL_PLUGINS=https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip;netq-dashboard" grafana/grafana
-    ```
-- **Grafana CLI**: Download and install the Grafana plug-in using Grafana CLI.
-    ```
-    brew update
-    brew install grafana
-    brew services start grafana
-    grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
-    brew services restart grafana
-    ```
-    Then restart Grafana.
+```
+grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/dist.zip plugins install netq-dashboard
+```
 
-    {{%notice info%}}
-The Grafana GUI is accessed through port 3000 by default. If you are
-running Grafana on a simulation server, you may need to modify
-forwarding rules in IPtables to allow access to port 3000.
-    {{%/notice%}}
+When complete, restart Grafana.
 
-## Set Up a Pre-configured Dashboard
+{{%notice tip%}}
+
+The Grafana GUI is accessed through port 3000 by default. If you are running Grafana on a simulation server, you may need to modify forwarding rules in IPtables to allow access to port 3000.
+
+{{%/notice%}}
+
+## Set Up the Pre-configured NetQ Dashboard
 
 The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plug-in. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.
 
-1.  Open the Grafana user interface:
-    - **Remote access**: Enter *\<NetQ-Server-or-Appliance-IPaddr\>:3000* in a web browser address field.
-    - **Local access**:  Enter *localhost:3000* in a web browser address field.
+1. Open the Grafana user interface:
+    - **Remote access**: Enter *\<NetQ-Server-or-Appliance-IPaddr\>:3000* in a web browser address field
+    - **Local access**: Enter *localhost:3000* in a web browser address field
 
-2.  Log in using your application credentials.
-    
+2. Log in using your application credentials.
+
     {{<figure src="/images/netq/grafana-login-230.png" width="400">}}
-    
+
     The Home Dashboard appears.
 
     {{<figure src="/images/netq/grafana-home-page-230.png" width="700">}}
 
 3. Click **Add data source** or {{<img src="/images/netq/grafana-config-icon.png" width="24" height="24">}} > *Data Sources*.
 
-    {{<figure src="/images/netq/grafana-add-data-src-230.png" width="500">}}
+4. Enter **Net-Q** or **Net-Q-Ethtool** in the search box. Alternately, scroll down to the **Other** category, and select one of these sources from there.
 
-4. Enter **Net-Q** in the search box or scroll down to the **Other** category, and select *Net-Q* from there.
+    {{<figure src="/images/netq/grafana-add-data-src-320.png" width="500">}}
 
-5. Enter *Net-Q* into the **Name** field.
+5. Enter *Net-Q* or *Net-Q-Ethtool* into the **Name** field.
 
-6. Enter the URL used to access the NetQ cloud service; for example *api.netq.cumulusnetworks.com*
+6. Enter the URL used to access the NetQ cloud service *api.netq.cumulusnetworks.com* or your local hostname.
 
-7. Enter your credentials (the ones used to login)
+7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*.
 
-8. For cloud deployments only, if you have more than one premises configured, you can select the premises you want to view, as follows:
+8. Enter your credentials (the ones used to login).
+
+9. For NetQ cloud deployments only, if you have more than one premises configured, you can select the premises you want to view, as follows:
 
     - If you leave the **Premises** field blank, the first premises name is selected by default
     - If you enter a premises name, that premises is selected for viewing
 
         *Note*: If multiple premises are configured with the same name, then the first premises of that name is selected for viewing
 
-9. Click **Save & Test**
+10. Click **Save & Test**.
 
-## Create a Dashboard
+    {{<figure src="/images/netq/grafana-netq-dashboard-230.png" width="700">}}
 
-You can either use the dashboard provided with the plug-in, NetQ Interface Statistics, or create your own.
+11. Go to {{<link url="#analyze-the-data" text="analyzing your data">}}.
 
-To use the Cumulus-provided dashboard, select the *NetQ Interface Statistics* from the left panel of the Home Page.
+## Create a Custom Dashboard
 
-{{<figure src="/images/netq/grafana-netq-dashboard-230.png" width="700">}}
-
-If you choose this option, you can skip directly to {{<link url="#analyze-the-data" text="analyzing your data">}}.
+You can create a dashboard with only the statistics of interest to you.
 
 To create your own dashboard:
 

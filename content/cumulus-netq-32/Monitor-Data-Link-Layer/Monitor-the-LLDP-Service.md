@@ -4,7 +4,9 @@ author: Cumulus Networks
 weight: 890
 toc: 4
 ---
-LLDP is used by network devices for advertising their identity, capabilities, and neighbors on a LAN. You can view this information for one or more devices. You can also view the information at an earlier point in time or view changes that have occurred to the information during a specified time period. The NetQ UI also enables operators to view the overall health of the LLDP service on a networkwide and a per session basis.
+LLDP is used by network devices for advertising their identity, capabilities, and neighbors on a LAN. You can view this information for one or more devices. You can also view the information at an earlier point in time or view changes that have occurred to the information during a specified time period. For an overview and how to configure LLDP in your data center network, refer to {{<exlink url="https://docs.cumulusnetworks.com/cumulus-linux/Layer-2/Link-Layer-Discovery-Protocol/" text="Link Layer Discovery Protocol">}}.
+
+The NetQ UI also enables operators to view the overall health of the LLDP service on a networkwide and a per session basis.
 
 ## Monitor the LLDP Service (All Sessions)
 

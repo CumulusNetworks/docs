@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31929</td>
+<td><p>VXLAN encapsulated traffic is not routed to the next hop because the destination VTEP IP address is mis-programmed on the switch, which decapsulates the traffic unexpectedly. <br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -119,13 +126,6 @@ To work around this issue, disable IGMP snooping on the switch.</p></td>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
 </td>
 <td>3.7.10-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31504</td>
-<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
-To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
-<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2579,6 +2579,13 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-31929</td>
+<td><p>VXLAN encapsulated traffic is not routed to the next hop because the destination VTEP IP address is mis-programmed on the switch, which decapsulates the traffic unexpectedly. <br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -2669,13 +2676,6 @@ To work around this issue, disable IGMP snooping on the switch.</p></td>
 To work around this issue, restart FRR with the sudo systemctl restart frr.service command.</p>
 </td>
 <td>3.7.10-3.7.13</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31504</td>
-<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
-To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
-<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>

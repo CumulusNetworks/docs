@@ -296,7 +296,7 @@ Routing entry for 10.10.10.101/32
 
 FIB entry for 10.10.10.101/32
 ===========================
-10.10.10.101/32 via 169.254.10.101 dev swp1 proto bgp metric 20 onlink
+10.10.10.101/32 via 10.0.1.0 dev swp1 proto bgp metric 20 onlink
 ```
 
 If an IPv4 prefix is learned with only an IPv6 global next hop address (for example, when the route is learned through a route reflector), the command output shows the IPv6 global address as the next hop value and shows that it is learned recursively through the link-local address of the route reflector. When a global IPv6 address is used as a next hop for route installation in the FRR RIB, it is still converted into an IPv4 link-local address for installation into the kernel.
@@ -352,7 +352,7 @@ Routing entry for 10.10.10.1/32
 
 FIB entry for 10.10.10.1/32
 ===========================
-10.10.10.1/32 via 169.254.10.101 dev swp1 proto bgp metric 20 onlink
+10.10.10.1/32 via 10.0.1.1 dev swp1 proto bgp metric 20 onlink
 ```
 
 To have only IPv6 global addresses used for route installation into the FRR RIB, you must add an additional route map to the neighbor or peer group statement in the appropriate address family. When the route map command `set ipv6 next-hop prefer-global` is applied to a neighbor, if both a link-local and global IPv6 address are in the BGP update for a prefix, the IPv6 global address is preferred for route installation.

@@ -25,8 +25,8 @@ The following example commands create a peer group called SPINE that includes tw
 ```
 cumulus@leaf01:~$ net add bgp neighbor SPINE peer-group
 cumulus@leaf01:~$ net add bgp neighbor SPINE remote-as external
-cumulus@leaf01:~$ net add bgp neighbor 10.0.1.1 peer-group SPINE
-cumulus@leaf01:~$ net add bgp neighbor 10.0.1.13 peer-group SPINE
+cumulus@leaf01:~$ net add bgp neighbor 10.0.1.0 peer-group SPINE
+cumulus@leaf01:~$ net add bgp neighbor 10.0.1.12 peer-group SPINE
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -42,8 +42,8 @@ leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor SPINE peer-group
 leaf01(config-router)# neighbor SPINE remote-as external
-leaf01(config-router)# neighbor 10.0.1.1 peer-group SPINE
-leaf01(config-router)# neighbor 10.0.1.13 peer-group SPINE
+leaf01(config-router)# neighbor 10.0.1.0 peer-group SPINE
+leaf01(config-router)# neighbor 10.0.1.12 peer-group SPINE
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
@@ -130,7 +130,7 @@ router bgp 65101
   neighbor SPINE peer-group
   neighbor SPINE remote-as external
   bgp listen limit 5
-  bgp listen range 10.0.1.0/31 peer-group SPINE
+  bgp listen range 10.0.1.0/24 peer-group SPINE
 ```
 
 ## eBGP Multihop

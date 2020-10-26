@@ -55,7 +55,7 @@ To view EVPN service status, run:
 netq show evpn
 ```
 
-This example uses the Cumulus reference topology, where EVPN runs on all border and leaf switches. Each session is represented by a single row.
+This example shows the Cumulus reference topology, where EVPN runs on all border and leaf switches. Each session is represented by a single row.
 
 ```
 cumulus@switch:~$ netq show evpn

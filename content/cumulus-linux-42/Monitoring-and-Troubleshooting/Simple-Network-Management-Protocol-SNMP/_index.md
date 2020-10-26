@@ -5,84 +5,69 @@ weight: 1080
 toc: 3
 ---
 
-Cumulus Linux uses the open source Net-SNMP agent `snmpd` version 5.8, which provides support for most of the common industry-wide MIBs, including interface counters and TCP/UDP IP stack data.
-
-SNMP is an IETF standards-based network management architecture and protocol that traces its roots back to Carnegie-Mellon University in 1982. Since then, it has been modified by programmers at the University of California. In 1995, this code was also made publicly available as the UCD project. After that, `ucd-snmp` was extended by work done at the University of Liverpool as well as later in Denmark. In late 2000, the project name changed to `net-snmp` and became a fully-fledged collaborative open source project. The version used by Cumulus Networks is based on the latest `net-snmp` 5.8 branch with added custom MIBs and pass-through and pass-persist scripts ({{<link url="#pass-persist-scripts" text="see below">}} for more information on pass persist scripts).
-
-SNMP management servers gather information from different systems in a consistent manner and the paths to the relevant information are standardized in IETF RFCs. SNMPs longevity is due to the fact that it standardizes the objects collected from devices, the protocol used for transport, and architecture of the management systems. The most widely used, and most insecure, versions of SNMP are versions 1 and 2c and their popularity is largely due to implementations that have been in use for decades. SNMP version 3 is the recommended version because of its advanced security features. In general, a network being profiled by SNMP management stations mainly consist of devices containing SNMP agents. The agent running on Cumulus Linux switches and routers is the `snmpd` daemon.
+SNMP is an IETF standards-based network management architecture and protocol. Cumulus Linux uses the open source Net-SNMP agent `snmpd` version 5.8.1.pre1, which provides support for most of the common industry-wide {{<link url="#management-information-base-mib" text="MIBs">}}, including interface counters and TCP/UDP IP stack data. The version in Cumulus Linux adds custom MIBs and pass-through and {{<link url="#pass-persist-scripts" text="pass-persist scripts">}}.
 
 ## SNMP Components
 
-### SNMP Managers
+The main components of SNMP in Cumulus Linux are:
 
-An SNMP Network Management System (NMS) is a computer that is configured to poll SNMP agents (in this case, Cumulus Linux switches and routers) to gather information and present it. This manager can be any machine that can send query requests to SNMP agents with the correct credentials. This NMS can be a large set of monitoring suite or as simple as some scripts that collect and display data. The managers generally poll the agents and the agents respond with the data. There are a variety of polling command-line tools (`snmpget`, `snmpgetnext`, `snmpwalk`, `snmpbulkget`, `snmpbulkwalk`, and so on). SNMP agents can also send unsolicited Traps/Inform messages to the SNMP Manager based on predefined criteria (like link changes).
+- SNMP network management system (NMS)
+- SNMP agents
+- The MIBs (management information bases)
+
+### SNMP Network Management System
+
+An SNMP network management system (NMS) is a system configured to poll SNMP agents (Cumulus Linux switches and routers here) that can send query requests to SNMP agents with the correct credentials. The managers poll the agents and the agents respond with the data. There are a variety of command line tools for polling, including `snmpget`, `snmpgetnext`, `snmpwalk`, `snmpbulkget`, and `snmpbulkwalk`. SNMP agents can also send unsolicited traps and inform messages to the NMS based on predefined criteria, like link changes.
 
 ### SNMP Agents
 
-The SNMP agents (`snmpd`) running on the switches do the bulk of the work and are responsible for gathering information about the local system and storing data in a format that can be queried updating an internal database called the *management information base*, or MIB. The MIB is a standardized, hierarchical structure that stores information that can be queried. Parts of the MIB tree are available and provided to incoming requests originating from an NMS host that has authenticated with the correct credentials. You can configure the Cumulus Linux switch with usernames and credentials to provide authenticated and encrypted responses to NMS requests. The `snmpd` agent can also proxy requests and act as a *master agent* to sub-agents running on other daemons (FRR, LLDP).
+The SNMP agent (the `snmpd` daemon) running on Cumulus Linux switches does the bulk of the work and is responsible for gathering information about the local system and storing the data in a *management information base*, or MIB. Parts of the MIB tree are available and provided to incoming requests originating from an NMS host that has authenticated with the correct credentials. You can configure the Cumulus Linux switch with usernames and credentials to provide authenticated and encrypted responses to NMS requests. The `snmpd` agent can also proxy requests and act as a *master agent* to sub-agents running on other daemons, like for FRR or LLDP.
 
 ### Management Information Base (MIB)
 
-The MIB is a database that is implemented on the daemon (or agent) and follows IETF RFC standards to which the manager and agents adhere. It is a hierarchical structure that, in many areas, is globally standardized, but also flexible enough to allow vendor-specific additions. Cumulus Networks implements a number of custom enterprise MIB tables and these are defined in text files located on the switch and in files named `/usr/share/snmp/mibs/Cumulus*`. The MIB structure is best understood as a top-down hierarchical tree. Each branch that forks off is labeled with both an identifying number (starting with 1) and an identifying string that is unique for that level of the hierarchy. These strings and numbers can be used interchangeably. A specific node of the tree can be traced from the unnamed root of the tree to the node in question. The parent IDs (numbers or strings) are strung together, starting with the most general to form an address for the MIB Object. Each junction in the hierarchy is represented by a dot in this notation so that the address ends up being a series of ID strings or numbers separated by dots. This entire address is known as an object identifier (OID).
+The MIB is a database for the `snmpd` daemon that runs on the agent. MIBs adhere to IETF standards but are flexible enough to allow vendor-specific additions. Cumulus Linux includes a number of custom enterprise MIB tables, which are defined in a set text files on the switch; the files are located in `/usr/share/snmp/mibs/` and their names all start with *Cumulus*.
 
-Hardware vendors that embed SNMP agents in their devices sometimes implement custom branches with their own fields and data points. However, there are standard MIB branches that are well defined and can be used by any device. The standard branches discussed here are all under the same parent branch structure. This branch defines information that adheres to the MIB-2 specification, which is a revised standard for compliant devices. You can use various online and command-line tools to translate between numbers and string and to also provide definitions for the various MIB Objects. For example, you can view the `sysLocation` object in the system table with either a string of numbers **1.3.6.1.2.1.1.6** or the string representation **iso.org.dod.internet.mgmt.mib-2.system.sysLocation.** You can view the definition with the snmptranslate (1) command (found in the `snmp` Debian package).
+The MIB is structured as a top-down hierarchical tree. Each branch that forks off is labeled with both an identifying number (starting with 1) and an identifying string that is unique for that level of the hierarchy. The strings and numbers can be used interchangeably. The parent IDs (numbers or strings) are strung together, starting with the most general to form an address for the MIB object. Each junction in the hierarchy is represented by a dot in this notation so that the address ends up being a series of ID strings or numbers separated by dots. This entire address is known as an object identifier (OID).
+
+You can use various online and command line tools to translate between numbers and string and to also provide definitions for the various MIB objects. For example, you can view the `sysLocation` object in the system table with either a string of numbers **1.3.6.1.2.1.1.6** or the string representation **iso.org.dod.internet.mgmt.mib-2.system.sysLocation.** You can view the definition with the `snmptranslate` command, which is part of the `snmp` Debian package.
 
 ```
-/home/cumulus# snmptranslate -Td -On SNMPv2-MIB::sysLocation
-
+cumulus@switch:~$ snmptranslate -Td -On SNMPv2-MIB::sysLocation
 .1.3.6.1.2.1.1.6
 sysLocation OBJECT-TYPE
-  -- FROM       SNMPv2-MIB
+  -- FROM	SNMPv2-MIB
   -- TEXTUAL CONVENTION DisplayString
-  SYNTAX        OCTET STRING (0..255)
-  DISPLAY-HINT  "255a"
-  MAX-ACCESS    read-write
-  STATUS        current
-  DESCRIPTION   "The physical location of this node (e.g., 'telephone
-        closet, 3rd floor').  If the location is unknown, the
-        value is the zero-length string."
+  SYNTAX	OCTET STRING (0..255)
+  DISPLAY-HINT	"255a"
+  MAX-ACCESS	read-write
+  STATUS	current
+  DESCRIPTION	"The physical location of this node (e.g., 'telephone
+            closet, 3rd floor').  If the location is unknown, the
+            value is the zero-length string."
 ::= { iso(1) org(3) dod(6) internet(1) mgmt(2) mib-2(1) system(1) 6 }
-
-/home/cumulus# snmptranslate  -Tp -IR   system
-+--system(1)
-    |
-    +-- -R-- String    sysDescr(1)
-    |        Textual Convention: DisplayString
-    |        Size: 0..255
-    +-- -R-- ObjID     sysObjectID(2)
-    +-- -R-- TimeTicks sysUpTime(3)
-    |  |
-    |  +--sysUpTimeInstance(0)
-    |
-    +-- -RW- String    sysContact(4)
-    |        Textual Convention: DisplayString
-    |        Size: 0..255
-    +-- -RW- String    sysName(5)
-    |        Textual Convention: DisplayString
-    |        Size: 0..255
-    +-- -RW- String    sysLocation(6)
-    |        Textual Convention: DisplayString
-    |        Size: 0..255
-    +-- -R-- INTEGER   sysServices(7)
-    |        Range: 0..127
-    +-- -R-- TimeTicks sysORLastChange(8)
-    |        Textual Convention: TimeStamp
 ```
 
 The section `1.3.6.1` or `iso.org.dod.internet` is the OID that defines internet resources. The`2` or `mgmt` that follows is for a management subcategory. The `1` or `mib-2` under that defines the MIB-2 specification. And finally, the 1 or system is the parent for a number of child objects (sysDescr, sysObjectID, sysUpTime, sysContact, sysName, sysLocation, sysServices, and so on).
 
 ## Get Started
 
-The simplest use case for using SNMP consists of creating a read-only community password and enabling a listening address for the loopback address (this is the default listening-address provided). This allows for testing functionality of `snmpd` before extending the listening addresses to IP addresses reachable from outside the switch or router. This first sample configuration adds a listening address on the loopback interface (this is not a change from the default so we get a message stating that the configuration has not changed), sets a simple community password (SNMPv2) for testing, changes the system-name object in the system table, commits the change, checks the status of `snmpd`, and gets the first MIB object in the system table:
+The simplest use case for using SNMP consists of creating a read-only community password and enabling a listening address for the loopback address (this is the default listening-address provided). This allows for testing functionality of `snmpd` before extending the listening addresses to IP addresses reachable from outside the switch or router.
+
+The following example adds a listening address on the loopback interface. Since this is not a change from the default, you see get a message stating that the configuration has not changed. Then it sets a simple SNMPv2 community password for testing and changes the system-name object in the system table.
 
 ```
-cumulus@router1:~$ net add snmp-server listening-address localhost
-Configuration has not changed
-cumulus@router1:~$ net add snmp-server readonly-community mynotsosecretpassword access any
-cumulus@router1:~$ net add snmp-server system-name my little router
-cumulus@router1:~$ net commit
+cumulus@switch:~$ net add snmp-server listening-address localhost
+Cannot add 127.0.0.1. It is already a listener-address
+The configuration has not changed.
+cumulus@switch:~$ net add snmp-server readonly-community mynotsosecretpassword access any
+cumulus@switch:~$ net add snmp-server system-name my little router
+cumulus@switch:~$ net commit
+```
 
-cumulus@router1:~$ net show snmp-server status
+To check the status of `snmpd`, run:
+
+```
+cumulus@switch:~$ net show snmp-server status
 
 Simple Network Management Protocol (SNMP) Daemon.
 ---------------------------------  ----------------
@@ -93,14 +78,18 @@ Main snmpd PID                     13669
 Version 1 and 2c Community String  Configured
 Version 3 Usernames                Not Configured
 ---------------------------------  ----------------
+```
 
-cumulus@router1:~$ snmpgetnext -v 2c -c mynotsosecretpassword localhost SNMPv2-MIB::sysName
+This command gets the first MIB object in the system table:
+
+```
+cumulus@switch:~$ snmpgetnext -v 2c -c mynotsosecretpassword localhost SNMPv2-MIB::sysName
 SNMPv2-MIB::sysName.0 = STRING: my little router
 ```
 
 ## Configure SNMP
 
-For external SNMP NMS systems to poll Cumulus Linux switches and routers, you must configure the SNMP agent (snmpd) running on the switch with one or more IP addresses (with `net add snmp-server listening-address <ip>`) on which the agent listens. You must configure these IP addresses on interfaces that have link state UP. By default, the SNMP configuration has a listening address of localhost (or 127.0.0.1), which allows the daemon to respond to SNMP requests originating on the switch itself. This is a useful method of checking the configuration for SNMP without exposing the switch to attacks from the outside. The only other required configuration is a readonly community password (configured with `net add snmp-server readonly-community <password> access <ip | any>``)`, that allows polling of the various MIB objects on the device itself. SNMPv3 is recommended since SNMPv2c (with a community string) exposes the password in the `GetRequest` and `GetResponse` packets. SNMPv3 does not expose the username passwords and has the option of encrypting the packet contents.
+For external SNMP NMS systems to poll Cumulus Linux switches and routers, you must configure the SNMP agent (`snmpd`) running on the switch with one or more IP addresses (with `net add snmp-server listening-address <ip>`) on which the agent listens. You must configure these IP addresses on interfaces that have link state UP. By default, the SNMP configuration has a listening address of localhost (or 127.0.0.1), which allows the daemon to respond to SNMP requests originating on the switch itself. This is a useful method of checking the configuration for SNMP without exposing the switch to attacks from the outside. The only other required configuration is a readonly community password (configured with `net add snmp-server readonly-community <password> access <ip | any>)`, that allows polling of the various MIB objects on the device itself. SNMPv3 is recommended since SNMPv2c (with a community string) exposes the password in the `GetRequest` and `GetResponse` packets. SNMPv3 does not expose the username passwords and has the option of encrypting the packet contents.
 
 {{%notice note%}}
 
@@ -189,7 +178,7 @@ To start the SNMP daemon:
    cumulus@switch:~$ sudo systemctl start snmpd.service
    ```
 
-2. Configure the `snmpd` daemon to start automatically after reboot:
+2. Enable the `snmpd` daemon to start automatically after reboot:
 
    ```
    cumulus@switch:~$ sudo systemctl enable snmpd.service
@@ -217,7 +206,7 @@ pass_persist .1.3.6.1.4.1.40310.1 /usr/share/snmp/resq_pp.py
 pass_persist .1.3.6.1.4.1.40310.2 /usr/share/snmp/cl_drop_cntrs_pp.py
 ```
 
-However, you need to copy several files to the NMS server for the custom Cumulus MIB to be recognized on NMS server.
+However, you need to copy several files to the NMS server for the custom Cumulus MIB to be recognized on the NMS server.
 
 - `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt`
 - `/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt`
@@ -248,12 +237,12 @@ The `snmpd` authentication for versions 1 and 2 is disabled by default in Cumulu
 
 ## Enable SNMP Support for FRRouting
 
-SNMP supports routing MIBs in {{<link url="FRRouting-Overview" text="FRRouting">}}. To enable SNMP support for FRRouting, you need to:
+SNMP supports routing MIBs in {{<link url="FRRouting-Overview" text="FRRouting">}} (FRR). To enable SNMP support for FRR, you need to:
 
-- Configure {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRRouting
-- The default `/etc/snmp/snmpd.conf` configuration already enables AgentX and sets the correct permissions
+- Configure {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR.
+- The default `/etc/snmp/snmpd.conf` configuration already enables AgentX and sets the correct permissions.
 
-Enabling FRRouting includes support for BGP. However, if you plan on using the BGP4 MIB, be sure to provide access to the MIB tree 1.3.6.1.2.1.15.
+Enabling FRR includes support for BGP. However, if you plan on using the BGP4 MIB, be sure to provide access to the MIB tree 1.3.6.1.2.1.15.
 
 {{%notice note%}}
 
@@ -263,9 +252,9 @@ At this time, SNMP does not support monitoring BGP unnumbered neighbors.
 
 If you plan on using the OSPFv2 MIB, provide access to 1.3.6.1.2.1.14 and to 1.3.6.1.2.1.191 for the OSPv3 MIB.
 
-To enable SNMP support for FRRouting:
+To enable SNMP support for FRR:
 
-1. Configure AgentX access in FRRouting:
+1. Configure AgentX access in FRR:
 
    ```
    cumulus@switch:~$ net add routing agentx
@@ -273,7 +262,7 @@ To enable SNMP support for FRRouting:
    cumulus@switch:~$ net commit
    ```
 
-2. Update the SNMP configuration to enable FRRouting to respond to SNMP requests. Open the `/etc/snmp/snmpd.conf` file in a text editor and verify that the following configuration exists:
+2. Update the SNMP configuration to enable FRR to respond to SNMP requests. Open the `/etc/snmp/snmpd.conf` file in a text editor and verify that the following configuration exists:
 
    ```
    agentxsocket /var/agentx/master

@@ -20,7 +20,7 @@ Net-Q-Ethtool displays:
 - **Software Transmit** with *soft\_out\_* prefix: errors, drops, tx_fifo_full
 - **Software Receive** with *soft\_in\_* prefix: errors, frame_errors, drops
 
-You can use Grafana version x.x and later, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in containing the prepared NetQ dashboard.  
+You can use Grafana version 6.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in containing the prepared NetQ dashboard.  
 
 {{%notice note%}}
 

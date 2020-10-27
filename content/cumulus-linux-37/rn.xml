@@ -7,6 +7,39 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32006</td>
+<td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31929</td>
+<td><p>VXLAN encapsulated traffic is not routed to the next hop because the destination VTEP IP address is mis-programmed on the switch, which decapsulates the traffic unexpectedly. <br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -122,13 +155,6 @@ To work around this issue, restart FRR with the sudo systemctl restart frr.servi
 <td></td>
 </tr>
 <tr>
-<td>CM-31504</td>
-<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
-To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
-<td>3.7.12-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -163,6 +189,12 @@ Fixed: 1.5.6-5+deb8u1</p></td>
 <td>CM-31420</td>
 <td><p>On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.</p></td>
 <td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31412</td>
+<td><p>On the Dell N3248PXE switch, RJ45 fixed copper ports that auto-negotiate with a 100M or 10M neighbor incorrectly negotiate a half-duplex link that generates errors. Half duplex modes are not supported on this platform.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -225,22 +257,20 @@ Fixed: 1.6.2-3+deb8u4</p></td>
 </tr>
 <tr>
 <td>CM-31294</td>
-<td><p>When all the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
+<td><p>When the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
 <ul>
 	<li>clagd uses an IPv6 link-local address (LLA) to establish the TCP connection (the clagd-peer-ip linklocal command configures an IPv6 LLA connection)</li>
-	<li>bridge-ports has peerlink as the first member port (the bridge inherits the MAC address of peerlink bond. VLAN interfaces inherit the MAC address of the bridge. For example:
-
-auto bridge
-iface bridge
-        bridge-vlan-aware yes
-        bridge-ports peerlink-3 hostbond4 hostbond5 regex vx-.* regex vni.*
-
-</li>
-	<li>You delete the SVI (layer 2 VNI)<br/>
-This issue occurs because the hardware stores one entry per VRF to represent the IPv6 LLA. The hardware entry for the LLA is removed when another interface is deleted because the software interfaces are represented by a single entity in hardware. As a result, packets destined to the local IPv6 LLA address are received on the port but do not get forwarded to CPU for further processing.<br/>
-To workaround this issue, use IPv4 addresses under peerlink.4094 and configure clagd to peer on IPv4 addresses.</li>
 </ul>
-</td>
+
+
+<ul>
+	<li>Subsequent VLAN changes are made to VLAN sub-interfaces or adding or removing SVIs</li>
+</ul>
+
+
+<p>This issue occurs because the hardware stores one entry per VRF to represent the IPv6 LLA. The hardware entry for the LLA is removed when another interface is changed because the software interfaces are represented by a single entity in hardware. As a result, packets destined to the local IPv6 LLA address are received on the port but do not get forwarded to CPU for further processing.</p>
+
+<p>To workaround this issue, use IPv4 addresses under peerlink.4094 and configure clagd to peer on IPv4 addresses.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
@@ -2579,6 +2609,39 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32006</td>
+<td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31929</td>
+<td><p>VXLAN encapsulated traffic is not routed to the next hop because the destination VTEP IP address is mis-programmed on the switch, which decapsulates the traffic unexpectedly. <br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -2672,13 +2735,6 @@ To work around this issue, restart FRR with the sudo systemctl restart frr.servi
 <td></td>
 </tr>
 <tr>
-<td>CM-31504</td>
-<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
-To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
-<td>3.7.12-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -2707,6 +2763,12 @@ CVE-2019-20916: When an URL was given in an install command, as a Content-Dispos
 Vulnerable: &lt;= 1.5.6-5<br/>
 Fixed: 1.5.6-5+deb8u1</p></td>
 <td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31412</td>
+<td><p>On the Dell N3248PXE switch, RJ45 fixed copper ports that auto-negotiate with a 100M or 10M neighbor incorrectly negotiate a half-duplex link that generates errors. Half duplex modes are not supported on this platform.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2762,22 +2824,20 @@ Fixed: 1.6.2-3+deb8u4</p></td>
 </tr>
 <tr>
 <td>CM-31294</td>
-<td><p>When all the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
+<td><p>When the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
 <ul>
 	<li>clagd uses an IPv6 link-local address (LLA) to establish the TCP connection (the clagd-peer-ip linklocal command configures an IPv6 LLA connection)</li>
-	<li>bridge-ports has peerlink as the first member port (the bridge inherits the MAC address of peerlink bond. VLAN interfaces inherit the MAC address of the bridge. For example:
-
-auto bridge
-iface bridge
-        bridge-vlan-aware yes
-        bridge-ports peerlink-3 hostbond4 hostbond5 regex vx-.* regex vni.*
-
-</li>
-	<li>You delete the SVI (layer 2 VNI)<br/>
-This issue occurs because the hardware stores one entry per VRF to represent the IPv6 LLA. The hardware entry for the LLA is removed when another interface is deleted because the software interfaces are represented by a single entity in hardware. As a result, packets destined to the local IPv6 LLA address are received on the port but do not get forwarded to CPU for further processing.<br/>
-To workaround this issue, use IPv4 addresses under peerlink.4094 and configure clagd to peer on IPv4 addresses.</li>
 </ul>
-</td>
+
+
+<ul>
+	<li>Subsequent VLAN changes are made to VLAN sub-interfaces or adding or removing SVIs</li>
+</ul>
+
+
+<p>This issue occurs because the hardware stores one entry per VRF to represent the IPv6 LLA. The hardware entry for the LLA is removed when another interface is changed because the software interfaces are represented by a single entity in hardware. As a result, packets destined to the local IPv6 LLA address are received on the port but do not get forwarded to CPU for further processing.</p>
+
+<p>To workaround this issue, use IPv4 addresses under peerlink.4094 and configure clagd to peer on IPv4 addresses.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
@@ -5404,6 +5464,26 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -8374,6 +8454,26 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -11039,6 +11139,26 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -14116,6 +14236,26 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -17061,6 +17201,26 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -20371,6 +20531,26 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -23629,6 +23809,26 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -26574,6 +26774,26 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -29579,6 +29799,26 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -32743,6 +32983,26 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -36031,6 +36291,26 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -38819,6 +39099,26 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>

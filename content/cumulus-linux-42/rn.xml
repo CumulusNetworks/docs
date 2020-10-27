@@ -7,6 +7,79 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32006</td>
+<td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31969</td>
+<td><p>On Mellanox switches, egress CoS re-marking of control plane traffic is not working.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31959</td>
+<td><p>With traditional bridges, a race condition occurs when Cumulus Linux tries to derive MAC addresses.<br/>
+To work around this issue, use a static MAC address; specify a MAC address in the /etc/network/interfaces file under the bridge's stanza.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31954</td>
+<td><p>A security issue was discovered in the MariaDB database server.<br/>
+Vulnerable: 10.3.25-0<br/>
+Fixed: 10.3.25-0+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31936</td>
+<td><p>When you back up and restore a configuration using the conf-backup utility, the switch might hang when rebooted.</p></td>
+<td>4.1.1-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31921</td>
+<td><p>The NCLU command to enable bridge learning fails.<br/>
+As a work around, enable bridge learning in the /etc/network/interface file. For example:</p>
+
+auto vni-30
+iface vni-30
+    vxlan-id 30
+    bridge-access 30
+    bridge-arp-nd-suppress on
+    bridge-learning on
+    vxlan-local-tunnelip 10.10.10.1
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    mtu 9166
+
+</td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31914</td>
+<td><p>On Mellanox switches, port ganging fails with errors similar to the following after a switchd restart:</p>
+
+2020-10-16T15:19:04.705682+00:00 mlx-switch update-ports[2987]: Error: 4 invalid lines found in /etc/cumulus/ports.conf:
+2020-10-16T15:19:04.705901+00:00 mlx-switch update-ports[2987]: [Line 45]:'1=40G/4'
+2020-10-16T15:19:04.706035+00:00 mlx-switch update-ports[2987]:   Invalid because: Mode 40G/4 is not supported for port 1
+2020-10-16T15:19:04.706159+00:00 mlx-switch update-ports[2987]: [Line 46]:'2=40G/4'
+2020-10-16T15:19:04.706282+00:00 mlx-switch update-ports[2987]:   Invalid because: Mode 40G/4 is not supported for port 2
+2020-10-16T15:19:04.706407+00:00 mlx-switch update-ports[2987]: [Line 47]:'3=40G/4'
+2020-10-16T15:19:04.706544+00:00 mlx-switch update-ports[2987]:   Invalid because: Mode 40G/4 is not supported for port 3
+2020-10-16T15:19:04.706668+00:00 mlx-switch update-ports[2987]: [Line 48]:'4=40G/4'
+2020-10-16T15:19:04.706791+00:00 mlx-switch update-ports[2987]:   Invalid because: Mode 40G/4 is not supported for port 4
+2020-10-16T15:19:04.716885+00:00 mlx-switch systemd[1]: update-ports.service: Main process exited, code=exited, status=255/EXCEPTION
+2020-10-16T15:19:04.717122+00:00 mlx-switch systemd[1]: update-ports.service: Failed with result 'exit-code'.
+
+</td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31904</td>
 <td><p>The output of the net show commit command does not show the last commit or the specified commit number but is empty instead.</p></td>
 <td>4.2.1</td>
@@ -1731,6 +1804,26 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32006</td>
+<td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31954</td>
+<td><p>A security issue was discovered in the MariaDB database server.<br/>
+Vulnerable: 10.3.25-0<br/>
+Fixed: 10.3.25-0+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31936</td>
+<td><p>When you back up and restore a configuration using the conf-backup utility, the switch might hang when rebooted.</p></td>
+<td>4.1.1-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31864</td>

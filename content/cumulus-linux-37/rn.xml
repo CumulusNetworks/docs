@@ -40,13 +40,6 @@ To work around this issue, restart switchd.</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-31922</td>
-<td><p>On the Dell N3248PXE switch, if RJ45 fixed copper ports negotiate with a 100M or 10M full duplex neighbor and auto-negotiation is disabled (or re-enabled) or is set manually with the ethtool -s &lt;interface&gt; autoneg on command, the 10M/100M full-duplex advertisement bits might get cleared, resulting in a half-duplex link that generates errors.<br/>
-To work around this issue, restart switchd with the systemctl reset-failed; systemctl restart switch command or reboot the switch to restore the correct advertisement bits.</p></td>
-<td>3.7.12-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -200,8 +193,7 @@ Fixed: 1.5.6-5+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-31412</td>
-<td><p>On the Dell N3248PXE switch, RJ45 fixed copper ports that auto-negotiate with a 100M or 10M neighbor incorrectly negotiate a half-duplex link that generates errors. Half duplex modes are not supported on this platform.<br/>
-To work around this issue, upgrade to a release where auto-negotiation can complete in full duplex mode.</p></td>
+<td><p>On the Dell N3248PXE switch, RJ45 fixed copper ports that auto-negotiate with a 100M or 10M neighbor incorrectly negotiate a half-duplex link that generates errors. Half duplex modes are not supported on this platform.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
@@ -2650,13 +2642,6 @@ To work around this issue, restart switchd.</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-31922</td>
-<td><p>On the Dell N3248PXE switch, if RJ45 fixed copper ports negotiate with a 100M or 10M full duplex neighbor and auto-negotiation is disabled (or re-enabled) or is set manually with the ethtool -s &lt;interface&gt; autoneg on command, the 10M/100M full-duplex advertisement bits might get cleared, resulting in a half-duplex link that generates errors.<br/>
-To work around this issue, restart switchd with the systemctl reset-failed; systemctl restart switch command or reboot the switch to restore the correct advertisement bits.</p></td>
-<td>3.7.12-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -2782,8 +2767,7 @@ Fixed: 1.5.6-5+deb8u1</p></td>
 </tr>
 <tr>
 <td>CM-31412</td>
-<td><p>On the Dell N3248PXE switch, RJ45 fixed copper ports that auto-negotiate with a 100M or 10M neighbor incorrectly negotiate a half-duplex link that generates errors. Half duplex modes are not supported on this platform.<br/>
-To work around this issue, upgrade to a release where auto-negotiation can complete in full duplex mode.</p></td>
+<td><p>On the Dell N3248PXE switch, RJ45 fixed copper ports that auto-negotiate with a 100M or 10M neighbor incorrectly negotiate a half-duplex link that generates errors. Half duplex modes are not supported on this platform.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
 </tr>

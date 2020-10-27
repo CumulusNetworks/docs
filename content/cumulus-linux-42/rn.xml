@@ -34,6 +34,12 @@ Fixed: 10.3.25-0+deb10u1</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-31936</td>
+<td><p>When you back up and restore a configuration using the conf-backup utility, the switch might hang when rebooted.</p></td>
+<td>4.1.1-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31921</td>
 <td><p>The NCLU command to enable bridge learning fails.<br/>
 As a work around, enable bridge learning in the /etc/network/interface file. For example:</p>
@@ -1811,6 +1817,12 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 Vulnerable: 10.3.25-0<br/>
 Fixed: 10.3.25-0+deb10u1</p></td>
 <td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31936</td>
+<td><p>When you back up and restore a configuration using the conf-backup utility, the switch might hang when rebooted.</p></td>
+<td>4.1.1-4.2.1</td>
 <td></td>
 </tr>
 <tr>

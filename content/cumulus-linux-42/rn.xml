@@ -7,8 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32006</td>
+<td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31969</td>
 <td><p>On Mellanox switches, egress CoS re-marking of control plane traffic is not working.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31959</td>
+<td><p>With traditional bridges, a race condition occurs when Cumulus Linux tries to derive MAC addresses.<br/>
+To work around this issue, use a static MAC address; specify a MAC address in the /etc/network/interfaces file under the bridge's stanza.</p></td>
 <td>4.2.1</td>
 <td></td>
 </tr>
@@ -42,7 +55,7 @@ iface vni-30
 </tr>
 <tr>
 <td>CM-31914</td>
-<td><p>On Mellanox switches, port ganging fails with errors similar to the following after a {switchd</code> restart:</p>
+<td><p>On Mellanox switches, port ganging fails with errors similar to the following after a switchd restart:</p>
 
 2020-10-16T15:19:04.705682+00:00 mlx-switch update-ports[2987]: Error: 4 invalid lines found in /etc/cumulus/ports.conf:
 2020-10-16T15:19:04.705901+00:00 mlx-switch update-ports[2987]: [Line 45]:'1=40G/4'
@@ -1785,6 +1798,12 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32006</td>
+<td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31954</td>

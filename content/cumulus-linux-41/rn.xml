@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32006</td>
+<td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31954</td>
 <td><p>A security issue was discovered in the MariaDB database server.<br/>
 Vulnerable: 10.3.25-0<br/>
@@ -2329,6 +2335,12 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32006</td>
+<td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31954</td>

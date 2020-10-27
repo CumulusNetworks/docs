@@ -1351,11 +1351,16 @@ To disable the QSFP+ ports, you must set the ports to `disabled`. Do not comment
 
 {{%/notice%}}
 
-### 1000BASE-T SFP Modules Not Supported on Certain 25G and All 100G Platforms
+### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
 
-1000BASE-T SFP modules are not supported on 25G or 100G platforms, with two exceptions for 25G: the Cumulus Express CX-5148-S and Edgecore AS7326-56X switches are supported in Cumulus Linux 4.2.0 and later releases, provided the switch has board revision R01D.
+1000BASE-T SFP modules are supported on only the following 25G platforms:
 
-To determine the revision of the board, look for the output in the `label revision` field when you run `decode-syseeprom`.
+- Cumulus Express CX-5148-S and the Edgecore AS7326-56X, provided the switch has board revision R01D (to determine the revision of the board, look for the output in the `label revision` field when you run `decode-syseeprom`)
+- Dell S5248F-ON
+- Mellanox SN2410
+- Mellanox SN2010
+
+1000BASE-T SFP modules are not supported on any 100G or faster platforms.
 
 ### Mellanox SN2100 Switch and eth0 Link Speed
 

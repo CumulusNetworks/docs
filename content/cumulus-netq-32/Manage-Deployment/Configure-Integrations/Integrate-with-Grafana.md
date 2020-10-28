@@ -45,7 +45,7 @@ Restart grafana after installing plugins . <service grafana-server restart>
 
 {{%notice tip%}}
 
-The Grafana GUI is accessed through port 3000 by default. If you are running Grafana on a simulation server, you may need to modify forwarding rules in IPtables to allow access to port 3000.
+The Grafana GUI is accessed through port 3000 by default. You may need to modify forwarding rules in IPtables to allow access to port 3000.
 
 {{%/notice%}}
 
@@ -110,7 +110,7 @@ To create your own dashboard:
 
 5. Enter *Hostname* into the **Label** field.
 
-6. Select *Net-Q* from the **Data source** list.
+6. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list.
 
 7. Enter *hostname* into the **Query** field.
 
@@ -124,7 +124,7 @@ To create your own dashboard:
 
     {{<figure src="/images/netq/grafana-create-chart-230.png" width="600">}}
 
-11. Select *Net-Q* from the **Query** source list.
+11. Select *Net-Q* or *Net-Q-Ethtool* from the **Query** source list.
 
 12. Select the interface statistic you want to view from the **Metric** list.
 

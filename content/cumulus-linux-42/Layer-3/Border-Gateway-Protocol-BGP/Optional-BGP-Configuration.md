@@ -25,8 +25,8 @@ The following example commands create a peer group called SPINE that includes tw
 ```
 cumulus@leaf01:~$ net add bgp neighbor SPINE peer-group
 cumulus@leaf01:~$ net add bgp neighbor SPINE remote-as external
-cumulus@leaf01:~$ net add bgp neighbor 169.254.10.101 peer-group SPINE
-cumulus@leaf01:~$ net add bgp neighbor 169.254.10.102 peer-group SPINE
+cumulus@leaf01:~$ net add bgp neighbor 10.0.1.0 peer-group SPINE
+cumulus@leaf01:~$ net add bgp neighbor 10.0.1.12 peer-group SPINE
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -42,8 +42,8 @@ leaf01# configure terminal
 leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor SPINE peer-group
 leaf01(config-router)# neighbor SPINE remote-as external
-leaf01(config-router)# neighbor 169.254.10.101 peer-group SPINE
-leaf01(config-router)# neighbor 169.254.10.102 peer-group SPINE
+leaf01(config-router)# neighbor 10.0.1.0 peer-group SPINE
+leaf01(config-router)# neighbor 10.0.1.12 peer-group SPINE
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
@@ -83,7 +83,7 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 
 You configure dynamic neighbors using the `bgp listen range <ip-address> peer-group <group>` command. After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and is mapped to a peer group.
 
-The following example commands create the peer group SPINE and configure BGP peering to remote neighbors within the address range 169.254.10.0/24.
+The following example commands create the peer group SPINE and configure BGP peering to remote neighbors within the address range 10.0.1.0/31.
 
 {{< tabs "36 ">}}
 
@@ -92,7 +92,7 @@ The following example commands create the peer group SPINE and configure BGP pee
 ```
 cumulus@leaf01:~$ net add bgp neighbor SPINE peer-group
 cumulus@leaf01:~$ net add bgp neighbor SPINE remote-as external
-cumulus@leaf01:~$ net add bgp listen range 169.254.10.0/24 peer-group SPINE
+cumulus@leaf01:~$ net add bgp listen range 10.0.1.0/24 peer-group SPINE
 cumulus@leaf01:~$ net add bgp listen limit 5
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
@@ -109,7 +109,7 @@ cumulus@leaf01:~$ sudo vtysh
 
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp listen range 169.254.10.0/24 peer-group SPINE
+leaf01(config-router)# bgp listen range 10.0.1.0/24 peer-group SPINE
 leaf01(config-router)# bgp listen limit 5
 leaf01(config-router)# end
 leaf01# write memory
@@ -130,7 +130,7 @@ router bgp 65101
   neighbor SPINE peer-group
   neighbor SPINE remote-as external
   bgp listen limit 5
-  bgp listen range 169.254.10.0/24 peer-group SPINE
+  bgp listen range 10.0.1.0/24 peer-group SPINE
 ```
 
 ## eBGP Multihop

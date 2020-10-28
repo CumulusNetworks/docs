@@ -54,8 +54,12 @@ The Grafana GUI is accessed through port 3000 by default. You may need to modify
 The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plug-in. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.
 
 1. Open the Grafana user interface:
-    - **Remote access**: Enter *\<NetQ-Server-or-Appliance-IPaddr\>:3000* in a web browser address field
-    - **Local access**: Enter *localhost:3000* in a web browser address field
+    - Remote access
+        - Cloud deployments: enter *api.netq.cumulusnetworks.com:3000*
+        - On-premises deployments: enter *\<hostname-ipaddr\>:3000*
+        - Cumulus in the Cloud (CITC): enter *air.netq.cumulusnetworks.com:3000*
+    - Local access
+        - Enter *localhost:3000*
 
 2. Log in using your application credentials.
 

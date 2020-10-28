@@ -10,4 +10,7 @@ It helps answer questions such as:
 
 - Is a VLAN misconfigured?
 - Is MLAG configured correctly?
+- Is LLDP running on all of my devices?
 - Is there an STP loop?
+- What is the status of interfaces on a device?
+- Where has a given MAC address lived in my network?

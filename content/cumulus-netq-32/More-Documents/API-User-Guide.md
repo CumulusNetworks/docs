@@ -40,9 +40,9 @@ The API is embedded in the NetQ software, making it easy to access from the Swag
 
 3. Open a new browser tab or window, and enter one of the following in the address bar:
 
-    - For cloud deployments:  https://swagger-ui.prod1.netq.cumulusnetworks.com
-    - For on-premises deployments: https://swagger-ui.\<appliance-or-vm-hostname-or-ipaddr>\/
-    - For Cumulus in the Cloud (CITC): https://swagger-ui.air.netq.cumulusnetworks.com
+    - Cloud deployments:  https://swagger-ui.prod1.netq.cumulusnetworks.com
+    - On-premises deployments: https://swagger-ui.\<appliance-or-vm-hostname-or-ipaddr>\/
+    - Cumulus in the Cloud (CITC): https://swagger-ui.air.netq.cumulusnetworks.com
 
     This opens the authorization API (auth).
 

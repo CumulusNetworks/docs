@@ -182,15 +182,37 @@ To configure these login policies:
 
 ## Monitor User Activity
 
-NetQ application administrators can audit user activity in the application using the Activity Log.
+NetQ application administrators can audit user activity in the NetQ UI using the Activity Log or in the CLI by checking `syslog`.
+
+{{< tabs "User Activity" >}}
+
+{{< tab "NetQ UI" >}}
 
 To view the log, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Activity Log** under the **Admin** column.
 
 {{<figure src="/images/netq/main-menu-ntwk-activity-log-320.png" width="700" >}}
 
 Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter the log by username, action, resource, and time period.
-
 Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" width="18" height="18">}} to export the log a page at a time.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+NetQ maintains an audit trail of user activity in `syslog`. Information logged includes when a user logs in or out of NetQ as well as when the user changes a configuration and what that change is.
+
+```
+cumulus@switch:~$ sudo tail /var/log/syslog
+...
+
+2020-10-16T11:43:04.976557-07:00 switch sshd[14568]: Accepted password for cumulus from 192.168.200.250 port 56930 ssh2
+2020-10-16T11:43:04.977569-07:00 switch sshd[14568]: pam_unix(sshd:session): session opened for user cumulus by (uid=0)
+...
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Manage Scheduled Traces
 

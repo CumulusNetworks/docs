@@ -43,12 +43,6 @@ into: /usr/local/var/lib/grafana/plugins
 Restart grafana after installing plugins . <service grafana-server restart>
 ```
 
-{{%notice tip%}}
-
-The Grafana GUI is accessed through port 3000 by default. You may need to modify forwarding rules in IPtables to allow access to port 3000.
-
-{{%/notice%}}
-
 ## Set Up the Pre-configured NetQ Dashboard
 
 The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plug-in. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.

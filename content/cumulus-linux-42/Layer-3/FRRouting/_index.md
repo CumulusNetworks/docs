@@ -1,12 +1,12 @@
 ---
-title: FRRouting Overview
+title: FRRouting
 author: Cumulus Networks
-weight: 750
+weight: 800
 toc: 3
 ---
-Cumulus Linux uses FRRouting to provide the routing protocols for dynamic routing and supports the following routing protocols:
+Cumulus Linux uses FRRouting (FRR) to provide the routing protocols for dynamic routing and supports the following routing protocols:
 
-- Open Shortest Path First ({{<link url="Open-Shortest-Path-First-OSPF" text="v2">}} and {{<link url="Open-Shortest-Path-First-v3-OSPFv3" text="v3">}})
+- Open Shortest Path First ({{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="v2">}} and {{<link url="Open-Shortest-Path-First-v3-OSPFv3" text="v3">}})
 - {{<link url="Border-Gateway-Protocol-BGP">}}
 
 ## Architecture

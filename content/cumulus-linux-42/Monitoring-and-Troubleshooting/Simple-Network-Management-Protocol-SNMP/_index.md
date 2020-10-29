@@ -247,7 +247,7 @@ The `snmpd` authentication for versions 1 and 2 is disabled by default in Cumulu
 
 ## Enable SNMP Support for FRRouting
 
-SNMP supports Routing MIBs in {{<link url="FRRouting-Overview" text="FRRouting">}}. To enable SNMP support for FRRouting, you need to:
+SNMP supports Routing MIBs in {{<link url="FRRouting" text="FRRouting">}}. To enable SNMP support for FRRouting, you need to:
 
 - Configure {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRRouting
 - The default `/etc/snmp/snmpd.conf` configuration already enables AgentX and sets the correct permissions
@@ -901,7 +901,7 @@ The pass persist scripts in Cumulus Linux use the {{<exlink url="http://net-snmp
 
 All the scripts are enabled by default in Cumulus Linux, except for:
 
-- `bgp4_pp.py`, which is handled by {{<link url="FRRouting-Overview" text="FRRouting">}}.
+- `bgp4_pp.py`, which is handled by {{<link url="FRRouting" text="FRRouting">}}.
 - `cl_poe_pp.py`, which is disabled by default as only certain platforms that Cumulus Linux supports are capable of doing {{<link url="Power-over-Ethernet-PoE" text="Power over Ethernet">}}.
 
 ## Troubleshooting

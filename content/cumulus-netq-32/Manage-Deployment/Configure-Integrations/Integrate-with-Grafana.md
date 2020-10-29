@@ -20,7 +20,7 @@ Net-Q-Ethtool displays:
 - **Software Transmit** with *soft\_out\_* prefix: errors, drops, tx_fifo_full
 - **Software Receive** with *soft\_in\_* prefix: errors, frame_errors, drops
 
-You can use Grafana version x.x and later, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in containing the prepared NetQ dashboard.  
+You can use Grafana version 6.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plug-in containing the prepared NetQ dashboard.  
 
 {{%notice note%}}
 
@@ -45,7 +45,7 @@ Restart grafana after installing plugins . <service grafana-server restart>
 
 {{%notice tip%}}
 
-The Grafana GUI is accessed through port 3000 by default. If you are running Grafana on a simulation server, you may need to modify forwarding rules in IPtables to allow access to port 3000.
+The Grafana GUI is accessed through port 3000 by default. You may need to modify forwarding rules in IPtables to allow access to port 3000.
 
 {{%/notice%}}
 
@@ -53,9 +53,7 @@ The Grafana GUI is accessed through port 3000 by default. If you are running Gra
 
 The quickest way to view the interface statistics for your Cumulus Linux network is to make use of the pre-configured dashboard installed with the plug-in. Once you are familiar with that dashboard, you can create new dashboards or add new panels to the NetQ dashboard.
 
-1. Open the Grafana user interface:
-    - **Remote access**: Enter *\<NetQ-Server-or-Appliance-IPaddr\>:3000* in a web browser address field
-    - **Local access**: Enter *localhost:3000* in a web browser address field
+1. Open the Grafana user interface.
 
 2. Log in using your application credentials.
 
@@ -73,7 +71,10 @@ The quickest way to view the interface statistics for your Cumulus Linux network
 
 5. Enter *Net-Q* or *Net-Q-Ethtool* into the **Name** field.
 
-6. Enter the URL used to access the NetQ cloud service *api.netq.cumulusnetworks.com* or your local hostname.
+6. Enter the URL used to access the database:
+    - Cloud: *api.netq.cumulusnetworks.com*
+    - On-premises: *\<hostname-ipaddr\>*
+    - Cumulus in the Cloud (CITC): *air.netq.cumulusnetworks.com*
 
 7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*.
 
@@ -110,7 +111,7 @@ To create your own dashboard:
 
 5. Enter *Hostname* into the **Label** field.
 
-6. Select *Net-Q* from the **Data source** list.
+6. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list.
 
 7. Enter *hostname* into the **Query** field.
 
@@ -124,7 +125,7 @@ To create your own dashboard:
 
     {{<figure src="/images/netq/grafana-create-chart-230.png" width="600">}}
 
-11. Select *Net-Q* from the **Query** source list.
+11. Select *Net-Q* or *Net-Q-Ethtool* from the **Query** source list.
 
 12. Select the interface statistic you want to view from the **Metric** list.
 

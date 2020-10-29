@@ -31,7 +31,7 @@ cumulus@<hostname>:~$ netq config restart cli
 
 {{</notice>}}
 
-### Configure the WJH Feature
+## Configure the WJH Feature
 
 WJH is enabled by default on Mellanox switches and no configuration is required in Cumulus Linux 4.0.0; however, you must enable the NetQ Agent to collect the data in NetQ 2.4.0 or later.
 
@@ -57,7 +57,7 @@ Using <em>wjh_dump.py</em> on a Mellanox platform that is running Cumulus Linux 
 
 {{</notice>}}
 
-### Configure Latency and Congestion Thresholds
+## Configure Latency and Congestion Thresholds
 
 WJH latency and congestion metrics depend on threshold settings to trigger the events. Packet latency is measured as the time spent inside a single system (switch). Congestion is measured as a percentage of buffer occupancy on the switch. When WJH triggers events when the high and low thresholds are crossed.
 
@@ -81,7 +81,7 @@ This example creates congestion thresholds for Class *4* traffic on port *swp1* 
 cumulus@switch:~$ netq config add agent wjh-threshold congestion 4 swp1 200 10
 ```
 
-### View What Just Happened Metrics
+## View What Just Happened Metrics
 
 You can view the WJH metrics from the NetQ UI or the NetQ CLI.
 
@@ -141,6 +141,18 @@ Router             144                            Blackhole route
 Buffer             14                             Packet Latency Threshold Crossed
 Buffer             14                             Port TC Congestion Threshold
 L1                 4                              Oper down
+```
+
+This example shows the drops seen at layer 2 across the network.
+
+```
+cumulus@mlx-2700-03:mgmt:~$ netq show wjh-drop l2
+Matching wjh records:
+Hostname          Ingress Port             Reason                                        Agg Count          Src Ip           Dst Ip           Proto  Src Port         Dst Port         Src Mac            Dst Mac            First Timestamp                Last Timestamp
+----------------- ------------------------ --------------------------------------------- ------------------ ---------------- ---------------- ------ ---------------- ---------------- ------------------ ------------------ ------------------------------ ----------------------------
+mlx-2700-03       swp1s2                   Port loopback filter                          10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  0c:ff:ff:ff:ff:ff  Mon Dec 16 11:54:15 2019       Mon Dec 16 11:54:15 2019
+mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:53:17 2019       Mon Dec 16 11:53:17 2019
+mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 0.0.0.0          0.0.0.0          0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:40:44 2019       Mon Dec 16 11:40:44 2019
 ```
 
 {{< /tab >}}

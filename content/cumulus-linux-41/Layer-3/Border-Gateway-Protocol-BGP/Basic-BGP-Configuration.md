@@ -188,7 +188,7 @@ To configure BGP numbered on a BGP node, you need to:
     leaf01(config-router-af)# end
     leaf01# write memory
     leaf01# exit
-    cumulus@switch:~$
+    cumulus@leaf01:~$
     ```
 
     IPv6 prefix example:

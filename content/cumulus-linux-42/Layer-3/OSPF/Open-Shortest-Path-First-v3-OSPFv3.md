@@ -430,4 +430,4 @@ For a list of all the OSPF debug options, refer to {{<exlink url="http://docs.fr
 - {{<exlink url="http://en.wikipedia.org/wiki/Open_Shortest_Path_First" text="Wikipedia - Open Shortest Path First">}}
 - {{<exlink url="http://docs.frrouting.org/en/latest/ospf6d.html" text="FRR OSPFv3">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc2740" text="RFC 2740 OSPFv3 OSPF for IPv6">}}
-- {{<link url="Open-Shortest-Path-First-OSPF-v2-OSPFv2#auto-cost-reference-bandwidth" text="Auto-cost reference bandwidth">}}
+- {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#auto-cost-reference-bandwidth" text="Auto-cost reference bandwidth">}}

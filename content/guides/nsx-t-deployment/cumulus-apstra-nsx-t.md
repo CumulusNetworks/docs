@@ -182,7 +182,9 @@ swp32      100G   Default  leaf04                    swp20
 {{< /tab >}}
 {{< /tabs >}}
 
-## Netowrk Configuration Automation using Apstra AOS
+# Netowrk Configuration Automation using Apstra AOS
+
+## Topology Preperations
 
 ### Step 1 - Create Logical Devices
 
@@ -334,7 +336,9 @@ Select all devices and press on the **V** icon to acknowledge the devices
 {{%notice note%}}If not all device profiles automatically set, check the needed device, press on the **Pencil** icon, and set **Profile** and **Admin State** to **NORMAL**.<br />
 Now, the device will be acknowledged automatically.{{<figure src="/images/guides/apstra-nsx/4_6-ack devices full.png">}}{{%/notice %}}
 
-### Step 6 - Create Blueprint
+## Network Intent Preperations
+
+### Step 1 - Create Blueprint
 
 After we assembled all the raw materials from the abstractions, reference design, and inventory elements (logical devices, interfaces maps, rack types, profiles, and templates), the next step is to create a Blueprint for our network.<br /> 
 Blueprint pulls everything into your best-practice, validated solution. The blueprint will push the configuration into the infrastructure and monitor for state changes and anything else that can affect our intent compliance.
@@ -352,7 +356,7 @@ Preview Blueprint’s toplogy and parameters, press **Create** to create it
 Wait till the Blueprint finishes creating, and it will be available in the Blueprints Dashboard
 {{<figure src="/images/guides/apstra-nsx/6.3-blueprint dashboard.JPG">}}
 
-### Step 7 - Configure the Blueprint
+### Step 2 - Configure the Blueprint
 
 To configure the network intent, we need to configure the Blueprints parameters. Click on the blueprint’s name to enter it.
 
@@ -363,7 +367,9 @@ Once all Staged configuration is set and committed into the environment, this da
 To start configuring the network intent, go to the **Staged** tab. In this tab, we have to configure our network’s **Physical** and **Virtual** parameters.
 {{<figure src="/images/guides/apstra-nsx/7.1-staged.JPG">}}
 
-Start with the **Physical** environment configuration. For that, we need to assign **Resource Pools** for the following parameters:
+#### Physical Intent Configuration
+
+Go to **Physical** configuration and start with assigninig **Resource Pools** for the following parameters:
 - Spines’ BGP ASN allocation
 - Leafs’ BGP ASN allocation 
 - Spines’ Loopback IP addresses  
@@ -400,7 +406,8 @@ All **System IDs** should be set for all the switches<be />
 But, not always the cabling is being done after the intent configured in AOS. If this is the case and the cabling already exists, it's possible to update the blueprint default cabling assumption in a few ways.<br />
 Go to **Links** under the **Physical** configuration in **Staged** tab
 {{<figure src="/images/guides/apstra-nsx/9-lldp.JPG">}}
-In this output, all the environment links will be displayed according to the AOS assumption.<br />To change the cabling to your own, use the buttons above the table
+In this output, all the environment links will be displayed according to the AOS assumption.<br />
+To change the cabling to your own, use the buttons above the table
 {{<figure src="/images/guides/apstra-nsx/9.1-lldp buttons.png">}}
 Using these buttons allows us to upload a custom cabling schema, export or edit the AOS assumed cabling, change links speeds, or refresh the cabling according to the LLDP from the managed switches.<br /> 
 In our case, we are using different cabling schema (as presented in the reference topology diagram). So we will update AOS default schema using LLDP information from our switches.<br />
@@ -413,7 +420,11 @@ Now, the LLDP information (environment cabling) is matching the **Staged** AOS c
 {{%notice note%}}You can clear the LLDP data, and return on these steps if there was a cabling change afterward.{{%/notice %}}
 {{%/notice %}}
 
-Now, our reference topology physical intent is done. Before moving on to the **Virtual Networks** configuration of our fabric (VLANs and L2VNIs) and **Security Zones** (VRFs and L3VNIs) for the fabric, complete our MLAG peer-links configuration.
+With that, our reference topology physical intent is done (almost...).
+
+#### Virtual Intent Configuration
+
+Prior to moving on to the fabric virtual configuration, which will include **Virtual Networks** (VLANs and L2VNIs) and **Security Zones** (VRFs and L3VNIs). Let's jump a bit forward and complete our MLAG peer-links configuration.<br />
 Go to the **Virtual** configuration in **Staged** tab
 {{<figure src="/images/guides/apstra-nsx/10-virtual_tab.png">}}
 Click on the **Red status indicator** of **SVI Subnets-MLAG domain**, press ont the **Pencil** icon, select the desired IP addresses pool, and press **Save** button.<br />
@@ -421,3 +432,241 @@ We chose the same resource pool as for the Leaf-Spine P2P links
 {{<figure src="/images/guides/apstra-nsx/11-mlag_svi.png">}}
 Once saved, the indicator should become **Green**
 {{<figure src="/images/guides/apstra-nsx/11-mlag_svi_indicator.png">}}
+
+Now, when our **Physical** intent is complete with the MLAG configuration as well, we can move on to the **Virtual** intent configuration.<br />
+ESX Hypervisors use a few traffic types traversing over our L3 network - Storage, vMotion, Mgmt., and Tunnel(TEP). Our reference topology, as VMware's best practice, will consider each rack as a different cluster. Thus, each rack will have different subnet for each underlying VLAN, but, with the same VLAN ID to simplify things. It doesn't mean that we will use all those VLANs for our checks, but in a full deployment, they must persist.<br />
+The other requiemrnt is to have IP reachability between all ESX hypervisors underlying networks (VLAN subnets). For that, all these VLANs' subnets will be advertised via BGP from the ToR switches. The Virtual Machines (VMs) routing will be done by the NSX-T T1 Distributed Router (T1 DR) inisde the ESX and T0 router (on EDGE node) to advertise them into the physical enviorment.
+{{%notice note%}}NSX-T 3.0 provides another option to have virtualized to physycal enviormtns connectivity by using NSX-T Agent on BM servers.<br /> 
+Our reference guide won't cover NSX-T Agent use-cases and concentrate on an environment where users do not desire the agent, or it can't be installed on the BM server (e.g., old BM server). In our case, we will use NSX-T T0 Router for VXLAN overlay tunnels to stretch the L2 networks between the virtualized and the physical environments. The L2 networks on the virtual environment are stretched using Geneve encapsulated tunnels (over TEP VLAN) on the ESX hypervisors and sent as regular IP traffic over the L3 fabric.{{%/notice %}}
+
+First let's understand the Packet Flows in our reference enviorment to be ready for our **Virtual** intent configuration.
+{{%notice info%}}
+### Packet Flow using NSX-T 2.5 
+{{<figure src="/images/guides/apstra-nsx/nsx2.5.JPG">}}
+**VM-VM Traffic**<br /> 
+Traffic inside the virtualized environment encapsulated into Geneve tunnels. The encapsulation/decapsulation is handled by the TEP devices (Tunnel End Point), which is the ESX Hypervisors. In case, routing between differnt VM subnets, NSX-T T1 DR router can be used (VM subnets GW).
+
+**VM-Bare-Metal Traffic**<br /> 
+Traffic from the virtualized environment to the outside world (physical environment) must traverse via the NSX-EDGE T0 router. 
+1.	VM traffic arrives Geneve encapsulated to the NSX-EDGE (T0 router)
+2.	The T0 router decapsulates the Geneve header and sends the traffic as Regular IP traffic towards the ToR switch, which acts as VXLAN HW-VTEP 
+3.	Local ToR VTEP encapsulates the traffic into the VXLAN tunnel and sends it to the remote VTEP (BM ToR). The VXLAN Tunnel is established between the local ToR and the remote ToR switches
+4.	The BM VTEP decapsulates the VXLAN header and sends the traffic as regular to the BM server<br />
+<br />
+
+### Packet Flow using NSX-T 3.0 (Wihouth NSX-T Agent)
+{{<figure src="/images/guides/apstra-nsx/nsx3.0.JPG">}}
+**VM-VM Traffic**<br /> 
+Same as with NSX-T 2.5, traffic inside the virtualized environment encapsulated into Geneve tunnels. The encapsulation/decapsulation is handled by the TEP devices (Tunnel End Point), which is the ESX Hypervisors. In case, routing between differnt VM subnets, NSX-T T1 DR router can be used (VM subnets GW).
+
+**VM-Bare-Metal**<br />
+As with NSX-T 2.5, traffic from the virtualized environment to the outside world (physical environment) must traverse via the NSX-EDGE T0 router. 
+1.	The traffic arrives Geneve encapsulated from the VM to the NSX-EDGE (T0 router) 
+2.	The T0 router decapsulates the Geneve header and encapsulates it again but into a VXLAN tunnel, then sends the traffic as VXLAN traffic towards the remote ToR switch (BM rack), which acts as VXLAN HW-VTEP 
+3.	The local ToR switch only sends regular IP traffic and isn’t aware of the VXLAN header. The VXLAN tunnel is established between the NSX-EDGE and the remote HW-VTEP ToR
+4.	The BM VTEP decapsulates the VXLAN header and sends the traffic as regular to the BM server.<br />
+{{%/notice %}}
+
+Now, when we understand the packet flow for each of the NSX-T versions, we can continue with our **Virtual** intent configuration.<br />
+Create **Virtual Network** (VLANs) as required by VMware for each ESX host:
+- Mgmt.
+- Storage
+- vMotion
+- Tunnel (TEP)
+
+{{%notice note%}}There is a predefined Default security zone associated with any new Blueprint. When using NSX-T 2.5, all SVIs configured for **Virtual Networks** in this zone are in the “default” VRF. This is the same VRF used for the “underlay” or fabric network routing between network devices. With NSX-T 3.0, AOS will allow VLAN to non-default VRF assignemt {{<figure src="/images/guides/apstra-nsx/13-default security zone.png">}}{{%/notice %}}
+
+Go to the **Virtual Networks** configuration in **Virtual** tab
+{{<figure src="/images/guides/apstra-nsx/10-virtual_tab_new.JPG">}}
+Press on the **Create Virtual Networks** button
+{{<figure src="/images/guides/apstra-nsx/12-create vritual network.png">}}
+In the oppened window, set the following settings:
+- Vritual Netowrk (VN) Type
+- VN Name 
+- Security Zone (we keep it simple and define the same VN name as the Security zone name)
+- VNI (L2 VNI)
+- Mark the VLAN ID createtion on all leafs and set the VLAN ID for this VN (L2VNI). This creates the VLAN-to-VNI mapping on the ToR switches. 
+- Enalbe IPv4 Connectivity, and leave the **IPv4 Subnet** and the **Virtual Gateway IPv4** blank, we will set the addressing using the resource pools
+
+{{%notice note%}}As mentined, we consider in each rack as a different ESX cluster, so regardless the use of the same VLAN ID, each rack has to be configured with a diffrent subnet per VLAN on the corresponding ToR pair {{%/notice %}}
+
+{{<figure src="/images/guides/apstra-nsx/12-create vlan storage.JPG">}}
+Set whether the **Default Endpoint Types** will be **VLAN Tagged** or **Untagged**. We are using **VLAN Tagged** ports connected to the ESXi hypervisors and the Bare-metal server
+{{<figure src="/images/guides/apstra-nsx/12-create vlan storage tagged.JPG">}}
+Assign these settings to two of the three leafs (rack 1 and 2) and press **Create**. This action will create these VLANs on the switches.<br /> 
+In our use-case, only the ToR switches of those racks will use VLAN and BGP configuration (middle rack will use also VXLAN, but for the EDGE(T0)-to-BM traffic)  
+{{<figure src="/images/guides/apstra-nsx/12-create vlan storage assign.JPG">}}
+Once created, we can see that "Tunnel" VLAN (VLAN ID 30) was created on both racks
+{{<figure src="/images/guides/apstra-nsx/12-create vlan storage show.JPG">}}
+Repeat the same actions for the rest of the VLANs. But, don't assign the VLANs to the MLAG ports
+{{<figure src="/images/guides/apstra-nsx/12-unassigned.JPG">}}
+{{%notice note%}}AOS and NSX-T integration, helps to indicate and fix any VLAN missmatch between the blueprint and the actual NSX-T configuration. In our example, we created 4 VLANs per each ESX transport node. But, we won't use them all in practice besides VLAN30 as our Geneve tunnels (TEP). Rest of the VLANs are created for the sake of VMware requirments example and that's the reason we aren't assignning them to all MLAG ports. By that, we can eliminate irrelevant errors in AOS validations.{{%/notice %}} 
+Once All created, you will see the table with all
+{{<figure src="/images/guides/apstra-nsx/12-create vlan storage all.JPG">}}
+Now, we need to assign the SVI IP addresses for the created VLANs. These addresses will be the Gateways for our ESX Hypervisors, and will BGP will advertise them to the underlay fabric.<br />
+Click on the **Red Status Indicator** of the **SVI Subnets - Virtual Networks**, press the **Pencil** icon, select the predefined pool and press **Save** 
+{{<figure src="/images/guides/apstra-nsx/12-vlan svi assign.JPG">}}
+Once saved, the indicator will become **Green** 
+{{<figure src="/images/guides/apstra-nsx/12-vlan svi assign green.JPG">}}
+The IP addresses should now be assigned to all VLANs.<br />
+In our reference we chose AOS to automatically set the following underlying IP addresses scheme (can be changed or set manually):
+- **VLAN 2** - Mgmt:<br />
+    Rack 01 - 172.16.0.0/24<br /> 
+    Rack 02 - 172.16.1.0/24
+- **VLAN 10** - Storage:<br />
+    Rack 01 - 172.16.6.0/24<br /> 
+    Rack 02 - 172.16.7.0/24
+- **VLAN 20** - vMotion:<br />
+    Rack 01 - 172.16.2.0/24<br /> 
+    Rack 02 - 172.16.3.0/24
+- **VLAN 30** - Tunnel(TEP):<br />
+    Rack 01 - 172.16.4.0/24<br /> 
+    Rack 02 - 172.16.5.0/24
+
+Rack 03 is our BM rack, so no need to assign ESX underlaying VLANs on it.
+{{<figure src="/images/guides/apstra-nsx/12-vlan svi assign all.JPG">}}
+
+VMs in the same subnet will communicate in L2 between the ESX hosts over Geneve tunnels, the routing between the VM subnets, will be handeled by NSX-T T1 distributed routers. In case VMs will have to send traffic to the bare-metal server, T0 router will route them out to the outside world by using BGP. In our solution guide, we don't cover the steps of creating NSX-T elemets.<br />
+For NSX-T T0 router to work with the TOR switches, we have to create a new Security zone (VRF) and another 3 vritual networks (VLANs). One VN will be for an additional TEP (Tunnel) VLAN for the EDGE node to communucate with rest of the transport nodes. The two ohter VLANs (VNs) for the EDGE uplink ports which will be used as external links and BGP will be established on them as well. Both the uplink VNs will be placed into the new created security zone. But, before we create those, we need to create a logical External Router for the NSX-T T0 inside AOS. <br /> 
+To do so, go to the **External Routers** configuration inside the **External Systems** category 
+{{<figure src="/images/guides/apstra-nsx/14-external routers.png">}}
+There are couple of example external routers present in AOS, but we will use our own NSX-T T0 router. Press on the **Create External Router** button
+{{<figure src="/images/guides/apstra-nsx/14-external routers create.png">}}
+In the oppened window, set NSX-T T0 router **Name**, **IPv4 Loopback Address**, BGP **ASN**, and press **Create** to add it
+{{<figure src="/images/guides/apstra-nsx/14-external routers create details.JPG">}}
+Once created, it will appear in the external router's inventory
+{{<figure src="/images/guides/apstra-nsx/14-external routers inventory.JPG">}}
+Now, when the external router for NSX-T T0 is ready, lets return to the **Staged** configuration inside the **Blueprints**.<br />
+Import the new external router into the blueprint by going into **Catalog** tab
+{{<figure src="/images/guides/apstra-nsx/14-external routers import.JPG">}}
+Press on the **Import External Router** button
+{{<figure src="/images/guides/apstra-nsx/14-external routers button.jpg">}}
+Select the created **External Router** and press **Import Exteral Router**
+{{<figure src="/images/guides/apstra-nsx/14-external router import.JPG">}}
+The NSX-T T0 router is now imported into the Blueprint
+{{<figure src="/images/guides/apstra-nsx/14-external router imported.JPG">}}
+To connect the ToR switches with the T0 external router, go to the **Physical** tab. In the **Selected Rack** and the **Selected Node** drop-boxes, select the needed rack and one of the ToR switches indide it
+{{<figure src="/images/guides/apstra-nsx/15-external router links rack select.JPG">}}
+At the top of the selected ToR switch connectivity, press on **Add links** to connect the NSX-T T0 router 
+{{<figure src="/images/guides/apstra-nsx/15-external router links rack add links.JPG">}}
+From the drop-down menu, select **Add external router links**
+{{<figure src="/images/guides/apstra-nsx/15-external router links add.JPG">}}
+In the oppened window, select the desired ports (one per ToR switch) which will be connected to the ESX node with the NSX EDGE T0 router on.<br /> 
+Once the port selected, click on its name with the appropriate speed (in our case we use 25 Gbps, default) and press on the **Add Link** green button. Repeat the same action for the second switch. 
+{{<figure src="/images/guides/apstra-nsx/15-external router links and types.JPG">}}
+{{%notice note%}}Current AOS implementation restricts usage of additional links between the ESX node and the ToR switches for EDGE usage. It's impossible to apply the existing Trunk ports between the ESX node and the ToR switches as external router ports.{{%/notice %}}
+When both links added, select the **External Router** from the drop-down menu, and set the **Connectivity Type** to **L2**. Once done, press **Add**
+{{%notice note%}}As EDGE VM doesn't support active-active deployment, we can't use A/A bond connection, so we select only **L2**. Later, we will create two different VLANs for the uplinks - one per T0 router uplink.{{%/notice %}}
+Once added, we can see the new port on the switch connectivity diagram
+{{<figure src="/images/guides/apstra-nsx/15-external router links added.JPG">}}
+Now, we need to create the new secutiry zone (VRF) for the T0 router uplinks. This VRF will be used to communucate with the outside world (bare-metal rack).<br />
+Go to the **Security Zones** in the **Virtual** tab 
+{{<figure src="/images/guides/apstra-nsx/13-security zones.JPG">}}
+Press on the **Create Security Zone** button
+{{<figure src="/images/guides/apstra-nsx/13-create security zone.png">}}
+In the oppened window, set new VRF's **Name**, **VLAN ID**, and **VNI**
+{{<figure src="/images/guides/apstra-nsx/13-create security zone1.JPG">}} 
+Uncheck the **Spine Leaf Links** and **Loopbacks** under the **Export Policy**, and export a default route press **Create** 
+{{<figure src="/images/guides/apstra-nsx/13-create security zone11.JPG">}}
+Once created, **Route Target** will be automatically set
+{{<figure src="/images/guides/apstra-nsx/13-create security zone2.JPG">}}
+Now, set the **Leaf Loopback IPs** for the created **RED** VRF. Press on the **Red Status Indicator** near the VRF name, press on the **Pencil** icon, select the **Private-10.0.0.0/8** pool (as we did with loopbacks settings for the physical intent), and press **Save** button
+{{<figure src="/images/guides/apstra-nsx/13-loopback ips.JPG">}}
+All indicators will be **Green** once done (EVPN L3 VNIs are already Green as we set them during VRF creation).<br />
+To add the External Routers' uplinks we've just created, press on the Security Zone's name to edit its parameters. Under **External Connectivity Points**, press on the **Add Connectivity Point** button
+{{<figure src="/images/guides/apstra-nsx/13-security zone params.JPG">}}
+In the openned window, set Connectivity Point's parameters:
+- **Connectivity Type** - L2 (as we set to the external router links we added earlier)
+- **Routing Protocol** - BGP
+- **Peering Type** - Interface
+- **VLAN ID**
+- **IPv4 Subnet**
+- **Links** - Select one of the swtiches links we created and press **Add Link**
+{{<figure src="/images/guides/apstra-nsx/13-security zone external routing.JPG">}}
+Once the links added, fill the **Resources** for it (IP addressing) and press **Add** 
+{{<figure src="/images/guides/apstra-nsx/13-security zone external routing part2.JPG">}}
+This will automatically create the Virtual Network (VLAN) and its SVI on the selected switch (link). BGP session between will establish based on these parameters and the ASN of the swtiches and the NSX-T T0 external router.<br /> 
+Repeaat the same for the 2nd uplink to the other ToR (but in different VLAN).<br />
+Once both links set into the VRF, they will appear under the **External Connectivity Points**
+{{<figure src="/images/guides/apstra-nsx/13-security zone connectivity points.JPG">}}
+Lets validate that the VNs were created for our external router uplinks. Go to **VIrtual Networks** under **Virtual** tab and two new virtual networks should appear with **External** type in our custom security zone with the IP allocation we set
+{{<figure src="/images/guides/apstra-nsx/13-security zone VN auto create.JPG">}}
+
+To enable NSX-T Edge communicate with other TEP devices (ESX transport nodes), we have to create additional TEP VLAN that will serve for Edge's tunnel encapsulation. This action is identical as we did bofere for each of the ESX nodes (VLAN30).<br />
+Create new Virual Network by pressing **Create Virtual Networks** button
+{{<figure src="/images/guides/apstra-nsx/12-create vritual network.png">}}
+In the openned window, select VN parameters:
+- **Type** - VLAN
+- **Name**
+- **Default VLAN ID**
+- **IPv4 Connectivity** - Enabled and IPv4 subnet and GW set
+- **Default Endpoint Types** - Set the needed MLAG port to be tagged with the new VLAN. 
+{{<figure src="/images/guides/apstra-nsx/12-create vlan edge tep.JPG">}}
+Assign the VLAN to the relevat Rack and press **Create**
+{{<figure src="/images/guides/apstra-nsx/12-create vlan edge tep assign.JPG">}}
+Now, new VN for Edge TEP will appear in the table
+{{<figure src="/images/guides/apstra-nsx/12-create vlan edge tep done.JPG">}}
+
+## Apstra AOS and NSX-T Integraion
+
+AOS and NSX-T integration helps deploying the necessary fabric VLANs needed for deploying virtualized enviorment in the Data Center or for providing connectivity between the overlay and the underlay networks. This feature makes sure the fabric is ready in terms of LAG, MTU and VLAN configuration as per NSX-T Transport Nodes requirements. Also, AOS provides visibility into the virtualized envioemrnt by enabling to see the VMs, VM ports, and physical gateway ports. AOS helps identify if an issue exists on the fabric or on the virtual infrastructure and eliminates manual config validation tasks between the NSX-T Nodes side and the ToR switches.
+{{%notice info%}}AOS NSX-T Edge integration supports only Bare Metal Edge deployments. As our reference guide uses NSX-T Edge on a VM, no Edge integraion will be shown{{%/notice %}}
+Connect VMware NSX-T to the AOS (add more text here...)
+Go to the **Virtual Infra Managers** tab in the **External Systems** category
+{{<figure src="/images/guides/apstra-nsx/20-virtual infra.png">}}
+Press on the **Create Virtual Infra Manager** button
+{{<figure src="/images/guides/apstra-nsx/20-add virtual infra.png">}}
+Select the **Virtual Infra Type**, **Address**, **Credentials**, and press **Create**
+{{<figure src="/images/guides/apstra-nsx/20-add nsx-t.JPG">}}
+{{%notice note%}}It is optional to also connect the vCneter to AOS, this allows a complete visibility into the virtualized enviorment{{%/notice %}}
+Once NSX-T connected to AOS, it's tate should be **CONNECTED**
+{{<figure src="/images/guides/apstra-nsx/20-connected nsx-t.JPG">}}
+
+To add NSX-T virtual manager into virtual network intent, go back to the Blueprint, into the **Virtual Infra** tab in the **Virtual** configuration 
+{{<figure src="/images/guides/apstra-nsx/21-virtual infra blueprint.JPG">}}
+Press on the **Add Virtual Infa** button
+{{<figure src="/images/guides/apstra-nsx/20-add virtual infra button.png">}}
+In the oppened window, select the NSX-T from the **Virtual Infra Manger** drop-down, set **VN type** as VLAN, and press **Create**
+{{<figure src="/images/guides/apstra-nsx/21-virtual infra add to blueprint.JPG">}}
+Once added, it will appear in the virtual infrastucture managers list
+{{<figure src="/images/guides/apstra-nsx/21-virtual infra added to BP.JPG">}}
+
+Now, let's create VXLAN interfaces per our VM networks (VLAN100 and VLAN200)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Once all set, commit the changes by pressing **Commit** button in **Uncommited tab**
+{{<figure src="/images/guides/apstra-nsx/100-commit.JPG">}}
+
+
+
+## NSX side validation
+
+On the NSX T0 router we will have 2 BGP neighbors
+```
+nsxedge2(tier0_sr)> get bgp neighbor summary
+BFD States: NC - Not configured, AC - Activating,DC - Disconnected
+            AD - Admin down, DW - Down, IN - Init,UP - Up
+BGP summary information for VRF default for address-family: ipv4Unicast
+Router ID: 172.16.10.6  Local AS: 65000
+
+Neighbor                            AS          State Up/DownTime  BFD InMsgs  OutMsgs InPfx  OutPfx
+172.16.9.3                          64517       Estab 1d04h27m     NC  107640  107646  7      8
+172.16.10.2                         64516       Estab 1d04h26m     NC  107609  107610  7      8
+```

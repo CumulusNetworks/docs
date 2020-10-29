@@ -89,9 +89,9 @@ leaf04            10         10.0.1.2         L2               Vlan 10        ye
 leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:09 2020
 ```
 
-{{< figure src="/images/netq/ntwk-svcs-all-evpn-small-230.png" width="200" >}}
+{{< /tab >}}
 
-For more detail, select a different size EVPN Network Service card.
+{{< /tabs >}}
 
 ### View the Distribution of Sessions and Alarms
 

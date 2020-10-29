@@ -31,6 +31,10 @@
       </button>
     {{ end }}
     <p style="padding-left: 27px; font-weight: 500; color: #36424a;">This page discusses:</p>
+    <!-- This is a CSS override to control the depth of the TOC menu on the right side -->
+    {{ if $.Page.Params.right_toc_levels }}
+      <style>#TableOfContents ul ul {{ range (seq $.Page.Params.right_toc_levels) }} ul {{ end }} { display: none !important; }</style>
+    {{ end }}
     {{ .Page.TableOfContents }}
     </div>
   {{ end }}

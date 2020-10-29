@@ -3,18 +3,17 @@
 
 <head>
   {{ partial "head" . }}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tablesaw/3.1.2/tablesaw.min.css" integrity="sha512-FW7xwIsGt3iCswNR3o4kcXqkKDvN8Q7obwdxFODRT+L6XkRtScLElfvobA7bjiC2iTgG/sRaBUqdrhqx0RTauw==" crossorigin="anonymous" />
 </head>
 
 
-<body>
+<body class="docs">
 <!-- PDF output does not require standard menus -->
 {{if ne .Page.Type "pdf"}}
   <input type="checkbox" style="display: none" id="menu-control" />
 
   <!-- Green bar header -->
   {{ partial "top-header" . }} 
-
+<div class="docs-wrapper">
   {{ partial "version-dropdown" . }} 
 
   {{ partial "mobile-dropdown" . }} 
@@ -51,6 +50,7 @@
 {{ end }}
 
 </main>
+</div>
 
 {{if ne .Page.Params.layout "pdf"}}
 {{ partialCached "footer" . }}

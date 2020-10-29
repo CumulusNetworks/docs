@@ -15,11 +15,11 @@ Inside the box that was shipped to you, you'll find:
 
 If you're looking for hardware specifications (including LED layouts and FRUs like the power supply or fans and accessories like included cables) or safety and environmental information, check out the appliance's {{<exlink url="https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf" text="user manual">}}.
 
-#### Install the Appliance
+## Install the Appliance
 
 {{<netq-install/appliance-setup deployment="cloud">}}
 
-#### Configure the Password, Hostname and IP Address
+## Configure the Password, Hostname and IP Address
 
 1. Log in to the appliance using the default login credentials:
 
@@ -77,7 +77,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
     cumulus@hostname:~$ sudo netplan apply
     ```
 
-#### Verify NetQ Software and Appliance Readiness
+## Verify NetQ Software and Appliance Readiness
 
 Now that the appliance is up and running, verify that the software is available and the appliance is ready for installation.
 
@@ -96,6 +96,12 @@ Now that the appliance is up and running, verify that the software is available 
 4. Run the Bootstrap CLI. Be sure to replace the *eno1* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap server="single" version="3.2.0" platform="appliance" deployment="cloud">}}
+
+## Considerations for Container Environments
+
+{{<netq-install/container>}}
+
+## Install and Activate the NetQ Software
 
 The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the NetQ CLI.
 

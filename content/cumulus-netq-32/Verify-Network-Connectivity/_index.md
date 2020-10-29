@@ -4,6 +4,117 @@ author: Cumulus Networks
 weight: 1030
 toc: 2
 ---
+It is helpful to verify that communications are freely flowing between the various devices in your network. You can verify the connectivity between two devices in both an adhoc fashion and by defining connectivity checks to occur on a scheduled basis. NetQ provides three NetQ UI card workflows and several NetQ CLI trace commands to view connectivity:
+
+- Trace Request card
+    - Run a scheduled trace on demand or create new on-demand or scheduled trace request
+    - View a preview of all scheduled traces
+- On-demand Trace Results card
+    - View source and destination devices, status, paths found, and number/distribution of MTU and hops
+    - View job configuration
+- Scheduled Trace Results card
+    - View source and destination devices, status, distribution of paths, bad nodes, MTU and hops
+    - View job configuration
+- `netq trace` command
+    - Create and run a trace on demand
+    - View source and destination devices, status, paths found, MTU, and hops in terminal window
+- `netq add trace` command
+    - Create an on-demand or scheduled trace
+    - Results viewed on On-demand and Scheduled Trace Results cards
+
+## NetQ CLI Considerations
+
+When creating and running traces using the NetQ CLI, consider the following items.
+
+### Time Values
+
+When entering a time value, you must include a numeric value *and* the unit of measure:
+
+- **w**: week(s)
+- **d**: day(s)
+- **h**: hour(s)
+- **m**: minute(s)
+- **s**: second(s)
+- **now**
+
+When using the `between` option, the start time (`text-time`) and end time (`text-endtime`) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+
+### Result Display Options
+
+Three output formats are available for the on-demand trace with results in a terminal window.
+
+- **JSON**: Results are listed in a .json file, good for exporting to other applications or software.
+- **Pretty**: Results are lined up by paths in a pseudo-graphical manner to help visualize the multiple paths.
+- **Detail**: Results are displayed in a tabular format with a row per hop and a set of rows per path, useful for traces with higher hop counts where the pretty output wraps lines,
+making it harder to interpret the results. This is the default output when not specified.
+
+### Known Addresses
+
+The tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you may need to ping the identified device so that its address becomes known.
+
+## Create a Trace Request
+
+Two types of connectivity checks can be run in NetQ: an immediate (on-demand) trace and a scheduled trace.
+
+### Create a Layer 3 On-demand Trace Request
+
+It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. If you cannot find a layer 3 path, you might also try checking connectivity through a layer 2 path.
+
+{{< tabs "TabID33" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Open the medium Trace Request card.
+
+    {{<figure src="/images/netq/trace-request-medium-320.png" width="200">}}
+
+2. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
+
+3. In the **Destination** field, enter the IP address of the device where you want to end the trace.  
+
+    {{<figure src="/images/netq/trace-request-medium-l3-example-222.png" width="200">}}
+
+<div style="padding-left: 18px;">In this example, we are starting our trace at *server02* and ending it at *10.1.3.103*.</div>
+
+<div style="padding-left: 18px;"><div class="notices tip"><p>If you mistype an address, you must double-click it, or backspace over the error, and retype the address. You cannot select the address by dragging over it as this action attempts to move the card to another location.</p></div></div>
+
+4. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+Use the `netq trace` command to view the results in the terminal window. Use the `netq add trace` command to view the results in the NetQ UI.
+
+{{< tabs "TabID59" >}}
+
+{{< tab "netq trace" >}}
+
+To create a layer 3 on-demand trace and see the results in the terminal window, run:
+
+```
+netq trace <ip> from (<src-hostname>|<ip-src>) [json|detail|pretty]
+```
+
+Note the syntax requires the *destination* device address first and then the *source* device address or hostname.
+
+This example shows a trace from x (source) to y (destination) in pretty output. identify the addresses for the source and
+destination devices using the `netq show ip addresses` command 
+
+```
+```
+
+{{< /tab >}}
+
+{{< tab "netq add trace" >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Validate Paths between Devices
 
@@ -106,87 +217,3 @@ but displays the information in a tabular output.
         5   server11        swp1
     --- --- --------------- --------------- ------ --------------------- --------------- --------------- --------------- --------------- --------------------- --------------- -------
 
-### View Paths between Two Switches with Drops Detected
-
-If you have a Mellanox switch, the What Just Happened feature detects various drop statistics. These are visible in the results of trace requests. This example shows the available paths between a switch with IP address 6.0.2.66 and a switch with IP address 6.0.2.70, where drops have been detected on path 1.
-
-```
-cumulus@mlx-2700:~$ netq trace 6.0.2.66 from 6.0.2.70
-Number of Paths: 1
-Number of Paths with Errors: 0
-Number of Paths with Warnings: 0
-Top packet drops along the paths in the last hour:
-  Path: 1 at mlx-2700:swp3s1, type: L2, reason: Source MAC equals destination MAC, flow: src_ip: 6.0.2.70, dst_ip: 6.0.2.66, protocol: 0, src_port: 0, dst_port: 0
-Path MTU: 9152
-Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
---- --- ----------- --------------- --------------- --------------- ---------------
-1   1   hosts-11                                                    swp1.1008
-    2   mlx-2700-03 swp3s1
---- --- ----------- --------------- --------------- --------------- ---------------
-```
-
-## Monitor Layer 2 Drops on Mellanox Switches
-
-The *What Just Happened* (WJH) feature, available on Mellanox switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. You must have Cumulus Linux 4.0.0 or later and NetQ 2.4.0 or later to take advantage of this feature.
-
-When WJH capabilities are combined with Cumulus Linux 4.0.0 and NetQ 2.4.0, giving you the ability to hone in on losses, anywhere in the fabric, from a single management console. You can:
-
-- View any current or historic drop information, including the reason for the drop
-- Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network
-
-{{%notice info%}}
-By default, Cumulus Linux 4.0.0 provides the NetQ 2.3.1 Agent and CLI. If you installed Cumulus Linux 4.0.0 on your Mellanox switch, you need to upgrade the NetQ Agent and optionally the CLI to release 2.4.0 or later.
-
-```
-cumulus@<hostname>:~$ sudo apt-get update
-cumulus@<hostname>:~$ sudo apt-get install -y netq-agent
-cumulus@<hostname>:~$ netq config restart agent
-cumulus@<hostname>:~$ sudo apt-get install -y netq-apps
-cumulus@<hostname>:~$ netq config restart cli
-```
-
-{{%/notice%}}
-
-### Configure the WJH Feature
-
-WJH is enabled by default on Mellanox switches and no configuration is required in Cumulus Linux 4.0.0; however, you must enable the NetQ Agent to collect the data in NetQ 2.4.0.
-
-To enable WJH in NetQ:
-
-1. Configure the NetQ Agent on the Mellanox switch.
-
-```
-cumulus@switch:~$ netq config add agent wjh
-```
-
-2. Restart the NetQ Agent to start collecting the WJH data.
-
-```
-cumulus@switch:~$ netq config restart agent
-```
-
-When you are finished viewing the WJH metrics, you might want to disable the NetQ Agent to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.
-
-{{%notice note%}}
-Using *wjh_dump.py* on a Mellanox platform that is running Cumulus Linux 4.0 and the NetQ 2.4.0 agent causes the NetQ WJH client to stop receiving packet drop call backs. To prevent this issue, run *wjh_dump.py* on a different system than the one where the NetQ Agent has WJH enabled, or disable *wjh_dump.py* and restart the NetQ Agent (run `netq config restart agent`).
-{{%/notice%}}
-
-### View What Just Happened Metrics
-
-View layer 2 drop statistics using the `netq show wjh-drop` NetQ CLI command. The full syntax for this command is:
-
-```
-netq [<hostname>] show wjh-drop <text-drop-type>] [ingress-port <text-ingress-port>] [reason <text-reason>] [src-ip <text-src-ip>] [dst-ip <text-dst-ip>] [proto <text-proto>] [src-port <text-src-port>] [dst-port <text-dst-port>] [src-mac <text-src-mac>] [dst-mac <text-dst-mac>] [egress-port <text-egress-port>;] [traffic-class <text-traffic-class>] [rule-id-acl <text-rule-id-acl>] [between <text-time> and <text-endtime>] [around <text-time>] [json]
-```
-
-This example shows the drops seen at layer 2 across the network:
-
-```
-cumulus@mlx-2700-03:mgmt:~$ netq show wjh-drop l2
-Matching wjh records:
-Hostname          Ingress Port             Reason                                        Agg Count          Src Ip           Dst Ip           Proto  Src Port         Dst Port         Src Mac            Dst Mac            First Timestamp                Last Timestamp
------------------ ------------------------ --------------------------------------------- ------------------ ---------------- ---------------- ------ ---------------- ---------------- ------------------ ------------------ ------------------------------ ----------------------------
-mlx-2700-03       swp1s2                   Port loopback filter                          10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  0c:ff:ff:ff:ff:ff  Mon Dec 16 11:54:15 2019       Mon Dec 16 11:54:15 2019
-mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 27.0.0.19        27.0.0.22        0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:53:17 2019       Mon Dec 16 11:53:17 2019
-mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 0.0.0.0          0.0.0.0          0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:40:44 2019       Mon Dec 16 11:40:44 2019
-```

@@ -1999,6 +1999,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18192</td>
 <td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
 <td>3.7.11-3.7.13</td>
@@ -5129,6 +5223,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18192</td>
 <td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
 <td>3.7.11-3.7.13</td>
@@ -7846,6 +8034,100 @@ To work around this issue, correct the bridge VIDs and restart switchd or delete
 <td>CM-19454</td>
 <td><p>When you use NCLU to bring a bond admin down (net add bond &lt;bond&gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.<br/>
 To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
 <td>3.5.0-3.7.13</td>
 <td></td>
 </tr>
@@ -11042,6 +11324,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18727</td>
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
@@ -13496,6 +13872,100 @@ To work around this issue, correct the bridge VIDs and restart switchd or delete
 <td>CM-19454</td>
 <td><p>When you use NCLU to bring a bond admin down (net add bond &lt;bond&gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.<br/>
 To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
 <td>3.5.0-3.7.13</td>
 <td></td>
 </tr>
@@ -17097,6 +17567,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18727</td>
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
@@ -19965,6 +20529,100 @@ To work around this issue, correct the bridge VIDs and restart switchd or delete
 <td>CM-19454</td>
 <td><p>When you use NCLU to bring a bond admin down (net add bond &lt;bond&gt; link down), the bond interface goes into admin down state but the switch ports enslaved to the bond remain UP. If you are using bond-lacp-bypass-allow or balance-xor mode, the host might continue to send traffic. This traffic will be dropped because although the bond slaves are UP, they are not members of the bridge.<br/>
 To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
 <td>3.5.0-3.7.13</td>
 <td></td>
 </tr>
@@ -23587,6 +24245,100 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.13</td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18727</td>
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
@@ -26587,6 +27339,100 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.13</td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18727</td>
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
@@ -29399,6 +30245,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bundled with Cumulus Linux in a future release.</p></td>
 <td>3.4.3-3.7.6</td>
 <td>3.7.7-3.7.13</td>
+</tr>
+<tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-18727</td>
@@ -32490,6 +33430,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bundled with Cumulus Linux in a future release.</p></td>
 <td>3.4.3-3.7.6</td>
 <td>3.7.7-3.7.13</td>
+</tr>
+<tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-18989</td>
@@ -35752,6 +36786,100 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.13</td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18989</td>
 <td><p>OSFP might improperly determine the LSA recency (CVE-2017-3224).</p></td>
 <td>3.4.3-3.7.3</td>
@@ -38901,6 +40029,100 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.13</td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18989</td>
 <td><p>OSFP might improperly determine the LSA recency (CVE-2017-3224).</p></td>
 <td>3.4.3-3.7.3</td>
@@ -41701,6 +42923,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bundled with Cumulus Linux in a future release.</p></td>
 <td>3.4.3-3.7.6</td>
 <td>3.7.7-3.7.13</td>
+</tr>
+<tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-18989</td>

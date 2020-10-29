@@ -16,7 +16,7 @@ In Cumulus Linux 4.0, MAC learning is disabled and ARP/ND suppression is enabled
 
 To enable EVPN between {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} neighbors, add the address family *evpn* to the existing neighbor `address-family` activation command.
 
-For a non-VTEP device that is merely participating in EVPN route exchange, such as a spine switch where the network deployment uses hop-by-hop eBGP or the switch is acting as an iBGP route reflector, activating the interface for the EVPN address family is the fundamental configuration needed in {{<link url="FRRouting-Overview" text="FRRouting">}}.
+For a non-VTEP device that is merely participating in EVPN route exchange, such as a spine switch where the network deployment uses hop-by-hop eBGP or the switch is acting as an iBGP route reflector, activating the interface for the EVPN address family is the fundamental configuration needed in {{<link url="FRRouting" text="FRRouting">}}.
 
 The other BGP neighbor address family specific configurations supported for EVPN are `allowas-in` and `route-reflector-client`.
 

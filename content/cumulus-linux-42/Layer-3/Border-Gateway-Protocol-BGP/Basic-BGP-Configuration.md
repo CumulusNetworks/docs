@@ -53,7 +53,7 @@ To configure BGP numbered on a BGP node, you need to:
 3. Specify the BGP neighbor to which you want to distribute routing information.
 
     ```
-    cumulus@leaf01:~$ net add bgp neighbor 169.254.10.101 remote-as external
+    cumulus@leaf01:~$ net add bgp neighbor 10.0.1.0 remote-as external
     ```
 
     For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
@@ -111,7 +111,7 @@ To configure BGP numbered on a BGP node, you need to:
 3. Specify the BGP neighbor to which you want to distribute routing information.
 
     ```
-    cumulus@spine01:~$ net add bgp neighbor 169.254.10.1 remote-as external
+    cumulus@spine01:~$ net add bgp neighbor 10.0.1.1 remote-as external
     ```
 
     For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
@@ -166,7 +166,7 @@ To configure BGP numbered on a BGP node, you need to:
 3. Specify where to distribute routing information:
 
    ```
-   leaf01(config-router)# neighbor 169.254.10.101 remote-as external
+   leaf01(config-router)# neighbor 10.0.1.0 remote-as external
    ```
 
    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
@@ -188,7 +188,7 @@ To configure BGP numbered on a BGP node, you need to:
     leaf01(config-router-af)# end
     leaf01# write memory
     leaf01# exit
-    cumulus@switch:~$
+    cumulus@leaf01:~$
     ```
 
     IPv6 prefix example:
@@ -221,7 +221,7 @@ To configure BGP numbered on a BGP node, you need to:
 3. Specify where to distribute routing information:
 
     ```
-    spine01(config-router)# neighbor 169.254.10.1 remote-as external
+    spine01(config-router)# neighbor 10.0.1.1 remote-as external
     ```
 
    For BGP to advertise IPv6 prefixes, you need to run an additional command to activate the BGP neighbor under the IPv6 address family. The IPv4 address family is enabled by default and the `activate` command is not required for IPv4 route exchange.
@@ -275,7 +275,7 @@ cumulus@leaf01:~$  sudo cat /etc/frr/frr.conf
 ...
 router bgp 65101
  bgp router-id 10.10.10.1
- neighbor 169.254.10.101 remote-as external
+ neighbor 10.0.1.0 remote-as external
  !
  address-family ipv4 unicast
   network 10.10.10.1/32
@@ -293,7 +293,7 @@ cumulus@spine01:~$  sudo cat /etc/frr/frr.conf
 ...
 router bgp 65199
  bgp router-id 10.10.10.101
- neighbor 169.254.10.1 remote-as external
+ neighbor 10.0.1.1 remote-as external
  !
  address-family ipv4 unicast
   network 10.10.10.101/32

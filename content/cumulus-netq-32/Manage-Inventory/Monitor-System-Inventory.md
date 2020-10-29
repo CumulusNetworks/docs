@@ -52,7 +52,7 @@ The Events view provides all available parameter data about all events in the sy
 
 The MACs (media access control addresses) view provides all available parameter data about all MAC addresses in the system.
 
-{{<figure src="/images/netq/main-menu-ntwk-macs-241.png" width="700">}}
+{{<figure src="/images/netq/main-menu-ntwk-macs-320.png" width="700">}}
 
 | Parameter | Description |
 | --- | --- |

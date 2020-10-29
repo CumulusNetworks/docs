@@ -107,7 +107,7 @@ iface bond2
 
 3. Add a unique MLAG ID (clag-id) to each bond.
 
-   You must specify a unique MLAG ID (clag-id) for every dual-connected bond on each peer switch so that switches know which links are dual-connected or are connected to the same host or switch. The value must be between 1 and 65535 and must be the same on both peer switches.
+   You must specify a unique MLAG ID (clag-id) for every dual-connected bond on each peer switch so that switches know which links are dual-connected or are connected to the same host or switch. The value must be between 1 and 65535 and must be the same on both peer switches. A value of 0 disables MLAG on the bond.
 
    The example commands below add an MLAG ID of 1 to bond1 and 2 to bond2:
 
@@ -151,6 +151,8 @@ iface bond2
 
 4. Add the bonds you created above to a bridge. The example commands below add bond1 and bond2 to a VLAN-aware bridge.
 
+   On Mellanox switches, you must add **all** VLANs configured on the MLAG bond to the bridge so that traffic to the downstream device connected in MLAG is redirected successfully over the peerlink in case of an MLAG bond failure.
+
    {{< tabs "TabID150 ">}}
 
 {{< tab "NCLU Commands ">}}
@@ -187,7 +189,7 @@ iface bridge
    - Cumulus Networks provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network.
       - Do not to use a multicast MAC address.
       - Do not use the same MAC address for different MLAG pairs; make sure you specify a different MAC address for each MLAG pair in the network.  
-   - The backup IP address is any layer 3 backup interface for the peer link, which is used in case the peer link goes down. The backup IP address is **required** and **must** be different than the peer link IP address. It must be reachable by a route that does not use the peer link and it must be in the same network namespace as the peer link IP address. Cumulus Networks recommends you use the loopback or management IP address of the switch.
+   - The backup IP address is any layer 3 backup interface for the peer link, which is used in case the peer link goes down. The backup IP address is **required** and **must** be different than the peer link IP address. It must be reachable by a route that does not use the peer link. Cumulus Networks recommends you use the loopback or management IP address of the switch.
       {{< expand "Loopback or Management IP Address?" >}}
 - If your MLAG configuration has **bridged uplinks** (such as a campus network or a large, flat layer 2 network), use the peer switch **eth0** address. When the peer link is down, the secondary switch routes towards the eth0 address using the OOB network (provided you have implemented an OOB network).
 - If your MLAG configuration has **routed uplinks** (a modern approach to the data center fabric network), use the peer switch **loopback** address. When the peer link is down, the secondary switch routes towards the loopback address using uplinks (towards the spine layer). If the primary switch is also suffering a more significant problem (for example, `switchd` is unresponsive or stopped), the secondary switch eventually promotes itself to primary and traffic now flows normally. 

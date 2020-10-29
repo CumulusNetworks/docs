@@ -7,6 +7,39 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32006</td>
+<td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31929</td>
+<td><p>VXLAN encapsulated traffic is not routed to the next hop because the destination VTEP IP address is mis-programmed on the switch, which decapsulates the traffic unexpectedly. <br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -122,13 +155,6 @@ To work around this issue, restart FRR with the sudo systemctl restart frr.servi
 <td></td>
 </tr>
 <tr>
-<td>CM-31504</td>
-<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
-To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
-<td>3.7.12-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -163,6 +189,12 @@ Fixed: 1.5.6-5+deb8u1</p></td>
 <td>CM-31420</td>
 <td><p>On a Cumulus Linux switch with high load averages, cl-support might end without creating a tar file  and leave a temporary directory in /var/support undeleted. Subsequent runs of cl-support do not clean up this directory.</p></td>
 <td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31412</td>
+<td><p>On the Dell N3248PXE switch, RJ45 fixed copper ports that auto-negotiate with a 100M or 10M neighbor incorrectly negotiate a half-duplex link that generates errors. Half duplex modes are not supported on this platform.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -225,22 +257,20 @@ Fixed: 1.6.2-3+deb8u4</p></td>
 </tr>
 <tr>
 <td>CM-31294</td>
-<td><p>When all the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
+<td><p>When the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
 <ul>
 	<li>clagd uses an IPv6 link-local address (LLA) to establish the TCP connection (the clagd-peer-ip linklocal command configures an IPv6 LLA connection)</li>
-	<li>bridge-ports has peerlink as the first member port (the bridge inherits the MAC address of peerlink bond. VLAN interfaces inherit the MAC address of the bridge. For example:
-
-auto bridge
-iface bridge
-        bridge-vlan-aware yes
-        bridge-ports peerlink-3 hostbond4 hostbond5 regex vx-.* regex vni.*
-
-</li>
-	<li>You delete the SVI (layer 2 VNI)<br/>
-This issue occurs because the hardware stores one entry per VRF to represent the IPv6 LLA. The hardware entry for the LLA is removed when another interface is deleted because the software interfaces are represented by a single entity in hardware. As a result, packets destined to the local IPv6 LLA address are received on the port but do not get forwarded to CPU for further processing.<br/>
-To workaround this issue, use IPv4 addresses under peerlink.4094 and configure clagd to peer on IPv4 addresses.</li>
 </ul>
-</td>
+
+
+<ul>
+	<li>Subsequent VLAN changes are made to VLAN sub-interfaces or adding or removing SVIs</li>
+</ul>
+
+
+<p>This issue occurs because the hardware stores one entry per VRF to represent the IPv6 LLA. The hardware entry for the LLA is removed when another interface is changed because the software interfaces are represented by a single entity in hardware. As a result, packets destined to the local IPv6 LLA address are received on the port but do not get forwarded to CPU for further processing.</p>
+
+<p>To workaround this issue, use IPv4 addresses under peerlink.4094 and configure clagd to peer on IPv4 addresses.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
@@ -1969,6 +1999,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18192</td>
 <td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
 <td>3.7.11-3.7.13</td>
@@ -2579,6 +2703,39 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32006</td>
+<td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31929</td>
+<td><p>VXLAN encapsulated traffic is not routed to the next hop because the destination VTEP IP address is mis-programmed on the switch, which decapsulates the traffic unexpectedly. <br/>
+To work around this issue, restart switchd.</p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-31863</td>
 <td><p>CVE-2020-14355: Multiple buffer overflow vulnerabilities were found in the QUIC image decoding process of the SPICE remote display system, before spice-0.14.2-1.<br/>
 Both the SPICE client (spice-gtk) and server are affected by these flaws. These flaws allow a malicious client or server to send specially crafted messages that, when processed by the QUIC image compression algorithm, result in a process crash or potential code execution.<br/>
@@ -2672,13 +2829,6 @@ To work around this issue, restart FRR with the sudo systemctl restart frr.servi
 <td></td>
 </tr>
 <tr>
-<td>CM-31504</td>
-<td><p>On the the Dell N3248-PXE switch, when you insert two PSUs at different times, the newly inserted PSU is detected as OK but the fan and temp sensors are ABSENT.<br/>
-To work around this issue, remove power to both PSUs at the same time, then reinsert power simultaneously.</p></td>
-<td>3.7.12-3.7.13</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31475</td>
 <td><p>The following vulnerabilities have been announced in QEMU packages:<br/>
 CVE-2019-20382: Memory leak in zrle_compress_data in ui/vnc-enc-zrle.c during a VNC disconnect operation because libz is misused, resulting in a situation where memory allocated in deflateInit2 is not freed in deflateEnd.<br/>
@@ -2707,6 +2857,12 @@ CVE-2019-20916: When an URL was given in an install command, as a Content-Dispos
 Vulnerable: &lt;= 1.5.6-5<br/>
 Fixed: 1.5.6-5+deb8u1</p></td>
 <td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31412</td>
+<td><p>On the Dell N3248PXE switch, RJ45 fixed copper ports that auto-negotiate with a 100M or 10M neighbor incorrectly negotiate a half-duplex link that generates errors. Half duplex modes are not supported on this platform.</p></td>
+<td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
 <tr>
@@ -2762,22 +2918,20 @@ Fixed: 1.6.2-3+deb8u4</p></td>
 </tr>
 <tr>
 <td>CM-31294</td>
-<td><p>When all the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
+<td><p>When the following conditions exist, clagd might fail to establish a TCP control session across the subinterface (such as, peerlink.4094): </p>
 <ul>
 	<li>clagd uses an IPv6 link-local address (LLA) to establish the TCP connection (the clagd-peer-ip linklocal command configures an IPv6 LLA connection)</li>
-	<li>bridge-ports has peerlink as the first member port (the bridge inherits the MAC address of peerlink bond. VLAN interfaces inherit the MAC address of the bridge. For example:
-
-auto bridge
-iface bridge
-        bridge-vlan-aware yes
-        bridge-ports peerlink-3 hostbond4 hostbond5 regex vx-.* regex vni.*
-
-</li>
-	<li>You delete the SVI (layer 2 VNI)<br/>
-This issue occurs because the hardware stores one entry per VRF to represent the IPv6 LLA. The hardware entry for the LLA is removed when another interface is deleted because the software interfaces are represented by a single entity in hardware. As a result, packets destined to the local IPv6 LLA address are received on the port but do not get forwarded to CPU for further processing.<br/>
-To workaround this issue, use IPv4 addresses under peerlink.4094 and configure clagd to peer on IPv4 addresses.</li>
 </ul>
-</td>
+
+
+<ul>
+	<li>Subsequent VLAN changes are made to VLAN sub-interfaces or adding or removing SVIs</li>
+</ul>
+
+
+<p>This issue occurs because the hardware stores one entry per VRF to represent the IPv6 LLA. The hardware entry for the LLA is removed when another interface is changed because the software interfaces are represented by a single entity in hardware. As a result, packets destined to the local IPv6 LLA address are received on the port but do not get forwarded to CPU for further processing.</p>
+
+<p>To workaround this issue, use IPv4 addresses under peerlink.4094 and configure clagd to peer on IPv4 addresses.</p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
@@ -5069,6 +5223,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18192</td>
 <td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
 <td>3.7.11-3.7.13</td>
@@ -5404,6 +5652,26 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -7770,6 +8038,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18192</td>
 <td><p>In FRR, bgp_snmp does not show all BGP peers when peer groups used.</p></td>
 <td>3.7.11-3.7.13</td>
@@ -8372,6 +8734,26 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -10942,6 +11324,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18727</td>
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
@@ -11039,6 +11515,26 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -13380,6 +13876,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18727</td>
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
@@ -14114,6 +14704,26 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -16957,6 +17567,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18727</td>
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
@@ -17061,6 +17765,26 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -19809,6 +20533,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 <td></td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18727</td>
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
@@ -20369,6 +21187,26 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -23407,6 +24245,100 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.13</td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18727</td>
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
@@ -23627,6 +24559,26 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -26387,6 +27339,100 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.13</td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18727</td>
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
@@ -26574,6 +27620,26 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -29181,6 +30247,100 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.13</td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18727</td>
 <td><p>On the Mellanox SN-2100 switch, unicast packets are counted in multicast queue counters.</p></td>
 <td>3.4.3-3.7.10</td>
@@ -29579,6 +30739,26 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -32252,6 +33432,100 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.13</td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18989</td>
 <td><p>OSFP might improperly determine the LSA recency (CVE-2017-3224).</p></td>
 <td>3.4.3-3.7.3</td>
@@ -32743,6 +34017,26 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -35492,6 +36786,100 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.13</td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18989</td>
 <td><p>OSFP might improperly determine the LSA recency (CVE-2017-3224).</p></td>
 <td>3.4.3-3.7.3</td>
@@ -36029,6 +37417,26 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -38621,6 +40029,100 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.7-3.7.13</td>
 </tr>
 <tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-18989</td>
 <td><p>OSFP might improperly determine the LSA recency (CVE-2017-3224).</p></td>
 <td>3.4.3-3.7.3</td>
@@ -38819,6 +40321,26 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32011</td>
+<td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
+CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
+Function.cc<br/>
+CVE-2019-14494: There is a divide-by-zero error in the function<br/>
+SplashOutputDev::tilingPatternFill at SplashOutputDev.cc.<br/>
+Vulnerable: &lt;= 0.26.5-2+deb8u13<br/>
+Fixed: 0.26.5-2+deb8u14</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32010</td>
+<td><p>CVE-2020-27153: There was a double-free vulnerability in BlueZ, a suite of Bluetooth tools, utilities and daemons. A remote attacker could potentially cause a denial of service or code execution during service discovery, due to a redundant disconnect management (MGMT) event.<br/>
+Vulnerable: &lt;= 5.43-2+deb9u2~deb8u1<br/>
+Fixed: 5.43-2+deb9u2~deb8u2</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-31863</td>
@@ -41401,6 +42923,100 @@ To work around this issue, use the sudo ifdown &lt;bondname&gt; command.</p></td
 The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bundled with Cumulus Linux in a future release.</p></td>
 <td>3.4.3-3.7.6</td>
 <td>3.7.7-3.7.13</td>
+</tr>
+<tr>
+<td>CM-19006</td>
+<td><p>On the Broadcom Trident II+, Trident 3, and Maverick based switch, in an external VXLAN routing environment, when a lookup is done on the external-facing switch (exit/border leaf) after VXLAN decapsulation, the switch does not rewrite the MAC addresses and TTL; for through traffic, packets are dropped by the next hop instead of correctly routing from a VXLAN overlay network into a non-VXLAN external network (for example, to the Internet). </p>
+
+<p> This applies to all forms of VXLAN routing (centralized, asymmetric and symmetric) and affects all traffic from VXLAN overlay hosts that need to be routed after VXLAN decapsulation on an exit/border leaf, including: </p>
+<ul>
+	<li>Traffic destined to external networks (through traffic)</li>
+	<li>Traffic destined to the exit leaf SVI address</li>
+</ul>
+
+
+<p> To work around this issue, on the exit leaf, modify the external-facing interface for each VLAN subinterface by creating a temporary VNI and associating it with the existing VLAN ID. <br/>
+ For example, if the expected interface configuration is: </p>
+ 
+ 
+ auto swp3.2001 
+ iface swp3.2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ # where swp3 is the external facing port and swp3.2001 is the VLAN subinterface 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports vx-4001 
+ bridge-vids 4001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> Modify the configuration as follows: </p>
+ 
+ 
+ auto swp3 
+ iface swp3 
+ bridge-access 2001 
+ # associate the port (swp3) with bridge 2001 
+ 
+ auto bridge 
+ iface bridge 
+ bridge-vlan-aware yes 
+ bridge ports swp3 vx-4001 vx-16000000 
+ bridge-vids 4001 2001 
+ # where vx-4001 is the existing VNI and vx-16000000 is a new temporary VNI 
+ # this is now bridging the port (swp3), the VNI (vx-4001), 
+ # and the new temporary VNI (vx-16000000) 
+ # the bridge VLAN IDs are now 4001 and 2001 
+ 
+ auto vlan2001 
+ iface vlan2001 
+ vlan-id 2001 
+ vrf vrf1 
+ address 45.0.0.2/24 
+ vlan-raw-device bridge 
+ # create a VLAN 2001 with the associated VRF and IP address 
+ 
+ auto vx-16000000 
+ iface vx-16000000 
+ vxlan-id 16000000 
+ bridge-access 2001 
+ &lt;... usual vxlan config ...&gt; 
+ # associate the temporary VNI (vx-16000000) with bridge 2001 
+ 
+ auto vx-4001 
+ iface vx-4001 
+ vxlan-id 4001 
+ &lt;... usual vxlan config ...&gt; 
+ bridge-access 4001 
+ # where vnid 4001 represents the L3 VNI 
+ 
+ auto vlan4001 
+ iface vlan4001 
+ vlan-id 4001 
+ vlan-raw-device bridge 
+ vrf vrf1 
+ 
+ 
+<p> If an MLAG pair is used instead of a single exit/border leaf, the same temporary VNIs should be added on both switches of the MLAG pair. <br/>
+  on the Broadcom Trident 3 switch. <br/>
+ Note: This issue still exists on the Broadcom Trident II+ and Maverick-based switch.</p></td>
+<td>3.5.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-18989</td>

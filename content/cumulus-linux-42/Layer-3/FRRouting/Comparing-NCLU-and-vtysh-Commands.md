@@ -13,7 +13,7 @@ The following table shows the FRRouting commands and the equivalent Cumulus Linu
 | Display the routing table | <pre>cumulus@switch:~$ net show route</pre> | <pre>switch# show ip route</pre> |
 | Create a new neighbor | <pre>cumulus@switch:~$ net add bgp autonomous-system 65002<br>cumulus@switch:~$ net add bgp neighbor 14.0.0.22</pre> | <pre>switch(config)# router bgp 65002<br>switch(config-router)# neighbor 14.0.0.22</pre> |
 | Redistribute routing information from static route entries into RIP tables | <pre>cumulus@switch:~$ net add bgp redistribute static</pre> | <pre>switch(config)# router bgp 65002<br>switch(config-router)# redistribute static</pre> |
-| Define a {{<link url="Routing" text="static route">}} | <pre>cumulus@switch:~$ net add routing route 155.1.2.20/24 bridge 45</pre> | <pre>switch(config)# ip route 155.1.2.20/24 bridge 45</pre> |
+| Define a {{<link url="Static-Routing" text="static route">}} | <pre>cumulus@switch:~$ net add routing route 155.1.2.20/24 bridge 45</pre> | <pre>switch(config)# ip route 155.1.2.20/24 bridge 45</pre> |
 | Configure an IPv6 address | <pre>cumulus@switch:~$ net add interface swp3 ipv6 address 3002:2123:1234:1abc::21/64</pre> | <pre>switch(config)# int swp3<br>switch(config-if)# ipv6 address 3002:2123:1234:1abc::21/64</pre> |
 | Enable topology checking ({{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}}) |<pre>cumulus@switch:~$ net add routing ptm-enable</pre> | <pre>switch(config)# ptm-enable</pre> |
 |Configure {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} in IPv6 network discovery for an interface|<pre>cumulus@switch:~$ sudo cl-ra interface swp3 set mtu 9000</pre> | <pre>switch(config)# int swp3<br>switch(config-if)# ipv6 nd mtu 9000</pre> |

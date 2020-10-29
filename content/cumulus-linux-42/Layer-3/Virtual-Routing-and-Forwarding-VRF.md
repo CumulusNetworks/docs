@@ -442,9 +442,9 @@ Do not use the kernel commands; they are no longer supported and might cause iss
 
 ## FRRouting Operation in a VRF
 
-In Cumulus Linux, {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}, {{<link url="Open-Shortest-Path-First-OSPF" text="OSPFv2">}} and {{<link url="Routing" text="static routing">}} (IPv4 and IPv6) are supported within a VRF context. Various FRRouting routing constructs, such as routing tables, nexthops, router-id, and related processing are also VRF-aware.
+In Cumulus Linux, {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="OSPFv2">}} and {{<link url="Static-Routing" text="static routing">}} (IPv4 and IPv6) are supported within a VRF context. Various FRRouting routing constructs, such as routing tables, nexthops, router-id, and related processing are also VRF-aware.
 
-{{<link url="FRRouting-Overview" text="FRRouting">}} learns of VRFs provisioned on the system as well as interface attachment to a VRF through notifications from the kernel.
+{{<link url="FRRouting" text="FRRouting">}} learns of VRFs provisioned on the system as well as interface attachment to a VRF through notifications from the kernel.
 
 You can assign switch ports to each VRF table with an interface-level configuration, and BGP instances can be assigned to the table with a BGP router-level command.
 

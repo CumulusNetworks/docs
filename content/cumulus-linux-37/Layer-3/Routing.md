@@ -101,14 +101,6 @@ iface swp3
     post-up ip route add 203.0.113.0/24 via 198.51.100.2
 ```
 
-{{%notice note%}}
-
-If an IPv6 address is assigned to a DOWN interface, the associated route is still installed into the routing table. The type of IPv6 address doesn't matter: link local, site local and global all exhibit the same problem.
-
-If the interface is bounced up and down, then the routes are no longer in the route table.
-
-{{%/notice%}}
-
 The `ip route` command allows manipulating the kernel routing table directly from the Linux shell. See `man ip(8)` for details. FRRouting monitors the kernel routing table changes and updates its own routing table accordingly.
 
 To display the routing table:

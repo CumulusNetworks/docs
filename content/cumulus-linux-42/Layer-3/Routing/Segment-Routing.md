@@ -20,7 +20,7 @@ Segment routing is MPLS for the data plane **only**. In this EA release, Cumulus
 
 - MPLS label edge router (LER) functionality for IPv4 and IPv6 routing with {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}}. An ingress LER first adds an MPLS label to an IP packet. An egress LER removes the outermost MPLS label (also called *popping* the label).
 - MPLS label switch router (LSR) functionality with ECMP. The LSR receives a packet with a label and forwards it based on that label.
-- {{<link url="FRRouting-Overview" text="FRRouting">}} support for MPLS transit label switched paths (LSPs) and labeled routes (LER), both static routes and routes using BGP labeled-unicast (LU).
+- {{<link url="FRRouting" text="FRRouting">}} support for MPLS transit label switched paths (LSPs) and labeled routes (LER), both static routes and routes using BGP labeled-unicast (LU).
 - FRR support for BGP/MPLS segment routing based on {{<exlink url="https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-prefix-sid/" text="draft-ietf-idr-bgp-prefix-sid-06">}}.
 
 ## Configure Segment Routing

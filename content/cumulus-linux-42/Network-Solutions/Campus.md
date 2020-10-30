@@ -18,7 +18,7 @@ These features work in conjunction with the following core Cumulus Linux functio
 - Automation/{{<link url="Zero-Touch-Provisioning-ZTP" text="zero touch provisioning">}}
 - {{<link url="Switch-Port-Attributes#port-speed-and-duplex-mode" text="Half duplex mode">}}
 - {{<link url="Layer-2">}}, including {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} and {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
-- {{<link url="Layer-3">}}, including {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}}, {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}} and {{<link url="Routing#static-multicast-routes" text="multicast">}}
+- {{<link url="Layer-3">}}, including {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} and {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}
 - {{<link url="Buffer-and-Queue-Management" text="QoS">}}
 
 ## Related Information

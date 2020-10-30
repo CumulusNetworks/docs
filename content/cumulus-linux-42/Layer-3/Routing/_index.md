@@ -1,7 +1,7 @@
 ---
 title: Routing
 author: Cumulus Networks
-weight: 730
+weight: 720
 toc: 3
 ---
 Network routing is the process of selecting a path across one or more networks. When the switch receives a packet, it reads the packet headers to find out its intended destination. It then determines where to route the packet based on information in its routing tables, which can be static or dynamic.

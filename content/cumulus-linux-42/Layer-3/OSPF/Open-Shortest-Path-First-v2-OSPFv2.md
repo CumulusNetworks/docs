@@ -6,63 +6,509 @@ toc: 3
 ---
 This topic describes OSPFv2, which is a {{<exlink url="http://en.wikipedia.org/wiki/Link-state_routing_protocol" text="link-state routing protocol">}} for IPv4. For IPv6 commands, refer to {{<link url="Open-Shortest-Path-First-v3-OSPFv3">}}.
 
-## OSPFv2 Configuration
+## Basic OSPFv2 Configuration
 
-Before you configure OSPF, you need to identify:
+You can configure OSPF using either numbered interfaces or unnumbered interfaces. Both methods are described below.
 
-- Which router has the router ID
-- With which device the router communicates
-- What information to advertise (the prefix reachability)
+### OSPF Numbered
 
-To configure OSPF, you specify the router ID, IP subnet prefix, and area address. All the interfaces on the router whose IP address matches the `network` subnet are put into the specified area. The OSPF process starts bringing up peering adjacency on those interfaces. It also advertises the interface IP addresses formatted into LSAs (of various types) to the neighbors for proper reachability.
+To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. All the interfaces on the switch with an IP address that matches the `network` subnet are put into the specified area. The OSPF process starts bringing up peering adjacency on those interfaces. It also advertises the interface IP addresses formatted into LSAs to the neighbors for proper reachability.
 
-If you do not want to bring up OSPF adjacency on certain interfaces, you can configure the interfaces as *passive interfaces*. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, the corresponding IP addresses still need to be advertised to neighbors.
+If you do not want to bring up OSPF adjacency on certain interfaces, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or recieve OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, the corresponding IP addresses still need to be advertised to neighbors.
 
-{{%notice note%}}
+The subnets can be as inclusive as possible to cover the highest number of interfaces on the switch that run OSPF.
 
-The subnets can be as inclusive as possible to cover the highest number of interfaces on the router that run OSPF.
+The following example commands configure OSPF numbered on leaf01 and spine01.
 
-{{%/notice%}}
+{{< img src = "/images/cumulus-linux/ospf-numbered.png" >}}
 
-The example commands below perform the following configuration:
+| leaf01 | spine01 |
+| ------ | ------- |
+| <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address on swp51 is 10.0.1.0/31</li><li>The router ID is 10.10.10.1</li><li>All the interfaces on the switch with an IP address that matches subnet 10.10.10.1/32 and and swp51 with IP address 10.0.1.0/31 are in area 0</li><li>swp1 and swp2 are passive interfaces</li></ul> | <ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address on swp1 is 10.0.1.1/31</li><li>The router ID is 10.10.10.101</li><li>All interfaces on the switch with an IP address that matches subnet 10.10.10.101/32 and swp1 with IP address 10.0.1.1/31 are in area 0.</li></ul> |
 
-- Set the router ID to 0.0.0.1
-- Put all the interfaces on the router whose IP address matches subnet 10.0.0/16 into area 0.0.0.0.
-- Put all interfaces on the router whose IP address matches subnet 192.0.2.0/16 into area 0.0.0.1.
-- Set swp10 and swp11 as passive interfaces.
-
-{{< tabs "TabID58 ">}}
+{{< tabs "TabID45 ">}}
 
 {{< tab "NCLU Commands ">}}
 
-```
-cumulus@switch:~$ net add ospf router-id 0.0.0.1
-cumulus@switch:~$ net add ospf network 10.0.0.0/16 area 0.0.0.0
-cumulus@switch:~$ net add ospf network 192.0.2.0/16 area 0.0.0.1
-cumulus@switch:~$ net add ospf passive-interface swp10
-cumulus@switch:~$ net add ospf passive-interface swp11
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
+{{< tabs "TabID49 ">}}
 
-{{%notice note%}}
-
-Instead of configuring the IP subnet prefix with an area address per network with the `net add ospf` `network` command, you can configure OSPF *per interface* with the `net add interface` command. However, you cannot use both configuration methods at the same time. Here is an example of configuring OSPF per interface:
+{{< tab "leaf01 ">}}
 
 ```
-cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
+cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ net add interface swp51 ip address 10.0.1.0/31
+cumulus@leaf01:~$ net add ospf router-id 10.10.10.1
+cumulus@leaf01:~$ net add ospf network 10.10.10.1/32 area 0
+cumulus@leaf01:~$ net add ospf network 10.0.1.0/31 area 0
+cumulus@leaf01:~$ net add ospf passive-interface swp1
+cumulus@leaf01:~$ net add ospf passive-interface swp2
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
-{{%/notice%}}
+You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+
+```
+cumulus@leaf01:~$ net add ospf passive-interface default
+cumulus@leaf01:~$ net del ospf passive-interface swp51
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
+cumulus@spine01:~$ net add interface swp1 ip address 10.0.1.1/31
+cumulus@spine01:~$ net add ospf router-id 10.10.10.101
+cumulus@spine01:~$ net add ospf network 10.10.10.101/32 area 0
+cumulus@spine01:~$ net add ospf network 10.0.1.1/31 area 0
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
 
 You can use the `net add ospf` `passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
 
 ```
-cumulus@switch:~$ net add ospf passive-interface default
-cumulus@switch:~$ net del ospf passive-interface swp1
+cumulus@spine01:~$ net add ospf passive-interface default
+cumulus@spine01:~$ net del ospf passive-interface swp1
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+{{< tabs "TabID117 ">}}
+
+{{< tab "leaf01 ">}}
+
+1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+
+2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
+
+    ```
+    cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+    ...
+    auto lo
+    iface lo inet loopback
+       address 10.10.10.1/32
+
+    auto swp51
+    iface swp51
+       address 10.0.1.0/31
+    ...
+    ```
+
+3. Run the `ifreload -a` command to load the new configuration:
+
+    ```
+    cumulus@spine01:~$ sudo ifreload -a
+    ```
+
+4. From the vtysh shell, configure OSPF:
+
+    ```
+    cumulus@leaf01:~$ sudo vtysh
+
+    leaf01# configure terminal
+    leaf01(config)# router ospf
+    leaf01(config-router)# router-id 10.10.10.1
+    leaf01(config-router)# network 10.10.10.1/32 area 0
+    leaf01(config-router)# network 10.0.1.0/31 area 0
+    leaf01(config-router)# passive-interface swp1
+    leaf01(config-router)# passive-interface swp2
+    leaf01(config-router)# exit
+    leaf01(config)# exit
+    leaf01# write memory
+    leaf01# exit
+    cumulus@leaf01:~$
+    ```
+
+You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency only on certain interfaces:
+
+```
+leaf01(config)# router ospf
+leaf01(config-router)# passive-interface default
+leaf01(config-router)# no passive-interface swp51
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+
+2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp1:
+
+    ```
+    cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+    ...
+    auto lo
+    iface lo inet loopback
+       address 10.10.10.101/32
+
+    auto swp51
+    iface swp51
+       address 10.0.1.1/31
+    ...
+    ```
+
+3. Run the `ifreload -a` command to load the new configuration:
+
+    ```
+    cumulus@spine01:~$ sudo ifreload -a
+    ```
+
+4. From the vtysh shell, configure OSPF:
+
+    ```
+    cumulus@spine01:~$ sudo vtysh
+
+    spine01# configure terminal
+    spine01(config)# router ospf
+    spine01(config-router)# router-id 10.10.101.1
+    spine01(config-router)# network 10.10.10.101/32 area 0
+    spine01(config-router)# network 10.0.1.1/31 area 0
+    spine01(config-router)# exit
+    spine01(config)# exit
+    spine01# write memory
+    spine01# exit
+    cumulus@spine01:~$
+    ```
+
+You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency only on certain interfaces:
+
+```
+spine01(config)# router ospf
+spine01(config-router)# passive-interface default
+spine01(config-router)# no passive-interface swp1
+```
+
+To redistribute protocol routes, run the `redistribute <connected|bgp|zebra>` command. Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs). For example:
+
+```
+spine01(config)# router ospf
+spine01(config-router)# redistribute connected
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+{{< tabs "TabID204 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+...
+router ospf
+ ospf router-id 10.10.10.1
+ network 10.10.10.1/32 area 0
+ network 10.0.1.0/31 area 0
+ passive-interface swp1
+ passive-interface swp2
+...
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+...
+router ospf
+ ospf router-id 10.10.101.1
+ network 10.10.10.101/32 area 0
+ network 10.0.1.1/31 area 0
+...
+
+```
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### OSPF Unnumbered
+
+Unnumbered interfaces are interfaces without unique IP addresses; multiple interfaces share the same IP address. In OSPFv2, unnumbered interfaces reduce the links between routers into pure topological elements, which simplifies network configuration and reconfiguration. In addition, the routing database contains only the real networks, so the memory footprint is reduced and SPF is faster.
+
+To configure an unnumbered interface, take the IP address of another interface (called the *anchor*) and use that as the IP address of the unnumbered interface. The anchor is typically the loopback interface on the switch.
+
+{{%notice note%}}
+
+Unnumbered is supported with {{<link url="#interface-options" text="point-to-point interfaces">}} only.
+
+{{%/notice%}}
+
+The following example commands configure OSPF unnumbered on leaf01 and spine01.
+
+{{< img src = "/images/cumulus-linux/ospf-unnumbered.png" >}}
+
+| leaf01 | spine01 |
+| ------ | ------- |
+| <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address of the unnumbered interface (swp51) is 10.10.10.1/32</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface</li><ul>|<ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address of the unnumbered interface (swp1) is 10.10.10.101/32</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0</li><li>swp1 is a point-to-point interface</li><ul> |
+
+{{< tabs "TabID7248 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+{{< tabs "TabID252 ">}}
+
+{{< tab "leaf01 ">}}
+
+Configure the unnumbered interface:
+
+```
+cumulus@leaf01:~$ net add loopback lo ip address 10.10.10.1/32
+cumulus@leaf01:~$ net add interface swp51 ip address 10.10.10.1/32
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+Configure OSPF:
+
+```
+cumulus@leaf01:~$ net add ospf router-id 10.10.10.1
+cumulus@leaf01:~$ net add loopback lo ospf area 0
+cumulus@leaf01:~$ net add interface swp51 ospf area 0
+cumulus@leaf01:~$ net add ospf passive-interface swp1
+cumulus@leaf01:~$ net add ospf passive-interface swp2
+cumulus@leaf01:~$ net add interface swp51 ospf network point-to-point
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+You can use the `net add ospf` `passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+
+```
+cumulus@leaf01:~$ net add ospf passive-interface default
+cumulus@leaf01:~$ net del ospf passive-interface swp51
 ```
 
 To redistribute protocol routes, run the `net add ospf redistribute <connected|bgp|zebra>` command. Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs). For example:
+
+```
+cumulus@leaf01:~$ net add ospf redistribute connected
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+Configure the unnumbered interface:
+
+```
+cumulus@spine01:~$ net add loopback lo ip address 10.10.10.101/32
+cumulus@spine01:~$ net add interface swp1 ip address 10.10.10.101/32
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
+
+Configure OSPF:
+
+```
+cumulus@spine01:~$ net add ospf router-id 10.10.10.101
+cumulus@spine01:~$ net add loopback lo ospf area 0
+cumulus@spine01:~$ net add interface swp1 ospf area 0
+cumulus@spine01:~$ net add interface swp1 ospf network point-to-point
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< tab "Linux and vtysh Commands ">}}
+
+{{< tabs "TabID294 ">}}
+
+{{< tab "leaf01 ">}}
+
+1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+
+2. Edit the `/etc/network/interfaces` file to configure the loopback and unnumbered interface address:
+
+    ```
+    cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+    ...
+    auto lo
+    iface lo inet loopback
+      address 10.10.10.1/32
+
+    auto swp51
+    iface swp51
+      address 10.10.10.1/32
+
+    auto swp52
+    iface swp52
+      address 10.10.10.1/32
+    ...
+    ```
+
+2. Run the `ifreload -a` command to load the new configuration:
+
+    ```
+    cumulus@switch:~$ ifreload -a
+    ```
+
+3. From the `vtysh` shell, configure OSPF:
+
+    ```
+    cumulus@leaf01:~$ sudo vtysh
+
+    leaf01# configure terminal
+    leaf01(config)# interface swp51
+    leaf01(config-if)# ip ospf area 0
+    leaf01(config-if)# ip ospf network point-to-point
+    leaf01(config-if)# exit
+    leaf01(config)# interface lo
+    leaf01(config-if)# ip ospf area 0
+    leaf01(config-if)# exit
+    leaf01(config)# router ospf
+    leaf01(config-router)# router-id 10.10.10.1
+    leaf01(config-router)# passive-interface swp1,swp2
+    leaf01(config-router)# end
+    leaf01# write memory
+    leaf01# exit
+    cumulus@leaf01:~$
+    ```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+
+2. Edit the `/etc/network/interfaces` file to configure the loopback and unnumbered interface address:
+
+    ```
+    cumulus@spine01:~$ sudo nano /etc/network/interfaces
+    ...
+    auto lo
+    iface lo inet loopback
+       address 10.10.10.101/32
+
+    auto swp1
+    iface swp1
+      address 10.10.10.101/32
+
+    auto swp2
+    iface swp2
+      address 10.10.10.101/32
+    ...
+    ```
+
+2. Run the `ifreload -a` command to load the new configuration:
+
+    ```
+    cumulus@spine01:~$ sudo ifreload -a
+    ```
+
+3. From the `vtysh` shell, configure OSPF:
+
+    ```
+    cumulus@spine01:~$ sudo vtysh
+
+    spine01# configure terminal
+    spine01(config)# interface swp1
+    spine01(config-if)# ip ospf area 0
+    spine01(config-if)# ip ospf network point-to-point
+    spine01(config-if)# exit
+    spine01(config)# interface lo
+    spine01(config-if)# ip ospf area 0
+    spine01(config-if)# exit
+    spine01(config)# router ospf
+    spine01(config-router)# router-id 10.10.10.101
+    spine01(config-if)# end
+    spine01# write memory
+    spine01# exit
+    cumulus@spine01:~$
+    ```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+{{< tabs "TabID390 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+...
+!
+interface lo
+ ip ospf area 0
+!
+interface swp51
+ ip ospf area 0
+ ip ospf network point-to-point
+!
+router ospf
+ ospf router-id 10.10.10.1
+ passive-interface swp1,swp2
+!
+line vty
+!
+
+...
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+...
+!
+interface lo
+ ip ospf area 0
+!
+interface swp1
+ ip ospf area 0
+ ip ospf network point-to-point
+!
+router ospf
+ ospf router-id 10.10.10.101
+!
+line vty
+!
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+## Optional OSPFv2 Configuration
+
+This section describes optional configuration. The steps provided in this section assume that you already configured basic OSPFv2 as described in {{<link url="#basic-ospfv2-configuration" >}}, above.
+
+### Redistribute Protocol Routes
+
+To redistribute protocol routes, run the `net add ospf redistribute <connected|bgp|zebra>` command. Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs). For example:
+
+{{< tabs "TabID509 ">}}
+
+{{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add ospf redistribute connected
@@ -74,92 +520,45 @@ cumulus@switch:~$ net commit
 
 {{< tab "vtysh Commands ">}}
 
-1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
-
-2. From the vtysh shell, configure OSPF.
-
-    ```
-    cumulus@switch:~$ sudo vtysh
-
-    switch# configure terminal
-    switch(config)# router ospf
-    switch(config-router)# router-id 0.0.0.1
-    switch(config-router)# network 10.0.0.0/16 area 0.0.0.0
-    switch(config-router)# network 192.0.2.0/16 area 0.0.0.1
-    switch(config-router)# passive-interface swp10
-    switch(config-router)# passive-interface swp11
-    switch(config-router)# exit
-    switch(config)# exit
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$
-    ```
-
-    {{%notice note%}}
-
-Instead of configuring the IP subnet prefix and area address per network with the `router ospf` `network` command, you can configure OSPF *per interface* with the `interface` command. However, you cannot use both configuration methods at the same time. Here is an example of configuring OSPF per interface:
-
 ```
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# interface swp1
-switch(config-if)# ip ospf area 0.0.0.0
-switch(config-if)# end
+switch(config)# router ospf
+switch(config-router)# redistribute connected
+switch(config-router)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$
-```
-
-    {{%/notice%}}
-
-You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency only on certain interfaces:
-
-```
-switch(config)# router ospf
-switch(config-router)# passive-interface default
-switch(config-router)# no passive-interface swp1
-```
-
-To redistribute protocol routes, run the `redistribute <connected|bgp|zebra>` command. Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs). For example:
-
-```
-switch(config)# router ospf
-switch(config-router)# redistribute connected
 ```
 
 {{< /tab >}}
 
 {{< /tabs >}}
 
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+### Interface Parameters
 
-```
-...
-router ospf
-router-id 0.0.0.1
-network 10.0.0.0/30 area 0.0.0.0
-network 192.0.2.0/16 area 0.0.0.1
-passive-interface swp10
-passive-interface swp11
-...
-```
+You can define the following OSPF parameters per interface:
+- Network type (point-to-point or broadcast)
+- Interval between hello packets sent on the interface
 
-### Define Custom OSPF Parameters on Interfaces
+Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
 
-You can define additional custom parameters for OSPF per interface, such as the network type (point-to-point or broadcast) and the interval between hello packets that OSPF sends on the interface.
+{{%notice note%}}
 
-Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point has the additional advantage of a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
+Point-to-point is required for OSPF unnumbered.
 
-The following command example sets the network type to point-to-point and the hello interval to 5 seconds. The hello interval can be any value between 1 and 65535 seconds.
+{{%/notice%}}
+
+The following command example sets the network type to point-to-point and the hello interval to 5 seconds for swp51. The hello interval can be any value between 1 and 65535 seconds.
 
 {{< tabs "TabID186 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add interface swp1 ospf network point-to-point
-cumulus@switch:~$ net add interface swp1 ospf hello-interval 5
+cumulus@switch:~$ net add interface swp51 ospf network point-to-point
+cumulus@switch:~$ net add interface swp51 ospf hello-interval 5
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -172,7 +571,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# interface swp1
+switch(config)# interface swp51
 switch(config-if)# ospf network point-to-point
 switch(config-if)# ospf network hello-interval 5
 switch(config-if)# end
@@ -189,10 +588,9 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 
 ```
 ...
-interface swp1
- ip ospf area 0.0.0.1
- ip ospf hello-interval 5
+interface swp51
  ip ospf network point-to-point
+ ip ospf hello-interval 5
 ...
 ```
 
@@ -241,31 +639,34 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ```
 ...
 router ospf
- router-id 0.0.0.1
+ ospf router-id 10.10.10.1
+ passive-interface swp1
+ passive-interface swp2
+ network 10.10.10.1/32 area 0
  timers throttle spf 80 100 6000
 ...
 ```
 
-### Configure MD5 Authentication
+### MD5 Authentication
 
 To configure MD5 authentication on the switch, you need to create a key and a key ID, then enable MD5 authentication. The *key ID* must be a value between 1 and 255 that represents the key used to create the message digest. This value must be consistent across all routers on a link. The *key* must be a value with an upper range of 16 characters (longer strings are truncated) that represents the actual message digest.
 
-The following example commands create key ID 1 with the key `thisisthekey` and enable MD5 authentication on swp1.
+The following example commands create key ID 1 with the key `thisisthekey` and enable MD5 authentication on swp51.
 
 {{< tabs "TabID285 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add interface swp1 ospf message-digest-key 1 md5 thisisthekey
-cumulus@switch:~$ net add interface swp1 ospf authentication message-digest
+cumulus@switch:~$ net add interface swp51 ospf message-digest-key 1 md5 thisisthekey
+cumulus@switch:~$ net add interface swp51 ospf authentication message-digest
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-{{%notice info%}}
+{{%notice note%}}
 
-You can remove existing MD5 authentication hashes with the `net del` command. For example, `net del interface swp1 ospf message-digest-key 1 md5 thisisthekey`
+You can remove existing MD5 authentication hashes with the `net del` command. For example, `net del interface swp51 ospf message-digest-key 1 md5 thisisthekey`
 
 {{%/notice%}}
 
@@ -277,7 +678,7 @@ You can remove existing MD5 authentication hashes with the `net del` command. Fo
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# interface swp1
+switch(config)# interface swp51
 switch(config-if)# ip ospf authentication message-digest
 switch(config-if)# ip ospf message-digest-key 1 md5 thisisthekey
 switch(config-if)# end
@@ -286,7 +687,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-{{%notice info%}}
+{{%notice note%}}
 
 You can remove existing MD5 authentication hashes with the `no ip ospf message-digest-key` command. For example, `no ip ospf message-digest-key 1 md5 thisisthekey`
 
@@ -300,28 +701,28 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 
 ```
 ...
-interface swp1
+interface swp51
  ip ospf authentication message-digest
  ip ospf message-digest-key 1 md5 thisisthekey
  ...
 ```
 
-## Summarization
+### Summarization
 
-By default, an ABR creates a summary (type-3) LSA for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes.
+By default, an area border router (ABR) creates a summary (type-3) LSA for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes.
 
-The following example commands create a summary route for all the routes in the range 30.0.0.0/8 in area 0.0.0.1:
+The following example commands create a summary route for all the routes in the range 10.10.10.63/32 in area 1:
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router ospf
-switch(config-router)# area 0.0.0.1 range 30.0.0.0/8
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router ospf
+leaf01(config-router)# area 1 range 10.10.10.63/32
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
 ```
 
 The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
@@ -329,26 +730,19 @@ The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For
 ```
 ...
 router ospf
- router-id 0.0.0.1
- area 0.0.0.1 range 30.0.0.0/8
+ router-id 10.10.10.63
+ area 1 range 10.10.10.63/32
  ...
 ```
 
-{{%notice tip%}}
+{{%notice note%}}
 
-Make sure you configure the summary towards the backbone. The backbone receives summarized routes and injects them to other areas already summarized.
+- Always configure the summary towards the backbone. The backbone receives summarized routes and injects them to other areas already summarized.
+- Summarization can cause *non-optimal* forwarding of packets during failures.
 
 {{%/notice%}}
 
-Summarization can cause *non-optimal* forwarding of packets during failures:
-
-{{< img src = "/images/cumulus-linux/ospf-summarization.png" >}}
-
-The ABRs in the right non-zero area summarize the host prefixes as 10.1.0.0/16.
-
-When the link between R5 and R10 fails, R5 sends a worse metric for the summary route (the metric for the summary route is the maximum of the metrics of intra-area routes that are covered by the summary route). The metric for 10.1.2.0/24 increases at R5 as the path is R5-R9-R6-R10). As a result, other backbone routers shift traffic destined to 10.1.0.0/16 towards R6. This breaks ECMP and is an under-utilization of network capacity for traffic destined to 10.1.1.0/24.
-
-## Stub Areas
+### Stub Areas
 
 External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. In many cases, external link states make up a large percentage of the LSDB. Stub *areas* reduce the link-state database size by not flooding AS-external LSAs.
 
@@ -359,7 +753,7 @@ To configure a stub area:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add ospf area 0.0.0.1 stub
+cumulus@switch:~$ net add ospf area 1 stub
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -373,7 +767,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router ospf
-switch(config-router)# area 0.0.0.1 stub
+switch(config-router)# area 1 stub
 switch(config-router)# end
 switch# write memory
 switch# exit
@@ -389,8 +783,8 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ```
 ...
 router ospf
- router-id 0.0.0.1
- area 0.0.0.1 stub
+ router-id 10.10.10.1
+ area 1 stub
 ...
 ```
 
@@ -403,7 +797,7 @@ To configure a totally stubby area:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add ospf area 0.0.0.1 stub no-summary
+cumulus@switch:~$ net add ospf area 1 stub no-summary
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -417,7 +811,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router ospf
-switch(config-router)# area 0.0.0.1 stub no-summary
+switch(config-router)# area 1 stub no-summary
 switch(config-router)# end
 switch# write memory
 switch# exit
@@ -433,8 +827,8 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ```
 ...
 router ospf
- router-id 0.0.0.1
- area 0.0.0.1 stub no-summary
+ router-id 10.10.10.1
+ area 1 stub no-summary
 ...
 ```
 
@@ -446,206 +840,7 @@ Here is a brief summary of the area type differences:
 | Stub area | LSA types 1, 2, 3, 4 area-scoped, no type 5 externals, inter-area routes summarized |
 | Totally stubby area | LSA types 1, 2 area-scoped, default summary, no type 3, 4, 5 LSA types allowed |
 
-## Multiple ospfd Instances
-
-The `ospfd` daemon can have up to five independent processes, where each OSPF instance has its own routing table isolated from the others. Each instance must have an ID (any value between 1 and 65535).
-
-{{%notice note%}}
-
-Multiple `ospfd` instances (processes) are supported with:
-
-- The default VRF.
-- OSPFv2 only.
-
-{{%/notice%}}
-
-To configure multi-instance OSPF:
-
-1. Edit the `/etc/frr/daemons` file to add `ospfd_instances` to the `ospfd` line. Specify an instance ID for each separate instance. For example, the following configuration enables two `ospfd` instances, 11 and 22:
-
-    ```
-    cumulus@switch:~$ cat /etc/frr/daemons
-    ...
-    bgpd=no
-    ospfd=yes ospfd_instances="11 22"
-    ospf6d=no
-    ripd=no
-    ...
-    ```
-
-2. {{<cl/restart-frr>}}
-
-3. Assign and enable an OSPF interface for each instance:
-
-    {{< tabs "TabID514 ">}}
-
-    {{< tab "NCLU Commands ">}}
-
-    ```
-    cumulus@switch:~$ net add interface swp1 ospf instance-id 11
-    cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
-    cumulus@switch:~$ net add ospf router-id 1.1.1.1
-    cumulus@switch:~$ net add interface swp2 ospf instance-id 22
-    cumulus@switch:~$ net add interface swp2 ospf area 0.0.0.0
-    cumulus@switch:~$ net add ospf router-id 1.1.1.1
-    cumulus@switch:~$ net pending
-    cumulus@switch:~$ net commit
-    ```
-
-    {{< /tab >}}
-
-    {{< tab "vtysh Commands ">}}
-
-    ```
-    cumulus@switch:~$ sudo vtysh
-
-    switch# configure terminal
-    switch(config)# interface swp1
-    switch(config-if)#  ip ospf 11 area 0.0.0.0
-    switch(config-if)# router ospf 11
-    switch(config-router)# ospf router-id 0.0.0.1
-    ...
-    switch(config)# interface swp2
-    switch(config-if)#  ip ospf 22 area 0.0.0.0
-    switch(config-if)# router ospf 22
-    switch(config-router)# ospf router-id 0.0.0.1
-    switch(config-router)# end
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$
-    ```
-
-    {{< /tab >}}
-
-    {{< /tabs >}}
-
-To confirm that all the OSPF instances are running:
-
-```
-cumulus@switch:~$ ps -ax | grep ospf
-21135 ?        S<s    0:00 /usr/lib/frr/ospfd --daemon -A 127.0.0.1 -n 11
-21139 ?        S<s    0:00 /usr/lib/frr/ospfd --daemon -A 127.0.0.1 -n 22
-21160 ?        S<s    0:01 /usr/lib/frr/watchfrr -adz -r /usr/sbin/servicebBfrrbBrestartbB%s -s /usr/sbin/servicebBquaggabBstartbB%s -k /usr/sbin/servicebBfrrbBstopbB%s -b bB -t 30 zebra ospfd-11 ospfd-22 pimd
-22021 pts/3    S+     0:00 grep ospf
-```
-
-You can use the `redistribute ospf` option with the instance ID in your `frr.conf` file to route between the instances. For example:
-
-```
-cumulus@switch:~$ cat /etc/frr/frr.conf
-hostname zebra
-log file /var/log/frr/zebra.log
-username cumulus nopassword
-!
-service integrated-vtysh-config
-!
-...
-!
-router ospf 11
-  ospf router-id 0.0.0.1
-!
-router ospf 22
-  ospf router-id 0.0.0.1
-  redistribute ospf 11
-!
-...
-```
-
-{{%notice note%}}
-
-If you disable the {{<link url="Configure-FRRouting" text="integrated">}} FRRouting configuration, you must create a separate `ospfd` configuration file for each instance. The `ospfd.conf` file must include the instance ID in the file name. For example, create `/etc/frr/ospfd-11.conf` and `/etc/frr/ospfd-22.conf`.
-
-```
-cumulus@switch:~$ cat /etc/frr/ospfd-11.conf
-!
-hostname zebra
-log file /var/log/frr/zebra.log
-username cumulus nopassword
-!
-service integrated-vtysh-config
-!
-interface eth0
-  ipv6 nd suppress-ra
-  link-detect
-!
-interface lo
-  link-detect
-!
-interface swp1
-  ip ospf 11 area 0.0.0.0
-  link-detect
-!
-interface swp2
-  ip ospf 22 area 0.0.0.0
-  link-detect
-!
-interface swp45
-  link-detect
-!
-interface swp46
-  link-detect
-...
-!
-router ospf 11
-  ospf router-id 0.0.0.1
-!
-router ospf 22
-  ospf router-id 0.0.0.1
-!
-ip forwarding
-ipv6 forwarding
-!
-line vty
-!
-```
-
-{{%/notice%}}
-
-{{%notice note%}}
-
-While multiple OSPF instances are only supported in the default VRF OSPFv2 is VRF aware so you can have the same `ospfd` instance running in multiple VRFs, each of which representing its own separate OSPF domain. For example:
-
-```
-cumulus@switch:~$  cat /etc/frr/frr.conf
-hostname zebra
-log file /var/log/frr/zebra.log
-username cumulus nopassword
-!
-service integrated-vtysh-config
-!
-...
-!
-router ospf
- ospf router-id 2.2.2.2
- passive-interface eth0
- network 0.0.0.0/0 area 0
-!
-router ospf vrf internal
- ospf router-id 2.2.2.3
- network 0.0.0.0/0 area 0
-!
-```
-```
-cumulus@switch:~$  cat /etc/frr/daemons
-zebra=yes
-bgpd=no
-ospfd=yes
-ospf6d=no
-ripd=no
-ripngd=no
-isisd=no
-pimd=no
-ldpd=no
-nhrpd=no
-eigrpd=no
-babeld=no
-sharpd=no
-pbrd=no
-```
-
-{{%/notice%}}
-
-## Auto-cost Reference Bandwidth
+### Auto-cost Reference Bandwidth
 
 When you set the *auto-cost reference bandwidth,* Cumulus Linux dynamically calculates the OSPF interface cost to cater for higher speed links. The default value is *100000* for 100Gbps link speed. The cost of interfaces with link speeds lower than 100Gbps is higher.
 
@@ -692,100 +887,12 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ```
 ...
 router ospf
- router-id 0.0.0.1
+ router-id 10.10.10.1
  auto-cost reference-bandwidth 90000
 ...
 ```
 
-## Unnumbered Interfaces
-
-Unnumbered interfaces are interfaces without unique IP addresses. In OSPFv2, configuring unnumbered interfaces reduces the links between routers into pure topological elements, which simplifies network configuration and reconfiguration. In addition, the routing database contains only the real networks, so the memory footprint is reduced and SPF is faster.
-
-{{%notice note%}}
-
-Unnumbered is supported with point-to-point interfaces only.
-
-{{%/notice%}}
-
-To configure an unnumbered interface, take the IP address of another interface (called the *anchor*) and use that as the IP address of the unnumbered interface:
-
-{{< tabs "TabID706 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-Configure the unnumbered interface:
-
-```
-cumulus@switch:~$ net add loopback lo ip address 192.0.2.1/32
-cumulus@switch:~$ net add interface swp1 ip address 192.0.2.1/32
-cumulus@switch:~$ net add interface swp2 ip address 192.0.2.1/32
-```
-
-Enable OSPF on the unnumbered interface:
-
-```
-cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "Linux and vtysh Commands ">}}
-
-1. Edit the `/etc/network/interfaces` file to configure the unnumbered interface:
-
-    ```
-    cumulus@switch:~$ sudo nano /etc/network/interfaces
-    ...
-    auto lo
-    iface lo inet loopback
-    address 192.0.2.1/32
-
-    auto swp1
-    iface swp1
-      address 192.0.2.1/32
-
-    auto swp2
-    iface swp2
-      address 192.0.2.1/32
-    ...
-    ```
-
-2. Run the `ifreload -a` command to load the new configuration:
-
-    ```
-    cumulus@switch:~$ ifreload -a
-    ```
-
-3. From the `vtysh` shell, enable OSPF on an unnumbered interface:
-
-    ```
-    cumulus@switch:~$ sudo vtysh
-
-    switch# configure terminal
-    switch(config)# interface swp1
-    switch(config-if)# ip ospf area 0.0.0.1
-    switch(config-if)# end
-    switch# write memory
-    switch# exit
-    cumulus@switch:~$
-    ```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-interface swp1
- ip ospf area 0.0.0.0
-...
-```
-
-## Apply a Route Map for Route Updates
+### Apply a Route Map for Route Updates
 
 You can apply a {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route map">}} to filter route updates from Zebra into the Linux kernel.
 
@@ -827,7 +934,7 @@ The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` fi
 ```
 ...
 router ospf
-  ospf router-id 0.0.0.1
+  ospf router-id 10.10.10.1
   ...
 !
 ip protocol ospf route-map map1
@@ -875,18 +982,14 @@ The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` fi
 ```
 ...
 router ospf
- ospf router-id 0.0.0.1
+ ospf router-id 10.10.10.1
  redistribute connected route-map map1
 ...
 ```
 
-## ECMP
+### Topology Changes and OSPF Reconvergence
 
-During SPF computation for an area, if OSPF finds multiple paths with equal cost, all those paths are used for forwarding. For example, in the reference topology diagram above, R8 uses both R3 and R4 as next hops to reach a destination attached to R9.
-
-## Topology Changes and OSPF Reconvergence
-
-Topology changes usually occur due to router node maintenance or failure, or link maintenance or failure.
+Topology changes usually occur when a router or a link undergoes maintenance or experiences a failure.
 
 For maintenance events, you can raise the OSPF administrative weight of the links to ensure that all traffic is diverted from the link or the node (referred to as *costing out*). The speed of reconvergence does not matter. Changing the OSPF cost causes LSAs to be reissued, but the links remain in service during the SPF computation process of all routers in the network.
 
@@ -924,7 +1027,7 @@ cumulus@switch:~$ net commit
 ```
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
-switch(config)# interface swp1
+switch(config)# interface swp51
 switch(config-if)# ospf cost 65535
 switch(config-if)# end
 switch# write memory
@@ -945,41 +1048,29 @@ Cumulus Linux provides the following troubleshooting commands for OSPF:
 - To determine why an OSPF route is not being forwarded correctly, run the NCLU `net show route ospf` command or the vtysh `show ip route ospf` command. These commands show the outcome of the SPF computation downloaded to the forwarding table.
 - To capture OSPF packets, run the Linux `sudo tcpdump -v -i swp1 ip proto ospf` command.
 
+The following example shows the `net show ospf neighbor` command:
+
+```
+cumulus@leaf01:mgmt:~$ net show ospf neighbor
+Neighbor ID     Pri State           Dead Time Address         Interface                        RXmtL RqstL DBsmL
+10.10.10.101      1 Full/Backup       30.307s 10.0.1.1        swp51:10.0.1.0                       0     0     0
+```
+
 The following example shows the `net show route ospf` command output:
 
 ```
-cumulus@switch:~$ net show route ospf
+cumulus@leaf01:mgmt:~$ net show route ospf
 RIB entry for ospf
 ==================
 Codes: K - kernel route, C - connected, S - static, R - RIP,
        O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
        T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
-       F - PBR,
-       > - selected route, * - FIB route
-O   10.0.0.11/32 [110/0] is directly connected, lo, 00:06:31
-O>* 10.0.0.12/32 [110/200] via 10.1.0.0, swp51, 00:06:11
-  *                        via 10.1.0.2, swp52, 00:06:11
-O>* 10.0.0.13/32 [110/200] via 10.1.0.0, swp51, 00:06:11
-  *                        via 10.1.0.2, swp52, 00:06:11
-O>* 10.0.0.14/32 [110/200] via 10.1.0.0, swp51, 00:06:11
-  *                        via 10.1.0.2, swp52, 00:06:11
-O>* 10.0.0.21/32 [110/100] via 10.1.0.0, swp51, 00:06:21
-O>* 10.0.0.22/32 [110/100] via 10.1.0.2, swp52, 00:06:21
-O   10.1.0.0/31 [110/100] is directly connected, swp51, 00:06:31
-O   10.1.0.2/31 [110/100] is directly connected, swp52, 00:06:31
-O>* 10.1.0.4/31 [110/200] via 10.1.0.0, swp51, 00:06:21
-O>* 10.1.0.6/31 [110/200] via 10.1.0.2, swp52, 00:06:21
-O>* 10.1.0.8/31 [110/200] via 10.1.0.0, swp51, 00:06:21
-O>* 10.1.0.10/31 [110/200] via 10.1.0.2, swp52, 00:06:21
-O>* 10.1.0.12/31 [110/200] via 10.1.0.0, swp51, 00:06:21
-O>* 10.1.0.14/31 [110/200] via 10.1.0.2, swp52, 00:06:21
-O   172.16.1.0/24 [110/10] is directly connected, br0, 00:06:31
-O>* 172.16.2.0/24 [110/210] via 10.1.0.0, swp51, 00:06:11
-  *                         via 10.1.0.2, swp52, 00:06:11
-O>* 172.16.3.0/24 [110/210] via 10.1.0.0, swp51, 00:06:11
-  *                         via 10.1.0.2, swp52, 00:06:11
-O>* 172.16.4.0/24 [110/210] via 10.1.0.0, swp51, 00:06:11
-  *                         via 10.1.0.2, swp52, 00:06:11
+       F - PBR, f - OpenFabric,
+       > - selected route, * - FIB route, q - queued route, r - rejected route
+
+O   10.0.1.0/31 [110/100] is directly connected, swp51, weight 1, 00:02:37
+O   10.10.10.1/32 [110/0] is directly connected, lo, weight 1, 00:02:37
+O>* 10.10.10.101/32 [110/100] via 10.0.1.1, swp51, weight 1, 00:00:57
 ```
 
 For a list all of the OSPF debug options, refer to {{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html#id7" text="Debugging OSPF">}}.

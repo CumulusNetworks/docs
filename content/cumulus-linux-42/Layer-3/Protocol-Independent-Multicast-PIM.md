@@ -1449,7 +1449,7 @@ You can also run the NCLU command equivalent:`net show system asic | grep Mcast`
 
 {{%/notice%}}
 
-For Spectrum chipsets, refer to {{<link url="Routing#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
+For Spectrum chipsets, refer to {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
 
 ### Verify MSDP Session State
 

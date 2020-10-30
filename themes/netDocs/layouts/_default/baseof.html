@@ -7,14 +7,14 @@
 </head>
 
 
-<body>
+<body class="docs">
 <!-- PDF output does not require standard menus -->
 {{if ne .Page.Type "pdf"}}
   <input type="checkbox" style="display: none" id="menu-control" />
 
   <!-- Green bar header -->
   {{ partial "top-header" . }} 
-
+<div class="docs-wrapper">
   {{ partial "version-dropdown" . }} 
 
   {{ partial "mobile-dropdown" . }} 
@@ -51,6 +51,7 @@
 {{ end }}
 
 </main>
+</div>
 
 {{if ne .Page.Params.layout "pdf"}}
 {{ partialCached "footer" . }}

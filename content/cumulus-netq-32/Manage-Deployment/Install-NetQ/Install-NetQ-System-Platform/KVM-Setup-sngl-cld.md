@@ -31,6 +31,12 @@ Follow these steps to setup and configure your VM on a single server in a cloud 
 
     {{<netq-install/bootstrap version="3.2.0" server="single" platform="vm" deployment="cloud">}}
 
+## Considerations for Container Environments
+
+{{<netq-install/container>}}
+
+## Install and Activate the NetQ Software
+
 The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the CLI.
 
 Click the installation and activation method you want to use to complete installation:

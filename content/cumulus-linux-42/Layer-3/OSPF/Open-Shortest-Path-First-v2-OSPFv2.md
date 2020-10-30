@@ -26,7 +26,7 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 | ------ | ------- |
 | <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address on swp51 is 10.0.1.0/31</li><li>The router ID is 10.10.10.1</li><li>All the interfaces on the switch with an IP address that matches subnet 10.10.10.1/32 and and swp51 with IP address 10.0.1.0/31 are in area 0</li><li>swp1 and swp2 are passive interfaces</li></ul> | <ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address on swp1 is 10.0.1.1/31</li><li>The router ID is 10.10.10.101</li><li>All interfaces on the switch with an IP address that matches subnet 10.10.10.101/32 and swp1 with IP address 10.0.1.1/31 are in area 0.</li></ul> |
 
-{{< tabs "TabID45 ">}}
+{{< tabs "TabID29 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -82,7 +82,7 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
 
 {{< tab "vtysh Commands ">}}
 
-{{< tabs "TabID117 ">}}
+{{< tabs "TabID85 ">}}
 
 {{< tab "leaf01 ">}}
 
@@ -205,7 +205,7 @@ spine01(config-router)# redistribute connected
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
-{{< tabs "TabID204 ">}}
+{{< tabs "TabID208 ">}}
 
 {{< tab "leaf01 ">}}
 
@@ -245,7 +245,7 @@ To configure an unnumbered interface, take the IP address of another interface (
 
 {{%notice note%}}
 
-Unnumbered is supported with {{<link url="#interface-options" text="point-to-point interfaces">}} only.
+OSPF Unnumbered is supported with {{<link url="#interface-options" text="point-to-point interfaces">}} only.
 
 {{%/notice%}}
 
@@ -257,7 +257,7 @@ The following example commands configure OSPF unnumbered on leaf01 and spine01.
 | ------ | ------- |
 | <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address of the unnumbered interface (swp51) is 10.10.10.1/32</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface</li><ul>|<ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address of the unnumbered interface (swp1) is 10.10.10.101/32</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0</li><li>swp1 is a point-to-point interface</li><ul> |
 
-{{< tabs "TabID7248 ">}}
+{{< tabs "TabID260 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -334,7 +334,7 @@ cumulus@spine01:~$ net commit
 
 {{< tab "Linux and vtysh Commands ">}}
 
-{{< tabs "TabID294 ">}}
+{{< tabs "TabID337 ">}}
 
 {{< tab "leaf01 ">}}
 
@@ -449,7 +449,7 @@ cumulus@spine01:~$ net commit
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
-{{< tabs "TabID390 ">}}
+{{< tabs "TabID452 ">}}
 
 {{< tab "leaf01 ">}}
 
@@ -504,7 +504,9 @@ This section describes optional configuration. The steps provided in this sectio
 
 ### Redistribute Protocol Routes
 
-To redistribute protocol routes, run the `net add ospf redistribute <connected|bgp|zebra>` command. Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs). For example:
+To redistribute protocol routes, run the `net add ospf redistribute connected` command.
+
+Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs). For example:
 
 {{< tabs "TabID509 ">}}
 
@@ -539,7 +541,7 @@ cumulus@switch:~$
 ### Interface Parameters
 
 You can define the following OSPF parameters per interface:
-- Network type (point-to-point or broadcast)
+- Network type (point-to-point or broadcast). Broadcast is the default setting.
 - Interval between hello packets sent on the interface
 
 Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
@@ -552,7 +554,7 @@ Point-to-point is required for OSPF unnumbered.
 
 The following command example sets the network type to point-to-point and the hello interval to 5 seconds for swp51. The hello interval can be any value between 1 and 65535 seconds.
 
-{{< tabs "TabID186 ">}}
+{{< tabs "TabID555 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -604,7 +606,7 @@ OSPF uses the following default timers to prevent consecutive SPFs from overburd
 
 The following example commands change the number of milliseconds from the initial event until SPF runs to 80, the number of milliseconds between consecutive SPF runs to 100, and the maximum number of milliseconds between SPFs to 6000.
 
-{{< tabs "TabID239 ">}}
+{{< tabs "TabID607 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -651,17 +653,32 @@ router ospf
 
 To configure MD5 authentication on the switch, you need to create a key and a key ID, then enable MD5 authentication. The *key ID* must be a value between 1 and 255 that represents the key used to create the message digest. This value must be consistent across all routers on a link. The *key* must be a value with an upper range of 16 characters (longer strings are truncated) that represents the actual message digest.
 
-The following example commands create key ID 1 with the key `thisisthekey` and enable MD5 authentication on swp51.
+The following example commands create key ID 1 with the key `thisisthekey` and enable MD5 authentication on swp51 on leaf01 and on swp1 on spine01.
 
-{{< tabs "TabID285 ">}}
+{{< tabs "TabID656 ">}}
 
 {{< tab "NCLU Commands ">}}
 
+{{< tabs "TabID662 ">}}
+
+{{< tab "leaf01 ">}}
+
 ```
-cumulus@switch:~$ net add interface swp51 ospf message-digest-key 1 md5 thisisthekey
-cumulus@switch:~$ net add interface swp51 ospf authentication message-digest
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add interface swp51 ospf message-digest-key 1 md5 thisisthekey
+cumulus@leaf01:~$ net add interface swp51 ospf authentication message-digest
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab " spine01">}}
+
+```
+cumulus@spine01:~$ net add interface swp1 ospf message-digest-key 1 md5 thisisthekey
+cumulus@spine01:~$ net add interface swp1 ospf authentication message-digest
+cumulus@spine01:~$ net pending
+cumulus@spine01:~$ net commit
 ```
 
 {{%notice note%}}
@@ -672,20 +689,48 @@ You can remove existing MD5 authentication hashes with the `net del` command. Fo
 
 {{< /tab >}}
 
+{{< /tabs >}}
+
+{{< /tab >}}
+
 {{< tab "vtysh Commands ">}}
 
-```
-cumulus@switch:~$ sudo vtysh
+{{< tabs "TabID698 ">}}
 
-switch# configure terminal
-switch(config)# interface swp51
-switch(config-if)# ip ospf authentication message-digest
-switch(config-if)# ip ospf message-digest-key 1 md5 thisisthekey
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
+{{< tab "leaf01 ">}}
+
 ```
+cumulus@spine01:~$ sudo vtysh
+
+leaf01# configure terminal
+leaf01(config)# interface swp51
+leaf01(config-if)# ip ospf authentication message-digest
+leaf01(config-if)# ip ospf message-digest-key 1 md5 thisisthekey
+leaf01(config-if)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+
+{{< tab " spine01">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+
+spine01# configure terminal
+spine01(config)# interface swp1
+spine01(config-if)# ip ospf authentication message-digest
+spine01(config-if)# ip ospf message-digest-key 1 md5 thisisthekey
+spine01(config-if)# end
+spine01# write memory
+spine01# exit
+cumulus@spine01:~$
+```
+{{< /tab >}}
+
+{{< /tabs >}}
 
 {{%notice note%}}
 
@@ -699,6 +744,10 @@ You can remove existing MD5 authentication hashes with the `no ip ospf message-d
 
 The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
+{{< tabs "TabID747 ">}}
+
+{{< tab "leaf01 ">}}
+
 ```
 ...
 interface swp51
@@ -706,6 +755,22 @@ interface swp51
  ip ospf message-digest-key 1 md5 thisisthekey
  ...
 ```
+
+{{< /tab >}}
+
+{{< tab " spine01">}}
+
+```
+...
+interface swp1
+ ip ospf authentication message-digest
+ ip ospf message-digest-key 1 md5 thisisthekey
+ ...
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ### Summarization
 
@@ -748,7 +813,7 @@ External routes are the routes redistributed into OSPF from another protocol. Th
 
 To configure a stub area:
 
-{{< tabs "TabID387 ">}}
+{{< tabs "TabID816 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -783,7 +848,7 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ```
 ...
 router ospf
- router-id 10.10.10.1
+ router-id 10.10.10.63
  area 1 stub
 ...
 ```
@@ -792,7 +857,7 @@ Stub areas still receive information about networks that belong to other areas o
 
 To configure a totally stubby area:
 
-{{< tabs "TabID431 ">}}
+{{< tabs "TabID860 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -827,7 +892,7 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ```
 ...
 router ospf
- router-id 10.10.10.1
+ router-id 10.10.10.63
  area 1 stub no-summary
 ...
 ```
@@ -842,7 +907,7 @@ Here is a brief summary of the area type differences:
 
 ### Auto-cost Reference Bandwidth
 
-When you set the *auto-cost reference bandwidth,* Cumulus Linux dynamically calculates the OSPF interface cost to cater for higher speed links. The default value is *100000* for 100Gbps link speed. The cost of interfaces with link speeds lower than 100Gbps is higher.
+When you set the *auto-cost reference bandwidth,* Cumulus Linux dynamically calculates the OSPF interface cost to support higher speed links. The default value is *100000* for 100Gbps link speed. The cost of interfaces with link speeds lower than 100Gbps is higher.
 
 {{%notice tip%}}
 
@@ -852,7 +917,7 @@ To avoid routing loops, set the bandwidth to a consistent value across all OSPF 
 
 The following example commands configure the auto-cost reference bandwidth for 90Gbps link speed:
 
-{{< tabs "TabID654 ">}}
+{{< tabs "TabID920 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -896,7 +961,7 @@ router ospf
 
 You can apply a {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route map">}} to filter route updates from Zebra into the Linux kernel.
 
-{{< tabs "TabID786 ">}}
+{{< tabs "TabID964 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -944,7 +1009,7 @@ ip protocol ospf route-map map1
 
 To apply a route map to redistributed routes:
 
-{{< tabs "TabID834 ">}}
+{{< tabs "TabID1012 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -1010,12 +1075,12 @@ cumulus@switch:~$
 
 Example configuration for link maintenance:
 
-{{< tabs "TabID904 ">}}
+{{< tabs "TabID1013 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add interface swp1 ospf cost 65535
+cumulus@switch:~$ net add interface swp51 ospf cost 65535
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```

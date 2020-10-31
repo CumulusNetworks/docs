@@ -90,18 +90,17 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
 
-    ```
-    cumulus@leaf01:~$ sudo nano /etc/network/interfaces
-    ...
-    auto lo
-    iface lo inet loopback
-       address 10.10.10.1/32
+  ```
+  cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+  ...
+  auto lo
+  iface lo inet loopback
+    address 10.10.10.1/32
 
-    auto swp51
-    iface swp51
-       address 10.0.1.0/31
-    ...
-    ```
+  auto swp51
+  iface swp51
+    address 10.0.1.0/31
+  ```
 
 3. Run the `ifreload -a` command to load the new configuration:
 
@@ -149,12 +148,11 @@ leaf01(config-router)# no passive-interface swp51
     ...
     auto lo
     iface lo inet loopback
-       address 10.10.10.101/32
+      address 10.10.10.101/32
 
     auto swp51
     iface swp51
-       address 10.0.1.1/31
-    ...
+      address 10.0.1.1/31
     ```
 
 3. Run the `ifreload -a` command to load the new configuration:
@@ -352,11 +350,6 @@ cumulus@spine01:~$ net commit
     auto swp51
     iface swp51
       address 10.10.10.1/32
-
-    auto swp52
-    iface swp52
-      address 10.10.10.1/32
-    ...
     ```
 
 2. Run the `ifreload -a` command to load the new configuration:
@@ -405,11 +398,6 @@ cumulus@spine01:~$ net commit
     auto swp1
     iface swp1
       address 10.10.10.101/32
-
-    auto swp2
-    iface swp2
-      address 10.10.10.101/32
-    ...
     ```
 
 2. Run the `ifreload -a` command to load the new configuration:
@@ -542,7 +530,7 @@ cumulus@switch:~$
 
 You can define the following OSPF parameters per interface:
 - Network type (point-to-point or broadcast). Broadcast is the default setting.
-- Interval between hello packets sent on the interface
+- Interval between hello packets sent on the interface.
 
 Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
 
@@ -1106,12 +1094,14 @@ cumulus@switch:~$
 
 ## Troubleshooting
 
-Cumulus Linux provides the following troubleshooting commands for OSPF:
+Cumulus Linux provides several troubleshooting commands for OSPF:
 
-- To show neighbor states, run the NCLU `net show ospf neighbor` command or the vtysh `show ip ospf neighbor` command.
-- To verify that the LSDB is synchronized across all routers in the network, run the NCLU `net show ospf database` command or the vtysh `show ip ospf database` command.
-- To determine why an OSPF route is not being forwarded correctly, run the NCLU `net show route ospf` command or the vtysh `show ip route ospf` command. These commands show the outcome of the SPF computation downloaded to the forwarding table.
-- To capture OSPF packets, run the Linux `sudo tcpdump -v -i swp1 ip proto ospf` command.
+| To...   | <div style="width:330px">NCLU Command | <div style="width:330px">vtysh Command |
+| --- | ---- | ----- |
+| Show neighbor states: | `net show ospf neighbor` | `show ip ospf neighbor` |
+| Verify that the LSDB is synchronized across all routers in the network: | `net show ospf database` | `show ip ospf database` |
+| Determine why an OSPF route is not being forwarded correctly: |`net show route ospf` | `show ip route ospf` |
+| Capture OSPF packets: |  `sudo tcpdump -v -i swp1 ip proto ospf`|
 
 The following example shows the `net show ospf neighbor` command:
 

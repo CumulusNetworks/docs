@@ -186,13 +186,6 @@ spine01(config-router)# passive-interface default
 spine01(config-router)# no passive-interface swp1
 ```
 
-To redistribute protocol routes, run the `redistribute <connected|bgp|zebra>` command. Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs). For example:
-
-```
-spine01(config)# router ospf
-spine01(config-router)# redistribute connected
-```
-
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -290,14 +283,6 @@ You can use the `net add ospf` `passive-interface default` command to set all in
 ```
 cumulus@leaf01:~$ net add ospf passive-interface default
 cumulus@leaf01:~$ net del ospf passive-interface swp51
-```
-
-To redistribute protocol routes, run the `net add ospf redistribute <connected|bgp|zebra>` command. Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs). For example:
-
-```
-cumulus@leaf01:~$ net add ospf redistribute connected
-cumulus@leaf01:~$ net pending
-cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}

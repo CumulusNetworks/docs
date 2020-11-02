@@ -538,7 +538,10 @@ cumulus@switch:~$
 
 You can define the following OSPF parameters per interface:
 - Network type (point-to-point or broadcast). Broadcast is the default setting.
-- Interval between hello packets sent on the interface.
+- Hello interval. The number of seconds between hello packets sent on the interface.
+- Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
+hello Packets.
+- Priority in becoming the OSPF Designated Router (DR) on a broadcast interface.
 
 Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
 
@@ -548,7 +551,13 @@ Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbe
 
 {{%/notice%}}
 
-The following command example sets the network type to point-to-point and the hello interval to 5 seconds for swp51. The hello interval can be any value between 1 and 65535 seconds.
+The following command example sets the network type to point-to-point, the hello interval to 5 seconds, and the dead interval to 60 seconds for swp51. The hello interval and dead inteval can be any value between 1 and 65535 seconds. The priority can be any value between 0 to 255 (0 configures the interface to never become the OSPF Designated Router (DR) on a broadcast interface).
+
+{{%notice note%}}
+
+You can only set the priority with vysh commands.
+
+{{%/notice%}}
 
 {{< tabs "TabID555 ">}}
 
@@ -557,6 +566,7 @@ The following command example sets the network type to point-to-point and the he
 ```
 cumulus@switch:~$ net add interface swp51 ospf network point-to-point
 cumulus@switch:~$ net add interface swp51 ospf hello-interval 5
+cumulus@switch:~$ net add interface swp51 ospf dead-interval 60
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -570,8 +580,10 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# interface swp51
-switch(config-if)# ospf network point-to-point
-switch(config-if)# ospf network hello-interval 5
+switch(config-if)# ip ospf network point-to-point
+switch(config-if)# ip ospf network hello-interval 5
+switch(config-if)# ip ospf network dead-interval 60
+switch(config-if)# ip ospf network priority 5
 switch(config-if)# end
 switch# write memory
 switch# exit
@@ -589,6 +601,8 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 interface swp51
  ip ospf network point-to-point
  ip ospf hello-interval 5
+ ip ospf dead-interval 60
+ ip ospf priority 5
 ...
 ```
 
@@ -768,18 +782,21 @@ interface swp1
 
 {{< /tabs >}}
 
-### Summarization
+### Summarization and Prefix Range
 
-By default, an area border router (ABR) creates a summary (type-3) LSA for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes.
+By default, an area border router (ABR) creates a summary (type-3) LSA for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes. OSPF only allows for route summarization between areas on a ABR. This is done with the area range command.
 
-The following example commands create a summary route for all the routes in the range 10.10.10.63/32 in area 1:
+In the following example:
+- swp1 is in area 1 and is configured with IP addresses 10.0.0.24/31, 172.16.1.1/32, 172.16.1.2/32, and 172.16.1.3/32.
+- swp51 is in area 0 and is configured with IP address 10.0.1.9/31.
+- The commands create a summary route for all the routes in the range 172.16.1.0/24 in area 0:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
 
 leaf01# configure terminal
 leaf01(config)# router ospf
-leaf01(config-router)# area 1 range 10.10.10.63/32
+leaf01(config-router)# area 0 range 172.16.1.0/24
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
@@ -789,19 +806,36 @@ cumulus@leaf01:~$
 The `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+cumulus@border01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
+interface lo
+ ip ospf area 0
+!
+interface swp1
+ ip ospf area 1
+!
+interface swp2
+ ip ospf area 1
+!
+interface swp3
+ ip ospf area 1
+!
+interface swp51
+ ip ospf area 0
+!
+interface swp52
+ ip ospf area 0
+!
+interface swp53
+ ip ospf area 0
+!
 router ospf
- router-id 10.10.10.63
- area 1 range 10.10.10.63/32
- ...
+ ospf router-id 10.10.10.63
+ area 0 range 172.16.1.0/24
+!
+line vty
+!
 ```
-
-{{%notice note%}}
-
-- Always configure the summary towards the backbone. The backbone receives summarized routes and injects them to other areas already summarized.
-- Summarization can cause *non-optimal* forwarding of packets during failures.
-
-{{%/notice%}}
 
 ### Stub Areas
 
@@ -1050,13 +1084,13 @@ router ospf
 
 ### Topology Changes and OSPF Reconvergence
 
-Topology changes usually occur when a router or a link undergoes maintenance or experiences a failure.
+When you remove a router or OSPF interface, LSA updates trigger throughout the network to inform all routers of the topology change. When the LSA is received and SPF is run, it does a routing update. This can cause short-duration outages while the network detects the failure and updates the OSPF database.
 
-For maintenance events, you can raise the OSPF administrative weight of the links to ensure that all traffic is diverted from the link or the node (referred to as *costing out*). The speed of reconvergence does not matter. Changing the OSPF cost causes LSAs to be reissued, but the links remain in service during the SPF computation process of all routers in the network.
+If the outage is planned (during a maintenance window), you can configure the OSPF router with an OSPF max-metric to notify its neighbors not to use it as part of the OSPF topology. While the network converges, all traffic forwarded to the max-metric router is still forwarded. After the network is fully updated, the max-metric router no longer receives any traffic and can be safely modified. To remove a single interface, you can configure the OSPF cost for that specific interface.
 
 For failure events, traffic might be lost during reconvergence (until SPF on all nodes computes an alternative path around the failed link or node to each of the destinations). The reconvergence depends on layer 1 failure detection capabilities and the *DeadInterval* OSPF timer.
 
-Example configuration for router maintenance:
+To configure the max-metric (for all interfaces):
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1069,7 +1103,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-Example configuration for link maintenance:
+To configure the cost (for a specific interface):
 
 {{< tabs "TabID1013 ">}}
 
@@ -1109,6 +1143,7 @@ Cumulus Linux provides several OSPF troubleshooting commands:
 | Show neighbor states | `net show ospf neighbor` | `show ip ospf neighbor` |
 | Verify that the LSDB is synchronized across all routers in the network | `net show ospf database` | `show ip ospf database` |
 | Determine why an OSPF route is not being forwarded correctly |`net show route ospf` | `show ip route ospf` |
+| Show OSPF interfaces | `net show ospf interface` | `show ip ospf interface` |
 
 The following example shows the `net show ospf neighbor` command output:
 

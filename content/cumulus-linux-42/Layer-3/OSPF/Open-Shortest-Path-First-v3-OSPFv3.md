@@ -433,11 +433,64 @@ router ospf6
 
 {{< /tabs >}}
 
-### Define Custom OSPFv3 Parameters
+## Optional OSPFv3 Configuration
 
-You can define additional custom parameters for OSPFv3, such as such as the network type (point-to-point or broadcast) and the interval between hello packets that OSPF sends.
+This section describes optional configuration. The steps provided in this section assume that you already configured basic OSPFv3 as described in {{<link url="#basic-ospfv3-configuration" >}}, above.
 
-The following command example sets the network type to point-to-point and the hello interval to 5 seconds. The hello interval can be any value between 1 and 65535 seconds.
+### Redistribute Protocol Routes
+
+To redistribute protocol routes, run the `net add ospf redistribute connected` command.
+
+Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs). For example:
+
+{{< tabs "TabID509 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add ospf6 redistribute connected
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router ospf6
+switch(config-router)# redistribute connected
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Interface Parameters
+
+You can define the following OSPF parameters per interface:
+- Network type (point-to-point or broadcast). Broadcast is the default setting.
+- Hello interval. The number of seconds between hello packets sent on the interface.
+- Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
+hello Packets.
+- Priority in becoming the OSPF Designated Router (DR) on a broadcast interface.
+
+Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
+
+{{%notice note%}}
+
+Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbered">}}.
+
+{{%/notice%}}
+
+The following command example sets the network type to point-to-point, the hello interval to 5 seconds, and the dead interval to 60 seconds for swp51. The hello interval and dead inteval can be any value between 1 and 65535 seconds. The priority can be any value between 0 to 255 (0 configures the interface to never become the OSPF Designated Router (DR) on a broadcast interface).
 
 {{< tabs "TabID82 ">}}
 
@@ -446,6 +499,7 @@ The following command example sets the network type to point-to-point and the he
 ```
 cumulus@switch:~$ net add interface swp1 ospf6 network point-to-point
 cumulus@switch:~$ net add interface swp1 ospf6 hello-interval 5
+cumulus@switch:~$ net add interface swp1 ospf6 dead-interval 60
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -461,6 +515,8 @@ switch# configure terminal
 switch(config)# interface swp1
 switch(config-if)# ipv6 ospf6 network point-to-point
 switch(config-if)# ipv6 ospf6 hello-interval 5
+switch(config-if)# ospf6 network dead-interval 60
+switch(config-if)# ospf6 network priority 5
 switch(config-if)# end
 switch# write memory
 switch# exit
@@ -478,6 +534,8 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 interface swp1
  ipv6 ospf6 hello-interval 5
  ipv6 ospf6 network point-to-point
+ ipv6 ospf6 dead-interval 60
+ ipv6 ospf6 priority 5
 ...
 ```
 

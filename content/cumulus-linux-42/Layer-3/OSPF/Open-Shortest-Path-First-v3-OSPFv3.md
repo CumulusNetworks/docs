@@ -6,15 +6,15 @@ toc: 3
 ---
 OSPFv3 is a revised version of OSPFv2 and supports the IPv6 address family. Refer to {{<link url="Open-Shortest-Path-First-OSPF">}} for a discussion on the basic concepts, which remain the same between the two versions.
 
-OSPFv3 has changed the formatting in some of the packets and LSAs to support IPv6 and to improve the protocol behavior. OSPFv3 defines a new LSA, called intra-area prefix LSA, to separate the advertisement of stub networks attached to a router from the router LSA. It is a clear separation of node topology from prefix reachability and lends itself well to an optimized SPF computation.
-
 {{%notice note%}}
 
 IETF has defined extensions to OSPFv3 to support multiple address families (both IPv6 and IPv4). {{<link url="FRRouting" text="FRR">}} does not currently support multiple address families.
 
 {{%/notice%}}
 
-## Configure OSPFv3
+## Basic OSPFv3 Configuration
+
+You can configure OSPFv3 using either numbered interfaces or unnumbered interfaces. Both methods are described below.
 
 ### OSPFv3 Numbered
 
@@ -30,7 +30,7 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 
 | leaf01 | spine01 |
 | ------ | ------- |
-| <ul><li>The loopback address is 2001:db8:0002::0a00:1/128</li><li>The IP address on swp51 is ??????</li><li>The router ID is 2001:db8:0002::0a00:1</li><li>All the interfaces on the switch with an IP address that matches subnet 2001:db8::1/128 and swp51 with IP address ????? are in area 0</li><li>swp1 and swp2 are passive interfaces</li></ul> | <ul><li>The loopback address is 2001:db8:0002::0a00:101/128</li><li>The IP address on swp1 is ??????</li><li>The router ID is 2001:db8:0002::0a00:101</li><li>All interfaces on the switch with an IP address that matches subnet 2001:db8:0002::0a00:101/128 and swp1 with IP address ??????? are in area 0.</li></ul> |
+| <ul><li>The loopback address is 2001:db8:0002::0a00:1/128</li><li>The IP address on swp51 is ??????</li><li>The router ID is 10.10.10.1</li><li>All the interfaces on the switch with an IP address that matches subnet 2001:db8::1/128 and swp51 with IP address ????? are in area 0.0.0.0</li><li>swp1 and swp2 are passive interfaces</li></ul> | <ul><li>The loopback address is 2001:db8:0002::0a00:101/128</li><li>The IP address on swp1 is ??????</li><li>The router ID is 10.10.10.101</li><li>All interfaces on the switch with an IP address that matches subnet 2001:db8:0002::0a00:101/128 and swp1 with IP address ??????? are in area 0.0.0.0.</li></ul> |
 
 {{< tabs "TabID29 ">}}
 
@@ -43,9 +43,9 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 ```
 cumulus@leaf01:~$ net add loopback lo ip address 2001:db8:0002::0a00:1/128
 cumulus@leaf01:~$ net add interface swp51 ip address ???????
-cumulus@leaf01:~$ net add ospf6 router-id 2001:db8:0002::0a00:1
-cumulus@leaf01:~$ net add ospf6 network 2001:db8:0002::0a00:1/128 area 0
-cumulus@leaf01:~$ net add ospf6 network ?????? area 0
+cumulus@leaf01:~$ net add ospf6 router-id 10.10.10.1
+cumulus@leaf01:~$ net add ospf6 network 2001:db8:0002::0a00:1/128 area 0.0.0.0
+cumulus@leaf01:~$ net add ospf6 network ?????? area 0.0.0.0
 cumulus@leaf01:~$ net add ospf6 passive-interface swp1
 cumulus@leaf01:~$ net add ospf6 passive-interface swp2
 cumulus@leaf01:~$ net pending
@@ -66,9 +66,9 @@ cumulus@leaf01:~$ net del ospf6 passive-interface swp51
 ```
 cumulus@spine01:~$ net add loopback lo ip address 12001:db8:0002::0a00:101/128
 cumulus@spine01:~$ net add interface swp1 ip address ????
-cumulus@spine01:~$ net add ospf6 router-id 2001:db8:0002::0a00:101
-cumulus@spine01:~$ net add ospf6 network 2001:db8:0002::0a00:101/128 area 0
-cumulus@spine01:~$ net add ospf6 network ?????? area 0
+cumulus@spine01:~$ net add ospf6 router-id 10.10.10.101
+cumulus@spine01:~$ net add ospf6 network 2001:db8:0002::0a00:101/128 area 0.0.0.0
+cumulus@spine01:~$ net add ospf6 network ?????? area 0.0.0.0
 cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
@@ -121,9 +121,9 @@ cumulus@spine01:~$ net del ospf6 passive-interface swp1
 
     leaf01# configure terminal
     leaf01(config)# router ospf6
-    leaf01(config-router)# router-id 2001:db8:0002::0a00:1
-    leaf01(config-router)# network 2001:db8:0002::0a00:1/128 area 0
-    leaf01(config-router)# network ??? area 0
+    leaf01(config-router)# router-id 10.10.10.1
+    leaf01(config-router)# network 2001:db8:0002::0a00:1/128 area 0.0.0.0
+    leaf01(config-router)# network ??? area 0.0.0.0
     leaf01(config-router)# passive-interface swp1
     leaf01(config-router)# passive-interface swp2
     leaf01(config-router)# exit
@@ -174,9 +174,9 @@ leaf01(config-router)# no passive-interface swp51
 
     spine01# configure terminal
     spine01(config)# router ospf6
-    spine01(config-router)# router-id 2001:db8:0002::0a00:101
-    spine01(config-router)# network 2001:db8:0002::0a00:101/128 area 0
-    spine01(config-router)# network ?????? area 0
+    spine01(config-router)# router-id 10.10.10.101
+    spine01(config-router)# network 2001:db8:0002::0a00:101/128 area 0.0.0.0
+    spine01(config-router)# network ?????? area 0.0.0.0
     spine01(config-router)# exit
     spine01(config)# exit
     spine01# write memory
@@ -209,9 +209,9 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ```
 ...
 router ospf6
- ospf router-id 2001:db8:0002::0a00:1
- network 2001:db8:0002::0a00:1/128 area 0
- network ????? area 0
+ ospf router-id 10.10.10.1
+ network 2001:db8:0002::0a00:1/128 area 0.0.0.0
+ network ????? area 0.0.0.0
  passive-interface swp1
  passive-interface swp2
 ...
@@ -224,9 +224,9 @@ router ospf6
 ```
 ...
 router ospf6
- ospf router-id 2001:db8:0002::0a00:101
- network 2001:db8:0002::0a00:101/128 area 0
- network ???? area 0
+ ospf router-id 10.10.10.101
+ network 2001:db8:0002::0a00:101/128 area 0.0.0.0
+ network ???? area 0.0.0.0
 ...
 ```
 
@@ -242,7 +242,7 @@ To configure an unnumbered interface, take the IP address of another interface (
 
 {{%notice note%}}
 
-OSPFv3 Unnumbered is supported with {{<link url="#interface-options" text="point-to-point interfaces">}} only.
+OSPFv3 Unnumbered is supported with {{<link url="#interface-parameters" text="point-to-point interfaces">}} only.
 
 {{%/notice%}}
 
@@ -252,7 +252,7 @@ The following example commands configure OSPFv3 unnumbered on leaf01 and spine01
 
 | leaf01 | spine01 |
 | ------ | ------- |
-| <ul><li>The loopback address is 2001:db8:0002::0a00:1/128</li><li>The router ID is 2001:db8:0002::0a00:1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul>|<ul><li>The loopback address is 2001:db8:0002::0a00:101/128</li><li>The router ID is 2001:db8:0002::0a00:101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0</li><li>swp1 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul> |
+| <ul><li>The loopback address is 2001:db8:0002::0a00:1/128</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0.0.0.0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul>|<ul><li>The loopback address is 2001:db8:0002::0a00:101/128</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0.0.0.0</li><li>swp1 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul> |
 
 {{< tabs "TabID257 ">}}
 
@@ -264,9 +264,9 @@ The following example commands configure OSPFv3 unnumbered on leaf01 and spine01
 
 ```
 cumulus@leaf01:~$ net add loopback lo ip address 2001:db8:0002::0a00:1/128
-cumulus@leaf01:~$ net add ospf6 router-id 2001:db8:0002::0a00:1
-cumulus@leaf01:~$ net add ospf6 interface lo area 0
-cumulus@leaf01:~$ net add ospf6 interface swp51 area 0
+cumulus@leaf01:~$ net add ospf6 router-id 10.10.10.1
+cumulus@leaf01:~$ net add ospf6 interface lo area 0.0.0.0
+cumulus@leaf01:~$ net add ospf6 interface swp51 area 0.0.0.0
 cumulus@leaf01:~$ net add interface swp1 ospf6 passive
 cumulus@leaf01:~$ net add interface swp2 ospf6 passive
 cumulus@leaf01:~$ net add interface swp51 ospf6 network point-to-point
@@ -280,9 +280,9 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@spine01:~$ net add loopback lo ip address 2001:db8:0002::0a00:101/128
-cumulus@spine01:~$ net add ospf6 router-id 2001:db8:0002::0a00:101
-cumulus@spine01:~$ net add ospf6 interface lo area 0
-cumulus@spine01:~$ net add ospf6 interface swp1 area 0
+cumulus@spine01:~$ net add ospf6 router-id 10.10.10.1
+cumulus@spine01:~$ net add ospf6 interface lo area 0.0.0.0
+cumulus@spine01:~$ net add ospf6 interface swp1 area 0.0.0.0
 cumulus@spine01:~$ net add interface swp1 ospf6 network point-to-point
 cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
@@ -328,9 +328,9 @@ cumulus@leaf01:~$ sudo vtysh
 
 leaf01# configure terminal
 leaf01(config)# router ospf6
-leaf01(config-ospf6)# router-id 2001:db8:0002::0a00:1
-leaf01(config-ospf6)# interface lo area 0
-leaf01(config-ospf6)# interface swp51 area 0
+leaf01(config-ospf6)# router-id 10.10.10.101
+leaf01(config-ospf6)# interface lo area 0.0.0.0
+leaf01(config-ospf6)# interface swp51 area 0.0.0.0
 leaf01(config-ospf6)# passive-interface swp1
 leaf01(config-ospf6)# passive-interface swp2
 leaf01(config-ospf6)# exit
@@ -375,12 +375,12 @@ cumulus@spine01:~$ sudo vtysh
 
 spine01# configure terminal
 spine01(config)# router ospf6
-spine01(config-ospf6)# router-id 2001:db8:0002::0a00:101
-spine01(config-ospf6)# interface lo area 0
-spine01(config-ospf6)# interface swp1 area 0
+spine01(config-ospf6)# router-id 10.10.10.101
+spine01(config-ospf6)# interface lo area 0.0.0.0
+spine01(config-ospf6)# interface swp1 area 0.0.0.0
 spine01(config-ospf6)# exit
 spine01(config)# interface swp1
-spine01(config-if)# ospf network point-to-point
+spine01(config-if)# ospf6 network point-to-point
 spine01(config-if)# end
 spine01# write memory
 spine01# exit
@@ -403,13 +403,19 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 
 ```
 ...
-interface swp51
- ip ospf network point-to-point
-...
 router ospf6
- ospf6 router-id 2001:db8:0002::0a00:1
- interface swp51 area 0
- interface lo area 0
+ ospf6 router-id 10.10.10.1
+ interface lo area 0.0.0.0
+ interface swp51 area 0.0.0.0
+
+interface swp1
+ ipv6 ospf6 passive
+
+interface swp2
+ ipv6 ospf6 passive
+
+interface swp51
+ ipv6 ospf6 network point-to-point
 ...
 ```
 
@@ -419,13 +425,13 @@ router ospf6
 
 ```
 ...
-interface swp1
- ip ospf network point-to-point
-...
 router ospf6
- ospf6 router-id 2001:db8:0002::0a00:101
- interface swp1 area 0
- interface lo area 0
+ ospf6 router-id 10.10.10.101
+ interface lo area 0.0.0.0
+ interface swp1 area 0.0.0.0
+
+interface swp1
+ ipv6 ospf6 network point-to-point
 ...
 ```
 
@@ -477,29 +483,32 @@ cumulus@switch:~$
 
 You can define the following OSPF parameters per interface:
 - Network type (point-to-point or broadcast). Broadcast is the default setting.
+  Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
+
+  {{%notice note%}}
+  Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbered">}}.
+  {{%/notice%}}
 - Hello interval. The number of seconds between hello packets sent on the interface.
 - Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
 hello Packets.
 - Priority in becoming the OSPF Designated Router (DR) on a broadcast interface.
-
-Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
+- Advertise prefix list. The prefix list defines the outbound route filter.
+- Cost. The cost determines the shortest paths to the destination.
 
 {{%notice note%}}
 
-Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbered">}}.
+Unlike OSPFv2, OSPFv3 intrinsically supports unnumbered interfaces. Forwarding to the next hop router is done entirely using IPv6 link local addresses. You do not need to configure any global IPv6 address to interfaces between routers.
 
 {{%/notice%}}
 
-The following command example sets the network type to point-to-point, the hello interval to 5 seconds, and the dead interval to 60 seconds for swp51. The hello interval and dead inteval can be any value between 1 and 65535 seconds. The priority can be any value between 0 to 255 (0 configures the interface to never become the OSPF Designated Router (DR) on a broadcast interface).
+The following command example sets the network type to point-to-point on swp51.
 
 {{< tabs "TabID82 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add interface swp1 ospf6 network point-to-point
-cumulus@switch:~$ net add interface swp1 ospf6 hello-interval 5
-cumulus@switch:~$ net add interface swp1 ospf6 dead-interval 60
+cumulus@switch:~$ net add interface swp51 ospf6 network point-to-point
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -512,8 +521,50 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# interface swp1
+switch(config)# interface swp51
 switch(config-if)# ipv6 ospf6 network point-to-point
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface swp51
+ ipv6 ospf6 network point-to-point
+...
+```
+
+The following command example sets the hello interval to 5 seconds, the dead interval to 60 seconds, and the priority to 5 for swp51. The hello interval and dead inteval can be any value between 1 and 65535 seconds. The priority can be any value between 0 to 255 (0 configures the interface to never become the OSPF Designated Router (DR) on a broadcast interface).
+
+{{< tabs "TabID82 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface swp51 ospf6 hello-interval 5
+cumulus@switch:~$ net add interface swp51 ospf6 dead-interval 60
+cumulus@switch:~$ net add interface swp51 ospf6 priority 5
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface swp51
 switch(config-if)# ipv6 ospf6 hello-interval 5
 switch(config-if)# ospf6 network dead-interval 60
 switch(config-if)# ospf6 network priority 5
@@ -531,21 +582,140 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 
 ```
 ...
-interface swp1
+interface swp51
  ipv6 ospf6 hello-interval 5
- ipv6 ospf6 network point-to-point
  ipv6 ospf6 dead-interval 60
  ipv6 ospf6 priority 5
 ...
 ```
 
-{{%notice note%}}
+The following example command configures interface swp51 with the IPv6 advertise prefix list named `filter`:
 
-Unlike OSPFv2, OSPFv3 intrinsically supports unnumbered interfaces. Forwarding to the next hop router is done entirely using IPv6 link local addresses. You do not need to configure any global IPv6 address to interfaces between routers.
+{{< tabs "TabID345 ">}}
 
-{{%/notice%}}
+{{< tab "NCLU Commands ">}}
 
-## Configure the OSPFv3 Area
+```
+cumulus@switch:~$ net add interface swp51 ospf6 advertise prefix-list filter
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface swp51
+switch(config-if)# ipv6 ospf advertise prefix-list filter
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface swp2
+  ipv6 ospf6 cost 1
+...
+```
+
+The following example command configures the cost for swp1.
+
+{{< tabs "TabID592 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface swp1 ospf6 cost 1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface swp1
+switch(config-if)# ipv6 ospf cost 1
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### SPF Timer Defaults
+
+OSPF3 uses the following default timers to prevent consecutive SPFs from overburdening the CPU:
+
+- 0 milliseconds from the initial event until SPF runs
+- 50 milliseconds between consecutive SPF runs (the number doubles with each SPF, until it reaches the value of C)
+- 5000 milliseconds maximum between SPFs
+
+The following example commands change the number of milliseconds from the initial event until SPF runs to 80, the number of milliseconds between consecutive SPF runs to 100, and the maximum number of milliseconds between SPFs to 6000.
+
+{{< tabs "TabID607 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add ospf6 timers throttle spf 80 100 6000
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router ospf6
+switch(config-router)# timers throttle spf 80 100 6000
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf6
+ ospf router-id 10.10.10.1
+ passive-interface swp1
+ passive-interface swp2
+ network swp51 area 0.0.0.0
+ timers throttle spf 80 100 6000
+...
+```
+
+### Configure the OSPFv3 Area
 
 You can use different areas to control routing. You can:
 
@@ -643,7 +813,7 @@ router ospf6
 ...
 ```
 
-## Configure the OSPFv3 Distance
+### Configure the OSPFv3 Distance
 
 Cumulus Linux provides several commands to change the administrative distance for OSPF routes.
 
@@ -756,96 +926,46 @@ router ospf6
 ...
 ```
 
-## Configure OSPFv3 Interfaces
-
-You can configure an interface, a bond interface, or a VLAN with an existing advertise prefix list. The prefix list defines the outbound route filter.
-
-{{< tabs "TabID345 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-The following example command configures interface swp3s1 with the IPv6 advertise prefix list named `filter`:
-
-```
-cumulus@switch:~$ net add interface swp3s1 ospf6 advertise prefix-list filter
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-You can also configure the cost for a particular interface, bond interface, or VLAN. The following example command configures the cost for swp2.
-
-```
-cumulus@switch:~$ net add interface swp2 ospf6 cost 1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-The following example command configures interface swp3s1 with the IPv6 advertise prefix-list named `filter`.
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# interface swp3s1
-switch(config-if)# ipv6 ospf advertise prefix-list filter
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-You can also configure the cost for a particular interface, bond interface, or VLAN. The following example command configures the cost for swp2.
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# interface swp2
-switch(config-if)# ipv6 ospf cost 1
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-interface swp2
-  ipv6 ospf6 cost 1
-...
-```
-
 ## Troubleshooting
 
-Cumulus Linux provides troubleshooting commands for OSPFv3:
+Cumulus Linux provides several OSPFv3 troubleshooting commands:
 
-- To show neighbor states, run the NCLU `net show ospf6 neighbor` command or the vtysh `show ip ospf6 neighbor` command.
-- To verify that the LSDB is synchronized across all routers in the network, run the NCLU `net show ospf6 database` command or the vtysh `show ip ospf6 database` command.
-- To determine why an OSPF route is not being forwarded correctly, run the NCLU `net show route ospf6` command or the vtysh `show ip route ospf6` command. These commands show the outcome of the SPF computation downloaded to the forwarding table.
-- To help visualize the network view, run the NCLU `net show ospf6 spf tree` command or the `show ip ospf6 spf tree` command. These commands show the node topology as computed by SPF.
+| To...   | <div style="width:330px">NCLU Command | <div style="width:330px">vtysh Command |
+| --- | ---- | ----- |
+| Show neighbor states | `net show ospf6 neighbor` | `show ip ospf6 neighbor` |
+| Verify that the LSDB is synchronized across all routers in the network | `net show ospf6 database` | `show ip ospf6 database` |
+| Determine why an OSPF route is not being forwarded correctly |`net show route ospf6` | `show ip route ospf6` |
+| Show OSPF interfaces | `net show ospf6 interface` | `show ip ospf6 interface` |
+| To help visualize the network view: | `net show ospf6 spf tree` | `show ip ospf6 spf tree1 |
 
-For example:
+The following example shows the `net show ospf6 neighbor` command output:
 
 ```
-cumulus@switch:~$ net show ospf6 neighbor
+cumulus@leaf01:mgmt:~$ net show ospf6 neighbor
 Neighbor ID     Pri    DeadTime    State/IfState         Duration I/F[State]
-10.0.0.21         1    00:00:37     Full/DROther         00:11:32 swp51[PointToPoint]
-10.0.0.22         1    00:00:37     Full/DROther         00:11:32 swp52[PointToPoint]
+10.10.10.101      1    00:00:38     Full/PointToPoint    00:04:51 swp51[PointToPoint]
 ```
 
-Run the `net show ospf6 help` command to show available NCLU command options.
+The following example shows the `net show route ospf6` command output:
 
-For a list of all the OSPF debug options, refer to {{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html#id7" text="Debugging OSPF">}}.
+```
+cumulus@leaf01:mgmt:~$ net show ospf6 neighbor
+Neighbor ID     Pri    DeadTime    State/IfState         Duration I/F[State]
+10.10.10.101      1    00:00:38     Full/PointToPoint    00:04:51 swp51[PointToPoint] 
+cumulus@leaf01:mgmt:~$ net show route ospf6
+RIB entry for ospf6
+===================
+Codes: K - kernel route, C - connected, S - static, R - RIPng,
+       O - OSPFv3, I - IS-IS, B - BGP, N - NHRP, T - Table,
+       v - VNC, V - VNC-Direct, A - Babel, D - SHARP, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued route, r - rejected route
+
+O   2001:db8:2::a00:1/128 [110/10] is directly connected, lo, weight 1, 00:05:18
+O>* 2001:db8:2::a00:101/128 [110/110] via fe80::4638:39ff:fe00:2, swp51, weight 1, 00:05:13
+```
+
+To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf6` command.
 
 ## Related Information
 
@@ -853,4 +973,3 @@ For a list of all the OSPF debug options, refer to {{<exlink url="http://docs.fr
 - {{<exlink url="http://en.wikipedia.org/wiki/Open_Shortest_Path_First" text="Wikipedia - Open Shortest Path First">}}
 - {{<exlink url="http://docs.frrouting.org/en/latest/ospf6d.html" text="FRR OSPFv3">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc2740" text="RFC 2740 OSPFv3 OSPF for IPv6">}}
-- {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#auto-cost-reference-bandwidth" text="Auto-cost reference bandwidth">}}

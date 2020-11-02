@@ -67,7 +67,7 @@ cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
 
-You can use the `net add ospf` `passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
 
 ```
 cumulus@spine01:~$ net add ospf passive-interface default
@@ -278,7 +278,7 @@ cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
 
-You can use the `net add ospf` `passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
 
 ```
 cumulus@leaf01:~$ net add ospf passive-interface default
@@ -307,6 +307,13 @@ cumulus@spine01:~$ net add interface swp1 ospf area 0
 cumulus@spine01:~$ net add interface swp1 ospf network point-to-point
 cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
+```
+
+You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf` `passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
+
+```
+cumulus@spine01:~$ net add ospf passive-interface default
+cumulus@spine01:~$ net del ospf passive-interface swp1
 ```
 
 {{< /tab >}}
@@ -365,6 +372,14 @@ cumulus@spine01:~$ net commit
     cumulus@leaf01:~$
     ```
 
+   You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency only on certain interfaces:
+
+   ```
+   leaf01(config)# router ospf
+   leaf01(config-router)# passive-interface default
+   leaf01(config-router)# no passive-interface swp51
+   ```
+
 {{< /tab >}}
 
 {{< tab "spine01 ">}}
@@ -411,6 +426,14 @@ cumulus@spine01:~$ net commit
     spine01# exit
     cumulus@spine01:~$
     ```
+
+   You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency only on certain interfaces:
+
+   ```
+   spine01(config)# router ospf
+   spine01(config-router)# passive-interface default
+   spine01(config-router)# no passive-interface swp1
+   ```
 
 {{< /tab >}}
 

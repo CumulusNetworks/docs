@@ -246,7 +246,7 @@ The following example commands configure OSPF unnumbered on leaf01 and spine01.
 
 | leaf01 | spine01 |
 | ------ | ------- |
-| <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address of the unnumbered interface (swp51) is 10.10.10.1/32</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface</li><ul>|<ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address of the unnumbered interface (swp1) is 10.10.10.101/32</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0</li><li>swp1 is a point-to-point interface</li><ul> |
+| <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address of the unnumbered interface (swp51) is 10.10.10.1/32</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul>|<ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address of the unnumbered interface (swp1) is 10.10.10.101/32</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0</li><li>swp1 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul> |
 
 {{< tabs "TabID260 ">}}
 
@@ -544,7 +544,7 @@ Cumulus Networks recommends that you configure the interface as point-to-point u
 
 {{%notice note%}}
 
-Point-to-point is required for OSPF unnumbered.
+Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbered">}}.
 
 {{%/notice%}}
 
@@ -1102,16 +1102,15 @@ cumulus@switch:~$
 
 ## Troubleshooting
 
-Cumulus Linux provides several troubleshooting commands for OSPF:
+Cumulus Linux provides several OSPF troubleshooting commands:
 
 | To...   | <div style="width:330px">NCLU Command | <div style="width:330px">vtysh Command |
 | --- | ---- | ----- |
-| Show neighbor states: | `net show ospf neighbor` | `show ip ospf neighbor` |
-| Verify that the LSDB is synchronized across all routers in the network: | `net show ospf database` | `show ip ospf database` |
-| Determine why an OSPF route is not being forwarded correctly: |`net show route ospf` | `show ip route ospf` |
-| Capture OSPF packets: |  `sudo tcpdump -v -i swp1 ip proto ospf`|
+| Show neighbor states | `net show ospf neighbor` | `show ip ospf neighbor` |
+| Verify that the LSDB is synchronized across all routers in the network | `net show ospf database` | `show ip ospf database` |
+| Determine why an OSPF route is not being forwarded correctly |`net show route ospf` | `show ip route ospf` |
 
-The following example shows the `net show ospf neighbor` command:
+The following example shows the `net show ospf neighbor` command output:
 
 ```
 cumulus@leaf01:mgmt:~$ net show ospf neighbor
@@ -1135,6 +1134,8 @@ O   10.0.1.0/31 [110/100] is directly connected, swp51, weight 1, 00:02:37
 O   10.10.10.1/32 [110/0] is directly connected, lo, weight 1, 00:02:37
 O>* 10.10.10.101/32 [110/100] via 10.0.1.1, swp51, weight 1, 00:00:57
 ```
+
+To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf` command.
 
 For a list all of the OSPF debug options, refer to {{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html#id7" text="Debugging OSPF">}}.
 

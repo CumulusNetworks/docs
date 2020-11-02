@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>CM-31969</td>
-<td><p>On Mellanox switches, egress CoS re-marking of control plane traffic is not working.</p></td>
-<td>4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31959</td>
 <td><p>With traditional bridges, a race condition occurs when Cumulus Linux tries to derive MAC addresses.<br/>
 To work around this issue, use a static MAC address; specify a MAC address in the /etc/network/interfaces file under the bridge's stanza.</p></td>

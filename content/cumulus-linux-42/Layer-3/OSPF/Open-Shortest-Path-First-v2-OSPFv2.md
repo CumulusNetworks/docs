@@ -236,7 +236,7 @@ To configure an unnumbered interface, take the IP address of loopback interface 
 
 {{%notice note%}}
 
-OSPF Unnumbered is supported with {{<link url="#interface-options" text="point-to-point interfaces">}} only.
+OSPF Unnumbered is supported with {{<link url="#interface-parameters" text="point-to-point interfaces">}} only.
 
 {{%/notice%}}
 

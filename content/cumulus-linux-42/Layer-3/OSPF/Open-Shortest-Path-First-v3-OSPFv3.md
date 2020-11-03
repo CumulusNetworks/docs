@@ -92,7 +92,7 @@ cumulus@spine01:~$ net del ospf6 passive-interface swp1
 
 {{< tab "leaf01 ">}}
 
-1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+1. Enable the `ospf6` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
 
@@ -121,13 +121,12 @@ cumulus@spine01:~$ net del ospf6 passive-interface swp1
 
     leaf01# configure terminal
     leaf01(config)# router ospf6
-    leaf01(config-router)# router-id 10.10.10.1
-    leaf01(config-router)# network 2001:db8:0002::0a00:1/128 area 0.0.0.0
-    leaf01(config-router)# network ??? area 0.0.0.0
-    leaf01(config-router)# passive-interface swp1
-    leaf01(config-router)# passive-interface swp2
-    leaf01(config-router)# exit
-    leaf01(config)# exit
+    leaf01(config-ospf6)# router-id 10.10.10.1
+    leaf01(config-ospf6)# interface lo area 0.0.0.0
+    leaf01(config-ospf6)# interface swp51 area 0.0.0.0
+    leaf01(config-ospf6)# passive-interface swp1 ???
+    leaf01(config-ospf6)# passive-interface swp2 ????
+    leaf01(config-ospf6)# end
     leaf01# write memory
     leaf01# exit
     cumulus@leaf01:~$
@@ -137,8 +136,8 @@ You can use the `passive-interface default` command to set all interfaces as *pa
 
 ```
 leaf01(config)# router ospf6
-leaf01(config-router)# passive-interface default
-leaf01(config-router)# no passive-interface swp51
+leaf01(config-ospf6)# passive-interface default
+leaf01(config-ospf6)# no passive-interface swp51
 ```
 
 {{< /tab >}}
@@ -174,11 +173,10 @@ leaf01(config-router)# no passive-interface swp51
 
     spine01# configure terminal
     spine01(config)# router ospf6
-    spine01(config-router)# router-id 10.10.10.101
-    spine01(config-router)# network 2001:db8:0002::0a00:101/128 area 0.0.0.0
-    spine01(config-router)# network ?????? area 0.0.0.0
-    spine01(config-router)# exit
-    spine01(config)# exit
+    spine01(config-ospf6)# router-id 10.10.10.101
+    spine01(config-ospf6)# interface lo area 0.0.0.0
+    spine01(config-ospf6)# interface swp1 area 0.0.0.0
+    spine01(config-ospf6)# end
     spine01# write memory
     spine01# exit
     cumulus@spine01:~$
@@ -188,8 +186,8 @@ You can use the `passive-interface default` command to set all interfaces as *pa
 
 ```
 spine01(config)# router ospf6
-spine01(config-router)# passive-interface default
-spine01(config-router)# no passive-interface swp1
+spine01(config-ospf6)# passive-interface default
+spine01(config-ospf6)# no passive-interface swp1
 ```
 
 {{< /tab >}}
@@ -331,11 +329,15 @@ leaf01(config)# router ospf6
 leaf01(config-ospf6)# router-id 10.10.10.101
 leaf01(config-ospf6)# interface lo area 0.0.0.0
 leaf01(config-ospf6)# interface swp51 area 0.0.0.0
-leaf01(config-ospf6)# passive-interface swp1
-leaf01(config-ospf6)# passive-interface swp2
 leaf01(config-ospf6)# exit
+leaf01(config)# interface swp1
+leaf01(config-if)# ipv6 ospf6 passive
+leaf01(config-if)# exit
+leaf01(config)# interface swp2
+leaf01(config-if)# ipv6 ospf6 passive
+leaf01(config-if)# exit
 leaf01(config)# interface swp51
-leaf01(config-if)# ospf network point-to-point
+leaf01(config-if)# ipv6 ospf6 network point-to-point
 leaf01(config-if)# end
 leaf01# write memory
 leaf01# exit
@@ -380,7 +382,7 @@ spine01(config-ospf6)# interface lo area 0.0.0.0
 spine01(config-ospf6)# interface swp1 area 0.0.0.0
 spine01(config-ospf6)# exit
 spine01(config)# interface swp1
-spine01(config-if)# ospf6 network point-to-point
+spine01(config-if)# ipv6 ospf6 network point-to-point
 spine01(config-if)# end
 spine01# write memory
 spine01# exit
@@ -468,8 +470,8 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router ospf6
-switch(config-router)# redistribute connected
-switch(config-router)# end
+switch(config-ospf6)# redistribute connected
+switch(config-ospf6)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$
@@ -712,8 +714,8 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# router ospf6
-switch(config-router)# timers throttle spf 80 100 6000
-switch(config-router)# end
+switch(config-ospf6)# timers throttle spf 80 100 6000
+switch(config-ospf6)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$

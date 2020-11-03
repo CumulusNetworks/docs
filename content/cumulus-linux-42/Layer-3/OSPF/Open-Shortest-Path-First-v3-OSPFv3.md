@@ -30,7 +30,7 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 
 | leaf01 | spine01 |
 | ------ | ------- |
-| <ul><li>The loopback address is 2001:db8:0002::0a00:1/128</li><li>The IP address on swp51 is 2001:db8:2000:0a00::/64</li><li>The router ID is 10.10.10.1</li><li>All the interfaces on the switch with an IP address that matches subnet 2001:db8::1/128 and swp51 with IP address ????? are in area 0.0.0.0</li><li>swp1 and swp2 are passive interfaces</li></ul> | <ul><li>The loopback address is 2001:db8:0002::0a00:101/128</li><li>The IP address on swp1 is ??????</li><li>The router ID is 10.10.10.101</li><li>All interfaces on the switch with an IP address that matches subnet 2001:db8:0002::0a00:101/128 and swp1 with IP address ??????? are in area 0.0.0.0.</li></ul> |
+| <ul><li>The loopback address is 2001:db8::a0a:0a01/128</li><li>The IP address on swp51 is 2001:db8::a00:0101/127</li><li>The router ID is 10.10.10.1</li><li>All the interfaces on the switch with an IP address that matches subnet 2001:db8::a0a:0a01/128 and swp51 with IP address 2001:db8::a00:0101/127 are in area 0.0.0.0</li><li>swp1 and swp2 are passive interfaces</li></ul> | <ul><li>The loopback address is 2001:db8::a0a:0a65/128</li><li>The IP address on swp1 is 22001:db8::a00:0100/127</li><li>The router ID is 10.10.10.101</li><li>All interfaces on the switch with an IP address that matches subnet 2001:db8::a0a:0a65/128 and swp1 with IP address 2001:db8::a00:0100/127 are in area 0.0.0.0.</li></ul> |
 
 {{< tabs "TabID29 ">}}
 
@@ -41,22 +41,15 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ net add loopback lo ip address 2001:db8:0002::0a00:1/128
-cumulus@leaf01:~$ net add interface swp51 ip address 2001:db8:2000:0a00::/64
+cumulus@leaf01:~$ net add loopback lo ip address 2001:db8::a0a:0a01/128
+cumulus@leaf01:~$ net add interface swp51 ip address 2001:db8::a00:0101/127
 cumulus@leaf01:~$ net add ospf6 router-id 10.10.10.1
 cumulus@leaf01:~$ net add ospf6 interface lo area 0.0.0.0
 cumulus@leaf01:~$ net add ospf6 interface swp51 area 0.0.0.0
-cumulus@leaf01:~$ net add ospf6 passive-interface swp1
-cumulus@leaf01:~$ net add ospf6 passive-interface swp2
+cumulus@leaf01:~$ net add interface swp1 ospf6 passive
+cumulus@leaf01:~$ net add interface swp2 ospf6 passive
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
-```
-
-You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
-
-```
-cumulus@leaf01:~$ net add ospf6 passive-interface default
-cumulus@leaf01:~$ net del ospf6 passive-interface swp51
 ```
 
 {{< /tab >}}
@@ -64,20 +57,13 @@ cumulus@leaf01:~$ net del ospf6 passive-interface swp51
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ net add loopback lo ip address 2001:db8:0002::0a00:101/128
-cumulus@spine01:~$ net add interface swp1 ip address ????
+cumulus@spine01:~$ net add loopback lo ip address 2001:db8::a0a:0a65/128
+cumulus@spine01:~$ net add interface swp1 ip address 2001:db8::a00:0100/127
 cumulus@spine01:~$ net add ospf6 router-id 10.10.10.101
 cumulus@spine01:~$ net add ospf6 interface lo area 0.0.0.0
 cumulus@spine01:~$ net add ospf6 interface swp1 area 0.0.0.0
 cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
-```
-
-You can use the `net add ospf passive-interface default` command to set all interfaces as *passive* and the `net del ospf passive-interface <interface>` command to selectively bring up protocol adjacency only on certain interfaces:
-
-```
-cumulus@spine01:~$ net add ospf6 passive-interface default
-cumulus@spine01:~$ net del ospf6 passive-interface swp1
 ```
 
 {{< /tab >}}
@@ -92,7 +78,7 @@ cumulus@spine01:~$ net del ospf6 passive-interface swp1
 
 {{< tab "leaf01 ">}}
 
-1. Enable the `ospf6` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
 
@@ -101,11 +87,11 @@ cumulus@spine01:~$ net del ospf6 passive-interface swp1
   ...
   auto lo
   iface lo inet loopback
-    address 2001:db8:0002::0a00:1/128
+    address 2001:db8::a0a:0a01/128
 
   auto swp51
   iface swp51
-    address ?????
+    address 2001:db8::a00:0101/127
   ```
 
 3. Run the `ifreload -a` command to load the new configuration:
@@ -121,43 +107,42 @@ cumulus@spine01:~$ net del ospf6 passive-interface swp1
 
     leaf01# configure terminal
     leaf01(config)# router ospf6
-    leaf01(config-ospf6)# ospf router-id 10.10.10.1
+    leaf01(config-ospf6)# ospf6 router-id 10.10.10.1
     leaf01(config-ospf6)# interface lo area 0.0.0.0
     leaf01(config-ospf6)# interface swp51 area 0.0.0.0
-    leaf01(config-ospf6)# passive-interface swp1
-    leaf01(config-ospf6)# passive-interface swp2
-    leaf01(config-ospf6)# end
+    leaf01(config-ospf6)# exit
+    leaf01(config)# interface swp1
+    leaf01(config-if)# ipv6 ospf6 passive
+    leaf01(config-if)# exit
+    leaf01(config)# interface swp2
+    leaf01(config-if)# ipv6 ospf6 passive
+    leaf01(config-if)# exit
+    leaf01(config)# interface swp51
+    leaf01(config-if)# ipv6 ospf6 network point-to-point
+    leaf01(config-if)# end
     leaf01# write memory
     leaf01# exit
     cumulus@leaf01:~$
     ```
 
-You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency only on certain interfaces:
-
-```
-leaf01(config)# router ospf6
-leaf01(config-ospf6)# passive-interface default
-leaf01(config-ospf6)# no passive-interface swp51
-```
-
 {{< /tab >}}
 
 {{< tab "spine01 ">}}
 
-1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp1:
 
     ```
-    cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+    cumulus@spine01:~$ sudo nano /etc/network/interfaces
     ...
     auto lo
     iface lo inet loopback
-      address 2001:db8:0002::0a00:101/128
+      address 2001:db8::a0a:0a65/128
 
-    auto swp51
-    iface swp51
-      address ?????
+    auto swp1
+    iface swp1
+      address 2001:db8::a00:0100/127
     ```
 
 3. Run the `ifreload -a` command to load the new configuration:
@@ -173,22 +158,20 @@ leaf01(config-ospf6)# no passive-interface swp51
 
     spine01# configure terminal
     spine01(config)# router ospf6
-    spine01(config-ospf6)# ospf router-id 10.10.10.101
+    spine01(config-ospf6)# ospf6 router-id 10.10.10.101
     spine01(config-ospf6)# interface lo area 0.0.0.0
     spine01(config-ospf6)# interface swp1 area 0.0.0.0
-    spine01(config-ospf6)# end
+    spine01(config-ospf6)# exit
+    spine01(config)# interface swp2
+    spine01(config-if)# ipv6 ospf6 passive
+    spine01(config-if)# exit
+    spine01(config)# interface swp1
+    spine01(config-if)# ipv6 ospf6 network point-to-point
+    spine01(config-if)# end
     spine01# write memory
     spine01# exit
     cumulus@spine01:~$
     ```
-
-You can use the `passive-interface default` command to set all interfaces as *passive* and selectively bring up protocol adjacency only on certain interfaces:
-
-```
-spine01(config)# router ospf6
-spine01(config-ospf6)# passive-interface default
-spine01(config-ospf6)# no passive-interface swp1
-```
 
 {{< /tab >}}
 
@@ -210,8 +193,12 @@ router ospf6
  ospf router-id 10.10.10.1
  interface lo area 0.0.0.0
  interface swp51 area 0.0.0.0
- passive-interface swp1
- passive-interface swp2
+
+interface swp2
+ ipv6 ospf6 passive
+
+interface swp1
+ ipv6 ospf6 passive
 ...
 ```
 
@@ -250,7 +237,7 @@ The following example commands configure OSPFv3 unnumbered on leaf01 and spine01
 
 | leaf01 | spine01 |
 | ------ | ------- |
-| <ul><li>The loopback address is 2001:db8:0002::0a00:1/128</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0.0.0.0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul>|<ul><li>The loopback address is 2001:db8:0002::0a00:101/128</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0.0.0.0</li><li>swp1 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul> |
+| <ul><li>The loopback address is 2001:db8::a0a:0a01/128</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0.0.0.0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul>|<ul><li>The loopback address is 2001:db8::a0a:0a65/128</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0.0.0.0</li><li>swp1 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul> |
 
 {{< tabs "TabID257 ">}}
 
@@ -261,7 +248,7 @@ The following example commands configure OSPFv3 unnumbered on leaf01 and spine01
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ net add loopback lo ip address 2001:db8:0002::0a00:1/128
+cumulus@leaf01:~$ net add loopback lo ip address 2001:db8::a0a:0a01/128
 cumulus@leaf01:~$ net add ospf6 router-id 10.10.10.1
 cumulus@leaf01:~$ net add ospf6 interface lo area 0.0.0.0
 cumulus@leaf01:~$ net add ospf6 interface swp51 area 0.0.0.0
@@ -277,7 +264,7 @@ cumulus@leaf01:~$ net commit
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ net add loopback lo ip address 2001:db8:0002::0a00:101/128
+cumulus@spine01:~$ net add loopback lo ip address 2001:db8::a0a:0a65/128
 cumulus@spine01:~$ net add ospf6 router-id 10.10.10.1
 cumulus@spine01:~$ net add ospf6 interface lo area 0.0.0.0
 cumulus@spine01:~$ net add ospf6 interface swp1 area 0.0.0.0
@@ -298,7 +285,7 @@ cumulus@spine01:~$ net commit
 
 {{< tab "leaf01 ">}}
 
-1. Enable the `ospf6` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
 
@@ -307,11 +294,11 @@ cumulus@spine01:~$ net commit
   ...
   auto lo
   iface lo inet loopback
-    address 2001:db8:0002::0a00:1/128
+    address 2001:db8::a0a:0a01/128
 
   auto swp1
   iface swp1
-    address 2001:db8:0002::0a00:1/128
+    address 2001:db8::a0a:0a01/128
   ```
 
 3. Run the `ifreload -a` command to load the new configuration:
@@ -326,7 +313,7 @@ cumulus@leaf01:~$ sudo vtysh
 
 leaf01# configure terminal
 leaf01(config)# router ospf6
-leaf01(config-ospf6)# ospf router-id 10.10.10.1
+leaf01(config-ospf6)# ospf6 router-id 10.10.10.1
 leaf01(config-ospf6)# interface lo area 0.0.0.0
 leaf01(config-ospf6)# interface swp51 area 0.0.0.0
 leaf01(config-ospf6)# exit
@@ -348,20 +335,20 @@ cumulus@leaf01:~$
 
 {{< tab "spine01 ">}}
 
-1. Enable the `ospf6` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+1. Edit the `/etc/frr/daemons` file to enable the `ospf6` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp1:
 
   ```
-  cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+  cumulus@spine01:~$ sudo nano /etc/network/interfaces
   ...
   auto lo
   iface lo inet loopback
-    address 2001:db8:0002::0a00:101/128
+    address 2001:db8::a0a:0a65/128
 
   auto swp51
   iface swp51
-    address 2001:db8:0002::0a00:101/128
+    address 2001:db8::a0a:0a65/128
   ```
 
 3. Run the `ifreload -a` command to load the new configuration:
@@ -981,9 +968,9 @@ Codes: K - kernel route, C - connected, S - static, R - RIPng,
        f - OpenFabric,
        > - selected route, * - FIB route, q - queued route, r - rejected route
 
-O   2001:db8:2::a00:1/128 [110/10] is directly connected, lo, weight 1, 00:07:17
-O>* 2001:db8:2::a00:101/128 [110/110] via fe80::4638:39ff:fe00:2, swp51, weight 1, 00:03:22
-O   2001:db8:2000:a00::/64 [110/100] is directly connected, swp51, weight 1, 00:03:27
+O   2001:db8::a0a:0a01/128 [110/10] is directly connected, lo, weight 1, 00:07:17
+O>* 2001:db8::a0a:0a01/128 [110/110] via fe80::4638:39ff:fe00:2, swp51, weight 1, 00:03:22
+O   2001:db8::a00:0101/127 [110/100] is directly connected, swp51, weight 1, 00:03:27
 ```
 
 To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf6` command.

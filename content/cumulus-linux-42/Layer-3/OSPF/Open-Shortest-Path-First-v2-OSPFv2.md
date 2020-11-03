@@ -86,7 +86,7 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
 
 {{< tab "leaf01 ">}}
 
-1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+1. Edit the `/etc/frr/daemons` file to enable the `ospf` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp51:
 
@@ -139,7 +139,7 @@ leaf01(config-router)# no passive-interface swp51
 
 {{< tab "spine01 ">}}
 
-1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+1. Edit the `/etc/frr/daemons` file to enable the `ospf` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp1:
 
@@ -328,7 +328,7 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
 
 {{< tab "leaf01 ">}}
 
-1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+1. Edit the `/etc/frr/daemons` file to enable the `ospf` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the loopback and unnumbered interface address:
 
@@ -344,13 +344,13 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
       address 10.10.10.1/32
     ```
 
-2. Run the `ifreload -a` command to load the new configuration:
+3. Run the `ifreload -a` command to load the new configuration:
 
     ```
     cumulus@switch:~$ ifreload -a
     ```
 
-3. From the `vtysh` shell, configure OSPF:
+4. From the `vtysh` shell, configure OSPF:
 
     ```
     cumulus@leaf01:~$ sudo vtysh
@@ -385,7 +385,7 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
 
 {{< tab "spine01 ">}}
 
-1. Enable the `ospf` daemon, then start the FRRouting service. See {{<link url="Configure-FRRouting">}}.
+1. Edit the `/etc/frr/daemons` file to enable the `ospf` daemon, then start the FRRouting service (see {{<link url="Configure-FRRouting">}}).
 
 2. Edit the `/etc/network/interfaces` file to configure the loopback and unnumbered interface address:
 
@@ -401,13 +401,13 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
       address 10.10.10.101/32
     ```
 
-2. Run the `ifreload -a` command to load the new configuration:
+3. Run the `ifreload -a` command to load the new configuration:
 
     ```
     cumulus@spine01:~$ sudo ifreload -a
     ```
 
-3. From the `vtysh` shell, configure OSPF:
+4. From the `vtysh` shell, configure OSPF:
 
     ```
     cumulus@spine01:~$ sudo vtysh

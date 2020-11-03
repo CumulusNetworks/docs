@@ -115,7 +115,7 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
 
     leaf01# configure terminal
     leaf01(config)# router ospf
-    leaf01(config-router)# router-id 10.10.10.1
+    leaf01(config-router)# ospf router-id 10.10.10.1
     leaf01(config-router)# network 10.10.10.1/32 area 0
     leaf01(config-router)# network 10.0.1.0/31 area 0
     leaf01(config-router)# passive-interface swp1
@@ -168,7 +168,7 @@ leaf01(config-router)# no passive-interface swp51
 
     spine01# configure terminal
     spine01(config)# router ospf
-    spine01(config-router)# router-id 10.10.101.1
+    spine01(config-router)# ospf router-id 10.10.101.1
     spine01(config-router)# network 10.10.10.101/32 area 0
     spine01(config-router)# network 10.0.1.1/31 area 0
     spine01(config-router)# exit
@@ -356,7 +356,9 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
     cumulus@leaf01:~$ sudo vtysh
 
     leaf01# configure terminal
-    leaf01(config)# interface swp51
+    leaf01(config)# router ospf
+    leaf01(config-router)# ospf router-id 10.10.10.1
+    leaf01(config-router)# interface swp51
     leaf01(config-if)# ip ospf area 0
     leaf01(config-if)# ip ospf network point-to-point
     leaf01(config-if)# exit
@@ -364,7 +366,6 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
     leaf01(config-if)# ip ospf area 0
     leaf01(config-if)# exit
     leaf01(config)# router ospf
-    leaf01(config-router)# router-id 10.10.10.1
     leaf01(config-router)# passive-interface swp1,swp2
     leaf01(config-router)# end
     leaf01# write memory
@@ -412,6 +413,8 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
     cumulus@spine01:~$ sudo vtysh
 
     spine01# configure terminal
+    spine01(config)# router ospf
+    spine01(config)# ospf router-id 10.10.10.101
     spine01(config)# interface swp1
     spine01(config-if)# ip ospf area 0
     spine01(config-if)# ip ospf network point-to-point
@@ -419,8 +422,6 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
     spine01(config)# interface lo
     spine01(config-if)# ip ospf area 0
     spine01(config-if)# exit
-    spine01(config)# router ospf
-    spine01(config-router)# router-id 10.10.10.101
     spine01(config-if)# end
     spine01# write memory
     spine01# exit

@@ -479,6 +479,18 @@ cumulus@switch:~$
 
 {{< /tabs >}}
 
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+...
+router ospf6
+ ospf6 router-id 10.10.10.1
+ interface lo area 0.0.0.0
+ interface swp51 area 0.0.0.0
+ redistribute connected
+```
+
 ### Interface Parameters
 
 You can define the following OSPF parameters per interface:
@@ -544,7 +556,7 @@ interface swp51
 
 The following command example sets the hello interval to 5 seconds, the dead interval to 60 seconds, and the priority to 5 for swp51. The hello interval and dead inteval can be any value between 1 and 65535 seconds. The priority can be any value between 0 to 255 (0 configures the interface to never become the OSPF Designated Router (DR) on a broadcast interface).
 
-{{< tabs "TabID82 ">}}
+{{< tabs "TabID559 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -589,14 +601,14 @@ interface swp51
 ...
 ```
 
-The following example command configures interface swp51 with the IPv6 advertise prefix list named `filter`:
+The following example command configures interface swp51 with the IPv6 advertise prefix list named `myfilter`:
 
 {{< tabs "TabID345 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add interface swp51 ospf6 advertise prefix-list filter
+cumulus@switch:~$ net add interface swp51 ospf6 advertise prefix-list myfilter
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -610,7 +622,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# interface swp51
-switch(config-if)# ipv6 ospf advertise prefix-list filter
+switch(config-if)# ipv6 ospf advertise prefix-list myfilter
 switch(config-if)# end
 switch# write memory
 switch# exit
@@ -625,19 +637,19 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 
 ```
 ...
-interface swp2
-  ipv6 ospf6 cost 1
+interface swp51
+  ipv6 ospf6 advertise prefix-list myfilter
 ...
 ```
 
-The following example command configures the cost for swp1.
+The following example command configures the cost for swp51.
 
 {{< tabs "TabID592 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add interface swp1 ospf6 cost 1
+cumulus@switch:~$ net add interface swp51 ospf6 cost 1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -650,7 +662,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# interface swp1
+switch(config)# interface swp51
 switch(config-if)# ipv6 ospf cost 1
 switch(config-if)# end
 switch# write memory
@@ -661,6 +673,15 @@ cumulus@switch:~$
 {{< /tab >}}
 
 {{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+interface swp51
+  ipv6 ospf6 cost 1
+...
+```
 
 ### SPF Timer Defaults
 

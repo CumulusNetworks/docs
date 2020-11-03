@@ -580,8 +580,8 @@ cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# interface swp51
 switch(config-if)# ipv6 ospf6 hello-interval 5
-switch(config-if)# ospf6 network dead-interval 60
-switch(config-if)# ospf6 network priority 5
+switch(config-if)# ipv6 ospf6 network dead-interval 60
+switch(config-if)# ipv6 ospf6 network priority 5
 switch(config-if)# end
 switch# write memory
 switch# exit
@@ -624,7 +624,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# interface swp51
-switch(config-if)# ipv6 ospf advertise prefix-list myfilter
+switch(config-if)# ipv6 ospf6 advertise prefix-list myfilter
 switch(config-if)# end
 switch# write memory
 switch# exit
@@ -665,7 +665,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# interface swp51
-switch(config-if)# ipv6 ospf cost 1
+switch(config-if)# ipv6 ospf6 cost 1
 switch(config-if)# end
 switch# write memory
 switch# exit

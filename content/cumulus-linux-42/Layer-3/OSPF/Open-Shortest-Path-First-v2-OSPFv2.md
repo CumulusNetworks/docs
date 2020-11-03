@@ -228,6 +228,16 @@ router ospf
 
 {{< /tabs >}}
 
+{{%notice note%}}
+
+Instead of configuring the IP subnet prefix with an area address per network with the net add ospf network command, you can configure OSPF per interface with the net add interface command. However, you cannot use both configuration methods at the same time. Here is an example of configuring OSPF per interface:
+
+```
+cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
+```
+
+{{%/notice%}}
+
 ### OSPF Unnumbered
 
 Unnumbered interfaces are interfaces without unique IP addresses; multiple interfaces share the same IP address. In OSPFv2, unnumbered interfaces reduce the need for unique IP addresses on leaf and spine interfaces and simplify the OSPF database, reducing the memory footprint and improving SPF convergence times.
@@ -499,75 +509,27 @@ line vty
 
 This section describes optional configuration. The steps provided in this section assume that you already configured basic OSPFv2 as described in {{<link url="#basic-ospfv2-configuration" >}}, above.
 
-### Redistribute Protocol Routes
-
-To redistribute protocol routes, run the `net add ospf redistribute connected` command.
-
-Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs). For example:
-
-{{< tabs "TabID509 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add ospf redistribute connected
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router ospf
-switch(config-router)# redistribute connected
-switch(config-router)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
 ### Interface Parameters
 
 You can define the following OSPF parameters per interface:
 - Network type (point-to-point or broadcast). Broadcast is the default setting.
+  Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
+  {{%notice note%}}
+  Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbered">}}.
+  {{%/notice%}}
 - Hello interval. The number of seconds between hello packets sent on the interface.
 - Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
 hello Packets.
 - Priority in becoming the OSPF Designated Router (DR) on a broadcast interface.
 
-Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
+The following command example sets the network type to point-to-point.
 
-{{%notice note%}}
-
-Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbered">}}.
-
-{{%/notice%}}
-
-The following command example sets the network type to point-to-point, the hello interval to 5 seconds, and the dead interval to 60 seconds for swp51. The hello interval and dead inteval can be any value between 1 and 65535 seconds. The priority can be any value between 0 to 255 (0 configures the interface to never become the OSPF Designated Router (DR) on a broadcast interface).
-
-{{%notice note%}}
-
-You can only set the priority with vysh commands.
-
-{{%/notice%}}
-
-{{< tabs "TabID555 ">}}
+{{< tabs "TabID527 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
 cumulus@switch:~$ net add interface swp51 ospf network point-to-point
-cumulus@switch:~$ net add interface swp51 ospf hello-interval 5
-cumulus@switch:~$ net add interface swp51 ospf dead-interval 60
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -582,9 +544,6 @@ cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# interface swp51
 switch(config-if)# ip ospf network point-to-point
-switch(config-if)# ip ospf network hello-interval 5
-switch(config-if)# ip ospf network dead-interval 60
-switch(config-if)# ip ospf network priority 5
 switch(config-if)# end
 switch# write memory
 switch# exit
@@ -601,8 +560,90 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ...
 interface swp51
  ip ospf network point-to-point
+...
+```
+
+The following command example sets the hello interval to 5 seconds and the dead interval to 60 seconds. The hello interval and dead inteval can be any value between 1 and 65535 seconds.
+
+{{< tabs "TabID568 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface swp51 ospf hello-interval 5
+cumulus@switch:~$ net add interface swp51 ospf dead-interval 60
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface swp51
+switch(config-if)# ip ospf network hello-interval 5
+switch(config-if)# ip ospf network dead-interval 60
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example
+
+```
+...
+interface swp51
  ip ospf hello-interval 5
  ip ospf dead-interval 60
+...
+```
+
+The following command example sets the priority to 5 for swp51. The priority can be any value between 0 to 255 (0 configures the interface to never become the OSPF Designated Router (DR) on a broadcast interface).
+
+{{< tabs "TabID612 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add interface swp51 ospf priority 5
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# interface swp51
+switch(config-if)# ip ospf network priority 5
+switch(config-if)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example
+
+```
+...
+interface swp51
  ip ospf priority 5
 ...
 ```
@@ -985,101 +1026,6 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 router ospf
  router-id 10.10.10.1
  auto-cost reference-bandwidth 90000
-...
-```
-
-### Apply a Route Map for Route Updates
-
-You can apply a {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route map">}} to filter route updates from Zebra into the Linux kernel.
-
-{{< tabs "TabID964 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-The following example commands apply the route map called `map1`:
-
-```
-cumulus@switch:~$ net add routing protocol ospf route-map map1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-The following example commands apply the route map called `map1`:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# ip protocol ospf route-map map1
-switch(config)# exit
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router ospf
-  ospf router-id 10.10.10.1
-  ...
-!
-ip protocol ospf route-map map1
-!
-...
-```
-
-To apply a route map to redistributed routes:
-
-{{< tabs "TabID1012 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-The following example commands apply the route map called `map1` to redistributed routes:
-
-```
-cumulus@switch:~$ net add ospf redistribute connected route-map map1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-The following example commands apply the route map called `map1` to redistributed routes:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# redistribute connected route-map map1
-switch(config)# exit
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router ospf
- ospf router-id 10.10.10.1
- redistribute connected route-map map1
 ...
 ```
 

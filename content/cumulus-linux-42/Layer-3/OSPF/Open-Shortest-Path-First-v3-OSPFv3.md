@@ -419,60 +419,11 @@ interface swp1
 
 This section describes optional configuration. The steps provided in this section assume that you already configured basic OSPFv3 as described in {{<link url="#basic-ospfv3-configuration" >}}, above.
 
-### Redistribute Protocol Routes
-
-To redistribute protocol routes, run the `net add ospf redistribute connected` command.
-
-Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs). For example:
-
-{{< tabs "TabID509 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add ospf6 redistribute connected
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router ospf6
-switch(config-ospf6)# redistribute connected
-switch(config-ospf6)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
-...
-router ospf6
- ospf6 router-id 10.10.10.1
- interface lo area 0.0.0.0
- interface swp51 area 0.0.0.0
- redistribute connected
-```
-
 ### Interface Parameters
 
 You can define the following OSPF parameters per interface:
 - Network type (point-to-point or broadcast). Broadcast is the default setting.
   Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
-
   {{%notice note%}}
   Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbered">}}.
   {{%/notice%}}
@@ -933,7 +884,7 @@ Cumulus Linux provides several OSPFv3 troubleshooting commands:
 | Verify that the LSDB is synchronized across all routers in the network | `net show ospf6 database` | `show ip ospf6 database` |
 | Determine why an OSPF route is not being forwarded correctly |`net show route ospf6` | `show ip route ospf6` |
 | Show OSPF interfaces | `net show ospf6 interface` | `show ip ospf6 interface` |
-| To help visualize the network view: | `net show ospf6 spf tree` | `show ip ospf6 spf tree1 |
+| To help visualize the network view | `net show ospf6 spf tree` | `show ip ospf6 spf tree1 |
 
 The following example shows the `net show ospf6 neighbor` command output:
 

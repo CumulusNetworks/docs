@@ -15,7 +15,6 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="CM-32006"></a> [CM-32006](#CM-32006) <a name="CM-32006"></a> | Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the `reboot` command.  | 3.7.12-3.7.13, 4.0.0-4.2.1 | |
-| <a name="CM-31969"></a> [CM-31969](#CM-31969) <a name="CM-31969"></a> | On Mellanox switches, egress CoS re-marking of control plane traffic is not working. | 4.2.1 | |
 | <a name="CM-31959"></a> [CM-31959](#CM-31959) <a name="CM-31959"></a> | With traditional bridges, a race condition occurs when Cumulus Linux tries to derive MAC addresses.<br/>To work around this issue, use a static MAC address; specify a MAC address in the `/etc/network/interfaces` file under the bridge's stanza. | 4.2.1 | |
 | <a name="CM-31954"></a> [CM-31954](#CM-31954) <a name="CM-31954"></a> | A security issue was discovered in the MariaDB database server.<br/>Vulnerable: 10.3.25-0<br/>Fixed: 10.3.25-0+deb10u1 | 4.0.0-4.2.1 | |
 | <a name="CM-31936"></a> [CM-31936](#CM-31936) <a name="CM-31936"></a> | When you back up and restore a configuration using the conf-backup utility, the switch might hang when rebooted. | 4.1.1-4.2.1 | |

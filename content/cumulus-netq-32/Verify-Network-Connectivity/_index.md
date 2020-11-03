@@ -66,6 +66,8 @@ Three output formats are available for the on-demand trace with results in a ter
 - **Detail**: Results are displayed in a tabular format with a row per hop and a set of rows per path, useful for traces with higher hop counts where the pretty output wraps lines,
 making it harder to interpret the results. This is the default output when not specified.
 
+You can improve the readability of the output using color as well. Run `netq config add color` to turn color on. Run `netq config del color` to turn color off.
+
 ### Known Addresses
 
 The tracing function only knows about addresses that have already been learned. If you find that a path is invalid or incomplete, you may need to ping the identified device so that its address becomes known.
@@ -80,7 +82,7 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 {{< tabs "TabID78" >}}
 
-{{< tab "NetQ UI" >}}
+{{< tab "On-demand Trace Request" >}}
 
 1. Determine the IP addresses of the two devices to be traced.
 
@@ -111,13 +113,9 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "netq trace" >}}
 
 Use the `netq trace` command to view the results in the terminal window. Use the `netq add trace` command to view the results in the NetQ UI.
-
-{{< tabs "TabID119" >}}
-
-{{< tab "netq trace" >}}
 
 To create a layer 3 on-demand trace and see the results in the terminal window, run:
 
@@ -127,12 +125,111 @@ netq trace <ip> from (<src-hostname>|<ip-src>) [json|detail|pretty]
 
 Note the syntax requires the *destination* device address first and then the *source* device address or hostname.
 
-This example shows a trace from x (source) to y (destination) in pretty output. It first identifies the addresses for the source and destination devices using `netq show ip addresses` then runs the trace.
+This example shows a trace from 10.10.10.1 (source, leaf01) to 10.10.10.63 (destination, border01) on the underlay in pretty output. It first identifies the addresses for the source and destination devices using `netq show ip addresses` then runs the trace.
 
 ```
-cumulus@switch:~$ netq y show ip addresses
-cumulus@switch:~$ netq x show ip addresses
-cumulus@switch:~$ netq trace x from y pretty
+cumulus@switch:~$ netq border01 show ip addresses
+
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+192.168.200.63/24         border01          eth0                                      Tue Nov  3 15:45:31 2020
+10.0.1.254/32             border01          lo                        default         Mon Nov  2 22:28:54 2020
+10.10.10.63/32            border01          lo                        default         Mon Nov  2 22:28:54 2020
+
+cumulus@switch:~$ netq trace 10.10.10.63 from  10.10.10.1 pretty
+Number of Paths: 12
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9216
+
+ leaf01 swp54 -- swp1 spine04 swp6 -- swp54 border02 peerlink.4094 -- peerlink.4094 border01 lo
+                                                     peerlink.4094 -- peerlink.4094 border01 lo
+ leaf01 swp53 -- swp1 spine03 swp6 -- swp53 border02 peerlink.4094 -- peerlink.4094 border01 lo
+                                                     peerlink.4094 -- peerlink.4094 border01 lo
+ leaf01 swp52 -- swp1 spine02 swp6 -- swp52 border02 peerlink.4094 -- peerlink.4094 border01 lo
+                                                     peerlink.4094 -- peerlink.4094 border01 lo
+ leaf01 swp51 -- swp1 spine01 swp6 -- swp51 border02 peerlink.4094 -- peerlink.4094 border01 lo
+                                                     peerlink.4094 -- peerlink.4094 border01 lo
+ leaf01 swp54 -- swp1 spine04 swp5 -- swp54 border01 lo
+ leaf01 swp53 -- swp1 spine03 swp5 -- swp53 border01 lo
+ leaf01 swp52 -- swp1 spine02 swp5 -- swp52 border01 lo
+ leaf01 swp51 -- swp1 spine01 swp5 -- swp51 border01 lo
+```
+
+Each row of the pretty output shows one of the 12 available paths. Each path is described by hops using the following format:
+
+source hostname and source egress port -- ingress port of first hop and device hostname and egress port -- n*(ingress port of next hop and device hostname and egress port) -- ingress port of destination device hostname
+
+In this example, eight of 12 paths use four hops to get to the destination and four use three hops. The overall MTU for all paths is 9216. No errors or warnings are present on any of the paths.
+
+Alternately, you can choose to view the same results in detail (default output) or JSON format. This example shows the default detail output.
+
+```
+cumulus@switch:~$ netq trace 10.10.10.63 from  10.10.10.1
+Number of Paths: 12
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9216
+
+Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
+--- --- ----------- --------------- --------------- --------------- ---------------
+1   1   leaf01                                      swp54           swp54
+    2   spine04     swp1            swp1            swp6            swp6
+    3   border02    swp54           swp54           peerlink.4094   peerlink.4094
+    4   border01    peerlink.4094                                   lo
+--- --- ----------- --------------- --------------- --------------- ---------------
+2   1   leaf01                                      swp54           swp54
+    2   spine04     swp1            swp1            swp6            swp6
+    3   border02    swp54           swp54           peerlink.4094   peerlink.4094
+    4   border01    peerlink.4094                                   lo
+--- --- ----------- --------------- --------------- --------------- ---------------
+3   1   leaf01                                      swp53           swp53
+    2   spine03     swp1            swp1            swp6            swp6
+    3   border02    swp53           swp53           peerlink.4094   peerlink.4094
+    4   border01    peerlink.4094                                   lo
+--- --- ----------- --------------- --------------- --------------- ---------------
+4   1   leaf01                                      swp53           swp53
+    2   spine03     swp1            swp1            swp6            swp6
+    3   border02    swp53           swp53           peerlink.4094   peerlink.4094
+    4   border01    peerlink.4094                                   lo
+--- --- ----------- --------------- --------------- --------------- ---------------
+5   1   leaf01                                      swp52           swp52
+    2   spine02     swp1            swp1            swp6            swp6
+    3   border02    swp52           swp52           peerlink.4094   peerlink.4094
+    4   border01    peerlink.4094                                   lo
+--- --- ----------- --------------- --------------- --------------- ---------------
+6   1   leaf01                                      swp52           swp52
+    2   spine02     swp1            swp1            swp6            swp6
+    3   border02    swp52           swp52           peerlink.4094   peerlink.4094
+    4   border01    peerlink.4094                                   lo
+--- --- ----------- --------------- --------------- --------------- ---------------
+7   1   leaf01                                      swp51           swp51
+    2   spine01     swp1            swp1            swp6            swp6
+    3   border02    swp51           swp51           peerlink.4094   peerlink.4094
+    4   border01    peerlink.4094                                   lo
+--- --- ----------- --------------- --------------- --------------- ---------------
+8   1   leaf01                                      swp51           swp51
+    2   spine01     swp1            swp1            swp6            swp6
+    3   border02    swp51           swp51           peerlink.4094   peerlink.4094
+    4   border01    peerlink.4094                                   lo
+--- --- ----------- --------------- --------------- --------------- ---------------
+9   1   leaf01                                      swp54           swp54
+    2   spine04     swp1            swp1            swp5            swp5
+    3   border01    swp54                                           lo
+--- --- ----------- --------------- --------------- --------------- ---------------
+10  1   leaf01                                      swp53           swp53
+    2   spine03     swp1            swp1            swp5            swp5
+    3   border01    swp53                                           lo
+--- --- ----------- --------------- --------------- --------------- ---------------
+11  1   leaf01                                      swp52           swp52
+    2   spine02     swp1            swp1            swp5            swp5
+    3   border01    swp52                                           lo
+--- --- ----------- --------------- --------------- --------------- ---------------
+12  1   leaf01                                      swp51           swp51
+    2   spine01     swp1            swp1            swp5            swp5
+    3   border01    swp51                                           lo
+--- --- ----------- --------------- --------------- --------------- ---------------
 ```
 
 {{< /tab >}}
@@ -142,19 +239,19 @@ cumulus@switch:~$ netq trace x from y pretty
 To create a layer 3 on-demand trace and see the results in the On-demand Trace Results card, run:
 
 ```
-netq add trace <ip> from (<src-hostname> | <ip-src>)
+netq add trace <ip> from (<src-hostname> | <ip-src>) [alert-on-failure]
 ```
 
-This example shows a trace from x (source) to y (destination).
+This example shows a trace from 10.10.10.1 (source, leaf01) to 10.10.10.63 (destination, border01).
 
 ```
+cumulus@switch:~$ netq add trace 10.10.10.63 from 10.10.10.1
+Running job None src 10.10.10.1 dst 10.10.10.63
 ```
 
-After the trace has been run, refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
+Confirmation of the on-demand job is provided. Refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
 
-{{< /tab >}}
-
-{{< /tabs >}}
+If you include the `alert-on-failure` option, an event is created if the trace request fails.
 
 {{< /tab >}}
 
@@ -162,11 +259,11 @@ After the trace has been run, refer to {{<link title="#View Layer 3 Trace Result
 
 ### Create a Layer 3 Trace Through a Given VRF
 
-If can guide a layer 3 trace through a particular VRF interface using the NetQ UI or the NetQ CLI.
+You can guide a layer 3 trace through a particular VRF interface using the NetQ UI or the NetQ CLI.
 
 {{< tabs "TabID168" >}}
 
-{{< tab "NetQ UI" >}}
+{{< tab "On-demand Trace Request" >}}
 
 To create the trace request:
 
@@ -176,7 +273,7 @@ To create the trace request:
 
     2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname.
 
-    3. Make note of the relevant address.
+    3. Make note of the relevant address and VRF.
 
     4. Filter the list again for the other hostname, and make note of its address.
 
@@ -195,19 +292,15 @@ To create the trace request:
 
     {{<figure src="/images/netq/trace-request-large-l3wVRF-example-320.png" width="500" >}}
 
-<div style="padding-left: 18px;">In this example, we are starting our trace at <em>server01</em> using its IPv4 address <em>10.1.10.101</em> and ending it at <em>server04</em> whose IPv4 address is <em>10.1.3.103</em>. Because this trace is between two servers, a VRF is needed, in this case the <em>RED</em> VRF.</div>
+<div style="padding-left: 18px;">In this example, we are starting our trace at <em>server01</em> using its IPv4 address <em>10.1.10.101</em> and ending it at <em>server04</em> whose IPv4 address is <em>10.1.3.104</em>. Because this trace is between two servers, a VRF is needed, in this case the <em>RED</em> VRF.</div>
 
 6. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "netq trace" >}}
 
 Use the `netq trace` command to view the results in the terminal window. Use the `netq add trace` command to view the results in the NetQ UI.
-
-{{< tabs "TabID209" >}}
-
-{{< tab "netq trace" >}}
 
 To create a layer 3 on-demand trace through a given VRF and see the results in the terminal window, run:
 
@@ -217,12 +310,170 @@ netq trace <ip> from (<src-hostname>|<ip-src>) vrf <vrf> [json|detail|pretty]
 
 Note the syntax requires the *destination* device address first and then the *source* device address or hostname.
 
-This example shows a trace from x (source) to y (destination) through VRF z in detail output. It first identifies the addresses for the source and destination devices and a VRF between them using `netq show ip addresses` then runs the trace.
+This example shows a trace from 10.1.10.101 (source, server01) to 10.1.10.104 (destination, server04) through VRF RED in detail output. It first identifies the addresses for the source and destination devices and a VRF between them using `netq show ip addresses` then runs the trace. Note that the VRF name is case sensitive. The trace job may take a bit to compile all of the available paths, especially if there are a large number of them.
 
 ```
-cumulus@switch:~$ netq y show ip addresses
-cumulus@switch:~$ netq x show ip addresses
-cumulus@switch:~$ netq trace x from y
+cumulus@switch:~$ netq server01 show ip addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+192.168.200.31/24         server01          eth0                      default         Tue Nov  3 19:50:21 2020
+10.1.10.101/24            server01          uplink                    default         Tue Nov  3 19:50:21 2020
+
+cumulus@switch:~$ netq server04 show ip addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+10.1.10.104/24            server04          uplink                    default         Tue Nov  3 19:50:23 2020
+192.168.200.34/24         server04          eth0                      default         Tue Nov  3 19:50:23 2020
+
+cumulus@switch:~$ netq trace 10.1.10.104 from 10.1.10.101 vrf RED
+Number of Paths: 16
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9000
+
+Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
+--- --- ----------- --------------- --------------- --------------- ---------------
+1   1   server01                                                    mac:44:38:39:00
+                                                                    :00:38
+    2   leaf02      swp1                            vni: 10         swp54
+    3   spine04     swp2            swp2            swp4            swp4
+    4   leaf04      swp54           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+2   1   server01                                                    mac:44:38:39:00
+                                                                    :00:38
+    2   leaf02      swp1                            vni: 10         swp54
+    3   spine04     swp2            swp2            swp3            swp3
+    4   leaf03      swp54           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+3   1   server01                                                    mac:44:38:39:00
+                                                                    :00:38
+    2   leaf02      swp1                            vni: 10         swp53
+    3   spine03     swp2            swp2            swp4            swp4
+    4   leaf04      swp53           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+4   1   server01                                                    mac:44:38:39:00
+                                                                    :00:38
+    2   leaf02      swp1                            vni: 10         swp53
+    3   spine03     swp2            swp2            swp3            swp3
+    4   leaf03      swp53           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+5   1   server01                                                    mac:44:38:39:00
+                                                                    :00:38
+    2   leaf02      swp1                            vni: 10         swp52
+    3   spine02     swp2            swp2            swp4            swp4
+    4   leaf04      swp52           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+6   1   server01                                                    mac:44:38:39:00
+                                                                    :00:38
+    2   leaf02      swp1                            vni: 10         swp52
+    3   spine02     swp2            swp2            swp3            swp3
+    4   leaf03      swp52           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+7   1   server01                                                    mac:44:38:39:00
+                                                                    :00:38
+    2   leaf02      swp1                            vni: 10         swp51
+    3   spine01     swp2            swp2            swp4            swp4
+    4   leaf04      swp51           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+8   1   server01                                                    mac:44:38:39:00
+                                                                    :00:38
+    2   leaf02      swp1                            vni: 10         swp51
+    3   spine01     swp2            swp2            swp3            swp3
+    4   leaf03      swp51           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+9   1   server01                                                    mac:44:38:39:00
+                                                                    :00:32
+    2   leaf01      swp1                            vni: 10         swp54
+    3   spine04     swp1            swp1            swp4            swp4
+    4   leaf04      swp54           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+10  1   server01                                                    mac:44:38:39:00
+                                                                    :00:32
+    2   leaf01      swp1                            vni: 10         swp54
+    3   spine04     swp1            swp1            swp3            swp3
+    4   leaf03      swp54           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+11  1   server01                                                    mac:44:38:39:00
+                                                                    :00:32
+    2   leaf01      swp1                            vni: 10         swp53
+    3   spine03     swp1            swp1            swp4            swp4
+    4   leaf04      swp53           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+12  1   server01                                                    mac:44:38:39:00
+                                                                    :00:32
+    2   leaf01      swp1                            vni: 10         swp53
+    3   spine03     swp1            swp1            swp3            swp3
+    4   leaf03      swp53           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+13  1   server01                                                    mac:44:38:39:00
+                                                                    :00:32
+    2   leaf01      swp1                            vni: 10         swp52
+    3   spine02     swp1            swp1            swp4            swp4
+    4   leaf04      swp52           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+14  1   server01                                                    mac:44:38:39:00
+                                                                    :00:32
+    2   leaf01      swp1                            vni: 10         swp52
+    3   spine02     swp1            swp1            swp3            swp3
+    4   leaf03      swp52           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+15  1   server01                                                    mac:44:38:39:00
+                                                                    :00:32
+    2   leaf01      swp1                            vni: 10         swp51
+    3   spine01     swp1            swp1            swp4            swp4
+    4   leaf04      swp51           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+16  1   server01                                                    mac:44:38:39:00
+                                                                    :00:32
+    2   leaf01      swp1                            vni: 10         swp51
+    3   spine01     swp1            swp1            swp3            swp3
+    4   leaf03      swp51           vni: 10                         bond1
+    5   server04    uplink
+--- --- ----------- --------------- --------------- --------------- ---------------
+```
+
+Or to view the result in pretty format:
+
+```
+cumulus@switch:~$ netq trace 10.1.10.104 from 10.1.10.101 vrf RED pretty
+Number of Paths: 16
+Number of Paths with Errors: 0
+Number of Paths with Warnings: 0
+Path MTU: 9000
+
+ server01 mac:44:38:39:00:00:38 -- swp1 leaf02 vni: 10 swp54 -- swp2 spine04 swp4 -- swp54 vni: 10 leaf04 bond1 -- uplink server04  
+                                                       swp54 -- swp2 spine04 swp3 -- swp54 vni: 10 leaf03 bond1 -- uplink server04  
+          mac:44:38:39:00:00:38 -- swp1 leaf02 vni: 10 swp53 -- swp2 spine03 swp4 -- swp53 vni: 10 leaf04 bond1 -- uplink server04  
+                                                       swp53 -- swp2 spine03 swp3 -- swp53 vni: 10 leaf03 bond1 -- uplink server04  
+          mac:44:38:39:00:00:38 -- swp1 leaf02 vni: 10 swp52 -- swp2 spine02 swp4 -- swp52 vni: 10 leaf04 bond1 -- uplink server04  
+                                                       swp52 -- swp2 spine02 swp3 -- swp52 vni: 10 leaf03 bond1 -- uplink server04  
+          mac:44:38:39:00:00:38 -- swp1 leaf02 vni: 10 swp51 -- swp2 spine01 swp4 -- swp51 vni: 10 leaf04 bond1 -- uplink server04  
+                                                       swp51 -- swp2 spine01 swp3 -- swp51 vni: 10 leaf03 bond1 -- uplink server04  
+ server01 mac:44:38:39:00:00:32 -- swp1 leaf01 vni: 10 swp54 -- swp1 spine04 swp4 -- swp54 vni: 10 leaf04 bond1 -- uplink server04  
+                                                       swp54 -- swp1 spine04 swp3 -- swp54 vni: 10 leaf03 bond1 -- uplink server04  
+          mac:44:38:39:00:00:32 -- swp1 leaf01 vni: 10 swp53 -- swp1 spine03 swp4 -- swp53 vni: 10 leaf04 bond1 -- uplink server04  
+                                                       swp53 -- swp1 spine03 swp3 -- swp53 vni: 10 leaf03 bond1 -- uplink server04  
+          mac:44:38:39:00:00:32 -- swp1 leaf01 vni: 10 swp52 -- swp1 spine02 swp4 -- swp52 vni: 10 leaf04 bond1 -- uplink server04  
+                                                       swp52 -- swp1 spine02 swp3 -- swp52 vni: 10 leaf03 bond1 -- uplink server04  
+          mac:44:38:39:00:00:32 -- swp1 leaf01 vni: 10 swp51 -- swp1 spine01 swp4 -- swp51 vni: 10 leaf04 bond1 -- uplink server04  
+                                                       swp51 -- swp1 spine01 swp3 -- swp51 vni: 10 leaf03 bond1 -- uplink server04  
 ```
 
 {{< /tab >}}
@@ -232,19 +483,18 @@ cumulus@switch:~$ netq trace x from y
 To create a layer 3 on-demand trace and see the results in the On-demand Trace Results card, run:
 
 ```
-netq add trace <ip> from (<src-hostname> | <ip-src>) vrf <vrf>
+netq add trace <ip> from (<src-hostname> | <ip-src>) vrf <vrf> [alert-on-failure]
 ```
 
-This example shows a trace from x (source) to y (destination) through VRF z.
+This example shows a trace from 10.1.10.101 (source, server01) to 10.1.10.104 (destination, server04) through VRF RED.
 
 ```
+cumulus@switch:~$ netq add trace 10.1.10.104 from 10.1.10.101 vrf RED
 ```
 
-After the trace has been run, refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
+Confirmation of the on-demand job is provided. Refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
 
-{{< /tab >}}
-
-{{< /tabs >}}
+If you include the `alert-on-failure` option, an event is created if the trace request fails.
 
 {{< /tab >}}
 
@@ -256,19 +506,19 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 {{< tabs "TabID258" >}}
 
-{{< tab "NetQ UI" >}}
+{{< tab "On-demand Trace Request" >}}
 
 To create a layer 2 trace request:
 
 1. Determine the IP or MAC address of the source device and the MAC address of the destination device.
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu), then **IP Addresses** under the **Network** section.
+    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu), then **IP Neighbors** under the **Network** section.
 
-    2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname.
+    2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter destination hostname.
 
-    3. Make note of the relevant address.
+    3. Make note of the MAC address and VLAN ID.
 
-    4. Filter the list again for the other hostname, and make note of its address.
+    4. Filter the list again for the source hostname, and make note of its IP address.
 
 2. Open the Trace Request card.
 
@@ -281,23 +531,19 @@ To create a layer 2 trace request:
 
 4. In the **Destination** field, enter the MAC address for where you want to end the trace.
 
-5. In the **VLAN ID** field, enter the identifier for the VLAN you want to use.
+5. In the **VLAN ID** field, enter the identifier for the VLAN associated with the destination.
 
-    {{<figure src="/images/netq/trace-request-large-l2vlan-example-222.png" width="500">}}
+    {{<figure src="/images/netq/trace-request-large-l2vlan-example-320.png" width="500">}}
 
-<div style="padding-left: 18px;">In this example, we are starting our trace at <em>leaf01</em> and ending it at <em>00:03:00:33:33:01</em> using VLAN <em>13</em>.</div>
+<div style="padding-left: 18px;">In this example, we are starting our trace at server01 with IPv4 address of 10.1.10.101 and ending it at 44:38:39:00:00:3e (server04) using VLAN 10 and VRF RED. Note: If you do not have VRFs beyond the default, you do not need to enter a VRF.</div>
 
 6. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="#View Layer 2 Trace Results" text="View Layer 2 Trace Results">}} for details.
 
 {{< /tab >}}
 
-{{< tab "NetQ CLI" >}}
+{{< tab "netq trace" >}}
 
 Use the `netq trace` command to view the results in the terminal window. Use the `netq add trace` command to view the results in the NetQ UI.
-
-{{< tabs "TabID299" >}}
-
-{{< tab "netq trace" >}}
 
 To create a layer 2 on-demand trace and see the results in the terminal window, run:
 
@@ -337,10 +583,6 @@ After the trace has been run, refer to {{<link title="#View Layer 2 Trace Result
 
 {{< /tabs >}}
 
-{{< /tab >}}
-
-{{< /tabs >}}
-
 ## View On-demand Trace Results
 
 <!-- trace request card: on-demand trace results card
@@ -359,24 +601,23 @@ View the results for a layer 2 trace based on how you created the request.
 
 After clicking **Run Now** on the Trace Request card, the corresponding On-demand Trace Result card is opened on your workbench. While it is working on the trace, a notice is shown on the card indicating it is running.
 
-{{<figure src="/images/netq/od-trace-result-medium-running-230.png" width="200">}}
+{{<figure src="/images/netq/od-trace-result-medium-running-320.png" width="200">}}
 
 Once the job is completed, the results are displayed.
 
 <div style="padding-left: 36px;">
-{{<img src="/images/netq/od-trace-result-medium-good-230.png" width="200">}}
-{{<img src="/images/netq/od-trace-result-medium-fail-230.png" width="200">}}
+{{<img src="/images/netq/od-trace-result-medium-success-fail-320.png" width="420">}}
 </div>
 
-In the example on the left, we see that the trace was successful. Four paths were found between the devices, each with four hops and with an overall MTU of 1500. In the example on the right, we see that the trace failed. Three paths were tried unsuccessfully and a single device may be the problem.
+In the example on the left, we see that the trace was successful. 16 paths were found between the devices, each with five hops and with an overall MTU of 9,000. In the example on the right, we see that the trace failed. Two of the available paths were unsuccessful and a single device may be the problem.
 
 If there was a difference between the minimum and maximum number of hops or other failures, viewing the results on the large card might provide additional information.
 
-{{<figure src="/images/netq/od-trace-result-large-summary-tab-230.png" width="500">}}
+{{<figure src="/images/netq/od-trace-result-large-summary-tab-l2-320.png" width="500">}}
 
-{{<figure src="/images/netq/od-trace-result-large-summary-tab-fail-230.png" width="500">}}
+{{<figure src="/images/netq/od-trace-result-large-summary-tab-fail-l2-320.png" width="500">}}
 
-In the example on top, we can verify that every path option had five hops since the distribution chart only shows one hop count and the table indicates each path had a value of five hops. Similarly, you can view the MTU data. In the example on the bottom, ??? If there had been any warnings, the count would have been visible in the table.
+In the example on top, we can verify that every path option had five hops since the distribution chart only shows one hop count and the table indicates each path had a value of five hops. Similarly, you can view the MTU data. In the example on the bottom, is an error (scroll to the right in the table to see the count). To view more details for this and other traces, refer to {{<link title="#View Detailed On-demand Trace Results" text="Detailed On-demand Trace Results">}}.
 
 {{< /tab >}}
 
@@ -386,15 +627,7 @@ After you have run the `netq add trace` command, you are able to view the result
 
 1. Open the NetQ UI and log in.
 
-2. Choose the workbench where you want to place the trace card.
-
-3. Open the Trace Request card.
-
-4. Change to the full-screen card using the card size picker.
-
-5. Locate the trace you created with the CLI.
-
-6. Select the trace, and click x (Open card).
+2. Open the xxxx workbench where the associated On-demand Trace Result card has been placed.
 
 
 
@@ -420,7 +653,7 @@ In this example, we see that the trace was successful. 12 paths were found betwe
 
 {{<figure src="/images/netq/od-trace-result-large-summary-tab-320.png" width="500">}}
 
-In our example, we can see that paths 9-12 had three hops by scrolling through the path listing in the table. To view the hop details, refer to the next section. If there were errors or warnings, that caused the trace failure, a count would be visible in this table.
+In our example, we can see that paths 9-12 had three hops by scrolling through the path listing in the table. To view the hop details, refer to the next section. If there were errors or warnings, that caused the trace failure, a count would be visible in this table. To view more details for this and other traces, refer to the next section.
 
 ### View Detailed On-demand  Trace Results
 

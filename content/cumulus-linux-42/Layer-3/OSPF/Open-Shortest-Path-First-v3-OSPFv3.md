@@ -46,8 +46,8 @@ cumulus@leaf01:~$ net add interface swp51 ip address 2001:db8:2000:0a00::/64
 cumulus@leaf01:~$ net add ospf6 router-id 10.10.10.1
 cumulus@leaf01:~$ net add ospf6 interface lo area 0.0.0.0
 cumulus@leaf01:~$ net add ospf6 interface swp51 area 0.0.0.0
-cumulus@leaf01:~$ net add ospf6 passive-interface swp1 ????????
-cumulus@leaf01:~$ net add ospf6 passive-interface swp2 ???????
+cumulus@leaf01:~$ net add ospf6 passive-interface swp1
+cumulus@leaf01:~$ net add ospf6 passive-interface swp2
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -111,7 +111,7 @@ cumulus@spine01:~$ net del ospf6 passive-interface swp1
 3. Run the `ifreload -a` command to load the new configuration:
 
     ```
-    cumulus@leaf01:~$ sudo ifreload -a
+    cumulus@spine01:~$ sudo ifreload -a
     ```
 
 4. From the vtysh shell, configure OSPF:
@@ -121,11 +121,11 @@ cumulus@spine01:~$ net del ospf6 passive-interface swp1
 
     leaf01# configure terminal
     leaf01(config)# router ospf6
-    leaf01(config-ospf6)# router-id 10.10.10.1
+    leaf01(config-ospf6)# ospf router-id 10.10.10.1
     leaf01(config-ospf6)# interface lo area 0.0.0.0
     leaf01(config-ospf6)# interface swp51 area 0.0.0.0
-    leaf01(config-ospf6)# passive-interface swp1 ???
-    leaf01(config-ospf6)# passive-interface swp2 ????
+    leaf01(config-ospf6)# passive-interface swp1
+    leaf01(config-ospf6)# passive-interface swp2
     leaf01(config-ospf6)# end
     leaf01# write memory
     leaf01# exit
@@ -173,7 +173,7 @@ leaf01(config-ospf6)# no passive-interface swp51
 
     spine01# configure terminal
     spine01(config)# router ospf6
-    spine01(config-ospf6)# router-id 10.10.10.101
+    spine01(config-ospf6)# ospf router-id 10.10.10.101
     spine01(config-ospf6)# interface lo area 0.0.0.0
     spine01(config-ospf6)# interface swp1 area 0.0.0.0
     spine01(config-ospf6)# end
@@ -240,8 +240,7 @@ To configure an unnumbered interface, take the IP address of another interface (
 
 {{%notice note%}}
 
-- OSPFv3 Unnumbered is supported with {{<link url="#interface-parameters" text="point-to-point interfaces">}} only.
-- Unlike OSPFv2, OSPFv3 intrinsically supports unnumbered interfaces. Forwarding to the next hop router is done entirely using IPv6 link local addresses. You do not need to configure any global IPv6 address to interfaces between routers.
+OSPFv3 Unnumbered is supported with {{<link url="#interface-parameters" text="point-to-point interfaces">}} only.
 
 {{%/notice%}}
 
@@ -251,7 +250,7 @@ The following example commands configure OSPFv3 unnumbered on leaf01 and spine01
 
 | leaf01 | spine01 |
 | ------ | ------- |
-| <ul><li>The loopback address is 2001:db8:0002::0a00:1/128</li><li>The IP address of the unnumbered interface (swp51) is 2001:db8:0002::0a00:1/128</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0.0.0.0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul>|<ul><li>The loopback address is 2001:db8:0002::0a00:101/128</li><li>The IP address of the unnumbered interface (swp1) is 2001:db8:0002::0a00:101/128</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0.0.0.0</li><li>swp1 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul> |
+| <ul><li>The loopback address is 2001:db8:0002::0a00:1/128</li><li>The router ID is 10.10.10.1</li><li>OSPF is enabled on the loopback interface and on swp51 in area 0.0.0.0</li><li>swp1 and swp2 are passive interfaces</li><li>swp51 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul>|<ul><li>The loopback address is 2001:db8:0002::0a00:101/128</li><li>The router ID is 10.10.10.101</li><li>OSPF is enabled on the loopback interface and on swp1 in area 0.0.0.0</li><li>swp1 is a point-to-point interface (point-to-point is required for unnumbered interfaces)</li><ul> |
 
 {{< tabs "TabID257 ">}}
 
@@ -263,7 +262,6 @@ The following example commands configure OSPFv3 unnumbered on leaf01 and spine01
 
 ```
 cumulus@leaf01:~$ net add loopback lo ip address 2001:db8:0002::0a00:1/128
-cumulus@leaf01:~$ net add interface swp51 ip address 2001:db8:0002::0a00:1/128
 cumulus@leaf01:~$ net add ospf6 router-id 10.10.10.1
 cumulus@leaf01:~$ net add ospf6 interface lo area 0.0.0.0
 cumulus@leaf01:~$ net add ospf6 interface swp51 area 0.0.0.0
@@ -280,7 +278,6 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@spine01:~$ net add loopback lo ip address 2001:db8:0002::0a00:101/128
-cumulus@spine01:~$ net add interface swp1 ip address 2001:db8:0002::0a00:101/128
 cumulus@spine01:~$ net add ospf6 router-id 10.10.10.1
 cumulus@spine01:~$ net add ospf6 interface lo area 0.0.0.0
 cumulus@spine01:~$ net add ospf6 interface swp1 area 0.0.0.0
@@ -312,15 +309,15 @@ cumulus@spine01:~$ net commit
   iface lo inet loopback
     address 2001:db8:0002::0a00:1/128
 
-  auto swp51
-  iface swp51
+  auto swp1
+  iface swp1
     address 2001:db8:0002::0a00:1/128
   ```
 
 3. Run the `ifreload -a` command to load the new configuration:
 
     ```
-    cumulus@leaf01:~$ sudo ifreload -a
+    cumulus@spine01:~$ sudo ifreload -a
 
 2. From the vtysh shell, configure OSPFv3:
 
@@ -329,7 +326,7 @@ cumulus@leaf01:~$ sudo vtysh
 
 leaf01# configure terminal
 leaf01(config)# router ospf6
-leaf01(config-ospf6)# router-id 10.10.10.101
+leaf01(config-ospf6)# ospf router-id 10.10.10.1
 leaf01(config-ospf6)# interface lo area 0.0.0.0
 leaf01(config-ospf6)# interface swp51 area 0.0.0.0
 leaf01(config-ospf6)# exit
@@ -356,14 +353,14 @@ cumulus@leaf01:~$
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp1:
 
   ```
-  cumulus@spine01:~$ sudo nano /etc/network/interfaces
+  cumulus@leaf01:~$ sudo nano /etc/network/interfaces
   ...
   auto lo
   iface lo inet loopback
     address 2001:db8:0002::0a00:101/128
 
-  auto swp1
-  iface swp1
+  auto swp51
+  iface swp51
     address 2001:db8:0002::0a00:101/128
   ```
 
@@ -380,7 +377,7 @@ cumulus@spine01:~$ sudo vtysh
 
 spine01# configure terminal
 spine01(config)# router ospf6
-spine01(config-ospf6)# router-id 10.10.10.101
+spine01(config-ospf6)# ospf router-id 10.10.10.101
 spine01(config-ospf6)# interface lo area 0.0.0.0
 spine01(config-ospf6)# interface swp1 area 0.0.0.0
 spine01(config-ospf6)# exit
@@ -452,7 +449,7 @@ This section describes optional configuration. The steps provided in this sectio
 
 To redistribute protocol routes, run the `net add ospf redistribute connected` command.
 
-Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs).
+Redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs). For example:
 
 {{< tabs "TabID509 ">}}
 
@@ -501,15 +498,22 @@ router ospf6
 You can define the following OSPF parameters per interface:
 - Network type (point-to-point or broadcast). Broadcast is the default setting.
   Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
+
   {{%notice note%}}
   Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbered">}}.
   {{%/notice%}}
 - Hello interval. The number of seconds between hello packets sent on the interface.
 - Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
 hello Packets.
-- Priority. The priority in becoming the OSPF Designated Router (DR) on a broadcast interface.
+- Priority in becoming the OSPF Designated Router (DR) on a broadcast interface.
 - Advertise prefix list. The prefix list defines the outbound route filter.
 - Cost. The cost determines the shortest paths to the destination.
+
+{{%notice note%}}
+
+Unlike OSPFv2, OSPFv3 intrinsically supports unnumbered interfaces. Forwarding to the next hop router is done entirely using IPv6 link local addresses. You do not need to configure any global IPv6 address to interfaces between routers.
+
+{{%/notice%}}
 
 The following command example sets the network type to point-to-point on swp51.
 

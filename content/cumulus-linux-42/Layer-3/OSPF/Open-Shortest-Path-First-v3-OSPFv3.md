@@ -30,7 +30,7 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 
 | leaf01 | spine01 |
 | ------ | ------- |
-| <ul><li>The loopback address is 2001:db8:0002::0a00:1/128</li><li>The IP address on swp51 is ??????</li><li>The router ID is 10.10.10.1</li><li>All the interfaces on the switch with an IP address that matches subnet 2001:db8::1/128 and swp51 with IP address ????? are in area 0.0.0.0</li><li>swp1 and swp2 are passive interfaces</li></ul> | <ul><li>The loopback address is 2001:db8:0002::0a00:101/128</li><li>The IP address on swp1 is ??????</li><li>The router ID is 10.10.10.101</li><li>All interfaces on the switch with an IP address that matches subnet 2001:db8:0002::0a00:101/128 and swp1 with IP address ??????? are in area 0.0.0.0.</li></ul> |
+| <ul><li>The loopback address is 2001:db8:0002::0a00:1/128</li><li>The IP address on swp51 is 2001:db8:2000:0a00::/64</li><li>The router ID is 10.10.10.1</li><li>All the interfaces on the switch with an IP address that matches subnet 2001:db8::1/128 and swp51 with IP address ????? are in area 0.0.0.0</li><li>swp1 and swp2 are passive interfaces</li></ul> | <ul><li>The loopback address is 2001:db8:0002::0a00:101/128</li><li>The IP address on swp1 is ??????</li><li>The router ID is 10.10.10.101</li><li>All interfaces on the switch with an IP address that matches subnet 2001:db8:0002::0a00:101/128 and swp1 with IP address ??????? are in area 0.0.0.0.</li></ul> |
 
 {{< tabs "TabID29 ">}}
 
@@ -42,12 +42,12 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 
 ```
 cumulus@leaf01:~$ net add loopback lo ip address 2001:db8:0002::0a00:1/128
-cumulus@leaf01:~$ net add interface swp51 ip address ???????
+cumulus@leaf01:~$ net add interface swp51 ip address 2001:db8:2000:0a00::/64
 cumulus@leaf01:~$ net add ospf6 router-id 10.10.10.1
-cumulus@leaf01:~$ net add ospf6 network 2001:db8:0002::0a00:1/128 area 0.0.0.0
-cumulus@leaf01:~$ net add ospf6 network ?????? area 0.0.0.0
-cumulus@leaf01:~$ net add ospf6 passive-interface swp1
-cumulus@leaf01:~$ net add ospf6 passive-interface swp2
+cumulus@leaf01:~$ net add ospf6 interface lo area 0.0.0.0
+cumulus@leaf01:~$ net add ospf6 interface swp51 area 0.0.0.0
+cumulus@leaf01:~$ net add ospf6 passive-interface swp1 ????????
+cumulus@leaf01:~$ net add ospf6 passive-interface swp2 ???????
 cumulus@leaf01:~$ net pending
 cumulus@leaf01:~$ net commit
 ```
@@ -64,11 +64,11 @@ cumulus@leaf01:~$ net del ospf6 passive-interface swp51
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:~$ net add loopback lo ip address 12001:db8:0002::0a00:101/128
+cumulus@spine01:~$ net add loopback lo ip address 2001:db8:0002::0a00:101/128
 cumulus@spine01:~$ net add interface swp1 ip address ????
 cumulus@spine01:~$ net add ospf6 router-id 10.10.10.101
-cumulus@spine01:~$ net add ospf6 network 2001:db8:0002::0a00:101/128 area 0.0.0.0
-cumulus@spine01:~$ net add ospf6 network ?????? area 0.0.0.0
+cumulus@spine01:~$ net add ospf6 interface lo area 0.0.0.0
+cumulus@spine01:~$ net add ospf6 interface swp1 area 0.0.0.0
 cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
@@ -210,8 +210,8 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ...
 router ospf6
  ospf router-id 10.10.10.1
- network 2001:db8:0002::0a00:1/128 area 0.0.0.0
- network ????? area 0.0.0.0
+ interface lo area 0.0.0.0
+ interface swp51 area 0.0.0.0
  passive-interface swp1
  passive-interface swp2
 ...
@@ -225,8 +225,8 @@ router ospf6
 ...
 router ospf6
  ospf router-id 10.10.10.101
- network 2001:db8:0002::0a00:101/128 area 0.0.0.0
- network ???? area 0.0.0.0
+ interface lo area 0.0.0.0
+ interface swp1 area 0.0.0.0
 ...
 ```
 
@@ -943,15 +943,12 @@ The following example shows the `net show ospf6 neighbor` command output:
 ```
 cumulus@leaf01:mgmt:~$ net show ospf6 neighbor
 Neighbor ID     Pri    DeadTime    State/IfState         Duration I/F[State]
-10.10.10.101      1    00:00:38     Full/PointToPoint    00:04:51 swp51[PointToPoint]
+10.10.10.101      1    00:00:34     Full/BDR             00:02:58 swp51[DR]
 ```
 
 The following example shows the `net show route ospf6` command output:
 
 ```
-cumulus@leaf01:mgmt:~$ net show ospf6 neighbor
-Neighbor ID     Pri    DeadTime    State/IfState         Duration I/F[State]
-10.10.10.101      1    00:00:38     Full/PointToPoint    00:04:51 swp51[PointToPoint] 
 cumulus@leaf01:mgmt:~$ net show route ospf6
 RIB entry for ospf6
 ===================
@@ -961,8 +958,9 @@ Codes: K - kernel route, C - connected, S - static, R - RIPng,
        f - OpenFabric,
        > - selected route, * - FIB route, q - queued route, r - rejected route
 
-O   2001:db8:2::a00:1/128 [110/10] is directly connected, lo, weight 1, 00:05:18
-O>* 2001:db8:2::a00:101/128 [110/110] via fe80::4638:39ff:fe00:2, swp51, weight 1, 00:05:13
+O   2001:db8:2::a00:1/128 [110/10] is directly connected, lo, weight 1, 00:07:17
+O>* 2001:db8:2::a00:101/128 [110/110] via fe80::4638:39ff:fe00:2, swp51, weight 1, 00:03:22
+O   2001:db8:2000:a00::/64 [110/100] is directly connected, swp51, weight 1, 00:03:27
 ```
 
 To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf6` command.

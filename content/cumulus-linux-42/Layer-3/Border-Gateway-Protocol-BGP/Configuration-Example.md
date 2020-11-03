@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 815
 toc: 3
 ---
-This section shows a BGP configuration example based on the reference topology. The example configures BGP *unnumbered* on all leafs and spines and uses the peer group *underlay*. MLAG is configured leaf01 and leaf02, and on leaf03 and leaf04.
+This section shows a BGP configuration example based on the reference topology. The example configures BGP *unnumbered* on all leafs and spines and uses the peer group *underlay*. MLAG is configured on leaf01 and leaf02, and on leaf03 and leaf04.
 
 {{< img src = "/images/cumulus-linux/mlag-config-peering.png" >}}
 

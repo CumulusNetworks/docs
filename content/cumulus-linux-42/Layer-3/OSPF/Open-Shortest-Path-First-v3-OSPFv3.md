@@ -116,9 +116,6 @@ cumulus@spine01:~$ net commit
     leaf01(config-if)# exit
     leaf01(config)# interface swp2
     leaf01(config-if)# ipv6 ospf6 passive
-    leaf01(config-if)# exit
-    leaf01(config)# interface swp51
-    leaf01(config-if)# ipv6 ospf6 network point-to-point
     leaf01(config-if)# end
     leaf01# write memory
     leaf01# exit
@@ -161,13 +158,7 @@ cumulus@spine01:~$ net commit
     spine01(config-ospf6)# ospf6 router-id 10.10.10.101
     spine01(config-ospf6)# interface lo area 0.0.0.0
     spine01(config-ospf6)# interface swp1 area 0.0.0.0
-    spine01(config-ospf6)# exit
-    spine01(config)# interface swp2
-    spine01(config-if)# ipv6 ospf6 passive
-    spine01(config-if)# exit
-    spine01(config)# interface swp1
-    spine01(config-if)# ipv6 ospf6 network point-to-point
-    spine01(config-if)# end
+    spine01(config-ospf6)# end
     spine01# write memory
     spine01# exit
     cumulus@spine01:~$
@@ -190,14 +181,12 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ```
 ...
 router ospf6
- ospf router-id 10.10.10.1
+ ospf6 router-id 10.10.10.1
  interface lo area 0.0.0.0
  interface swp51 area 0.0.0.0
-
-interface swp2
- ipv6 ospf6 passive
-
 interface swp1
+ ipv6 ospf6 passive
+interface swp2
  ipv6 ospf6 passive
 ...
 ```
@@ -249,6 +238,7 @@ The following example commands configure OSPFv3 unnumbered on leaf01 and spine01
 
 ```
 cumulus@leaf01:~$ net add loopback lo ip address 2001:db8::a0a:0a01/128
+cumulus@leaf01:~$ net add interface swp51 ip address 2001:db8::a0a:0a01/128
 cumulus@leaf01:~$ net add ospf6 router-id 10.10.10.1
 cumulus@leaf01:~$ net add ospf6 interface lo area 0.0.0.0
 cumulus@leaf01:~$ net add ospf6 interface swp51 area 0.0.0.0
@@ -265,7 +255,8 @@ cumulus@leaf01:~$ net commit
 
 ```
 cumulus@spine01:~$ net add loopback lo ip address 2001:db8::a0a:0a65/128
-cumulus@spine01:~$ net add ospf6 router-id 10.10.10.1
+cumulus@spine01:~$ net add interface swp1 ip address 2001:db8::a0a:0a65/128
+cumulus@spine01:~$ net add ospf6 router-id 10.10.10.101
 cumulus@spine01:~$ net add ospf6 interface lo area 0.0.0.0
 cumulus@spine01:~$ net add ospf6 interface swp1 area 0.0.0.0
 cumulus@spine01:~$ net add interface swp1 ospf6 network point-to-point
@@ -304,7 +295,7 @@ cumulus@spine01:~$ net commit
 3. Run the `ifreload -a` command to load the new configuration:
 
     ```
-    cumulus@spine01:~$ sudo ifreload -a
+    cumulus@leaf01:~$ sudo ifreload -a
 
 2. From the vtysh shell, configure OSPFv3:
 
@@ -346,8 +337,8 @@ cumulus@leaf01:~$
   iface lo inet loopback
     address 2001:db8::a0a:0a65/128
 
-  auto swp51
-  iface swp51
+  auto swp1
+  iface swp1
     address 2001:db8::a0a:0a65/128
   ```
 
@@ -396,13 +387,10 @@ router ospf6
  ospf6 router-id 10.10.10.1
  interface lo area 0.0.0.0
  interface swp51 area 0.0.0.0
-
 interface swp1
  ipv6 ospf6 passive
-
 interface swp2
  ipv6 ospf6 passive
-
 interface swp51
  ipv6 ospf6 network point-to-point
 ...
@@ -418,7 +406,6 @@ router ospf6
  ospf6 router-id 10.10.10.101
  interface lo area 0.0.0.0
  interface swp1 area 0.0.0.0
-
 interface swp1
  ipv6 ospf6 network point-to-point
 ...
@@ -968,9 +955,9 @@ Codes: K - kernel route, C - connected, S - static, R - RIPng,
        f - OpenFabric,
        > - selected route, * - FIB route, q - queued route, r - rejected route
 
-O   2001:db8::a0a:0a01/128 [110/10] is directly connected, lo, weight 1, 00:07:17
-O>* 2001:db8::a0a:0a01/128 [110/110] via fe80::4638:39ff:fe00:2, swp51, weight 1, 00:03:22
-O   2001:db8::a00:0101/127 [110/100] is directly connected, swp51, weight 1, 00:03:27
+O   2001:db8::a00:100/127 [110/100] is directly connected, swp51, weight 1, 00:00:20
+O   2001:db8::a0a:a01/128 [110/10] is directly connected, lo, weight 1, 00:01:40
+O>* 2001:db8::a0a:a65/128 [110/110] via fe80::4638:39ff:fe00:2, swp51, weight 1, 00:00:15 
 ```
 
 To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf6` command.

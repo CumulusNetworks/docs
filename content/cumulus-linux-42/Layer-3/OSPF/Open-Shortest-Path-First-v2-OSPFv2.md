@@ -222,8 +222,8 @@ router ospf
  network 10.10.10.101/32 area 0
  network 10.0.1.1/31 area 0
 ...
-
 ```
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -486,6 +486,7 @@ interface swp1
  ip ospf network point-to-point
 router ospf
  ospf router-id 10.10.10.101
+...
 ```
 
 {{< /tab >}}

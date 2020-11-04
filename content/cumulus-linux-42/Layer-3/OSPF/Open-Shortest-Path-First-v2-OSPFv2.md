@@ -105,7 +105,7 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
 3. Run the `ifreload -a` command to load the new configuration:
 
     ```
-    cumulus@spine01:~$ sudo ifreload -a
+    cumulus@leaf01:~$ sudo ifreload -a
     ```
 
 4. From the vtysh shell, configure OSPF:
@@ -144,7 +144,7 @@ leaf01(config-router)# no passive-interface swp51
 2. Edit the `/etc/network/interfaces` file to configure the IP address for the loopback and swp1:
 
     ```
-    cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+    cumulus@spine01:~$ sudo nano /etc/network/interfaces
     ...
     auto lo
     iface lo inet loopback
@@ -357,7 +357,7 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
 3. Run the `ifreload -a` command to load the new configuration:
 
     ```
-    cumulus@switch:~$ ifreload -a
+    cumulus@leaf01:~$ ifreload -a
     ```
 
 4. From the `vtysh` shell, configure OSPF:
@@ -462,21 +462,14 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 
 ```
 ...
-!
 interface lo
  ip ospf area 0
-!
 interface swp51
  ip ospf area 0
  ip ospf network point-to-point
-!
 router ospf
  ospf router-id 10.10.10.1
  passive-interface swp1,swp2
-!
-line vty
-!
-
 ...
 ```
 
@@ -486,19 +479,13 @@ line vty
 
 ```
 ...
-!
 interface lo
  ip ospf area 0
-!
 interface swp1
  ip ospf area 0
  ip ospf network point-to-point
-!
 router ospf
  ospf router-id 10.10.10.101
-!
-line vty
-!
 ```
 
 {{< /tab >}}
@@ -852,31 +839,21 @@ cumulus@border01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
 interface lo
  ip ospf area 0
-!
 interface swp1
  ip ospf area 1
-!
 interface swp2
  ip ospf area 1
-!
 interface swp3
  ip ospf area 1
-!
 interface swp51
  ip ospf area 0
-!
 interface swp52
  ip ospf area 0
-!
 interface swp53
  ip ospf area 0
-!
 router ospf
  ospf router-id 10.10.10.63
  area 0 range 172.16.1.0/24
-!
-line vty
-!
 ```
 
 ### Stub Areas
@@ -1094,6 +1071,7 @@ The `vtysh` commands save the configuration to the `/etc/frr/frr.conf` file. For
 ```
 ...
 router ospf
+  ospf router-id 10.10.10.1
   distance ospf intra-area 150 inter-area 150 external 220
 ...
 ```

@@ -238,7 +238,7 @@ cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
 
 {{%/notice%}}
 
-### OSPFv3 Unnumbered
+### OSPFv2 Unnumbered
 
 Unnumbered interfaces are interfaces without unique IP addresses; multiple interfaces share the same IP address. In OSPFv2, unnumbered interfaces reduce the need for unique IP addresses on leaf and spine interfaces and simplify the OSPF database, reducing the memory footprint and improving SPF convergence times.
 

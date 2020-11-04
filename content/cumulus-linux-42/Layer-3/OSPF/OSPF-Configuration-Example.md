@@ -898,6 +898,40 @@ interface swp1
  ip ospf hello-interval 5
  ip ospf dead-interval 60
 !
+interface swp2
+ ip ospf area 0
+ ip ospf network point-to-point
+ ip ospf hello-interval 5
+ ip ospf dead-interval 60
+!
+interface swp3
+ ip ospf area 0
+ ip ospf network point-to-point
+ ip ospf hello-interval 5
+ ip ospf dead-interval 60
+!
+interface swp4
+ ip ospf area 0
+ ip ospf network point-to-point
+ ip ospf hello-interval 5
+ ip ospf dead-interval 60
+!
+router ospf
+ ospf router-id 10.10.10.101
+ timers throttle spf 80 100 6000
+!
+interface swp5
+ ip ospf area 0
+ ip ospf network point-to-point
+ ip ospf hello-interval 5
+ ip ospf dead-interval 60
+!
+interface swp6
+ ip ospf area 0
+ ip ospf network point-to-point
+ ip ospf hello-interval 5
+ ip ospf dead-interval 60
+!
 router ospf
  ospf router-id 10.10.10.101
  timers throttle spf 80 100 6000
@@ -917,6 +951,37 @@ interface lo
  ip ospf area 0
 !
 interface swp1
+ ip ospf area 0
+ ip ospf network point-to-point
+ ip ospf hello-interval 5
+ ip ospf dead-interval 60
+!
+!
+interface swp2
+ ip ospf area 0
+ ip ospf network point-to-point
+ ip ospf hello-interval 5
+ ip ospf dead-interval 60
+!
+interface swp3
+ ip ospf area 0
+ ip ospf network point-to-point
+ ip ospf hello-interval 5
+ ip ospf dead-interval 60
+!
+interface swp4
+ ip ospf area 0
+ ip ospf network point-to-point
+ ip ospf hello-interval 5
+ ip ospf dead-interval 60
+!
+interface swp5
+ ip ospf area 0
+ ip ospf network point-to-point
+ ip ospf hello-interval 5
+ ip ospf dead-interval 60
+!
+interface swp6
  ip ospf area 0
  ip ospf network point-to-point
  ip ospf hello-interval 5

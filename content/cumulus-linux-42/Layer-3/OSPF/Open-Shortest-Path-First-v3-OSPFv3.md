@@ -755,9 +755,162 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 ```
 ...
 router ospf6
+  ospf6 router-id 10.10.10.1
   area 0.0.0.0 range 3:3::/64 not-advertise
   area 0.0.0.0 range 2001::/64 advertise
   area 0.0.0.0 range 2001::/64 cost 160
+...
+```
+
+### Stub Areas
+
+External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. In many cases, external link states make up a large percentage of the LSDB. Stub *areas* reduce the link-state database size by not flooding AS-external LSAs.
+
+To configure a stub area:
+
+{{< tabs "TabID816 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add ospf6 area 0.0.0.1 stub
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router ospf6
+switch(config-ospf6)# area 0.0.0.1 stub
+switch(config-ospf6)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf6
+ ospf6 router-id 10.10.10.63
+ area 0.0.0.1 stub
+...
+```
+
+Stub areas still receive information about networks that belong to other areas of the same OSPF domain. If summarization is not configured (or is not comprehensive), the information can be overwhelming for the nodes. *Totally stubby areas* address this issue. Routers in totally stubby areas keep information about routing within their area in their LSDB.
+
+To configure a totally stubby area:
+
+{{< tabs "TabID860 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add ospf6 area 0.0.0.1 stub no-summary
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router ospf6
+switch(config-ospf6)# area 0.0.0.1 stub no-summary
+switch(config-ospf6)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf6
+ ospf6 router-id 10.10.10.63
+ area 0.0.0.1 stub no-summary
+...
+```
+
+Here is a brief summary of the area type differences:
+
+| Type| Behavior |
+| ----------- | -----------|
+| Normal non-zero area | LSA types 1, 2, 3, 4 area-scoped, type 5 externals, inter-area routes summarized |
+| Stub area | LSA types 1, 2, 3, 4 area-scoped, no type 5 externals, inter-area routes summarized |
+| Totally stubby area | LSA types 1, 2 area-scoped, default summary, no type 3, 4, 5 LSA types allowed |
+
+### Auto-cost Reference Bandwidth
+
+When you set the *auto-cost reference bandwidth,* Cumulus Linux dynamically calculates the OSPF interface cost to support higher speed links. The default value is *100000* for 100Gbps link speed. The cost of interfaces with link speeds lower than 100Gbps is higher.
+
+{{%notice tip%}}
+
+To avoid routing loops, set the bandwidth to a consistent value across all OSPF routers.
+
+{{%/notice%}}
+
+The following example commands configure the auto-cost reference bandwidth for 90Gbps link speed:
+
+{{< tabs "TabID920 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add ospf6 auto-cost reference-bandwidth 90000
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router ospf6
+switch(config-ospf6)# auto-cost reference-bandwidth 90000
+switch(config-ospf6)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf6
+ ospf6 router-id 10.10.10.1
+ interface lo area 0.0.0.0
+ interface swp51 area 0.0.0.0
+ auto-cost reference-bandwidth 90000
 ...
 ```
 
@@ -870,7 +1023,9 @@ The NCLU and `vtysh` commands save the configuration to the `/etc/frr/frr.conf` 
 ```
 ...
 router ospf6
-  distance ospf6 intra-area 150 inter-area 150 external 220
+ ospf6 router-id 10.10.10.1
+ interface lo area 0.0.0.0
+ distance ospf6 intra-area 150 inter-area 150 external 220
 ...
 ```
 

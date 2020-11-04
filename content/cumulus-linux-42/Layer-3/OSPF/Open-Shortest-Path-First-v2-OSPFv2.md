@@ -10,7 +10,7 @@ This topic describes OSPFv2, which is a {{<exlink url="http://en.wikipedia.org/w
 
 You can configure OSPF using either numbered interfaces or unnumbered interfaces. Both methods are described below.
 
-### OSPF Numbered
+### OSPFv2 Numbered
 
 To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. All the interfaces on the switch with an IP address that matches the `network` subnet are put into the specified area. The OSPF process starts bringing up peering adjacency on those interfaces. It also advertises the interface IP addresses formatted into LSAs to the neighbors for proper reachability.
 
@@ -238,7 +238,7 @@ cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
 
 {{%/notice%}}
 
-### OSPF Unnumbered
+### OSPFv3 Unnumbered
 
 Unnumbered interfaces are interfaces without unique IP addresses; multiple interfaces share the same IP address. In OSPFv2, unnumbered interfaces reduce the need for unique IP addresses on leaf and spine interfaces and simplify the OSPF database, reducing the memory footprint and improving SPF convergence times.
 
@@ -1026,6 +1026,75 @@ The NCLU and `vtysh` commands save the configuration in the `/etc/frr/frr.conf` 
 router ospf
  router-id 10.10.10.1
  auto-cost reference-bandwidth 90000
+...
+```
+
+### Configure the OSPF Distance
+
+Cumulus Linux provides several commands to change the administrative distance for OSPF routes.
+
+This example vtysh commands set the distance for an entire group of routes, instead of a specific route.
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router ospf
+switch(config-router)# distance 254
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+This example vtysh commands change the OSPF administrative distance to 150 for internal routes and 220 for external routes:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router ospf
+switch(config-router)# distance ospf intra-area 150 inter-area 150 external 220
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+This example vtysh commands change the OSPF administrative distance to 150 for internal routes to a subnet or network inside the same area as the router:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router ospf
+switch(config-router)# distance ospf intra-area 150
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+This example vtysh commands change the OSPF administrative distance to 150 for internal routes to a subnet in an area of which the router is *not* a part:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router ospf
+switch(config-router)# distance ospf inter-area 150
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+The `vtysh` commands save the configuration to the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf
+  distance ospf intra-area 150 inter-area 150 external 220
 ...
 ```
 

@@ -4,11 +4,15 @@ author: Cumulus Networks
 weight: 840
 toc: 3
 ---
-This section shows an OSPF configuration example based on the reference topology. The example configures OSPFv2 *unnumbered* on all leafs and spines. MLAG is configured on leaf01 and leaf02, on leaf03 and leaf04, and on border01 and border02.
+This section shows an OSPF configuration example based on the reference topology.
 
 {{< img src = "/images/cumulus-linux/ospf-example-top.png" >}}
 
-### /etc/network/interfaces
+- The example configures OSPFv2 *unnumbered* on all leafs and spines.
+- MLAG is configured on leaf01 and leaf02, on leaf03 and leaf04, and on border01 and border02.
+- 
+
+## /etc/network/interfaces
 
 {{< tabs "TabID901 ">}}
 
@@ -770,7 +774,7 @@ iface bond2
 
 {{< /tabs >}}
 
-**/etc/frr/frr.conf**
+## /etc/frr/frr.conf
 
 {{< tabs "TabID944 ">}}
 

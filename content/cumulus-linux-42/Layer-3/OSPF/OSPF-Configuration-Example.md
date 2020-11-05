@@ -68,7 +68,6 @@ iface swp51
 auto swp52
 iface swp52
     alias leaf to spine
-    10.10.10.1/32
 
 auto swp49
 iface swp49
@@ -190,7 +189,6 @@ iface swp51
 auto swp52
 iface swp52
     alias leaf to spine
-    10.10.10.2/32
 
 auto swp49
 iface swp49
@@ -288,17 +286,14 @@ iface swp1
 auto swp2
 iface swp2
     alias leaf to spine
-    10.10.10.101/32
 
 auto swp3
 iface swp3
     alias leaf to spine
-    10.10.10.101/32
 
 auto swp4
 iface swp4
     alias leaf to spine
-    10.10.10.101/32
 ```
 
 {{< /tab >}}
@@ -329,17 +324,14 @@ iface swp1
 auto swp2
 iface swp2
     alias leaf to spine
-    10.10.10.102/32
 
 auto swp3
 iface swp3
     alias leaf to spine
-    10.10.10.102/32
 
 auto swp4
 iface swp4
     alias leaf to spine
-    10.10.10.102/32
 ```
 
 {{< /tab >}}
@@ -376,7 +368,6 @@ iface swp51
 auto swp52
 iface swp52
     alias leaf to spine
-    10.10.10.63/32
 
 auto swp49
 iface swp49
@@ -478,7 +469,6 @@ iface swp51
 auto swp52
 iface swp52
     alias leaf to spine
-    10.10.10.64/32
 
 auto swp49
 iface swp49

@@ -63,11 +63,12 @@ iface vlan30
 auto swp51
 iface swp51
     alias leaf to spine
-    10.10.10.1/32
+    address 10.10.10.1/32
 
 auto swp52
 iface swp52
     alias leaf to spine
+     address 10.10.10.1/32
 
 auto swp49
 iface swp49
@@ -184,11 +185,12 @@ iface vlan30
 auto swp51
 iface swp51
     alias leaf to spine
-    10.10.10.2/32
+    address 10.10.10.2/32
 
 auto swp52
 iface swp52
     alias leaf to spine
+    address 10.10.10.2/32
 
 auto swp49
 iface swp49
@@ -281,19 +283,22 @@ iface eth0 inet dhcp
 auto swp1
 iface swp1
     alias leaf to spine
-    10.10.10.101/32
+    address 10.10.10.101/32
 
 auto swp2
 iface swp2
     alias leaf to spine
+    address 10.10.10.101/32
 
-auto swp3
-iface swp3
+auto swp5
+iface swp5
     alias leaf to spine
+    address 10.10.10.101/32
 
-auto swp4
-iface swp4
+auto swp6
+iface swp6
     alias leaf to spine
+    address 10.10.10.101/32
 ```
 
 {{< /tab >}}
@@ -319,19 +324,22 @@ iface eth0 inet dhcp
 auto swp1
 iface swp1
     alias leaf to spine
-    10.10.10.102/32
+    address 10.10.10.102/32
 
 auto swp2
 iface swp2
     alias leaf to spine
+    address 10.10.10.102/32
 
-auto swp3
-iface swp3
+auto swp5
+iface swp5
     alias leaf to spine
+    address 10.10.10.102/32
 
-auto swp4
-iface swp4
+auto swp6
+iface swp6
     alias leaf to spine
+    address 10.10.10.102/32
 ```
 
 {{< /tab >}}
@@ -363,11 +371,12 @@ iface bridge
 auto swp51
 iface swp51
     alias leaf to spine
-    10.10.10.63/32
+    address 10.10.10.63/32
 
 auto swp52
 iface swp52
     alias leaf to spine
+    address 10.10.10.63/32
 
 auto swp49
 iface swp49
@@ -464,11 +473,12 @@ iface vlan20
 auto swp51
 iface swp51
     alias leaf to spine
-    10.10.10.64/32
+    address 10.10.10.64/32
 
 auto swp52
 iface swp52
     alias leaf to spine
+    address 10.10.10.64/32
 
 auto swp49
 iface swp49
@@ -540,6 +550,15 @@ log syslog informational
 interface lo
  ip ospf area 0
 !
+interface vlan10
+  ip ospf area 0
+!
+interface vlan20
+  ip ospf area 0
+!
+interface vlan30
+  ip ospf area 0
+!
 interface swp51
  ip ospf area 0
  ip ospf network point-to-point
@@ -554,8 +573,9 @@ interface swp52
 !
 router ospf
  ospf router-id 10.10.10.1
- passive-interface swp1
- passive-interface swp2
+ passive-interface vlan10
+ passive-interface vlan20
+ passive-interface vlan30
  timers throttle spf 80 100 6000
 !
 ```
@@ -572,6 +592,15 @@ log syslog informational
 interface lo
  ip ospf area 0
 !
+interface vlan10
+  ip ospf area 0
+!
+interface vlan20
+  ip ospf area 0
+!
+interface vlan30
+  ip ospf area 0
+!
 interface swp51
  ip ospf area 0
  ip ospf network point-to-point
@@ -586,8 +615,9 @@ interface swp52
 !
 router ospf
  ospf router-id 10.10.10.2
- passive-interface swp1
- passive-interface swp2
+ passive-interface vlan10
+ passive-interface vlan20
+ passive-interface vlan30
  timers throttle spf 80 100 6000
 !
 ```
@@ -616,21 +646,17 @@ interface swp2
  ip ospf hello-interval 5
  ip ospf dead-interval 60
 !
-interface swp3
+interface swp5
  ip ospf area 0
  ip ospf network point-to-point
  ip ospf hello-interval 5
  ip ospf dead-interval 60
 !
-interface swp4
+interface swp6
  ip ospf area 0
  ip ospf network point-to-point
  ip ospf hello-interval 5
  ip ospf dead-interval 60
-!
-router ospf
- ospf router-id 10.10.10.101
- timers throttle spf 80 100 6000
 !
 router ospf
  ospf router-id 10.10.10.101
@@ -663,13 +689,13 @@ interface swp2
  ip ospf hello-interval 5
  ip ospf dead-interval 60
 !
-interface swp3
+interface swp5
  ip ospf area 0
  ip ospf network point-to-point
  ip ospf hello-interval 5
  ip ospf dead-interval 60
 !
-interface swp4
+interface swp6
  ip ospf area 0
  ip ospf network point-to-point
  ip ospf hello-interval 5

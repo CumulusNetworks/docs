@@ -813,10 +813,15 @@ interface swp1
 
 By default, an area border router (ABR) creates a summary (type-3) LSA for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes. OSPF only allows for route summarization between areas on a ABR. This is done with the area range command.
 
-In the following example:
-- swp1 is in area 1 and is configured with IP addresses 10.0.0.24/31, 172.16.1.1/32, 172.16.1.2/32, and 172.16.1.3/32.
-- swp51 is in area 0 and is configured with IP address 10.0.1.9/31.
-- The commands create a summary route for all the routes in the range 172.16.1.0/24 in area 0:
+The following example shows a topology divided into area 0 and area 1. border01 and border02 are *area border routers* (ABRs) that have links to multiple areas and perform a set of specialized tasks, such as SPF computation per area and summarization of routes across areas.
+
+{{< img src = "/images/cumulus-linux/ospf-scalability-areas.png" >}}
+
+On border01:
+- swp1 is in area 1 and is configured with IP addresses 10.0.0.24/31, 172.16.1.1/32, 172.16.1.2/32, and 172.16.1.3/32
+- swp51 is in area 0 and is configured with IP address 10.0.1.9/31
+
+These commands create a summary route for all the routes in the range 172.16.1.0/24 in area 0:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -841,13 +846,9 @@ interface swp1
  ip ospf area 1
 interface swp2
  ip ospf area 1
-interface swp3
- ip ospf area 1
 interface swp51
  ip ospf area 0
 interface swp52
- ip ospf area 0
-interface swp53
  ip ospf area 0
 router ospf
  ospf router-id 10.10.10.63

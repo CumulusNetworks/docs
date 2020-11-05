@@ -5,9 +5,7 @@ weight: 880
 toc: 3
 ---
 
-Open Shortest Path First (OSPF) is a routing protocol used between routers to exchange information about the routes they know about and the cost for them to get there. Information about all of the routes in a network are learned by all of the OSPF routers within an *area*. Each OSPF router distributes information about its local state (usable interfaces and reachable neighbors, and the cost of using each interface) to other routers using a Link State Advertisement (LSA) message. Each router uses the received messages to build up an identical database that describes the topology of the AS. From this database, each router calculates its own routing table using a Shortest Path First (SPF) algorithm. This routing table contains all the destinations the routing protocol knows about, associated with a next hop IP address and outgoing interface.
-
-During SPF computation for an area, if OSPF finds multiple paths with equal cost, all those paths are used for forwarding.
+Open Shortest Path First (OSPF) is a routing protocol used between routers to exchange information about routes and the cost to reach their intended destination. All OSPF routers within an *area* learn about all of the routes in a network and each router distributes information about its local state (interfaces, reachable neighbors, and the cost of using each interface) to other routers using a Link State Advertisement (LSA) message. Each router uses the received messages to build up an identical database and calculates its own routing table using a Shortest Path First (SPF) algorithm. This routing table contains all the destinations that the routing protocol knows about, and the associated next hop IP address and outgoing interface.
 
 Cumulus Linux supports:
 - {{<link url="Open-Shortest-Path-First-v2-OSPFv2">}} for IPv4.

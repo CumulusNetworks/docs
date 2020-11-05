@@ -7,9 +7,47 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32149</td>
+<td><p>If you try reconfigure a DHCP server after you delete the switch configuration with the net del all command, the dhcpd service fails because a duplicate process is running.<br/>
+To work around this issue, edit the /usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py file to change:</p>
+
+
+DHCPD_PID="-pf {0}" 
+
+
+
+<p>to:</p>
+
+
+DHCPD_PID="-pf {1}"
+
+</td>
+<td>3.7.13, 4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32112</td>
+<td><p>On the ARM platform, NTP peer associations slowly increase to larger offsets (~500ms).</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32068</td>
+<td><p>Kernel routes added by iproute2 are missing in FRR after an interface flap.<br/>
+To work around this issue, configure a static route in FRR.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32006</td>
 <td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31998</td>
+<td><p>The Mellanox SN3700 and SN3700C switches report a high fan speed.</p></td>
+<td>4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -25,6 +63,12 @@ To work around this issue, use a static MAC address; specify a MAC address in th
 Vulnerable: 10.3.25-0<br/>
 Fixed: 10.3.25-0+deb10u1</p></td>
 <td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31942</td>
+<td><p>After upgrading the Mellanox SN2410 switch from Cumulus Linux 4.1.1 to 4.2.1, the FAN is set to full speed.</p></td>
+<td>4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -48,26 +92,6 @@ iface vni-30
     mstpctl-bpduguard yes
     mstpctl-portbpdufilter yes
     mtu 9166
-
-</td>
-<td>4.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31914</td>
-<td><p>On Mellanox switches, port ganging fails with errors similar to the following after a switchd restart:</p>
-
-2020-10-16T15:19:04.705682+00:00 mlx-switch update-ports[2987]: Error: 4 invalid lines found in /etc/cumulus/ports.conf:
-2020-10-16T15:19:04.705901+00:00 mlx-switch update-ports[2987]: [Line 45]:'1=40G/4'
-2020-10-16T15:19:04.706035+00:00 mlx-switch update-ports[2987]:   Invalid because: Mode 40G/4 is not supported for port 1
-2020-10-16T15:19:04.706159+00:00 mlx-switch update-ports[2987]: [Line 46]:'2=40G/4'
-2020-10-16T15:19:04.706282+00:00 mlx-switch update-ports[2987]:   Invalid because: Mode 40G/4 is not supported for port 2
-2020-10-16T15:19:04.706407+00:00 mlx-switch update-ports[2987]: [Line 47]:'3=40G/4'
-2020-10-16T15:19:04.706544+00:00 mlx-switch update-ports[2987]:   Invalid because: Mode 40G/4 is not supported for port 3
-2020-10-16T15:19:04.706668+00:00 mlx-switch update-ports[2987]: [Line 48]:'4=40G/4'
-2020-10-16T15:19:04.706791+00:00 mlx-switch update-ports[2987]:   Invalid because: Mode 40G/4 is not supported for port 4
-2020-10-16T15:19:04.716885+00:00 mlx-switch systemd[1]: update-ports.service: Main process exited, code=exited, status=255/EXCEPTION
-2020-10-16T15:19:04.717122+00:00 mlx-switch systemd[1]: update-ports.service: Failed with result 'exit-code'.
 
 </td>
 <td>4.2.1</td>

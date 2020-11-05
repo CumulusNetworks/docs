@@ -26,6 +26,13 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 | ------ | ------- |
 | <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address on swp51 is 10.0.1.0/31</li><li>The router ID is 10.10.10.1</li><li>All the interfaces on the switch with an IP address that matches subnet 10.10.10.1/32 and and swp51 with IP address 10.0.1.0/31 are in area 0</li><li>swp1 and swp2 are passive interfaces</li></ul> | <ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address on swp1 is 10.0.1.1/31</li><li>The router ID is 10.10.10.101</li><li>All interfaces on the switch with an IP address that matches subnet 10.10.10.101/32 and swp1 with IP address 10.0.1.1/31 are in area 0.</li></ul> |
 
+{{%notice note%}}
+
+The configuration below uses the `network` command to configure the IP subnet prefix with an area address per network (`net add ospf network 10.0.1.0/31 area 0`). Alternatively, you can configure OSPF per interface with the `net add interface` command (`net add interface swp1 ospf area 0`). However, you *cannot* use both configuration methods at the same time.
+
+{{%/notice%}}
+
+
 {{< tabs "TabID29 ">}}
 
 {{< tab "NCLU Commands ">}}
@@ -227,16 +234,6 @@ router ospf
 {{< /tab >}}
 
 {{< /tabs >}}
-
-{{%notice note%}}
-
-Instead of configuring the IP subnet prefix with an area address per network with the net add ospf network command, you can configure OSPF per interface with the net add interface command. However, you cannot use both configuration methods at the same time. Here is an example of configuring OSPF per interface:
-
-```
-cumulus@switch:~$ net add interface swp1 ospf area 0.0.0.0
-```
-
-{{%/notice%}}
 
 ### OSPFv2 Unnumbered
 

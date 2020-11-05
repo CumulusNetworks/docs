@@ -62,10 +62,12 @@ iface vlan30
 auto swp51
 iface swp51
     alias leaf to spine
+    10.10.10.1/32
 
 auto swp52
 iface swp52
     alias leaf to spine
+    10.10.10.1/32
 
 auto swp49
 iface swp49
@@ -182,10 +184,12 @@ iface vlan30
 auto swp51
 iface swp51
     alias leaf to spine
+    10.10.10.2/32
 
 auto swp52
 iface swp52
     alias leaf to spine
+    10.10.10.2/32
 
 auto swp49
 iface swp49
@@ -278,18 +282,22 @@ iface eth0 inet dhcp
 auto swp1
 iface swp1
     alias leaf to spine
+    10.10.10.101/32
 
 auto swp2
 iface swp2
     alias leaf to spine
+    10.10.10.101/32
 
 auto swp3
 iface swp3
     alias leaf to spine
+    10.10.10.101/32
 
 auto swp4
 iface swp4
     alias leaf to spine
+    10.10.10.101/32
 ```
 
 {{< /tab >}}
@@ -315,22 +323,22 @@ iface eth0 inet dhcp
 auto swp1
 iface swp1
     alias leaf to spine
+    10.10.10.102/32
 
 auto swp2
 iface swp2
     alias leaf to spine
+    10.10.10.102/32
 
 auto swp3
 iface swp3
     alias leaf to spine
+    10.10.10.102/32
 
 auto swp4
 iface swp4
     alias leaf to spine
-
-auto swp5
-iface swp5
-    alias leaf to spine
+    10.10.10.102/32
 ```
 
 {{< /tab >}}
@@ -362,10 +370,12 @@ iface bridge
 auto swp51
 iface swp51
     alias leaf to spine
+    10.10.10.63/32
 
 auto swp52
 iface swp52
     alias leaf to spine
+    10.10.10.63/32
 
 auto swp49
 iface swp49
@@ -462,10 +472,12 @@ iface vlan20
 auto swp51
 iface swp51
     alias leaf to spine
+    10.10.10.64/32
 
 auto swp52
 iface swp52
     alias leaf to spine
+    10.10.10.64/32
 
 auto swp49
 iface swp49

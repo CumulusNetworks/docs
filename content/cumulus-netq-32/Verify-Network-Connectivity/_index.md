@@ -1248,12 +1248,14 @@ To view the results:
 
     {{<figure src="/images/netq/sch-trace-result-fullscr-trace-detail-230.png" width="700">}}
 
-    Scroll to the right to view the information for a given hop. Scroll down to view additional paths. This display shows each of the hosts and detailed steps the trace takes to validate a given path between two devices. Using Path 1 as an example, each path can be interpreted as follows:
-
-    - Hop 1 is from the source device, server02 in this case.
-    - It exits this device at switch port bond0 with an MTU of 9000 and over the default VRF to get to leaf02.
-    - The trace goes in to swp2 with an MTU of 9216 over the vrf1 interface.
-    - It exits leaf02 through switch port 52 and so on.
+<div style="padding-left: 18px;">Scroll to the right to view the information for a given hop. Scroll down to view additional paths. This display shows each of the hosts and detailed steps the trace takes to validate a given path between two devices. Using Path 1 as an example, each path can be interpreted as follows:
+<ul>
+<li>Hop 1 is from the source device, server02 in this case.</li>
+<li>It exits this device at switch port bond0 with an MTU of 9000 and over the default VRF to get to leaf02.</li>
+<li>The trace goes in to swp2 with an MTU of 9216 over the vrf1 interface.</li>
+<li>It exits leaf02 through switch port 52 and so on.</li>
+</ul>
+</div>
 
 14. Export this data by clicking **Export** or click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> to return to the results list to view another trace in detail.
 
@@ -1261,12 +1263,146 @@ To view the results:
 
 {{< tab "NetQ CLI" >}}
 
+### View a Summary of All Scheduled Traces
+
+You can view a summary of all scheduled traces using the `netq show trace summary` command. The summary displays the name of the trace, a job ID, status, and timestamps for when was run and when it completed.
+
+This example shows all scheduled traces run in the last 24 hours.
+
+```
+cumulus@switch:~$ netq show trace summary
+Name            Job ID       Status           Status Details               Start Time           End Time
+--------------- ------------ ---------------- ---------------------------- -------------------- ----------------
+leaf01toborder0 f8d6a2c5-54d Complete         0                            Fri Nov  6 15:04:54  Fri Nov  6 15:05
+1               b-44a8-9a5d-                                               2020                 :21 2020
+                9d31f4e4701d
+New Trace       0e65e196-ac0 Complete         1                            Fri Nov  6 15:04:48  Fri Nov  6 15:05
+                5-49d7-8c81-                                               2020                 :03 2020
+                6e6691e191ae
+Svr01toSvr04Hrl 4c580c97-8af Complete         0                            Fri Nov  6 15:01:16  Fri Nov  6 15:01
+y               8-4ea2-8c09-                                               2020                 :44 2020
+                038cde9e196c
+Abc             c7174fad-71c Complete         1                            Fri Nov  6 14:57:18  Fri Nov  6 14:58
+                a-49d3-8c1d-                                               2020                 :11 2020
+                67962039ebf9
+Lf01toBor01Dail f501f9b0-cca Complete         0                            Fri Nov  6 14:52:35  Fri Nov  6 14:57
+y               3-4fa1-a60d-                                               2020                 :55 2020
+                fb6f495b7a0e
+L01toB01Daily   38a75e0e-7f9 Complete         0                            Fri Nov  6 14:50:23  Fri Nov  6 14:57
+                9-4e0c-8449-                                               2020                 :38 2020
+                f63def1ab726
+leaf01toborder0 f8d6a2c5-54d Complete         0                            Fri Nov  6 14:34:54  Fri Nov  6 14:57
+1               b-44a8-9a5d-                                               2020                 :20 2020
+                9d31f4e4701d
+leaf01toborder0 f8d6a2c5-54d Complete         0                            Fri Nov  6 14:04:54  Fri Nov  6 14:05
+1               b-44a8-9a5d-                                               2020                 :20 2020
+                9d31f4e4701d
+New Trace       0e65e196-ac0 Complete         1                            Fri Nov  6 14:04:48  Fri Nov  6 14:05
+                5-49d7-8c81-                                               2020                 :02 2020
+                6e6691e191ae
+Svr01toSvr04Hrl 4c580c97-8af Complete         0                            Fri Nov  6 14:01:16  Fri Nov  6 14:01
+y               8-4ea2-8c09-                                               2020                 :43 2020
+                038cde9e196c
+...
+L01toB01Daily   38a75e0e-7f9 Complete         0                            Thu Nov  5 15:50:23  Thu Nov  5 15:58
+                9-4e0c-8449-                                               2020                 :22 2020
+                f63def1ab726
+leaf01toborder0 f8d6a2c5-54d Complete         0                            Thu Nov  5 15:34:54  Thu Nov  5 15:58
+1               b-44a8-9a5d-                                               2020                 :03 2020
+                9d31f4e4701d
+```
+
+### View Scheduled Trace Settings for a Given Trace
+
+You can view the configuration settings used by a give scheduled trace using the `netq show trace settings` command.
+
+This example shows the settings for the scheduled trace named *Lf01toBor01Daily*.
+
+```
+cumulus@switch:~$ netq show trace settings name Lf01toBor01Daily
+```
+
+### View Scheduled Trace Results for a Given Trace
+
+You can view the results for a give scheduled trace using the `netq show trace results` command.
+
+This example obtains the job ID for the trace named *Lf01toBor01Daily*, then shows the results.
+
+```
+cumulus@switch:~$ netq show trace summary name Lf01toBor01Daily json
+cumulus@switch:~$ netq show trace results f501f9b0-cca3-4fa1-a60d-fb6f495b7a0e
+```
+
 {{< /tab >}}
 
 {{< /tabs >}}
 
 ## Manage Scheduled Traces
 
+You can modify and remove scheduled traces at any time as described here. An administrator can also manage scheduled traces through the NetQ Management dashboard. Refer to {{<link title="Manage the NetQ UI/#delete-a-scheduled-trace" text="Delete a Scheduled Trace">}} for details.
+
 ### Modify a Scheduled Trace
 
+After reviewing the results of a scheduled trace for a period of time, you might want to modify how often it is run or the VRF or VLAN used. You can do this using the NetQ UI.
+
+{{%notice note%}}
+
+Be aware that changing the configuration of a trace can cause the results to be inconsistent with prior runs of the trace. If this is an unacceptable result, create a new scheduled trace. Optionally you can remove the original trace.
+
+{{%/notice%}}
+
+To modify a scheduled trace:
+
+1. Open the Trace Request card.
+
+2. Select the trace you want to change from the dropdown list.
+
+3. Modify the configuration as desired.
+
+4. Click **Update** to save the changes.
+
+    {{%notice tip%}}
+
+If you click **Save as New**, a new scheduled trace is created and the original trace remains unchanged.
+
+{{%/notice%}}
+
 ### Remove Scheduled Traces
+
+If you have reached the maximum of 15 scheduled traces for your premises, you might need to remove one trace in favor of another. You can remove a scheduled trace at any time using the NetQ UI or NetQ CLI.
+
+{{%notice note%}}
+
+Both a standard user and an administrative user can remove scheduled traces. No notification is generated on removal. Be sure to communicate with other users before removing a scheduled trace to avoid confusion and support issues.
+
+{{%/notice%}}
+
+{{< tabs "TabID1348" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Open the Trace Request card.
+
+    - On new workbench: Click in the **Global Search** box. Type *trace*. Click on card name.
+    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+
+2. Change to the full-screen card using the card size picker.
+
+3. Select one or more traces that you want to remove and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}}.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+Run the `netq del trace` command to remove a scheduled trace.
+
+This example deletes the trace named *L01toBor01Daily*.
+
+```
+cumulus@switch:~$ netq del trace L01toBor01Daily
+Successfully deleted schedule trace L01toBor01Daily
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}

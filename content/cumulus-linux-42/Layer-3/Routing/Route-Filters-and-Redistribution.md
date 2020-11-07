@@ -87,7 +87,8 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# ip route-map ????????
+switch(config)# route-map test permit 1
+switch(config-route-map)# match ???????
 switch(config)# exit
 switch# write memory
 switch# exit
@@ -130,7 +131,8 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# ip route-map ????????
+switch(config)# route-map test permit 10
+switch(config-route-map)# match ip address prefix-list test
 switch(config)# exit
 switch# write memory
 switch# exit

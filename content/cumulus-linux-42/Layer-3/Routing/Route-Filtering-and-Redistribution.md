@@ -66,7 +66,7 @@ Route maps let you define a routing policy that is considered before the router 
 
 ### Configure a Route Map
 
-The following example commands configure a route map called ???
+The following example commands configure a route map called test that 
 
 {{< tabs "TabID73 ">}}
 
@@ -244,8 +244,8 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router ospf
-switch(config-router)# redistribute connected
+switch(config)# router bgp
+switch(config-router)# redistribute ospf
 switch(config-router)# end
 switch# write memory
 switch# exit

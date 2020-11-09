@@ -1,10 +1,10 @@
 ---
-title: Validate Network Operation
+title: Validate Operations
 author: Cumulus Networks
 weight: 1000
 toc: 2
 ---
-NetQ provides the information you need to validate the operation and configuration of your network fabric, devices, interfaces, and containers. For example, you can validate the operation of routing protocols and virtual network configurations, the status of NetQ Agents and hardware components, and the operation and efficiency of interfaces.
+When you discover operational anomalies, you can validate that the devices, hosts, network protocols and services are operating as expected. You can also compare the current operation with past operation. The topics in this section provide instructions for validating:
 
 With NetQ, you can view the overall health of your network at a glance and then delve deeper for periodic checks or as conditions arise that require attention. When issues are present, NetQ makes it easy to identify and resolve them. You can also see when changes have occurred to the network, devices, and interfaces by viewing their operation, configuration, and status at an earlier point in time.
 
@@ -42,3 +42,5 @@ The NetQ UI uses the following cards to create validations and view results for 
 For a general understanding of how well your network is operating, the Network Health card workflow is the best place to start as it contains the highest-level view and performance roll-ups. Refer to the {{<link title="NetQ UI Card Reference" text="NetQ UI Card Reference">}} for details about the components on these cards.
 
 The NetQ CLI uses the `netq check` commands to validate the various elements of your network fabric, looking for inconsistencies in configuration across your fabric, connectivity faults, missing configuration, and so forth, and then display the results for your assessment. They can be run from any node in the network.
+
+Refer to {{<link title="Manage Configurations">}} and {{<link title="Monitor Operations">}} for tasks related to configuring and monitoring devices and network operations.

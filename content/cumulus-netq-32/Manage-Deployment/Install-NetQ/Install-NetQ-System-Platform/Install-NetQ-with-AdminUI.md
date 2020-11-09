@@ -54,7 +54,7 @@ To install NetQ:
 
 {{< tab "On-premises" >}}
 
-4. Enter or upload the NetQ 3.2.0 tarball, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+4. Enter or upload the NetQ 3.2.1 tarball, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/adminui-install-onprem-basic-320.png" width="600">}}
 
@@ -62,7 +62,7 @@ To install NetQ:
 
 {{< tab "Cloud" >}}
 
-4. Enter or upload the NetQ 3.2.0 tarball.
+4. Enter or upload the NetQ 3.2.1 tarball.
 
 5. Enter your configuration key.
 
@@ -185,7 +185,7 @@ Refer to {{<link title="Post Installation Configuration Options/#add-more-nodes-
 
 6. Install the NetQ software.
 
-    You install the NetQ software using the installation files (`NetQ-3.2.0-tgz` for on-premises deployments or `NetQ-3.2.0-opta.tgz` for cloud deployments) that you downloaded and stored previously.
+    You install the NetQ software using the installation files (`NetQ-3.2.1-tgz` for on-premises deployments or `NetQ-3.2.1-opta.tgz` for cloud deployments) that you downloaded and stored previously.
 
     *For on-premises*: Accept the path and filename suggested, or modify these to reflect where you stored your installation file, then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>. Alternately, upload the file.
 

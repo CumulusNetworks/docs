@@ -22,7 +22,7 @@ The following example commands configure a prefix list that permits all prefixes
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing prefix-list ipv4 prefixlist1 seq 10 permit 10.0.0.0/16 le 30
+cumulus@switch:~$ net add routing prefix-list ipv4 prefixlist1 permit 10.0.0.0/16 le 30
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -55,10 +55,10 @@ router ospf
  timers throttle spf 80 100 6000
  passive-interface vlan10
  passive-interface vlan20
-ip prefix-list prefixlist1 seq 5 permit 10.0.0.0/16 le 30
+ip prefix-list prefixlist1 permit 10.0.0.0/16 le 30
 ```
 
-To use this prefix list in a route map, see {{<link url="#route-maps" text="Route Maps">}} below.
+To use this prefix list in a route map, see {{<link url="#configuration-examples" text="Configuration-Examples">}} below.
 
 ## Route Maps
 
@@ -66,15 +66,15 @@ Route maps let you define a routing policy that is considered before the router 
 
 ### Configure a Route Map
 
-The following example commands configure a route map that 
+The following example commands configure a route map that sets the metric to 50 for interface swp51:
 
 {{< tabs "TabID73 ">}}
 
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing route-map test permit 10 match interface swp51
-cumulus@switch:~$ net add routing route-map test permit 10 set metric 50
+cumulus@switch:~$ net add routing route-map routemap1 permit 10 match interface swp51
+cumulus@switch:~$ net add routing route-map routemap1 permit 10 set metric 50
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -87,7 +87,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# route-map metric permit 10
+switch(config)# route-map routemap1 permit 10
 switch(config-route-map)# match interface swp51
 switch(config-route-map)# set metric 50
 switch(config-route-map)# end
@@ -109,59 +109,23 @@ router ospf
  timers throttle spf 80 100 6000
  passive-interface vlan10
  passive-interface vlan20
-route-map metric permit 10
+route-map routemap1 permit 10
  match interface swp51
  set metric 50
 ```
-
-To use a prefix list in a route map:
-
-{{< tabs "TabID119 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add routing route-map metric permit 10 match ip address prefix-list test
-cumulus@switch:~$ net add routing route-map metric permit 10 set metric 50
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# route-map metric permit 10
-switch(config-route-map)# match ip address prefix-list metric
-switch(config-route-map)# set metric 50
-switch(config-route-map)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
 
 ### Apply a Route Map
 
 A route map filters routes from Zebra into the Linux kernel. To apply the route map, you specify the routing protocol (bgp, ospf, or static) and the route map name.
 
-The following example commands apply the route map called metric to BGP:
+The following example commands apply the route map called routemap1 to BGP:
 
 {{< tabs "TabID152 ">}}
 
 {{< tab "NCLU Commands ">}}
 
-The following example commands apply the route map called metric to BGP:
-
 ```
-cumulus@switch:~$ net add routing protocol bgp route-map metric
+cumulus@switch:~$ net add routing protocol bgp route-map routemap1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -174,7 +138,7 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# ip protocol bgp route-map metric
+switch(config)# ip protocol bgp route-map routemap1
 switch(config)# exit
 switch# write memory
 switch# exit
@@ -194,7 +158,7 @@ router ospf
  timers throttle spf 80 100 6000
  passive-interface vlan10
  passive-interface vlan20
-ip protocol bgp route-map metric
+ip protocol bgp route-map routemap1
 ```
 
 For BGP, you can also apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations for this attach-point are limited to metric and next hop only. Any operation of this feature does not affect BGPs internal RIB. Both IPv4 and IPv6 address families are supported. Route maps work on multi-paths; however, the metric setting is based on the best path only.
@@ -287,4 +251,36 @@ For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only
 
 ## Configuration Examples
 
-The following example shows
+The following example uses a prefix list in a route map:
+
+{{< tabs "TabID119 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing route-map routemap1 permit 10 match ip address prefix-list prefixlist1
+cumulus@switch:~$ net add routing route-map routemap1 permit 10 set metric 50
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# route-map routemap1 permit 10
+switch(config-route-map)# match ip address prefix-list prefixlist1
+switch(config-route-map)# set metric 50
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}

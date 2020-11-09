@@ -30,4 +30,4 @@ Upgrade paths for customers include:
 
 Upgrades from NetQ 2.3.x and earlier require a fresh installation.
 
-For information regarding bug fixes and known issues present in this release, refer to the {{<link title="Cumulus NetQ 3.2 Release Notes" text="release notes">}}.
+For information regarding bug fixes and known issues present in this release, refer to the {{<link title="NVIDIA NetQ 3.2 Release Notes" text="release notes">}}.

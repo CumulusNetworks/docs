@@ -4,11 +4,9 @@ author: Cumulus Networks
 weight: 1020
 toc: 4
 ---
-With the NetQ UI, you can validate the operation of the network protocols and services running in your network either on demand or on a scheduled basis. There are three card workflows to perform this validation: one for creating the validation request (either on-demand or scheduled) and two validation results (one for on-demand and one for scheduled).
+NetQ lets you validate the operation of the network protocols and services running in your network either on demand or on a scheduled basis.
 
-This release supports validation of the following network protocols and services: Agents, BGP, CLAG, EVPN, Interfaces, License, MTU, NTP, OSPF, Sensors, VLAN, and VXLAN.
-
-For a more general understanding of how well your network is operating, refer to the {{<link title="Monitor Network Health">}} topic.
+For a more general understanding of how well your network is operating, refer to the {{<link title="Validate Overall Network Health">}} topic.
 
 ## Create Validation Requests
 

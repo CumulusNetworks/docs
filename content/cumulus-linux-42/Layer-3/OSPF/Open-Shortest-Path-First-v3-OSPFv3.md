@@ -434,12 +434,6 @@ hello Packets.
 - Advertise prefix list. The prefix list defines the outbound route filter.
 - Cost. The cost determines the shortest paths to the destination.
 
-{{%notice note%}}
-
-Unlike OSPFv2, OSPFv3 intrinsically supports unnumbered interfaces. Forwarding to the next hop router is done entirely using IPv6 link local addresses. You do not need to configure any global IPv6 address to interfaces between routers.
-
-{{%/notice%}}
-
 The following command example sets the network type to point-to-point on swp51.
 
 {{< tabs "TabID82 ">}}
@@ -1039,7 +1033,7 @@ Cumulus Linux provides several OSPFv3 troubleshooting commands:
 | Verify that the LSDB is synchronized across all routers in the network | `net show ospf6 database` | `show ip ospf6 database` |
 | Determine why an OSPF route is not being forwarded correctly |`net show route ospf6` | `show ip route ospf6` |
 | Show OSPF interfaces | `net show ospf6 interface` | `show ip ospf6 interface` |
-| To help visualize the network view | `net show ospf6 spf tree` | `show ip ospf6 spf tree1 |
+| To help visualize the network view | `net show ospf6 spf tree` | `show ip ospf6 spf tree1` |
 
 The following example shows the `net show ospf6 neighbor` command output:
 

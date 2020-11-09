@@ -66,7 +66,7 @@ Route maps let you define a routing policy that is considered before the router 
 
 ### Configure a Route Map
 
-The following example commands configure a route map called ???
+The following example commands configure a route map called metric that sets the metric to 50 for all traffic on swp51 and sets the metric to 70 for all traffic on swp52:
 
 {{< tabs "TabID73 ">}}
 
@@ -161,11 +161,11 @@ cumulus@switch:~$
 
 A route map filters routes from Zebra into the Linux kernel. To apply the route map, you specify the routing protocol (bgp, ospf, or static) and the route map name.
 
+The following example commands apply the route map called metric to BGP:
+
 {{< tabs "TabID152 ">}}
 
 {{< tab "NCLU Commands ">}}
-
-The following example commands apply the route map called metric to BGP:
 
 ```
 cumulus@switch:~$ net add routing protocol bgp route-map metric
@@ -176,8 +176,6 @@ cumulus@switch:~$ net commit
 {{< /tab >}}
 
 {{< tab "vtysh Commands ">}}
-
-The following example commands apply the the route map called metric to BGP.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -244,8 +242,8 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# router ospf
-switch(config-router)# redistribute connected
+switch(config)# router bgp
+switch(config-router)# redistribute ospf
 switch(config-router)# end
 switch# write memory
 switch# exit

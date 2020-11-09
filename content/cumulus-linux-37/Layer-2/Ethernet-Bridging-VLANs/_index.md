@@ -88,14 +88,7 @@ untagged  bridge    swp1         44:38:39:00:00:04                permanent     
 By default, Cumulus Linux stores MAC addresses in the Ethernet switching
 table for 1800 seconds (30 minutes). You can change this setting using NCLU.
 
-The `bridge-ageing` option is in the
-{{<link url="Network-Command-Line-Utility-NCLU#edit-the-netd-conf-file" text="NCLU blacklist">}},
-as it's not frequently used. To configure this setting, you need to
-remove the `bridge-ageing` keyword from the `ifupdown_blacklist` in `/etc/netd.conf`.
-{{<link url="Network-Command-Line-Utility-NCLU/#restart-the-netd-service" text="Restart the `netd` service">}}
-after you edit the file.
-
-Now you can change the setting using NCLU. For example, to change the setting to 600 seconds, run:
+You can change the setting using NCLU. For example, to change the setting to 600 seconds, run:
 
 ```
 cumulus@switch:~$ net add bridge bridge ageing 600
@@ -113,7 +106,6 @@ cumulus@switch:~$ cat /etc/network/interfaces
 auto bridge
 iface bridge
     bridge-ageing 600
- 
 ...
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: Route Filters and Redistribution
+title: Route Filtering and Redistribution
 author: Cumulus Networks
 weight: 855
 toc: 3
@@ -13,7 +13,7 @@ This section discusses the following route filtering methods:
 
 ## Prefix Lists
 
-Prefix lists are access lists for route advertisements (prefixes) that match routes instead of traffic. Prefix lists are typically used with route maps and other filtering methods. A prefix list can match the prefix (the network itself) and the prefix-length (the length of the subnet mask).
+Prefix lists are access lists for route advertisements that match routes instead of traffic. Prefix lists are typically used with route maps and other filtering methods. A prefix list can match the prefix (the network itself) and the prefix-length (the length of the subnet mask).
 
 The following example commands configure a prefix list that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30. For networks 10.0.0.0/24, 10.10.10.0/24, and 10.0.0.10/32, only 10.0.0.0/24 is matched (10.10.10.0/24 has a different prefix and 10.0.0.10/32 has a greater subnet mask).
 
@@ -73,8 +73,10 @@ The following example commands configure a route map called ???
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing route-map test permit 1 match ???
-cumulus@switch:~$ net add routing route-map test permit 1 set ???
+cumulus@switch:~$ net add routing route-map test permit 10 match interface swp51
+cumulus@switch:~$ net add routing route-map test permit 10 set metric 50
+cumulus@switch:~$ net add routing route-map test permit 20 match interface swp52
+cumulus@switch:~$ net add routing route-map test permit 20 set metric 70
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -87,9 +89,14 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# route-map test permit 1
-switch(config-route-map)# match ???????
-switch(config)# exit
+switch(config)# route-map metric permit 10
+switch(config-route-map)# match interface swp51
+switch(config-route-map)# set metric 50
+switch(config-route-map)# exit
+switch(config)# route-map metric permit 20
+switch(config-route-map)# match interface swp52
+switch(config-route-map)# set metric 70
+switch(config-route-map)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$
@@ -108,7 +115,12 @@ router ospf
  timers throttle spf 80 100 6000
  passive-interface vlan10
  passive-interface vlan20
-ip route-map test permit 1 match ??????
+route-map metric permit 10
+ match interface swp51
+ set metric 50
+route-map metric permit 20
+ match interface swp52
+ set metric 70
 ```
 
 To use a prefix list in a route map:
@@ -118,7 +130,8 @@ To use a prefix list in a route map:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing route-map test permit 10 match ip address prefix-list test
+cumulus@switch:~$ net add routing route-map metric permit 10 match ip address prefix-list test
+cumulus@switch:~$ net add routing route-map metric permit 10 set metric 50
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -131,9 +144,10 @@ cumulus@switch:~$ net commit
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# route-map test permit 10
-switch(config-route-map)# match ip address prefix-list test
-switch(config)# exit
+switch(config)# route-map metric permit 10
+switch(config-route-map)# match ip address prefix-list metric
+switch(config-route-map)# set metric 50
+switch(config-route-map)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$
@@ -151,10 +165,10 @@ A route map filters routes from Zebra into the Linux kernel. To apply the route 
 
 {{< tab "NCLU Commands ">}}
 
-The following example commands apply the route map called test to BGP:
+The following example commands apply the route map called metric to BGP:
 
 ```
-cumulus@switch:~$ net add routing protocol bgp route-map test
+cumulus@switch:~$ net add routing protocol bgp route-map metric
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -163,13 +177,13 @@ cumulus@switch:~$ net commit
 
 {{< tab "vtysh Commands ">}}
 
-The following example commands apply the the route map called test to BGP.
+The following example commands apply the the route map called metric to BGP.
 
 ```
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
-switch(config)# ip
+switch(config)# ip protocol bgp route-map metric
 switch(config)# exit
 switch# write memory
 switch# exit
@@ -189,7 +203,7 @@ router ospf
  timers throttle spf 80 100 6000
  passive-interface vlan10
  passive-interface vlan20
-
+ip protocol bgp route-map metric
 ```
 
 For BGP, you can also apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations for this attach-point are limited to metric and next hop only. Any operation of this feature does not affect BGPs internal RIB. Both IPv4 and IPv6 address families are supported. Route maps work on multi-paths; however, the metric setting is based on the best path only.
@@ -197,7 +211,7 @@ For BGP, you can also apply a route map on route updates from BGP to Zebra. All 
 To apply a route map to filter route updates from BGP into Zebra, run the following command:
 
 ```
-cumulus@switch:$ net add bgp table-map <route-map-name>
+cumulus@switch:$ net add bgp table-map routemap2
 ```
 
 {{%notice info%}}

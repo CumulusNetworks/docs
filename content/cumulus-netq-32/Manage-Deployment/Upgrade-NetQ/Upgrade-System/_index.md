@@ -24,11 +24,11 @@ To complete the preparation:
 
     1. Go to the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page, and select *NetQ* from the **Product** list.
 
-    2. Select *3.2* from the **Version** list, and then click *3.2.0* in the submenu.
+    2. Select *3.2* from the **Version** list, and then click *3.2.1* in the submenu.
 
     3. Select the relevant software from the **HyperVisor/Platform** list:
 
-        If you are upgrading NetQ Platform software for a NetQ On-premises Appliance or VM, select *Appliance*  to download the NetQ-3.2.0.tgz file. If you are upgrading NetQ Collector software for a NetQ Cloud Appliance or VM, select *Appliance (Cloud)* to download the NetQ-3.2.0-opta.tgz file.
+        If you are upgrading NetQ Platform software for a NetQ On-premises Appliance or VM, select *Appliance*  to download the NetQ-3.2.1.tgz file. If you are upgrading NetQ Collector software for a NetQ Cloud Appliance or VM, select *Appliance (Cloud)* to download the NetQ-3.2.1-opta.tgz file.
 
         {{< figure src="/images/netq/netq-32-download-options-320.png" width="500" >}}
 
@@ -75,11 +75,11 @@ You can ignore the note on the image card because, unlike during installation, y
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (3.2.0-ub18.04u30~1601400975.104fb9e) ...
+    Unpacking netq-agent (3.2.1-ub18.04u30~1601400975.104fb9e) ...
     ...
-    Unpacking netq-apps (3.2.0-ub18.04u30~1601400975.104fb9e) ...
-    Setting up netq-apps (3.2.0-ub18.04u30~1601400975.104fb9e) ...
-    Setting up netq-agent (3.2.0-ub18.04u30~1601400975.104fb9e) ...
+    Unpacking netq-apps (3.2.1-ub18.04u31~1601400975.104fb9e) ...
+    Setting up netq-apps (3.2.1-ub18.04u31~1601400975.104fb9e) ...
+    Setting up netq-agent (3.2.1-ub18.04u31~1601400975.104fb9e) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ``````
@@ -230,8 +230,8 @@ To upgrade your NetQ software:
 {{< tab "On-premises Deployments" >}}
 
 ```
-cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.2.0.tgz
-2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.2.0.tgz
+cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.2.1.tgz
+2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.2.1.tgz
 2020-04-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
 2020-04-28 15:47:35.667579: master-node-installer: Removing old images
 -----------------------------------------------
@@ -243,7 +243,7 @@ Successfully bootstrap-upgraded the master node
 {{< tab "Cloud Deployments" >}}
 
 ```
-netq bootstrap master upgrade /mnt/installables/NetQ-3.2.0-opta.tgz
+netq bootstrap master upgrade /mnt/installables/NetQ-3.2.1-opta.tgz
 ```
 
 {{< /tab >}}
@@ -260,7 +260,7 @@ netq bootstrap master upgrade /mnt/installables/NetQ-3.2.0-opta.tgz
 
 4. Click **Upgrade**.
 
-5. Enter *NetQ-3.2.0.tgz* or *NetQ-3.2.0-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
+5. Enter *NetQ-3.2.1.tgz* or *NetQ-3.2.1-opta.tgz* and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/50-Navigate/navigation-right-circle-1_1.svg" height="18" width="18"/>.
 
     {{<figure src="/images/netq/adminui-upgrade-enter-tar-300.png" width="700">}}
 
@@ -289,7 +289,7 @@ To upgrade:
 {{< tab "On-premises Deployments" >}}
 
 ```
-netq upgrade bundle /mnt/installables/NetQ-3.2.0.tgz
+netq upgrade bundle /mnt/installables/NetQ-3.2.1.tgz
 ```
 
 {{< /tab >}}
@@ -297,7 +297,7 @@ netq upgrade bundle /mnt/installables/NetQ-3.2.0.tgz
 {{< tab "Cloud Deployments" >}}
 
 ```
-netq upgrade bundle /mnt/installables/NetQ-3.2.0-opta.tgz
+netq upgrade bundle /mnt/installables/NetQ-3.2.1-opta.tgz
 ```
 
 {{< /tab >}}
@@ -308,7 +308,7 @@ netq upgrade bundle /mnt/installables/NetQ-3.2.0-opta.tgz
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=3.2.0
+    BOOTSTRAP_VERSION=3.2.1
     APPLIANCE_MANIFEST_HASH=944369dcab
-    APPLIANCE_VERSION=3.2.0
+    APPLIANCE_VERSION=3.2.1
     ```

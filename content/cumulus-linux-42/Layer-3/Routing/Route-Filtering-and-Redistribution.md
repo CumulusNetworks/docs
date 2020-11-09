@@ -73,10 +73,10 @@ The following example commands configure a route map called metric that sets the
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add routing route-map test permit 10 match interface swp51
-cumulus@switch:~$ net add routing route-map test permit 10 set metric 50
-cumulus@switch:~$ net add routing route-map test permit 20 match interface swp52
-cumulus@switch:~$ net add routing route-map test permit 20 set metric 70
+cumulus@switch:~$ net add routing route-map metric permit 10 match interface swp51
+cumulus@switch:~$ net add routing route-map metric permit 10 set metric 50
+cumulus@switch:~$ net add routing route-map metric permit 20 match interface swp52
+cumulus@switch:~$ net add routing route-map metric permit 20 set metric 70
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -145,7 +145,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# route-map metric permit 10
-switch(config-route-map)# match ip address prefix-list metric
+switch(config-route-map)# match ip address prefix-list test
 switch(config-route-map)# set metric 50
 switch(config-route-map)# end
 switch# write memory

@@ -1,6 +1,6 @@
 ---
-title: Cumulus NetQ 3.2 User Guide
-author: Cumulus Networks
+title: NVIDIA NetQ 3.2 User Guide
+author: Cumulus Networks/NVIDIA
 weight: 1
 subsection: true
 toc: 1

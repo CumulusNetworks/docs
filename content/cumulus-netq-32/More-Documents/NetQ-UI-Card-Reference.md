@@ -5725,7 +5725,7 @@ The small Trace Request card displays:
 
 The medium Trace Request card displays:
 
-{{<figure src="/images/netq/trace-request-medium-231.png" width="200">}}
+{{<figure src="/images/netq/trace-request-medium-320.png" width="200">}}
 
 <table>
 <colgroup>
@@ -5749,7 +5749,7 @@ The medium Trace Request card displays:
 </tr>
 <tr class="odd">
 <td>New Trace Request</td>
-<td>Create a new layer 3 trace request. Use the large Trace Request card to create a new layer 2 or 3 request.</td>
+<td>Create a new layer 2 or layer 3 (no VRF) trace request.</td>
 </tr>
 <tr class="even">
 <td>Source</td>
@@ -5757,9 +5757,14 @@ The medium Trace Request card displays:
 </tr>
 <tr class="odd">
 <td>Destination</td>
-<td>(Required) IP address of device where to end the trace.</td>
+<td>(Required) Ending point for the trace. For layer 2 traces, value must be a MAC address. For layer 3 traces, value must be an IP address.</td>
 </tr>
 <tr class="even">
+<td>VLAN ID</td>
+<td>Numeric identifier of a VLAN. Required for layer 2 trace requests.</td>
+</tr>
+</tr>
+<tr class="odd">
 <td>Run Now</td>
 <td>Start the trace now.</td>
 </tr>

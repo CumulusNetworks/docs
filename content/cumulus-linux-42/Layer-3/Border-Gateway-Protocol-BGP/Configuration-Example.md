@@ -8,7 +8,7 @@ This section shows a BGP configuration example based on the reference topology. 
 
 {{< img src = "/images/cumulus-linux/mlag-config-peering.png" >}}
 
-### /etc/network/interfaces
+## /etc/network/interfaces
 
 {{< tabs "TabID901 ">}}
 
@@ -568,7 +568,7 @@ iface swp4
 
 {{< /tabs >}}
 
-**/etc/frr/frr.conf**
+## /etc/frr/frr.conf
 
 {{< tabs "TabID944 ">}}
 

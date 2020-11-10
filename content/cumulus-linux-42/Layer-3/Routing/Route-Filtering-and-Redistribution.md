@@ -116,9 +116,9 @@ route-map routemap1 permit 10
 
 ### Apply a Route Map
 
-A route map filters routes from Zebra into the Linux kernel. To apply the route map, you specify the routing protocol (bgp, ospf, or static) and the route map name.
+To apply the route map, you specify the routing protocol (bgp, ospf, or static) and the route map name.
 
-The following example commands apply the route map called routemap1 to BGP:
+The following example filters routes from Zebra into the Linux kernel. The commands apply the route map called routemap1 to BGP:
 
 {{< tabs "TabID152 ">}}
 
@@ -169,7 +169,7 @@ To apply a route map to filter route updates from BGP into Zebra, run the follow
 cumulus@switch:$ net add bgp table-map routemap2
 ```
 
-{{%notice info%}}
+{{%notice note%}}
 
 In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`.
 
@@ -251,105 +251,123 @@ For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only
 
 ## Configuration Examples
 
-The following example:
-- Creates a prefix list that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30
-- Creates a route map that matches the prefix list and sets the metric to 50
-- Applies the route map
+This section shows the `/etc/frr/frr.conf` file configuration for example route filters and redistribution.
 
-{{< tabs "TabID119 ">}}
-
-{{< tab "NCLU Commands ">}}
+The following example filters all routes that are not originated in the local AS:
 
 ```
-cumulus@switch:~$ net add routing prefix-list ipv4 prefixlist1 permit 10.0.0.0/16 le 30
-cumulus@switch:~$ net add routing route-map routemap1 permit 10 match ip address prefix-list prefixlist1
-cumulus@switch:~$ net add routing route-map routemap1 permit 10 set metric 50
-cumulus@switch:~$ net add routing protocol ospf route-map routemap1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor underlay interface remote-as external
+ !
+ address-family ipv4 unicast
+  neighbor underlay route-map my-as out
+ exit-address-family
+!
+bgp as-path access-list my-as permit ^$
+!
+route-map my-as permit 10
+ match as-path my-as
+!
+route-map my-as deny 20
+!
 ```
 
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
+The following example sets communities based on prefix-lists:
 
 ```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# ip prefix-list prefixlist1 permit 10.0.0.0/16 le 30
-switch(config)# route-map routemap1 permit 10
-switch(config-route-map)# match ip address prefix-list prefixlist1
-switch(config-route-map)# set metric 50
-switch(config-route-map)# exit
-switch(config)# ip protocol bgp route-map routemap1
-switch(config)# exit
-switch# write memory
-switch# exit
-cumulus@switch:~$
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor underlay interface remote-as external
+ !
+ address-family ipv6 unicast
+  neighbor underlay activate
+  neighbor underlay route-map MARK-PREFIXES out
+ exit-address-family
+!
+ipv6 prefix-list LOW-PRIO seq 5 permit 2001:db8:dead::/56 le 64
+ipv6 prefix-list MID-PRIO seq 5 permit 2001:db8:beef::/56 le 64
+ipv6 prefix-list HI-PRIO seq 5 permit 2001:db8:cafe::/56 le 64
+!
+route-map MARK-PREFIXES permit 10
+ match ipv6 address prefix-list LOW-PRIO
+ set community 123:200
+!
+route-map MARK-PREFIXES permit 20
+ match ipv6 address prefix-list MID-PRIO
+ set community 123:500
+!
+route-map MARK-PREFIXES permit 30
+ match ipv6 address prefix-list HI-PRIO
+ set community 123:1000
+!
 ```
 
-{{< /tab >}}
+The following example filters routes from being advertised to the peer:
 
-{{< /tabs >}}
+```
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor underlay interface remote-as external
+ !
+ address-family ipv4 unicast
+  neighbor underlay route-map POLICY-OUT out
+ exit-address-family
+!
+ip prefix-list BLOCK-RFC1918 seq 5 permit 10.0.0.0/8 le 24
+ip prefix-list BLOCK-RFC1918 seq 10 permit 172.16.0.0/12 le 24
+ip prefix-list BLOCK-RFC1918 seq 15 permit 192.168.0.0/16 le 24
+ip prefix-list ALLOWED-OUT seq 5 permit 100.64.0.0/10 le 24
+ip prefix-list ALLOWED-OUT seq 10 permit 192.0.2.0/24
+!
+route-map POLICY-OUT deny 10
+ match ip address prefix-list BLOCK-RFC1918
+!
+route-map POLICY-OUT permit 20
+ match ip address prefix-list ALLOWED-OUT
+ set community 123:1000
+!
+route-map POLICY-OUT permit 30
+```
 
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The following example sets mutual redistribution between OSPF and BGP (filters by route tags):
 
 ```
 ...
 router ospf
- ospf router-id 10.10.10.1
- timers throttle spf 80 100 6000
- passive-interface vlan10
- passive-interface vlan20
-
-ip prefix-list prefixlist1 permit 10.0.0.0/16 le 30
-route-map routemap1 permit 10
- match ip address prefix-list prefixlist1
- set metric 50
-ip protocol ospf route-map routemap1
-
+  redistribute bgp route-map BGP-INTO-OSPF
+!
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor underlay interface remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute ospf route-map OSPF-INTO-BGP
+ exit-address-family
+!
+route-map OSPF-INTO-BGP deny 10
+ match tag 4271
+!
+route-map OSPF-INTO-BGP permit 20
+ set tag 2328
+!
+route-map BGP-INTO-OSPF deny 10
+ match tag 2328
+!
+route-map BGP-INTO-OSPF permit 20
+ set tag 4271
 ```
 
-The following example commands apply the route map called `map1` to redistributed routes:
-
-{{< tabs "TabID1012 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add ospf redistribute connected route-map map1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-The following example commands apply the route map called `map1` to redistributed routes:
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# redistribute connected route-map map1
-switch(config)# exit
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+The following example filters and modifies redistributed routes:
 
 ```
 ...
 router ospf
- ospf router-id 10.10.10.1
- redistribute connected route-map map1
-...
+  redistribute bgp route-map EXTERNAL-2-1K
+!
+route-map EXTERNAL-2-1K permit 10
+ set metric 1000
+ set metric-type type-1
 ```

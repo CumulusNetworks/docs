@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-32169"></a> [CM-32169](#CM-32169) <a name="CM-32169"></a> | OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper. | 3.0.0-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-32149"></a> [CM-32149](#CM-32149) <a name="CM-32149"></a> | If you try reconfigure a DHCP server after you delete the switch configuration with the `net del all` command, the `dhcpd` service fails because a duplicate process is running.<br/>To work around this issue, edit the `/usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py` file to change:<br /><pre>DHCPD_PID="-pf {0}" <br /></pre><br />to:<br /><pre>DHCPD_PID="-pf {1}"<br /></pre><br /> | 3.7.13, 4.2.1 | |
 | <a name="CM-32112"></a> [CM-32112](#CM-32112) <a name="CM-32112"></a> | On the ARM platform, NTP peer associations slowly increase to larger offsets (~500ms). | 4.2.1 | |
 | <a name="CM-32068"></a> [CM-32068](#CM-32068) <a name="CM-32068"></a> | Kernel routes added by `iproute2` are missing in FRR after an interface flap.<br/>To work around this issue, configure a static route in FRR. | 4.2.1 | |
@@ -246,6 +247,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-32169"></a> [CM-32169](#CM-32169) <a name="CM-32169"></a> | OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper. | 3.0.0-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-32006"></a> [CM-32006](#CM-32006) <a name="CM-32006"></a> | Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the `reboot` command.  | 3.7.12-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-31954"></a> [CM-31954](#CM-31954) <a name="CM-31954"></a> | A security issue was discovered in the MariaDB database server.<br/>Vulnerable: 10.3.25-0<br/>Fixed: 10.3.25-0+deb10u1 | 4.0.0-4.2.1 | |
 | <a name="CM-31936"></a> [CM-31936](#CM-31936) <a name="CM-31936"></a> | When you back up and restore a configuration using the conf-backup utility, the switch might hang when rebooted. | 4.1.1-4.2.1 | |

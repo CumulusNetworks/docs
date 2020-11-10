@@ -169,7 +169,7 @@ To apply a route map to filter route updates from BGP into Zebra, run the follow
 cumulus@switch:$ net add bgp table-map routemap2
 ```
 
-{{%notice info%}}
+{{%notice note%}}
 
 In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`.
 

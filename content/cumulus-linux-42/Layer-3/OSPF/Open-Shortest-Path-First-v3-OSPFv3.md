@@ -1036,9 +1036,9 @@ Cumulus Linux provides several OSPFv3 troubleshooting commands:
 | Show neighbor states | `net show ospf6 neighbor` | `show ip ospf6 neighbor` |
 | Verify that the LSDB is synchronized across all routers in the network | `net show ospf6 database` | `show ip ospf6 database` |
 | Determine why an OSPF route is not being forwarded correctly |`net show route ospf6` | `show ip route ospf6` |
-| Show OSPF interfaces | `net show ospf6 interface` | `show ipv6 ospf6 interface` |
-| To help visualize the network view | `net show ospf6 spf tree` | `show ip ospf6 spf tree1` |
-| Show information about the OSPFv3 process | `net show ospf6` | `show ipv6 ospf6` |
+| Show OSPF interfaces | `net show ospf6 interface` | `show ip ospf6 interface` |
+| To help visualize the network view | `net show ospf6 spf tree` | `show ip ospf6 spf tree` |
+| Show information about the OSPFv3 process | `net show ospf6` | `show ip ospf6` |
 
 The following example shows the `net show ospf6 neighbor` command output:
 
@@ -1062,7 +1062,7 @@ Codes: K - kernel route, C - connected, S - static, R - RIPng,
 
 O   2001:db8::a00:100/127 [110/100] is directly connected, swp51, weight 1, 00:00:20
 O   2001:db8::a0a:a01/128 [110/10] is directly connected, lo, weight 1, 00:01:40
-O>* 2001:db8::a0a:a65/128 [110/110] via fe80::4638:39ff:fe00:2, swp51, weight 1, 00:00:15 
+O>* 2001:db8::a0a:a65/128 [110/110] via fe80::4638:39ff:fe00:2, swp51, weight 1, 00:00:15
 ```
 
 To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf6` command.

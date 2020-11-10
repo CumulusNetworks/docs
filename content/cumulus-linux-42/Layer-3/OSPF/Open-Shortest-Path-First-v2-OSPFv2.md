@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 790
 toc: 3
 ---
-This topic describes OSPFv2, which is a {{<exlink url="http://en.wikipedia.org/wiki/Link-state_routing_protocol" text="link-state routing protocol">}} for IPv4. For IPv6 commands, refer to {{<link url="Open-Shortest-Path-First-v3-OSPFv3">}}.
+This topic describes OSPFv2, which is a link-state routing protocol for IPv4. For IPv6 commands, refer to {{<link url="Open-Shortest-Path-First-v3-OSPFv3">}}.
 
 ## Basic OSPFv2 Configuration
 
@@ -24,7 +24,7 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 
 | leaf01 | spine01 |
 | ------ | ------- |
-| <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address on swp51 is 10.0.1.0/31</li><li>The router ID is 10.10.10.1</li><li>All the interfaces on the switch with an IP address that matches subnet 10.10.10.1/32 and and swp51 with IP address 10.0.1.0/31 are in area 0</li><li>swp1 and swp2 are passive interfaces</li></ul> | <ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address on swp1 is 10.0.1.1/31</li><li>The router ID is 10.10.10.101</li><li>All interfaces on the switch with an IP address that matches subnet 10.10.10.101/32 and swp1 with IP address 10.0.1.1/31 are in area 0.</li></ul> |
+| <ul><li>The loopback address is 10.10.10.1/32</li><li>The IP address on swp51 is 10.0.1.0/31</li><li>The router ID is 10.10.10.1</li><li>All the interfaces on the switch with an IP address that matches subnet 10.10.10.1/32 and swp51 with IP address 10.0.1.0/31 are in area 0</li><li>swp1 and swp2 are passive interfaces</li></ul> | <ul><li>The loopback address is 10.10.10.101/32</li><li>The IP address on swp1 is 10.0.1.1/31</li><li>The router ID is 10.10.10.101</li><li>All interfaces on the switch with an IP address that matches subnet 10.10.10.101/32 and swp1 with IP address 10.0.1.1/31 are in area 0.</li></ul> |
 
 {{%notice note%}}
 
@@ -86,7 +86,7 @@ cumulus@spine01:~$ net del ospf passive-interface swp1
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}}
+{{< tab "Linux and vtysh Commands ">}}
 
 {{< tabs "TabID85 ">}}
 
@@ -491,7 +491,7 @@ router ospf
 
 ## Optional OSPFv2 Configuration
 
-This section describes optional configuration. The steps provided in this section assume that you already configured basic OSPFv2 as described in {{<link url="#basic-ospfv2-configuration" >}}, above.
+This section describes optional configuration. The steps provided in this section assume that you already configured basic OSPFv2 as described in {{<link url="#basic-ospfv2-configuration" text="Basic OSPF Configuration">}}, above.
 
 ### Interface Parameters
 
@@ -499,10 +499,10 @@ You can define the following OSPF parameters per interface:
 - Network type (point-to-point or broadcast). Broadcast is the default setting.
   Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
   {{%notice note%}}
-  Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbered">}}.
+  Point-to-point is required for {{<link url="#ospfv2-unnumbered" text="OSPFv2 unnumbered">}}.
   {{%/notice%}}
 - Hello interval. The number of seconds between hello packets sent on the interface. The default is 10 seconds.
-- Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
+- Dead interval. The number of seconds before neighbors declare the router down after they stop hearing
 hello packets. The default is 40 seconds.
 - Priority in becoming the OSPF Designated Router (DR) on a broadcast interface. The default is priority 1.
 
@@ -855,9 +855,9 @@ router ospf
 
 ### Stub Areas
 
-External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. In many cases, external link states make up a large percentage of the LSDB. Stub *areas* reduce the link-state database size by not flooding AS-external LSAs.
+External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. In many cases, external link states make up a large percentage of the link-state database (LSDB). Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
 
-All routers must agree that an area is a stub or not, otherwise they will not become OSPF neighbors.
+All routers must agree that an area is a stub, otherwise they will not become OSPF neighbors.
 
 To configure a stub area:
 
@@ -1009,7 +1009,7 @@ router ospf
 
 Cumulus Linux provides several commands to change the administrative distance for OSPF routes.
 
-This example vtysh commands set the distance for an entire group of routes, instead of a specific route.
+These example vtysh commands set the distance for an entire group of routes, instead of a specific route.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1023,7 +1023,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-This example vtysh commands change the OSPF administrative distance to 150 for internal routes and 220 for external routes:
+These example vtysh commands change the OSPF administrative distance to 150 for internal routes and 220 for external routes:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1037,7 +1037,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-This example vtysh commands change the OSPF administrative distance to 150 for internal routes to a subnet or network inside the same area as the router:
+These example vtysh commands change the OSPF administrative distance to 150 for internal routes to a subnet or network inside the same area as the router:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1051,7 +1051,7 @@ switch# exit
 cumulus@switch:~$
 ```
 
-This example vtysh commands change the OSPF administrative distance to 150 for internal routes to a subnet in an area of which the router is *not* a part:
+These example vtysh commands change the OSPF administrative distance to 150 for internal routes to a subnet in an area of which the router is *not* a part:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1170,7 +1170,6 @@ For a list all of the OSPF debug options, refer to {{<exlink url="http://docs.fr
 
 ## Related Information
 
-- {{<exlink url="http://en.wikipedia.org/wiki/Open_Shortest_Path_First" text="Wikipedia - Open Shortest Path First">}}
 - {{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html" text="FRR OSPFv2">}}
 - Perlman, Radia (1999); *Interconnections: Bridges, Routers, Switches, and Internetworking Protocols (2 ed.)*; Addison-Wesley
 - Moy, John T.; *OSPF: Anatomy of an Internet Routing Protocol*; Addison-Wesley

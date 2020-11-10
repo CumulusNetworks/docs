@@ -1,7 +1,7 @@
 ---
 title: Single User Mode - Password Recovery
 author: Cumulus Networks
-weight: 920
+weight: 1170
 toc: 3
 ---
 Use single user mode to assist in troubleshooting system boot issues or for password recovery.

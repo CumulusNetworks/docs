@@ -1,7 +1,7 @@
 ---
 title: Segment Routing
 author: Cumulus Networks
-weight: 900
+weight: 800
 toc: 3
 ---
 {{%notice warning%}}

@@ -1,7 +1,7 @@
 ---
 title: Configure SNMP Traps without NCLU
 author: Cumulus Networks
-weight: 1084
+weight: 1130
 toc: 4
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Border Gateway Protocol - BGP
 author: Cumulus Networks
-weight: 810
+weight: 840
 toc: 3
 ---
 BGP is the routing protocol that runs the Internet. It manages how packets get routed from network to network by exchanging routing and reachability information.

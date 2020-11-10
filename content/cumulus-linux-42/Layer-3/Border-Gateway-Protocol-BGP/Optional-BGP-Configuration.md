@@ -1,7 +1,7 @@
 ---
 title: Optional BGP Configuration
 author: Cumulus Networks
-weight: 814
+weight: 860
 toc: 3
 ---
 This section describes optional configuration. The steps provided in this section assume that you already configured basic BGP as described in {{<link url="Basic-BGP-Configuration" >}}.

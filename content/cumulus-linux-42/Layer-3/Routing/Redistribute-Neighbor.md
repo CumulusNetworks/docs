@@ -1,7 +1,7 @@
 ---
 title: Redistribute Neighbor
 author: Cumulus Networks
-weight: 850
+weight: 790
 toc: 3
 ---
 *Redistribute neighbor* provides a mechanism for IP subnets to span racks without forcing the end hosts to run a routing protocol.

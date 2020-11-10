@@ -1,7 +1,7 @@
 ---
 title: Open Shortest Path First - OSPF
 author: Cumulus Networks
-weight: 880
+weight: 890
 toc: 3
 ---
 

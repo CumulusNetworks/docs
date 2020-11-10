@@ -1,7 +1,7 @@
 ---
 title: Bidirectional Forwarding Detection - BFD
 author: Cumulus Networks
-weight: 830
+weight: 930
 toc: 3
 ---
 *Bidirectional Forwarding Detection* (BFD) provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection.

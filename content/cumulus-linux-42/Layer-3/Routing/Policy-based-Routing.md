@@ -1,7 +1,7 @@
 ---
 title: Policy-based Routing
 author: Cumulus Networks
-weight: 820
+weight: 760
 toc: 3
 ---
 Typical routing systems and protocols forward traffic based on the destination address in the packet, which is used to look up an entry in a routing table. However, sometimes the traffic on your network requires a more hands-on approach. You might need to forward a packet based on the source address, the packet size, or other information in the packet header.

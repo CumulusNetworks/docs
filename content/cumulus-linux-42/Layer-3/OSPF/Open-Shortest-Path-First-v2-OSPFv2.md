@@ -1,7 +1,7 @@
 ---
 title: Open Shortest Path First v2 - OSPFv2
 author: Cumulus Networks
-weight: 790
+weight: 900
 toc: 3
 ---
 This topic describes OSPFv2, which is a link-state routing protocol for IPv4. For IPv6 commands, refer to {{<link url="Open-Shortest-Path-First-v3-OSPFv3">}}.

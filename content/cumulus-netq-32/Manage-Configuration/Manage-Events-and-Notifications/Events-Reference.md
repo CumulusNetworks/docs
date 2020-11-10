@@ -8,6 +8,8 @@ The following table lists all system event messages organized by type. These mes
 
 For a list of threshold-based events supported, refer to {{<link title="Configure Notifications#supported-events" text="TCA Supported Events">}}. For a list of What Just Happened events supported, refer to {{<link title="Configure and Monitor What Just Happened Metrics/#view-what-just-happened-metrics" text="WJH Supported Events">}}.
 
+## Agent Events
+
 <table>
 <colgroup>
 <col style="width: 15%" />
@@ -68,6 +70,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>Agent version has been changed old_version:@old_version  and new_version:@new_version. Agent reset at @sys_uptime</td>
 <td>Agent version has been changed old_version:2.1.2  and new_version:2.3.1. Agent reset at 1573079725</td>
 </tr>
+</tbody>
+</table>
+
+## BGP Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>bgp</td>
 <td>BGP Session state changed</td>
@@ -96,6 +121,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>BGP session with peer @peer @neighbor vrf @vrf reset time changed from @old_last_reset_time to @new_last_reset_time</td>
 <td>BGP session with peer spine03 swp9 vrf vrf2 reset time changed from 1559427694 to 1559837484</td>
 </tr>
+</body>
+</table>
+
+## BTRFS Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>btrfsinfo</td>
 <td>Disk space available after BTRFS allocation is less than 80% of partition size or only 2 GB remain.</td>
@@ -110,6 +158,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>@info : @details</td>
 <td>data storage efficiency : space left after allocation greater than chunk size 6170849.2","</td>
 </tr>
+</body>
+</table>
+
+## Cable Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>cable</td>
 <td>Link speed is not the same on both ends of the link</td>
@@ -174,6 +245,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>@ifname fec changed from @old_fec to @new_fec</td>
 <td>swp15 fec changed from disabled to enabled</td>
 </tr>
+</body>
+</table>
+
+## CLAG/MLAG Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>clag</td>
 <td>CLAG remote peer state changed from up to down</td>
@@ -230,6 +324,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>Clag conflicted bond changed from @old_state_protodownbond to @new_state_protodownbond</td>
 <td>Clag conflicted bond changed from protodown to up</td>
 </tr>
+</body>
+</table>
+
+## CL Support Evemts
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>clsupport</td>
 <td>A new CL Support file has been created for the given node</td>
@@ -237,6 +354,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>HostName @hostname has new CL SUPPORT file</td>
 <td>HostName leaf01 has new CL SUPPORT file</td>
 </tr>
+</body>
+</table>
+
+## Config Diff Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>configdiff</td>
 <td>Configuration file deleted on a device</td>
@@ -258,6 +398,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>@hostname config file @type was modified</td>
 <td>spine03 config file /etc/frr/frr.conf was modified</td>
 </tr>
+</body>
+</table>
+
+## EVPN Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>evpn</td>
 <td>A VNI was configured and moved from the up state to the down state</td>
@@ -286,9 +449,178 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>VNI @vni vni state changed from @old_adv_all_vni_state to @new_adv_all_vni_state</td>
 <td>VNI 11 vni state changed from false to true</td>
 </tr>
+</body>
+</table>
 
-<!-- add lcm events here -->
+## Lifecycle Management Events
 
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lcm</td>
+<td>Cumulus Linux backup started for a switch or host</td>
+<td>Info</td>
+<td>CL configuration backup started for hostname @hostname</td>
+<td>CL configuration backup started for hostname spine01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Cumulus Linux backup completed for a switch or host</td>
+<td>Info</td>
+<td>CL configuration backup completed for hostname @hostname</td>
+<td>CL configuration backup completed for hostname spine01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Cumulus Linux backup failed for a switch or host</td>
+<td>Critical</td>
+<td>CL configuration backup failed for hostname @hostname</td>
+<td>CL configuration backup failed for hostname spine01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Cumulus Linux upgrade from one version to a newer version has started for a switch or host</td>
+<td>Critical</td>
+<td>CL Image upgrade from version @old_cl_version to version @new_cl_version started for hostname @hostname</td>
+<td>CL Image upgrade from version 4.1.0 to version 4.2.1 started for hostname server01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Cumulus Linux upgrade from one version to a newer version has completed successfully for a switch or host</td>
+<td>Info</td>
+<td>CL Image upgrade from version @old_cl_version to version @new_cl_version completed for hostname @hostname</td>
+<td>CL Image upgrade from version 4.1.0 to version 4.2.1 completed for hostname server01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Cumulus Linux upgrade from one version to a newer version has failed for a switch or host</td>
+<td>Critical</td>
+<td>CL Image upgrade from version @old_cl_version to version @new_cl_version failed for hostname @hostname</td>
+<td>CL Image upgrade from version 4.1.0 to version 4.2.1 failed for hostname server01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Restoration of a Cumulus Linux configuration started for a switch or host</td>
+<td>Info</td>
+<td>CL configuration restore started for hostname @hostname</td>
+<td>CL configuration restore started for hostname leaf01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Restoration of a Cumulus Linux configuration completed successfully for a switch or host</td>
+<td>Info</td>
+<td>CL configuration restore completed for hostname @hostname</td>
+<td>CL configuration restore completed for hostname leaf01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Restoration of a Cumulus Linux configuration failed for a switch or host</td>
+<td>Critical</td>
+<td>CL configuration restore failed for hostname @hostname</td>
+<td>CL configuration restore failed for hostname leaf01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Rollback of a Cumulus Linux image has started for a switch or host</td>
+<td>Critical</td>
+<td>CL Image rollback from version @old_cl_version to version @new_cl_version started for hostname @hostname</td>
+<td>CL Image rollback from version 4.2.1 to version 4.1.0 started for hostname leaf01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Rollback of a Cumulus Linux image has completed successfully for a switch or host</td>
+<td>Info</td>
+<td>CL Image rollback from version @old_cl_version to version @new_cl_version completed for hostname @hostname</td>
+<td>CL Image rollback from version 4.2.1 to version 4.1.0 completed for hostname leaf01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Rollback of a Cumulus Linux image has failed for a switch or host</td>
+<td>Critical</td>
+<td>CL Image rollback from version @old_cl_version to version @new_cl_version failed for hostname @hostname</td>
+<td>CL Image rollback from version 4.2.1 to version 4.1.0 failed for hostname leaf01</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Installation of a Cumulus NetQ image has started for a switch or host</td>
+<td>Info</td>
+<td>NetQ Image version @netq_version installation started for hostname @hostname</td>
+<td>NetQ Image version 3.2.0 installation started for hostname spine02</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Installation of a Cumulus NetQ image has completed successfully for a switch or host</td>
+<td>Info</td>
+<td>NetQ Image version @netq_version installation completed for hostname @hostname</td>
+<td>NetQ Image version 3.2.0 installation completed for hostname spine02</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Installation of a Cumulus NetQ image has failed for a switch or host</td>
+<td>Critical</td>
+<td>NetQ Image version @netq_version installation failed for hostname @hostname</td>
+<td>NetQ Image version 3.2.0 installation failed for hostname spine02</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Upgrade of a Cumulus NetQ image has started for a switch or host</td>
+<td>Info</td>
+<td>NetQ Image upgrade from version @old_netq_version to version @netq_version started for hostname @hostname</td>
+<td>NetQ Image upgrade from version 3.1.0 to version 3.2.0 started for hostname spine02</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Upgrade of a Cumulus NetQ image has completed successfully for a switch or host</td>
+<td>Info</td>
+<td>NetQ Image upgrade from version @old_netq_version to version @netq_version completed for hostname @hostname</td>
+<td>NetQ Image upgrade from version 3.1.0 to version 3.2.0 completed for hostname spine02</td>
+</tr>
+<tr>
+<td>lcm</td>
+<td>Upgrade of a Cumulus NetQ image has failed for a switch or host</td>
+<td>Critical</td>
+<td>NetQ Image upgrade from version @old_netq_version to version @netq_version failed for hostname @hostname</td>
+<td>NetQ Image upgrade from version 3.1.0 to version 3.2.0 failed for hostname spine02</td>
+</tr>
+</body>
+</table>
+
+## Cumulus Linux License Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>license</td>
 <td>License state is missing or invalid</td>
@@ -303,6 +635,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>License check failed on @hostname</td>
 <td>License check failed on leaf03</td>
 </tr>
+</body>
+</table>
+
+## Link Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>link</td>
 <td>Link operational state changed from up to down</td>
@@ -317,6 +672,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>HostName @hostname changed state from @old_state to @new_state Interface:@ifname</td>
 <td>HostName leaf04 changed state from down to up Interface:swp11</td>
 </tr>
+</body>
+</table>
+
+## LLDP Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>lldp</td>
 <td>Local LLDP host has new neighbor information</td>
@@ -338,6 +716,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>LLDP Session with host @hostname and @ifname @old_peer_hostname changed to @new_peer_hostname</td>
 <td>LLDP Session with host leaf03 and swp2 leaf07 changed to exit01</td>
 </tr>
+</body>
+</table>
+
+## MTU Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>mtu</td>
 <td>VLAN interface link MTU is smaller than that of its parent MTU</td>
@@ -352,6 +753,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>bridge @link mtu @mtu is smaller than least of member interface mtu @min</td>
 <td>bridge swp0 mtu 1280 is smaller than least of member interface mtu 1500</td>
 </tr>
+</body>
+</table>
+
+## NTP Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>ntp</td>
 <td>NTP sync state changed from in sync to not in sync</td>
@@ -366,6 +790,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>Sync state changed from @old_state to @new_state for @hostname</td>
 <td>Sync state changed from not sync to in sync for leaf06</td>
 </tr>
+</body>
+</table>
+
+## OSPF Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>ospf</td>
 <td>OSPF session state on a given interface changed from Full to a down state</td>
@@ -382,6 +829,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <p>OSPF session swp7 with 27.0.0.18 state changed from Init to Full</p>
 <p>OSPF session swp7 with 27.0.0.18 state changed from Fail to Full</p></td>
 </tr>
+</body>
+</table>
+
+## Package Information Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>packageinfo</td>
 <td>Package version on device does not match the version identified in the existing manifest</td>
@@ -389,6 +859,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>@package_name manifest version mismatch</td>
 <td>netq-apps manifest version mismatch</td>
 </tr>
+</body>
+</table>
+
+## PTM Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>ptm</td>
 <td>Physical interface cabling does not match configuration specified in <em>topology.dot</em> file</td>
@@ -403,6 +896,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>PTM cable status passed</td>
 <td>PTM cable status passed</td>
 </tr>
+</body>
+</table>
+
+## Resource Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>resource</td>
 <td>A physical resource has been deleted from a device</td>
@@ -431,6 +947,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>Resource Utils added for @hostname</td>
 <td>Resource Utils added for spine04</td>
 </tr>
+</body>
+</table>
+
+## Running Config Diff Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>runningconfigdiff</td>
 <td>Running configuration file has been modified</td>
@@ -438,6 +977,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>@commandname config result was modified</td>
 <td>@commandname config result was modified</td>
 </tr>
+</body>
+</table>
+
+## Sensor Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>sensor</td>
 <td>A fan or power supply unit sensor has changed state</td>
@@ -476,6 +1038,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td><p>Sensor fan state changed from down to up</p>
 <p>Sensor psu state changed from down to up</p></td>
 </tr>
+</body>
+</table>
+
+## Services Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>services</td>
 <td>A service status changed from down to up</td>
@@ -498,6 +1083,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td><p>Service bgp changed state from inactive to active</p>
 <p>Service lldp changed state from inactive to active</p></td>
 </tr>
+</body>
+</table>
+
+## SSD Utilization Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>ssdutil</td>
 <td>3ME3 disk health has dropped below 10%</td>
@@ -512,6 +1120,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>@info: @details</td>
 <td>significant health drop : 3.0%</td>
 </tr>
+</body>
+</table>
+
+## Threshold-based Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>tca</td>
 <td>Percentage of CPU utilization exceeded user-defined maximum threshold on a switch</td>
@@ -603,6 +1234,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>Sensor for @hostname exceeded threshold voltage @s_input volts for sensor @s_name</td>
 <td>Sensor for leaf14 exceeded threshold voltage 12 volts for sensor psu2</td>
 </tr>
+</body>
+</table>
+
+## Version Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>version</td>
 <td>An unknown version of the operating system was detected</td>
@@ -631,6 +1285,29 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>different from version @ver</td>
 <td>different from version cl4.0</td>
 </tr>
+</body>
+</table>
+
+## VXLAN Events
+
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Trigger</th>
+<th>Severity</th>
+<th>Message Format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>vxlan</td>
 <td>Replication list is contains an inconsistent set of nodes<></td>

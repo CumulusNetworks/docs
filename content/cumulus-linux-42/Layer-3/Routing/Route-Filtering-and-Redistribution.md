@@ -1,7 +1,7 @@
 ---
 title: Route Filtering and Redistribution
 author: Cumulus Networks
-weight: 855
+weight: 750
 toc: 3
 ---
 Route filtering lets you exclude routes that are advertised or received from neighbors. You can use route filtering to manipulate traffic flows, reduce memory utilization, and improve security.
@@ -62,7 +62,7 @@ To use this prefix list in a route map, see {{<link url="#configuration-examples
 
 ## Route Maps
 
-Route maps let you define a routing policy that is considered before the router examines the forwarding table. Each statement in a route map is assigned a sequence number, and contains a series of match and set statements. The route map is parsed from the lowest sequence number to the highest, and stops when a match is found.
+Route maps are routing policies that are considered before the router examines the forwarding table. Each statement in a route map is assigned a sequence number, and contains a series of match and set statements. The route map is parsed from the lowest sequence number to the highest, and stops when a match is found.
 
 ### Configure a Route Map
 

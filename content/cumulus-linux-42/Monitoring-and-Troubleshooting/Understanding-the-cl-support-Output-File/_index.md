@@ -1,7 +1,7 @@
 ---
 title: Understanding the cl-support Output File
 author: Cumulus Networks
-weight: 990
+weight: 1030
 toc: 3
 ---
 The `cl-support` script generates a compressed archive file of useful information for troubleshooting. The system either creates the archive file automatically or you can create the archive file manually.

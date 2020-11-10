@@ -1,7 +1,7 @@
 ---
 title: Unequal Cost Multipath with BGP Link Bandwidth
 author: Cumulus Networks
-weight: 845
+weight: 780
 toc: 3
 ---
 Unequal Cost Multipath (UCMP) is deployed in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports UCMP by using the BGP link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.

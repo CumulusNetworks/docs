@@ -12,11 +12,11 @@ You can configure OSPF using either numbered interfaces or unnumbered interfaces
 
 ### OSPFv2 Numbered
 
-To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. All the interfaces on the switch with an IP address that matches the `network` subnet are put into the specified area. The OSPF process starts bringing up peering adjacency on those interfaces. It also advertises the interface IP addresses formatted into LSAs to the neighbors for proper reachability.
+To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. All the interfaces on the switch with an IP address that matches the `network` subnet are put into the specified area. OSPF attempts to discover other OSPF routers on those interfaces. All matching interface network addresses are added to a Type-1 Router LSA and advertised to discovered neighbors for proper reachability.
 
-If you do not want to bring up OSPF adjacency on certain interfaces, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or recieve OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, the corresponding IP addresses still need to be advertised to neighbors.
+If you do not want to bring up an OSPF adjacency on certain interfaces, but want to advertise those networks in the OSPF database, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or recieve OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, the corresponding IP addresses still need to be advertised to neighbors.
 
-The subnets can be as inclusive as possible to cover the highest number of interfaces on the switch that run OSPF.
+Network statements can be as inclusive or generic as necessary to cover the interface networks.
 
 The following example commands configure OSPF numbered on leaf01 and spine01.
 
@@ -31,7 +31,6 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 The configuration below uses the `network` command to configure the IP subnet prefix with an area address per network (`net add ospf network 10.0.1.0/31 area 0`). Alternatively, you can configure OSPF per interface with the `net add interface` command (`net add interface swp1 ospf area 0`). However, you *cannot* use both methods in the same configuration.
 
 {{%/notice%}}
-
 
 {{< tabs "TabID29 ">}}
 
@@ -243,7 +242,7 @@ To configure an unnumbered interface, take the IP address of loopback interface 
 
 {{%notice note%}}
 
-OSPF Unnumbered is supported with {{<link url="#interface-parameters" text="point-to-point interfaces">}} only.
+OSPF unnumbered is supported with {{<link url="#interface-parameters" text="point-to-point interfaces">}} only and does *not* support network statements.
 
 {{%/notice%}}
 
@@ -502,10 +501,10 @@ You can define the following OSPF parameters per interface:
   {{%notice note%}}
   Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbered">}}.
   {{%/notice%}}
-- Hello interval. The number of seconds between hello packets sent on the interface.
+- Hello interval. The number of seconds between hello packets sent on the interface. The default is 10 seconds.
 - Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
-hello Packets.
-- Priority in becoming the OSPF Designated Router (DR) on a broadcast interface.
+hello packets. The default is 40 seconds.
+- Priority in becoming the OSPF Designated Router (DR) on a broadcast interface. The default is priority 1.
 
 The following command example sets the network type to point-to-point.
 
@@ -633,12 +632,14 @@ interface swp51
 ...
 ```
 
+To see the currently configured OSPF interface parameter values, run the NCLU `net show ospf interface` command or the vtysh `show ip ospf interface` command.
+
 ### SPF Timer Defaults
 
 OSPF uses the following default timers to prevent consecutive SPFs from overburdening the CPU:
 
 - 0 milliseconds from the initial event until SPF runs
-- 50 milliseconds between consecutive SPF runs (the number doubles with each SPF, until it reaches the value of C)
+- 50 milliseconds between consecutive SPF runs (the number doubles with each SPF, until it reaches the maximum time between SPF runs)
 - 5000 milliseconds maximum between SPFs
 
 The following example commands change the number of milliseconds from the initial event until SPF runs to 80, the number of milliseconds between consecutive SPF runs to 100, and the maximum number of milliseconds between SPFs to 6000.
@@ -686,6 +687,8 @@ router ospf
 ...
 ```
 
+To see the configured SPF timer values, run the NCLU `net show ospf` command or the vtysh `show ip ospf` command.
+
 ### MD5 Authentication
 
 To configure MD5 authentication on the switch, you need to create a key and a key ID, then enable MD5 authentication. The *key ID* must be a value between 1 and 255 that represents the key used to create the message digest. This value must be consistent across all routers on a link. The *key* must be a value with an upper range of 16 characters (longer strings are truncated) that represents the actual message digest.
@@ -717,12 +720,6 @@ cumulus@spine01:~$ net add interface swp1 ospf authentication message-digest
 cumulus@spine01:~$ net pending
 cumulus@spine01:~$ net commit
 ```
-
-{{%notice note%}}
-
-You can remove existing MD5 authentication hashes with the `net del` command. For example, `net del interface swp51 ospf message-digest-key 1 md5 thisisthekey`
-
-{{%/notice%}}
 
 {{< /tab >}}
 
@@ -765,15 +762,10 @@ spine01# write memory
 spine01# exit
 cumulus@spine01:~$
 ```
+
 {{< /tab >}}
 
 {{< /tabs >}}
-
-{{%notice note%}}
-
-You can remove existing MD5 authentication hashes with the `no ip ospf message-digest-key` command. For example, `no ip ospf message-digest-key 1 md5 thisisthekey`
-
-{{%/notice%}}
 
 {{< /tab >}}
 
@@ -808,6 +800,12 @@ interface swp1
 {{< /tab >}}
 
 {{< /tabs >}}
+
+{{%notice note%}}
+
+To remove existing MD5 authentication hashes, run the NCLU `net del` command (`net del interface swp51 ospf message-digest-key 1 md5 thisisthekey`) or the vtysh `no ip ospf` command (`no ip ospf message-digest-key 1 md5 thisisthekey`).
+
+{{%/notice%}}
 
 ### Summarization and Prefix Range
 
@@ -858,6 +856,8 @@ router ospf
 ### Stub Areas
 
 External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. In many cases, external link states make up a large percentage of the LSDB. Stub *areas* reduce the link-state database size by not flooding AS-external LSAs.
+
+All routers must agree that an area is a stub or not, otherwise they will not become OSPF neighbors.
 
 To configure a stub area:
 
@@ -1081,7 +1081,7 @@ When you remove a router or OSPF interface, LSA updates trigger throughout the n
 
 If the outage is planned (during a maintenance window), you can configure the OSPF router with an OSPF max-metric to notify its neighbors not to use it as part of the OSPF topology. While the network converges, all traffic forwarded to the max-metric router is still forwarded. After the network is fully updated, the max-metric router no longer receives any traffic and can be safely modified. To remove a single interface, you can configure the OSPF cost for that specific interface.
 
-For failure events, traffic might be lost during reconvergence (until SPF on all nodes computes an alternative path around the failed link or node to each of the destinations). The reconvergence depends on layer 1 failure detection capabilities and the *DeadInterval* OSPF timer.
+For failure events, traffic might be lost during reconvergence (until SPF on all nodes computes an alternative path around the failed link or node to each of the destinations).
 
 To configure the max-metric (for all interfaces):
 
@@ -1137,6 +1137,7 @@ Cumulus Linux provides several OSPF troubleshooting commands:
 | Verify that the LSDB is synchronized across all routers in the network | `net show ospf database` | `show ip ospf database` |
 | Determine why an OSPF route is not being forwarded correctly |`net show route ospf` | `show ip route ospf` |
 | Show OSPF interfaces | `net show ospf interface` | `show ip ospf interface` |
+| Show information about the OSPF process | `net show ospf` | `show ip ospf` |
 
 The following example shows the `net show ospf neighbor` command output:
 
@@ -1169,7 +1170,6 @@ For a list all of the OSPF debug options, refer to {{<exlink url="http://docs.fr
 
 ## Related Information
 
-- {{<link url="Bidirectional-Forwarding-Detection-BFD#bfd-in-ospf" text="Bidirectional forwarding detection">}} (BFD) and OSPF
 - {{<exlink url="http://en.wikipedia.org/wiki/Open_Shortest_Path_First" text="Wikipedia - Open Shortest Path First">}}
 - {{<exlink url="http://docs.frrouting.org/en/latest/ospfd.html" text="FRR OSPFv2">}}
 - Perlman, Radia (1999); *Interconnections: Bridges, Routers, Switches, and Internetworking Protocols (2 ed.)*; Addison-Wesley

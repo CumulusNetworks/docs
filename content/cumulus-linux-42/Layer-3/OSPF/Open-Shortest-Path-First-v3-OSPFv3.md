@@ -18,11 +18,9 @@ You can configure OSPFv3 using either numbered interfaces or unnumbered interfac
 
 ### OSPFv3 Numbered
 
-To configure OSPFv3 using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. All the interfaces on the switch with an IP address that matches the `network` subnet are put into the specified area. The OSPF process starts bringing up peering adjacency on those interfaces. It also advertises the interface IP addresses formatted into LSAs to the neighbors for proper reachability.
+To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. All the interfaces on the switch with an IP address that matches the `network` subnet are put into the specified area. OSPF attempts to discover other OSPF routers on those interfaces. All matching interface network addresses are added to a Type-1 Router LSA and advertised to discovered neighbors for proper reachability.
 
-If you do not want to bring up OSPF adjacency on certain interfaces, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or recieve OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, the corresponding IP addresses still need to be advertised to neighbors.
-
-The subnets can be as inclusive as possible to cover the highest number of interfaces on the switch that run OSPF.
+If you do not want to bring up an OSPF adjacency on certain interfaces, but want to advertise those networks in the OSPF database, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or recieve OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, the corresponding IP addresses still need to be advertised to neighbors.
 
 The following example commands configure OSPF numbered on leaf01 and spine01.
 
@@ -427,10 +425,10 @@ You can define the following OSPF parameters per interface:
   {{%notice note%}}
   Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbered">}}.
   {{%/notice%}}
-- Hello interval. The number of seconds between hello packets sent on the interface.
+- Hello interval. The number of seconds between hello packets sent on the interface. The default is 10 seconds.
 - Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
-hello Packets.
-- Priority in becoming the OSPF Designated Router (DR) on a broadcast interface.
+hello packets. The default is 40 seconds.
+- Priority in becoming the OSPF Designated Router (DR) on a broadcast interface. The default is priority 1.
 - Advertise prefix list. The prefix list defines the outbound route filter.
 - Cost. The cost determines the shortest paths to the destination.
 
@@ -604,12 +602,14 @@ interface swp51
 ...
 ```
 
+To show the currently configured OSPF interface parameter values, run the NCLU `net show ospf6 interface` command or the vtysh `show ipv6 ospf6 interface` command.
+
 ### SPF Timer Defaults
 
 OSPF3 uses the following default timers to prevent consecutive SPFs from overburdening the CPU:
 
 - 0 milliseconds from the initial event until SPF runs
-- 50 milliseconds between consecutive SPF runs (the number doubles with each SPF, until it reaches the value of C)
+- 50 milliseconds between consecutive SPF runs (the number doubles with each SPF, until it reaches the maximum time between SPF runs)
 - 5000 milliseconds maximum between SPFs
 
 The following example commands change the number of milliseconds from the initial event until SPF runs to 80, the number of milliseconds between consecutive SPF runs to 100, and the maximum number of milliseconds between SPFs to 6000.
@@ -656,6 +656,8 @@ router ospf6
  timers throttle spf 80 100 6000
 ...
 ```
+
+To see the configured SPF timer values, run the NCLU `net show ospf6` command or the vtysh `show ipv6 ospf6` command.
 
 ### Configure the OSPFv3 Area
 
@@ -759,6 +761,8 @@ router ospf6
 ### Stub Areas
 
 External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. In many cases, external link states make up a large percentage of the LSDB. Stub *areas* reduce the link-state database size by not flooding AS-external LSAs.
+
+All routers must agree that an area is a stub or not, otherwise they will not become OSPF neighbors.
 
 To configure a stub area:
 
@@ -1032,8 +1036,9 @@ Cumulus Linux provides several OSPFv3 troubleshooting commands:
 | Show neighbor states | `net show ospf6 neighbor` | `show ip ospf6 neighbor` |
 | Verify that the LSDB is synchronized across all routers in the network | `net show ospf6 database` | `show ip ospf6 database` |
 | Determine why an OSPF route is not being forwarded correctly |`net show route ospf6` | `show ip route ospf6` |
-| Show OSPF interfaces | `net show ospf6 interface` | `show ip ospf6 interface` |
+| Show OSPF interfaces | `net show ospf6 interface` | `show ipv6 ospf6 interface` |
 | To help visualize the network view | `net show ospf6 spf tree` | `show ip ospf6 spf tree1` |
+| Show information about the OSPFv3 process | `net show ospf6` | `show ipv6 ospf6` |
 
 The following example shows the `net show ospf6 neighbor` command output:
 
@@ -1064,7 +1069,6 @@ To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf6` comman
 
 ## Related Information
 
-- {{<link url="Bidirectional-Forwarding-Detection-BFD#bfd-in-ospf" text="Bidirectional forwarding detection">}} (BFD) and OSPF
 - {{<exlink url="http://en.wikipedia.org/wiki/Open_Shortest_Path_First" text="Wikipedia - Open Shortest Path First">}}
 - {{<exlink url="http://docs.frrouting.org/en/latest/ospf6d.html" text="FRR OSPFv3">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc2740" text="RFC 2740 OSPFv3 OSPF for IPv6">}}

@@ -838,7 +838,7 @@ Cumulus Linux lets you:
 {{%notice note%}}
 
 - For Broadcom switches with ports that support 100G speeds, you *cannot* have more than 128 logical ports.
-
+- Port ganging is not supported on Mellanox switches with the Spectrum ASIC.
 - Mellanox switches with the Spectrum ASIC have a limit of 64 logical ports. 64-port Broadcom switches with the Tomahawk2 ASIC have a limit of 128 total logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
@@ -1013,7 +1013,8 @@ You can *gang* (combine) four 10G ports into one 40G port for use with a breakou
 
 {{%notice note%}}
 
-The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on {{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
+- Port ganging is not supported on Mellanox switches with the Spectrum ASIC.
+- The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms on {{<exlink url="https://www.cumulusnetworks.com/hcl" text="the hardware compatibility list">}}.
 
 {{%/notice%}}
 
@@ -1057,9 +1058,9 @@ To gang swp1 through swp4 into a 40G port, edit the `/etc/cumulus/ports.conf` fi
 5=10G
 ```
 
-On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command. The restart {{<link url="Configuring-switchd" text="interrupts network services">}}.
+Restart `switchd` with the following command:
 
-On a Mellanox switch, you can reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+{{<cl/restart-switchd>}}
 
 {{< /tab >}}
 

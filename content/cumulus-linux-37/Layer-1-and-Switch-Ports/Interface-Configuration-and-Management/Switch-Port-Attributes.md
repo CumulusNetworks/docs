@@ -917,7 +917,7 @@ Cumulus Linux lets you:
 {{%notice note%}}
 
 - For Broadcom switches with ports that support 100G speeds, you *cannot* have more than 128 logical ports.
-
+- Port ganging is not supported on Mellanox switches with the Spectrum ASIC.
 - Mellanox switches with the Spectrum ASIC have a limit of 64 logical ports. 64-port Broadcom switches with the Tomahawk2 ASIC have a limit of 128 total logical ports. If you want to break ports out to 4x25G or 4x10G, you must configure the logical ports as follows:
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even-numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
@@ -1116,6 +1116,12 @@ These commands create the following configuration snippet in the
     3=40G/4
     4=40G/4
     5=10G
+
+{{%notice note%}}
+
+Port ganging is not supported on Mellanox switches with the Spectrum ASIC.
+
+{{%/notice%}}
 
 ## Logical Switch Port Limitations
 

@@ -252,8 +252,8 @@ For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only
 ## Configuration Examples
 
 The following example:
-- Creates a prefix list called prefixlist1 that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30
-- Creates a route map called routemap1 that matches the prefix list and sets the metric to 50
+- Creates a prefix list that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30
+- Creates a route map that matches the prefix list and sets the metric to 50
 - Applies the route map
 
 {{< tabs "TabID119 ">}}
@@ -292,6 +292,24 @@ cumulus@switch:~$
 {{< /tab >}}
 
 {{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf
+ ospf router-id 10.10.10.1
+ timers throttle spf 80 100 6000
+ passive-interface vlan10
+ passive-interface vlan20
+
+ip prefix-list prefixlist1 permit 10.0.0.0/16 le 30
+route-map routemap1 permit 10
+ match ip address prefix-list prefixlist1
+ set metric 50
+ip protocol ospf route-map routemap1
+
+```
 
 The following example commands apply the route map called `map1` to redistributed routes:
 

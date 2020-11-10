@@ -24,6 +24,12 @@ The Cumulus NetQ API provides endpoints for:
 
 Each endpoint has its own API. You can make requests for all data and all devices or you can filter the request by a given hostname. Each API returns a predetermined set of data as defined in the API models.
 
+{{%notice info%}}
+
+The Swagger interface displays both public and internal APIs. Public APIs do not have *internal* in their name. Internal APIs are not supported for public use and subject to change without notice.
+
+{{%/notice%}}
+
 ## Get Started
 
 You can access the API gateway and execute requests from the Swagger UI or a terminal interface.
@@ -44,7 +50,9 @@ The API is embedded in the NetQ software, making it easy to access from the Swag
     - On-premises deployments: https://\<hostname-or-ipaddr\>/swagger/
     - Cumulus in the Cloud (CITC): https://swagger-ui.air.netq.cumulusnetworks.com
 
-    This opens the authorization API (auth).
+    This opens the Swagger interface.
+
+4. Select *auth* from the **Select a definition** dropdown at the top right of the window. This opens the authorization API.
 
     {{<figure src="/images/netq/api-swagger-onopen-320.png" width="700">}}
 

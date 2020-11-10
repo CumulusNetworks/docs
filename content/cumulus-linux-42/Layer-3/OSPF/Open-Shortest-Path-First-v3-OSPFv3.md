@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 800
 toc: 3
 ---
-OSPFv3 is a revised version of OSPFv2 and supports the IPv6 address family. Refer to {{<link url="Open-Shortest-Path-First-OSPF">}} for a discussion on the basic concepts, which remain the same between the two versions.
+OSPFv3 is a revised version of OSPFv2 and supports the IPv6 address family.
 
 {{%notice note%}}
 
@@ -70,7 +70,7 @@ cumulus@spine01:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}}
+{{< tab "Linux and vtysh Commands ">}}
 
 {{< tabs "TabID85 ">}}
 
@@ -95,7 +95,7 @@ cumulus@spine01:~$ net commit
 3. Run the `ifreload -a` command to load the new configuration:
 
     ```
-    cumulus@spine01:~$ sudo ifreload -a
+    cumulus@leaf01:~$ sudo ifreload -a
     ```
 
 4. From the vtysh shell, configure OSPF:
@@ -268,7 +268,7 @@ cumulus@spine01:~$ net commit
 
 {{< /tab >}}
 
-{{< tab "vtysh Commands ">}}
+{{< tab "Linux and vtysh Commands ">}}
 
 {{< tabs "TabID299 ">}}
 
@@ -415,7 +415,7 @@ interface swp1
 
 ## Optional OSPFv3 Configuration
 
-This section describes optional configuration. The steps provided in this section assume that you already configured basic OSPFv3 as described in {{<link url="#basic-ospfv3-configuration" >}}, above.
+This section describes optional configuration. The steps provided in this section assume that you already configured basic OSPFv3 as described in {{<link url="#basic-ospfv3-configuration" text="Basic OSPF Configuration">}}, above.
 
 ### Interface Parameters
 
@@ -423,7 +423,7 @@ You can define the following OSPF parameters per interface:
 - Network type (point-to-point or broadcast). Broadcast is the default setting.
   Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
   {{%notice note%}}
-  Point-to-point is required for {{<link url="#ospf-unnumbered" text="OSPF unnumbered">}}.
+  Point-to-point is required for {{<link url="#ospfv3-unnumbered" text="OSPFv3 unnumbered">}}.
   {{%/notice%}}
 - Hello interval. The number of seconds between hello packets sent on the interface. The default is 10 seconds.
 - Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
@@ -760,9 +760,9 @@ router ospf6
 
 ### Stub Areas
 
-External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. In many cases, external link states make up a large percentage of the LSDB. Stub *areas* reduce the link-state database size by not flooding AS-external LSAs.
+External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. In many cases, external link states make up a large percentage of the link-state database (LSDB). Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
 
-All routers must agree that an area is a stub or not, otherwise they will not become OSPF neighbors.
+All routers must agree that an area is a stub, otherwise they will not become OSPF neighbors.
 
 To configure a stub area:
 
@@ -1037,7 +1037,7 @@ Cumulus Linux provides several OSPFv3 troubleshooting commands:
 | Verify that the LSDB is synchronized across all routers in the network | `net show ospf6 database` | `show ip ospf6 database` |
 | Determine why an OSPF route is not being forwarded correctly |`net show route ospf6` | `show ip route ospf6` |
 | Show OSPF interfaces | `net show ospf6 interface` | `show ip ospf6 interface` |
-| To help visualize the network view | `net show ospf6 spf tree` | `show ip ospf6 spf tree` |
+| Help visualize the network view | `net show ospf6 spf tree` | `show ip ospf6 spf tree` |
 | Show information about the OSPFv3 process | `net show ospf6` | `show ip ospf6` |
 
 The following example shows the `net show ospf6 neighbor` command output:
@@ -1069,6 +1069,5 @@ To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf6` comman
 
 ## Related Information
 
-- {{<exlink url="http://en.wikipedia.org/wiki/Open_Shortest_Path_First" text="Wikipedia - Open Shortest Path First">}}
 - {{<exlink url="http://docs.frrouting.org/en/latest/ospf6d.html" text="FRR OSPFv3">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc2740" text="RFC 2740 OSPFv3 OSPF for IPv6">}}

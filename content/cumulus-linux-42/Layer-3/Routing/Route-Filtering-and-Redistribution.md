@@ -319,14 +319,14 @@ router bgp 65101
 ip prefix-list BLOCK-RFC1918 seq 5 permit 10.0.0.0/8 le 24
 ip prefix-list BLOCK-RFC1918 seq 10 permit 172.16.0.0/12 le 24
 ip prefix-list BLOCK-RFC1918 seq 15 permit 192.168.0.0/16 le 24
-ip prefix-list ALLOWED-OUT seq 5 permit 100.64.0.0/10 le 24
-ip prefix-list ALLOWED-OUT seq 10 permit 192.0.2.0/24
+ip prefix-list ADD-COMM-OUT seq 5 permit 100.64.0.0/10 le 24
+ip prefix-list ADD-COMM-OUT seq 10 permit 192.0.2.0/24
 !
 route-map POLICY-OUT deny 10
  match ip address prefix-list BLOCK-RFC1918
 !
 route-map POLICY-OUT permit 20
- match ip address prefix-list ALLOWED-OUT
+ match ip address prefix-list ADD-COMM-OUT
  set community 123:1000
 !
 route-map POLICY-OUT permit 30

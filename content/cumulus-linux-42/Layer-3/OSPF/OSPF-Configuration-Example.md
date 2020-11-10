@@ -1,7 +1,7 @@
 ---
 title: OSPF Configuration Example
 author: Cumulus Networks
-weight: 840
+weight: 915
 toc: 3
 ---
 This section shows an OSPF configuration example based on the reference topology.

@@ -292,3 +292,46 @@ cumulus@switch:~$
 {{< /tab >}}
 
 {{< /tabs >}}
+
+The following example commands apply the route map called `map1` to redistributed routes:
+
+{{< tabs "TabID1012 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add ospf redistribute connected route-map map1
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+The following example commands apply the route map called `map1` to redistributed routes:
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# redistribute connected route-map map1
+switch(config)# exit
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router ospf
+ ospf router-id 10.10.10.1
+ redistribute connected route-map map1
+...
+```

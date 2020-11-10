@@ -224,7 +224,7 @@ router ospf
 ```
 ...
 router ospf
- ospf router-id 10.10.101.1
+ ospf router-id 10.10.10.101
  network 10.10.10.101/32 area 0
  network 10.0.1.1/31 area 0
 ...

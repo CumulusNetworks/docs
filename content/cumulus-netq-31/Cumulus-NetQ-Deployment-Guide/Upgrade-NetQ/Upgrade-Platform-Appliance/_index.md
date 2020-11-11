@@ -99,7 +99,7 @@ To upgrade your NetQ software:
 
 ```
 cumulus@<hostname>:~$ netq bootstrap master upgrade /mnt/installables/NetQ-3.1.0.tgz
-2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.0.0.tgz
+2020-04-28 15:39:37.016710: master-node-installer: Extracting tarball /mnt/installables/NetQ-3.1.0.tgz
 2020-04-28 15:44:48.188658: master-node-installer: Upgrading NetQ Admin container
 2020-04-28 15:47:35.667579: master-node-installer: Removing old images
 -----------------------------------------------

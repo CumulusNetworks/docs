@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 330
 toc: 5
 ---
-After installing your Cumulus NetQ software and the NetQ 3.0.0 Agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
+After installing your Cumulus NetQ software and the NetQ 3.2.1 Agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
 - Cumulus Linux version 3.3.2-3.7.x
 - Cumulus Linux version 4.0.0 and later
@@ -32,7 +32,7 @@ Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-3.0
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-3.2
 ...
 ```
 
@@ -47,7 +47,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-3.0
+deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-3.2
 ...
 ```
 
@@ -72,7 +72,7 @@ The repository <code>deb http://apps3.cumulusnetworks.com/repos/deb CumulusLinux
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/cli-version version="3.0.0" opsys="cl">}}
+    {{<netq-install/cli-version version="3.2.1" opsys="cl">}}
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -126,7 +126,7 @@ To generate AuthKeys:
 
 3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (Main Menu), select *Management* in the **Admin** column.
 
-    {{<figure src="/images/netq/main-menu-admin-mgmt-selected-300.png" width="400">}}
+    {{<figure src="/images/netq/main-menu-admin-mgmt-selected-320.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
 

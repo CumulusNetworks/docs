@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 350
 toc: 5
 ---
-After installing your Cumulus NetQ software and the  NetQ 3.0.0 Agents on each switch you want to monitor, you can also install the NetQ CLI on servers running:
+After installing your Cumulus NetQ software and the NetQ 3.2.1 Agents on each switch you want to monitor, you can also install the NetQ CLI on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7
@@ -100,14 +100,14 @@ A simple process installs the NetQ CLI on a RHEL or CentOS server.
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-3.0]
+    [cumulus-arch-netq-3.2]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-3.0]
+    [cumulus-noarch-netq-3.2]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.0/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-3.2/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -126,7 +126,7 @@ A simple process installs the NetQ CLI on a RHEL or CentOS server.
     root@rhel7:~# rpm -q -netq-apps
     ```
 
-    {{<netq-install/cli-version version="3.0.0" opsys="rh">}}
+    {{<netq-install/cli-version version="3.2.1" opsys="rh">}}
 
 5. Continue with the next section.
 
@@ -180,7 +180,7 @@ To generate AuthKeys:
 
 3. From the Main Menu, select *Management* in the **Admin** column.
 
-    {{< figure src="/images/netq/main-menu-admin-mgmt-selected-300.png" width="400">}}
+    {{<figure src="/images/netq/main-menu-admin-mgmt-selected-320.png" width="400">}}
 
 4. Click **Manage** on the User Accounts card.
 

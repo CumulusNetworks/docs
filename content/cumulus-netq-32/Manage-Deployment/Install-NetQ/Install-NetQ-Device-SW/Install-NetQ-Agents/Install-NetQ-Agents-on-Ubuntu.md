@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 300
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the  NetQ 3.0.0 Agent on each server you want to monitor. NetQ Agents can be installed on servers running:
+After installing your Cumulus NetQ software, you should install the NetQ 3.2.1 Agent on each server you want to monitor. NetQ Agents can be installed on servers running:
 
 - Ubuntu 16.04
 - Ubuntu 18.04 (NetQ 2.2.2 and later)
@@ -201,7 +201,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 {{< /tabs >}}
 
     {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-2.4</code> - use that instead.
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as <code>netq-3.1</code> - use that instead.
     {{</notice>}}
 
 ## Install NetQ Agent on an Ubuntu Server
@@ -223,7 +223,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="3.0.0" opsys="ub">}}
+    {{<netq-install/agent-version version="3.2.1" opsys="ub">}}
 
 3. Restart `rsyslog` so log files are sent to the correct destination.
 

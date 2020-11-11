@@ -1,7 +1,7 @@
 ---
 title: Monitoring and Troubleshooting
 author: Cumulus Networks
-weight: 990
+weight: 1010
 toc: 2
 ---
 This chapter introduces the basics for monitoring and troubleshooting Cumulus Linux.

@@ -1,7 +1,7 @@
 ---
 title: Data Center Host to ToR Architecture
 author: Cumulus Networks
-weight: 1250
+weight: 1280
 toc: 3
 ---
 This chapter discusses the various architectures and strategies available from the top of rack (ToR) switches all the way down to the server hosts.

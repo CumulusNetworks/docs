@@ -1,7 +1,7 @@
 ---
 title: Simple Network Management Protocol - SNMP
 author: Cumulus Networks
-weight: 1120
+weight: 1150
 toc: 3
 ---
 

@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 410
 toc: 4
 ---
-The first step in upgrading your NetQ 2.4.x or 3.x installation to NetQ 3.2.0 is to upgrade your NetQ appliance(s) or VM(s). This topic describes how to upgrade this for both on-premises and cloud deployments.
+The first step in upgrading your NetQ 2.4.1 - 3.2.0 installation to NetQ 3.2.1 is to upgrade your NetQ appliance(s) or VM(s). This topic describes how to upgrade this for both on-premises and cloud deployments.
 
 ## Prepare for Upgrade
 
@@ -30,11 +30,11 @@ To complete the preparation:
 
         If you are upgrading NetQ Platform software for a NetQ On-premises Appliance or VM, select *Appliance*  to download the NetQ-3.2.1.tgz file. If you are upgrading NetQ Collector software for a NetQ Cloud Appliance or VM, select *Appliance (Cloud)* to download the NetQ-3.2.1-opta.tgz file.
 
-        {{< figure src="/images/netq/netq-32-download-options-320.png" width="500" >}}
+        {{<figure src="/images/netq/netq-32-download-options-321.png" width="500">}}
 
     4. Scroll down and click **Download** on the on-premises or cloud NetQ Appliance image.
 
-        {{< figure src="/images/netq/netq-32-appliance-onpremcld-dwnld-320.png" width="420" >}}
+        {{< figure src="/images/netq/netq-32-appliance-onpremcld-dwnld-321.png" width="420" >}}
 
         {{<notice note>}}
 You can ignore the note on the image card because, unlike during installation, you <em>do not</em> need to download the bootstrap file for an upgrade.
@@ -75,11 +75,11 @@ You can ignore the note on the image card because, unlike during installation, y
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (3.2.1-ub18.04u30~1601400975.104fb9e) ...
+    Unpacking netq-agent (3.2.1-ub18.04u31~1603789872.6f62fad) ...
     ...
-    Unpacking netq-apps (3.2.1-ub18.04u31~1601400975.104fb9e) ...
-    Setting up netq-apps (3.2.1-ub18.04u31~1601400975.104fb9e) ...
-    Setting up netq-agent (3.2.1-ub18.04u31~1601400975.104fb9e) ...
+    Unpacking netq-apps (3.2.1-ub18.04u31~1603789872.6f62fad) ...
+    Setting up netq-apps (3.2.1-ub18.04u31~1603789872.6f62fad) ...
+    Setting up netq-agent (3.2.1-ub18.04u31~1603789872.6f62fad) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ``````
@@ -309,6 +309,6 @@ netq upgrade bundle /mnt/installables/NetQ-3.2.1-opta.tgz
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
     BOOTSTRAP_VERSION=3.2.1
-    APPLIANCE_MANIFEST_HASH=944369dcab
+    APPLIANCE_MANIFEST_HASH=74ac3017d5
     APPLIANCE_VERSION=3.2.1
     ```

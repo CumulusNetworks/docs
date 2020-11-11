@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 470
 toc: 4
 ---
-While it is not required to upgrade the NetQ CLI on your monitored switches and hosts when you upgrade to NetQ 3.2.1, doing so gives you access to new features and important bug fixes. Refer to the {{<link title="Cumulus NetQ 3.2 Release Notes" text="release notes">}} for details.
+While it is not required to upgrade the NetQ CLI on your monitored switches and hosts when you upgrade to NetQ 3.2.1, doing so gives you access to new features and important bug fixes. Refer to the {{<link title="NVIDIA NetQ 3.2 Release Notes" text="release notes">}} for details.
 
 To upgrade the NetQ CLI:
 

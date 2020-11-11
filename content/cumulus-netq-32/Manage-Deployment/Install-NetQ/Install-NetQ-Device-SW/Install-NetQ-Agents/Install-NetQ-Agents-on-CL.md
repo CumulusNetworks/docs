@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 290
 toc: 5
 ---
-After installing your Cumulus NetQ software, you should install the  NetQ 3.0.0 Agents on each switch you want to monitor. NetQ Agents can be installed on switches running:
+After installing your Cumulus NetQ software, you should install the NetQ 3.2.1 Agents on each switch you want to monitor. NetQ Agents can be installed on switches running:
 
 - Cumulus Linux version 3.3.2-3.7.x
 - Cumulus Linux version 4.0.0 and later

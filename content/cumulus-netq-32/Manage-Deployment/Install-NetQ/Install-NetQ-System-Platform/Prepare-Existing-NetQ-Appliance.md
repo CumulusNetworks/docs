@@ -164,12 +164,12 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     2. Select *3.2* from the **Version** list, and then select *3.2.1* from the submenu.
 
-        {{<figure src="/images/netq/netq-32-bootstrap-download-320.png" width="500" >}}
+        {{<figure src="/images/netq/netq-32-bootstrap-download-321.png" width="500" >}}
 
     3. Select *Bootstrap* from the **Hypervisor/Platform** list.
         Note that the bootstrap file is the same for both appliances.
 
-        {{<figure src="/images/netq/netq-320-download-bootstrap.png" width="200" >}}
+        {{<figure src="/images/netq/netq-321-download-bootstrap.png" width="200" >}}
 
     4. Scroll down and click **Download**.
 
@@ -177,18 +177,18 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
         Make sure you select the right install choice based on whether you are preparing the on-premises or cloud version of the appliance.
 
-        {{<figure src="/images/netq/netq-32-appliance-onpremcld-dwnld-320.png" width="410" >}}
+        {{<figure src="/images/netq/netq-32-appliance-onpremcld-dwnld-321.png" width="410" >}}
 
     6. Scroll down and click **Download**.
 
     7. Copy these two files, *netq-bootstrap-3.2.1.tgz* and either *NetQ-3.2.1.tgz* (on-premises) or *NetQ-3.2.1-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
 
-    8. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-3.2.0-opta.tgz* instead of *NetQ-3.2.0.tgz*.
+    8. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-3.2.1-opta.tgz* instead of *NetQ-3.2.1.tgz*.
 
         ```
         cumulus@<hostname>:~$ dpkg -l | grep netq
-        ii  netq-agent   3.2.1-ub18.04u31~1601400975.104fb9e_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-        ii  netq-apps    3.2.1-ub18.04u31~1601400975.104fb9e_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+        ii  netq-agent   3.2.1-ub18.04u31~1603789872.6f62fad_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+        ii  netq-apps    3.2.1-ub18.04u31~1603789872.6f62fad_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
 
         cumulus@<hostname>:~$ cd /mnt/installables/
         cumulus@<hostname>:/mnt/installables$ ls

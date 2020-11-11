@@ -68,7 +68,7 @@ The above commands create the following configuration snippet in the `/etc/frr/f
 ...
 router bgp 65101
   neighbor swp51 interface remote-as external
-  address-family l2vpn evpn
+address-family l2vpn evpn
   neighbor swp51 activate
 ...
 ```
@@ -123,7 +123,7 @@ The above commands create the following configuration snippet in the `/etc/frr/f
 router bgp 65101
   neighbor swp51 interface remote-as external
   address-family l2vpn evpn
-  neighbor swp51 activate
+neighbor swp51 activate
   advertise-all-vni
 ...
 ```

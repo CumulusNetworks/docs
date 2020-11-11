@@ -1,7 +1,7 @@
 ---
 title: Ethernet Bridging - VLANs
 author: Cumulus Networks
-weight: 440
+weight: 420
 toc: 3
 ---
 Ethernet bridges enable hosts to communicate through layer 2 by connecting all of the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}} (maximum transmission unit). The bridge MTU is the minimum MTU among all its members. By default, the {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge/" text="bridge's MAC address">}} is the MAC address of the first port in the `bridge-ports` list. The bridge can also be assigned an IP address, as discussed {{<link url="#bridge-mac-addresses" text="below">}}.
@@ -52,19 +52,11 @@ untagged  bridge    swp1         44:38:39:00:00:04                permanent     
 
 By default, Cumulus Linux stores MAC addresses in the Ethernet switching table for 1800 seconds (30 minutes). To change the amount of time MAC addresses are stored in the table, configure *bridge ageing*.
 
-{{%notice note%}}
-
-The bridge ageing option is in the {{<link url="Network-Command-Line-Utility-NCLU#advanced-configuration" text="NCLU blacklist">}}. If you want to change this setting, you need to first remove the `bridge-ageing` keyword from the `ifupdown_blacklist` section of the `/etc/netd.conf` file, then {{<link url="Network-Command-Line-Utility-NCLU/#advanced-configuration" text="restart the `netd` service">}}.
-
-{{%/notice%}}
-
-To configure bridge ageing:
+The following example commands set MAC address ageing to 600 seconds.
 
 {{< tabs "TabID67 ">}}
 
 {{< tab "NCLU Commands ">}}
-
-Run the `net add bridge bridge ageing` command. The following example commands set MAC address ageing to 600 seconds:
 
 ```
 cumulus@switch:~$ net add bridge bridge ageing 600
@@ -76,7 +68,7 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add `bridge-ageing` to the bridge stanza, then run the `ifreload -a` command. The following example sets MAC address ageing to 600 seconds.
+Edit the `/etc/network/interfaces` file to add `bridge-ageing` to the bridge stanza, then run the `ifreload -a` command.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces

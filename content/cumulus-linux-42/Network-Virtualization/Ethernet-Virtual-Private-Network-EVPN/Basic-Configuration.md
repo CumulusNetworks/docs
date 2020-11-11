@@ -1,7 +1,7 @@
 ---
 title: Basic Configuration
 author: Cumulus Networks
-weight: 540
+weight: 550
 toc: 4
 ---
 The following sections provide the basic configuration needed to use EVPN as the control plane for VXLAN. The steps provided assume you have already configured VXLAN interfaces, attached them to a bridge, and mapped VLANs to VNIs.

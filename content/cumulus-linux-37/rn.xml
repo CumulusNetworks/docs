@@ -7,6 +7,50 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32149</td>
+<td><p>If you try reconfigure a DHCP server after you delete the switch configuration with the net del all command, the dhcpd service fails because a duplicate process is running.<br/>
+To work around this issue, edit the /usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py file to change:</p>
+
+
+DHCPD_PID="-pf {0}" 
+
+
+
+<p>to:</p>
+
+
+DHCPD_PID="-pf {1}"
+
+</td>
+<td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32011</td>
 <td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
 CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
@@ -29,6 +73,12 @@ Fixed: 5.43-2+deb9u2~deb8u2</p></td>
 <tr>
 <td>CM-32006</td>
 <td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31978</td>
+<td><p>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in <em>Paused</em> mode after a switchd restart, which blocks traffic on that interface. </p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
@@ -2703,6 +2753,31 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32011</td>
 <td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
 CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
@@ -2725,6 +2800,12 @@ Fixed: 5.43-2+deb9u2~deb8u2</p></td>
 <tr>
 <td>CM-32006</td>
 <td><p>Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the reboot command. </p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-31978</td>
+<td><p>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in <em>Paused</em> mode after a switchd restart, which blocks traffic on that interface. </p></td>
 <td>3.7.12-3.7.13</td>
 <td></td>
 </tr>
@@ -5652,6 +5733,31 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32011</td>
@@ -8736,6 +8842,31 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32011</td>
 <td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
 CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
@@ -11515,6 +11646,31 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32011</td>
@@ -14706,6 +14862,31 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32011</td>
 <td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
 CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
@@ -17765,6 +17946,31 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32011</td>
@@ -21189,6 +21395,31 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32011</td>
 <td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
 CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
@@ -24561,6 +24792,31 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32011</td>
 <td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
 CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
@@ -27620,6 +27876,31 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32011</td>
@@ -30739,6 +31020,31 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32011</td>
@@ -34017,6 +34323,31 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32011</td>
@@ -37419,6 +37750,31 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.13</td>
 </tr>
 <tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32011</td>
 <td><p>The following vulnerabilities have been announced in poppler (libpoppler46 and libpoppler-qt4-4):<br/>
 CVE-2019-10018: Floating point exception in the function PostScriptFunction::exec at<br/>
@@ -40321,6 +40677,31 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.13</td>
+</tr>
+<tr>
+<td>CM-32169</td>
+<td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
+This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32164</td>
+<td><p>CVE-2020-25692: A vulnerability in the handling of normalization with modrdn was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can use this flaw to cause a denial of service (slapd daemon crash) via a specially crafted packet.<br/>
+The slapd package is not present in the image or repository, although the OpenLDAP libraries are present.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u6<br/>
+Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32057</td>
+<td><p>The following vulnerability has been announced in the freetype / libfreetype6 packages:<br/>
+CVE-2020-15999: heap-based buffer overflow vulnerability in the handling of embedded PNG bitmaps in FreeType. Opening malformed fonts may result in denial of service or the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 2.5.2-3+deb8u4<br/>
+Fixed: 2.5.2-3+deb8u5</p></td>
+<td>3.0.0-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32011</td>

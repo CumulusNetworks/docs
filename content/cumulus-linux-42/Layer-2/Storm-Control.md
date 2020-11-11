@@ -1,7 +1,7 @@
 ---
 title: Storm Control
 author: Cumulus Networks
-weight: 410
+weight: 470
 toc: 3
 ---
 Storm control provides protection against excessive inbound BUM (broadcast, unknown unicast, multicast) traffic on layer 2 switch port interfaces, which can cause poor network performance.

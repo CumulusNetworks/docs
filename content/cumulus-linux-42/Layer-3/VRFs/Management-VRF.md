@@ -1,7 +1,7 @@
 ---
 title: Management VRF
 author: Cumulus Networks
-weight: 870
+weight: 950
 toc: 3
 ---
 {{%notice note%}}
@@ -165,7 +165,7 @@ cumulus@switch:~$ ping -I mgmt <destination-ip>
 Or:
 
 ```
-cumulus@switch:~$ traceroute -s <source-ip> <destination-ip>
+cumulus@switch:~$ sudo traceroute -i mgmt -s <source-ip> <destination-ip>
 ```
 
 For additional information on using `ping` and `traceroute`, see {{<link url="Network-Troubleshooting">}}.

@@ -1,7 +1,7 @@
 ---
 title: Network Address Translation - NAT
 author: Cumulus Networks
-weight: 885
+weight: 980
 toc: 3
 ---
 Network Address Translation (NAT) enables your network to use one set of IP addresses for internal traffic and a second set of addresses for external traffic.

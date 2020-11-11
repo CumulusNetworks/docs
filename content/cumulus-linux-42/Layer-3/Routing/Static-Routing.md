@@ -1,7 +1,7 @@
 ---
 title: Static Routing
 author: Cumulus Networks
-weight: 720
+weight: 730
 toc: 3
 ---
 You can use static routing if you don't require the complexity of a dynamic routing protocol (such as BGP or OSPF), if you have routes that do not change frequently and for which the destination is only one or two paths away.

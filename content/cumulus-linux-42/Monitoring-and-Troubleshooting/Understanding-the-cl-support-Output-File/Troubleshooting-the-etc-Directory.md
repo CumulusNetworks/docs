@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting the etc Directory
 author: Cumulus Networks
-weight: 1010
+weight: 1070
 toc: 4
 ---
 The `{{<link url="Understanding-the-cl-support-Output-File" text="cl-support">}}` script replicates the /`etc` directory, however, it deliberately excludes certain files, such as `/etc/nologin`, which prevents unprivileged users from logging into the system.

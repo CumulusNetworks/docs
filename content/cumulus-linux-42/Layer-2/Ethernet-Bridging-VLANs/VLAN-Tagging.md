@@ -1,7 +1,7 @@
 ---
 title: VLAN Tagging
 author: Cumulus Networks
-weight: 470
+weight: 450
 toc: 4
 ---
 This topic shows two examples of VLAN tagging, one basic and one more advanced. They both demonstrate the streamlined interface configuration from `ifupdown2`.

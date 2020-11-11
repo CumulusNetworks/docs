@@ -1,7 +1,7 @@
 ---
 title: LACP Bypass
 author: Cumulus Networks
-weight: 490
+weight: 500
 toc: 3
 ---
 On Cumulus Linux, *LACP bypass* allows a {{<link url="Bonding-Link-Aggregation" text="bond">}} configured in 802.3ad mode to become active and forward traffic even when there is no LACP partner. For example, you can enable a host that does not have the capability to run LACP to PXE boot while connected to a switch on a bond configured in 802.3ad mode. After the pre-boot process completes and the host is capable of running LACP, the normal 802.3ad link aggregation operation takes over.

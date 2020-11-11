@@ -243,7 +243,7 @@ def build_markdown_header(product, version):
     output = []
 
     output.append("---\n")
-    output.append("title: {} {} Release Notes\n".format(product, version))
+    output.append("title: NVIDIA {} {} Release Notes\n".format(product, version))
     output.append("author: Cumulus Networks\n")
     output.append("weight: {}\n".format(weight))
     output.append("product: {}\n".format(product))

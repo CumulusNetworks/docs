@@ -1,7 +1,7 @@
 ---
 title: EVPN BUM Traffic with PIM-SM
 author: Cumulus Networks
-weight: 570
+weight: 580
 toc: 4
 ---
 Without EVPN and PIM-SM, HER is the default way to replicate BUM traffic to remote VTEPs, where the ingress VTEP generates as many copies as VTEPs for each overlay BUM packet. This might not be optimal in certain deployments.

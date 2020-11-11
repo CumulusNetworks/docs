@@ -1,7 +1,7 @@
 ---
 title: Monitoring System Hardware
 author: Cumulus Networks
-weight: 1000
+weight: 1020
 toc: 3
 ---
 You monitor system hardware using the following commands and utilities:

@@ -1,7 +1,7 @@
 ---
 title: Cumulus Hyperconverged Solution with Nutanix
 author: Cumulus Networks
-weight: 1320
+weight: 1350
 toc: 3
 ---
 The Cumulus Hyperconverged Solution (HCS) in Cumulus Linux supports automated integration with the Nutanix Prism Management solution and the Nutanix AHV hypervisor. Cumulus HCS automatically configures ports attached to Nutanix nodes, provisions networking and manages VLANs with Nutanix Prism and Nutanix AHV.

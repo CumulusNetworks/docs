@@ -1,7 +1,7 @@
 ---
 title: Multi-Chassis Link Aggregation - MLAG
 author: Cumulus Networks
-weight: 480
+weight: 490
 toc: 3
 ---
 {{%notice note%}}

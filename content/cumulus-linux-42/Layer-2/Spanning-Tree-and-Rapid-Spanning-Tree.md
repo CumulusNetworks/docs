@@ -1,7 +1,7 @@
 ---
 title: Spanning Tree and Rapid Spanning Tree - STP
 author: Cumulus Networks
-weight: 400
+weight: 460
 toc: 3
 ---
 Spanning tree protocol (STP) identifies links in the network and shuts down redundant links, preventing possible network loops and broadcast radiation on a bridged network. STP also provides redundant links for automatic failover when an active link fails. STP is enabled by default in Cumulus Linux for both VLAN-aware and traditional bridges.

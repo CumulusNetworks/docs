@@ -1,7 +1,7 @@
 ---
 title: ASIC Monitoring
 author: Cumulus Networks
-weight: 1200
+weight: 1230
 toc: 3
 ---
 

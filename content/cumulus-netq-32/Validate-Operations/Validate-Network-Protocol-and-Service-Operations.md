@@ -124,7 +124,7 @@ cumulus@switch:~$ netq add validation type bgp
 Running job 7958faef-29e0-432f-8d1e-08a0bb270c91 type bgp
 ```
 
-The associated Validation Result card is opened on your workbench. Refer to {{<link title="Validate Network Protocol and Service Operations#view-on-demand-validation-results" text="View On-demand Validation Results">}}.
+The associated Validation Result card is accessible from the full-screen On-demand Validation Result card. Refer to {{<link title="Validate Network Protocol and Service Operations#view-on-demand-validation-results" text="View On-demand Validation Results">}}.
 
 {{< /tab >}}
 
@@ -312,11 +312,11 @@ To view more details for this and other traces, refer to Detailed On-demand Trac
 
 {{< /tabs >}}
 
-## Validation Examples
+## On-Demand CLI Validation Examples
 
-This section provides validation examples for a variety of protocols and elements.
+This section provides on-demand validation examples for a variety of protocols and elements.
 
-### Perform a NetQ Agent Validation
+{{< expand "NetQ Agent Validation" >}}
 
 The default validation confirms that the NetQ Agent is running on all monitored nodes and provides a summary of the validation results. This example shows the results of a fully successful validation.
 
@@ -332,6 +332,10 @@ Warning nodes       : 0
 
 Agent Health Test   : passed
 ```
+
+{{< /expand >}}
+
+{{< expand "BGP Validations" >}}
 
 ### Perform a BGP Validation
 
@@ -506,6 +510,10 @@ cumulus@switch:~$ netq check bgp json
 }
 ```
 
+{{< /expand >}}
+
+{{< expand "CLAG Validations" >}}
+
 ### Perform a CLAG Validation
 
 The default validation runs a networkwide CLAG connectivity and configuration check on all nodes running the CLAG service. This example shows results for a fully successful validation.
@@ -640,6 +648,10 @@ ProtoDown Bonds Test     : passed,
 SVI Test                 : passed,
 ```
 
+{{< /expand >}}
+
+{{< expand "Cumulus Linux Version Validation" >}}
+
 ### Perform a Cumulus Linux Version Validation
 
 The default validation (using no options) checks that all switches in the network have a consistent version.
@@ -657,6 +669,10 @@ Warning nodes       : 0
 
 Cumulus Linux Image Version Test   : passed
 ```
+
+{{< /expand >}}
+
+{{< expand "EVPN Validations" >}}
 
 ### Perform an EVPN Validation
 
@@ -808,6 +824,10 @@ Vlan Consistency Test            : skipped
 Vrf Consistency Test             : skipped
 ```
 
+{{< /expand >}}
+
+{{< expand "Interface Validations" >}}
+
 ### Perform an Interfaces Validation
 
 The default validation runs a networkwide connectivity and configuration check on all interfaces. This example shows results for a fully successful validation.
@@ -872,6 +892,10 @@ Using the `include <interface-number-range-list>` and `exclude <interface-number
 
 Refer to {{<link url="#interface-validation-tests" text="Interface Validation Tests">}} for descriptions of these tests.
 
+{{< /expand >}}
+
+{{< expand "License Validation" >}}
+
 ### Perform a License Validation
 
 You can also check for any nodes that have invalid licenses without going to each node. Because switches do not operate correctly without a valid license you might want to verify that your Cumulus Linux licenses on a regular basis.
@@ -899,6 +923,10 @@ License validity Test   : passed,
 This command checks every node, meaning every switch and host in the network. Hosts do not require a Cumulus Linux license, so the number of licenses checked might be smaller than the total number of nodes checked.
 {{%/notice%}}
 
+{{< /expand >}}
+
+{{< expand "MTU Validation" >}}
+
 ### Perform a Link MTU Validation  
 
 The default validate verifies that all corresponding interface links have matching MTUs. This example shows no mismatches.
@@ -922,6 +950,10 @@ Link MTU Consistency Test   : passed,
 VLAN interface Test         : passed,
 Bridge interface Test       : passed,
 ```
+
+{{< /expand >}}
+
+{{< expand "MLAG Validations" >}}
 
 ### Perform an MLAG Validation
 
@@ -1057,6 +1089,10 @@ ProtoDown Bonds Test     : passed,
 SVI Test                 : passed,
 ```
 
+{{< /expand >}}
+
+{{< expand "NTP Validation" >}}
+
 ### Perform an NTP Validation
 
 The default validation checks for synchronization of the NTP server with all nodes in the network. It is always important to have your devices in time synchronization to ensure configuration and management events can be tracked and correlations can be made between events.
@@ -1084,6 +1120,10 @@ Hostname          NTP Sync Connect Time
 ----------------- -------- -------------------------
 server04          no       2019-09-17 19:21:47
 ```
+
+{{< /expand >}}
+
+{{< expand "OSPF Validation" >}}
 
 ### Perform an OSPF Validation
 
@@ -1116,6 +1156,10 @@ spine-2           downlink-6                0.0.0.22                  27.0.0.22 
 tor-2             uplink-2                  0.0.0.20                  27.0.0.20                 mtu mismatch                                  Mon Jul  1 16:19:37 2019
 ```
 
+{{< /expand >}}
+
+{{< expand "Sensors Validation" >}}
+
 ### Perform a Sensors Validation
 
 Hardware platforms have a number sensors to provide environmental data about the switches. Knowing these are all within range is a good check point for maintenance.
@@ -1141,6 +1185,10 @@ Fan sensors Test           : passed,
 Temperature sensors Test   : passed,
 ```
 
+{{< /expand >}}
+
+{{< expand "VLAN Validation" >}}
+
 ### Perform a VLAN Validation
 
 Validate that VLANS are configured and operating properly:
@@ -1162,6 +1210,10 @@ Total Link Count    : 196
 Link Neighbor VLAN Consistency Test   : passed,
 Clag Bond VLAN Consistency Test       : passed,
 ```
+
+{{< /expand >}}
+
+{{< expand "VXLAN Validation" >}}
 
 ### Perform a VXLAN Validation
 
@@ -1185,52 +1237,165 @@ BUM replication Test    : passed,
 Both asymmetric and symmetric VXLAN configurations are validated with this command.
 {{%/notice%}}
 
-### Create Scheduled Validations
+{{< /expand >}}
 
-<!-- add section about default validations -->
+## Create Scheduled Validations
 
-When you want to see validation results on a regular basis, it is useful to configure a scheduled validation request to avoid re-creating the
-request each time.
+When you want to see validation results on a regular basis, it is useful to configure a scheduled validation request to avoid re-creating the request each time. You can create up to 15 scheduled validations for a given NetQ system.
 
-To create and run a new scheduled validation:
+{{%notice note%}}
 
-1. Open the large Validation Request card.
-2. Select the protocols and/or services you want to include in the validation. In this example we have chosen the Agents and NTP services.
+By default a scheduled validation for each protocol and service is run every hour. You do not need to create a scheduled validation for these unless you want it to run at a different interval. Default validations cannot be removed, but are not counted as part of the 15-validation limit.
 
-      {{< figure src="/images/netq/valid-request-agents-ntp-222.png" width="500" >}}
+{{%/notice%}}
+
+You can create scheduled validations using the NetQ UI and the NetQ CLI.
+
+### Create a Scheduled Validation for a Single Protocol or Service
+
+You might want to create a scheduled validation that runs more often than the default validation if you are investigating an issue with a protocol or service. You might also want to create a scheduled validation that runs less often than the default validation if you are interested in a longer term performance trend. Use the following instructions based on how you want to create the validation.
+
+{{< tabs "TabID1258" >}}
+
+{{< tab "Validation Request" >}}
+
+1. Open the Validation Request card.
+
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Validation**. Click on card. Click **Open Cards**.
+
+2. On the right side of the card, select the protocol or service you want to validate by clicking on its name.
+
+    When selected it becomes highlighted and **Run Now** and **Save as New** become active. Click the name again to remove it to select a different protocol or service.
+
+    This example shows the selection of BGP.
+
+    {{<figure src="/images/netq/valid-request-large-bgp-3.2.0.png" width="500">}}
 
 3. Enter the schedule frequency (30 min, 1 hour, 3 hours, 6 hours, 12 hours, or 1 day) by selecting it from the **Run every** list. Default is hourly.
 
-    {{< figure src="/images/netq/schedule-frequency-selection-222.png" width="300" >}}
+    {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
 
 4. Select the time to start the validation runs, by clicking in the Starting field. Select a day and click **Next**, then select the starting time and click **OK**.  
 
-    {{< figure src="/images/netq/date-selection-222.png" width="150">}}
-    <p> </p>
-    {{< figure src="/images/netq/time-selection-222.png" width="150">}}
+    {{<img src="/images/netq/date-selection-222.png" width="150">}} {{<img src="/images/netq/time-selection-222.png" width="150">}}
 
 5. Verify the selections were made correctly.
-6. Click **Save As New**.
 
-      {{< figure src="/images/netq/valid-request-agents-ntp-save-as-new-222.png" width="500" >}}
+    This example shows a scheduled validation for BGP to run avery 12 hours beginning November 12th at 12:15 p.m.
+
+      {{<figure src="/images/netq/valid-request-bgp-12hr-320.png" width="500" >}}
+
+6. Click **Save As New**.
 
 7. Enter a name for the validation.
 
-      {{%notice note%}}
-Spaces and special characters are *not* allowed in validation request names.
-      {{%/notice%}}
+<div style="padding-left: 18px;"><div class="notices note"><p>Spaces and special characters are <em>not</em> allowed in validation request names.</p></div></div>
 
-      {{< figure src="/images/netq/save-valid-name-example.png" width="250" >}}
+    {{<figure src="/images/netq/sch-valid-request-specify-name-320.png" width="250">}}
 
 8. Click **Save**.
 
-The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link url="#view-scheduled-validation-results" text="View Scheduled Validation Results">}}. Note that the number of scheduled validations is now two (2).
+    The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link url="#view-scheduled-validation-results" text="View Scheduled Validation Results">}}. Note that the number of scheduled validations is now two (15 allowed minus 13 remaining = 2).
 
-{{< figure src="/images/netq/valid-request-select-sched-222.png" width="500">}}
+    {{<figure src="/images/netq/sch-valid-run-now-320.png" width="500">}}
+
+{{< /tab >}}
+
+{{< tab "netq add validation" >}}
+
+To create a scheduled request containing checks on a single protocol or service in the NetQ CLI and view results in the NetQ UI, run:
+
+```
+netq add validation name <text-new-validation-name> type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) interval <text-time-min>
+```
+
+This example shows the creation of a BGP validation run every 15 minutes for debugging.
+
+```
+cumulus@switch:~$ netq add validation name Bgp15m type bgp interval 15m
+Successfully added Bgp15m running every 15m
+```
+
+The associated Validation Result card is accessible from the full-screen Scheduled Validation Result card. Refer to {{<link title="Validate Network Protocol and Service Operations#view-scheduled-validation-results" text="View Scheduled Validation Results">}}.
+
+You might want to remove this validation once you complete your analysis. Refer to {{<link title="Validate Network Protocol and Service Operations#delete-a-scheduled-validation" text="Delete a Scheduled Validation">}}.
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Create a Scheduled Validation for Multiple Protocols or Services
+
+Sometimes it is useful to run validations on more than one protocol simultaneously. This gives a view into any potential relationship between the protocols or services status. For example, you might want to compare NTP with Agent validations if NetQ Agents are losing connectivity or the data appears to be collected at the wrong time. It would help determine if loss of time synchronization is causing the issue.
+
+You can create simultaneous validations using the NetQ UI. You can come close using the NetQ CLI.
+
+{{< tabs "TabID1333" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Open the Validation Request card.
+
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Validation**. Click on card. Click **Open Cards**.
+
+2. On the right side of the card, select the protocols and services you want to include in the validation. In this example we have chosen the Agents and NTP services.
+
+      {{<figure src="/images/netq/valid-request-agents-ntp-222.png" width="500">}}
+
+3. Enter the schedule frequency (30 min, 1 hour, 3 hours, 6 hours, 12 hours, or 1 day) by selecting it from the **Run every** list. Default is hourly.
+
+    {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
+
+4. Select the time to start the validation runs, by clicking in the Starting field. Select a day and click **Next**, then select the starting time and click **OK**.  
+
+    {{<img src="/images/netq/date-selection-222.png" width="150">}} {{<img src="/images/netq/time-selection-222.png" width="150">}}
+
+5. Verify the selections were made correctly.
+
+    {{<figure src="/images/netq/valid-request-agents-ntp-save-as-new-222.png" width="500">}}
+
+6. Click **Save As New**.
+
+7. Enter a name for the validation.
+
+<div style="padding-left: 18px;"><div class="notices note"><p>Spaces and special characters are <em>not</em> allowed in validation request names.</p></div></div>
+
+      {{<figure src="/images/netq/save-valid-name-example.png" width="250">}}
+
+8. Click **Save**.
+
+    The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link url="#view-scheduled-validation-results" text="View Scheduled Validation Results">}}. Note that the number of scheduled validations is now two (15 allowed minus 13 remaining = 2).
+
+    {{<figure src="/images/netq/valid-request-select-sched-222.png" width="500">}}
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To create simultaneous validations for multiple protocols and services with the NetQ CLI, you create each of the desired validations as quickly as possible so they start as close to the same time. To schedule multiple protocol and service validations, run:
+
+```
+netq add validation name <text-new-validation-name> type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) interval <text-time-min>
+```
+
+This example creates scheduled validations for Agents and NTP:
+
+```
+cumulus@switch:~$ netq add validation name Agents30m type agents interval 30m
+Successfully added Agents30m running every 30m
+cumulus@switch:~$ netq add validation name Ntp30m type ntp interval 30m
+Successfully added Ntp30m running every 30m
+```
+
+The associated Validation Result cards are accessible from the full-screen Scheduled Validation Result card. Refer to {{<link title="Validate Network Protocol and Service Operations#view-scheduled-validation-results" text="View Scheduled Validation Results">}}.
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## View Scheduled Validation Results
 
-The Scheduled Validation Result card workflow enables you to view the results of scheduled validation requests. When a request has completed processing, you can access the Validation Result card from the full screen Validation Request card. Each protocol and service has its own validation result card, but the content is similar on each.
+After creating scheduled validations with either the NetQ UI or the NetQ CLI, the results are shown in the Scheduled Validation Result card. When a request has completed processing, you can access the Validation Result card from the full-screen Validation Request card. Each protocol and service has its own validation result card, but the content is similar on each.
 
 ### Granularity of Data Shown Based on Time Period
 
@@ -1247,88 +1412,227 @@ On the medium and large Validation Result cards, the status of the runs is repre
 | 1 month     | 2,086          | 30                 | 1 day                        |
 | 1 quarter   | 7,000          | 13                 | 1 week                       |
 
-### View Scheduled Validation Results
+### Access and Analyze the Scheduled Validation Results
 
 Once a scheduled validation request has completed, the results are available in the corresponding Validation Result card.
 
-To view the results:
+To access the results:
 
-1. Open the full size Validation Request card to view all scheduled validations.
+1. Open the Validation Request card.
+
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Validation**. Click on card. Click **Open Cards**.
+
+2. Change to the full-screen card using the card size picker to view all scheduled validations.
 
     {{<figure src="/images/netq/valid-request-fullscr-300.png" width="700">}}
 
-2. Select the validation results you want to view by clicking in the first column of the result and clicking the check box.
+3. Select the validation results you want to view.
 
-3. On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards). This opens the medium Scheduled Validation Results card(s) for the selected items.
+4. Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} (Open Card). This opens the medium Scheduled Validation Result card/s for the selected items.
 
     {{<figure src="/images/netq/sch-valid-result-medium-222.png" width="425">}}
 
-4. Note the distribution of results. Are there many failures? Are they concentrated together in time? Has the protocol or service recovered     after the failures?
+To analyze the results:
 
-5. Hover over the heat maps to view the status numbers and what percentage of the total results that represents for a given region. The tooltip also shows the number of devices included in the validation and the number with warnings and/or failures. This is useful when you see the failures occurring on a small set of devices, as it might point to an issue with the devices rather than the network service.
+1. Note the distribution of results. Are there many failures? Are they concentrated together in time? Has the protocol or service recovered after the failures?
+
+2. Hover over the heat maps to view the status numbers and what percentage of the total results that represents for a given region. The tooltip also shows the number of devices included in the validation and the number with warnings and/or failures. This is useful when you see the failures occurring on a small set of devices, as it might point to an issue with the devices rather than the network service.
 
     {{<figure src="/images/netq/sch-valid-result-medium-bgp-popup-222.png" width="200">}}
 
-6. Optionally, click **Open** \<*network service*\> **Card** link to open the medium individual Network Services card. Your current card is not closed.
+3. Optionally, click **Open** \<*network service*\> **Card** link to open the medium individual Network Services card. Your current card is not closed.
 
-7. Switch to the large Scheduled Validation card.
+4. Switch to the large Scheduled Validation card using the card size picker.
 
-8. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg" height="18" width="18"/> to expand the chart.
+5. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg" height="18" width="18">}} to expand the chart.
 
     {{<figure src="/images/netq/sch-valid-result-large-bgp-expand-chart-230.png" width="500">}}
 
-9. Collapse the heat map by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg" height="18" width="18"/>.
+6. Collapse the heat map by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg" height="18" width="18">}}.
 
     {{<figure src="/images/netq/sch-valid-result-large-bgp-collapse-chart-230.png" width="500">}}
 
-10. If there are a large number of warnings or failures, view the devices with the most issues by clicking **Most Active** in the filter above the table. This might help narrow the failures down to a particular device or small set of devices that you can investigate further.
+7. If there are a large number of warnings or failures, view the devices with the most issues by clicking **Most Active** in the filter above the table. This might help narrow the failures down to a particular device or small set of devices that you can investigate further.
 
-11. Select the **Most Recent** filter above the table to see the events that have occurred in the near past at the top of the list.
+8. Select the **Most Recent** filter above the table to see the events that have occurred in the near past at the top of the list.
 
-12. Optionally, view the health of the protocol or service as a whole by clicking **Open** \<*network service*\> **Card** (when available).
+9. Optionally, view the health of the protocol or service as a whole by clicking **Open** \<*network service*\> **Card** (when available).
 
-13. You can view the configuration of the request that produced the results shown on this card workflow, by hovering over the card and     clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/>. If you want to change the configuration, click **Edit Config** to open the large Validation Request card, pre-populated with the current configuration. Follow the instructions in {{<link url="#modify-an-existing-scheduled-validation-request" text="Modify an Existing Scheduled Validation Request">}} to make your changes.
+10. You can view the configuration of the request that produced the results shown on this card workflow, by hovering over the card and clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18">}}. If you want to change the configuration, click **Edit Config** to open the large Validation Request card, pre-populated with the current configuration. Follow the instructions in {{<link title="Validate Network Protocol and Service Operations#modify-a-scheduled-validation" text="Modify a Scheduled Validation">}} to make your changes.
 
-14. To view all data available for all scheduled validation results for the given protocol or service, click **Show All Results** or switch to the full screen card.
+11. To view all data available for all scheduled validation results for the given protocol or service, click **Show All Results** or switch to the full screen card.
 
-    {{< figure src="/images/netq/sch-valid-result-fullscr-bgp-241.png" width="700" >}}
+    {{<figure src="/images/netq/sch-valid-result-fullscr-bgp-241.png" width="700">}}
 
-15. Look for changes and patterns in the results. Scroll to the right. Are there more failed sessions or nodes during one or more validations?
+12. Look for changes and patterns in the results. Scroll to the right. Are there more failed sessions or nodes during one or more validations?
 
-16. Double-click in a given result row to open details about the validation.
+13. Double-click in a given result row to open details about the validation.
 
     From this view you can:
-    - See a summary of the validation results by clicking <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-2.svg" width="14" height="14"/> in the banner under the title. Toggle the arrow to close the summary.
+    - See a summary of the validation results by clicking {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-right-2.svg" width="14" height="14">}} in the banner under the title. Toggle the arrow to close the summary.
 
-        {{< figure src="/images/netq/od-valid-result-bgp-details-summary-fullscr.png" width="300" >}}
+        {{<figure src="/images/netq/od-valid-result-bgp-details-summary-fullscr.png" width="300">}}
 
     - See detailed results of each test run to validate the protocol or service. When errors or warnings are present, the nodes and relevant detail is provided.
 
-        {{< figure src="/images/netq/od-valid-result-bgp-tests-fullscr.png" width="700" >}}
+        {{<figure src="/images/netq/od-valid-result-bgp-tests-fullscr.png" width="700">}}
 
     - Export the data by clicking **Export**.
 
-    - Return to the validation jobs list by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" width="14" height="14"/>.
+    - Return to the validation jobs list by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" width="14" height="14">}}.
 
     You may find that comparing various results gives you a clue as to why certain devices are experiencing more warnings or failures. For  example, more failures occurred between certain times or on a particular device.
 
 ## Manage Scheduled Validations
 
-### Modify an Existing Scheduled Validation Request
+You can modify any scheduled validation that you created or remove it altogether at any time. Default validations cannot be removed, modified, or disabled.
+
+### Modify a Scheduled Validation
 
 At some point you might want to change the schedule or validation types that are specified in a scheduled validation request.
 
 {{%notice info%}}
+
 When you update a scheduled request, the results for all future runs of the validation will be different than the results of previous runs of the validation.
+
 {{%/notice%}}
 
 To modify a scheduled validation:
 
-1. Open the large Validation Request card.
+1. Open the Validation Request card.
+
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Validation**. Click on card. Click **Open Cards**.
+
 2. Select the validation from the **Validation** dropdown list.
+
+    {{<figure src="/images/netq/valid-request-selection.png" width="250">}}
+
 3. Edit the schedule or validation types.
+
+    This example adds EVPN to the validation.
+
+    {{<figure src="/images/netq/valid-request-edit-320.png" width="500">}}
+
 4. Click **Update**.
 
-The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link url="#view-scheduled-validation-results" text="View Scheduled Validation Results">}}.
+5. Click **Yes** to complete the changes, or change the name of the previous version of this scheduled validation.
+
+    {{<figure src="/images/netq/sch-valid-update-confirmation-320.png" width="300">}}
+
+    1. Click the *change name* link.
+
+    2. Edit the name.
+
+        {{<figure src="/images/netq/sch-valid-edit-name-on-update-320.png" width="300">}}
+
+    3. Click **Update**.
+
+    4. Click **Yes** to complete the changes, or repeat these steps until you have the name you want.
+
+    The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link title="Validate Network Protocol and Service Operations#view-scheduled-validation-results" text="View Scheduled Validation Results">}}.
 
 ### Delete a Scheduled Validation
+
+You can remove a user-defined scheduled validation at any time using the NetQ UI or the NetQ CLI. Default validations cannot be removed.
+
+{{< tabs "TabID1538" >}}
+
+{{< tab "NetQ UI" >}}
+
+1. Open the Validation Request card.
+
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Validation**. Click on card. Click **Open Cards**.
+
+2. Change to the full-screen card using the card size picker.
+
+3. Select one or more validations to remove.
+
+    {{<figure src="/images/netq/sch-valid-remove-320.png" width="700">}}
+
+4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}}.
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+1. Determine the name of the scheduled validation you want to remove. Run:
+
+    ```
+    netq show validation summary [name <text-validation-name>] type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf) [around <text-time-hr>] [json]
+    ```
+
+    This example shows all scheduled validations for BGP.
+
+    ```
+    cumulus@switch:~$ netq show validation summary type bgp
+    Name            Type             Job ID       Checked Nodes              Failed Nodes             Total Nodes            Timestamp
+    --------------- ---------------- ------------ -------------------------- ------------------------ ---------------------- -------------------------
+    Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 20:38:20 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    Bgp15m          scheduled        2e891464-637 10                         0                        10                     Thu Nov 12 20:28:58 2020
+                                    a-4e89-a692-
+                                    3bf5f7c8fd2a
+    Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 20:24:14 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 20:15:20 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    Bgp15m          scheduled        2e891464-637 10                         0                        10                     Thu Nov 12 20:13:57 2020
+                                    a-4e89-a692-
+                                    3bf5f7c8fd2a
+    Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 20:13:29 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 20:12:25 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    BGP12hr         scheduled        5818f911-d9e 10                         0                        10                     Thu Nov 12 20:10:09 2020
+                                    2-4927-9cc1-
+                                    6972899a3422
+    Bgp30m          scheduled        4c78cdf3-24a 10                         0                        10                     Thu Nov 12 20:08:46 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 20:08:20 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    Bgp15m          scheduled        2e891464-637 10                         0                        10                     Thu Nov 12 19:58:57 2020
+                                    a-4e89-a692-
+                                    3bf5f7c8fd2a
+    Bgp15m          scheduled        2e891464-637 10                         0                        10                     Thu Nov 12 19:54:47 2020
+                                    a-4e89-a692-
+                                    3bf5f7c8fd2a
+    Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 19:54:15 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 19:45:21 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 19:43:33 2020
+                                    6-4ecb-a39d-
+                                    0c2ec265505f
+    Default validat scheduled        dec4c560-ebd 10                         0                        10                     Thu Nov 12 19:42:25 2020
+    ion                              0-4e57-8203-
+                                    4bd872d7ca28
+    ...
+    ```
+
+2. Remove the validation. Run:
+
+    ```
+    netq del validation <text-validation-name>
+    ```
+
+    This example removes the scheduled validation named *Bgp15m*.
+
+    ```
+    cumulus@switch:~$ netq del validation Bgp15m
+    Successfully deleted validation Bgp15m
+    ```
+
+3. Repeat these steps for additional scheduled validations you want to remove.
+
+{{< /tab >}}
+
+{{< /tabs >}}

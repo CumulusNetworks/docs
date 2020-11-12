@@ -27,11 +27,12 @@ To configure an EVPN route exchange with a BGP peer, activate the peer or peer g
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp autonomous-system 65101
-cumulus@switch:~$ net add bgp neighbor swp51 interface remote-as external
-cumulus@switch:~$ net add bgp l2vpn evpn neighbor swp51 activate
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp autonomous-system 65101
+cumulus@leaf01:~$ net add bgp router-id 10.10.10.1
+cumulus@leaf01:~$ net add bgp neighbor swp51 interface remote-as external
+cumulus@leaf01:~$ net add bgp l2vpn evpn neighbor swp51 activate
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -39,36 +40,32 @@ cumulus@switch:~$ net commit
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# neighbor swp51 interface remote-as external
-switch(config-router)# address-family l2vpn evpn
-switch(config-router-af)# neighbor swp51 activate
-switch(config-router-af)# end
-switch)# write memory
-switch)# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp router-id 10.10.10.1
+leaf01(config-router)# neighbor swp51 interface remote-as external
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# neighbor swp51 activate
+leaf01(config-router-af)# end
+leaf01)# write memory
+leaf01)# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
 
 {{< /tabs >}}
 
-{{%notice note%}}
-
-Adjust the `remote-as` above to be appropriate for your environment.
-
-{{%/notice%}}
-
 The above commands create the following configuration snippet in the `/etc/frr/frr.conf` file.
 
 ```
 ...
 router bgp 65101
+  bgp router-id 10.10.10.1
   neighbor swp51 interface remote-as external
-  address-family l2vpn evpn
+address-family l2vpn evpn
   neighbor swp51 activate
 ...
 ```
@@ -90,9 +87,9 @@ This configuration is only needed on leaf switches that are VTEPs. EVPN routes r
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp l2vpn evpn advertise-all-vni
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@leaf01:~$ net add bgp l2vpn evpn advertise-all-vni
+cumulus@leaf01:~$ net pending
+cumulus@leaf01:~$ net commit
 ```
 
 {{< /tab >}}
@@ -100,16 +97,16 @@ cumulus@switch:~$ net commit
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# address-family l2vpn evpn
-switch(config-router-af)# advertise-all-vni
-switch(config-router-af)# end
-switch)# write memory
-switch)# exit
-cumulus@switch:~$
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# advertise-all-vni
+leaf01(config-router-af)# end
+leaf01)# write memory
+leaf01)# exit
+cumulus@leaf01:~$
 ```
 
 {{< /tab >}}
@@ -121,9 +118,10 @@ The above commands create the following configuration snippet in the `/etc/frr/f
 ```
 ...
 router bgp 65101
+  bgp router-id 10.10.10.1
   neighbor swp51 interface remote-as external
   address-family l2vpn evpn
-  neighbor swp51 activate
+neighbor swp51 activate
   advertise-all-vni
 ...
 ```

@@ -40,7 +40,7 @@ ports interested in receiving multicast traffic destined to that group.
 
 Cumulus Linux 3.7.4 and later supports IGMP/MLD snooping over VXLAN bridges, where VXLAN ports are set as router ports, on Broadcom switches.
 
-Cumulus Linux 3.7.9 and later also supports IGMP/MLD snooping over VXLAN bridges on Spectrum switches. However, in addition to enabling IGMP/MLD snooping over VXLAN, you need to perform an additional configuration step, described below.
+Cumulus Linux 3.7.9 and later also supports IGMP/MLD snooping over VXLAN bridges on Spectrum switches.
 
 To enable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop yes` command:
 
@@ -55,6 +55,8 @@ Cumulus Networks recommends that you also configure IGMP/MLD querier. See {{<lin
 To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.
 
 **Additional Configuration for Spectrum Switches**
+
+In Cumulus Linux 3.7.13 and earlier, in addition to enabling IGMP/MLD snooping over VXLAN, you need to perform an additional configuration step, described below. This additional configuration step is **not** required for Cumulus Linux 3.7.14 and later.
 
 For Spectrum switches, the IGMP reports received over VXLAN from remote hosts are not forwarded to the kernel, which, in certain cases, might result in local receivers not responding to the IGMP query. To workaround this issue, you need to apply certain ACL rules to avoid the IGMP report packets being sent across to the hosts:
 

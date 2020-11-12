@@ -4,9 +4,9 @@ author: Cumulus Networks
 weight: 560
 toc: 3
 ---
-If you need to remove the NetQ agent and/or the NetQ CLI from a Cumulus Linux switch or Linux host, follow the steps below.
+You can remove the NetQ software from your system server and switches when necessary.
 
-## Remove the Agent and CLI from a Cumulus Linux Switch or Ubuntu Host
+## Remove the NetQ Agent and CLI from a Cumulus Linux Switch or Ubuntu Host
 
 Use the `apt-get purge` command to remove the NetQ agent or CLI package from a Cumulus Linux switch or an Ubuntu host.
 
@@ -51,7 +51,7 @@ cumulus@switch:~$ dpkg-query -l netq-apps
 dpkg-query: no packages found matching netq-apps
 ```
 
-## Remove the Agent and CLI from a RHEL7 or CentOS Host
+## Remove the NetQ Agent and CLI from a RHEL7 or CentOS Host
 
 Use the `yum remove` command to remove the NetQ agent or CLI package from a RHEL7 or CentOS host.
 
@@ -95,3 +95,55 @@ root@rhel7:~# rpm -q netq-apps
 package netq-apps is not installed
 ```
 
+## Uninstall NetQ from the System Server
+
+First remove the data collected to free up used disk space. Then remove the software.
+
+1. Log on to the NetQ system server.
+
+2. Remove the data.
+
+  ```
+  netq bootstrap reset purge-db
+  ```
+
+3. Remove the software.
+
+  Use the `apt-get purge` command.
+
+  ```
+  cumulus@switch:~$ sudo apt-get update
+  cumulus@switch:~$ sudo apt-get purge netq-agent netq-apps
+  ```
+
+4. Verify the packages have been removed from the switch.
+
+  ```
+  cumulus@switch:~$ dpkg-query -l netq-agent
+  dpkg-query: no packages found matching netq-agent
+  cumulus@switch:~$ dpkg-query -l netq-apps
+  dpkg-query: no packages found matching netq-apps
+  ```
+
+5. Delete the Virtual Machine according to the usual VMware or KVM practice.
+
+  {{< tabs "TabID130" >}}
+
+{{< tab "VMware ESX" >}}
+
+Delete a virtual machine from the host computer using one of the following methods:
+
+- Right-click the name of the virtual machine in the **Favorites** list, then select **Delete from Disk**
+- Select the virtual machine and choose **VM** > **Delete from disk**
+
+{{< /tab >}}
+
+{{< tab "KVM" >}}
+
+Delete a virtual machine from the host computer using one of the following methods:
+
+- Run `virsch undefine <vm-domain> --remove-all-storage`
+- Run `virsh undefine <vm-domain> --wipe-storage`
+{{< /tab >}}
+
+{{< /tabs >}}

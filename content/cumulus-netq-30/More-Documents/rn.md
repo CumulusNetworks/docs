@@ -27,7 +27,7 @@ pdfhidden: True
 | <a name="NETQ-4927"></a> [NETQ-4927](#NETQ-4927) <a name="NETQ-4927"></a> | Admin UI: If the Master Installation phase fails during NetQ installation, refreshing the page causes the error log to be lost. On failure, download the error log, then run `netq bootstrap reset` followed by `netq bootstrap master interface` on the node before restarting the installation process. | 2.4.1-3.0.0 | 3.1.0-3.2.1|
 | <a name="NETQ-3451"></a> [NETQ-3451](#NETQ-3451) <a name="NETQ-3451"></a> | UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session. | 2.3.0-2.4.1, 3.0.0-3.2.1 | |
 
-### Fixed issues in 3.0.0
+### Fixed Issues in 3.0.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="NETQ-5182"></a> [NETQ-5182](#NETQ-5182) | When a switch or host reports its memory size in GB rather than MB, the NetQ Agent cannot parse the information and thus fails to register with the NetQ server. Contact customer support if you run into this issue. | 2.4.0-2.4.1 | |

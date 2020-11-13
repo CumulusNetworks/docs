@@ -124,7 +124,7 @@ cumulus@switch:~$ netq add validation type bgp
 Running job 7958faef-29e0-432f-8d1e-08a0bb270c91 type bgp
 ```
 
-The associated Validation Result card is accessible from the full-screen On-demand Validation Result card. Refer to {{<link title="Validate Network Protocol and Service Operations#view-on-demand-validation-results" text="View On-demand Validation Results">}}.
+The associated Validation Result card is accessible from the full-screen Validation Request card. Refer to {{<link title="Validate Network Protocol and Service Operations#view-on-demand-validation-results" text="View On-demand Validation Results">}}.
 
 {{< /tab >}}
 
@@ -148,7 +148,7 @@ To create and run a request containing checks for more than one protocol and/or 
 
 3. Click **Run Now** to start the validation.  
 
-    The associated on-demand validation result cards (one per protocol and service selected) are opened on your current workbench. Refer to {{<link title="Validate Network Protocol and Service Operations#view-on-demand-validation-results" text="View On-demand Validation Results">}}.
+    The associated on-demand validation result cards (one per protocol and service selected) are accessible from the full-screen Validation Request card. Refer to {{<link title="Validate Network Protocol and Service Operations#view-on-demand-validation-results" text="View On-demand Validation Results">}}.
 
     {{<figure src="/images/netq/valid-request-medium-bgpevpn-running-230.png" width="420">}}
 
@@ -1295,7 +1295,7 @@ You might want to create a scheduled validation that runs more often than the de
 
 8. Click **Save**.
 
-    The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link url="#view-scheduled-validation-results" text="View Scheduled Validation Results">}}. Note that the number of scheduled validations is now two (15 allowed minus 13 remaining = 2).
+    The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link title="Validate Network Protocol and Service Operations#view-scheduled-validation-results" text="View Scheduled Validation Results">}}. Note that the number of scheduled validations is now two (15 allowed minus 13 remaining = 2).
 
     {{<figure src="/images/netq/sch-valid-run-now-320.png" width="500">}}
 
@@ -1364,7 +1364,7 @@ You can create simultaneous validations using the NetQ UI. You can come close us
 
 8. Click **Save**.
 
-    The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link url="#view-scheduled-validation-results" text="View Scheduled Validation Results">}}. Note that the number of scheduled validations is now two (15 allowed minus 13 remaining = 2).
+    The validation can now be selected from the Validation listing (on the small, medium or large size card) and run immediately using **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link title="Validate Network Protocol and Service Operations#view-scheduled-validation-results" text="View Scheduled Validation Results">}}. Note that the number of scheduled validations is now two (15 allowed minus 13 remaining = 2).
 
     {{<figure src="/images/netq/valid-request-select-sched-222.png" width="500">}}
 

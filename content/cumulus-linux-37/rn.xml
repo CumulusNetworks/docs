@@ -43,13 +43,10 @@ Fixed: 2.4.40+dfsg-1+deb8u7</p></td>
 <td><p>If you try reconfigure a DHCP server after you delete the switch configuration with the net del all command, the dhcpd service fails because a duplicate process is running.<br/>
 To work around this issue, edit the /usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py file to change:</p>
 
-
 DHCPD_PID="-pf {0}" 
 
 
-
 <p>to:</p>
-
 
 DHCPD_PID="-pf {1}"
 

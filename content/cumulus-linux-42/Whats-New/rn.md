@@ -197,7 +197,7 @@ pdfhidden: True
 | <a name="CM-16571"></a> [CM-16571](#CM-16571) <a name="CM-16571"></a> | NCLU cannot manage `rsyslog` to addresses routed via a VRF.  In Cumulus Linux 4.0.0 and later, management VRF is enabled by default.   To work around this issue, update the `/etc/network/interfaces` file to disable management VRF. | 3.4.3-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-15812"></a> [CM-15812](#CM-15812) <a name="CM-15812"></a> | Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs. | 3.2.1-3.7.13, 4.0.0-4.2.1 | |
 
-### Fixed issues in 4.2.1
+### Fixed Issues in 4.2.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-31374"></a> [CM-31374](#CM-31374) | CVE-2020-15166: ZeroMQ, a lightweight messaging kernel library<br/>does not properly handle connecting peers before a handshake is<br/>completed. A remote, unauthenticated client connecting to an application<br/>using the libzmq library, running with a socket listening with CURVE<br/>encryption/authentication enabled can take advantage of this flaw to<br/>cause a denial of service affecting authenticated and encrypted clients.<br/>Vulnerable: <= 4.3.1-4+deb10u1<br/>Fixed: 4.3.1-4+deb10u2 | 4.0.0-4.2.0 | |
@@ -460,7 +460,7 @@ pdfhidden: True
 | <a name="CM-16571"></a> [CM-16571](#CM-16571) <a name="CM-16571"></a> | NCLU cannot manage `rsyslog` to addresses routed via a VRF.  In Cumulus Linux 4.0.0 and later, management VRF is enabled by default.   To work around this issue, update the `/etc/network/interfaces` file to disable management VRF. | 3.4.3-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-15812"></a> [CM-15812](#CM-15812) <a name="CM-15812"></a> | Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs. | 3.2.1-3.7.13, 4.0.0-4.2.1 | |
 
-### Fixed issues in 4.2.0
+### Fixed Issues in 4.2.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-30525"></a> [CM-30525](#CM-30525) | When a specific PIM join/prune packet is received from a PIM neighbor the `pimd` process might crash with a core file. | 4.0.0-4.1.1 | |

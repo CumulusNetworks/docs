@@ -324,7 +324,7 @@ pdfhidden: True
 | <a name="CM-16571"></a> [CM-16571](#CM-16571) <a name="CM-16571"></a> | NCLU cannot manage `rsyslog` to addresses routed via a VRF.  In Cumulus Linux 4.0.0 and later, management VRF is enabled by default.   To work around this issue, update the `/etc/network/interfaces` file to disable management VRF. | 3.4.3-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-15812"></a> [CM-15812](#CM-15812) <a name="CM-15812"></a> | Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs. | 3.2.1-3.7.13, 4.0.0-4.2.1 | |
 
-### Fixed issues in 4.0.0
+### Fixed Issues in 4.0.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-29807"></a> [CM-29807](#CM-29807) | After a neighbor is removed, the redistributed neighbor entry is withdrawn from the BGP table, but the prefix might still be selected as the bestpath when the host's originated prefix is not advertised.<br/>To work around this issue, recreate the neighbor entry and flap the interface to the host. <br/>Or, if the host is already down, manually create a neighbor entry with an invalid MAC address, which forces redistribute neighbor to re-withdraw the entry. | 3.7.3-3.7.12 | |

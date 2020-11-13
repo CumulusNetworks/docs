@@ -20,7 +20,7 @@ pdfhidden: True
 | <a name="NETQ-5529"></a> [NETQ-5529](#NETQ-5529) <a name="NETQ-5529"></a> | UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s). | 2.4.0-2.4.1, 3.0.0-3.2.1 | |
 | <a name="NETQ-3451"></a> [NETQ-3451](#NETQ-3451) <a name="NETQ-3451"></a> | UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session. | 2.3.0-2.4.1, 3.0.0-3.2.1 | |
 
-### Fixed issues in 3.2.1
+### Fixed Issues in 3.2.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="NETQ-7546"></a> [NETQ-7546](#NETQ-7546) | Infra: In an on-premises deployment, the Kafka change logs can fill the NetQ appliance or VM disk space rapidly on systems with a large number of MAC or neighbor entries. If the disk usage exceeds 90%, the NetQ service is partially or completely disrupted. To workaround this issue, reduce the retention setting for log cleanup to 30 minutes by running the following script on your NetQ appliance/VM or the master server in a clustered arrangement:<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent"><pre class="code-java"><br />MASTER_IP='cat /mnt/admin/master_ip' ; topics=<span class="code-quote">"netq-app-route-route_key_v1-changelog netq-app-macs-macs_key-changelog netq-app-neighbor-neighbor_key_v1-changelog netq-app-macfdb-macfdb_key_v3-changelog"</span> ; <span class="code-keyword">for</span> topic in $topics ; <span class="code-keyword">do</span> kubectl exec -it rc/kafka-broker-rc-0 -- kafka-topics --zookeeper $MASTER_IP --topic $topic --alter --config delete.retention.ms=1800000 ; done <br /></pre><br /> | 3.2.0 | |
@@ -41,7 +41,7 @@ pdfhidden: True
 | <a name="NETQ-5529"></a> [NETQ-5529](#NETQ-5529) <a name="NETQ-5529"></a> | UI: Snapshot comparison cards may not render correctly after navigating away from a workbench and then returning to it. If you are viewing the Snapshot comparison card(s) on a custom workbench, refresh the page to reload the data. If you are viewing it on the Cumulus Default workbench, after refreshing the page you must recreate the comparison(s). | 2.4.0-2.4.1, 3.0.0-3.2.1 | |
 | <a name="NETQ-3451"></a> [NETQ-3451](#NETQ-3451) <a name="NETQ-3451"></a> | UI: If either the peer_hostname or the peer_asn is invalid, the full screen BGP Service card does not provide the ability to open cards for a selected BGP session. | 2.3.0-2.4.1, 3.0.0-3.2.1 | |
 
-### Fixed issues in 3.2.0
+### Fixed Issues in 3.2.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="NETQ-6732"></a> [NETQ-6732](#NETQ-6732) | CLI: Upgrade to NetQ 3.1.0 using the CLI fails due to an authentication issue. To work around this issue, run the `netq bootstrap master upgrade` command as usual, then use the Admin UI to complete the upgrade at <em><a href="https://" class="external-link" rel="nofollow">https://\</a><netq-appl-vm-hostname-or-ipaddr\>:8443</em>. | 3.1.0 | |

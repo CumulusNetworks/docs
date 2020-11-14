@@ -109,7 +109,7 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 <div style="padding-left: 18px;"><div class="notices tip"><p>If you mistype an address, you must double-click it, or backspace over the error, and retype the address. You cannot select the address by dragging over it as this action attempts to move the card to another location.</p></div></div>
 
-5. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
+5. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="Verify Network Connectivity#view-layer-3-on-demand-trace-results" text="View Layer 3 On-demand Trace Results">}} for details.
 
 {{< /tab >}}
 
@@ -249,7 +249,7 @@ cumulus@switch:~$ netq add trace 10.10.10.63 from 10.10.10.1
 Running job None src 10.10.10.1 dst 10.10.10.63
 ```
 
-Confirmation of the on-demand job is provided. Refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
+Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Network Connectivity#view-layer-3-on-demand-trace-results" text="View Layer 3 On-demand Trace Results">}} for details.
 
 {{< /tab >}}
 
@@ -292,7 +292,7 @@ To create the trace request:
 
 <div style="padding-left: 18px;">In this example, we are starting our trace at <em>server01</em> using its IPv4 address <em>10.1.10.101</em> and ending it at <em>server04</em> whose IPv4 address is <em>10.1.10.104</em>. Because this trace is between two servers, a VRF is needed, in this case the <em>RED</em> VRF.</div>
 
-6. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
+6. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="Verify Network Connectivity#View Layer 3 On-demand Trace Results" text="View Layer 3 On-demandTrace Results">}} for details.
 
 {{< /tab >}}
 
@@ -490,7 +490,7 @@ This example shows a trace from 10.1.10.101 (source, server01) to 10.1.10.104 (d
 cumulus@switch:~$ netq add trace 10.1.10.104 from 10.1.10.101 vrf RED
 ```
 
-Confirmation of the on-demand job is provided. Refer to {{<link title="#View Layer 3 Trace Results" text="View Layer 3 Trace Results">}} for details.
+Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Network Connectivity#View Layer 3 On-demand Trace Results" text="View Layer 3 On-demand Trace Results">}} for details.
 
 {{< /tab >}}
 
@@ -533,7 +533,7 @@ To create a layer 2 trace request:
 
 <div style="padding-left: 18px;">In this example, we are starting our trace at server01 with IPv4 address of 10.1.10.101 and ending it at 44:38:39:00:00:3e (server04) using VLAN 10 and VRF RED. Note: If you do not have VRFs beyond the default, you do not need to enter a VRF.</div>
 
-6. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="#View Layer 2 Trace Results" text="View Layer 2 Trace Results">}} for details.
+6. Click **Run Now**. A corresponding Trace Results card is opened on your workbench. Refer to {{<link title="Verify Network Connectivity#view-layer-2-on-demand-trace-results" text="View Layer 2 On-demand Trace Results">}} for details.
 
 {{< /tab >}}
 
@@ -763,7 +763,7 @@ This example shows a trace from 44:38:39:00:00:32 (source, server01) to 44:38:39
 cumulus@switch:~$ netq add trace 44:38:39:00:00:3e vlan 10 from 44:38:39:00:00:32
 ```
 
-Confirmation of the on-demand job is provided. Refer to {{<link title="#View Layer 2 Trace Results" text="View Layer 2 Trace Results">}} for details.
+Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Network Connectivity#view-layer-2-on-demand-trace-results" text="View Layer 2 On-demand Trace Results">}} for details.
 
 {{< /tab >}}
 
@@ -775,7 +775,7 @@ After you have started an on-demand trace, the results are displayed either in t
 
 ### View Layer 3 On-demand Trace Results
 
-View the results for a layer 2 trace based on how you created the request.
+View the results for a layer 3 trace based on how you created the request.
 
 {{< tabs "TabID832" >}}
 
@@ -809,7 +809,7 @@ After you have run the `netq add trace` command, you are able to view the result
 
 1. Open the NetQ UI and log in.
 
-2. Open the xxxx workbench where the associated On-demand Trace Result card has been placed.
+2. Open the workbench where the associated On-demand Trace Result card has been placed.
 
 To view more details for this and other traces, refer to {{<link title="#View Detailed On-demand Trace Results" text="Detailed On-demand Trace Results">}}.
 
@@ -859,7 +859,7 @@ After you have run the `netq add trace` command, you are able to view the result
 
 1. Open the NetQ UI and log in.
 
-2. Open the xxxx workbench where the associated On-demand Trace Result card has been placed.
+2. Open the workbench where the associated On-demand Trace Result card has been placed.
 
 To view more details for this and other traces, refer to {{<link title="#View Detailed On-demand Trace Results" text="Detailed On-demand Trace Results">}}.
 
@@ -1017,8 +1017,7 @@ To schedule a trace from the NetQ UI:
 
 2. Open the Trace Request card.
 
-    - On new workbench: Click in the **Global Search** box. Type *trace*. Click on card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
 
 3. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
 
@@ -1214,37 +1213,41 @@ Once a scheduled trace request has completed, the results are available in the c
 
 To view the results:
 
-1. Open the full screen Trace Request card to view all scheduled traces that have been run.
+1. Open the Trace Request card.
+
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+
+2. Change to the full-screen card using the card size picker to view all scheduled traces.
 
     {{<figure src="/images/netq/sch-trace-result-fullscr-230.png" width="700">}}
 
-2. Select the scheduled trace you want to view results for by clicking in the first column of the result and clicking the check box.
+3. Select the scheduled trace results you want to view.
 
-3. On the Edit Menu that appears at the bottom of the window, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Cards). This opens the medium Scheduled Trace Results card(s) for the selected items.
+4. Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} (Open Card). This opens the medium Scheduled Trace Results card(s) for the selected items.
 
     {{<figure src="/images/netq/sch-trace-result-medium.png" width="200">}}
 
-4. Note the distribution of results. Are there many failures? Are they concentrated together in time? Has the trace begun passing again?
+5. Note the distribution of results. Are there many failures? Are they concentrated together in time? Has the trace begun passing again?
 
-5. Hover over the heat maps to view the status numbers and what percentage of the total results that represents for a given region.
+6. Hover over the heat maps to view the status numbers and what percentage of the total results that represents for a given region.
 
-6. Switch to the large Scheduled Trace Result card.
+7. Switch to the large Scheduled Trace Result card.
 
     {{<figure src="/images/netq/sch-trace-result-large-sum-tab.png" width="500">}}
 
-7. If there are a large number of warnings or failures, view the associated messages by selecting **Failures** or **Warning** in the filter above the table. This might help narrow the failures down to a particular device or small set of devices that you can investigate further.
+8. If there are a large number of warnings or failures, view the associated messages by selecting **Failures** or **Warning** in the filter above the table. This might help narrow the failures down to a particular device or small set of devices that you can investigate further.
 
-8. Look for a consistent number of paths, MTU, hops in the small charts under the heat map. Changes over time here might correlate with the     messages and give you a clue to any specific issues. Note if the number of bad nodes changes over time. Devices that become unreachable are often the cause of trace failures.
+9. Look for a consistent number of paths, MTU, hops in the small charts under the heat map. Changes over time here might correlate with the     messages and give you a clue to any specific issues. Note if the number of bad nodes changes over time. Devices that become unreachable are often the cause of trace failures.
 
-9. View the available paths for each run, by selecting **Paths** in the filter above the table.
+10. View the available paths for each run, by selecting **Paths** in the filter above the table.
 
-10. You can view the configuration of the request that produced the results shown on this card workflow, by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/>. If you want to change the configuration, click **Edit** to open the large Trace Request card, pre-populated with the current configuration. Follow the instructions in {{<link url="#create-a-trace-to-run-on-a-regular-basis-scheduled-trace" text="Create a Scheduled Trace Request">}} to make your changes in the same way you created a new scheduled trace.
+11. You can view the configuration of the request that produced the results shown on this card workflow, by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/>. If you want to change the configuration, click **Edit** to open the large Trace Request card, pre-populated with the current configuration. Follow the instructions in {{<link url="#create-a-trace-to-run-on-a-regular-basis-scheduled-trace" text="Create a Scheduled Trace Request">}} to make your changes in the same way you created a new scheduled trace.
 
-11. To view a summary of all scheduled trace results, switch to the full screen card.
+12. To view a summary of all scheduled trace results, switch to the full screen card.
 
-12. Look for changes and patterns in the results for additional clues to isolate root causes of trace failures. Select and view related traces using the Edit menu.
+13. Look for changes and patterns in the results for additional clues to isolate root causes of trace failures. Select and view related traces using the Edit menu.
 
-13. View the details of any specific trace result by clicking on the trace. A new window opens similar to the following:
+14. View the details of any specific trace result by clicking on the trace. A new window opens similar to the following:
 
     {{<figure src="/images/netq/sch-trace-result-fullscr-trace-detail-230.png" width="700">}}
 
@@ -1257,7 +1260,7 @@ To view the results:
 </ul>
 </div>
 
-14. Export this data by clicking **Export** or click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> to return to the results list to view another trace in detail.
+15. Export this data by clicking **Export** or click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> to return to the results list to view another trace in detail.
 
 {{< /tab >}}
 
@@ -1355,17 +1358,31 @@ To modify a scheduled trace:
 
 1. Open the Trace Request card.
 
-2. Select the trace you want to change from the dropdown list.
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
 
-3. Modify the configuration as desired.
+2. Select the trace from the **New Trace Request** dropdown.
 
-4. Click **Update** to save the changes.
+    {{<figure src="/images/netq/sch-trace-list-dropdown-320.png" width="250">}}
 
-    {{%notice tip%}}
+3. Edit the schedule, VLAN or VRF as needed.
 
-If you click **Save as New**, a new scheduled trace is created and the original trace remains unchanged.
+4. Click **Update**.
 
-{{%/notice%}}
+5. Click **Yes** to complete the changes, or change the name of the previous version of this scheduled trace.
+
+    {{<figure src="/images/netq/sch-trace-modify-confirmation-320.png" width="250">}}
+
+    1. Click the *change name* link.
+
+    2. Edit the name.
+
+        {{<figure src="/images/netq/sch-trace-change-name-320.png" width="250">}}
+
+    3. Click **Update**.
+
+    4. Click **Yes** to complete the changes, or repeat these steps until you have the name you want.
+
+    The validation can now be selected from the New Trace listing (on the small, medium or large size card) and run immediately using **Go** or **Run Now**, or you can wait for it to run the first time according to the schedule you specified. Refer to {{<link title="#view-scheduled-trace-results" text="View Scheduled Trace Results">}}.
 
 ### Remove Scheduled Traces
 
@@ -1377,31 +1394,118 @@ Both a standard user and an administrative user can remove scheduled traces. No 
 
 {{%/notice%}}
 
-{{< tabs "TabID1348" >}}
+{{< tabs "TabID1372" >}}
 
 {{< tab "NetQ UI" >}}
 
 1. Open the Trace Request card.
 
-    - On new workbench: Click in the **Global Search** box. Type *trace*. Click on card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
 
 2. Change to the full-screen card using the card size picker.
 
-3. Select one or more traces that you want to remove and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}}.
+3. Select one or more traces to remove.
+
+    {{<figure src="/images/netq/sch-trace-delete-trace-320.png" width="700">}}
+
+4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}}.
 
 {{< /tab >}}
 
 {{< tab "NetQ CLI" >}}
 
-Run the `netq del trace` command to remove a scheduled trace.
+1. Determine the name of the scheduled trace you want to remove. Run:
 
-This example deletes the trace named *L01toBor01Daily*.
+    ```
+    netq show trace summary [name <text-trace-name>] [around <text-time-hr>] [json]
+    ```
 
-```
-cumulus@switch:~$ netq del trace L01toBor01Daily
-Successfully deleted schedule trace L01toBor01Daily
-```
+    This example shows all scheduled traces in JSON format. Alternately, drop the `json` option and obtain the name for the standard output.
+
+    ```
+    cumulus@switch:~$ netq show trace summary json
+    [
+        {
+            "job_end_time": 1605300327131,
+            "job_req_time": 1604424893944,
+            "job_start_time": 1605300318198,
+            "jobid": "f8d6a2c5-54db-44a8-9a5d-9d31f4e4701d",
+            "status": "Complete",
+            "status_details": "1",
+            "trace_name": "leaf01toborder01",
+            "trace_params": {
+                "alert_on_failure": "0",
+                "dst": "10.10.10.63",
+                "src": "10.10.10.1",
+                "vlan": "-1",
+                "vrf": ""
+            }
+        },
+        {
+            "job_end_time": 1605300237448,
+            "job_req_time": 1604424893944,
+            "job_start_time": 1605300206939,
+            "jobid": "f8d6a2c5-54db-44a8-9a5d-9d31f4e4701d",
+            "status": "Complete",
+            "status_details": "1",
+            "trace_name": "leaf01toborder01",
+            "trace_params": {
+                "alert_on_failure": "0",
+                "dst": "10.10.10.63",
+                "src": "10.10.10.1",
+                "vlan": "-1",
+                "vrf": ""
+            }
+        },
+        {
+            "job_end_time": 1605300223824,
+            "job_req_time": 1604599038706,
+            "job_start_time": 1605300206930,
+            "jobid": "c7174fad-71ca-49d3-8c1d-67962039ebf9",
+            "status": "Complete",
+            "status_details": "1",
+            "trace_name": "Abc",
+            "trace_params": {
+                "alert_on_failure": "1",
+                "dst": "27.0.0.2",
+                "src": "27.0.0.1",
+                "vlan": "-1",
+                "vrf": ""
+            }
+        },
+        {
+            "job_end_time": 1605300233045,
+            "job_req_time": 1604519423182,
+            "job_start_time": 1605300206930,
+            "jobid": "38a75e0e-7f99-4e0c-8449-f63def1ab726",
+            "status": "Complete",
+            "status_details": "1",
+            "trace_name": "L01toB01Daily",
+            "trace_params": {
+                "alert_on_failure": "0",
+                "dst": "10.10.10.63",
+                "src": "10.10.10.1",
+                "vlan": "-1",
+                "vrf": ""
+            }
+        },
+    ...
+    ```
+
+2. Remove the trace. Run:
+
+    ```
+    netq del trace <text-trace-name>
+    ```
+
+    This example removes the *leaf01toborder01* trace.
+
+    ```
+    cumulus@switch:~$ netq del trace leaf01toborder01
+    Successfully deleted schedule trace leaf01toborder01
+    ```
+
+3. Repeat these steps for additional traces you want to remove.
 
 {{< /tab >}}
 

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32226</td>
+<td><p>If switchd successfully signals clagd that it is going down, clagd stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if switchd does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32214</td>
 <td><p>CVE-2020-8037: The ppp de-capsulator in tcpdump 4.9.3 can be convinced to allocate a large amount of memory.  The buffer should be big enough to hold the captured data, but it doesn’t need to be big enough to hold the entire on-the-network packet, if we haven’t captured all of it.<br/>
 Vulnerable: &lt;= 4.9.3-1~deb8u1<br/>
@@ -2764,6 +2770,12 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32226</td>
+<td><p>If switchd successfully signals clagd that it is going down, clagd stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if switchd does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </p></td>
+<td>3.7.12-3.7.13</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32214</td>

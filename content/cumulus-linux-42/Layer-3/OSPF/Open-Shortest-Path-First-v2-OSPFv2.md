@@ -1007,9 +1007,23 @@ router ospf
 
 ### Configure the OSPF Distance
 
-Cumulus Linux provides several commands to change the administrative distance for OSPF routes.
+Administrative distance (AD) determines which source to use if the same route information is received from two different sources. Cumulus Linux provides several commands to change the AD for OSPF routes. The default AD is 110.
 
-These example vtysh commands set the distance for an entire group of routes, instead of a specific route.
+The following example commands set the distance for an entire group of routes:
+
+{{< tabs "TabID1014 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add ospf distance 254
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1023,7 +1037,25 @@ switch# exit
 cumulus@switch:~$
 ```
 
-These example vtysh commands change the OSPF administrative distance to 150 for internal routes and 220 for external routes:
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The following example commands change the OSPF administrative distance to 150 for internal routes and 220 for external routes:
+
+{{< tabs "TabID1045 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add ospf distance ospf intra-area 150 inter-area 150 external 220
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1037,7 +1069,25 @@ switch# exit
 cumulus@switch:~$
 ```
 
-These example vtysh commands change the OSPF administrative distance to 150 for internal routes to a subnet or network inside the same area as the router:
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The following example commands change the OSPF administrative distance to 150 for internal routes to a subnet or network inside the same area as the router:
+
+{{< tabs "TabID1076 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add ospf distance ospf intra-area 150
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1051,7 +1101,25 @@ switch# exit
 cumulus@switch:~$
 ```
 
-These example vtysh commands change the OSPF administrative distance to 150 for internal routes to a subnet in an area of which the router is *not* a part:
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The following example commands change the OSPF administrative distance to 150 for internal routes to a subnet in an area of which the router is *not* a part:
+
+{{< tabs "TabID1107 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add ospf distance ospf inter-area 150
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1065,7 +1133,11 @@ switch# exit
 cumulus@switch:~$
 ```
 
-The `vtysh` commands save the configuration to the `/etc/frr/frr.conf` file. For example:
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and `vtysh` commands save the configuration to the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...

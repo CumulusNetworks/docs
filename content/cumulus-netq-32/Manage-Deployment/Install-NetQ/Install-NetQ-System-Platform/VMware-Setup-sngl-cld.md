@@ -27,7 +27,11 @@ Follow these steps to setup and configure your VM for a cloud deployment:
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-6. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+6. Change the hostname for the VM from the default value.
+
+    {{<netq-install/set-hostname>}}
+
+7. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap server="single" version="3.2.0" deployment="cloud" platform="vm">}}
 

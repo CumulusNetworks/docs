@@ -7,6 +7,25 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32274</td>
+<td><p>If you apply an outbound route map to a BGP peer that uses set as-path prepend last-as, advertised locally-originated routes have the ASN of the peer prepended to the AS path.<br/>
+This might trigger AS path loop prevention on the peer, where the peer ignores locally-originated prefixes.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32226</td>
+<td><p>If switchd successfully signals clagd that it is going down, clagd stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if switchd does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32215</td>
+<td><p>On the Dell S5048F-ON switch, optical transceivers do not come up and the modules are in reset mode.</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32169</td>
 <td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
@@ -18,13 +37,10 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td><p>If you try reconfigure a DHCP server after you delete the switch configuration with the net del all command, the dhcpd service fails because a duplicate process is running.<br/>
 To work around this issue, edit the /usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py file to change:</p>
 
-
 DHCPD_PID="-pf {0}" 
 
 
-
 <p>to:</p>
-
 
 DHCPD_PID="-pf {1}"
 
@@ -1829,6 +1845,18 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32226</td>
+<td><p>If switchd successfully signals clagd that it is going down, clagd stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if switchd does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </p></td>
+<td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32215</td>
+<td><p>On the Dell S5048F-ON switch, optical transceivers do not come up and the modules are in reset mode.</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32169</td>

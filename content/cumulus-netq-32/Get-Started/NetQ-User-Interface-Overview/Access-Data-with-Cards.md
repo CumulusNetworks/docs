@@ -235,14 +235,15 @@ All cards have a default time period for the data shown on the card, typically t
 To change the time period for a card:
 
 1. Hover over any card.
+
 2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> in the header.
+
 3. Select a time period from the dropdown list.
 
-    {{< figure src="/images/netq/time-picker-popup-222.png" width="200" >}}
+    {{<figure src="/images/netq/time-picker-popup-222.png" width="200">}}
 
 {{<notice tip>}}
-Changing the time period in this manner only changes the time period for
-the given card.
+Changing the time period in this manner only changes the time period for the given card.
 {{</notice>}}
 
 ### Switch to a Different Card Size

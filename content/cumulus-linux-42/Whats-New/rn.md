@@ -14,6 +14,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-32274"></a> [CM-32274](#CM-32274) <a name="CM-32274"></a> | If you apply an outbound route map to a BGP peer that uses `set as-path prepend last-as`, advertised locally-originated routes have the ASN of the peer prepended to the AS path.<br/>This might trigger AS path loop prevention on the peer, where the peer ignores locally-originated prefixes. | 4.2.1 | |
+| <a name="CM-32226"></a> [CM-32226](#CM-32226) <a name="CM-32226"></a> | If `switchd` successfully signals `clagd` that it is going down, `clagd` stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if `switchd` does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers.  | 3.7.12-3.7.13, 4.0.0-4.2.1 | |
+| <a name="CM-32215"></a> [CM-32215](#CM-32215) <a name="CM-32215"></a> | On the Dell S5048F-ON switch, optical transceivers do not come up and the modules are in reset mode. | 4.0.0-4.2.1 | |
 | <a name="CM-32169"></a> [CM-32169](#CM-32169) <a name="CM-32169"></a> | OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper. | 3.0.0-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-32149"></a> [CM-32149](#CM-32149) <a name="CM-32149"></a> | If you try reconfigure a DHCP server after you delete the switch configuration with the `net del all` command, the `dhcpd` service fails because a duplicate process is running.<br/>To work around this issue, edit the `/usr/lib/python2.7/dist-packages/nclu/plugins/dhcp.py` file to change:<br /><pre>DHCPD_PID="-pf {0}" <br /></pre><br />to:<br /><pre>DHCPD_PID="-pf {1}"<br /></pre><br /> | 3.7.13, 4.2.1 | |
 | <a name="CM-32112"></a> [CM-32112](#CM-32112) <a name="CM-32112"></a> | On the ARM platform, NTP peer associations slowly increase to larger offsets (~500ms). | 4.2.1 | |
@@ -197,7 +200,7 @@ pdfhidden: True
 | <a name="CM-16571"></a> [CM-16571](#CM-16571) <a name="CM-16571"></a> | NCLU cannot manage `rsyslog` to addresses routed via a VRF.  In Cumulus Linux 4.0.0 and later, management VRF is enabled by default.   To work around this issue, update the `/etc/network/interfaces` file to disable management VRF. | 3.4.3-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-15812"></a> [CM-15812](#CM-15812) <a name="CM-15812"></a> | Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs. | 3.2.1-3.7.13, 4.0.0-4.2.1 | |
 
-### Fixed issues in 4.2.1
+### Fixed Issues in 4.2.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-31374"></a> [CM-31374](#CM-31374) | CVE-2020-15166: ZeroMQ, a lightweight messaging kernel library<br/>does not properly handle connecting peers before a handshake is<br/>completed. A remote, unauthenticated client connecting to an application<br/>using the libzmq library, running with a socket listening with CURVE<br/>encryption/authentication enabled can take advantage of this flaw to<br/>cause a denial of service affecting authenticated and encrypted clients.<br/>Vulnerable: <= 4.3.1-4+deb10u1<br/>Fixed: 4.3.1-4+deb10u2 | 4.0.0-4.2.0 | |
@@ -247,6 +250,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-32226"></a> [CM-32226](#CM-32226) <a name="CM-32226"></a> | If `switchd` successfully signals `clagd` that it is going down, `clagd` stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if `switchd` does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers.  | 3.7.12-3.7.13, 4.0.0-4.2.1 | |
+| <a name="CM-32215"></a> [CM-32215](#CM-32215) <a name="CM-32215"></a> | On the Dell S5048F-ON switch, optical transceivers do not come up and the modules are in reset mode. | 4.0.0-4.2.1 | |
 | <a name="CM-32169"></a> [CM-32169](#CM-32169) <a name="CM-32169"></a> | OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper. | 3.0.0-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-32006"></a> [CM-32006](#CM-32006) <a name="CM-32006"></a> | Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the `reboot` command.  | 3.7.12-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-31954"></a> [CM-31954](#CM-31954) <a name="CM-31954"></a> | A security issue was discovered in the MariaDB database server.<br/>Vulnerable: 10.3.25-0<br/>Fixed: 10.3.25-0+deb10u1 | 4.0.0-4.2.1 | |
@@ -460,7 +465,7 @@ pdfhidden: True
 | <a name="CM-16571"></a> [CM-16571](#CM-16571) <a name="CM-16571"></a> | NCLU cannot manage `rsyslog` to addresses routed via a VRF.  In Cumulus Linux 4.0.0 and later, management VRF is enabled by default.   To work around this issue, update the `/etc/network/interfaces` file to disable management VRF. | 3.4.3-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-15812"></a> [CM-15812](#CM-15812) <a name="CM-15812"></a> | Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs. | 3.2.1-3.7.13, 4.0.0-4.2.1 | |
 
-### Fixed issues in 4.2.0
+### Fixed Issues in 4.2.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-30525"></a> [CM-30525](#CM-30525) | When a specific PIM join/prune packet is received from a PIM neighbor the `pimd` process might crash with a core file. | 4.0.0-4.1.1 | |

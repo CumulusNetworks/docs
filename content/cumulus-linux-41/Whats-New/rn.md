@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-32226"></a> [CM-32226](#CM-32226) <a name="CM-32226"></a> | If `switchd` successfully signals `clagd` that it is going down, `clagd` stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if `switchd` does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers.  | 3.7.12-3.7.13, 4.0.0-4.2.1 | |
+| <a name="CM-32215"></a> [CM-32215](#CM-32215) <a name="CM-32215"></a> | On the Dell S5048F-ON switch, optical transceivers do not come up and the modules are in reset mode. | 4.0.0-4.2.1 | |
 | <a name="CM-32169"></a> [CM-32169](#CM-32169) <a name="CM-32169"></a> | OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper. | 3.0.0-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-32006"></a> [CM-32006](#CM-32006) <a name="CM-32006"></a> | Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the `reboot` command.  | 3.7.12-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-31954"></a> [CM-31954](#CM-31954) <a name="CM-31954"></a> | A security issue was discovered in the MariaDB database server.<br/>Vulnerable: 10.3.25-0<br/>Fixed: 10.3.25-0+deb10u1 | 4.0.0-4.2.1 | |
@@ -282,7 +284,7 @@ pdfhidden: True
 | <a name="CM-16571"></a> [CM-16571](#CM-16571) <a name="CM-16571"></a> | NCLU cannot manage `rsyslog` to addresses routed via a VRF.  In Cumulus Linux 4.0.0 and later, management VRF is enabled by default.   To work around this issue, update the `/etc/network/interfaces` file to disable management VRF. | 3.4.3-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-15812"></a> [CM-15812](#CM-15812) <a name="CM-15812"></a> | Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs. | 3.2.1-3.7.13, 4.0.0-4.2.1 | |
 
-### Fixed issues in 4.1.1
+### Fixed Issues in 4.1.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-29151"></a> [CM-29151](#CM-29151) | The following security vulnerability in the gnutls28 / libgnutls* packages has been announced for Cumulus Linux 4.x (Cumulus Linux 3.x is not vulnerable):<br/>CVE-2020-11501: GnuTLS 3.6.x before 3.6.13 uses incorrect cryptography for DTLS. The earliest affected version is 3.6.3 (2018-07-16) because of an error in a 2017-10-06 commit. The DTLS client always uses 32 '\0' bytes instead of a random value, and thus contributes no randomness to a DTLS negotiation. This breaks the security guarantees of the DTLS protocol.<br/>Vulnerable: <= 3.6.7-4+deb10u2<br/>Not vulnerable: 3.6.7-4+deb10u3 | 4.0.0-4.1.0 | |
@@ -296,6 +298,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="CM-32226"></a> [CM-32226](#CM-32226) <a name="CM-32226"></a> | If `switchd` successfully signals `clagd` that it is going down, `clagd` stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if `switchd` does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers.  | 3.7.12-3.7.13, 4.0.0-4.2.1 | |
+| <a name="CM-32215"></a> [CM-32215](#CM-32215) <a name="CM-32215"></a> | On the Dell S5048F-ON switch, optical transceivers do not come up and the modules are in reset mode. | 4.0.0-4.2.1 | |
 | <a name="CM-32169"></a> [CM-32169](#CM-32169) <a name="CM-32169"></a> | OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper. | 3.0.0-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-32006"></a> [CM-32006](#CM-32006) <a name="CM-32006"></a> | Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the `reboot` command.  | 3.7.12-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-31954"></a> [CM-31954](#CM-31954) <a name="CM-31954"></a> | A security issue was discovered in the MariaDB database server.<br/>Vulnerable: 10.3.25-0<br/>Fixed: 10.3.25-0+deb10u1 | 4.0.0-4.2.1 | |
@@ -544,7 +548,7 @@ pdfhidden: True
 | <a name="CM-16571"></a> [CM-16571](#CM-16571) <a name="CM-16571"></a> | NCLU cannot manage `rsyslog` to addresses routed via a VRF.  In Cumulus Linux 4.0.0 and later, management VRF is enabled by default.   To work around this issue, update the `/etc/network/interfaces` file to disable management VRF. | 3.4.3-3.7.13, 4.0.0-4.2.1 | |
 | <a name="CM-15812"></a> [CM-15812](#CM-15812) <a name="CM-15812"></a> | Multicast forwarding fails for IP addresses whose DMAC overlaps with reserved DIPs. | 3.2.1-3.7.13, 4.0.0-4.2.1 | |
 
-### Fixed issues in 4.1.0
+### Fixed Issues in 4.1.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="CM-28825"></a> [CM-28825](#CM-28825) | `hostapd` is not installed in Cumulus Linux 4.0.0 by default.<br/>To work around this issue, run the following commands to install the package:<br /><pre>cumulus&#64;switch:~$ sudo apt-get update -y<br />cumulus&#64;switch:~$ sudo apt-get install hostapd -y<br /></pre><br /> | 4.0.0 | |

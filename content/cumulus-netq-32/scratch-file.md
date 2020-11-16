@@ -22,6 +22,10 @@ pdfhidden: true
 
 <div class="notices note"><p>note text</p></div>
 
+{{< expand "title" >}}
+
+{{< /expand >}}
+
 {{<notice note>}}
 When entering a time value in the <code>netq show evpn</code> command, you must include a numeric value <em>and</em> the unit of measure:
 <ul>

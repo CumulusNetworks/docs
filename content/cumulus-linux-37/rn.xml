@@ -538,6 +538,20 @@ Fixed: 6.8.9.9-5+deb8u20</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-30885</td>
+<td><p>On a Mellanox switch with the Spectrum ASIC, you see LPC I2C driver errors similar to the following during boot:</p>
+
+Jul 30 23:49:41.651453 mlx-switch systemd[1]: Started udev Kernel Device Manager.
+Jul 30 23:49:41.654978 mlx-switch systemd[1]: Starting LSB: Set preliminary keymap...
+Jul 30 23:49:41.668214 mlx-switch kernel: LPCI2C ERR: Invalid flag 0x4 in msg 0
+Jul 30 23:49:41.668265 mlx-switch kernel: LPCI2C ERR: Incorrect message
+...
+
+</td>
+<td>3.7.13</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-30879</td>
 <td><p>NCLU restarts FRR when removing a BGP VRF IPv4 aggregate-address command.</p>
 </td>

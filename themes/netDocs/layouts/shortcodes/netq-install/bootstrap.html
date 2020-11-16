@@ -289,13 +289,13 @@
 
     <pre>cumulus@<hostname>:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-3.2.0.tgz</pre>
 
-    <p>Allow about five to ten minutes for this to complete,  and only then continue to the next step.</p>
+    <p>Allow about five to ten minutes for this to complete, and only then continue to the next step.</p>
 
 {{- if  eq (.Get "deployment") "onprem" -}}
 
     <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset [purge-db|keep-db]</code> and then try again.</p></div>
 
-    <div class="notices note"><p>If you have changed the IP address or hostname of the NetQ On-premises VM <em>after</em> this step, you need to re-register this address with NetQ as follows:</p>
+    <div class="notices note"><p>If you have change the IP address or hostname of the NetQ On-premises VM <em>after</em> this step, you need to re-register this address with NetQ as follows:</p>
 
     <p>Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.</p>
     <pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre>
@@ -306,7 +306,7 @@
 
     <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.</p></div>
 
-    <div class="notices note"><p>If you have changed the IP address or hostname of the NetQ Cloud VM <em>after</em> this step, you need to re-register this address with NetQ as follows:</p>
+    <div class="notices note"><p>If you have change the IP address or hostname of the NetQ Cloud VM <em>after</em> this step, you need to re-register this address with NetQ as follows:</p>
 
     <p>Reset the VM.</p>
     <pre>cumulus@hostname:~$ netq bootstrap reset</pre>

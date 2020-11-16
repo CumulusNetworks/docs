@@ -67,7 +67,9 @@ ip route 10.10.10.101/32 10.0.1.0
 ...
 ```
 
-The following example commands configure Cumulus Linux to send traffic with the destination prefix 10.10.10.61/32 out swp3 (10.0.0.32/31) to the next hop 10.0.0.33 in vrf blue:
+The following example commands configure Cumulus Linux to send traffic with the destination prefix 10.10.10.61/32 out swp3 (10.0.0.32/31) to the next hop 10.0.0.33 in vrf blue.
+
+{{< img src="/images/cumulus-linux/static-vrf.png" width="500" >}}
 
 {{< tabs "TabID74 ">}}
 

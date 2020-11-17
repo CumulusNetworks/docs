@@ -2,10 +2,12 @@
 title: NetQ CLI Reference
 author: Cumulus Networks
 weight: 1100
-bookhidden: true
+toc: 3
+right_toc_levels: 2
 pdfhidden: true
+draft: true
 ---
-This reference provides details about each of the NetQ CLI commands, starting with the xxx release. For an overview of the CLI structure and usage, read {{<link title="NetQ Command Line Overview">}}.
+This reference provides details about each of the NetQ CLI commands, starting with the 2.4.0 release. For an overview of the CLI structure and usage, read {{<link title="NetQ Command Line Overview">}}. The commands are grouped into functional areas. When options are available, they should be used in the order listed.
 
 ## Check Commands
 
@@ -13,52 +15,102 @@ All of the NetQ check commands begin with `netq check`. They are used to validat
 
 ### netq check agents
 
-Collects [retrieves?] the communication status of all nodes (leafs, spines, and hosts) running the NetQ Agent in your network fabric. The output displays the total number of nodes found and how many of those have not been heard from in 90 seconds.
+Collects the communication status of all nodes (leafs, spines, and hosts) running the NetQ Agent in your network fabric. The output displays the total number of nodes found and how many of those have not been heard from in 90 seconds.
 
-*Syntax*
+#### Syntax
 
 ```
-netq check agents [json]
+netq check agents
+   [label <text-label-name> | hostnames <text-list-hostnames>]
+   [include <agent-number-range-list> | exclude <agent-number-range-list>]
+   [around <text-time>]
+   [json]
 ```
 
 #### Options
 
 | Option | Required | Description |
 | ---- | ---- | ---- |
-| json | No | Display the output in JSON file format instead of default on-screen text format.|
+| label \<text-label0name\> | No | Reserved |
+| hostnames \<text-list-hostnames\> | No | Comma-separated list (no spaces) of hostnames with to include in validation |
+| include \<agent-number-range-list\> | No | Include the specified validation tests |
+| exclude \<agent-number-range-list\> | No | Exclude the specified validation tests |
+| around \<text-time\> | No | Perform the validation for around the time specified; value must include unit of measure (seconds [s], minutes [m], hours [h], days [d], weeks [w]) |
+| json | No | Display the output in JSON file format instead of default on-screen text format |
 
 #### Command History
 
 | Release | Description |
 | ---- | ---- |
-| 1.0 | Introduced |
+| 3.2.0 | No changes |
+| 3.1.0 | No changes |
+| 3.0.0 | Added `hostnames` option |
+| 2.4.0 | Add `include` and `exclude` options; output changed to include individual test status |
 
 #### Sample Usage
 
-Find nodes in network fabric with stale communications
-cumulus@switch:~$ netq check agents
-Checked nodes: 11, Rotten nodes: 0
-Find nodes in network fabric with stale communications and display the results in JSON format
-cumulus@ts:~$ netq check agents json
-{
-    "failedNodes":[
+Basic Validation: All devices, all tests, currently
 
-    ],
-    "summary":{
-        "checkedNodeCount":11,
-        "failedNodeCount":0
-    }
-}
+```
+cumulus@switch:~$ netq check agents
+agent check result summary:
+
+Total nodes         : 21
+Checked nodes       : 21
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Agent Health Test   : passed
+```
+
+Validation for Selected Devices
+
+```
+cumulus@switch:~$ netq check agents hostnames leaf01,leaf02,leaf03,leaf04
+agent check result summary:
+
+Total nodes         : 4
+Checked nodes       : 4
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Agent Health Test   : passed
+```
+
+Validation for a Time in the Past
+
+```
+cumulus@switch:~$ netq check agents around 4h
+agent check result summary:
+
+Total nodes         : 21
+Checked nodes       : 21
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Agent Health Test   : passed
+```
 
 #### Related Commands
 
 - netq show agents (make these links)
+- netq show unit-tests agent
 - netq config agent
 
+- - -
+
 ### netq check bgp
+
 Validates that all configured route peering is established in your network fabric by looking for consistency across BGP sessions; in particular, whether duplicate router IDs exist and if any sessions are in the unestablished state. The output displays the total number of nodes found and how many are reporting session failures. It also displays the total number of [active] BGP sessions at the specified time and the number of session failures for all nodes. For nodes with session failures, additional details are displayed, including the cause of the failure.
+
 If you have nodes that implement virtual routing and forwarding (VRF), you can request status based on the relevant routing table. VRF is commonly configured in multi-tenancy deployments to maintain separate domains for each tenant.
-Syntax
+
+#### Syntax
+
+```
 netq check bgp 
 		[vrf (default|mgmt)]
 		[around <text-time>]

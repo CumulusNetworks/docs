@@ -26,6 +26,12 @@ This might trigger AS path loop prevention on the peer, where the peer ignores l
 <td></td>
 </tr>
 <tr>
+<td>CM-32181</td>
+<td><p>The lldpd service sends lldp packets with a MAC address instead of the interface name in the port ID Type-Length-Value (TLV), which results in the lldp neighbor showing the MAC address for the peer interface and can cause a NetQ trace fail.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32169</td>
 <td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>

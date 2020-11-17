@@ -118,7 +118,8 @@ The commands save the static route configuration in the `/etc/frr/frr.conf` file
 
 ```
 ...
-ip route 10.10.10.61/32 10.0.0.33 vrf blue
+vrf blue
+ ip route 10.10.10.61/32 10.0.0.33
 ...
 ```
 

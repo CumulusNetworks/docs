@@ -9,13 +9,19 @@ draft: true
 ---
 This reference provides details about each of the NetQ CLI commands, starting with the 2.4.0 release. For an overview of the CLI structure and usage, read {{<link title="NetQ Command Line Overview">}}. The commands are grouped into functional areas. When options are available, they should be used in the order listed.
 
-## Check Commands
+## Validation Commands
 
-All of the NetQ check commands begin with `netq check`. They are used to validate various elements in your network fabric. They are described here in alphabetical order.
+All of the NetQ check commands begin with `netq check`. They are used to validate various elements in your network fabric. Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. The commands are listed in alphabetical order.
 
 ### netq check agents
 
-Collects the communication status of all nodes (leafs, spines, and hosts) running the NetQ Agent in your network fabric. The output displays the total number of nodes found and how many of those have not been heard from in 90 seconds.
+Validates the communication status of all nodes (leafs, spines, and hosts) running the NetQ Agent in your network fabric. The output displays the status (pass/fail) of all tests and a summary including:
+
+- Total number of nodes found
+- Number of nodes validated
+- Number of nodes that failed the validation
+- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes with warnings
 
 #### Syntax
 
@@ -27,23 +33,27 @@ netq check agents
    [json]
 ```
 
+#### Required Arguments
+
+None
+
 #### Options
 
-| Option | Required | Description |
+| Option | Value | Description |
 | ---- | ---- | ---- |
-| label \<text-label0name\> | No | Reserved |
-| hostnames \<text-list-hostnames\> | No | Comma-separated list (no spaces) of hostnames with to include in validation |
-| include \<agent-number-range-list\> | No | Include the specified validation tests |
-| exclude \<agent-number-range-list\> | No | Exclude the specified validation tests |
-| around \<text-time\> | No | Perform the validation for around the time specified; value must include unit of measure (seconds [s], minutes [m], hours [h], days [d], weeks [w]) |
-| json | No | Display the output in JSON file format instead of default on-screen text format |
+| label | \<text-label-name\> | Reserved |
+| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames with to include in validation |
+| include | \<agent-number-range-list\> | Include the specified validation tests |
+| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
 
 #### Command History
 
+A release is included if there were changes to the command, otherwise it is not listed.
+
 | Release | Description |
 | ---- | ---- |
-| 3.2.0 | No changes |
-| 3.1.0 | No changes |
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Add `include` and `exclude` options; output changed to include individual test status |
 
@@ -104,73 +114,102 @@ Agent Health Test   : passed
 
 ### netq check bgp
 
-Validates that all configured route peering is established in your network fabric by looking for consistency across BGP sessions; in particular, whether duplicate router IDs exist and if any sessions are in the unestablished state. The output displays the total number of nodes found and how many are reporting session failures. It also displays the total number of [active] BGP sessions at the specified time and the number of session failures for all nodes. For nodes with session failures, additional details are displayed, including the cause of the failure.
+Validates that all configured route peering is established in your network fabric by looking for consistency across BGP sessions; in particular, whether duplicate router IDs exist and if any sessions are in the unestablished state. If you have nodes that implement virtual routing and forwarding (VRF), you can request status based on the relevant routing table. VRF is commonly configured in multi-tenancy deployments to maintain separate domains for each tenant.
 
-If you have nodes that implement virtual routing and forwarding (VRF), you can request status based on the relevant routing table. VRF is commonly configured in multi-tenancy deployments to maintain separate domains for each tenant.
+The output displays the status (pass/fail) of all tests and a summary including:
+
+- Total number of nodes found
+- Number of nodes validated
+- Number of nodes that failed the validation
+- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes with warnings
+- Total number of BGP sessions at the specified time
+- Number of sessions that have failed to establish a connection
 
 #### Syntax
 
 ```
-netq check bgp 
-		[vrf (default|mgmt)]
-		[around <text-time>]
-		[json]
-Required Arguments
+netq check bgp
+    [label <text-label-name> | hostnames <text-list-hostnames>]
+    [vrf <vrf>]
+    [include <bgp-number-range-list> | exclude <bgp-number-range-list>]
+    [around <text-time>]
+    [json | summary]
+```
+
+#### Required Arguments
+
 None
-Optional Arguments
-vrf (default|mgmt)
-For nodes using VRF, indicate whether to use the default routing table or the management routing table. 
-around <text-time>
-Indicates how far to go back in time for the network state information. The <text-time> value is written using text (versus a UTP representation for example). Valid values include:
-<1-xx>s: number of seconds
-<1-xx>m: number of minutes
-<1-xx>h: number of hours
-<1-xx>d: number of days
-Use number of days to go back weeks, months, or years. [how much data is stored by default?] Also note there is no space between the number and unit of time.
-json
-Display the output in JSON file format instead of the default on-screen text format.
-Command History
-	
-Release
-Description
-1.0
-Introduced
 
-Sample Usage
-Find nodes running BGP with session failures (none found)
-cumulus@ts:~$ netq check bgp
-Total Nodes: 11, Failed Nodes: 0, Total Sessions: 16, Failed Sessions: 0
-Find nodes running BGP with session failures (two found)
-cumulus@ts:~$ netq check bgp
-Total Nodes: 4, Failed Nodes: 2, Total Sessions: 8 , Failed Sessions: 2
-Node     Neighbor    Peer ID    Reason              Time
--------  ----------  ---------  ------------------  -------
-leaf03   swp51       spine01    Interface down      4m ago
-spine01  swp3        leaf03     Hold Timer Expired  4m ago
-This example shows that BGP peering on leaf03 connecting to spine01 failed 4 minutes ago and that it was caused by an interface failure on leaf03. This led to BGP hold timer expiration on spine01.
-Find nodes running BGP with session failures an hour ago
-cumulus@ts:~$ netq check bgp around 1h
-Total Nodes: 11, Failed Nodes: 0, Total Sessions: 16, Failed Sessions: 0
-Find nodes running BGP with VRF applied and session failures
-cumulus@switch:~$ netq check bgp vrf mgmt
-No BGP session info found. Total Nodes: 11, Failed Nodes: 0
-Find nodes running BGP with VRF applied and session failures, and display the results in JSON format
-cumulus@ts:~$ netq check bgp vrf mgmt json
-{
-    "failedNodes":[
+#### Options
 
-    ],
-    "summary":{
-        "checkedNodeCount":11,
-        "failedSessionCount":0,
-        "failedNodeCount":0,
-        "totalSessionCount":0
-    }
-}
-Related Commands
-netq show bgp
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| label | \<text-label-name\> | Reserved |
+| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| vrf | \<vrf\> | When a VRF is configured, the accepted values include: <ul><li>default: use the default routing table</li><li> mgmt: use management routing table</li><li>\<custom\>: use user-defined routing table</li></ul> |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-netq check clag
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Added `hostnames` option |
+| 2.4.0 | Add `include` and `exclude` options; output changed to include individual test status |
+
+#### Sample Usage
+
+Basic validation: All devices, all tests, currently
+
+```
+cumulus@switch:~$ netq check bgp
+bgp check result summary:
+
+Total nodes         : 10
+Checked nodes       : 10
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Additional summary:
+Total Sessions      : 54
+Failed Sessions     : 0
+
+Session Establishment Test   : passed
+Address Families Test        : passed
+Router ID Test               : passed
+```
+
+#### Related Commands
+
+- netq show bgp
+- netq show unit-tests bgp
+
+- - -
+
+### netq check cl-version
+
+#### Syntax
+
+#### Required Arguments
+
+#### Options
+
+#### Command History
+
+#### Sample Usage
+
+#### Related Commands
+
+- 
+
+- - -
+
+### netq check clag
+
 Verifies CLAG session consistency by identifying all CLAG and MLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for:
 multiple link pairs with the same system MAC address, 
 any interfaces [links?] with only a single attachment,
@@ -230,7 +269,8 @@ cumulus@ts:~$ netq check clag around 30s json
 Related Commands
 netq show clag
 
-netq check evpn
+### netq check evpn
+
 Collects communication status for all nodes (leafs, spines, and hosts) running instances of Ethernet VPN (EVPN) in your network fabric. The output contains the total number of [VTEP?] nodes found and how many are reporting session failures. It also displays the total number of EVPN sessions running at the specified time and the number of session failures for all nodes. The total number of virtual network instances (VNIs) is also indicated.
 Syntax
 netq check evpn 
@@ -282,7 +322,8 @@ cumulus@ts:~$ netq check evpn around 10m json
 Related Commands
 netq show evpn  
  
-netq check interfaces
+### netq check interfaces
+
 Collects interface communication status for all nodes (leafs, spines, and hosts) or an interface between specific nodes in your network fabric. The output contains the total number of nodes found and how many are reporting interface failures. It also displays the total number of ports found and how many are reporting failures. Optionally, you can display the total number of unverified ports [unknown or not configured?].  This information is followed by a list of all nodes, and their related interfaces, peers, and any message about the interface. The same information is displayed for a single node when specified.
 Note: When running this command for all nodes, no arguments are required. When running this command for a specific node, the node and peer node information is required.
 Syntax
@@ -381,7 +422,8 @@ cumulus@switch:~$ netq check interfaces leaf01 swp1 and server01 eth1 json
 Related Commands
 netq show interfaces  
 
-netq check license
+### netq check license
+
 Collects license status for all nodes (leafs, spines, and hosts) in your network fabric. The output contains the total number of nodes found and how many are reporting expired licenses. It also displays the total number of licenses checked at the specified time and how many were expired.
 Syntax
 netq check license 
@@ -429,7 +471,8 @@ cumulus@ts:~$ netq check license around 7d json
 Related Commands
 None
  
-netq check lnv
+### netq check lnv
+
 Collects status for all nodes (leafs, spines, and hosts) running Lightweight Network Virtualization (LNV)  in your network fabric. The output contains the total number of nodes found and how many are reporting LNV failures. It also displays the total number of sessions checked at the specified time and how many were expired.
 [Mellanox HotTo: Lightweight Network Virtualization (LNV) enables the deployment of a VXLAN without the need for a central controller on a bare metal switch.
 LNV runs the VXLAN service and registration daemons on Cumulus Linux without any additional external controller or software suite.
@@ -481,7 +524,7 @@ cumulus@ts:~$ netq check lnv around 2d json
 Related Commands
 netq show lnv
  
-netq check mtu
+### netq check mtu
 Verifies consistency of the maximum transmission unit (MTU) across all links in your network fabric. MTU consistency is verified at the level that is appropriate to the specific type of link. For example, bond interfaces have their MTU enforced at the bond level and not at the
 individual slave level. For CLAG bonds, verification confirms whether or not both ends of the bond have the same MTU value configured for their local instance of the bond. 
 The output contains the total number of nodes found and how many are reporting MTU inconsistencies. It also displays the total number of links checked at the specified time and how many are reporting MTU inconsistencies. Optionally, you can display the number of unverified interfaces.
@@ -540,7 +583,8 @@ Related Commands
 netq trace
 netq resolve 
 
-netq check ntp
+### netq check ntp
+
 Verifies network time synchronization using NTP for all nodes (leafs, spines, and hosts)  in your network fabric. [something about the importance of time sync--impact to data, communications, etc. --Nodes that are not in time synchronization with the telemetry server xxx.] The output contains the total number of nodes found and how many are reporting NTP failures, have not been heard from in 90 seconds, and are unknown to the system. It also displays details about any nodes without time synchronization.
 Syntax
 netq check ntp 
@@ -641,7 +685,8 @@ Related Commands
 netq show ntp
 
 
-netq check ospf
+### netq check ospf
+
 Validates that all configured route peering is established in your network fabric by looking for consistency across OSPF sessions; in particular, whether duplicate router IDs exist and if any sessions are in the unestablished state. The output displays the total number of nodes found and how many are reporting session failures. It also displays the total number of [active] BGP sessions at the specified time and the number of session failures for all nodes. For nodes with session failures, additional details are displayed, including the cause of the failure.
 Syntax
 netq check ospf 
@@ -679,7 +724,8 @@ cumulus@ts:~$ netq check ospf json
 Related Commands
 netq show ospf
 
-netq check sensors
+### netq check sensors
+
 Collects status of temperature, cooling fan, and power supply sensors for all nodes in your network fabric. The output displays the total number of nodes found and how many are reporting sensor alarms. It also displays the total number of sensors checked and how many of them are reporting alarms. For nodes with sensor alarms, additional details are displayed[, including the sensor type, alert description/name, and a timestamp when the alert occurred].
 Syntax
 netq check sensors 
@@ -718,7 +764,8 @@ Related Commands
 netq show sensors
    
 
-netq check vlan
+### netq check vlan
+
 Verifies consistency of the virtual local area network (VLAN) nodes and interfaces across all links in your network fabric. VLAN consistency is verified [xxx]
 The output contains the total number of nodes checked and how many are reporting interface/link inconsistencies. It also displays the total number of links checked at the specified time and how many are reporting link inconsistencies. Optionally, you can display the number of unverified interfaces.
 Syntax
@@ -827,7 +874,8 @@ cumulus@ts:~$ netq check vlan unverified json
 Related Commands
 netq show vlan    
 
-netq check vxlan
+### netq check vxlan
+
 Verifies consistency of the virtual extensible local area network (VXLAN) nodes and interfaces across all links in your network fabric. VxLAN consistency is verified [xxx]
 The output contains the total number of nodes checked and how many are reporting interface/link inconsistencies. It also displays the total number of links checked at the specified time and how many are reporting link inconsistencies. 
 Syntax
@@ -875,9 +923,12 @@ cumulus@ts:~$ netq check vxlan around 2d json
 Related Commands
 netq show vxlan    
 
-SHOW COMMANDS
+## Show Commands
+
 All of the NetQ show commands begin with netq show. They are used to view the health of various elements in your network fabric. They are described here in alphabetical order.
-netq show agents
+
+### netq show agents
+
 Displays basic configuration, health, and connectivity status for all nodes or a specific node running NetQ Agent in your network fabric. The output provides:
 whether each node has been heard recently (last 90 seconds), 
 if it is in time synchronization [with the ts?], 
@@ -1056,7 +1107,8 @@ cumulus@ts:~$ netq show agents json
 Related Commands
 netq check agents    
 
-netq show bgp
+### netq show bgp
+
 There are two forms of this command. One displays all nodes or a specific node running BGP in your network fabric. In this form, the output displays the following for each node::
 the neighbor nodes to the given node, 
 whether multiple routing tables (VRF) have been applied, 
@@ -1230,7 +1282,8 @@ cumulus@ts:~$ netq leaf02 show bgp json
 Related Commands
 netq check bgp    
 
-netq show changes
+### netq show changes
+
 Displays changes made to a specific node, identified by its name, IP address and/or VRF, in your network fabric. The output provides:
 xxx 
 xxx
@@ -1286,7 +1339,9 @@ cumulus@switch:~$ netq show
     services    :  System services
     vlan        :  VLAN
     vxlan       :  VXLAN data path
-CONFIGURATION COMMANDS
+
+## Configuration Commands
+
 All of the NetQ configuration commands begin with netq config.
 They are described here in alphabetical order by component group:
 Add-on Configuration Commands
@@ -1295,7 +1350,8 @@ Parser
 Server
 Telemetry Server
 
-Add-on Configuration Commands
+### Add-on Configuration Commands
+
 netq config (add|del) addons
 Installs or removes all additional software components available with a given release. [in a particular directory?]
 Syntax
@@ -1323,7 +1379,8 @@ Related Commands
 
 
 
-NetQ Agent Configuration Commands
+### NetQ Agent Configuration Commands
+
 netq config (add|del) agent (stats|sensors)
 Installs or removes [Starts or stops? Enables or disables?] collection of statistics or sensor measurements by NetQ Agent on [all or specific node?].
 Syntax
@@ -1457,9 +1514,9 @@ Server Configuration Commands
 Telemetry Server Configuration Commands
 
 
-TRACE COMMAND
+## Trace Commands
 
-RESOLVE COMMANDS
+
 AGENT NOTIFIER COMMANDS
 
  netq config (add|del) experimental

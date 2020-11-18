@@ -966,6 +966,40 @@ router bgp 65199
 When configuring BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 {{%/notice%}}
 
+## Administrative Distance
+
+Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
+
+Set the administrative distance with vtysh commands.
+
+The following example commands set the administrative distance for route 10.10.10.101/32 to 100:
+
+```
+cumulus@spine01:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# distance 100 10.10.10.101/32
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@spine01:~$
+```
+
+The following example commands set the administrative distance for routes external to the AS to 150, routes internal to the AS to 110, and local routes to 100:
+
+```
+cumulus@spine01:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# distance bgp 150 110 100
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@spine01:~$
+```
+
 ## Graceful BGP Shutdown
 
 To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the BGP node:
@@ -1102,89 +1136,6 @@ cumulus@switch:~$
 {{< /tabs >}}
 
 To show information about the state of the update delay, run the NCLU command `net show bgp summary` or the `vtysh` command `show ip bgp summary`.
-
-## Route Maps for Route Updates
-
-You can apply {{<exlink url="http://docs.frrouting.org/en/latest/routemap.html" text="route maps">}} in BGP in one of two ways:
-
-- Filter routes from BGP into Zebra
-- Filter routes from Zebra into the Linux kernel
-
-{{%notice info%}}
-In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`. This is a known limitation in `network-docopt`, which NCLU uses to parse commands.
-{{%/notice%}}
-
-### Filter Routes from BGP into Zebra
-
-You can apply a route map on route updates from BGP to Zebra. All the applicable match operations are allowed, such as match on prefix, next hop, communities, and so on. Set operations are limited to metric and next hop only. Applying a route map on route updates from BGP to Zebra does not affect the BGP internal RIB.
-
-Both IPv4 and IPv6 address families are supported. Route maps work on multi-paths; however, the metric setting is based on the best path only.
-
-The following example command applies a route map called routemap1 to filter route updates from BGP into Zebra:
-
-{{< tabs "50 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add bgp table-map routemap1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# table-map routemap1
-switch(config-router)# end
-switch# write memory
-switch# switch
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-### Filter Routes from Zebra into the Linux Kernel
-
-The following example commands apply a route map called routemap1 to filter route updates from Zebra into the Linux kernel:
-
-{{< tabs "52 ">}}
-
-{{< tab "NCLU Commands ">}}
-
-```
-cumulus@switch:~$ net add routing protocol bgp route-map routemap1
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-{{< /tab >}}
-
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-
-switch# configure terminal
-switch(config)# router bgp
-switch(config-router)# bgp route-map routemap1
-switch(config-router)# end
-switch# write memory
-switch# switch
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
 
 ## BGP Community Lists
 

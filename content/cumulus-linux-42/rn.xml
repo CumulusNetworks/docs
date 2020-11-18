@@ -7,6 +7,26 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32311</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Two vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u3<br/>
+Fixed: 2.4.47+dfsg-3+deb10u4</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32296</td>
+<td><p>If the RMAC of a layer 3 SVI changes, the show vrf vni command is not updated with the new value. However, the new RMAC is seen in the show evpn vni command and is present on self-originated EVPN routes.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32286</td>
+<td><p>On the Mellanox SN3700C switch, PIM multicast packets are duplicated at the egress VTEP.</p></td>
+<td>4.2.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32274</td>
 <td><p>If you apply an outbound route map to a BGP peer that uses set as-path prepend last-as, advertised locally-originated routes have the ASN of the peer prepended to the AS path.<br/>
 This might trigger AS path loop prevention on the peer, where the peer ignores locally-originated prefixes.</p></td>
@@ -17,6 +37,13 @@ This might trigger AS path loop prevention on the peer, where the peer ignores l
 <td>CM-32226</td>
 <td><p>If switchd successfully signals clagd that it is going down, clagd stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if switchd does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32217</td>
+<td><p>The IP address specified in the ip pim use-source command configured on the loopback interface should be inherited by unnumbered interfaces during their Primary IP address selection process.  If ip pim use-source is configured on the loopback after an unnumbered interface has already selected their Primary IP address, the unnumbered interface does not update its Primary IP address to be the new use-source value until after there is a netlink update for that interface.<br/>
+To work around this issue, configure ip pim use-source on each unnumbered interface directly or ensure ip pim use-source is applied to the loopback before other unnumbered interfaces are enabled for PIM.</p></td>
+<td>3.7.13, 4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1851,6 +1878,20 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32311</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Two vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u3<br/>
+Fixed: 2.4.47+dfsg-3+deb10u4</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32286</td>
+<td><p>On the Mellanox SN3700C switch, PIM multicast packets are duplicated at the egress VTEP.</p></td>
+<td>4.2.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32226</td>

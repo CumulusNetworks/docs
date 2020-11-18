@@ -912,15 +912,17 @@ router ospf6
 ...
 ```
 
-### Configure the OSPFv3 Distance
+### Administrative Distance
 
-Cumulus Linux provides several commands to change the administrative distance for OSPF routes.
+Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPFv3 with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
+
+Cumulus Linux provides several commands to change the administrative distance for OSPF routes. The default value is 110.
 
 {{< tabs "TabID232 ">}}
 
 {{< tab "NCLU Commands ">}}
 
-This example command sets the distance for an entire group of routes, rather than a specific route.
+This example command sets the distance for an entire group of routes:
 
 ```
 cumulus@switch:~$ net add ospf6 distance 254

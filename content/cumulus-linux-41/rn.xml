@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32311</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Two vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u3<br/>
+Fixed: 2.4.47+dfsg-3+deb10u4</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32226</td>
 <td><p>If switchd successfully signals clagd that it is going down, clagd stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if switchd does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </p></td>
 <td>3.7.12-3.7.13, 4.0.0-4.2.1</td>
@@ -2360,6 +2368,14 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32311</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Two vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u3<br/>
+Fixed: 2.4.47+dfsg-3+deb10u4</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32226</td>

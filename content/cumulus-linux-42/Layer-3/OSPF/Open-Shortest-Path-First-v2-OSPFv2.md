@@ -1005,7 +1005,7 @@ router ospf
 ...
 ```
 
-### Configure the OSPF Distance
+### OSPF Distance
 
 Administrative distance (AD) determines which source to use if the same route information is received from two different sources. Cumulus Linux provides several commands to change the AD for OSPF routes. The default AD is 110.
 

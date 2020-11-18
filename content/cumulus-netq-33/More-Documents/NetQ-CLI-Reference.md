@@ -55,7 +55,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | Release | Description |
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Add `include` and `exclude` options; output changed to include individual test status |
+| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
 #### Sample Usage
 
@@ -106,7 +106,7 @@ Agent Health Test   : passed
 
 #### Related Commands
 
-- netq show agents (make these links)
+- netq show agents
 - netq show unit-tests agent
 - netq config agent
 
@@ -148,8 +148,11 @@ None
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | vrf | \<vrf\> | When a VRF is configured, the accepted values include: <ul><li>default: use the default routing table</li><li> mgmt: use management routing table</li><li>\<custom\>: use user-defined routing table</li></ul> |
+| include | \<agent-number-range-list\> | Include the specified validation tests |
+| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
+| summary | NA | Display only the summary information and test results. Do not display error information. |
 
 #### Command History
 
@@ -158,7 +161,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | Release | Description |
 | ---- | ---- |
 | 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Add `include` and `exclude` options; output changed to include individual test status |
+| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
 #### Sample Usage
 
@@ -192,235 +195,478 @@ Router ID Test               : passed
 
 ### netq check cl-version
 
+Verifies the Cumulus Linux version is consistent across nodes, matches a specified version, or is greater than or equal to a specified version, based on the options chosen.
+
 #### Syntax
+
+```
+netq check cl-version [label <text-label-name> | hostnames <text-list-hostnames>] [match-version <cl-ver> | min-version <cl-ver>] [include <version-number-range-list> | exclude <version-number-range-list>] [around <text-time>] [json | summary]
+```
 
 #### Required Arguments
 
+None
+
 #### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| label | \<text-label-name\> | Reserved |
+| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| match-version | \<cl-ver\> | Identifies all switches with a Cumulus Linux version other than the one specified with this option. `cl-ver` values are specified in x.y.z format, for example 4.2.0.
+| min-version | \<cl-ver\> | Identifies all switches with a Cumulus Linux version older than the one specified with this option. `cl-ver` values are specified in x.y.z format, for example 3.7.12. |
+| include | \<agent-number-range-list\> | Include the specified validation tests |
+| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| summary | NA | Display only the summary informationand test results. Do not display error information. |
 
 #### Command History
 
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Added `hostnames` option |
+| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+
 #### Sample Usage
+
+Basic validation: All devices have the same version
+
+```
+cumulus@switch:~$ netq check cl-version
+version check result summary:
+
+Total nodes         : 21
+Checked nodes       : 21
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Cumulus Linux Image Version Test   : passed
+```
+
+List devices which do not match a version
+
+```
+cumulus@switch:~$ netq check cl-version match-version 3.7.12
+version check result summary:
+
+Total nodes         : 21
+Checked nodes       : 21
+Failed nodes        : 12
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Cumulus Linux Image Version Test   : 0 warnings, 12 errors
+
+Cumulus Linux Image Version Test details:
+Hostname          Entity       Version                              Reason
+----------------- ------------ ------------------------------------ ---------------------------------------------
+border01          OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
+border02          OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
+fw1               OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
+fw2               OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
+leaf01            OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
+leaf02            OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
+leaf03            OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
+leaf04            OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
+spine01           OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
+spine02           OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
+spine03           OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
+spine04           OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
+```
+
+List devices with a version greater than or equal to a version
+
+```
+cumulus@switch:~$ netq check cl-version min-version 3.7.12
+version check result summary:
+
+Total nodes         : 21
+Checked nodes       : 21
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Cumulus Linux Image Version Test   : passed
+```
 
 #### Related Commands
 
-- 
+- netq show unit-tests cl-version
 
 - - -
 
 ### netq check clag
 
-Verifies CLAG session consistency by identifying all CLAG and MLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for:
-multiple link pairs with the same system MAC address, 
-any interfaces [links?] with only a single attachment,
-peer connectivity, [failed links?] and 
-whether the backup IP address is pointing to the correct peer.
-The output displays the total number of nodes checked and how many are reporting errors, warnings, or misconfigurations. For any nodes with errors, it also displays the name of the node and the reason for the error.
-Syntax
-netq check clag 
-		[around <text-time>]
-		[json]
-Required Arguments
-	None
-Optional Arguments
-around <text-time>
-Indicates how far to go back in time for the network state information. The <text-time> value is written using text (versus a UTP representation for example). Valid values include:
-<1-xx>s: number of seconds
-<1-xx>m: number of minutes
-<1-xx>h: number of hours
-<1-xx>d: number of days
-Use number of days to go back weeks, months, or years. [how much data is stored by default?] Also note there is no space between the number and unit of time.
-json
-Display the output in JSON file format instead of the default on-screen text format.
-Command History
-	
-Release
-Description
-1.0
-Introduced
+Verifies CLAG session consistency by identifying all CLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for such items as:
 
-Sample Usage
-Find CLAG peers with errors and/or misconfigurations (none found)
-cumulus@ts:~$ netq check clag 
-Checked Nodes: 4, Failed Nodes: 0
-Find CLAG peers with errors and/or misconfigurations (two found)
-cumulus@leaf01:~$ netq check clag
-Checked Nodes: 6, Warning Nodes: 2
-Node             Reason
----------------- ------------------------------------------------------
-leaf01           Link Down: bond01
-leaf02           Singly Attached Bonds: bond01
-In this example we see two errors. The first row tells us that the bond1 link is down on the leaf01 node. The second row tells us that bond1 has only one attachment to leaf02 node. [The bond1 link should also be attached to ???]
-Find all nodes running CLAG with session failures 30 seconds ago
-cumulus@ts:~$ netq check bgp around 30s
-Checked Nodes: 4, Failed Nodes: 0
-Find all nodes running CLAG with session failures 30 seconds ago, and display the results in JSON format
-cumulus@ts:~$ netq check clag around 30s json
-{
-    "failedNodes":[
+- multiple link pairs with the same system MAC address
+- any interfaces with only a single attachment
+- peer connectivity
+- conflicted bonds
+- whether the backup IP address is pointing to the correct peer
 
-    ],
-    "summary":{
-        "checkedNodeCount":4,
-        "failedNodeCount":0,
-        "warningNodeCount":0
-    }
-}
-Related Commands
-netq show clag
+The output displays the status (pass/fail) of all tests and a summary including:
+
+- Total number of nodes found
+- Number of nodes validated
+- Number of nodes that failed the validation
+- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes with warnings
+
+#### Syntax
+
+```
+netq check clag
+    [label <text-label-name> | hostnames <text-list-hostnames> ]
+    [include <clag-number-range-list> | exclude <clag-number-range-list>]
+    [around <text-time>]
+    [json | summary]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| label | \<text-label-name\> | Reserved |
+| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| include | \<agent-number-range-list\> | Include the specified validation tests |
+| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| summary | NA | Display only the summary informationand test results. Do not display error information. |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Added `hostnames` option |
+| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+
+#### Sample Usage
+
+Basic validation: All devices, all tests, currently
+
+```
+cumulus@switch:~$ netq check clag
+clag check result summary:
+
+Total nodes         : 6
+Checked nodes       : 6
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Peering Test             : passed
+Backup IP Test           : passed
+Clag SysMac Test         : passed
+VXLAN Anycast IP Test    : passed
+Bridge Membership Test   : passed
+Spanning Tree Test       : passed
+Dual Home Test           : passed
+Single Home Test         : passed
+Conflicted Bonds Test    : passed
+ProtoDown Bonds Test     : passed
+SVI Test                 : passed
+```
+
+Validate only selected devices
+
+```
+cumulus@switch:~$ netq check clag hostnames leaf01,leaf02
+clag check result summary:
+
+Total nodes         : 2
+Checked nodes       : 2
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Peering Test             : passed
+Backup IP Test           : passed
+Clag SysMac Test         : passed
+VXLAN Anycast IP Test    : passed
+Bridge Membership Test   : passed
+Spanning Tree Test       : passed
+Dual Home Test           : passed
+Single Home Test         : passed
+Conflicted Bonds Test    : passed
+ProtoDown Bonds Test     : passed
+SVI Test                 : passed
+```
+
+Exclude selected validation tests
+
+```
+cumulus@switch:~$ netq check clag exclude 2
+clag check result summary:
+
+Total nodes         : 6
+Checked nodes       : 6
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Peering Test             : passed
+Backup IP Test           : passed
+Clag SysMac Test         : skipped
+VXLAN Anycast IP Test    : passed
+Bridge Membership Test   : passed
+Spanning Tree Test       : passed
+Dual Home Test           : passed
+Single Home Test         : passed
+Conflicted Bonds Test    : passed
+ProtoDown Bonds Test     : passed
+SVI Test                 : passed
+```
+
+#### Related Commands
+
+- netq show clag
+- netq show unit-tests clag
+
+- - -
 
 ### netq check evpn
 
-Collects communication status for all nodes (leafs, spines, and hosts) running instances of Ethernet VPN (EVPN) in your network fabric. The output contains the total number of [VTEP?] nodes found and how many are reporting session failures. It also displays the total number of EVPN sessions running at the specified time and the number of session failures for all nodes. The total number of virtual network instances (VNIs) is also indicated.
-Syntax
-netq check evpn 
-		[around <text-time>]
-		[json]
-Required Arguments
-	None
-Optional Arguments
-around <text-time>
-Indicates how far to go back in time for the network state information. The <text-time> value is written using text (versus a UTP representation for example). Valid values include:
-<1-xx>s: number of seconds
-<1-xx>m: number of minutes
-<1-xx>h: number of hours
-<1-xx>d: number of days
-Use number of days to go back weeks, months, or years. [how much data is stored by default?] Also note there is no space between the number and unit of time.
-json
-Display the output in JSON file format instead of the default on-screen text format.
-Command History
-	
-Release
-Description
-1.x
-Introduced
+Verifies communication status for all nodes (leafs, spines, and hosts) running instances of Ethernet VPN (EVPN) in your network fabric. In particular, it looks for such items as:
 
-Sample Usage
-Find all nodes running EVPN with session failures
-cumulus@ts:~$ netq check evpn 
-Total Nodes: 11, Failed Nodes: 0, Total Sessions: 8, Failed Sessions: 0, Total VNIs: 2
-Find all nodes running EVPN with session failures about 10 minutes ago
-cumulus@ts:~$ netq check evpn around 10m
-Total Nodes: 11, Failed Nodes: 0, Total Sessions: 8, Failed Sessions: 0, Total VNIs: 2
-Find all nodes running EVPN with session failures about 10 minutes ago, and display the results in JSON format
-cumulus@ts:~$ netq check evpn around 10m json
-{
-    "failedVtepNodes":[
+- BGP and EVPN session establishment
+- VNI type consistency
+- VLAN consistency among participating devices
+- VRF consistency among participating devices
 
-    ],
-    "failedBgpSessions":[
+The output displays the status (pass/fail) of all tests and a summary including:
 
-    ],
-    "summary":{
-        "checkedNodeCount":11,
-        "checkedVnisCount":2,
-        "failedBgpSessionCount":0,
-        "failedNodeCount":0,
-        "totalSessionCount":8
-    }
-}
-Related Commands
-netq show evpn  
- 
+- Total number of nodes found
+- Number of nodes validated
+- Number of nodes that failed the validation
+- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes with warnings
+- Total number of VNIs
+- Number of failed BGP sessions
+- Total number of sessions
+
+#### Syntax
+
+```
+netq check evpn
+    [mac-consistency]
+    [label <text-label-name> | hostnames <text-list-hostnames>]
+    [include <evpn-number-range-list> | exclude <evpn-number-range-list>]
+    [around <text-time>]
+    [json | summary]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| mac-consistency | NA | xxx |
+| label | \<text-label-name\> | Reserved |
+| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| include | \<agent-number-range-list\> | Include the specified validation tests |
+| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| summary | NA | Display only the summary informationand test results. Do not display error information. |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Added `hostnames` option |
+| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+
+#### Sample Usage
+
+Basic validation: All devices, all tests, currently
+
+```
+cumulus@switch:~$ netq check evpn
+evpn check result summary:
+
+Total nodes         : 6
+Checked nodes       : 6
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Additional summary:
+Total VNIs          : 5
+Failed BGP Sessions : 0
+Total Sessions      : 30
+
+EVPN BGP Session Test            : passed
+EVPN VNI Type Consistency Test   : passed
+EVPN Type 2 Test                 : skipped
+EVPN Type 3 Test                 : passed
+EVPN Session Test                : passed
+Vlan Consistency Test            : passed
+Vrf Consistency Test             : passed
+L3 VNI RMAC Test                 : skipped
+```
+
+#### Related Commands
+
+- netq show evpn
+- netq show unit-tests evpn
+
+- - -
+
 ### netq check interfaces
 
-Collects interface communication status for all nodes (leafs, spines, and hosts) or an interface between specific nodes in your network fabric. The output contains the total number of nodes found and how many are reporting interface failures. It also displays the total number of ports found and how many are reporting failures. Optionally, you can display the total number of unverified ports [unknown or not configured?].  This information is followed by a list of all nodes, and their related interfaces, peers, and any message about the interface. The same information is displayed for a single node when specified.
-Note: When running this command for all nodes, no arguments are required. When running this command for a specific node, the node and peer node information is required.
-Syntax
-netq check interfaces 
-		[unverified] 
+Verifies interface communication status for all nodes (leafs, spines, and hosts) or an interface between specific nodes in your network fabric. In particular, it looks for such items as:
+
+- Administrative and operational state status
+- Link speed consistency
+- Autonegotiation settings consistency
+
+The output displays the status (pass/fail) of all tests and a summary including:
+
+- Total number of nodes found
+- Number of nodes validated
+- Number of nodes that failed validation
+- Number of nodes that have not been heard from in 90 seconds (rotten)
+- Number of nodes with warnings
+- Number of ports validated
+- Number of ports that failed validation
+- Number of unverified ports (definition of unverified???)
+
+#### Syntax
+
+```
+netq check interfaces
+    [label <text-label-name> | hostnames <text-list-hostnames>]
+    [include <interface-number-range-list> | exclude <interface-number-range-list>]
+    [around <text-time>]
+    [json | summary]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| label | \<text-label-name\> | Reserved |
+| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| include | \<agent-number-range-list\> | Include the specified validation tests |
+| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| summary | NA | Display only the summary information and test results. Do not display error information. |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Added `hostnames` option |
+| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
+
+<!-- [unverified] 
 		[<physical-hostname> <physical-port> | <physical-hostname>]
-		[around <text-time>] 
-		[json]
-OR
-netq check interfaces 
-		<physical-hostname> <physical-port> 
+        <physical-hostname> <physical-port> 
 		and 
 		<peer-physical-hostname> <peer-physical-port> 
-		[around <text-time>] 
-		[json]
-Required Arguments
-physical-hostname
+        physical-hostname
 Name of the specific node on which to verify interface communication status; for example, leaf01 or spine02.
 physical-port
 Name of the port on the node to check; for example, eth0 or swp3.
 peer-physical-hostname
 Name of the peer node to check; for example server02 or mgmt-server.
 peer-physical-port
-Name of the peer port on the node to check; for example, eth2 or swp4.
-Optional Arguments
-around <text-time>
-Indicates how far to go back in time for the network state information. The <text-time> value is written using text (versus a UTP representation for example). Valid values include:
-<1-xx>s: number of seconds
-<1-xx>m: number of minutes
-<1-xx>h: number of hours
-<1-xx>d: number of days
-Use number of days to go back weeks, months, or years. [how much data is stored by default?] Also note there is no space between the number and unit of time.
-json
-Display the output in JSON file format instead of the default on-screen text format.
-Command History
-	
-Release
-Description
-1.x
-Introduced
+Name of the peer port on the node to check; for example, eth2 or swp4. -->
 
-Sample Usage
-Find all nodes with interface failures
-cumulus@ts:~$ netq check interfaces
-Checked Nodes: 11, Failed Nodes: 8
-Checked Ports: 234, Failed Ports: 16, Unverified Ports: 190
-Hostname          Interface                 Peer Hostname     Peer Interface            Message
------------------ ------------------------- ----------------- ------------------------- -----------------------------------
-leaf01            swp1                      server01          eth1                      Autoneg mismatch (off, on)         
-leaf01            swp2                      server02          eth1                      Autoneg mismatch (off, on)         
-leaf02            swp1                      server01          eth2                      Autoneg mismatch (off, on)         
-leaf02            swp2                      server02          eth2                      Autoneg mismatch (off, on)         
-leaf03            swp1                      server03          eth1                      Autoneg mismatch (off, on)         
-leaf03            swp2                      server04          eth1                      Autoneg mismatch (off, on)         
-leaf04            swp1                      server03          eth2                      Autoneg mismatch (off, on)         
-leaf04            swp2                      server04          eth2                      Autoneg mismatch (off, on)         
-server01          eth1                      leaf01            swp1                      Autoneg mismatch (on, off)         
-server01          eth2                      leaf02            swp1                      Autoneg mismatch (on, off)         
-server02          eth1                      leaf01            swp2                      Autoneg mismatch (on, off)         
-server02          eth2                      leaf02            swp2                      Autoneg mismatch (on, off)         
-server03          eth1                      leaf03            swp1                      Autoneg mismatch (on, off)         
-server03          eth2                      leaf04            swp1                      Autoneg mismatch (on, off)         
-server04          eth1                      leaf03            swp2                      Autoneg mismatch (on, off)         
-server04          eth2                      leaf04            swp2                      Autoneg mismatch (on, off)         
-Find interface failures on leaf01 node
-cumulus@ts:~$ netq check interfaces leaf01 swp1 and server01 eth1
-Checked Nodes: 1, Failed Nodes: 1
-Checked Ports: 1, Failed Ports: 1, Unverified Ports: 0
-Hostname          Interface                 Peer Hostname     Peer Interface            Message
------------------ ------------------------- ----------------- ------------------------- -----------------------------------
-leaf01            swp1                      server01          eth1                      Autoneg mismatch (off, on)         
-   
-Find interface failures on leaf01 node and display the results in JSON format
-cumulus@switch:~$ netq check interfaces leaf01 swp1 and server01 eth1 json
-{
-    "unverifiedNodes":[
+#### Sample Usage
 
-    ],
-    "failedNodes":[
-        {
-            "interface":"swp1",
-            "peerInterface":"eth1",
-            "message":"Autoneg mismatch (off, on)",
-            "hostname":"leaf01",
-            "peerHostname":"server01"
-        }
-    ],
-    "summary":{
-        "checkedNodeCount":1,
-        "failedPortCount":1,
-        "failedNodeCount":1,
-        "checkedPortCount":1,
-        "unverifiedPortCount":0
-    }
-}
-Related Commands
-netq show interfaces  
+Basic validation: All devices, all tests, currently
+
+```
+cumulus@switch:~$ netq check interfaces
+interface check result summary:
+
+Total nodes         : 21
+Checked nodes       : 21
+Failed nodes        : 6
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Additional summary:
+Checked Ports       : 145
+Failed Ports        : 12
+Unverified Ports    : 69
+
+Admin State Test   : passed
+Oper State Test    : passed
+Speed Test         : passed
+Autoneg Test       : 0 warnings, 12 errors
+
+Autoneg Test details:
+Hostname          Interface                 Peer Hostname     Peer Interface            Message                             Last Changed
+----------------- ------------------------- ----------------- ------------------------- ----------------------------------- -------------------------
+server01          eth1                      leaf01            swp1                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+server01          eth2                      leaf02            swp1                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+server02          eth1                      leaf01            swp2                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+server02          eth2                      leaf02            swp2                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+server03          eth1                      leaf01            swp3                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+server03          eth2                      leaf02            swp3                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+server04          eth1                      leaf03            swp1                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+server04          eth2                      leaf04            swp1                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+server05          eth1                      leaf03            swp2                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+server05          eth2                      leaf04            swp2                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+server06          eth1                      leaf03            swp3                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+server06          eth2                      leaf04            swp3                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
+```
+
+Basic validation without error information
+
+```
+cumulus@switch:~$ netq check interfaces summary
+interface check result summary:
+
+Total nodes         : 21
+Checked nodes       : 21
+Failed nodes        : 6
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Additional summary:
+Checked Ports       : 145
+Failed Ports        : 12
+Unverified Ports    : 69
+
+Admin State Test   : passed
+Oper State Test    : passed
+Speed Test         : passed
+Autoneg Test       : 0 warnings, 12 errors
+```
+
+#### Related Commands
+
+- netq show interfaces
+- netq show unit-tests interfaces
+
+- - -
 
 ### netq check license
 

@@ -922,7 +922,7 @@ Cumulus Linux provides several commands to change the administrative distance fo
 
 {{< tab "NCLU Commands ">}}
 
-This example command sets the distance for an entire group of routes, rather than a specific route.
+This example command sets the distance for an entire group of routes:
 
 ```
 cumulus@switch:~$ net add ospf6 distance 254

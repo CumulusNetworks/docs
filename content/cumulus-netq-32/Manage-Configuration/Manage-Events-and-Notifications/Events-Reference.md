@@ -30,6 +30,20 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <tbody>
 <tr>
 <td>agent</td>
+<td>NetQ Agent state changed to Rotten (not heard from within two minutes)</td>
+<td>Critical</td>
+<td>Agent state changed to rotten</td>
+<td>Agent state changed to rotten</td>
+</tr>
+<tr>
+<td>agent</td>
+<td>NetQ Agent state changed to Dead (user has decomissioned the agent using NetQ CLI)</td>
+<td>Critical</td>
+<td>Agent state changed to rotten</td>
+<td>Agent state changed to rotten</td>
+</tr>
+<tr>
+<td>agent</td>
 <td>NetQ Agent rebooted</td>
 <td>Critical</td>
 <td>Netq-agent rebooted at (@last_boot)</td>
@@ -44,38 +58,24 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 </tr>
 <tr>
 <td>agent</td>
+<td>NetQ Agent state changed to Fresh</td>
+<td>Info</td>
+<td>Agent state changed to fresh</td>
+<td>Agent state changed to fresh</td>
+</tr>
+<tr>
+<td>agent</td>
 <td>NetQ Agent state was reset</td>
-<td>Critical</td>
+<td>Info</td>
 <td>Agent state was paused and resumed at (@last_reinit)</td>
 <td>Agent state was paused and resumed at 1573166125</td>
 </tr>
 <tr>
 <td>agent</td>
 <td>Version of NetQ Agent has changed</td>
-<td>Critical</td>
+<td>Info</td>
 <td>Agent version has been changed old_version:@old_version  and new_version:@new_version. Agent reset at @sys_uptime</td>
 <td>Agent version has been changed old_version:2.1.2  and new_version:2.3.1. Agent reset at 1573079725</td>
-</tr>
-<tr>
-<td>agent</td>
-<td>NetQ Agent state changed to Rotten (not heard from in over 15 seconds)</td>
-<td>Critical</td>
-<td>Agent state changed to rotten</td>
-<td>Agent state changed to rotten</td>
-</tr>
-<tr>
-<td>agent</td>
-<td>NetQ Agent state changed to Dead (xxx)</td>
-<td>Critical</td>
-<td>Agent state changed to dead</td>
-<td>Agent state changed to dead</td>
-</tr>
-<tr>
-<td>agent</td>
-<td>NetQ Agent state changed to Fresh</td>
-<td>Info</td>
-<td>Agent state changed to fresh</td>
-<td>Agent state changed to fresh</td>
 </tr>
 </tbody>
 </table>
@@ -158,13 +158,14 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>@info : @details</td>
 <td>high btrfs allocation space : greater than 80% of partition size, 61708420</td>
 </tr>
-<! --<tr>
+<! -- remove this second event? -->
+<tr>
 <td>btrfsinfo</td>
 <td>Indicates if space would be freed by a rebalance operation on the disk</td>
 <td>Critical</td>
 <td>@info : @details</td>
 <td>data storage efficiency : space left after allocation greater than chunk size 6170849.2","</td>
-</tr>-->
+</tr>
 </body>
 </table>
 
@@ -282,7 +283,7 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>Peer state changed to down</td>
 <td>Peer state changed to down</td>
 </tr>
-<! --<tr>
+<! -- <tr>
 <td>clag</td>
 <td>Local CLAG host MTU does not match its remote peer MTU</td>
 <td>Critical</td>
@@ -302,7 +303,7 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>Warning</p></td>
 <td>Clag peerlink not at full redundancy, member link @slave is down</td>
 <td>Clag peerlink not at full redundancy, member link swp40 is down</td>
-</tr>-->
+</tr> -->
 <tr>
 <td>clag</td>
 <td>CLAG remote peer state changed from down to up</td>
@@ -899,7 +900,7 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <tr>
 <td>ptm</td>
 <td>Physical interface cabling matches configuration specified in <em>topology.dot</em> file</td>
-<td>Info</td>
+<td>Critical</td>
 <td>PTM cable status passed</td>
 <td>PTM cable status passed</td>
 </tr>
@@ -1030,13 +1031,6 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 </tr>
 <tr>
 <td>sensor</td>
-<td>A fan or power supply unit sensor is in a new state</td>
-<td>Critical</td>
-<td>Sensor @sensor state is @new_s_state</td>
-<td>Sensor psu state is bad</td>
-</tr>
-<tr>
-<td>sensor</td>
 <td>A temperature, fan, or power supply sensor state changed</td>
 <td>Info</td>
 <td>Sensor @sensor state changed from @old_state to @new_state</td>
@@ -1051,6 +1045,13 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>Sensor @sensor state changed from @old_s_state to @new_s_state</td>
 <td><p>Sensor fan state changed from down to up</p>
 <p>Sensor psu state changed from down to up</p></td>
+</tr>
+<tr>
+<td>sensor</td>
+<td>A fan or power supply unit sensor is in a new state</td>
+<td>Critical</td>
+<td>Sensor @sensor state is @new_s_state</td>
+<td>Sensor psu state is bad</td>
 </tr>
 </body>
 </table>
@@ -1076,18 +1077,18 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 </thead>
 <tbody>
 <tr>
+<td>services</td>
+<td>A service status changed from down to up</td>
+<td>Critical</td>
+<td>Service @name status changed from @old_status to @new_status</td>
+<td>Service bgp status changed from down to up</td>
+</tr>
 <tr>
 <td>services</td>
 <td>A service status changed from up to down</td>
 <td>Critical</td>
 <td>Service @name status changed from @old_status to @new_status</td>
 <td>Service lldp status changed from up to down</td>
-</tr>
-<td>services</td>
-<td>A service status changed from down to up</td>
-<td>Info</td>
-<td>Service @name status changed from @old_status to @new_status</td>
-<td>Service bgp status changed from down to up</td>
 </tr>
 <tr>
 <td>services</td>
@@ -1161,50 +1162,50 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>tca</td>
 <td>Percentage of CPU utilization exceeded user-defined maximum threshold on a switch</td>
 <td>Critical</td>
-<td>CPU Utilization upper threshold breached for host @hostname value: @cpu_utilization</td>
-<td>CPU Utilization upper threshold breached for host leaf11 value: 85</td>
+<td>CPU Utilization for host @hostname exceed configured mark @cpu_utilization</td>
+<td>CPU Utilization for host leaf11 exceed configured mark 85</td>
 </tr>
 <tr>
 <td>tca</td>
 <td>Percentage of disk utilization exceeded user-defined maximum threshold on a switch</td>
 <td>Critical</td>
-<td>Disk Utilization upper threshold breached for hostname @hostname value: @disk_utilization</td>
-<td>Disk Utilization upper threshold breached for hostname leaf11 value: 90</td>
+<td>Disk Utilization for host @hostname exceed configured mark @disk_utilization</td>
+<td>Disk Utilization for host leaf11 exceed configured mark 90</td>
 </tr>
 <tr>
 <td>tca</td>
 <td>Percentage of memory utilization exceeded user-defined maximum threshold on a switch</td>
 <td>Critical</td>
-<td>Memory Utilization upper threshold breached for hostname @hostname value: @mem_utilization</td>
-<td>Memory Utilization upper threshold breached for hostname leaf11 value: 95</td>
+<td>Memory Utilization for host @hostname exceed configured mark @mem_utilization</td>
+<td>Memory Utilization for host leaf11 exceed configured mark 95</td>
 </tr>
 <tr>
 <td>tca</td>
 <td>Number of transmit bytes exceeded user-defined maximum threshold on a switch interface</td>
 <td>Critical</td>
-<td>TX bytes upper threshold breached for host @hostname ifname: @ifname value: @tx_bytes</td>
-<td>TX bytes upper threshold breached for host spine02 ifname: swp4 value: 20000</td>
+<td>TX bytes upper threshold breached for host @hostname ifname:@ifname value: @tx_bytes</td>
+<td>TX bytes upper threshold breached for host spine02 ifname:swp4 value: 20000</td>
 </tr>
 <tr>
 <td>tca</td>
 <td>Number of broadcast transmit bytes exceeded user-defined maximum threshold on a switch interface</td>
 <td>Critical</td>
-<td>TX broadcast upper threshold breached for host @hostname ifname:@ifname value: @tx_broadcast</td>
+<td>TX broadcast upper threshold breached for host @hostname ifname:@ifname value: @rx_broadcast</td>
 <td>TX broadcast upper threshold breached for host leaf04 ifname:swp45 value: 40200</td>
 </tr>
 <tr>
 <td>tca</td>
 <td>Number of multicast transmit bytes exceeded user-defined maximum threshold on a switch interface</td>
 <td>Critical</td>
-<td>TX multicast upper threshold breached for host @hostname ifname:@ifname value: @tx_broadcast</td>
+<td>TX multicast upper threshold breached for host @hostname ifname:@ifname value: @rx_broadcast</td>
 <td>TX multicast upper threshold breached for host leaf04 ifname:swp45 value: 30000</td>
 </tr>
 <tr>
 <td>tca</td>
 <td>Number of receive bytes exceeded user-defined maximum threshold on a switch interface</td>
 <td>Critical</td>
-<td>RX bytes upper threshold breached for host @hostname ifname: @ifname value: @rx_bytes</td>
-<td>RX bytes upper threshold breached for host spine02 ifname: swp4 value: 20000</td>
+<td>RX bytes upper threshold breached for host @hostname ifname:@ifname value: @tx_bytes</td>
+<td>RX bytes upper threshold breached for host spine02 ifname:swp4 value: 20000</td>
 </tr>
 <tr>
 <td>tca</td>

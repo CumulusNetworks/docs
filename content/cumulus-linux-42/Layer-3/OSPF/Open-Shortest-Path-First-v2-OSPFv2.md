@@ -1007,7 +1007,9 @@ router ospf
 
 ### OSPF Distance
 
-Administrative distance (AD) determines which source to use if the same route information is received from two different sources. Cumulus Linux provides several commands to change the AD for OSPF routes. The default AD is 110.
+Cumulus Linux uses the administrative distance to determine which routing protocol to use if two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100), the switch uses BGP.
+
+Cumulus Linux provides several commands to change the distance for OSPF routes. The default value is 110.
 
 The following example commands set the distance for an entire group of routes:
 

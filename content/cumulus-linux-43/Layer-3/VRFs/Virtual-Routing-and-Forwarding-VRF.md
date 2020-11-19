@@ -237,16 +237,6 @@ The most common use case for VRF is to use multiple independent routing and forw
 - VRF route leaking is not supported between the tenant VRF and the default VRF with onlink next hops (BGP unnumbered).
 - The NCLU command to configure route leaking fails if the VRF is named `red` (lowercase letters only). This is not a problem if the VRF is named `RED` (uppercase letters) or has a name other than red. To work around this issue, rename the VRF or run the `vtysh` command instead. This is a known limitation in `network-docopt`.
 
-{{%notice note%}}
-
-VRF route leaking uses BGP to replicate the leaked routes across VRFs. However, Cumulus Linux 4.2.0 and earlier cannot replicate the host routes for neighbors local to a switch where the leak is configured. To discover all directly connected neighbors in the source VRF of a leaked route, enable the `vrf_route_leak_enable_dynamic` option in the `/etc/cumulus/switchd.conf` file. These routes are then replicated into the target or destination VRF as specified in the leaked route.
-
-The `vrf_route_leak_enable_dynamic` option makes certain inter-VRF traffic ASIC accelerated. Enable this option if you are experiencing slow performance.
-
-In Cumulus Linux 4.2.1 and later, the `vrf_route_leak_enable_dynamic` option is enabled by default.
-
-{{%/notice%}}
-
 ### Configure Route Leaking
 
 For route leaking, a destination VRF is interested in the routes of a source VRF. As routes come and go in the source VRF, they are dynamically leaked to the destination VRF through BGP. If the routes in the source VRF are learned through BGP, no additional configuration is necessary. If the routes in the source VRF are learned through OSPF, or if they are statically configured or directly-connected networks have to be reached, the routes need to be first *redistributed* into BGP (in the source VRF) for them to be leaked.

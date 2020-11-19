@@ -627,6 +627,51 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
+## Suppress Route Advertisement
+
+You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the FIB before sending updates to peers.
+
+{{< tabs "TabID784 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing bgp suppress-fib-pending
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# bgp suppress-fib-pending
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp51 remote-as external
+ bgp suppress-fib-pending
+...
+```
+
 ## BGP add-path
 
 Cumulus Linux supports both BGP add-path RX and BGP add-path TX.

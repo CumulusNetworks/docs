@@ -7,8 +7,8 @@ toc: 3
 Route filtering lets you exclude routes that are advertised or received from neighbors. You can use route filtering to manipulate traffic flows, reduce memory utilization, and improve security.
 
 This section discusses the following route filtering methods:
-- Route maps
 - Prefix lists
+- Route maps
 - Route redistribution
 
 ## Prefix Lists

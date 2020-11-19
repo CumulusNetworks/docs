@@ -23,7 +23,7 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 ### New Features and Enhancements
 
 - Hitless software upgrade
-- BGP graceful restart
+- {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Graceful BGP restart">}}
 - BGP wait for convergence
 - Port-based SPAN without using an ACL
 - DHCP snooping

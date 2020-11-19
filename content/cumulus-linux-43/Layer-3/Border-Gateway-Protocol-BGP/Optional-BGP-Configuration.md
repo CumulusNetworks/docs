@@ -909,6 +909,87 @@ router bgp 65101
 ...
 ```
 
+### Wait for Convergence
+
+BGP *wait for convergence* lets you delay the initial best path calculation after you reboot the switch, restart FRR, or run the vtysh `clear ip bgp *` command. This allows peers to become established and converge before BGP installs the resulting routes in zebra or sends updates to peers.
+
+To enable BGP wait for convergence, you configure the following BGP timers globally:
+
+| <div style="width:200px">Timer | Description |
+| ----- | ----------- |
+| `update-delay` | The longest BGP waits for all eligible peers to converge. A peer is considered converged if it reaches the established state and sends an explicit or implicit EoR. |
+| `establish-wait`| Optional. The time by which peers must reach the established state to be considered for convergence. This guards against extremely slow peers or peers that are configured but not reachable.<br><br>Peers that are locally shutdown are not considered for the convergence event.|
+
+{{%notice note%}}
+- The `update-delay` and `establish-wait` timers are used by all VRFs, including the default VRF and any VRFs that you add later.
+- You can set the `update-delay` timer per VRF. However, you cannot set the timer *both* globally and per VRF. If a VRF (including the default VRF) is configured with the `update-delay` timer, you must delete it before configuring the timer globally.
+{{%/notice%}}
+
+The following example commands set the `update-delay` timer to 300 seconds and the `establish-wait` timer to 200 seconds:
+
+{{< tabs "TabID12 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing bgp update-delay 300 establish-wait 200
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# update-delay 300 200 
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp51 remote-as external
+ bgp update-delay 300 200
+...
+```
+
+To show the configured timers and information about the transitions when a convergence event occurs, run the NCLU `net show bgp summary` command or the vtysh `show ip bgp summary` command.
+
+```
+cumulus@leaf01:mgmt:~$ net show bgp summary
+show bgp ipv4 unicast summary
+=============================
+BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
+Read-only mode update-delay limit: 300 seconds
+                   Establish wait: 200 seconds
+BGP table version 0
+RIB entries 3, using 576 bytes of memory
+Peers 1, using 21 KiB of memory
+
+Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
+spine01(swp51)  4      65199     30798     30802        0    0    0 1d01h09m            0        0
+
+Total number of neighbors 1
+...
+```
+
+The last convergence event is retained in the output of the NCLU `net show bgp summary json` command or the vtysh `show ip bgp summary json` command.
+
 ## Route Reflectors
 
 iBGP rules state that a route learned from an iBGP peer can not be sent to another iBGP peer. In a data center spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, BGP introduced the concept of a *route reflector* that selectively ignores this rule so that when an iBGP speaker is configured as a route reflector, it *can* send iBGP learned routes to other iBGP peers.
@@ -1091,7 +1172,9 @@ To help minimize the negative effects that occur when BGP restarts, you can enab
 
 When a BGP session is established, BGP peers use the BGP OPEN message to negotiate graceful restart support. If the BGP peer also supports graceful restart, it is activated for that neighbor session. If the BGP session is lost, the BGP peer (called the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. When the graceful restart is complete, routes are obtained from the helper so that the device can return to full operation quickly.
 
+{{%notice note%}}
 BGP graceful restart is supported for both IPv4 and IPv6.
+{{%/notice%}}
 
 You can enable graceful BGP restart in one of two ways:
 - Globally, where all BGP peers inherit the graceful restart capability.

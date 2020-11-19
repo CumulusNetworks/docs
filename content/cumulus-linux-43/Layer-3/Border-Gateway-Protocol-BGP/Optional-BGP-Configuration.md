@@ -1083,6 +1083,272 @@ Paths: (2 available, best #1, table Default-IP-Routing-Table)
       Last update: Mon Sep 18 17:01:18 2017
 ```
 
+## Graceful BGP Restart
+
+When BGP restarts on a switch, all BGP peers detect that the session goes down and comes back up. This session transition results in a routing flap that causes BGP to recompute routes, generate route updates, and add unnecessary churn to the forwarding tables. The routing flaps can create transient forwarding blackholes and loops, and also consume resources on the control plane of the switches affected by the flap, which can affect overall network performance.
+
+To help minimize the negative effects that occur when BGP restarts, you can enable the BGP graceful restart feature, which enables a BGP speaker to preserve its forwarding state during a BGP restart. 
+
+When a BGP session is established, BGP peers use the BGP OPEN message to negotiate graceful restart support. If the BGP peer also supports graceful restart, it is activated for that neighbor session. If the BGP session is lost, the BGP peer (called the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. When the graceful restart is complete, routes are obtained from the helper so that the device can return to full operation quickly.
+
+BGP graceful restart is supported for both IPv4 and IPv6.
+
+You can enable graceful BGP restart in one of two ways:
+- Globally, where all BGP peers inherit the graceful restart capability.
+- Per BGP peer or peer group, which cna be useful for misbehaving peers or to work with third party devices). You can also configure a peer or peer group to run in helper mode only, where routes originated and advertised from a BGP peer are not deleted.
+
+The following example commands enable global graceful BGP restart:
+
+{{< tabs "TabID19 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing bgp graceful-restart-mode helper-and-restarter
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# bgp graceful-restart
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The following example commands enable BGP graceful restart on the BGP peer connected on swp51. 
+
+{{< tabs "TabID51 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 graceful-restart-mode helper-and-restarter
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# neighbor swp51 graceful-restart
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The following example commands enable helper mode only for the BGP peer connected on swp51. Routes originated and advertised from the peer are not deleted.
+
+{{< tabs "TabID83 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 graceful-restart-mode helper
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# neighbor swp51 graceful-restart-helper
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp51 remote-as external
+ neighbor swp51 graceful-restart
+...
+```
+
+You can configure the following graceful restart timers, which are set globally.
+
+|<div style="width:250px">Timer | Description |
+| ---- | ----------- |
+| `restart-time` | The number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. The default is 120 seconds. You can set a value between 1 and 4095.|
+| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the End-of-RIB marker (EOR) from peers. The default is 360 seconds. You can set a value between 1 and 3600. |
+| `stalepath-time` | The number of seconds to hold stale routes for a restarting peer. The default is 360 seconds. You can set a value between 1 and 4095.|
+
+The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:
+
+{{< tabs "TabID125 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing bgp graceful-restart restart-time 400
+cumulus@switch:~$ net add routing bgp graceful-restart pathselect-defer-time 300
+cumulus@switch:~$ net add routing bgp graceful-restart stalepath-time 400
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# bgp graceful-restart restart-time 400
+switch(config-router)# bgp graceful-restart select-defer-time 300
+switch(config-router)# bgp graceful-restart stalepath-time 400
+switch(config-router)# end
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The NCLU and vtysh commands save the configuration in the ``/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+ bgp router-id 10.10.10.101
+ neighbor swp51 remote-as external
+ bgp graceful-restart restart-time 400
+ bgp graceful-restart select-defer-time 300
+ bgp graceful-restart stalepath-time 400
+...
+```
+
+The following example commands disable global graceful restart:
+
+{{< tabs "TabID162 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add routing bgp graceful-restart-mode disabled
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# bgp graceful-restart-disable
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The following example commands disable graceful BGP restart on a BGP peer:
+
+{{< tabs "TabID169 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@switch:~$ net add bgp neighbor swp51 graceful-restart-disable
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# neighbor swp51 graceful-restart-disable
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+To show BGP graceful restart information, run the NCLU `net show bgp neighbor <neighbour> graceful-restart` command or the vtysh `show bgp neighbor <neighbor> graceful-restart` command.
+
+```
+cumulus@leaf01:mgmt:~$ net show bgp neighbor swp51 graceful-restart
+Codes: GR - Graceful Restart, * -  Inheriting Global GR Config,
+       Restart - GR Mode-Restarting, Helper - GR Mode-Helper,
+       Disable - GR Mode-Disable.
+
+BGP neighbor on swp51: fe80::4638:39ff:fe00:2, remote AS 65199, local AS 65101, external link
+  BGP state = Established, up for 00:15:54
+  Neighbor GR capabilities:
+    Graceful Restart Capability: advertised and received
+      Remote Restart timer is 120 seconds
+      Address families by peer:
+        none
+  Graceful restart information:
+    End-of-RIB send: IPv4 Unicast
+    End-of-RIB received: IPv4 Unicast
+    Local GR Mode: Helper*
+    Remote GR Mode: Helper
+    R bit: False
+    Timers:
+      Configured Restart Time(sec): 120
+      Received Restart Time(sec): 120
+    IPv4 Unicast:
+      F bit: False
+      End-of-RIB sent: Yes
+      End-of-RIB sent after update: Yes
+      End-of-RIB received: Yes
+      Timers:
+        Configured Stale Path Time(sec): 360
+```
+
 ## Enable Read-only Mode
 
 As BGP peers are established and updates are received, prefixes might be installed in the RIB and advertised to BGP peers even though the information from all peers is not yet received and processed. Depending on the timing of the updates, prefixes might be installed and propagated through BGP, and then immediately withdrawn and replaced with new routing information. Read-only mode minimizes this BGP route churn in both the local RIB and with BGP peers.

@@ -16,13 +16,27 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Platforms
 
-- Mellanox SN (100G Spectrum-3)
-- Mellanox SN ( )
+- Mellanox SN4600 (200G Spectrum-3)
+- Mellanox SN4410 (400G Spectrum-3)
+- Mellanox SN4800 (100G Spectrum-3)
 
 ### New Features and Enhancements
 
-- list
-- list
+- Hitless software upgrade
+- BGP graceful restart
+- BGP wait for convergence
+- Port-based SPAN without using an ACL
+- DHCP snooping
+- QoS traffic shaping
+- Multicast routing over VXLAN now supported on Mellanox switches
+- Non-atomic mode now supported on Mellanox switches
+- What Just Happened commands to troubleshoot and diagnose network issues
+- BGP graceful shutdown enhancements
+- EVPN multihoming now supports LACP bypass
+- Docker runtime included by default on Cumulus Linux
+- DoRoCE command
+- SNMP MIB for BGP unnumbered peers
+- SVI interface support for DHCPv6
 
 ### Unsupported Platforms
 

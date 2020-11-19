@@ -6,7 +6,7 @@ toc: 3
 ---
 {{%notice warning%}}
 
-In Cumulus Linux 4.2.0, the default password for the *cumulus* user account has changed to `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before installing a new image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to [ONIE Installation Options](#onie-installation-options).
+In Cumulus Linux 4.2.0 and later, the default password for the *cumulus* user account is `cumulus`. The first time you log into Cumulus Linux, you are **required** to change this default password. Be sure to update any automation scripts before installing a new image. Cumulus Linux provides command line options to change the default password automatically during the installation process. Refer to [ONIE Installation Options](#onie-installation-options).
 
 {{%/notice%}}
 
@@ -497,9 +497,9 @@ The `onie-nos-install` command does *not* allow you specify command line paramet
 The following example commands transfer a disk image to the switch, make the image executable, and install the image with the `--password` option to change the default cumulus user password:
 
 ```
-ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.2.0-bcm-amd64.bin
-ONIE:/ # chmod 755 cumulus-linux-4.2.0-bcm-amd64.bin
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'MyP4$$word'
+ONIE:/ # wget http://myserver.datacenter.com/cumulus-linux-4.3.0-bcm-amd64.bin
+ONIE:/ # chmod 755 cumulus-linux-4.3.0-bcm-amd64.bin
+ONIE:/ # ./cumulus-linux-4.3.0-bcm-amd64.bin --password 'MyP4$$word'
 ```
 
 {{%/notice%}}
@@ -508,12 +508,12 @@ You can run more than one option in the same command.
 
 ### Set the cumulus User Password
 
-The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change is **required** in Cumulus Linux 4.2 and later.
+The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system. This password change is **required**.
 
 To automate this process, you can specify a new password from the command line of the installer with the `--password '<clear text-password>'` option. For example, to change the default *cumulus* user password to `MyP4$$word`:
 
 ```
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --password 'MyP4$$word'
+ONIE:/ # ./cumulus-linux-4.3.0-bcm-amd64.bin --password 'MyP4$$word'
 ```
 
 To provide a hashed password instead of a clear text password, use the `--hashed-password '<hash>'` option. Using an encrypted hash is recommended to maintain a secure management network.
@@ -528,7 +528,7 @@ To provide a hashed password instead of a clear text password, use the `--hashed
 1. Specify the new password from the command line of the installer with the `--hashed-password '<hash>'` command:
 
    ```
-   ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --hashed-password '$6$hs7OPmnrfvLNKfoZ$iB3hy5N6Vv6koqDmxixpTO6lej6VaoKGvs5E8p5zNo4tPec0KKqyQnrFMII3jGxVEYWntG9e7Z7DORdylG5aR/'
+   ONIE:/ # ./cumulus-linux-4.3.0-bcm-amd64.bin  --hashed-password '$6$hs7OPmnrfvLNKfoZ$iB3hy5N6Vv6koqDmxixpTO6lej6VaoKGvs5E8p5zNo4tPec0KKqyQnrFMII3jGxVEYWntG9e7Z7DORdylG5aR/'
    ```
 
 {{%notice note%}}
@@ -542,7 +542,7 @@ If you specify both the `--password` and `--hashed-password` options, the `--has
 To apply a license and start the `switchd` service automatically after Cumulus Linux boots for the first time after installation, use the `--license <license-string>` option. For example:
 
 ```
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --license 'customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
+ONIE:/ # ./cumulus-linux-4.3.0-bcm-amd64.bin  --license 'customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'
 ```
 
 ### Provide Initial Network Configuration
@@ -550,7 +550,7 @@ ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --license 'customer@datacenter.com
 To provide initial network configuration automatically when Cumulus Linux boots for the first time after installation, use the `--interfaces-file <filename>` option. For example, to copy the contents of a file called `network.intf` into the `/etc/network/interfaces` file and run the `ifreload -a` command:
 
 ```
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --interfaces-file network.intf
+ONIE:/ # ./cumulus-linux-4.3.0-bcm-amd64.bin  --interfaces-file network.intf
 ```
 
 ### Execute a ZTP Script
@@ -558,7 +558,7 @@ ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin  --interfaces-file network.intf
 To run a ZTP script that contains commands to execute after Cumulus Linux boots for the first time after installation, use the `--ztp <filename>` option. For example, to run a ZTP script called `initial-conf.ztp`:
 
 ```
-ONIE:/ # ./cumulus-linux-4.2.0-bcm-amd64.bin --ztp initial-conf.ztp
+ONIE:/ # ./cumulus-linux-4.3.0-bcm-amd64.bin --ztp initial-conf.ztp
 ```
 
 The ZTP script must contain the `CUMULUS-AUTOPROVISIONING` string near the beginning of the file and must reside on the ONIE filesystem. Refer to {{<link url="Zero-Touch-Provisioning-ZTP" text="Zero Touch Provisioning - ZTP">}}.
@@ -615,23 +615,23 @@ Because the Cumulus Linux image file is mostly a binary file, you cannot use sta
 1. Copy the first 20 lines to an empty file:
 
 ```
-head -20 cumulus-linux-4.2.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.1
+head -20 cumulus-linux-4.3.0-bcm-amd64.bin > cumulus-linux-4.3.0-bcm-amd64.bin.1
 ```
 
 2. Remove the first 20 lines of the image, then copy the remaining lines into another empty file:
 
 ```
-sed -e '1,20d' cumulus-linux-4.2.0-bcm-amd64.bin > cumulus-linux-4.2.0-bcm-amd64.bin.2
+sed -e '1,20d' cumulus-linux-4.3.0-bcm-amd64.bin > cumulus-linux-4.3.0-bcm-amd64.bin.2
 ```
 
-The original file is now split, with the first 20 lines in `cumulus-linux-4.2.0-bcm-amd64.bin.1` and the remaining lines in `cumulus-linux-4.2.0-bcm-amd64.bin.2`.
+The original file is now split, with the first 20 lines in `cumulus-linux-4.3.0-bcm-amd64.bin.1` and the remaining lines in `cumulus-linux-4.3.0-bcm-amd64.bin.2`.
 
-3. Use a text editor to change the variables in `cumulus-linux-4.2.0-bcm-amd64.bin.1`.
+3. Use a text editor to change the variables in `cumulus-linux-4.3.0-bcm-amd64.bin.1`.
 
 4. Put the two pieces back together using `cat`:
 
 ```
-cat cumulus-linux-4.2.0-bcm-amd64.bin.1 cumulus-linux-4.2.0-bcm-amd64.bin.2 > cumulus-linux-4.2.0-bcm-amd64.bin.final
+cat cumulus-linux-4.3.0-bcm-amd64.bin.1 cumulus-linux-4.3.0-bcm-amd64.bin.2 > cumulus-linux-4.3.0-bcm-amd64.bin.final
 ```
 
 This is an example of a modified image file:

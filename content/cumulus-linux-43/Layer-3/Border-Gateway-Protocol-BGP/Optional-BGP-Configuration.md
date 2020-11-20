@@ -1223,7 +1223,7 @@ BGP graceful restart is supported for both IPv4 and IPv6.
 
 You can enable graceful BGP restart in one of two ways:
 - Globally, where all BGP peers inherit the graceful restart capability.
-- Per BGP peer or peer group, which cna be useful for misbehaving peers or to work with third party devices). You can also configure a peer or peer group to run in helper mode only, where routes originated and advertised from a BGP peer are not deleted.
+- Per BGP peer or peer group, which can be useful for misbehaving peers or when working with third party devices. You can also configure a peer or peer group to run in helper mode only, where routes originated and advertised from a BGP peer are not deleted.
 
 The following example commands enable global graceful BGP restart:
 

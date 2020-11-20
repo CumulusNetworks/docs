@@ -208,7 +208,7 @@ def build_rn_markdown(json_file, version, file_type):
         output.append("|---	        |---	        |---	    |---	                |")
         output.append("\n")
     else:
-        output.append("### Fixed issues in {}".format(version))
+        output.append("### Fixed Issues in {}".format(version))
         # output.append("<div class=\"table-wrapper\" markdown=\"block\">")
         output.append("\n")
         output.append("|  Issue ID 	|   Description	|   Affects	|")

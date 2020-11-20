@@ -336,10 +336,10 @@ To configure EVPN-PIM in VXLAN active-active mode, enable PIM on the peer link o
 
 {{< tab "NCLU Commands ">}}
 
-Run the `net add interface <peerlink> pim sm` command. For example:
+Run the `net add interface <peerlink> pim` command. For example:
 
 ```
-cumulus@switch:~$ net add interface peerlink.4094 pim sm
+cumulus@switch:~$ net add interface peerlink.4094 pim
 cumulus@switch:~$ net commit
 cumulus@switch:~$ net pending
 ```
@@ -355,7 +355,7 @@ cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
 switch(config)# interface peerlink.4094
-switch(config-if)# ip pim sm
+switch(config-if)# ip pim
 switch(config-if)# end
 switch# write memory
 switch# exit

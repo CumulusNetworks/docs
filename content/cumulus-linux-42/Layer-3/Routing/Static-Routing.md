@@ -77,7 +77,7 @@ The following example commands configure Cumulus Linux to send traffic with the 
 
 ```
 cumulus@border01:~$ net add interface swp3 ip address 10.0.0.32/31
-cumulus@leaf01:~$ net add interface swp51 vrf BLUE
+cumulus@border01:~$ net add interface swp51 vrf BLUE
 cumulus@border01:~$ net add routing route 10.10.10.61/32 10.0.0.33 vrf BLUE
 cumulus@border01:~$ net pending
 cumulus@border01:~$ net commit
@@ -105,7 +105,7 @@ Run `vtysh` commands to configure the static route (the destination prefix and n
 cumulus@border01:~$ sudo vtysh
 
 border01# configure terminal
-border01(config)# ip route 10.10.10.61/32 10.0.0.33 vrf blue
+border01(config)# ip route 10.10.10.61/32 10.0.0.33 vrf BLUE
 border01(config)# exit
 border01# write memory
 border01# exit

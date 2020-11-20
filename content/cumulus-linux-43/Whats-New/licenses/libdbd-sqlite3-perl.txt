@@ -1,0 +1,78 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: DBD-SQLite
+Upstream-Contact: Kenichi Ishigaki <ishigaki@cpan.org>
+Source: https://metacpan.org/release/DBD-SQLite
+
+Files: *
+Copyright: 2002-2007, Matt Sergeant <matt@sergeant.org>
+ 2008, Francis J. Lacoste <flacoste@logreport.org>
+ 2008, Wolfgang Sourdeau <wolfgang@logreport.org>
+ 2008-2013, Adam Kennedy <adamk@cpan.org>
+ 2008, Audrey Tang <cpan@audreyt.org>
+ 2009-2013, Kenichi Ishigaki <ishigaki@cpan.org>
+License: Artistic or GPL-1+
+
+Files: dbdimp.*  sqlite3*
+Copyright: none
+License: public-domain
+ ** The author disclaims copyright to this source code.  In place of
+ ** a legal notice, here is a blessing:
+ **
+ **    May you do good and not evil.
+ **    May you find forgiveness for yourself and forgive others.
+ **    May you share freely, never taking more than you give.
+Comment: (= sqlite library)
+
+Files: fts3_tokenizer.h
+Copyright: none
+License: public-domain
+ ** The author disclaims copyright to this source code.
+
+Files: ppport.h
+Copyright: 2004-2010, Marcus Holland-Moritz <mhx-cpan@gmx.net>
+ 2001, Paul Marquess <pmqs@cpan.org> (Version 2.x)
+ 1999, Kenneth Albanowski <kjahds@kjahds.com> (Version 1.x)
+License: Artistic or GPL-1+
+
+Files: inc/Test/NoWarnings.pm
+Copyright: 2003-2007, Fergal Daly <fergal@esatclear.ie>
+ 2010, Adam Kennedy <adamk@cpan.org>
+License: Artistic or GPL-1+
+
+Files: lib/DBD/SQLite/Fulltext_search.pod
+ lib/DBD/SQLite/VirtualTable*
+Copyright: 2014, Laurent Dami <dami@cpan.org>
+License: Artistic or GPL-1+
+
+Files: debian/*
+Copyright: 2002-2003, Ardo van Rangelrooij <ardo@debian.org>
+ 2003-2009, Krzysztof Krzyżaniak (eloy) <eloy@debian.org>
+ 2005, Marcelo E. Magallon <mmagallo@debian.org>
+ 2006-2019, gregor herrmann <gregoa@debian.org>
+ 2006, Andreas Barth <aba@not.so.argh.org>
+ 2006-2008, Niko Tyni <ntyni@debian.org>
+ 2007, David Paleino <d.paleino@gmail.com>
+ 2009-2010, Jonathan Yu <jawnsy@cpan.org>
+ 2009, Gunnar Wolf <gwolf@debian.org>
+ 2009, Maximilian Gass <mxey@cloudconnected.org>
+ 2009, Ryan Niebur <ryan@debian.org>
+ 2010, Ansgar Burchardt <ansgar@debian.org>
+ 2010-2018, Salvatore Bonaccorso <carnil@debian.org>
+ 2018, Xavier Guimard <yadd@debian.org>
+License: Artistic or GPL-1+
+
+License: Artistic
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the Artistic License, which comes with Perl.
+ .
+ On Debian systems, the complete text of the Artistic License can be
+ found in `/usr/share/common-licenses/Artistic'.
+
+License: GPL-1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 1, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 1 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1'.

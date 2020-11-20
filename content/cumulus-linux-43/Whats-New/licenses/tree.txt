@@ -1,0 +1,57 @@
+This is a Debian prepackaged version of tree, the directory tree lister.
+
+It was downloaded from http://mama.indstate.edu/users/ice/tree/
+
+The current maintainer of this package is Florian Ernst <florian@debian.org>,
+the previous maintainers were
+Joey Hess      (until 17 Feb 1997)
+Scott K. Ellis (until 14 Jul 2004)
+
+
+The following copyright applies to this package:
+
+Main author: Steve Baker (ice@mama.indstate.edu)
+
+Copyright (c) 1996 - 2014 by
+Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License with
+ the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St,
+ Fifth Floor, Boston, MA 02110-1301, USA.
+
+On Debian systems, the complete text of the GNU General Public
+License, version 2, can be found in /usr/share/common-licenses/GPL-2.
+
+
+For strverscmp.c the following applies:
+/* Compare strings while treating digits characters numerically.
+   Copyright (C) 1997, 2002, 2005 Free Software Foundation, Inc.
+   This file is part of the libiberty library.
+   Contributed by Jean-François Bignolles <bignolle@ecoledoc.ibp.fr>, 1997.
+
+   Libiberty is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; either
+   version 2.1 of the License, or (at your option) any later version.
+
+   Libiberty is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Lesser General Public
+   License along with the GNU C Library; if not, write to the Free
+   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+   02110-1301 USA.  */
+

@@ -63,9 +63,65 @@ The commands save the static route configuration in the `/etc/frr/frr.conf` file
 
 ```
 ...
-!
 ip route 10.10.10.101/32 10.0.1.0
-!
+...
+```
+
+The following example commands configure Cumulus Linux to send traffic with the destination prefix 10.10.10.61/32 out swp3 (10.0.0.32/31) to the next hop 10.0.0.33 in vrf BLUE.
+
+{{< img src="/images/cumulus-linux/static-vrf-example.png" width="400" >}}
+
+{{< tabs "TabID74 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+```
+cumulus@border01:~$ net add interface swp3 ip address 10.0.0.32/31
+cumulus@leaf01:~$ net add interface swp51 vrf BLUE
+cumulus@border01:~$ net add routing route 10.10.10.61/32 10.0.0.33 vrf BLUE
+cumulus@border01:~$ net pending
+cumulus@border01:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "Linux and vtysh Commands ">}}
+
+Edit the `/etc/network/interfaces` file to configure an IP address for the interface on the switch that sends out traffic. For example:
+
+```
+cumulus@border01:~$ sudo nano /etc/network/interfaces
+...
+auto swp3
+iface swp3
+    address 10.0.0.32/31
+    vrf BLUE
+...
+```
+
+Run `vtysh` commands to configure the static route (the destination prefix and next hop). For example:
+
+```
+cumulus@border01:~$ sudo vtysh
+
+border01# configure terminal
+border01(config)# ip route 10.10.10.61/32 10.0.0.33 vrf blue
+border01(config)# exit
+border01# write memory
+border01# exit
+cumulus@border01:~$
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+The commands save the static route configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+vrf BLUE
+ ip route 10.10.10.61/32 10.0.0.33
 ...
 ```
 

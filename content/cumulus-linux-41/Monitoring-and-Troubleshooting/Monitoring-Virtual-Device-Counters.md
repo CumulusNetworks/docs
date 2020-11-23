@@ -1,6 +1,6 @@
 ---
 title: Monitoring Virtual Device Counters
-author: Cumulus Networks
+author: NVIDIA
 weight: 970
 toc: 3
 ---

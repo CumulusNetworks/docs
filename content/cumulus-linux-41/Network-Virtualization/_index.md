@@ -1,6 +1,6 @@
 ---
 title: Network Virtualization
-author: Cumulus Networks
+author: NVIDIA
 weight: 520
 toc: 2
 ---

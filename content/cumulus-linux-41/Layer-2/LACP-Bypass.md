@@ -1,6 +1,6 @@
 ---
 title: LACP Bypass
-author: Cumulus Networks
+author: NVIDIA
 weight: 490
 toc: 3
 ---

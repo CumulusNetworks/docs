@@ -1,6 +1,6 @@
 ---
 title: DHCP Relays
-author: Cumulus Networks
+author: NVIDIA
 weight: 340
 toc: 3
 ---

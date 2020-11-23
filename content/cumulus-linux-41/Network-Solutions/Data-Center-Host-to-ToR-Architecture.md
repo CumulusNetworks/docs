@@ -1,6 +1,6 @@
 ---
 title: Data Center Host to ToR Architecture
-author: Cumulus Networks
+author: NVIDIA
 weight: 1140
 toc: 3
 ---

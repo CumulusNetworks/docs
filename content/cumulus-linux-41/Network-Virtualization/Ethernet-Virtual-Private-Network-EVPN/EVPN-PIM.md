@@ -1,6 +1,6 @@
 ---
 title: EVPN BUM Traffic with PIM-SM
-author: Cumulus Networks
+author: NVIDIA
 weight: 570
 toc: 4
 ---

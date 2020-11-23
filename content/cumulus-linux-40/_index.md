@@ -6,7 +6,7 @@ cascade:
     product: Cumulus Linux
     version: "4.0"
     old: true
-    author: Cumulus Networks
+    author: NVIDIA
 toc: 1
 ---
 ## What is Cumulus Linux?

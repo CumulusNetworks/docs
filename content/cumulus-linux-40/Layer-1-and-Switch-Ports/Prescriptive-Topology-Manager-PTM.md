@@ -1,6 +1,6 @@
 ---
 title: Prescriptive Topology Manager - PTM
-author: Cumulus Networks
+author: NVIDIA
 weight: 370
 toc: 3
 ---

@@ -1,7 +1,7 @@
 ---
 title: System Event Messages Reference
-author: Cumulus Networks
-weight: 810
+author: NVIDIA
+weight: 811
 toc: 4
 ---
 The following table lists all system event messages organized by type. These messages can be viewed through third-party notification applications. For details about configuring notifications, refer to {{<link title="Configure Notifications">}}.

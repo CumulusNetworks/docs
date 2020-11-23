@@ -12,7 +12,7 @@ Three types of events are available in NetQ:
 - **Threshold-based** (TCA): selected set of system-related events generated based on user-configured threshold values
 - **What Just Happened** (WJH): network hardware events generated when WJH feature is enabled on Mellanox switches
 
-The NetQ UI provides two event workflows and and two summary tables:
+The NetQ UI provides two event workflows and two summary tables:
 
 - Alarms card workflow: tracks critical severity system and TCA events for a given time frame
 - Info card workflow: tracks all warning, info, and debug severity system and TCA events for a given time frame

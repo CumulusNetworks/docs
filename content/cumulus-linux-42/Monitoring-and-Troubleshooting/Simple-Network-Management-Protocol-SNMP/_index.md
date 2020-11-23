@@ -93,7 +93,7 @@ For external SNMP NMS systems to poll Cumulus Linux switches and routers, you mu
 
 {{%notice note%}}
 
-- Cumulus Networks recommends that you use NCLU to configure `snmpd` even though NCLU does not provide functionality to configure every `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the `/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands.
+- Using NCLU to configure `snmpd` is recommended even though NCLU does not provide functionality to configure every `snmpd` feature. You are not restricted to using NCLU for configuration and can edit the `/etc/snmp/snmpd.conf` file and control `snmpd` with `systemctl` commands.
 - Cumulus Linux provides VRF listening-address, as well as Trap/Inform support. When management VRF is enabled, the eth0 interface is placed in the management VRF. When you configure the `listening-address` for `snmp-server`, you must run the `net add snmp-server listening-address <address> vrf mgmt` command to enable listening on the eth0 interface. These additional parameters are described in detail below.
 - You must add a default community string for v1 or v2c environments so that the `snmpd` daemon can respond to requests. For security reasons, the default configuration configures `snmpd` to listen to SNMP requests on the loopback interface so access to the switch is restricted to requests originating from the switch itself. The only required commands for `snmpd` to function are a `listening-address` and either a `username` or a `readonly-community` string.
 
@@ -196,9 +196,9 @@ To start the SNMP daemon:
 
 After the service starts, you can use SNMP to manage various components on the switch.
 
-### Set up the Custom Cumulus Networks MIBs
+### Set up the Custom MIBs
 
-No changes are required in the `/etc/snmp/snmpd.conf` file on the switch to support the custom Cumulus Networks MIBs. The following lines are already included by default and provide support for both the Cumulus Counters and the Cumulus Resource Query MIBs.
+No changes are required in the `/etc/snmp/snmpd.conf` file on the switch to support custom MIBs. The following lines are already included by default and provide support for both the Cumulus Counters and the Cumulus Resource Query MIBs.
 
 ```
 sysObjectID 1.3.6.1.4.1.40310
@@ -225,7 +225,7 @@ The `snmpd` authentication for versions 1 and 2 is disabled by default in Cumulu
    | Keyword| Meaning|
    |------- |------- |
    | `rocommunity` | Read-only community; `rwcommunity` is for read-write access. |
-   | `public` | Plain text password/community string.<br><br>**Note**: Cumulus Networks strongly recommends you change this password to something else. |
+   | `public` | Plain text password/community string.<br><br>**Note**: Change this password to prevent security issues. |
    | `default` | The default keyword allows connections from any system. The localhost keyword allows requests only from the local host. A restricted source can either be a specific hostname (or address), or a subnet, represented as IP/MASK (like 10.10.10.0/255.255.255.0), or IP/BITS (like 10.10.10.0/24), or the IPv6 equivalents. |
    |`systemonly`| The name of this particular SNMP view. This is a user-defined value. |
 
@@ -306,7 +306,7 @@ SNMPv3 is often used to enable authentication and encryption, as community strin
 
 {{%notice note%}}
 
-Cumulus Networks recommends that you configure SNMPv3 usernames and passwords with NCLU. However, if you prefer to edit the `/etc/snmp/snmpd.conf` manually instead, be aware that `snmpd` caches SNMPv3 usernames and passwords in the /`var/lib/snmp/snmpd.conf` file. Make sure you stop `snmpd` and remove the old entries when making changes. Otherwise, Cumulus Linux uses the old usernames and passwords in the `/var/lib/snmp/snmpd.conf` file instead of the ones in the `/etc/snmp/snmpd.conf` file.
+Configure SNMPv3 usernames and passwords with NCLU. However, if you prefer to edit the `/etc/snmp/snmpd.conf` manually instead, be aware that `snmpd` caches SNMPv3 usernames and passwords in the /`var/lib/snmp/snmpd.conf` file. Make sure you stop `snmpd` and remove the old entries when making changes. Otherwise, Cumulus Linux uses the old usernames and passwords in the `/var/lib/snmp/snmpd.conf` file instead of the ones in the `/etc/snmp/snmpd.conf` file.
 
 {{%/notice%}}
 

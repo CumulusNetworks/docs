@@ -35,7 +35,7 @@ Auto BGP assigns private ASNs in the range 4200000000 through 4294967294. This i
 
 {{%notice note%}}
 
-- Cumulus Networks recommends you use auto BGP in new deployments to avoid conflicting ASNs in an existing configuration.
+- Use auto BGP in new deployments to avoid conflicting ASNs in an existing configuration.
 - It is not necessary to use auto BGP across all switches in your configuration. For example, you can use auto BGP to configure one switch but allocate ASNs manually to other switches.
 - Auto BGP is intended for use in two-tier spine and leaf networks. Using auto BGP in three-tier networks with superspines might result in incorrect ASN assignments.
 - The `leaf` keyword generates the ASN based on a hash of the switch MAC address. The ASN assigned might change after a switch replacement.

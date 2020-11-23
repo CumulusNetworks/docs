@@ -12,7 +12,7 @@ In Cumulus Linux 4.2.0, the default password for the *cumulus* user account has 
 
 This topic describes how to upgrade Cumulus Linux on your switch.
 
-Cumulus Networks recommends that you deploy, provision, configure, and upgrade switches using automation, even with small networks or test labs. During the upgrade process, you can quickly upgrade dozens of devices in a repeatable manner. Using tools like Ansible, Chef, or Puppet for configuration management greatly increases the speed and accuracy of the next major upgrade; these tools also enable the quick swap of failed switch hardware.
+Deploying, provisioning, configuring, and upgrading switches using automation is highly recommended, even with small networks or test labs. During the upgrade process, you can quickly upgrade dozens of devices in a repeatable manner. Using tools like Ansible, Chef, or Puppet for configuration management greatly increases the speed and accuracy of the next major upgrade; these tools also enable the quick swap of failed switch hardware.
 
 ## Before You Upgrade
 
@@ -23,7 +23,7 @@ Be sure to read the knowledge base article
 
 {{%/notice%}}
 
-Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Cumulus Networks recommends you consider making the following files and directories part of a backup strategy.
+Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed.  Consider making the following files and directories part of a backup strategy.
 
 {{< tabs "TabID25 ">}}
 
@@ -62,7 +62,7 @@ Understanding the location of configuration data is required for successful upgr
 
 - If you are using the root user account, consider including `/root/`.
 - If you have custom user accounts, consider including `/home/<username>/`.
-- Cumulus Networks recommends you run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
+- Run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
 
 {{%/notice%}}
 
@@ -148,7 +148,7 @@ ONIE is an open source project (equivalent to PXE on servers) that enables the i
 
 {{%notice note%}}
 
-Cumulus Networks deprecated lightweight network virtualization (LNV) in Cumulus Linux 4.0 in favor of Ethernet virtual private networks ({{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}. If your network is configured for LNV, you need to migrate your network configuration to a BGP EVPN configuration that is functionally equivalent ***before*** you upgrade. Refer to {{<link title="Migrating from LNV to EVPN">}}.
+Lightweight network virtualization (LNV) is deprecated in Cumulus Linux 4.0 in favor of Ethernet virtual private networks ({{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}. If your network is configured for LNV, you need to migrate your network configuration to a BGP EVPN configuration that is functionally equivalent ***before*** you upgrade. Refer to {{<link title="Migrating from LNV to EVPN">}}.
 
 {{%/notice%}}
 
@@ -262,7 +262,7 @@ You must upgrade both switches in the MLAG pair to the same release of Cumulus L
 
 {{%notice warning%}}
 
-For networks with MLAG deployments, Cumulus Networks only supports upgrading to Cumulus Linux 4.2 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.2. Version 3.7.10 is available on the
+For networks with MLAG deployments, you can only upgrade to Cumulus Linux 4.2 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.2. Version 3.7.10 is available on the
 {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux&version=3.7.10" text="downloads page">}} on our website.
 
 {{%/notice%}}

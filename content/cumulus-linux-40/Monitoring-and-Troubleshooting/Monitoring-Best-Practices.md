@@ -148,7 +148,7 @@ Prescriptive Topology Manager (PTM) uses LLDP information to compare against a `
 
 {{%notice note%}}
 
-Cumulus Networks recommends that you track peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
+Tracking peering information through PTM is highly recommended. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
 
 {{%/notice%}}
 

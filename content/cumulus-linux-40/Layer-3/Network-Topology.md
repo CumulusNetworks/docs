@@ -8,7 +8,7 @@ In computer networks, *topology* refers to the structure of interconnecting vari
 
 ## Clos Topologies
 
-In the vast majority of modern data centers, {{<exlink url="http://en.wikipedia.org/wiki/Clos_network" text="Clos or fat tree topology">}} is very popular. This topology is shown in the figure below. It is also commonly referred to as leaf-spine topology. Cumulus Networks uses this topology throughout this user guide.
+In the vast majority of modern data centers, {{<exlink url="http://en.wikipedia.org/wiki/Clos_network" text="Clos or fat tree topology">}} is very popular. This topology is shown in the figure below. It is also commonly referred to as leaf-spine topology.
 
 {{< img src = "/images/cumulus-linux/network-topology.png" >}}
 

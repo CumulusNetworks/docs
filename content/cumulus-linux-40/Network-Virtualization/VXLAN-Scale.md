@@ -14,7 +14,7 @@ Mellanox Spectrum ASICs do not have a limitation on the number of VXLANs that th
 
 {{%/notice%}}
 
-The limit is a physical to virtual mapping where a switch can hold 15000 mappings in hardware before you encounter hash collisions. There is also an upper limit of around 3000 VLANs you can configure before you hit the reserved range (Cumulus Linux uses 3000-3999 by default). Cumulus Networks typically uses a soft number because the math is unique to each environment. An internal VLAN is consumed by each layer 3 port, subinterface, {{<link url="Traditional-Bridge-Mode" text="traditional bridge">}}, and the {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}. Therefore, the number of configurable VLANs is:
+The limit is a physical to virtual mapping where a switch can hold 15000 mappings in hardware before you encounter hash collisions. There is also an upper limit of around 3000 VLANs you can configure before you hit the reserved range (Cumulus Linux uses 3000-3999 by default). Cumulus Linux typically uses a soft number because the math is unique to each environment. An internal VLAN is consumed by each layer 3 port, subinterface, {{<link url="Traditional-Bridge-Mode" text="traditional bridge">}}, and the {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge">}}. Therefore, the number of configurable VLANs is:
 
 <p style="text-align: center;">(total configurable 802.1q VLANs) - (reserved VLANS) - (physical or logical interfaces) = </p>
 <p style="text-align: center;">4094-999-eth0-loopback = <b>3093</b> by default (without any other

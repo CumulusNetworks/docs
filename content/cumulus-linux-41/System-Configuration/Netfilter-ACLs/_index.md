@@ -709,7 +709,7 @@ The Mellanox Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.or
 
 {{%notice note%}}
 
-Even though the table above specifies that zero IPv6 rules are supported with the ip-acl-heavy profile, Cumulus Networks does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
+Even though the table above specifies that zero IPv6 rules are supported with the ip-acl-heavy profile, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
 
 {{%/notice%}}
 

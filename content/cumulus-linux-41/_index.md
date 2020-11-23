@@ -29,7 +29,7 @@ open source. The list of open source projects is on the {{/*link title="Cumulus 
 
 ### Hardware Compatibility List
 
-You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url="https://cumulusnetworks.com/hcl/" text="here" >}}. Use the HCL to confirm that your switch model is supported by Cumulus Networks. The HCL is updated regularly, listing products by port configuration, manufacturer and SKU part number.
+You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url="https://cumulusnetworks.com/hcl/" text="here" >}}. Use the HCL to confirm that your switch model supports Cumulus Linux. The HCL is updated regularly, listing products by port configuration, manufacturer and SKU part number.
 
 ### Stay up to Date
 

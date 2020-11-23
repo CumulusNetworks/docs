@@ -284,7 +284,7 @@ As shipped, Cumulus Linux searches the Cumulus Linux repository for available pa
 
 {{%notice tip%}}
 
-Cumulus Networks has added features or made bug fixes to certain packages; do not replace these packages with versions from other repositories. Cumulus Linux is configured to ensure that the packages from the Cumulus Linux repository are always preferred over packages from other repositories.
+NVIDIA has added features or made bug fixes to certain packages; do not replace these packages with versions from other repositories. Cumulus Linux is configured to ensure that the packages from the Cumulus Linux repository are always preferred over packages from other repositories.
 
 {{%/notice%}}
 

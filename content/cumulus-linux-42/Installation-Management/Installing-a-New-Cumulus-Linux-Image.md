@@ -575,13 +575,7 @@ The Cumulus Linux disk image file contains a BASH script that includes a set of 
 The Cumulus Linux disk image file is a self-extracting executable. The executable part of the file is a BASH script and is located at the beginning of the file. Towards the beginning of this BASH script are a set of variables set to an empty string:
 
 ```
-#!/bin/sh
-#
-# Cumulus Self-extracting Binary Image
-#
-# All rights reserved.
-#
-
+...
 CL_INSTALLER_PASSWORD=''
 CL_INSTALLER_HASHED_PASSWORD=''
 CL_INSTALLER_LICENSE=''
@@ -635,14 +629,7 @@ cat cumulus-linux-4.2.0-bcm-amd64.bin.1 cumulus-linux-4.2.0-bcm-amd64.bin.2 > cu
 This is an example of a modified image file:
 
 ```
-#!/bin/sh
-#
-# Cumulus Self-extracting Binary Image
-#
-# Copyright 2015 Cumulus Networks, Inc.
-# All rights reserved.
-#
-
+...
 CL_INSTALLER_PASSWORD='MyP4$$word'
 CL_INSTALLER_HASHED_PASSWORD=''
 CL_INSTALLER_LICENSE='customer@datacenter.com|4C3YMCACDiK0D/EnrxlXpj71FBBNAg4Yrq+brza4ZtJFCInvalid'

@@ -57,7 +57,7 @@ Reading package lists... Done
 
 {{%notice tip%}}
 
-Cumulus Networks recommends you use the `-E` option with `sudo` whenever you run any `apt-get` command. This option preserves your environment variables (such as HTTP proxies) before you install new packages or upgrade your distribution.
+Use the `-E` option with `sudo` whenever you run any `apt-get` command. This option preserves your environment variables (such as HTTP proxies) before you install new packages or upgrade your distribution.
 
 {{%/notice%}}
 
@@ -284,7 +284,7 @@ As shipped, Cumulus Linux searches the Cumulus Linux repository for available pa
 
 {{%notice tip%}}
 
-Cumulus Networks has added features or made bug fixes to certain packages; you must not replace these packages with versions from other repositories. Cumulus Linux is configured to ensure that the packages from the Cumulus Linux repository are always preferred over packages from other repositories.
+NVIDIA has added features or made bug fixes to certain packages; you must not replace these packages with versions from other repositories. Cumulus Linux is configured to ensure that the packages from the Cumulus Linux repository are always preferred over packages from other repositories.
 
 {{%/notice%}}
 

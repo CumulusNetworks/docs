@@ -51,7 +51,7 @@ shadow: compat ldap
 
 {{%notice warning%}}
 
-Cumulus Networks recommends that you keep `compat` as the first source in NSS for *passwd*, *group*, and *shadow*. This prevents you from getting locked out of the system.
+Keep `compat` as the first source in NSS for *passwd*, *group*, and *shadow*. This prevents you from getting locked out of the system.
 
 {{%/notice%}}
 
@@ -440,7 +440,7 @@ There are several GUI LDAP clients available that help you work with LDAP server
 
 ### nslcd Debug Mode
 
-When setting up LDAP authentication for the first time, Cumulus Networks recommends you turn off the `nslcd` service using the `systemctl stop nslcd.service` command (or the `systemctl stop nslcd@mgmt.service` if you are running the service in a management VRF) and run it in debug mode. Debug mode works whether you are using LDAP over SSL (port 636) or an unencrypted LDAP connection (port 389).
+When setting up LDAP authentication for the first time, turn off the `nslcd` service using the `systemctl stop nslcd.service` command (or the `systemctl stop nslcd@mgmt.service` if you are running the service in a management VRF) and run it in debug mode. Debug mode works whether you are using LDAP over SSL (port 636) or an unencrypted LDAP connection (port 389).
 
 ```
 cumulus@switch:~$ sudo systemctl stop nslcd.service

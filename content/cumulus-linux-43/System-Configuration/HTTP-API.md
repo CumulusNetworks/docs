@@ -57,7 +57,7 @@ The user and password must correspond to a user on the host switch.
 
 ### Transport Layer Security
 
-All traffic must be secured in transport using TLSv1.2 by default. Cumulus Linux contains a self-signed certificate and private key used server-side in this application so that it works out of the box, but Cumulus Networks recommends you use your own certificates and keys. Certificates must be in the PEM format.
+All traffic must be secured in transport using TLSv1.2 by default. Cumulus Linux contains a self-signed certificate and private key used server-side in this application so that it works out of the box, but NVIDIA recommends you use your own certificates and keys. Certificates must be in the PEM format.
 
 For step by step documentation for generating self-signed certificates and keys, and installing them to the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 

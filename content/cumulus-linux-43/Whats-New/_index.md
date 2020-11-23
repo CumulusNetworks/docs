@@ -42,7 +42,7 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 
 ### Unsupported Platforms
 
-Cumulus Networks does not support these platforms in Cumulus Linux 4.3. They are supported in Cumulus Linux 3.7, until that release reaches its end of life.
+These platforms are not supported in Cumulus Linux 4.3. They are supported in Cumulus Linux 3.7, until that release reaches its end of life.
 
 - Cumulus Express CX-10256-S/Edgecore OMP-800 (100G Tomahawk)
 - Dell S6000-ON (40G Trident2)

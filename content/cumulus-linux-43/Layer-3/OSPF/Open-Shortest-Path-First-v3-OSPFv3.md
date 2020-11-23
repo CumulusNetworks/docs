@@ -420,8 +420,7 @@ This section describes optional configuration. The steps provided in this sectio
 ### Interface Parameters
 
 You can define the following OSPF parameters per interface:
-- Network type (point-to-point or broadcast). Broadcast is the default setting.
-  Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
+- Network type (point-to-point or broadcast). Broadcast is the default setting. Configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point provides a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
   {{%notice note%}}
   Point-to-point is required for {{<link url="#ospfv3-unnumbered" text="OSPFv3 unnumbered">}}.
   {{%/notice%}}

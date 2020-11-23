@@ -1,6 +1,6 @@
 ---
 title: Optional BGP Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 860
 toc: 3
 ---

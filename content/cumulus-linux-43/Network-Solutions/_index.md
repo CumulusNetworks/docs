@@ -1,6 +1,6 @@
 ---
 title: Network Solutions
-author: Cumulus Networks
+author: NVIDIA
 weight: 1270
 toc: 2
 ---

@@ -1,6 +1,6 @@
 ---
 title: Docker on Cumulus Linux
-author: Cumulus Networks
+author: NVIDIA
 weight: 1310
 toc: 3
 ---

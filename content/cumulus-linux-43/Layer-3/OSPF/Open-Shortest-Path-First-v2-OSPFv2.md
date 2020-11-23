@@ -1,6 +1,6 @@
 ---
 title: Open Shortest Path First v2 - OSPFv2
-author: Cumulus Networks
+author: NVIDIA
 weight: 900
 toc: 3
 ---

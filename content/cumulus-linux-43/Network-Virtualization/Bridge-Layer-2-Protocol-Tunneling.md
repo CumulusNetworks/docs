@@ -1,6 +1,6 @@
 ---
 title: Bridge Layer 2 Protocol Tunneling
-author: Cumulus Networks
+author: NVIDIA
 weight: 615
 toc: 3
 ---

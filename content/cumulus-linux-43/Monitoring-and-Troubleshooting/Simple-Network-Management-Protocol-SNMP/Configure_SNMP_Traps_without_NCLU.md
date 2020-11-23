@@ -1,6 +1,6 @@
 ---
 title: Configure SNMP Traps without NCLU
-author: Cumulus Networks
+author: NVIDIA
 weight: 1160
 toc: 4
 ---

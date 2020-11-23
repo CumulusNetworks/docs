@@ -1,6 +1,6 @@
 ---
 title: Anycast Design Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 1330
 toc: 3
 ---

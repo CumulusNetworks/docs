@@ -1,6 +1,6 @@
 ---
 title: Cumulus Networks Services Demos
-author: Cumulus Networks
+author: NVIDIA
 weight: 1290
 toc: 3
 ---

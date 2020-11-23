@@ -1,6 +1,6 @@
 ---
 title: Configuring a Global Proxy
-author: Cumulus Networks
+author: NVIDIA
 weight: 260
 toc: 3
 ---

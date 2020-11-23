@@ -2106,6 +2106,13 @@ To work around this issue, manually delete the dynamic FDB entry that is associa
 <td></td>
 </tr>
 <tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13</td>
+</tr>
+<tr>
 <td>CM-29830</td>
 <td><p>Unicast traffic from downlink hosts is flooded to multiple remote VTEPs, which might also cause high HwIfOutQDrops/TX_DRP on the uplink ports.<br/>
 To work around this issue, restart switchd.</p></td>
@@ -2979,6 +2986,14 @@ To work around this issue, run the net show commit history command to find descr
 To work around this issue, look for your string in the output of the net show commit history command (or grep for it there) instead.</p></td>
 <td>3.7.12-3.7.14</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29830</td>
@@ -5868,6 +5883,14 @@ To work around this issue, look for your string in the output of the net show co
 <td></td>
 </tr>
 <tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-29834</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
@@ -8639,6 +8662,14 @@ Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u18<br/>
 Fixed: 1:9.9.5.dfsg-9+deb8u19</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13-3.7.14</td>
+</tr>
+<tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29834</td>
@@ -11745,6 +11776,14 @@ Fixed: 1:9.9.5.dfsg-9+deb8u19</p></td>
 <td>3.7.13-3.7.14</td>
 </tr>
 <tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-29834</td>
 <td><p>The following security vulnerability has been announced:<br/>
 CVE-2020-13434: SQLite through 3.32.0 has an integer overflow in sqlite3_str_vappendf in printf.c.<br/>
@@ -14538,6 +14577,14 @@ Vulnerable: &lt;= 1:9.9.5.dfsg-9+deb8u18<br/>
 Fixed: 1:9.9.5.dfsg-9+deb8u19</p></td>
 <td>3.0.0-3.7.12</td>
 <td>3.7.13-3.7.14</td>
+</tr>
+<tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29834</td>

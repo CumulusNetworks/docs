@@ -1,12 +1,12 @@
 ---
 title: Manage Cumulus Linux and NetQ Images
-author: Cumulus Networks
+author: NVIDIA
 weight: 630
 toc: 4
 ---
-You can manage both Cumulus Linux and Cumulus NetQ images with LCM. They are managed in a similar manner.
+You can manage both Cumulus Linux and NetQ images with LCM. They are managed in a similar manner.
 
-Cumulus Linux binary images can be uploaded to a local LCM repository for upgrade of your switches. Cumulus NetQ debian packages can be uploaded to the local LCM repository for installation or upgrade. You can upload images from an external drive.
+Cumulus Linux binary images can be uploaded to a local LCM repository for upgrade of your switches. NetQ debian packages can be uploaded to the local LCM repository for installation or upgrade. You can upload images from an external drive.
 
 The Linux and NetQ images are available in several variants based on the software version (x.y.z), the CPU architecture (ARM, x86), platform (based on ASIC vendor, Broadcom or Mellanox), SHA Checksum, and so forth. When LCM discovers Cumulus Linux switches running NetQ 2.x or later in your network, it extracts the meta data needed to select the appropriate image for a given switch.  Similarly, LCM discovers and extracts the meta data from NetQ images.
 
@@ -16,17 +16,17 @@ The Cumulus Linux Images and NetQ Images cards in the NetQ UI provide a summary 
 
 The `netq lcm show images` command also displays a summary of the images uploaded to the LCM repo on the NetQ appliance or VM.
 
-## Default Cumulus Linux or Cumulus NetQ Version Assignment
+## Default Cumulus Linux or NetQ Version Assignment
 
-In the NetQ UI, you can assign a specific Cumulus Linux or Cumulus NetQ version as the default version to use during installation or upgrade of switches. It is recommended that you choose the newest version that you intend to install or upgrade on all, or the majority, of your switches. The default selection can be overridden during individual installation and upgrade job creation if an alternate version is needed for a given set of switches.
+In the NetQ UI, you can assign a specific Cumulus Linux or NetQ version as the default version to use during installation or upgrade of switches. It is recommended that you choose the newest version that you intend to install or upgrade on all, or the majority, of your switches. The default selection can be overridden during individual installation and upgrade job creation if an alternate version is needed for a given set of switches.
 
 ## Missing Images
 
-You should upload images for each variant of Cumulus Linux and Cumulus NetQ currently installed on the switches in your inventory if you want to support rolling back to a known good version should an installation or upgrade fail. The NetQ UI prompts you to upload any missing images to the repository.
+You should upload images for each variant of Cumulus Linux and NetQ currently installed on the switches in your inventory if you want to support rolling back to a known good version should an installation or upgrade fail. The NetQ UI prompts you to upload any missing images to the repository.
 
-For example, if you have both Cumulus Linux 3.7.3 and 3.7.11 versions, some running on ARM and some on x86 architectures, then LCM verifies the presence of each of these images. If only the 3.7.3 x86, 3.7.3 ARM, and 3.7.11 x86 images are in the repository, the NetQ UI would list the 3.7.11 ARM image as missing. For Cumulus NetQ, you need both the `netq-apps` and `netq-agent` packages for each release variant.
+For example, if you have both Cumulus Linux 3.7.3 and 3.7.11 versions, some running on ARM and some on x86 architectures, then LCM verifies the presence of each of these images. If only the 3.7.3 x86, 3.7.3 ARM, and 3.7.11 x86 images are in the repository, the NetQ UI would list the 3.7.11 ARM image as missing. For NetQ, you need both the `netq-apps` and `netq-agent` packages for each release variant.
 
-If you have specified a default Cumulus Linux and/or Cumulus NetQ version, the NetQ UI also verifies that the necessary versions of the default image are available based on the known switch inventory, and if not, lists those that are missing.
+If you have specified a default Cumulus Linux and/or NetQ version, the NetQ UI also verifies that the necessary versions of the default image are available based on the known switch inventory, and if not, lists those that are missing.
 
 While it is not required that you upload images that NetQ determines to be missing, not doing so may cause failures when you attempt to upgrade your switches.
 
@@ -42,7 +42,7 @@ In preparation for *Cumulus Linux* upgrades, the recommended image upload flow i
 
 3. In NetQ UI, optionally specify a default version for upgrades: {{<link url="#specify-a-default-upgrade-image" text="Specify a Default Upgrade Image">}}
 
-In preparation for *Cumulus NetQ* installation or upgrade, the recommended image upload flow is:
+In preparation for *NetQ* installation or upgrade, the recommended image upload flow is:
 
 1. Add images you want to use for installation or upgrade: {{<link url="#upload-missing-images" text="Upload Upgrade Images">}}
 
@@ -123,7 +123,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 {{< /tabs >}}
 
-For *Cumulus NetQ* images:
+For *NetQ* images:
 
 {{< tabs "TabID122">}}
 
@@ -141,7 +141,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
     {{<figure src="/images/netq/lcm-netq-images-missing-list-310.png" width="700">}}
 
-3. Download the Cumulus NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
+3. Download the NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
 4. Back in the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Image) above the table.
 
@@ -173,7 +173,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 {{< tab "NetQ CLI" >}}
 
-1. Download the Cumulus NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
+1. Download the NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads page">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
 2. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 3.2.0 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
 
@@ -188,9 +188,9 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 ### Upload Upgrade Images
 
-To upload the Cumulus Linux or Cumulus NetQ images that you want to use for upgrade:
+To upload the Cumulus Linux or NetQ images that you want to use for upgrade:
 
-First download the Cumulus Linux disk images (*.bin* files) and Cumulus NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads page">}}. Place them in an accessible part of your local network.
+First download the Cumulus Linux disk images (*.bin* files) and NetQ debian packages needed for upgrade from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads page">}}. Place them in an accessible part of your local network.
 
 If you are upgrading Cumulus Linux on switches with different ASIC vendors or CPU architectures, you will need more than one image. For NetQ, you need both the `netq-apps` and `netq-agent` packages for each variant.
 
@@ -230,7 +230,7 @@ Cumulus Linux images:
 cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-4.2.0-mlx-amd64.bin
 ```
 
-Cumulus NetQ images:
+NetQ images:
 <!-- get new image names -->
 ```
 cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_3.2.0-ub18.04u30~1601400975.104fb9e_amd64
@@ -243,9 +243,9 @@ cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_3.2.0-ub18.04u3
 
 #### Specify a Default Upgrade Version
 
-Lifecycle management does not have a default Cumulus Linux or Cumulus NetQ upgrade version specified automatically. With the NetQ UI, you can specify the version that is appropriate for your network to ease the upgrade process.
+Lifecycle management does not have a default Cumulus Linux or NetQ upgrade version specified automatically. With the NetQ UI, you can specify the version that is appropriate for your network to ease the upgrade process.
 
-To specify a default Cumulus Linux or Cumulus NetQ version in the NetQ UI:
+To specify a default Cumulus Linux or NetQ version in the NetQ UI:
 
 1. Click the *Click here to set the default CL version* link in the middle of the Cumulus Linux Images card, or click the *Click here to set the default NetQ version* link in the middle of the NetQ Images card.
 
@@ -259,7 +259,7 @@ To specify a default Cumulus Linux or Cumulus NetQ version in the NetQ UI:
 
 After you have specified a default version, you have the option to change it.
 
-To change the default Cumulus Linux or Cumulus NetQ version:
+To change the default Cumulus Linux or NetQ version:
 
 1. Click **change** next to the currently identified default image on the Cumulus Linux Images or NetQ Images card.
 

@@ -1,10 +1,10 @@
 ---
 title: Install and Configure the NetQ CLI on RHEL and CentOS Servers
-author: Cumulus Networks
+author: NVIDIA
 weight: 350
 toc: 5
 ---
-After installing your Cumulus NetQ software and the NetQ 3.2.1 Agents on each switch you want to monitor, you can also install the NetQ CLI on servers running:
+After installing your NetQ software and the NetQ 3.2.1 Agents on each switch you want to monitor, you can also install the NetQ CLI on servers running:
 
 - Red Hat RHEL 7.1
 - CentOS 7

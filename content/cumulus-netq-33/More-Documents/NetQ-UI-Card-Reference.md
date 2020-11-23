@@ -1,6 +1,6 @@
 ---
 title: NetQ UI Card Reference
-author: Cumulus Networks
+author: NVIDIA
 weight: 1090
 toc: 3
 ---

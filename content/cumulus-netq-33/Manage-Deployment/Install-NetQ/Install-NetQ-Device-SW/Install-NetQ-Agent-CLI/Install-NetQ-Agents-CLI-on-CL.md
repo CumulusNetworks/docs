@@ -1,10 +1,10 @@
 ---
 title: Install and Configure the NetQ Agent and CLI on Cumulus Linux Switches
-author: Cumulus Networks
+author: NVIDIA
 weight: 370
 toc: 5
 ---
-After installing your Cumulus NetQ software, you can install the NetQ 3.2.1 Agents and CLI on each switch you want to monitor. These can be installed on switches running:
+After installing your NetQ software, you can install the NetQ 3.2.1 Agents and CLI on each switch you want to monitor. These can be installed on switches running:
 
 - Cumulus Linux version 3.3.2-3.7.x
 - Cumulus Linux version 4.0.0 and later
@@ -52,7 +52,7 @@ To install the NetQ Agent you need to install `netq-agent` on each switch or hos
 
 To obtain the NetQ packages:
 
-Edit the `/etc/apt/sources.list` file to add the repository for Cumulus NetQ.
+Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 
 *Note that NetQ has a separate repository from Cumulus Linux.*
 

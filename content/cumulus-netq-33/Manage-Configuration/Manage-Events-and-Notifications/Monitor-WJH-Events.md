@@ -1,6 +1,6 @@
 ---
 title: Configure and Monitor What Just Happened Metrics
-author: Cumulus Networks
+author: NVIDIA
 weight: 800
 toc: 4
 ---
@@ -12,7 +12,7 @@ If your switches are sourced from a vendor other than Mellanox, this view is bla
 
 {{</notice>}}
 
-When WJH capabilities are combined with Cumulus NetQ, you have the ability to hone in on losses, anywhere in the fabric, from a single management console. You can:
+When WJH capabilities are combined with NetQ, you have the ability to hone in on losses, anywhere in the fabric, from a single management console. You can:
 
 - View any current or historic drop information, including the reason for the drop
 - Identify problematic flows or endpoints, and pin-point exactly where communication is failing in the network

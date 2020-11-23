@@ -1,6 +1,6 @@
 ---
 title: NetQ Command Line Overview
-author: Cumulus Networks
+author: NVIDIA
 weight: 160
 toc: 3
 ---
@@ -58,11 +58,11 @@ This section describes the core structure and behavior of the NetQ CLI. It inclu
 
 ### Command Line Structure
 
-The Cumulus NetQ command line has a flat structure as opposed to a modal structure. This means that all commands can be run from the primary prompt instead of only in a specific mode. For example, some command lines require the administrator to switch between a configuration mode and an operation mode. Configuration commands can only be run in the configuration mode and operational commands can only be run in operation mode. This structure requires the administrator to switch between modes to run commands which can be tedious and time consuming. Cumulus NetQ command line enables the administrator to run all of its commands at the same level.
+The NetQ command line has a flat structure as opposed to a modal structure. This means that all commands can be run from the primary prompt instead of only in a specific mode. For example, some command lines require the administrator to switch between a configuration mode and an operation mode. Configuration commands can only be run in the configuration mode and operational commands can only be run in operation mode. This structure requires the administrator to switch between modes to run commands which can be tedious and time consuming. NetQ command line enables the administrator to run all of its commands at the same level.
 
 ### Command Syntax
 
-NetQ CLI commands all begin with `netq`. Cumulus NetQ commands fall into one of four syntax categories: validation (check), monitoring (show), configuration, and trace.
+NetQ CLI commands all begin with `netq`. NetQ commands fall into one of four syntax categories: validation (check), monitoring (show), configuration, and trace.
 
 ```
 netq check <network-protocol-or-service> [options]

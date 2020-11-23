@@ -1,6 +1,6 @@
 ---
 title: Install a NetQ On-premises Appliance Cluster
-author: Cumulus Networks
+author: NVIDIA
 weight: 231
 toc: 5
 bookhidden: true
@@ -129,7 +129,7 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 11. Repeat Steps 5-10 for each additional worker node (NetQ On-premises Appliance).
 
-The final step is to install and activate the Cumulus NetQ software on each appliance in your cluster.  You can do this using the Admin UI or the NetQ CLI.
+The final step is to install and activate the NetQ software on each appliance in your cluster.  You can do this using the Admin UI or the NetQ CLI.
 
 Click the installation and activation method you want to use to complete installation:
 

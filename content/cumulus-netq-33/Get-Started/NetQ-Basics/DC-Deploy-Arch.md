@@ -1,6 +1,6 @@
 ---
 title: Data Center Network Deployments
-author: Cumulus Networks
+author: NVIDIA
 weight: 70
 toc: 4
 ---
@@ -15,7 +15,7 @@ A summary of each type is provided here.
 
 {{<notice note>}}
 
-Cumulus NetQ operates over layer 3, and can be used in both layer 2 bridged and
+NetQ operates over layer 3, and can be used in both layer 2 bridged and
 layer 3 routed environments. Cumulus Networks always recommends layer 3
 routed environments whenever possible.
 

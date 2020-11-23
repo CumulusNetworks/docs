@@ -1,11 +1,11 @@
 ---
 title: Document Format Conventions
-author: Cumulus Networks
+author: NVIDIA
 weight: 1140
 toc: 3
 ---
 
-The Cumulus NetQ documentation uses the following typographical and note conventions.
+The NetQ documentation uses the following typographical and note conventions.
 
 ## Typographical Conventions
 

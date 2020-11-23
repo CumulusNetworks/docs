@@ -1,6 +1,6 @@
 ---
 title: Investigate NetQ Issues
-author: Cumulus Networks
+author: NVIDIA
 weight: 1060
 toc: 4
 ---

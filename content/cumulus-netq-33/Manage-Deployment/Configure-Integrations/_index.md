@@ -1,10 +1,10 @@
 ---
 title: Configure Integrations
-author: Cumulus Networks
+author: NVIDIA
 weight: 530
 toc: 2
 ---
-After you have completed the installation of Cumulus NetQ,
+After you have completed the installation of NetQ,
 you may want to configure some of the additional capabilities that NetQ
 offers or integrate it with third-party software or hardware.
 

@@ -1,6 +1,6 @@
 ---
 title: Set Up Your VMware Virtual Machine for a Single Cloud Server
-author: Cumulus Networks
+author: NVIDIA
 weight: 222
 toc: 5
 bookhidden: true
@@ -35,7 +35,7 @@ Follow these steps to setup and configure your VM for a cloud deployment:
 
     {{<netq-install/bootstrap server="single" version="3.2.1" deployment="cloud" platform="vm">}}
 
-The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the CLI.
+The final step is to install and activate the NetQ software.  You can do this using the Admin UI or the CLI.
 
 Click the installation and activation method you want to use to complete installation:
 

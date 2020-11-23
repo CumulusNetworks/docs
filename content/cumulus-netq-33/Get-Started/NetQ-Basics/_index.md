@@ -1,6 +1,6 @@
 ---
-title: Cumulus NetQ Overview
-author: Cumulus Networks
+title: NetQ Overview
+author: NVIDIA
 weight: 50
 toc: 3
 ---
@@ -16,7 +16,7 @@ entire Linux-based data center. With NetQ, network operations change
 from a manual, reactive, box-by-box approach to an automated, informed
 and agile one.
 
-Cumulus NetQ performs three primary
+NetQ performs three primary
 functions:
 
   - **Data collection**: real-time and historical telemetry and network
@@ -42,7 +42,7 @@ management, it can be difficult to troubleshoot issues that occur in the
 overlay one box at a time. You are unable to correlate what events
 (configuration changes, power outages, etc.) may have caused problems in
 the network and when they occurred. Only a sampling of data is available
-to use for your analysis. By contrast, with Cumulus NetQ deployed, you
+to use for your analysis. By contrast, with NetQ deployed, you
 have a networkwide view of the overlay network, can correlate events
 with what is happening now or in the past, and have real-time data to
 fill out the complete picture of your network health and operation.
@@ -62,7 +62,7 @@ you are not able to test a new configuration before deploying it. When
 the tickets start pouring in, you are stuck with a large amount of data
 that is collected and stored in multiple tools making correlation of the
 events to the resolution required difficult at best. Isolating faults in
-the past is challenging. By contract, with Cumulus NetQ deployed, you
+the past is challenging. By contract, with NetQ deployed, you
 can proactively verify a configuration change as inconsistencies and
 misconfigurations can be caught prior to deployment. And historical data
 is readily available to correlate past events with current issues.
@@ -101,7 +101,7 @@ correlate the logs/events with the issues</p></td>
 
 Troubleshooting networks is challenging in the best of times, but trying
 to do so manually, one box at a time, and digging through a series of
-long and ugly logs make the job harder than it needs to be. Cumulus NetQ
+long and ugly logs make the job harder than it needs to be. NetQ
 provides rolled up and correlated network status on a regular basis,
 enabling you to get down to the root of the problem quickly, whether it
 occurred recently or over a week ago. The graphical user interface makes
@@ -142,7 +142,7 @@ correlate the logs/events with the issues</p></td>
 Conventional trace only traverses the data path looking for problems,
 and does so on a node to node basis. For paths with a small number of
 hops that might be fine, but in larger networks, it can become extremely
-time consuming. With Cumulus NetQ both the data and control paths are
+time consuming. With NetQ both the data and control paths are
 verified providing additional information. It discovers
 misconfigurations along all of the hops in one go, speeding the time to
 resolution.

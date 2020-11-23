@@ -1,6 +1,6 @@
 ---
 title: Basic BGP Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 812
 toc: 3
 ---

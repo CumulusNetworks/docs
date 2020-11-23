@@ -1,6 +1,6 @@
 ---
 title: Open Shortest Path First - OSPF
-author: Cumulus Networks
+author: NVIDIA
 weight: 790
 toc: 3
 ---
@@ -167,7 +167,7 @@ passive-interface swp11
 
 You can define additional custom parameters for OSPF per interface, such as the network type (point-to-point or broadcast) and the interval between hello packets that OSPF sends on the interface.
 
-Cumulus Networks recommends that you configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point has the additional advantage of a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
+Configure the interface as point-to-point unless you intend to use the Ethernet media as a LAN with multiple connected routers. Point-to-point has the additional advantage of a simplified adjacency state machine; there is no need for DR/BDR election and *LSA reflection*. See {{<exlink url="http://tools.ietf.org/rfc/rfc5309" text="RFC5309">}} for a more information.
 
 The following command example sets the network type to point-to-point and the hello interval to 5 seconds. The hello interval can be any value between 1 and 65535 seconds.
 

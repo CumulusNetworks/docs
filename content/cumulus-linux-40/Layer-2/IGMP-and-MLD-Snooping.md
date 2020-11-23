@@ -1,6 +1,6 @@
 ---
 title: IGMP and MLD Snooping
-author: Cumulus Networks
+author: NVIDIA
 weight: 510
 toc: 3
 ---
@@ -67,7 +67,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tabs >}}
 
-Cumulus Networks recommends that you also configure IGMP/MLD querier. See {{<link url="#configure-igmpmld-querier" text="Configure IGMP/MLD Querier">}}, below.
+Consider also configuring IGMP/MLD querier. See {{<link url="#configure-igmpmld-querier" text="Configure IGMP/MLD Querier">}}, below.
 
 To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.
 

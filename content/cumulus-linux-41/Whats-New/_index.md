@@ -1,6 +1,6 @@
 ---
 title: What's New
-author: Cumulus Networks
+author: NVIDIA
 weight: 5
 toc: 2
 ---
@@ -71,7 +71,7 @@ The following platforms are supported in Cumulus Linux 3.7 and are now supported
 
 ### Unsupported Platforms
 
-Cumulus Networks does not support these platforms in Cumulus Linux 4.1. They are supported in Cumulus Linux 3.7 until that release reaches its end of life.
+These platforms are not supported in Cumulus Linux 4.1. They are supported in Cumulus Linux 3.7 until that release reaches its end of life.
 
 - Cumulus Express CX-10256-S/Edgecore OMP-800 (100G Tomahawk)
 - Dell S6000-ON (40G Trident2)
@@ -79,7 +79,7 @@ Cumulus Networks does not support these platforms in Cumulus Linux 4.1. They are
 - Facebook Backpack (100G Tomahawk)
 - Facebook Voyager (100G Tomahawk)
 
-The following platforms are supported in Cumulus Linux 3.7 but are not yet supported in Cumulus Linux 4.1. Cumulus Networks will add support for these platforms in a future Cumulus Linux release.
+The following platforms are supported in Cumulus Linux 3.7 but are not yet supported in Cumulus Linux 4.1. Support for these platforms will be added in a future Cumulus Linux release.
 
 - Dell N3048EP-ON
 - Delta AG7648

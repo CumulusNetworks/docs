@@ -6,7 +6,7 @@ cascade:
     product: Cumulus Linux
     version: "4.0"
     old: true
-    author: Cumulus Networks
+    author: NVIDIA
 toc: 1
 ---
 ## What is Cumulus Linux?
@@ -25,7 +25,7 @@ To implement various Cumulus Linux features, Cumulus Networks has forked various
 
 ### Hardware Compatibility List
 
-You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url="https://cumulusnetworks.com/hcl/" text="here" >}}. Use the HCL to confirm that your switch model is supported by Cumulus Networks. The HCL is updated regularly, listing products by port configuration, manufacturer and SKU part number.
+You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url="https://cumulusnetworks.com/hcl/" text="here" >}}. Use the HCL to confirm that your switch model supports by Cumulus Linux. The HCL is updated regularly, listing products by port configuration, manufacturer and SKU part number.
 
 ### Stay up to Date
 

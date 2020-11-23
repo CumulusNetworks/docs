@@ -1,6 +1,6 @@
 ---
 title: TDR Cable Diagnostics
-author: Cumulus Networks
+author: NVIDIA
 weight: 960
 toc: 4
 ---

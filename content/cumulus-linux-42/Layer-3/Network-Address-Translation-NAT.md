@@ -1,6 +1,6 @@
 ---
 title: Network Address Translation - NAT
-author: Cumulus Networks
+author: NVIDIA
 weight: 980
 toc: 3
 ---

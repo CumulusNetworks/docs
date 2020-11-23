@@ -1,6 +1,6 @@
 ---
 title: Installing a New Cumulus Linux Image
-author: Cumulus Networks
+author: NVIDIA
 weight: 40
 toc: 3
 ---

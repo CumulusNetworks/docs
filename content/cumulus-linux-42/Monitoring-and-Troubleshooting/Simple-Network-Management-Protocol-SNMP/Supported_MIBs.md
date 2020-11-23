@@ -1,6 +1,6 @@
 ---
 title: Supported MIBs
-author: Cumulus Networks
+author: NVIDIA
 weight: 1170
 toc: 4
 ---

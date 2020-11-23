@@ -1,6 +1,6 @@
 ---
 title: Static Routing
-author: Cumulus Networks
+author: NVIDIA
 weight: 730
 toc: 3
 ---

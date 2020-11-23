@@ -1,6 +1,6 @@
 ---
 title: Inter-subnet Routing
-author: Cumulus Networks
+author: NVIDIA
 weight: 565
 toc: 4
 ---

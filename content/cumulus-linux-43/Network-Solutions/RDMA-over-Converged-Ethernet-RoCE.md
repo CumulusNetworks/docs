@@ -1,6 +1,6 @@
 ---
 title: RDMA over Converged Ethernet - RoCE
-author: Cumulus Networks
+author: NVIDIA
 weight: 1340
 toc: 3
 ---
@@ -17,7 +17,7 @@ RoCE helps you obtain a *converged network*, where all services run over the Eth
 There are two versions of RoCE, which run at separate layers of the stack:
 
 - RoCEv1, which runs at the link layer and cannot be run over a routed network. Therefore, it requires the {{<link url="Buffer-and-Queue-Management#priority-flow-control" text="priority flow control">}} (PFC) to be enabled.
-- RoCEv2, which runs over layer 3. Because it is a routed solution, Cumulus Networks recommends you use {{<link url="Buffer-and-Queue-Management#congestion-notification" text="explicit congestion notification">}} (ECN) with RoCEv2 as ECN bits are communicated end-to-end across a routed network.
+- RoCEv2, which runs over layer 3. Consider using {{<link url="Buffer-and-Queue-Management#congestion-notification" text="explicit congestion notification">}} (ECN) with RoCEv2. Because it is a routed solution, ECN bits are communicated end-to-end across a routed network.
 
 ## Enable RDMA over Converged Ethernet with PFC
 

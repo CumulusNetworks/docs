@@ -1,6 +1,6 @@
 ---
 title: DHCP
-author: Cumulus Networks
+author: NVIDIA
 weight: 338
 toc: 3
 ---

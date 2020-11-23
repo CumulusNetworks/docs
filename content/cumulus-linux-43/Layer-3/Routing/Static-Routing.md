@@ -1,6 +1,6 @@
 ---
 title: Static Routing
-author: Cumulus Networks
+author: NVIDIA
 weight: 730
 toc: 3
 ---
@@ -217,7 +217,7 @@ The `ip route` command allows you to manipulate the kernel routing table directl
 
 ## Configure a Gateway or Default Route
 
-Cumulus Networks recommends that on each switch, you create a *gateway* or *default route* for traffic destined outside the switch's subnet or local network. All such traffic passes through the gateway, which is a system on the same network that routes packets to their destination beyond the local network.
+On each switch, consider creating a *gateway* or *default route* for traffic destined outside the switch's subnet or local network. All such traffic passes through the gateway, which is a system on the same network that routes packets to their destination beyond the local network.
 
 The following example configures the default route 0.0.0.0/0, which indicates any IP address can be sent to the gateway. The gateway is another switch with the IP address 10.0.1.0.
 

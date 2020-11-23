@@ -1,6 +1,6 @@
 ---
 title: LACP Bypass
-author: Cumulus Networks
+author: NVIDIA
 weight: 500
 toc: 3
 ---
@@ -13,7 +13,7 @@ In *all-active* mode, when a bond has multiple slave interfaces, each bond slave
 {{%notice note%}}
 
 - All-active mode is *not* supported on bonds that are *not* specified as bridge ports on the switch.
-- STP does not run on the individual bond slave interfaces when the LACP bond is in all-active mode. Only use all-active mode on host-facing LACP bonds. Cumulus Networks highly recommends you configure {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="STP BPDU guard">}} together with all-active mode.
+- STP does not run on the individual bond slave interfaces when the LACP bond is in all-active mode. Only use all-active mode on host-facing LACP bonds. Configure {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="STP BPDU guard">}} together with all-active mode.
 - In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG deployment">}} where bond slaves of a host are connected to two switches and the bond is in all-active mode, all the slaves of bond are active on both the primary and secondary MLAG nodes.
 - `priority mode`, `bond-lacp-bypass-period`, `bond-lacp-bypass-priority`, and `bond-lacp-bypass-all-active` are not supported.
 

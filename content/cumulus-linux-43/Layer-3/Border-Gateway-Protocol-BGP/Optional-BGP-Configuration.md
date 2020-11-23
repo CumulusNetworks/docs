@@ -1,6 +1,6 @@
 ---
 title: Optional BGP Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 860
 toc: 3
 ---
@@ -222,7 +222,7 @@ router bgp 65101
 {{%notice note%}}
 
 - When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
-- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Cumulus Networks recommends that you use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
+- Enabling `ttl-security hops` does not program the hardware with relevant information. Frames are forwarded to the CPU and are dropped. Use the `net add acl` command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
 
 {{%/notice%}}
 
@@ -1223,7 +1223,7 @@ BGP graceful restart is supported for both IPv4 and IPv6.
 
 You can enable graceful BGP restart in one of two ways:
 - Globally, where all BGP peers inherit the graceful restart capability.
-- Per BGP peer or peer group, which cna be useful for misbehaving peers or to work with third party devices). You can also configure a peer or peer group to run in helper mode only, where routes originated and advertised from a BGP peer are not deleted.
+- Per BGP peer or peer group, which can be useful for misbehaving peers or when working with third party devices. You can also configure a peer or peer group to run in helper mode only, where routes originated and advertised from a BGP peer are not deleted.
 
 The following example commands enable global graceful BGP restart:
 

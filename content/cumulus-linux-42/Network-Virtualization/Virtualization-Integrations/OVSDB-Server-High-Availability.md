@@ -1,6 +1,6 @@
 ---
 title: OVSDB Server High Availability
-author: Cumulus Networks
+author: NVIDIA
 weight: 700
 toc: 4
 ---

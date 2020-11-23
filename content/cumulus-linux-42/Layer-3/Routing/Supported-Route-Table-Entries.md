@@ -1,6 +1,6 @@
 ---
 title: Supported Route Table Entries
-author: Cumulus Networks
+author: NVIDIA
 weight: 740
 toc: 3
 ---

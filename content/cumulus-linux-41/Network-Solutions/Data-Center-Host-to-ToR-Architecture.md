@@ -243,7 +243,7 @@ iface eth1 inet static
 
 | <div style="width:300px">Benefits | Caveats |
 |-----------------------------------| --------|
-| <ul><li>Configuration in FRRouting is simple (route map plus redistribute table)</li><li>Supported by Cumulus Networks</li></ul>| <ul><li>Silent hosts do not receive traffic (depending on ARP) </li><li>IPv4 only</li><li>If two VMs are on the same layer 2 domain, they can learn about each other directly instead of using the gateway, which causes problems (such as VM migration or getting the network routed). Put hosts on /32 (no other layer 2 adjacency).</li><li>VM moves do not trigger a route withdrawal from the original leaf (four hour timeout).</li><li>Clearing ARP impacts routing.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul> |
+| Configuration in FRRouting is simple (route map plus redistribute table) | <ul><li>Silent hosts do not receive traffic (depending on ARP) </li><li>IPv4 only</li><li>If two VMs are on the same layer 2 domain, they can learn about each other directly instead of using the gateway, which causes problems (such as VM migration or getting the network routed). Put hosts on /32 (no other layer 2 adjacency).</li><li>VM moves do not trigger a route withdrawal from the original leaf (four hour timeout).</li><li>Clearing ARP impacts routing.</li><li>No layer 2 adjacency between servers without VXLAN.</li></ul> |
 
 | FHR (First Hop Redundancy) | More Information |
 | ---------------------------|------------------|
@@ -253,7 +253,7 @@ iface eth1 inet static
 
 |<div style="width:300px">Example| Summary |
 |--------------------------------|-----------|
-| {{< img src = "/images/cumulus-linux/network-solutions-routing-on-host.png" >}} | Routing on the host means there is a routing application (such as {{<link url="FRRouting-Overview" text="FRRouting">}}, either on the bare metal host (no VMs or containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by the Cumulus Networks Professional Services team. |
+| {{< img src = "/images/cumulus-linux/network-solutions-routing-on-host.png" >}} | Routing on the host means there is a routing application (such as {{<link url="FRRouting-Overview" text="FRRouting">}}, either on the bare metal host (no VMs or containers) or the hypervisor (for example, Ubuntu with KVM). This is highly recommended by our Professional Services team. |
 
 | <div style="width:300px">Benefits | Caveats |
 |-----------------------------------| --------|

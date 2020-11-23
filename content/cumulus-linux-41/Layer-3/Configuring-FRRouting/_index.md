@@ -12,7 +12,7 @@ FRRouting does not start by default in Cumulus Linux. Before you run FRRouting, 
 
 {{%notice warning%}}
 
-Cumulus Networks has not tested RIP, RIPv6, IS-IS and Babel.
+NVIDIA has not tested RIP, RIPv6, IS-IS and Babel.
 
 {{%/notice%}}
 

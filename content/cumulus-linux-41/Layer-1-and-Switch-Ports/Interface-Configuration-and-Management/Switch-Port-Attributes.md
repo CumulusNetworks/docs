@@ -1,6 +1,6 @@
 ---
 title: Switch Port Attributes
-author: Cumulus Networks
+author: NVIDIA
 weight: 300
 toc: 4
 ---

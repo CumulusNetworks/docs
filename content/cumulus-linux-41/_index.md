@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux 4.1 User Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: -41
 subsection: true
 cascade:

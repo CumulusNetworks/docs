@@ -1,6 +1,6 @@
 ---
 title: Troubleshoot SNMP
-author: Cumulus Networks
+author: NVIDIA
 weight: 1180
 toc: 4
 ---

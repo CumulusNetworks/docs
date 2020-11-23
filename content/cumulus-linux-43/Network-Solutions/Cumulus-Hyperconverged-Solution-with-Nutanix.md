@@ -1,6 +1,6 @@
 ---
 title: Cumulus Hyperconverged Solution with Nutanix
-author: Cumulus Networks
+author: NVIDIA
 weight: 1350
 toc: 3
 ---
@@ -21,7 +21,7 @@ Cumulus HCS has two major components:
 
 ## Requirements
 
-- 2 {{<exlink url="https://cumulusnetworks.com/hcl" text="Cumulus Networks-compatible switches">}} running Cumulus Linux
+- 2 {{<exlink url="https://cumulusnetworks.com/hcl" text="compatible switches">}} running Cumulus Linux
 - Nutanix AOS 5.5.8 or later
 - Nutanix AHV 20170830.185 or later
 - LLDP enabled on Nutanix (which is the default in 5.5.8 and later)
@@ -89,7 +89,7 @@ To do this, you need a {{<exlink url="https://cumulusnetworks.com/cumulus-on-a-s
 
 If Cumulus Linux is already installed on your switches, follow the steps below to configure Cumulus Linux, Nutanix and Cumulus HCS.
 
-1. Configure MLAG on both the leaf01 and leaf02 nodes. The `sys-mac` is a MAC address from the Cumulus Networks reserved MAC address space and must be the same on both MLAG peers. If you are deploying more than one pair of switches with MLAG, the `sys-mac` must be unique for each pair of MLAG-configured switches.
+1. Configure MLAG on both the leaf01 and leaf02 nodes. The `sys-mac` is a MAC address from the reserved MAC address space and must be the same on both MLAG peers. If you are deploying more than one pair of switches with MLAG, the `sys-mac` must be unique for each pair of MLAG-configured switches.
 
     {{< tabs "TabID97 ">}}
 
@@ -311,7 +311,7 @@ cumulus@leaf02:~$ net commit
 
 The first configuration line defines the IP address assigned to each switch, which is required and must be unique. On leaf01, this IP address is *10.1.1.11/24*; on leaf02, it is *10.1.1.12/24*.
 
-The second line defines the virtual IP address that is used as the default gateway address for any hosts in  this VLAN. On both leaf01 and leaf02 this IP address is *10.1.1.1/24*. The address-virtual MAC address is assigned from a reserved pool of Cumulus Networks MAC addresses. The address must start with 00:00:05:00:01: and end with any hex value between 00 and ff. Both leaf01 and leaf02 must have the same MAC address. Outside of this switch pair, this MAC address must be unique and only be assigned to a single switch pair in your network.
+The second line defines the virtual IP address that is used as the default gateway address for any hosts in  this VLAN. On both leaf01 and leaf02 this IP address is *10.1.1.1/24*. The address-virtual MAC address is assigned from a reserved pool of MAC addresses. The address must start with 00:00:05:00:01: and end with any hex value between 00 and ff. Both leaf01 and leaf02 must have the same MAC address. Outside of this switch pair, this MAC address must be unique and only be assigned to a single switch pair in your network.
 
 ## Out-of-band Solutions
 

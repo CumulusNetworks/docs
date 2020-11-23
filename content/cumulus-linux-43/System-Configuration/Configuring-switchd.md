@@ -1,6 +1,6 @@
 ---
 title: Configuring switchd
-author: Cumulus Networks
+author: NVIDIA
 weight: 240
 toc: 3
 ---

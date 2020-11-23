@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux 4.3 Release Notes
-author: Cumulus Networks
+author: NVIDIA
 weight: -30
 product: Cumulus Linux
 version: "4.3"

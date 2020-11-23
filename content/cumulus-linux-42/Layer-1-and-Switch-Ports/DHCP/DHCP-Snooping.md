@@ -1,6 +1,6 @@
 ---
 title: DHCP Snooping
-author: Cumulus Networks
+author: NVIDIA
 weight: 355
 toc: 3
 draft: true

@@ -662,6 +662,14 @@ Fixed: 1.9.0-2+deb10u2</p></td>
 <td>4.2.0-4.2.1</td>
 </tr>
 <tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.14</td>
+</tr>
+<tr>
 <td>CM-29830</td>
 <td><p>Unicast traffic from downlink hosts is flooded to multiple remote VTEPs, which might also cause high HwIfOutQDrops/TX_DRP on the uplink ports.<br/>
 To work around this issue, restart switchd.</p></td>
@@ -2882,6 +2890,14 @@ Vulnerable: &lt;= 1.9.0-2+deb10u1<br/>
 Fixed: 1.9.0-2+deb10u2</p></td>
 <td>4.0.0-4.1.1</td>
 <td>4.2.0-4.2.1</td>
+</tr>
+<tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29830</td>

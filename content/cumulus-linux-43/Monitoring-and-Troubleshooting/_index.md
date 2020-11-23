@@ -144,7 +144,7 @@ Base MAC Address. a0:00:00:00:00:50
 
 You can use `cl-support` to generate a single export file that contains various details and the configuration from a switch. This is useful for remote debugging and troubleshooting. For more information about `cl-support`, read {{<link url="Understanding-the-cl-support-Output-File">}}.
 
-Run `cl-support` before you submit a support request to Cumulus Networks as this file helps in the investigation of issues.
+Run `cl-support` before you submit a support request as this file helps in the investigation of issues.
 
 ```
 cumulus@switch:~$ sudo cl-support -h

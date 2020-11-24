@@ -158,7 +158,7 @@ Displays the health of all BGP sessions or a single session on all nodes or a sp
 - What routing tables (VRF) is used by that node and neighbor
 - The autonomous system number (ASN) assigned to the node
 - The peer ASN for each neighbor node
-- The address prefix for IPv4/IPv6/???
+- The received address prefix for IPv4/IPv6/EVPN when session is established
 - When the last change was made to any of these items
 
 If you have nodes that implement virtual routing and forwarding (VRF), you can request status based on the relevant routing table. VRF is commonly configured in multi-tenancy deployments to maintain separate domains for each tenant.
@@ -670,51 +670,692 @@ spine04           swp5                      border01          swp54             
 
 ### netq show mlag
 
+Displays the health of all MLAG sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
+
+- The peer nodes for a given node
+- The system MAC address used for the session between the nodes
+- The operational state of the session (up or down)
+- The operational state of the backup IP address (up or down)
+- The total number of bonds
+- The number of dual-connected bonds
+- When the last change was made to any of these items
+
+If the total number of bonds does not match the number of dual-connected bonds, there might be a configuration issue.
+
+#### Syntax
+
+```
+netq [<hostname>] show mlag
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show mlag
+Matching clag records:
+Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
+                                                                         s
+----------------- ----------------- ------------------ ---------- ------ ----- ----- -------------------------
+border01(P)       border02          44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:33:48 2020
+border02          border01(P)       44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:29:24 2020
+leaf01(P)         leaf02            44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:29:16 2020
+leaf02            leaf01(P)         44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:39:27 2020
+leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:10:35 2020
+leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:11:24 2020
+```
+
+#### Related Commands
+
+- netq show events type clag
+- netq check mlag
+
+- - -
+
 ### netq show ntp
+
+Displays whether the all or a specific node is in time synchronization with the NetQ appliance or VM currently or for a time in the past. The output provides:
+
+- The synchronization status
+- The current time server being used for synchronization
+- The number of hierarchical levels the switch or host is from reference clock
+- The NTP application used to obtain and synchronize the clock on the node
+
+#### Syntax
+
+```
+netq [<hostname>] show ntp
+    [out-of-sync | in-sync]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| out-of-sync | NA | Only display results for devices that are out of synchronization with the NetQ appliance or VM |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| x.y.z | xxx |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show ntp
+Matching ntp records:
+Hostname          NTP Sync Current Server    Stratum NTP App
+----------------- -------- ----------------- ------- ---------------------
+border01          yes      oob-mgmt-server   3       ntpq
+border02          yes      oob-mgmt-server   3       ntpq
+fw1               no       -                 16      ntpq
+fw2               no       -                 16      ntpq
+leaf01            yes      oob-mgmt-server   3       ntpq
+leaf02            yes      oob-mgmt-server   3       ntpq
+leaf03            yes      oob-mgmt-server   3       ntpq
+leaf04            yes      oob-mgmt-server   3       ntpq
+netq-ts           yes      eterna.binary.net 2       chronyc
+oob-mgmt-server   yes      titan.crash-ove   2       ntpq
+server01          yes      oob-mgmt-server   3       ntpq
+server02          yes      oob-mgmt-server   3       ntpq
+server03          yes      oob-mgmt-server   3       ntpq
+server04          yes      oob-mgmt-server   3       ntpq
+server05          yes      oob-mgmt-server   3       ntpq
+server06          yes      oob-mgmt-server   3       ntpq
+server07          yes      oob-mgmt-server   3       ntpq
+server08          yes      oob-mgmt-server   3       ntpq
+spine01           yes      oob-mgmt-server   3       ntpq
+spine02           yes      oob-mgmt-server   3       ntpq
+spine03           yes      oob-mgmt-server   3       ntpq
+spine04           yes      oob-mgmt-server   3       ntpq
+```
+
+#### Related Commands
+
+- netq check ntp
+
+- - -
 
 ### netq show ospf
 
+Displays the health of all OSPF sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
+
+- The host interface
+- The routing domain (area)
+- Whether numbered or unnumbered protocol is being used
+- The operational state of the session (up or down)
+- The hostname and interface of the peer node
+- When the last change was made to any of these items
+
+#### Syntax
+
+```
+netq [<hostname>] show ospf
+    [<remote-interface>]
+    [area <area-id>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| NA | \<remote-interface\> | Only display results for the host inteface with this name |
+| area | \<area-id\> | Only display results for devices in this routing domain |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show ospf
+Matching ospf records:
+Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
+----------------- ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
+leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      Thu Feb  7 14:42:16 2019
+leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      Thu Feb  7 14:42:16 2019
+leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      Thu Feb  7 14:42:16 2019
+leaf02            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp2                      Thu Feb  7 14:42:16 2019
+leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      Thu Feb  7 14:42:16 2019
+leaf03            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp3                      Thu Feb  7 14:42:16 2019
+leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      Thu Feb  7 14:42:16 2019
+leaf04            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp4                      Thu Feb  7 14:42:16 2019
+spine01           swp1                      0.0.0.0      Unnumbered       Full       leaf01            swp51                     Thu Feb  7 14:42:16 2019
+spine01           swp2                      0.0.0.0      Unnumbered       Full       leaf02            swp51                     Thu Feb  7 14:42:16 2019
+spine01           swp3                      0.0.0.0      Unnumbered       Full       leaf03            swp51                     Thu Feb  7 14:42:16 2019
+spine01           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp51                     Thu Feb  7 14:42:16 2019
+spine02           swp1                      0.0.0.0      Unnumbered       Full       leaf01            swp52                     Thu Feb  7 14:42:16 2019
+spine02           swp2                      0.0.0.0      Unnumbered       Full       leaf02            swp52                     Thu Feb  7 14:42:16 2019
+spine02           swp3                      0.0.0.0      Unnumbered       Full       leaf03            swp52                     Thu Feb  7 14:42:16 2019
+spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     Thu Feb  7 14:42:16 2019
+```
+
+#### Related Commands
+
+- netq show events
+- netq check ospf
+
+- - -
+
 ### netq show sensors
 
+Displays the status of all fan, power supply, and temperature sensors on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
+- The sensor name and user-defined description
+- The operational state of the sensor
+- Any messages, when available
+- When the last change was made to any of these items
 
-## System 
+#### Syntax
 
-address-history          :  Address history info for a IP address / prefix
-    cl-btrfs-info            :  Btrfs Information
-    cl-manifest              :  Manifest Information
-    cl-pkg-info              :  Package Information
-    cl-resource              :  Monitoring incoming and outgoing access control lists
-    cl-ssd-util              :  SSD Utilization Information
+There are four forms of this command based on whether you want to view data for all sensors or only one category of sensors.
+
+```
+netq [<hostname>] show sensors
+    all
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show sensors
+    fan [<fan-name>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show sensors
+    psu [<psu-name>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show sensors
+    temp [<temp-name>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| all | NA | Display data for all sensors |
+| fan | \<fan-name\> | Display data for all fan sensors or the one specified using the `fan-name` value |
+| psu | \<psu-name\> | Display data for all power supply unit sensors or the one specified using the`psu-name` value |
+| temp | \<temp-name\> | Display data for all temperature sensors or the one specified using the `temp-name` value |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| x.y.z | xxx |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show sensors all
+Matching sensors records:
+Hostname          Name            Description                         State      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ----------------------------------- -------------------------
+border01          fan5            fan tray 3, fan 1                   ok                                             Tue Nov 24 03:57:06 2020
+border01          psu1fan1        psu1 fan                            ok                                             Tue Nov 24 03:57:06 2020
+border01          fan4            fan tray 2, fan 2                   ok                                             Tue Nov 24 03:57:06 2020
+border01          fan2            fan tray 1, fan 2                   ok                                             Tue Nov 24 03:57:06 2020
+border01          fan3            fan tray 2, fan 1                   ok                                             Tue Nov 24 03:57:06 2020
+border01          fan6            fan tray 3, fan 2                   ok                                             Tue Nov 24 03:57:06 2020
+border01          psu2fan1        psu2 fan                            ok                                             Tue Nov 24 03:57:06 2020
+border01          fan1            fan tray 1, fan 1                   ok                                             Tue Nov 24 03:57:06 2020
+border02          fan3            fan tray 2, fan 1                   ok                                             Tue Nov 24 04:13:30 2020
+border02          psu1fan1        psu1 fan                            ok                                             Tue Nov 24 04:13:30 2020
+border02          fan1            fan tray 1, fan 1                   ok                                             Tue Nov 24 04:13:30 2020
+border02          fan6            fan tray 3, fan 2                   ok                                             Tue Nov 24 04:13:30 2020
+border02          fan5            fan tray 3, fan 1                   ok                                             Tue Nov 24 04:13:30 2020
+border02          psu2fan1        psu2 fan                            ok                                             Tue Nov 24 04:13:30 2020
+border02          fan4            fan tray 2, fan 2                   ok                                             Tue Nov 24 04:13:30 2020
+border02          fan2            fan tray 1, fan 2                   ok                                             Tue Nov 24 04:13:30 2020
+fw1               psu2fan1        psu2 fan                            ok                                             Tue Nov 24 19:50:49 2020
+fw1               psu1fan1        psu1 fan                            ok                                             Tue Nov 24 19:50:49 2020
+...
+```
+
+Show data for the fan4 sensor on all nodes.
+
+```
+cumulus@switch:~$ netq show sensors fan fan4
+Matching sensors records:
+Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
+border01          fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 03:57:06 2020
+border02          fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 04:13:30 2020
+fw1               fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 19:50:49 2020
+fw2               fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 19:50:51 2020
+spine03           fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 04:03:01 2020
+spine04           fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 04:13:52 2020
+```
+
+#### Related Commands
+
+- netq show events
+- netq check sensors
+
+- - -
+
+### netq show vlan
+
+Displays the configuration of all VLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
+
+- The switch or host name
+- The VLANs associated with that node
+- The SVIs (switch virtual interfaces) associated with that node
+- When the last change was made to any of these items
+
+#### Syntax
+
+```
+netq [<hostname>] show vlan
+    [<1-4096>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| NA | \<1-4096\> | Only display results for the VLAN with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show vlan
+Matching vlan records:
+Hostname          VLANs                     SVIs                      Last Changed
+----------------- ------------------------- ------------------------- -------------------------
+border01          1,10,20,30,4001-4002                                Tue Nov 24 20:42:07 2020
+border02          1,10,20,30,4001-4002                                Tue Nov 24 20:42:07 2020
+leaf01            1,10,20,30,4001-4002      10 20 30                  Tue Nov 24 20:42:07 2020
+leaf02            1,10,20,30,4001-4002      10 20 30                  Tue Nov 24 20:42:08 2020
+leaf03            1,10,20,30,4001-4002      10 20 30                  Tue Nov 24 20:42:08 2020
+leaf04            1,10,20,30,4001-4002      10 20 30                  Tue Nov 24 20:42:08 2020
+```
+
+Show configuration for a particular VLAN.
+
+```
+cumulus@switch:~$ netq show vlan 20
+Matching vlan records:
+Hostname          VLAN   Ports                               SVI  Last Changed
+----------------- ------ ----------------------------------- ---- -------------------------
+border01          20                                         no   Tue Nov 24 20:50:46 2020
+border02          20                                         no   Tue Nov 24 20:50:47 2020
+leaf01            20     bond2,vni20                         yes  Tue Nov 24 20:50:47 2020
+leaf02            20     bond2,vni20                         yes  Tue Nov 24 20:50:47 2020
+leaf03            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
+leaf04            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
+```
+
+#### Related Commands
+
+- netq show events
+- netq show interfaces
+- netq show macs
+- netq check vlan
+
+- - -
+
+### netq show vxlan
+
+Displays the configuration of all VXLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
+
+- The switch or host name
+- The VNI associated with that node
+- The protocol used over the interface
+- The VTEP IP for the node
+- The replication list, if appropriate
+- When the last change was made to any of these items
+
+#### Syntax
+
+```
+netq [<hostname>] show vxlan
+    [vni <text-vni>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| vni | \<text-vni\> | Only display results for the VNI with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show vxlan
+Matching vxlan records:
+Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
+                             ol
+----------------- ---------- ------ ---------------- ------ ----------------------------------- -------------------------
+border01          4001       EVPN   10.0.1.254       4001                                       Tue Nov 10 22:29:05 2020
+border01          4002       EVPN   10.0.1.254       4002                                       Tue Nov 10 22:29:05 2020
+border02          4001       EVPN   10.0.1.254       4001                                       Tue Nov 10 22:29:06 2020
+border02          4002       EVPN   10.0.1.254       4002                                       Tue Nov 10 22:29:06 2020
+leaf01            30         EVPN   10.0.1.1         30     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:04 2020
+leaf01            10         EVPN   10.0.1.1         10     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:04 2020
+leaf01            4001       EVPN   10.0.1.1         4001                                       Tue Nov 10 22:29:04 2020
+leaf01            4002       EVPN   10.0.1.1         4002                                       Tue Nov 10 22:29:04 2020
+leaf01            20         EVPN   10.0.1.1         20     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:04 2020
+leaf02            30         EVPN   10.0.1.1         30     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:15 2020
+leaf02            10         EVPN   10.0.1.1         10     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:15 2020
+leaf02            4001       EVPN   10.0.1.1         4001                                       Tue Nov 10 22:29:15 2020
+leaf02            4002       EVPN   10.0.1.1         4002                                       Tue Nov 10 22:29:15 2020
+leaf02            20         EVPN   10.0.1.1         20     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:15 2020
+leaf03            30         EVPN   10.0.1.2         30     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:28:31 2020
+leaf03            10         EVPN   10.0.1.2         10     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:28:31 2020
+leaf03            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:28:31 2020
+leaf03            4002       EVPN   10.0.1.2         4002                                       Tue Nov 10 22:28:31 2020
+leaf03            20         EVPN   10.0.1.2         20     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:28:31 2020
+leaf04            30         EVPN   10.0.1.2         30     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:29:34 2020
+leaf04            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:29:34 2020
+leaf04            10         EVPN   10.0.1.2         10     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:29:34 2020
+leaf04            4002       EVPN   10.0.1.2         4002                                       Tue Nov 10 22:29:34 2020
+leaf04            20         EVPN   10.0.1.2         20     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:29:34 2020
+```
+
+Show configuration for a particular VNI.
+
+```
+cumulus@switch:~$ netq show vxlan vni 4001
+Matching vxlan records:
+Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
+                             ol
+----------------- ---------- ------ ---------------- ------ ----------------------------------- -------------------------
+border01          4001       EVPN   10.0.1.254       4001                                       Tue Nov 10 22:29:05 2020
+border02          4001       EVPN   10.0.1.254       4001                                       Tue Nov 10 22:29:06 2020
+leaf01            4001       EVPN   10.0.1.1         4001                                       Tue Nov 10 22:29:04 2020
+leaf02            4001       EVPN   10.0.1.1         4001                                       Tue Nov 10 22:29:15 2020
+leaf03            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:28:31 2020
+leaf04            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:29:34 2020
+```
+
+#### Related Commands
+
+- netq show events
+- netq show interfaces
+- netq check vxlan
+
+- - -
+
+## System
+
+### netq show address-history
+
+Displays where an IPv4 or IPv6 address has lived in your network fabric in the last 24 hours. The output provides:
+
+- When the address was last changed
+- The switch or host name where the address resides
+- The interface where the address resides
+- The address prefix and mask
+- The associated VRF
+
+By default, each row in the output is a thread (or group) sorted by VLAN.
+
+#### Syntax
+
+```
+netq [<hostname>] show address-history
+    <text-prefix>
+    [ifname <text-ifname>]
+    [vrf <text-vrf>]
+    [diff]
+    [between <text-time> and <text-endtime>]
+    [listby <text-list-by>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-prefix\> | Display results for the switches and hosts with this address prefix |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| ifname | \<text-ifname\> | Only display results for the interface with this name |
+| vrf | \<text-vrf\> | Only display results for the VRF with this name |
+| diff | NA | Only display the differences associated with each change |
+| between | \<text-time\> and \<text-endtime\> | Only display results between the snapshots taken at these times |
+| listby | \<text-list-by\> | Display results by the specified attribute. Attributes include the interface name, VRF name, and hostname. |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+{{<notice note>}}
+When entering a time value with the <code>between</code> option, you must include a numeric value <em>and</em> the unit of measure:
+<ul>
+<li><strong>d</strong>: day(s)</li>
+<li><strong>h</strong>: hour(s)</li>
+<li><strong>m</strong>: minute(s)</li>
+<li><strong>s</strong>: second(s)</li>
+<li><strong>now</strong>
+</ul>
+
+The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+{{</notice>}}
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| x.y.z | xxx |
+
+#### Sample Usage
+
+Basic show: all devices, all VLANs, in last 24 hours
+
+```
+cumulus@switch:~$ netq show address-history 10.10.10.3
+Matching addresshistory records:
+Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
+------------------------- ----------------- ------------ ------------------------------ -------- ---------------
+Mon Nov 23 22:28:42 2020  leaf03            lo           10.10.10.3                     32       default
+
+```
+
+Show only the differences between now and four months ago.
+
+```
+cumulus@switch:~$ netq show address-history 10.10.10.3 between now and 120d
+Matching addresshistory records:
+Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
+------------------------- ----------------- ------------ ------------------------------ -------- ---------------
+Thu Oct 15 22:28:16 2020  leaf03            lo           10.10.10.3                     32       default
+```
+
+Show changes grouped by VRF.
+
+```
+cumulus@switch:~$ netq show address-history 10.1.10.104 listby vrf
+Matching addresshistory records:
+Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
+------------------------- ----------------- ------------ ------------------------------ -------- ---------------
+Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104                    24       default
+```
+
+#### Related Commands
+
+- netq show mac-history
+
+- - -
+
+### netq show cl-btrfs
+
+### netq show cl-manifest
+
+### netq show cl-pkg-info
+
+### netq show cl-resource
+
+### netq show cl-ssd-util
+
+### netq show ip
+
+### netq show ipv6
+
+### netq show kubernetes
+
+### netq show mac-commentary
+
+### netq show mac-history
+
+### netq show macs
+
+### netq show neighbor-history
+
+### netq show opta-health
+
+### netq show opta-platform
+
+### netq show recommended-pkg-version
+
+### netq show resource-util
+
+### netq show services
+
     dom                      :  Digital Optical Monitoring
-
-
     inventory                :  Inventory information
-    ip                       :  IPv4 related info
-    ipv6                     :  IPv6 related info
     job-status               :  Display the status of running jobs
-    kubernetes               :  Kubernetes Information
-    mac-commentary           :  MAC commentary info for a mac address
-    mac-history              :  Mac history info for a mac address
-    macs                     :  Mac table or MAC address info
-    neighbor-history         :  Neighbor history info for an IP address
-
-
-    opta-health              :  Display health of apps on the OPTA
-    opta-platform            :  Appliance version info and uptime
-
-    recommended-pkg-version  :  Current host information to be considered
-    resource-util            :  Displays CPU, Memory and disk utilisation for a given switch
-
-    services                 :  System services
+    unit-tests
 
 ## Events and Notification
 
-    events                   :  Display changes over time
-    events-config            :  Events configured for suppression
-    notification             :  Send notifications to Slack or PagerDuty
-    tca                      :  Threshold Crossing Alerts
-    wjh-drop                 :  Shows drops that are captured by WJH (What just happened) on Mellanox switches
+### netq show events
+
+Display changes over time
+
+### netq show events-config
+
+Events configured for suppression
+
+### netq show notification
+
+Send notifications to Slack or PagerDuty
+
+### netq show tca
+
+Threshold Crossing Alerts
+
+### netq show wjh-drops
+
+Shows drops that are captured by WJH (What just happened) on Mellanox switches
+
+
+
+
+--------------------------
+
+
+
 
 ## Configuration Commands
 

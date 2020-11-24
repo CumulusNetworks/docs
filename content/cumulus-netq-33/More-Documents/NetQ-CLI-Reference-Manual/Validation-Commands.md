@@ -1,6 +1,6 @@
 ---
 title: Validation Commands
-author: Cumulus Networks
+author: NVIDIA
 weight: 1101
 toc: 3
 right_toc_levels: 2
@@ -1591,7 +1591,7 @@ netq show validation summary
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| around | \<text-time-hr\> | Show summary status for this time in the past. Value must be specified in hours and include the *hr* time unit. Default is 24 hours. |
+| around | \<text-time-hr\> | Show summary status for this time in the past. Value must be specified in hours and include the *h* time unit. Default is 24 hours. |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
 #### Command History

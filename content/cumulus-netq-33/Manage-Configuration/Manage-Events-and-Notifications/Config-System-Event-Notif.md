@@ -24,7 +24,7 @@ Notifications are generated for the following types of events:
 | --- | --- | 
 | Network Protocol Validations | <ul><li>BGP status and session state</li><li>MLAG (CLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>OSPF status and session state </li><li>VLAN status and session state \*</li><li>VXLAN status and session state \*</li></ul> |
 | Interfaces | <ul><li>Link status</li><li>Ports and cables status</li><li>MTU status</li></ul> |
-| Services | <ul><li>NetQ Agent status</li><li>PTM*</li><li>SSH \*</li><li>NTP status\*</li></ul> |
+| Services | <ul><li>NetQ Agent status</li><li>PTM\*</li><li>SSH \*</li><li>NTP status\*</li></ul> |
 | Traces | <ul><li>On-demand trace status</li><li>Scheduled trace status</li></ul> |
 | Sensors | <ul><li>Fan status</li><li>PSU (power supply unit) status</li><li>Temperature status</li></ul> |
 | System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux License status</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li><li>Lifecycle Management status</li></ul> |

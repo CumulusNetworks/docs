@@ -29,7 +29,7 @@ Displays the reason why a port is in the down state.
 
 In addition to the reason, the information provided for these drops includes:
 
-| Parameter | Description|
+| Parameter | Description |
 | --- | --- |
 | Corrective Action | Provides recommend action(s) to take to resolve the port down state |
 | First Timestamp | Date and time this port was marked as down for the first time |
@@ -93,7 +93,7 @@ Displays the reason why the server is unable to route a packet.
 | Source IP is loopback address | Cannot read packet as source IP address is a loopback address ( ipv4 => 127.0.0.0/8 for ipv6 => ::1/128) |
 | Source IP is unspecified | Cannot read packet as source IP address is unspecified (ipv4 = 0.0.0.0/32; for ipv6 = ::0) |
 | Checksum or IP ver or IPv4 IHL too short | Cannot read packet due to header checksum error, IP version mismatch, or IPv4 header length is too short |
-| Multicast MAC mismatch |  For IPv4, destination MAC address is not equal to {0x01-00-5E-0 (25 bits), DIP[22:0]} and DIP is multicast. For IPv6, destination MAC address is not equal to {0x3333, DIP[31:0]} and DIP is multicast |
+| Multicast MAC mismatch |  For IPv4, destination MAC address is not equal to {0x01-00-5E-0 (25 bits), DIP\[22:0\]} and DIP is multicast. For IPv6, destination MAC address is not equal to {0x3333, DIP\[31:0\]} and DIP is multicast |
 | Source IP equals destination IP | Packet has a source IP address equal to the destination IP address |
 | IPv4 source IP is limited broadcast | Packet has broadcast source IP address |
 | IPv4 destination IP is local network (destination = 0.0.0.0/8) | Packet has IPv4 destination address that is a local network (destination=0.0.0.0/8) |

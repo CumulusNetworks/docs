@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 812
 toc: 4
 ---
-This reference lists the threshold-based events that NetQ supports for ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensors. These messages can be viewed through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure Threshold-based Event Notifications">}}.
+This reference lists the threshold-based events that NetQ supports for ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensors. These messages can be viewed through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure Threshold-Based Event Notifications">}}.
 
 ## ACL Resources
 

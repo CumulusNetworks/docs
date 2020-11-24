@@ -24,7 +24,7 @@ In a standard Debian installation, all of these ARP parameters are set to *0*, l
 
 ## ARP Tunable Parameter Settings in Cumulus Linux
 
-The ARP tunable parameters are set to the following values by default in Cumulus Linux. Each parameter is described in detail, including why Cumulus Networks chose the value used.
+The ARP tunable parameters are set to the following values by default in Cumulus Linux.
 
 <table>
 <colgroup>
@@ -121,7 +121,7 @@ The *all* and *default* locations sound similar, with the exception of which int
 | `arp_ignore`  | MAX       |
 | `arp_notify`  | MAX       |
 
-For example, if the `/proc/sys/net/conf/all/arp_ignore` value is set to *1* and the `/proc/sys/net/conf/swp1/arp_ignore` value is set to *0*, to try to disable it on a per-port basis, interface swp1 still uses the value of *1* in its operation. While it may appear that the port-specific setting should override the global *all* setting, it does not actually work that way. Instead, the MAX value between the *all* value and port-specific value defines the actual behavior. This lack of simplicity has led Cumulus Networks to implement the ARP parameter changes using the *default* location instead.
+For example, if the `/proc/sys/net/conf/all/arp_ignore` value is set to *1* and the `/proc/sys/net/conf/swp1/arp_ignore` value is set to *0*, to try to disable it on a per-port basis, interface swp1 still uses the value of *1* in its operation. While it may appear that the port-specific setting should override the global *all* setting, it does not actually work that way. Instead, the MAX value between the *all* value and port-specific value defines the actual behavior.
 
 The *default* location `/proc/sys/net/ipv4/conf/default/arp*` defines the values for all future IP interfaces. Changing the *default* setting of an ARP parameter does not impact interfaces that already contain an IP address. If changes are being made to a running system that already has IP addresses assigned to it, port-specific settings should be used instead.
 

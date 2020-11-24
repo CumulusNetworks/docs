@@ -19,11 +19,9 @@ driver when a switch or process restart is detected.
 In order to deploy {{<exlink url="https://wiki.openstack.org/wiki/Neutron/ML2" text="OpenStack ML2">}}
 in a network with Cumulus Linux switches, you need the following:
 
-  - A REST API, which is installed in Cumulus Linux.
-  - The Cumulus Networks Modular Layer 2 (ML2) mechanism driver for
-    OpenStack, which you install on the OpenStack Neutron controller
-    node. It's available as a Python package from upstream.
-  - The OpenStack Queens release.
+- A REST API, which is installed in Cumulus Linux.
+- The Modular Layer 2 (ML2) mechanism driver for OpenStack, which you install on the OpenStack Neutron controller node. It's available as a Python package from upstream.
+- The OpenStack Queens release.
 
 {{% imgOld 0 %}}
 
@@ -48,9 +46,9 @@ in a network with Cumulus Linux switches, you need the following:
 Additional REST API calls have been added to support the configuration
 of bridge using the bridge name instead of network ID.
 
-## Install and Configure the Cumulus Networks Modular Layer 2 Mechanism Driver
+## Install and Configure the Modular Layer 2 Mechanism Driver
 
-You need to install the Cumulus Networks ML2 mechanism driver on your
+You need to install the ML2 mechanism driver on your
 Neutron host, which is available upstream:
 
     root@neutron:~# git clone https://github.com/CumulusNetworks/networking-cumulus.git

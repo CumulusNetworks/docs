@@ -125,7 +125,7 @@ rows below are the most important logs and usually looked at first when debuggin
 <tr class="odd">
 <td><p>/var/log/frr/*</p></td>
 <td><p>Logs for FRRouting.</p></td>
-<td><p>This is how Cumulus Networks troubleshoots routing. For example an md5 or mtu mismatch with OSPF.</p></td>
+<td><p>This is how NVIDIA troubleshoots routing. For example an md5 or mtu mismatch with OSPF.</p></td>
 </tr>
 <tr class="even">
 <td><p>/var/log/rdnbrd.log</p></td>

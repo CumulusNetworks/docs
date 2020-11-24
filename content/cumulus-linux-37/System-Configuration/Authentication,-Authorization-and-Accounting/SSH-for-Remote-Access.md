@@ -76,7 +76,7 @@ To configure a completely passwordless system, do not enter a
         Welcome to Cumulus VX (TM)
          
         Cumulus VX (TM) is a community supported virtual appliance designed for
-        experiencing, testing and prototyping Cumulus Networks' latest technology.
+        experiencing, testing and prototyping the latest Cumulus Linux technology.
         For any questions or technical support, visit our community site at:
         http://community.cumulusnetworks.com
          

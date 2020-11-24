@@ -1098,7 +1098,7 @@ The following table describes the key-value pairs in the module groups.
 <td><p><code>NetworkInterfaces</code></p></td>
 <td><p>Comma-separated list of network interface group names</p></td>
 <td><p>Each value in the list represents a network interface connected to this module. There must be a group within the file that has the same name as each value in the list. Network interfaces are the module interfaces that leave the Voyager platform and are labeled L1, L2, L3, and L4 on the front of the Voyager.</p>
-<p><strong>Note</strong>: Although you can use any string for the network interface group names, Cumulus Networks recommends that you use the labels on the front of the Voyager to avoid confusion.</p></td>
+<p><strong>Note</strong>: Although you can use any string for the network interface group names, it is best to use the labels on the front of the Voyager to avoid confusion.</p></td>
 </tr>
 <tr class="even">
 <td><p><code>HostInterfaces</code></p></td>
@@ -1777,13 +1777,13 @@ Number</p></th>
 <td><p><code>TxTributaryIndependent</code></p></td>
 <td><p>List of two comma-separated integers</p></td>
 <td><p>Defines which client interfaces map to this network interface when <code>NetworkMode</code> for the network interface is set to <code>independent</code>. The integers in the list are the <code>Location</code> values of the client interfaces. When operating in pm-qpsk, only the first client interface in the list is used.</p>
-<p><strong>Note</strong>: Cumulus Networks STRONGLY recommends that you do not change this value. The Tomahawk switching ASIC should be configured to steer data to the appropriate network interface, not this attribute.</p></td>
+<p><strong>Note</strong>: Do not change this value. The Tomahawk switching ASIC should be configured to steer data to the appropriate network interface, not this attribute.</p></td>
 </tr>
 <tr class="even">
 <td><p><code>TxTributaryCoupled</code></p></td>
 <td><p>List of four comma-separated integers</p></td>
 <td><p>Defines which client interfaces map to this network interface when <code>NetworkMode</code> for the network interface is set to <code>coupled</code>. The integers in the list are the <code>Location</code> values of the client interfaces. When operating in 8-qam, only the first three client interfaces in the list are used and only the attribute on the network interface at location 0 is used.</p>
-<p><strong>Note</strong>: Cumulus Networks STRONGLY recommends that you do not change this value. The Tomahawk switching ASIC should be configured to steer data to the appropriate network interface, not this attribute.</p></td>
+<p><strong>Note</strong>: Do not change this value. The Tomahawk switching ASIC should be configured to steer data to the appropriate network interface, not this attribute.</p></td>
 </tr>
 <tr class="odd">
 <td><p><code>Loopback</code></p></td>
@@ -1848,8 +1848,8 @@ of these attributes do not typically need to be changed.
 |`SerialTap1Gain`|Integer: 0-7||
 |`SerialTap2Gain`|Integer: 0-15||
 |`SerialTap2Delay`|Integer: 0-7||
-|`RxTributaryIndependent` |Integer: 0-1| Defines which network interface maps to this client interface when `NetworkMode` for the client interface is set to `independent`. The integer is the `Location` value of the network interface.<br><br>**Note**: Cumulus Networks STRONGLY recommends that you do not change this value. The Tomahawk switching ASIC should be configured to steer data from the appropriate network interface, not this attribute.|
-|`RxTributaryCoupled`|Integer: 0-1|Defines which network interface maps to this client interface when `NetworkMode` for the client interface is set to `coupled`. The integer is the `Location` value of the network interface.<br><br>**Note**: Cumulus Networks STRONGLY recommends that you do not change this value. The Tomahawk switching ASIC should be configured to steer data from the appropriate network interface, not this attribute.|
+|`RxTributaryIndependent` |Integer: 0-1| Defines which network interface maps to this client interface when `NetworkMode` for the client interface is set to `independent`. The integer is the `Location` value of the network interface.<br><br>**Note**: Do not change this value. The Tomahawk switching ASIC should be configured to steer data from the appropriate network interface, not this attribute.|
+|`RxTributaryCoupled`|Integer: 0-1|Defines which network interface maps to this client interface when `NetworkMode` for the client interface is set to `coupled`. The integer is the `Location` value of the network interface.<br><br>**Note**: Do not change this value. The Tomahawk switching ASIC should be configured to steer data from the appropriate network interface, not this attribute.|
 |`Loopback`|Boolean: `true` or `false`|Enables (`true`) or disables (`false`) terminal loopback mode on a client interface. When enabled, you send and receive data from the same client interface port to verify that the port is operational. This is useful for DWDM testing.|
 
 The following example shows a sample configuration for a client

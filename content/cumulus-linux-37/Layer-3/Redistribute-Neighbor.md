@@ -25,13 +25,13 @@ Redistribute neighbor was created with these use cases in mind:
 - Hosts that are dual connected to two leaf nodes without using proprietary protocols such as {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
 - Anycast services needing dynamic advertisement from multiple hosts
 
-Cumulus Networks recommends following these guidelines with redistribute neighbor:
+Follow these guidelines with redistribute neighbor:
 
 - A host can connect to one or more leafs. Each leaf advertises the /32 it sees in its neighbor table.
 - A host-bound bridge/VLAN should be local to each switch only.
 - Leaf switches with redistribute neighbor enabled should be directly connected to the hosts.
 - IP addressing must be non-overlapping, as the host IPs are directly advertised into the routed fabric.
-- Run redistribute neighbor on Linux-based hosts primarily; other host operating systems may work, but Cumulus Networks has not actively tested any at this stage.
+- Run redistribute neighbor on Linux-based hosts primarily; other host operating systems may work, but NVIDIA has not actively tested any at this stage.
 
 ## How It Works
 
@@ -47,7 +47,7 @@ Redistribute neighbor works as follows:
 
 ## Example Configuration
 
-The following example configuration is based on the {{<exlink url="https://github.com/cumulusnetworks/cldemo-vagrant" text="reference topology">}} created by Cumulus Networks. Other configurations are possible, based on the use cases outlined above. Here is a diagram of the topology:
+The following example configuration is based on the {{<exlink url="https://github.com/cumulusnetworks/cldemo-vagrant" text="reference topology">}}. Other configurations are possible, based on the use cases outlined above. Here is a diagram of the topology:
 
 {{% imgOld 0 %}}
 
@@ -210,7 +210,7 @@ For full instructions on installing `ifplugd` on Ubuntu, {{<exlink url="https://
 
 ### TCAM Route Scale
 
-This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Take care to keep the number of hosts minus fabric routes under the TCAM size of the switch. Review the Cumulus Networks datasheets {{<exlink url="http://cumulusnetworks.com/hcl/" text="on the Cumulus Networks HCL">}} for up to date scalability limits of your chosen hardware platforms. If in doubt, contact Cumulus Networks support or your Cumulus Networks CSE; they will be happy to help.
+This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Take care to keep the number of hosts minus fabric routes under the TCAM size of the switch. Review the datasheets {{<exlink url="http://cumulusnetworks.com/hcl/" text="on the HCL">}} for up to date scalability limits of your chosen hardware platforms. If in doubt, contact your support representative.
 
 ### Possible Uneven Traffic Distribution
 

@@ -4,10 +4,7 @@ author: NVIDIA
 weight: 221
 pageID: 8362605
 ---
-Cumulus Linux gathers statistics for VXLANs and VLANs using virtual
-device counters. These counters are supported on Tomahawk, Trident II+
-and Trident II-based platforms only; see the
-{{<exlink url="https://cumulusnetworks.com/hcl/" text="Cumulus Networks HCL">}} for a list of supported platforms.
+Cumulus Linux gathers statistics for VXLANs and VLANs using virtual device counters. These counters are supported on Tomahawk, Trident II+ and Trident II-based platforms only; see the {{<exlink url="https://cumulusnetworks.com/hcl/" text="HCL">}} for a list of supported platforms.
 
 You can retrieve the data from these counters using tools like
 `ip -s link show`, `ifconfig`, `/proc/net/dev`, or `netstat -i`.

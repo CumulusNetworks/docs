@@ -110,7 +110,7 @@ Cumulus Linux 3.7.5 replaces Cumulus Linux 3.7.4.
 - {{<link url="802.1X-Interfaces/#radius-change-of-authorization-and-disconnect-requests" text="Multiple Dynamic Authorization Server (DAS)">}} support
 - {{<link url="IGMP-and-MLD-Snooping" text="IGMP/MLD snooping">}} is supported over VXLAN bridges on Broadcom switches
 - {{<link url="Switch-Port-Attributes#fec" text="Ability to disable FEC">}} on Mellanox switches
-- {{<link url="Lightweight-Network-Virtualization-Overview" text="Lightweight network virtualization (LNV)">}} has been deprecated. The feature will be removed in Cumulus Linux 4.0. Cumulus Networks recommends you use Ethernet virtual private network (EVPN) for network virtualization.
+- {{<link url="Lightweight-Network-Virtualization-Overview" text="Lightweight network virtualization (LNV)">}} has been deprecated. The feature will be removed in Cumulus Linux 4.0. Use Ethernet virtual private network (EVPN) for network virtualization.
 
 ## What's New in Cumulus Linux 3.7.4
 

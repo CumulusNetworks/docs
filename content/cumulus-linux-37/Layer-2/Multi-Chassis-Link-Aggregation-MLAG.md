@@ -120,9 +120,7 @@ uplink                  104   uplink
 
 ### Reserved MAC Address Range
 
-To prevent MAC address conflicts with other interfaces in the same bridged network, Cumulus Networks has reserved a range of MAC addresses specifically to use with MLAG. This range of MAC addresses is 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff.
-
-Cumulus Networks recommends you use this range of MAC addresses when configuring MLAG.
+To prevent MAC address conflicts with other interfaces in the same bridged network, Cumulus Linux has a reserved range of MAC addresses specifically to use with MLAG. This range of MAC addresses is 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff. Use this range of MAC addresses when configuring MLAG.
 
 {{%notice info%}}
 
@@ -151,9 +149,9 @@ To enable communication between the `clagd` services on the peer switches, do th
 
 - Choose an unused VLAN (also known as a *switched virtual interface* or *SVI* here).
 - Assign the SVI an unrouteable link-local address to give the peer switches layer 3 connectivity between each other.
-- Configure the VLAN as a {{<link url="Interface-Configuration-and-Management/#subinterfaces" text="VLAN subinterface">}} on the peer link bond rather than the VLAN-aware bridge, called *peerlink*. If you're configuring the subinterface with {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}, the VLAN subinterface is named 4094 by default (the subinterface named *peerlink.4094* below). If you are configuring the peer link without NCLU, Cumulus Networks still recommends you use 4094 for the peer link VLAN if possible. This ensures that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
+- Configure the VLAN as a {{<link url="Interface-Configuration-and-Management/#subinterfaces" text="VLAN subinterface">}} on the peer link bond rather than the VLAN-aware bridge, called *peerlink*. If you're configuring the subinterface with {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}}, the VLAN subinterface is named 4094 by default (the subinterface named *peerlink.4094* below). If you are configuring the peer link without NCLU, use 4094 for the peer link VLAN if possible. This ensures that the VLAN is completely independent of the bridge and spanning tree forwarding decisions.
 - Include untagged traffic on the peer link, as this avoids issues with STP.
-- Specify a backup interface, which is any layer 3 backup interface for your peer links in case the peer link goes down. While a backup interface is optional, Cumulus Networks recommends you configure one. More information about configuring the {{<link url="#specify-a-backup-link" text="backup link">}} and understanding various {{<link url="#failover-redundancy-scenarios" text="redundancy scenarios">}} is available below.
+- Specify a backup interface, which is any layer 3 backup interface for your peer links in case the peer link goes down. While a backup interface is optional, it's best to configure one. More information about configuring the {{<link url="#specify-a-backup-link" text="backup link">}} and understanding various {{<link url="#failover-redundancy-scenarios" text="redundancy scenarios">}} is available below.
 
 For example, if *peerlink* is the inter-chassis bond, and VLAN 4094 is the peer link VLAN, configure *peerlink.4094* as follows:
 
@@ -907,7 +905,7 @@ In addition to the standard UP and DOWN administrative states, an interface that
 - When the bond is configured with an MLAG ID, but the `clagd` service is not running (whether it was deliberately stopped or simply died).
 - When an MLAG-enabled node is booted or rebooted, the MLAG bonds are placed in a `protodown` state until the node establishes a connection to its peer switch, or five minutes have elapsed.
 
-When an interface goes into a `protodown` state, it results in a local OPER DOWN (carrier down) on the interface. As of Cumulus Linux 2.5.5, the `protodown` state can be manipulated with the `ip link set` command. Given its use in preventing network meltdowns, manually manipulating `protodown` is not recommended outside the scope of interaction with the Cumulus Networks support team.
+When an interface goes into a `protodown` state, it results in a local OPER DOWN (carrier down) on the interface. As of Cumulus Linux 2.5.5, the `protodown` state can be manipulated with the `ip link set` command. Given its use in preventing network meltdowns, manually manipulating `protodown` is not recommended outside the scope of interaction with the Cumulus Linux support team.
 
 The following `ip link show` command output shows an interface in `protodown` state. Notice that the link carrier is down (NO-CARRIER):
 
@@ -933,7 +931,7 @@ cumulus@spine01:~$ net commit
 
 The backup IP address must be different than the peer link IP address (`clagd-peer-ip`). It must be reachable by a route that does not use the peer link and it must be in the same network namespace as the peer link IP address.
 
-Cumulus Networks recommends you use the switch's loopback or management IP address for this purpose. Which one should you choose?
+Use the switch's loopback or management IP address for this purpose. Which one should you choose?
 
 - If your MLAG configuration has **routed uplinks** (a modern approach to the data center fabric network), then configure `clagd` to use the peer switch **loopback** address for the health check. When the peer link is down, the secondary switch must route towards the loopback address using uplinks (towards spine layer). If the primary switch is also suffering a more significant problem (for example, `switchd` is unresponsive /or stopped), then the secondary switch eventually promotes itself to primary and traffic now flows normally.
 
@@ -1074,7 +1072,7 @@ When enabling a routing protocol in an MLAG environment, it is also necessary to
 
 ### MLAG and Peer Link Peering
 
-When using MLAG with VRR, Cumulus Networks recommends you set up a routed adjacency across the peerlink.4094 interface. If a routed connection is not built across the peer link, then during uplink failure on one of the switches in the MLAG pair, egress traffic can be blackholed if it hashes to the leaf whose uplinks are down.
+When using MLAG with VRR, set up a routed adjacency across the peerlink.4094 interface. If a routed connection is not built across the peer link, then during uplink failure on one of the switches in the MLAG pair, egress traffic can be blackholed if it hashes to the leaf whose uplinks are down.
 
 To set up the adjacency, configure a {{<link url="Border-Gateway-Protocol-BGP#bgp-unnumbered-interfaces" text="BGP">}} or {{<link url="Open-Shortest-Path-First-OSPF/#unnumbered-interfaces" text="OSPF">}} unnumbered peering, as appropriate for your network.
 
@@ -1259,9 +1257,9 @@ To get a better understanding of how STP and LACP behave in response to various 
 
 ## STP Interoperability with MLAG
 
-Cumulus Networks recommends that you always enable STP in your layer 2 network.
+Always enable STP in your layer 2 network.
 
-With MLAG, Cumulus Networks recommends you enable BPDU guard on the host-facing bond interfaces. For more information about BPDU guard, see {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard" text="BPDU Guard and Bridge Assurance">}}.
+With MLAG, enable BPDU guard on the host-facing bond interfaces. For more information about BPDU guard, see {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree#bpdu-guard" text="BPDU Guard and Bridge Assurance">}}.
 
 Run the `net show <interface> spanning-tree` command to display MLAG information useful for debugging:
 

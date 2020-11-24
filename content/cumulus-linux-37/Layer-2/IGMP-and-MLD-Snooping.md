@@ -48,7 +48,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-Cumulus Networks recommends that you also configure IGMP/MLD querier. See {{<link url="#configure-igmpmld-querier" text="Configure IGMP/MLD Querier">}} below.
+Consider also configuring IGMP/MLD querier. See {{<link url="#configure-igmpmld-querier" text="Configure IGMP/MLD Querier">}} below.
 
 To disable IGMP/MLD snooping over VXLAN, run the `net add bridge <bridge> mcsnoop no` command.
 

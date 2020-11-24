@@ -42,7 +42,7 @@ Each ARP request made by a host receives replies from each router; these replies
 
 {{%notice info%}}
 
-A range of MAC addresses is reserved for use with VRR to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`. Cumulus Networks recommends using MAC addresses from the reserved range when configuring VRR.
+A range of MAC addresses is reserved for use with VRR to prevent MAC address conflicts with other interfaces in the same bridged network. The reserved range is `00:00:5E:00:01:00` to `00:00:5E:00:01:ff`. Use MAC addresses from the reserved range when configuring VRR.
 
 The reserved MAC address range for VRR is the same as for the Virtual Router Redundancy Protocol (VRRP), as they serve similar purposes.
 

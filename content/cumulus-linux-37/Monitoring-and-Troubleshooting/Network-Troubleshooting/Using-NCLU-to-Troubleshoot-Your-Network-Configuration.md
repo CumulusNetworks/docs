@@ -116,11 +116,7 @@ and running the complete option. For example:
 
 ## Install netshow on a Linux Server
 
-`netshow` is a tool developed by Cumulus Networks for troubleshooting
-networks. In Cumulus Linux, it's been replaced by NCLU. However, NCLU is
-not available on Linux hosts at this time, so Cumulus Networks
-recommends you use `netshow` to help troubleshoot servers. To install
-`netshow` on a Linux server, run:
+`netshow` is a tool for troubleshooting networks. In Cumulus Linux, it's been replaced by NCLU. However, NCLU is not available on Linux hosts at this time, so use `netshow` to help troubleshoot servers. To install `netshow` on a Linux server, run:
 
     root@host:~# pip install netshow-linux-lib
 

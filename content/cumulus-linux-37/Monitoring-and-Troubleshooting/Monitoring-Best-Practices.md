@@ -623,13 +623,12 @@ Prescriptive Topology Manager (PTM) uses LLDP information to compare
 against a `topology.dot` file that describes the network. It has built
 in alerting capabilities, so it is preferable to use PTM on box rather
 than polling LLDP information regularly. The PTM code is available on
-the Cumulus Networks {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}. Additional PTM,
+the Cumulus Linux {{<exlink url="https://github.com/CumulusNetworks/ptm" text="GitHub repository">}}. Additional PTM,
 BFD, and associated logs are documented in the code.
 
 {{%notice note%}}
 
-Cumulus Networks recommends that you track peering information through
-PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
+Consider tracking peering information through PTM. For more information, refer to the {{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager documentation">}}.
 
 {{%/notice%}}
 

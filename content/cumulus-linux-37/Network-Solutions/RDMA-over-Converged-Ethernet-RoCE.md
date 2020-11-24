@@ -18,15 +18,8 @@ the Ethernet infrastructure, including Infiniband apps.
 There are two versions of RoCE, which run at separate layers of the
 stack:
 
-- RoCEv1, which runs at the link layer and cannot be run over a routed
-  network. Therefore, it requires the link layer
-  {{<link url="Buffer-and-Queue-Management/#configure-priority-flow-control" text="priority flow control">}}
-  (PFC) to be enabled.
-- RoCEv2, which runs over layer 3. Since it's a routed solution,
-  Cumulus Networks recommends you use
-  {{<link url="Buffer-and-Queue-Management/#configure-explicit-congestion-notification" text="explicit congestion notification">}}
-  (ECN) with RoCEv2 since ECN bits are communicated end-to-end across
-  a routed network.
+- RoCEv1, which runs at the link layer and cannot be run over a routed network. Therefore, it requires the link layer {{<link url="Buffer-and-Queue-Management/#configure-priority-flow-control" text="priority flow control">}} (PFC) to be enabled.
+- RoCEv2, which runs over layer 3. Since it's a routed solution, consider using {{<link url="Buffer-and-Queue-Management/#configure-explicit-congestion-notification" text="explicit congestion notification">}} (ECN) with RoCEv2 since ECN bits are communicated end-to-end across a routed network.
 
 ## Enable RDMA over Converged Ethernet with PFC
 
@@ -57,11 +50,7 @@ lossless traffic and change the buffer limits in the
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
-
-# /etc/cumulus/datapath/traffic.conf
-# Copyright 2014, 2015, 2016, 2017, Cumulus Networks, Inc.  All rights reserved.
-#
-
+...
 # packet header field used to determine the packet priority level
 # fields include {802.1p, dscp}
 traffic.packet_priority_source_set = [dscp]

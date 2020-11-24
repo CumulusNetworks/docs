@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting the etc Directory
-author: Cumulus Networks
+author: NVIDIA
 weight: 445
 pageID: 8362601
 ---
@@ -14,10 +14,7 @@ Files that `cl-support` deliberately excludes are:
 | /etc/nologin      | ` nologin  `prevents unprivileged users from logging into the system.      |
 | /etc/alternatives | `update-alternatives` creates, removes, maintains and displays information about the symbolic links comprising the Debian alternatives system. |
 
-This is the alphabetical of the output from running `ls -l` on the
-`/etc` directory structure created by `cl-support`. The green
-highlighted rows are the ones Cumulus Networks finds most important when
-troubleshooting problems.
+This is the alphabetical of the output from running `ls -l` on the `/etc` directory structure created by `cl-support`.
 
 | **File**                  |
 | ------------------------- |

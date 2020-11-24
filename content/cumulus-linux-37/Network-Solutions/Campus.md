@@ -1,6 +1,6 @@
 ---
 title: Campus Deployments
-author: Cumulus Networks
+author: NVIDIA
 weight: 250
 ---
 

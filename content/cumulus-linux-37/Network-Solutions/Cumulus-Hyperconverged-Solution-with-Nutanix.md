@@ -1,6 +1,6 @@
 ---
 title: Cumulus Hyperconverged Solution with Nutanix
-author: Cumulus Networks
+author: NVIDIA
 weight: 261
 pageID: 9012165
 ---

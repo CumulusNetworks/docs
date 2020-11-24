@@ -1,6 +1,6 @@
 ---
 title: RDMA over Converged Ethernet - RoCE
-author: Cumulus Networks
+author: NVIDIA
 weight: 259
 pageID: 8363018
 ---

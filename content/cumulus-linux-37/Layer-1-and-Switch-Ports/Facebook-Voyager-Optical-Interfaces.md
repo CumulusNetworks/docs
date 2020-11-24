@@ -1,6 +1,6 @@
 ---
 title: Facebook Voyager Optical Interfaces
-author: Cumulus Networks
+author: NVIDIA
 weight: 99
 pageID: 8363049
 ---

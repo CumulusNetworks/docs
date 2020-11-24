@@ -1,6 +1,6 @@
 ---
 title: Border Gateway Protocol - BGP
-author: Cumulus Networks
+author: NVIDIA
 weight: 185
 pageID: 8362926
 ---

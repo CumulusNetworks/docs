@@ -1,6 +1,6 @@
 ---
 title: Using Nutanix Prism as a Monitoring Tool
-author: Cumulus Networks
+author: NVIDIA
 weight: 485
 pageID: 8362618
 ---

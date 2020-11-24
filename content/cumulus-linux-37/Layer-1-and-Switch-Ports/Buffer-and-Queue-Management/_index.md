@@ -1,6 +1,6 @@
 ---
 title: Buffer and Queue Management
-author: Cumulus Networks
+author: NVIDIA
 weight: 93
 pageID: 8363032
 ---

@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting Log Files
-author: Cumulus Networks
+author: NVIDIA
 weight: 443
 pageID: 8362602
 ---

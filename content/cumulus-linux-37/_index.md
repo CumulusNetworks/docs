@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux 3.7 User Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: -37
 pageID: 8362527
 subsection: true

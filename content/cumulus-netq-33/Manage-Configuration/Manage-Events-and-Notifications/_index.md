@@ -14,8 +14,8 @@ Three types of events are available in NetQ:
 
 The NetQ UI provides two event workflows and two summary tables:
 
-- Alarms card workflow: tracks critical severity system and TCA events for a given time frame
-- Info card workflow: tracks all warning, info, and debug severity system and TCA events for a given time frame
+- Events|Alarms card: tracks critical severity system and TCA events for a given time frame
+- Events|Info card: tracks all warning, info, and debug severity system and TCA events for a given time frame
 - All Events table: lists all system events in the last 24 hours
 - What Just Happened table: lists the 1000 most recent WJH events in the last 24 hours
 

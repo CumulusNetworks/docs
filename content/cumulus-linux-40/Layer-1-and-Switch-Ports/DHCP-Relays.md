@@ -1,6 +1,6 @@
 ---
 title: DHCP Relays
-author: Cumulus Networks
+author: NVIDIA
 weight: 340
 toc: 3
 ---
@@ -180,7 +180,7 @@ To enable RFC 3527 support and control the giaddr, run the following commands.
 
    {{%notice note%}}
 
-   The first IP address on the loopback interface is typically the 127.0.0.1 address; Cumulus Networks recommends that you use more specific syntax, as shown in the next example.
+   The first IP address on the loopback interface is typically the 127.0.0.1 address. Use more specific syntax, as shown in the next example.
 
    {{%/notice%}}
 
@@ -244,7 +244,7 @@ To enable RFC 3527 support and control the giaddr, run the following commands.
 
    {{%notice note%}}
 
-The first IP address on the loopback interface is typically the 127.0.0.1 address; Cumulus Networks recommends that you use more specific syntax, as shown in the next example.
+The first IP address on the loopback interface is typically the 127.0.0.1 address. Use more specific syntax, as shown in the next example.
 
    {{%/notice%}}
 

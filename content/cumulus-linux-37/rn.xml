@@ -2352,18 +2352,6 @@ Fixed: 0.12.5-1+deb8u8</p></td>
 <td>3.7.14</td>
 </tr>
 <tr>
-<td>CM-31730</td>
-<td><p>When you set link-autoneg on for 10G-SR modules, switchd might spam logs showing autoneg mismatch between the kernel and the SDK. This can result in high CPU utilization and switchd failures.<br/>
-To work around this issue, do not enable auto-negotiation for 10G-SR modules, as it does not exist for the 10G-SR standard. Instead, disable auto-negotiation and set the speed statically using the following commands:</p>
-
-cumulus@switch:~$ net add interface &lt;interface&gt; link autoneg off
-cumulus@switch:~$ net add interface &lt;interface&gt; link speed 10000
-
-</td>
-<td>3.7.12-3.7.14</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31696</td>
 <td><p>The following vulnerability has been announced in libproxy:<br/>
 CVE-2020-26154: A possible buffer overflow vulnerability in libproxy when a server serving a PAC file sends more than 102400 bytes without a Content-Length present.<br/>
@@ -5121,18 +5109,6 @@ Vulnerable: &lt;= 0.12.5-1+deb8u7<br/>
 Fixed: 0.12.5-1+deb8u8</p></td>
 <td>3.0.0-3.7.13</td>
 <td>3.7.14</td>
-</tr>
-<tr>
-<td>CM-31730</td>
-<td><p>When you set link-autoneg on for 10G-SR modules, switchd might spam logs showing autoneg mismatch between the kernel and the SDK. This can result in high CPU utilization and switchd failures.<br/>
-To work around this issue, do not enable auto-negotiation for 10G-SR modules, as it does not exist for the 10G-SR standard. Instead, disable auto-negotiation and set the speed statically using the following commands:</p>
-
-cumulus@switch:~$ net add interface &lt;interface&gt; link autoneg off
-cumulus@switch:~$ net add interface &lt;interface&gt; link speed 10000
-
-</td>
-<td>3.7.12-3.7.14</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-31696</td>

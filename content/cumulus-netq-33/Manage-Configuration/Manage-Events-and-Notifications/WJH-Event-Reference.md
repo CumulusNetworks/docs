@@ -4,9 +4,11 @@ author: NVIDIA
 weight: 813
 toc: 4
 ---
-This topic lists all of the supported WJH metrics and provides a brief description of each.
+This topic lists all of the supported WJH metrics and provides a brief description of each. 
 
-For instructions on how to configure and monitor What Just Happened events, refer to {{<link title="Configure and Monitor What Just Happened" text="Configure and Monitor What Just Happened">}}.
+For instructions on how to configure and monitor What Just Happened events, refer to {{<link title="Configure and Monitor What Just Happened">}}.
+
+## Layer 1 Drops
 
 <table>
 <colgroup>
@@ -21,7 +23,7 @@ For instructions on how to configure and monitor What Just Happened events, refe
 </thead>
 <tbody>
 <tr class="even">
-<td>L1 Drops tab</td>
+<td>L1 Drops</td>
 <td>Displays the reason why a port is in the down state. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server.</li>
@@ -49,7 +51,7 @@ For instructions on how to configure and monitor What Just Happened events, refe
 <li><strong>Is Port Up</strong>: Indicates whether the port is in an Up (true) or Down (false) state.</li>
 </ul></td>
 <tr class="even">
-<td>L2 Drops tab</td>
+<td>L2 Drops</td>
 <td>Displays the reason for a link to be down. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server.</li>
@@ -79,7 +81,7 @@ For instructions on how to configure and monitor What Just Happened events, refe
 </ul></td>
 </tr>
 <tr class="even">
-<td>Router Drops tab</td>
+<td>Router Drops</td>
 <td>Displays the reason why the server is unable to route a packet. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server.</li>
@@ -113,7 +115,7 @@ For instructions on how to configure and monitor What Just Happened events, refe
 </ul></li>
 </ul></td>
 <tr class="even">
-<td>Tunnel Drops tab</td>
+<td>Tunnel Drops</td>
 <td>Displays the reason for a tunnel to be down. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server.</li>
@@ -124,7 +126,7 @@ For instructions on how to configure and monitor What Just Happened events, refe
 </ul></li>
 </ul></td>
 <tr class="even">
-<td>Buffer Drops tab</td>
+<td>Buffer Drops</td>
 <td>Displays the reason for the server buffer to be drop packets. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
 <ul>
 <li><strong>Hostname</strong>: Name of the Mellanox server.</li>
@@ -135,21 +137,17 @@ For instructions on how to configure and monitor What Just Happened events, refe
 <li>Packet Latency Threshold Crossed: Time a packet spent within the switch exceeded or dropped below the specified high or low threshold</li>
 </ul></li>
 </ul></td>
-<tr class="even">
-<td>ACL Drops tab</td>
-<td>Displays the reason for an ACL to drop packets. By default, the listing is sorted by <strong>Last Timestamp</strong>. The tab provides the following additional data about each drop event:
-<ul>
-<li><strong>Hostname</strong>: Name of the Mellanox server.</li>
-<li><strong>Reason</strong>: Reason why ACL dropped packets.
-<ul><li>Ingress port ACL:  ACL action set to deny on the physical ingress port or bond.</li>
-<li>Ingress router ACL: ACL action set to deny on the ingress switch virtual interfaces (SVIs).</li>
-<li>Egress port ACL:  ACL action set to deny on the physical egress port or bond.</li>
-<li>Egress router ACL: ACL action set to deny on the egress SVIs.</li>
-</ul></li>
-</ul></td>
-<tr class="even">
-<td>Table Actions</td>
-<td>Select, export, or filter the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}}.</td>
 </tr>
 </tbody>
 </table>
+
+## ACL Drops
+
+Displays the reason for an ACL to drop packets on the given Mellanox switch. By default, the listing is sorted by *Last Timestamp*.
+
+| Reason | Description|
+| --- | --- |
+| Ingress port ACL | ACL action set to deny on the physical ingress port or bond |
+| Ingress router ACL | ACL action set to deny on the ingress switch virtual interfaces (SVIs) |
+| Egress port ACL | ACL action set to deny on the physical egress port or bond |
+| Egress router ACL | ACL action set to deny on the egress SVIs |

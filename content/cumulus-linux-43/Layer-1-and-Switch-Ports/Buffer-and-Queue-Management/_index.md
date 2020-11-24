@@ -142,7 +142,7 @@ PFC is a layer 2 mechanism that prevents congestion by throttling packet transmi
 
 PFC operates between two adjacent neighbor switches; it does not provide end-to-end flow control. However, when an upstream neighbor throttles packet transmission, it could build up packet congestion and propagate PFC frames further upstream: eventually the sending server could receive PFC frames and stop sending traffic for a time.
 
-The PFC mechanism can be enabled for individual switch priorities on specific switch ports for RX and/or TX traffic. The switch port's ingress buffer occupancy is used to measure congestion. If congestion is present, the switch transmits flow control frames to the upstream switch. Packets with priority values that do not have PFC configured are not counted during congestion detection; neither do they get throttled by the upstream switch when it receives flow control frames.
+The PFC mechanism can be enabled for individual switch priorities on all or specific switch ports for RX and/or TX traffic. The switch port's ingress buffer occupancy is used to measure congestion. If congestion is present, the switch transmits flow control frames to the upstream switch. Packets with priority values that do not have PFC configured are not counted during congestion detection; neither do they get throttled by the upstream switch when it receives flow control frames.
 
 PFC congestion detection is implemented on the switch using xoff and xon threshold values for the specific ingress buffer which is used by the targeted switch priorities. When a packet enters the buffer and the buffer occupancy is above the xoff threshold, the switch transmits an Ethernet PFC frame to the upstream switch to signal packet transmission should stop. When the buffer occupancy drops below the xon threshold, the switch sends another PFC frame upstream to signal that packet transmission can resume. (PFC frames contain a quanta value to indicate a timeout value for the upstream switch: packet transmission can resume after the timer has expired, or when a PFC frame with quanta == 0 is received from the downstream switch.)
 
@@ -152,7 +152,7 @@ Priority flow control is fully supported on both {{<exlink url="https://cumulusn
 
 PFC is disabled by default in Cumulus Linux. To enable priority flow control (PFC), you must configure the following settings in the `/etc/cumulus/datapath/traffic.conf` file on the switch:
 
-- Specify the name of the port group in `pfc.port_group_list` in brackets; for example, *pfc.port\_group\_list = \[pfc\_port\_group\]*.
+- Specify the name of the port group in `pfc.port_group_list` in brackets; for example, `pfc.port_group_list = [pfc_port_group].
 - Assign a CoS value to the port group in `pfc.pfc_port_group.cos_list` setting. *pfc\_port\_group* is the name of a port group you specified above and is used throughout the following settings.
 - Populate the port group with its member ports in `pfc.pfc_port_group.port_set`.
 - Set a PFC buffer size in `pfc.pfc_port_group.port_buffer_bytes`. This is the maximum number of bytes allocated for storing bursts of packets, guaranteed at the ingress port. The default is *25000* bytes.
@@ -167,16 +167,17 @@ The following configuration example shows PFC configured for ports swp1 through 
 ```
 # to configure priority flow control on a group of ports:
 # -- assign cos value(s) to the cos list
-# -- add or replace a port group names in the port group list
+# -- add or replace port group names in the port group list
 # -- for each port group in the list
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
 #    -- set a PFC buffer size in bytes for each port in the group
-#    -- set the xoff byte limit (buffer limit that triggers PFC frame transmit to start)
-#    -- set the xon byte delta (buffer limit that triggers PFC frame transmit to stop)
+#    -- set the xoff byte limit (buffer limit that triggers PFC frames transmit to start)
+#    -- set the xon byte delta (buffer limit that triggers PFC frames transmit to stop)
 #    -- enable PFC frame transmit and/or PFC frame receive
+
 # priority flow control
-pfc.port_group_list = [pfc_port_group]
+pfc.port_group_list = [ROCE_PFC]
 pfc.pfc_port_group.cos_list = []
 pfc.pfc_port_group.port_set = swp1-swp4,swp6
 pfc.pfc_port_group.port_buffer_bytes = 25000
@@ -184,6 +185,9 @@ pfc.pfc_port_group.xoff_size = 10000
 pfc.pfc_port_group.xon_delta = 2000
 pfc.pfc_port_group.tx_enable = true
 pfc.pfc_port_group.rx_enable = true
+#
+# Specify cable length in mts
+pfc.pfc_port_group.cable_length = 10
 ```
 
 ## Port Groups
@@ -343,18 +347,21 @@ The following configuration example shows ECN configured for ports swp1 through 
 
 ```
 # Explicit Congestion Notification
-# to configure ECN on a group of ports:
+# to configure ECN and RED on a group of ports:
 # -- add or replace port group names in the port group list
-# -- assign cos value(s) to the cos list  *ECN will only be applied to traffic matching this COS*
+# -- assign cos value(s) to the cos list
 # -- for each port group in the list
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
-  ecn.port_group_list = [ecn_port_group]
-  ecn.ecn_port_group.cos_list = [0]
-  ecn.ecn_port_group.port_set = swp1-swp4,swp6
-  ecn.ecn_port_group.min_threshold_bytes = 40000
-  ecn.ecn_port_group.max_threshold_bytes = 200000
-  ecn.ecn_port_group.probability = 100
+# -- to enable RED requires the latest traffic.conf
+ecn_red.port_group_list = [ROCE_ECN]
+ecn_red.ecn_red_port_group.cos_list = [3]
+ecn_red.ecn_red_port_group.port_set = swp1-swp4,swp6
+ecn_red.ecn_red_port_group.ecn_enable = true
+ecn_red.ecn_red_port_group.red_enable = false
+ecn_red.ecn_red_port_group.min_threshold_bytes = 40000
+ecn_red.ecn_red_port_group.max_threshold_bytes = 200000
+ecn_red.ecn_red_port_group.probability = 100
 ```
 
 On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.

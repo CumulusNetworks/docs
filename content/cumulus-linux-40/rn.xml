@@ -547,17 +547,6 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u1</p></td>
 <td>4.2.0-4.2.1</td>
 </tr>
 <tr>
-<td>CM-29759</td>
-<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
-To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
-
-#Requires=nginx.service restserver.socket
-
-</td>
-<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29691</td>
 <td><p>The following vulnerability has been announced in the apt package:<br/>
 CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>

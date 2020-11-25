@@ -39,7 +39,7 @@
     {{- if and (eq .Page.Params.product "Cumulus Linux") (eq .Page.Params.version "4.2") -}}
         {{- /* errorf "broken link in %s" .Position */ -}}
     {{- end -}}
-    {{- if and (eq .Page.Params.product "Cumulus NetQ") (eq .Page.Params.version "3.0") -}}
+    {{- if and (eq .Page.Params.product "Cumulus NetQ") (eq .Page.Params.version "3.2") -}}
         {{- /* errorf "broken link in %s" .Position */ -}}
     {{- end -}}
     <a href="{{(.Scratch.Get "title") | default (.Scratch.Get "url") }}.broken_link">UNABLE TO FIND LINK {{.Get 0}}</a>

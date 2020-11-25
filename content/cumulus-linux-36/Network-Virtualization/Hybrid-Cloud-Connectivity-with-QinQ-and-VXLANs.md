@@ -17,16 +17,13 @@ inner tag is for the service.
 
 In Cumulus Linux, you map QinQ packets to VXLANs through:
 
-  - *Single tag translation*, where you map a customer to a VNI and
-    preserve the service as an inner VLAN inside a VXLAN packet.
-  - *Double tag translation*, where you map a customer and service to a
-    VNI.
+  - *Single tag translation*, where you map a customer to a VNI and preserve the service as an inner VLAN inside a VXLAN packet.
+  - *Double tag translation*, where you map a customer and service to a VNI.
 
 QinQ is available on the following switches:
 
   - Broadcom Tomahawk, Trident II+ and Trident II switches.
-  - Mellanox switches, only with [VLAN-aware bridges](/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode)
-    with 802.1ad and only with single tag translation.
+  - Mellanox Spectrum 1 switches, only with [VLAN-aware bridges](/cumulus-linux-36/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode) with 802.1ad and only with single tag translation.
 
 ## Removing the Early Access QinQ Metapackage
 

@@ -1,0 +1,33 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: *
+Copyright: 2003-2004 Ardo van Rangelrooij <ardo@debian.org>
+           2004      Adam Di Carlo Adam Di Carlo <aph@debian.org>
+           2006      Lars Wirzenius <liw@iki.fi>
+           2007-2009 Daniel Leidert <daniel.leidert@wgdd.de>
+           2012      Jakub Wilk <jwilk@debian.org>
+           2012      Marcin Owsiany <porridge@debian.org>
+           2016      Joseph Herlant
+           2016      Martin Pitt
+           2016      Mattia Rizzolo <mattia@debian.org>
+           2016      Santiago Vila
+           2016      Helmut Grohne
+           2017      Joao Eriberto Mota Filho <eriberto@debian.org>
+License: GPL-2+
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 2 can be found in "/usr/share/common-licenses/GPL-2".

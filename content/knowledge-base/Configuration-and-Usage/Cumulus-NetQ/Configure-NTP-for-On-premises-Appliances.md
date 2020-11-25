@@ -3,7 +3,6 @@ title: Configure NTP for On-premises Appliances
 author: Cumulus Networks
 weight: 346
 toc: 4
-draft: true
 ---
 
 ## Issue

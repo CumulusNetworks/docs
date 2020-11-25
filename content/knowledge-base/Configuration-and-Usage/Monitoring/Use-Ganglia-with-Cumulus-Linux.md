@@ -23,7 +23,7 @@ Since Cumulus Linux is Linux, Ganglia also works great to monitor switches as we
     - `gmetad`, which stands for Ganglia meta daemon
     - `ganglia-webfrontend`, which contains the PHP-based real-time dynamic Web pages
 
-    All three are described on {{<exlink url="http://en.wikipedia.org/wiki/Ganglia_\(software\)#Ganglia_Monitoring_Daemon_.28gmond.29" text="Wikipedia">}} and in {{<exlink url="http://sourceforge.net/apps/trac/ganglia/wiki/ganglia_quick_start" text="the Ganglia documentation">}}.
+    All three are described on {{<exlink url="https://en.wikipedia.org/wiki/Ganglia_(software)" text="Wikipedia">}} and in {{<exlink url="http://sourceforge.net/apps/trac/ganglia/wiki/ganglia_quick_start" text="the Ganglia documentation">}}.
 
 2.  Install these components on the host:
 

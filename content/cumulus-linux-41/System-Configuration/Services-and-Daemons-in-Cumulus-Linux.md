@@ -243,7 +243,7 @@ The following table lists the most important services in Cumulus Linux.
 |------------ |-----------|-------------------|
 |switchd|Hardware abstraction daemon. Synchronizes the kernel with the ASIC.|YES|
 |sx\_sdk|Interfaces with the Spectrum ASIC. Only on Spectrum switches.|YES|
-|portwd| Reads pluggable information over the I2C bus. Identifies and classifies the optics that are inserted into the system. Sets interface speeds and capabilities to match the optics.|YES, eventually, if optics are added or removed|
+| portwd| Port watch daemon. Broadcom switches only. Reads pluggable information over the I2C bus. Identifies and classifies the modules that are inserted into the system. Manages setting related to the module types that are inserted.| YES, eventually, if modules are added or removed |
 |frr|{{<link url="FRRouting-Overview" text="FRRouting">}}. Handles routing protocols. There are separate processes for each routing protocol, such as `bgpd` and `ospfd`.|YES if routing|
 |clag|Cumulus link aggregation daemon. Handles {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.|YES if using MLAG|
 |neighmgrd|Synchronizes MAC address information if using MLAG.|YES if using MLAG|

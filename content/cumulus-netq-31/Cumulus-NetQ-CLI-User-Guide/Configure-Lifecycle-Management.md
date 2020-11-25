@@ -153,13 +153,12 @@ For more information about Cumulus NetQ images and LCM, read {{<link url="Lifecy
 
 1. Download the version of Cumulus NetQ you plan to use to upgrade the switches from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Networks web site">}}.
 
-1. Upload the Cumulus NetQ image onto an accessible part of your network. The following example uses the Cumulus NetQ 3.1.0 appliance disk image, named `netq-apps_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb`.
+1. Upload the Cumulus NetQ packages onto an accessible part of your network. The following example uses the Cumulus NetQ 3.1.0 debian packages, named `netq-apps_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb` and `netq-agent_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb`.
 
-       cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb
-
-1. Upload the Cumulus NetQ agent image onto an accessible part of your network. The following example uses the Cumulus NetQ 3.1.0 appliance disk image, named `netq-agent_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb`.
-
-       cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb
+    ```
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_3.1.0-ub18.04u27~1588242914.9fb5b87_amd64.deb
+    ```
 
 ## Upgrade Cumulus Linux on a Switch
 

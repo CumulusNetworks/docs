@@ -1,6 +1,6 @@
 ---
 title: Ethernet Virtual Private Network - EVPN
-author: Cumulus Networks
+author: NVIDIA
 weight: 143
 pageID: 8362732
 ---
@@ -418,8 +418,7 @@ local proxy handles ARP requests received from locally attached hosts
 for remote hosts. ARP suppression is the implementation for IPv4; ND
 suppression is the implementation for IPv6.
 
-ARP/ND suppression is not enabled by default. Cumulus Networks recommends that you *enable* ARP and ND suppression in all EVPN bridging and symmetric routing deployments to reduce flooding
-of ARP/ND packets over VXLAN tunnels.
+ARP/ND suppression is not enabled by default. Enable ARP and ND suppression in all EVPN bridging and symmetric routing deployments to reduce flooding of ARP/ND packets over VXLAN tunnels.
 
 You configure ARP/ND suppression on a VXLAN interface. You also need to create an SVI for the
 neighbor entry.
@@ -428,12 +427,7 @@ neighbor entry.
 
 - On switches with the Mellanox Spectrum chipset, ND suppression only functions with the Spectrum A1 chip.
 - ARP/ND suppression must be enabled on all VXLAN interfaces on the switch. You cannot have ARP/ND suppression enabled on some VXLAN interfaces but not on others.
-- When ARP/ND suppression is enabled, you need to configure layer 3
-interfaces even if the switch is configured only for layer 2 (that is,
-you are not using VXLAN routing). To avoid unnecessary layer 3
-information from being installed, Cumulus Networks recommends you
-configure the `ip forward off` or `ip6 forward off` options as
-appropriate on the VLANs. See the example configuration below.
+- When ARP/ND suppression is enabled, you need to configure layer 3 interfaces even if the switch is configured only for layer 2 (that is, you are not using VXLAN routing). To avoid unnecessary layer 3 information from being installed, configure the `ip forward off` or `ip6 forward off` options as appropriate on the VLANs. See the example configuration below.
 
 {{%/notice%}}
 
@@ -653,10 +647,7 @@ tenants.
 
 {{%notice note%}}
 
-When configuring {{<link url="VXLAN-Routing" text="VXLAN routing">}}, Cumulus Networks recommends 
-enabling ARP suppression on all VXLAN interfaces.
-Otherwise, when a locally attached host ARPs for the gateway, it will
-receive multiple responses, one from each anycast gateway.
+When configuring {{<link url="VXLAN-Routing" text="VXLAN routing">}}, enable ARP suppression on all VXLAN interfaces. Otherwise, when a locally attached host ARPs for the gateway, it will receive multiple responses, one from each anycast gateway.
 
 {{%/notice%}}
 
@@ -1373,10 +1364,7 @@ of 1000 seconds, after which it is cleared automatically :
 
 {{%notice tip%}}
 
-Cumulus Networks recommends you set the freeze timer to be three times
-the duplicate address detection window. For example, if the duplicate
-address detection window is set to the default of 180 seconds, set the
-freeze timer to 540 seconds.
+Set the freeze timer to be three times the duplicate address detection window. For example, if the duplicate address detection window is set to the default of 180 seconds, set the freeze timer to 540 seconds.
 
 {{%/notice%}}
 

@@ -1,6 +1,6 @@
 ---
 title: DHCP Relays
-author: Cumulus Networks
+author: NVIDIA
 weight: 95
 pageID: 8363036
 ---
@@ -144,8 +144,7 @@ The above command creates the following configuration in the
 {{%notice note%}}
 
 The first IP address on the loopback interface is typically the
-127.0.0.1 address; Cumulus Networks recommends that you use more
-specific syntax, as shown in the next example.
+127.0.0.1 address. Use more specific syntax, as shown in the next example.
 
 {{%/notice%}}
 

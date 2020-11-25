@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32412</td>
+<td><p>CVE-2020-28196: MIT Kerberos 5 (aka krb5) before 1.17.2 and 1.18.x before 1.18.3 allows unbounded recursion via an ASN.1-encoded Kerberos message because the lib/krb5/asn.1/asn1_encode.c support for BER indefinite lengths lacks a recursion limit.<br/>
+Vulnerable: 1.17-3<br/>
+Fixed: 1.17-3+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32311</td>
 <td><p>CVE-2020-25709, CVE-2020-25710: Two vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u3<br/>
@@ -203,15 +211,6 @@ To work around this issue, when you create a new virtual interface, set net.ipv6
 CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
 <td>3.0.0-4.2.0</td>
 <td>4.2.1</td>
-</tr>
-<tr>
-<td>CM-31056</td>
-<td><p>After configuring multiple dhcrelay6 instances, then restarting the dhcrelay6 relay service, replies are sent on the incorrect VLAN.<br/>
-This problem does not occur if you only have one instance of dhcrelay6.</p>
-
-<p>Restart on both instances.</p></td>
-<td>4.1.1-4.2.1</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-31055</td>
@@ -716,17 +715,6 @@ Vulnerable: 9.11.5.P4+dfsg-5.1<br/>
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u1</p></td>
 <td>4.0.0-4.1.1</td>
 <td>4.2.0-4.2.1</td>
-</tr>
-<tr>
-<td>CM-29759</td>
-<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
-To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
-
-#Requires=nginx.service restserver.socket
-
-</td>
-<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29691</td>
@@ -2317,7 +2305,7 @@ cumulus@<span class="code-keyword">switch</span>:~$ sudo systemctl restart ssh
 <p><b>Notes</b> </p>
 
 <ul>
-	<li>This issue is fixed in Cumulus Linux 4.1.1. However, Cumulus Networks recommends you generate new SSH host keys as this is the most reliable solution.</li>
+	<li>This issue is fixed in Cumulus Linux 4.1.1. However, we recommend you generate new SSH host keys as this is the most reliable solution.</li>
 	<li>If you upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later using apt-get and you didn't generate new SSH host keys, you will need to generate new SSH host keys after the upgrade.</li>
 	<li>If you perform a fresh install of Cumulus Linux 4.1.1 or later using a disk image, you will lose your existing local configuration.</li>
 </ul>
@@ -2361,6 +2349,14 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32412</td>
+<td><p>CVE-2020-28196: MIT Kerberos 5 (aka krb5) before 1.17.2 and 1.18.x before 1.18.3 allows unbounded recursion via an ASN.1-encoded Kerberos message because the lib/krb5/asn.1/asn1_encode.c support for BER indefinite lengths lacks a recursion limit.<br/>
+Vulnerable: 1.17-3<br/>
+Fixed: 1.17-3+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32311</td>
@@ -2936,17 +2932,6 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u1</p></td>
 <td>4.2.0-4.2.1</td>
 </tr>
 <tr>
-<td>CM-29759</td>
-<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
-To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
-
-#Requires=nginx.service restserver.socket
-
-</td>
-<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29691</td>
 <td><p>The following vulnerability has been announced in the apt package:<br/>
 CVE-2020-3810: Shuaibing Lu discovered that missing input validation in the ar/tar implementations of APT, the high level package manager, could result in denial of service when processing specially crafted deb files.<br/>
@@ -3230,7 +3215,7 @@ cumulus@<span class="code-keyword">switch</span>:~$ sudo systemctl restart ssh
 <p><b>Notes</b> </p>
 
 <ul>
-	<li>This issue is fixed in Cumulus Linux 4.1.1. However, Cumulus Networks recommends you generate new SSH host keys as this is the most reliable solution.</li>
+	<li>This issue is fixed in Cumulus Linux 4.1.1. However, we recommend you generate new SSH host keys as this is the most reliable solution.</li>
 	<li>If you upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later using apt-get and you didn't generate new SSH host keys, you will need to generate new SSH host keys after the upgrade.</li>
 	<li>If you perform a fresh install of Cumulus Linux 4.1.1 or later using a disk image, you will lose your existing local configuration.</li>
 </ul>

@@ -150,19 +150,7 @@ After the downstream switch has sent a PFC frame upstream, it continues to recei
 
 Priority flow control is fully supported on both {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2" text="Broadcom">}} (including the Edgecore Minipack-AS8000/Trident3) and {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox" text="Mellanox">}} switches.
 
-PFC is disabled by default in Cumulus Linux. To enable priority flow control (PFC), you must configure the following settings in the `/etc/cumulus/datapath/traffic.conf` file on the switch:
-
-- Specify the name of the port group in `pfc.port_group_list` in brackets; for example, `pfc.port_group_list = [pfc_port_group].
-- Assign a CoS value to the port group in `pfc.pfc_port_group.cos_list` setting. *pfc\_port\_group* is the name of a port group you specified above and is used throughout the following settings.
-- Populate the port group with its member ports in `pfc.pfc_port_group.port_set`.
-- Set a PFC buffer size in `pfc.pfc_port_group.port_buffer_bytes`. This is the maximum number of bytes allocated for storing bursts of packets, guaranteed at the ingress port. The default is *25000* bytes.
-- Set the xoff byte limit in `pfc.pfc_port_group.xoff_size`. This is a threshold for the PFC buffer; when this limit is reached, an xoff transition is initiated, signaling the upstream port to stop sending traffic, during which time packets continue to arrive due to the latency of the communication. The default is *10000* bytes.
-- Set the xon delta limit in `pfc.pfc_port_group.xon_delta`. This is the number of bytes to subtract from the xoff limit, which results in a second threshold at which the egress port resumes sending traffic. After the xoff limit is reached and the upstream port stops sending traffic, the buffer begins to drain. When the buffer reaches 8000 bytes (assuming default xoff and xon settings), the egress port signals that it can start receiving traffic again. The default is *2000* bytes.
-- Enable the egress port to signal the upstream port to stop sending traffic (`pfc.pfc_port_group.tx_enable`). The default is *true*.
-- Enable the egress port to receive notifications and act on them (`pfc.pfc_port_group.rx_enable`). The default is *true*.
-- The switch priority value(s) are mapped to the specific ingress buffer for each targeted switch port. Cumulus Linux looks at either the 802.1p bits or the IP layer DSCP bits depending on which is configured in the `traffic.conf` file to map packets to internal switch priority values.
-
-The following configuration example shows PFC configured for ports swp1 through swp4 and swp6:
+PFC is disabled by default in Cumulus Linux. To configure PFC, uncomment the lines in the `priority flow control` section of the `/etc/cumulus/datapath/traffic.conf` file and update the settings.
 
 ```
 # to configure priority flow control on a group of ports:
@@ -178,7 +166,7 @@ The following configuration example shows PFC configured for ports swp1 through 
 
 # priority flow control
 pfc.port_group_list = [ROCE_PFC]
-pfc.pfc_port_group.cos_list = []
+pfc.pfc_port_group.cos_list = [3]
 pfc.pfc_port_group.port_set = swp1-swp4,swp6
 pfc.pfc_port_group.port_buffer_bytes = 25000
 pfc.pfc_port_group.xoff_size = 10000
@@ -190,12 +178,28 @@ pfc.pfc_port_group.rx_enable = true
 pfc.pfc_port_group.cable_length = 10
 ```
 
+| PFC Setting | Description |
+| ---- | ----- |
+| `pfc.port_group_list` | The name of the port group in brackets. |
+| `pfc.pfc_port_group.cos_list` | The CoS value to the ports. |
+| `pfc.pfc_port_group.port_set` | The ports in the port group. |
+| `pfc.pfc_port_group.port_buffer_bytes` | The PFC buffer size. This is the maximum number of bytes allocated for storing bursts of packets, guaranteed at the ingress port. The default is *25000* bytes. |
+| `pfc.pfc_port_group.xoff_size` | The xoff byte limit. This is a threshold for the PFC buffer; when this limit is reached, an xoff transition is initiated, signaling the upstream port to stop sending traffic, during which time packets continue to arrive due to the latency of the communication. The default is *10000* bytes. |
+| `pfc.pfc_port_group.xon_delta` | The xon delta limit. This is the number of bytes to subtract from the xoff limit, which results in a second threshold at which the egress port resumes sending traffic. After the xoff limit is reached and the upstream port stops sending traffic, the buffer begins to drain. When the buffer reaches 8000 bytes (assuming default xoff and xon settings), the egress port signals that it can start receiving traffic again. The default is *2000* bytes. |
+| `pfc.pfc_port_group.tx_enable` | Enables the egress port to signal the upstream port to stop sending traffic. The default is *true*. |
+| `pfc.pfc_port_group.rx_enable` | Enables the egress port to receive notifications and act on them. The default is *true*. |
+| `pfc.pfc_port_group.cable_length` | The length of the port group cable. |
+
+On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.
+
+{{<cl/restart-switchd>}}
+
 ## Port Groups
 
 A *port group* refers to one or more sequences of contiguous ports. You can define multiple port groups by adding:
 
-- A comma-separated list of port group names to the port\_group\_list.
-- The port\_set, rx\_enable, and tx\_enable configuration lines for each port group.
+- A comma-separated list of port group names to the `port_group_list`.
+- The `port_set`, `rx_enable`, and `tx_enable` configuration lines for each port group.
 
 You can specify the set of ports in a port group in comma-separate sequences of contiguous ports; you can see which ports are contiguous in the `/var/lib/cumulus/porttab` file. The syntax supports:
 
@@ -217,10 +221,6 @@ swp6s3
 swp7
 ...
 ```
-
-On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.
-
-{{<cl/restart-switchd>}}
 
 ## Link Pause
 

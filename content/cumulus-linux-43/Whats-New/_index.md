@@ -28,17 +28,17 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="Optional-BGP-Configuration/#wait-for-convergence" text="Wait for convergence">}}
   - {{<link url="Optional-BGP-Configuration/#suppress-route-advertisement" text="Suppress Route Advertisement">}}
 - Port-based SPAN without using an ACL
-- DHCP snooping
+- {{<link url="DHCP-Snooping" text="DHCP snooping">}}
 - QoS traffic shaping
-- Multicast routing over VXLAN now supported on Mellanox switches
-- Non-atomic mode now supported on Mellanox switches
-- What Just Happened commands to troubleshoot and diagnose network issues
+- {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} now supported on Mellanox switches
+- {{<link title="Mellanox What Just Happened (WJH)" text="Mellanox WJH commands">}} to troubleshoot and diagnose network issues
 - BGP graceful shutdown enhancements
 - EVPN multihoming now supports LACP bypass
 - Docker runtime included by default on Cumulus Linux
-- DoRoCE command
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}}
 - SNMP MIB for BGP unnumbered peers
 - SVI interface support for DHCPv6
+- Multicast routing over VXLAN is now supported on Mellanox switches
 
 ### Unsupported Platforms
 

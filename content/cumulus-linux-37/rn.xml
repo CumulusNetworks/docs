@@ -265,17 +265,6 @@ All the information from lldpctl is correct. Only the entries after the entry th
 <td></td>
 </tr>
 <tr>
-<td>CM-29759</td>
-<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
-To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
-
-#Requires=nginx.service restserver.socket
-
-</td>
-<td>3.7.12-3.7.14</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-29740</td>
 <td><p>The exim4 package available for optional installation on Cumulus Linux 3.x has the following vulnerability:<br/>
 DLA-2213-1 / CVE-2020-12783: Exim through 4.93 has an out-of-bounds read in the SPA authenticator that could result in SPA/NTLM authentication bypass in auths/spa.c and auths/auth-spa.c.  The spa authentication driver is not enabled by default.<br/>
@@ -2982,17 +2971,6 @@ To work around this issue, restart switchd.</p></td>
 <td>CM-29779</td>
 <td><p>In LLDP, the snmp subagent loses all subsequent lldpRemSysName (1.0.8802.1.1.2.1.4.1.1.9) entries after an entry with a missing SysName is added.<br/>
 All the information from lldpctl is correct. Only the entries after the entry that is missing a SysName in lldpRemSysName disappear from the snmp subagent.</p></td>
-<td>3.7.12-3.7.14</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-29759</td>
-<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
-To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
-
-#Requires=nginx.service restserver.socket
-
-</td>
 <td>3.7.12-3.7.14</td>
 <td></td>
 </tr>
@@ -5894,17 +5872,6 @@ May 20 10:48:04.708620 leaf01 systemd<span class="error">&#91;1&#93;</span>: cum
 The service starts automatically but there is an impact to POE devices momentarily.</p></td>
 <td>3.7.12</td>
 <td>3.7.13-3.7.14</td>
-</tr>
-<tr>
-<td>CM-29759</td>
-<td><p>When you use nginx and restserver in management VRF to provide a REST API for the switch, nginx starts but restserver fails to start.<br/>
-To work around this issue, comment out the Requires= line in the /lib/systemd/system/restserver.service. For example:</p>
-
-#Requires=nginx.service restserver.socket
-
-</td>
-<td>3.7.12-3.7.14</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-29740</td>

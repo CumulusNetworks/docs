@@ -1,6 +1,6 @@
 ---
 title: ifplugd
-author: Cumulus Networks
+author: NVIDIA
 weight: 310
 toc: 4
 ---

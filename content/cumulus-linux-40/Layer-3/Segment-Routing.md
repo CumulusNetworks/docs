@@ -1,6 +1,6 @@
 ---
 title: Segment Routing
-author: Cumulus Networks
+author: NVIDIA
 weight: 900
 toc: 3
 ---

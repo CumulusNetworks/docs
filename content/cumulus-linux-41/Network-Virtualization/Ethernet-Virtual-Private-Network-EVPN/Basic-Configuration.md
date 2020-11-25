@@ -1,6 +1,6 @@
 ---
 title: Basic Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 540
 toc: 4
 ---

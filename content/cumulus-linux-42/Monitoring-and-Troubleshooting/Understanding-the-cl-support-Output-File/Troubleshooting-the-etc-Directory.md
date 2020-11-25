@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting the etc Directory
-author: Cumulus Networks
+author: NVIDIA
 weight: 1070
 toc: 4
 ---

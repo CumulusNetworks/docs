@@ -1,6 +1,6 @@
 ---
 title: VXLAN Scale
-author: Cumulus Networks
+author: NVIDIA
 weight: 151
 pageID: 8362768
 ---

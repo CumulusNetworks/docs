@@ -7,9 +7,23 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-32337</td>
-<td><p>On the Mellanox SN3700C switch, Linklocal multicast packets are duplicated at the egress VTEP.</p></td>
-<td>4.2.0-4.2.1</td>
+<td>CM-32416</td>
+<td><p>The ethtool utility doesn't contain the latest values, as a result the Revision Compliance field shows Unallocated. </p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32412</td>
+<td><p>CVE-2020-28196: MIT Kerberos 5 (aka krb5) before 1.17.2 and 1.18.x before 1.18.3 allows unbounded recursion via an ASN.1-encoded Kerberos message because the lib/krb5/asn.1/asn1_encode.c support for BER indefinite lengths lacks a recursion limit.<br/>
+Vulnerable: 1.17-3<br/>
+Fixed: 1.17-3+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32329</td>
+<td><p>On the Mellanox SN3420 switch, 1000BaseT and 1000Base-SX/LX modules do not link up.</p></td>
+<td>4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -23,6 +37,13 @@ Fixed: 2.4.47+dfsg-3+deb10u4</p></td>
 <tr>
 <td>CM-32296</td>
 <td><p>If the RMAC of a layer 3 SVI changes, the show vrf vni command is not updated with the new value. However, the new RMAC is seen in the show evpn vni command and is present on self-originated EVPN routes.</p></td>
+<td>4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32294</td>
+<td><p>Some non-Mellanox ethernet modules do not link up on the Mellanox SN3420 switch with Cumulus PSID in the Hardware revision. To see if a Mellanox SN3420 switch has the Cumulus PSID, check the output of mlxfwmanager for MSN3420-CxxxC_Ax in the Part Number Field.  A Mellanox SN3420 switch with MSN3420-CxxxO_Ax has an Onie PSID and is unaffected by this issue.<br/>
+To work around this issue, use Mellanox ethernet modules with the Mellanox SN3420 switch.</p></td>
 <td>4.2.1</td>
 <td></td>
 </tr>
@@ -43,6 +64,12 @@ This might trigger AS path loop prevention on the peer, where the peer ignores l
 <td>CM-32226</td>
 <td><p>If switchd successfully signals clagd that it is going down, clagd stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if switchd does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32219</td>
+<td><p>On the Mellanox SN3700C switch, running cl-support with a large number of ports configured can cause switchd to crash.</p></td>
+<td>4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -272,7 +299,7 @@ might result in NTP not functioning since the ntp service is still running in th
 </tr>
 <tr>
 <td>CM-31358</td>
-<td><p>The Dell 100G-LR4 (Innolight) transceiver cannot be up due to a power budge exceeded error on the Mellanox SN4600C switch.</p></td>
+<td><p>The Dell 100G-LR4 (Innolight) transceiver cannot link up due to a power budget exceeded error on the Mellanox SN4600C switch.</p></td>
 <td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
@@ -327,15 +354,6 @@ To work around this issue, boot the switch, manually change the password, then r
 <td><p>When you set the sysctl settings net.ipv6.conf.all.accept_ra_defrtr (to prevent acceptance of IPv6 default route advertisements) and net.ipv6.conf.default.accept_ra_defrtr (set for newly created interfaces), if you create a new virtual interface, any pre-existing interface does not start accepting IPv6 default route avertisements again.<br/>
 To work around this issue, when you create a new virtual interface, set net.ipv6.conf.&lt;interface&gt;.accept_ra_defrtr to 0 for all interfaces and run sysctl -p --system.</p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>CM-31056</td>
-<td><p>After configuring multiple dhcrelay6 instances, then restarting the dhcrelay6 relay service, replies are sent on the incorrect VLAN.<br/>
-This problem does not occur if you only have one instance of dhcrelay6.</p>
-
-<p>Restart on both instances.</p></td>
-<td>4.1.1-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -566,6 +584,14 @@ To work around this issue, run the net show commit history command to find descr
 To work around this issue, look for your string in the output of the net show commit history command (or grep for it there) instead.</p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29809</td>
@@ -1891,9 +1917,11 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-32337</td>
-<td><p>On the Mellanox SN3700C switch, Linklocal multicast packets are duplicated at the egress VTEP.</p></td>
-<td>4.2.0-4.2.1</td>
+<td>CM-32412</td>
+<td><p>CVE-2020-28196: MIT Kerberos 5 (aka krb5) before 1.17.2 and 1.18.x before 1.18.3 allows unbounded recursion via an ASN.1-encoded Kerberos message because the lib/krb5/asn.1/asn1_encode.c support for BER indefinite lengths lacks a recursion limit.<br/>
+Vulnerable: 1.17-3<br/>
+Fixed: 1.17-3+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2062,7 +2090,7 @@ Fixed: 3.1+dfsg-8+deb10u8</p></td>
 </tr>
 <tr>
 <td>CM-31358</td>
-<td><p>The Dell 100G-LR4 (Innolight) transceiver cannot be up due to a power budge exceeded error on the Mellanox SN4600C switch.</p></td>
+<td><p>The Dell 100G-LR4 (Innolight) transceiver cannot link up due to a power budget exceeded error on the Mellanox SN4600C switch.</p></td>
 <td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
@@ -2167,15 +2195,6 @@ To work around this issue, when you create a new virtual interface, set net.ipv6
 CVE-2019-11360: A buffer overflow in iptables-restore in netfilter iptables 1.8.2 allows an attacker to (at least) crash the program or potentially gain code execution via a specially crafted iptables-save file. This is related to add_param_to_argv in xshared.c.</p></td>
 <td>3.0.0-4.2.0</td>
 <td>4.2.1</td>
-</tr>
-<tr>
-<td>CM-31056</td>
-<td><p>After configuring multiple dhcrelay6 instances, then restarting the dhcrelay6 relay service, replies are sent on the incorrect VLAN.<br/>
-This problem does not occur if you only have one instance of dhcrelay6.</p>
-
-<p>Restart on both instances.</p></td>
-<td>4.1.1-4.2.1</td>
-<td></td>
 </tr>
 <tr>
 <td>CM-31055</td>
@@ -2617,6 +2636,14 @@ To work around this issue, run the net show commit history command to find descr
 To work around this issue, look for your string in the output of the net show commit history command (or grep for it there) instead.</p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29823</td>
@@ -3970,7 +3997,7 @@ cumulus@<span class="code-keyword">switch</span>:~$ sudo systemctl restart ssh
 <p><b>Notes</b> </p>
 
 <ul>
-	<li>This issue is fixed in Cumulus Linux 4.1.1. However, Cumulus Networks recommends you generate new SSH host keys as this is the most reliable solution.</li>
+	<li>This issue is fixed in Cumulus Linux 4.1.1. However, we recommend you generate new SSH host keys as this is the most reliable solution.</li>
 	<li>If you upgrade from Cumulus Linux 4.0.0 or 4.1.0 to version 4.1.1 or later using apt-get and you didn't generate new SSH host keys, you will need to generate new SSH host keys after the upgrade.</li>
 	<li>If you perform a fresh install of Cumulus Linux 4.1.1 or later using a disk image, you will lose your existing local configuration.</li>
 </ul>

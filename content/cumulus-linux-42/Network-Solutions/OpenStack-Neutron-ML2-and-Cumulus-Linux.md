@@ -1,6 +1,6 @@
 ---
 title: OpenStack Neutron ML2 and Cumulus Linux
-author: Cumulus Networks
+author: NVIDIA
 weight: 1320
 toc: 3
 ---
@@ -11,7 +11,7 @@ The plugin supports configuration caching. The cached configuration is replayed 
 To deploy {{<exlink url="https://wiki.openstack.org/wiki/Neutron/ML2" text="OpenStack ML2">}} in a network with Cumulus Linux switches, you need the following:
 
 - A REST API, which is installed with Cumulus Linux.
-- The Cumulus Networks Modular Layer 2 (ML2) mechanism driver for OpenStack, which you install on the OpenStack Neutron controller node. The driver is available as a Python package from upstream.
+- The Modular Layer 2 (ML2) mechanism driver for OpenStack, which you install on the OpenStack Neutron controller node. The driver is available as a Python package from upstream.
 - The OpenStack Queens release.
 
 {{< img src = "/images/cumulus-linux/network-solutions-ml2-driver-arch.png" >}}
@@ -41,7 +41,7 @@ Additional REST API calls have been added to support bridge configuration using 
 
 ## Install and Configure the ML2 Driver
 
-1. Install the Cumulus Networks ML2 mechanism driver on your Neutron host, which is available upstream:
+1. Install the ML2 mechanism driver on your Neutron host, which is available upstream:
 
     ```
     root@neutron:~# git clone https://github.com/CumulusNetworks/networking-cumulus.git

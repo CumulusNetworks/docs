@@ -1,6 +1,6 @@
 ---
 title: VXLAN Routing
-author: Cumulus Networks
+author: NVIDIA
 weight: 149
 pageID: 8362747
 ---
@@ -151,7 +151,7 @@ For VXLAN routing on a switch with the Tomahawk+ ASIC, if you use 25G ports as t
 
 {{%notice warning%}}
 
-As of Cumulus Linux 3.7, the external hyperloop workaround for RIOT on Trident II switches has been deprecated. Support for this feature will be removed in Cumulus Linux 4.0. Cumulus Networks recommends you use native VXLAN routing platforms and {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} for network virtualization.
+As of Cumulus Linux 3.7, the external hyperloop workaround for RIOT on Trident II switches has been deprecated. Support for this feature will be removed in Cumulus Linux 4.0. Use native VXLAN routing platforms and {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}} for network virtualization.
 
 {{%/notice%}}
 

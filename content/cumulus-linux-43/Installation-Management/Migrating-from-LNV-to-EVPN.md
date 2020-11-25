@@ -1,10 +1,10 @@
 ---
 title: Migrating from LNV to EVPN
-author: Cumulus Networks
+author: NVIDIA
 weight: 60
 toc: 3
 ---
-Cumulus Networks deprecated lightweight network virtualization (LNV) in Cumulus Linux 4.0 in favor of Ethernet virtual private networks ({{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}) to enable interoperability with switches from other manufacturers, to commit to industry standards, and because the benefits of EVPN outweigh those of LNV.
+Lightweight network virtualization (LNV) is deprecated in Cumulus Linux 4.0 in favor of Ethernet virtual private networks ({{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}) to enable interoperability with switches from other manufacturers, to commit to industry standards, and because the benefits of EVPN outweigh those of LNV.
 
 If your network is configured for LNV, you need to migrate your network configuration to a BGP EVPN configuration that is functionally equivalent **before** you upgrade to Cumulus Linux 4.0 or later.
 
@@ -18,14 +18,14 @@ You *cannot* run LNV and EVPN at the same time for the following reasons:
 
 ## Upgrade to EVPN
 
-Cumulus Networks highly recommends that you use automation, such as Ansible to upgrade to EVPN. Automation ensures minimal downtime, reduces human error, and is useful at almost any scale.
+Use automation, such as Ansible to upgrade to EVPN. Automation ensures minimal downtime, reduces human error, and is useful at almost any scale.
 
-Cumulus Networks also recommends you use {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} to update the configuration for the following reasons:
+Using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} to update the configuration provides several benefits:
 
 - NCLU restarts services and reloads interfaces automatically so the changes can take effect.
 - With the transactional commit model of NCLU, the order in which the NCLU commands are entered is of no consequence. This further reduces complexity and hidden dependencies.
 
-The upgrade steps described here are based on the following example topology (based on the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Cumulus Networks Reference Topology">}}):
+The upgrade steps described here are based on the following example topology (based on the {{<exlink url="https://github.com/CumulusNetworks/cldemo-vagrant" text="Reference Topology">}}):
 
 {{< img src = "/images/cumulus-linux/lnv-to-evpn-topo.png" >}}
 

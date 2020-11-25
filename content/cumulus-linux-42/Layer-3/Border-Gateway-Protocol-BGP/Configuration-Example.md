@@ -1,6 +1,6 @@
 ---
 title: Configuration Example
-author: Cumulus Networks
+author: NVIDIA
 weight: 880
 toc: 3
 ---

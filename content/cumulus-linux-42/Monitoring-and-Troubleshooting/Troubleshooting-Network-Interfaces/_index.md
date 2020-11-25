@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting Network Interfaces
-author: Cumulus Networks
+author: NVIDIA
 weight: 1090
 toc: 3
 ---

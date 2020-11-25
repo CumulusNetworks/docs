@@ -1,6 +1,6 @@
 ---
 title: Switch Port Attributes
-author: Cumulus Networks
+author: NVIDIA
 weight: 309
 pageID: 8363026
 ---
@@ -37,14 +37,7 @@ unsupported error is shown.
 For switches with **{{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until
 the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
-For **Broadcom-based switches,** Cumulus Networks recommends that you
-enable auto-negotiation on each port. When enabled, Cumulus Linux
-automatically configures the best link parameter settings based on the
-module type (speed, duplex, auto-negotiation, and FEC where supported).
-To understand the default configuration for the various port and cable
-types, see the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table below">}}.  
-If you need to troubleshoot further to bring the link up, follow the 
-sections below to set the specific link parameters.
+For **Broadcom-based switches,** enable auto-negotiation on each port. When enabled, Cumulus Linux automatically configures the best link parameter settings based on the module type (speed, duplex, auto-negotiation, and FEC where supported). To understand the default configuration for the various port and cable types, see the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table below">}}. If you need to troubleshoot further to bring the link up, follow the sections below to set the specific link parameters.
 
 ## Auto-negotiation
 
@@ -470,11 +463,7 @@ to get a link up to a Spectrum switch without enabling FEC on the remote
 device as the switch eventually finds a working combination to the
 neighbor without FEC.
 
-On a Broadcom switch, Cumulus Linux does not enable FEC by default; that
-is, the setting is `fec off`. Cumulus Networks recommends you configure
-FEC explicitly to match the configured FEC on the link neighbor. On 100G
-DACs, you can configure `link-autoneg` so that the port attempts to
-negotiate FEC settings with the remote peer.
+On a Broadcom switch, Cumulus Linux does not enable FEC by default; that is, the setting is `fec off`. Configure FEC explicitly  to match the configured FEC on the link neighbor. On 100G DACs, you can configure `link-autoneg` so that the port attempts to negotiate FEC settings with the remote peer.
 
 The following sections describe how to show the current FEC mode, and to
 enable and disable FEC.
@@ -585,10 +574,7 @@ predefined list of parameter settings until the link comes up.
 
 {{%notice note%}}
 
-If the other side of the link is running a version of Cumulus Linux
-earlier than 3.2, depending upon the interface type, auto-negotiation
-may not work on that switch. Cumulus Networks recommends you use the
-recommended settings as show below on this switch in this case.
+If the other side of the link is running a version of Cumulus Linux earlier than 3.2, depending upon the interface type, auto-negotiation may not work on that switch. Use the recommended settings as show below on this switch in this case.
 
 {{%/notice%}}
 
@@ -771,7 +757,7 @@ iface swp1
   link-autoneg off
   link-speed 25000
   link-fec baser</pre>
-  <p>Cumulus Networks recommends that you configure FEC to the setting that the cable requires.</p>
+  <p>Configure FEC to the setting that the cable requires.</p>
 </ul></td>
 </tr>
 <tr>

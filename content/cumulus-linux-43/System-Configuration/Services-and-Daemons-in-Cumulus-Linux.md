@@ -1,6 +1,6 @@
 ---
 title: Services and Daemons in Cumulus Linux
-author: Cumulus Networks
+author: NVIDIA
 weight: 230
 toc: 3
 ---

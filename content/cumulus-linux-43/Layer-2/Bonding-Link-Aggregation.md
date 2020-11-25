@@ -1,6 +1,6 @@
 ---
 title: Bonding - Link Aggregation
-author: Cumulus Networks
+author: NVIDIA
 weight: 480
 toc: 3
 ---

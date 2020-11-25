@@ -1,6 +1,6 @@
 ---
 title: EVPN Enhancements
-author: Cumulus Networks
+author: NVIDIA
 weight: 560
 toc: 4
 ---
@@ -237,7 +237,7 @@ ARP suppression with EVPN allows a VTEP to suppress ARP flooding over VXLAN tunn
 
 ARP/ND suppression is enabled by default on all VNIs in Cumulus Linux to reduce flooding of ARP/ND packets over VXLAN tunnels.
 
-In a centralized routing deployment, you must configure layer 3 interfaces even if the switch is configured only for layer 2 (you are not using VXLAN routing). To avoid unnecessary layer 3 information from being installed, Cumulus Networks recommends you configure the `ip forward off` or `ip6 forward off` options as appropriate on the VLANs. See the example configuration below.
+In a centralized routing deployment, you must configure layer 3 interfaces even if the switch is configured only for layer 2 (you are not using VXLAN routing). To avoid unnecessary layer 3 information from being installed, configure the `ip forward off` or `ip6 forward off` options as appropriate on the VLANs. See the example configuration below.
 
 The following examples show a configuration using two VXLANs (10100 and 10200) and two VLANs (100 and 200).
 
@@ -339,7 +339,7 @@ net.ipv6.neigh.default.gc_thresh2=8192
 
 {{< /expand >}}
 
-Cumulus Networks recommends that you keep ARP and ND suppression enabled to reduce flooding of ARP/ND packets over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
+Keep ARP and ND suppression enabled to reduce flooding of ARP/ND packets over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
 
 {{< tabs "TabID475 ">}}
 
@@ -845,7 +845,7 @@ cumulus@switch:~$
 
 {{%notice note%}}
 
-Cumulus Networks recommends you set the freeze timer to be three times the duplicate address detection window. For example, if the duplicate address detection window is set to the default of 180 seconds, set the freeze timer to 540 seconds.
+Set the freeze timer to be three times the duplicate address detection window. For example, if the duplicate address detection window is set to the default of 180 seconds, set the freeze timer to 540 seconds.
 
 {{%/notice%}}
 

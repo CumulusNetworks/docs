@@ -1,6 +1,6 @@
 ---
 title: ASIC Monitoring
-author: Cumulus Networks
+author: NVIDIA
 weight: 223
 pageID: 8362627
 ---

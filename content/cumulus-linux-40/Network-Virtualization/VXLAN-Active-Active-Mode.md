@@ -1,6 +1,6 @@
 ---
 title: VXLAN Active-Active Mode
-author: Cumulus Networks
+author: NVIDIA
 weight: 600
 toc: 3
 ---

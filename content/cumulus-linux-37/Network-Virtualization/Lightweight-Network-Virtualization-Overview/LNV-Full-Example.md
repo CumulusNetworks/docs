@@ -1,16 +1,12 @@
 ---
 title: LNV Full Example
-author: Cumulus Networks
+author: NVIDIA
 weight: 377
 pageID: 8362715
 ---
 {{%notice warning%}}
 
-As of Cumulus Linux 3.7.4, the lightweight network virtualization
-feature (LNV) has been deprecated. The feature will be removed in
-Cumulus Linux 4.0. Cumulus Networks recommends you use
-{{<link url="Ethernet-Virtual-Private-Network-EVPN" text="Ethernet virtual private network (EVPN)">}}
-for network virtualization.
+As of Cumulus Linux 3.7.4, the lightweight network virtualization feature (LNV) has been deprecated. The feature will be removed in Cumulus Linux 4.0. Use {{<link url="Ethernet-Virtual-Private-Network-EVPN" text="Ethernet virtual private network (EVPN)">}} for network virtualization.
 
 {{%/notice%}}
 
@@ -21,15 +17,6 @@ diagram. Refer to the {{<link url="Lightweight-Network-Virtualization-Overview" 
 for more detailed information. This full example uses the **recommended
 way** of deploying LNV, which is to use anycast to load balance the
 service nodes.
-
-{{%notice note%}}
-
-LNV is a lightweight controller option. {{<exlink url="http://cumulusnetworks.com/cumulus-linux/overview/#cl-howtoBuy" text="Contact Cumulus Networks">}}
-with your scale requirements so we can make sure this is the right fit
-for you. There are also other controller options that can work on
-Cumulus Linux.
-
-{{%/notice%}}
 
 ## Example LNV Configuration
 
@@ -517,5 +504,5 @@ svcnode_peers = 10.2.1.3
   - {{<exlink url="https://tools.ietf.org/html/rfc7348" text="RFC 7348">}}
   - {{<exlink url="http://en.wikipedia.org/wiki/Anycast" text="Wikipedia - Anycast">}}
   - {{<link url="Lightweight-Network-Virtualization-Overview" text="Detailed LNV Configuration Guide">}}
-  - {{<exlink url="http://cumulusnetworks.com/education/instructor-led-training/" text="Cumulus Networks Training">}}
+  - {{<exlink url="http://cumulusnetworks.com/education/instructor-led-training/" text="Cumulus Linux Training">}}
   - {{<link url="Network-Virtualization" text="Network virtualization chapter, Cumulus Linux user guide">}}

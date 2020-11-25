@@ -1,6 +1,6 @@
 ---
 title: Monitoring and Troubleshooting
-author: Cumulus Networks
+author: NVIDIA
 weight: 25
 pageID: 8362592
 ---
@@ -121,7 +121,7 @@ For more details about the `dmesg` command, run `man dmesg`.
 Two commands are helpful for getting general information about the
 switch and the version of Cumulus Linux you are running. These are
 helpful with system diagnostics and if you need to submit a support
-request to Cumulus Networks.
+request.
 
 For information about the version of Cumulus Linux running on the
 switch, run `net show version`, which displays the contents of
@@ -160,8 +160,7 @@ various details and the configuration from a switch. This is useful for
 remote debugging and troubleshooting. For more information about
 `cl-support`, read {{<link url="Understanding-the-cl-support-Output-File">}}.
 
-You should run `cl-support` before you submit a support request to
-Cumulus Networks as this file helps in the investigation of issues.
+You should run `cl-support` before you submit a support request as this file helps in the investigation of issues.
 
 ```
 cumulus@switch:~$ sudo cl-support -h

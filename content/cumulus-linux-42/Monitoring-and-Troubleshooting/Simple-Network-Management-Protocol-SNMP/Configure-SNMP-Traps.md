@@ -1,5 +1,5 @@
 ---
-title: Configure SNMP Trap and Inform Messages
+title: Configure SNMP Traps
 author: NVIDIA
 weight: 1160
 toc: 4

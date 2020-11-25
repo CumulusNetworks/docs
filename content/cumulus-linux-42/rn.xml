@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-32337</td>
-<td><p>On the Mellanox SN3700C switch, Linklocal multicast packets are duplicated at the egress VTEP.</p></td>
-<td>4.2.0-4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-32311</td>
 <td><p>CVE-2020-25709, CVE-2020-25710: Two vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u3<br/>
@@ -43,6 +37,12 @@ This might trigger AS path loop prevention on the peer, where the peer ignores l
 <td>CM-32226</td>
 <td><p>If switchd successfully signals clagd that it is going down, clagd stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if switchd does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32219</td>
+<td><p>On the Mellanox SN3700C switch, running cl-support with a large number of ports configured can cause switchd to crash.</p></td>
+<td>4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -272,7 +272,7 @@ might result in NTP not functioning since the ntp service is still running in th
 </tr>
 <tr>
 <td>CM-31358</td>
-<td><p>The Dell 100G-LR4 (Innolight) transceiver cannot be up due to a power budge exceeded error on the Mellanox SN4600C switch.</p></td>
+<td><p>The Dell 100G-LR4 (Innolight) transceiver cannot link up due to a power budget exceeded error on the Mellanox SN4600C switch.</p></td>
 <td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
@@ -566,6 +566,14 @@ To work around this issue, run the net show commit history command to find descr
 To work around this issue, look for your string in the output of the net show commit history command (or grep for it there) instead.</p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29809</td>
@@ -1891,12 +1899,6 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Fixed </th>
 </tr>
 <tr>
-<td>CM-32337</td>
-<td><p>On the Mellanox SN3700C switch, Linklocal multicast packets are duplicated at the egress VTEP.</p></td>
-<td>4.2.0-4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-32311</td>
 <td><p>CVE-2020-25709, CVE-2020-25710: Two vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u3<br/>
@@ -2062,7 +2064,7 @@ Fixed: 3.1+dfsg-8+deb10u8</p></td>
 </tr>
 <tr>
 <td>CM-31358</td>
-<td><p>The Dell 100G-LR4 (Innolight) transceiver cannot be up due to a power budge exceeded error on the Mellanox SN4600C switch.</p></td>
+<td><p>The Dell 100G-LR4 (Innolight) transceiver cannot link up due to a power budget exceeded error on the Mellanox SN4600C switch.</p></td>
 <td>4.2.0-4.2.1</td>
 <td></td>
 </tr>
@@ -2617,6 +2619,14 @@ To work around this issue, run the net show commit history command to find descr
 To work around this issue, look for your string in the output of the net show commit history command (or grep for it there) instead.</p></td>
 <td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
+</tr>
+<tr>
+<td>CM-29838</td>
+<td><p>CPU utilization may increase when clag-managed bond interfaces are operationally/LACP down but the physical carrier remains up on the bond member switchports. This condition occurs when clag bond redirection is enabled and bond members remain up while the parent bond does not negotiate LACP.</p>
+
+<p>This issue is resolved in Cumulus Linux 3.7.14.</p></td>
+<td>3.7.9-3.7.13, 4.0.0-4.2.1</td>
+<td>3.7.14</td>
 </tr>
 <tr>
 <td>CM-29823</td>

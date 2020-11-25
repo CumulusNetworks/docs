@@ -16,7 +16,7 @@ In Cumulus Linux, you map QinQ packets to VXLANs through:
 QinQ is available on switches with the following ASCIs:
 
 - Broadcom Tomahawk 2, Tomahawk+, Tomahawk, Trident3, Trident II+ and Trident II.
-- Mellanox Spectrum, only with {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
+- Mellanox Spectrum 1 and Spectrum 2, only with {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} with 802.1ad and only with single tag translation.
 
 ## Configure Single Tag Translation
 

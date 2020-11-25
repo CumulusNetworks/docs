@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 419
 pageID: 8362920
 ---
-Using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} is the primary way to {{<link url="Configuring-FRRouting" text="configure routing">}} in Cumulus Linux. However, an alternative exists in the the `vtysh` modal CLI. The available commands are as follows:
+Using {{<link url="Network-Command-Line-Utility-NCLU" text="NCLU">}} is the primary way to {{<link url="Configuring-FRRouting" text="configure routing">}} in Cumulus Linux. However, an alternative exists in `vtysh` modal CLI. The available commands are as follows:
 
 The following table compares the various FRRouting commands with their Cumulus Linux NCLU counterparts.
 

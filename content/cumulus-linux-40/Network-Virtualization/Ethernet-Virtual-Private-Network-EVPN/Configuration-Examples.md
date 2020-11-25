@@ -4,531 +4,962 @@ author: Cumulus Networks
 weight: 580
 toc: 4
 ---
-This section shows the following configuration examples:
+This section shows the following EVPN configuration examples:
 
-- Basic Clos (4x2) for bridging
-- Clos with MLAG and centralized routing
-- Clos with MLAG and asymmetric routing
-- Basic Clos with symmetric routing and exit leafs
+- Layer 2 EVPN with external routing
+- EVPN centralized routing
+- EVPN symmetric routing
 
-## Basic Clos (4x2) for Bridging
+The configuration examples are based on the reference topology below:
 
-The following example configuration shows a basic Clos topology for bridging.
+{{< img src = "/images/cumulus-linux/reference-topology-full.png" >}}
 
-{{< img src = "/images/cumulus-linux/evpn-basic-clos.png" >}}
+<!-- You can see these configurations in action and explore further by selecting one of the demos in {{<exlink url="https://cumulusnetworks.com/products/cumulus-in-the-cloud/" text="Cumulus in the Cloud">}} (a free, personal, virtual data center network that provides a low-effort way to see Cumulus Networks technology in action). -->
+
+## Layer 2 EVPN with External Routing
+
+The following example configures a network infrastructure that creates a layer 2 extension between racks. Inter-VXLAN routed traffic routes between VXLANs on an external device.
+
+- MLAG is configured between leaf01 and leaf02, and leaf03 and leaf04
+- BGP unnumbered is in the underlay (configured on all leafs and spines)
+- Server gateways are outside the VXLAN fabric
+
+The following images shows traffic flow between tenants. The spines and other devices are omitted for simplicity.
+
+|   Traffic Flow between server01 and server04  |     |
+| --- | --- |
+| <img width=1000/> {{< img src="/images/cumulus-linux/evpn-layer2-diagram.png" >}} | server01 and server04 are in the same VLAN but are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup, has the MAC address for server04, and forwards the packet out VNI10, towards leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server04 in VLAN10.</li></ul>|
 
 ### /etc/network/interfaces
 
-{{< tabs "TabID0" >}}
+{{< tabs "TabID24 ">}}
 
-{{< tab "leaf01" >}}
+{{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+    clagd-vxlan-anycast-ip 10.0.1.1
+    vxlan-local-tunnelip 10.10.10.1
 
-# The primary network interface
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
 auto eth0
 iface eth0 inet dhcp
+    vrf mgmt
 
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.7/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-    clagd-vxlan-anycast-ip 172.16.100.7
-
-auto uplink-1
-iface uplink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-auto uplink-2
-iface uplink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto peerlink-3
-iface peerlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-
-auto peerlink-3.4094
-iface peerlink-3.4094
-    address 169.254.0.9/30
-    mtu 9216
-    clagd-priority 4096
-    clagd-sys-mac 44:38:39:ff:ff:01
-    clagd-peer-ip 169.254.0.10
-    # post-up sysctl -w net.ipv4.conf.peerlink-3/4094.accept_local=1
-    clagd-backup-ip 10.0.0.8
-
-auto hostbond4
-iface hostbond4
-    bond-slaves swp7
-    mtu  9152
-    clag-id 1
-    bridge-pvid 1000
-
-auto hostbond5
-iface hostbond5
-    bond-slaves swp8
-    mtu  9152
-    clag-id 2
-    bridge-pvid 1001
-
-auto vx-101000
-iface vx-101000
-    vxlan-id 101000
-    bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.7
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101001
-iface vx-101001
-    vxlan-id 101001
-    bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.7
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto VxLanA-1
-iface VxLanA-1
+auto bridge
+iface bridge
+    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-vids 10 20  
     bridge-vlan-aware yes
-    bridge-ports vx-101000 vx-101001 peerlink-3 hostbond4 hostbond5
-    bridge-stp on
-    bridge-vids 1000-1001
-    bridge-pvid 1
 
-auto vlan1
-iface vlan1
-    vlan-id 1
-    vlan-raw-device VxLanA-1
-    ip-forward off
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vlan1000
-iface vlan1000
-    vlan-id 1000
-    vlan-raw-device VxLanA-1
-    ip-forward off
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vlan1001
-iface vlan1001
-    vlan-id 1001
-    vlan-raw-device VxLanA-1
+auto vlan10
+iface vlan10
+    vlan-raw-device bridge
+    vlan-id 10
     ip-forward off
+    ip6-forward off
+
+auto vlan20
+iface vlan20
+    vlan-raw-device bridge
+    vlan-id 20
+    ip-forward off
+    ip6-forward off
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.2
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:AA
+
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf02" >}}
+{{< tab "leaf02 ">}}
 
 ```
 cumulus@leaf02:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
+auto lo
+iface lo inet loopback
+    address 10.10.10.2/32
+    clagd-vxlan-anycast-ip 10.0.1.1
+    vxlan-local-tunnelip 10.10.10.2
 
-# The primary network interface
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
 auto eth0
 iface eth0 inet dhcp
+    vrf mgmt
 
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.8/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-    clagd-vxlan-anycast-ip 172.16.100.7
-
-auto uplink-1
-iface uplink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-auto uplink-2
-iface uplink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto peerlink-3
-iface peerlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-
-auto peerlink-3.4094
-iface peerlink-3.4094
-    address 169.254.0.10/30
-    mtu 9216
-    clagd-priority 8192
-    clagd-sys-mac 44:38:39:ff:ff:01
-    clagd-peer-ip 169.254.0.9
-    # post-up sysctl -w net.ipv4.conf.peerlink-3/4094.accept_local=1
-    clagd-backup-ip 10.0.0.7
-
-auto hostbond4
-iface hostbond4
-    bond-slaves swp7
-    mtu  9152
-    clag-id 1
-    bridge-pvid 1000
-
-auto hostbond5
-iface hostbond5
-    bond-slaves swp8
-    mtu  9152
-    clag-id 2
-    bridge-pvid 1001
-
-auto vx-101000
-iface vx-101000
-    vxlan-id 101000
-    bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.8
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101001
-iface vx-101001
-    vxlan-id 101001
-    bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.8
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto VxLanA-1
-iface VxLanA-1
+auto bridge
+iface bridge
+    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-vids 10 20  
     bridge-vlan-aware yes
-    bridge-ports vx-101000 vx-101001 peerlink-3 hostbond4 hostbond5
-    bridge-stp on
-    bridge-vids 1000-1001
-    bridge-pvid 1
 
-auto vlan1
-iface vlan1
-    vlan-id 1
-    vlan-raw-device VxLanA-1
-    ip-forward off
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vlan1000
-iface vlan1000
-    vlan-id 1000
-    vlan-raw-device VxLanA-1
-    ip-forward off
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vlan1001
-iface vlan1001
-    vlan-id 1001
-    vlan-raw-device VxLanA-1
+auto vlan10
+iface vlan10
+    vlan-raw-device bridge
+    vlan-id 10
     ip-forward off
+    ip6-forward off
+
+auto vlan20
+iface vlan20
+    vlan-raw-device bridge
+    vlan-id 20
+    ip-forward off
+    ip6-forward off
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.1
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:AA
+
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf03" >}}
+{{< tab "leaf03 ">}}
 
 ```
 cumulus@leaf03:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
+auto lo
+iface lo inet loopback
+    address 10.10.10.3/32
+    clagd-vxlan-anycast-ip 10.0.1.2
+    vxlan-local-tunnelip 10.10.10.3
 
-# The primary network interface
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
 auto eth0
 iface eth0 inet dhcp
+    vrf mgmt
 
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.9/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-    clagd-vxlan-anycast-ip 172.16.100.9
-
-auto uplink-1
-iface uplink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-
-auto uplink-2
-iface uplink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-auto peerlink-3
-iface peerlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-
-auto peerlink-3.4094
-iface peerlink-3.4094
-    address 169.254.0.9/30
-    mtu 9216
-    alias clag and vxlan communication primary path
-    clagd-priority 4096
-    clagd-sys-mac 44:38:39:ff:ff:02
-    clagd-peer-ip 169.254.0.10
-    # post-up sysctl -w net.ipv4.conf.peerlink-3/4094.accept_local=1
-    clagd-backup-ip 10.0.0.10
-
-auto hostbond4
-iface hostbond4
-    bond-slaves swp7
-    mtu  9152
-    clag-id 1
-    bridge-pvid 1000
-
-auto hostbond5
-iface hostbond5
-    bond-slaves swp8
-    mtu  9152
-    clag-id 2
-    bridge-pvid 1001
-
-auto vx-101000
-iface vx-101000
-    vxlan-id 101000
-    bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.9
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101001
-iface vx-101001
-    vxlan-id 101001
-    bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.9
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto VxLanA-1
-iface VxLanA-1
+auto bridge
+iface bridge
+    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-vids 10 20  
     bridge-vlan-aware yes
-    bridge-ports vx-101000 vx-101001 peerlink-3 hostbond4 hostbond5
-    bridge-stp on
-    bridge-vids 1000-1001
-    bridge-pvid 1
 
-auto vlan1
-iface vlan1
-    vlan-id 1
-    vlan-raw-device VxLanA-1
-    ip-forward off
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vlan1000
-iface vlan1000
-    vlan-id 1000
-    vlan-raw-device VxLanA-1
-    ip-forward off
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vlan1001
-iface vlan1001
-    vlan-id 1001
-    vlan-raw-device VxLanA-1
+auto vlan10
+iface vlan10
+    vlan-raw-device bridge
+    vlan-id 10
     ip-forward off
+    ip6-forward off
+
+auto vlan20
+iface vlan20
+    vlan-raw-device bridge
+    vlan-id 20
+    ip-forward off
+    ip6-forward off
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.4
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:BB
+
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf04" >}}
+{{< tab "leaf04 ">}}
 
 ```
 cumulus@leaf04:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
+auto lo
+iface lo inet loopback
+    address 10.10.10.4/32
+    clagd-vxlan-anycast-ip 10.0.1.2
+    vxlan-local-tunnelip 10.10.10.4
 
-# The primary network interface
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
 auto eth0
 iface eth0 inet dhcp
+    vrf mgmt
 
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.10/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-    clagd-vxlan-anycast-ip 172.16.100.9
-
-auto uplink-1
-iface uplink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-
-auto uplink-2
-iface uplink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto peerlink-3
-iface peerlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-auto peerlink-3.4094
-iface peerlink-3.4094
-    address 169.254.0.10/30
-    mtu 9216
-    alias clag and vxlan communication primary path
-    clagd-priority 8192
-    clagd-sys-mac 44:38:39:ff:ff:02
-    clagd-peer-ip 169.254.0.9
-    # post-up sysctl -w net.ipv4.conf.peerlink-3/4094.accept_local=1
-    clagd-backup-ip 10.0.0.9
-
-auto hostbond4
-iface hostbond4
-    bond-slaves swp7
-    mtu  9152
-    clag-id 1
-    bridge-pvid 1000
-
-auto hostbond5
-iface hostbond5
-    bond-slaves swp8
-    mtu  9152
-    clag-id 2
-    bridge-pvid 1001
-
-auto vx-101000
-iface vx-101000
-    vxlan-id 101000
-    bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101001
-iface vx-101001
-    vxlan-id 101001
-    bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto VxLanA-1
-iface VxLanA-1
+auto bridge
+iface bridge
+    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-vids 10 20  
     bridge-vlan-aware yes
-    bridge-ports vx-101000 vx-101001 peerlink-3 hostbond4 hostbond5
-    bridge-stp on
-    bridge-vids 1000-1001
-    bridge-pvid 1
 
-auto vlan1
-iface vlan1
-    vlan-id 1
-    vlan-raw-device VxLanA-1
-    ip-forward off
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vlan1000
-iface vlan1000
-    vlan-id 1000
-    vlan-raw-device VxLanA-1
-    ip-forward off
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vlan1001
-iface vlan1001
-    vlan-id 1001
-    vlan-raw-device VxLanA-1
+auto vlan10
+iface vlan10
+    vlan-raw-device bridge
+    vlan-id 10
     ip-forward off
+    ip6-forward off
+
+auto vlan20
+iface vlan20
+    vlan-raw-device bridge
+    vlan-id 20
+    ip-forward off
+    ip6-forward off
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.3
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:BB
+
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
 
-{{< tab "spine01" >}}
+{{< tab "spine01 ">}}
 
 ```
 cumulus@spine01:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
+auto lo
+iface lo inet loopback
+    address 10.10.10.101/32
 
-# The primary network interface
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
 auto eth0
 iface eth0 inet dhcp
+    vrf mgmt
 
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
+auto swp1
+iface swp1
+    alias leaf to spine
 
-auto lo
-iface lo
-    address 10.0.0.5/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
+auto swp2
+iface swp2
+    alias leaf to spine
 
-auto downlink-1
-iface downlink-1
-    bond-slaves swp1 swp2
-    mtu  9216
+auto swp3
+iface swp3
+    alias leaf to spine
 
-auto downlink-2
-iface downlink-2
-    bond-slaves swp3 swp4
-    mtu  9216
+auto swp4
+iface swp4
+    alias leaf to spine
 
-auto downlink-3
-iface downlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-auto downlink-4
-iface downlink-4
-    bond-slaves swp7 swp8
-    mtu  9216
+auto swp5
+iface swp5
+    alias leaf to spine
 
+auto swp6
+iface swp6
+    alias leaf to spine
 ```
 
 {{< /tab >}}
 
-{{< tab "spine02" >}}
+{{< tab "spine02 ">}}
 
 ```
 cumulus@spine02:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
+auto lo
+iface lo inet loopback
+    address 10.10.10.102/32
 
-# The primary network interface
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
 auto eth0
 iface eth0 inet dhcp
+    vrf mgmt
 
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
+auto swp1
+iface swp1
+    alias leaf to spine
+
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "spine03 ">}}
+
+```
+cumulus@spine03:~$ cat /etc/network/interfaces
 
 auto lo
-iface lo
-    address 10.0.0.6/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
+iface lo inet loopback
+    address 10.10.10.103/32
 
-auto downlink-1
-iface downlink-1
-    bond-slaves swp1 swp2
-    mtu  9216
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
 
-auto downlink-2
-iface downlink-2
-    bond-slaves swp3 swp4
-    mtu  9216
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
 
-auto downlink-3
-iface downlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
+auto swp1
+iface swp1
+    alias leaf to spine
 
-auto downlink-4
-iface downlink-4
-    bond-slaves swp7 swp8
-    mtu  9216
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "spine04 ">}}
+
+```
+cumulus@spine04:~$ cat /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+    address 10.10.10.104/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto swp1
+iface swp1
+    alias leaf to spine
+
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:~$ cat /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+    address 10.10.10.63/32
+    clagd-vxlan-anycast-ip 10.0.1.254
+    vxlan-local-tunnelip 10.10.10.63
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto bridge
+iface bridge
+    bridge-ports peerlink
+    bridge-ports bond3
+    bridge-ports vni10 vni20
+    bridge-vids 10 20  
+    bridge-vlan-aware yes
+
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
+    vlan-raw-device bridge
+    vlan-id 10
+    ip-forward off
+    ip6-forward off
+
+auto vlan20
+iface vlan20
+    vlan-raw-device bridge
+    vlan-id 20
+    ip-forward off
+    ip6-forward off
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.64
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:FF
+
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 1
+    bridge-vids 10 20
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+```
+
+{{< /tab >}}
+
+{{< tab "border02 ">}}
+
+```
+cumulus@border02:~$ cat /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+    address 10.10.10.64/32
+    clagd-vxlan-anycast-ip 10.0.1.254
+    vxlan-local-tunnelip 10.10.10.64
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto bridge
+iface bridge
+    bridge-ports peerlink
+    bridge-ports bond3
+    bridge-ports vni10 vni20
+    bridge-vids 10 20  
+    bridge-vlan-aware yes
+
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
+    vlan-raw-device bridge
+    vlan-id 10
+    ip-forward off
+    ip6-forward off
+
+auto vlan20
+iface vlan20
+    vlan-raw-device bridge
+    vlan-id 20
+    ip-forward off
+    ip6-forward off
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.63
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:FF
+
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 1
+    bridge-vids 10 20
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
@@ -537,344 +968,324 @@ iface downlink-4
 
 ### /etc/frr/frr.conf
 
-{{< tabs "TabID02" >}}
+{{< tabs "TabID240 ">}}
 
-{{< tab "leaf01" >}}
+{{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
+...
+log syslog informational
 !
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65542
- bgp router-id 10.0.0.7
- coalesce-time 1000
+router bgp 65101
+ bgp router-id 10.10.10.1
  bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
  !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
  address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
+  neighbor underlay activate
   advertise-all-vni
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf02" >}}
+{{< tab "leaf02 ">}}
 
 ```
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
+...
+log syslog informational
 !
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65543
- bgp router-id 10.0.0.8
- coalesce-time 1000
+router bgp 65101
+ bgp router-id 10.10.10.2
  bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
  !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
  address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
+  neighbor underlay activate
   advertise-all-vni
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf03" >}}
+{{< tab "leaf03 ">}}
 
 ```
 cumulus@leaf03:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
+...
+log syslog informational
 !
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65544
- bgp router-id 10.0.0.9
- coalesce-time 1000
+router bgp 65102
+ bgp router-id 10.10.10.3
  bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
  !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
  address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
+  neighbor underlay activate
   advertise-all-vni
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf04" >}}
+{{< tab "leaf04 ">}}
 
 ```
 cumulus@leaf04:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
+...
+log syslog informational
 !
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65545
- bgp router-id 10.0.0.10
- coalesce-time 1000
+router bgp 65102
+ bgp router-id 10.10.10.4
  bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
  !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
  address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
+  neighbor underlay activate
   advertise-all-vni
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
-{{< tab "spine01" >}}
+{{< tab "spine01 ">}}
 
 ```
 cumulus@spine01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
+...
+log syslog informational
 !
-log timestamp precision 6
-!
-interface downlink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-3
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-4
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 64435
- bgp router-id 10.0.0.5
- coalesce-time 1000
+router bgp 65199
+ bgp router-id 10.10.10.101
  bgp bestpath as-path multipath-relax
- neighbor downlink-1 interface v6only remote-as external
- neighbor downlink-2 interface v6only remote-as external
- neighbor downlink-3 interface v6only remote-as external
- neighbor downlink-4 interface v6only remote-as external
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
-  neighbor downlink-1 allowas-in origin
-  neighbor downlink-2 allowas-in origin
-  neighbor downlink-3 allowas-in origin
-  neighbor downlink-4 allowas-in origin
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor downlink-1 activate
-  neighbor downlink-2 activate
-  neighbor downlink-3 activate
-  neighbor downlink-4 activate
  exit-address-family
  !
  address-family l2vpn evpn
-  neighbor downlink-1 activate
-  neighbor downlink-2 activate
-  neighbor downlink-3 activate
-  neighbor downlink-4 activate
+  neighbor underlay activate
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
-{{< tab "spine02" >}}
+{{< tab "spine02 ">}}
 
 ```
 cumulus@spine02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
+...
+log syslog informational
 !
-log timestamp precision 6
-!
-interface downlink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-3
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-4
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 64435
- bgp router-id 10.0.0.6
- coalesce-time 1000
+router bgp 65199
+ bgp router-id 10.10.10.102
  bgp bestpath as-path multipath-relax
- neighbor downlink-1 interface v6only remote-as external
- neighbor downlink-2 interface v6only remote-as external
- neighbor downlink-3 interface v6only remote-as external
- neighbor downlink-4 interface v6only remote-as external
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
-  neighbor downlink-1 allowas-in origin
-  neighbor downlink-2 allowas-in origin
-  neighbor downlink-3 allowas-in origin
-  neighbor downlink-4 allowas-in origin
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor downlink-1 activate
-  neighbor downlink-2 activate
-  neighbor downlink-3 activate
-  neighbor downlink-4 activate
  exit-address-family
  !
  address-family l2vpn evpn
-  neighbor downlink-1 activate
-  neighbor downlink-2 activate
-  neighbor downlink-3 activate
-  neighbor downlink-4 activate
+  neighbor underlay activate
  exit-address-family
 !
 line vty
- exec-timeout 0 0
+```
+
+{{< /tab >}}
+
+{{< tab "spine03 ">}}
+
+```
+cumulus@spine03:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
 !
+router bgp 65199
+ bgp router-id 10.10.10.103
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "spine04 ">}}
+
+```
+cumulus@spine04:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65199
+ bgp router-id 10.10.10.104
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65132
+ bgp router-id 10.10.10.63
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "border02 ">}}
+
+```
+cumulus@border02:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65132
+ bgp router-id 10.10.10.64
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
 ```
 
 {{< /tab >}}
@@ -883,679 +1294,944 @@ line vty
 
 ## EVPN Centralized Routing
 
-The following example configuration shows a basic Clos topology with
-centralized routing. MLAG is configured between leaf switches.
+The following example shows an EVPN centralized routing configuration:
 
-{{< img src = "/images/cumulus-linux/evpn-centralized.png" >}}
+- MLAG is configured between leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
+- BGP unnumbered is in the underlay (configured on all leafs and spines)
+- SVIs are configured as gateways on the border leafs
+
+The following images shows traffic flow between tenants. The spines and other devices are omitted for simplicity.
+
+|   Traffic Flow between server01 and server05  |     |
+| --- | --- |
+| <img width=1000/> {{< img src="/images/cumulus-linux/evpn-central-diagram.png" >}} | server01 and server05 are in a different VLAN and are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup and forwards traffic to server01's default gateway (border01) out VNI10.</li><li>border01 does a layer 3 lookup and routes the packet out VNI20 towards leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server05 in VLAN20.</li></ul>|
 
 ### /etc/network/interfaces
 
-{{< tabs "TabID12" >}}
+{{< tabs "TabID894 ">}}
 
-{{< tab "leaf01" >}}
+{{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+    clagd-vxlan-anycast-ip 10.0.1.1
+    vxlan-local-tunnelip 10.10.10.1
 
-# The primary network interface
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
 auto eth0
 iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.7/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-    clagd-vxlan-anycast-ip 172.16.100.7
-
-auto uplink-1
-iface uplink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-
-auto uplink-2
-iface uplink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto peerlink-3
-iface peerlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-
-auto peerlink-3.4094
-iface peerlink-3.4094
-    address 169.254.0.9/30
-    mtu 9216
-    alias clag and vxlan communication primary path
-    clagd-priority 4096
-    clagd-sys-mac 44:38:39:ff:ff:01
-    clagd-peer-ip 169.254.0.10
-    clagd-backup-ip 10.0.0.8
-
-auto hostbond4
-iface hostbond4
-    bond-slaves swp7
-    mtu  9152
-    clag-id 1
-    bridge-pvid 1000
-
-auto hostbond5
-iface hostbond5
-    bond-slaves swp8
-    mtu  9152
-    clag-id 2
-    bridge-pvid 1001
-
-auto vx-101000
-iface vx-101000
-    vxlan-id 101000
-    bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.7
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101001
-iface vx-101001
-    vxlan-id 101001
-    bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.7
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101002
-iface vx-101002
-    vxlan-id 101002
-    bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.7
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101003
-iface vx-101003
-    vxlan-id 101003
-    bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.7
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
+    vrf mgmt
 
 auto bridge
 iface bridge
+    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-vids 10 20  
     bridge-vlan-aware yes
-    bridge-ports vx-101000 vx-101001 vx-101002 vx-101003 peerlink-3 hostbond4 hostbond5
-    bridge-stp on
-    bridge-vids 1000-1003
-    bridge-pvid 1
 
-auto vrf1
-iface vrf1
-    vrf-table auto
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vlan1000
-iface vlan1000
-    address 45.0.0.2/24
-    address 2001:fee1::2/64
-    vlan-id 1000
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
     vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
-    vrf vrf1
+    vlan-id 10
+    ip-forward off
+    ip6-forward off
 
-auto vlan1001
-iface vlan1001
-    address 45.0.1.2/24
-    address 2001:fee1:0:1::2/64
-    vlan-id 1001
+auto vlan20
+iface vlan20
     vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
-    vrf vrf1
+    vlan-id 20
+    ip-forward off
+    ip6-forward off
 
-auto vrf2
-iface vrf2
-    vrf-table auto
+auto swp51
+iface swp51
+    alias leaf to spine
 
-auto vlan1002
-iface vlan1002
-    address 45.0.2.2/24
-    address 2001:fee1:0:2::2/64
-    vlan-id 1002
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
-    vrf vrf2
+auto swp52
+iface swp52
+    alias leaf to spine
 
-auto vlan1003
-iface vlan1003
-    address 45.0.3.2/24
-    address 2001:fee1:0:3::2/64
-    vlan-id 1003
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.3.1/24 2001:fee1:0:3::1/64
-    vrf vrf2
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.2
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:AA
+
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf02" >}}
+{{< tab "leaf02 ">}}
 
 ```
 cumulus@leaf02:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
+auto lo
+iface lo inet loopback
+    address 10.10.10.2/32
+    clagd-vxlan-anycast-ip 10.0.1.1
+    vxlan-local-tunnelip 10.10.10.2
 
-# The primary network interface
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
 auto eth0
 iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.8/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-    clagd-vxlan-anycast-ip 172.16.100.7
-
-auto uplink-1
-iface uplink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-
-auto uplink-2
-iface uplink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto peerlink-3
-iface peerlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-
-auto peerlink-3.4094
-iface peerlink-3.4094
-    address 169.254.0.10/30
-    mtu 9216
-    alias clag and vxlan communication primary path
-    clagd-priority 8192
-    clagd-sys-mac 44:38:39:ff:ff:01
-    clagd-peer-ip 169.254.0.9
-    clagd-backup-ip 10.0.0.7
-
-auto hostbond4
-iface hostbond4
-    bond-slaves swp7
-    mtu  9152
-    clag-id 1
-    bridge-pvid 1000
-
-auto hostbond5
-iface hostbond5
-    bond-slaves swp8
-    mtu  9152
-    clag-id 2
-    bridge-pvid 1001
-
-auto vx-101000
-iface vx-101000
-    vxlan-id 101000
-    bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.8
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101001
-iface vx-101001
-    vxlan-id 101001
-    bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.8
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101002
-iface vx-101002
-    vxlan-id 101002
-    bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.8
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101003
-iface vx-101003
-    vxlan-id 101003
-    bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.8
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
+    vrf mgmt
 
 auto bridge
 iface bridge
+    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-vids 10 20  
     bridge-vlan-aware yes
-    bridge-ports vx-101000 vx-101001 vx-101002 vx-101003 peerlink-3 hostbond4 hostbond5
-    bridge-stp on
-    bridge-vids 1000-1003
-    bridge-pvid 1
 
-auto vrf1
-iface vrf1
-    vrf-table auto
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vlan1000
-iface vlan1000
-    address 45.0.0.3/24
-    address 2001:fee1::3/64
-    vlan-id 1000
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
     vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
-    vrf vrf1
+    vlan-id 10
+    ip-forward off
+    ip6-forward off
 
-auto vlan1001
-iface vlan1001
-    address 45.0.1.3/24
-    address 2001:fee1:0:1::3/64
-    vlan-id 1001
+auto vlan20
+iface vlan20
     vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
-    vrf vrf1
+    vlan-id 20
+    ip-forward off
+    ip6-forward off
 
-auto vrf2
-iface vrf2
-    vrf-table auto
+auto swp51
+iface swp51
+    alias leaf to spine
 
-auto vlan1002
-iface vlan1002
-    address 45.0.2.3/24
-    address 2001:fee1:0:2::3/64
-    vlan-id 1002
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
-    vrf vrf2
+auto swp52
+iface swp52
+    alias leaf to spine
 
-auto vlan1003
-iface vlan1003
-    address 45.0.3.3/24
-    address 2001:fee1:0:3::3/64
-    vlan-id 1003
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.3.1/24 2001:fee1:0:3::1/64
-    vrf vrf2
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.1
+    clagd-peer-ip linklocal
+    clagd-priority 32768
+    clagd-sys-mac 44:38:39:BE:EF:AA
+
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf03" >}}
+{{< tab "leaf03 ">}}
 
 ```
 cumulus@leaf03:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
+auto lo
+iface lo inet loopback
+    address 10.10.10.3/32
+    clagd-vxlan-anycast-ip 10.0.1.2
+    vxlan-local-tunnelip 10.10.10.3
 
-# The primary network interface
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
 auto eth0
 iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.9/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-    clagd-vxlan-anycast-ip 172.16.100.9
-
-auto uplink-1
-iface uplink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-
-auto uplink-2
-iface uplink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto peerlink-3
-iface peerlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-
-auto peerlink-3.4094
-iface peerlink-3.4094
-    address 169.254.0.9/30
-    mtu 9216
-    alias clag and vxlan communication primary path
-    clagd-priority 4096
-    clagd-sys-mac 44:38:39:ff:ff:02
-    clagd-peer-ip 169.254.0.10
-    clagd-backup-ip 10.0.0.10
-
-auto hostbond4
-iface hostbond4
-    bond-slaves swp7
-    mtu  9152
-    clag-id 1
-    bridge-pvid 1000
-
-auto hostbond5
-iface hostbond5
-    bond-slaves swp8
-    mtu  9152
-    clag-id 2
-    bridge-pvid 1001
-
-auto vx-101000
-iface vx-101000
-    vxlan-id 101000
-    bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.9
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101001
-iface vx-101001
-    vxlan-id 101001
-    bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.9
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101002
-iface vx-101002
-    vxlan-id 101002
-    bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.9
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101003
-iface vx-101003
-    vxlan-id 101003
-    bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.9
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
+    vrf mgmt
 
 auto bridge
 iface bridge
+    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-vids 10 20  
     bridge-vlan-aware yes
-    bridge-ports vx-101000 vx-101001 vx-101002 vx-101003 peerlink-3 hostbond4 hostbond5
-    bridge-stp on
-    bridge-vids 1000-1003
-    bridge-pvid 1
 
-auto vrf1
-iface vrf1
-    vrf-table auto
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vlan1000
-iface vlan1000
-    vlan-id 1000
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
     vlan-raw-device bridge
+    vlan-id 10
     ip-forward off
+    ip6-forward off
 
-auto vlan1001
-iface vlan1001
-    vlan-id 1001
+auto vlan20
+iface vlan20
     vlan-raw-device bridge
+    vlan-id 20
     ip-forward off
+    ip6-forward off
 
-auto vrf2
-iface vrf2
-    vrf-table auto
+auto swp51
+iface swp51
+    alias leaf to spine
 
-auto vlan1002
-iface vlan1002
-    vlan-id 1002
-    vlan-raw-device bridge
-    ip-forward off
+auto swp52
+iface swp52
+    alias leaf to spine
 
-auto vlan1003
-iface vlan1003
-    vlan-id 1003
-    vlan-raw-device bridge
-    ip-forward off
+auto swp53
+iface swp53
+    alias leaf to spine
 
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.4
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:BB
+
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf04" >}}
+{{< tab "leaf04 ">}}
 
 ```
 cumulus@leaf04:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
+auto lo
+iface lo inet loopback
+    address 10.10.10.4/32
+    clagd-vxlan-anycast-ip 10.0.1.2
+    vxlan-local-tunnelip 10.10.10.4
 
-# The primary network interface
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
 auto eth0
 iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.10/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-    clagd-vxlan-anycast-ip 172.16.100.9
-
-auto uplink-1
-iface uplink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-
-auto uplink-2
-iface uplink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto peerlink-3
-iface peerlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-
-auto peerlink-3.4094
-iface peerlink-3.4094
-    address 169.254.0.10/30
-    mtu 9216
-    alias clag and vxlan communication primary path
-    clagd-priority 8192
-    clagd-sys-mac 44:38:39:ff:ff:02
-    clagd-peer-ip 169.254.0.9
-    clagd-backup-ip 10.0.0.9
-
-auto hostbond4
-iface hostbond4
-    bond-slaves swp7
-    mtu  9152
-    clag-id 1
-    bridge-pvid 1000
-
-auto hostbond5
-iface hostbond5
-    bond-slaves swp8
-    mtu  9152
-    clag-id 2
-    bridge-pvid 1001
-
-auto vx-101000
-iface vx-101000
-    vxlan-id 101000
-    bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101001
-iface vx-101001
-    vxlan-id 101001
-    bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101002
-iface vx-101002
-    vxlan-id 101002
-    bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101003
-iface vx-101003
-    vxlan-id 101003
-    bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
+    vrf mgmt
 
 auto bridge
 iface bridge
+    bridge-ports peerlink bond1 bond2 vni10 vni20
+    bridge-vids 10 20  
     bridge-vlan-aware yes
-    bridge-ports vx-101000 vx-101001 vx-101002 vx-101003 peerlink-3 hostbond4 hostbond5
-    bridge-stp on
-    bridge-vids 1000-1003
-    bridge-pvid 1
 
-auto vrf1
-iface vrf1
-    vrf-table auto
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vlan1000
-iface vlan1000
-    vlan-id 1000
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
     vlan-raw-device bridge
+    vlan-id 10
     ip-forward off
+    ip6-forward off
 
-auto vlan1001
-iface vlan1001
-    vlan-id 1001
+auto vlan20
+iface vlan20
     vlan-raw-device bridge
+    vlan-id 20
     ip-forward off
+    ip6-forward off
 
-auto vrf2
-iface vrf2
-    vrf-table auto
+auto swp51
+iface swp51
+    alias leaf to spine
 
-auto vlan1002
-iface vlan1002
-    vlan-id 1002
-    vlan-raw-device bridge
-    ip-forward off
+auto swp52
+iface swp52
+    alias leaf to spine
 
-auto vlan1003
-iface vlan1003
-    vlan-id 1003
-    vlan-raw-device bridge
-    ip-forward off
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.3
+    clagd-peer-ip linklocal
+    clagd-priority 32768
+    clagd-sys-mac 44:38:39:BE:EF:BB
+
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
 
-{{< tab "spine01" >}}
+{{< tab "spine01 ">}}
 
 ```
 cumulus@spine01:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
+auto lo
+iface lo inet loopback
+    address 10.10.10.101/32
 
-# The primary network interface
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
 auto eth0
 iface eth0 inet dhcp
+    vrf mgmt
 
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
+auto swp1
+iface swp1
+    alias leaf to spine
 
-auto lo
-iface lo
-    address 10.0.0.5/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
+auto swp2
+iface swp2
+    alias leaf to spine
 
-auto downlink-1
-iface downlink-1
-    bond-slaves swp1 swp2
-    mtu  9216
+auto swp3
+iface swp3
+    alias leaf to spine
 
-auto downlink-2
-iface downlink-2
-    bond-slaves swp3 swp4
-    mtu  9216
+auto swp4
+iface swp4
+    alias leaf to spine
 
-auto downlink-3
-iface downlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
+auto swp5
+iface swp5
+    alias leaf to spine
 
-auto downlink-4
-iface downlink-4
-    bond-slaves swp7 swp8
-    mtu  9216<
+auto swp6
+iface swp6
+    alias leaf to spine
 ```
 
 {{< /tab >}}
 
-{{< tab "spine02" >}}
+{{< tab "spine02 ">}}
 
 ```
 cumulus@spine02:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
+auto lo
+iface lo inet loopback
+    address 10.10.10.102/32
 
-# The primary network interface
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
 auto eth0
 iface eth0 inet dhcp
+    vrf mgmt
 
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
+auto swp1
+iface swp1
+    alias leaf to spine
+
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "spine03 ">}}
+
+```
+cumulus@spine03:~$ cat /etc/network/interfaces
 
 auto lo
-iface lo
-    address 10.0.0.6/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
+iface lo inet loopback
+    address 10.10.10.103/32
 
-auto downlink-1
-iface downlink-1
-    bond-slaves swp1 swp2
-    mtu  9216
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
 
-auto downlink-2
-iface downlink-2
-    bond-slaves swp3 swp4
-    mtu  9216
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
 
-auto downlink-3
-iface downlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
+auto swp1
+iface swp1
+    alias leaf to spine
 
-auto downlink-4
-iface downlink-4
-    bond-slaves swp7 swp8
-    mtu  9216
+auto swp2
+iface swp2
+    alias leaf to spine
 
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "spine04 ">}}
+
+```
+cumulus@spine04:~$ cat /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+    address 10.10.10.104/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto swp1
+iface swp1
+    alias leaf to spine
+
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:~$ cat /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+    address 10.10.10.63/32
+    clagd-vxlan-anycast-ip 10.0.1.254
+    vxlan-local-tunnelip 10.10.10.63
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto bridge
+iface bridge
+    bridge-ports peerlink bond3 vni10 vni20
+    bridge-vids 10 20
+    bridge-vlan-aware yes
+
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    address-virtual 00:00:00:00:00:1a 10.1.10.1/24
+    vlan-raw-device bridge
+    vlan-id 10
+
+auto vlan20
+iface vlan20
+    address 10.1.20.2/24
+    address-virtual 00:00:00:00:00:1a 10.1.20.1/24
+    vlan-raw-device bridge
+    vlan-id 20
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.64
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:FF
+
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 1
+    bridge-vids 10 20
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+```
+
+{{< /tab >}}
+
+{{< tab "border02 ">}}
+
+```
+cumulus@border02:~$ cat /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+    address 10.10.10.64/32
+    clagd-vxlan-anycast-ip 10.0.1.254
+    vxlan-local-tunnelip 10.10.10.64
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto bridge
+iface bridge
+    bridge-ports peerlink bond3 vni10 vni20
+    bridge-vids 10 20
+    bridge-vlan-aware yes
+
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    address-virtual 00:00:00:00:00:1a 10.1.10.1/24
+    vlan-raw-device bridge
+    vlan-id 10
+
+auto vlan20
+iface vlan20
+    address 10.1.20.2/24
+    address-virtual 00:00:00:00:00:1a 10.1.20.1/24
+    vlan-raw-device bridge
+    vlan-id 20
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.63
+    clagd-peer-ip linklocal
+    clagd-priority 32768
+    clagd-sys-mac 44:38:39:BE:EF:FF
+
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 1
+    bridge-vids 10 20
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
@@ -1564,1393 +2240,322 @@ iface downlink-4
 
 ### /etc/frr/frr.conf
 
-{{< tabs "TabID03" >}}
+{{< tabs "TabID1566 ">}}
 
-{{< tab "leaf01" >}}
+{{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
+...
+log syslog informational
 !
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65542
- bgp router-id 10.0.0.7
- coalesce-time 1000
+router bgp 65101
+ bgp router-id 10.10.10.1
  bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
  !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
  address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-default-gw
-  advertise-all-vni
+  neighbor underlay activate
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf02" >}}
+{{< tab "leaf02 ">}}
 
 ```
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
+...
+log syslog informational
 !
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65543
- bgp router-id 10.0.0.8
- coalesce-time 1000
+router bgp 65101
+ bgp router-id 10.10.10.2
  bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
  !
- address-family ipv6 unicast
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65102
+ bgp router-id 10.10.10.3
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
+ !
+ address-family ipv4 unicast
   redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
  exit-address-family
  !
  address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65102
+ bgp router-id 10.10.10.4
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65199
+ bgp router-id 10.10.10.101
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65199
+ bgp router-id 10.10.10.102
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "spine03 ">}}
+
+```
+cumulus@spine03:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65199
+ bgp router-id 10.10.10.103
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "spine04 ">}}
+
+```
+cumulus@spine04:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65199
+ bgp router-id 10.10.10.104
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65132
+ bgp router-id 10.10.10.63
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+  advertise-all-vni
   advertise-default-gw
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "border02 ">}}
+
+```
+cumulus@border02:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65132
+ bgp router-id 10.10.10.64
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
   advertise-all-vni
+  advertise-default-gw
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
-```
-
-{{< /tab >}}
-
-{{< tab "leaf03" >}}
-
-```
-cumulus@leaf03:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65544
- bgp router-id 10.0.0.9
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-{{< /tab >}}
-
-{{< tab "leaf04" >}}
-
-```
-cumulus@leaf04:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65545
- bgp router-id 10.0.0.10
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-{{< /tab >}}
-
-{{< tab "spine01" >}}
-
-```
-cumulus@spine01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface downlink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-3
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-4
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 64435
- bgp router-id 10.0.0.5
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor downlink-1 interface v6only remote-as external
- neighbor downlink-2 interface v6only remote-as external
- neighbor downlink-3 interface v6only remote-as external
- neighbor downlink-4 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
-  neighbor downlink-1 allowas-in origin
-  neighbor downlink-2 allowas-in origin
-  neighbor downlink-3 allowas-in origin
-  neighbor downlink-4 allowas-in origin
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor downlink-1 activate
-  neighbor downlink-2 activate
-  neighbor downlink-3 activate
-  neighbor downlink-4 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor downlink-1 activate
-  neighbor downlink-2 activate
-  neighbor downlink-3 activate
-  neighbor downlink-4 activate
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-{{< /tab >}}
-
-{{< tab "spine02" >}}
-
-```
-cumulus@spine02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface downlink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-3
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-4
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 64435
- bgp router-id 10.0.0.6
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor downlink-1 interface v6only remote-as external
- neighbor downlink-2 interface v6only remote-as external
- neighbor downlink-3 interface v6only remote-as external
- neighbor downlink-4 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
-  neighbor downlink-1 allowas-in origin
-  neighbor downlink-2 allowas-in origin
-  neighbor downlink-3 allowas-in origin
-  neighbor downlink-4 allowas-in origin
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor downlink-1 activate
-  neighbor downlink-2 activate
-  neighbor downlink-3 activate
-  neighbor downlink-4 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor downlink-1 activate
-  neighbor downlink-2 activate
-  neighbor downlink-3 activate
-  neighbor downlink-4 activate
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-## EVPN Asymmetric Routing
-
-The following example configuration is a basic Clos topology with EVPN asymmetric routing. MLAG is configured between leaf switches.
-
-{{< img src = "/images/cumulus-linux/evpn-asymmetric.png" >}}
-
-### /etc/network/interfaces
-
-{{< tabs "TabID24" >}}
-
-{{< tab "leaf01" >}}
-
-```
-cumulus@leaf01:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.7/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-    clagd-vxlan-anycast-ip 172.16.100.7
-
-auto uplink-1
-iface uplink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-
-auto uplink-2
-iface uplink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto peerlink-3
-iface peerlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-
-auto peerlink-3.4094
-iface peerlink-3.4094
-    address 169.254.0.9/30
-    mtu 9216
-    alias clag and vxlan communication primary path
-    clagd-priority 4096
-    clagd-sys-mac 44:38:39:ff:ff:01
-    clagd-peer-ip 169.254.0.10
-    clagd-backup-ip 10.0.0.8
-
-auto hostbond4
-iface hostbond4
-    bond-slaves swp7
-    mtu  9152
-    clag-id 1
-    bridge-pvid 1000
-
-auto hostbond5
-iface hostbond5
-    bond-slaves swp8
-    mtu  9152
-    clag-id 2
-    bridge-pvid 1001
-
-auto vx-101000
-iface vx-101000
-    vxlan-id 101000
-    bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.7
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101001
-iface vx-101001
-    vxlan-id 101001
-    bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.7
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101002
-iface vx-101002
-    vxlan-id 101002
-    bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.7
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101003
-iface vx-101003
-    vxlan-id 101003
-    bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.7
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto bridge
-iface bridge
-    bridge-vlan-aware yes
-    bridge-ports vx-101000 vx-101001 vx-101002 vx-101003 peerlink-3 hostbond4 hostbond5
-    bridge-stp on
-    bridge-vids 1000-1003
-    bridge-pvid 1
-
-auto vrf1
-iface vrf1
-    vrf-table auto
-
-auto vlan1000
-iface vlan1000
-    address 45.0.0.2/24
-    address 2001:fee1::2/64
-    vlan-id 1000
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
-    vrf vrf1
-
-auto vlan1001
-iface vlan1001
-    address 45.0.1.2/24
-    address 2001:fee1:0:1::2/64
-    vlan-id 1001
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
-    vrf vrf1
-
-auto vrf2
-iface vrf2
-    vrf-table auto
-
-auto vlan1002
-iface vlan1002
-    address 45.0.2.2/24
-    address 2001:fee1:0:2::2/64
-    vlan-id 1002
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
-    vrf vrf2
-
-auto vlan1003
-iface vlan1003
-    address 45.0.3.2/24
-    address 2001:fee1:0:3::2/64
-    vlan-id 1003
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.3.1/24 2001:fee1:0:3::1/64
-    vrf vrf2
-```
-
-{{< /tab >}}
-
-{{< tab "leaf02" >}}
-
-```
-cumulus@leaf02:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.8/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-    clagd-vxlan-anycast-ip 172.16.100.7
-
-auto uplink-1
-iface uplink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-
-auto uplink-2
-iface uplink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto peerlink-3
-iface peerlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-
-auto peerlink-3.4094
-iface peerlink-3.4094
-    address 169.254.0.10/30
-    mtu 9216
-    alias clag and vxlan communication primary path
-    clagd-priority 8192
-    clagd-sys-mac 44:38:39:ff:ff:01
-    clagd-peer-ip 169.254.0.9
-    clagd-backup-ip 10.0.0.7
-
-auto hostbond4
-iface hostbond4
-    bond-slaves swp7
-    mtu  9152
-    clag-id 1
-    bridge-pvid 1000
-
-auto hostbond5
-iface hostbond5
-    bond-slaves swp8
-    mtu  9152
-    clag-id 2
-    bridge-pvid 1001
-
-auto vx-101000
-iface vx-101000
-    vxlan-id 101000
-    bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.8
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101001
-iface vx-101001
-    vxlan-id 101001
-    bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.8
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101002
-iface vx-101002
-    vxlan-id 101002
-    bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.8
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101003
-iface vx-101003
-    vxlan-id 101003
-    bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.8
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto bridge
-iface bridge
-    bridge-vlan-aware yes
-    bridge-ports vx-101000 vx-101001 vx-101002 vx-101003 peerlink-3 hostbond4 hostbond5
-    bridge-stp on
-    bridge-vids 1000-1003
-    bridge-pvid 1
-
-auto vrf1
-iface vrf1
-    vrf-table auto
-
-auto vlan1000
-iface vlan1000
-    address 45.0.0.3/24
-    address 2001:fee1::3/64
-    vlan-id 1000
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
-    vrf vrf1
-
-auto vlan1001
-iface vlan1001
-    address 45.0.1.3/24
-    address 2001:fee1:0:1::3/64
-    vlan-id 1001
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
-    vrf vrf1
-
-auto vrf2
-iface vrf2
-    vrf-table auto
-
-auto vlan1002
-iface vlan1002
-    address 45.0.2.3/24
-    address 2001:fee1:0:2::3/64
-    vlan-id 1002
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
-    vrf vrf2
-
-auto vlan1003
-iface vlan1003
-    address 45.0.3.3/24
-    address 2001:fee1:0:3::3/64
-    vlan-id 1003
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.3.1/24 2001:fee1:0:3::1/64
-    vrf vrf2
-```
-
-{{< /tab >}}
-
-{{< tab "leaf03" >}}
-
-```
-cumulus@leaf03:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.9/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-    clagd-vxlan-anycast-ip 36.0.0.9
-
-auto uplink-1
-iface uplink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-
-auto uplink-2
-iface uplink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto peerlink-3
-iface peerlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-
-auto peerlink-3.4094
-iface peerlink-3.4094
-    address 169.254.0.9/30
-    mtu 9216
-    alias clag and vxlan communication primary path
-    clagd-priority 4096
-    clagd-sys-mac 44:38:39:ff:ff:02
-    clagd-peer-ip 169.254.0.10
-    clagd-backup-ip 10.0.0.10
-
-auto hostbond4
-iface hostbond4
-    bond-slaves swp7
-    mtu  9152
-    clag-id 1
-    bridge-pvid 1000
-
-auto hostbond5
-iface hostbond5
-    bond-slaves swp8
-    mtu  9152
-    clag-id 2
-    bridge-pvid 1001
-
-auto vx-101000
-iface vx-101000
-    vxlan-id 101000
-    bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.9
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101001
-iface vx-101001
-    vxlan-id 101001
-    bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.9
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101002
-iface vx-101002
-    vxlan-id 101002
-    bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.9
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101003
-iface vx-101003
-    vxlan-id 101003
-    bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.9
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto bridge
-iface bridge
-    bridge-vlan-aware yes
-    bridge-ports vx-101000 vx-101001 vx-101002 vx-101003 peerlink-3 hostbond4 hostbond5
-    bridge-stp on
-    bridge-vids 1000-1003
-    bridge-pvid 1
-
-auto vrf1
-iface vrf1
-    vrf-table auto
-
-auto vlan1000
-iface vlan1000
-    address 45.0.0.2/24
-    address 2001:fee1::2/64
-    vlan-id 1000
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
-    vrf vrf1
-
-auto vlan1001
-iface vlan1001
-    address 45.0.1.2/24
-    address 2001:fee1:0:1::2/64
-    vlan-id 1001
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
-    vrf vrf1
-
-auto vrf2
-iface vrf2
-    vrf-table auto
-
-auto vlan1002
-iface vlan1002
-    address 45.0.2.2/24
-    address 2001:fee1:0:2::2/64
-    vlan-id 1002
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
-    vrf vrf2
-
-auto vlan1003
-iface vlan1003
-    address 45.0.3.2/24
-    address 2001:fee1:0:3::2/64
-    vlan-id 1003
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.3.1/24 2001:fee1:0:3::1/64
-    vrf vrf2
-```
-
-{{< /tab >}}
-
-{{< tab "leaf04" >}}
-
-```
-cumulus@leaf04:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.10/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-    clagd-vxlan-anycast-ip 36.0.0.9
-
-auto uplink-1
-iface uplink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-
-auto uplink-2
-iface uplink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto peerlink-3
-iface peerlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-
-auto peerlink-3.4094
-iface peerlink-3.4094
-    address 169.254.0.10/30
-    mtu 9216
-    alias clag and vxlan communication primary path
-    clagd-priority 8192
-    clagd-sys-mac 44:38:39:ff:ff:02
-    clagd-peer-ip 169.254.0.9
-    clagd-backup-ip 10.0.0.9
-
-auto hostbond4
-iface hostbond4
-    bond-slaves swp7
-    mtu  9152
-    clag-id 1
-    bridge-pvid 1000
-
-auto hostbond5
-iface hostbond5
-    bond-slaves swp8
-    mtu  9152
-    clag-id 2
-    bridge-pvid 1001
-
-auto vx-101000
-iface vx-101000
-    vxlan-id 101000
-    bridge-access 1000
-    vxlan-local-tunnelip 10.0.0.10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101001
-iface vx-101001
-    vxlan-id 101001
-    bridge-access 1001
-    vxlan-local-tunnelip 10.0.0.10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101002
-iface vx-101002
-    vxlan-id 101002
-    bridge-access 1002
-    vxlan-local-tunnelip 10.0.0.10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto vx-101003
-iface vx-101003
-    vxlan-id 101003
-    bridge-access 1003
-    vxlan-local-tunnelip 10.0.0.10
-    mstpctl-portbpdufilter yes
-    mstpctl-bpduguard  yes
-    mtu 9152
-
-auto bridge
-iface bridge
-    bridge-vlan-aware yes
-    bridge-ports vx-101000 vx-101001 vx-101002 vx-101003 peerlink-3 hostbond4 hostbond5
-    bridge-stp on
-    bridge-vids 1000-1003
-    bridge-pvid 1
-
-auto vrf1
-iface vrf1
-    vrf-table auto
-
-auto vlan1000
-iface vlan1000
-    address 45.0.0.3/24
-    address 2001:fee1::3/64
-    vlan-id 1000
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
-    vrf vrf1
-
-auto vlan1001
-iface vlan1001
-    address 45.0.1.3/24
-    address 2001:fee1:0:1::3/64
-    vlan-id 1001
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
-    vrf vrf1
-
-auto vrf2
-iface vrf2
-    vrf-table auto
-
-auto vlan1002
-iface vlan1002
-    address 45.0.2.3/24
-    address 2001:fee1:0:2::3/64
-    vlan-id 1002
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
-    vrf vrf2
-
-auto vlan1003
-iface vlan1003
-    address 45.0.3.3/24
-    address 2001:fee1:0:3::3/64
-    vlan-id 1003
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 45.0.3.1/24 2001:fee1:0:3::1/64
-    vrf vrf2
-```
-
-{{< /tab >}}
-
-{{< tab "spine01" >}}
-
-```
-cumulus@spine01:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.5/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-
-auto downlink-1
-iface downlink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-
-auto downlink-2
-iface downlink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto downlink-3
-iface downlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-auto downlink-4
-iface downlink-4
-    bond-slaves swp7 swp8
-    mtu  9216
-```
-
-{{< /tab >}}
-
-{{< tab "spine02" >}}
-
-```
-cumulus@spine02:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5)
-
-# The primary network interface
-auto eth0
-iface eth0 inet dhcp
-
-# Include any platform-specific interface configuration
-#source /etc/network/interfaces.d/*.if
-
-auto lo
-iface lo
-    address 10.0.0.6/32
-    alias BGP un-numbered Use for Vxlan Src Tunnel
-
-auto downlink-1
-iface downlink-1
-    bond-slaves swp1 swp2
-    mtu  9216
-
-auto downlink-2
-iface downlink-2
-    bond-slaves swp3 swp4
-    mtu  9216
-
-auto downlink-3
-iface downlink-3
-    bond-slaves swp5 swp6
-    mtu  9216
-
-auto downlink-4
-iface downlink-4
-    bond-slaves swp7 swp8
-    mtu  9216
-```
-
-{{< /tab >}}
-
-{{< /tabs >}}
-
-### /etc/frr/frr.conf
-
-{{< tabs "TabID28" >}}
-
-{{< tab "leaf01" >}}
-
-```
-cumulus@leaf01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65542
- bgp router-id 10.0.0.7
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-{{< /tab >}}
-
-{{< tab "leaf02" >}}
-
-```
-cumulus@leaf02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65543
- bgp router-id 10.0.0.8
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-{{< /tab >}}
-
-{{< tab "leaf03" >}}
-
-```
-cumulus@leaf03:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65544
- bgp router-id 10.0.0.9
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-{{< /tab >}}
-
-{{< tab "leaf04" >}}
-
-```
-cumulus@leaf04:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface peerlink-3.4094
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface uplink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 65545
- bgp router-id 10.0.0.10
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor peerlink-3.4094 interface v6only remote-as external
- neighbor uplink-1 interface v6only remote-as external
- neighbor uplink-2 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor peerlink-3.4094 activate
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor uplink-1 activate
-  neighbor uplink-2 activate
-  advertise-all-vni
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-{{< /tab >}}
-
-{{< tab "spine01" >}}
-
-```
-cumulus@spine01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface downlink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-3
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-4
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 64435
- bgp router-id 10.0.0.5
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor downlink-1 interface v6only remote-as external
- neighbor downlink-2 interface v6only remote-as external
- neighbor downlink-3 interface v6only remote-as external
- neighbor downlink-4 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
-  neighbor downlink-1 allowas-in origin
-  neighbor downlink-2 allowas-in origin
-  neighbor downlink-3 allowas-in origin
-  neighbor downlink-4 allowas-in origin
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor downlink-1 activate
-  neighbor downlink-2 activate
-  neighbor downlink-3 activate
-  neighbor downlink-4 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor downlink-1 activate
-  neighbor downlink-2 activate
-  neighbor downlink-3 activate
-  neighbor downlink-4 activate
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
-```
-
-{{< /tab >}}
-
-{{< tab "spine02" >}}
-
-```
-cumulus@spine02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/bgpd.log
-!
-log timestamp precision 6
-!
-interface downlink-1
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-2
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-3
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-interface downlink-4
- ipv6 nd ra-interval 10
- no ipv6 nd suppress-ra
-!
-router bgp 64435
- bgp router-id 10.0.0.6
- coalesce-time 1000
- bgp bestpath as-path multipath-relax
- neighbor downlink-1 interface v6only remote-as external
- neighbor downlink-2 interface v6only remote-as external
- neighbor downlink-3 interface v6only remote-as external
- neighbor downlink-4 interface v6only remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected
-  neighbor downlink-1 allowas-in origin
-  neighbor downlink-2 allowas-in origin
-  neighbor downlink-3 allowas-in origin
-  neighbor downlink-4 allowas-in origin
- exit-address-family
- !
- address-family ipv6 unicast
-  redistribute connected
-  neighbor downlink-1 activate
-  neighbor downlink-2 activate
-  neighbor downlink-3 activate
-  neighbor downlink-4 activate
- exit-address-family
- !
- address-family l2vpn evpn
-  neighbor downlink-1 activate
-  neighbor downlink-2 activate
-  neighbor downlink-3 activate
-  neighbor downlink-4 activate
- exit-address-family
-!
-line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
@@ -2959,954 +2564,1267 @@ line vty
 
 ## EVPN Symmetric Routing
 
-The following example configuration is a basic Clos topology with EVPN
-symmetric routing with external prefix (type-5) routing via dual,
-non-MLAG exit leafs connected to an edge router. Here is the topology
-diagram:
+The following example shows an EVPN symmetric routing configuration, where:
+- MLAG is configured between leaf01 and leaf02, leaf03 and leaf04, and border01 and border02
+- BGP unnumbered is in the underlay (configured on all leafs and spines)
+- VRF BLUE and VRF RED are configured on the leafs for traffic flow between tenants for traffic isolation
 
-{{< img src = "/images/cumulus-linux/evpn-symmetric.png" >}}
+The following images shows traffic flow between tenants. The spines and other devices are omitted for simplicity.
+
+|   Traffic Flow between server01 and server04  |     |
+| --- | --- |
+| <img width=1000/> {{< img src="/images/cumulus-linux/EVPN-same-VLAN.png" >}} | server01 and server04 are in the same VRF and the same VLAN but are located across different leafs.<br><ol><li>server01 makes a LACP hash decision and forwards traffic to leaf01.</li><li>leaf01 does a layer 2 lookup and has the MAC address for server04, it then forwards the packet out VNI10, through leaf04.</li><li>The VXLAN encapsulated frame arrives on leaf04, which does a layer 2 lookup and has the MAC address for server04 in VLAN10.</li></ul>|
+
+|  Traffic Flow between server01 and server05   |     |
+| --- | --- |
+| <img width=1150/> {{< img src="/images/cumulus-linux/EVPN-different-VLAN.png"  >}} | server01 and server05 are in the same VRF, different VLANs, and are located across different leafs.<br><ol><li>server01 makes an LACP hash decision to reach the default gateway and forwards traffic to leaf01.</li><li>leaf01 does a layer 3 lookup in VRF RED and has a route out VNIRED through leaf04.</li><li>The VXLAN encapsulated packet arrives on leaf04, which does a layer 3 lookup in VRF RED and has a route through VLAN20 to server05.</li></ul> |
+
+|   Traffic Flow between server01 and server06  |     |
+| --- | --- |
+| <img width=1300/> {{< img src="/images/cumulus-linux/EVPN-different-VRF.png"  >}} | server01 and server06 are in different VRFs, different VLANs, and are located across different leafs.<br><ol><li>server01 makes an LACP hash decision to reach the default gateway and forwards traffic to leaf01.</li><li>leaf01 does a layer 3 lookup in VRF RED and has a route out VNIRED through border01.</li><li>The VXLAN encapsulated packet arrives on border01, which does a layer 3 lookup in VRF RED and has a route through VLAN30 to fw01 (the policy device).</li><li>fw01 does a layer 3 lookup (without any VRFs) and has a route in VLAN40, through border02.</li><li>border02 does a layer 3 lookup in VRF BLUE and has a route out VNIBLUE, through leaf04.</li><li>The VXLAN encapsulated packet arrives on leaf04, which does a layer 3 lookup in VRF BLUE and has a route in VLAN30 to server06.</ul>|
 
 ### /etc/network/interfaces
 
-{{< tabs "TabID36" >}}
+{{< tabs "TabID2970 ">}}
 
-{{< tab "leaf01" >}}
+{{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-# The loopback network interface
 auto lo
 iface lo inet loopback
+    address 10.10.10.1/32
+    clagd-vxlan-anycast-ip 10.0.1.1
+    vxlan-local-tunnelip 10.10.10.1
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
 
 auto eth0
-iface eth0
-    address 192.168.0.15/24
-    gateway 192.168.0.2
+iface eth0 inet dhcp
+    vrf mgmt
 
-auto lo:1
-iface lo:1
-    address 10.0.0.1/32
-    #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
-    #pre-up sysctl -w net.ipv4.route.gc_timeout=60
-    #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
+auto RED
+iface RED
+  vrf-table auto
 
-# L2 interfaces - ports, vxlan and bridge
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp3
-iface swp3
-    bridge-access 110
-
-auto swp4
-iface swp4
-    bridge-access 110
-
-auto swp5
-iface swp5
-    bridge-access 210
-
-auto swp6
-iface swp6
-    bridge-access 210
-
-auto vni110
-iface vni110
-    vxlan-id 10110
-    vxlan-local-tunnelip 10.0.0.1
-    bridge-access 110
-
-auto vni210
-iface vni210
-    vxlan-id 10210
-    vxlan-local-tunnelip 10.0.0.1
-    bridge-access 210
-
-auto vni4001
-iface vni4001
-    vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.1
-    bridge-access 4001
-
-auto vni4002
-iface vni4002
-    vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.1
-    bridge-access 4002
+auto BLUE
+iface BLUE
+  vrf-table auto
 
 auto bridge
 iface bridge
+    bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
+    bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
-    bridge-ports swp3 swp4 swp5 swp6 vni110 vni210 vni4001 vni4002
-    bridge-stp on
-    bridge-vids 110 210
 
-# Tenants (VRFs)
-auto vrf1
-iface vrf1
-    vrf-table auto
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vrf2
-iface vrf2
-    vrf-table auto
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-# Tenant SVIs - anycast GW
-auto vlan110
-iface vlan110
-    address 172.16.120.1/24
-    vlan-id 110
+auto vni30
+iface vni30
+    bridge-access 30
+    vxlan-id 30
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vniRED
+iface vniRED
+    bridge-access 4001
+    vxlan-id 4001
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vniBLUE
+iface vniBLUE
+    bridge-access 4002
+    vxlan-id 4002
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    address-virtual 00:00:00:00:00:1a 10.1.10.1/24
+    vrf RED
     vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 172.16.120.250/24
-    vrf vrf1
+    vlan-id 10
 
-auto vlan210
-iface vlan210
-    address 172.16.130.1/24
-    vlan-id 210
+auto vlan20
+iface vlan20
+    address 10.1.20.2/24
+    address-virtual 00:00:00:00:00:1a 10.1.20.1/24
+    vrf RED
     vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 172.16.130.250/24
-    vrf vrf2
+    vlan-id 20
 
-# L3 VLAN interface per tenant (for L3 VNI)
+auto vlan30
+iface vlan30
+    address 10.1.30.2/24
+    address-virtual 00:00:00:00:00:1a 10.1.30.1/24
+    vrf BLUE
+    vlan-raw-device bridge
+    vlan-id 30
+
 auto vlan4001
 iface vlan4001
-    vlan-id 4001
+    address-virtual 44:38:39:BE:EF:AA
+    vrf RED
     vlan-raw-device bridge
-    vrf vrf1
+    vlan-id 4001
 
 auto vlan4002
 iface vlan4002
-    vlan-id 4002
+    address-virtual 44:38:39:BE:EF:AA
+    vrf BLUE
     vlan-raw-device bridge
-    vrf vrf2
+    vlan-id 4002
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.2
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:AA
+
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 3
+    bridge-access 30
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf02" >}}
+{{< tab "leaf02 ">}}
 
 ```
 cumulus@leaf02:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-# The loopback network interface
 auto lo
 iface lo inet loopback
+    address 10.10.10.2/32
+    clagd-vxlan-anycast-ip 10.0.1.1
+    vxlan-local-tunnelip 10.10.10.2
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
 
 auto eth0
-iface eth0
-    address 192.168.0.15/24
-    gateway 192.168.0.2
+iface eth0 inet dhcp
+    vrf mgmt
 
-auto lo:1
-iface lo:1
-    address 10.0.0.2/32
-    #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
-    #pre-up sysctl -w net.ipv4.route.gc_timeout=60
-    #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
+auto RED
+iface RED
+  vrf-table auto
 
-# L2 interfaces - ports, vxlan and bridge
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp3
-iface swp3
-    bridge-access 120
-
-auto swp4
-iface swp4
-    bridge-access 120
-
-auto swp5
-iface swp5
-    bridge-access 220
-
-auto swp6
-iface swp6
-    bridge-access 220
-
-auto vni120
-iface vni120
-    vxlan-id 10120
-    vxlan-local-tunnelip 10.0.0.2
-    bridge-access 120
-
-auto vni220
-iface vni220
-    vxlan-id 10220
-    vxlan-local-tunnelip 10.0.0.2
-    bridge-access 220
-
-auto vni4001
-iface vni4001
-    vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.2
-    bridge-access 4001
-
-auto vni4002
-iface vni4002
-    vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.2
-    bridge-access 4002
+auto BLUE
+iface BLUE
+  vrf-table auto
 
 auto bridge
 iface bridge
+    bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
+    bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
-    bridge-ports swp3 swp4 swp5 swp6 vni120 vni220 vni4001 vni4002
-    bridge-stp on
-    bridge-vids 120 220
-# Tenants (VRFs)
-auto vrf1
-iface vrf1
-    vrf-table auto
 
-auto vrf2
-iface vrf2
-    vrf-table auto
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-# Tenant SVIs - anycast GW
-auto vlan120
-iface vlan120
-    address 172.16.120.2/24
-    vlan-id 120
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vni30
+iface vni30
+    bridge-access 30
+    vxlan-id 30
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vniRED
+iface vniRED
+    bridge-access 4001
+    vxlan-id 4001
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vniBLUE
+iface vniBLUE
+    bridge-access 4002
+    vxlan-id 4002
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
+    address 10.1.10.3/24
+    address-virtual 00:00:00:00:00:1a 10.1.10.1/24
+    vrf RED
     vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 172.16.120.250/24
-    vrf vrf1
+    vlan-id 10
 
-auto vlan220
-iface vlan220
-    address 172.16.130.2/24
-    vlan-id 220
+auto vlan20
+iface vlan20
+    address 10.1.20.3/24
+    address-virtual 00:00:00:00:00:1a 10.1.20.1/24
+    vrf RED
     vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 172.16.130.250/24
-    vrf vrf2
+    vlan-id 20
 
-# L3 VLAN interface per tenant (for L3 VNI)
+auto vlan30
+iface vlan30
+    address 10.1.30.3/24
+    address-virtual 00:00:00:00:00:1a 10.1.30.1/24
+    vrf BLUE
+    vlan-raw-device bridge
+    vlan-id 30
+
 auto vlan4001
 iface vlan4001
-    vlan-id 4001
+    address-virtual 44:38:39:BE:EF:AA
+    vrf RED
     vlan-raw-device bridge
-    vrf vrf1
+    vlan-id 4001
 
 auto vlan4002
 iface vlan4002
-    vlan-id 4002
+    address-virtual 44:38:39:BE:EF:AA
+    vrf BLUE
     vlan-raw-device bridge
-    vrf vrf2
+    vlan-id 4002
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.1
+    clagd-peer-ip linklocal
+    clagd-priority 32768
+    clagd-sys-mac 44:38:39:BE:EF:AA
+
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 3
+    bridge-access 30
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf03" >}}
+{{< tab "leaf03 ">}}
 
 ```
 cumulus@leaf03:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-# The loopback network interface
 auto lo
 iface lo inet loopback
+    address 10.10.10.3/32
+    clagd-vxlan-anycast-ip 10.0.1.2
+    vxlan-local-tunnelip 10.10.10.3
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
 
 auto eth0
-iface eth0
-    address 192.168.0.15/24
-    gateway 192.168.0.2
+iface eth0 inet dhcp
+    vrf mgmt
 
-auto lo:1
-iface lo:1
-    address 10.0.0.3/32
-    #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
-    #pre-up sysctl -w net.ipv4.route.gc_timeout=60
-    #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
+auto RED
+iface RED
+  vrf-table auto
 
-# L2 interfaces - ports, vxlan and bridge
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp3
-iface swp3
-    bridge-access 130
-
-auto swp4
-iface swp4
-    bridge-access 130
-
-auto swp5
-iface swp5
-    bridge-access 230
-
-auto swp6
-iface swp6
-    bridge-access 230
-
-auto vni130
-iface vni130
-    vxlan-id 10130
-    vxlan-local-tunnelip 10.0.0.3
-    bridge-access 130
-
-auto vni230
-iface vni230
-    vxlan-id 10230
-    vxlan-local-tunnelip 10.0.0.3
-    bridge-access 230
-
-auto vni4001
-iface vni4001
-    vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.3
-    bridge-access 4001
-
-auto vni4002
-iface vni4002
-    vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.3
-    bridge-access 4002
+auto BLUE
+iface BLUE
+  vrf-table auto
 
 auto bridge
 iface bridge
+    bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
+    bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
-    bridge-ports swp3 swp4 swp5 swp6 vni130 vni230 vni4001 vni4002
-    bridge-stp on
-    bridge-vids 130 230
 
-# Tenants (VRFs)
-auto vrf1
-iface vrf1
-    vrf-table auto
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vrf2
-iface vrf2
-    vrf-table auto
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-# Tenant SVIs - anycast GW
-auto vlan130
-iface vlan130
-    address 172.16.120.3/24
-    vlan-id 130
+auto vni30
+iface vni30
+    bridge-access 30
+    vxlan-id 30
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vniRED
+iface vniRED
+    bridge-access 4001
+    vxlan-id 4001
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vniBLUE
+iface vniBLUE
+    bridge-access 4002
+    vxlan-id 4002
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    address-virtual 00:00:00:00:00:1a 10.1.10.1/24
+    vrf RED
     vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 172.16.120.250/24
-    vrf vrf1
+    vlan-id 10
 
-auto vlan230
-iface vlan230
-    address 172.16.130.3/24
-    vlan-id 230
+auto vlan20
+iface vlan20
+    address 10.1.20.2/24
+    address-virtual 00:00:00:00:00:1a 10.1.20.1/24
+    vrf RED
     vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 172.16.130.250/24
-    vrf vrf2
+    vlan-id 20
 
-# L3 VLAN interface per tenant (for L3 VNI)
+auto vlan30
+iface vlan30
+    address 10.1.30.2/24
+    address-virtual 00:00:00:00:00:1a 10.1.30.1/24
+    vrf BLUE
+    vlan-raw-device bridge
+    vlan-id 30
+
 auto vlan4001
 iface vlan4001
-    vlan-id 4001
+    address-virtual 44:38:39:BE:EF:BB
+    vrf RED
     vlan-raw-device bridge
-    vrf vrf1
+    vlan-id 4001
 
 auto vlan4002
 iface vlan4002
-    vlan-id 4002
+    address-virtual 44:38:39:BE:EF:BB
+    vrf BLUE
     vlan-raw-device bridge
-    vrf vrf2
+    vlan-id 4002
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.4
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:BB
+
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 3
+    bridge-access 30
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf04" >}}
+{{< tab "leaf04 ">}}
 
 ```
 cumulus@leaf04:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-# The loopback network interface
 auto lo
 iface lo inet loopback
+    address 10.10.10.4/32
+    clagd-vxlan-anycast-ip 10.0.1.2
+    vxlan-local-tunnelip 10.10.10.4
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
 
 auto eth0
-iface eth0
-    address 192.168.0.15/24
-    gateway 192.168.0.2
+iface eth0 inet dhcp
+    vrf mgmt
 
-auto lo:1
-iface lo:1
-    address 10.0.0.4/32
-    #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
-    #pre-up sysctl -w net.ipv4.route.gc_timeout=60
-    #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
+auto RED
+iface RED
+    vrf-table auto
 
-# L2 interfaces - ports, vxlan and bridge
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp3
-iface swp3
-    bridge-access 140
-
-auto swp4
-iface swp4
-    bridge-access 140
-
-auto swp5
-iface swp5
-    bridge-access 240
-
-auto swp6
-iface swp6
-    bridge-access 240
-
-auto vni140
-iface vni140
-    vxlan-id 10140
-    vxlan-local-tunnelip 10.0.0.4
-    bridge-access 140
-
-auto vni240
-iface vni240
-    vxlan-id 10240
-    vxlan-local-tunnelip 10.0.0.4
-    bridge-access 240
-
-auto vni4001
-iface vni4001
-    vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.4
-    bridge-access 4001
-
-auto vni4002
-iface vni4002
-    vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.4
-    bridge-access 4002
+auto BLUE
+iface BLUE
+    vrf-table auto
 
 auto bridge
 iface bridge
+    bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
+    bridge-vids 10 20 30 4001 4002  
     bridge-vlan-aware yes
-    bridge-ports swp3 swp4 swp5 swp6 vni140 vni240 vni4001 vni4002
-    bridge-stp on
-    bridge-vids 140 240
 
-# Tenants (VRFs)
-auto vrf1
-iface vrf1
-    vrf-table auto
+auto vni10
+iface vni10
+    bridge-access 10
+    vxlan-id 10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-auto vrf2
-iface vrf2
-    vrf-table auto
+auto vni20
+iface vni20
+    bridge-access 20
+    vxlan-id 20
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
 
-# Tenant SVIs - anycast GW
-auto vlan140
-iface vlan140
-    address 172.16.120.4/24
-    vlan-id 140
+auto vni30
+iface vni30
+    bridge-access 30
+    vxlan-id 30
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vniRED
+iface vniRED
+    bridge-access 4001
+    vxlan-id 4001
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vniBLUE
+iface vniBLUE
+    bridge-access 4002
+    vxlan-id 4002
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan10
+iface vlan10
+    address 10.1.10.3/24
+    address-virtual 00:00:00:00:00:1a 10.1.10.1/24
+    vrf RED
     vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 172.16.120.250/24
-    vrf vrf1
+    vlan-id 10
 
-auto vlan240
-iface vlan240
-    address 172.16.130.4/24
-    vlan-id 240
+auto vlan20
+iface vlan20
+    address 10.1.20.3/24
+    address-virtual 00:00:00:00:00:1a 10.1.20.1/24
+    vrf RED
     vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 172.16.130.250/24
-    vrf vrf2
+    vlan-id 20
 
-# L3 VLAN interface per tenant (for L3 VNI)
+auto vlan30
+iface vlan30
+    address 10.1.30.3/24
+    address-virtual 00:00:00:00:00:1a 10.1.30.1/24
+    vrf BLUE
+    vlan-raw-device bridge
+    vlan-id 30
+
 auto vlan4001
 iface vlan4001
-    vlan-id 4001
+    address-virtual 44:38:39:BE:EF:BB
+    vrf RED
     vlan-raw-device bridge
-    vrf vrf1
+    vlan-id 4001
 
 auto vlan4002
 iface vlan4002
-    vlan-id 4002
+    address-virtual 44:38:39:BE:EF:BB
+    vrf BLUE
     vlan-raw-device bridge
-    vrf vrf2
+    vlan-id 4002
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.3
+    clagd-peer-ip linklocal
+    clagd-priority 32768
+    clagd-sys-mac 44:38:39:BE:EF:BB
+
+auto swp1
+iface swp1
+    alias bond member of bond1
+    mtu 9000
+
+auto bond1
+iface bond1
+    alias bond1 on swp1
+    mtu 9000
+    clag-id 1
+    bridge-access 10
+    bond-slaves swp1
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp2
+iface swp2
+    alias bond member of bond2
+    mtu 9000
+
+auto bond2
+iface bond2
+    alias bond2 on swp2
+    mtu 9000
+    clag-id 2
+    bridge-access 20
+    bond-slaves swp2
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 3
+    bridge-access 30
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
 
-{{< tab "spine01" >}}
+{{< tab "spine01 ">}}
 
 ```
 cumulus@spine01:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-# The loopback network interface
 auto lo
 iface lo inet loopback
+    address 10.10.10.101/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
 
 auto eth0
-iface eth0
-    address 192.168.0.15/24
-    gateway 192.168.0.2
-
-auto lo:1
-iface lo:1
-    address 172.16.110.1/24
+iface eth0 inet dhcp
+    vrf mgmt
 
 auto swp1
 iface swp1
+    alias leaf to spine
 
 auto swp2
 iface swp2
+    alias leaf to spine
 
 auto swp3
 iface swp3
+    alias leaf to spine
 
 auto swp4
 iface swp4
+    alias leaf to spine
 
 auto swp5
 iface swp5
+    alias leaf to spine
 
 auto swp6
 iface swp6
+    alias leaf to spine
 ```
 
 {{< /tab >}}
 
-{{< tab "spine02" >}}
+{{< tab "spine02 ">}}
 
 ```
 cumulus@spine02:~$ cat /etc/network/interfaces
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-# The loopback network interface
 auto lo
 iface lo inet loopback
+    address 10.10.10.102/32
 
-auto eth0
-iface eth0
-    address 192.168.0.15/24
-    gateway 192.168.0.2
-
-auto lo:1
-iface lo:1
-    address 172.16.110.2/24
-
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp3
-iface swp3
-
-auto swp4
-iface swp4
-
-auto swp5
-iface swp5
-
-auto swp6
-iface swp6
-```
-
-{{< /tab >}}
-
-{{< tab "exit01" >}}
-
-```
-cumulus@exit01:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-# The loopback network interface
-auto lo
-iface lo inet loopback
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
 
 auto eth0
 iface eth0 inet dhcp
-
-auto lo:1
-iface lo:1
-    address 10.0.0.5/32
-    #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
-    #pre-up sysctl -w net.ipv4.route.gc_timeout=60
-    #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
-
-# Physical interfaces
-auto swp1s0
-iface swp1s0
-
-auto swp1s1
-iface swp1s1
-
-auto swp1s2
-iface swp1s2
-    bridge-vids 2001 2002
-
-auto swp1s3
-iface swp1s3
-    bridge-access 150
-
-auto swp2s0
-iface swp2s0
-    bridge-access 250
-
-auto vni150
-iface vni150
-    vxlan-id 10150
-    vxlan-local-tunnelip 10.0.0.5
-    bridge-access 150
-
-auto vni250
-iface vni250
-    vxlan-id 10250
-    vxlan-local-tunnelip 10.0.0.5
-    bridge-access 250
-
-# Tenant VRFs
-auto vrf1
-iface vrf1
-    vrf-table auto
-
-auto vrf2
-iface vrf2
-    vrf-table auto
-
-# VxLAN interfaces (VLAN to VNI mappings)
-# Need only the L3 VxLAN interfaces
-auto vni4001
-iface vni4001
-    vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.5
-    bridge-access 4001
-
-auto vni4002
-iface vni4002
-    vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.5
-    bridge-access 4002
-
-# Bridge
-auto bridge
-iface bridge
-      bridge-vlan-aware yes
-      bridge-ports swp4 swp5 vni160 vni260 vni4001 vni4002
-      bridge-stp on
-      bridge-vids 160 260 2001 2002
-
-# Tenant SVIs - anycast GW
-auto vlan160
-iface vlan160
-    address 172.16.120.1/24
-    vlan-id 160
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 172.16.120.250/24
-    vrf vrf1
-
-auto vlan260
-iface vlan260
-    address 172.16.130.2/24
-    vlan-id 260
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 172.16.130.250/24
-    vrf vrf2
-
-# L3 VLAN interface per tenant (for L3 VNI)
-auto vlan4001
-iface vlan4001
-    vlan-id 4001
-    vlan-raw-device bridge
-    vrf vrf1
-
-auto vlan4002
-iface vlan4002
-    vlan-id 4002
-    vlan-raw-device bridge
-    vrf vrf2
-
-# External-facing L3 VLAN interface per tenant (towards WAN edge)
-#auto swp1s2.4001
-#iface swp1s2.4001
-#    address 172.16.100.2/30
-#    vrf vrf1
-#
-#auto swp1s2.4002
-#iface swp1s2.4002
-#    address 172.16.100.6/30
-#    vrf vrf2
-#
-# configuration below is a workaround for RN-766
-#
-auto vlan2001
-iface vlan2001
-    vlan-id 2001
-    vlan-raw-device bridge
-    vrf vrf1
-    address 172.16.100.2/30
-
-auto vlan2002
-iface vlan2002
-    vlan-id 2002
-    vlan-raw-device bridge
-    vrf vrf2
-    address 172.16.100.6/30
-
-auto vni16001
-iface vni16001
-    vxlan-id 16001
-    vxlan-local-tunnelip 10.0.0.5
-    bridge-access 2001
-
-auto vni16002
-iface vni16002
-    vxlan-id 16002
-    vxlan-local-tunnelip 10.0.0.5
-    bridge-access 2002
-```
-
-{{< /tab >}}
-
-{{< tab "exit02" >}}
-
-```
-cumulus@exit02:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-# The loopback network interface
-auto lo
-iface lo inet loopback
-
-auto eth0
-iface eth0
-    address 192.168.0.15/24
-    gateway 192.168.0.2
-
-auto lo:1
-iface lo:1
-    address 10.0.0.6/32
-    #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
-    #pre-up sysctl -w net.ipv4.route.gc_timeout=60
-    #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
-
-# Physical interfaces
-auto swp1
-iface swp1
-
-auto swp2
-iface swp2
-
-auto swp3
-iface swp3
-
-auto swp4
-iface swp4
-    bridge-access 160
-
-auto swp5
-iface swp5
-    bridge-access 260
-
-auto vni160
-iface vni160
-    vxlan-id 10160
-    vxlan-local-tunnelip 10.0.0.6
-    bridge-access 160
-
-auto vni260
-iface vni260
-    vxlan-id 10260
-    vxlan-local-tunnelip 10.0.0.6
-    bridge-access 260
-
-# Tenant VRFs
-auto vrf1
-iface vrf1
-    vrf-table auto
-
-auto vrf2
-iface vrf2
-    vrf-table auto
-
-# VxLAN interfaces (VLAN to VNI mappings)
-# Need only the L3 VxLAN interfaces
-auto vni4001
-iface vni4001
-    vxlan-id 104001
-    vxlan-local-tunnelip 10.0.0.6
-    bridge-access 4001
-
-auto vni4002
-iface vni4002
-    vxlan-id 104002
-    vxlan-local-tunnelip 10.0.0.6
-    bridge-access 4002
-
-# Bridge
-auto bridge
-iface bridge
-      bridge-vlan-aware yes
-      bridge-ports swp4 swp5 vni160 vni260 vni4001 vni4002
-      bridge-stp on
-      bridge-vids 160 260 2001 2002
-
-# Tenant SVIs - anycast GW
-auto vlan160
-iface vlan160
-    address 172.16.120.1/24
-    vlan-id 160
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 172.16.120.250/24
-    vrf vrf1
-
-auto vlan260
-iface vlan260
-    address 172.16.130.2/24
-    vlan-id 260
-    vlan-raw-device bridge
-    address-virtual 00:00:5e:00:01:01 172.16.130.250/24
-    vrf vrf2
-
-# L3 VLAN interface per tenant (for L3 VNI)
-auto vlan4001
-iface vlan4001
-    vlan-id 4001
-    vlan-raw-device bridge
-    vrf vrf1
-
-auto vlan4002
-iface vlan4002
-    vlan-id 4002
-    vlan-raw-device bridge
-    vrf vrf2
-
-# External-facing L3 VLAN interface per tenant (towards WAN edge)
-# auto swp3.4001
-# iface swp3.4001
-#     address 172.16.101.2/30
-#     vrf vrf1
-#  
-# auto swp3.4002
-# iface swp3.4002
-#     address 172.16.101.6/30
-#     vrf vrf2
-#
-# configuration below is a workaround for RN-766
-#
-auto vlan2001
-iface vlan2001
-    vlan-id 2001
-    vlan-raw-device bridge
-    vrf vrf1
-    address 172.16.101.2/30
-
-auto vlan2002
-iface vlan2002
-    vlan-id 2002
-    vlan-raw-device bridge
-    vrf vrf2
-    address 172.16.101.6/30
-
-auto vni16001
-iface vni16001
-    vxlan-id 16001
-    vxlan-local-tunnelip 10.0.0.6
-    bridge-access 2001
-
-auto vni16002
-iface vni16002
-    vxlan-id 16002
-    vxlan-local-tunnelip 10.0.0.6
-    bridge-access 2002
-```
-
-{{< /tab >}}
-
-{{< tab "router01" >}}
-
-```
-cumulus@router01:~$ cat /etc/network/interfaces
-
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-# The loopback network interface
-auto lo
-iface lo inet loopback
-
-auto eth0
-iface eth0
-    address 192.168.0.15/24
-    gateway 192.168.0.2
-
-auto lo:1
-iface lo:1
-    address 120.0.0.1/32
-    #pre-up sysctl -w net.ipv4.neigh.default.gc_thresh1=0
-    #pre-up sysctl -w net.ipv4.route.gc_timeout=60
-    #pre-up sysctl -w net.ipv4.neigh.default.base_reachable_time_ms=240000
+    vrf mgmt
 
 auto swp1
 iface swp1
-
-auto swp1.2001
-iface swp1.2001
-    address 172.16.100.1/24
-
-auto swp1.2002
-iface swp1.2002
-    address 172.16.100.5/24
+    alias leaf to spine
 
 auto swp2
 iface swp2
-
-auto swp2.2001
-iface swp2.2001
-    address 172.16.101.1/24
-
-auto swp2.2002
-iface swp2.2002
-    address 172.16.101.5/24
+    alias leaf to spine
 
 auto swp3
 iface swp3
-    address 81.1.1.1/24
+    alias leaf to spine
 
 auto swp4
 iface swp4
-    address 81.1.2.1/24
+    alias leaf to spine
 
 auto swp5
 iface swp5
-    address 81.1.3.1/24
+    alias leaf to spine
 
 auto swp6
 iface swp6
-    address 81.1.4.1/24
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "spine03 ">}}
+
+```
+cumulus@spine03:~$ cat /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+    address 10.10.10.103/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto swp1
+iface swp1
+    alias leaf to spine
+
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "spine04 ">}}
+
+```
+cumulus@spine04:~$ cat /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+    address 10.10.10.104/32
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto swp1
+iface swp1
+    alias leaf to spine
+
+auto swp2
+iface swp2
+    alias leaf to spine
+
+auto swp3
+iface swp3
+    alias leaf to spine
+
+auto swp4
+iface swp4
+    alias leaf to spine
+
+auto swp5
+iface swp5
+    alias leaf to spine
+
+auto swp6
+iface swp6
+    alias leaf to spine
+```
+
+{{< /tab >}}
+
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:~$ cat /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+    address 10.10.10.63/32
+    clagd-vxlan-anycast-ip 10.0.1.254
+    vxlan-local-tunnelip 10.10.10.63
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto RED
+iface RED
+  vrf-table auto
+
+auto BLUE
+iface BLUE
+  vrf-table auto
+
+auto bridge
+iface bridge
+    bridge-ports peerlink bond3 vniRED vniBLUE
+    bridge-vids 4001 4002  
+    bridge-vlan-aware yes
+
+auto vniRED
+iface vniRED
+    bridge-access 4001
+    vxlan-id 4001
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vniBLUE
+iface vniBLUE
+    bridge-access 4002
+    vxlan-id 4002
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan4001
+iface vlan4001
+    address-virtual 44:38:39:BE:EF:FF
+    vrf RED
+    vlan-raw-device bridge
+    vlan-id 4001
+
+auto vlan4002
+iface vlan4002
+    address-virtual 44:38:39:BE:EF:FF
+    vrf BLUE
+    vlan-raw-device bridge
+    vlan-id 4002
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.64
+    clagd-peer-ip linklocal
+    clagd-priority 1000
+    clagd-sys-mac 44:38:39:BE:EF:FF
+
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 1
+    bridge-vids 10 20 30
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+```
+
+{{< /tab >}}
+
+{{< tab "border02 ">}}
+
+```
+cumulus@border02:~$ cat /etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+    address 10.10.10.64/32
+    clagd-vxlan-anycast-ip 10.0.1.254
+    vxlan-local-tunnelip 10.10.10.64
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+    address ::1/128
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+
+auto RED
+iface RED
+  vrf-table auto
+
+auto BLUE
+iface BLUE
+  vrf-table auto
+
+auto bridge
+iface bridge
+    bridge-ports peerlink bond3 vniRED vniBLUE
+    bridge-vids 4001 4002  
+    bridge-vlan-aware yes
+
+auto vniRED
+iface vniRED
+    bridge-access 4001
+    vxlan-id 4001
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vniBLUE
+iface vniBLUE
+    bridge-access 4002
+    vxlan-id 4002
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard yes
+    bridge-learning off
+    bridge-arp-nd-suppress on
+
+auto vlan4001
+iface vlan4001
+    address-virtual 44:38:39:BE:EF:FF
+    vrf RED
+    vlan-raw-device bridge
+    vlan-id 4001
+
+auto vlan4002
+iface vlan4002
+    address-virtual 44:38:39:BE:EF:FF
+    vrf BLUE
+    vlan-raw-device bridge
+    vlan-id 4002
+
+auto swp51
+iface swp51
+    alias leaf to spine
+
+auto swp52
+iface swp52
+    alias leaf to spine
+
+auto swp53
+iface swp53
+    alias leaf to spine
+
+auto swp54
+iface swp54
+    alias leaf to spine
+
+auto swp49
+iface swp49
+    alias peerlink
+
+auto swp50
+iface swp50
+    alias peerlink
+
+auto peerlink
+iface peerlink
+    bond-slaves swp49 swp50
+
+auto peerlink.4094
+iface peerlink.4094
+    clagd-backup-ip 10.10.10.63
+    clagd-peer-ip linklocal
+    clagd-priority 32768
+    clagd-sys-mac 44:38:39:BE:EF:FF
+
+auto swp3
+iface swp3
+    alias bond member of bond3
+    mtu 9000
+
+auto bond3
+iface bond3
+    alias bond3 on swp3
+    mtu 9000
+    clag-id 1
+    bridge-vids 10 20 30
+    bond-slaves swp3
+    bond-lacp-bypass-allow yes
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
 ```
 
 {{< /tab >}}
@@ -3915,370 +3833,334 @@ iface swp6
 
 ### /etc/frr/frr.conf
 
-{{< tabs "TabID40" >}}
+{{< tabs "TabID3535 ">}}
 
-{{< tab "leaf01" >}}
+{{< tab "leaf01 ">}}
 
 ```
 cumulus@leaf01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
+...
+log syslog informational
 !
-password CumulusLinux!
-enable password CumulusLinux!
+vrf RED
+  vni 4001
+vrf BLUE
+  vni 4002
 !
-vrf vrf1
- vni 104001
-vrf vrf2
- vni 104002
-!
-interface swp1
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-interface swp2
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-router bgp 65001
- bgp router-id 10.0.0.1
- neighbor SPINE peer-group
- neighbor SPINE remote-as external
- neighbor SPINE timers 10 30
- neighbor swp1 interface peer-group SPINE
- neighbor swp2 interface peer-group SPINE
+router bgp 65101
+ bgp router-id 10.10.10.1
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
-  network 10.0.0.1/32
+  redistribute connected
  exit-address-family
-!
+ !
  address-family l2vpn evpn
-  neighbor SPINE activate
+  neighbor underlay activate
   advertise-all-vni
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf02" >}}
+{{< tab "leaf02 ">}}
 
 ```
 cumulus@leaf02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
+...
+log syslog informational
 !
-password CumulusLinux!
-enable password CumulusLinux!
+vrf RED
+  vni 4001
+vrf BLUE
+  vni 4002
 !
-vrf vrf1
- vni 104001
-vrf vrf2
- vni 104002
-!
-interface swp1
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-interface swp2
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-router bgp 65002
- bgp router-id 10.0.0.2
- neighbor SPINE peer-group
- neighbor SPINE remote-as external
- neighbor SPINE timers 10 30
- neighbor swp1 interface peer-group SPINE
- neighbor swp2 interface peer-group SPINE
+router bgp 65101
+ bgp router-id 10.10.10.2
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
-  network 10.0.0.2/32
+  redistribute connected
  exit-address-family
-!
+ !
  address-family l2vpn evpn
-  neighbor SPINE activate
+  neighbor underlay activate
   advertise-all-vni
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf03" >}}
+{{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ cat /etc/frr/frr.conf 
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
+cumulus@leaf03:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
 !
-password CumulusLinux!
-enable password CumulusLinux!
+vrf RED
+  vni 4001
+vrf BLUE
+  vni 4002
 !
-vrf vrf1
- vni 104001
-vrf vrf2
- vni 104002
-!
-interface swp1
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-interface swp2
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-router bgp 65003
- bgp router-id 10.0.0.3
- neighbor SPINE peer-group
- neighbor SPINE remote-as external
- neighbor SPINE timers 10 30
- neighbor swp1 interface peer-group SPINE
- neighbor swp2 interface peer-group SPINE
+router bgp 65102
+ bgp router-id 10.10.10.3
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
-  network 10.0.0.3/32
+  redistribute connected
  exit-address-family
-!
+ !
  address-family l2vpn evpn
-  neighbor SPINE activate
+  neighbor underlay activate
   advertise-all-vni
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
-{{< tab "leaf04" >}}
+{{< tab "leaf04 ">}}
 
 ```
 cumulus@leaf04:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
+...
+log syslog informational
 !
-password CumulusLinux!
-enable password CumulusLinux!
+vrf RED
+  vni 4001
+vrf BLUE
+  vni 4002
 !
-vrf vrf1
- vni 104001
-vrf vrf2
- vni 104002
-!
-interface swp1
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-interface swp2
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-router bgp 65004
- bgp router-id 10.0.0.4
- neighbor SPINE peer-group
- neighbor SPINE remote-as external
- neighbor SPINE timers 10 30
- neighbor swp1 interface peer-group SPINE
- neighbor swp2 interface peer-group SPINE
+router bgp 65102
+ bgp router-id 10.10.10.4
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
-  network 10.0.0.4/32
+  redistribute connected
  exit-address-family
-!
+ !
  address-family l2vpn evpn
-  neighbor SPINE activate
+  neighbor underlay activate
   advertise-all-vni
  exit-address-family
 !
-router bgp 65004 vrf vrf1
- bgp router-id 172.16.120.4
- neighbor 172.16.120.100 remote-as external
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
-!
-router bgp 65004 vrf vrf2
- bgp router-id 172.16.130.4
- neighbor 172.16.130.100 remote-as external
- address-family ipv4 unicast
-  redistribute connected
- exit-address-family
-!
 line vty
- exec-timeout 0 0
-!
 ```
+
 {{< /tab >}}
 
-{{< tab "spine01" >}}
+{{< tab "spine01 ">}}
 
 ```
 cumulus@spine01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
+...
+log syslog informational
 !
-password CumulusLinux!
-enable password CumulusLinux!
-!
-router bgp 65100
- bgp router-id 172.16.110.1
- neighbor LEAF peer-group
- neighbor LEAF remote-as external
- neighbor LEAF timers 10 30
- neighbor swp1 interface peer-group LEAF
- neighbor swp2 interface peer-group LEAF
- neighbor swp3 interface peer-group LEAF
- neighbor swp4 interface peer-group LEAF
- neighbor BORDER-LEAF peer-group
- neighbor BORDER-LEAF remote-as external
- neighbor BORDER-LEAF timers 10 30
- neighbor swp5 interface peer-group BORDER-LEAF
- neighbor swp6 interface peer-group BORDER-LEAF
+router bgp 65199
+ bgp router-id 10.10.10.101
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
  !
  address-family ipv4 unicast
-  network 172.16.110.1/24
-  neighbor LEAF activate
-  neighbor BORDER-LEAF activate
-  neighbor LEAF route-reflector-client
-  neighbor BORDER-LEAF route-reflector-client
+  redistribute connected
  exit-address-family
  !
  address-family l2vpn evpn
-  neighbor LEAF activate
-  neighbor BORDER-LEAF activate
-  neighbor LEAF route-reflector-client
-  neighbor BORDER-LEAF route-reflector-client
+  neighbor underlay activate
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
-{{< tab "spine02" >}}
+{{< tab "spine02 ">}}
 
 ```
 cumulus@spine02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
+...
+log syslog informational
 !
-password CumulusLinux!
-enable password CumulusLinux!
-!
-router bgp 65100
- bgp router-id 172.16.110.2
- neighbor LEAF peer-group
- neighbor LEAF remote-as external
- neighbor LEAF timers 10 30
- neighbor swp1 interface peer-group LEAF
- neighbor swp2 interface peer-group LEAF
- neighbor swp3 interface peer-group LEAF
- neighbor swp4 interface peer-group LEAF
- neighbor BORDER-LEAF peer-group
- neighbor BORDER-LEAF remote-as external
- neighbor BORDER-LEAF timers 10 30
- neighbor swp5 interface peer-group BORDER-LEAF
- neighbor swp6 interface peer-group BORDER-LEAF
+router bgp 65199
+ bgp router-id 10.10.10.102
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
  !
  address-family ipv4 unicast
-  network 172.16.110.2/24
-  neighbor LEAF activate
-  neighbor BORDER-LEAF activate
-  neighbor LEAF route-reflector-client
-  neighbor BORDER-LEAF route-reflector-client
+  redistribute connected
  exit-address-family
  !
  address-family l2vpn evpn
-  neighbor LEAF activate
-  neighbor BORDER-LEAF activate
-  neighbor LEAF route-reflector-client
-  neighbor BORDER-LEAF route-reflector-client
+  neighbor underlay activate
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
-{{< tab "exit01" >}}
+{{< tab "spine03 ">}}
 
 ```
-cumulus@exit01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
+cumulus@spine03:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
 !
-password CumulusLinux!
-enable password CumulusLinux!
-!
-vrf vrf1
- vni 104001
-vrf vrf2
- vni 104002
-!
-interface swp1s0
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-interface swp1s1
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-router bgp 65005
- bgp router-id 10.0.0.5
- neighbor SPINE peer-group
- neighbor SPINE remote-as external
- neighbor SPINE timers 1200 4800
- neighbor swp1s0 interface peer-group SPINE
- neighbor swp1s1 interface peer-group SPINE
- neighbor 172.16.100.1 remote-as external
- neighbor 172.16.100.5 remote-as external
+router bgp 65199
+ bgp router-id 10.10.10.103
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
  !
  address-family ipv4 unicast
-  network 10.0.0.5/32
+  redistribute connected
  exit-address-family
  !
  address-family l2vpn evpn
-  neighbor SPINE activate
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "spine04 ">}}
+
+```
+cumulus@spine04:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+router bgp 65199
+ bgp router-id 10.10.10.104
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor swp1 interface peer-group underlay
+ neighbor swp2 interface peer-group underlay
+ neighbor swp3 interface peer-group underlay
+ neighbor swp4 interface peer-group underlay
+ neighbor swp5 interface peer-group underlay
+ neighbor swp6 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
+ exit-address-family
+!
+line vty
+```
+
+{{< /tab >}}
+
+{{< tab "border01 ">}}
+
+```
+cumulus@border01:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
+!
+vrf RED
+  vni 4001
+vrf BLUE
+  vni 4002
+!
+router bgp 65132
+ bgp router-id 10.10.10.63
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor underlay activate
   advertise-all-vni
  exit-address-family
 !
-router bgp 65005 vrf vrf1
- bgp router-id 172.16.100.2
- neighbor 172.16.100.1 remote-as external
+router bgp 65132 vrf RED
+ bgp router-id 10.10.10.63
+ bgp bestpath as-path multipath-relax
  !
  address-family ipv4 unicast
-  redistribute connected
+  redistribute static
  exit-address-family
  !
  address-family l2vpn evpn
   advertise ipv4 unicast
  exit-address-family
 !
-router bgp 65005 vrf vrf2
- bgp router-id 172.16.100.6
- neighbor 172.16.100.5 remote-as external
+router bgp 65132 vrf BLUE
+ bgp router-id 10.10.10.63
+ bgp bestpath as-path multipath-relax
  !
  address-family ipv4 unicast
-  redistribute connected
+  redistribute static
  exit-address-family
  !
  address-family l2vpn evpn
@@ -4286,73 +4168,60 @@ router bgp 65005 vrf vrf2
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
-{{< tab "exit02" >}}
+{{< tab "border02 ">}}
 
 ```
-cumulus@exit02:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
+cumulus@border02:~$ cat /etc/frr/frr.conf
+...
+log syslog informational
 !
-password CumulusLinux!
-enable password CumulusLinux!
+vrf RED
+  vni 4001
+vrf BLUE
+  vni 4002
 !
-vrf vrf1
- vni 104001
-vrf vrf2
- vni 104002
-!
-interface swp1
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-interface swp2
- no ipv6 nd suppress-ra
- ipv6 nd ra-interval 10
-!
-router bgp 65005
- bgp router-id 10.0.0.6
- neighbor SPINE peer-group
- neighbor SPINE remote-as external
- neighbor SPINE timers 10 30
- neighbor swp1 interface peer-group SPINE
- neighbor swp2 interface peer-group SPINE
- neighbor 172.16.101.1 remote-as external
- neighbor 172.16.101.5 remote-as external
+router bgp 65132
+ bgp router-id 10.10.10.64
+ bgp bestpath as-path multipath-relax
+ neighbor underlay peer-group
+ neighbor underlay remote-as external
+ neighbor peerlink.4094 interface remote-as internal
+ neighbor swp51 interface peer-group underlay
+ neighbor swp52 interface peer-group underlay
+ neighbor swp53 interface peer-group underlay
+ neighbor swp54 interface peer-group underlay
  !
  address-family ipv4 unicast
-  network 10.0.0.6/32
+  redistribute connected
  exit-address-family
  !
  address-family l2vpn evpn
-  neighbor SPINE activate
+  neighbor underlay activate
   advertise-all-vni
  exit-address-family
 !
-router bgp 65005 vrf vrf1
- bgp router-id 172.16.100.2
- neighbor 172.16.100.1 remote-as external
+router bgp 65132 vrf RED
+ bgp router-id 10.10.10.64
+ bgp bestpath as-path multipath-relax
  !
  address-family ipv4 unicast
-  redistribute connected
+  redistribute static
  exit-address-family
  !
  address-family l2vpn evpn
   advertise ipv4 unicast
  exit-address-family
 !
-router bgp 65005 vrf vrf2
- bgp router-id 172.16.100.6
- neighbor 172.16.100.5 remote-as external
+router bgp 65132 vrf BLUE
+ bgp router-id 10.10.10.64
+ bgp bestpath as-path multipath-relax
  !
  address-family ipv4 unicast
-  redistribute connected
+  redistribute static
  exit-address-family
  !
  address-family l2vpn evpn
@@ -4360,49 +4229,1055 @@ router bgp 65005 vrf vrf2
  exit-address-family
 !
 line vty
- exec-timeout 0 0
-!
-```
-
-{{< /tab >}}
-
-{{< tab "router01" >}}
-
-```
-cumulus@router01:~$ cat /etc/frr/frr.conf
-
-log file /var/log/frr/frr.log
-log timestamp precision 6
-!
-password CumulusLinux!
-enable password CumulusLinux!
-!
-router bgp 65200
- bgp router-id 120.0.0.1
- neighbor 172.16.100.2 remote-as external
- neighbor 172.16.100.6 remote-as external
- neighbor 172.16.101.2 remote-as external
- neighbor 172.16.101.6 remote-as external
- !
- address-family ipv4 unicast
-  redistribute connected route-map HOST_ALLOW
- exit-address-family
-!
-ip prefix-list HOSTS seq 1 permit 81.1.1.0/24
-ip prefix-list HOSTS seq 2 permit 81.1.2.0/24
-ip prefix-list HOSTS seq 3 permit 81.1.3.0/24
-ip prefix-list HOSTS seq 4 permit 81.1.4.0/24
-ip prefix-list HOSTS seq 5 deny any
-!
-route-map HOST_ALLOW permit 1
- match ip address prefix-list HOSTS
-!
-!
-line vty
- exec-timeout 0 0
-!
 ```
 
 {{< /tab >}}
 
 {{< /tabs >}}
+
+<!-- ## EVPN Asymmetric Routing
+
+The following example shows an EVPN asymmetric routing configuration.
+
+{{< img src = "/images/cumulus-linux/evpn-asymmetric.png" >}}
+
+### /etc/network/interfaces
+
+{{< tabs "TabID1920 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ cat /etc/network/interfaces
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5)
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+# Include any platform-specific interface configuration
+#source /etc/network/interfaces.d/*.if
+
+auto lo
+iface lo
+    address 10.0.0.7/32
+    alias BGP un-numbered Use for Vxlan Src Tunnel
+    clagd-vxlan-anycast-ip 172.16.100.7
+
+auto uplink-1
+iface uplink-1
+    bond-slaves swp1 swp2
+    mtu  9216
+
+auto uplink-2
+iface uplink-2
+    bond-slaves swp3 swp4
+    mtu  9216
+
+auto peerlink-3
+iface peerlink-3
+    bond-slaves swp5 swp6
+    mtu  9216
+
+auto peerlink-3.4094
+iface peerlink-3.4094
+    address 169.254.0.9/30
+    mtu 9216
+    alias clag and vxlan communication primary path
+    clagd-priority 4096
+    clagd-sys-mac 44:38:39:ff:ff:01
+    clagd-peer-ip 169.254.0.10
+    clagd-backup-ip 10.0.0.8
+
+auto hostbond4
+iface hostbond4
+    bond-slaves swp7
+    mtu  9152
+    clag-id 1
+    bridge-pvid 1000
+
+auto hostbond5
+iface hostbond5
+    bond-slaves swp8
+    mtu  9152
+    clag-id 2
+    bridge-pvid 1001
+
+auto vx-101000
+iface vx-101000
+    vxlan-id 101000
+    bridge-access 1000
+    vxlan-local-tunnelip 10.0.0.7
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto vx-101001
+iface vx-101001
+    vxlan-id 101001
+    bridge-access 1001
+    vxlan-local-tunnelip 10.0.0.7
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto vx-101002
+iface vx-101002
+    vxlan-id 101002
+    bridge-access 1002
+    vxlan-local-tunnelip 10.0.0.7
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto vx-101003
+iface vx-101003
+    vxlan-id 101003
+    bridge-access 1003
+    vxlan-local-tunnelip 10.0.0.7
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto bridge
+iface bridge
+    bridge-vlan-aware yes
+    bridge-ports vx-101000 vx-101001 vx-101002 vx-101003 peerlink-3 hostbond4 hostbond5
+    bridge-stp on
+    bridge-vids 1000-1003
+    bridge-pvid 1
+
+auto vrf1
+iface vrf1
+    vrf-table auto
+
+auto vlan1000
+iface vlan1000
+    address 45.0.0.2/24
+    address 2001:fee1::2/64
+    vlan-id 1000
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
+    vrf vrf1
+
+auto vlan1001
+iface vlan1001
+    address 45.0.1.2/24
+    address 2001:fee1:0:1::2/64
+    vlan-id 1001
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
+    vrf vrf1
+
+auto vrf2
+iface vrf2
+    vrf-table auto
+
+auto vlan1002
+iface vlan1002
+    address 45.0.2.2/24
+    address 2001:fee1:0:2::2/64
+    vlan-id 1002
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
+    vrf vrf2
+
+auto vlan1003
+iface vlan1003
+    address 45.0.3.2/24
+    address 2001:fee1:0:3::2/64
+    vlan-id 1003
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.3.1/24 2001:fee1:0:3::1/64
+    vrf vrf2
+```
+
+{{< /tab >}}
+
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ cat /etc/network/interfaces
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5)
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+# Include any platform-specific interface configuration
+#source /etc/network/interfaces.d/*.if
+
+auto lo
+iface lo
+    address 10.0.0.8/32
+    alias BGP un-numbered Use for Vxlan Src Tunnel
+    clagd-vxlan-anycast-ip 172.16.100.7
+
+auto uplink-1
+iface uplink-1
+    bond-slaves swp1 swp2
+    mtu  9216
+
+auto uplink-2
+iface uplink-2
+    bond-slaves swp3 swp4
+    mtu  9216
+
+auto peerlink-3
+iface peerlink-3
+    bond-slaves swp5 swp6
+    mtu  9216
+
+auto peerlink-3.4094
+iface peerlink-3.4094
+    address 169.254.0.10/30
+    mtu 9216
+    alias clag and vxlan communication primary path
+    clagd-priority 8192
+    clagd-sys-mac 44:38:39:ff:ff:01
+    clagd-peer-ip 169.254.0.9
+    clagd-backup-ip 10.0.0.7
+
+auto hostbond4
+iface hostbond4
+    bond-slaves swp7
+    mtu  9152
+    clag-id 1
+    bridge-pvid 1000
+
+auto hostbond5
+iface hostbond5
+    bond-slaves swp8
+    mtu  9152
+    clag-id 2
+    bridge-pvid 1001
+
+auto vx-101000
+iface vx-101000
+    vxlan-id 101000
+    bridge-access 1000
+    vxlan-local-tunnelip 10.0.0.8
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto vx-101001
+iface vx-101001
+    vxlan-id 101001
+    bridge-access 1001
+    vxlan-local-tunnelip 10.0.0.8
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto vx-101002
+iface vx-101002
+    vxlan-id 101002
+    bridge-access 1002
+    vxlan-local-tunnelip 10.0.0.8
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto vx-101003
+iface vx-101003
+    vxlan-id 101003
+    bridge-access 1003
+    vxlan-local-tunnelip 10.0.0.8
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto bridge
+iface bridge
+    bridge-vlan-aware yes
+    bridge-ports vx-101000 vx-101001 vx-101002 vx-101003 peerlink-3 hostbond4 hostbond5
+    bridge-stp on
+    bridge-vids 1000-1003
+    bridge-pvid 1
+
+auto vrf1
+iface vrf1
+    vrf-table auto
+
+auto vlan1000
+iface vlan1000
+    address 45.0.0.3/24
+    address 2001:fee1::3/64
+    vlan-id 1000
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
+    vrf vrf1
+
+auto vlan1001
+iface vlan1001
+    address 45.0.1.3/24
+    address 2001:fee1:0:1::3/64
+    vlan-id 1001
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
+    vrf vrf1
+
+auto vrf2
+iface vrf2
+    vrf-table auto
+
+auto vlan1002
+iface vlan1002
+    address 45.0.2.3/24
+    address 2001:fee1:0:2::3/64
+    vlan-id 1002
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
+    vrf vrf2
+
+auto vlan1003
+iface vlan1003
+    address 45.0.3.3/24
+    address 2001:fee1:0:3::3/64
+    vlan-id 1003
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.3.1/24 2001:fee1:0:3::1/64
+    vrf vrf2
+```
+
+{{< /tab >}}
+
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ cat /etc/network/interfaces
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5)
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+# Include any platform-specific interface configuration
+#source /etc/network/interfaces.d/*.if
+
+auto lo
+iface lo
+    address 10.0.0.9/32
+    alias BGP un-numbered Use for Vxlan Src Tunnel
+    clagd-vxlan-anycast-ip 36.0.0.9
+
+auto uplink-1
+iface uplink-1
+    bond-slaves swp1 swp2
+    mtu  9216
+
+auto uplink-2
+iface uplink-2
+    bond-slaves swp3 swp4
+    mtu  9216
+
+auto peerlink-3
+iface peerlink-3
+    bond-slaves swp5 swp6
+    mtu  9216
+
+auto peerlink-3.4094
+iface peerlink-3.4094
+    address 169.254.0.9/30
+    mtu 9216
+    alias clag and vxlan communication primary path
+    clagd-priority 4096
+    clagd-sys-mac 44:38:39:ff:ff:02
+    clagd-peer-ip 169.254.0.10
+    clagd-backup-ip 10.0.0.10
+
+auto hostbond4
+iface hostbond4
+    bond-slaves swp7
+    mtu  9152
+    clag-id 1
+    bridge-pvid 1000
+
+auto hostbond5
+iface hostbond5
+    bond-slaves swp8
+    mtu  9152
+    clag-id 2
+    bridge-pvid 1001
+
+auto vx-101000
+iface vx-101000
+    vxlan-id 101000
+    bridge-access 1000
+    vxlan-local-tunnelip 10.0.0.9
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto vx-101001
+iface vx-101001
+    vxlan-id 101001
+    bridge-access 1001
+    vxlan-local-tunnelip 10.0.0.9
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto vx-101002
+iface vx-101002
+    vxlan-id 101002
+    bridge-access 1002
+    vxlan-local-tunnelip 10.0.0.9
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto vx-101003
+iface vx-101003
+    vxlan-id 101003
+    bridge-access 1003
+    vxlan-local-tunnelip 10.0.0.9
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto bridge
+iface bridge
+    bridge-vlan-aware yes
+    bridge-ports vx-101000 vx-101001 vx-101002 vx-101003 peerlink-3 hostbond4 hostbond5
+    bridge-stp on
+    bridge-vids 1000-1003
+    bridge-pvid 1
+
+auto vrf1
+iface vrf1
+    vrf-table auto
+
+auto vlan1000
+iface vlan1000
+    address 45.0.0.2/24
+    address 2001:fee1::2/64
+    vlan-id 1000
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
+    vrf vrf1
+
+auto vlan1001
+iface vlan1001
+    address 45.0.1.2/24
+    address 2001:fee1:0:1::2/64
+    vlan-id 1001
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
+    vrf vrf1
+
+auto vrf2
+iface vrf2
+    vrf-table auto
+
+auto vlan1002
+iface vlan1002
+    address 45.0.2.2/24
+    address 2001:fee1:0:2::2/64
+    vlan-id 1002
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
+    vrf vrf2
+
+auto vlan1003
+iface vlan1003
+    address 45.0.3.2/24
+    address 2001:fee1:0:3::2/64
+    vlan-id 1003
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.3.1/24 2001:fee1:0:3::1/64
+    vrf vrf2
+```
+
+{{< /tab >}}
+
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ cat /etc/network/interfaces
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5)
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+# Include any platform-specific interface configuration
+#source /etc/network/interfaces.d/*.if
+
+auto lo
+iface lo
+    address 10.0.0.10/32
+    alias BGP un-numbered Use for Vxlan Src Tunnel
+    clagd-vxlan-anycast-ip 36.0.0.9
+
+auto uplink-1
+iface uplink-1
+    bond-slaves swp1 swp2
+    mtu  9216
+
+auto uplink-2
+iface uplink-2
+    bond-slaves swp3 swp4
+    mtu  9216
+
+auto peerlink-3
+iface peerlink-3
+    bond-slaves swp5 swp6
+    mtu  9216
+
+auto peerlink-3.4094
+iface peerlink-3.4094
+    address 169.254.0.10/30
+    mtu 9216
+    alias clag and vxlan communication primary path
+    clagd-priority 8192
+    clagd-sys-mac 44:38:39:ff:ff:02
+    clagd-peer-ip 169.254.0.9
+    clagd-backup-ip 10.0.0.9
+
+auto hostbond4
+iface hostbond4
+    bond-slaves swp7
+    mtu  9152
+    clag-id 1
+    bridge-pvid 1000
+
+auto hostbond5
+iface hostbond5
+    bond-slaves swp8
+    mtu  9152
+    clag-id 2
+    bridge-pvid 1001
+
+auto vx-101000
+iface vx-101000
+    vxlan-id 101000
+    bridge-access 1000
+    vxlan-local-tunnelip 10.0.0.10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto vx-101001
+iface vx-101001
+    vxlan-id 101001
+    bridge-access 1001
+    vxlan-local-tunnelip 10.0.0.10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto vx-101002
+iface vx-101002
+    vxlan-id 101002
+    bridge-access 1002
+    vxlan-local-tunnelip 10.0.0.10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto vx-101003
+iface vx-101003
+    vxlan-id 101003
+    bridge-access 1003
+    vxlan-local-tunnelip 10.0.0.10
+    mstpctl-portbpdufilter yes
+    mstpctl-bpduguard  yes
+    mtu 9152
+
+auto bridge
+iface bridge
+    bridge-vlan-aware yes
+    bridge-ports vx-101000 vx-101001 vx-101002 vx-101003 peerlink-3 hostbond4 hostbond5
+    bridge-stp on
+    bridge-vids 1000-1003
+    bridge-pvid 1
+
+auto vrf1
+iface vrf1
+    vrf-table auto
+
+auto vlan1000
+iface vlan1000
+    address 45.0.0.3/24
+    address 2001:fee1::3/64
+    vlan-id 1000
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.0.1/24 2001:fee1::1/64
+    vrf vrf1
+
+auto vlan1001
+iface vlan1001
+    address 45.0.1.3/24
+    address 2001:fee1:0:1::3/64
+    vlan-id 1001
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.1.1/24 2001:fee1:0:1::1/64
+    vrf vrf1
+
+auto vrf2
+iface vrf2
+    vrf-table auto
+
+auto vlan1002
+iface vlan1002
+    address 45.0.2.3/24
+    address 2001:fee1:0:2::3/64
+    vlan-id 1002
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.2.1/24 2001:fee1:0:2::1/64
+    vrf vrf2
+
+auto vlan1003
+iface vlan1003
+    address 45.0.3.3/24
+    address 2001:fee1:0:3::3/64
+    vlan-id 1003
+    vlan-raw-device bridge
+    address-virtual 00:00:5e:00:01:01 45.0.3.1/24 2001:fee1:0:3::1/64
+    vrf vrf2
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ cat /etc/network/interfaces
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5)
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+# Include any platform-specific interface configuration
+#source /etc/network/interfaces.d/*.if
+
+auto lo
+iface lo
+    address 10.0.0.5/32
+    alias BGP un-numbered Use for Vxlan Src Tunnel
+
+auto downlink-1
+iface downlink-1
+    bond-slaves swp1 swp2
+    mtu  9216
+
+auto downlink-2
+iface downlink-2
+    bond-slaves swp3 swp4
+    mtu  9216
+
+auto downlink-3
+iface downlink-3
+    bond-slaves swp5 swp6
+    mtu  9216
+auto downlink-4
+iface downlink-4
+    bond-slaves swp7 swp8
+    mtu  9216
+```
+
+{{< /tab >}}
+
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ cat /etc/network/interfaces
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5)
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+
+# Include any platform-specific interface configuration
+#source /etc/network/interfaces.d/*.if
+
+auto lo
+iface lo
+    address 10.0.0.6/32
+    alias BGP un-numbered Use for Vxlan Src Tunnel
+
+auto downlink-1
+iface downlink-1
+    bond-slaves swp1 swp2
+    mtu  9216
+
+auto downlink-2
+iface downlink-2
+    bond-slaves swp3 swp4
+    mtu  9216
+
+auto downlink-3
+iface downlink-3
+    bond-slaves swp5 swp6
+    mtu  9216
+
+auto downlink-4
+iface downlink-4
+    bond-slaves swp7 swp8
+    mtu  9216
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### /etc/frr/frr.conf
+
+{{< tabs "TabID2615 ">}}
+
+{{< tab "leaf01 ">}}
+
+```
+cumulus@leaf01:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface peerlink-3.4094
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 65542
+ bgp router-id 10.0.0.7
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink-3.4094 interface v6only remote-as external
+ neighbor uplink-1 interface v6only remote-as external
+ neighbor uplink-2 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor peerlink-3.4094 activate
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf02 ">}}
+
+```
+cumulus@leaf02:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface peerlink-3.4094
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 65543
+ bgp router-id 10.0.0.8
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink-3.4094 interface v6only remote-as external
+ neighbor uplink-1 interface v6only remote-as external
+ neighbor uplink-2 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor peerlink-3.4094 activate
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf03 ">}}
+
+```
+cumulus@leaf03:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface peerlink-3.4094
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 65544
+ bgp router-id 10.0.0.9
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink-3.4094 interface v6only remote-as external
+ neighbor uplink-1 interface v6only remote-as external
+ neighbor uplink-2 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor peerlink-3.4094 activate
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "leaf04 ">}}
+
+```
+cumulus@leaf04:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface peerlink-3.4094
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface uplink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 65545
+ bgp router-id 10.0.0.10
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor peerlink-3.4094 interface v6only remote-as external
+ neighbor uplink-1 interface v6only remote-as external
+ neighbor uplink-2 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor peerlink-3.4094 activate
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor uplink-1 activate
+  neighbor uplink-2 activate
+  advertise-all-vni
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "spine01 ">}}
+
+```
+cumulus@spine01:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface downlink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface downlink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface downlink-3
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface downlink-4
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 64435
+ bgp router-id 10.0.0.5
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor downlink-1 interface v6only remote-as external
+ neighbor downlink-2 interface v6only remote-as external
+ neighbor downlink-3 interface v6only remote-as external
+ neighbor downlink-4 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  neighbor downlink-1 allowas-in origin
+  neighbor downlink-2 allowas-in origin
+  neighbor downlink-3 allowas-in origin
+  neighbor downlink-4 allowas-in origin
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor downlink-1 activate
+  neighbor downlink-2 activate
+  neighbor downlink-3 activate
+  neighbor downlink-4 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor downlink-1 activate
+  neighbor downlink-2 activate
+  neighbor downlink-3 activate
+  neighbor downlink-4 activate
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< tab "spine02 ">}}
+
+```
+cumulus@spine02:~$ cat /etc/frr/frr.conf
+
+log file /var/log/frr/bgpd.log
+!
+log timestamp precision 6
+!
+interface downlink-1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface downlink-2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface downlink-3
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface downlink-4
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+router bgp 64435
+ bgp router-id 10.0.0.6
+ coalesce-time 1000
+ bgp bestpath as-path multipath-relax
+ neighbor downlink-1 interface v6only remote-as external
+ neighbor downlink-2 interface v6only remote-as external
+ neighbor downlink-3 interface v6only remote-as external
+ neighbor downlink-4 interface v6only remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+  neighbor downlink-1 allowas-in origin
+  neighbor downlink-2 allowas-in origin
+  neighbor downlink-3 allowas-in origin
+  neighbor downlink-4 allowas-in origin
+ exit-address-family
+ !
+ address-family ipv6 unicast
+  redistribute connected
+  neighbor downlink-1 activate
+  neighbor downlink-2 activate
+  neighbor downlink-3 activate
+  neighbor downlink-4 activate
+ exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor downlink-1 activate
+  neighbor downlink-2 activate
+  neighbor downlink-3 activate
+  neighbor downlink-4 activate
+ exit-address-family
+!
+line vty
+ exec-timeout 0 0
+!
+```
+
+{{< /tab >}}
+
+{{< /tabs >}} -->

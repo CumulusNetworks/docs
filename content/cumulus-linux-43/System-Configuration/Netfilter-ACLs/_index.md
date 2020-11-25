@@ -227,12 +227,6 @@ You can enable nonatomic updates for `switchd`, which offer better scaling becau
 - ipv4-mac (can be both ingress and egress)
 - ipv6 (ingress only)
 
-{{%notice warning%}}
-
-Only switches with the Broadcom ASIC support *incremental* nonataomic updates. Mellanox switches with the Spectrum-based ASIC only support *standard* nonatomic updates; using nonatomic mode on Spectrum-based ASICs impacts traffic on ACL updates.
-
-{{%/notice%}}
-
 The incremental nonatomic update operation follows this order:
 
 1. Updates are performed incrementally, one table at a time without stopping traffic.

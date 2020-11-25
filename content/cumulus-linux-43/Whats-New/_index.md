@@ -30,7 +30,7 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 - Port-based SPAN without using an ACL
 - {{<link url="DHCP-Snooping" text="DHCP snooping">}}
 - QoS traffic shaping
-- Non-atomic mode now supported on Mellanox switches
+- {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} now supported on Mellanox switches
 - {{<link title="Mellanox What Just Happened (WJH)" text="Mellanox WJH commands">}} to troubleshoot and diagnose network issues
 - BGP graceful shutdown enhancements
 - EVPN multihoming now supports LACP bypass

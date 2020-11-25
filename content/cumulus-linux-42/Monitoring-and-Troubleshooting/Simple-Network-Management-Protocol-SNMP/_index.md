@@ -1,6 +1,6 @@
 ---
 title: Simple Network Management Protocol - SNMP
-author: Cumulus Networks
+author: NVIDIA
 weight: 1150
 toc: 3
 ---

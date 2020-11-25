@@ -1,6 +1,6 @@
 ---
 title: Configure SNMP
-author: Cumulus Networks
+author: NVIDIA
 weight: 1155
 toc: 4
 ---
@@ -191,9 +191,15 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 
 ### Configure the SNMPv3 Username
 
-As mentioned above, Cumulus Networks recommends you use an SNMPv3 username and password instead of the read-only community string as the more secure way to use SNMP, since SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents.
+As mentioned above, Cumulus Networks recommends you use an SNMPv3 username and password instead of the read-only community string as the more secure way to use SNMP, since SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents. You can configure multiple usernames for different user roles with different levels of access to various MIBs.
 
 SNMPv3 usernames are added to the `/etc/snmp/snmpd.conf` file, along with plaintext authentication and encryption pass phrases.
+
+{{%notice note%}}
+
+The default `snmpd.conf` file contains a default user, *_snmptrapusernameX*. This username cannot be used for authentication, but is required for SNMP traps.
+
+{{%/notice%}}
 
 You have three choices for authenticating the user:
 
@@ -245,7 +251,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-Or you can restrict a user to a predefined view name if one is specified.
+Or you can restrict a user to a predefined view if one is specified.
 
 ```
 cumulus@switch:~$ net add snmp-server username limiteduser1 auth-md5 md5password1 encrypt-aes myaessecret viewname rocket
@@ -273,11 +279,11 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands" >}}
 
-There are three commands that define an internal SNMPv3 username that are required for `snmpd` to retrieve information and send built-in traps or for those configured with the monitor command (see {{<link url="#configure-snmp-trap-and-inform-messages" text="below">}}):
+There are three directives that define an internal SNMPv3 username that are required for `snmpd` to retrieve information and send built-in traps or for those configured with the `monitor` command (see {{<link url="#configure-snmp-trap-and-inform-messages" text="below">}}):
 
 - `createuser`: the default SNMPv3 username.
-- `iquerysecName`: the default SNMPv3 username to use when making internal queries to retrieve monitored expressions.
-- `rouser`: the username for these SNMPv3 queries. **(read only??)**
+- `iquerysecName`: the default SNMPv3 username to use when making internal queries to retrieve monitored expressions &mdash; either for evaluating the monitored expression or building a notification payload. These internal queries always use SNMPv3, even if normal querying of the agent is done using SNMPv1 or SNMPv2c. The `iquerysecname` directive is purely concerned with defining which user should be used, not with actually setting this user up.
+- `rouser`: the username for these SNMPv3 queries.
 
 Edit the `/etc/snmp/snmpd.conf` file and add the `createuser`, `iquerysecName`, `rouser` commands. The example configuration here configures *snmptrapusernameX* as the username using the `createUser` command.
 
@@ -363,13 +369,13 @@ The `snmpd` daemon reads the information from the `/var/lib/snmp/snpmd.conf` fil
 
 {{< /tabs >}}
 
-### Configure an SNMP View Name
+### Configure an SNMP View Definition
 
-To restrict MIB tree exposure, you can link a view name to an SNMPv3 username or community password, and a host from a restricted subnet. In doing so, any SNMP request with that username and password must have a source IP address within the configured subnet.
+To restrict MIB tree exposure, you can define a view for an SNMPv3 username or community password, and a host from a restricted subnet. In doing so, any SNMP request with that username and password must have a source IP address within the configured subnet.
 
-You can define a specific view name multiple times and fine tune to provide or restrict access using the `included` or `excluded` command to specify branches of certain MIB trees.
+You can define a specific view multiple times and fine tune to provide or restrict access using the `included` or `excluded` command to specify branches of certain MIB trees.
 
-By default, the `snmpd.conf` file contains numerous views with the *systemonly* view name.
+By default, the `snmpd.conf` file contains numerous views within the *systemonly* view.
 
 {{< tabs "viewname" >}}
 
@@ -384,6 +390,7 @@ cumulus@switch:~$ net add snmp-server username limiteduser1 auth-md5 md5password
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
+
 {{< /tab >}}
 
 {{< tab "Linux Commands" >}}
@@ -405,15 +412,17 @@ view systemonly included .1.3.6.1.2.1.3
 
 {{< /tabs >}}
 
-### Configure the Read-only Community String
+### Configure the Community String
 
 The `snmpd` authentication for SNMPv1 and SNMPv2c is disabled by default in Cumulus Linux. You enable it by providing a password (called a community string) for SNMPv1 or SNMPv2c environments so that the `snmpd` daemon can respond to requests. By default, this provides access to the full OID tree for such requests, regardless of from where they were sent. No default password is set, so `snmpd` does not respond to any requests that arrive unless you set the read-only community password.
 
+For SNMPv1 and SNMPv2c you can specify a read-only community string. For SNMPv3, you can specify a read-only or a read-write community string (provided you are not using the preferred {{<link url="#configure-the-snmpv3-username" text="username method">}}  described above), but you must configure the read-write community string directly in the `snmpd.conf` file; you cannot use NCLU to configure it. If you configure a read-write community string, then edit the SNMP configuration later with NCLU, the read-write community configuration is preserved.
+
 You can specify a source IP address token to restrict access to only that host or network given.
 
-You can also specify a view name to restrict the subset of the OID tree.
+You can also specify a view to restrict the subset of the OID tree.
 
-{{< tabs "readonly-community" >}}
+{{< tabs "community-string" >}}
 
 {{< tab "NCLU Commands" >}}
 
@@ -421,7 +430,7 @@ The following example configuration:
 
 - Sets the read only community string to *simplepassword* for SNMP requests
 - Restricts requests to only those sourced from hosts in the 192.168.200.10/24 subnet
-- Restricts viewing to the *mysystem* view name defined with the `viewname` command
+- Restricts viewing to the *mysystem* view defined with the `viewname` command
 
 ```
 cumulus@switch:~$ net add snmp-server viewname mysystem included 1.3.6.1.2.1.1
@@ -444,7 +453,7 @@ cumulus@switch:~$ net commit
 
 You enable the community string by providing a community string and then setting **rocommunity** (for read-only access) or **rwcommunity** (for read-write access). Other options you can specify are described below.
 
-- `rocommunity`: Read-only community; `rwcommunity` is for read-write access. Specify one or the other.
+- `rocommunity`/`rwcommunity`: `rwcommunity` is for a read-only community; `rwcommunity` is for read-write access. Specify one or the other.
 - `public`: The plaintext password/community string.
 
   {{%notice info%}}
@@ -459,7 +468,7 @@ Cumulus Networks strongly recommends you change this password to something else.
 
 Edit the `/etc/snmp/snmpd.conf` file and add the community string.
 
-In the following example, the first line sets the read-only community string to *turtle* for SNMP requests sourced from the *192.168.200.10/24* subnet and restricts viewing to the *systemonly* view name defined with the `-V` option. The second line creates a read-only community string that allows access to the entire OID tree from any source IP address.
+In the following example, the first line sets the read-only community string to *turtle* for SNMP requests sourced from the *192.168.200.10/24* subnet and restricts viewing to the *systemonly* view defined with the `-V` option. The second line creates a read-only community string that allows access to the entire OID tree from any source IP address.
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -479,170 +488,68 @@ cumulus@switch:~$ systemctl restart snmpd.service
 
 {{< /tabs >}}
 
-### Configure SNMP Trap and Inform Messages
+### Configure System Settings
 
-SNMP *traps* are alert notification messages sent from SNMP agents to the SNMP manager. These messages are generated whenever any failure or fault occurs in a monitored device or service. An SNMPv3 inform is an acknowledged SNMPv3 trap.
+You can configure system settings for the SNMPv2 MIB. The example commands here set:
 
-You configure the following for SNMPv3 trap and inform messages:
+- The system physical location for the node in the SNMPv2-MIB system table (the `syslocation`).
+- The username and email address of the contact person for this managed node (the `syscontact`).
+- An administratively-assigned name for the managed node (the `sysname`).
 
-- The trap destination IP address; the VRF name is optional.
-- The authentication type and password. The encryption type and password are optional.
-- The engine ID/username pair for the Cumulus Linux switch sending the traps. The *inform* keyword specifies an inform message where the SNMP agent waits for an acknowledgement. You can find this at the end of the `/var/lib/snmp/snmpd.conf` file labeled *oldEngineID*. Configure this same engine ID/username (with authentication and encryption passwords) for the trap daemon receiving the trap to validate the received trap.
-
-{{< tabs "traps-informs" >}}
+{{< tabs "sys-settings" >}}
 
 {{< tab "NCLU Commands" >}}
 
+For example, to set the system physical location for the node in the SNMPv2-MIB system table, run:
+
 ```
-cumulus@switch:~$ net add snmp-server trap-destination 10.10.10.10 username myv3user auth-md5 md5password1 encrypt-aes myaessecret engine-id  0x80001f888070939b14a514da5a00000000
-cumulus@switch:~$ net add snmp-server trap-destination 20.20.20.20 vrf mgmt username mymgmtvrfusername auth-md5 md5password2 encrypt-aes myaessecret2 engine-id  0x80001f888070939b14a514da5a00000000
-cumulus@switch:~$ net pending
+cumulus@switch:~$ net add snmp-server system-location My private bunker
 cumulus@switch:~$ net commit
 ```
 
-For inform messages, the engine ID/username creates the username on the receiving trap daemon server. The trap receiver sends the response for the trap message using its own engine ID/username. In practice, the trap daemon generates the usernames with its own engine ID and after these are created, the SNMP server (or agent) needs to use these engine ID/usernames when configuring the inform messages so that they are correctly authenticated and the correct response is sent to the `snmpd` agent that sent it.
+To set the username and email address of the contact person for this managed node, run:
 
 ```
-cumulus@switch:~$ net add snmp-server trap-destination 10.10.10.10 username myv3user auth-md5 md5password1 encrypt-aes myaessecret engine-id  0x80001f888070939b14a514da5a00000000 inform
-cumulus@switch:~$ net add snmp-server trap-destination 20.20.20.20 vrf mgmt username mymgmtvrfusername auth-md5 md5password2 encrypt-aes myaessecret2 engine-id  0x80001f888070939b14a514da5a00000000 inform
-cumulus@switch:~$ net pending
+cumulus@switch:~$ net add snmp-server system-contact user X at myemail@example.com
 cumulus@switch:~$ net commit
 ```
 
-For SNMP versions 1 and 2c, you must set at least one SNMP trap destination IP address; multiple destinations can exist. Removing all settings disables SNMP traps. The default version is 2c, unless otherwise configured. You must include a VRF name with the IP address to force traps to be sent in a non-default VRF table.
+To set an administratively-assigned name for the managed node, run the following command. Typically, this is the fully-qualified domain name of the node.
 
 ```
-net add snmp-server trap-destination 10.10.10.10 community-password mynotsosecretpassword version 1
-net add snmp-server trap-destination 20.20.20.20 vrf mgmt community-password mymanagementvrfpassword version 2c
-cumulus@switch:~$ net pending
+cumulus@switch:~$ net add snmp-server system-name CumulusBox number 1,543,567
 cumulus@switch:~$ net commit
 ```
 
-To enable notifications for interface link-up events to be sent to SNMP trap destinations, run:
+These commands append the following content to the `/etc/snmp/snmpd.conf` file:
 
 ```
-net add snmp-server trap-link-up check-frequency 15
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-Similarly, to enable notifications for interface link-down events to be sent to SNMP trap destinations, run:
-
-```
-net add snmp-server trap-link-down check-frequency 10
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To enable SNMP trap notifications to be sent for every SNMP authentication failure, run:
-
-```
-cumulus@switch:~$ net add snmp-server trap-snmp-auth-failures
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-To enable a trap when the CPU load average exceeds a configured threshold, run the following command. You can only use integers or floating point numbers.
-
-```
-cumulus@switch:~$ net add snmp-server trap-cpu-load-average one-minute 4.34 five-minute 2.32 fifteen-minute 6.5
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
+cumulus@switch:~$ cat /etc/snmp/snmpd.conf
+...
+syscontact user X at myemail@example.com
+syslocation My private bunker
+sysname CumulusBox number 1,543,567
+...
 ```
 
 {{< /tab >}}
 
 {{< tab "Linux Commands" >}}
 
-Edit the `/etc/snmp/snmpd.conf` file and configure the trap settings.
+Edit the `/etc/snmp/snmpd.conf` file and add the following configuration:
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
 ...
-
+syscontact user X at myemail@example.com
+syslocation My private bunker
+sysname CumulusBox number 1,543,567
 ...
 ```
-
-| Syntax| Meaning|
-|------ |------- |
-| trapsink<br>trap2sink | This command defines the IP address of the notification (or trap) receiver for either SNMPv1 traps or SNMPv2 traps. If you specify several sink directives, multiple copies of each notification (in the appropriate formats) are generated. You must configure a trap server to receive and decode these trap messages (for example, `snmptrapd`). You can configure the address of the trap receiver with a different protocol and port but this is most often left out. The defaults are to use the well-known UDP packets and port 162. |
-| linkUpDownNotifications yes | This command enables link up and link down trap notifications, assuming the other trap configurations settings are set. This command configures the Event MIB tables to monitor the ifTable for network interfaces being taken up or down, and triggering a linkUp or linkDown notification as appropriate. This is equivalent to the following configuration:<pre>notificationEvent  linkUpTrap    linkUp   ifIndex ifAdminStatus ifOperStatus<br>notificationEvent  linkDownTrap  linkDown ifIndex ifAdminStatus ifOperStatus <br>monitor  -r 60 -e linkUpTrap   "Generate linkUp" ifOperStatus != 2<br>monitor  -r 60 -e linkDownTrap "Generate linkDown" ifOperStatus == 2</pre> |
 
 {{< /tab >}}
 
 {{< /tabs >}}
-
-
-<!-- defaultMonitors yes: **MOVE THIS SOMEWHERE ELSE** This command configures the Event MIB tables to monitor the various UCD-SNMP-MIB tables for problems (as indicated by the appropriate xxErrFlag column objects) and send a trap. This assumes you have downloaded the snmp-mibs-downloader Debian package and commented out mibs from the /etc/snmp/snmp.conf file (#mibs). This command is exactly equivalent to the following configuration:
-
-<pre>monitor   -o prNames -o prErrMessage "process table" prErrorFlag != 0<br>monitor   -o memErrorName -o memSwapErrorMsg "memory" memSwapError != 0<br>monitor   -o extNames -o extOutput "extTable" extResult != 0<br>monitor   -o dskPath -o dskErrorMsg "dskTable" dskErrorFlag != 0<br>monitor   -o laNames -o laErrMessage  "laTable" laErrorFlag != 0<br>monitor   -o fileName -o fileErrorMsg  "fileTable" fileErrorFlag != 0</pre>
--->
-
-
-### Configure System Settings
-
-You can configure system settings for the SNMPv2 MIB.
-
-For example, to set the system physical location for the node in the SNMPv2-MIB system table, run:
-
-```
-net add snmp-server system-location My private bunker
-```
-
-To set the username and email address of the contact person for this managed node, run:
-
-```
-net add snmp-server system-contact user X at myemail@example.com
-```
-
-To set an administratively-assigned name for the managed node, run the following command. Typically, this is the fully-qualified domain name of the node.
-
-```
-net add snmp-server system-name CumulusBox number 1,543,567
-```
-
-### Example Configuration
-
-The example commands below enable an SNMP agent to listen on all IPv4 addresses with a community string password, set the trap destination host IP address, and create four types of SNMP traps.
-
-**SWITCH TO THE CONFIG FROM GITLAB**
-
-```
-cumulus@switch:~$ net add snmp-server listening-address all
-cumulus@switch:~$ net add snmp-server readonly-community tempPassword access any
-cumulus@switch:~$ net add snmp-server trap-destination 1.1.1.1 community-password mypass version 2c
-cumulus@switch:~$ net add snmp-server trap-link-up check-frequency 15
-cumulus@switch:~$ net add snmp-server trap-link-down check-frequency 10
-cumulus@switch:~$ net add snmp-server trap-cpu-load-average one-minute 7.45 five-minute 5.14
-cumulus@switch:~$ net add snmp-server trap-snmp-auth-failures
-cumulus@switch:~$ net pending
-cumulus@switch:~$ net commit
-```
-
-## Restore the Default SNMP Configuration
-
-The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and readonly-communities. A `listening-address` for the localhost is configured in its place.
-
-```
-cumulus@switch:~$ net del snmp-server all
-cumulus@switch:~$ net commit
-```
-
-## Set up the Custom Cumulus Networks MIBs on the NMS
-
-No changes are required in the `/etc/snmp/snmpd.conf` file on the switch to support the custom Cumulus Networks MIBs. The following lines are already included by default and provide support for both the Cumulus Counters and the Cumulus Resource Query MIBs.
-
-```
-sysObjectID 1.3.6.1.4.1.40310
-pass_persist .1.3.6.1.4.1.40310.1 /usr/share/snmp/resq_pp.py
-pass_persist .1.3.6.1.4.1.40310.2 /usr/share/snmp/cl_drop_cntrs_pp.py
-```
-
-However, you need to copy several files to the NMS server for the custom Cumulus MIB to be recognized on the NMS server.
-
-- `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt`
-- `/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt`
-- `/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt`
 
 ## Enable SNMP Support for FRRouting
 
@@ -658,7 +565,11 @@ At this time, SNMP does not support monitoring BGP unnumbered neighbors.
 
 {{%/notice%}}
 
+{{%notice tip%}}
+
 If you plan on using the OSPFv2 MIB, provide access to 1.3.6.1.2.1.14 and to 1.3.6.1.2.1.191 for the OSPv3 MIB.
+
+{{%/notice%}}
 
 To enable SNMP support for FRR:
 
@@ -680,7 +591,14 @@ To enable SNMP support for FRR:
 
    {{%notice note%}}
 
-Make sure that the `/var/agentx` directory is world-readable andworld-searchable (octal mode 755).
+Make sure that the `/var/agentx` directory is world-readable and world-searchable (octal mode 755).
+
+```
+cumulus@switch:~$ ls -la /var/
+...
+drwxr-xr-x  2 root root  4096 Nov 11 12:06 agentx
+...
+```
 
    {{%/notice%}}
 
@@ -698,7 +616,11 @@ cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost 1.3.6.1.2.1.14
 
 ### Enable the .1.3.6.1.2.1 Range
 
-Some MIBs, including storage information, are not included by default in `snmpd.conf` in Cumulus Linux. This results in some default views on common network tools (like `librenms`) to return less than optimal data. You can include more MIBs by enabling all the .1.3.6.1.2.1 range. This simplifies the configuration file, removing concern that any required MIBs will be missed by the monitoring system. Various MIBs were added to version 3.0 and include the following: ENTITY and ENTITY-SENSOR MIB and parts of the BRIDGE-MIB and Q-BRIDGE-MIBs. These are included in the default configuration.
+Some MIBs, including storage information, are not included by default in `snmpd.conf` in Cumulus Linux. This results in some default views on common network tools (like `librenms`) to return less than optimal data. You can include more MIBs by enabling the complete .1.3.6.1.2.1 range. This simplifies the configuration file, removing the concern that any required MIBs might be missed by the monitoring system. Various MIBs included were added to the default SNMPv3 configuration and include the following:
+
+- ENTITY-MIB
+- ENTITY-SENSOR MIB
+- Parts of the BRIDGE-MIB and Q-BRIDGE-MIBs
 
 {{%notice warning%}}
 
@@ -706,69 +628,35 @@ This configuration grants access to a large number of MIBs, including all SNMPv2
 
 {{%/notice%}}
 
-To enable the .1.3.6.1.2.1 range, make sure the view name commands include the required MIB objects.
+To enable the .1.3.6.1.2.1 range, make sure the view commands include the required MIB objects.
 
-## Troubleshooting
+## Restore the Default SNMP Configuration
 
-To check the status of `snmpd` using NCLU, run:
-
-```
-cumulus@switch:~$ net show snmp-server status
-
-Simple Network Management Protocol (SNMP) Daemon.
----------------------------------  ----------------
-Current Status                     active (running)
-Reload Status                      enabled
-Listening IP Addresses             localhost
-Main snmpd PID                     13669
-Version 1 and 2c Community String  Configured
-Version 3 Usernames                Not Configured
----------------------------------  ----------------
-```
-
-### Troubleshooting with SNMP Commands
-
-The `snmp` Debian package contains `snmpget`, `snmpwalk` and other programs that are useful for checking daemon functionality from the switch itself or from another workstation.
-
-From a client, you access the MIB with the correct credentials.
+The following command removes all custom entries in the `/etc/snmp/snmpd.conf` file and replaces them with defaults, including for all SNMPv3 usernames and readonly-communities. A `listening-address` for the localhost is configured in its place.
 
 ```
-snmpwalk -v 3 -u userMD5withDES -l authPriv -a MD5 -x DES -A md5authpass -X desprivpass localhost 1.3.6.1.2.1.1.1
-snmpwalk -v 3 -u userSHAwithAES -l authPriv -a SHA -x AES -A shaauthpass -X aesprivpass localhost 1.3.6.1.2.1.1.1
+cumulus@switch:~$ net del snmp-server all
+cumulus@switch:~$ net commit
 ```
 
-This command gets the first MIB object in the system table; in this case, the SNMPv2 system name specified above:
+## Set up the Custom Cumulus Networks MIBs on the NMS
+
+No changes are required in the `/etc/snmp/snmpd.conf` file on the switch to support the custom Cumulus Networks MIBs. The following lines are already included by default and provide support for both the Cumulus Counters and the Cumulus Resource Query MIBs.
 
 ```
-cumulus@switch:~$ snmpgetnext -v 2c -c mynotsosecretpassword localhost SNMPv2-MIB::sysName
-SNMPv2-MIB::sysName.0 = STRING: my little router
+cumulus@switch:~$ cat /etc/snmp/snmpd.conf
+...
+sysObjectID 1.3.6.1.4.1.40310
+pass_persist .1.3.6.1.4.1.40310.1 /usr/share/snmp/resq_pp.py
+pass_persist .1.3.6.1.4.1.40310.2 /usr/share/snmp/cl_drop_cntrs_pp.py
+...
 ```
 
-The following commands check the access for each user from the localhost.
+However, you need to copy several files to the NMS server for the custom Cumulus MIB to be recognized on the NMS server.
 
-To check user1, which has no authentication or encryption (*NoauthNoPriv*):
-
-```
-cumulus@switch:~$ snmpget -v 3 -u user1 -l NoauthNoPriv localhost 1.3.6.1.2.1.1.1.0
-cumulus@switch:~$ snmpwalk -v 3 -u user1 -l NoauthNoPriv localhost 1.3.6.1.2.1.1
-```
-
-To check user2, which has authentication but no encryption (*authNoPriv*):
-
-```
-cumulus@switch:~$ snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.1.1.0
-cumulus@switch:~$ snmpget -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1.2.1.0
-cumulus@switch:~$ snmpwalk -v 3 -u user2 -l authNoPriv -a MD5 -A user2password localhost 1.3.6.1.2.1
-```
-
-To check user3, which has both authentication and encryption (*authPriv*):
-
-```
-cumulus@switch:~$ snmpget -v 3 -u user3 -l authPriv -a MD5 -A user3password -x DES -X user3encryption localhost .1.3.6.1.2.1.1.1.0
-cumulus@switch:~$ snmpwalk -v 3 -u user3 -l authPriv -a MD5 -A user3password -x DES -X user3encryption localhost .1.3.6.1.2.1
-cumulus@switch:~$ snmpwalk -v 3 -u user666 -l authPriv -a SHA -x AES -A user666password -X user666encryption localhost 1.3.6.1.2.1.1
-cumulus@switch:~$ snmpwalk -v 3 -u user999 -l authPriv -a MD5 -x DES -A user999password -X user999encryption localhost 1.3.6.1.2.1.1
-```
+- `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt`
+- `/usr/share/snmp/mibs/Cumulus-Counters-MIB.txt`
+- `/usr/share/snmp/mibs/Cumulus-Resource-Query-MIB.txt`
 
 ## Pass Persist Scripts
 
@@ -789,3 +677,103 @@ All the scripts are enabled by default in Cumulus Linux, except for:
 
 - `bgp4_pp.py`, which is handled by {{<link url="FRRouting" text="FRRouting">}}.
 - `cl_poe_pp.py`, which is disabled by default as only certain platforms that Cumulus Linux supports are capable of doing {{<link url="Power-over-Ethernet-PoE" text="Power over Ethernet">}}.
+
+## Example Configuration
+
+The following example configuration:
+
+- Enables an SNMP agent to listen on all IPv4 addresses with a community string password.
+- Sets the trap destination host IP address.
+- Creates four types of SNMP traps.
+
+You can find a working example configuration on the {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/poc-support/snmp-and-cl" text="NVIDIA Networking GitLab project">}}, which you can try for free with {{<exlink url="https://air.cumulusnetworks.com" text="Cumulus AIR">}}.
+
+{{< tabs "example-config" >}}
+
+{{< tab "NCLU Commands" >}}
+
+```
+cumulus@switch:~$ net add snmp-server listening-address all
+cumulus@switch:~$ net add snmp-server readonly-community tempPassword access any
+cumulus@switch:~$ net add snmp-server trap-destination 1.1.1.1 community-password mypass version 2c
+cumulus@switch:~$ net add snmp-server trap-link-up check-frequency 15
+cumulus@switch:~$ net add snmp-server trap-link-down check-frequency 10
+cumulus@switch:~$ net add snmp-server trap-cpu-load-average one-minute 7.45 five-minute 5.14
+cumulus@switch:~$ net add snmp-server trap-snmp-auth-failures
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+These commands create the following `/etc/snmp/snmpd.conf` file:
+
+```
+cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
+agentaddress udp:161
+agentxperms 777 777 snmp snmp
+agentxsocket /var/agentx/master
++authtrapenable 1
+createuser _snmptrapusernameX
+iquerysecname _snmptrapusernameX
+load 7.45 5.14 0
+master agentx
+monitor -r 60 -o laNames -o laErrMessage "laTable" laErrorFlag != 0
+monitor CumulusLinkDOWN -S -r 10 -o ifName -o ifIndex -o ifAdminStatus -o ifOperStatus ifOperStatus == 2
+monitor CumulusLinkUP -S -r 15 -o ifName -o ifIndex -o ifAdminStatus -o ifOperStatus ifOperStatus != 2
+pass -p 10 1.3.6.1.2.1.1.1 /usr/share/snmp/sysDescr_pass.py
+pass_persist 1.2.840.10006.300.43 /usr/share/snmp/ieee8023_lag_pp.py
+pass_persist 1.3.6.1.2.1.17 /usr/share/snmp/bridge_pp.py
+pass_persist 1.3.6.1.2.1.31.1.1.1.18 /usr/share/snmp/snmpifAlias_pp.py
+pass_persist 1.3.6.1.2.1.47 /usr/share/snmp/entity_pp.py
+pass_persist 1.3.6.1.2.1.99 /usr/share/snmp/entity_sensor_pp.py
+pass_persist 1.3.6.1.4.1.40310.1 /usr/share/snmp/resq_pp.py
+pass_persist 1.3.6.1.4.1.40310.2 /usr/share/snmp/cl_drop_cntrs_pp.py
+pass_persist 1.3.6.1.4.1.40310.3 /usr/share/snmp/cl_poe_pp.py
+rocommunity neteng default
+rocommunity tempPassword default
+rouser _snmptrapusernameX
+syslocation leaf01
+sysobjectid 1.3.6.1.4.1.40310
+sysservices 72
+trap2sink 1.1.1.1 mypass
+```
+
+{{< /tab >}}
+
+{{< tab "Linux Commands" >}}
+
+Edit the `/etc/snmp/snmpd.conf` file and apply the following configuration (add every line starting with a +):
+
+```
+cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
++agentaddress udp:161
+agentxperms 777 777 snmp snmp
+agentxsocket /var/agentx/master
++authtrapenable 1
+createuser _snmptrapusernameX
+iquerysecname _snmptrapusernameX
++load 7.45 5.14 0
+master agentx
+monitor -r 60 -o laNames -o laErrMessage "laTable" laErrorFlag != 0
++monitor CumulusLinkDOWN -S -r 10 -o ifName -o ifIndex -o ifAdminStatus -o ifOperStatus ifOperStatus == 2
++monitor CumulusLinkUP -S -r 15 -o ifName -o ifIndex -o ifAdminStatus -o ifOperStatus ifOperStatus != 2
+pass -p 10 1.3.6.1.2.1.1.1 /usr/share/snmp/sysDescr_pass.py
+pass_persist 1.2.840.10006.300.43 /usr/share/snmp/ieee8023_lag_pp.py
+pass_persist 1.3.6.1.2.1.17 /usr/share/snmp/bridge_pp.py
+pass_persist 1.3.6.1.2.1.31.1.1.1.18 /usr/share/snmp/snmpifAlias_pp.py
+pass_persist 1.3.6.1.2.1.47 /usr/share/snmp/entity_pp.py
+pass_persist 1.3.6.1.2.1.99 /usr/share/snmp/entity_sensor_pp.py
+pass_persist 1.3.6.1.4.1.40310.1 /usr/share/snmp/resq_pp.py
+pass_persist 1.3.6.1.4.1.40310.2 /usr/share/snmp/cl_drop_cntrs_pp.py
+pass_persist 1.3.6.1.4.1.40310.3 /usr/share/snmp/cl_poe_pp.py
++rocommunity neteng default
++rocommunity tempPassword default
+rouser _snmptrapusernameX
++syslocation leaf01
+sysobjectid 1.3.6.1.4.1.40310
+sysservices 72
++trap2sink 1.1.1.1 mypass
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}

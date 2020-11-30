@@ -7,6 +7,13 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32455</td>
+<td><p>In OVSDB server high availability mode, the openvswitchd-vtep restart command stops traffic on a bond interface but the traffic doesn't resume.<br/>
+To work around this issue, bring the bond interface down, then up with the ip link command.</p></td>
+<td>3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32226</td>
 <td><p>If switchd successfully signals clagd that it is going down, clagd stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if switchd does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </p></td>
 <td>3.7.12-3.7.14</td>

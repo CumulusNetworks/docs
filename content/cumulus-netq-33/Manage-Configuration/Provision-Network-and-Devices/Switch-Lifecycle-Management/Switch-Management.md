@@ -1,10 +1,10 @@
 ---
 title: Manage Switch Inventory and Roles
-author: Cumulus Networks
+author: NVIDIA
 weight: 650
 toc: 4
 ---
-On initial installation, the lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ 3.x and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.6 or later and Cumulus NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
+On initial installation, the lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ 3.x and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.6 or later and NetQ Agent 2.4 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
 
 ## View the LCM Switch Inventory
 
@@ -78,7 +78,7 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 
 {{< /tabs >}}
 
-This listing is the starting point for Cumulus Linux upgrades or Cumulus NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
+This listing is the starting point for Cumulus Linux upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
 
 - Work with the list you have and add them later
 - Verify the missing switches are reachable using `ping`

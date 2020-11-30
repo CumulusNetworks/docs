@@ -1,6 +1,6 @@
 ---
 title: Verify Network Connectivity
-author: Cumulus Networks
+author: NVIDIA
 weight: 1030
 toc: 2
 ---

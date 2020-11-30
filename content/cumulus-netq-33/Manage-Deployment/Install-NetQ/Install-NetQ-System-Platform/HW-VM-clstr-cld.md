@@ -1,6 +1,6 @@
 ---
 title: Choose a Virtual Machine for a Cloud Server Cluster
-author: Cumulus Networks
+author: NVIDIA
 toc: 5
 bookhidden: true
 pdfhidden: true

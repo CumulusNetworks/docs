@@ -1,6 +1,6 @@
 ---
 title: Monitor the MLAG Service
-author: Cumulus Networks
+author: NVIDIA
 weight: 920
 toc: 4
 ---
@@ -9,7 +9,7 @@ Multi-Chassis Link Aggregation (MLAG) is used to enable a server or switch with 
 {{%notice note%}}
 
 **MLAG or CLAG?**
-The Cumulus Linux implementation of MLAG is referred to by other vendors as MLAG, MC-LAG or VPC. The Cumulus NetQ UI uses the MLAG terminology predominantly. However, the management daemon, named `clagd`, and other options in the code, such as `clag-id`, remain for historical purposes.
+The Cumulus Linux implementation of MLAG is referred to by other vendors as MLAG, MC-LAG or VPC. The NetQ UI uses the MLAG terminology predominantly. However, the management daemon, named `clagd`, and other options in the code, such as `clag-id`, remain for historical purposes.
 
 {{%/notice%}}
 

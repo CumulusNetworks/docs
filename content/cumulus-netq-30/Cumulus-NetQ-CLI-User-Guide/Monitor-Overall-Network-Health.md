@@ -159,7 +159,7 @@ The `netq check cl-version` command runs the following tests:
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
-| 0 | Cumulus Linux Image Version | Checks the following: <ul><li>no version specified, checks that all switches in the network have consistent version</li><li><em>match-version</em> specified, checks that a switch's OS version is equals the specified version</li><li><em>min-version</em> specified, checks that a switch's OS version is equal to or greater than the specified version</li></ul> |
+| 0 | Cumulus Linux Image Version | Checks the following: <ul><li>no version specified, checks that all switches in the network have consistent version</li><li><em>match-version</em> specified, checks that a switch's OS version is equal to the specified version</li><li><em>min-version</em> specified, checks that a switch's OS version is equal to or greater than the specified version</li></ul> |
 
 ### EVPN Validation Tests
 

@@ -1,12 +1,10 @@
 ---
 title: System Event Messages Reference
-author: Cumulus Networks
-weight: 810
+author: NVIDIA
+weight: 811
 toc: 4
 ---
-The following table lists all system event messages organized by type. These messages can be viewed through third-party notification applications. For details about configuring notifications, refer to {{<link title="Configure Notifications">}}.
-
-For a list of threshold-based events supported, refer to {{<link title="Configure Notifications#supported-events" text="TCA Supported Events">}}. For a list of What Just Happened events supported, refer to {{<link title="Configure and Monitor What Just Happened Metrics/#view-what-just-happened-metrics" text="WJH Supported Events">}}.
+The following table lists all system event messages organized by type. These messages can be viewed through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure System Event Notifications">}}.
 
 ## Agent Events
 
@@ -1119,120 +1117,6 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>Critical</td>
 <td>@info: @details</td>
 <td>significant health drop : 3.0%</td>
-</tr>
-</body>
-</table>
-
-## Threshold-based Events
-
-<table>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 25%" />
-<col style="width: 10%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Trigger</th>
-<th>Severity</th>
-<th>Message Format</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>tca</td>
-<td>Percentage of CPU utilization exceeded user-defined maximum threshold on a switch</td>
-<td>Critical</td>
-<td>CPU Utilization for host @hostname exceed configured mark @cpu_utilization</td>
-<td>CPU Utilization for host leaf11 exceed configured mark 85</td>
-</tr>
-<tr>
-<td>tca</td>
-<td>Percentage of disk utilization exceeded user-defined maximum threshold on a switch</td>
-<td>Critical</td>
-<td>Disk Utilization for host @hostname exceed configured mark @disk_utilization</td>
-<td>Disk Utilization for host leaf11 exceed configured mark 90</td>
-</tr>
-<tr>
-<td>tca</td>
-<td>Percentage of memory utilization exceeded user-defined maximum threshold on a switch</td>
-<td>Critical</td>
-<td>Memory Utilization for host @hostname exceed configured mark @mem_utilization</td>
-<td>Memory Utilization for host leaf11 exceed configured mark 95</td>
-</tr>
-<tr>
-<td>tca</td>
-<td>Number of transmit bytes exceeded user-defined maximum threshold on a switch interface</td>
-<td>Critical</td>
-<td>TX bytes upper threshold breached for host @hostname ifname:@ifname value: @tx_bytes</td>
-<td>TX bytes upper threshold breached for host spine02 ifname:swp4 value: 20000</td>
-</tr>
-<tr>
-<td>tca</td>
-<td>Number of broadcast transmit bytes exceeded user-defined maximum threshold on a switch interface</td>
-<td>Critical</td>
-<td>TX broadcast upper threshold breached for host @hostname ifname:@ifname value: @rx_broadcast</td>
-<td>TX broadcast upper threshold breached for host leaf04 ifname:swp45 value: 40200</td>
-</tr>
-<tr>
-<td>tca</td>
-<td>Number of multicast transmit bytes exceeded user-defined maximum threshold on a switch interface</td>
-<td>Critical</td>
-<td>TX multicast upper threshold breached for host @hostname ifname:@ifname value: @rx_broadcast</td>
-<td>TX multicast upper threshold breached for host leaf04 ifname:swp45 value: 30000</td>
-</tr>
-<tr>
-<td>tca</td>
-<td>Number of receive bytes exceeded user-defined maximum threshold on a switch interface</td>
-<td>Critical</td>
-<td>RX bytes upper threshold breached for host @hostname ifname:@ifname value: @tx_bytes</td>
-<td>RX bytes upper threshold breached for host spine02 ifname:swp4 value: 20000</td>
-</tr>
-<tr>
-<td>tca</td>
-<td>Number of broadcast receive bytes exceeded user-defined maximum threshold on a switch interface</td>
-<td>Critical</td>
-<td>RX broadcast upper threshold breached for host @hostname ifname:@ifname value: @rx_broadcast</td>
-<td>RX broadcast upper threshold breached for host leaf04 ifname:swp45 value: 40200</td>
-</tr>
-<tr>
-<td>tca</td>
-<td>Number of multicast receive bytes exceeded user-defined maximum threshold on a switch interface</td>
-<td>Critical</td>
-<td>RX multicast upper threshold breached for host @hostname ifname:@ifname value: @rx_broadcast</td>
-<td>RX multicast upper threshold breached for host leaf04 ifname:swp45 value: 30000</td>
-</tr>
-<tr>
-<td>tca</td>
-<td>Fan speed exceeded user-defined maximum threshold on a switch</td>
-<td>Critical</td>
-<td>Sensor for @hostname exceeded threshold fan speed @s_input for sensor @s_name</td>
-<td>Sensor for spine03 exceeded threshold fan speed 700 for sensor fan2</td>
-</tr>
-<tr>
-<td>tca</td>
-<td>Power supply output exceeded user-defined maximum threshold on a switch</td>
-<td>Critical</td>
-<td>Sensor for @hostname exceeded threshold power @s_input watts for sensor @s_name</td>
-<td>Sensor for leaf14 exceeded threshold power 120 watts for sensor psu1</td>
-</tr>
-<tr>
-<td>tca</td>
-<td>Temperature (&#176 C) exceeded user-defined maximum threshold on a switch</td>
-<td>Critical</td>
-<td>Sensor for @hostname exceeded threshold temperature @s_input for sensor @s_name</td>
-<td>Sensor for leaf14 exceeded threshold temperature 90 for sensor temp1</td>
-</tr>
-<tr>
-<td>tca</td>
-<td>Power supply voltage exceeded user-defined maximum threshold on a switch</td>
-<td>Critical</td>
-<td>Sensor for @hostname exceeded threshold voltage @s_input volts for sensor @s_name</td>
-<td>Sensor for leaf14 exceeded threshold voltage 12 volts for sensor psu2</td>
 </tr>
 </body>
 </table>

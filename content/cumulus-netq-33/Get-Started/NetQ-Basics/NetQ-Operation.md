@@ -1,6 +1,6 @@
 ---
 title: Cumulus NetQ Operation
-author: Cumulus Networks
+author: NVIDIA
 weight: 80
 toc: 4
 ---

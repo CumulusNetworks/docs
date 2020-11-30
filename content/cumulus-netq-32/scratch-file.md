@@ -22,6 +22,8 @@ pdfhidden: true
 
 <div class="notices note"><p>note text</p></div>
 
+<! --  text to comment out -–>
+
 {{< expand "title" >}}
 
 {{< /expand >}}

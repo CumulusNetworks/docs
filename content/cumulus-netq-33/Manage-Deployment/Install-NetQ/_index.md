@@ -1,10 +1,10 @@
 ---
 title: Install NetQ
-author: Cumulus Networks
+author: NVIDIA
 weight: 190
 toc: 3
 ---
-The Cumulus NetQ software contains several components that must be installed, including the NetQ applications, the database, and the NetQ Agents. NetQ can be deployed in two arrangements:
+The NetQ software contains several components that must be installed, including the NetQ applications, the database, and the NetQ Agents. NetQ can be deployed in two arrangements:
 
 - All software components installed locally (the applications and database are installed as a single entity, called the *NetQ Platform*) running on the *NetQ On-premises Appliance* or *NetQ On-premises Virtual Machine (VM)*; known hereafter as the *on-premises solution*
 - Only the aggregation and forwarding application software installed locally (called the *NetQ Collector*) running on the *NetQ Cloud Appliance* or *NetQ Cloud VM*, with the database and all other applications installed in the cloud; known hereafter as the *cloud solution*
@@ -21,7 +21,7 @@ For the cloud solution, the NetQ Agent function is exactly the same, transmittin
 
 ## Installation Choices
 
-There are several choices that you must make to determine what steps you need to perform to install the NetQ solution. First and foremost, you must determine whether you intend to deploy the solution fully on your premises or if you intend to deploy the cloud solution. Secondly, you must decide whether you are going to deploy a Virtual Machine on your own hardware or use one of the Cumulus NetQ appliances. Thirdly, you also must determine whether you want to install the software on a single server or as a server cluster. Finally, if you have an existing on-premises solution and want to save your existing NetQ data, you must backup that data before installing the new software.
+There are several choices that you must make to determine what steps you need to perform to install the NetQ solution. First and foremost, you must determine whether you intend to deploy the solution fully on your premises or if you intend to deploy the cloud solution. Secondly, you must decide whether you are going to deploy a Virtual Machine on your own hardware or use one of the NetQ appliances. Thirdly, you also must determine whether you want to install the software on a single server or as a server cluster. Finally, if you have an existing on-premises solution and want to save your existing NetQ data, you must backup that data before installing the new software.
 
 {{< figure src="/images/netq/install-decision-tree-240.png" width="400">}}
 
@@ -38,4 +38,4 @@ No matter how you answer the questions above, the installation workflow can be s
 
 ## Where to Go Next
 
-Follow the instructions in {{<link title="Install the NetQ System" text="Install the NetQ System">}} to begin installation of Cumulus NetQ.
+Follow the instructions in {{<link title="Install the NetQ System" text="Install the NetQ System">}} to begin installation of NetQ.

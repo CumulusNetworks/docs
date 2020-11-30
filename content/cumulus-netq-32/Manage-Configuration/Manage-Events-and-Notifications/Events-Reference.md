@@ -30,7 +30,14 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <tbody>
 <tr>
 <td>agent</td>
-<td>NetQ Agent state changed to Rotten (not heard from in over 15 seconds)</td>
+<td>NetQ Agent state changed to Rotten (not heard from within two minutes)</td>
+<td>Critical</td>
+<td>Agent state changed to rotten</td>
+<td>Agent state changed to rotten</td>
+</tr>
+<tr>
+<td>agent</td>
+<td>NetQ Agent state changed to Dead (user has decomissioned the agent using NetQ CLI)</td>
 <td>Critical</td>
 <td>Agent state changed to rotten</td>
 <td>Agent state changed to rotten</td>
@@ -151,6 +158,7 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>@info : @details</td>
 <td>high btrfs allocation space : greater than 80% of partition size, 61708420</td>
 </tr>
+<! -- remove this second event? -->
 <tr>
 <td>btrfsinfo</td>
 <td>Indicates if space would be freed by a rebalance operation on the disk</td>
@@ -275,7 +283,7 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>Peer state changed to down</td>
 <td>Peer state changed to down</td>
 </tr>
-<tr>
+<! -- <tr>
 <td>clag</td>
 <td>Local CLAG host MTU does not match its remote peer MTU</td>
 <td>Critical</td>
@@ -295,7 +303,7 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>Warning</p></td>
 <td>Clag peerlink not at full redundancy, member link @slave is down</td>
 <td>Clag peerlink not at full redundancy, member link swp40 is down</td>
-</tr>
+</tr> -->
 <tr>
 <td>clag</td>
 <td>CLAG remote peer state changed from down to up</td>
@@ -1037,6 +1045,13 @@ For a list of threshold-based events supported, refer to {{<link title="Configur
 <td>Sensor @sensor state changed from @old_s_state to @new_s_state</td>
 <td><p>Sensor fan state changed from down to up</p>
 <p>Sensor psu state changed from down to up</p></td>
+</tr>
+<tr>
+<td>sensor</td>
+<td>A fan or power supply unit sensor is in a new state</td>
+<td>Critical</td>
+<td>Sensor @sensor state is @new_s_state</td>
+<td>Sensor psu state is bad</td>
 </tr>
 </body>
 </table>

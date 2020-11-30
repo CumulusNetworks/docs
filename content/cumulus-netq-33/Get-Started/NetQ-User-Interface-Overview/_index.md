@@ -1,6 +1,6 @@
 ---
 title: NetQ User Interface Overview
-author: Cumulus Networks
+author: NVIDIA
 weight: 90
 toc: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: Get Started
-author: Cumulus Networks
+author: NVIDIA
 weight: 40
 subsection: true
 toc: 1

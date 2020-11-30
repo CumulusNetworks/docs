@@ -1,6 +1,6 @@
 ---
 title: Upgrade NetQ Appliances and Virtual Machines
-author: Cumulus Networks
+author: NVIDIA
 weight: 410
 toc: 4
 ---
@@ -22,23 +22,7 @@ To complete the preparation:
 
 2. Download the relevant software.
 
-    1. Go to the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page, and select *NetQ* from the **Product** list.
-
-    2. Select *3.2* from the **Version** list, and then click *3.2.1* in the submenu.
-
-    3. Select the relevant software from the **HyperVisor/Platform** list:
-
-        If you are upgrading NetQ Platform software for a NetQ On-premises Appliance or VM, select *Appliance*  to download the NetQ-3.2.1.tgz file. If you are upgrading NetQ Collector software for a NetQ Cloud Appliance or VM, select *Appliance (Cloud)* to download the NetQ-3.2.1-opta.tgz file.
-
-        {{<figure src="/images/netq/netq-32-download-options-321.png" width="500">}}
-
-    4. Scroll down and click **Download** on the on-premises or cloud NetQ Appliance image.
-
-        {{< figure src="/images/netq/netq-32-appliance-onpremcld-dwnld-321.png" width="420" >}}
-
-        {{<notice note>}}
-You can ignore the note on the image card because, unlike during installation, you <em>do not</em> need to download the bootstrap file for an upgrade.
-        {{</notice>}}
+    {{<netq-install/upgrade-image version="3.2.1">}}
 
 3. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
 

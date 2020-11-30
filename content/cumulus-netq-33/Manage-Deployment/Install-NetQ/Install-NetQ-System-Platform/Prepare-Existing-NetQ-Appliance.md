@@ -1,6 +1,6 @@
 ---
 title: Prepare Your Existing NetQ Appliances for a NetQ 3.2 Deployment
-author: Cumulus Networks
+author: NVIDIA
 weight: 235
 toc: 5
 ---

@@ -1,6 +1,6 @@
 ---
 title: NVIDIA NetQ 3.3 User Guide
-author: Cumulus Networks/NVIDIA
+author: NVIDIA/NVIDIA
 weight: 1
 subsection: true
 toc: 1

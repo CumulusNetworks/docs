@@ -1,6 +1,6 @@
 ---
 title: Upgrade NetQ
-author: Cumulus Networks
+author: NVIDIA
 weight: 400
 toc: 3
 ---

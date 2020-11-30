@@ -1,6 +1,6 @@
 ---
 title: Monitor the BGP Service
-author: Cumulus Networks
+author: NVIDIA
 weight: 950
 toc: 4
 ---
@@ -59,7 +59,7 @@ To view the summary, open the small Network Services|All BGP Sessions card.
 
 To view the summary, run `netq show bgp`.
 
-This example shows each node, their neighbor, VRF, ASN, Peer ASN, Address Prefix, and last time this was changed.
+This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and last time this was changed.
 
 ```
 cumulus@switch:~$ netq show bgp

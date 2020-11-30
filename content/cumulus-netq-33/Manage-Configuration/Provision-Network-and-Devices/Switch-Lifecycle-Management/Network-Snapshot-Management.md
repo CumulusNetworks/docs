@@ -1,6 +1,6 @@
 ---
 title: Manage Network Snapshots
-author: Cumulus Networks
+author: NVIDIA
 weight: 690
 toc: 4
 ---

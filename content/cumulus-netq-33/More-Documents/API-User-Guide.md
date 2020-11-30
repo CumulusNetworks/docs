@@ -1,6 +1,6 @@
 ---
 title: Integrate NetQ API with Your Applications
-author: Cumulus Networks
+author: NVIDIA
 weight: 1110
 toc: 3
 ---
@@ -12,7 +12,7 @@ For information regarding new features, improvements, bug fixes, and known issue
 
 ## API Organization
 
-The Cumulus NetQ API provides endpoints for:
+The NetQ API provides endpoints for:
 
 - **Network protocols**: BGP, EVPN, LLDP, CLAG, MSTP, Neighbors, NTP, Routes
 - **Virtual networks**: VLAN

@@ -1,6 +1,6 @@
 ---
 title: Back Up and Restore NetQ
-author: Cumulus Networks
+author: NVIDIA
 weight: 520
 toc: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: Set Up Your KVM Virtual Machine for an On-premises Server Cluster
-author: Cumulus Networks
+author: NVIDIA
 weight: 227
 toc: 5
 bookhidden: true
@@ -59,7 +59,7 @@ Make a note of the private IP address you assign to the worker node. It is neede
 
 #### Install and Activate the NetQ Software
 
-The final step is to install and activate the Cumulus NetQ software. You can do this using the Admin UI or the CLI.
+The final step is to install and activate the NetQ software. You can do this using the Admin UI or the CLI.
 
 Click the installation and activation method you want to use to complete installation:
 

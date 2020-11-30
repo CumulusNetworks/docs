@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 660
 toc: 4
 ---
-You can use the NetQ UI to configure switches using one or more switch configurations. To enable consistent application of configurations, switch configurations can contain network templates for SNMP, NTP, and user accounts, and configuration profiles for NetQ Agents.
+You can use the NetQ UI to configure switches using one or more switch configurations. To enable consistent application of configurations, switch configurations can contain network templates for SNMP, NTP, and user accounts, and configuration profiles for interfaces and NetQ Agents.
 
 If you intend to use network templates or configuration profiles, the recommended workflow is as follows:
 
@@ -20,11 +20,13 @@ You can view existing templates using the Network Templates card.
 
 1. Open the lifecycle management (Manage Switch Assets) dashboard.
 
-2. Locate the Network Templates card.
+2. Click **Configuration Management**.
+
+3. Locate the Network Templates card.
 
     {{<figure src="/images/netq/lcm-ntwk-template-medium-320.png" width="200">}}
 
-3. Click **Manage** to view the list of existing switch templates.
+4. Click **Manage** to view the list of existing switch templates.
 
 ### Create Network Templates
 
@@ -34,15 +36,17 @@ To create a network template:
 
 1. Open the lifecycle management (Manage Switch Assets) dashboard.
 
-2. Click **Add** on the Network Templates card.
+2. Click **Configuration Management**.
+
+3. Click **Add** on the Network Templates card.
 
     {{<figure src="/images/netq/lcm-ntwk-template-create-new-320.png" width="700">}}
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} Create New.
+4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} Create New.
 
     {{<figure src="/images/netq/lcm-ntwk-template-forms-snmp-320.png" width="700">}}
 
-4. Decide which aspects of configuration you want included in this template: SNMP, NTP, and/or User accounts.
+5. Decide which aspects of configuration you want included in this template: SNMP, NTP, and/or User accounts.
 
     {{<notice tip>}}
 
@@ -50,7 +54,7 @@ You can specify your template in any order, but to complete the configuration, y
 
     {{</notice>}}
 
-5. Configure the template using the following instructions.
+6. Configure the template using the following instructions.
 
 {{< tabs "TabID51" >}}
 
@@ -291,13 +295,15 @@ To view existing profiles:
 
 1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Manage Switches**.
 
-2. Click **Manage** on the NetQ Configurations card.
+2. Click **Configuration Management**.
+
+3. Click **Manage** on the NetQ Configurations card.
 
     Note that the initial value on first installation of NetQ shows one profile. This is the default profile provided with NetQ.
 
     {{<figure src="/images/netq/lcm-netq-config-card-on-install-310.png" width="200">}}
 
-3. Review the profiles.
+4. Review the profiles.
 
     {{<figure src="/images/netq/lcm-netq-config-profiles-list-310.png" width="550">}}
 
@@ -305,34 +311,36 @@ To view existing profiles:
 
 You can specify four options when creating NetQ configuration profiles:
 
-- Basic: VRF assignment and Logging level
-- Advanced: CPU limit and what just happened (WJH)
+- Basic: Assign a VRF and enable or disable what just happened (WJH) feature
+- Advanced: Set logging level and  enable or disable CPU limit feature
 
 To create a profile:
 
 1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Manage Switches**.
 
-2. Click **Manage** on the NetQ Configurations card.
+2. Click **Configuration Management**.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18" alt="Add Config Profile">}} (Add Config) above the listing.
+3. Click **Manage** on the NetQ Configurations card.
+
+4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18" alt="Add Config Profile">}} (Add Config) above the listing.
 
     {{<figure src="/images/netq/lcm-netq-config-profile-create-310.png" width="450">}}
 
-4. Enter a name for the profile. This is required.
+5. Enter a name for the profile. This is required.
 
-5. If you do not want NetQ Agent to run in the management VRF, select either *Default* or *Custom*. The Custom option lets you enter the name of a user-defined VRF.
+6. If you do not want NetQ Agent to run in the management VRF, select either *Default* or *Custom*. The Custom option lets you enter the name of a user-defined VRF.
 
-6. Optionally enable WJH.
+7. Optionally enable WJH.
 
     Refer to {{<link title="Configure and Monitor What Just Happened Metrics/#view-what-just-happened-metrics" text="WJH">}} for information about this feature. *WJH is only available on Mellanox switches.*
 
-7. To set a logging level, click **Advanced**, then choose the desired level.
+8. To set a logging level, click **Advanced**, then choose the desired level.
 
     {{<figure src="/images/netq/lcm-netq-config-profile-log-level-310.png" width="450">}}
 
-8. Optionally set a CPU usage limit for the NetQ Agent. Click **Enable** and drag the dot to the desired limit. Refer to this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360046925373-NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches" text="Knowledge Base article">}} for information about this feature.
+9. Optionally set a CPU usage limit for the NetQ Agent. Click **Enable** and drag the dot to the desired limit. Refer to this {{<exlink url="https://support.cumulusnetworks.com/hc/en-us/articles/360046925373-NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches" text="Knowledge Base article">}} for information about this feature.
 
-9. Click **Add** to complete the configuration or **Close** to discard the configuration.
+10. Click **Add** to complete the configuration or **Close** to discard the configuration.
 
     This example shows the addition of a profile with the CPU limit set to 75 percent.
 
@@ -344,9 +352,11 @@ To remove a NetQ configuration profile:
 
 1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**, or click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Manage Switches**.
 
-2. Click **Manage** on the NetQ Configurations card.
+2. Click **Configuration Management**.
 
-3. Select the profile(s) you want to remove and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18">}} (Delete).
+3. Click **Manage** on the NetQ Configurations card.
+
+4. Select the profile(s) you want to remove and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18">}} (Delete).
 
 ## Manage Switch Configuration
 
@@ -360,11 +370,13 @@ You can view existing switch configuration profiles using the Switch Configurati
 
 1. Open the lifecycle management (Manage Switch Assets) dashboard.
 
-2. Locate the Switch Configurations card.
+2. Click **Configuration Management**.
+
+3. Locate the Switch Configurations card.
 
     {{<figure src="/images/netq/lcm-switch-config-medium-card-320.png" width="200">}}
 
-3. Click **Manage** to view the list of existing switch templates.
+4. Click **Manage** to view the list of existing switch templates.
 
 ### Create Switch Configuration Profiles
 
@@ -374,27 +386,29 @@ To create a switch configuration profile:
 
 1. Open the lifecycle management (Manage Switch Assets) dashboard.
 
-2. Click **Add** on the Switch Configurations card.
+2. Click **Configuration Management**.
+
+3. Click **Add** on the Switch Configurations card.
 
     {{<figure src="/images/netq/lcm-switch-config-add-320.png" width="200">}}
 
-3. Enter a name for the configuration. This is required and must be a maximum of 22 characters, including spaces.
+4. Enter a name for the configuration. This is required and must be a maximum of 22 characters, including spaces.
 
-4. Decide which aspects of configuration you want included in this template: CL configuration and/or NetQ Agent configuration profiles.
+5. Decide which aspects of configuration you want included in this template: Cumulus Linux, NetQ Agent, VLANs, MLAG, and/or interfaces.
 
-5. Specify the settings for each using the following instructions.
+6. Specify the settings for each using the following instructions.
 
 {{< tabs "TabID383" >}}
 
-{{< tab "Cumulus Linux" >}}
+{{< tab "CL Configuration" >}}
 
 Three configuration options are available for the Cumulus Linux configuration portion of the switch configuration profile. Note that two of those are required.
 
-1. Select either the *Default* or *Management* interface to be used for communications with the switches with this profile assigned. Typically the default interface is xxx and the management interface is either *eth0* or *eth1*.
+1. Enter the management interface (VLAN ID) to be used for communications with the switches with this profile assigned. Commonly this is either *eth0* or *eth1*.
 
 2. Select the type of switch that will have this configuration assigned from the **Choose Switch type** dropdown. Currently this includes Mellanox SN series of switches.
 
-3. If you want to include network settings in this configuration, click **Add**.
+3. If you want to include network settings in this configuration, click **View/Add**.
 
     This opens the Network Template forms. You can select an existing network template to pre-populate the parameters already specified in that template, or you can start from scratch to create a different set of network settings.
 
@@ -428,11 +442,18 @@ In either case, if you change your mind about including network settings, click 
 
 </div>
 
+Click one of the following:
+<ul>
+<li><strong>Reset</strong> to clear your entries and start again or remove the specifications</li>
+<li><strong>Save and Continue</strong> to configure additional switch configuration parameters</li>
+<li><strong>Save and Deploy</strong> if the switch configuration is now complete</li>
+</ul>
+
 {{< /tab >}}
 
 {{< tab "NetQ Agent" >}}
 
-1. Click NetQ Agent Configuration.
+1. Click **NetQ Agent Configuration**.
 
     {{<figure src="/images/netq/lcm-switch-config-nqagent-config-320.png" width="700">}}
 
@@ -440,15 +461,77 @@ In either case, if you change your mind about including network settings, click 
 
     <em>To use an existing network template as a starting point:</em>
 
-    1. Select the configuration profile from the dropdown.
+    - Select the configuration profile from the dropdown.
 
-    2. Modify any of the parameters as needed or click **Continue**.
+    - Modify any of the parameters as needed.
 
     <em>To create a new configuration profile:</em>
 
-    1. Select values as appropriate for your situation. Refer to {{<link title="Manage Switch Configurations/#create-cumulus-netq-configuration-profiles" text="Create NetQ Configuration Profiles">}} for descriptions of these parameters.
+    - Select values as appropriate for your situation. Refer to {{<link title="Manage Switch Configurations/#create-cumulus-netq-configuration-profiles" text="Create NetQ Configuration Profiles">}} for descriptions of these parameters.
 
-    2. Click **Continue**.
+3. Click one of the following:
+
+    - **Reset** to clear your entries and start again or remove the specifications
+    - **Save and Continue** to configure additional switch configuration parameters
+    - **Save and Deploy** if the switch configuration is now complete
+
+{{< /tab >}}
+
+{{< tab "VLAN Management" >}}
+
+1. Click **VLAN management**.
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add one or more VLANs to the switch configuration.
+
+3. Enter a name for the VLAN when creating a single VLAN or enter a prefix (combined with the VLAN ID) for multiple VLANs.
+
+4. Enter a single VLAN ID (1-4096) or a range of IDs. When entering multiple IDs, separate them by commas and do not use spaces. For example, you can enter them:
+
+    - One at a time: 25,26,27,28,85,86,87,88,89,112
+    - As a single range: 25-28 or 85-89
+    - As a set of ranges and individual IDs: 25-28,85-89 or 25-28,85-89,112
+
+5. Click **Create**.
+
+    The VLAN/s are displayed in the VLAN list. Once VLANs are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one or all or filter for a subset of VLANs, then click the relevant menu icon.
+
+6. Click one of the following:
+
+    - **Reset** to clear your entries and start again or remove the specifications
+    - **Save and Continue** to configure additional switch configuration parameters
+    - **Save and Deploy** if the switch configuration is now complete
+
+{{< /tab >}}
+
+{{< tab "MLAG" >}}
+
+MLAG is disabled by default. If you want to include MLAG in the switch configuration, you must enable it.
+
+1. Click **Enable**.
+
+2. Select the VLAN over which MLAG traffic is communicated. If you have created a VLAN profile....If you have not yet created a VLAN profile, refer to xxx and then return here.
+
+3. Enter the priority of ???
+
+4. Designate which ports are to be used, including ingress and egress ports.
+
+5. Click one of the following:
+
+    - **Reset** to clear your entries and start again or remove the specifications
+    - **Save and Continue** to configure additional switch configuration parameters
+    - **Save and Deploy** if the switch configuration is now complete
+
+{{< /tab >}}
+
+{{< tab "Interface Profile" >}}
+
+xxx
+
+{{< /tab >}}
+
+{{< tab "Interfaces" >}}
+
+xxx
 
 {{< /tab >}}
 

@@ -705,6 +705,16 @@ The service starts automatically but there is an impact to POE devices momentari
 <td>3.7.13-3.7.14, 4.2.0-4.2.1</td>
 </tr>
 <tr>
+<td>CM-29774</td>
+<td><p>The sx_sdk service may log errors and/or generate a core file when configuring breakout ports on Mellanox Spectrum platforms. The error message observed will be similar to the following:</p>
+
+<p>sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error</p>
+
+<p>This issue is resolved in Cumulus Linux 4.2.0 and above. </p></td>
+<td>4.1.1</td>
+<td>4.2.0-4.2.1</td>
+</tr>
+<tr>
 <td>CM-29760</td>
 <td><p>Several vulnerabilities were discovered in BIND, a DNS server implementation.  <br/>
 bind9-host (containing only /usr/bin/host) and some libraries from the bind9 source package are installed on the switch by default; the BIND server referred to in these vulnerabilities is not installed by default but is available in the repository for optional installation.<br/>

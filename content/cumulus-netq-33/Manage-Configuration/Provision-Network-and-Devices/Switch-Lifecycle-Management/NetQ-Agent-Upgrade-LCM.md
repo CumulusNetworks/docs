@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 670
 toc: 4
 ---
-The lifecycle management (LCM) feature enables you to upgrade to NetQ 3.2.0 on switches with an existing NetQ Agent 2.4.x, 3.0.0, or 3.1.0 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
+The lifecycle management (LCM) feature enables you to upgrade to NetQ 3.3.0 on switches with an existing NetQ Agent 2.4.x-3.2.1 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
 
 The upgrade workflow includes the following steps:
 
@@ -136,7 +136,7 @@ By default, the NetQ Agent and CLI are upgraded on the selected switches. If you
 
     For the switches you upgraded, you can verify the version is correctly listed in the **NetQ_Version** column. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the lifecycle management dashboard.
 
-    The NetQ Install and Upgrade History card is now visible and shows the status of this upgrade job.
+    The NetQ Install and Upgrade History card is now visible in the **Job History** tab and shows the status of this upgrade job.
 
     {{<figure src="/images/netq/lcm-netq-upgrade-success-history-card-320.png" width="200">}}
 
@@ -200,7 +200,7 @@ Several viewing options are available for monitoring the upgrade job.
 
     By default, filters show *all* of that items of the given filter type until it is restricted by these settings.
 
-- Monitor the job through the NetQ Install and Upgrade History card on the LCM dashboard. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} twice to return to the LCM dashboard.
+- Monitor the job through the NetQ Install and Upgrade History card in the **Job History** tab. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} twice to return to the LCM dashboard.
 
     {{<figure src="/images/netq/lcm-netq-upgrade-history-card-inprogress-310.png" width="200">}}
 

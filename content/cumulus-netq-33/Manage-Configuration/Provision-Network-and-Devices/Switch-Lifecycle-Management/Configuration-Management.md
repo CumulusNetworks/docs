@@ -723,63 +723,53 @@ intro/which parameters required?
 
 (why include???)
 
-1. Click **Subinterface**.
+1. Click **Subinterface management**.
 
-2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new sub-interface profile.
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new sub-interface.
 
-3. Enter a unique name for the subinterface profile.
+3. Enter a unique name for the subinterface.
 
-4. Enter the supported MTU for this subinterface profile.
+4. Select a VLAN profile to apply to this subinterface.
 
-5. Select a VRF profile from the dropdown. (where is this created???)
+5. Enter the supported MTU for this subinterface.
 
-6. Click **Create**.
+6. Select a parent interface from the dropdown.
 
-    The subinterface profiles are displayed in the subinterface list. Once subinterfaces are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of subinterfaces, then click the relevant menu icon.
+7. Select an interface profile to apply to this subinterface.
 
-7. Click one of the following:
+8. Click **Create**.
+
+    The subinterface are displayed in the subinterface list. Once subinterfaces are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of subinterfaces, then click the relevant menu icon.
+
+9. Click one of the following:
 
     - **Reset** to clear your entries and start again
-    - **Save and Continue** to configure additional interface profile components
-    - **Save and Deploy** if your interface profile and the switch configuration is now completed
+    - **Save and Continue** to configure additional interface parameters
+    - **Save and Deploy** if your interfaces and the switch configuration is now completed
 
 ### Add Ports
 
-The information needed to define a port is collected into two categories: details and attributes.
+This tab describes all of the ports on the identified switch. The port name and bond are provided by default (based on the switch type??? and xxx???). For each port, you must define the speed and assign an interface profile. Optionally you can configure ports to be split to support xxx???. Any caveats related to port configuration on the specified type of switch are listed under the port listing.
 
-1. Click **Port**.
+1. Click **Port management**.
 
-2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new port profile.
+2. Accept or change the port names.
 
-3. Enter a unique name for the port profile.
+3. Verify the port speeds. For any port that should be other than 100 G, select either 50 G or 40 G.
 
-4. Click on the type of port this profile is to support; either layer 2 (**L2**) or layer 3 (**L3**).
+4. If you want to break out selected ports, choose the split value from the dropdown.
 
-5. Optionally enable forward error correction (FEC); click **True**. (what is default value here???)
+5. Select a bond to apply to each port.
 
-6. Optionally enable auto-negotiation of link speeds; click **True**.
+6. Select an interface profile for each port.
 
-7. Optionally specify the whether to support transmit and receive on this port (**full**) or either transmit or receive on this port (**half**).
+<div class="notices tip"><p>For values that apply to all ports, select all ports and then select or enter the value.</p></div>
 
-8. Optionally select port speed from the dropdown.
-
-9. Optionally enter the supported MTU for this bond profile.
-
-10. Click **Bond attributes**.
-
-11. Select a private VLAN ID (pvid) for communication from the dropdown.
-
-12. Optionally assign one or more tagged VLANs to support traffic from more than one VLAN on a port.
-
-13. When you are satisfied with the bond profile specification, click **Create**.
-
-    The port profiles are displayed in the Port list. Once ports are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of ports, then click the relevant menu icon.
-
-14. Click one of the following:
+7. When you are satisfied with the interfaces specification, click one of the following:
 
     - **Reset** to clear your entries and start again
-    - **Save and Continue** to configure additional interface profile components
-    - **Save and Deploy** if your interface profile and the switch configuration is now completed
+    - **Save and Continue** to configure additional switch configuration parameters
+    - **Save and Deploy** if your port configuration and the switch configuration is now completed
 
 {{< /tab >}}
 

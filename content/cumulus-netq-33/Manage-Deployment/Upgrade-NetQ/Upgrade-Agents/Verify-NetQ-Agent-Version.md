@@ -1,6 +1,6 @@
 ---
 title: Verify NetQ Agent Version
-author: Cumulus Networks
+author: NVIDIA
 weight: 460
 toc: 5
 ---

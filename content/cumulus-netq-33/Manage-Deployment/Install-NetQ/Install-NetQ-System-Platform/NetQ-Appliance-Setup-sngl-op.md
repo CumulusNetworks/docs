@@ -1,6 +1,6 @@
 ---
 title: Install the NetQ On-premises Appliance
-author: Cumulus Networks
+author: NVIDIA
 weight: 229
 toc: 5
 bookhidden: true
@@ -99,7 +99,7 @@ Now that the appliance is up and running, verify that the software is available 
 
     {{<netq-install/bootstrap server="single" version="3.2.1" platform="appliance" deployment="onprem">}}
 
-The final step is to install and activate the Cumulus NetQ software.  You can do this using the Admin UI or the NetQ CLI.
+The final step is to install and activate the NetQ software.  You can do this using the Admin UI or the NetQ CLI.
 
 Click the installation and activation method you want to use to complete installation:
 

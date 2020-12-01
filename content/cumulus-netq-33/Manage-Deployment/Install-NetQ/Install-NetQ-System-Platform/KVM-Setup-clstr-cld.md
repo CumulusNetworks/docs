@@ -1,6 +1,6 @@
 ---
 title: Set Up Your KVM Virtual Machine for a Cloud Server Cluster
-author: Cumulus Networks
+author: NVIDIA
 weight: 228
 toc: 5
 bookhidden: true
@@ -57,7 +57,7 @@ Make a note of the private IP address you assign to the worker node. It is neede
 
 13. Repeat Steps 7 through 11 for each additional worker node you want in your cluster.
 
-The final step is to install and activate the Cumulus NetQ software. You can do this using the Admin UI or the CLI.
+The final step is to install and activate the NetQ software. You can do this using the Admin UI or the CLI.
 
 Click the installation and activation method you want to use to complete installation:
 

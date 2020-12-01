@@ -1,10 +1,10 @@
 ---
 title: Monitor Using Topology View
-author: Cumulus Networks
+author: NVIDIA
 weight: 1040
 toc: 3
 ---
-The core capabilities of Cumulus NetQ enable you to monitor your network by viewing performance and configuration data about your individual network devices and the entire fabric networkwide. The topics contained in this section describe monitoring tasks that can be performed from a topology view rather than through the NetQ UI card workflows or the NetQ CLI.
+The core capabilities of NetQ enable you to monitor your network by viewing performance and configuration data about your individual network devices and the entire fabric networkwide. The topics contained in this section describe monitoring tasks that can be performed from a topology view rather than through the NetQ UI card workflows or the NetQ CLI.
 
 ## Access the Topology View
 

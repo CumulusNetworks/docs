@@ -1,10 +1,10 @@
 ---
 title: Focus Your Monitoring Using Workbenches
-author: Cumulus Networks
+author: NVIDIA
 weight: 130
 toc: 4
 ---
-Workbenches are an integral structure of the Cumulus NetQ UI. They are where you collect and view the data that is important to you.
+Workbenches are an integral structure of the NetQ UI. They are where you collect and view the data that is important to you.
 
 There are two types of workbenches:
 

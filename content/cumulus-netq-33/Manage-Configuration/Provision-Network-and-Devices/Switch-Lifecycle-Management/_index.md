@@ -1,6 +1,6 @@
 ---
 title: Manage Switches through Their Lifecycle
-author: Cumulus Networks
+author: NVIDIA
 weight: 620
 subsection: true
 toc: 1
@@ -15,15 +15,15 @@ As an administrator, you want to manage the deployment of Cumulus Networks produ
 
 Using the NetQ UI or CLI, lifecycle management enables you to:
 
-- Manage Cumulus Linux and Cumulus NetQ images in a local repository
+- Manage Cumulus Linux and NetQ images in a local repository
 - Configure switch access credentials (required for installations and upgrades)
 - Manage Cumulus Linux switches
 - Create snapshots of the network state at various times
 - Create Cumulus Linux switch configurations, with or without network templates
-- Create Cumulus NetQ configuration profiles
-- Upgrade Cumulus NetQ (Agents and CLI) on Cumulus Linux switches with Cumulus NetQ Agents version 2.4.x or later
-- Install or upgrade Cumulus NetQ (Agents and CLI) on Cumulus Linux switches with or without Cumulus NetQ Agents; all in a single job
-- Upgrade Cumulus Linux on switches with Cumulus NetQ Agents version 2.4.x or later (includes upgrade of NetQ to 3.x)
+- Create NetQ configuration profiles
+- Upgrade NetQ (Agents and CLI) on Cumulus Linux switches with NetQ Agents version 2.4.x or later
+- Install or upgrade NetQ (Agents and CLI) on Cumulus Linux switches with or without NetQ Agents; all in a single job
+- Upgrade Cumulus Linux on switches with NetQ Agents version 2.4.x or later (includes upgrade of NetQ to 3.x)
 - View a result history of upgrade attempts
 
 {{<notice note>}}

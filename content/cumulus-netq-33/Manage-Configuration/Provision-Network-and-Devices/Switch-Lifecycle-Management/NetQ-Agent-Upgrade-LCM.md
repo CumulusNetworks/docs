@@ -1,10 +1,10 @@
 ---
-title: Upgrade Cumulus NetQ Agent Using LCM
-author: Cumulus Networks
+title: Upgrade NetQ Agent Using LCM
+author: NVIDIA
 weight: 670
 toc: 4
 ---
-The lifecycle management (LCM) feature enables you to upgrade to Cumulus NetQ 3.2.0 on switches with an existing NetQ Agent 2.4.x, 3.0.0, or 3.1.0 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
+The lifecycle management (LCM) feature enables you to upgrade to NetQ 3.2.0 on switches with an existing NetQ Agent 2.4.x, 3.0.0, or 3.1.0 release using the NetQ UI. You can upgrade only the NetQ Agent or upgrade both the NetQ Agent and the NetQ CLI at the same time. Up to five jobs can be run simultaneously; however, a given switch can only be contained in one running job at a time.
 
 The upgrade workflow includes the following steps:
 
@@ -16,7 +16,7 @@ Upgrades can be performed from NetQ Agents of 2.4.x, 3.0.0, and 3.1.0 releases t
 
 {{</notice>}}
 
-## Prepare for a Cumulus NetQ Agent Upgrade
+## Prepare for a NetQ Agent Upgrade
 
 Prepare for NetQ Agent upgrade on switches as follows:
 
@@ -52,9 +52,9 @@ Your LCM dashboard should look similar to this after you have completed the abov
 
 {{< /tabs >}}
 
-## Perform a Cumulus NetQ Agent Upgrade
+## Perform a NetQ Agent Upgrade
 
-You can upgrade Cumulus NetQ Agents on switches as follows:
+You can upgrade NetQ Agents on switches as follows:
 
 {{< tabs "TabID61" >}}
 
@@ -242,7 +242,7 @@ xxx
 
 ### Reasons for NetQ Agent Upgrade Failure
 
-Upgrades can fail at any of the stages of the process, including when backing up data, upgrading the Cumulus NetQ software, and restoring the data. Failures can also occur when attempting to connect to a switch or perform a particular task on the switch.
+Upgrades can fail at any of the stages of the process, including when backing up data, upgrading the NetQ software, and restoring the data. Failures can also occur when attempting to connect to a switch or perform a particular task on the switch.
 
 Some of the common reasons for upgrade failures and the errors they present:
 

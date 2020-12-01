@@ -1,6 +1,6 @@
 ---
 title: Scratch
-author: Cumulus Networks
+author: NVIDIA
 weight: 0
 bookhidden: true
 pdfhidden: true
@@ -21,6 +21,9 @@ pdfhidden: true
 <div style="padding-left: 18px;">text</div>
 
 <div class="notices note"><p>note text</p></div>
+
+<!-- add a horizontal rule -->
+- - - 
 
 {{< expand "title" >}}
 

@@ -1,6 +1,6 @@
 ---
 title: Install the NetQ System
-author: Cumulus Networks
+author: NVIDIA
 weight: 200
 toc: 4
 ---

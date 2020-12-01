@@ -1,6 +1,6 @@
 ---
 title: Troubleshoot Issues
-author: Cumulus Networks
+author: NVIDIA
 weight: 1050
 subsection: true
 toc: 2

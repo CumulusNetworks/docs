@@ -1,6 +1,6 @@
 ---
 title: Monitor Networkwide Inventory
-author: Cumulus Networks
+author: NVIDIA
 weight: 730
 toc: 4
 ---
@@ -19,7 +19,7 @@ To monitor the inventory of a given switch, refer to {{<link title="Monitor Swit
 
 ## Access Networkwide Inventory Data
 
-The Cumulus NetQ UI provides the Inventory|Devices card for monitoring networkwide inventory information for all switches and hosts. The Inventory|Switches card provides a more detailed view of inventory information for all switches (no hosts) on a networkwide basis.
+The NetQ UI provides the Inventory|Devices card for monitoring networkwide inventory information for all switches and hosts. The Inventory|Switches card provides a more detailed view of inventory information for all switches (no hosts) on a networkwide basis.
 
 Access these card from the Cumulus Workbench, or add them to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Devices card or Inventory|Switches card > **Open Cards**.
 

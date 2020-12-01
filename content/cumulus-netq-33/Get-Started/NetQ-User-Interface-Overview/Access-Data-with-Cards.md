@@ -1,6 +1,6 @@
 ---
 title: Access Data with Cards
-author: Cumulus Networks
+author: NVIDIA
 weight: 140
 toc: 4
 ---

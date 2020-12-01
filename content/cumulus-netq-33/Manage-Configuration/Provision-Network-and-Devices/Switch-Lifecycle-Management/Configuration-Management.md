@@ -1,10 +1,10 @@
 ---
 title: Manage Switch Configurations
-author: Cumulus Networks
+author: NVIDIA
 weight: 660
 toc: 4
 ---
-You can use the NetQ UI to configure switches using one or more switch configurations. To enable consistent application of configurations, switch configurations can contain network templates for SNMP, NTP, and user accounts, and configuration profiles for Cumulus NetQ Agents.
+You can use the NetQ UI to configure switches using one or more switch configurations. To enable consistent application of configurations, switch configurations can contain network templates for SNMP, NTP, and user accounts, and configuration profiles for NetQ Agents.
 
 If you intend to use network templates or configuration profiles, the recommended workflow is as follows:
 
@@ -285,7 +285,7 @@ The default configuration profile, *NetQ default config*, is set up to run in th
 
 You can view, add, and remove NetQ configuration profiles at any time.
 
-### View Cumulus NetQ Configuration Profiles
+### View NetQ Configuration Profiles
 
 To view existing profiles:
 
@@ -301,7 +301,7 @@ To view existing profiles:
 
     {{<figure src="/images/netq/lcm-netq-config-profiles-list-310.png" width="550">}}
 
-### Create Cumulus NetQ Configuration Profiles
+### Create NetQ Configuration Profiles
 
 You can specify four options when creating NetQ configuration profiles:
 
@@ -338,7 +338,7 @@ To create a profile:
 
     {{<figure src="/images/netq/lcm-netq-config-profile-added-310.png" width="550">}}
 
-### Remove Cumulus NetQ Configuration Profiles
+### Remove NetQ Configuration Profiles
 
 To remove a NetQ configuration profile:
 

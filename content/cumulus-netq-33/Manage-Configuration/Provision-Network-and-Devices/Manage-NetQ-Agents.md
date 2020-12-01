@@ -1,6 +1,6 @@
 ---
 title: Manage NetQ Agents
-author: Cumulus Networks
+author: NVIDIA
 weight: 700
 toc: 3
 ---

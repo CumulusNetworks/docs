@@ -6,24 +6,33 @@ toc: 3
 ---
 The NetQ software contains several components that must be installed, including the NetQ applications, the database, and the NetQ Agents. NetQ can be deployed in two arrangements:
 
-- All software components installed locally (the applications and database are installed as a single entity, called the *NetQ Platform*) running on the *NetQ On-premises Appliance* or *NetQ On-premises Virtual Machine (VM)*; known hereafter as the *on-premises solution*
-- Only the aggregation and forwarding application software installed locally (called the *NetQ Collector*) running on the *NetQ Cloud Appliance* or *NetQ Cloud VM*, with the database and all other applications installed in the cloud; known hereafter as the *cloud solution*
+- **Hosted on premises**: This arrangement is used when you want to host a single NetQ site and have it be entirely contained on your premises. In this implementation, all NetQ components including the NetQ Platform software, hardware, and database are located on your premises. The NetQ applications and database are installed as a single entity, called the *NetQ Platform*, and are run on the *NetQ On-premises Appliance* or *NetQ On-premises Virtual Machine (VM)*. Note that you are responsible for installing, configuring and maintaining all of the NetQ components. This arrangement is called the *on-premises solution* in this documentation. It is suitable for organizations with data residency requirements like GDPR (general data protection regulation).
 
-The NetQ Agents reside on the switches and hosts being monitored in your network.
+- **Hosted remotely**: This arrangement is used when you want to either set up multiple NetQ premises or use the NetQ Cloud service. In this implementation the NetQ aggregation and forwarding application software, called the *NetQ Collector*, is installed and run on the *NetQ Cloud Appliance* or *NetQ Cloud VM* on premises with a common database and all other applications installed in a single NetQ site or in the NetQ Cloud. In the multi-site implementation, you are responsible for all software, hardware, and the database. In the cloud service implementation, you are responsible for the on-premises NetQ Collector and NVIDIA is responsible for the data storage in the NetQ Cloud. This arrangement is called the *remote solution* in this documentation.
 
-For the on-premises solution, the NetQ Agents collect and transmit data from the switches and/or hosts back to the NetQ On-premises Appliance or Virtual Machine running the NetQ Platform, which in turn processes and stores the data in its database. This data is then provided for display through several user interfaces.
+With either deployment model, the NetQ Agents reside on the switches and hosts being monitored in your network.
+
+## NetQ Data Flow
+
+For the on-premises solution, the NetQ Agents collect and transmit data from the switches and hosts back to the NetQ On-premises Appliance or Virtual Machine running the NetQ Platform software, which in turn processes and stores the data in its database. This data is then provided for display through several user interfaces.
 
 {{< figure src="/images/netq/install-onprem-basic-300.png" width="600">}}
 
-For the cloud solution, the NetQ Agent function is exactly the same, transmitting collected data, but instead sends it to the NetQ Collector containing only the aggregation and forwarding application. The NetQ Collector then transmits this data to Cumulus Networks cloud-based infrastructure for further processing and storage. This data is then provided for display through the same user interfaces as the on-premises solution. In this solution, the browser interface can be pointed to the local NetQ Cloud Appliance or VM, or directly to *netq.cumulusnetworks.com*.
+For the remote solution, multi-site NetQ implementation, the NetQ Agents at each premises collect and transmit data from the switches and hosts at that premises to its NetQ Cloud Appliance or Virtual Machine running the NetQ Collector software. The NetQ Collectors then transmit this data to the common NetQ Server and database at one of your premises for processing and storage.
 
-{{< figure src="/images/netq/install-cloud-basic-300.png" width="700">}}
+{{< figure src="/images/netq/install-remote-multisite-330.png" width="700">}}
+
+For the remote solution, cloud service implementation, the NetQ Agents collect and transmit data from the switches and hosts to the NetQ Cloud Appliance or Virtual Machine running the NetQ Collector software. The NetQ Collectors then transmit this data to the Cumulus Networks cloud-based infrastructure for further processing and storage.
+
+{{< figure src="/images/netq/install-remote-cloud-330.png" width="700">}}
+
+For either remote solution, telemetry data is then provided for display through the same user interfaces as the on-premises solution. In this solution, the browser interface can be pointed to the local NetQ Cloud Appliance or VM, or directly to *netq.cumulusnetworks.com*.
 
 ## Installation Choices
 
-There are several choices that you must make to determine what steps you need to perform to install the NetQ solution. First and foremost, you must determine whether you intend to deploy the solution fully on your premises or if you intend to deploy the cloud solution. Secondly, you must decide whether you are going to deploy a Virtual Machine on your own hardware or use one of the NetQ appliances. Thirdly, you also must determine whether you want to install the software on a single server or as a server cluster. Finally, if you have an existing on-premises solution and want to save your existing NetQ data, you must backup that data before installing the new software.
+There are several choices that you must make to determine what steps you need to perform to install the NetQ solution. First and foremost, you must determine whether you intend to deploy the solution fully on your premises or if you intend to deploy the remote solution. Secondly, you must decide whether you are going to deploy a Virtual Machine on your own hardware or use one of the NetQ appliances. Thirdly, you also must determine whether you want to install the software on a single server or as a server cluster. Finally, if you have an existing on-premises solution and want to save your existing NetQ data, you must backup that data before installing the new software.
 
-{{< figure src="/images/netq/install-decision-tree-240.png" width="400">}}
+{{< figure src="/images/netq/install-decision-tree-330.png" width="400">}}
 
 The documentation walks you through these choices and then provides the instructions specific to your selections.
 

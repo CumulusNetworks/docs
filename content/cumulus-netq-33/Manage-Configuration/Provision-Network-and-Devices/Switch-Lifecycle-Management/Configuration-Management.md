@@ -444,7 +444,7 @@ In either case, if you change your mind about including network settings, click 
 
 Click one of the following:
 <ul>
-<li><strong>Reset</strong> to clear your entries and start again or remove the specifications</li>
+<li><strong>Reset</strong> to clear your entries and start again</li>
 <li><strong>Save and Continue</strong> to configure additional switch configuration parameters</li>
 <li><strong>Save and Deploy</strong> if the switch configuration is now complete</li>
 </ul>
@@ -471,7 +471,7 @@ Click one of the following:
 
 3. Click one of the following:
 
-    - **Reset** to clear your entries and start again or remove the specifications
+    - **Reset** to clear your entries and start again
     - **Save and Continue** to configure additional switch configuration parameters
     - **Save and Deploy** if the switch configuration is now complete
 
@@ -493,11 +493,11 @@ Click one of the following:
 
 5. Click **Create**.
 
-    The VLAN/s are displayed in the VLAN list. Once VLANs are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one or all or filter for a subset of VLANs, then click the relevant menu icon.
+    The VLAN/s are displayed in the VLAN list. Once VLANs are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of VLANs, then click the relevant menu icon.
 
 6. Click one of the following:
 
-    - **Reset** to clear your entries and start again or remove the specifications
+    - **Reset** to clear your entries and start again
     - **Save and Continue** to configure additional switch configuration parameters
     - **Save and Deploy** if the switch configuration is now complete
 
@@ -525,13 +525,261 @@ MLAG is disabled by default. If you want to include MLAG in the switch configura
 
 {{< tab "Interface Profile" >}}
 
-xxx
+Every interface requires at least one interface profile.  An interface profile must contain a bond, SVI, sub-interface, and port. You can create (up to x or as many desired???) profiles. (or is this profiles in profiles???)
+
+### Add Bond Profiles
+
+The information needed to define a bond profile is collected into two categories: details and attributes. Begin your definition with the bond details as these items are all required.
+
+1. Click **Interface profile**.
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new bond profile.
+
+3. Enter a unique name for the bond profile.
+
+4. Click on the type of bond this profile is to support; either layer 2 (**L2**) or layer 3 (**L3**).
+
+5. Enter the supported MTU for this bond profile.
+
+6. Select the mode this profile is to support: either **lacp** or **balance-xor**.
+
+    Choosing the LACP (link aggregation control protocol) allows for redundancy by load-balancing traffic across all available links. Choosing balance-xor balances traffic load by spreading outgoing packets between the available Ethernet interfaces.
+
+    If you select LACP, then you must enable LACP and indicate the rate to expect PDUs at the switch; **fast**&ndash;every second, or **slow**&ndash;every 30 seconds. Click on the appropriate choices.
+
+7. Click **Bond attributes**.
+
+8. Select a private VLAN ID (pvid) for communication from the dropdown.
+
+9. Optionally assign one or more tagged VLANs to support traffic from more than one VLAN on a port.
+
+10. Indicated whether this bond profile is to support multi-homing (connections to more than one network) (**True**) or to only a single network (**False**).
+
+11. Review your specification, clicking **Back** to review the details and **Next** to return to the attributes.
+
+12. When you are satisfied with the bond profile specification, click **Create**.
+
+    The bond profiles are displayed in the Bond list. Once bonds are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of bonds, then click the relevant menu icon.
+
+13. Click one of the following:
+
+    - **Reset** to clear your entries and start again
+    - **Save and Continue** to configure additional interface profile components
+    - **Save and Deploy** if your interface profile and the switch configuration is now completed
+
+### Add SVI Profiles
+
+(why include???)
+
+1. Click **SVI**.
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new SVI profile.
+
+3. Enter a unique name for the SVI profile.
+
+4. Enter the supported MTU for this SVI profile.
+
+5. Select a VRF profile from the dropdown. (where is this created???)
+
+6. Enable VRR if desired.
+
+7. Click **Create**.
+
+    (how are the ipv4 and ipv6 addresses populated???)
+
+    The SVI profiles are displayed in the SVI list. Once SVIs are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of SVIs, then click the relevant menu icon.
+
+8. Click one of the following:
+
+    - **Reset** to clear your entries and start again
+    - **Save and Continue** to configure additional interface profile components
+    - **Save and Deploy** if your interface profile and the switch configuration is now completed
+
+### Add Sub-interfaces Profiles
+
+(why include???)
+
+1. Click **Subinterface**.
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new sub-interface profile.
+
+3. Enter a unique name for the subinterface profile.
+
+4. Enter the supported MTU for this subinterface profile.
+
+5. Select a VRF profile from the dropdown. (where is this created???)
+
+6. Click **Create**.
+
+    The subinterface profiles are displayed in the subinterface list. Once subinterfaces are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of subinterfaces, then click the relevant menu icon.
+
+7. Click one of the following:
+
+    - **Reset** to clear your entries and start again
+    - **Save and Continue** to configure additional interface profile components
+    - **Save and Deploy** if your interface profile and the switch configuration is now completed
+
+### Add Port Profiles
+
+The information needed to define a port is collected into two categories: details and attributes.
+
+1. Click **Port**.
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new port profile.
+
+3. Enter a unique name for the port profile.
+
+4. Click on the type of port this profile is to support; either layer 2 (**L2**) or layer 3 (**L3**).
+
+5. Optionally enable forward error correction (FEC); click **True**. (what is default value here???)
+
+6. Optionally enable auto-negotiation of link speeds; click **True**.
+
+7. Optionally specify the whether to support transmit and receive on this port (**full**) or either transmit or receive on this port (**half**).
+
+8. Optionally select port speed from the dropdown.
+
+9. Optionally enter the supported MTU for this bond profile.
+
+10. Click **Bond attributes**.
+
+11. Select a private VLAN ID (pvid) for communication from the dropdown.
+
+12. Optionally assign one or more tagged VLANs to support traffic from more than one VLAN on a port.
+
+13. When you are satisfied with the bond profile specification, click **Create**.
+
+    The port profiles are displayed in the Port list. Once ports are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of ports, then click the relevant menu icon.
+
+14. Click one of the following:
+
+    - **Reset** to clear your entries and start again
+    - **Save and Continue** to configure additional interface profile components
+    - **Save and Deploy** if your interface profile and the switch configuration is now completed
 
 {{< /tab >}}
 
 {{< tab "Interfaces" >}}
 
-xxx
+intro
+
+### Add Bonds
+
+intro/which parameters required?
+
+1. Click **Interfaces**.
+
+2. Click **Bond management**.
+
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new bond.
+
+4. Enter a unique name for the bond.
+
+5. Optionally enter an alias for the bond. Format???
+
+6. Select an interface profile from the dropdown. If you have not yet created one, refer to (Interface profile tab > Bond submenu. how to link to tab???)
+
+7. Assign the ports included in this bond. Format???
+
+8. When you are satisfied with the bond specification, click **Create**.
+
+    The bonds are displayed in the Bond list. Once bonds are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of bonds, then click the relevant menu icon.
+
+    (when select bond a, get an error, was there a step i missed to set these per instance variables???)
+
+9. Click one of the following:
+
+    - **Reset** to clear your entries and start again
+    - **Save and Continue** to configure additional interface profile components
+    - **Save and Deploy** if your interface profile and the switch configuration is now completed
+
+### Add SVIs
+
+(why include???)
+
+1. Click **SVI Management**.
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new SVI.
+
+3. Enter a unique name for the SVI.
+
+4. Select a VLAN profile to apply to this SVI.
+
+5. Enter the supported MTU for this SVI.
+
+6. Select an interface profile to apply to this SVI.
+
+7. Click **Create**.
+
+    The SVIs are displayed in the SVI list. Once SVIs are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of SVIs, then click the relevant menu icon.
+
+8. Click one of the following:
+
+    - **Reset** to clear your entries and start again
+    - **Save and Continue** to configure additional interface parameters
+    - **Save and Deploy** if your interfaces and the switch configuration is now completed
+
+### Add Sub-interfaces
+
+(why include???)
+
+1. Click **Subinterface**.
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new sub-interface profile.
+
+3. Enter a unique name for the subinterface profile.
+
+4. Enter the supported MTU for this subinterface profile.
+
+5. Select a VRF profile from the dropdown. (where is this created???)
+
+6. Click **Create**.
+
+    The subinterface profiles are displayed in the subinterface list. Once subinterfaces are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of subinterfaces, then click the relevant menu icon.
+
+7. Click one of the following:
+
+    - **Reset** to clear your entries and start again
+    - **Save and Continue** to configure additional interface profile components
+    - **Save and Deploy** if your interface profile and the switch configuration is now completed
+
+### Add Ports
+
+The information needed to define a port is collected into two categories: details and attributes.
+
+1. Click **Port**.
+
+2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add a new port profile.
+
+3. Enter a unique name for the port profile.
+
+4. Click on the type of port this profile is to support; either layer 2 (**L2**) or layer 3 (**L3**).
+
+5. Optionally enable forward error correction (FEC); click **True**. (what is default value here???)
+
+6. Optionally enable auto-negotiation of link speeds; click **True**.
+
+7. Optionally specify the whether to support transmit and receive on this port (**full**) or either transmit or receive on this port (**half**).
+
+8. Optionally select port speed from the dropdown.
+
+9. Optionally enter the supported MTU for this bond profile.
+
+10. Click **Bond attributes**.
+
+11. Select a private VLAN ID (pvid) for communication from the dropdown.
+
+12. Optionally assign one or more tagged VLANs to support traffic from more than one VLAN on a port.
+
+13. When you are satisfied with the bond profile specification, click **Create**.
+
+    The port profiles are displayed in the Port list. Once ports are in the list, they can be exported, modified, removed, and duplicated using the menu above the list. Simply select one, all, or filter for a subset of ports, then click the relevant menu icon.
+
+14. Click one of the following:
+
+    - **Reset** to clear your entries and start again
+    - **Save and Continue** to configure additional interface profile components
+    - **Save and Deploy** if your interface profile and the switch configuration is now completed
 
 {{< /tab >}}
 

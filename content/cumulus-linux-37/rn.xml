@@ -7,6 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32455</td>
 <td><p>In OVSDB server high availability mode, the openvswitchd-vtep restart command stops traffic on a bond interface but the traffic doesn't resume.<br/>
 To work around this issue, bring the bond interface down, then up with the ip link command.</p></td>
@@ -2228,6 +2237,15 @@ To work around this issue, disable BFD to alleviate some of the CPU load.</p></t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32226</td>
@@ -4999,6 +5017,15 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32226</td>
@@ -7988,6 +8015,15 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32214</td>
@@ -11121,6 +11157,15 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32214</td>
 <td><p>CVE-2020-8037: The ppp de-capsulator in tcpdump 4.9.3 can be convinced to allocate a large amount of memory.  The buffer should be big enough to hold the captured data, but it doesn’t need to be big enough to hold the entire on-the-network packet, if we haven’t captured all of it.<br/>
 Vulnerable: &lt;= 4.9.3-1~deb8u1<br/>
@@ -13949,6 +13994,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32214</td>
@@ -17189,6 +17243,15 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32214</td>
 <td><p>CVE-2020-8037: The ppp de-capsulator in tcpdump 4.9.3 can be convinced to allocate a large amount of memory.  The buffer should be big enough to hold the captured data, but it doesn’t need to be big enough to hold the entire on-the-network packet, if we haven’t captured all of it.<br/>
 Vulnerable: &lt;= 4.9.3-1~deb8u1<br/>
@@ -20289,6 +20352,15 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32214</td>
@@ -23754,6 +23826,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32214</td>
 <td><p>CVE-2020-8037: The ppp de-capsulator in tcpdump 4.9.3 can be convinced to allocate a large amount of memory.  The buffer should be big enough to hold the captured data, but it doesn’t need to be big enough to hold the entire on-the-network packet, if we haven’t captured all of it.<br/>
 Vulnerable: &lt;= 4.9.3-1~deb8u1<br/>
@@ -27167,6 +27248,15 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32214</td>
 <td><p>CVE-2020-8037: The ppp de-capsulator in tcpdump 4.9.3 can be convinced to allocate a large amount of memory.  The buffer should be big enough to hold the captured data, but it doesn’t need to be big enough to hold the entire on-the-network packet, if we haven’t captured all of it.<br/>
 Vulnerable: &lt;= 4.9.3-1~deb8u1<br/>
@@ -30267,6 +30357,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32214</td>
@@ -33427,6 +33526,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32214</td>
@@ -36746,6 +36854,15 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32214</td>
@@ -40189,6 +40306,15 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32214</td>
 <td><p>CVE-2020-8037: The ppp de-capsulator in tcpdump 4.9.3 can be convinced to allocate a large amount of memory.  The buffer should be big enough to hold the captured data, but it doesn’t need to be big enough to hold the entire on-the-network packet, if we haven’t captured all of it.<br/>
 Vulnerable: &lt;= 4.9.3-1~deb8u1<br/>
@@ -43132,6 +43258,15 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-32515</td>
+<td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
+CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
+Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
+Fixed: 2.1+dfsg-12+deb8u18</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32214</td>

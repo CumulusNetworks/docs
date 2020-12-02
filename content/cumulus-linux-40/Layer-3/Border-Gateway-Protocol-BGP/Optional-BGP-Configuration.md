@@ -966,6 +966,40 @@ router bgp 65199
 When configuring BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command; otherwise, the `route-reflector-client` command is ignored.
 {{%/notice%}}
 
+## Administrative Distance
+
+Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
+
+Set the administrative distance with vtysh commands.
+
+The following example commands set the administrative distance for routes from 10.10.10.101/32 to 100:
+
+```
+cumulus@spine01:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# distance 100 10.10.10.101/32
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@spine01:~$
+```
+
+The following example commands set the administrative distance for routes external to the AS to 150, routes internal to the AS to 110, and local routes to 100:
+
+```
+cumulus@spine01:~$ sudo vtysh
+
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# distance bgp 150 110 100
+switch(config-router)# end
+switch# write memory
+switch# exit
+cumulus@spine01:~$
+```
+
 ## Graceful BGP Shutdown
 
 To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown, which forces traffic to route around the BGP node:

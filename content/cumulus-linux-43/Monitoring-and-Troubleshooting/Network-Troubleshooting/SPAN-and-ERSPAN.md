@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 1145
 toc: 4
 ---
-SPAN (Switched Port Analyzer) enables you to mirror all packets coming in from or going out of an interface (the *SPAN source*), and being copied and transmitted out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet is sent out of the MTP.
+SPAN (Switched Port Analyzer) enables you to mirror all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet is sent out of the MTP.
 
-ERSPAN (Encapsulated Remote SPAN) enables the mirrored packets to be sent to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by doing a lookup of the destination IP address in its routing table. The original L2 packet is encapsulated with GRE for IP delivery. The encapsulated packets have the following format:
+ERSPAN (Encapsulated Remote SPAN) enables the mirrored packets to be sent to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by doing a lookup of the destination IP address in its routing table. The original layer 2 packet is encapsulated with GRE for IP delivery. The encapsulated packets have the following format:
 
 ```
  ----------------------------------------------------------
@@ -17,13 +17,19 @@ ERSPAN (Encapsulated Remote SPAN) enables the mirrored packets to be sent to a m
 {{%notice note%}}
 
 - Mirrored traffic is not guaranteed. If the MTP is congested, mirrored packets might be discarded.
-- A SPAN and ERSPAN destination interface that is oversubscribed might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN and ERSPAN when the aggregate speeds of all source ports exceeds the destination port. Selective SPAN is recommended when possible to limit traffic in this scenario.
+- A SPAN and ERSPAN destination interface that is oversubscribed might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN and ERSPAN when the aggregate speed of all source ports exceeds the destination port. Use {{<link url="#selective-spanning" text="selective spanning">}} when possible to limit traffic.
 
 {{%/notice%}}
 
+You can configure SPAN and ERSPAN with NCLU, manually with configuration files, or by creating ACL rules. All three methods are described below.
+
+## Configure SPAN and ERSPAN with NCLU
+
+
+
 ## Configure SPAN and ERSPAN with cl-acltool
 
-You can configure SPAN and ERSPAN with `cl-acltool`, the {{<link url="Netfilter-ACLs" text="same utility for security ACL configuration">}}. The match criteria for SPAN and ERSPAN is usually an interface; for more granular match terms, use {{<link url="#selective-spanning" text="selective spanning">}}. The SPAN source interface can be a port, a subinterface, or a bond interface. Ingress traffic on interfaces can be matched, and on switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, egress traffic can be matched. See the {{<link url="#limitations-for-span-and-erspan" text="list of limitations">}} below.
+You can configure SPAN and ERSPAN with `cl-acltool`, the {{<link url="Netfilter-ACLs" text="same utility used for security ACL configuration">}}. The match criteria for SPAN and ERSPAN is usually an interface; for more granular match terms, use {{<link url="#selective-spanning" text="selective spanning">}}. The SPAN source interface can be a port, a subinterface, or a bond interface. Ingress traffic on interfaces can be matched, and on switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="Spectrum ASICs">}}, egress traffic can be matched. See the {{<link url="#limitations-for-span-and-erspan" text="list of limitations">}} below.
 
 Cumulus Linux supports a maximum of two SPAN destinations. Multiple rules (SPAN sources) can point to the same SPAN destination, although a given SPAN source cannot specify two SPAN destinations. The SPAN destination (MTP) interface can be a physical port, subinterface, bond interface or CPU.  The SPAN and ERSPAN action is independent of security ACL actions. If packets match both a security ACL rule and a SPAN rule, both actions are carried out.
 
@@ -47,15 +53,17 @@ Always place your rule files under `/etc/cumulus/acl/policy.d/`.
 
 ### SPAN for Switch Ports
 
-This section describes how to set up, install, and verify SPAN rules. In the example commands span (mirror) swp4 input traffic and swp4 output traffic to destination swp19.
+Follow the procedure below to set up, install, and verify SPAN rules.
+
+The example commands span (mirror) swp4 input traffic and swp4 output traffic to destination swp19.
 
 1. Create a rules file in `/etc/cumulus/acl/policy.d/`:
 
    ```
    cumulus@switch:~$ sudo bash -c 'cat <<EOF > /etc/cumulus/acl/policy.d/span.rules
    [iptables]
-   -A FORWARD --in-interface swp4 -j SPAN --dport swp19
-   -A FORWARD --out-interface swp4 -j SPAN --dport swp19
+   -A FORWARD --in-interface swp1 -j SPAN --dport swp2
+   -A FORWARD --out-interface swp1 -j SPAN --dport swp2
    EOF'
    ```
 
@@ -105,9 +113,9 @@ Using `cl-acltool` with the `--out-interface` rule applies to transit traffic on
         0     0 DROP       all  --  swp+   any     loopback/8           anywhere
         0     0 DROP       all  --  swp+   any     base-address.mcast.net/8  anywhere
         0     0 DROP       all  --  swp+   any     255.255.255.255      anywhere
-    26864 4672K SPAN       all  --  swp4   any     anywhere             anywhere             dport:swp19  <---- input packets on swp4
+    26864 4672K SPAN       all  --  swp1   any     anywhere             anywhere             dport:swp2  <---- input packets on swp1
 
-   40722   47M  SPAN       all  --  any    swp4     anywhere             anywhere             dport:swp19  <---- output packets on swp4
+   40722   47M  SPAN       all  --  any    swp1     anywhere             anywhere             dport:swp2  <---- output packets on swp1
 
    Chain OUTPUT (policy ACCEPT 67398 packets, 5757K bytes)
      pkts bytes target     prot opt in     out     source               destination
@@ -141,16 +149,16 @@ cumulus@switch:~$ sudo cl-acltool -i  -P /etc/cumulus/acl/policy.d/span.rules
 
    ```
    cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
-   38025 7034K SPAN       all  --  swp4   any     anywhere             anywhere             dport:swp19
-   50832   55M SPAN       all  --  any    swp4    anywhere             anywhere             dport:swp19
+   38025 7034K SPAN       all  --  swp1   any     anywhere             anywhere             dport:swp2
+   50832   55M SPAN       all  --  any    swp1    anywhere             anywhere             dport:swp2
    ```
 
 ### SPAN Sessions that Reference an Outgoing Interface
 
-SPAN sessions that reference an outgoing interface create the mirrored packets based on the ingress interface before the routing decision. For example, the following rule captures traffic that is ultimately destined to leave swp2 but mirrors the packets when they arrive on swp3. The rule transmits packets that reference the original VLAN tag and source/destination MAC address at the time the packet is originally received on swp3.
+SPAN sessions that reference an outgoing interface create the mirrored packets based on the ingress interface before the routing decision. For example, the following rule captures traffic that is ultimately destined to leave swp1 but mirrors the packets when they arrive on swp3. The rule transmits packets that reference the original VLAN tag and source/destination MAC address at the time the packet is originally received on swp3.
 
 ```
--A FORWARD --out-interface swp2 -j SPAN --dport swp1
+-A FORWARD --out-interface swp1 -j SPAN --dport swp2
 ```
 
 ### SPAN for Bonds
@@ -160,7 +168,7 @@ To configure SPAN for all packets going out of `bond0` locally to `bond1`:
 1. Create a rules file in `/etc/cumulus/acl/policy.d/`:
 
    ```
-   cumulus@switch:~$ sudo bash -c 'cat <<EOF > /etc/cumulus/acl/policy.d/span_bond.rules 
+   cumulus@switch:~$ sudo bash -c 'cat <<EOF > /etc/cumulus/acl/policy.d/span_bond.rules
    [iptables]
    -A FORWARD --out-interface bond0 -j SPAN --dport bond1
    EOF'
@@ -283,7 +291,7 @@ cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
 
 ### ERSPAN
 
-This section describes how to configure ERSPAN for all packets coming in from `swp1` to 12.0.0.2.
+This section describes how to configure ERSPAN.
 
 {{%notice note%}}
 
@@ -293,7 +301,7 @@ Cut-through mode **is** supported for ERSPAN in Cumulus Linux on switches using 
 
 {{%/notice%}}
 
-1. Create a rules file in `/etc/cumulus/acl/policy.d/`:
+1. Create a rules file in `/etc/cumulus/acl/policy.d/`. The following rule configures ERSPAN for all packets coming in from swp1 to destination 12.0.0.2.
 
      ```
      cumulus@switch:~$ sudo bash -c 'cat <<EOF > /etc/cumulus/acl/policy.d/erspan.rules
@@ -323,7 +331,7 @@ Cut-through mode **is** supported for ERSPAN in Cumulus Linux on switches using 
      69  6804 ERSPAN     all  --  swp1   any     anywhere             anywhere             ERSPAN src-ip:12.0.0.1 dst-ip:12.0.0.2
      ```
 
-The `src-ip` option can be any IP address, even if it dosen't exists in the routing table. The `dst-ip` option must be an IP address reachable through the routing table. The destination IP address must be reachable from a front-panel port; not the management port. Use `ping` or `ip route get <ip>` to verify that the destination IP address is reachable. Setting the `--ttl` option is recommended.
+The `src-ip` option can be any IP address, even if it does not exist in the routing table. The `dst-ip` option must be an IP address reachable through the routing table. The destination IP address must be reachable from a front-panel port; not the management port. Use `ping` or `ip route get <ip>` to verify that the destination IP address is reachable. Setting the `--ttl` option is recommended.
 
 If a SPAN destination IP address is not available, or if the interface type or types prevent using a laptop as a SPAN destination, read this {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Administration/Configure-ERSPAN-to-a-Cumulus-Linux-Switch/360040711774" text="knowledge base article">}} for a workaround.
 
@@ -336,7 +344,7 @@ If a SPAN destination IP address is not available, or if the interface type or t
 
 ### Example ERSPAN Rules
 
-To mirror forwarded packets from all ports matching SIP 20.0.1.0 and DIP 20.0.1.2:
+To mirror forwarded packets from all ports matching the source IP address 20.0.1.0 and the destination IP address 20.0.1.2:
 
 ```
 -A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
@@ -348,7 +356,7 @@ To mirror ICMP packets from all ports:
 -A FORWARD --in-interface swp+ -s 20.0.0.2 -p icmp -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
 ```
 
-To mirror forwarded UDP packets received from port swp1s0, towards DIP 20.0.1.2 and destination port 53:
+To mirror forwarded UDP packets received from port swp1s0, towards destination IP address 20.0.1.2 and destination port 53:
 
 ```
 -A FORWARD --in-interface swp1s0 -d 20.0.1.2 -p udp --dport 53 -j ERSPAN --src-ip 90.0.0.1 --dst-ip 20.0.2.2
@@ -381,6 +389,3 @@ The following matching fields are supported:
 - An ingress port/wildcard (swp+) can be specified in addition
 
 With ERSPAN, a maximum of two `--src-ip --dst-ip` pairs are supported. Exceeding this limit produces an error when you install the rules with `cl-acltool`.
-
-## Configure SPAN and ERSPAN with NCLU
-

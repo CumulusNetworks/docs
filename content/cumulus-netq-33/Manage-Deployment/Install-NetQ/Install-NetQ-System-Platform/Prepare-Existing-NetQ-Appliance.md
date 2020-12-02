@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 235
 toc: 5
 ---
-This topic describes how to prepare a NetQ 2.4.x or earlier NetQ Appliance before installing NetQ 3.x. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ 3.x.
+This topic describes how to prepare a NetQ 2.4.x or earlier NetQ Appliance before installing NetQ {{<version>}}. The steps are the same for both the on-premises and cloud appliances. The only difference is the software you download for each platform. On completion of the steps included here, you will be ready to perform a fresh installation of NetQ {{<version>}}.
 
 The preparation workflow is summarized in this figure:
 
@@ -162,7 +162,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     1. Select *NetQ* from the **Product** list.
 
-    2. Select *3.2* from the **Version** list, and then select *3.2.1* from the submenu.
+    2. Select *3.3* from the **Version** list, and then select *3.3.0* from the submenu.
 
         {{<figure src="/images/netq/netq-32-bootstrap-download-321.png" width="500" >}}
 
@@ -181,18 +181,18 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     6. Scroll down and click **Download**.
 
-    7. Copy these two files, *netq-bootstrap-3.2.1.tgz* and either *NetQ-3.2.1.tgz* (on-premises) or *NetQ-3.2.1-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
+    7. Copy these two files, *netq-bootstrap-3.3.0.tgz* and either *NetQ-3.3.0.tgz* (on-premises) or *NetQ-3.3.0-opta.tgz* (cloud), to the */mnt/installables/* directory on the appliance.
 
-    8. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-3.2.1-opta.tgz* instead of *NetQ-3.2.1.tgz*.
+    8. Verify that the needed files are present and of the correct release. This example shows on-premises files. The only difference for cloud files is that it should list *NetQ-3.3.0-opta.tgz* instead of *NetQ-3.3.0.tgz*.
 
         ```
         cumulus@<hostname>:~$ dpkg -l | grep netq
-        ii  netq-agent   3.2.1-ub18.04u31~1603789872.6f62fad_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
-        ii  netq-apps    3.2.1-ub18.04u31~1603789872.6f62fad_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
+        ii  netq-agent   3.3.0-ub18.04u31~1603789872.6f62fad_amd64   Cumulus NetQ Telemetry Agent for Ubuntu
+        ii  netq-apps    3.3.0-ub18.04u31~1603789872.6f62fad_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu
 
         cumulus@<hostname>:~$ cd /mnt/installables/
         cumulus@<hostname>:/mnt/installables$ ls
-        NetQ-3.2.1.tgz  netq-bootstrap-3.2.1.tgz
+        NetQ-3.3.0.tgz  netq-bootstrap-3.3.0.tgz
         ```
 
     9. Run the following commands.
@@ -208,7 +208,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
     Run the bootstrap CLI on your appliance. Be sure to replace the *eth0* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.2.1">}}
+    {{<netq-install/bootstrap server="single" version="3.3.0">}}
 
 {{<notice note>}}
 If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to {{<link title="Install the NetQ System">}} for a new appliance.

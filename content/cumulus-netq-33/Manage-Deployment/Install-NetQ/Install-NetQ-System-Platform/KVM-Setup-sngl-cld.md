@@ -1,5 +1,5 @@
 ---
-title: Set Up Your KVM Virtual Machine for a Single Cloud Server
+title: Set Up Your KVM Virtual Machine for a Single Remote Server
 author: NVIDIA
 weight: 226
 toc: 5
@@ -15,13 +15,13 @@ Follow these steps to setup and configure your VM on a single server in a cloud 
 
     {{<netq-install/port-reqs server="single">}}
 
-3. Download the NetQ Platform image.
+3. Download the NetQ images.
 
-    {{<netq-install/kvm-platform-image deployment="cloud" version="3.2.1">}}
+    {{<netq-install/kvm-platform-image deployment="cloud" version="3.3.0">}}
 
 4. Setup and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="3.2.1">}}
+    {{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="3.3.0">}}
 
 5. Verify the platform is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -33,7 +33,11 @@ Follow these steps to setup and configure your VM on a single server in a cloud 
 
 7. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap version="3.2.1" server="single" platform="vm" deployment="cloud">}}
+    {{<netq-install/bootstrap version="3.3.0" server="single" platform="vm" deployment="cloud">}}
+
+8. Consider the following for container environments, and make adjustments as needed.
+
+    {{<netq-install/container>}}
 
 The final step is to install and activate the NetQ software.  You can do this using the Admin UI or the CLI.
 

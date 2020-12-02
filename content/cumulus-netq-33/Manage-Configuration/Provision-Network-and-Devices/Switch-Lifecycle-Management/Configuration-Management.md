@@ -58,6 +58,10 @@ You can specify your template in any order, but to complete the configuration, y
 
 {{< tabs "TabID51" >}}
 
+{{< tab "General" >}}
+
+{{< /tab >}}
+
 {{< tab "SNMP" >}}
 
 SNMP provides a way to query, monitor, and manage your devices in addition to NetQ.
@@ -168,6 +172,37 @@ To create a network template with NTP parameters included:
         Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} to add more administrative control restrictions.
 
 7. Click **Save and Continue**.
+
+{{< /tab >}}
+
+{{< tab "LLDP" >}}
+
+intro; defaults???
+
+To create a network template with LLDP parameters included:
+
+1. Click LLDP.
+
+2. Enter the interval, in seconds, that you want LLDP to transmit neighbor information and statistics???
+
+3. Enter how many times the transmit interval you want to hold transmit traffic when xxx. Is this the system refresh timer? default =20?
+
+4. Optionally enable advertisement of (optional/custom???) IEEE 802.1Q TLV (type-length-value) structures, including port description, system name, description and capabilities, management address, and custom names. Mandatory TLVs include end of LLDPPDU, chassis ID, port ID, and time-to-live.
+
+5. Optionally enable advertisement of system capability codes for the nodes. (if you enable this, must step 4 also be enabled???)
+
+    | Code | Capability |
+    | --- | --- |
+    | B	 | Bridge (Switch) |
+    | C	| DOCSIS Cable Device |
+    | O	| Other |
+    | P	| Repeater |
+    | R	| Router |
+    | S	| Station |
+    | T	| Telephone |
+    | W	| WLAN Access Point |
+
+6. Optionally enable advertisement of the IP address used for management of the nodes. (ipv4 or v6? both? why is this separate from step 4?)
 
 {{< /tab >}}
 

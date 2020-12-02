@@ -972,7 +972,7 @@ Cumulus Linux uses the administrative distance to choose which routing protocol 
 
 Set the administrative distance with vtysh commands.
 
-The following example commands set the administrative distance for routes from 10.10.10.101/32 to 100:
+The following example commands set the administrative distance for routes from 10.10.10.101 to 100:
 
 ```
 cumulus@spine01:~$ sudo vtysh

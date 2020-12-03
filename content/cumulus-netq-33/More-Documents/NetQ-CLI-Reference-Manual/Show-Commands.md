@@ -1,7 +1,7 @@
 ---
 title: Show Commands
 author: Cumulus Networks
-weight: 1102
+weight: 1101
 toc: 3
 right_toc_levels: 2
 pdfhidden: true
@@ -1183,7 +1183,7 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 
 - - -
 
-## System
+## System and Inventory
 
 ### netq show address-history
 
@@ -1288,17 +1288,446 @@ Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104            
 
 - - -
 
-### netq show cl-btrfs
+### netq show cl-btrfs-info
+
+Displays status about disk utilization on a given device or all devices networkwide with BTRFS and Cumulus Linux 3.x installed. The output provides the following information for each device:
+
+- Percentage of disk that is currently allocated
+- Amount of space remaining (unallocated)
+- Size of the largest data chunk
+- Amount of space unused by data chunks
+- Whether a rebalance of the disk is recommended
+- When the last change was made to any of these items
+
+For details about when a rebalance is recommended, refer to {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions/" text="When to Rebalance BTRFS Partitions">}}.
+
+#### Syntax
+
+```
+netq [<hostname>] cl-btrfs-info
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.3.1 | Introduced |
+
+#### Sample Usage
+
+Basic show: all devices in last 24 hours
+
+```
+cumulus@switch:~$ netq show cl-btrfs-info
+Matching btrfs_info records:
+Hostname          Device Allocated     Unallocated Space    Largest Chunk Size   Unused Data Chunks S Rebalance Recommende Last Changed
+                                                                                 pace                 d
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+leaf01            37.79 %              3.58 GB              588.5 MB             771.91 MB            yes                  Wed Sep 16 21:25:17 2020
+```
+
+#### Related Commands
+
+- netq show cl-ssd-util
+
+- - -
 
 ### netq show cl-manifest
 
+Displays the Cumulus Linux OS versions supported for a given device or all devices networkwide. The output provides the following information for each device:
+
+- ASIC vendor the OS supports
+- CPU architecture the OS supports
+- Cumulus Linux version associated with the indicated ASIC and CPU
+
+#### Syntax
+
+```
+netq [<hostname>] cl-manifest
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.0 | Introduced |
+
+#### Sample Usage
+
+```
+cumulus@switch:~$ netq show cl-manifest
+
+Matching manifest records:
+Hostname          ASIC Vendor          CPU Arch             Manifest Version
+----------------- -------------------- -------------------- --------------------
+border01          vx                   x86_64               3.7.6.1
+border01          vx                   x86_64               3.7.10
+border01          vx                   x86_64               3.7.11
+border01          vx                   x86_64               3.6.2.1
+...
+fw1               vx                   x86_64               3.7.6.1
+fw1               vx                   x86_64               3.7.10
+fw1               vx                   x86_64               3.7.11
+fw1               vx                   x86_64               3.6.2.1
+...
+leaf01            vx                   x86_64               4.1.0
+leaf01            vx                   x86_64               4.0.0
+leaf01            vx                   x86_64               3.6.2
+leaf01            vx                   x86_64               3.7.2
+...
+leaf02            vx                   x86_64               3.7.6.1
+leaf02            vx                   x86_64               3.7.10
+leaf02            vx                   x86_64               3.7.11
+leaf02            vx                   x86_64               3.6.2.1
+...
+```
+
+#### Related Commands
+
+- netq show cl-pkg-info
+
+- - -
+
 ### netq show cl-pkg-info
+
+Displays the versions for all software packages installed on a given device or all devices networkwide. The output provides the following information for each device:
+
+- Package name and version
+- Cumulus Linux version
+- Package status
+- When the last change was made to any of these items
+
+The output can become very large for all devices and packages. When viewing results in a terminal window, consider filtering by hostname or package name to reduce the length of the output. Wildcards are not allowed for `hostname` or `text-package-name`.
+
+#### Syntax
+
+```
+netq [<hostname>] cl-pkg-info
+    [<text-package-name>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| NA | \<text-package-name\> | Only display results for the software package with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.3.1 | Introduced |
+
+#### Sample Usage
+
+```
+cumulus@switch:~$ netq leaf01 show cl-pkg-info
+
+Matching package_info records:
+Hostname          Package Name             Version              CL Version           Package Status       Last Changed
+----------------- ------------------------ -------------------- -------------------- -------------------- -------------------------
+leaf01            freeipmi-common          1.6.3-1.1            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            libsystemd0              241-7~deb10u4        Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            arptables                0.0.4+snapshot201810 Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+                                           21-4
+leaf01            libbinutils              2.31.1-16            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            tzdata                   2020a-0+deb10u1      Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            gpgconf                  2.2.12-1+deb10u1     Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            irqbalance               1.5.0-3              Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            systemd                  241-7~deb10u4        Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            liblmdb0                 0.9.22-1             Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            libopts25                1:5.18.12-4          Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            libelf1                  0.176-1.1            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            init-system-helpers      1.56+nmu1            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            libudev1                 241-7~deb10u4        Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            gdisk                    1.0.3-1.1            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            xxd                      2:8.1.0875-5         Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            libnl-nf-3-200           3.2.27-cl4.2.1u1     Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            libprotobuf17            3.6.1.3-2            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            cron                     3.0pl1-133-cl4u1     Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+...
+```
+
+#### Related Commands
+
+- netq show recommended-pkg-version
+- netq show cl-manifest
+
+- - -
 
 ### netq show cl-resource
 
+Displays incoming and outgoing ACLs and amount of forwarding resources used for a given device or all devices networkwide. The output provides the following information for each device:
+
+- For ACL resources
+    - Count and percentage of Ingress and egress IPv4/IPv6 filter and mangle
+    - Count and percentage of Ingress 802.1x filter
+    - Count and percentage of Ingress mirror
+    - Count and percentage of Regions
+    - Count and percentage of Ingress PBR IPv4/IPv6 filter
+    - Count and percentage of 18b, 32b, and 52b rules keys
+    - Count and percentage of Layer 4 port range checkers
+    - When the last change was made to any of these items
+- For forwarding resources
+    - Count and percentage of MAC address entries
+    - Count and percentage of ECMP next hops
+    - Count and percentage of IPv4/IPv6 host and route entries
+    - Number of multicast routes
+    - When the last change was made to any of these items
+
+#### Syntax
+
+This command comes in two forms:
+
+```
+netq [<hostname>] show cl-resource acl
+    [ingress | egress]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show cl-resource forwarding
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| acl | NA | Display results for ACLs |
+| forwarding | NA | Display results for forwarding resources |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| ingress | NA | Only display results for the incoming ACLs |
+| egress | NA | Only display results for the outgoing ACLs |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.0 | Introduced |
+
+#### Sample Usage
+
+Basic show: All devices, all ACLS
+
+```
+cumulus@switch:~$ netq leaf01 show cl-pkg-info
+
+```
+
+#### Related Commands
+
+- netq show recommended-pkg-version
+- netq show cl-manifest
+
+- - -
+
 ### netq show cl-ssd-util
 
-### netq show ip
+Displays utilization of 3ME3 solid state drives (SSDs) for a given device or all devices networkwide. These are primarily found in on-premises deployment. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm. The output provides the following information for each drive:
+
+- Percentage of PE cycles remaining for the drive
+- Count of current PE cycles used by this drive
+- Total number of PE cycles supported for this drive
+- The drive model information
+- When the last change was made to any of these items
+
+#### Syntax
+
+```
+netq [<hostname>] show cl-ssd-util
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.3.1 | Introduced |
+
+#### Sample Usage
+
+Basic show: All drives, for a given device
+
+```
+cumulus@switch:~$ netq spine02 show cl-ssd-util
+Hostname        Remaining PE Cycle (%)  Current PE Cycles executed      Total PE Cycles supported       SSD Model               Last Changed
+spine02         80                      576                             2880                            M.2 (S42) 3ME3          Thu Oct 31 00:15:06 2019
+```
+
+#### Related Commands
+
+- netq show cl-btrfs-info
+
+- - -
+
+### netq show ip addresses
+
+Displays the IPv4 or IPv6 addresses configured for a given device or all devices networkwide, currently or for a time in the past. You can filter the output by remote-interface, address or prefix, and VRF. A count of addresses can be obtained for a given device. The output provides the following information for each device:
+
+- Percentage of PE cycles remaining for the drive
+- Count of current PE cycles used by this drive
+- Total number of PE cycles supported for this drive
+- The drive model information
+- When the last change was made to any of these items
+
+#### Syntax
+
+There are two sets of IP address commands, one for IPv4 and one for IPv6.
+
+```
+netq <hostname> show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
+
+netq show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [subnet|supernet|gateway] [around <text-time>] [json]
+
+netq <hostname> show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
+
+netq show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [subnet|supernet|gateway] [around <text-time>] [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| ip | NA | Display TCP IPv4 addresses |
+| ipv6 | NA | Display TCP IPv6 addresses |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<remote-interface\> | Only display results for the switch or host with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Added ability to display all addresses in a subnet or supernet or the layer 3 gateway of an address with `subnet`, `supernet`, and `gateway` options |
+| 2.1.2 | Removed `changes` and `between` options |
+
+#### Sample Usage
+
+Basic show: All drives, for a given device
+
+This example shows all IP address on the *spine01* switch:
+
+```
+cumulus@switch:~$ netq spine01 show ip addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+192.168.200.21/24         spine01           eth0                      mgmt            Thu Sep 17 20:07:49 2020
+10.10.10.101/32           spine01           lo                        default         Thu Sep 17 20:25:05 2020
+```
+
+This example shows all IP addresses on the *leaf03* switch:
+
+```
+cumulus@switch:~$ netq leaf03 show ip addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+10.1.20.2/24              leaf03            vlan20                    RED             Thu Sep 17 20:25:08 2020
+10.1.10.1/24              leaf03            vlan10-v0                 RED             Thu Sep 17 20:25:08 2020
+192.168.200.13/24         leaf03            eth0                      mgmt            Thu Sep 17 20:08:11 2020
+10.1.20.1/24              leaf03            vlan20-v0                 RED             Thu Sep 17 20:25:09 2020
+10.0.1.2/32               leaf03            lo                        default         Thu Sep 17 20:28:12 2020
+10.1.30.1/24              leaf03            vlan30-v0                 BLUE            Thu Sep 17 20:25:09 2020
+10.1.10.2/24              leaf03            vlan10                    RED             Thu Sep 17 20:25:08 2020
+10.10.10.3/32             leaf03            lo                        default         Thu Sep 17 20:25:05 2020
+10.1.30.2/24              leaf03            vlan30                    BLUE            Thu Sep 17 20:25:08 2020
+```
+
+This example shows all IP addresses using the *BLUE* VRF on the *leaf03* switch:
+
+```
+cumulus@switch:~$ netq leaf03 show ip addresses vrf BLUE
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+10.1.30.1/24              leaf03            vlan30-v0                 BLUE            Thu Sep 17 20:25:09 2020
+10.1.30.2/24              leaf03            vlan30                    BLUE            Thu Sep 17 20:25:08 2020
+```
+
+#### Related Commands
+
+- netq show cl-btrfs-info
+
+- - -
+
+### netq show ip neighbors
+
+### netq show ip routes
 
 ### netq show ipv6
 

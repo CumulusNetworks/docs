@@ -457,9 +457,6 @@ netq-ts           DIMM 3          RAM              16384 MB   Unknown    QEMU   
 
 {{< /tabs >}}
 
-
-
-
 ## View Switch Software Inventory
 
 You can view software components deployed on a given switch in your network.

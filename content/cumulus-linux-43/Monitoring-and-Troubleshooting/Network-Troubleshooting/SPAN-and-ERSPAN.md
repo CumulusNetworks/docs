@@ -30,12 +30,12 @@ You can configure SPAN and ERSPAN with NCLU, manually with configuration files, 
 
 The command parameters are described below.
 
-| Parameter | Description |
+| <div style="width:250px">Parameter | Description |
 | --------- | ----------- |
-| `session <session-id>` | The session ID. This is a number between 0 and 7. |
-| `ingress|egress` | The session direction:<ul><li> Ingress, where packets received on a port are sent to a sniffer port (SPAN) or destination IP address (ERSPAN).</li>Egress, where packets transmitted by the port are sent to the sniffer port (SPAN) or destination IP address (ERSPAN).</li></ul>|
-| `src-port <source-port>` | The source port or list of source ports on which the mirror session applies. You can specify a swp or bond interface. |
-| `dst-port <destination-port>` | The analyzer port to which the frame is mirrored for SPAN. A traffic analyzer, monitor or a host can be connected to this port to observe the traffic sniffed from the source port. You can only specify a swp interface. |
+| `session <id>` | The session ID. This is a number between 0 and 7. |
+| `ingress|egress` | The session direction:<ul><li> Ingress, where packets received on a port are sent to a sniffer port (SPAN) or destination IP address (ERSPAN).</li><li>Egress, where packets transmitted by the port are sent to the sniffer port (SPAN) or destination IP address (ERSPAN).</li></ul>|
+| `src-port <interface>` | The interface or list of interfaces on which the mirror session applies. You can specify a swp or bond interface. |
+| `dst-port <interface>` | The interface to which the frame is mirrored for SPAN monitoring. On Broadcom switches, this is called a Mirror To Port (MTP). On Mellanox switches, this is called an analyzer port. A traffic analyzer, monitor or a host can be connected to this interface to observe the traffic sniffed from the source interface. Only swp interfaces are supported. <br><br>On Broadcom switches, Cumulus Linux supports a maximum of four ingress MTPs and four egress MTPs. You can configure a maximum of four mirroring sessions per switch.<br><br> On Mellanox Spectrum switches, Cumulus Linux supports a maximum of three analyzer ports. On Mellanox switches with the Spectrum-2 and Spectrum-3 ASIC, Cumulus Linux supports a maximum of eight analyzer ports. You can configure multiple sessions to a single analyzer port.|
 | `src-ip <ip-address>` | The source IP address for ERSPAN encapsulation. |
 | `dst-ip <ip-address>` | The destination IP address for ERSPAN encapsulation. |
 
@@ -60,18 +60,18 @@ cumulus@switch:~$ net commit
 
 ### Example ERSPAN Commands
 
-To mirror all packets that come in from swp1, and copy and transmit the packets to destination IP address 10.10.10.3 through a GRE tunnel:
+To mirror all packets recieved on swp1, and copy and transmit the packets from source IP address 10.0.0.4 to destination IP address 10.0.0.6 through a GRE tunnel:
 
 ```
-cumulus@switch:~$ net add port-mirror session 1 ingress erspan src-port swp1 src-ip 10.10.10.1 dest-ip 10.10.10.3
+cumulus@switch:~$ net add port-mirror session 1 ingress erspan src-port swp1 src-ip 10.0.0.4 dest-ip 10.0.0.6
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-To mirror all packets that are sent out of swp1, and copy and transmit the packets to destination IP address 10.10.10.3 through a GRE tunnel:
+To mirror all packets that are sent out of swp1, and copy and transmit the packets from source IP address 10.0.0.4 to destination IP address 10.0.0.6 through a GRE tunnel:
 
 ```
-cumulus@switch:~$ net add port-mirror session 1 egress erspan src-port swp1 src_ip 10.10.10.1 dest_ip 10.10.10.3
+cumulus@switch:~$ net add port-mirror session 1 egress erspan src-port swp1 src_ip 10.0.0.4 dest_ip 10.0.0.6
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -118,28 +118,30 @@ cumulus@switch:~$ net commit
 
 ## Configure SPAN and ERSPAN with Configuration Files
 
-To enable SPAN or ERSPAN for a port, you need to configure four files in the order listed below:
+To enable SPAN or ERSPAN for a port, you need to configure four files in the order listed below. `session-id` in the file name is a number between 0 and 7 that identifies the session.
 
 1. `/cumulus/switchd/config/mirror/session/<session-id.>/direction`
 
-   The direction can be `ingress`, `egress` or `both`.
+   The session direction. You can specify `ingress`, `egress` or `both`.
+   
+   A Bidirectional session (`both`) is not supported on Mellanox switches.
 
 2. `/cumulus/switchd/config/mirror/session/<session-id.>/src`
 
-   You can specify multiple source ports per session. For example, swp1,swp3,bond10,swp49.
+   The interface on which the mirror session applies. You can specify multiple source ports per session. For example, swp1,swp3,bond10,swp49.
 
 3. `/cumulus/switchd/config/mirror/session/<session-id.>/dest`
 
-   For SPAN this is the destination or sniffer, or analyzer port. For example, swp1.
-   For ERSPAN, this is source IP address and destination IP address in quotes. For example, `"10.0.0.1 10.0.0.3"`. The source IP address and destination IP address are the encapsulation IP addresses. The destination IP is where the packets is forwarded.
+   For SPAN, this is the interface to which the frame is mirrored for monitoring. For example, swp1.
+   For ERSPAN, this is source IP address and destination IP address enclosed in double quotes. For example, `"10.0.0.1 10.0.0.3"`. The source IP address and destination IP address are the encapsulation IP addresses. The destination IP address is where the packets are forwarded for monitoring.
 
 4. `/cumulus/switchd/config/mirror/session/<session-id.>/type`
 
-   The type can be either `span` or `erspan`.
+   The type of monitoring: `span` or `erspan`.
 
 ### SPAN Examples
 
-The following example mirrors all packets received on swp1, and copies and transmits the packets out of local port swp2 for monitoring:
+The following example mirrors all packets *received on* swp1, and copies and transmits the packets out of swp2 for monitoring:
 
 ```
 cumulus@switch:~$ cd /cumulus/switchd
@@ -153,7 +155,7 @@ cumulus@switch:~$ echo swp2 > config/mirror/session/1/dest
 cumulus@switch:~$ echo span > config/mirror/session/1/type
 ```
 
-The following example mirrors all packets that are sent out of swp1 and copies and transmits the packets out of local port swp2 for monitoring:
+The following example mirrors all packets that are *sent out of* swp1 and copies and transmits the packets out of swp2 for monitoring:
 
 ```
 cumulus@switch:~$ cd /cumulus/switchd
@@ -169,7 +171,7 @@ cumulus@switch:~$ echo span > config/mirror/session/1/type
 
 ### ERSPAN Examples
 
-The following example mirrors all packets that come in from swp1, and copies and transmits the packets to destination IP address 10.10.10.3 through a GRE tunnel:
+The following example mirrors all packets that come in from swp1, and copies and transmits the packets from source IP address 10.0.0.4 to destination IP address 10.0.0.6 through a GRE tunnel:
 
 ```
 cumulus@switch:~$ cd /cumulus/switchd
@@ -178,12 +180,12 @@ cumulus@switch:~$ echo ingress > config/mirror/session/0/direction
 
 cumulus@switch:~$ echo swp1 > config/mirror/session/0/src
 
-cumulus@switch:~$ echo "10.0.0.1 10.0.0.3" > config/mirror/session/0/dest
+cumulus@switch:~$ echo "10.0.0.4 10.0.0.6" > config/mirror/session/0/dest
 
 cumulus@switch:~$ echo erspan > config/mirror/session/0/type
 ```
 
-The following example mirrors all packets that are sent out of swp1, and copies and transmits the packets to destination IP address 10.10.10.3 through a GRE tunnel:
+The following example mirrors all packets that are sent out of swp1, and copies and transmits the packets from source IP address 10.0.0.4 to destination IP address 10.0.0.6 through a GRE tunnel:
 
 ```
 cumulus@switch:~$ cd /cumulus/switchd
@@ -192,7 +194,7 @@ cumulus@switch:~$ echo egress > config/mirror/session/0/direction
 
 cumulus@switch:~$ echo swp1 > config/mirror/session/0/src
 
-cumulus@switch:~$ echo "10.0.0.1 10.0.0.3" > config/mirror/session/0/dest
+cumulus@switch:~$ echo "10.0.0.4 10.0.0.6" > config/mirror/session/0/dest
 
 cumulus@switch:~$ echo erspan > config/mirror/session/0/type
 ```

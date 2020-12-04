@@ -44,7 +44,7 @@ The command parameters are described below.
 | --------- | ----------- |
 | `session <id>` | The session ID. This is a number between 0 and 7. |
 | `ingress|egress` | The session direction:<ul><li> Ingress, where packets received on a port are sent to a sniffer port (SPAN) or destination IP address (ERSPAN).</li><li>Egress, where packets transmitted by the port are sent to the sniffer port (SPAN) or destination IP address (ERSPAN).</li></ul><br>To configure both ingress and egress, create two sessions.|
-| `src-port <interface>` | The interface or list of interfaces on which the mirror session applies. You can specify a swp or bond interface. Separate the interfaces in the list with a comma; for example swp1,45,46.|
+| `src-port <interface>` | The interface or list of interfaces on which the mirror session applies. You can specify swp or bond interfaces. Separate the interfaces in the list with a comma; for example swp1,swp45,swp46.|
 | `dst-port <interface>` | The interface to which the frame is mirrored for SPAN. A traffic analyzer, monitor or a host can be connected to this interface to observe the traffic sniffed from the source interface. Only swp interfaces are supported.<br><br>On Broadcom switches, Cumulus Linux supports a maximum of four ingress interfaces and four egress interfaces. You can configure a maximum of four mirroring sessions per switch.<br><br> On Mellanox Spectrum switches, Cumulus Linux supports a maximum of three analyzer ports. On Mellanox switches with the Spectrum-2 and Spectrum-3 ASIC, Cumulus Linux supports a maximum of eight analyzer ports. You can configure multiple sessions to a single analyzer port.|
 | `src-ip <ip-address>` | The source IP address for ERSPAN encapsulation. This is typically the loopback address of the switch. |
 | `dst-ip <ip-address>` | The destination IP address for ERSPAN encapsulation. This is typically the loopback address of the destination device.|
@@ -526,7 +526,7 @@ To enable SPAN or ERSPAN through fuse nodes, configure four files in the order l
 
 2. `/cumulus/switchd/config/mirror/session/<session-id.>/src`
 
-   The interface on which the mirror session applies. You can specify multiple source ports per session. For example, swp1,swp3,bond10,swp49.
+   The interface on which the mirror session applies. You can specify multiple source ports per session. For example: swp1,swp3,bond10,swp49.
 
 3. `/cumulus/switchd/config/mirror/session/<session-id.>/dest`
 
@@ -561,18 +561,29 @@ The following example commands mirror all packets that come in from swp1, and co
 
 ```
 cumulus@switch:~$ cd /cumulus/switchd
-cumulus@switch:~$ echo ingress > config/mirror/session/0/direction
-cumulus@switch:~$ echo swp1 > config/mirror/session/0/src
-cumulus@switch:~$ echo "10.10.10.1 10.10.10.234" > config/mirror/session/0/dest
-cumulus@switch:~$ echo erspan > config/mirror/session/0/type
+cumulus@switch:~$ echo ingress > config/mirror/session/1/direction
+cumulus@switch:~$ echo swp1 > config/mirror/session/1/src
+cumulus@switch:~$ echo "10.10.10.1 10.10.10.234" > config/mirror/session/1/dest
+cumulus@switch:~$ echo erspan > config/mirror/session/1/type
 ```
 
 The following example commands mirror all packets that are sent out of swp1, and copy and transmit the packets from source IP address 10.10.10.1 to destination IP address 10.10.10.234 through a GRE tunnel:
 
 ```
 cumulus@switch:~$ cd /cumulus/switchd
-cumulus@switch:~$ echo egress > config/mirror/session/0/direction
-cumulus@switch:~$ echo swp1 > config/mirror/session/0/src
-cumulus@switch:~$ echo "10.10.10.1 10.10.10.234" > config/mirror/session/0/dest
-cumulus@switch:~$ echo erspan > config/mirror/session/0/type
+cumulus@switch:~$ echo egress > config/mirror/session/1/direction
+cumulus@switch:~$ echo swp1 > config/mirror/session/1/src
+cumulus@switch:~$ echo "10.10.10.1 10.10.10.234" > config/mirror/session/1/dest
+cumulus@switch:~$ echo erspan > config/mirror/session/1/type
+```
+
+{{%notice note%}}
+The NCLU `net show port-mirror session` command does not display mirroring sessions that are configured through fuse nodes.
+{{%/notice%}}
+
+To remove a session, specify `none` for the type. For example:
+
+```
+cumulus@switch:~$ cd /cumulus/switchd
+cumulus@switch:~$ echo none > config/mirror/session/1/type
 ```

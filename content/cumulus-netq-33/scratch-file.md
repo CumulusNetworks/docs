@@ -23,7 +23,7 @@ pdfhidden: true
 <div class="notices note"><p>note text</p></div>
 
 <!-- add a horizontal rule -->
-- - - 
+- - -
 
 {{< expand "title" >}}
 

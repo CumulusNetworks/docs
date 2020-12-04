@@ -27,7 +27,11 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
     {{<netq-install/verify-cmd deployment="onprem">}}
 
-6. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+6. Change the hostname for the VM from the default value.
+
+    {{<netq-install/set-hostname>}}
+
+7. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap version="3.0.0" server="single" platform="vm" deployment="onprem">}}
 

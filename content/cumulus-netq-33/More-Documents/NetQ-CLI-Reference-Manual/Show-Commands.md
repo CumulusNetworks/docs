@@ -1626,14 +1626,13 @@ spine02         80                      576                             2880    
 
 - - -
 
-### netq show ip addresses
+### netq show ip/ipv6 addresses
 
-Displays the IPv4 or IPv6 addresses configured for a given device or all devices networkwide, currently or for a time in the past. You can filter the output by remote-interface, address or prefix, and VRF. A count of addresses can be obtained for a given device. The output provides the following information for each device:
+Displays the IPv4 or IPv6 addresses configured for a given device or all devices networkwide, currently or for a time in the past. You can filter the output by remote-interface, address or prefix, and VRF. A count of addresses can be obtained for a given device. The output provides the following information for each address:
 
-- Percentage of PE cycles remaining for the drive
-- Count of current PE cycles used by this drive
-- Total number of PE cycles supported for this drive
-- The drive model information
+- Hostname of the device with the address
+- Interface on the device with the address
+- VRF, when configured, on the interface with the address
 - When the last change was made to any of these items
 
 #### Syntax
@@ -1641,13 +1640,37 @@ Displays the IPv4 or IPv6 addresses configured for a given device or all devices
 There are two sets of IP address commands, one for IPv4 and one for IPv6.
 
 ```
-netq <hostname> show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
+netq <hostname> show ip addresses
+    [<remote-interface>]
+    [<ipv4>|<ipv4/prefixlen>]
+    [vrf <vrf>]
+    [around <text-time>]
+    [count]
+    [json]
 
-netq show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [subnet|supernet|gateway] [around <text-time>] [json]
+netq show ip addresses
+    [<remote-interface>]
+    [<ipv4>|<ipv4/prefixlen>]
+    [vrf <vrf>]
+    [subnet|supernet|gateway]
+    [around <text-time>]
+    [json]
 
-netq <hostname> show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
+netq <hostname> show ipv6 addresses
+    [<remote-interface>]
+    [<ipv6>|<ipv6/prefixlen>]
+    [vrf <vrf>]
+    [around <text-time>]
+    [count]
+    [json]
 
-netq show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [subnet|supernet|gateway] [around <text-time>] [json]
+netq show ipv6 addresses
+    [<remote-interface>]
+    [<ipv6>|<ipv6/prefixlen>]
+    [vrf <vrf>]
+    [subnet|supernet|gateway]
+    [around <text-time>]
+    [json]
 ```
 
 #### Required Arguments
@@ -1662,7 +1685,15 @@ netq show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vr
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<remote-interface\> | Only display results for the switch or host with this name |
+| NA | \<remote-interface\> | Only display results for switches and hosts with this interface |
+| NA | \<ipv4\> | Only display results for switches and hosts with this IPv4 address |
+| NA | \<ipv4/prefixlen\> | Only display results for switches and hosts with this IPv4 address and prefix |
+| NA | \<ipv6\> | Only display results for switches and hosts with this IPv6 address |
+| NA | \<ipv6/prefixlen\> | Only display results for switches and hosts with this IPv6 address and prefix |
+| vrf | \<vrf\> | Only dispaly results for switches and hosts using this virtual route forwarding interface |
+| subnet | NA | Only display results for addresses in the subnet |
+| supernet | NA | Only display results for addresses in the supernet |
+| gateway | NA | Only display results for addresses in the gateway |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
@@ -1677,9 +1708,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 #### Sample Usage
 
-Basic show: All drives, for a given device
-
-This example shows all IP address on the *spine01* switch:
+Show all IP address on the *spine01* switch
 
 ```
 cumulus@switch:~$ netq spine01 show ip addresses
@@ -1690,7 +1719,7 @@ Address                   Hostname          Interface                 VRF       
 10.10.10.101/32           spine01           lo                        default         Thu Sep 17 20:25:05 2020
 ```
 
-This example shows all IP addresses on the *leaf03* switch:
+Shows all IP addresses on the *leaf03* switch
 
 ```
 cumulus@switch:~$ netq leaf03 show ip addresses
@@ -1708,7 +1737,7 @@ Address                   Hostname          Interface                 VRF       
 10.1.30.2/24              leaf03            vlan30                    BLUE            Thu Sep 17 20:25:08 2020
 ```
 
-This example shows all IP addresses using the *BLUE* VRF on the *leaf03* switch:
+Show all IP addresses using the *BLUE* VRF on the *leaf03* switch
 
 ```
 cumulus@switch:~$ netq leaf03 show ip addresses vrf BLUE
@@ -1721,19 +1750,380 @@ Address                   Hostname          Interface                 VRF       
 
 #### Related Commands
 
-- netq show cl-btrfs-info
+- netq show ip/ipv6 neighbors
+- netq show ip/ipv6 routes
 
 - - -
 
-### netq show ip neighbors
+### netq show ip/ipv6 neighbors
+
+Displays the IPv4 or IPv6 neighbors configured for a given device or all devices networkwide, currently or for a time in the past. You can filter the output by remote-interface, address, address and VRF, or VRF. A count of neighbors can be obtained for a given device, or for a given device and MAC address. The output provides the following information for each address:
+
+- Hostname of neighbor
+- Interface of neighbor
+- MAC address of neighbor
+- VRF, when configured, of neighbor
+- Whether this address owned by the neighbor or learned from by host
+- When the last change was made to any of these items
+
+#### Syntax
+
+There are two sets of IP neighbors commands, one for IPv4 and one for IPv6.
+
+```
+netq show ip neighbors
+    [<remote-interface>]
+    [<ipv4>|<ipv4> vrf <vrf>|vrf <vrf>]
+    [<mac>]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show ip neighbors
+    [<remote-interface>]
+    [<ipv4>|<ipv4> vrf <vrf>|vrf <vrf>]
+    [<mac>]
+    [around <text-time>]
+    [count]
+    [json]
+
+netq show ipv6 neighbors
+    [<remote-interface>]
+    [<ipv6>|<ipv6> vrf <vrf>|vrf <vrf>]
+    [<mac>]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show ipv6 neighbors
+    [<remote-interface>]
+    [<ipv6>|<ipv6> vrf <vrf>|vrf <vrf>]
+    [<mac>]
+    [around <text-time>]
+    [count]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| ip | NA | Display TCP IPv4 neighbors |
+| ipv6 | NA | Display TCP IPv6 neighbors |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<remote-interface\> | Only display results for switches and hosts with this interface |
+| NA | \<ipv4\> | Only display results for switches and hosts with this IPv4 address |
+| NA | \<ipv4\> vrf \<vrf\> | Only display results for the switch or host with this IPv4 address and virtual route forwarding interface |
+| NA | \<ipv6\> | Only display results for switches and hosts with this IPv6 address |
+| NA | \<ipv6\> vrf \<vrf\> | Only display results for switches and hosts with this IPv6 address and VRF |
+| vrf | \<vrf\> | Only display results for switches and hosts using this VRF |
+| NA | \<mac\> | Only display results for switches and hosts with this MAC address |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Added ability to display all addresses in a subnet or supernet or the layer 3 gateway of an address with `subnet`, `supernet`, and `gateway` options |
+| 2.1.2 | Removed `changes` and `between` options |
+
+#### Sample Usage
+
+Show all IPv4 neighbors on the *spine01* switch
+
+```
+cumulus@switch:~$ netq show ip neighbors
+Matching neighbor records:
+IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
+------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
+169.254.0.1               spine04           swp1                      44:38:39:00:00:08  default         no     Thu Dec  3 22:29:18 2020
+169.254.0.1               spine04           swp6                      44:38:39:00:00:30  default         no     Thu Dec  3 22:29:18 2020
+169.254.0.1               spine04           swp5                      44:38:39:00:00:28  default         no     Thu Dec  3 22:29:18 2020
+192.168.200.1             spine04           eth0                      44:38:39:00:00:6d                  no     Fri Dec  4 19:41:35 2020
+169.254.0.1               spine04           swp4                      44:38:39:00:00:20  default         no     Thu Dec  3 22:29:18 2020
+169.254.0.1               spine04           swp3                      44:38:39:00:00:18  default         no     Thu Dec  3 22:29:18 2020
+169.254.0.1               spine04           swp2                      44:38:39:00:00:10  default         no     Thu Dec  3 22:29:18 2020
+192.168.200.24            spine04           mgmt                      c6:b3:15:1d:84:c4                  no     Thu Dec  3 22:29:18 2020
+192.168.200.250           spine04           eth0                      44:38:39:00:01:80                  no     Thu Dec  3 22:29:18 2020
+169.254.0.1               spine03           swp1                      44:38:39:00:00:06  default         no     Thu Dec  3 22:31:27 2020
+169.254.0.1               spine03           swp6                      44:38:39:00:00:2e  default         no     Thu Dec  3 22:31:27 2020
+169.254.0.1               spine03           swp5                      44:38:39:00:00:26  default         no     Thu Dec  3 22:31:27 2020
+...
+```
+
+Shows all IPv6 addresses on the *leaf03* switch:
+
+```
+cumulus@switch:~$ netq leaf03 show ipv6 neighbors
+Matching neighbor records:
+IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
+------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
+ff02::16                  leaf03            eth0                      33:33:00:00:00:16                  no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:32   leaf03            vlan10-v0                 44:38:39:00:00:32  RED             no     Thu Dec  3 22:28:59 2020
+ff02::1                   leaf03            mgmt                      33:33:00:00:00:01                  no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:febe:efbb leaf03            vlan4001                  44:38:39:be:ef:bb  RED             no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:3a   leaf03            vlan20-v0                 44:38:39:00:00:34  RED             no     Thu Dec  3 22:28:59 2020
+ff02::1:ff00:184          leaf03            eth0                      33:33:ff:00:01:84                  no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:3c   leaf03            vlan30                    44:38:39:00:00:36  BLUE            yes    Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:13   leaf03            swp52                     44:38:39:00:00:13  default         no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:5e   leaf03            vlan30                    44:38:39:00:00:5e  BLUE            no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:42   leaf03            vlan30-v0                 44:38:39:00:00:42  BLUE            no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:44   leaf03            vlan10                    44:38:39:00:00:3e  RED             no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:5e   leaf03            vlan10                    44:38:39:00:00:5e  RED             no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:3c   leaf03            vlan30-v0                 44:38:39:00:00:36  BLUE            no     Thu Dec  3 22:28:59 2020
+fe80::4638:39ff:fe00:17   leaf03            swp54                     44:38:39:00:00:17  default         no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:5e   leaf03            vlan20                    44:38:39:00:00:5e  RED             no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:32   leaf03            vlan10                    44:38:39:00:00:32  RED             yes    Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:190  leaf03            eth0                      44:38:39:00:01:90                  no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:40   leaf03            vlan20-v0                 44:38:39:00:00:40  RED             no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:3a   leaf03            vlan20                    44:38:39:00:00:34  RED             yes    Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:180  leaf03            eth0                      44:38:39:00:01:80                  no     Thu Dec  3 22:28:58 2020
+...
+```
+
+#### Related Commands
+
+- netq show ip/ipv6 addresses
+- netq show ip/ipv6 routes
+
+- - -
 
 ### netq show ip routes
 
-### netq show ipv6
+Displays the IPv4 or IPv6 routes configured for a given device or all devices networkwide, currently or for a time in the past. You can filter the output by remote-interface, address, address and prefix, VRF, and route origin. A count of routes can be obtained for a given device. The output provides the following information for each route:
+
+- Whether this route originated with this device or not
+- VRF used for the route
+- Address prefix used for the route
+- Hostname of the device with the route
+- Next hops the route will take
+- When the last change was made to any of these items
+
+#### Syntax
+
+There are two sets of IP routes commands, one for IPv4 and one for IPv6.
+
+```
+netq <hostname> show ip routes
+    [<ipv4>|<ipv4/prefixlen>]
+    [vrf <vrf>]
+    [origin]
+    [around <text-time>]
+    [count]
+    [json]
+
+netq show ip routes
+    [<ipv4>|<ipv4/prefixlen>]
+    [vrf <vrf>]
+    [origin]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show ipv6 routes
+    [<ipv6>|<ipv6/prefixlen>]
+    [vrf <vrf>]
+    [origin]
+    [around <text-time>]
+    [count]
+    [json]
+
+netq show ipv6 routes
+    [<ipv6>|<ipv6/prefixlen>]
+    [vrf <vrf>]
+    [origin]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| ip | NA | Display TCP IPv4 routes |
+| ipv6 | NA | Display TCP IPv6 routes |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<remote-interface\> | Only display results for switches and hosts with this interface |
+| NA | \<ipv4\> | Only display results for switches and hosts with this IPv4 address |
+| NA | \<ipv4/prefixlen\> | Only display results for the switch or host with this IPv4 address and prefix |
+| NA | \<ipv6\> | Only display results for switches and hosts with this IPv6 address |
+| NA | \<ipv6/prefixlen\> | Only display results for switches and hosts with this IPv6 address and prefix |
+| vrf | \<vrf\> | Only display results for switches and hosts using this VRF |
+| origin | NA | Display whether this route originated on the switch or host (yes) or not (no) |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| count | NA | Display the count of routes for a given switch or host |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Added ability to display all addresses in a subnet or supernet or the layer 3 gateway of an address with `subnet`, `supernet`, and `gateway` options |
+| 2.1.2 | Removed `changes` and `between` options |
+
+#### Sample Usage
+
+Show all IPv4 routes
+
+```
+cumulus@switch:~$ netq show ip routes
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+no     default         10.0.1.2/32                    spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp4
+no     default         10.10.10.4/32                  spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp4
+no     default         10.10.10.3/32                  spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp4
+no     default         10.10.10.2/32                  spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp2
+no     default         10.10.10.1/32                  spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp2
+yes                    192.168.200.0/24               spine04           eth0                                Thu Dec  3 22:29:17 2020
+yes                    192.168.200.24/32              spine04           eth0                                Thu Dec  3 22:29:17 2020
+no     default         10.0.1.1/32                    spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp2
+yes    default         10.10.10.104/32                spine04           lo                                  Thu Dec  3 22:29:17 2020
+...
+```
+
+Shows all IPv6 routes on the *leaf03* switch
+
+```
+cumulus@switch:~$ netq leaf03 show ipv6 routes
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+no     RED             ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
+no                     ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
+no     BLUE            ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
+```
+
+#### Related Commands
+
+- netq show ip/ipv6 addresses
+- netq show ip/ipv6 neighbors
+
+- - -
 
 ### netq show kubernetes
 
+- - -
+
 ### netq show mac-commentary
+
+Displays description of changes to a given MAC address. The output provides the following information for each route:
+
+- Whether this route originated with this device or not
+- VRF used for the route
+- Address prefix used for the route
+- Hostname of the device with the route
+- Next hops the route will take
+- When the last change was made to any of these items
+
+#### Syntax
+
+There are two sets of IP routes commands, one for IPv4 and one for IPv6.
+
+```
+netq <hostname> show mac-commentary
+    <mac>
+    vlan <1-4096>
+    [between <text-time> and <text-endtime>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<mac\> | Display descriptive summary of MAC moves for this MAC address |
+| vlan | \<1-4096\> | Display descriptive summary of MAC moves for the VLAN with this ID |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:
+<ul>
+<li><strong>w</strong>: week(s)</li>
+<li><strong>d</strong>: day(s)</li>
+<li><strong>h</strong>: hour(s)</li>
+<li><strong>m</strong>: minute(s)</li>
+<li><strong>s</strong>: second(s)</li>
+<li><strong>now</strong>
+</ul>
+</p>
+<p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 | Introduced |
+
+#### Sample Usage
+
+Show all IPv4 routes
+
+```
+cumulus@switch:~$ netq show ip routes
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+no     default         10.0.1.2/32                    spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp4
+no     default         10.10.10.4/32                  spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp4
+no     default         10.10.10.3/32                  spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp4
+no     default         10.10.10.2/32                  spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp2
+no     default         10.10.10.1/32                  spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp2
+yes                    192.168.200.0/24               spine04           eth0                                Thu Dec  3 22:29:17 2020
+yes                    192.168.200.24/32              spine04           eth0                                Thu Dec  3 22:29:17 2020
+no     default         10.0.1.1/32                    spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp2
+yes    default         10.10.10.104/32                spine04           lo                                  Thu Dec  3 22:29:17 2020
+...
+```
+
+Shows all IPv6 routes on the *leaf03* switch
+
+```
+cumulus@switch:~$ netq leaf03 show ipv6 routes
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+no     RED             ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
+no                     ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
+no     BLUE            ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
+```
+
+#### Related Commands
+
+- netq show ip/ipv6 addresses
+- netq show ip/ipv6 neighbors
+
+- - -
 
 ### netq show mac-history
 

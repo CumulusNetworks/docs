@@ -142,11 +142,11 @@ PFC is a layer 2 mechanism that prevents congestion by throttling packet transmi
 
 PFC operates between two adjacent neighbor switches; it does not provide end-to-end flow control. However, when an upstream neighbor throttles packet transmission, it could build up packet congestion and propagate PFC frames further upstream: eventually the sending server could receive PFC frames and stop sending traffic for a time.
 
-The PFC mechanism can be enabled for individual switch priorities on all or specific switch ports for RX and/or TX traffic. The switch port's ingress buffer occupancy is used to measure congestion. If congestion is present, the switch transmits flow control frames to the upstream switch. Packets with priority values that do not have PFC configured are not counted during congestion detection; neither do they get throttled by the upstream switch when it receives flow control frames.
+The PFC mechanism can be enabled for individual switch priorities on all or specific switch ports for received and/or transmitted traffic. The ingress buffer occupancy of the switch port is used to measure congestion. If congestion is present, the switch transmits flow control frames to the upstream switch. Packets with priority values that do not have PFC configured are not counted during congestion detection and they do not get throttled by the upstream switch when it receives flow control frames.
 
-PFC congestion detection is implemented on the switch using xoff and xon threshold values for the specific ingress buffer which is used by the targeted switch priorities. When a packet enters the buffer and the buffer occupancy is above the xoff threshold, the switch transmits an Ethernet PFC frame to the upstream switch to signal packet transmission should stop. When the buffer occupancy drops below the xon threshold, the switch sends another PFC frame upstream to signal that packet transmission can resume. (PFC frames contain a quanta value to indicate a timeout value for the upstream switch: packet transmission can resume after the timer has expired, or when a PFC frame with quanta == 0 is received from the downstream switch.)
+PFC congestion detection is implemented on the switch using xoff and xon threshold values for the specific ingress buffer used by the targeted switch priorities. When a packet enters the buffer and the buffer occupancy is above the xoff threshold, the switch transmits an Ethernet PFC frame to the upstream switch to signal packet transmission must stop. When the buffer occupancy drops below the xon threshold, the switch sends another PFC frame upstream to signal that packet transmission can resume. (PFC frames contain a quanta value to indicate a timeout value for the upstream switch: packet transmission can resume after the timer has expired or when a PFC frame with quanta == 0 is received from the downstream switch.)
 
-After the downstream switch has sent a PFC frame upstream, it continues to receive packets until the upstream switch receives and responds to the PFC frame. The downstream ingress buffer must be large enough to store those additional packets after the xoff threshold has been reached.
+After the downstream switch sends a PFC frame upstream, it continues to receive packets until the upstream switch receives and responds to the PFC frame. The downstream ingress buffer must be large enough to store those additional packets after the xoff threshold is reached.
 
 Priority flow control is fully supported on both {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2" text="Broadcom">}} (including the Edgecore Minipack-AS8000/Trident3) and {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox" text="Mellanox">}} switches.
 
@@ -165,8 +165,8 @@ PFC is disabled by default in Cumulus Linux. To configure PFC, uncomment the lin
 #    -- enable PFC frame transmit and/or PFC frame receive
 
 # priority flow control
-pfc.port_group_list = [ROCE_PFC]
-pfc.pfc_port_group.cos_list = [3]
+pfc.port_group_list = [pfc_port_group]
+pfc.pfc_port_group.cos_list = []
 pfc.pfc_port_group.port_set = swp1-swp4,swp6
 pfc.pfc_port_group.port_buffer_bytes = 25000
 pfc.pfc_port_group.xoff_size = 10000
@@ -224,23 +224,21 @@ swp7
 
 ## Link Pause
 
-The PAUSE frame is a flow control mechanism that halts the transmission of the transmitter for a specified period of time. A server or other network node within the data center may be receiving traffic faster than it can handle it, thus the PAUSE frame. In Cumulus Linux, you can configure individual ports to execute link pause by:
+The PAUSE frame is a flow control mechanism that halts the transmission of the transmitter for a specified period of time, which might be needed if a server or other network node within the data center receives traffic faster than it can handle. In Cumulus Linux, you can configure individual ports to execute link pause by:
 
-- Transmitting pause frames when its ingress buffers become congested (TX pause enable).
+- Transmitting pause frames when the ingress buffers become congested (TX pause enable).
 - Responding to received pause frames (RX pause enable).
 
-Link pause is disabled by default. To enabling link pause, you must configure settings in the `/etc/cumulus/datapath traffic.conf` file.
+Link pause is disabled by default. To enable link pause, you must configure settings in the `/etc/cumulus/datapath traffic.conf` file.
 
-{{%notice tip%}}
-
-What's the difference between link pause and priority flow control?
+{{< expand "What's the difference between link pause and priority flow control?" >}}
 
 - Priority flow control is applied to an individual priority group for a specific ingress port.
 - Link pause (also known as port pause or global pause) is applied to all the traffic for a specific ingress port.
 
-{{%/notice%}}
+{{< /expand >}}
 
-Here is an example configuration that enables both types of link pause for swp1 through swp4 and swp6:
+Here is an example configuration that enables TX pause and RX pause for swp1 through swp4 and swp6:
 
 ``` 
 # to configure pause on a group of ports:
@@ -248,18 +246,22 @@ Here is an example configuration that enables both types of link pause for swp1 
 # -- for each port group in the list
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
-#    -- set a pause buffer size in bytes for each port in the group
+#    -- set a pause buffer size in bytes for each port
 #    -- set the xoff byte limit (buffer limit that triggers pause frames transmit to start)
 #    -- set the xon byte delta (buffer limit that triggers pause frames transmit to stop)
+#    -- enable pause frame transmit and/or pause frame receive
 
-# link pause
-link_pause.port_group_list = [pause_port_group]
-link_pause.pause_port_group.port_set = swp1-swp4,swp6
-link_pause.pause_port_group.port_buffer_bytes = 25000
-link_pause.pause_port_group.xoff_size = 10000
-link_pause.pause_port_group.xon_delta = 2000
-link_pause.pause_port_group.rx_enable = true
-link_pause.pause_port_group.tx_enable = true
+ link pause
+ link_pause.port_group_list = [pause_port_group]
+ link_pause.pause_port_group.port_set = swp1-swp4,swp6
+ link_pause.pause_port_group.port_buffer_bytes = 25000
+ link_pause.pause_port_group.xoff_size = 10000
+ link_pause.pause_port_group.xon_delta = 2000
+ link_pause.pause_port_group.rx_enable = true
+ link_pause.pause_port_group.tx_enable = true
+
+# Specify cable length in mts
+ link_pause.pause_port_group.cable_length = 10
 ```
 
 On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.
@@ -268,7 +270,15 @@ On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd
 
 ## Cut-through Mode and Store and Forward Switching
 
-Cut-through mode is disabled in Cumulus Linux by default on switches with Broadcom ASICs. With cut-though mode enabled and link pause is asserted, Cumulus Linux generates a TOVR and TUFL ERROR; certain error counters increment on a given physical port.
+Cut-through mode is disabled in Cumulus Linux by default on switches with Broadcom ASICs. On Mellanox switches, you cannot disable cut-through mode.
+
+```
+# Cut-through is disabled by default on all chips with the exception of
+# Spectrum.  On Spectrum cut-through cannot be disabled.
+#cut_through_enable = false
+```
+
+If cut-though mode is enabled and link pause is asserted, Cumulus Linux generates a TOVR and TUFL ERROR; certain error counters increment on a given physical port.
 
 ```
 cumulus@switch:~$ sudo ethtool -S swp49 | grep Error
@@ -286,16 +296,21 @@ HwIfInErrors: 297595762
 HwIfInDot3FrameErrors: 293710518
 ```
 
-To work around this issue, disable link pause or disable cut-through mode in the `/etc/cumulus/datapath/traffic.conf` file.
-
-To disable link pause, comment out the `link_pause*` section in the `/etc/cumulus/datapath/traffic.conf` file:
+To work around this issue, disable link pause by commenting out the `link_pause*` section in the `/etc/cumulus/datapath/traffic.conf` file:
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf 
-#link_pause.port_group_list = [port_group_0]
-#link_pause.port_group_0.port_set = swp45-swp54
-#link_pause.port_group_0.rx_enable = true
-#link_pause.port_group_0.tx_enable = true
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
+# link pause
+# link_pause.port_group_list = [pause_port_group]
+# link_pause.pause_port_group.port_set = swp1-swp4,swp6
+# link_pause.pause_port_group.port_buffer_bytes = 25000
+# link_pause.pause_port_group.xoff_size = 10000
+# link_pause.pause_port_group.xon_delta = 2000
+# link_pause.pause_port_group.rx_enable = true
+# link_pause.pause_port_group.tx_enable = true
+#
+# Specify cable length in mts
+# link_pause.pause_port_group.cable_length = 10
 ```
 
 To enable store and forward switching, set `cut_through_enable` to *false* in the `/etc/cumulus/datapath/traffic.conf` file:
@@ -391,57 +406,14 @@ The following example `/etc/cumulus/datapath/traffic.conf` datapath configuratio
 cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
 #
 # /etc/cumulus/datapath/traffic.conf
+# Copyright 2014, 2015, 2016, 2017, 2020 Cumulus Networks, Inc.  All rights reserved.
 #
 
 # packet header field used to determine the packet priority level
 # fields include {802.1p, dscp}
-traffic.packet_priority_source_set = [802.1p,dscp]
+traffic.packet_priority_source_set = [802.1p]
 
-# remark packet priority value
-# fields include {802.1p, none}
-# remark packet priority value
-# fields include {802.1p, dscp}
-traffic.packet_priority_remark_set = [802.1p,dscp]
-
-# packet priority remark values assigned from each internal cos value
-# internal cos values {cos_0..cos_7}
-# (internal cos 3 has been reserved for CPU-generated traffic)
-#
-# 802.1p values = {0..7}
-
-traffic.cos_0.priority_remark.8021p = [1]
-traffic.cos_1.priority_remark.8021p = [0]
-traffic.cos_2.priority_remark.8021p = [3]
-traffic.cos_3.priority_remark.8021p = [2]
-traffic.cos_4.priority_remark.8021p = [4]
-traffic.cos_5.priority_remark.8021p = [5]
-traffic.cos_6.priority_remark.8021p = [7]
-traffic.cos_7.priority_remark.8021p = [6]
-
-# dscp values = {0..63}
-traffic.cos_0.priority_remark.dscp = [1]
-traffic.cos_1.priority_remark.dscp = [9]
-traffic.cos_2.priority_remark.dscp = [17]
-traffic.cos_3.priority_remark.dscp = [25]
-traffic.cos_4.priority_remark.dscp = [33]
-traffic.cos_5.priority_remark.dscp = [41]
-traffic.cos_6.priority_remark.dscp = [49]
-traffic.cos_7.priority_remark.dscp = [57]
-
-# Per-port remark packet fields and mapping: applies to the designated set of ports.
-remark.port_group_list = [remark_port_group]
-remark.remark_port_group.packet_priority_remark_set = [802.1p,dscp]
-remark.remark_port_group.port_set = swp1-swp4,swp6
-remark.remark_port_group.cos_0.priority_remark.dscp = [2]
-remark.remark_port_group.cos_1.priority_remark.dscp = [10]
-remark.remark_port_group.cos_2.priority_remark.dscp = [18]
-remark.remark_port_group.cos_3.priority_remark.dscp = [26]
-remark.remark_port_group.cos_4.priority_remark.dscp = [34]
-remark.remark_port_group.cos_5.priority_remark.dscp = [42]
-remark.remark_port_group.cos_6.priority_remark.dscp = [50]
-remark.remark_port_group.cos_7.priority_remark.dscp = [58]
-
-# packet priority values assigned to each internal cos value
+# packet priority source values assigned to each internal cos value
 # internal cos values {cos_0..cos_7}
 # (internal cos 3 has been reserved for CPU-generated traffic)
 #
@@ -456,27 +428,66 @@ traffic.cos_6.priority_source.8021p = [6]
 traffic.cos_7.priority_source.8021p = [7]
 
 # dscp values = {0..63}
-traffic.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
-traffic.cos_1.priority_source.dscp = [8,9,10,11,12,13,14,15]
-traffic.cos_2.priority_source.dscp = []
-traffic.cos_3.priority_source.dscp = []
-traffic.cos_4.priority_source.dscp = []
-traffic.cos_5.priority_source.dscp = []
-traffic.cos_6.priority_source.dscp = []
-traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
+#traffic.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
+#traffic.cos_1.priority_source.dscp = [8,9,10,11,12,13,14,15]
+#traffic.cos_2.priority_source.dscp = [16,17,18,19,20,21,22,23]
+#traffic.cos_3.priority_source.dscp = [24,25,26,27,28,29,30,31]
+#traffic.cos_4.priority_source.dscp = [32,33,34,35,36,37,38,39]
+#traffic.cos_5.priority_source.dscp = [40,41,42,43,44,45,46,47]
+#traffic.cos_6.priority_source.dscp = [48,49,50,51,52,53,54,55]
+#traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 
-# Per-port source packet fields and mapping: applies to the designated set of ports.
-source.port_group_list = [source_port_group]
-source.source_port_group.packet_priority_source_set = [802.1p,dscp]
-source.source_port_group.port_set = swp1-swp4,swp6
-source.source_port_group.cos_0.priority_source.8021p = [7]
-source.source_port_group.cos_1.priority_source.8021p = [6]
-source.source_port_group.cos_2.priority_source.8021p = [5]
-source.source_port_group.cos_3.priority_source.8021p = [4]
-source.source_port_group.cos_4.priority_source.8021p = [3]
-source.source_port_group.cos_5.priority_source.8021p = [2]
-source.source_port_group.cos_6.priority_source.8021p = [1]
-source.source_port_group.cos_7.priority_source.8021p = [0]
+# remark packet priority value
+# fields include {802.1p, dscp}
+traffic.packet_priority_remark_set = []
+
+# packet priority remark values assigned from each internal cos value
+# internal cos values {cos_0..cos_7}
+# (internal cos 3 has been reserved for CPU-generated traffic)
+#
+# 802.1p values = {0..7}
+#traffic.cos_0.priority_remark.8021p = [0]
+#traffic.cos_1.priority_remark.8021p = [1]
+#traffic.cos_2.priority_remark.8021p = [2]
+#traffic.cos_3.priority_remark.8021p = [3]
+#traffic.cos_4.priority_remark.8021p = [4]
+#traffic.cos_5.priority_remark.8021p = [5]
+#traffic.cos_6.priority_remark.8021p = [6]
+#traffic.cos_7.priority_remark.8021p = [7]
+
+# dscp values = {0..63}
+#traffic.cos_0.priority_remark.dscp = [0]
+#traffic.cos_1.priority_remark.dscp = [8]
+#traffic.cos_2.priority_remark.dscp = [≥16]
+#traffic.cos_3.priority_remark.dscp = [24]
+#traffic.cos_4.priority_remark.dscp = [32]
+#traffic.cos_5.priority_remark.dscp = [40]
+#traffic.cos_6.priority_remark.dscp = [48]
+#traffic.cos_7.priority_remark.dscp = [56]
+
+# source.port_group_list = [source_port_group]
+# source.source_port_group.packet_priority_source_set = [dscp]
+# source.source_port_group.port_set = swp1-swp4,swp6
+# source.source_port_group.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
+# source.source_port_group.cos_1.priority_source.dscp = [8,9,10,11,12,13,14,15]
+# source.source_port_group.cos_2.priority_source.dscp = [16,17,18,19,20,21,22,23]
+# source.source_port_group.cos_3.priority_source.dscp = [24,25,26,27,28,29,30,31]
+# source.source_port_group.cos_4.priority_source.dscp = [32,33,34,35,36,37,38,39]
+# source.source_port_group.cos_5.priority_source.dscp = [40,41,42,43,44,45,46,47]
+# source.source_port_group.cos_6.priority_source.dscp = [48,49,50,51,52,53,54,55]
+# source.source_port_group.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
+
+# remark.port_group_list = [remark_port_group]
+# remark.remark_port_group.packet_priority_remark_set = [dscp]
+# remark.remark_port_group.port_set = swp1-swp4,swp6
+# remark.remark_port_group.cos_0.priority_remark.dscp = [0]
+# remark.remark_port_group.cos_1.priority_remark.dscp = [8]
+# remark.remark_port_group.cos_2.priority_remark.dscp = [16]
+# remark.remark_port_group.cos_3.priority_remark.dscp = [24]
+# remark.remark_port_group.cos_4.priority_remark.dscp = [32]
+# remark.remark_port_group.cos_5.priority_remark.dscp = [40]
+# remark.remark_port_group.cos_6.priority_remark.dscp = [48]
+# remark.remark_port_group.cos_7.priority_remark.dscp = [56]
 
 # priority groups
 traffic.priority_group_list = [control, service, bulk]
@@ -488,6 +499,13 @@ priority_group.control.cos_list = [7]
 priority_group.service.cos_list = [2]
 priority_group.bulk.cos_list = [0,1,3,4,5,6]
 
+# Alias Name defined for each priority group
+# Valid string between 0-255 chars
+# Sample alias support for naming priority groups
+#priority_group.control.alias = "Control"
+#priority_group.service.alias = "Service"
+#priority_group.bulk.alias = "Bulk"
+
 # to configure priority flow control on a group of ports:
 # -- assign cos value(s) to the cos list
 # -- add or replace a port group names in the port group list
@@ -495,9 +513,10 @@ priority_group.bulk.cos_list = [0,1,3,4,5,6]
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
 #    -- set a PFC buffer size in bytes for each port in the group
-#    -- set the xoff byte limit (buffer limit that triggers PFC frame transmit to start)
-#    -- set the xon byte delta (buffer limit that triggers PFC frame transmit to stop)
+#    -- set the xoff byte limit (buffer limit that triggers PFC frames transmit to start)
+#    -- set the xon byte delta (buffer limit that triggers PFC frames transmit to stop)
 #    -- enable PFC frame transmit and/or PFC frame receive
+
 # priority flow control
 # pfc.port_group_list = [pfc_port_group]
 # pfc.pfc_port_group.cos_list = []
@@ -507,15 +526,19 @@ priority_group.bulk.cos_list = [0,1,3,4,5,6]
 # pfc.pfc_port_group.xon_delta = 2000
 # pfc.pfc_port_group.tx_enable = true
 # pfc.pfc_port_group.rx_enable = true
+#
+# Specify cable length in mts
+# pfc.pfc_port_group.cable_length = 10
 
 # to configure pause on a group of ports:
 # -- add or replace port group names in the port group list
 # -- for each port group in the list
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
-#    -- set a pause buffer size in bytes for each port in the group
+#    -- set a pause buffer size in bytes for each port
 #    -- set the xoff byte limit (buffer limit that triggers pause frames transmit to start)
 #    -- set the xon byte delta (buffer limit that triggers pause frames transmit to stop)
+#    -- enable pause frame transmit and/or pause frame receive
 
 # link pause
 # link_pause.port_group_list = [pause_port_group]
@@ -525,6 +548,48 @@ priority_group.bulk.cos_list = [0,1,3,4,5,6]
 # link_pause.pause_port_group.xon_delta = 2000
 # link_pause.pause_port_group.rx_enable = true
 # link_pause.pause_port_group.tx_enable = true
+#
+# Specify cable length in mts
+# link_pause.pause_port_group.cable_length = 10
+
+# Explicit Congestion Notification
+# to configure ECN and RED on a group of ports:
+# -- add or replace port group names in the port group list
+# -- assign cos value(s) to the cos list
+# -- for each port group in the list
+#    -- populate the port set, e.g.
+#       swp1-swp4,swp8,swp50s0-swp50s3
+# -- to enable RED requires the latest traffic.conf
+# ecn_red.port_group_list = [ecn_red_port_group]
+# ecn_red.ecn_red_port_group.cos_list = []
+# ecn_red.ecn_red_port_group.port_set = swp1-swp4,swp6
+# ecn_red.ecn_red_port_group.ecn_enable = true
+# ecn_red.ecn_red_port_group.red_enable = false
+# ecn_red.ecn_red_port_group.min_threshold_bytes = 40000
+# ecn_red.ecn_red_port_group.max_threshold_bytes = 200000
+# ecn_red.ecn_red_port_group.probability = 100
+
+# Hierarchical traffic shaping
+# to configure shaping at 2 levels:
+#     - per egress queue egr_queue_0 - egr_queue_7
+#     - port level aggregate
+# -- add or replace a port group names in the port group list
+# -- for each port group in the list
+#    -- populate the port set, e.g.
+#       swp1-swp4,swp8,swp50s0-swp50s3
+#    -- set min and max rates in kbps for each egr_queue [min, max]
+#    -- set max rate in kbps at port level
+# shaping.port_group_list = [shaper_port_group]
+# shaping.shaper_port_group.port_set = swp1-swp3,swp5,swp7s0-swp7s3
+# shaping.shaper_port_group.egr_queue_0.shaper = [50000, 100000]
+# shaping.shaper_port_group.egr_queue_1.shaper = [51000, 150000]
+# shaping.shaper_port_group.egr_queue_2.shaper = [52000, 200000]
+# shaping.shaper_port_group.egr_queue_3.shaper = [53000, 250000]
+# shaping.shaper_port_group.egr_queue_4.shaper = [54000, 300000]
+# shaping.shaper_port_group.egr_queue_5.shaper = [55000, 350000]
+# shaping.shaper_port_group.egr_queue_6.shaper = [56000, 400000]
+# shaping.shaper_port_group.egr_queue_7.shaper = [57000, 450000]
+# shaping.shaper_port_group.port.shaper = 900000
 
 # scheduling algorithm: algorithm values = {dwrr}
 scheduling.algorithm = dwrr
@@ -536,11 +601,40 @@ priority_group.control.weight = 0
 priority_group.service.weight = 32
 priority_group.bulk.weight = 16
 
+# default egress scheduling weight per egress queue 
+# To be applied to all the ports if port_group profile not configured
+# If you do not specify any bw_percent of egress_queues, those egress queues 
+# will assume DWRR weight 0 - no egress scheduling for those queues
+# '0' indicates strict priority
+#default_egress_sched.egr_queue_0.bw_percent = 12
+#default_egress_sched.egr_queue_1.bw_percent = 12
+#default_egress_sched.egr_queue_2.bw_percent = 24
+#default_egress_sched.egr_queue_3.bw_percent = 12
+#default_egress_sched.egr_queue_4.bw_percent = 12
+#default_egress_sched.egr_queue_5.bw_percent = 12
+#default_egress_sched.egr_queue_6.bw_percent = 12
+#default_egress_sched.egr_queue_7.bw_percent = 0
+
+# port_group profile for egress scheduling weight per egress queue 
+# If you do not specify any bw_percent of egress_queues, those egress queues 
+# will assume DWRR weight 0 - no egress scheduling for those queues
+# '0' indicates strict priority
+#egress_sched.port_group_list = [sched_port_group1]
+#egress_sched.sched_port_group1.port_set = swp2
+#egress_sched.sched_port_group1.egr_queue_0.bw_percent = 10
+#egress_sched.sched_port_group1.egr_queue_1.bw_percent = 20
+#egress_sched.sched_port_group1.egr_queue_2.bw_percent = 30
+#egress_sched.sched_port_group1.egr_queue_3.bw_percent = 10
+#egress_sched.sched_port_group1.egr_queue_4.bw_percent = 10
+#egress_sched.sched_port_group1.egr_queue_5.bw_percent = 10
+#egress_sched.sched_port_group1.egr_queue_6.bw_percent = 10
+#egress_sched.sched_port_group1.egr_queue_7.bw_percent = 0
+
 # To turn on/off Denial of service (DOS) prevention checks
 dos_enable = false
 
 # Cut-through is disabled by default on all chips with the exception of
-# Spectrum. On Spectrum cut-through cannot be disabled.
+# Spectrum.  On Spectrum cut-through cannot be disabled.
 #cut_through_enable = false
 
 # Enable resilient hashing
@@ -555,7 +649,7 @@ dos_enable = false
 
 # Set sflow/sample ingress cpu packet rate and burst in packets/sec
 # Values: {0..16384}
-#sflow.rate = 16384  
+#sflow.rate = 16384
 #sflow.burst = 16384
 
 #Specify the maximum number of paths per route entry.
@@ -564,7 +658,8 @@ dos_enable = false
 #ecmp_max_paths = 0
 
 #Specify the hash seed for Equal cost multipath entries
-# Default value 0
+# and for cutom ecmp and lag hash
+# Default value : random
 # Value Rang: {0..4294967295}
 #ecmp_hash_seed = 42
 
@@ -621,15 +716,28 @@ lag_hash_config.ip_prot = true
 # Specify the forwarding table resource allocation profile, applicable
 # only on platforms that support universal forwarding resources.
 #
-# /usr/cumulus/sbin/cl-rsource-query reports the allocated table sizes
+# /usr/cumulus/sbin/cl-resource-query reports the allocated table sizes
 # based on the profile setting.
 #
-#   Values: one of {'default', 'l2-heavy', 'v4-lpm-heavy', 'v6-lpm-heavy'}
-#   Default value: 'default'
-#   Note: some devices may support more modes, please consult user
-#         guide for more details
+#   Values: one of { *** Common ***
+#                   'default', 'l2-heavy', 'v4-lpm-heavy', 'v6-lpm-heavy',
+#                   'ipmc-heavy',
 #
-#forwarding_table.profile = default
+#                   *** Mellanox only platforms ***
+#                   'l2-heavy-1', 'l2-heavy-2', 'v4-lpm-heavy-1',
+#                   'rash-v4-lpm-heavy', 'rash-custom-profile1',
+#                   'rash-custom-profile2', 'lpm-balanced',
+#
+#                   *** Broadcom[XGS] only platforms ***
+#                   'mode-0', 'mode-1', 'mode-2', 'mode-3', 'mode-4',
+#                   'mode-5', 'mode-6', 'mode-7', 'mode-8'
+#                   }
+#
+#   Default value: 'default'
+#   Notes: some devices may support more modes, please consult user
+#          guide for more details
+#
+forwarding_table.profile = default
 ```
 
 {{< /expand >}}

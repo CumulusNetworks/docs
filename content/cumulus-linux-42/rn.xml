@@ -150,12 +150,6 @@ To work around this issue, use both PSUs.</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-31998</td>
-<td><p>The Mellanox SN3700 and SN3700C switches report a high fan speed.</p></td>
-<td>4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31982</td>
 <td><p>The INPUT chain POLICE target acts as ACCEPT instead of continue.</p></td>
 <td>4.2.1</td>

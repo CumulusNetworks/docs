@@ -34,7 +34,6 @@ pdfhidden: True
 | <a name="CM-32068"></a> [CM-32068](#CM-32068) <a name="CM-32068"></a> | Kernel routes added by `iproute2` are missing in FRR after an interface flap.<br/>To work around this issue, configure a static route in FRR. | 4.2.1 | |
 | <a name="CM-32030"></a> [CM-32030](#CM-32030) <a name="CM-32030"></a> | On the Mellanox SN4600C switch, the fan speed fluctuates when only one PSU is plugged in.<br/>To work around this issue, use both PSUs. | 4.2.1 | |
 | <a name="CM-32006"></a> [CM-32006](#CM-32006) <a name="CM-32006"></a> | Certain Dell S4048-ON switches show an incorrect vendor name and hang when you issue the `reboot` command.  | 3.7.12-3.7.14, 4.0.0-4.2.1 | |
-| <a name="CM-31998"></a> [CM-31998](#CM-31998) <a name="CM-31998"></a> | The Mellanox SN3700 and SN3700C switches report a high fan speed. | 4.2.1 | |
 | <a name="CM-31982"></a> [CM-31982](#CM-31982) <a name="CM-31982"></a> | The INPUT chain POLICE target acts as ACCEPT instead of continue. | 4.2.1 | |
 | <a name="CM-31959"></a> [CM-31959](#CM-31959) <a name="CM-31959"></a> | With traditional bridges, a race condition occurs when Cumulus Linux tries to derive MAC addresses.<br/>To work around this issue, use a static MAC address; specify a MAC address in the `/etc/network/interfaces` file under the bridge's stanza. | 4.2.1 | |
 | <a name="CM-31954"></a> [CM-31954](#CM-31954) <a name="CM-31954"></a> | A security issue was discovered in the MariaDB database server.<br/>Vulnerable: 10.3.25-0<br/>Fixed: 10.3.25-0+deb10u1 | 4.0.0-4.2.1 | |

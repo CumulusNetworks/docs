@@ -35,7 +35,7 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming">}} now supports LACP bypass
 - Docker runtime included by default on Cumulus Linux
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}}
-- SNMP MIB for BGP unnumbered peers
+- {{<link url="Supported-MIBs" text="SNMP MIB for BGP unnumbered peers">}}
 - SVI interface support for DHCPv6
 - Multicast routing over VXLAN is now supported on Mellanox switches
 

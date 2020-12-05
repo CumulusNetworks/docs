@@ -332,7 +332,7 @@ On switches with the Mellanox Spectrum ASIC, Cumulus Linux supports cut-through 
 
 *Explicit Congestion Notification* (ECN) is defined by {{<exlink url="https://tools.ietf.org/html/rfc3168" text="RFC 3168">}}. ECN enables the Cumulus Linux switch to mark a packet to signal impending congestion instead of dropping the packet, which is how TCP typically behaves when ECN is not enabled.
 
-ECN is a layer 3 end-to-end congestion notification mechanism only. Packets can be marked as *ECN-capable transport* (ECT) by the sending server. If congestion is observed by any switch while the packet is getting forwarded, the ECT-enabled packet can be marked by the switch to indicate the congestion. The end receiver can respond to the ECN-marked packets by signaling the sending server to slow down transmission. The sending server marks a packet *ECT* by setting the least 2 significant bits in an IP header `DiffServ` (ToS) field to *01* or *10*. A packet that has the least 2 significant bits set to *00* indicates a non-ECT-enabled packet.
+ECN is a layer 3 end-to-end congestion notification mechanism only. Packets can be marked as *ECN-capable transport* (ECT) by the sending server. If congestion is observed by any switch while the packet is getting forwarded, the ECT-enabled packet can be marked by the switch to indicate the congestion. The end receiver can respond to the ECN-marked packets by signaling the sending server to slow down transmission. The sending server marks a packet *ECT* by setting the least two significant bits in an IP header `DiffServ` (ToS) field to *01* or *10*. A packet that has the least teo significant bits set to *00* indicates a non-ECT-enabled packet.
 
 The ECN mechanism on a switch only marks packets to notify the end receiver. It does not take any other action or change packet handling in any way, nor does it respond to packets that have already been marked ECN by an upstream switch.
 
@@ -342,19 +342,17 @@ The ECN mechanism on a switch only marks packets to notify the end receiver. It 
 
 {{%/notice%}}
 
-ECN is implemented on the switch using minimum and maximum threshold values for the egress queue length. When a packet enters the queue and the average queue length is between the minimum and maximum threshold values, a configurable probability value will determine whether the packet will be marked. If the average queue length is above the maximum threshold value, the packet is always marked.
+ECN is implemented on the switch using minimum and maximum threshold values for the egress queue length. When a packet enters the queue and the average queue length is between the minimum and maximum threshold values, a configurable probability value will determine whether the packet is marked. If the average queue length is above the maximum threshold value, the packet is always marked.
 
 The downstream switches with ECN enabled perform the same actions as the traffic is received. If the ECN bits are set, they remain set. The only way to overwrite ECN bits is to set the ECN bits to *11*.
 
 ECN is supported on {{<exlink url="https://cumulusnetworks.com/hcl" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum ASICs">}}.
 
-{{< expand "Click to learn how to configure ECN "  >}}
-
 ECN is disabled by default in Cumulus Linux. You can enable ECN for individual switch priorities on specific switch ports in the `/etc/cumulus/datapath/traffic.conf` file:
 
 - Specify the name of the port group in `ecn.port_group_list` in brackets; for example, `ecn.port_group_list = [ecn_port_group]`.
-- Assign a CoS value to the port group in `ecn.ecn_port_group.cos_list`. If the CoS value of a packet matches the value of this setting, then ECN is applied. Note that *ecn\_port\_group* is the name of a port group you specified above.
-- Populate the port group with its member ports (`ecn.ecn_port_group.port_set`), where *ecn\_port\_group* is the name of the port group you specified above. Congestion is measured on the egress port queue for the ports listed here, using the average queue length: if congestion is present, a packet entering the queue may be marked to indicate that congestion was observed. Marking a packet involves setting the least 2 significant bits in the IP header DiffServ (ToS) field to *11*.
+- Assign a CoS value to the port group in `ecn.ecn_port_group.cos_list`. If the CoS value of a packet matches the value of this setting, ECN is applied.
+- Populate the port group with its member ports (`ecn.ecn_port_group.port_set`). Congestion is measured on the egress port queue for the ports listed here, using the average queue length: if congestion is present, a packet entering the queue can be marked to indicate that congestion was observed. Marking a packet involves setting the least 2 significant bits in the IP header DiffServ (ToS) field to *11*.
 - The switch priority value(s) are mapped to specific egress queues for the target switch ports.
 - The `ecn.ecn_port_group.probability` value indicates the probability of a packet being marked if congestion is experienced.
 
@@ -369,8 +367,8 @@ The following configuration example shows ECN configured for ports swp1 through 
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
 # -- to enable RED requires the latest traffic.conf
-ecn_red.port_group_list = [ROCE_ECN]
-ecn_red.ecn_red_port_group.cos_list = [3]
+ecn_red.port_group_list = [ecn_red_port_group]
+ecn_red.ecn_red_port_group.cos_list = []
 ecn_red.ecn_red_port_group.port_set = swp1-swp4,swp6
 ecn_red.ecn_red_port_group.ecn_enable = true
 ecn_red.ecn_red_port_group.red_enable = false
@@ -383,13 +381,9 @@ On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd
 
 {{<cl/restart-switchd>}}
 
-{{< /expand >}}
-
 ## Check Interface Buffer Status
 
-- On switches with 
-{{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
-- On Broadcom switches, the buffer status is not visible currently.
+On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
 
 ## Example Configuration File
 
@@ -458,7 +452,7 @@ traffic.packet_priority_remark_set = []
 # dscp values = {0..63}
 #traffic.cos_0.priority_remark.dscp = [0]
 #traffic.cos_1.priority_remark.dscp = [8]
-#traffic.cos_2.priority_remark.dscp = [≥16]
+#traffic.cos_2.priority_remark.dscp = [16]
 #traffic.cos_3.priority_remark.dscp = [24]
 #traffic.cos_4.priority_remark.dscp = [32]
 #traffic.cos_5.priority_remark.dscp = [40]

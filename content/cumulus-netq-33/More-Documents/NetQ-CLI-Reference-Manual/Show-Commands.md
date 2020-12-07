@@ -2021,25 +2021,27 @@ no     BLUE            ::/0                           leaf03            Blackhol
 
 ### netq show kubernetes
 
+<!-- Add here -->
+
 - - -
 
 ### netq show mac-commentary
 
-Displays description of changes to a given MAC address. The output provides the following information for each route:
+Displays descriptive information about changes to a given MAC address on a specific VLAN. Commentary is provided for the following MAC address-related events:
 
-- Whether this route originated with this device or not
-- VRF used for the route
-- Address prefix used for the route
-- Hostname of the device with the route
-- Next hops the route will take
-- When the last change was made to any of these items
+- When a MAC address is configured or unconfigured
+- When a bond enslaved or removed as a slave
+- When bridge membership changes
+- When a MAC address is learned or installed by control plane on tunnel interface
+- When a MAC address is flushed or expires
+- When a MAC address moves The output provides the following information for each route:
+
+The output provides commentary for each event sorted by most recent event.
 
 #### Syntax
 
-There are two sets of IP routes commands, one for IPv4 and one for IPv6.
-
 ```
-netq <hostname> show mac-commentary
+netq [<hostname>] show mac-commentary
     <mac>
     vlan <1-4096>
     [between <text-time> and <text-endtime>]
@@ -2058,17 +2060,7 @@ netq <hostname> show mac-commentary
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:
-<ul>
-<li><strong>w</strong>: week(s)</li>
-<li><strong>d</strong>: day(s)</li>
-<li><strong>h</strong>: hour(s)</li>
-<li><strong>m</strong>: minute(s)</li>
-<li><strong>s</strong>: second(s)</li>
-<li><strong>now</strong>
-</ul>
-</p>
-<p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: week(s)</li><li><strong>d</strong>: day(s)</li><li><strong>h</strong>: hour(s)</li><li><strong>m</strong>: minute(s)</li><li><strong>s</strong>: second(s)</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
 #### Command History
@@ -2081,51 +2073,104 @@ A release is included if there were changes to the command, otherwise it is not 
 
 #### Sample Usage
 
-Show all IPv4 routes
-
 ```
-cumulus@switch:~$ netq show ip routes
-Matching routes records:
-Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
------- --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
-no     default         10.0.1.2/32                    spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
-                                                                        169.254.0.1: swp4
-no     default         10.10.10.4/32                  spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
-                                                                        169.254.0.1: swp4
-no     default         10.10.10.3/32                  spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
-                                                                        169.254.0.1: swp4
-no     default         10.10.10.2/32                  spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
-                                                                        169.254.0.1: swp2
-no     default         10.10.10.1/32                  spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
-                                                                        169.254.0.1: swp2
-yes                    192.168.200.0/24               spine04           eth0                                Thu Dec  3 22:29:17 2020
-yes                    192.168.200.24/32              spine04           eth0                                Thu Dec  3 22:29:17 2020
-no     default         10.0.1.1/32                    spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
-                                                                        169.254.0.1: swp2
-yes    default         10.10.10.104/32                spine04           lo                                  Thu Dec  3 22:29:17 2020
-...
-```
-
-Shows all IPv6 routes on the *leaf03* switch
-
-```
-cumulus@switch:~$ netq leaf03 show ipv6 routes
-Matching routes records:
-Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
------- --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
-no     RED             ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
-no                     ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
-no     BLUE            ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
+cumulus@switch:~$ netq show mac-commentary 44:38:39:be:ef:ff vlan 4002
+Matching mac_commentary records:
+Last Updated              Hostname         VLAN   Commentary
+------------------------- ---------------- ------ --------------------------------------------------------------------------------
+Thu Oct  1 14:25:18 2020  border01         4002   44:38:39:be:ef:ff configured on interface bridge
+Thu Oct  1 14:25:18 2020  border02         4002   44:38:39:be:ef:ff configured on interface bridge
 ```
 
 #### Related Commands
 
+- netq show mac-history
 - netq show ip/ipv6 addresses
-- netq show ip/ipv6 neighbors
 
 - - -
 
 ### netq show mac-history
+
+Displays when a MAC address is learned, when and where it moved in the network after that, if there was a duplicate at any time, and so forth. By default, the various history threads are displayed in the output grouped by VLAN and timestamp (chronologically). You can filter the output based on the options used:
+
+- Changes made between two points in time: use the `between` option
+- Only the differences in the changes between two points in time: use the `diff` option
+- The output grouped by selected output fields: use the `listby` option
+- Each change that was made for the MAC address on a particular VLAN: use the `vlan` option
+
+The default time range used is now to one hour ago. You can view the output in JSON format as well.
+
+#### Syntax
+
+```
+netq [<hostname>] show mac-history
+    <mac>
+    [vlan <1-4096>]
+    [diff]
+    [between <text-time> and <text-endtime>]
+    [listby <text-list-by>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<mac\> | Display history for this MAC address |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| vlan | \<1-4096\> | Only display MAC changes for the VLAN with this ID |
+| diff | NA | Only display the subset of changes that occurred within a time range defined by the `between` option |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: week(s)</li><li><strong>d</strong>: day(s)</li><li><strong>h</strong>: hour(s)</li><li><strong>m</strong>: minute(s)</li><li><strong>s</strong>: second(s)</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| listby | \<text-list-by\> | Display output in groups based on the specified output field |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 | Introduced |
+
+#### Sample Usage
+
+This example shows how to view a full chronology of changes for a MAC address of *44:38:39:00:00:5d*. When shown, the caret (^) notation indicates no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show mac-history 44:38:39:00:00:5d
+Matching machistory records:
+Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
+------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
+Tue Oct 27 22:28:24 2020  leaf03            10     yes    bridge                                  no     no
+Tue Oct 27 22:28:42 2020  leaf01            10     no     vni10            10.0.1.2               no     yes
+Tue Oct 27 22:28:51 2020  leaf02            10     no     vni10            10.0.1.2               no     yes
+Tue Oct 27 22:29:07 2020  leaf04            10     no     peerlink                                no     yes
+Tue Oct 27 22:28:24 2020  leaf03            4002   yes    bridge                                  no     no
+Tue Oct 27 22:28:24 2020  leaf03            0      yes    peerlink                                no     no
+Tue Oct 27 22:28:24 2020  leaf03            20     yes    bridge                                  no     no
+Tue Oct 27 22:28:42 2020  leaf01            20     no     vni20            10.0.1.2               no     yes
+Tue Oct 27 22:28:51 2020  leaf02            20     no     vni20            10.0.1.2               no     yes
+Tue Oct 27 22:29:07 2020  leaf04            20     no     peerlink                                no     yes
+Tue Oct 27 22:28:24 2020  leaf03            4001   yes    bridge                                  no     no
+Tue Oct 27 22:28:24 2020  leaf03            30     yes    bridge                                  no     no
+Tue Oct 27 22:28:42 2020  leaf01            30     no     vni30            10.0.1.2               no     yes
+Tue Oct 27 22:28:51 2020  leaf02            30     no     vni30            10.0.1.2               no     yes
+Tue Oct 27 22:29:07 2020  leaf04            30     no     peerlink                                no     yes
+```
+
+Refer to {{<link title="Monitor MAC Addresses/#view-the-history-of-a-mac-address" text="User Guide">}} for more examples.
+
+#### Related Commands
+
+- netq show mac-commentary
+- netq show ip/ipv6 addresses
+
+- - -
 
 ### netq show macs
 

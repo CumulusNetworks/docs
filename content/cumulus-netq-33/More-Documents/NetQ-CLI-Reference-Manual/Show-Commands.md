@@ -1,7 +1,7 @@
 ---
 title: Show Commands
-author: NVIDIA
-weight: 1102
+author: Cumulus Networks
+weight: 1101
 toc: 3
 right_toc_levels: 2
 pdfhidden: true
@@ -1183,7 +1183,7 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 
 - - -
 
-## System
+## System and Inventory
 
 ### netq show address-history
 
@@ -1288,25 +1288,889 @@ Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104            
 
 - - -
 
-### netq show cl-btrfs
+### netq show cl-btrfs-info
+
+Displays status about disk utilization on a given device or all devices networkwide with BTRFS and Cumulus Linux 3.x installed. The output provides the following information for each device:
+
+- Percentage of disk that is currently allocated
+- Amount of space remaining (unallocated)
+- Size of the largest data chunk
+- Amount of space unused by data chunks
+- Whether a rebalance of the disk is recommended
+- When the last change was made to any of these items
+
+For details about when a rebalance is recommended, refer to {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions/" text="When to Rebalance BTRFS Partitions">}}.
+
+#### Syntax
+
+```
+netq [<hostname>] cl-btrfs-info
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.3.1 | Introduced |
+
+#### Sample Usage
+
+Basic show: all devices in last 24 hours
+
+```
+cumulus@switch:~$ netq show cl-btrfs-info
+Matching btrfs_info records:
+Hostname          Device Allocated     Unallocated Space    Largest Chunk Size   Unused Data Chunks S Rebalance Recommende Last Changed
+                                                                                 pace                 d
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+leaf01            37.79 %              3.58 GB              588.5 MB             771.91 MB            yes                  Wed Sep 16 21:25:17 2020
+```
+
+#### Related Commands
+
+- netq show cl-ssd-util
+
+- - -
 
 ### netq show cl-manifest
 
+Displays the Cumulus Linux OS versions supported for a given device or all devices networkwide. The output provides the following information for each device:
+
+- ASIC vendor the OS supports
+- CPU architecture the OS supports
+- Cumulus Linux version associated with the indicated ASIC and CPU
+
+#### Syntax
+
+```
+netq [<hostname>] cl-manifest
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.0 | Introduced |
+
+#### Sample Usage
+
+```
+cumulus@switch:~$ netq show cl-manifest
+
+Matching manifest records:
+Hostname          ASIC Vendor          CPU Arch             Manifest Version
+----------------- -------------------- -------------------- --------------------
+border01          vx                   x86_64               3.7.6.1
+border01          vx                   x86_64               3.7.10
+border01          vx                   x86_64               3.7.11
+border01          vx                   x86_64               3.6.2.1
+...
+fw1               vx                   x86_64               3.7.6.1
+fw1               vx                   x86_64               3.7.10
+fw1               vx                   x86_64               3.7.11
+fw1               vx                   x86_64               3.6.2.1
+...
+leaf01            vx                   x86_64               4.1.0
+leaf01            vx                   x86_64               4.0.0
+leaf01            vx                   x86_64               3.6.2
+leaf01            vx                   x86_64               3.7.2
+...
+leaf02            vx                   x86_64               3.7.6.1
+leaf02            vx                   x86_64               3.7.10
+leaf02            vx                   x86_64               3.7.11
+leaf02            vx                   x86_64               3.6.2.1
+...
+```
+
+#### Related Commands
+
+- netq show cl-pkg-info
+
+- - -
+
 ### netq show cl-pkg-info
+
+Displays the versions for all software packages installed on a given device or all devices networkwide. The output provides the following information for each device:
+
+- Package name and version
+- Cumulus Linux version
+- Package status
+- When the last change was made to any of these items
+
+The output can become very large for all devices and packages. When viewing results in a terminal window, consider filtering by hostname or package name to reduce the length of the output. Wildcards are not allowed for `hostname` or `text-package-name`.
+
+#### Syntax
+
+```
+netq [<hostname>] cl-pkg-info
+    [<text-package-name>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| NA | \<text-package-name\> | Only display results for the software package with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.3.1 | Introduced |
+
+#### Sample Usage
+
+```
+cumulus@switch:~$ netq leaf01 show cl-pkg-info
+
+Matching package_info records:
+Hostname          Package Name             Version              CL Version           Package Status       Last Changed
+----------------- ------------------------ -------------------- -------------------- -------------------- -------------------------
+leaf01            freeipmi-common          1.6.3-1.1            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            libsystemd0              241-7~deb10u4        Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            arptables                0.0.4+snapshot201810 Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+                                           21-4
+leaf01            libbinutils              2.31.1-16            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            tzdata                   2020a-0+deb10u1      Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            gpgconf                  2.2.12-1+deb10u1     Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            irqbalance               1.5.0-3              Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            systemd                  241-7~deb10u4        Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            liblmdb0                 0.9.22-1             Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            libopts25                1:5.18.12-4          Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            libelf1                  0.176-1.1            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            init-system-helpers      1.56+nmu1            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            libudev1                 241-7~deb10u4        Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            gdisk                    1.0.3-1.1            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            xxd                      2:8.1.0875-5         Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            libnl-nf-3-200           3.2.27-cl4.2.1u1     Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            libprotobuf17            3.6.1.3-2            Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+leaf01            cron                     3.0pl1-133-cl4u1     Cumulus Linux 4.2.1  installed            Tue Dec  1 22:38:39 2020
+...
+```
+
+#### Related Commands
+
+- netq show recommended-pkg-version
+- netq show cl-manifest
+
+- - -
 
 ### netq show cl-resource
 
+Displays incoming and outgoing ACLs and amount of forwarding resources used for a given device or all devices networkwide. The output provides the following information for each device:
+
+- For ACL resources
+    - Count and percentage of Ingress and egress IPv4/IPv6 filter and mangle
+    - Count and percentage of Ingress 802.1x filter
+    - Count and percentage of Ingress mirror
+    - Count and percentage of Regions
+    - Count and percentage of Ingress PBR IPv4/IPv6 filter
+    - Count and percentage of 18b, 32b, and 52b rules keys
+    - Count and percentage of Layer 4 port range checkers
+    - When the last change was made to any of these items
+- For forwarding resources
+    - Count and percentage of MAC address entries
+    - Count and percentage of ECMP next hops
+    - Count and percentage of IPv4/IPv6 host and route entries
+    - Number of multicast routes
+    - When the last change was made to any of these items
+
+#### Syntax
+
+This command comes in two forms:
+
+```
+netq [<hostname>] show cl-resource acl
+    [ingress | egress]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show cl-resource forwarding
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| acl | NA | Display results for ACLs |
+| forwarding | NA | Display results for forwarding resources |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| ingress | NA | Only display results for the incoming ACLs |
+| egress | NA | Only display results for the outgoing ACLs |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.0 | Introduced |
+
+#### Sample Usage
+
+Basic show: All devices, all ACLS
+
+```
+cumulus@switch:~$ netq leaf01 show cl-pkg-info
+
+```
+
+#### Related Commands
+
+- netq show recommended-pkg-version
+- netq show cl-manifest
+
+- - -
+
 ### netq show cl-ssd-util
 
-### netq show ip
+Displays utilization of 3ME3 solid state drives (SSDs) for a given device or all devices networkwide. These are primarily found in on-premises deployment. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm. The output provides the following information for each drive:
 
-### netq show ipv6
+- Percentage of PE cycles remaining for the drive
+- Count of current PE cycles used by this drive
+- Total number of PE cycles supported for this drive
+- The drive model information
+- When the last change was made to any of these items
+
+#### Syntax
+
+```
+netq [<hostname>] show cl-ssd-util
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.3.1 | Introduced |
+
+#### Sample Usage
+
+Basic show: All drives, for a given device
+
+```
+cumulus@switch:~$ netq spine02 show cl-ssd-util
+Hostname        Remaining PE Cycle (%)  Current PE Cycles executed      Total PE Cycles supported       SSD Model               Last Changed
+spine02         80                      576                             2880                            M.2 (S42) 3ME3          Thu Oct 31 00:15:06 2019
+```
+
+#### Related Commands
+
+- netq show cl-btrfs-info
+
+- - -
+
+### netq show ip/ipv6 addresses
+
+Displays the IPv4 or IPv6 addresses configured for a given device or all devices networkwide, currently or for a time in the past. You can filter the output by remote-interface, address or prefix, and VRF. A count of addresses can be obtained for a given device. The output provides the following information for each address:
+
+- Hostname of the device with the address
+- Interface on the device with the address
+- VRF, when configured, on the interface with the address
+- When the last change was made to any of these items
+
+#### Syntax
+
+There are two sets of IP address commands, one for IPv4 and one for IPv6.
+
+```
+netq <hostname> show ip addresses
+    [<remote-interface>]
+    [<ipv4>|<ipv4/prefixlen>]
+    [vrf <vrf>]
+    [around <text-time>]
+    [count]
+    [json]
+
+netq show ip addresses
+    [<remote-interface>]
+    [<ipv4>|<ipv4/prefixlen>]
+    [vrf <vrf>]
+    [subnet|supernet|gateway]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show ipv6 addresses
+    [<remote-interface>]
+    [<ipv6>|<ipv6/prefixlen>]
+    [vrf <vrf>]
+    [around <text-time>]
+    [count]
+    [json]
+
+netq show ipv6 addresses
+    [<remote-interface>]
+    [<ipv6>|<ipv6/prefixlen>]
+    [vrf <vrf>]
+    [subnet|supernet|gateway]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| ip | NA | Display TCP IPv4 addresses |
+| ipv6 | NA | Display TCP IPv6 addresses |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<remote-interface\> | Only display results for switches and hosts with this interface |
+| NA | \<ipv4\> | Only display results for switches and hosts with this IPv4 address |
+| NA | \<ipv4/prefixlen\> | Only display results for switches and hosts with this IPv4 address and prefix |
+| NA | \<ipv6\> | Only display results for switches and hosts with this IPv6 address |
+| NA | \<ipv6/prefixlen\> | Only display results for switches and hosts with this IPv6 address and prefix |
+| vrf | \<vrf\> | Only dispaly results for switches and hosts using this virtual route forwarding interface |
+| subnet | NA | Only display results for addresses in the subnet |
+| supernet | NA | Only display results for addresses in the supernet |
+| gateway | NA | Only display results for addresses in the gateway |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Added ability to display all addresses in a subnet or supernet or the layer 3 gateway of an address with `subnet`, `supernet`, and `gateway` options |
+| 2.1.2 | Removed `changes` and `between` options |
+
+#### Sample Usage
+
+Show all IP address on the *spine01* switch
+
+```
+cumulus@switch:~$ netq spine01 show ip addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+192.168.200.21/24         spine01           eth0                      mgmt            Thu Sep 17 20:07:49 2020
+10.10.10.101/32           spine01           lo                        default         Thu Sep 17 20:25:05 2020
+```
+
+Shows all IP addresses on the *leaf03* switch
+
+```
+cumulus@switch:~$ netq leaf03 show ip addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+10.1.20.2/24              leaf03            vlan20                    RED             Thu Sep 17 20:25:08 2020
+10.1.10.1/24              leaf03            vlan10-v0                 RED             Thu Sep 17 20:25:08 2020
+192.168.200.13/24         leaf03            eth0                      mgmt            Thu Sep 17 20:08:11 2020
+10.1.20.1/24              leaf03            vlan20-v0                 RED             Thu Sep 17 20:25:09 2020
+10.0.1.2/32               leaf03            lo                        default         Thu Sep 17 20:28:12 2020
+10.1.30.1/24              leaf03            vlan30-v0                 BLUE            Thu Sep 17 20:25:09 2020
+10.1.10.2/24              leaf03            vlan10                    RED             Thu Sep 17 20:25:08 2020
+10.10.10.3/32             leaf03            lo                        default         Thu Sep 17 20:25:05 2020
+10.1.30.2/24              leaf03            vlan30                    BLUE            Thu Sep 17 20:25:08 2020
+```
+
+Show all IP addresses using the *BLUE* VRF on the *leaf03* switch
+
+```
+cumulus@switch:~$ netq leaf03 show ip addresses vrf BLUE
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+10.1.30.1/24              leaf03            vlan30-v0                 BLUE            Thu Sep 17 20:25:09 2020
+10.1.30.2/24              leaf03            vlan30                    BLUE            Thu Sep 17 20:25:08 2020
+```
+
+#### Related Commands
+
+- netq show ip/ipv6 neighbors
+- netq show ip/ipv6 routes
+
+- - -
+
+### netq show ip/ipv6 neighbors
+
+Displays the IPv4 or IPv6 neighbors configured for a given device or all devices networkwide, currently or for a time in the past. You can filter the output by remote-interface, address, address and VRF, or VRF. A count of neighbors can be obtained for a given device, or for a given device and MAC address. The output provides the following information for each address:
+
+- Hostname of neighbor
+- Interface of neighbor
+- MAC address of neighbor
+- VRF, when configured, of neighbor
+- Whether this address owned by the neighbor or learned from by host
+- When the last change was made to any of these items
+
+#### Syntax
+
+There are two sets of IP neighbors commands, one for IPv4 and one for IPv6.
+
+```
+netq show ip neighbors
+    [<remote-interface>]
+    [<ipv4>|<ipv4> vrf <vrf>|vrf <vrf>]
+    [<mac>]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show ip neighbors
+    [<remote-interface>]
+    [<ipv4>|<ipv4> vrf <vrf>|vrf <vrf>]
+    [<mac>]
+    [around <text-time>]
+    [count]
+    [json]
+
+netq show ipv6 neighbors
+    [<remote-interface>]
+    [<ipv6>|<ipv6> vrf <vrf>|vrf <vrf>]
+    [<mac>]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show ipv6 neighbors
+    [<remote-interface>]
+    [<ipv6>|<ipv6> vrf <vrf>|vrf <vrf>]
+    [<mac>]
+    [around <text-time>]
+    [count]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| ip | NA | Display TCP IPv4 neighbors |
+| ipv6 | NA | Display TCP IPv6 neighbors |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<remote-interface\> | Only display results for switches and hosts with this interface |
+| NA | \<ipv4\> | Only display results for switches and hosts with this IPv4 address |
+| NA | \<ipv4\> vrf \<vrf\> | Only display results for the switch or host with this IPv4 address and virtual route forwarding interface |
+| NA | \<ipv6\> | Only display results for switches and hosts with this IPv6 address |
+| NA | \<ipv6\> vrf \<vrf\> | Only display results for switches and hosts with this IPv6 address and VRF |
+| vrf | \<vrf\> | Only display results for switches and hosts using this VRF |
+| NA | \<mac\> | Only display results for switches and hosts with this MAC address |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Added ability to display all addresses in a subnet or supernet or the layer 3 gateway of an address with `subnet`, `supernet`, and `gateway` options |
+| 2.1.2 | Removed `changes` and `between` options |
+
+#### Sample Usage
+
+Show all IPv4 neighbors on the *spine01* switch
+
+```
+cumulus@switch:~$ netq show ip neighbors
+Matching neighbor records:
+IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
+------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
+169.254.0.1               spine04           swp1                      44:38:39:00:00:08  default         no     Thu Dec  3 22:29:18 2020
+169.254.0.1               spine04           swp6                      44:38:39:00:00:30  default         no     Thu Dec  3 22:29:18 2020
+169.254.0.1               spine04           swp5                      44:38:39:00:00:28  default         no     Thu Dec  3 22:29:18 2020
+192.168.200.1             spine04           eth0                      44:38:39:00:00:6d                  no     Fri Dec  4 19:41:35 2020
+169.254.0.1               spine04           swp4                      44:38:39:00:00:20  default         no     Thu Dec  3 22:29:18 2020
+169.254.0.1               spine04           swp3                      44:38:39:00:00:18  default         no     Thu Dec  3 22:29:18 2020
+169.254.0.1               spine04           swp2                      44:38:39:00:00:10  default         no     Thu Dec  3 22:29:18 2020
+192.168.200.24            spine04           mgmt                      c6:b3:15:1d:84:c4                  no     Thu Dec  3 22:29:18 2020
+192.168.200.250           spine04           eth0                      44:38:39:00:01:80                  no     Thu Dec  3 22:29:18 2020
+169.254.0.1               spine03           swp1                      44:38:39:00:00:06  default         no     Thu Dec  3 22:31:27 2020
+169.254.0.1               spine03           swp6                      44:38:39:00:00:2e  default         no     Thu Dec  3 22:31:27 2020
+169.254.0.1               spine03           swp5                      44:38:39:00:00:26  default         no     Thu Dec  3 22:31:27 2020
+...
+```
+
+Shows all IPv6 addresses on the *leaf03* switch:
+
+```
+cumulus@switch:~$ netq leaf03 show ipv6 neighbors
+Matching neighbor records:
+IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
+------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
+ff02::16                  leaf03            eth0                      33:33:00:00:00:16                  no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:32   leaf03            vlan10-v0                 44:38:39:00:00:32  RED             no     Thu Dec  3 22:28:59 2020
+ff02::1                   leaf03            mgmt                      33:33:00:00:00:01                  no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:febe:efbb leaf03            vlan4001                  44:38:39:be:ef:bb  RED             no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:3a   leaf03            vlan20-v0                 44:38:39:00:00:34  RED             no     Thu Dec  3 22:28:59 2020
+ff02::1:ff00:184          leaf03            eth0                      33:33:ff:00:01:84                  no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:3c   leaf03            vlan30                    44:38:39:00:00:36  BLUE            yes    Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:13   leaf03            swp52                     44:38:39:00:00:13  default         no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:5e   leaf03            vlan30                    44:38:39:00:00:5e  BLUE            no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:42   leaf03            vlan30-v0                 44:38:39:00:00:42  BLUE            no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:44   leaf03            vlan10                    44:38:39:00:00:3e  RED             no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:5e   leaf03            vlan10                    44:38:39:00:00:5e  RED             no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:3c   leaf03            vlan30-v0                 44:38:39:00:00:36  BLUE            no     Thu Dec  3 22:28:59 2020
+fe80::4638:39ff:fe00:17   leaf03            swp54                     44:38:39:00:00:17  default         no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:5e   leaf03            vlan20                    44:38:39:00:00:5e  RED             no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:32   leaf03            vlan10                    44:38:39:00:00:32  RED             yes    Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:190  leaf03            eth0                      44:38:39:00:01:90                  no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:40   leaf03            vlan20-v0                 44:38:39:00:00:40  RED             no     Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:3a   leaf03            vlan20                    44:38:39:00:00:34  RED             yes    Thu Dec  3 22:28:58 2020
+fe80::4638:39ff:fe00:180  leaf03            eth0                      44:38:39:00:01:80                  no     Thu Dec  3 22:28:58 2020
+...
+```
+
+#### Related Commands
+
+- netq show ip/ipv6 addresses
+- netq show ip/ipv6 routes
+
+- - -
+
+### netq show ip routes
+
+Displays the IPv4 or IPv6 routes configured for a given device or all devices networkwide, currently or for a time in the past. You can filter the output by remote-interface, address, address and prefix, VRF, and route origin. A count of routes can be obtained for a given device. The output provides the following information for each route:
+
+- Whether this route originated with this device or not
+- VRF used for the route
+- Address prefix used for the route
+- Hostname of the device with the route
+- Next hops the route will take
+- When the last change was made to any of these items
+
+#### Syntax
+
+There are two sets of IP routes commands, one for IPv4 and one for IPv6.
+
+```
+netq <hostname> show ip routes
+    [<ipv4>|<ipv4/prefixlen>]
+    [vrf <vrf>]
+    [origin]
+    [around <text-time>]
+    [count]
+    [json]
+
+netq show ip routes
+    [<ipv4>|<ipv4/prefixlen>]
+    [vrf <vrf>]
+    [origin]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show ipv6 routes
+    [<ipv6>|<ipv6/prefixlen>]
+    [vrf <vrf>]
+    [origin]
+    [around <text-time>]
+    [count]
+    [json]
+
+netq show ipv6 routes
+    [<ipv6>|<ipv6/prefixlen>]
+    [vrf <vrf>]
+    [origin]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| ip | NA | Display TCP IPv4 routes |
+| ipv6 | NA | Display TCP IPv6 routes |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<remote-interface\> | Only display results for switches and hosts with this interface |
+| NA | \<ipv4\> | Only display results for switches and hosts with this IPv4 address |
+| NA | \<ipv4/prefixlen\> | Only display results for the switch or host with this IPv4 address and prefix |
+| NA | \<ipv6\> | Only display results for switches and hosts with this IPv6 address |
+| NA | \<ipv6/prefixlen\> | Only display results for switches and hosts with this IPv6 address and prefix |
+| vrf | \<vrf\> | Only display results for switches and hosts using this VRF |
+| origin | NA | Display whether this route originated on the switch or host (yes) or not (no) |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| count | NA | Display the count of routes for a given switch or host |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Added ability to display all addresses in a subnet or supernet or the layer 3 gateway of an address with `subnet`, `supernet`, and `gateway` options |
+| 2.1.2 | Removed `changes` and `between` options |
+
+#### Sample Usage
+
+Show all IPv4 routes
+
+```
+cumulus@switch:~$ netq show ip routes
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+no     default         10.0.1.2/32                    spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp4
+no     default         10.10.10.4/32                  spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp4
+no     default         10.10.10.3/32                  spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp4
+no     default         10.10.10.2/32                  spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp2
+no     default         10.10.10.1/32                  spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp2
+yes                    192.168.200.0/24               spine04           eth0                                Thu Dec  3 22:29:17 2020
+yes                    192.168.200.24/32              spine04           eth0                                Thu Dec  3 22:29:17 2020
+no     default         10.0.1.1/32                    spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
+                                                                        169.254.0.1: swp2
+yes    default         10.10.10.104/32                spine04           lo                                  Thu Dec  3 22:29:17 2020
+...
+```
+
+Shows all IPv6 routes on the *leaf03* switch
+
+```
+cumulus@switch:~$ netq leaf03 show ipv6 routes
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+no     RED             ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
+no                     ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
+no     BLUE            ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
+```
+
+#### Related Commands
+
+- netq show ip/ipv6 addresses
+- netq show ip/ipv6 neighbors
+
+- - -
 
 ### netq show kubernetes
 
+<!-- Add here -->
+
+- - -
+
 ### netq show mac-commentary
 
+Displays descriptive information about changes to a given MAC address on a specific VLAN. Commentary is provided for the following MAC address-related events:
+
+- When a MAC address is configured or unconfigured
+- When a bond enslaved or removed as a slave
+- When bridge membership changes
+- When a MAC address is learned or installed by control plane on tunnel interface
+- When a MAC address is flushed or expires
+- When a MAC address moves The output provides the following information for each route:
+
+The output provides commentary for each event sorted by most recent event.
+
+#### Syntax
+
+```
+netq [<hostname>] show mac-commentary
+    <mac>
+    vlan <1-4096>
+    [between <text-time> and <text-endtime>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<mac\> | Display descriptive summary of MAC moves for this MAC address |
+| vlan | \<1-4096\> | Display descriptive summary of MAC moves for the VLAN with this ID |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: week(s)</li><li><strong>d</strong>: day(s)</li><li><strong>h</strong>: hour(s)</li><li><strong>m</strong>: minute(s)</li><li><strong>s</strong>: second(s)</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 | Introduced |
+
+#### Sample Usage
+
+```
+cumulus@switch:~$ netq show mac-commentary 44:38:39:be:ef:ff vlan 4002
+Matching mac_commentary records:
+Last Updated              Hostname         VLAN   Commentary
+------------------------- ---------------- ------ --------------------------------------------------------------------------------
+Thu Oct  1 14:25:18 2020  border01         4002   44:38:39:be:ef:ff configured on interface bridge
+Thu Oct  1 14:25:18 2020  border02         4002   44:38:39:be:ef:ff configured on interface bridge
+```
+
+#### Related Commands
+
+- netq show mac-history
+- netq show ip/ipv6 addresses
+
+- - -
+
 ### netq show mac-history
+
+Displays when a MAC address is learned, when and where it moved in the network after that, if there was a duplicate at any time, and so forth. By default, the various history threads are displayed in the output grouped by VLAN and timestamp (chronologically). You can filter the output based on the options used:
+
+- Changes made between two points in time: use the `between` option
+- Only the differences in the changes between two points in time: use the `diff` option
+- The output grouped by selected output fields: use the `listby` option
+- Each change that was made for the MAC address on a particular VLAN: use the `vlan` option
+
+The default time range used is now to one hour ago. You can view the output in JSON format as well.
+
+#### Syntax
+
+```
+netq [<hostname>] show mac-history
+    <mac>
+    [vlan <1-4096>]
+    [diff]
+    [between <text-time> and <text-endtime>]
+    [listby <text-list-by>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<mac\> | Display history for this MAC address |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| vlan | \<1-4096\> | Only display MAC changes for the VLAN with this ID |
+| diff | NA | Only display the subset of changes that occurred within a time range defined by the `between` option |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: week(s)</li><li><strong>d</strong>: day(s)</li><li><strong>h</strong>: hour(s)</li><li><strong>m</strong>: minute(s)</li><li><strong>s</strong>: second(s)</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| listby | \<text-list-by\> | Display output in groups based on the specified output field |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 | Introduced |
+
+#### Sample Usage
+
+This example shows how to view a full chronology of changes for a MAC address of *44:38:39:00:00:5d*. When shown, the caret (^) notation indicates no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show mac-history 44:38:39:00:00:5d
+Matching machistory records:
+Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
+------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
+Tue Oct 27 22:28:24 2020  leaf03            10     yes    bridge                                  no     no
+Tue Oct 27 22:28:42 2020  leaf01            10     no     vni10            10.0.1.2               no     yes
+Tue Oct 27 22:28:51 2020  leaf02            10     no     vni10            10.0.1.2               no     yes
+Tue Oct 27 22:29:07 2020  leaf04            10     no     peerlink                                no     yes
+Tue Oct 27 22:28:24 2020  leaf03            4002   yes    bridge                                  no     no
+Tue Oct 27 22:28:24 2020  leaf03            0      yes    peerlink                                no     no
+Tue Oct 27 22:28:24 2020  leaf03            20     yes    bridge                                  no     no
+Tue Oct 27 22:28:42 2020  leaf01            20     no     vni20            10.0.1.2               no     yes
+Tue Oct 27 22:28:51 2020  leaf02            20     no     vni20            10.0.1.2               no     yes
+Tue Oct 27 22:29:07 2020  leaf04            20     no     peerlink                                no     yes
+Tue Oct 27 22:28:24 2020  leaf03            4001   yes    bridge                                  no     no
+Tue Oct 27 22:28:24 2020  leaf03            30     yes    bridge                                  no     no
+Tue Oct 27 22:28:42 2020  leaf01            30     no     vni30            10.0.1.2               no     yes
+Tue Oct 27 22:28:51 2020  leaf02            30     no     vni30            10.0.1.2               no     yes
+Tue Oct 27 22:29:07 2020  leaf04            30     no     peerlink                                no     yes
+```
+
+Refer to {{<link title="Monitor MAC Addresses/#view-the-history-of-a-mac-address" text="User Guide">}} for more examples.
+
+#### Related Commands
+
+- netq show mac-commentary
+- netq show ip/ipv6 addresses
+
+- - -
 
 ### netq show macs
 

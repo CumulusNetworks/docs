@@ -79,7 +79,7 @@ The agent configuration commands include:
     netq config add agent sensors
     netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
     netq config (start|stop|status|restart) agent
-    netq config del agent (agent-url|cluster-servers|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats|wjh)
+    netq config del agent (cluster-servers|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats|wjh)
     netq config show agent [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|stats|wjh] [json]
 
 This example shows how to specify the IP address and optionally a

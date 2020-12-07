@@ -14,7 +14,7 @@ The NetQ Management workbench is accessed from the main menu. For the user(s) re
 
 To open the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and select *Management* under the **Admin** column.
 
-{{<figure src="/images/netq/netq-mgmt-wb-onprem-300.png" width="700">}}
+{{<figure src="/images/netq/netq-mgmt-wb-onprem-320.png" width="700">}}
 
 {{<notice note>}}
 For cloud deployments, the LDAP Server Info card is not available. Refer to {{<link url="Integrate-NetQ-with-Your-LDAP-Server" text="Integrate NetQ with Your LDAP server">}} for details.

@@ -14,7 +14,7 @@ netq <hostname> show interfaces [type bond|type bridge|type eth|type loopback|ty
 netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] type interfaces [between <text-time> and <text-endtime>] [json]
 ```
 
-### View Status for All Interfaces
+## View Status for All Interfaces
 
 Viewing the status of all interfaces at once can be helpful when you are trying to compare configuration or status of a set of links, or generally when changes have been made.
 

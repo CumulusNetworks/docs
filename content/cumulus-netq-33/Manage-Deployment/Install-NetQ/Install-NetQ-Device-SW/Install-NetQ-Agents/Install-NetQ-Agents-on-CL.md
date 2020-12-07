@@ -129,7 +129,13 @@ To install the NetQ Agent:
 
 ## Configure the NetQ Agent on a Cumulus Linux Switch
 
-After the NetQ Agents have been installed on the switches you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data. Two methods are available for configuring a NetQ Agent:
+After the NetQ Agents have been installed on the switches you want to monitor, the NetQ Agents must be configured to obtain useful and relevant data.
+
+{{%notice note%}}
+The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, the default VRF (named *default*) is used. If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
+{{%/notice%}}
+
+Two methods are available for configuring a NetQ Agent:
 
 - Edit the configuration file on the switch, or
 - Use the NetQ CLI
@@ -137,10 +143,6 @@ After the NetQ Agents have been installed on the switches you want to monitor, t
 ### Configure NetQ Agents Using a Configuration File
 
 You can configure the NetQ Agent in the `netq.yml` configuration file contained in the `/etc/netq/` directory.
-
-{{%notice note%}}
-The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, the default VRF (named *default*) is used. If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
-{{%/notice%}}
 
 1. Open the `netq.yml` file using your text editor of choice. For example:
 

@@ -749,8 +749,8 @@ Press any key to continue...
 <tr>
 <td>CM-29603</td>
 <td><p>When you move an interface from one VRF to another and modify the description in the same configuration operation, FRR crashes and restarts during a service reload. If these two changes occur in separate reloads, FRR does not crash.</p></td>
-<td>4.1.1-4.2.1</td>
-<td></td>
+<td>4.1.1</td>
+<td>4.2.0-4.2.1</td>
 </tr>
 <tr>
 <td>CM-29594</td>

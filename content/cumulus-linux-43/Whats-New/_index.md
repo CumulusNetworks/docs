@@ -22,7 +22,7 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Features and Enhancements
 
-- {{<link url="Cumulus-Smart-System-Manager" text="Hitless software upgrade">}}
+- {{<link url="Smart-System-Manager" text="Smart System Manager">}}, which enables you to upgrade and troubleshoot an active switch with minimal disruption to the network
 - BGP enhancements:
   - {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Graceful restart">}}
   - {{<link url="Optional-BGP-Configuration/#wait-for-convergence" text="Wait for convergence">}}

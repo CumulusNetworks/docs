@@ -381,7 +381,7 @@ On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd
 
 {{<cl/restart-switchd>}}
 
-## Per Queue Egress Scheduling
+## Scheduling Weights Per Egress Queue
 
 On Mellanox switches, you can set the scheduling weight per egress queue, which determines the amount of bandwidth assigned to the queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
 

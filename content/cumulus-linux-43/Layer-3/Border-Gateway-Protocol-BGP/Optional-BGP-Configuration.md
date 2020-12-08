@@ -672,6 +672,8 @@ router bgp 65199
 ...
 ```
 
+The {{<link url="Smart-System-Manager" text="Smart System Manager">}} supresses route advertisement automically when upgrading or troubleshooting an active switch so that there is minimal disruption to the network.
+
 ## BGP add-path
 
 Cumulus Linux supports both BGP add-path RX and BGP add-path TX.
@@ -965,6 +967,8 @@ To enable BGP wait for convergence, you configure the following BGP timers globa
 | `update-delay` | The longest BGP waits for all eligible peers to converge. A peer is considered converged if it reaches the established state and sends an explicit or implicit EoR. |
 | `establish-wait`| Optional. The time by which peers must reach the established state to be considered for convergence. This guards against extremely slow peers or peers that are configured but not reachable.<br><br>Peers that are locally shutdown are not considered for the convergence event.|
 
+BGP *wait for convergence* is run automatically by the {{<link url="Smart-System-Manager" text="Smart System Manager">}} to upgrade or troubleshoot an active switch with minimal disruption to the network.
+
 {{%notice note%}}
 - The `update-delay` and `establish-wait` timers are used by all VRFs, including the default VRF and any VRFs that you add later.
 - You can set the `update-delay` timer per VRF. However, you cannot set the timer *both* globally and per VRF. If a VRF (including the default VRF) is configured with the `update-delay` timer, you must delete it before configuring the timer globally.
@@ -1211,11 +1215,11 @@ Paths: (2 available, best #1, table Default-IP-Routing-Table)
 
 ## Graceful BGP Restart
 
-When BGP restarts on a switch, all BGP peers detect that the session goes down and comes back up. This session transition results in a routing flap that causes BGP to recompute routes, generate route updates, and add unnecessary churn to the forwarding tables. The routing flaps can create transient forwarding blackholes and loops, and also consume resources on the control plane of the switches affected by the flap, which can affect overall network performance.
+When BGP restarts on a switch, all BGP peers detect that the session goes down and comes back up. This session transition results in a routing flap that causes BGP to recompute routes, generate route updates, and add unnecessary churn to the forwarding tables. The routing flaps can create transient forwarding blackholes and loops, and also consume resources on the switches affected by the flap, which can affect overall network performance.
 
-To help minimize the negative effects that occur when BGP restarts, you can enable the BGP graceful restart feature, which enables a BGP speaker to preserve its forwarding state during a BGP restart. 
+To help minimize the negative effects that occur when BGP restarts, you can enable the BGP graceful restart feature, which enables a BGP speaker to preserve its forwarding state during a BGP restart.
 
-When a BGP session is established, BGP peers use the BGP OPEN message to negotiate graceful restart support. If the BGP peer also supports graceful restart, it is activated for that neighbor session. If the BGP session is lost, the BGP peer (called the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. When the graceful restart is complete, routes are obtained from the helper so that the device can return to full operation quickly.
+When a BGP session is established, BGP peers use the BGP OPEN message to negotiate a graceful restart. If the BGP peer also supports graceful restart, it is activated for that neighbor session. If the BGP session is lost, the BGP peer (the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. When the graceful restart is complete, routes are obtained from the restart helper so that the device can return to full operation quickly.
 
 {{%notice note%}}
 BGP graceful restart is supported for both IPv4 and IPv6.
@@ -1224,6 +1228,8 @@ BGP graceful restart is supported for both IPv4 and IPv6.
 You can enable graceful BGP restart in one of two ways:
 - Globally, where all BGP peers inherit the graceful restart capability.
 - Per BGP peer or peer group, which can be useful for misbehaving peers or when working with third party devices. You can also configure a peer or peer group to run in helper mode only, where routes originated and advertised from a BGP peer are not deleted.
+
+Graceful BGP restart is run automatically by the {{<link url="Smart-System-Manager" text="Smart System Manager">}} to upgrade or troubleshoot an active switch with minimal disruption to the network.
 
 The following example commands enable global graceful BGP restart:
 
@@ -1375,7 +1381,7 @@ switch# exit
 
 {{< /tabs >}}
 
-The NCLU and vtysh commands save the configuration in the ``/etc/frr/frr.conf` file. For example:
+The NCLU and vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
 ...

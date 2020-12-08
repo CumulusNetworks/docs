@@ -20,11 +20,9 @@ You can restart the switch in one of the following modes.
 | `cold` | Completely restarts the system and resets all the hardware devices on the switch (including the switching ASIC). | `cl system mode cold` |
 | `fast` | Restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system is decoupled from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The forwarding entries of the switching ASIC are maintained through the restart process and the data plane is not affected. The data plane is only interrupted when `switchd` resets and reconfigures the ASIC if the SDK is upgraded. Traffic outage is significantly lower in this mode. | `cl system mode fast` |
 
-You must restart Cumulus Linux with either fast or cold mode after you upgrade the switch in {{<link url="#upgrade-mode" text="upgrade mode">}}. Smart System Manager performs a fast restart mode automatically when you disable {{<link url="#maintenance-mode" text="maintenance mode">}}.
-
 ## Ugrade Mode
 
-Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux release without traffic loss. After upgrade is complete, you must restart the switch with one of the {{<link url="#restart-mode" text="restart modes">}}.
+Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux release without traffic loss. After upgrade is complete, you must restart the switch with either a {{<link url="#restart-mode" text="cold or fast restart">}}.
 
 Upgrade mode includes the following options.
 
@@ -34,7 +32,7 @@ Upgrade mode includes the following options.
 | `dry-run` | Provides information on the components that will be upgraded. | `cl system upgrade dry-run` |
 | `status` | Shows the current status of the system. | `cl system upgrade status` |
 
-The following example commands upgrade the switch to the latest release, shows the current system status, then restarts the switch in fast mode (reloads the kernel and software stack without a hard reset of the hardware):
+The following example commands upgrade the switch to the latest release, show the current system status, then restart the switch in fast mode (reload the kernel and software stack without a hard reset of the hardware):
 
 ```
 cumulus@switch:~$ cl system upgrade all

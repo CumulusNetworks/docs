@@ -1247,7 +1247,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| x.y.z | xxx |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
 #### Sample Usage
 
@@ -1415,6 +1415,7 @@ leaf02            vx                   x86_64               3.6.2.1
 #### Related Commands
 
 - netq show cl-pkg-info
+- netq show recommended-pkg-version
 
 - - -
 
@@ -2034,9 +2035,7 @@ Displays descriptive information about changes to a given MAC address on a speci
 - When bridge membership changes
 - When a MAC address is learned or installed by control plane on tunnel interface
 - When a MAC address is flushed or expires
-- When a MAC address moves The output provides the following information for each route:
-
-The output provides commentary for each event sorted by most recent event.
+- When a MAC address moves
 
 #### Syntax
 
@@ -2135,7 +2134,7 @@ A release is included if there were changes to the command, otherwise it is not 
 
 | Release | Description |
 | ---- | ---- |
-| 3.2.0 | Introduced |
+| 2.3.1 | Introduced |
 
 #### Sample Usage
 
@@ -2163,7 +2162,7 @@ Tue Oct 27 22:28:51 2020  leaf02            30     no     vni30            10.0.
 Tue Oct 27 22:29:07 2020  leaf04            30     no     peerlink                                no     yes
 ```
 
-Refer to {{<link title="Monitor MAC Addresses/#view-the-history-of-a-mac-address" text="User Guide">}} for more examples.
+Refer to the {{<link title="Monitor MAC Addresses/#view-the-history-of-a-mac-address" text="NetQ User Guide">}} for more examples.
 
 #### Related Commands
 
@@ -2174,13 +2173,394 @@ Refer to {{<link title="Monitor MAC Addresses/#view-the-history-of-a-mac-address
 
 ### netq show macs
 
+Displays MAC addresses for monitored switches networkwide, currently or for a time in the past. For a given switch, you can view the total number of MAC addresses associated with that switch. You can filter the output based on VLAN, egress port, and origination status.
+
+The output displays the following information for each MAC address:
+
+- Whether this addresses is owned by the switch or learned from a peer
+- VLAN associated with this address for a given switch
+- Switch that uses this address
+- Egress port on the switch
+- When the last change was made to any of these items
+
+This command does not show MAC addresses for hosts.
+
+#### Syntax
+
+There are three forms of this command: the basic command which shows all MAC addresses networkwide, one to  view MAC addresses or a count of addresses for a given switch, and one to view MAC addresses on a given switch and egress port.
+
+```
+netq show macs
+    [<mac>]
+    [vlan <1-4096>]
+    [origin]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show macs
+    [<mac>]
+    [vlan <1-4096>]
+    [origin | count]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show macs
+    egress-port <egress-port>
+    [<mac>]
+    [vlan <1-4096>]
+    [origin]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch with this name |
+| egress-port | \<egress-port\> | Only display results for the switch with this egress port |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<mac\> | Display history for this MAC address |
+| vlan | \<1-4096\> | Only display MAC addresses that use the VLAN with this ID |
+| origin | NA | Only display results for addresses that are owned by the specified switch or switches |
+| count | NA | Display the total number of MAC addresses used by the specified switch; can only used when the `hostname` option is defined |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+|  | Introduced before 2.1 |
+
+#### Sample Usage
+
+Basic show: all addresses, all switches, all VLANs, all egress ports
+
+```
+cumulus@switch:~$ netq show macs
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+no     46:38:39:00:00:46  20     leaf04            bond2                          no     Mon Dec  7 22:30:15 2020
+yes    00:00:00:00:00:1a  10     leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
+yes    44:38:39:00:00:5e  4002   leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
+yes    44:38:39:00:00:5e  20     leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
+no     44:38:39:00:00:5d  30     leaf04            peerlink                       no     Mon Dec  7 22:30:15 2020
+no     44:38:39:00:00:59  30     leaf04            vni30                          no     Mon Dec  7 22:30:15 2020
+yes    7e:1a:b3:4f:05:b8  20     leaf04            vni20                          no     Mon Dec  7 22:30:15 2020
+no     44:38:39:00:00:37  30     leaf04            vni30                          no     Mon Dec  7 22:30:15 2020
+no     44:38:39:00:00:36  30     leaf04            vni30                          yes    Mon Dec  7 22:30:15 2020
+no     44:38:39:00:00:37  20     leaf04            vni20                          no     Mon Dec  7 22:30:15 2020
+no     44:38:39:be:ef:aa  4001   leaf04            vniRED                         yes    Mon Dec  7 22:30:15 2020
+no     44:38:39:00:00:37  10     leaf04            vni10                          no     Mon Dec  7 22:30:15 2020
+yes    36:6a:10:4a:41:02  4001   leaf04            vniRED                         no     Mon Dec  7 22:30:15 2020
+...
+```
+
+Show count of MAC addresses on a switch
+
+```
+cumulus@switch:~$ netq leaf01 show macs count
+Count of matching mac records: 50
+```
+
+Show MAC addresses that use a given egress port on a switch
+
+```
+cumulus@switch:~$ netq leaf01 show macs egress-port bond3
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+no     44:38:39:00:00:36  30     leaf01            bond3                          no     Mon Dec  7 22:29:47 2020
+no     46:38:39:00:00:36  30     leaf01            bond3                          no     Mon Dec  7 22:29:47 2020
+no     46:38:39:00:00:3c  30     leaf01            bond3                          no     Mon Dec  7 22:29:47 2020
+```
+
+#### Related Commands
+
+- netq show mac-commentary
+- netq show mac-history
+
+- - -
+
 ### netq show neighbor-history
+
+Displays when the neighbor configuration changed for an IP address. By default the changes are listed in chronological order. You can filter the output by time and interface, and you can choose to view only differences or group the output by historical thread.
+
+The output provides the following information for each neighbor change:
+
+- When the neighbor configuration changed
+- Switch associated with the change
+- Interface used by the neighbor
+- VRF used by the neighbor
+- Whether the address is owned by the switch or learned by the neighbor
+- IP and MAC addresses
+- Whether the IP address is an IPv4 or IPv6 address
+- Index of the IP interface address
+
+By default, each row in the output is a thread (or group) sorted by VLAN and the time range used is now to one hour ago. You can view the output in JSON format as well.
+
+#### Syntax
+
+```
+netq [<hostname>] show neighbor-history
+    <text-ipaddress>
+    [ifname <text-ifname>]
+    [diff]
+    [between <text-time> and <text-endtime>]
+    [listby <text-list-by>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch with this name |
+| NA | \<text-ipaddress\> | Display history for this IPv4 or IPv6 address |
+| ifname | \<text-ifname\> | Only display results for the interface with this name |
+| diff | NA | Only display the differences associated with each change |
+| between | \<text-time\> and \<text-endtime\> | Only display results between the snapshots taken at these times |
+| listby | \<text-list-by\> | Display results by the specified attribute. Attributes include the interface name or index, VRF name, remote status, MAC address, if the address is an IPv6 address, and hostname. |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 | Introduced |
+
+#### Sample Usage
+
+Basic show: all addresses, all switches, all VLANs, all egress ports
+
+```
+cumulus@switch:~$ netq show macs
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+no     46:38:39:00:00:46  20     leaf04            bond2                          no     Mon Dec  7 22:30:15 2020
+yes    00:00:00:00:00:1a  10     leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
+yes    44:38:39:00:00:5e  4002   leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
+yes    44:38:39:00:00:5e  20     leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
+no     44:38:39:00:00:5d  30     leaf04            peerlink                       no     Mon Dec  7 22:30:15 2020
+no     44:38:39:00:00:59  30     leaf04            vni30                          no     Mon Dec  7 22:30:15 2020
+yes    7e:1a:b3:4f:05:b8  20     leaf04            vni20                          no     Mon Dec  7 22:30:15 2020
+no     44:38:39:00:00:37  30     leaf04            vni30                          no     Mon Dec  7 22:30:15 2020
+no     44:38:39:00:00:36  30     leaf04            vni30                          yes    Mon Dec  7 22:30:15 2020
+no     44:38:39:00:00:37  20     leaf04            vni20                          no     Mon Dec  7 22:30:15 2020
+no     44:38:39:be:ef:aa  4001   leaf04            vniRED                         yes    Mon Dec  7 22:30:15 2020
+no     44:38:39:00:00:37  10     leaf04            vni10                          no     Mon Dec  7 22:30:15 2020
+yes    36:6a:10:4a:41:02  4001   leaf04            vniRED                         no     Mon Dec  7 22:30:15 2020
+...
+```
+
+Refer to the {{<link title="Monitor Internet Protocol Service/#view-the-neighbor-history-for-an-ip-address" text="NetQ User Guide">}} for more examples.
+
+#### Related Commands
+
+- netq show address-history
+- netq show mac-history
+
+- - -
 
 ### netq show opta-health
 
+Displays the status of the various applications and services running on the NetQ On-premises Appliance or the Virtual Machine. For the NetQ Cloud Appliance or VM, this command displays a simple statement indicating overall health.
+
+Note that when running this command as part of an installation, it takes between 5 and 10 minutes for the applications and services to become fully operational.
+
+#### Syntax
+
+```
+netq show opta-health
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Introduced |
+
+#### Sample Usage
+
+On-premises appliance or VM
+
+```
+cumulus@hostname:~$ netq show opta-health
+Application                                            Status    Namespace      Restarts    Timestamp
+-----------------------------------------------------  --------  -------------  ----------  ------------------------
+cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2020
+cp-schema-registry-deploy-6bf5cbc8cc-vwcsx             READY     default        0           Fri Apr 10 16:08:38 2020
+kafka-broker-rc-0-p9r2l                                READY     default        0           Fri Apr 10 16:08:38 2020
+kafka-connect-deploy-7799bcb7b4-xdm5l                  READY     default        0           Fri Apr 10 16:08:38 2020
+netq-api-gateway-deploy-55996ff7c8-w4hrs               READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-address-deploy-66776ccc67-phpqk               READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-admin-oob-mgmt-server                         READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-bgp-deploy-7dd4c9d45b-j9bfr                   READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-clagsession-deploy-69564895b4-qhcpr           READY     default        0           Fri Apr 10 16:08:38 2020
+netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        0           Fri Apr 10 16:08:38 2020
+...
+```
+
+Cloud appliance or VM
+
+```
+cumulus@hostname:~$ netq show opta-health
+OPTA is healthy
+```
+
+#### Related Commands
+
+- netq show opta-platform
+
+- - -
+
 ### netq show opta-platform
 
+Displays the version of NetQ running on the switch, how long it has been running, and the last time it was re-initialized.
+
+#### Syntax
+
+```
+netq show opta-platform
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.3.1 | Modified keyword name from `platform` to `opta-platform` |
+| 2.3.0 | Introduced as `netq show platform` |
+
+#### Sample Usage
+
+```
+cumulus@nswitch:~$ netq show opta-platform
+Matching platform records:
+Version                              Uptime                    Reinitialize Time
+------------------------------------ ------------------------- --------------------------
+3.2.0                                Fri Oct  2 22:04:17 2020  Wed Nov 11 21:53:57 2020
+
+```
+
+#### Related Commands
+
+- netq show opta-health
+
+- - -
+
 ### netq show recommended-pkg-version
+
+When you have a software manifest in place, this command displays which software packages and versions are recommended for upgrade based on the installed Cumulus Linux release. You can then compare that to what is installed on your switch(es) to determine if it differs from the manifest. Such a difference might occur if one or more packages have been upgraded separately from the Cumulus Linux software itself.
+
+The output provides the following information for each package:
+
+- Hostname of the switch where the package resides
+- Cumulus Linux release ID
+- ASIC vendor supported
+- CPU architecture supported
+- Name and version of the package
+- When the last change was made to any of these items
+
+#### Syntax
+
+```
+netq [<hostname>] show recommended-pkg-version
+    [release-id <text-release-id>]
+    [package-name <text-package-name>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| release-id | \<text-release-id\> | Only display results for the Cumulus Linux release with this ID; x.y.z format |
+| package-name | \<text-package-name\> | Only display results for the software package with this name |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.0 | Introduced |
+
+#### Sample Usage
+
+Packages that are recommended for upgrade on the *leaf12* switch
+
+```
+cumulus@switch:~$ netq leaf12 show recommended-pkg-version
+Matching manifest records:
+Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+leaf12            3.7.1                vx                   x86_64               switchd              1.0-cl3u30           Wed Feb  5 04:36:30 2020
+```
+
+Version of the `switchd` package that is recommended for use with Cumulus Linux 3.7.2.
+
+```
+cumulus@switch:~$ netq act-5712-09 show recommended-pkg-version release-id 3.7.2 package-name switchd
+Matching manifest records:
+Hostname          Release ID           ASIC Vendor          CPU Arch             Package Name         Version              Last Changed
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
+act-5712-09       3.7.2                bcm                  x86_64               switchd              1.0-cl3u31           Wed Feb  5 04:36:30 2020
+```
+
+#### Related Commands
+
+- netq show cl-manifest
+- netq show cl-pkg-info
+
+- - -
+
+
 
 ### netq show resource-util
 
@@ -2433,18 +2813,6 @@ netq config ts add notifier slack <text-notifier-name> webhook <text-webhook-url
 netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
     netq config del agent kubernetes-monitor
 
-
-netq config 
-Description
-Syntax
-Abbreviated Syntax
-Required Arguments
-Optional Arguments
-JSON Output
-Command History
-Usage Guidelines
-Sample Usage
-Related Commands
 
 
 

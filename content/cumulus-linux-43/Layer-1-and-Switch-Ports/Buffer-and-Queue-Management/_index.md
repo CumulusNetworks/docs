@@ -150,7 +150,7 @@ After the downstream switch sends a PFC frame upstream, it continues to receive 
 
 Priority flow control is fully supported on both {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2" text="Broadcom">}} (including the Edgecore Minipack-AS8000/Trident3) and {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox" text="Mellanox">}} switches.
 
-PFC is disabled by default in Cumulus Linux. To configure PFC, uncomment the lines in the `priority flow control` section of the `/etc/cumulus/datapath/traffic.conf` file and update the settings.
+PFC is disabled by default in Cumulus Linux. To configure PFC, update and uncomment the settings in the `priority flow control` section of the `/etc/cumulus/datapath/traffic.conf` file.
 
 ```
 # to configure priority flow control on a group of ports:
@@ -368,7 +368,7 @@ The following configuration example shows ECN configured for ports swp1 through 
 #       swp1-swp4,swp8,swp50s0-swp50s3
 # -- to enable RED requires the latest traffic.conf
 ecn_red.port_group_list = [ecn_red_port_group]
-ecn_red.ecn_red_port_group.cos_list = []
+ecn_red.ecn_red_port_group.cos_list = [3]
 ecn_red.ecn_red_port_group.port_set = swp1-swp4,swp6
 ecn_red.ecn_red_port_group.ecn_enable = true
 ecn_red.ecn_red_port_group.red_enable = false
@@ -380,6 +380,144 @@ ecn_red.ecn_red_port_group.probability = 100
 On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the PFC configuration changes to take effect. On a Mellanox switch with the Spectrum ASIC, restarting `switchd` is not necessary.
 
 {{<cl/restart-switchd>}}
+
+## Per Queue Egress Scheduling
+
+On Mellanox switches, you can set the scheduling weight per egress queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
+
+You set the weights per egress queue as a percentage. The total weight percentages for all egress queues cannot be greater than 100. If you do not define a weight for an egress queue, the value defaults to 0 (no egress scheduling is applied).
+
+You can configure per queue egress scheduling with NCLU commands or manually by editing the `/etc/cumulus/datapath/traffic.conf` file.
+
+{{< tabs "TabID432 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+The following example commands configure the default profile, set the weight for egress queue 2 to 30 percent, and distribute the remaining weight percentage evenly between the remaining egress queues. The settings are applied to all ports.
+
+```
+cumulus@switch:~$ net add qos egress-sched profile default
+cumulus@switch:~$ net add qos egress-sched profile default egr_queue_2 bw_percent 30​
+cumulus@switch:~$ net add qos egress-sched profile default distribute-remaining-bw 
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The following commands create a new profile called `profile1` for port group `port_group1`, set the weight for egress queue 2 to 24 percent, and distribute the remaining percentage evenly between the remaining egress queues:
+
+```
+cumulus@switch:~$ net add qos egress-sched profile profile1
+cumulus@switch:~$ net add qos egress-sched profile profile1 port_set swp2-swp3
+cumulus@switch:~$ net add qos egress-sched profile profile1 egr_queue_2 bw_percent 30​
+cumulus@switch:~$ net add qos egress-sched profile profile1 distribute-remaining-bw 
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "Edit the traffic.conf File ">}}
+
+To configure per queue egress scheduling manually in the `/etc/cumulus/datapath/traffic.conf` file, update and uncomment the settings in the `default egress scheduling weight per egress queue` section of the `/etc/cumulus/datapath/traffic.conf` file.
+
+The following example configures the default profile and sets the weight to 30 percent for egress queue 2 and 10 percent for the remaining egress queues. The settings are applied to all ports.
+
+```
+# default egress scheduling weight per egress queue 
+# To be applied to all the ports if port_group profile not configured
+# If you do not specify any bw_percent of egress_queues, those egress queues 
+# will assume DWRR weight 0 - no egress scheduling for those queues
+# '0' indicates strict priority
+default_egress_sched.egr_queue_0.bw_percent = 10
+default_egress_sched.egr_queue_1.bw_percent = 10
+default_egress_sched.egr_queue_2.bw_percent = 30
+default_egress_sched.egr_queue_3.bw_percent = 10
+default_egress_sched.egr_queue_4.bw_percent = 10
+default_egress_sched.egr_queue_5.bw_percent = 10
+default_egress_sched.egr_queue_6.bw_percent = 10
+default_egress_sched.egr_queue_7.bw_percent = 10
+```
+
+The following example creates a new profile called `profile1` for port group `port_group1`, sets the weight to 30 percent for egress queue 1 and 2, no egress scheduling for egress queue 6 and 7, and 10 percent for the remaining egress queues:
+
+```
+# port_group profile for egress scheduling weight per egress queue 
+# If you do not specify any bw_percent of egress_queues, those egress queues 
+# will assume DWRR weight 0 - no egress scheduling for those queues
+# '0' indicates strict priority
+profile1_egress_sched.port_group_list = [sched_port_group1]
+profile1_egress_sched.sched_port_group1.port_set = swp2-swp3
+profile1_egress_sched.sched_port_group1.egr_queue_0.bw_percent = 10
+profile1_egress_sched.sched_port_group1.egr_queue_1.bw_percent = 30
+profile1_egress_sched.sched_port_group1.egr_queue_2.bw_percent = 30
+profile1_egress_sched.sched_port_group1.egr_queue_3.bw_percent = 10
+profile1_egress_sched.sched_port_group1.egr_queue_4.bw_percent = 10
+profile1_egress_sched.sched_port_group1.egr_queue_5.bw_percent = 10
+profile1_egress_sched.sched_port_group1.egr_queue_6.bw_percent = 0
+profile1_egress_sched.sched_port_group1.egr_queue_7.bw_percent = 0
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+## Traffic Shaping
+
+Configure traffic shaping to regulate network traffic by using a lower bitrate than the physical interface is capable of. Traffic shaping optimizes performance, improves latency, and can increase usable bandwidth.
+
+You can configure traffic shaping per egress queue or aggregated at the port level.
+
+To configure traffic shaping, update and uncomment the settings in the `Hierarchical traffic shaping` section of the the `/etc/cumulus/datapath/traffic.conf` file.
+
+After configuring traffic shaping on a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the configuration changes to take effect. On a Mellanox switch, restarting `switchd` is not necessary.
+
+{{<cl/restart-switchd>}}
+
+```
+...
+# Hierarchical traffic shaping
+# to configure shaping at 2 levels:
+#     - per egress queue egr_queue_0 - egr_queue_7
+#     - port level aggregate
+# -- add or replace a port group names in the port group list
+# -- for each port group in the list
+#    -- populate the port set, e.g.
+#       swp1-swp4,swp8,swp50s0-swp50s3
+#    -- set min and max rates in kbps for each egr_queue [min, max]
+#    -- set max rate in kbps at port level
+shaping.port_group_list = [shaper_port_group]
+shaping.shaper_port_group.port_set = swp1-swp3
+shaping.shaper_port_group.egr_queue_0.shaper = [50000, 100000]
+shaping.shaper_port_group.egr_queue_1.shaper = [51000, 150000]
+shaping.shaper_port_group.egr_queue_2.shaper = [52000, 200000]
+shaping.shaper_port_group.egr_queue_3.shaper = [53000, 250000]
+shaping.shaper_port_group.egr_queue_4.shaper = [54000, 300000]
+shaping.shaper_port_group.egr_queue_5.shaper = [55000, 350000]
+shaping.shaper_port_group.egr_queue_6.shaper = [56000, 400000]
+shaping.shaper_port_group.egr_queue_7.shaper = [57000, 450000]
+# shaping.shaper_port_group.port.shaper = 900000
+
+{{%notice note%}}
+In Cumulus Linux, the burst size is set to twice the maximum rate internally; the setting is not configurable.
+{{%/notice%}}
+
+```
+The settings are described below:
+
+| Traffic Shaping Setting | Description|
+| ------------------------| ---------- |
+| `shaping.port_group_list` | The name of the port group in square brackets. |
+| `shaping.shaper_port_group.port_set` | The ports in the port group. |
+| `shaping.shaper_port_group.egr_queue_0.shaper` | The minimum and maximum rates in kbps for egress queue 0. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_1.shaper` | The minimum and maximum rates in kbps for egress queue 1. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_2.shaper` | The minimum and maximum rates in kbps for egress queue 2. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_3.shaper` | The minimum and maximum rates in kbps for egress queue 3. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_4.shaper` | The minimum and maximum rates in kbps for egress queue 4. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_5.shaper` | The minimum and maximum rates in kbps for egress queue 5. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_6.shaper` | The minimum and maximum rates in kbps for egress queue 6. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_7.shaper` | The minimum and maximum rates in kbps for egress queue 7. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.port.shaper` |  The maximum rate in kbps at the port level. |
+| `scheduling.algorithm` | Cumulus Linux supports the Deficit Weighted Round Robin (DWRR) scheduling algorithm only. |
 
 ## Check Interface Buffer Status
 

@@ -83,6 +83,52 @@ This example creates congestion thresholds for Class *4* traffic on port *swp1* 
 cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200 10
 ```
 
+## Configure Filters
+
+You can filter the WJH events at the NetQ Agent  before it is processed by the NetQ system. Filtering is performed on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons or severity using the NetQ UI or the NetQ CLI.
+
+{{< tabs "TabID90" >}}
+
+{{< tab "NetQ UI" >}}
+
+<!-- Add content here -->
+
+{{< /tab >}}
+
+{{< tab "NetQ CLI" >}}
+
+To configure the NetQ Agent to filter WJH drops, run:
+
+```
+netq config add agent wjh-drop-filter drop-type <text-wjh-drop-type> [drop-reasons <text-wjh-drop-reasons>] [severity <text-drop-severity-list>]
+```
+
+This example configures the NetQ Agent to drop all L1 drops.
+
+```
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type (???l1)
+```
+
+This example configures the NetQ Agent to drop only the L1 drops with bad signal integrity.
+
+```
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type (???l1) drop-reasons (bad-signal-integrity???)
+```
+
+This example configures the NetQ Agent to drop only L1 drops with info severity.
+
+```
+```
+
+This example configures the NetQ Agent to drop only Router drops with reasons of blackhole route and source IP is a Class E address.
+
+```
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
 ## View What Just Happened Metrics
 
 You can view the WJH metrics from the NetQ UI or the NetQ CLI.

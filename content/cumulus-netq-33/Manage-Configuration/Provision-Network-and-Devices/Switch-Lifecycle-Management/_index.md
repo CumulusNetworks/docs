@@ -32,13 +32,14 @@ This feature is fully enabled for on-premises deployments and fully disabled for
 
 {{</notice>}}
 
-## Access Lifecycle Management Features in the NetQ UI
+## Access Lifecycle Management Features
 
-To manage the various lifecycle management features from any workbench, click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches) in the workbench header, then select **Manage switches**.
+To manage the various lifecycle management features from any workbench in the NetQ UI, click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18">}} (Switches) in the workbench header, then select **Manage switches**.
 
-The first time you open the Manage Switch Assets view, it provides a summary card for switch inventory, uploaded Cumulus Linux images, uploaded NetQ images, NetQ configuration profiles, and switch access settings. Additional cards appear after that based on your activity.
+The Manage Switch Assets view provides access to switch management, image management, and configuration management features as well as job history. Each tab provides cards that let the administrator manage the relevant aspect of switch assets.
 
 {{<figure src="/images/netq/lcm-dashboard-320.png" width="700">}}
+<!-- update capture -->
 
 {{<notice tip>}}
 
@@ -46,22 +47,15 @@ You can also access this view by clicking {{<img src="https://icons.cumulusnetwo
 
 {{</notice>}}
 
-## NetQ CLI Lifecycle Management Commands Summary
+To manage the various lifecycle management features using the NetQ CLI, use the `netq lcm` command set.
 
-The NetQ CLI provides a number of `netq lcm` commands to perform the various LCM capabilities. The syntax of these commands is:
+## LCM Summary
 
-```
-netq lcm upgrade name <text-job-name> cl-version <text-cumulus-linux-version> netq-version <text-netq-version> hostnames <text-switch-hostnames> [run-restore-on-failure] [run-before-after]
-netq lcm add credentials username <text-switch-username> (password <text-switch-password> | ssh-key <text-ssh-key>)
-netq lcm add role (superspine | spine | leaf | exit) switches <text-switch-hostnames>
-netq lcm del credentials
-netq lcm show credentials [json]
-netq lcm show switches [version <text-cumulus-linux-version>] [json]
-netq lcm show status <text-lcm-job-id> [json]
-netq lcm add cl-image <text-image-path>
-netq lcm add netq-image <text-image-path>
-netq lcm del image <text-image-id>
-netq lcm show images [<text-image-id>] [json]
-netq lcm show upgrade-jobs [json]
-netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] type lcm [between <text-time> and <text-endtime>] [json]
-```
+This table summarizes the UI cards and CLI commands available for the LCM feature.
+
+| <div style="width:30px">Function </div> | <div style="width:220px">Description</div> | <div style="width:220px">NetQ UI Cards</div> | <div style="width:220px">NetQ CLI Commands</div> |
+| --- | --- | --- | --- |
+| Switch Management | Discover switches, view switch inventory, assign roles, set user access credentials, perform software installation and upgrade networkwide | <ul><li>Switches</li><li>Access</li></ul> | <ul><li>netq lcm show switches</li><li>netq lcm add role</li><li>netq lcm upgrade</li><li>netq lcm add credentials</li><li>netq lcm del credentials</li><li>netq lcm show credentials</li></ul> |
+| Image Management | View, add, and remove images for software installation and upgrade | <ul><li>Cumulus Linux Images</li><li>NetQ Images</li></ul> | <ul><li>netq lcm add cl-image</li><li>netq lcm add netq-image</li><li>netq lcm del image</li><li>netq lcm show images</li></ul> |
+| Configuration Management | Set up templates for software installation and upgrade, configure and assign switch settings networkwide | <ul><li>NetQ Configurations</li><li>Network Templates</li><li>Switch Configurations</li></ul> | NA |
+| Job History | View the results of installation, upgrade, and configuration assignment jobs | <ul><li>CL Upgrade History</li><li>NetQ Install and Upgrade History</li><li>Config Assignment History</li></ul> | <ul><li>netq lcm show status</li><li>netq lcm show upgrade-jobs</li><li>netq show events type lcm</li></ul> |

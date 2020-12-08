@@ -85,13 +85,13 @@ Change the password and specify the hostname and IP address for each appliance b
 
 Now that the appliances are up and running, verify that the software is available and each appliance is ready for installation.
 
-1. On the master NetQ Cloud Appliance, verify that the needed packages are present and of the correct release, version 3.2.1 and update 31.
+1. On the master NetQ Cloud Appliance, verify that the needed packages are present and of the correct release, version 3.3.0.
 
-    {{<netq-install/verify-pkgs version="3.2.1" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="3.3.0" platform="appliance">}}
 
-2. Verify the installation images are present and of the correct release, version 3.2.1.
+2. Verify the installation images are present and of the correct release, version 3.3.0.
 
-    {{<netq-install/verify-image deployment="cloud" version="3.2.1">}}
+    {{<netq-install/verify-image deployment="cloud" version="3.3.0">}}
 
 3. Verify the master NetQ Cloud Appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -99,35 +99,39 @@ Now that the appliances are up and running, verify that the software is availabl
 
 4. Run the Bootstrap CLI. Be sure to replace the *eno1* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
-    {{<netq-install/bootstrap server="single" version="3.2.1" platform="appliance" deployment="cloud">}}
+    {{<netq-install/bootstrap server="single" version="3.3.0" platform="appliance" deployment="cloud">}}
 
-5. On one of your worker NetQ Cloud Appliances, verify that the needed packages are present and of the correct release, version 3.2.1 and update 31.
+5. Consider the following for container environments, and make adjustments as needed.
 
-    {{<netq-install/verify-pkgs version="3.2.1" platform="appliance">}}
+    {{<netq-install/container>}}
 
-6. Configure the IP address, hostname, and password using the same steps as as for the master node. Refer to {{<link url="#configure-the-password-hostname-and-ip-address" text="Configure the Password, Hostname, and IP Address">}}.
+6. On one of your worker NetQ Cloud Appliances, verify that the needed packages are present and of the correct release, version 3.3.0 and update 31.
+
+    {{<netq-install/verify-pkgs version="3.3.0" platform="appliance">}}
+
+7. Configure the IP address, hostname, and password using the same steps as as for the master node. Refer to {{<link url="#configure-the-password-hostname-and-ip-address" text="Configure the Password, Hostname, and IP Address">}}.
 
     {{<notice note>}}
 Make a note of the private IP addresses you assign to the master and worker nodes. They are needed for later installation steps.
     {{</notice>}}
 
-7. Verify that the needed packages are present and of the correct release, version 3.2.1 and update 31 or later.
+8. Verify that the needed packages are present and of the correct release, version 3.3.0.
 
-    {{<netq-install/verify-pkgs version="3.2.1" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="3.3.0" platform="appliance">}}
 
-8. Verify that the needed files are present and of the correct release.
+9. Verify that the needed files are present and of the correct release.
 
-    {{<netq-install/verify-image deployment="cloud" version="3.2.1">}}
+    {{<netq-install/verify-image deployment="cloud" version="3.3.0">}}
 
-9. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
+10. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-10. Run the Bootstrap CLI on the worker node.
+11. Run the Bootstrap CLI on the worker node.
 
-    {{<netq-install/bootstrap server="cluster" version="3.2.1" deployment="cloud" platform="appliance">}}
+    {{<netq-install/bootstrap server="cluster" version="3.3.0" deployment="cloud" platform="appliance">}}
 
-11. Repeat Steps 5-10 for each additional worker NetQ Cloud Appliance.
+12. Repeat Steps 5-10 for each additional worker NetQ Cloud Appliance.
 
 The final step is to install and activate the NetQ software on each appliance in your cluster.  You can do this using the Admin UI or the CLI.
 

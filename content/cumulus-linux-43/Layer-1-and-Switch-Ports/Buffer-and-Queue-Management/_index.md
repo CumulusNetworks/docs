@@ -150,7 +150,7 @@ After the downstream switch sends a PFC frame upstream, it continues to receive 
 
 Priority flow control is fully supported on both {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Broadcom%20Apollo2&asic%5B1%5D=Broadcom%20Firebolt3&asic%5B2%5D=Broadcom%20Helix4&asic%5B3%5D=Broadcom%20Hurricane2&asic%5B4%5D=Broadcom%20Maverick&asic%5B5%5D=Broadcom%20Tomahawk&asic%5B6%5D=Broadcom%20Tomahawk%2B&asic%5B7%5D=Broadcom%20Tomahawk2&asic%5B8%5D=Broadcom%20Trident&asic%5B9%5D=Broadcom%20Trident%2B&asic%5B10%5D=Broadcom%20Trident2&asic%5B11%5D=Broadcom%20Trident2%2B&asic%5B12%5D=Broadcom%20Trident3%20X7&asic%5B13%5D=Broadcom%20Triumph2&CPUType=x86_64&Brand%5B0%5D=broadcomtrident&Brand%5B1%5D=broadcomtridentplus&Brand%5B2%5D=broadcomtrident2plus&Brand%5B3%5D=broadcomtriumph2&SwitchSilicon=broadcomtrident2" text="Broadcom">}} (including the Edgecore Minipack-AS8000/Trident3) and {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?vendor_name%5B0%5D=Mellanox" text="Mellanox">}} switches.
 
-PFC is disabled by default in Cumulus Linux. To configure PFC, uncomment the lines in the `priority flow control` section of the `/etc/cumulus/datapath/traffic.conf` file and update the settings.
+PFC is disabled by default in Cumulus Linux. To configure PFC, update and uncomment the settings in the `priority flow control` section of the `/etc/cumulus/datapath/traffic.conf` file.
 
 ```
 # to configure priority flow control on a group of ports:
@@ -332,7 +332,7 @@ On switches with the Mellanox Spectrum ASIC, Cumulus Linux supports cut-through 
 
 *Explicit Congestion Notification* (ECN) is defined by {{<exlink url="https://tools.ietf.org/html/rfc3168" text="RFC 3168">}}. ECN enables the Cumulus Linux switch to mark a packet to signal impending congestion instead of dropping the packet, which is how TCP typically behaves when ECN is not enabled.
 
-ECN is a layer 3 end-to-end congestion notification mechanism only. Packets can be marked as *ECN-capable transport* (ECT) by the sending server. If congestion is observed by any switch while the packet is getting forwarded, the ECT-enabled packet can be marked by the switch to indicate the congestion. The end receiver can respond to the ECN-marked packets by signaling the sending server to slow down transmission. The sending server marks a packet *ECT* by setting the least 2 significant bits in an IP header `DiffServ` (ToS) field to *01* or *10*. A packet that has the least 2 significant bits set to *00* indicates a non-ECT-enabled packet.
+ECN is a layer 3 end-to-end congestion notification mechanism only. Packets can be marked as *ECN-capable transport* (ECT) by the sending server. If congestion is observed by any switch while the packet is getting forwarded, the ECT-enabled packet can be marked by the switch to indicate the congestion. The end receiver can respond to the ECN-marked packets by signaling the sending server to slow down transmission. The sending server marks a packet *ECT* by setting the least two significant bits in an IP header `DiffServ` (ToS) field to *01* or *10*. A packet that has the least teo significant bits set to *00* indicates a non-ECT-enabled packet.
 
 The ECN mechanism on a switch only marks packets to notify the end receiver. It does not take any other action or change packet handling in any way, nor does it respond to packets that have already been marked ECN by an upstream switch.
 
@@ -342,19 +342,17 @@ The ECN mechanism on a switch only marks packets to notify the end receiver. It 
 
 {{%/notice%}}
 
-ECN is implemented on the switch using minimum and maximum threshold values for the egress queue length. When a packet enters the queue and the average queue length is between the minimum and maximum threshold values, a configurable probability value will determine whether the packet will be marked. If the average queue length is above the maximum threshold value, the packet is always marked.
+ECN is implemented on the switch using minimum and maximum threshold values for the egress queue length. When a packet enters the queue and the average queue length is between the minimum and maximum threshold values, a configurable probability value will determine whether the packet is marked. If the average queue length is above the maximum threshold value, the packet is always marked.
 
 The downstream switches with ECN enabled perform the same actions as the traffic is received. If the ECN bits are set, they remain set. The only way to overwrite ECN bits is to set the ECN bits to *11*.
 
 ECN is supported on {{<exlink url="https://cumulusnetworks.com/hcl" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum ASICs">}}.
 
-{{< expand "Click to learn how to configure ECN "  >}}
-
 ECN is disabled by default in Cumulus Linux. You can enable ECN for individual switch priorities on specific switch ports in the `/etc/cumulus/datapath/traffic.conf` file:
 
 - Specify the name of the port group in `ecn.port_group_list` in brackets; for example, `ecn.port_group_list = [ecn_port_group]`.
-- Assign a CoS value to the port group in `ecn.ecn_port_group.cos_list`. If the CoS value of a packet matches the value of this setting, then ECN is applied. Note that *ecn\_port\_group* is the name of a port group you specified above.
-- Populate the port group with its member ports (`ecn.ecn_port_group.port_set`), where *ecn\_port\_group* is the name of the port group you specified above. Congestion is measured on the egress port queue for the ports listed here, using the average queue length: if congestion is present, a packet entering the queue may be marked to indicate that congestion was observed. Marking a packet involves setting the least 2 significant bits in the IP header DiffServ (ToS) field to *11*.
+- Assign a CoS value to the port group in `ecn.ecn_port_group.cos_list`. If the CoS value of a packet matches the value of this setting, ECN is applied.
+- Populate the port group with its member ports (`ecn.ecn_port_group.port_set`). Congestion is measured on the egress port queue for the ports listed here, using the average queue length: if congestion is present, a packet entering the queue can be marked to indicate that congestion was observed. Marking a packet involves setting the least 2 significant bits in the IP header DiffServ (ToS) field to *11*.
 - The switch priority value(s) are mapped to specific egress queues for the target switch ports.
 - The `ecn.ecn_port_group.probability` value indicates the probability of a packet being marked if congestion is experienced.
 
@@ -369,7 +367,7 @@ The following configuration example shows ECN configured for ports swp1 through 
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
 # -- to enable RED requires the latest traffic.conf
-ecn_red.port_group_list = [ROCE_ECN]
+ecn_red.port_group_list = [ecn_red_port_group]
 ecn_red.ecn_red_port_group.cos_list = [3]
 ecn_red.ecn_red_port_group.port_set = swp1-swp4,swp6
 ecn_red.ecn_red_port_group.ecn_enable = true
@@ -383,13 +381,147 @@ On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd
 
 {{<cl/restart-switchd>}}
 
-{{< /expand >}}
+## Per Queue Egress Scheduling
+
+On Mellanox switches, you can set the scheduling weight per egress queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
+
+You set the weights per egress queue as a percentage. The total weight percentages for all egress queues cannot be greater than 100. If you do not define a weight for an egress queue, the value defaults to 0 (no egress scheduling is applied).
+
+You can configure per queue egress scheduling with NCLU commands or manually by editing the `/etc/cumulus/datapath/traffic.conf` file.
+
+{{< tabs "TabID432 ">}}
+
+{{< tab "NCLU Commands ">}}
+
+The following example commands configure the default profile, set the weight for egress queue 2 to 30 percent, and distribute the remaining weight percentage evenly between the remaining egress queues. The settings are applied to all ports.
+
+```
+cumulus@switch:~$ net add qos egress-sched profile default
+cumulus@switch:~$ net add qos egress-sched profile default egr_queue_2 bw_percent 30​
+cumulus@switch:~$ net add qos egress-sched profile default distribute-remaining-bw 
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+The following commands create a new profile called `profile1` for port group `port_group1`, set the weight for egress queue 2 to 24 percent, and distribute the remaining percentage evenly between the remaining egress queues:
+
+```
+cumulus@switch:~$ net add qos egress-sched profile profile1
+cumulus@switch:~$ net add qos egress-sched profile profile1 port_set swp2-swp3
+cumulus@switch:~$ net add qos egress-sched profile profile1 egr_queue_2 bw_percent 30​
+cumulus@switch:~$ net add qos egress-sched profile profile1 distribute-remaining-bw 
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "Edit the traffic.conf File ">}}
+
+To configure per queue egress scheduling manually in the `/etc/cumulus/datapath/traffic.conf` file, update and uncomment the settings in the `default egress scheduling weight per egress queue` section of the `/etc/cumulus/datapath/traffic.conf` file.
+
+The following example configures the default profile and sets the weight to 30 percent for egress queue 2 and 10 percent for the remaining egress queues. The settings are applied to all ports.
+
+```
+# default egress scheduling weight per egress queue 
+# To be applied to all the ports if port_group profile not configured
+# If you do not specify any bw_percent of egress_queues, those egress queues 
+# will assume DWRR weight 0 - no egress scheduling for those queues
+# '0' indicates strict priority
+default_egress_sched.egr_queue_0.bw_percent = 10
+default_egress_sched.egr_queue_1.bw_percent = 10
+default_egress_sched.egr_queue_2.bw_percent = 30
+default_egress_sched.egr_queue_3.bw_percent = 10
+default_egress_sched.egr_queue_4.bw_percent = 10
+default_egress_sched.egr_queue_5.bw_percent = 10
+default_egress_sched.egr_queue_6.bw_percent = 10
+default_egress_sched.egr_queue_7.bw_percent = 10
+```
+
+The following example creates a new profile called `profile1` for port group `port_group1`, sets the weight to 30 percent for egress queue 1 and 2, no egress scheduling for egress queue 6 and 7, and 10 percent for the remaining egress queues:
+
+```
+# port_group profile for egress scheduling weight per egress queue 
+# If you do not specify any bw_percent of egress_queues, those egress queues 
+# will assume DWRR weight 0 - no egress scheduling for those queues
+# '0' indicates strict priority
+profile1_egress_sched.port_group_list = [sched_port_group1]
+profile1_egress_sched.sched_port_group1.port_set = swp2-swp3
+profile1_egress_sched.sched_port_group1.egr_queue_0.bw_percent = 10
+profile1_egress_sched.sched_port_group1.egr_queue_1.bw_percent = 30
+profile1_egress_sched.sched_port_group1.egr_queue_2.bw_percent = 30
+profile1_egress_sched.sched_port_group1.egr_queue_3.bw_percent = 10
+profile1_egress_sched.sched_port_group1.egr_queue_4.bw_percent = 10
+profile1_egress_sched.sched_port_group1.egr_queue_5.bw_percent = 10
+profile1_egress_sched.sched_port_group1.egr_queue_6.bw_percent = 0
+profile1_egress_sched.sched_port_group1.egr_queue_7.bw_percent = 0
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+## Traffic Shaping
+
+Configure traffic shaping to regulate network traffic by using a lower bitrate than the physical interface is capable of. Traffic shaping optimizes performance, improves latency, and can increase usable bandwidth.
+
+You can configure traffic shaping per egress queue or aggregated at the port level.
+
+To configure traffic shaping, update and uncomment the settings in the `Hierarchical traffic shaping` section of the the `/etc/cumulus/datapath/traffic.conf` file.
+
+After configuring traffic shaping on a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the configuration changes to take effect. On a Mellanox switch, restarting `switchd` is not necessary.
+
+{{<cl/restart-switchd>}}
+
+```
+...
+# Hierarchical traffic shaping
+# to configure shaping at 2 levels:
+#     - per egress queue egr_queue_0 - egr_queue_7
+#     - port level aggregate
+# -- add or replace a port group names in the port group list
+# -- for each port group in the list
+#    -- populate the port set, e.g.
+#       swp1-swp4,swp8,swp50s0-swp50s3
+#    -- set min and max rates in kbps for each egr_queue [min, max]
+#    -- set max rate in kbps at port level
+shaping.port_group_list = [shaper_port_group]
+shaping.shaper_port_group.port_set = swp1-swp3
+shaping.shaper_port_group.egr_queue_0.shaper = [50000, 100000]
+shaping.shaper_port_group.egr_queue_1.shaper = [51000, 150000]
+shaping.shaper_port_group.egr_queue_2.shaper = [52000, 200000]
+shaping.shaper_port_group.egr_queue_3.shaper = [53000, 250000]
+shaping.shaper_port_group.egr_queue_4.shaper = [54000, 300000]
+shaping.shaper_port_group.egr_queue_5.shaper = [55000, 350000]
+shaping.shaper_port_group.egr_queue_6.shaper = [56000, 400000]
+shaping.shaper_port_group.egr_queue_7.shaper = [57000, 450000]
+# shaping.shaper_port_group.port.shaper = 900000
+
+{{%notice note%}}
+In Cumulus Linux, the burst size is set to twice the maximum rate internally; the setting is not configurable.
+{{%/notice%}}
+
+```
+The settings are described below:
+
+| Traffic Shaping Setting | Description|
+| ------------------------| ---------- |
+| `shaping.port_group_list` | The name of the port group in square brackets. |
+| `shaping.shaper_port_group.port_set` | The ports in the port group. |
+| `shaping.shaper_port_group.egr_queue_0.shaper` | The minimum and maximum rates in kbps for egress queue 0. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_1.shaper` | The minimum and maximum rates in kbps for egress queue 1. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_2.shaper` | The minimum and maximum rates in kbps for egress queue 2. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_3.shaper` | The minimum and maximum rates in kbps for egress queue 3. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_4.shaper` | The minimum and maximum rates in kbps for egress queue 4. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_5.shaper` | The minimum and maximum rates in kbps for egress queue 5. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_6.shaper` | The minimum and maximum rates in kbps for egress queue 6. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.egr_queue_7.shaper` | The minimum and maximum rates in kbps for egress queue 7. The values must be enclosed in square brackets. |
+| `shaping.shaper_port_group.port.shaper` |  The maximum rate in kbps at the port level. |
+| `scheduling.algorithm` | Cumulus Linux supports the Deficit Weighted Round Robin (DWRR) scheduling algorithm only. |
 
 ## Check Interface Buffer Status
 
-- On switches with 
-{{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
-- On Broadcom switches, the buffer status is not visible currently.
+On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
 
 ## Example Configuration File
 
@@ -458,7 +590,7 @@ traffic.packet_priority_remark_set = []
 # dscp values = {0..63}
 #traffic.cos_0.priority_remark.dscp = [0]
 #traffic.cos_1.priority_remark.dscp = [8]
-#traffic.cos_2.priority_remark.dscp = [≥16]
+#traffic.cos_2.priority_remark.dscp = [16]
 #traffic.cos_3.priority_remark.dscp = [24]
 #traffic.cos_4.priority_remark.dscp = [32]
 #traffic.cos_5.priority_remark.dscp = [40]

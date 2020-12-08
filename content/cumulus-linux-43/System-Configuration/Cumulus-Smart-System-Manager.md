@@ -1,12 +1,12 @@
 ---
-title: Cumulus Smart System Manager
+title: Smart System Manager
 author: NVIDIA
 weight: 275
 toc: 3
 ---
-The Cumulus Smart System Manager enables you to upgrade and troubleshoot an active switch with minimal disruption to the network.
+Use Smart System Manager to upgrade and troubleshoot an active switch with minimal disruption to the network.
 
-The Smart System Manager includes the following modes:
+Smart System Manager includes the following modes:
 - Restart
 - Upgrade
 - Maintenance
@@ -24,15 +24,15 @@ You must restart Cumulus Linux with either fast or cold mode after you upgrade t
 
 ## Ugrade Mode
 
-Upgrade mode provides a predictable traffic impact during the upgrade process and a flawless upgrade experience. Use upgrade mode to update all the components and services on the switch to the latest Cumulus Linux release without traffic loss, then restart the switch with one of the {{<link url="#restart-mode" text="restart modes">}}.
+Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux release without traffic loss. After upgrade is complete, you must restart the switch with one of the {{<link url="#restart-mode" text="restart modes">}}.
 
 Upgrade mode includes the following options.
 
 | <div style="width:150px">Option | <div style="width:150px">Desciption | <div style="width:250px">Command |
 |-------------- | ---------- | ------- |
-| `all` | Upgrades all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.  | `cl system upgrade all` |
+| `all` | Runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.  | `cl system upgrade all` |
 | `dry-run` | Provides information on the components that will be upgraded. | `cl system upgrade dry-run` |
-| `status` | Shows the current status of the system | `cl system upgrade status` |
+| `status` | Shows the current status of the system. | `cl system upgrade status` |
 
 The following example commands upgrade the switch to the latest release, shows the current system status, then restarts the switch in fast mode (reloads the kernel and software stack without a hard reset of the hardware):
 
@@ -56,12 +56,6 @@ Run the following command to enable maintenance mode. When maintenance mode is e
 cumulus@switch:~$ cl system maintenance enable
 ```
 
-Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is disabled, Smart System Manager performs a {{<link url="#restart-mode" text="fast restart">}}, runs a BGP graceful restart and brings the MLAG port link back up. `switchd` maintains full capability.
-
-```
-cumulus@switch:~$ cl system maintenance disable
-```
-
 You can use an additional option to bring all the ports down, then up to restore the port admin state.
 
 ```
@@ -70,5 +64,11 @@ cumulus@switch:~$ cl system maintenance port up
 ```
 
 {{%notice note%}}
-You must restore the port states before exiting maintenance mode.
+Before you exit maintenance mode, be sure to bring the ports back up.
 {{%/notice%}}
+
+Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is disabled, Smart System Manager performs a {{<link url="#restart-mode" text="fast restart">}}, runs a BGP graceful restart and brings the MLAG port link back up. `switchd` maintains full capability.
+
+```
+cumulus@switch:~$ cl system maintenance disable
+```

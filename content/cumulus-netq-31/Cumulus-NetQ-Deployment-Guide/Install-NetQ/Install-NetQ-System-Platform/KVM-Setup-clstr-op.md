@@ -29,29 +29,37 @@ Follow these steps to setup and configure your VM on a cluster of servers in an 
 
     {{<netq-install/verify-cmd deployment="onprem">}}
 
-6. Run the Bootstrap CLI on the master node. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+6. Change the hostname for the VM from the default value.
+
+    {{<netq-install/set-hostname>}}
+
+7. Run the Bootstrap CLI on the master node. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap version="3.1.0" server="single" platform="vm" deployment="onprem">}}
 
-7. Verify that your first worker node meets the VM requirements, as described in Step 1.
+8. Verify that your first worker node meets the VM requirements, as described in Step 1.
 
-8. Confirm that the needed ports are open for communications, as described in Step 2.
+9. Confirm that the needed ports are open for communications, as described in Step 2.
 
-9. Open your hypervisor and setup the VM in the same manner as for the master node.
+10. Open your hypervisor and setup the VM in the same manner as for the master node.
 
     {{<notice note>}}
 Make a note of the private IP address you assign to the worker node. It is needed for later installation steps.
     {{</notice>}}
 
-10. Verify the worker node is ready for installation. Fix any errors indicated before installing the NetQ software.
+11. Verify the worker node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="onprem">}}
 
-11. Run the Bootstrap CLI on the worker node.
+12. Change the hostname for the VM from the default value.
+
+    {{<netq-install/set-hostname>}}
+
+13. Run the Bootstrap CLI on the worker node.
 
     {{<netq-install/bootstrap version="3.1.0" server="cluster" platform="vm" deployment="onprem">}}
 
-12. Repeat Steps 7 through 11 for each additional worker node you want in your cluster.
+14. Repeat Steps 8 through 13 for each additional worker node you want in your cluster.
 
 The final step is to install and activate the Cumulus NetQ software. You can do this using the Admin UI or the CLI.
 

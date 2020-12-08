@@ -23,6 +23,31 @@ To work around this issue, bring the bond interface down, then up with the ip li
 <td></td>
 </tr>
 <tr>
+<td>CM-32275</td>
+<td><p>After you reboot the EdgeCore AS7712-32X  switch or the Celestica Pebble switch, switchd fails to restart and you see logs in switchd.log similar to the following:</p>
+
+...
+Nov 12 12:20:05.063876 leaf01 switchd[9867]:
+Nov 12 12:20:05.064310 leaf01 switchd[9867]: hal_bcm_console.c:294 0:system_init:
+Nov 12 12:20:05.064428 leaf01 switchd[9867]: hal_bcm_console.c:294 system_init: Misc init failed: Operation timed out
+Nov 12 12:20:05.064464 leaf01 switchd[9867]:
+Nov 12 12:20:05.091995 leaf01 switchd[9867]: hal_bcm_console.c:294 LED: Loading 256 bytes into LED program memory
+Nov 12 12:20:05.092029 leaf01 switchd[9867]:
+Nov 12 12:20:05.099547 leaf01 switchd[9867]: hal_bcm_console.c:294 PORT: Error: bcm ports not initialized
+Nov 12 12:20:05.099579 leaf01 switchd[9867]:
+Nov 12 12:20:05.099646 leaf01 switchd[9867]: hal_bcm_console.c:294 Error: file /var/lib/cumulus/rc.datapath_0: line 81 (error code -1): script terminated
+Nov 12 12:20:05.099667 leaf01 switchd[9867]:
+Nov 12 12:20:05.099775 leaf01 switchd[9867]: hal_bcm_console.c:294 Error: file /etc/bcm.d/rc.soc: line 70 (error code -1): script terminated
+Nov 12 12:20:05.099798 leaf01 switchd[9867]:
+Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
+Nov 12 12:20:05.099892 leaf01 switchd[9867]:
+Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
+
+</td>
+<td>3.7.11-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32226</td>
 <td><p>If switchd successfully signals clagd that it is going down, clagd stops responding to keepalive echo requests from the peer instead of sending a good bye to the peer over both the peerlink and the backup switch. Eventually, the keepalive timer expires and the secondary switch becomes the primary, and brings the bonds and VNIs back up. However, if switchd does not successfully signal it is going down, (in the event of a crash), the primary switch continues to respond to keepalives, and the bonds and VNIs are down on both peers. </p></td>
 <td>3.7.12-3.7.14</td>
@@ -2245,6 +2270,31 @@ CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All 
 Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
 Fixed: 2.1+dfsg-12+deb8u18</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32275</td>
+<td><p>After you reboot the EdgeCore AS7712-32X  switch or the Celestica Pebble switch, switchd fails to restart and you see logs in switchd.log similar to the following:</p>
+
+...
+Nov 12 12:20:05.063876 leaf01 switchd[9867]:
+Nov 12 12:20:05.064310 leaf01 switchd[9867]: hal_bcm_console.c:294 0:system_init:
+Nov 12 12:20:05.064428 leaf01 switchd[9867]: hal_bcm_console.c:294 system_init: Misc init failed: Operation timed out
+Nov 12 12:20:05.064464 leaf01 switchd[9867]:
+Nov 12 12:20:05.091995 leaf01 switchd[9867]: hal_bcm_console.c:294 LED: Loading 256 bytes into LED program memory
+Nov 12 12:20:05.092029 leaf01 switchd[9867]:
+Nov 12 12:20:05.099547 leaf01 switchd[9867]: hal_bcm_console.c:294 PORT: Error: bcm ports not initialized
+Nov 12 12:20:05.099579 leaf01 switchd[9867]:
+Nov 12 12:20:05.099646 leaf01 switchd[9867]: hal_bcm_console.c:294 Error: file /var/lib/cumulus/rc.datapath_0: line 81 (error code -1): script terminated
+Nov 12 12:20:05.099667 leaf01 switchd[9867]:
+Nov 12 12:20:05.099775 leaf01 switchd[9867]: hal_bcm_console.c:294 Error: file /etc/bcm.d/rc.soc: line 70 (error code -1): script terminated
+Nov 12 12:20:05.099798 leaf01 switchd[9867]:
+Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
+Nov 12 12:20:05.099892 leaf01 switchd[9867]:
+Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
+
+</td>
+<td>3.7.11-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -5025,6 +5075,31 @@ CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All 
 Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
 Fixed: 2.1+dfsg-12+deb8u18</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32275</td>
+<td><p>After you reboot the EdgeCore AS7712-32X  switch or the Celestica Pebble switch, switchd fails to restart and you see logs in switchd.log similar to the following:</p>
+
+...
+Nov 12 12:20:05.063876 leaf01 switchd[9867]:
+Nov 12 12:20:05.064310 leaf01 switchd[9867]: hal_bcm_console.c:294 0:system_init:
+Nov 12 12:20:05.064428 leaf01 switchd[9867]: hal_bcm_console.c:294 system_init: Misc init failed: Operation timed out
+Nov 12 12:20:05.064464 leaf01 switchd[9867]:
+Nov 12 12:20:05.091995 leaf01 switchd[9867]: hal_bcm_console.c:294 LED: Loading 256 bytes into LED program memory
+Nov 12 12:20:05.092029 leaf01 switchd[9867]:
+Nov 12 12:20:05.099547 leaf01 switchd[9867]: hal_bcm_console.c:294 PORT: Error: bcm ports not initialized
+Nov 12 12:20:05.099579 leaf01 switchd[9867]:
+Nov 12 12:20:05.099646 leaf01 switchd[9867]: hal_bcm_console.c:294 Error: file /var/lib/cumulus/rc.datapath_0: line 81 (error code -1): script terminated
+Nov 12 12:20:05.099667 leaf01 switchd[9867]:
+Nov 12 12:20:05.099775 leaf01 switchd[9867]: hal_bcm_console.c:294 Error: file /etc/bcm.d/rc.soc: line 70 (error code -1): script terminated
+Nov 12 12:20:05.099798 leaf01 switchd[9867]:
+Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
+Nov 12 12:20:05.099892 leaf01 switchd[9867]:
+Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
+
+</td>
+<td>3.7.11-3.7.14</td>
 <td></td>
 </tr>
 <tr>
@@ -8023,6 +8098,31 @@ CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All 
 Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
 Fixed: 2.1+dfsg-12+deb8u18</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32275</td>
+<td><p>After you reboot the EdgeCore AS7712-32X  switch or the Celestica Pebble switch, switchd fails to restart and you see logs in switchd.log similar to the following:</p>
+
+...
+Nov 12 12:20:05.063876 leaf01 switchd[9867]:
+Nov 12 12:20:05.064310 leaf01 switchd[9867]: hal_bcm_console.c:294 0:system_init:
+Nov 12 12:20:05.064428 leaf01 switchd[9867]: hal_bcm_console.c:294 system_init: Misc init failed: Operation timed out
+Nov 12 12:20:05.064464 leaf01 switchd[9867]:
+Nov 12 12:20:05.091995 leaf01 switchd[9867]: hal_bcm_console.c:294 LED: Loading 256 bytes into LED program memory
+Nov 12 12:20:05.092029 leaf01 switchd[9867]:
+Nov 12 12:20:05.099547 leaf01 switchd[9867]: hal_bcm_console.c:294 PORT: Error: bcm ports not initialized
+Nov 12 12:20:05.099579 leaf01 switchd[9867]:
+Nov 12 12:20:05.099646 leaf01 switchd[9867]: hal_bcm_console.c:294 Error: file /var/lib/cumulus/rc.datapath_0: line 81 (error code -1): script terminated
+Nov 12 12:20:05.099667 leaf01 switchd[9867]:
+Nov 12 12:20:05.099775 leaf01 switchd[9867]: hal_bcm_console.c:294 Error: file /etc/bcm.d/rc.soc: line 70 (error code -1): script terminated
+Nov 12 12:20:05.099798 leaf01 switchd[9867]:
+Nov 12 12:20:05.099871 leaf01 switchd[9867]: hal_bcm_console.c:294 ERROR loading rc script on unit 0
+Nov 12 12:20:05.099892 leaf01 switchd[9867]:
+Nov 12 12:20:05.099943 leaf01 switchd[9867]: hal_bcm_console.c:299 CRIT loading of rc script failed, aborting!
+
+</td>
+<td>3.7.11-3.7.14</td>
 <td></td>
 </tr>
 <tr>

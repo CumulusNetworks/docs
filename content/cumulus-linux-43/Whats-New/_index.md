@@ -29,7 +29,9 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="Optional-BGP-Configuration/#suppress-route-advertisement" text="Suppress Route Advertisement">}}
 - {{<link url="SPAN-and-ERSPAN" text="NCLU commands for SPAN and ERSPAN">}}
 - {{<link url="DHCP-Snooping" text="DHCP snooping">}}
-- QoS traffic shaping
+- QoS enhancements:
+  - {{<link url="Buffer-and-Queue-Management#traffic-shaping" text="Traffic shaping">}}
+  - {{<link url="Buffer-and-Queue-Management#scheduling-weights-per-egress-queue" text="Scheduling weights per egress queue">}}
 - {{<link url="Netfilter-ACLs/#nonatomic-update-mode-and-atomic-update-mode" text="Incremental nonatomic updates">}} now supported on Mellanox switches
 - {{<link title="Mellanox What Just Happened (WJH)" text="Mellanox WJH commands">}} to troubleshoot and diagnose network issues
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming">}} now supports LACP bypass

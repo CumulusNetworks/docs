@@ -7,6 +7,38 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32622</td>
+<td><p>The following vulnerability has been announced in OpenSSL:<br/>
+CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference when both GENERAL_NAMEs contain an EDIPARTYNAME, resulting in denial of service.  More information can be found at <a href="https://www.openssl.org/news/secadv/20201208.txt" class="external-link" rel="nofollow">https://www.openssl.org/news/secadv/20201208.txt</a> .<br/>
+Vulnerable: &lt;= 1.1.1d-0+deb10u3<br/>
+Fixed: 1.1.1d-0+deb10u4</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32592</td>
+<td><p>CVE-2020-27670 CVE-2020-27671 CVE-2020-27672 CVE-2020-27674 CVE-2020-28368: Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or information leaks.<br/>
+Vulnerable: &lt; 4.11.4+57-g41a822c392-1<br/>
+Fixed: 4.11.4+57-g41a822c392-1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32545</td>
+<td><p>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the /etc/snmp/snmpd.conf file. </p>
+
+proc watchfrr
+proc mstpd
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
+
+</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32532</td>
 <td><p>CVE-2020-8927: A buffer overflow exists in the Brotli library versions prior to 1.0.8 where an attacker controlling the input length of a "one-shot" decompression request to a script can trigger a crash, which happens when copying over chunks of data larger than 2 GiB.  If one cannot update to a fixed version, we recommend to use the "streaming" API as opposed to the "one-shot" API, and impose chunk size limits.<br/>
 Vulnerable: 1.0.7-2<br/>
@@ -47,6 +79,12 @@ Fixed: 2.4.47+dfsg-3+deb10u4</p></td>
 <td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
 <td>3.0.0-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32112</td>
+<td><p>On the ARM platform, NTP peer associations slowly increase to larger offsets (~500ms).</p></td>
+<td>4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -2369,6 +2407,38 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32622</td>
+<td><p>The following vulnerability has been announced in OpenSSL:<br/>
+CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference when both GENERAL_NAMEs contain an EDIPARTYNAME, resulting in denial of service.  More information can be found at <a href="https://www.openssl.org/news/secadv/20201208.txt" class="external-link" rel="nofollow">https://www.openssl.org/news/secadv/20201208.txt</a> .<br/>
+Vulnerable: &lt;= 1.1.1d-0+deb10u3<br/>
+Fixed: 1.1.1d-0+deb10u4</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32592</td>
+<td><p>CVE-2020-27670 CVE-2020-27671 CVE-2020-27672 CVE-2020-27674 CVE-2020-28368: Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or information leaks.<br/>
+Vulnerable: &lt; 4.11.4+57-g41a822c392-1<br/>
+Fixed: 4.11.4+57-g41a822c392-1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32545</td>
+<td><p>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the /etc/snmp/snmpd.conf file. </p>
+
+proc watchfrr
+proc mstpd
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
+
+</td>
+<td>3.7.12-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32532</td>
 <td><p>CVE-2020-8927: A buffer overflow exists in the Brotli library versions prior to 1.0.8 where an attacker controlling the input length of a "one-shot" decompression request to a script can trigger a crash, which happens when copying over chunks of data larger than 2 GiB.  If one cannot update to a fixed version, we recommend to use the "streaming" API as opposed to the "one-shot" API, and impose chunk size limits.<br/>
 Vulnerable: 1.0.7-2<br/>
@@ -2409,6 +2479,12 @@ Fixed: 2.4.47+dfsg-3+deb10u4</p></td>
 <td><p>OpenSSH is vulnerable to CVE-2020-14145, as described in <a href="https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf" class="external-link" rel="nofollow">https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf</a>.  <br/>
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</p></td>
 <td>3.0.0-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32112</td>
+<td><p>On the ARM platform, NTP peer associations slowly increase to larger offsets (~500ms).</p></td>
+<td>4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>

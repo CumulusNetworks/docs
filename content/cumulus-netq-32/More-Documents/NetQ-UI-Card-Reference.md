@@ -2303,7 +2303,7 @@ The *Session Summary* tab displays:
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Session Summary (Network Services | EVPN Session)</td>
+<td>Session Summary (Network Services|EVPN Session)</td>
 </tr>
 <tr class="even">
 <td>Summary bar</td>
@@ -2354,7 +2354,7 @@ The *Configuration File Evolution* tab displays:
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>(Network Services | EVPN Session) Configuration File Evolution.</td>
+<td>(Network Services|EVPN Session) Configuration File Evolution.</td>
 </tr>
 <tr class="even">
 <td>{{<img src="/images/netq/ntwk-svcs-single-evpn-vtep-count-icon-230.png" width="20" height="20">}}</td>
@@ -2373,8 +2373,7 @@ The *Configuration File Evolution* tab displays:
 </tbody>
 </table>
 
-The full screen EVPN Session card provides tabs for all EVPN sessions
-and all events.
+The full screen EVPN Session card provides tabs for all EVPN sessions and all events.
 
 {{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-allsess-tab-241.png" width="700">}}
 
@@ -2392,7 +2391,7 @@ and all events.
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services | EVPN.</td>
+<td>Network Services|EVPN.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>

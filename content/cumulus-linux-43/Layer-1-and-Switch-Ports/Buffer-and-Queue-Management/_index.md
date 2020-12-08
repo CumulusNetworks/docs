@@ -383,7 +383,7 @@ On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd
 
 ## Per Queue Egress Scheduling
 
-On Mellanox switches, you can set the scheduling weight per egress queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
+On Mellanox switches, you can set the scheduling weight per egress queue, which determines the amount of bandwidth assigned to the queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
 
 You set the weights per egress queue as a percentage. The total weight percentages for all egress queues cannot be greater than 100. If you do not define a weight for an egress queue, the value defaults to 0 (no egress scheduling is applied).
 
@@ -438,7 +438,7 @@ default_egress_sched.egr_queue_6.bw_percent = 10
 default_egress_sched.egr_queue_7.bw_percent = 10
 ```
 
-The following example creates a new profile called `profile1` for port group `port_group1`, sets the weight to 30 percent for egress queue 1 and 2, no egress scheduling for egress queue 6 and 7, and 10 percent for the remaining egress queues:
+The following example creates a new profile called `profile1` for port group `port_group1`, sets the weight to 30 percent for egress queue 1 and 2, to 0 for egress queue 6 and 7 (always send every single packet from egress queue 6 and 7 before any other queue), and 10 percent for the remaining egress queues:
 
 ```
 # port_group profile for egress scheduling weight per egress queue 
@@ -496,12 +496,12 @@ shaping.shaper_port_group.egr_queue_5.shaper = [55000, 350000]
 shaping.shaper_port_group.egr_queue_6.shaper = [56000, 400000]
 shaping.shaper_port_group.egr_queue_7.shaper = [57000, 450000]
 # shaping.shaper_port_group.port.shaper = 900000
+```
 
 {{%notice note%}}
 In Cumulus Linux, the burst size is set to twice the maximum rate internally; the setting is not configurable.
 {{%/notice%}}
 
-```
 The settings are described below:
 
 | Traffic Shaping Setting | Description|

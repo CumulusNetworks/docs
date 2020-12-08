@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32532</td>
+<td><p>CVE-2020-8927: A buffer overflow exists in the Brotli library versions prior to 1.0.8 where an attacker controlling the input length of a "one-shot" decompression request to a script can trigger a crash, which happens when copying over chunks of data larger than 2 GiB.  If one cannot update to a fixed version, we recommend to use the "streaming" API as opposed to the "one-shot" API, and impose chunk size limits.<br/>
+Vulnerable: 1.0.7-2<br/>
+Fixed: 1.0.7-2+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32412</td>
 <td><p>CVE-2020-28196: MIT Kerberos 5 (aka krb5) before 1.17.2 and 1.18.x before 1.18.3 allows unbounded recursion via an ASN.1-encoded Kerberos message because the lib/krb5/asn.1/asn1_encode.c support for BER indefinite lengths lacks a recursion limit.<br/>
 Vulnerable: 1.17-3<br/>
@@ -2359,6 +2367,14 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32532</td>
+<td><p>CVE-2020-8927: A buffer overflow exists in the Brotli library versions prior to 1.0.8 where an attacker controlling the input length of a "one-shot" decompression request to a script can trigger a crash, which happens when copying over chunks of data larger than 2 GiB.  If one cannot update to a fixed version, we recommend to use the "streaming" API as opposed to the "one-shot" API, and impose chunk size limits.<br/>
+Vulnerable: 1.0.7-2<br/>
+Fixed: 1.0.7-2+deb10u1</p></td>
+<td>4.0.0-4.2.1</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32412</td>

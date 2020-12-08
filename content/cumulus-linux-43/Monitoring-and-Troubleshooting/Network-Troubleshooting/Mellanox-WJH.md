@@ -23,19 +23,19 @@ cumulus@switch:~$ sudo systemctl start what-just-happened
 
 After you install and start the WJH service, you can run the following commands from the command line.
 
-| Command  | Description |
+| <div style="width:450px">Command  | Description |
 | -------  | ----------- |
 | `what-just-happened poll` | Shows information about all dropped packets due to layer 1, layer 2, layer 3, tunnel, acl, and buffer related issues. The output includes the reason for the drop and the recommended action to take. |
 | `what-just-happened poll forwarding` | Shows information about dropped packets due to forwarding-related issues (layer 2, layer 3, and tunnel only). The output includes the reason for the drop and the recommended action to take. |
 | `what-just-happened poll --aggregate` | Shows all aggregated counters. |
-| `what-just-happened poll forwarding --aggregate` | Shows all aggregated counters for forwarding-related issues. |
+| `what-just-happened poll forwarding --aggregate` | Shows all aggregated counters for forwarding-related issues only. |
 | `what-just-happened poll --export` | Saves information about all dropped packets into a file in PCAP format. |
-| `what-just-happened poll  forwarding--export` | Saves information about all dropped packets due to forwarding-related issues into a file in PCAP format. |
+| `what-just-happened poll  forwarding--export` | Saves information about all dropped packets due to forwarding-related issues only into a file in PCAP format. |
 | `what-just-happened poll --no_metadata` | Saves information about all dropped packets into a file in PCAP format without metadata. |
-| `what-just-happened poll  forwarding --no_metadata` | Saves information about all dropped packets due to forwarding-related issues into a file in PCAP format without metadata. |
+| `what-just-happened poll  forwarding --no_metadata` | Saves information about all dropped packets due to forwarding-related issues only into a file in PCAP format without metadata. |
 | `what-just-happened global configuration` | Shows WJH global configuration. |
 | `what-just-happened forwarding configuration` | Shows WJH configuration for forwarding-related issues.|
-| `what-just-happened dump` | Displays diagnostic information on the command line. |
+| `what-just-happened dump` | Displays all diagnostic information on the command line. |
 
 ## Command Examples
 

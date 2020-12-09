@@ -143,6 +143,7 @@ cumulus@switch:~$ netq show agents rotten json
 
 #### Related Commands
 
+- netq show unit-tests agent
 - netq show events
 - netq check agents
 - netq config add agent
@@ -282,6 +283,7 @@ leaf02            swp51(spine01)               default         65101      65199 
 
 #### Related Commands
 
+- netq show unit-tests bgp
 - netq show events
 - netq check bgp
 
@@ -349,6 +351,7 @@ leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8
 
 #### Related Commands
 
+- netq show unit-tests clag
 - netq show events
 - netq check clag
 
@@ -434,6 +437,7 @@ leaf04            4001       10.0.1.2         L3               Vrf RED        ye
 
 #### Related Commands
 
+- netq show unit-tests evpn
 - netq show events
 - netq check evpn
 
@@ -577,6 +581,7 @@ Count of matching link records: 10
 
 - netq show events
 - netq check interfaces
+- netq show unit-tests interfaces
 
 - - -
 
@@ -732,6 +737,7 @@ leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8
 
 - netq show events type clag
 - netq check mlag
+- netq show unit-tests mlag
 
 - - -
 
@@ -810,6 +816,7 @@ spine04           yes      oob-mgmt-server   3       ntpq
 #### Related Commands
 
 - netq check ntp
+- netq show unit-tests ntp
 
 - - -
 
@@ -887,6 +894,7 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 
 - netq show events
 - netq check ospf
+- netq show unit-tests ospf
 
 - - -
 
@@ -999,6 +1007,75 @@ spine04           fan4            fan tray 2, fan 2                   ok        
 
 - netq show events
 - netq check sensors
+- netq show unit-tests sensors
+
+- - -
+
+### netq show unit-tests
+
+Displays a list of all validation tests that are run for the associated `netq check` command. The output provides an ID, name, and brief description of each validation test.
+
+Refer to {{<link title="Validate Operations" text="Validate Operations">}} for additional usage information.
+
+#### Syntax
+
+```
+netq show unit-tests agent [json]
+netq show unit-tests bgp [json]
+netq show unit-tests clag [json]
+netq show unit-tests cl-version [json]
+netq show unit-tests evpn [json]
+netq show unit-tests interfaces [json]
+netq show unit-tests license [json]
+netq show unit-tests mlag [json]
+netq show unit-tests mtu [json]
+netq show unit-tests ntp [json]
+netq show unit-tests ospf [json]
+netq show unit-tests sensors [json]
+netq show unit-tests vlan [json]
+netq show unit-tests vxlan [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| agent, bgp, clag, cl-version, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | NA | Display tests run during standard validation for the protocol or service with this name |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.1 | Swapped the order of the `unit-tests` keyword and the protocol or service name |
+| ??? | Introduced |
+
+#### Sample Usage
+
+Show tests for BGP
+
+```
+cumulus@netq-ts:~$ netq show unit-tests bgp
+   0 : Session Establishment     - check if BGP session is in established state
+   1 : Address Families          - check if tx and rx address family advertisement is consistent between peers of a BGP session
+   2 : Router ID                 - check for BGP router id conflict in the network
+
+Configured global result filters:
+
+Configured per test result filters:
+```
+
+#### Related Commands
+
+- netq show events
+- netq check sensors
 
 - - -
 
@@ -1079,6 +1156,7 @@ leaf04            20     bond2,vni20                         yes  Tue Nov 24 20:
 - netq show interfaces
 - netq show macs
 - netq check vlan
+- netq show unit-tests vlan
 
 - - -
 
@@ -1180,6 +1258,7 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 - netq show events
 - netq show interfaces
 - netq check vxlan
+- netq show unit-tests vxlan
 
 - - -
 
@@ -2883,6 +2962,7 @@ unit-tests
 
 ## Events and Notification
 
+
 ### netq show events
 
 Display changes over time
@@ -3136,74 +3216,11 @@ Usage:
    netq help verbose
    netq help list
 
-   netq resolve [vrf <vrf>|vlan <1-4096>] [around <text-time>]
-   netq trace <mac> [vlan <1-4096>] from <src-hostname> [vrf <vrf>] [around <text-time>] [json]
-   netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json]
 
-   netq [<hostname>] show docker container [<ipv4> | <ipv6>] [portmap] [name <container-name> | image <container-image> | service <swarm-service-name> | network <network-name> ] [around <text-time>] [json]
-   netq [<hostname>] show docker container [<ipv4> | <ipv6>] [portmap] [name <container-name> | image <container-image> | service <swarm-service-name> | network <network-name> ] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show docker container [<ipv4> | <ipv6>] <proto> [<port>] [network <network-name>] [around <text-time>] [json]
-   netq [<hostname>] show docker container [<ipv4> | <ipv6>] <proto> [<port>] [network <network-name>] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show docker container [<ipv4> | <ipv6> | name <container-name> | image <container-image> | service <swarm-service-name> | network <network-name> ] connectivity [around <text-time>] [json]
-   netq <hostname> show docker container adjacent [interfaces <remote-physical-interface>] [around <text-time>] [json]
 
-   netq [<hostname>] show docker summary [<docker-version>] [around <text-time>] [json]
-   netq [<hostname>] show docker summary [<docker-version>] changes [between <text-time> and <text-endtime>] [json]
-
-    netq config add agent docker-monitor [poll-period <text-duration-period>]
-    netq config del agent docker-monitor
-
-   netq [<hostname>] show docker network [name <network-name> | <ipv4/prefixlen>] [brief] [around <text-time>] [json]
-   netq [<hostname>] show docker network [name <network-name> | <ipv4/prefixlen>] [brief] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show docker network driver <network-driver> [brief] [around <text-time>] [json]
-   netq [<hostname>] show docker network driver <network-driver> [brief] changes [between <text-time> and <text-endtime>] [json]
-
-   netq [<hostname>] show docker service [name <swarm-service-name> | mode <mode>] [around <text-time>] [json]
-   netq [<hostname>] show docker service [name <swarm-service-name> | mode <mode>] connectivity [vrf <vrf>] [around <text-time>] [json]
-   netq <hostname> show impact docker service [<swarm-service-name>] [vrf <vrf>] [around <text-time>] [json]
-
-   netq [<hostname>] show docker swarm cluster [<cluster-name>] [node-name <cluster-node>] [around <text-time>] [json]
-   netq <hostname>   show docker swarm cluster [<cluster-name>] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show docker swarm network [<swarm-service-name>] [around <text-time>] [json]
-   netq  <hostname>  show docker swarm network [<swarm-service-name>] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show docker swarm node [<node-name> | role <role>] [cluster <cluster-name>] [around <text-time>] [json]
-   netq  <hostname>  show docker swarm node [<node-name> | role <role>] [cluster <cluster-name>] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show ntp [out-of-sync | in-sync] [around <text-time>] [json]
-   netq [<hostname>] show ntp changes [between <text-time> and <text-endtime>] [json]
-   netq check ntp [around <text-time>] [json]
-
-   netq [<hostname>] show services [<service-name>] [vrf <vrf>] [active|monitored] [around <text-time>] [json]
-   netq [<hostname>] show services [<service-name>] [vrf <vrf>] [active|monitored] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show services [<service-name>] [vrf <vrf>] status (ok|warning|error|fail) [around <text-time>] [json]
-   netq [<hostname>] show services [<service-name>] [vrf <vrf>] status (ok|warning|error|fail) changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show services [<service-name>] [vrf <vrf>] status (ok|warning|error|fail) changes [json]
-
-   netq [<hostname>] show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
-   netq [<hostname>] show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
-   netq [<hostname>] show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] changes [between <text-time> and <text-endtime>] [json]
-
-   netq [<hostname>] show interfaces [<remote-interface>] [state <remote-interface-state>] [around <text-time>] [count] [json]
-   netq [<hostname>] show interfaces [<remote-interface>] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan) [state <remote-interface-state>] [around <text-time>] [count] [json]
-   netq [<hostname>] show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan) changes [between <text-time> and <text-endtime>] [json]
-
-   netq [<hostname>] show ip neighbors [<remote-interface>] [<ipv4>|<ipv4> vrf <vrf>|vrf <vrf>] [<mac>]  [around <text-time>] [count] [json]
-   netq [<hostname>] show ip neighbors [<remote-interface>] [<ipv4>|<ipv4> vrf <vrf>|vrf <vrf>] [<mac>] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show ipv6 neighbors [<remote-interface>] [<ipv6>|<ipv6> vrf <vrf>|vrf <vrf>] [<mac>] [around <text-time>] [count] [json]
-   netq [<hostname>] show ipv6 neighbors [<remote-interface>] [<ipv6>|<ipv6> vrf <vrf>|vrf <vrf>] [<mac>] changes [between <text-time> and <text-endtime>] [json]
-
-   netq [<hostname>] show ip routes [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [origin] [around <text-time>] [count] [json]
-   netq [<hostname>] show ip routes [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [origin] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show ipv6 routes [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [origin] [around <text-time>] [count] [json]
-   netq [<hostname>] show ipv6 routes [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [origin] changes [between <text-time> and <text-endtime>] [json]
 
    netq [<hostname>] show interfaces physical [<physical-port>] [empty|plugged] [peer] [vendor <module-vendor> | model <module-model>| module] [around <text-time>] [json]
    netq [<hostname>] show interfaces physical [<physical-port>] [empty|plugged] [vendor <module-vendor> | model <module-model> | module] changes [between <text-time> and <text-endtime>] [json]
-   netq check interfaces [unverified] [<physical-hostname> <physical-port> | <physical-hostname>] [around <text-time>] [json]
-   netq check interfaces <physical-hostname> <physical-port> and <peer-physical-hostname> <peer-physical-port> [around <text-time>] [json]
-
-   netq check license [around <text-time>] [json]
    netq [<hostname>] show inventory brief [json]
    netq [<hostname>] show inventory asic [vendor <asic-vendor>| model <asic-model>| model-id <asic-model-id>] [json]
    netq [<hostname>] show inventory board [vendor <board-vendor>|model <board-model>] [json]
@@ -3215,27 +3232,6 @@ Usage:
    netq [<hostname>] show inventory os [version <os-version>|name <os-name>] [json]
    netq [<hostname>] show inventory os [version <os-version>|name <os-name>] changes [between <text-time> and <text-endtime>] [json]
 
-   netq check sensors [around <text-time>] [json]
-   netq [<hostname>] show sensors all [changes|around <text-time>] [json]
-   netq [<hostname>] show sensors psu [<psu-name>] [changes|around <text-time>] [json]
-   netq [<hostname>] show sensors temp [<temp-name>] [changes|around <text-time>] [json]
-   netq [<hostname>] show sensors fan [<fan-name>] [changes|around <text-time>] [json]
-
-   netq check evpn [around <text-time>] [json]
-   netq [<hostname>] show evpn [vni <text-vni>] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show evpn [vni <text-vni>] [around <text-time>] [json]
-
-   netq check lnv [around <text-time>] [json]
-   netq [<hostname>] show lnv [around <text-time>] [json]
-   netq [<hostname>] show lnv changes [between <text-time> and <text-endtime>] [json]
-   netq check vxlan [around <text-time>] [json]
-   netq [<hostname>] show vxlan [vni <text-vni>] [around <text-time>] [json]
-   netq [<hostname>] show vxlan [vni <text-vni>] changes [between <text-time> and <text-endtime>] [json]
-   netq check agents [json]
-   netq [<hostname>] show agents [changes] [json]
-
-   netq [<hostname>] show changes [<ipv4>|<ipv6>|<ipv4> vrf <vrf>|<ipv6> vrf <vrf>|vrf <vrf>] between <text-time> and <text-endtime> [json]
-
    netq config (add|del) experimental
    netq config (add|del) addons
    netq config (add|del) agent (stats|sensors)
@@ -3246,46 +3242,10 @@ Usage:
    netq config add server <ip-server>|<text-server-name>  <ip-server>|<text-server-name>  <ip-server>|<text-server-name>  [vrf <text-vrf>]
    netq config del server
 
-
    netq config (start|stop|status|restart) agent
    netq config add agent loglevel [debug|info|warning|error]
    netq config del agent loglevel
    netq config show agent [kubernetes-monitor|docker-monitor|loglevel|stats|sensors] [json]
-
-   netq example check bgp
-   netq example check clag
-   netq example check mtu
-   netq example find-duplicates
-   netq example find-origin
-   netq example ha-setup
-   netq example query
-   netq example regexp
-   netq example resolve macs
-   netq example resolve routes
-   netq example startup
-   netq example stats
-   netq example trace
-   netq config ts add notifier slack <text-notifier-name> webhook <text-webhook-url> [severity info | severity warning | severity error | severity debug | severity info] [tag <text-slack-tag>]
-   netq config ts add notifier pagerduty <text-notifier-name> api-access-key <text-api-access-key> api-integration-key <text-api-integration-key> [severity info | severity warning | severity error | severity debug | severity info]
-   netq config ts add notifier pagerduty <text-notifier-name> api-integration-key <text-api-integration-key> api-access-key <text-api-access-key> [severity info | severity warning | severity error | severity debug | severity info]
-   netq config ts add notifier filter <text-filter-name> before <text-filter-name-anchor>
-   netq config ts add notifier filter <text-filter-name> after <text-filter-name-anchor>
-   netq config ts add notifier filter <text-filter-name> rule (BgpSession|ClagSession|LnvSession|Link|Port|Services|OS|Temp|Fan|PSU|License) <text-rule-value>
-   netq config ts add notifier filter <text-filter-name> output <text-notifier-name>
-   netq config ts add notifier loglevel [debug|info|warning|error]
-   netq config ts del notifier loglevel
-   netq config ts del notifier slack|pagerduty <text-notifier-name>
-   netq config ts del notifier filter <text-notifier-name>
-   netq config ts (start|stop|status|restart) notifier
-   netq config ts show notifier [json]
-   netq config ts show notifier loglevel [json]
-
-
-   netq config ts add server <ip-master> <ip-replica> <ip-replica>
-   netq config ts show server [<ip-server>|<text-server-name>|config] [json]
-   netq config ts reset-cluster
-
-   netq ts decommission <hostname-to-purge> purge
 
 ## Kubernetes Commands
 
@@ -3323,17 +3283,6 @@ Usage:
    netq <hostname> show impact kubernetes replica-set [master <kube-master-node>] [name <kube-rs-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rs-label>] [around <text-time>] [json]
    netq <hostname> show impact kubernetes deployment [master <kube-master-node>] [name <kube-deployment-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-deployment-label>] [around <text-time>] [json]
 
-   
-   netq [<hostname>] show clag [around <text-time>] [json]
-   netq [<hostname>] show clag changes [between <text-time> and <text-endtime>] [json]
-
-   netq [<hostname>] show lldp [<remote-physical-interface>] [around <text-time>] [json]
-   netq [<hostname>] show lldp [<remote-physical-interface>] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show macs [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
-   netq [<hostname>] show macs [<mac>] [vlan <1-4096>] [around <text-time>] count [json]
-   netq [<hostname>] show macs [<mac>] [vlan <1-4096>] [origin] changes [between <text-time> and <text-endtime>] [json]
-   netq <hostname> show macs egress-port <egress-port> [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
-   netq <hostname> show macs egress-port <egress-port> [<mac>] [vlan <1-4096>] [origin] changes [between <text-time> and <text-endtime>] [json]
 
    netq <hostname> show stp topology [around <text-time>] [json]
 

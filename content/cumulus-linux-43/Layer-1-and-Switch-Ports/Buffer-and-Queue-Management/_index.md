@@ -26,7 +26,7 @@ The scheduler is configured to use a hybrid scheduling algorithm. It applies str
 
 You can configure Quality of Service (QoS) for switches on the following platforms only:
 
-- Broadcom Tomahawk, Trident II, Trident II+, and Trident3
+- Broadcom Tomahawk, Maverick, Trident II, Trident II+, and Trident3
 - Mellanox Spectrum, Spectrum-2, and Spectrum-3
 
 {{%/notice%}}
@@ -385,7 +385,7 @@ On a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd
 
 On Mellanox switches, you can set the scheduling weight per egress queue, which determines the amount of bandwidth assigned to the queue. Cumulus Linux supports eight queues per port. You can either use a default profile that each port inherits​ or create separate profiles that map a different set of ports. Each profile, including the default profile, has weights configured for each egress queue (0-7)​​.
 
-You set the weights per egress queue as a percentage. The total weight percentages for all egress queues cannot be greater than 100. If you do not define a weight for an egress queue, the value defaults to 0 (no egress scheduling is applied).
+You set the weights per egress queue as a percentage. The total weight percentages for all egress queues cannot be greater than 100. If you do not define a weight for an egress queue, the value defaults to 0 (always send every single packet in the queue).
 
 You can configure per queue egress scheduling with NCLU commands or manually by editing the `/etc/cumulus/datapath/traffic.conf` file.
 
@@ -463,7 +463,7 @@ profile1_egress_sched.sched_port_group1.egr_queue_7.bw_percent = 0
 
 ## Traffic Shaping
 
-Configure traffic shaping to regulate network traffic by using a lower bitrate than the physical interface is capable of. Traffic shaping optimizes performance, improves latency, and can increase usable bandwidth.
+Configure traffic shaping to regulate network traffic by using a lower bitrate than the physical interface is capable of. Traffic shaping preventing packets from being dropped or lost due to bandwidth limits or congestion.
 
 You can configure traffic shaping per egress queue or aggregated at the port level.
 

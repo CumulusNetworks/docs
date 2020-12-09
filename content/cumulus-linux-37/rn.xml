@@ -7,6 +7,58 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32545</td>
+<td><p>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the /etc/snmp/snmpd.conf file. </p>
+
+proc watchfrr
+proc mstpd
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
+
+</td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32541</td>
+<td><p>After upgrading Cumulus Linux with the apt-upgrade command, then rebooting an MLAG pair, if there are no bonds configured with a clag-id, the clagd service has difficulty peering, and holds all MLAG interfaces and VNIs in a proto down state.<br/>
+To work around this issue, after upgrading both switches, restart the clagd service with the sudo systemctl restart clagd command on each MLAG pair.</p></td>
+<td>3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32529</td>
+<td><p>On Mellanox switches, the ASIC temperature sensor reading reports zeros. As a result, the fan speed is higher than normal. <br/>
+You can see the temperature reading in the output of the sensors command.</p></td>
+<td>3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32516</td>
+<td><p>When using NCLU to add new BGP neighbors to existing configurations, the existence of address-family statements are ignored and the neighbors are added at the end of these lines. This might cause a problem if you try to activate these new neighbors in any of the existing address-family configurations.<br/>
+To work around this issue, configure the new BGP neighbors with vtysh.</p></td>
+<td>3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32515</td>
 <td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
 CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
@@ -2262,6 +2314,37 @@ To work around this issue, disable BFD to alleviate some of the CPU load.</p></t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32545</td>
+<td><p>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the /etc/snmp/snmpd.conf file. </p>
+
+proc watchfrr
+proc mstpd
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
+
+</td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32515</td>
@@ -5074,6 +5157,37 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32545</td>
+<td><p>If the FRR and MSTP processes go down, an SNMP TRAP is not generated even with the following configuration in the /etc/snmp/snmpd.conf file. </p>
+
+proc watchfrr
+proc mstpd
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRRis down!!!” PrErrorFlag.5 != 0
+monitor -I -r 1 -o prNames.5 -o prErrMessage.5 “Process FRR is up!!!” PrErrorFlag.5 = 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is down!!!!" prErrorFlag.3 != 0
+monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErrorFlag.3 = 0
+
+</td>
+<td>3.7.12-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32515</td>
@@ -8104,6 +8218,22 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32515</td>
@@ -11271,6 +11401,22 @@ To work around this issue, use net show interface command for LLDP output when c
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32515</td>
 <td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
 CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
@@ -14108,6 +14254,22 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32515</td>
@@ -17357,6 +17519,22 @@ To work around this issue, run the sudo ethtool -S swp1 command to collect inter
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32515</td>
 <td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
 CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
@@ -20466,6 +20644,22 @@ To work around this issue, change the value of arp_ignore to 2. See <a href="htt
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32515</td>
@@ -23940,6 +24134,22 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32515</td>
 <td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
 CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
@@ -27362,6 +27572,22 @@ This issue was discovered on the Helix4 switch but applies to all switches. <br/
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32515</td>
 <td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
 CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
@@ -30471,6 +30697,22 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32515</td>
@@ -33640,6 +33882,22 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32515</td>
@@ -36968,6 +37226,22 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32515</td>
@@ -40420,6 +40694,22 @@ Permanent MAC address sync between MLAG peers is now supported.</p></td>
 <td>3.7.6-3.7.14</td>
 </tr>
 <tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32515</td>
 <td><p>Some issues have been found in qemu, a fast processor emulator.<br/>
 CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All issues are related to assertion failures, out-of-bounds access failures or bad handling of return codes.<br/>
@@ -43372,6 +43662,22 @@ To work around this issue, remove the matching network statement. </p></td>
 <td><p>In testing, it was determined that the MD5 password configured against a BGP listen-range peer-group (used to accept and create dynamic BGP neighbors) is not enforced (connections are accepted from peers that do not specify a password). </p></td>
 <td>3.0.0-3.7.5</td>
 <td>3.7.6-3.7.14</td>
+</tr>
+<tr>
+<td>CM-32609</td>
+<td><p>CVE-2020-25709, CVE-2020-25710: Vulnerabilities in the certificate list syntax verification and in the handling of CSN normalization were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash) via specially crafted packets.<br/>
+Vulnerable: &lt;= 2.4.40+dfsg-1+deb8u7<br/>
+Fixed: 2.4.40+dfsg-1+deb8u8</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32537</td>
+<td><p>CVE-2018-19787, CVE-2020-27783: The clean_html() function of lxml, a Python library for HTML and XML processing, performed insufficient sanitisation for embedded Javascript code. This could lead to cross-site scripting or possibly the execution of arbitrary code.<br/>
+Vulnerable: &lt;= 3.4.0-1+deb8u1<br/>
+Fixed: 3.4.0-1+deb8u2</p></td>
+<td>3.0.0-3.7.14</td>
+<td></td>
 </tr>
 <tr>
 <td>CM-32515</td>

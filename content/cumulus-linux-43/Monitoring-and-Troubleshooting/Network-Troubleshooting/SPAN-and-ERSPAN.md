@@ -522,7 +522,7 @@ To enable SPAN or ERSPAN through fuse nodes, configure four files in the order l
 
    The session direction. You can specify `ingress`, `egress` or `both`.
 
-   A Bidirectional session (`both`) is not supported on Mellanox switches.
+   A Bidirectional session (`both`) is **not** supported on Mellanox switches.
 
 2. `/cumulus/switchd/config/mirror/session/<session-id.>/src`
 

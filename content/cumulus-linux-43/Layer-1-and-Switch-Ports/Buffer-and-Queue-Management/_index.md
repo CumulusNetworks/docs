@@ -463,15 +463,11 @@ profile1_egress_sched.sched_port_group1.egr_queue_7.bw_percent = 0
 
 ## Traffic Shaping
 
-Configure traffic shaping to regulate network traffic by using a lower bitrate than the physical interface is capable of. Traffic shaping preventing packets from being dropped or lost due to bandwidth limits or congestion.
+Configure traffic shaping to regulate network traffic by using a lower bitrate than the physical interface is capable of. Traffic shaping prevents packets from being dropped or lost due to bandwidth limits or congestion.
 
-You can configure traffic shaping per egress queue or aggregated at the port level.
+To configure traffic shaping, update and uncomment the settings in the `Hierarchical traffic shaping` section of the the `/etc/cumulus/datapath/traffic.conf` file. You can configure traffic shaping per egress queue or aggregated at the port level.
 
-To configure traffic shaping, update and uncomment the settings in the `Hierarchical traffic shaping` section of the the `/etc/cumulus/datapath/traffic.conf` file.
-
-After configuring traffic shaping on a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the configuration changes to take effect. On a Mellanox switch, restarting `switchd` is not necessary.
-
-{{<cl/restart-switchd>}}
+The following example shows the `Hierarchical traffic shaping` section of the the `/etc/cumulus/datapath/traffic.conf` file.
 
 ```
 ...
@@ -498,27 +494,30 @@ shaping.shaper_port_group.egr_queue_7.shaper = [57000, 450000]
 # shaping.shaper_port_group.port.shaper = 900000
 ```
 
-{{%notice note%}}
-In Cumulus Linux, the burst size is set to twice the maximum rate internally; the setting is not configurable.
-{{%/notice%}}
-
 The settings are described below:
 
 | Traffic Shaping Setting | Description|
 | ------------------------| ---------- |
-| `shaping.port_group_list` | The name of the port group in square brackets. |
-| `shaping.shaper_port_group.port_set` | The ports in the port group. |
-| `shaping.shaper_port_group.egr_queue_0.shaper` | The minimum and maximum rates in kbps for egress queue 0. The values must be enclosed in square brackets. |
-| `shaping.shaper_port_group.egr_queue_1.shaper` | The minimum and maximum rates in kbps for egress queue 1. The values must be enclosed in square brackets. |
-| `shaping.shaper_port_group.egr_queue_2.shaper` | The minimum and maximum rates in kbps for egress queue 2. The values must be enclosed in square brackets. |
-| `shaping.shaper_port_group.egr_queue_3.shaper` | The minimum and maximum rates in kbps for egress queue 3. The values must be enclosed in square brackets. |
-| `shaping.shaper_port_group.egr_queue_4.shaper` | The minimum and maximum rates in kbps for egress queue 4. The values must be enclosed in square brackets. |
-| `shaping.shaper_port_group.egr_queue_5.shaper` | The minimum and maximum rates in kbps for egress queue 5. The values must be enclosed in square brackets. |
-| `shaping.shaper_port_group.egr_queue_6.shaper` | The minimum and maximum rates in kbps for egress queue 6. The values must be enclosed in square brackets. |
-| `shaping.shaper_port_group.egr_queue_7.shaper` | The minimum and maximum rates in kbps for egress queue 7. The values must be enclosed in square brackets. |
+| `shaping.port_group_list` | The name of the port group. You must enclose the name in square brackets; for example, `shaping.port_group_list = [shaper_port_group1]`. |
+| `shaping.shaper_port_group.port_set` | The list of ports in the port group. |
+| `shaping.shaper_port_group.egr_queue_0.shaper` | The minimum and maximum rates in kbps for egress queue 0. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_1.shaper` | The minimum and maximum rates in kbps for egress queue 1. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_2.shaper` | The minimum and maximum rates in kbps for egress queue 2. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_3.shaper` | The minimum and maximum rates in kbps for egress queue 3. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_4.shaper` | The minimum and maximum rates in kbps for egress queue 4. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_5.shaper` | The minimum and maximum rates in kbps for egress queue 5. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_6.shaper` | The minimum and maximum rates in kbps for egress queue 6. You must enclose the values in square brackets. |
+| `shaping.shaper_port_group.egr_queue_7.shaper` | The minimum and maximum rates in kbps for egress queue 7. You must enclose the values in square brackets. |
 | `shaping.shaper_port_group.port.shaper` |  The maximum rate in kbps at the port level. |
 | `scheduling.algorithm` | Cumulus Linux supports the Deficit Weighted Round Robin (DWRR) scheduling algorithm only. |
 
+{{%notice note%}}
+In Cumulus Linux, the burst size is set to twice the maximum rate internally; the setting is not configurable.
+{{%/notice%}}
+
+After configuring traffic shaping on a Broadcom switch, restart `switchd` with the `sudo systemctl restart switchd.service` command to allow the configuration changes to take effect. On a Mellanox switch, restarting `switchd` is not necessary.
+
+{{<cl/restart-switchd>}}
 ## Check Interface Buffer Status
 
 On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.

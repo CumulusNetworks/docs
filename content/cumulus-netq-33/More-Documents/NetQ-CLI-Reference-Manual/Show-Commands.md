@@ -2519,6 +2519,7 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch with this name |
 | release-id | \<text-release-id\> | Only display results for the Cumulus Linux release with this ID; x.y.z format |
 | package-name | \<text-package-name\> | Only display results for the software package with this name |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
@@ -2560,16 +2561,325 @@ act-5712-09       3.7.2                bcm                  x86_64              
 
 - - -
 
-
-
 ### netq show resource-util
+
+Displays the utilization of compute resources &mdash; CPU, disk and memory &mdash; consumed by one or all switches and hosts in your network.
+
+The output provides the following information for each switch or host:
+
+- Hostname of the device
+- CPU utilization for one or all devices
+- Memory utilization for one or all devices
+- Disk name
+- Total disk storage, amount used, and percentage of total
+- When the last change was made to any of these items
+
+#### Syntax
+
+There are two forms of this command; one for CPU and memory utilization, and one for disk utilization.
+
+```
+netq [<hostname>] show resource-util
+    [cpu | memory]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show resource-util
+    disk [<text-diskname>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| disk | \<text-diskname\> | Display disk utilization |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the device with this name |
+| cpu | NA | Display utilization for CPU(s) on one or more devices |
+| memory | NA | Display utilization for memory on one or more devices |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.0 | Introduced |
+
+#### Sample Usage
+
+CPU/Memory show: All switches
+
+```
+cumulus@switch:~$ netq show resource-util
+Matching resource_util records:
+Hostname          CPU Utilization      Memory Utilization   Disk Name            Total                Used                 Disk Utilization     Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+border01          10.4                 95.2                 /dev/vda4            6042644480           1710796800           29.9                 Wed Dec  9 16:15:35 2020
+border02          10.5                 94.9                 /dev/vda4            6042644480           1710833664           29.9                 Wed Dec  9 16:15:00 2020
+fw1               4.3                  88.7                 /dev/vda4            6042644480           1746694144           30.6                 Wed Dec  9 16:14:06 2020
+fw2               4.5                  87.8                 /dev/vda4            6042644480           1746690048           30.6                 Wed Dec  9 16:13:57 2020
+leaf01            9.9                  91.9                 /dev/vda4            6042644480           1717112832           30                   Wed Dec  9 16:11:16 2020
+leaf02            12.6                 96.6                 /dev/vda4            6042644480           1713135616           30                   Wed Dec  9 16:14:17 2020
+leaf03            10.5                 94.3                 /dev/vda4            6042644480           1713045504           30                   Wed Dec  9 16:15:14 2020
+leaf04            13                   96.3                 /dev/vda4            6042644480           1713086464           30                   Wed Dec  9 16:15:25 2020
+oob-mgmt-server   0.8                  42                   /dev/vda1            486105088            80372736             17.6                 Wed Dec  9 16:15:20 2020
+...
+```
+
+CPU only: All switches
+
+```
+cumulus@switch:~$ netq show resource-util cpu
+Matching resource_util records:
+Hostname          CPU Utilization      Last Updated
+----------------- -------------------- ------------------------
+border01          10.3                 Wed Dec  9 16:17:38 2020
+border02          10.4                 Wed Dec  9 16:17:04 2020
+fw1               4.3                  Wed Dec  9 16:16:07 2020
+fw2               4.6                  Wed Dec  9 16:15:58 2020
+leaf01            10                   Wed Dec  9 16:17:25 2020
+leaf02            12.9                 Wed Dec  9 16:16:20 2020
+leaf03            10.8                 Wed Dec  9 16:17:17 2020
+leaf04            12.8                 Wed Dec  9 16:17:29 2020
+oob-mgmt-server   0.8                  Wed Dec  9 16:17:25 2020
+server01          0.8                  Wed Dec  9 16:17:27 2020
+server02          0.7                  Wed Dec  9 16:17:32 2020
+server03          0.6                  Wed Dec  9 16:17:36 2020
+server04          0.6                  Wed Dec  9 16:17:36 2020
+server05          0.9                  Wed Dec  9 16:17:14 2020
+server06          0.6                  Wed Dec  9 16:17:44 2020
+server07          0.6                  Wed Dec  9 16:17:27 2020
+server08          0.5                  Wed Dec  9 16:17:38 2020
+spine01           6.4                  Wed Dec  9 16:14:19 2020
+spine02           6.3                  Wed Dec  9 16:17:41 2020
+spine03           6.2                  Wed Dec  9 16:16:28 2020
+spine04           6.4                  Wed Dec  9 16:16:22 2020
+```
+
+Memory only: one switch
+
+```
+cumulus@switch:~$ netq leaf01 show resource-util memory
+Matching resource_util records:
+Hostname          Memory Utilization   Last Updated
+----------------- -------------------- ------------------------
+leaf01            92                   Wed Dec  9 16:19:28 2020
+```
+
+Disk show: All switches
+
+```
+cumulus@switch:~$ netq show resource-util disk /dev/vda1
+Matching resource_util records:
+Hostname          Disk Name            Total                Used                 Disk Utilization     Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+oob-mgmt-server   /dev/vda1            486105088            80372736             17.6                 Wed Dec  9 16:20:31 2020
+server01          /dev/vda1            486105088            80372736             17.6                 Wed Dec  9 16:20:36 2020
+server02          /dev/vda1            486105088            80372736             17.6                 Wed Dec  9 16:20:40 2020
+server03          /dev/vda1            486105088            80372736             17.6                 Wed Dec  9 16:20:49 2020
+server04          /dev/vda1            486105088            80372736             17.6                 Wed Dec  9 16:20:42 2020
+server05          /dev/vda1            486105088            80372736             17.6                 Wed Dec  9 16:20:51 2020
+server06          /dev/vda1            486105088            80372736             17.6                 Wed Dec  9 16:20:27 2020
+server07          /dev/vda1            486105088            80372736             17.6                 Wed Dec  9 16:20:33 2020
+server08          /dev/vda1            486105088            80372736             17.6                 Wed Dec  9 16:20:45 2020
+```
+
+#### Related Commands
+
+- netq show cl-resource forwarding
+- netq show cl-resource acl
+
+- - -
 
 ### netq show services
 
-    dom                      :  Digital Optical Monitoring
-    inventory                :  Inventory information
-    job-status               :  Display the status of running jobs
-    unit-tests
+Displays configuration and health of system-level services for one or all switches and hosts, currently or for a time in the past. You can filter the output by switch, service, VRF, and status. Supported services include:
+
+- **bgpd**: BGP (Border Gateway Protocol) daemon
+- **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
+- **helpledmgrd**: Switch LED manager daemon
+- **lldpd**: LLDP (Link Layer Discovery Protocol) daemon
+- **mstpd**: MSTP (Multiple Spanning Tree Protocol) daemon
+- **neighmgrd**: Neighbor Manager daemon for BGP and OSPF
+- **netq-agent**: NetQ Agent service
+- **netqd**: NetQ application daemon
+- **ntp**: NTP service
+- **ntpd**: NTP daemon
+- **ptmd**: PTM (Prescriptive Topology Manager) daemon
+- **pwmd**: PWM (Password Manager) daemon
+- **rsyslog**: Rocket-fast system event logging processing service
+- **smond**: System monitor daemon
+- **ssh**: Secure Shell service for switches and servers
+- **status**: License validation service
+- **syslog**: System event logging service
+- **vrf**: VRF (Virtual Route Forwarding) service
+- **zebra**: GNU Zebra routing daemon
+
+The output provides the following information for each switch and host:
+
+- Service name and ID
+- VRF used by the service
+- Whether the service is enabled, active, and monitored
+- Status of the service
+- How long the service has been up and running
+- When the last time any of these items has changed
+
+{{<notice tip>}}
+Using <code>netq config add color</code> is helpful with this command as it shows what services are not enabled, active, or monitored in red text.
+{{</notice>}}
+
+#### Syntax
+
+There are two forms of this command; one for for all information, and one for a particular status.
+
+```
+netq [<hostname>] show services
+    [<service-name>]
+    [vrf <vrf>]
+    [active|monitored]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show services
+    [<service-name>]
+    [vrf <vrf>]
+    status (ok|warning|error|fail)
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| status | ok, warning, error, fail | Only display services with this status |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| NA | \<service-name\> | Only display results for the service with this name (refer to above list) |
+| vrf | \<vrf\> | Only display results for services using this VRF |
+| active | NA | Only display results for currently running services |
+| monitored | NA | Only display results for monitored services |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 1.x | Introduced |
+
+#### Sample Usage
+
+Basic show: All services, all switches and hosts
+
+```
+cumulus@switch:~$ netq show services
+Matching services records:
+Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+border01          netqd                28693 mgmt            yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
+border01          netq-agent           28621 default         yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
+border01          pwmd                 549   default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          ntp                  n/a   mgmt            yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
+border01          zebra                14427 default         yes     yes    yes       ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          clagd                1215  default         yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
+border01          neighmgrd            796   default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          ntp                  n/a   default         no      no     yes       n/a              Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
+border01          ssh                  9611  default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          mstpd                345   default         yes     yes    yes       ok               Tue Dec  8 21:18:49 2020  Tue Dec  8 21:18:49 2020
+border01          bgpd                 14432 default         yes     yes    yes       ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          lldpd                870   default         yes     yes    yes       ok               Tue Dec  8 21:19:19 2020  Tue Dec  8 21:19:19 2020
+...
+```
+
+Status of all services with warnings
+
+```
+cumulus@swit:~$ netq show services status warning
+No matching services records found
+```
+
+Given service
+
+```
+cumulus@switch:~$ netq show services bgpd
+Matching services records:
+Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+border01          bgpd                 14432 default         yes     yes    yes       ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border02          bgpd                 14372 default         yes     yes    yes       ok               Tue Dec  8 21:18:42 2020  Tue Dec  8 21:18:42 2020
+spine03           bgpd                 13919 default         yes     yes    yes       ok               Tue Dec  8 21:18:43 2020  Tue Dec  8 21:18:43 2020
+spine04           bgpd                 13934 default         yes     yes    yes       ok               Tue Dec  8 21:18:44 2020  Tue Dec  8 21:18:44 2020
+```
+
+Given switch or host
+
+```
+cumulus@switch:~$ netq leaf02 show services
+Matching services records:
+Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+leaf02            air-agent            663   mgmt            yes     yes    no        ok               Tue Dec  8 21:15:00 2020  Tue Dec  8 21:15:00 2020
+leaf02            snmpd                10098 mgmt            yes     yes    no        ok               Tue Dec  8 21:15:00 2020  Tue Dec  8 21:15:00 2020
+leaf02            rsyslog              11937 default         yes     yes    no        ok               Tue Dec  8 21:15:00 2020  Tue Dec  8 21:15:00 2020
+
+cumulus@switch:~$ netq server01 show services
+Matching services records:
+Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+server01          rsyslog              710   default         yes     yes    no        ok               Tue Dec  8 21:19:02 2020  Tue Dec  8 21:19:02 2020
+
+cumulus@switch:~$ netq border01 show services
+Matching services records:
+Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
+----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
+border01          netqd                28693 mgmt            yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
+border01          netq-agent           28621 default         yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
+border01          pwmd                 549   default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          ntp                  n/a   mgmt            yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
+border01          zebra                14427 default         yes     yes    yes       ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          clagd                1215  default         yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
+border01          neighmgrd            796   default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          ntp                  n/a   default         no      no     yes       n/a              Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
+border01          ssh                  9611  default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          mstpd                345   default         yes     yes    yes       ok               Tue Dec  8 21:18:49 2020  Tue Dec  8 21:18:49 2020
+border01          bgpd                 14432 default         yes     yes    yes       ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          lldpd                870   default         yes     yes    yes       ok               Tue Dec  8 21:19:19 2020  Tue Dec  8 21:19:19 2020
+border01          smond                540   default         yes     yes    yes       ok               Tue Dec  8 21:18:49 2020  Tue Dec  8 21:18:49 2020
+border01          air-agent            663   mgmt            yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          netqd                n/a   default         no      no     yes       n/a              Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
+border01          ledmgrd              547   default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          rsyslog              13546 default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          snmpd                10152 mgmt            yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+border01          ptmd                 9796  default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
+```
+
+#### Related Commands
+
+- netq show ???
+
+- - -
+
+
+dom                      :  Digital Optical Monitoring
+inventory                :  Inventory information
+job-status               :  Display the status of running jobs
+unit-tests
 
 ## Events and Notification
 

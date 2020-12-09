@@ -25,41 +25,45 @@ Follow these steps to setup and configure your VM on a cluster of servers in a r
 
     {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="3.3.0">}}
 
-5. Verify the master node is ready for installation. Fix any errors indicated before installing the NetQ software.
+5. Log in to the VM and change the password.
+
+    {{<netq-install/change-pswd>}}
+
+6. Verify the master node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-6. Change the hostname for the VM from the default value.
+7. Change the hostname for the VM from the default value.
 
     {{<netq-install/set-hostname>}}
 
-7. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
+8. Run the Bootstrap CLI. Be sure to replace the *eth0* interface used in this example with the interface on the server used to listen for NetQ Agents.
 
     {{<netq-install/bootstrap server="single" version="3.3.0" deployment="cloud" platform="vm">}}
 
-8. Consider the following for container environments, and make adjustments as needed.
+9. Consider the following for container environments, and make adjustments as needed.
 
     {{<netq-install/container>}}
 
-9. Verify that your first worker node meets the VM requirements, as described in Step 1.
+10. Verify that your first worker node meets the VM requirements, as described in Step 1.
 
-10. Confirm that the needed ports are open for communications, as described in Step 2.
+11. Confirm that the needed ports are open for communications, as described in Step 2.
 
-11. Open your hypervisor and setup the VM in the same manner as for the master node.
+12. Open your hypervisor and setup the VM in the same manner as for the master node.
 
     {{<notice note>}}
 Make a note of the private IP address you assign to the worker node. It is needed for later installation steps.
     {{</notice>}}
 
-12. Verify the worker node is ready for installation. Fix any errors indicated before installing the NetQ software.
+13. Verify the worker node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-13. Run the Bootstrap CLI on the worker node.
+14. Run the Bootstrap CLI on the worker node.
 
     {{<netq-install/bootstrap server="cluster" version="3.3.0" deployment="cloud" platform="vm">}}
 
-14. Repeat Steps 7 through 11 for each additional worker node you want in your cluster.
+15. Repeat Steps 10 through 14 for each additional worker node you want in your cluster.
 
 The final step is to install and activate the NetQ software.  You can do this using the Admin UI or the CLI.
 

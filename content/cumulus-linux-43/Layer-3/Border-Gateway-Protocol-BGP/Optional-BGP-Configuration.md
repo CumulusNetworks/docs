@@ -1343,7 +1343,7 @@ You can configure the following graceful restart timers, which are set globally.
 |<div style="width:250px">Timer | Description |
 | ---- | ----------- |
 | `restart-time` | The number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. The default is 120 seconds. You can set a value between 1 and 4095.|
-| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the End-of-RIB marker (EOR) from peers. The default is 360 seconds. You can set a value between 1 and 3600. |
+| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. The default is 360 seconds. You can set a value between 1 and 3600. |
 | `stalepath-time` | The number of seconds to hold stale routes for a restarting peer. The default is 360 seconds. You can set a value between 1 and 4095.|
 
 The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:
@@ -1497,7 +1497,7 @@ While in read-only mode, BGP does not run best-path or generate any updates to i
 
 To enable read-only mode, you set the `max-delay` timer and, optionally, the `establish-wait` timer. Read-only mode begins as soon as the first peer reaches its established state and the `max-delay` timer starts, and continues until either of the following two conditions are met:
 
-- All the configured peers (except the shutdown peers) have sent an explicit EOR (End-Of-RIB) or an implicit EOR. The first keep-alive after BGP reaches the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends. The minimum set of established peers for which EOR is expected are the peers that are established during the `establish-wait` window, not necessarily all the configured neighbors.
+- All the configured peers (except the shutdown peers) have sent an explicit EOR or an implicit EOR. The first keep-alive after BGP reaches the established state is considered an implicit EOR.  If you specify the `establish-wait` option, BGP only considers peers that have reached the established state from the moment the `max-delay` timer starts until the `establish-wait` period ends. The minimum set of established peers for which EOR is expected are the peers that are established during the `establish-wait` window, not necessarily all the configured neighbors.
 
 - The timer reaches the configured `max-delay`.
 

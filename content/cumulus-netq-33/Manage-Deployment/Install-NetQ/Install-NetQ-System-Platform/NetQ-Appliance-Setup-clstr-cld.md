@@ -26,20 +26,20 @@ Change the password and specify the hostname and IP address for each appliance b
 1. Log in to the appliance that will be your master node using the default login credentials:
 
     - **Username**: cumulus
-    - **Password**: CumulusLinux!
+    - **Password**: cumulus
 
 2. Change the password using the `passwd` command:
 
     ```
     cumulus@hostname:~$ passwd
-    Changing password for <user>.
-    (current) UNIX password:
+    Changing password for cumulus.
+    (current) UNIX password: cumulus
     Enter new UNIX password:
     Retype new UNIX password:
     passwd: password updated successfully
     ```
 
-3. 3. The default hostname for the NetQ Cloud Appliance is *netq-appliance*. Change the hostname to fit your naming conventions while meeting Internet and Kubernetes naming standards.
+3. The default hostname for the NetQ Cloud Appliance is *netq-appliance*. Change the hostname to fit your naming conventions while meeting Internet and Kubernetes naming standards.
 
     Kubernetes requires that hostnames are composed of a sequence of labels concatenated with dots. For example, "en.wikipedia.org" is a hostname. Each label must be from 1 to 63 characters long. The entire hostname, including the delimiting dots, has a maximum of 253 ASCII characters.
 

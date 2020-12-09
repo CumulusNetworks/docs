@@ -775,8 +775,7 @@ Cumulus Linux and NetQ run a number of services to deliver the various features 
 - **ntp**: NTP service
 - **ntpd**: NTP daemon
 - **ptmd**: PTM (Prescriptive Topology Manager) daemon
-- **pwmd**: PWM (Password Manager)
-daemon
+- **pwmd**: PWM (Password Manager) daemon
 - **rsyslog**: Rocket-fast system event logging processing service
 - **smond**: System monitor daemon
 - **ssh**: Secure Shell service for switches and servers

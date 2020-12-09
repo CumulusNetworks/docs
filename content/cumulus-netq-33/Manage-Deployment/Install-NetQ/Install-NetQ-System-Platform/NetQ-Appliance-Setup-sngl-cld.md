@@ -24,7 +24,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 1. Log in to the appliance using the default login credentials:
 
     - **Username**: cumulus
-    - **Password**: CumulusLinux!
+    - **Password**: cumulus
 
 2. Change the password using the `passwd` command:
 

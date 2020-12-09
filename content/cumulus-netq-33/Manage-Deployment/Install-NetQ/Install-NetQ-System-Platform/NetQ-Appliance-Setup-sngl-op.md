@@ -26,7 +26,7 @@ Change the password and specify the hostname and IP address for the appliance be
 1. Log in to the appliance using the default login credentials:
 
     - **Username**: cumulus
-    - **Password**: CumulusLinux!
+    - **Password**: cumulus
 
 2. Change the password using the `passwd` command:
 

@@ -33,7 +33,7 @@ Change the password and specify the hostname and IP address for the appliance be
     ```
     cumulus@hostname:~$ passwd
     Changing password for cumulus.
-    (current) UNIX password: CumulusLinux!
+    (current) UNIX password: cumulus
     Enter new UNIX password:
     Retype new UNIX password:
     passwd: password updated successfully

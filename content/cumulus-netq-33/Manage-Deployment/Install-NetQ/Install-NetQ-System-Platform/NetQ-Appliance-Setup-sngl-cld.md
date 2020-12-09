@@ -31,7 +31,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
     ```
     cumulus@hostname:~$ passwd
     Changing password for cumulus.
-    (current) UNIX password: CumulusLinux!
+    (current) UNIX password: cumulus
     Enter new UNIX password:
     Retype new UNIX password:
     passwd: password updated successfully

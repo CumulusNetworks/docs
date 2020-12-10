@@ -90,7 +90,7 @@ Fixed: 2.4.47+dfsg-3+deb10u4</p></td>
 <tr>
 <td>CM-32294</td>
 <td><p>Some non-Mellanox ethernet modules do not link up on the Mellanox SN3420 switch with Cumulus PSID in the Hardware revision. To see if a Mellanox SN3420 switch has the Cumulus PSID, check the output of mlxfwmanager for MSN3420-CxxxC_Ax in the Part Number Field.  A Mellanox SN3420 switch with MSN3420-CxxxO_Ax has an Onie PSID and is unaffected by this issue.<br/>
-To work around this issue, use Mellanox ethernet modules with the Mellanox SN3420 switch.</p></td>
+To work around this issue, use Mellanox ethernet modules with the Mellanox SN3420 switch,</p></td>
 <td>4.2.1</td>
 <td></td>
 </tr>

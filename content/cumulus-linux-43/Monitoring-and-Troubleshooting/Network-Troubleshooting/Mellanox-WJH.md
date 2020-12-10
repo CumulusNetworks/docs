@@ -30,12 +30,14 @@ After you install and start the WJH service, you can run the following commands 
 | `what-just-happened poll --aggregate` | Shows all aggregated counters. |
 | `what-just-happened poll forwarding --aggregate` | Shows all aggregated counters for forwarding-related issues only. |
 | `what-just-happened poll --export` | Saves information about all dropped packets into a file in PCAP format. |
-| `what-just-happened poll  forwarding--export` | Saves information about dropped packets due to forwarding-related issues only into a file in PCAP format. |
+| `what-just-happened poll forwarding --export` | Saves information about dropped packets due to forwarding-related issues only into a file in PCAP format. |
 | `what-just-happened poll --no_metadata` | Saves information about all dropped packets into a file in PCAP format without metadata. |
 | `what-just-happened poll  forwarding --no_metadata` | Saves information about dropped packets due to forwarding-related issues only into a file in PCAP format without metadata. |
-| `what-just-happened global configuration` | Shows WJH global configuration. |
-| `what-just-happened forwarding configuration` | Shows WJH configuration for forwarding-related issues.|
+| `what-just-happened configuration global` | Shows WJH global configuration. |
+| `what-just-happened configuration forwarding` | Shows WJH configuration for forwarding-related issues.|
 | `what-just-happened dump` | Displays all diagnostic information on the command line. |
+
+Run the `what-just-happened -h` command to see all the WJH command options.
 
 ## Command Examples
 
@@ -75,4 +77,4 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2020_11_06_16_13_37.pcap
                                                                                                                                                   was received from peer
 ```
 
-You can also run commands from the docker CLI with `wjhcli` commands. Run 
+You can also run WJH from the docker CLI with `wjhcli` commands.

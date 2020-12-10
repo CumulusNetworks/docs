@@ -1,12 +1,14 @@
 ---
-title: Show Commands
+title: S Commands
 author: Cumulus Networks
-weight: 1101
+weight: 1106
 toc: 3
 right_toc_levels: 2
 pdfhidden: true
 draft: true
 ---
+This topic includes all commands that begin with `netq s*`.
+
 All of the NetQ show commands begin with `netq show`. They are used to view the health of various elements in your network fabric. Many allow filtering by hostname and other parameters. The results are presented in the NetQ CLI immediately. The commands are listed alphabetically within functional groups.
 
 ## Network Protocols and Services
@@ -738,6 +740,12 @@ leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8
 - netq show events type clag
 - netq check mlag
 - netq show unit-tests mlag
+
+- - -
+
+### netq show notification
+
+    netq show notification [channel|filter|rule] [json]
 
 - - -
 
@@ -2101,8 +2109,167 @@ no     BLUE            ::/0                           leaf03            Blackhol
 
 ### netq show kubernetes
 
-<!-- Add here -->
+Displays the configuration and health of the Kubernetes components for the NetQ containers. Outputs vary according to version of the command issued.
 
+#### Syntax
+
+```
+netq [<hostname>] show kubernetes cluster
+    [name <kube-cluster-name>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show kubernetes node
+    [components]
+    [name <kube-node-name>]
+    [cluster <kube-cluster-name>]
+    [label <kube-node-label>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show kubernetes daemon-set
+    [name <kube-ds-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-ds-label>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show kubernetes daemon-set
+    [name <kube-ds-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-ds-label>]
+    connectivity
+    [around <text-time>][json]
+
+netq [<hostname>] show kubernetes deployment
+    [name <kube-deployment-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-deployment-label>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show kubernetes deployment
+    [name <kube-deployment-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-deployment-label>]
+    connectivity
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show kubernetes pod
+    [name <kube-pod-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-pod-label>]
+    [pod-ip <kube-pod-ipaddress>]
+    [node <kube-node-name>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show kubernetes replication-controller
+    [name <kube-rc-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-rc-label>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show kubernetes replica-set
+    [name <kube-rs-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-rs-label>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show kubernetes replica-set
+    [name <kube-rs-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-rs-label>]
+    connectivity
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show kubernetes service
+    [name <kube-service-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-service-label>]
+    [service-cluster-ip <kube-service-cluster-ip>]
+    [service-external-ip <kube-service-external-ip>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show kubernetes service
+    [name <kube-service-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-service-label>]
+    [service-cluster-ip <kube-service-cluster-ip>]
+    [service-external-ip <kube-service-external-ip>]
+    connectivity
+    [around <text-time>]
+    [json]
+
+netq  <hostname>  show impact kubernetes service
+    [master <kube-master-node>]
+    [name <kube-service-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-service-label>]
+    [service-cluster-ip <kube-service-cluster-ip>]
+    [service-external-ip <kube-service-external-ip>]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show impact kubernetes replica-set
+    [master <kube-master-node>]
+    [name <kube-rs-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-rs-label>]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show impact kubernetes deployment
+    [master <kube-master-node>]
+    [name <kube-deployment-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-deployment-label>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| connectivity | NA | Display ??? |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| name | \<kube-cluster-name\>, <kube-node-name>, <kube-ds-name>, <kube-deployment-name>, 
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 | Introduced |
+
+#### Sample Usage
 - - -
 
 ### netq show mac-commentary
@@ -2455,6 +2622,10 @@ Refer to the {{<link title="Monitor Internet Protocol Service/#view-the-neighbor
 - netq show mac-history
 
 - - -
+
+### netq show notification proxy
+
+    netq show notification proxy
 
 ### netq show opta-health
 
@@ -2954,6 +3125,190 @@ border01          ptmd                 9796  default         yes     yes    no  
 
 - - -
 
+### netq show tca
+
+    netq show tca [tca_id <tca-rule-name>]
+
+- - -
+
+### netq show validation settings
+
+Displays one or all scheduled validations, including their name, type, cadence, when the validation began, when it was created, and whether it is currently active. This is useful for obtaining the name of a scheduled validations for use in other validation commands.
+
+#### Syntax
+
+```
+netq show validation settings
+    [name <text-validation-name>]
+    [type ntp | type interfaces | type license | type sensors | type evpn | type vxlan | type agents | type mlag | type vlan | type bgp | type mtu | type ospf]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
+| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | Filter output to view settings for only the indicated protocol or service |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.1.0 | Introduced |
+
+#### Sample Usage
+
+```
+cumulus@switch:~$ netq show validation settings
+Name            Types      Cadence        Start Time           Creation Time              Active
+--------------- ---------- -------------- -------------------- -------------------------- ------
+BGP12hr         bgp, evpn  720m           Thu Nov 12 16:15:00  Thu Nov 12 20:10:05 2020   yes
+                                          2020
+BGP12hr (pre 11 bgp        720m           Thu Nov 12 16:15:00  Thu Nov 12 18:45:52 2020   no
+-12-20)                                   2020
+Bgp30m          bgp        30m            Tue Nov 10 21:46:05  Tue Nov 10 21:46:05 2020   yes
+                                          2020
+Default validat interfaces 60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
+ion INTERFACES                            2020
+Default validat mlag       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
+ion MLAG                                  2020
+Default validat vlan       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
+ion VLAN                                  2020
+Default validat sensors    60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
+ion SENSORS                               2020
+Default validat vxlan      60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
+ion VXLAN                                 2020
+Default validat ospf       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
+ion OSPF                                  2020
+Default validat mtu        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
+ion MTU                                   2020
+Default validat bgp        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
+ion BGP                                   2020
+Default validat agents     60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
+ion AGENTS                                2020
+Default validat ntp        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
+ion NTP                                   2020
+Default validat evpn       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
+ion EVPN                                  2020
+Default validat license    60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
+ion LICENSE                               2020
+```
+
+#### Related Commands
+
+- netq add validation name
+- netq del validation
+- netq show validation summary
+
+- - -
+
+### netq show validation summary
+
+Displays summary status of a scheduled validation for a given protocol or service, including their name, type, job ID, number of nodes validated, number of nodes that failed validation, number of nodes running the protocol or service, and time when the validation was run.
+
+#### Syntax
+
+```
+netq show validation summary
+    [name <text-validation-name>]
+    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
+    [around <text-time-hr>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | Show validation runs summary for the indicated protocol or service |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
+| around | \<text-time-hr\> | Show summary status for this time in the past. Value must be specified in hours and include the *h* time unit. Default is 24 hours. |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.1.0 | Introduced |
+
+#### Sample Usage
+
+Basic show: one protocol, within last 24 hours
+
+```
+cumulus@switch:~$ netq show validation summary type evpn
+Name            Type             Job ID       Checked Nodes              Failed Nodes             Total Nodes            Timestamp
+--------------- ---------------- ------------ -------------------------- ------------------------ ---------------------- -------------------------
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 15:43:08 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 14:43:21 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 13:42:57 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 12:42:57 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 11:43:15 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 10:42:54 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 09:42:56 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 08:43:25 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+BGP12hr         scheduled        5818f911-d9e 6                          1                        6                      Fri Nov 20 08:10:15 2020
+                                 2-4927-9cc1-
+                                 6972899a3422
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 07:42:56 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 06:42:54 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 05:43:12 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+BGP12hr         scheduled        5818f911-d9e 0                          0                        0                      Fri Nov 20 05:14:06 2020
+                                 2-4927-9cc1-
+                                 6972899a3422
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 04:42:52 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 03:42:59 2020
+ion                              2-4ee7-917e-
+                                 f21d15adec22
+...
+```
+
+#### Related Commands
+
+- netq add validation name
+- netq del validation
+- netq show validation settings
+
+- - -
 
 dom                      :  Digital Optical Monitoring
 inventory                :  Inventory information
@@ -2982,434 +3337,3 @@ Threshold Crossing Alerts
 ### netq show wjh-drops
 
 Shows drops that are captured by WJH (What just happened) on Mellanox switches
-
-
-
-
---------------------------
-
-
-
-
-## Configuration Commands
-
-All of the NetQ configuration commands begin with netq config.
-They are described here in alphabetical order by component group:
-Add-on Configuration Commands
-Agent Configuration Commands
-Parser
-Server
-Telemetry Server
-
-### Add-on Configuration Commands
-
-netq config (add|del) addons
-Installs or removes all additional software components available with a given release. [in a particular directory?]
-Syntax
-netq config add addons
-netq config del addons
-Abbreviated Syntax
-	Not applicable
-Required Arguments
-	None
-Optional Arguments
-	None
-Run From
-	Telemetry server, leaf, spine, host?
-Command History
-	
-Release
-Description
-1.0
-Introduced
-
-Usage Guidelines
-Sample Usage
-Related Commands
-
-
-
-
-### NetQ Agent Configuration Commands
-
-netq config (add|del) agent (stats|sensors)
-Installs or removes [Starts or stops? Enables or disables?] collection of statistics or sensor measurements by NetQ Agent on [all or specific node?].
-Syntax
-	netq config add agent stats
-	netq config del agent stats
-netq config add agent sensors
-neq config del agent sensors
-Abbreviated Syntax
-	Not applicable
-Required Arguments
-	None
-Optional Arguments
-	None
-Run From
-	Telemetry server, leaf, spine, host?
-Command History
-
-Release
-Description
-1.0
-Introduced
-Usage Guidelines
-	Use this command when you want to xxx. Be careful of xxx. Note yyy.
-Sample Usage
-	Starting statistical collection on agent node [check to see if it is running?]
-cumulus@ts:~$ netq config add agent stats
-Related Commands
-Netq config add agent docker-monitor
-Netq config add agent loglevel
-Netq config add agent kubernetes-monitor
-
-netq config add agent docker-monitor
-Installs [Starts? Enables?] the Docker monitoring service on [all or specific node?].
-Syntax
-	netq config add agent docker-monitor [poll-period <text-duration-period>]
-Abbreviated Syntax
-	Not applicable
-Required Arguments
-	None
-Optional Arguments
-poll-period
-The amount of time to monitor a docker container for statistics collection. The <text-duration-period> value must be specified in [seconds, minutes, hours?]
-Run From
-	Telemetry server, leaf, spine, host?
-Command History
-
-Release
-Description
-1.0
-Introduced
-Usage Guidelines
-	Use this command when you want to xxx. Be careful of xxx. Note yyy.
-Sample Usage
-	Set the monitoring duration of a docker container to one hour
-cumulus@ts:~$ netq config add agent docker-monitor poll-period 3600
-Related Commands
-netq config add agent addons
-netq config add agent loglevel
-netq config add agent kubernetes-monitor
-
-netq config add agent loglevel
-Specifies the level of detail to display in the [system] log file[s?].
-Syntax
-	netq config add agent loglevel [debug|info|warning|error]
-Abbreviated Syntax
-	Not applicable
-Required Arguments
-	None
-Optional Arguments
-debug
-Display errors, warnings, and informational events the system receives or generates.
-info
-Display only informational events
-warning
-Display warnings and informational events
-error
-Display xxx
-Run From
-	Telemetry server, leaf, spine, host?
-JSON Output
-	Not applicable
-Command History
-
-Release
-Description
-1.0
-Introduced
-Usage Guidelines
-	If no level is specified, the xxx level is used by default.
-Changing the logging level takes place immediately, but prior content is not removed. 
-[add definition of errors, warnings and info--what is the criteria/differentiation between…]
-Sample Usage
-	Set the display level of the [system?] log file to capture xxx
-cumulus@ts:~$ netq config add agent loglevel warning
-Related Commands
-netq config add agent addons
-netq config add agent docker-monitor
-netq config add agent kubernetes-monitor
-
-netq config add agent kubernetes-monitor
-Installs [Starts? Enables?] the Kubernetes monitoring service on [all or specific node?].
-Syntax
-	netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
-Abbreviated Syntax
-	Not applicable
-Required Arguments
-	None
-Optional Arguments	
-poll-period
-The amount of time to monitor a kubernetes container for statistics collection. The <text-duration-period> value must be specified in [seconds, minutes, hours?]
-Run From
-	Telemetry server, leaf, spine, host?
-Command History
-
-Release
-Description
-1.0
-Introduced
-Usage Guidelines
-	Use this command when you want to xxx. Be careful of xxx. Note yyy.
-Sample Usage
-	Set the monitoring duration of a kubernetes container to one hour
-cumulus@ts:~$ netq config add agent kubernetes-monitor poll-period 3600
-Related Commands
-netq config add agent addons
-netq config add agent docker-monitor
-netq config add agent loglevel
-
-Parser Configuration Commands
-Server Configuration Commands
-Telemetry Server Configuration Commands
-
-
-## Trace Commands
-
-
-AGENT NOTIFIER COMMANDS
-
- netq config (add|del) experimental
-   netq config (add|del) agent (stats|sensors)
-   netq config reload parser
-   netq config show server [json]
-   netq config add server <ip-server>|<text-server-name> [port <1025-65535>] [vrf <text-vrf>]
-   netq config add server <ip-server>|<text-server-name>  <ip-server>|<text-server-name>  <ip-server>|<text-server-name>  [vrf <text-vrf>]
-   netq config del server
-   netq config (start|stop|status|restart) agent
-   netq config add agent loglevel [debug|info|warning|error]
-   netq config del agent loglevel
-   netq config show agent [kubernetes-monitor|loglevel|stats|sensors|frr-monitor|wjh|wjh-threshold|cpu-limit] [json]
-netq config add agent docker-monitor [poll-period <text-duration-period>]
-netq config del agent docker-monitor
-netq config ts add notifier slack <text-notifier-name> webhook <text-webhook-url> [severity info | severity warning | severity error | severity debug | severity info] [tag <text-slack-tag>]
-   netq config ts add notifier pagerduty <text-notifier-name> api-access-key <text-api-access-key> api-integration-key <text-api-integration-key> [severity info | severity warning | severity error | severity debug | severity info]
-   netq config ts add notifier pagerduty <text-notifier-name> api-integration-key <text-api-integration-key> api-access-key <text-api-access-key> [severity info | severity warning | severity error | severity debug | severity info]
-   netq config ts add notifier filter <text-filter-name> before <text-filter-name-anchor>
-   netq config ts add notifier filter <text-filter-name> after <text-filter-name-anchor>
-   netq config ts add notifier filter <text-filter-name> rule (BgpSession|ClagSession|LnvSession|Link|Port|Services|OS|Temp|Fan|PSU|License) <text-rule-value>
-   netq config ts add notifier filter <text-filter-name> output <text-notifier-name>
-   netq config ts add notifier loglevel [debug|info|warning|error]
-   netq config ts del notifier loglevel
-   netq config ts del notifier slack|pagerduty <text-notifier-name>
-   netq config ts del notifier filter <text-notifier-name>
-   netq config ts (start|stop|status|restart) notifier
-   netq config ts show notifier [json]
-   netq config ts show notifier loglevel [json]
-   netq config ts add server <ip-master> <ip-replica> <ip-replica>
-   netq config ts show server [<ip-server>|<text-server-name>|config] [json]
-   netq config ts reset-cluster
-netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
-    netq config del agent kubernetes-monitor
-
-
-
-
-netq
-cumulus@switch:~$ netq help list
-
-netq - Query data across all nodes in fabric
-
-Usage:
-   netq help [<text-keywords>]
-   netq help verbose
-   netq help list
-
-
-
-
-   netq [<hostname>] show interfaces physical [<physical-port>] [empty|plugged] [peer] [vendor <module-vendor> | model <module-model>| module] [around <text-time>] [json]
-   netq [<hostname>] show interfaces physical [<physical-port>] [empty|plugged] [vendor <module-vendor> | model <module-model> | module] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show inventory brief [json]
-   netq [<hostname>] show inventory asic [vendor <asic-vendor>| model <asic-model>| model-id <asic-model-id>] [json]
-   netq [<hostname>] show inventory board [vendor <board-vendor>|model <board-model>] [json]
-   netq [<hostname>] show inventory cpu [arch <cpu-arch>] [json]
-   netq [<hostname>] show inventory disk [name <disk-name>|transport <disk-transport>| vendor <disk-vendor>] [json]
-   netq [<hostname>] show inventory license [cumulus] [around <text-time>] [json]
-   netq [<hostname>] show inventory license [cumulus] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show inventory memory [type <memory-type>|vendor <memory-vendor>] [json]
-   netq [<hostname>] show inventory os [version <os-version>|name <os-name>] [json]
-   netq [<hostname>] show inventory os [version <os-version>|name <os-name>] changes [between <text-time> and <text-endtime>] [json]
-
-   netq config (add|del) experimental
-   netq config (add|del) addons
-   netq config (add|del) agent (stats|sensors)
-   netq config reload parser
-
-   netq config show server [json]
-   netq config add server <ip-server>|<text-server-name> [port <1025-65535>] [vrf <text-vrf>]
-   netq config add server <ip-server>|<text-server-name>  <ip-server>|<text-server-name>  <ip-server>|<text-server-name>  [vrf <text-vrf>]
-   netq config del server
-
-   netq config (start|stop|status|restart) agent
-   netq config add agent loglevel [debug|info|warning|error]
-   netq config del agent loglevel
-   netq config show agent [kubernetes-monitor|docker-monitor|loglevel|stats|sensors] [json]
-
-## Kubernetes Commands
-
-   netq [<hostname>] show kubernetes cluster [name <kube-cluster-name>] [around <text-time>] [json]
-   netq [<hostname>]   show kubernetes cluster [name <kube-cluster-name>] changes [between <text-time> and <text-endtime>] [json]
-   netq [<hostname>] show kubernetes node [components] [name <kube-node-name>] [cluster <kube-cluster-name> ] [label <kube-node-label>] [around <text-time>] [json]
-   netq [<hostname>]  show kubernetes node [components] [name <kube-node-name>] [cluster <kube-cluster-name> ] [label <kube-node-label>] changes [between <text-time> and <text-endtime>] [json]
-
-    netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
-    netq config del agent kubernetes-monitor
-
-   netq [<hostname>] show kubernetes daemon-set [name <kube-ds-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-ds-label>] [around <text-time>] [json]
-   netq [<hostname>] show kubernetes daemon-set [name <kube-ds-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-ds-label>] connectivity [around <text-time>] [json]
-   netq  [<hostname>]  show kubernetes daemon-set [name <kube-ds-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-ds-label>] changes [between <text-time> and <text-endtime>] [json]
-
-   netq [<hostname>] show kubernetes deployment [name <kube-deployment-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-deployment-label>] [around <text-time>] [json]
-   netq [<hostname>] show kubernetes deployment [name <kube-deployment-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-deployment-label>] connectivity [around <text-time>] [json]
-   netq [<hostname>] show kubernetes deployment [name <kube-deployment-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-deployment-label>] changes [between <text-time> and <text-endtime>] [json]
-
-   netq [<hostname>] show kubernetes pod [name <kube-pod-name>] [cluster <kube-cluster-name> ] [namespace <namespace>] [label <kube-pod-label>] [pod-ip <kube-pod-ipaddress>] [node <kube-node-name>] [around <text-time>] [json]
-   netq [<hostname>] show kubernetes pod [name <kube-pod-name>] [cluster <kube-cluster-name> ] [namespace <namespace>] [label <kube-pod-label>] [pod-ip <kube-pod-ipaddress>] [node <kube-node-name>] changes [between <text-time> and <text-endtime>] [json]
-
-   netq [<hostname>] show kubernetes replication-controller [name <kube-rc-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rc-label>] [around <text-time>] [json]
-   netq [<hostname>]  show kubernetes replication-controller [name <kube-rc-name>] [cluster <kube-cluster-name>] [namespace <namespace>]  [label <kube-rc-label>] changes [between <text-time> and <text-endtime>] [json]
-
-   netq [<hostname>] show kubernetes replica-set [name <kube-rs-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rs-label>] [around <text-time>] [json]
-   netq [<hostname>] show kubernetes replica-set [name <kube-rs-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rs-label>] connectivity [around <text-time>] [json]
-   netq [<hostname>]  show kubernetes replica-set [name <kube-rs-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rs-label>] changes [between <text-time> and <text-endtime>] [json]
-
-   netq [<hostname>] show kubernetes service [name <kube-service-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-service-label>] [service-cluster-ip <kube-service-cluster-ip>] [service-external-ip <kube-service-external-ip>] [around <text-time>] [json]
-   netq [<hostname>] show kubernetes service [name <kube-service-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-service-label>] [service-cluster-ip <kube-service-cluster-ip>] [service-external-ip <kube-service-external-ip>] connectivity [around <text-time>] [json]
-   netq [<hostname>] show kubernetes service [name <kube-service-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-service-label>] [service-cluster-ip <kube-service-cluster-ip>] [service-external-ip <kube-service-external-ip>] changes [between <text-time> and <text-endtime>] [json]
-
-   netq  <hostname>  show impact kubernetes service [master <kube-master-node>] [name <kube-service-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-service-label>] [service-cluster-ip <kube-service-cluster-ip>] [service-external-ip <kube-service-external-ip>] [around <text-time>] [json]
-   netq <hostname> show impact kubernetes replica-set [master <kube-master-node>] [name <kube-rs-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rs-label>] [around <text-time>] [json]
-   netq <hostname> show impact kubernetes deployment [master <kube-master-node>] [name <kube-deployment-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-deployment-label>] [around <text-time>] [json]
-
-
-   netq <hostname> show stp topology [around <text-time>] [json]
-
-
-
-
-### Notification Commands Overview
-
-The NetQ Command Line Interface (CLI) is used to filter and send notifications to third-party tools based on severity, service, event-type, and device. You can use TAB completion or the `help` option to assist when needed.
-
-The command syntax for standard events is:
-
-    ##Channels
-    netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
-    netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
-     
-    ##Rules and Filters
-    netq add notification rule <text-rule-name> key <text-rule-key> value <text-rule-value>
-    netq add notification filter <text-filter-name> [severity info|severity warning|severity error|severity debug] [rule <text-rule-name-anchor>] [channel <text-channel-name-anchor>] [before <text-filter-name-anchor>|after <text-filter-name-anchor>]
-     
-    ##Management
-    netq del notification channel <text-channel-name-anchor>
-    netq del notification filter <text-filter-name-anchor>
-    netq del notification rule <text-rule-name-anchor>
-    netq show notification [channel|filter|rule] [json]
-
-The command syntax for events with user-configurable thresholds is:
-
-    ##Rules and Filters
-    netq add tca event_id <event-name> scope <regex-filter> [severity <critical|info>] threshold <value>
-
-    ##Management
-    netq add tca tca_id <tca-rule-name> is_active <true|false>
-    netq add tca tca_id <tca-rule-name> channel drop <channel-name>
-    netq del tca tca_id <tca-rule-name>
-    netq show tca [tca_id <tca-rule-name>]
-
-The command syntax for a server proxy is:
-
-    ##Proxy
-    netq add notification proxy <text-proxy-hostname> [port <text-proxy-port>]
-    netq show notification proxy
-    netq del notification proxy
-
-The various command options are described in the following sections where they are used.
-
-## LCM Commands
-
-The NetQ CLI provides a number of `netq lcm` commands to perform LCM. The syntax of these commands is:
-
-    netq lcm upgrade name <text-job-name> image-id <text-image-id> license <text-cumulus-license> hostnames <text-switch-hostnames> [order <text-upgrade-order>] [run-before-after]
-    netq lcm add credentials (username <text-switch-username> password <text-switch-password> | ssh-key <text-ssh-key>)
-    netq lcm add role (superspine | spine | leaf | exit) switches <text-switch-hostnames>
-    netq lcm del credentials
-    netq lcm show credentials [json]
-    netq lcm show switches [version <text-cumulus-linux-version>] [json]
-    netq lcm show status <text-lcm-job-id> [json]
-    netq lcm add image <text-image-path>
-    netq lcm del image <text-image-id>
-    netq lcm show images [<text-image-id>] [json]
-    netq lcm show upgrade-jobs [json]
-
-## Agent Commands
-
-The agent configuration commands include:
-
-    netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
-    netq config add agent cpu-limit [<text-limit-number>]
-    netq config add agent frr-monitor [<text-frr-docker-name>]
-    netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
-    netq config add agent loglevel [debug|error|info|warning]
-    netq config add agent sensors
-    netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
-    netq config (start|stop|status|restart) agent
-    netq config del agent (cluster-servers|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats|wjh)
-    netq config show agent [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|stats|wjh] [json]
-
-## Inventory Commands
-
-### Hardware Commands
-
-The NetQ CLI provides a number of commands to monitor hardware inventory on switches. The syntax of these commands is:
-
-```
-netq [<hostname>] show inventory brief [opta] [json]
-netq [<hostname>] show inventory asic [vendor <asic-vendor>|model <asic-model>|model-id <asic-model-id>] [opta] [json]
-netq [<hostname>] show inventory board [vendor <board-vendor>|model <board-model>] [opta] [json]
-netq [<hostname>] show inventory cpu [arch <cpu-arch>] [opta] [json]
-netq [<hostname>] show inventory disk [name <disk-name>|transport <disk-transport>|vendor <disk-vendor>] [opta] [json]
-netq [<hostname>] show inventory license [cumulus] [status ok|status missing] [around <text-time>] [opta] [json]
-netq [<hostname>] show inventory memory [type <memory-type>|vendor <memory-vendor>] [opta] [json]
-netq [<hostname>] show inventory os [version <os-version>|name <os-name>] [opta] [json]
-
-netq [<hostname>] show sensors all [around <text-time>] [json]
-netq [<hostname>] show sensors psu [<psu-name>] [around <text-time>] [json]
-netq [<hostname>] show sensors temp [<temp-name>] [around <text-time>] [json]
-netq [<hostname>] show sensors fan [<fan-name>] [around <text-time>] [json]
-
-netq [<hostname>] show interface-stats [errors|all] [<physical-port>] [around <text-time>] [json]
-netq [<hostname>] show interface-utilization [<text-port>] [tx|rx] [around <text-time>] [json]
-netq [<hostname>] show resource-util [cpu | memory] [around <text-time>] [json]
-netq [<hostname>] show resource-util disk [<text-diskname>] [around <text-time>] [json]
-netq [<hostname>] show cl-ssd-util [around <text-time>] [json]
-netq [<hostname>] show cl-btrfs-info [around <text-time>] [json]
-```
-
-{{<notice note>}}
-The keyword values for the <code>vendor</code>, <code>model</code>, <code>model-id</code>, <code>arch</code>, <code>name</code>, <code>transport</code>, <code>type</code>, <code>version</code>, <code>psu</code>, <code>temp</code>, and <code>fan</code> keywords are specific to your deployment. For example, if you have devices with CPU architectures of only one type, say Intel x86, then that is the only option available for the <code>cpu-arch</code> keyword value. If you have multiple CPU architectures, say you also have ARMv7, then that would also be an option for you.
-{{</notice>}}
-
-### Software Commands
-
-The NetQ CLI provides a number of commands to monitor software inventory on switches. The syntax for these commands is:
-
-```
-netq [<hostname>] show agents
-netq [<hostname>] show inventory brief [json]
-netq [<hostname>] show inventory license [cumulus] [status ok|status missing] [around <text-time>] [json]
-netq [<hostname>] show inventory os [version <os-version>|name <os-name>] [json]
-
-netq [<hostname>] show cl-manifest [json]
-netq [<hostname>] show cl-pkg-info [<text-package-name>] [around <text-time>] [json]
-netq [<hostname>] show recommended-pkg-version [release-id <text-release-id>] [package-name <text-package-name>] [json]
-netq [<hostname>] show cl-resource acl [ingress | egress] [around <text-time>] [json]
-netq [<hostname>] show cl-resource forwarding [around <text-time>] [json]
-```
-
-{{<notice note>}}
-The values for the <code>name</code> option are specific to your deployment. For example, if you have devices with only one type of OS, say Cumulus Linux, then that is the only option available for the <code>os-name</code> option value. If you have multiple OSs running, say you also have Ubuntu, then that would also be an option for you.
-{{</notice>}}

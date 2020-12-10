@@ -1,70 +1,24 @@
 ---
-title: Validation Commands
+title: C Commands
 author: NVIDIA
 weight: 1102
-toc: 3
-right_toc_levels: 2
-pdfhidden: true
-draft: true
 ---
+
+This topic includes all commands that begin with `netq c*`, including all `netq check` and `netq config` commands.
+
+**About Validation Commands**
+
 There are three sets of validation commands, all for verifying the health and performance of network protocols and services:
 
 - The original on-demand validation commands. These commands all begin with `netq check`. They are used to validate various elements in your network fabric at the current time or a time in the past. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. The results are presented in the NetQ CLI immediately.
 - The newer set of validation commands are used to create on-demand or scheduled validations with the results being displayed in the NetQ UI Validation Result cards. These commands begin with `netq add validation`. They are used to validate various elements in your network fabric currently or on a regular basis. No filtering on results is available within the commands as that is accomplished through the NetQ UI.
 - The validation management commands. These present a list of all jobs and job settings, and the ability to remove validations.
 
-Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. The commands are described here in alphabetical order, regardless of membership in one of the three sets above.
+Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. The `netq check`commands are described here. The others are described elsewhere based on on the command names.
 
-## On-demand
+**About Config Commands**
 
-These commands are used to create and run on-demand validations.
-
-### netq add validation
-
-Creates an on-demand validation for various protocols and services, with results displayed in the associated On-demand Validation Result cards in the NetQ UI.
-
-#### Syntax
-
-```
-netq add validation
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
-    [alert-on-failure]
-```
-
-#### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, sensors, vlan, or vxlan | Protocol or service to be validated |
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| alert-on-failure | NA | Reserved |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
-#### Sample Usage
-
-BGP validation; all devices, all tests, currently
-
-```
-cumulus@switch:~$ netq add validation type bgp
-```
-
-#### Related Commands
-
-- netq add validation name
-- netq del validation
-- netq show validation settings
-- netq show validation summary
+Add text here
 
 - - -
 
@@ -800,13 +754,9 @@ License validity Test   : passed
 
 - - -
 
-### netq check lnv
+### netq check mlag
 
-{{<notice info>}}
-This command is not supported for NetQ 3.0.0 and later.
-{{</notice>}}
-
-- - -
+<!-- Add info here -->
 
 ### netq check mtu
 
@@ -1383,283 +1333,27 @@ BUM replication Test    : passed
 
 - - -
 
-## Scheduled
-
-These commands are used to create and run scheduled validations.
-
-### netq add validation name
-
-Creates a validation for various protocols and services to be run on a regular interval, with results displayed in the associated Scheduled Validation Result cards in the NetQ UI. A maximum of 15 scheduled validation can be configured, not including the default scheduled validations.
-
-#### Syntax
-
-```
-netq add validation
-    name <text-new-validation-name>
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
-    interval <text-time-min>
-    [alert-on-failure]
-```
-
-#### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| name | user defined | Unique name for the validation |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, sensors, vlan, or vxlan | Protocol or service to be validated |
-| interval | \<text-time-min\> | Frequency to run the validation, in minutes. Value must include time unit of *m*, minutes. Default scheduled validations per type run every 60 minutes. |
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| alert-on-failure | NA | Reserved |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
-#### Sample Usage
-
-BGP validation; all devices, all tests, on a regular basis
-
-```
-cumulus@switch:~$ netq add validation name Bgp15m type bgp interval 15m
-```
-
-#### Related Commands
-
-- netq add validation
-- netq del validation
-- netq show validation settings
-- netq show validation summary
-
-- - -
-
-## Management
-
-These commands are used to manage scheduled validations.
-
-### netq del validation
-
-Removes a scheduled validation. Useful when you have created a scheduled validation for troubleshooting and you no longer need it, or if you are reaching your maximum of 15 scheduled validations and you want to prioritize one validation over another. Use the related `netq show validation settings` command to view the names of existing scheduled validations.
-
-#### Syntax
-
-```
-netq del validation
-    <text-validation-name>
-```
-
-#### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<text-validation-name\> | Name of scheduled validation you want to remove |
-
-#### Options
-
-None
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
-#### Sample Usage
-
-```
-cumulus@switch:~$ netq del validation Bgp15m
-Successfully deleted validation Bgp15m
-```
-
-#### Related Commands
-
-- netq add validation name
-- netq show validation settings
-
-- - -
-
-### netq show validation settings
-
-Displays one or all scheduled validations, including their name, type, cadence, when the validation began, when it was created, and whether it is currently active. This is useful for obtaining the name of a scheduled validations for use in other validation commands.
-
-#### Syntax
-
-```
-netq show validation settings
-    [name <text-validation-name>]
-    [type ntp | type interfaces | type license | type sensors | type evpn | type vxlan | type agents | type mlag | type vlan | type bgp | type mtu | type ospf]
-    [json]
-```
-
-#### Required Arguments
-
-None
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | Filter output to view settings for only the indicated protocol or service |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
-#### Sample Usage
-
-```
-cumulus@switch:~$ netq show validation settings
-Name            Types      Cadence        Start Time           Creation Time              Active
---------------- ---------- -------------- -------------------- -------------------------- ------
-BGP12hr         bgp, evpn  720m           Thu Nov 12 16:15:00  Thu Nov 12 20:10:05 2020   yes
-                                          2020
-BGP12hr (pre 11 bgp        720m           Thu Nov 12 16:15:00  Thu Nov 12 18:45:52 2020   no
--12-20)                                   2020
-Bgp30m          bgp        30m            Tue Nov 10 21:46:05  Tue Nov 10 21:46:05 2020   yes
-                                          2020
-Default validat interfaces 60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion INTERFACES                            2020
-Default validat mlag       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion MLAG                                  2020
-Default validat vlan       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion VLAN                                  2020
-Default validat sensors    60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion SENSORS                               2020
-Default validat vxlan      60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion VXLAN                                 2020
-Default validat ospf       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion OSPF                                  2020
-Default validat mtu        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion MTU                                   2020
-Default validat bgp        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion BGP                                   2020
-Default validat agents     60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion AGENTS                                2020
-Default validat ntp        60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion NTP                                   2020
-Default validat evpn       60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion EVPN                                  2020
-Default validat license    60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:40 2020   yes
-ion LICENSE                               2020
-```
-
-#### Related Commands
-
-- netq add validation name
-- netq del validation
-- netq show validation summary
-
-- - -
-
-### netq show validation summary
-
-Displays summary status of a scheduled validation for a given protocol or service, including their name, type, job ID, number of nodes validated, number of nodes that failed validation, number of nodes running the protocol or service, and time when the validation was run.
-
-#### Syntax
-
-```
-netq show validation summary
-    [name <text-validation-name>]
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf)
-    [around <text-time-hr>]
-    [json]
-```
-
-#### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | Show validation runs summary for the indicated protocol or service |
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| around | \<text-time-hr\> | Show summary status for this time in the past. Value must be specified in hours and include the *h* time unit. Default is 24 hours. |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
-#### Sample Usage
-
-Basic show: one protocol, within last 24 hours
-
-```
-cumulus@switch:~$ netq show validation summary type evpn
-Name            Type             Job ID       Checked Nodes              Failed Nodes             Total Nodes            Timestamp
---------------- ---------------- ------------ -------------------------- ------------------------ ---------------------- -------------------------
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 15:43:08 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 14:43:21 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 13:42:57 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 12:42:57 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 11:43:15 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 10:42:54 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 09:42:56 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 08:43:25 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-BGP12hr         scheduled        5818f911-d9e 6                          1                        6                      Fri Nov 20 08:10:15 2020
-                                 2-4927-9cc1-
-                                 6972899a3422
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 07:42:56 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 06:42:54 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 05:43:12 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-BGP12hr         scheduled        5818f911-d9e 0                          0                        0                      Fri Nov 20 05:14:06 2020
-                                 2-4927-9cc1-
-                                 6972899a3422
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 04:42:52 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-Default validat scheduled        1129e006-d47 6                          0                        6                      Fri Nov 20 03:42:59 2020
-ion                              2-4ee7-917e-
-                                 f21d15adec22
-...
-```
-
-#### Related Commands
-
-- netq add validation name
-- netq del validation
-- netq show validation settings
+## netq config 
+    add      :  Add netq tca configuration
+    agent    :  Troubleshooting daemon
+    del      :  Delete netq tca configuration
+    reload   :  Reload configuration
+    restart  :  Restart daemon
+    select   :  add help text
+    show     :  Show fabric-wide info about specified object
+    start    :  Start daemon
+    status   :  License state
+    stop     :  Stop daemon
+
+## netq config add agents
+
+    netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
+    netq config add agent cpu-limit [<text-limit-number>]
+    netq config add agent frr-monitor [<text-frr-docker-name>]
+    netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
+    netq config add agent loglevel [debug|error|info|warning]
+    netq config add agent sensors
+    netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
+    netq config (start|stop|status|restart) agent
+    netq config del agent (cluster-servers|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|stats|wjh)
+    netq config show agent [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|stats|wjh] [json]

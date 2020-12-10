@@ -102,7 +102,7 @@ To work around this issue, use Mellanox ethernet modules with the Mellanox SN342
 </tr>
 <tr>
 <td>CM-32275</td>
-<td><p>After you reboot the EdgeCore AS7712-32X  switch or the Celestica Pebble switch, switchd fails to restart and you see logs in switchd.log similar to the following:</p>
+<td><p>After you reboot a Broadcom switch, switchd might fail to restart and you see logs in switchd.log similar to the following:</p>
 
 ...
 Nov 12 12:20:05.063876 leaf01 switchd[9867]:
@@ -2029,7 +2029,7 @@ Fixed: 2.4.47+dfsg-3+deb10u4</p></td>
 </tr>
 <tr>
 <td>CM-32275</td>
-<td><p>After you reboot the EdgeCore AS7712-32X  switch or the Celestica Pebble switch, switchd fails to restart and you see logs in switchd.log similar to the following:</p>
+<td><p>After you reboot a Broadcom switch, switchd might fail to restart and you see logs in switchd.log similar to the following:</p>
 
 ...
 Nov 12 12:20:05.063876 leaf01 switchd[9867]:

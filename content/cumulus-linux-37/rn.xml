@@ -75,6 +75,13 @@ To work around this issue, bring the bond interface down, then up with the ip li
 <td></td>
 </tr>
 <tr>
+<td>CM-32420</td>
+<td><p>On a traditional mode bride, MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
+To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</p></td>
+<td>3.7.13-3.7.14</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32275</td>
 <td><p>After you reboot a Broadcom switch, switchd might fail to restart and you see logs in switchd.log similar to the following:</p>
 
@@ -2353,6 +2360,13 @@ CVE-2020-25085 CVE-2020-25624 CVE-2020-25625 CVE-2020-25723 CVE-2020-27617: All 
 Vulnerable: &lt;= 2.1+dfsg-12+deb8u17<br/>
 Fixed: 2.1+dfsg-12+deb8u18</p></td>
 <td>3.0.0-3.7.14</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32420</td>
+<td><p>On a traditional mode bride, MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
+To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</p></td>
+<td>3.7.13-3.7.14</td>
 <td></td>
 </tr>
 <tr>

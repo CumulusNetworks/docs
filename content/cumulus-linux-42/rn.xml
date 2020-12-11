@@ -243,12 +243,6 @@ Fixed: 10.3.25-0+deb10u1</p></td>
 <td></td>
 </tr>
 <tr>
-<td>CM-31942</td>
-<td><p>After upgrading the Mellanox SN2410 switch from Cumulus Linux 4.1.1 to 4.2.1, the FAN is set to full speed.</p></td>
-<td>4.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>CM-31936</td>
 <td><p>When you back up and restore a configuration using the conf-backup utility, the switch might hang when rebooted.</p></td>
 <td>4.1.1-4.2.1</td>

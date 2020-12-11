@@ -9,18 +9,108 @@ draft: true
 ---
 This topic includes all commands that begin with `netq s*`.
 
-All of the NetQ show commands begin with `netq show`. They are used to view the health of various elements in your network fabric. Many allow filtering by hostname and other parameters. The results are presented in the NetQ CLI immediately. The commands are listed alphabetically within functional groups.
+### netq show address-history
 
-## Network Protocols and Services
+Displays where an IPv4 or IPv6 address has lived in your network fabric in the last 24 hours. The output provides:
 
-You can monitor the health of the following network protocols and services:
+- When the address was last changed
+- The switch or host name where the address resides
+- The interface where the address resides
+- The address prefix and mask
+- The associated VRF
 
-- Layer 1: Sensors
-- Layer 2: Interfaces, LLDP, STP, VLANs, MLAG/CLAG
-- Layer 3: IP, BGP, OSPF
-- Layer 4: NTP
-- Virtual overlays: EVPN, VXLANs
-- Other: NetQ Agents
+By default, each row in the output is a thread (or group) sorted by VLAN.
+
+#### Syntax
+
+```
+netq [<hostname>] show address-history
+    <text-prefix>
+    [ifname <text-ifname>]
+    [vrf <text-vrf>]
+    [diff]
+    [between <text-time> and <text-endtime>]
+    [listby <text-list-by>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-prefix\> | Display results for the switches and hosts with this address prefix |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| ifname | \<text-ifname\> | Only display results for the interface with this name |
+| vrf | \<text-vrf\> | Only display results for the VRF with this name |
+| diff | NA | Only display the differences associated with each change |
+| between | \<text-time\> and \<text-endtime\> | Only display results between the snapshots taken at these times |
+| listby | \<text-list-by\> | Display results by the specified attribute. Attributes include the interface name, VRF name, and hostname. |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+{{<notice note>}}
+When entering a time value with the <code>between</code> option, you must include a numeric value <em>and</em> the unit of measure:
+<ul>
+<li><strong>d</strong>: day(s)</li>
+<li><strong>h</strong>: hour(s)</li>
+<li><strong>m</strong>: minute(s)</li>
+<li><strong>s</strong>: second(s)</li>
+<li><strong>now</strong>
+</ul>
+
+The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+{{</notice>}}
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all VLANs, in last 24 hours
+
+```
+cumulus@switch:~$ netq show address-history 10.10.10.3
+Matching addresshistory records:
+Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
+------------------------- ----------------- ------------ ------------------------------ -------- ---------------
+Mon Nov 23 22:28:42 2020  leaf03            lo           10.10.10.3                     32       default
+
+```
+
+Show only the differences between now and four months ago.
+
+```
+cumulus@switch:~$ netq show address-history 10.10.10.3 between now and 120d
+Matching addresshistory records:
+Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
+------------------------- ----------------- ------------ ------------------------------ -------- ---------------
+Thu Oct 15 22:28:16 2020  leaf03            lo           10.10.10.3                     32       default
+```
+
+Show changes grouped by VRF.
+
+```
+cumulus@switch:~$ netq show address-history 10.1.10.104 listby vrf
+Matching addresshistory records:
+Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
+------------------------- ----------------- ------------ ------------------------------ -------- ---------------
+Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104                    24       default
+```
+
+#### Related Commands
+
+- netq show mac-history
+
+- - -
 
 ### netq show agents
 
@@ -288,1090 +378,6 @@ leaf02            swp51(spine01)               default         65101      65199 
 - netq show unit-tests bgp
 - netq show events
 - netq check bgp
-
-- - -
-
-### netq show clag
-
-Displays the health of all CLAG sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
-
-- The peer nodes for a given node
-- The system MAC address used for the session between the nodes
-- The operational state of the session (up or down)
-- The operational state of the backup IP address (up or down)
-- The total number of bonds
-- The number of dual-connected bonds
-- When the last change was made to any of these items
-
-If the total number of bonds does not match the number of dual-connected bonds, there might be a configuration issue.
-
-#### Syntax
-
-```
-netq [<hostname>] show clag
-    [around <text-time>]
-    [json]
-```
-
-#### Required Arguments
-
-None
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
-#### Sample Usage
-
-Basic show: all devices, all states, currently
-
-```
-cumulus@switch:~$ netq show clag
-Matching clag records:
-Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
-                                                                         s
------------------ ----------------- ------------------ ---------- ------ ----- ----- -------------------------
-border01(P)       border02          44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:33:48 2020
-border02          border01(P)       44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:29:24 2020
-leaf01(P)         leaf02            44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:29:16 2020
-leaf02            leaf01(P)         44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:39:27 2020
-leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:10:35 2020
-leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:11:24 2020
-```
-
-#### Related Commands
-
-- netq show unit-tests clag
-- netq show events
-- netq check clag
-
-- - -
-
-### netq show evpn
-
-Displays the health of all EVPN sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides the following for each session:
-
-- The VNI used
-- The address of the VNI endpoint
-- Whether the session is part of a layer 2 or layer 3 configuration
-- The associated VRF or VLAN when defined
-- Whether the associated VNI is in the kernel
-- The export and import route targets used for filtering
-- When the last change was made to any of these items
-
-#### Syntax
-
-```
-netq [<hostname>] show evpn
-    [vni <text-vni>]
-    [around <text-time>]
-    [json]
-```
-
-#### Required Arguments
-
-None
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| vni | \<text-vni\> | Only display results for sessions using the VNI with this name |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
-#### Sample Usage
-
-Basic show: all devices, all VNIs, currently
-
-```
-cumulus@switch:~$ netq show evpn
-
-Matching evpn records:
-Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
------------------ ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
-border01          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Fri Nov 20 01:50:53 2020
-border01          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Fri Nov 20 01:50:53 2020
-border02          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Fri Nov 20 01:50:19 2020
-border02          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Fri Nov 20 01:50:19 2020
-leaf01            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Fri Nov 20 02:18:42 2020
-leaf01            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Fri Nov 20 02:18:42 2020
-leaf01            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Fri Nov 20 02:18:42 2020
-leaf01            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Fri Nov 20 02:18:42 2020
-leaf01            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Fri Nov 20 02:18:42 2020
-leaf02            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Fri Nov 20 02:10:38 2020
-leaf02            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Fri Nov 20 02:10:38 2020
-leaf02            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Fri Nov 20 02:10:38 2020
-leaf02            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Fri Nov 20 02:10:38 2020
-leaf02            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Fri Nov 20 02:10:38 2020
-leaf03            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Fri Nov 20 02:05:00 2020
-leaf03            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Fri Nov 20 02:05:00 2020
-leaf03            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Fri Nov 20 02:05:00 2020
-leaf03            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Fri Nov 20 02:05:00 2020
-leaf03            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Fri Nov 20 02:05:00 2020
-leaf04            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Fri Nov 20 11:08:16 2020
-leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Fri Nov 20 11:08:16 2020
-leaf04            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Fri Nov 20 11:08:16 2020
-leaf04            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Fri Nov 20 11:08:16 2020
-leaf04            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Fri Nov 20 11:08:16 2020
-```
-
-#### Related Commands
-
-- netq show unit-tests evpn
-- netq show events
-- netq check evpn
-
-- - -
-
-### netq show interfaces
-
-Displays the health of all interfaces or a single interface on all nodes or a specific node in your network fabric currently or for a time in the past. You can filter by the interface type, state of the interface, or the remote interface. For a given switch or host, you can view the total number of configured interfaces.
-
-The output provides the following for each device:
-
-- The name of the interface
-- The type of interface
-- The state of the interface (up or down)
-- The associated VRF, VLANs, PVID, MTU, and LLDP peer
-- When the last change was made to any of these items
-- The total number of interfaces on a given device
-
-#### Syntax
-
-There are four forms of the command, based on whether you want to view interface health for all devices or a given device, and whether you want to filter by an interface type.
-
-```
-netq show interfaces
-    [<remote-interface>]
-    [state <remote-interface-state>]
-    [around <text-time>]
-    [json]
-
-netq <hostname> show interfaces
-    [<remote-interface>]
-    [state <remote-interface-state>]
-    [around <text-time>]
-    [count]
-    [json]
-
-netq show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan)
-    [state <remote-interface-state>]
-    [around <text-time>]
-    [json]
-
-netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan)
-    [state <remote-interface-state>]
-    [around <text-time>]
-    [count]
-    [json]
-```
-
-#### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name. This is only required when the `count` option is used. |
-| type | bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan | Only display results for the specified interface type |
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<remote-interface\> | Only display results for local interfaces with this remote interface |
-| state | \<remote-interface-state\> | Only display results for remote interfaces in the specified state&mdash;up or down |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| count | NA | Display the total number of interface on the specified switch or host. The `hostname` option is required when using this option. |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
-#### Sample Usage
-
-Basic show: all devices, all interface types, currently
-
-```
-cumulus@switch:~$ netq show interfaces
-Matching link records:
-Hostname          Interface                 Type             State      VRF             Details                             Last Changed
------------------ ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
-border01          swp52                     swp              up         default         VLANs: ,                            Tue Nov 10 22:29:05 2020
-                                                                                        PVID: 0 MTU: 9216 LLDP: spine02:swp
-                                                                                        5
-border01          swp53                     swp              up         default         VLANs: ,                            Tue Nov 10 22:29:05 2020
-                                                                                        PVID: 0 MTU: 9216 LLDP: spine03:swp
-                                                                                        5
-border01          swp54                     swp              up         default         VLANs: ,                            Tue Nov 10 22:29:05 2020
-                                                                                        PVID: 0 MTU: 9216 LLDP: spine04:swp
-                                                                                        5
-border01          eth0                      eth              up         mgmt            MTU: 1500                           Tue Nov 10 22:29:05 2020
-border01          lo                        loopback         up         default         MTU: 65536                          Tue Nov 10 22:29:05 2020
-border01          peerlink                  bond             up         default         Slave: swp49 (LLDP: border02:swp49) Tue Nov 10 22:29:05 2020
-                                                                                        ,
-                                                                                        Slave: swp50 (LLDP: border02:swp50)
-border01          vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Nov 10 22:29:05 2020
-...
-```
-
-View interfaces on a given device.
-
-```
-cumulus@switch:~$ netq spine01 show interfaces
-Matching link records:
-Hostname          Interface                 Type             State      VRF             Details                             Last Changed
------------------ ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
-spine01           swp5                      swp              up         default         VLANs: ,                            Tue Nov 10 22:30:11 2020
-                                                                                        PVID: 0 MTU: 9216 LLDP: border01:sw
-                                                                                        p51
-spine01           swp6                      swp              up         default         VLANs: ,                            Tue Nov 10 22:30:11 2020
-                                                                                        PVID: 0 MTU: 9216 LLDP: border02:sw
-                                                                                        p51
-spine01           eth0                      eth              up         mgmt            MTU: 1500                           Tue Nov 10 22:30:11 2020
-spine01           lo                        loopback         up         default         MTU: 65536                          Tue Nov 10 22:30:11 2020
-spine01           mgmt                      vrf              up         mgmt            table: 1001, MTU: 65536,            Tue Nov 10 22:30:11 2020
-                                                                                        Members:  eth0,  mgmt,
-spine01           vagrant                   swp              down       default         VLANs: , PVID: 0 MTU: 1500          Tue Nov 10 22:30:11 2020
-spine01           swp1                      swp              up         default         VLANs: ,                            Tue Nov 10 22:30:11 2020
-                                                                                        PVID: 0 MTU: 9216 LLDP: leaf01:swp5
-                                                                                        1
-spine01           swp2                      swp              up         default         VLANs: ,                            Tue Nov 10 22:30:11 2020
-                                                                                        PVID: 0 MTU: 9216 LLDP: leaf02:swp5
-                                                                                        1
-spine01           swp3                      swp              up         default         VLANs: ,                            Tue Nov 10 22:30:11 2020
-                                                                                        PVID: 0 MTU: 9216 LLDP: leaf03:swp5
-                                                                                        1
-spine01           swp4                      swp              up         default         VLANs: ,                            Tue Nov 10 22:30:11 2020
-                                                                                        PVID: 0 MTU: 9216 LLDP: leaf04:swp5
-                                                                                        1
-```
-
-View an interface count on a given device.
-
-```
-cumulus@switch:~$ netq spine01 show interfaces count
-Count of matching link records: 10
-```
-
-#### Related Commands
-
-- netq show events
-- netq check interfaces
-- netq show unit-tests interfaces
-
-- - -
-
-### netq show lldp
-
-Displays the health of all LLDP sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. You can filter the output to show sessions for a particular peer interface port. The output provides the following for each session:
-
-- The interface on the local device
-- The hostname and interface of the peer device
-- When the last change was made to any of these items
-
-#### Syntax
-
-```
-netq [<hostname>] show lldp
-    [<remote-physical-interface>]
-    [around <text-time>]
-    [json]
-```
-
-#### Required Arguments
-
-None
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| NA | \<remote-physical-interface\> | Only display results for sessions using the interface port with this name |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
-#### Sample Usage
-
-Basic show: all devices, all interfaces, currently
-
-```
-cumulus@switch:~$ netq show lldp
-Matching lldp records:
-Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
------------------ ------------------------- ----------------- ------------------------- -------------------------
-border01          swp54                     spine04           swp5                      Fri Nov 20 10:19:39 2020
-border01          swp51                     spine01           swp5                      Fri Nov 20 10:19:39 2020
-border01          swp53                     spine03           swp5                      Fri Nov 20 10:19:39 2020
-border01          swp3                      fw1               swp1                      Fri Nov 20 10:19:39 2020
-border01          swp50                     border02          swp50                     Fri Nov 20 10:19:39 2020
-border01          swp52                     spine02           swp5                      Fri Nov 20 10:19:39 2020
-border01          swp49                     border02          swp49                     Fri Nov 20 10:19:39 2020
-border01          eth0                      oob-mgmt-switch   swp20                     Fri Nov 20 10:19:39 2020
-border02          swp49                     border01          swp49                     Fri Nov 20 10:25:40 2020
-border02          swp51                     spine01           swp6                      Fri Nov 20 10:25:40 2020
-border02          swp52                     spine02           swp6                      Fri Nov 20 10:25:40 2020
-border02          eth0                      oob-mgmt-switch   swp21                     Fri Nov 20 10:25:40 2020
-border02          swp3                      fw1               swp2                      Fri Nov 20 10:25:40 2020
-border02          swp50                     border01          swp50                     Fri Nov 20 10:25:40 2020
-border02          swp53                     spine03           swp6                      Fri Nov 20 10:25:40 2020
-border02          swp54                     spine04           swp6                      Fri Nov 20 10:25:40 2020
-fw1               eth0                      oob-mgmt-switch   swp18                     Fri Nov 20 19:51:49 2020
-fw1               swp1                      border01          swp3                      Fri Nov 20 19:51:49 2020
-...
-```
-
-Show only session for a given host interface port.
-
-```
-cumulus@switch:~$ netq show lldp swp5
-Matching lldp records:
-Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
------------------ ------------------------- ----------------- ------------------------- -------------------------
-spine01           swp5                      border01          swp51                     Fri Nov 20 10:28:20 2020
-spine02           swp5                      border01          swp52                     Fri Nov 20 10:33:41 2020
-spine03           swp5                      border01          swp53                     Fri Nov 20 10:28:32 2020
-spine04           swp5                      border01          swp54                     Fri Nov 20 10:24:07 2020
-```
-
-#### Related Commands
-
-- netq show events
-- netq check lldp
-
-- - -
-
-### netq show mlag
-
-Displays the health of all MLAG sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
-
-- The peer nodes for a given node
-- The system MAC address used for the session between the nodes
-- The operational state of the session (up or down)
-- The operational state of the backup IP address (up or down)
-- The total number of bonds
-- The number of dual-connected bonds
-- When the last change was made to any of these items
-
-If the total number of bonds does not match the number of dual-connected bonds, there might be a configuration issue.
-
-#### Syntax
-
-```
-netq [<hostname>] show mlag
-    [around <text-time>]
-    [json]
-```
-
-#### Required Arguments
-
-None
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
-#### Sample Usage
-
-Basic show: all devices, all states, currently
-
-```
-cumulus@switch:~$ netq show mlag
-Matching clag records:
-Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
-                                                                         s
------------------ ----------------- ------------------ ---------- ------ ----- ----- -------------------------
-border01(P)       border02          44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:33:48 2020
-border02          border01(P)       44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:29:24 2020
-leaf01(P)         leaf02            44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:29:16 2020
-leaf02            leaf01(P)         44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:39:27 2020
-leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:10:35 2020
-leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:11:24 2020
-```
-
-#### Related Commands
-
-- netq show events type clag
-- netq check mlag
-- netq show unit-tests mlag
-
-- - -
-
-### netq show notification
-
-    netq show notification [channel|filter|rule] [json]
-
-- - -
-
-### netq show ntp
-
-Displays whether the all or a specific node is in time synchronization with the NetQ appliance or VM currently or for a time in the past. The output provides:
-
-- The synchronization status
-- The current time server being used for synchronization
-- The number of hierarchical levels the switch or host is from reference clock
-- The NTP application used to obtain and synchronize the clock on the node
-
-#### Syntax
-
-```
-netq [<hostname>] show ntp
-    [out-of-sync | in-sync]
-    [around <text-time>]
-    [json]
-```
-
-#### Required Arguments
-
-None
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| out-of-sync | NA | Only display results for devices that are out of synchronization with the NetQ appliance or VM |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| x.y.z | xxx |
-
-#### Sample Usage
-
-Basic show: all devices, all states, currently
-
-```
-cumulus@switch:~$ netq show ntp
-Matching ntp records:
-Hostname          NTP Sync Current Server    Stratum NTP App
------------------ -------- ----------------- ------- ---------------------
-border01          yes      oob-mgmt-server   3       ntpq
-border02          yes      oob-mgmt-server   3       ntpq
-fw1               no       -                 16      ntpq
-fw2               no       -                 16      ntpq
-leaf01            yes      oob-mgmt-server   3       ntpq
-leaf02            yes      oob-mgmt-server   3       ntpq
-leaf03            yes      oob-mgmt-server   3       ntpq
-leaf04            yes      oob-mgmt-server   3       ntpq
-netq-ts           yes      eterna.binary.net 2       chronyc
-oob-mgmt-server   yes      titan.crash-ove   2       ntpq
-server01          yes      oob-mgmt-server   3       ntpq
-server02          yes      oob-mgmt-server   3       ntpq
-server03          yes      oob-mgmt-server   3       ntpq
-server04          yes      oob-mgmt-server   3       ntpq
-server05          yes      oob-mgmt-server   3       ntpq
-server06          yes      oob-mgmt-server   3       ntpq
-server07          yes      oob-mgmt-server   3       ntpq
-server08          yes      oob-mgmt-server   3       ntpq
-spine01           yes      oob-mgmt-server   3       ntpq
-spine02           yes      oob-mgmt-server   3       ntpq
-spine03           yes      oob-mgmt-server   3       ntpq
-spine04           yes      oob-mgmt-server   3       ntpq
-```
-
-#### Related Commands
-
-- netq check ntp
-- netq show unit-tests ntp
-
-- - -
-
-### netq show ospf
-
-Displays the health of all OSPF sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
-
-- The host interface
-- The routing domain (area)
-- Whether numbered or unnumbered protocol is being used
-- The operational state of the session (up or down)
-- The hostname and interface of the peer node
-- When the last change was made to any of these items
-
-#### Syntax
-
-```
-netq [<hostname>] show ospf
-    [<remote-interface>]
-    [area <area-id>]
-    [around <text-time>]
-    [json]
-```
-
-#### Required Arguments
-
-None
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| NA | \<remote-interface\> | Only display results for the host inteface with this name |
-| area | \<area-id\> | Only display results for devices in this routing domain |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
-#### Sample Usage
-
-Basic show: all devices, all states, currently
-
-```
-cumulus@switch:~$ netq show ospf
-Matching ospf records:
-Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
------------------ ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
-leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      Thu Feb  7 14:42:16 2019
-leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      Thu Feb  7 14:42:16 2019
-leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      Thu Feb  7 14:42:16 2019
-leaf02            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp2                      Thu Feb  7 14:42:16 2019
-leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      Thu Feb  7 14:42:16 2019
-leaf03            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp3                      Thu Feb  7 14:42:16 2019
-leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      Thu Feb  7 14:42:16 2019
-leaf04            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp4                      Thu Feb  7 14:42:16 2019
-spine01           swp1                      0.0.0.0      Unnumbered       Full       leaf01            swp51                     Thu Feb  7 14:42:16 2019
-spine01           swp2                      0.0.0.0      Unnumbered       Full       leaf02            swp51                     Thu Feb  7 14:42:16 2019
-spine01           swp3                      0.0.0.0      Unnumbered       Full       leaf03            swp51                     Thu Feb  7 14:42:16 2019
-spine01           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp51                     Thu Feb  7 14:42:16 2019
-spine02           swp1                      0.0.0.0      Unnumbered       Full       leaf01            swp52                     Thu Feb  7 14:42:16 2019
-spine02           swp2                      0.0.0.0      Unnumbered       Full       leaf02            swp52                     Thu Feb  7 14:42:16 2019
-spine02           swp3                      0.0.0.0      Unnumbered       Full       leaf03            swp52                     Thu Feb  7 14:42:16 2019
-spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     Thu Feb  7 14:42:16 2019
-```
-
-#### Related Commands
-
-- netq show events
-- netq check ospf
-- netq show unit-tests ospf
-
-- - -
-
-### netq show sensors
-
-Displays the status of all fan, power supply, and temperature sensors on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
-
-- The sensor name and user-defined description
-- The operational state of the sensor
-- Any messages, when available
-- When the last change was made to any of these items
-
-#### Syntax
-
-There are four forms of this command based on whether you want to view data for all sensors or only one category of sensors.
-
-```
-netq [<hostname>] show sensors
-    all
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show sensors
-    fan [<fan-name>]
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show sensors
-    psu [<psu-name>]
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show sensors
-    temp [<temp-name>]
-    [around <text-time>]
-    [json]
-```
-
-#### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| all | NA | Display data for all sensors |
-| fan | \<fan-name\> | Display data for all fan sensors or the one specified using the `fan-name` value |
-| psu | \<psu-name\> | Display data for all power supply unit sensors or the one specified using the`psu-name` value |
-| temp | \<temp-name\> | Display data for all temperature sensors or the one specified using the `temp-name` value |
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| x.y.z | xxx |
-
-#### Sample Usage
-
-Basic show: all devices, all states, currently
-
-```
-cumulus@switch:~$ netq show sensors all
-Matching sensors records:
-Hostname          Name            Description                         State      Message                             Last Changed
------------------ --------------- ----------------------------------- ---------- ----------------------------------- -------------------------
-border01          fan5            fan tray 3, fan 1                   ok                                             Tue Nov 24 03:57:06 2020
-border01          psu1fan1        psu1 fan                            ok                                             Tue Nov 24 03:57:06 2020
-border01          fan4            fan tray 2, fan 2                   ok                                             Tue Nov 24 03:57:06 2020
-border01          fan2            fan tray 1, fan 2                   ok                                             Tue Nov 24 03:57:06 2020
-border01          fan3            fan tray 2, fan 1                   ok                                             Tue Nov 24 03:57:06 2020
-border01          fan6            fan tray 3, fan 2                   ok                                             Tue Nov 24 03:57:06 2020
-border01          psu2fan1        psu2 fan                            ok                                             Tue Nov 24 03:57:06 2020
-border01          fan1            fan tray 1, fan 1                   ok                                             Tue Nov 24 03:57:06 2020
-border02          fan3            fan tray 2, fan 1                   ok                                             Tue Nov 24 04:13:30 2020
-border02          psu1fan1        psu1 fan                            ok                                             Tue Nov 24 04:13:30 2020
-border02          fan1            fan tray 1, fan 1                   ok                                             Tue Nov 24 04:13:30 2020
-border02          fan6            fan tray 3, fan 2                   ok                                             Tue Nov 24 04:13:30 2020
-border02          fan5            fan tray 3, fan 1                   ok                                             Tue Nov 24 04:13:30 2020
-border02          psu2fan1        psu2 fan                            ok                                             Tue Nov 24 04:13:30 2020
-border02          fan4            fan tray 2, fan 2                   ok                                             Tue Nov 24 04:13:30 2020
-border02          fan2            fan tray 1, fan 2                   ok                                             Tue Nov 24 04:13:30 2020
-fw1               psu2fan1        psu2 fan                            ok                                             Tue Nov 24 19:50:49 2020
-fw1               psu1fan1        psu1 fan                            ok                                             Tue Nov 24 19:50:49 2020
-...
-```
-
-Show data for the fan4 sensor on all nodes.
-
-```
-cumulus@switch:~$ netq show sensors fan fan4
-Matching sensors records:
-Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
------------------ --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
-border01          fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 03:57:06 2020
-border02          fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 04:13:30 2020
-fw1               fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 19:50:49 2020
-fw2               fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 19:50:51 2020
-spine03           fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 04:03:01 2020
-spine04           fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 04:13:52 2020
-```
-
-#### Related Commands
-
-- netq show events
-- netq check sensors
-- netq show unit-tests sensors
-
-- - -
-
-### netq show unit-tests
-
-Displays a list of all validation tests that are run for the associated `netq check` command. The output provides an ID, name, and brief description of each validation test.
-
-Refer to {{<link title="Validate Operations" text="Validate Operations">}} for additional usage information.
-
-#### Syntax
-
-```
-netq show unit-tests agent [json]
-netq show unit-tests bgp [json]
-netq show unit-tests clag [json]
-netq show unit-tests cl-version [json]
-netq show unit-tests evpn [json]
-netq show unit-tests interfaces [json]
-netq show unit-tests license [json]
-netq show unit-tests mlag [json]
-netq show unit-tests mtu [json]
-netq show unit-tests ntp [json]
-netq show unit-tests ospf [json]
-netq show unit-tests sensors [json]
-netq show unit-tests vlan [json]
-netq show unit-tests vxlan [json]
-```
-
-#### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| agent, bgp, clag, cl-version, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | NA | Display tests run during standard validation for the protocol or service with this name |
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Swapped the order of the `unit-tests` keyword and the protocol or service name |
-| ??? | Introduced |
-
-#### Sample Usage
-
-Show tests for BGP
-
-```
-cumulus@netq-ts:~$ netq show unit-tests bgp
-   0 : Session Establishment     - check if BGP session is in established state
-   1 : Address Families          - check if tx and rx address family advertisement is consistent between peers of a BGP session
-   2 : Router ID                 - check for BGP router id conflict in the network
-
-Configured global result filters:
-
-Configured per test result filters:
-```
-
-#### Related Commands
-
-- netq show events
-- netq check sensors
-
-- - -
-
-### netq show vlan
-
-Displays the configuration of all VLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
-
-- The switch or host name
-- The VLANs associated with that node
-- The SVIs (switch virtual interfaces) associated with that node
-- When the last change was made to any of these items
-
-#### Syntax
-
-```
-netq [<hostname>] show vlan
-    [<1-4096>]
-    [around <text-time>]
-    [json]
-```
-
-#### Required Arguments
-
-None
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| NA | \<1-4096\> | Only display results for the VLAN with this name |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
-#### Sample Usage
-
-Basic show: all devices, all states, currently
-
-```
-cumulus@switch:~$ netq show vlan
-Matching vlan records:
-Hostname          VLANs                     SVIs                      Last Changed
------------------ ------------------------- ------------------------- -------------------------
-border01          1,10,20,30,4001-4002                                Tue Nov 24 20:42:07 2020
-border02          1,10,20,30,4001-4002                                Tue Nov 24 20:42:07 2020
-leaf01            1,10,20,30,4001-4002      10 20 30                  Tue Nov 24 20:42:07 2020
-leaf02            1,10,20,30,4001-4002      10 20 30                  Tue Nov 24 20:42:08 2020
-leaf03            1,10,20,30,4001-4002      10 20 30                  Tue Nov 24 20:42:08 2020
-leaf04            1,10,20,30,4001-4002      10 20 30                  Tue Nov 24 20:42:08 2020
-```
-
-Show configuration for a particular VLAN.
-
-```
-cumulus@switch:~$ netq show vlan 20
-Matching vlan records:
-Hostname          VLAN   Ports                               SVI  Last Changed
------------------ ------ ----------------------------------- ---- -------------------------
-border01          20                                         no   Tue Nov 24 20:50:46 2020
-border02          20                                         no   Tue Nov 24 20:50:47 2020
-leaf01            20     bond2,vni20                         yes  Tue Nov 24 20:50:47 2020
-leaf02            20     bond2,vni20                         yes  Tue Nov 24 20:50:47 2020
-leaf03            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
-leaf04            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
-```
-
-#### Related Commands
-
-- netq show events
-- netq show interfaces
-- netq show macs
-- netq check vlan
-- netq show unit-tests vlan
-
-- - -
-
-### netq show vxlan
-
-Displays the configuration of all VXLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
-
-- The switch or host name
-- The VNI associated with that node
-- The protocol used over the interface
-- The VTEP IP for the node
-- The replication list, if appropriate
-- When the last change was made to any of these items
-
-#### Syntax
-
-```
-netq [<hostname>] show vxlan
-    [vni <text-vni>]
-    [around <text-time>]
-    [json]
-```
-
-#### Required Arguments
-
-None
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| vni | \<text-vni\> | Only display results for the VNI with this name |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
-#### Sample Usage
-
-Basic show: all devices, all states, currently
-
-```
-cumulus@switch:~$ netq show vxlan
-Matching vxlan records:
-Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
-                             ol
------------------ ---------- ------ ---------------- ------ ----------------------------------- -------------------------
-border01          4001       EVPN   10.0.1.254       4001                                       Tue Nov 10 22:29:05 2020
-border01          4002       EVPN   10.0.1.254       4002                                       Tue Nov 10 22:29:05 2020
-border02          4001       EVPN   10.0.1.254       4001                                       Tue Nov 10 22:29:06 2020
-border02          4002       EVPN   10.0.1.254       4002                                       Tue Nov 10 22:29:06 2020
-leaf01            30         EVPN   10.0.1.1         30     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:04 2020
-leaf01            10         EVPN   10.0.1.1         10     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:04 2020
-leaf01            4001       EVPN   10.0.1.1         4001                                       Tue Nov 10 22:29:04 2020
-leaf01            4002       EVPN   10.0.1.1         4002                                       Tue Nov 10 22:29:04 2020
-leaf01            20         EVPN   10.0.1.1         20     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:04 2020
-leaf02            30         EVPN   10.0.1.1         30     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:15 2020
-leaf02            10         EVPN   10.0.1.1         10     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:15 2020
-leaf02            4001       EVPN   10.0.1.1         4001                                       Tue Nov 10 22:29:15 2020
-leaf02            4002       EVPN   10.0.1.1         4002                                       Tue Nov 10 22:29:15 2020
-leaf02            20         EVPN   10.0.1.1         20     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:15 2020
-leaf03            30         EVPN   10.0.1.2         30     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:28:31 2020
-leaf03            10         EVPN   10.0.1.2         10     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:28:31 2020
-leaf03            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:28:31 2020
-leaf03            4002       EVPN   10.0.1.2         4002                                       Tue Nov 10 22:28:31 2020
-leaf03            20         EVPN   10.0.1.2         20     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:28:31 2020
-leaf04            30         EVPN   10.0.1.2         30     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:29:34 2020
-leaf04            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:29:34 2020
-leaf04            10         EVPN   10.0.1.2         10     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:29:34 2020
-leaf04            4002       EVPN   10.0.1.2         4002                                       Tue Nov 10 22:29:34 2020
-leaf04            20         EVPN   10.0.1.2         20     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:29:34 2020
-```
-
-Show configuration for a particular VNI.
-
-```
-cumulus@switch:~$ netq show vxlan vni 4001
-Matching vxlan records:
-Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
-                             ol
------------------ ---------- ------ ---------------- ------ ----------------------------------- -------------------------
-border01          4001       EVPN   10.0.1.254       4001                                       Tue Nov 10 22:29:05 2020
-border02          4001       EVPN   10.0.1.254       4001                                       Tue Nov 10 22:29:06 2020
-leaf01            4001       EVPN   10.0.1.1         4001                                       Tue Nov 10 22:29:04 2020
-leaf02            4001       EVPN   10.0.1.1         4001                                       Tue Nov 10 22:29:15 2020
-leaf03            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:28:31 2020
-leaf04            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:29:34 2020
-```
-
-#### Related Commands
-
-- netq show events
-- netq show interfaces
-- netq check vxlan
-- netq show unit-tests vxlan
-
-- - -
-
-## System and Inventory
-
-### netq show address-history
-
-Displays where an IPv4 or IPv6 address has lived in your network fabric in the last 24 hours. The output provides:
-
-- When the address was last changed
-- The switch or host name where the address resides
-- The interface where the address resides
-- The address prefix and mask
-- The associated VRF
-
-By default, each row in the output is a thread (or group) sorted by VLAN.
-
-#### Syntax
-
-```
-netq [<hostname>] show address-history
-    <text-prefix>
-    [ifname <text-ifname>]
-    [vrf <text-vrf>]
-    [diff]
-    [between <text-time> and <text-endtime>]
-    [listby <text-list-by>]
-    [json]
-```
-
-#### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<text-prefix\> | Display results for the switches and hosts with this address prefix |
-
-#### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| ifname | \<text-ifname\> | Only display results for the interface with this name |
-| vrf | \<text-vrf\> | Only display results for the VRF with this name |
-| diff | NA | Only display the differences associated with each change |
-| between | \<text-time\> and \<text-endtime\> | Only display results between the snapshots taken at these times |
-| listby | \<text-list-by\> | Display results by the specified attribute. Attributes include the interface name, VRF name, and hostname. |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-{{<notice note>}}
-When entering a time value with the <code>between</code> option, you must include a numeric value <em>and</em> the unit of measure:
-<ul>
-<li><strong>d</strong>: day(s)</li>
-<li><strong>h</strong>: hour(s)</li>
-<li><strong>m</strong>: minute(s)</li>
-<li><strong>s</strong>: second(s)</li>
-<li><strong>now</strong>
-</ul>
-
-The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
-{{</notice>}}
-
-#### Command History
-
-A release is included if there were changes to the command, otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
-#### Sample Usage
-
-Basic show: all devices, all VLANs, in last 24 hours
-
-```
-cumulus@switch:~$ netq show address-history 10.10.10.3
-Matching addresshistory records:
-Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
-------------------------- ----------------- ------------ ------------------------------ -------- ---------------
-Mon Nov 23 22:28:42 2020  leaf03            lo           10.10.10.3                     32       default
-
-```
-
-Show only the differences between now and four months ago.
-
-```
-cumulus@switch:~$ netq show address-history 10.10.10.3 between now and 120d
-Matching addresshistory records:
-Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
-------------------------- ----------------- ------------ ------------------------------ -------- ---------------
-Thu Oct 15 22:28:16 2020  leaf03            lo           10.10.10.3                     32       default
-```
-
-Show changes grouped by VRF.
-
-```
-cumulus@switch:~$ netq show address-history 10.1.10.104 listby vrf
-Matching addresshistory records:
-Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
-------------------------- ----------------- ------------ ------------------------------ -------- ---------------
-Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104                    24       default
-```
-
-#### Related Commands
-
-- netq show mac-history
 
 - - -
 
@@ -1711,6 +717,687 @@ spine02         80                      576                             2880    
 #### Related Commands
 
 - netq show cl-btrfs-info
+
+- - -
+
+### netq show clag
+
+Displays the health of all CLAG sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
+
+- The peer nodes for a given node
+- The system MAC address used for the session between the nodes
+- The operational state of the session (up or down)
+- The operational state of the backup IP address (up or down)
+- The total number of bonds
+- The number of dual-connected bonds
+- When the last change was made to any of these items
+
+If the total number of bonds does not match the number of dual-connected bonds, there might be a configuration issue.
+
+#### Syntax
+
+```
+netq [<hostname>] show clag
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show clag
+Matching clag records:
+Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
+                                                                         s
+----------------- ----------------- ------------------ ---------- ------ ----- ----- -------------------------
+border01(P)       border02          44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:33:48 2020
+border02          border01(P)       44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:29:24 2020
+leaf01(P)         leaf02            44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:29:16 2020
+leaf02            leaf01(P)         44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:39:27 2020
+leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:10:35 2020
+leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:11:24 2020
+```
+
+#### Related Commands
+
+- netq show unit-tests clag
+- netq show events
+- netq check clag
+
+- - -
+
+### netq show dom
+
+Displays the performance degradation or complete outage of any digital optics modules (DOMs) on one or all devices. You can filter the output by interface for laser and module types, and by channel for laser type.
+
+The output provides the following information for each device and interface:
+
+- Alarm and warning thresholds
+- Current value, by channel for laser type
+- When any of these items was last changed
+
+#### Syntax
+
+There are two forms of this command: one for laser power and current and one for temperature and voltage.
+
+```
+netq [<hostname>] show dom type (laser_rx_power|laser_output_power|laser_bias_current)
+    [interface <text-dom-port-anchor>]
+    [channel_id <text-channel-id>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show dom type (module_temp|module_voltage)
+    [interface <text-dom-port-anchor>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| laser_rx_power | NA | Display current value and threshold alarms for transceiver input power (mW) on the DOM(s) |
+| laser_output_power | NA | Display current value and threshold alarms for laser output power (mW) on the DOM(s) |
+| laser_bias_current | NA | Display current value and threshold alarms for laser bias current (mA) on the DM(s) |
+| module_temp | NA | Display current value and threshold alarms for temperature (°C) on the DOM(s) |
+| module_voltage | NA | Display current value and threshold alarms for transceiver voltage (V) on the DOM(s) |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| interface | \<text-dom-port-anchor\> | Only display results for the interface with this port name |
+| channel_id | \<text-channel-id\> | Only display laser results for the channel with this ID |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 | Renamed `module_temperature` keyword to `module_temp` |
+| 3.1.0 | Introduced |
+
+#### Sample Usage
+
+Show module temperature of DOMs on given device
+
+```
+cumulus@switch:~$ netq spine01 show dom type module_temp
+Matching dom records:
+Hostname          Interface  type                 high_alarm_threshold low_alarm_threshold  high_warning_thresho low_warning_threshol value                Last Updated
+                                                                                            ld                   d
+----------------- ---------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+spine01           swp53s0    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp35      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 27.82,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 82.08}
+spine01           swp55      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 26.29,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 79.32}
+spine01           swp9       module_temperature   {‘degree_c’: 78,     {‘degree_c’: -13,    {‘degree_c’: 73,     {‘degree_c’: -8,     {‘degree_c’: 25.57,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 8.6}     ‘degree_f’: 163.4}   ‘degree_f’: 17.6}    ‘degree_f’: 78.02}
+spine01           swp56      module_temperature   {‘degree_c’: 78,     {‘degree_c’: -10,    {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 29.43,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 14}      ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 84.97}
+spine01           swp53s2    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp6       module_temperature   {‘degree_c’: 80,     {‘degree_c’: -10,    {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 25.04,  Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 176}     ‘degree_f’: 14}      ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 77.07}
+spine01           swp7       module_temperature   {‘degree_c’: 85,     {‘degree_c’: -5,     {‘degree_c’: 80,     {‘degree_c’: 0,      {‘degree_c’: 24.14,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 23}      ‘degree_f’: 176}     ‘degree_f’: 32}      ‘degree_f’: 75.45}
+spine01           swp53s3    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp11      module_temperature   {‘degree_c’: 95,     {‘degree_c’: -50,    {‘degree_c’: 93,     {‘degree_c’: -48,    {‘degree_c’: 23.75,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 203}     ‘degree_f’: -58}     ‘degree_f’: 199.4}   ‘degree_f’: -54.4}   ‘degree_f’: 74.75}
+spine01           swp49      module_temperature   {‘degree_c’: 65,     {‘degree_c’: 10,     {‘degree_c’: 60,     {‘degree_c’: 15,     {‘degree_c’: 23.18,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 149}     ‘degree_f’: 50}      ‘degree_f’: 140}     ‘degree_f’: 59}      ‘degree_f’: 73.72}
+spine01           swp12      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32.31,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 90.16}
+spine01           swp53s1    module_temperature   {‘degree_c’: 85,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 32,     Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 185}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 89.6}
+spine01           swp34      module_temperature   {‘degree_c’: 80,     {‘degree_c’: -10,    {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 24.93,  Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 176}     ‘degree_f’: 14}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 76.87}
+spine01           swp3       module_temperature   {‘degree_c’: 90,     {‘degree_c’: -40,    {‘degree_c’: 85,     {‘degree_c’: -40,    {‘degree_c’: 25.15,  Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 194}     ‘degree_f’: -40}     ‘degree_f’: 185}     ‘degree_f’: -40}     ‘degree_f’: 77.27}
+spine01           swp8       module_temperature   {‘degree_c’: 78,     {‘degree_c’: -13,    {‘degree_c’: 73,     {‘degree_c’: -8,     {‘degree_c’: 24.1,   Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 8.6}     ‘degree_f’: 163.4}   ‘degree_f’: 17.6}    ‘degree_f’: 75.38}
+spine01           swp52      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 20.55,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 68.98}
+spine01           swp10      module_temperature   {‘degree_c’: 78,     {‘degree_c’: -13,    {‘degree_c’: 73,     {‘degree_c’: -8,     {‘degree_c’: 25.39,  Wed Jul  1 15:25:55 2020
+                                                  ‘degree_f’: 172.4}   ‘degree_f’: 8.6}     ‘degree_f’: 163.4}   ‘degree_f’: 17.6}    ‘degree_f’: 77.7}
+spine01           swp31      module_temperature   {‘degree_c’: 75,     {‘degree_c’: -5,     {‘degree_c’: 70,     {‘degree_c’: 0,      {‘degree_c’: 27.05,  Wed Jul  1 15:25:56 2020
+                                                  ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 80.69}
+```
+
+#### Related Commands
+
+None
+
+- - -
+
+### netq show ethtool-stats
+
+Displays transmit and receive statistics for network interfaces on one or all devices, including frame errors, ACL drops, buffer drops and more. You can filter the output by device and view the statistics for a time in the past.
+
+#### Syntax
+
+```
+netq <hostname> show interface-stats
+    port <physical-port>
+    (rx|tx)
+    [extended]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| port | \<physical-port\> | Only display results for the port with this name |
+| rx | NA | Only display receive statistics |
+| tx | NA | Only display transmit statistics |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| extended | NA | Display additional statistics; does not include statistics presented with standard output |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | The `port`, `rx` and `tx` options changed from optional to required. Removed the `min` option. Added the `extended` option. |
+| 2.4.0 | Introduced |
+
+#### Sample Usage
+
+Show transmit statistics for a given switch interface and switch in the network
+
+```
+cumulus@switch:~$ netq leaf01 show ethtool-stats port swp50 tx
+Matching ethtool_stats records:
+Hostname          Interface                 HwIfOutOctets        HwIfOutUcastPkts     HwIfOutMcastPkts     HwIfOutBcastPkts     HwIfOutDiscards      HwIfOutErrors        HwIfOutQDrops        HwIfOutNonQDrops     HwIfOutQLen          HwIfOutPausePkt      SoftOutErrors        SoftOutDrops         SoftOutTxFifoFull    Last Updated
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            swp50                     8749                 0                    44                   0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:57 2020
+```
+
+Shoe the additional statistics
+
+```
+cumulus@switch:~$ netq leaf01 show ethtool-stats port swp50 rx extended
+
+Matching ethtool_stats records:
+Hostname          Interface                 HwIfInPfc0Pkt        HwIfInPfc1Pkt        HwIfInPfc2Pkt        HwIfInPfc3Pkt        HwIfInPfc4Pkt        HwIfInPfc5Pkt        HwIfInPfc6Pkt        HwIfInPfc7Pkt        Last Updated
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            swp50                     0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:25 2020
+```
+
+Show statistics in JSON format
+
+```
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50 tx json
+{
+    "ethtool_stats":[
+        {
+            "hwifoutoctets":12571,
+            "hwifoutucastpkts":0,
+            "hwifoutpausepkt":0,
+            "softouttxfifofull":0,
+            "hwifoutmcastpkts":58,
+            "hwifoutbcastpkts":0,
+            "softouterrors":0,
+            "interface":"swp50",
+            "lastUpdated":1588112216.0,
+            "softoutdrops":0,
+            "hwifoutdiscards":0,
+            "hwifoutqlen":0,
+            "hwifoutnonqdrops":0,
+            "hostname":"leaf01",
+            "hwifouterrors":0,
+            "hwifoutqdrops":0
+	}
+    ],
+    "truncatedResult":false
+}
+```
+
+```
+cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50 tx extended json
+{
+    "ethtool_stats":[
+        {
+            "hostname":"leaf01",
+            "hwifoutq5wreddrops":0,
+            "hwifoutq3wreddrops":0,
+            "hwifoutpfc3pkt":0,
+            "hwifoutq6wreddrops":0,
+            "hwifoutq9wreddrops":0,
+            "hwifoutq2wreddrops":0,
+            "hwifoutq8wreddrops":0,
+            "hwifoutpfc7pkt":0,
+            "hwifoutpfc4pkt":0,
+            "hwifoutpfc6pkt":0,
+            "hwifoutq7wreddrops":0,
+            "hwifoutpfc0pkt":0,
+            "hwifoutpfc1pkt":0,
+            "interface":"swp50",
+            "hwifoutq0wreddrops":0,
+            "hwifoutq4wreddrops":0,
+            "hwifoutpfc2pkt":0,
+            "lastUpdated":1588112216.0,
+            "hwifoutwreddrops":0,
+            "hwifoutpfc5pkt":0,
+            "hwifoutq1wreddrops":0
+	}
+    ],
+    "truncatedResult":false
+}
+```
+
+#### Related Commands
+
+- netq show interface-stats
+- netq show interface-untilization
+
+- - -
+
+### netq show events
+
+Display system events that have occurred in the last 24 hours. Optionally, view events for a time in the past. You can filter the output by event severity and event type. The output provides the following information for each device:
+
+- Message type
+- Event severity (info, error, warning, critical, debug)
+- Descriptive event message
+- When the event occurred
+
+#### Syntax
+
+```
+netq [<hostname>] show events
+    [level info | level error | level warning | level critical | level debug]
+    [type clsupport | type ntp | type mtu | type configdiff | type vlan | type trace | type vxlan | type clag | type bgp | type interfaces | type interfaces-physical | type agents | type ospf | type evpn | type macs | type services | type lldp | type license | type os | type sensors | type btrfsinfo | type lcm]
+    [between <text-time> and <text-endtime>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| level | info, error, warning, critical, or debug | Only display events with this severity level |
+| type | agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, license, lldp, macs, mtu, ntp, os, ospf, sensors, services, trace, vlan, or vxlan |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: week(s)</li><li><strong>d</strong>: day(s)</li><li><strong>h</strong>: hour(s)</li><li><strong>m</strong>: minute(s)</li><li><strong>s</strong>: second(s)</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.2.0 | Added `type lcm` |
+| 3.0.0 | Removed `type lnv` |
+| 2.3.1 | Added `type btrfsinfo` |
+| 2.1.x | Introduced; replaced `netq show changes` |
+
+#### Sample Usage
+
+Show all events in the last 3 days
+
+```
+cumulus@switch:~$ netq show events between now and 3d
+Matching events records:
+Hostname          Message Type             Severity         Message                             Timestamp
+----------------- ------------------------ ---------------- ----------------------------------- -------------------------
+leaf02            evpn                     critical         VNI 4002 state changed from up to d Thu Dec 10 22:00:36 2020
+                                                            own
+leaf02            evpn                     critical         VNI 4001 state changed from up to d Thu Dec 10 22:00:36 2020
+                                                            own
+leaf02            evpn                     critical         VNI 10 state changed from up to dow Thu Dec 10 22:00:36 2020
+                                                            n
+leaf02            evpn                     critical         VNI 30 state changed from up to dow Thu Dec 10 22:00:36 2020
+                                                            n
+leaf02            evpn                     critical         VNI 20 state changed from up to dow Thu Dec 10 22:00:36 2020
+                                                            n
+leaf02            evpn                     critical         VNI 4002 state changed from up to d Thu Dec 10 20:42:39 2020
+                                                            own
+leaf02            evpn                     critical         VNI 4001 state changed from up to d Thu Dec 10 20:42:39 2020
+                                                            own
+...
+border02          evpn                     critical         VNI 4002 state changed from up to d Thu Dec 10 03:24:10 2020
+                                                            own
+border02          evpn                     critical         VNI 4001 state changed from up to d Thu Dec 10 03:24:10 2020
+                                                            own
+border02          evpn                     critical         VNI 4002 state changed from up to d Thu Dec 10 02:58:20 2020
+                                                            own
+border02          evpn                     critical         VNI 4001 state changed from up to d Thu Dec 10 02:58:20 2020
+                                                            own
+border02          evpn                     critical         VNI 4002 state changed from up to d Thu Dec 10 02:32:16 2020
+                                                            own
+...
+leaf02            services                 info             Service netqd status changed from i Thu Dec 10 06:49:15 2020
+                                                            nactive to active
+leaf02            services                 info             Service netqd status changed from i Thu Dec 10 06:22:22 2020
+                                                            nactive to active
+leaf02            services                 info             Service netqd status changed from i Thu Dec 10 06:21:20 2020
+                                                            nactive to active
+leaf02            services                 info             Service netqd status changed from i Thu Dec 10 06:20:19 2020
+                                                            nactive to active
+leaf02            services                 info             Service netqd status changed from i Thu Dec 10 06:14:06 2020
+                                                            nactive to active
+...
+```
+
+Show critical events for a particular service
+
+```
+cumulus@switch:~$ netq show events level critical type clag between now and 3d
+Matching events records:
+Hostname          Message Type             Severity         Message                             Timestamp
+----------------- ------------------------ ---------------- ----------------------------------- -------------------------
+leaf01            clag                     critical         Peer state changed to down          Thu Dec 10 18:53:44 2020
+leaf02            clag                     critical         Peer state changed to down          Thu Dec 10 18:39:00 2020
+border01          clag                     critical         Peer state changed to down          Thu Dec 10 02:21:59 2020
+border01          clag                     critical         Peer state changed to down          Thu Dec 10 02:19:55 2020
+border01          clag                     critical         Peer state changed to down          Thu Dec 10 02:16:50 2020
+border01          clag                     critical         Peer state changed to down          Thu Dec 10 02:14:47 2020
+border01          clag                     critical         Peer state changed to down          Wed Dec  9 23:02:34 2020
+border01          clag                     critical         Peer state changed to down          Wed Dec  9 22:56:25 2020
+border02          clag                     critical         Peer state changed to down          Wed Dec  9 22:53:27 2020
+border01          clag                     critical         Peer state changed to down          Wed Dec  9 22:53:20 2020
+border01          clag                     critical         Peer state changed to down          Wed Dec  9 22:47:10 2020
+border02          clag                     critical         Peer state changed to down          Wed Dec  9 22:25:32 2020
+```
+
+#### Related Commands
+
+None
+<!-- show notification?? -->
+
+- - -
+
+### netq show events-config
+
+Events configured for suppression
+
+### netq show evpn
+
+Displays the health of all EVPN sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides the following for each session:
+
+- The VNI used
+- The address of the VNI endpoint
+- Whether the session is part of a layer 2 or layer 3 configuration
+- The associated VRF or VLAN when defined
+- Whether the associated VNI is in the kernel
+- The export and import route targets used for filtering
+- When the last change was made to any of these items
+
+#### Syntax
+
+```
+netq [<hostname>] show evpn
+    [vni <text-vni>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| vni | \<text-vni\> | Only display results for sessions using the VNI with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all VNIs, currently
+
+```
+cumulus@switch:~$ netq show evpn
+
+Matching evpn records:
+Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
+----------------- ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
+border01          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Fri Nov 20 01:50:53 2020
+border01          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Fri Nov 20 01:50:53 2020
+border02          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Fri Nov 20 01:50:19 2020
+border02          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Fri Nov 20 01:50:19 2020
+leaf01            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Fri Nov 20 02:18:42 2020
+leaf01            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Fri Nov 20 02:18:42 2020
+leaf01            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Fri Nov 20 02:18:42 2020
+leaf01            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Fri Nov 20 02:18:42 2020
+leaf01            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Fri Nov 20 02:18:42 2020
+leaf02            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Fri Nov 20 02:10:38 2020
+leaf02            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Fri Nov 20 02:10:38 2020
+leaf02            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Fri Nov 20 02:10:38 2020
+leaf02            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Fri Nov 20 02:10:38 2020
+leaf02            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Fri Nov 20 02:10:38 2020
+leaf03            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Fri Nov 20 02:05:00 2020
+leaf03            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Fri Nov 20 02:05:00 2020
+leaf03            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Fri Nov 20 02:05:00 2020
+leaf03            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Fri Nov 20 02:05:00 2020
+leaf03            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Fri Nov 20 02:05:00 2020
+leaf04            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Fri Nov 20 11:08:16 2020
+leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Fri Nov 20 11:08:16 2020
+leaf04            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Fri Nov 20 11:08:16 2020
+leaf04            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Fri Nov 20 11:08:16 2020
+leaf04            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Fri Nov 20 11:08:16 2020
+```
+
+#### Related Commands
+
+- netq show unit-tests evpn
+- netq show events
+- netq check evpn
+
+- - -
+
+### netq show interfaces
+
+Displays the health of all interfaces or a single interface on all nodes or a specific node in your network fabric currently or for a time in the past. You can filter by the interface type, state of the interface, or the remote interface. For a given switch or host, you can view the total number of configured interfaces.
+
+The output provides the following for each device:
+
+- The name of the interface
+- The type of interface
+- The state of the interface (up or down)
+- The associated VRF, VLANs, PVID, MTU, and LLDP peer
+- When the last change was made to any of these items
+- The total number of interfaces on a given device
+
+#### Syntax
+
+There are four forms of the command, based on whether you want to view interface health for all devices or a given device, and whether you want to filter by an interface type.
+
+```
+netq show interfaces
+    [<remote-interface>]
+    [state <remote-interface-state>]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show interfaces
+    [<remote-interface>]
+    [state <remote-interface-state>]
+    [around <text-time>]
+    [count]
+    [json]
+
+netq show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan)
+    [state <remote-interface-state>]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan)
+    [state <remote-interface-state>]
+    [around <text-time>]
+    [count]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name. This is only required when the `count` option is used. |
+| type | bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan | Only display results for the specified interface type |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<remote-interface\> | Only display results for local interfaces with this remote interface |
+| state | \<remote-interface-state\> | Only display results for remote interfaces in the specified state&mdash;up or down |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| count | NA | Display the total number of interface on the specified switch or host. The `hostname` option is required when using this option. |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all interface types, currently
+
+```
+cumulus@switch:~$ netq show interfaces
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+border01          swp52                     swp              up         default         VLANs: ,                            Tue Nov 10 22:29:05 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: spine02:swp
+                                                                                        5
+border01          swp53                     swp              up         default         VLANs: ,                            Tue Nov 10 22:29:05 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: spine03:swp
+                                                                                        5
+border01          swp54                     swp              up         default         VLANs: ,                            Tue Nov 10 22:29:05 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: spine04:swp
+                                                                                        5
+border01          eth0                      eth              up         mgmt            MTU: 1500                           Tue Nov 10 22:29:05 2020
+border01          lo                        loopback         up         default         MTU: 65536                          Tue Nov 10 22:29:05 2020
+border01          peerlink                  bond             up         default         Slave: swp49 (LLDP: border02:swp49) Tue Nov 10 22:29:05 2020
+                                                                                        ,
+                                                                                        Slave: swp50 (LLDP: border02:swp50)
+border01          vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Nov 10 22:29:05 2020
+...
+```
+
+View interfaces on a given device.
+
+```
+cumulus@switch:~$ netq spine01 show interfaces
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+spine01           swp5                      swp              up         default         VLANs: ,                            Tue Nov 10 22:30:11 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: border01:sw
+                                                                                        p51
+spine01           swp6                      swp              up         default         VLANs: ,                            Tue Nov 10 22:30:11 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: border02:sw
+                                                                                        p51
+spine01           eth0                      eth              up         mgmt            MTU: 1500                           Tue Nov 10 22:30:11 2020
+spine01           lo                        loopback         up         default         MTU: 65536                          Tue Nov 10 22:30:11 2020
+spine01           mgmt                      vrf              up         mgmt            table: 1001, MTU: 65536,            Tue Nov 10 22:30:11 2020
+                                                                                        Members:  eth0,  mgmt,
+spine01           vagrant                   swp              down       default         VLANs: , PVID: 0 MTU: 1500          Tue Nov 10 22:30:11 2020
+spine01           swp1                      swp              up         default         VLANs: ,                            Tue Nov 10 22:30:11 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf01:swp5
+                                                                                        1
+spine01           swp2                      swp              up         default         VLANs: ,                            Tue Nov 10 22:30:11 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf02:swp5
+                                                                                        1
+spine01           swp3                      swp              up         default         VLANs: ,                            Tue Nov 10 22:30:11 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf03:swp5
+                                                                                        1
+spine01           swp4                      swp              up         default         VLANs: ,                            Tue Nov 10 22:30:11 2020
+                                                                                        PVID: 0 MTU: 9216 LLDP: leaf04:swp5
+                                                                                        1
+```
+
+View an interface count on a given device.
+
+```
+cumulus@switch:~$ netq spine01 show interfaces count
+Count of matching link records: 10
+```
+
+#### Related Commands
+
+- netq show events
+- netq check interfaces
+- netq show unit-tests interfaces
+
+- - -
+
+### netq show interface-stats
+
+- - -
+
+### netq show interface-utilization
+
+- - -
+
+### netq show interfaces
+
+- - -
+
+### netq show inventory
 
 - - -
 
@@ -2107,6 +1794,10 @@ no     BLUE            ::/0                           leaf03            Blackhol
 
 - - -
 
+### netq show job-status
+
+- - -
+
 ### netq show kubernetes
 
 Displays the configuration and health of the Kubernetes components for the NetQ containers. Outputs vary according to version of the command issued.
@@ -2270,7 +1961,97 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.2.0 | Introduced |
 
 #### Sample Usage
+
 - - -
+
+### netq show lldp
+
+Displays the health of all LLDP sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. You can filter the output to show sessions for a particular peer interface port. The output provides the following for each session:
+
+- The interface on the local device
+- The hostname and interface of the peer device
+- When the last change was made to any of these items
+
+#### Syntax
+
+```
+netq [<hostname>] show lldp
+    [<remote-physical-interface>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| NA | \<remote-physical-interface\> | Only display results for sessions using the interface port with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all interfaces, currently
+
+```
+cumulus@switch:~$ netq show lldp
+Matching lldp records:
+Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
+----------------- ------------------------- ----------------- ------------------------- -------------------------
+border01          swp54                     spine04           swp5                      Fri Nov 20 10:19:39 2020
+border01          swp51                     spine01           swp5                      Fri Nov 20 10:19:39 2020
+border01          swp53                     spine03           swp5                      Fri Nov 20 10:19:39 2020
+border01          swp3                      fw1               swp1                      Fri Nov 20 10:19:39 2020
+border01          swp50                     border02          swp50                     Fri Nov 20 10:19:39 2020
+border01          swp52                     spine02           swp5                      Fri Nov 20 10:19:39 2020
+border01          swp49                     border02          swp49                     Fri Nov 20 10:19:39 2020
+border01          eth0                      oob-mgmt-switch   swp20                     Fri Nov 20 10:19:39 2020
+border02          swp49                     border01          swp49                     Fri Nov 20 10:25:40 2020
+border02          swp51                     spine01           swp6                      Fri Nov 20 10:25:40 2020
+border02          swp52                     spine02           swp6                      Fri Nov 20 10:25:40 2020
+border02          eth0                      oob-mgmt-switch   swp21                     Fri Nov 20 10:25:40 2020
+border02          swp3                      fw1               swp2                      Fri Nov 20 10:25:40 2020
+border02          swp50                     border01          swp50                     Fri Nov 20 10:25:40 2020
+border02          swp53                     spine03           swp6                      Fri Nov 20 10:25:40 2020
+border02          swp54                     spine04           swp6                      Fri Nov 20 10:25:40 2020
+fw1               eth0                      oob-mgmt-switch   swp18                     Fri Nov 20 19:51:49 2020
+fw1               swp1                      border01          swp3                      Fri Nov 20 19:51:49 2020
+...
+```
+
+Show only session for a given host interface port.
+
+```
+cumulus@switch:~$ netq show lldp swp5
+Matching lldp records:
+Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
+----------------- ------------------------- ----------------- ------------------------- -------------------------
+spine01           swp5                      border01          swp51                     Fri Nov 20 10:28:20 2020
+spine02           swp5                      border01          swp52                     Fri Nov 20 10:33:41 2020
+spine03           swp5                      border01          swp53                     Fri Nov 20 10:28:32 2020
+spine04           swp5                      border01          swp54                     Fri Nov 20 10:24:07 2020
+```
+
+#### Related Commands
+
+- netq show events
+- netq check lldp
+
+- - -
+
 
 ### netq show mac-commentary
 
@@ -2536,6 +2317,74 @@ no     46:38:39:00:00:3c  30     leaf01            bond3                        
 
 - - -
 
+### netq show mlag
+
+Displays the health of all MLAG sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
+
+- The peer nodes for a given node
+- The system MAC address used for the session between the nodes
+- The operational state of the session (up or down)
+- The operational state of the backup IP address (up or down)
+- The total number of bonds
+- The number of dual-connected bonds
+- When the last change was made to any of these items
+
+If the total number of bonds does not match the number of dual-connected bonds, there might be a configuration issue.
+
+#### Syntax
+
+```
+netq [<hostname>] show mlag
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show mlag
+Matching clag records:
+Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
+                                                                         s
+----------------- ----------------- ------------------ ---------- ------ ----- ----- -------------------------
+border01(P)       border02          44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:33:48 2020
+border02          border01(P)       44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:29:24 2020
+leaf01(P)         leaf02            44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:29:16 2020
+leaf02            leaf01(P)         44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:39:27 2020
+leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:10:35 2020
+leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:11:24 2020
+```
+
+#### Related Commands
+
+- netq show events type clag
+- netq check mlag
+- netq show unit-tests mlag
+
+- - -
+
 ### netq show neighbor-history
 
 Displays when the neighbor configuration changed for an IP address. By default the changes are listed in chronological order. You can filter the output by time and interface, and you can choose to view only differences or group the output by historical thread.
@@ -2626,6 +2475,91 @@ Refer to the {{<link title="Monitor Internet Protocol Service/#view-the-neighbor
 ### netq show notification proxy
 
     netq show notification proxy
+
+### netq show notification
+
+    netq show notification [channel|filter|rule] [json]
+
+- - -
+
+### netq show ntp
+
+Displays whether the all or a specific node is in time synchronization with the NetQ appliance or VM currently or for a time in the past. The output provides:
+
+- The synchronization status
+- The current time server being used for synchronization
+- The number of hierarchical levels the switch or host is from reference clock
+- The NTP application used to obtain and synchronize the clock on the node
+
+#### Syntax
+
+```
+netq [<hostname>] show ntp
+    [out-of-sync | in-sync]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| out-of-sync | NA | Only display results for devices that are out of synchronization with the NetQ appliance or VM |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| x.y.z | xxx |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show ntp
+Matching ntp records:
+Hostname          NTP Sync Current Server    Stratum NTP App
+----------------- -------- ----------------- ------- ---------------------
+border01          yes      oob-mgmt-server   3       ntpq
+border02          yes      oob-mgmt-server   3       ntpq
+fw1               no       -                 16      ntpq
+fw2               no       -                 16      ntpq
+leaf01            yes      oob-mgmt-server   3       ntpq
+leaf02            yes      oob-mgmt-server   3       ntpq
+leaf03            yes      oob-mgmt-server   3       ntpq
+leaf04            yes      oob-mgmt-server   3       ntpq
+netq-ts           yes      eterna.binary.net 2       chronyc
+oob-mgmt-server   yes      titan.crash-ove   2       ntpq
+server01          yes      oob-mgmt-server   3       ntpq
+server02          yes      oob-mgmt-server   3       ntpq
+server03          yes      oob-mgmt-server   3       ntpq
+server04          yes      oob-mgmt-server   3       ntpq
+server05          yes      oob-mgmt-server   3       ntpq
+server06          yes      oob-mgmt-server   3       ntpq
+server07          yes      oob-mgmt-server   3       ntpq
+server08          yes      oob-mgmt-server   3       ntpq
+spine01           yes      oob-mgmt-server   3       ntpq
+spine02           yes      oob-mgmt-server   3       ntpq
+spine03           yes      oob-mgmt-server   3       ntpq
+spine04           yes      oob-mgmt-server   3       ntpq
+```
+
+#### Related Commands
+
+- netq check ntp
+- netq show unit-tests ntp
+
+- - -
 
 ### netq show opta-health
 
@@ -2736,6 +2670,84 @@ Version                              Uptime                    Reinitialize Time
 #### Related Commands
 
 - netq show opta-health
+
+- - -
+
+### netq show ospf
+
+Displays the health of all OSPF sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
+
+- The host interface
+- The routing domain (area)
+- Whether numbered or unnumbered protocol is being used
+- The operational state of the session (up or down)
+- The hostname and interface of the peer node
+- When the last change was made to any of these items
+
+#### Syntax
+
+```
+netq [<hostname>] show ospf
+    [<remote-interface>]
+    [area <area-id>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| NA | \<remote-interface\> | Only display results for the host inteface with this name |
+| area | \<area-id\> | Only display results for devices in this routing domain |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show ospf
+Matching ospf records:
+Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
+----------------- ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
+leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      Thu Feb  7 14:42:16 2019
+leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      Thu Feb  7 14:42:16 2019
+leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      Thu Feb  7 14:42:16 2019
+leaf02            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp2                      Thu Feb  7 14:42:16 2019
+leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      Thu Feb  7 14:42:16 2019
+leaf03            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp3                      Thu Feb  7 14:42:16 2019
+leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      Thu Feb  7 14:42:16 2019
+leaf04            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp4                      Thu Feb  7 14:42:16 2019
+spine01           swp1                      0.0.0.0      Unnumbered       Full       leaf01            swp51                     Thu Feb  7 14:42:16 2019
+spine01           swp2                      0.0.0.0      Unnumbered       Full       leaf02            swp51                     Thu Feb  7 14:42:16 2019
+spine01           swp3                      0.0.0.0      Unnumbered       Full       leaf03            swp51                     Thu Feb  7 14:42:16 2019
+spine01           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp51                     Thu Feb  7 14:42:16 2019
+spine02           swp1                      0.0.0.0      Unnumbered       Full       leaf01            swp52                     Thu Feb  7 14:42:16 2019
+spine02           swp2                      0.0.0.0      Unnumbered       Full       leaf02            swp52                     Thu Feb  7 14:42:16 2019
+spine02           swp3                      0.0.0.0      Unnumbered       Full       leaf03            swp52                     Thu Feb  7 14:42:16 2019
+spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     Thu Feb  7 14:42:16 2019
+```
+
+#### Related Commands
+
+- netq show events
+- netq check ospf
+- netq show unit-tests ospf
 
 - - -
 
@@ -2950,6 +2962,119 @@ server08          /dev/vda1            486105088            80372736            
 
 - - -
 
+### netq show sensors
+
+Displays the status of all fan, power supply, and temperature sensors on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
+
+- The sensor name and user-defined description
+- The operational state of the sensor
+- Any messages, when available
+- When the last change was made to any of these items
+
+#### Syntax
+
+There are four forms of this command based on whether you want to view data for all sensors or only one category of sensors.
+
+```
+netq [<hostname>] show sensors
+    all
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show sensors
+    fan [<fan-name>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show sensors
+    psu [<psu-name>]
+    [around <text-time>]
+    [json]
+
+netq [<hostname>] show sensors
+    temp [<temp-name>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| all | NA | Display data for all sensors |
+| fan | \<fan-name\> | Display data for all fan sensors or the one specified using the `fan-name` value |
+| psu | \<psu-name\> | Display data for all power supply unit sensors or the one specified using the`psu-name` value |
+| temp | \<temp-name\> | Display data for all temperature sensors or the one specified using the `temp-name` value |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| x.y.z | xxx |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show sensors all
+Matching sensors records:
+Hostname          Name            Description                         State      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ----------------------------------- -------------------------
+border01          fan5            fan tray 3, fan 1                   ok                                             Tue Nov 24 03:57:06 2020
+border01          psu1fan1        psu1 fan                            ok                                             Tue Nov 24 03:57:06 2020
+border01          fan4            fan tray 2, fan 2                   ok                                             Tue Nov 24 03:57:06 2020
+border01          fan2            fan tray 1, fan 2                   ok                                             Tue Nov 24 03:57:06 2020
+border01          fan3            fan tray 2, fan 1                   ok                                             Tue Nov 24 03:57:06 2020
+border01          fan6            fan tray 3, fan 2                   ok                                             Tue Nov 24 03:57:06 2020
+border01          psu2fan1        psu2 fan                            ok                                             Tue Nov 24 03:57:06 2020
+border01          fan1            fan tray 1, fan 1                   ok                                             Tue Nov 24 03:57:06 2020
+border02          fan3            fan tray 2, fan 1                   ok                                             Tue Nov 24 04:13:30 2020
+border02          psu1fan1        psu1 fan                            ok                                             Tue Nov 24 04:13:30 2020
+border02          fan1            fan tray 1, fan 1                   ok                                             Tue Nov 24 04:13:30 2020
+border02          fan6            fan tray 3, fan 2                   ok                                             Tue Nov 24 04:13:30 2020
+border02          fan5            fan tray 3, fan 1                   ok                                             Tue Nov 24 04:13:30 2020
+border02          psu2fan1        psu2 fan                            ok                                             Tue Nov 24 04:13:30 2020
+border02          fan4            fan tray 2, fan 2                   ok                                             Tue Nov 24 04:13:30 2020
+border02          fan2            fan tray 1, fan 2                   ok                                             Tue Nov 24 04:13:30 2020
+fw1               psu2fan1        psu2 fan                            ok                                             Tue Nov 24 19:50:49 2020
+fw1               psu1fan1        psu1 fan                            ok                                             Tue Nov 24 19:50:49 2020
+...
+```
+
+Show data for the fan4 sensor on all nodes.
+
+```
+cumulus@switch:~$ netq show sensors fan fan4
+Matching sensors records:
+Hostname          Name            Description                         State      Speed      Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- ---------- -------- -------- ----------------------------------- -------------------------
+border01          fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 03:57:06 2020
+border02          fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 04:13:30 2020
+fw1               fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 19:50:49 2020
+fw2               fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 19:50:51 2020
+spine03           fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 04:03:01 2020
+spine04           fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 04:13:52 2020
+```
+
+#### Related Commands
+
+- netq show events
+- netq check sensors
+- netq show unit-tests sensors
+
+- - -
+
 ### netq show services
 
 Displays configuration and health of system-level services for one or all switches and hosts, currently or for a time in the past. You can filter the output by switch, service, VRF, and status. Supported services include:
@@ -3128,6 +3253,78 @@ border01          ptmd                 9796  default         yes     yes    no  
 ### netq show tca
 
     netq show tca [tca_id <tca-rule-name>]
+
+- - -
+
+### netq show trace
+
+- - -
+
+### netq show unit-tests
+
+Displays a list of all validation tests that are run for the associated `netq check` command. The output provides an ID, name, and brief description of each validation test.
+
+Refer to {{<link title="Validate Operations" text="Validate Operations">}} for additional usage information.
+
+#### Syntax
+
+```
+netq show unit-tests agent [json]
+netq show unit-tests bgp [json]
+netq show unit-tests clag [json]
+netq show unit-tests cl-version [json]
+netq show unit-tests evpn [json]
+netq show unit-tests interfaces [json]
+netq show unit-tests license [json]
+netq show unit-tests mlag [json]
+netq show unit-tests mtu [json]
+netq show unit-tests ntp [json]
+netq show unit-tests ospf [json]
+netq show unit-tests sensors [json]
+netq show unit-tests vlan [json]
+netq show unit-tests vxlan [json]
+```
+
+#### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| agent, bgp, clag, cl-version, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | NA | Display tests run during standard validation for the protocol or service with this name |
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.4.1 | Swapped the order of the `unit-tests` keyword and the protocol or service name |
+| ??? | Introduced |
+
+#### Sample Usage
+
+Show tests for BGP
+
+```
+cumulus@netq-ts:~$ netq show unit-tests bgp
+   0 : Session Establishment     - check if BGP session is in established state
+   1 : Address Families          - check if tx and rx address family advertisement is consistent between peers of a BGP session
+   2 : Router ID                 - check for BGP router id conflict in the network
+
+Configured global result filters:
+
+Configured per test result filters:
+```
+
+#### Related Commands
+
+- netq show events
+- netq check sensors
 
 - - -
 
@@ -3310,30 +3507,191 @@ ion                              2-4ee7-917e-
 
 - - -
 
-dom                      :  Digital Optical Monitoring
-inventory                :  Inventory information
-job-status               :  Display the status of running jobs
-unit-tests
+### netq show vlan
 
-## Events and Notification
+Displays the configuration of all VLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
+- The switch or host name
+- The VLANs associated with that node
+- The SVIs (switch virtual interfaces) associated with that node
+- When the last change was made to any of these items
 
-### netq show events
+#### Syntax
 
-Display changes over time
+```
+netq [<hostname>] show vlan
+    [<1-4096>]
+    [around <text-time>]
+    [json]
+```
 
-### netq show events-config
+#### Required Arguments
 
-Events configured for suppression
+None
 
-### netq show notification
+#### Options
 
-Send notifications to Slack or PagerDuty
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| NA | \<1-4096\> | Only display results for the VLAN with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### netq show tca
+#### Command History
 
-Threshold Crossing Alerts
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show vlan
+Matching vlan records:
+Hostname          VLANs                     SVIs                      Last Changed
+----------------- ------------------------- ------------------------- -------------------------
+border01          1,10,20,30,4001-4002                                Tue Nov 24 20:42:07 2020
+border02          1,10,20,30,4001-4002                                Tue Nov 24 20:42:07 2020
+leaf01            1,10,20,30,4001-4002      10 20 30                  Tue Nov 24 20:42:07 2020
+leaf02            1,10,20,30,4001-4002      10 20 30                  Tue Nov 24 20:42:08 2020
+leaf03            1,10,20,30,4001-4002      10 20 30                  Tue Nov 24 20:42:08 2020
+leaf04            1,10,20,30,4001-4002      10 20 30                  Tue Nov 24 20:42:08 2020
+```
+
+Show configuration for a particular VLAN.
+
+```
+cumulus@switch:~$ netq show vlan 20
+Matching vlan records:
+Hostname          VLAN   Ports                               SVI  Last Changed
+----------------- ------ ----------------------------------- ---- -------------------------
+border01          20                                         no   Tue Nov 24 20:50:46 2020
+border02          20                                         no   Tue Nov 24 20:50:47 2020
+leaf01            20     bond2,vni20                         yes  Tue Nov 24 20:50:47 2020
+leaf02            20     bond2,vni20                         yes  Tue Nov 24 20:50:47 2020
+leaf03            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
+leaf04            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
+```
+
+#### Related Commands
+
+- netq show events
+- netq show interfaces
+- netq show macs
+- netq check vlan
+- netq show unit-tests vlan
+
+- - -
+
+### netq show vxlan
+
+Displays the configuration of all VXLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
+
+- The switch or host name
+- The VNI associated with that node
+- The protocol used over the interface
+- The VTEP IP for the node
+- The replication list, if appropriate
+- When the last change was made to any of these items
+
+#### Syntax
+
+```
+netq [<hostname>] show vxlan
+    [vni <text-vni>]
+    [around <text-time>]
+    [json]
+```
+
+#### Required Arguments
+
+None
+
+#### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| vni | \<text-vni\> | Only display results for the VNI with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+#### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
+
+#### Sample Usage
+
+Basic show: all devices, all states, currently
+
+```
+cumulus@switch:~$ netq show vxlan
+Matching vxlan records:
+Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
+                             ol
+----------------- ---------- ------ ---------------- ------ ----------------------------------- -------------------------
+border01          4001       EVPN   10.0.1.254       4001                                       Tue Nov 10 22:29:05 2020
+border01          4002       EVPN   10.0.1.254       4002                                       Tue Nov 10 22:29:05 2020
+border02          4001       EVPN   10.0.1.254       4001                                       Tue Nov 10 22:29:06 2020
+border02          4002       EVPN   10.0.1.254       4002                                       Tue Nov 10 22:29:06 2020
+leaf01            30         EVPN   10.0.1.1         30     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:04 2020
+leaf01            10         EVPN   10.0.1.1         10     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:04 2020
+leaf01            4001       EVPN   10.0.1.1         4001                                       Tue Nov 10 22:29:04 2020
+leaf01            4002       EVPN   10.0.1.1         4002                                       Tue Nov 10 22:29:04 2020
+leaf01            20         EVPN   10.0.1.1         20     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:04 2020
+leaf02            30         EVPN   10.0.1.1         30     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:15 2020
+leaf02            10         EVPN   10.0.1.1         10     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:15 2020
+leaf02            4001       EVPN   10.0.1.1         4001                                       Tue Nov 10 22:29:15 2020
+leaf02            4002       EVPN   10.0.1.1         4002                                       Tue Nov 10 22:29:15 2020
+leaf02            20         EVPN   10.0.1.1         20     10.0.1.2(leaf04, leaf03)            Tue Nov 10 22:29:15 2020
+leaf03            30         EVPN   10.0.1.2         30     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:28:31 2020
+leaf03            10         EVPN   10.0.1.2         10     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:28:31 2020
+leaf03            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:28:31 2020
+leaf03            4002       EVPN   10.0.1.2         4002                                       Tue Nov 10 22:28:31 2020
+leaf03            20         EVPN   10.0.1.2         20     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:28:31 2020
+leaf04            30         EVPN   10.0.1.2         30     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:29:34 2020
+leaf04            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:29:34 2020
+leaf04            10         EVPN   10.0.1.2         10     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:29:34 2020
+leaf04            4002       EVPN   10.0.1.2         4002                                       Tue Nov 10 22:29:34 2020
+leaf04            20         EVPN   10.0.1.2         20     10.0.1.1(leaf01, leaf02)            Tue Nov 10 22:29:34 2020
+```
+
+Show configuration for a particular VNI.
+
+```
+cumulus@switch:~$ netq show vxlan vni 4001
+Matching vxlan records:
+Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
+                             ol
+----------------- ---------- ------ ---------------- ------ ----------------------------------- -------------------------
+border01          4001       EVPN   10.0.1.254       4001                                       Tue Nov 10 22:29:05 2020
+border02          4001       EVPN   10.0.1.254       4001                                       Tue Nov 10 22:29:06 2020
+leaf01            4001       EVPN   10.0.1.1         4001                                       Tue Nov 10 22:29:04 2020
+leaf02            4001       EVPN   10.0.1.1         4001                                       Tue Nov 10 22:29:15 2020
+leaf03            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:28:31 2020
+leaf04            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:29:34 2020
+```
+
+#### Related Commands
+
+- netq show events
+- netq show interfaces
+- netq check vxlan
+- netq show unit-tests vxlan
+
+- - -
 
 ### netq show wjh-drops
 
 Shows drops that are captured by WJH (What just happened) on Mellanox switches
+
+- - -

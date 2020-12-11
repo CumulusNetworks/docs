@@ -33,7 +33,7 @@ However, when using Spectrum A1 switches, a maximum of two switches can particip
 
   {{%notice warning%}}
 
-Head-end replication is not supported with multihoming, so you must use EVPN-PIM for BUM traffic handling.
+Head-end replication is not supported with multihoming, so you must use {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} for BUM traffic handling.
 
 {{%/notice%}}
 

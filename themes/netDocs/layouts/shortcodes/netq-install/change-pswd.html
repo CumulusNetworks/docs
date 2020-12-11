@@ -1,0 +1,39 @@
+<p>Use the default credentials to log in the first time:</p>
+<ul><li><strong>Username</strong>: cumulus</li><li><strong>Password</strong>: cumulus</li></ul>
+
+<pre>
+$ ssh cumulus@&lt;ipaddr&gt;
+Warning: Permanently added '&lt;ipaddr&gt;' (ECDSA) to the list of known hosts.
+Ubuntu 18.04.5 LTS
+cumulus@&lt;ipaddr&gt;'s password:
+You are required to change your password immediately (root enforced)
+System information as of Thu Dec  3 21:35:42 UTC 2020
+System load:  0.09              Processes:           120
+Usage of /:   8.1% of 61.86GB   Users logged in:     0
+Memory usage: 5%                IP address for eth0: &lt;ipaddr&gt;
+Swap usage:   0%
+WARNING: Your password has expired.
+You must change your password now and login again!
+Changing password for cumulus.
+(current) UNIX password: cumulus
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+Connection to &lt;ipaddr&gt; closed.
+</pre>
+
+<p>Log in again with your new password.</p>
+
+<pre>
+$ ssh cumulus@&lt;ipaddr&gt;
+Warning: Permanently added '&lt;ipaddr&gt;' (ECDSA) to the list of known hosts.
+Ubuntu 18.04.5 LTS
+cumulus@&lt;ipaddr&gt;'s password:
+  System information as of Thu Dec  3 21:35:59 UTC 2020
+  System load:  0.07              Processes:           121
+  Usage of /:   8.1% of 61.86GB   Users logged in:     0
+  Memory usage: 5%                IP address for eth0: &lt;ipaddr&gt;
+  Swap usage:   0%
+Last login: Thu Dec  3 21:35:43 2020 from &lt;local-ipaddr&gt;
+cumulus@ubuntu:~$
+</pre>

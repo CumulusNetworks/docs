@@ -26,14 +26,14 @@ Change the password and specify the hostname and IP address for each appliance b
 1. Log in to the appliance that will be your master node using the default login credentials:
 
     - **Username**: cumulus
-    - **Password**: CumulusLinux!
+    - **Password**: cumulus
 
 2. Change the password using the `passwd` command:
 
     ```
     cumulus@hostname:~$ passwd
-    Changing password for <user>.
-    (current) UNIX password:
+    Changing password for cumulus.
+    (current) UNIX password: cumulus
     Enter new UNIX password:
     Retype new UNIX password:
     passwd: password updated successfully

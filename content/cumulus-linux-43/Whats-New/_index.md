@@ -36,7 +36,7 @@ Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link title="Mellanox What Just Happened (WJH)" text="Mellanox WJH commands">}} to troubleshoot and diagnose network issues
 - {{<link url="EVPN-Multihoming" text="EVPN multihoming">}} now supports LACP bypass
 - Docker runtime included by default on Cumulus Linux
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}}
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="DoRoCE command">}} to configure RoCE with PFC and ECN on all interfaces
 - {{<link url="Supported-MIBs" text="SNMP MIB for BGP unnumbered peers">}}
 - SVI interface support for DHCPv6
 - Multicast routing over VXLAN is now supported on Mellanox switches

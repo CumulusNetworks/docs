@@ -31,54 +31,7 @@ You can configure Quality of Service (QoS) for switches on the following platfor
 
 {{%/notice%}}
 
-## Syntax Checker
-
-Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/traffic.conf` file to check for errors, such missing parameters, or invalid parameter labels and values.
-
-On Broadcom switches, the syntax checker runs automatically during `switchd` initialization and reports syntax errors to the `/var/log/switchd.log` file.
-
-On both Broadcom and Mellanox switches, you can run the syntax checker manually from the command line by issuing the `cl-consistency-check --datapath-syntax-check` command. If errors exist, they are written to `stderr` by default. If you run the command with `-q`, errors are written to the `/var/log/switchd.log` file.
-
-The `cl-consistency-check --datapath-syntax-check` command takes the following options:
-
-| <div style="width:120px">Option | Description |
-| ------------------------------- | ----------- |
-| -h | Displays this list of command options. |
-| -q | Runs the command in quiet mode. Errors are written to the `/var/log/switchd.log` file instead of `stderr`. |
-| -t `<file-name>` | Runs the syntax check on a non-default `traffic.conf` file; for example, `/mypath/test-traffic.conf`.|
-
-You can run the syntax checker when `switchd` is either running or stopped.
-
-**Example Commands**
-
-The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file and shows that no errors are detected:
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check
-No errors detected in traffic config file /etc/cumulus/datapath/traffic.conf
-```
-
-The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -q
-```
-
-The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file and shows that errors are detected:
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf
-Traffic source 8021p: missing mapping for priority value '7'
-Errors detected while checking traffic config file /mypath/test-traffic.conf
-```
-
-The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf -q
-```
-
-## Configure Traffic Marking through ACL Rules
+## Traffic Marking
 
 You can mark traffic for egress packets through `iptables` or `ip6tables` rule classifications. To enable these rules, you do one of the following:
 
@@ -200,6 +153,8 @@ On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/et
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
 ```
 
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
+
 ## Port Groups
 
 A *port group* refers to one or more sequences of contiguous ports. You can define multiple port groups by adding:
@@ -284,6 +239,8 @@ On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/et
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
 ```
 
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
+
 ## Cut-through Mode and Store and Forward Switching
 
 Cut-through mode is disabled in Cumulus Linux by default on switches with Broadcom ASICs. On Mellanox switches, you cannot disable cut-through mode.
@@ -336,7 +293,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
 cut_through_enable = false
 ```
 
-On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
+On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command. Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
 {{<cl/restart-switchd>}}
 
@@ -406,6 +363,8 @@ On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/et
 ```
 cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
 ```
+
+Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
 ## Scheduling Weights Per Egress Queue
 
@@ -598,7 +557,7 @@ cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
 
 Always run the {{<link url="#syntax-checker" text="syntax checker">}} syntax checker before applying the configuration changes.
 
-## Check Interface Buffer Status
+## Interface Buffer Status
 
 On switches with {{<exlink url="https://cumulusnetworks.com/products/hardware-compatibility-list/?asic%5B0%5D=Mellanox%20Spectrum&asic%5B1%5D=Mellanox%20Spectrum_A1" text="ASICs">}}, you can collect a fine-grained history of queue lengths using histograms maintained by the ASIC; see the {{<link title="ASIC Monitoring">}} for details.
 
@@ -972,24 +931,52 @@ remark.egress_remark_group.cos_6.priority_remark.dscp = [50]
 remark.egress_remark_group.cos_7.priority_remark.dscp = [58]
 ```
 
-{{%/notice%}}
+## Syntax Checker
 
-On Broadcom switches, after you modify the settings in the `/etc/cumulus/datapath/traffic.conf` file, you *must* restart `switchd` for the changes to take effect; run the `cumulus@switch:~$ sudo systemctl restart switchd.service` command.
+Cumulus Linux provides a syntax checker for the `/etc/cumulus/datapath/traffic.conf` file to check for errors, such missing parameters, or invalid parameter labels and values.
 
-{{<cl/restart-switchd>}}
+On Broadcom switches, the syntax checker runs automatically during `switchd` initialization and reports syntax errors to the `/var/log/switchd.log` file.
 
-On Mellanox switches with the Spectrum ASIC, changes to the settings in the `/etc/cumulus/datapath/traffic.conf` file do *not* require you to restart `switchd`. However, you must run the `echo 1 > /cumulus/switchd/config/traffic/reload` command to apply the settings.
+On both Broadcom and Mellanox switches, you can run the syntax checker manually from the command line by issuing the `cl-consistency-check --datapath-syntax-check` command. If errors exist, they are written to `stderr` by default. If you run the command with `-q`, errors are written to the `/var/log/switchd.log` file.
+
+The `cl-consistency-check --datapath-syntax-check` command takes the following options:
+
+| <div style="width:120px">Option | Description |
+| ------------------------------- | ----------- |
+| -h | Displays this list of command options. |
+| -q | Runs the command in quiet mode. Errors are written to the `/var/log/switchd.log` file instead of `stderr`. |
+| -t `<file-name>` | Runs the syntax check on a non-default `traffic.conf` file; for example, `/mypath/test-traffic.conf`.|
+
+You can run the syntax checker when `switchd` is either running or stopped.
+
+**Example Commands**
+
+The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file and shows that no errors are detected:
 
 ```
-cumulus@switch:~$ echo 1 > /cumulus/switchd/config/traffic/reload
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check
+No errors detected in traffic config file /etc/cumulus/datapath/traffic.conf
 ```
 
-- DSCP/802.1p to COS remark assignments (`traffic.*`)
-- Explicit congestion notification (ECN) settings (`ecn_red.*`)
-- Priority flow control (PFC) settings (`pfc.*`)
-- Link Pause settings (`link_pause.*`)
-- Queue weight settings (`priority_group.*.weight`)
-- ECMP hash and LAG hash settings
+The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -q
+```
+
+The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file and shows that errors are detected:
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf
+Traffic source 8021p: missing mapping for priority value '7'
+Errors detected while checking traffic config file /mypath/test-traffic.conf
+```
+
+The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file in quiet mode. If errors exist, they are written to the `/var/log/switchd.log` file.
+
+```
+cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf -q
+```
 
 ## Related Information
 

@@ -54,6 +54,13 @@ To work around this issue, configure the new BGP neighbors with vtysh.</p></td>
 <td></td>
 </tr>
 <tr>
+<td>CM-32420</td>
+<td><p>On a traditional mode bride, MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
+To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</p></td>
+<td>3.7.13-3.7.14, 4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>CM-32416</td>
 <td><p>The ethtool utility doesn't contain the latest values, as a result the Revision Compliance field shows Unallocated. </p></td>
 <td>4.2.1</td>
@@ -1997,6 +2004,13 @@ monitor -I -r 1  -o prNames.3 -o prErrMessage.3  "Process mstpd is up!!!!" prErr
 Vulnerable: 1.0.7-2<br/>
 Fixed: 1.0.7-2+deb10u1</p></td>
 <td>4.0.0-4.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>CM-32420</td>
+<td><p>On a traditional mode bride, MLAG bonds flap intermittently from dual to single connected, then back to dual connected, which causes a layer 2 loop and STP state changes.<br/>
+To work around this issue, either shut down one side of the MLAG bond or prune out VLANS over the bond.</p></td>
+<td>3.7.13-3.7.14, 4.0.0-4.2.1</td>
 <td></td>
 </tr>
 <tr>

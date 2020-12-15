@@ -3,13 +3,13 @@ title: S Commands
 author: Cumulus Networks
 weight: 1106
 toc: 3
-right_toc_levels: 2
+right_toc_levels: 1
 pdfhidden: true
 draft: true
 ---
 This topic includes all commands that begin with `netq s*`.
 
-### netq show address-history
+## netq show address-history
 
 Displays where an IPv4 or IPv6 address has lived in your network fabric in the last 24 hours. The output provides:
 
@@ -21,7 +21,7 @@ Displays where an IPv4 or IPv6 address has lived in your network fabric in the l
 
 By default, each row in the output is a thread (or group) sorted by VLAN.
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show address-history
@@ -34,13 +34,13 @@ netq [<hostname>] show address-history
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<text-prefix\> | Display results for the switches and hosts with this address prefix |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -65,7 +65,7 @@ When entering a time value with the <code>between</code> option, you must includ
 The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{</notice>}}
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -73,7 +73,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all VLANs, in last 24 hours
 
@@ -106,13 +106,13 @@ Last Changed              Hostname          Ifname       Prefix                 
 Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104                    24       default
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show mac-history
 
 - - -
 
-### netq show agents
+## netq show agents
 
 Displays basic configuration, health, and connectivity status for all nodes or a specific node running NetQ Agent in your network fabric. This command gives you an easy way to see if any NetQ Agents or their nodes have lost power, may have difficulty communicating with the telemetry server, and whether agents are running different versions of software. Any of these situations could cause problems in the operation of your network.
 
@@ -126,7 +126,7 @@ The output provides:
 - The last time the NetQ Agent was reinitialized
 - When the last change was made to the any of these items
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show agents
@@ -135,11 +135,11 @@ netq [<hostname>] show agents
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -151,7 +151,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -159,7 +159,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all states, currently
 
@@ -233,7 +233,7 @@ cumulus@switch:~$ netq show agents rotten json
 }
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show unit-tests agent
 - netq show events
@@ -243,7 +243,7 @@ cumulus@switch:~$ netq show agents rotten json
 
 - - -
 
-### netq show bgp
+## netq show bgp
 
 Displays the health of all BGP sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
@@ -256,7 +256,7 @@ Displays the health of all BGP sessions or a single session on all nodes or a sp
 
 If you have nodes that implement virtual routing and forwarding (VRF), you can request status based on the relevant routing table. VRF is commonly configured in multi-tenancy deployments to maintain separate domains for each tenant.
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show bgp
@@ -266,11 +266,11 @@ netq [<hostname>] show bgp
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -281,7 +281,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -289,7 +289,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all states, currently
 
@@ -373,7 +373,7 @@ leaf02            swp54(spine04)               default         65101      65199 
 leaf02            swp51(spine01)               default         65101      65199      7/-/36       Fri Oct  2 22:39:00 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show unit-tests bgp
 - netq show events
@@ -381,7 +381,7 @@ leaf02            swp51(spine01)               default         65101      65199 
 
 - - -
 
-### netq show cl-btrfs-info
+## netq show cl-btrfs-info
 
 Displays status about disk utilization on a given device or all devices networkwide with BTRFS and Cumulus Linux 3.x installed. The output provides the following information for each device:
 
@@ -394,7 +394,7 @@ Displays status about disk utilization on a given device or all devices networkw
 
 For details about when a rebalance is recommended, refer to {{<exlink url="https://docs.cumulusnetworks.com/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions/" text="When to Rebalance BTRFS Partitions">}}.
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] cl-btrfs-info
@@ -402,11 +402,11 @@ netq [<hostname>] cl-btrfs-info
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -414,7 +414,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -422,7 +422,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.3.1 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices in last 24 hours
 
@@ -435,13 +435,13 @@ Hostname          Device Allocated     Unallocated Space    Largest Chunk Size  
 leaf01            37.79 %              3.58 GB              588.5 MB             771.91 MB            yes                  Wed Sep 16 21:25:17 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show cl-ssd-util
 
 - - -
 
-### netq show cl-manifest
+## netq show cl-manifest
 
 Displays the Cumulus Linux OS versions supported for a given device or all devices networkwide. The output provides the following information for each device:
 
@@ -449,25 +449,25 @@ Displays the Cumulus Linux OS versions supported for a given device or all devic
 - CPU architecture the OS supports
 - Cumulus Linux version associated with the indicated ASIC and CPU
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] cl-manifest
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -475,7 +475,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.4.0 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 ```
 cumulus@switch:~$ netq show cl-manifest
@@ -505,14 +505,14 @@ leaf02            vx                   x86_64               3.6.2.1
 ...
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show cl-pkg-info
 - netq show recommended-pkg-version
 
 - - -
 
-### netq show cl-pkg-info
+## netq show cl-pkg-info
 
 Displays the versions for all software packages installed on a given device or all devices networkwide. The output provides the following information for each device:
 
@@ -523,7 +523,7 @@ Displays the versions for all software packages installed on a given device or a
 
 The output can become very large for all devices and packages. When viewing results in a terminal window, consider filtering by hostname or package name to reduce the length of the output. Wildcards are not allowed for `hostname` or `text-package-name`.
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] cl-pkg-info
@@ -532,11 +532,11 @@ netq [<hostname>] cl-pkg-info
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -545,7 +545,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -553,7 +553,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.3.1 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 ```
 cumulus@switch:~$ netq leaf01 show cl-pkg-info
@@ -583,14 +583,14 @@ leaf01            cron                     3.0pl1-133-cl4u1     Cumulus Linux 4.
 ...
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show recommended-pkg-version
 - netq show cl-manifest
 
 - - -
 
-### netq show cl-resource
+## netq show cl-resource
 
 Displays incoming and outgoing ACLs and amount of forwarding resources used for a given device or all devices networkwide. The output provides the following information for each device:
 
@@ -610,7 +610,7 @@ Displays incoming and outgoing ACLs and amount of forwarding resources used for 
     - Number of multicast routes
     - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 This command comes in two forms:
 
@@ -625,14 +625,14 @@ netq [<hostname>] show cl-resource forwarding
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | acl | NA | Display results for ACLs |
 | forwarding | NA | Display results for forwarding resources |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -642,7 +642,7 @@ netq [<hostname>] show cl-resource forwarding
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -650,7 +650,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.4.0 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: All devices, all ACLS
 
@@ -659,14 +659,14 @@ cumulus@switch:~$ netq leaf01 show cl-pkg-info
 
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show recommended-pkg-version
 - netq show cl-manifest
 
 - - -
 
-### netq show cl-ssd-util
+## netq show cl-ssd-util
 
 Displays utilization of 3ME3 solid state drives (SSDs) for a given device or all devices networkwide. These are primarily found in on-premises deployment. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm. The output provides the following information for each drive:
 
@@ -676,7 +676,7 @@ Displays utilization of 3ME3 solid state drives (SSDs) for a given device or all
 - The drive model information
 - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show cl-ssd-util
@@ -684,11 +684,11 @@ netq [<hostname>] show cl-ssd-util
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -696,7 +696,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -704,7 +704,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.3.1 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: All drives, for a given device
 
@@ -714,13 +714,13 @@ Hostname        Remaining PE Cycle (%)  Current PE Cycles executed      Total PE
 spine02         80                      576                             2880                            M.2 (S42) 3ME3          Thu Oct 31 00:15:06 2019
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show cl-btrfs-info
 
 - - -
 
-### netq show clag
+## netq show clag
 
 Displays the health of all CLAG sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
@@ -734,7 +734,7 @@ Displays the health of all CLAG sessions or a single session on all nodes or a s
 
 If the total number of bonds does not match the number of dual-connected bonds, there might be a configuration issue.
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show clag
@@ -742,11 +742,11 @@ netq [<hostname>] show clag
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -754,7 +754,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -762,7 +762,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all states, currently
 
@@ -780,7 +780,7 @@ leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8
 leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:11:24 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show unit-tests clag
 - netq show events
@@ -788,7 +788,7 @@ leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8
 
 - - -
 
-### netq show dom
+## netq show dom
 
 Displays the performance degradation or complete outage of any digital optics modules (DOMs) on one or all devices. You can filter the output by interface for laser and module types, and by channel for laser type.
 
@@ -798,7 +798,7 @@ The output provides the following information for each device and interface:
 - Current value, by channel for laser type
 - When any of these items was last changed
 
-#### Syntax
+### Syntax
 
 There are two forms of this command: one for laser power and current and one for temperature and voltage.
 
@@ -815,7 +815,7 @@ netq [<hostname>] show dom type (module_temp|module_voltage)
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
@@ -825,7 +825,7 @@ netq [<hostname>] show dom type (module_temp|module_voltage)
 | module_temp | NA | Display current value and threshold alarms for temperature (°C) on the DOM(s) |
 | module_voltage | NA | Display current value and threshold alarms for transceiver voltage (V) on the DOM(s) |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -835,7 +835,7 @@ netq [<hostname>] show dom type (module_temp|module_voltage)
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -844,7 +844,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.2.0 | Renamed `module_temperature` keyword to `module_temp` |
 | 3.1.0 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 Show module temperature of DOMs on given device
 
@@ -894,17 +894,17 @@ spine01           swp31      module_temperature   {‘degree_c’: 75,     {‘d
                                                   ‘degree_f’: 167}     ‘degree_f’: 23}      ‘degree_f’: 158}     ‘degree_f’: 32}      ‘degree_f’: 80.69}
 ```
 
-#### Related Commands
+### Related Commands
 
 None
 
 - - -
 
-### netq show ethtool-stats
+## netq show ethtool-stats
 
 Displays transmit and receive statistics for network interfaces on one or all devices, including frame errors, ACL drops, buffer drops and more. You can filter the output by device and view the statistics for a time in the past.
 
-#### Syntax
+### Syntax
 
 ```
 netq <hostname> show interface-stats
@@ -915,7 +915,7 @@ netq <hostname> show interface-stats
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
@@ -923,7 +923,7 @@ netq <hostname> show interface-stats
 | rx | NA | Only display receive statistics |
 | tx | NA | Only display transmit statistics |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -932,7 +932,7 @@ netq <hostname> show interface-stats
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -941,7 +941,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | The `port`, `rx` and `tx` options changed from optional to required. Removed the `min` option. Added the `extended` option. |
 | 2.4.0 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 Show transmit statistics for a given switch interface and switch in the network
 
@@ -1026,14 +1026,14 @@ cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50 tx extended json
 }
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show interface-stats
 - netq show interface-untilization
 
 - - -
 
-### netq show events
+## netq show events
 
 Display system events that have occurred in the last 24 hours. Optionally, view events for a time in the past. You can filter the output by event severity and event type. The output provides the following information for each device:
 
@@ -1042,7 +1042,7 @@ Display system events that have occurred in the last 24 hours. Optionally, view 
 - Descriptive event message
 - When the event occurred
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show events
@@ -1052,32 +1052,32 @@ netq [<hostname>] show events
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | level | info, error, warning, critical, or debug | Only display events with this severity level |
-| type | agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, license, lldp, macs, mtu, ntp, os, ospf, sensors, services, trace, vlan, or vxlan |
+| type | agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, license, lldp, macs, mtu, ntp, os, ospf, sensors, services, trace, vlan, or vxlan | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: week(s)</li><li><strong>d</strong>: day(s)</li><li><strong>h</strong>: hour(s)</li><li><strong>m</strong>: minute(s)</li><li><strong>s</strong>: second(s)</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
 | Release | Description |
 | ---- | ---- |
-| 3.2.0 | Added `type lcm` |
-| 3.0.0 | Removed `type lnv` |
-| 2.3.1 | Added `type btrfsinfo` |
-| 2.1.x | Introduced; replaced `netq show changes` |
+| 3.2.0 | Added `type lcm` option |
+| 3.0.0 | Removed `type lnv` option |
+| 2.3.1 | Added `type btrfsinfo` option |
+| 2.1.x | Introduced; replaced `netq show changes` command |
 
-#### Sample Usage
+### Sample Usage
 
 Show all events in the last 3 days
 
@@ -1146,18 +1146,178 @@ border01          clag                     critical         Peer state changed t
 border02          clag                     critical         Peer state changed to down          Wed Dec  9 22:25:32 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 None
 <!-- show notification?? -->
 
 - - -
 
-### netq show events-config
+## netq show events-config
 
-Events configured for suppression
+Displays all event suppression configurations. Optionally, you can filter by a specific configuration or message type. The output when viewing one or all event suppression configurations provides the following information for each configuration:
 
-### netq show evpn
+- Configuration identifier and name
+- Message type
+- Scope of the suppression
+- When the suppression will no longer apply
+
+When you filter by a message type, you must include the `show-filter-conditions` keyword to display the conditions associated with that message type and the hierarchy in which they are processed. The output in this case provides the following information for each message type:
+
+- Message name
+- Filter condition name, hierarchy, and description
+
+### Syntax
+
+```
+netq show events-config
+    [events_config_id <text-events-config-id-anchor>]
+    [show-filter-conditions | message_type <text-message-type-anchor> show-filter-conditions]
+    [json]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| events_config_id | \<text-events-config-id-anchor\> | Only display results for the switch or host with this name |
+| show-filter-conditions | NA | Only display results for sessions using the VNI with this name |
+| message_type | \<text-message-type-anchor\> | Only display results for configurations with this type. Values include *agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*. |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.1.0 | Introduced |
+
+### Sample Usage
+
+Show a given event suppression configuration
+
+```
+cumulus@switch:~$ netq show events-config events_config_id eventsconfig_1
+
+Matching config_events records:
+Events Config ID     Events Config Name   Message Type         Scope                                                        Active Suppress Until
+-------------------- -------------------- -------------------- ------------------------------------------------------------ ------ --------------------
+eventsconfig_1       job_cl_upgrade_2d89c agent                {"db_state":"*","hostname":"spine02","severity":"*"}         True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine02
+eventsconfig_1       job_cl_upgrade_2d89c bgp                  {"vrf":"*","peer":"*","hostname":"spine04","severity":"*"}   True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c btrfsinfo            {"hostname":"spine04","info":"*","severity":"*"}             True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c clag                 {"hostname":"spine04","severity":"*"}                        True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c clsupport            {"fileAbsName":"*","hostname":"spine04","severity":"*"}      True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c configdiff           {"new_state":"*","old_state":"*","type":"*","hostname":"spin True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                      e04","severity":"*"}                                                2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c evpn                 {"hostname":"spine04","vni":"*","severity":"*"}              True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c link                 {"ifname":"*","new_state":"*","hostname":"spine04","severity True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                      ":"*"}                                                              2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c ntp                  {"new_state":"*","hostname":"spine04","severity":"*"}        True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c ospf                 {"ifname":"*","hostname":"spine04","severity":"*"}           True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c sensor               {"sensor":"*","new_s_state":"*","hostname":"spine04","severi True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                      ty":"*"}                                                            2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c services             {"new_status":"*","name":"*","hostname":"spine04","severity" True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                      :"*"}                                                               2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_1       job_cl_upgrade_2d89c ssdutil              {"hostname":"spine04","info":"*","severity":"*"}             True   Tue Jul  7 16:16:20
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     spine04
+eventsconfig_10      job_cl_upgrade_2d89c btrfsinfo            {"hostname":"fw2","info":"*","severity":"*"}                 True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c clag                 {"hostname":"fw2","severity":"*"}                            True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c clsupport            {"fileAbsName":"*","hostname":"fw2","severity":"*"}          True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c link                 {"ifname":"*","new_state":"*","hostname":"fw2","severity":"* True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                      "}                                                                  2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c ospf                 {"ifname":"*","hostname":"fw2","severity":"*"}               True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                                                                                          2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+eventsconfig_10      job_cl_upgrade_2d89c sensor               {"sensor":"*","new_s_state":"*","hostname":"fw2","severity": True   Tue Jul  7 16:16:22
+                     21b3effd79796e585c35                      "*"}                                                                2020
+                     096d5fc6cef32b463e37
+                     cca88d8ee862ae104d5_
+                     fw2
+```
+
+Show filter conditions for EVPN event suppression configurations
+
+```
+cumulus@switch:~$ netq show events-config message_type evpn show-filter-conditions
+
+Matching config_events records:
+Message Name             Filter Condition Name                      Filter Condition Hierarchy                           Filter Condition Description
+------------------------ ------------------------------------------ ---------------------------------------------------- --------------------------------------------------------
+evpn                     vni                                        3                                                    Target VNI
+evpn                     severity                                   2                                                    Severity critical/info
+evpn                     hostname                                   1                                                    Target Hostname
+```
+
+## netq show evpn
 
 Displays the health of all EVPN sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides the following for each session:
 
@@ -1169,7 +1329,7 @@ Displays the health of all EVPN sessions or a single session on all nodes or a s
 - The export and import route targets used for filtering
 - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show evpn
@@ -1178,11 +1338,11 @@ netq [<hostname>] show evpn
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1191,7 +1351,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1199,7 +1359,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all VNIs, currently
 
@@ -1235,7 +1395,7 @@ leaf04            20         10.0.1.2         L2               Vlan 20        ye
 leaf04            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Fri Nov 20 11:08:16 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show unit-tests evpn
 - netq show events
@@ -1243,7 +1403,7 @@ leaf04            4001       10.0.1.2         L3               Vrf RED        ye
 
 - - -
 
-### netq show interfaces
+## netq show interfaces
 
 Displays the health of all interfaces or a single interface on all nodes or a specific node in your network fabric currently or for a time in the past. You can filter by the interface type, state of the interface, or the remote interface. For a given switch or host, you can view the total number of configured interfaces.
 
@@ -1256,7 +1416,7 @@ The output provides the following for each device:
 - When the last change was made to any of these items
 - The total number of interfaces on a given device
 
-#### Syntax
+### Syntax
 
 There are four forms of the command, based on whether you want to view interface health for all devices or a given device, and whether you want to filter by an interface type.
 
@@ -1286,14 +1446,14 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name. This is only required when the `count` option is used. |
 | type | bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan | Only display results for the specified interface type |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1303,7 +1463,7 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 | count | NA | Display the total number of interface on the specified switch or host. The `hostname` option is required when using this option. |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1311,7 +1471,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all interface types, currently
 
@@ -1377,7 +1537,7 @@ cumulus@switch:~$ netq spine01 show interfaces count
 Count of matching link records: 10
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show events
 - netq check interfaces
@@ -1385,23 +1545,384 @@ Count of matching link records: 10
 
 - - -
 
-### netq show interface-stats
+## netq show interface-stats
+
+Displays performance statistics for the physical interfaces on switches in your network. The NetQ Agent collects the statistics every 30 seconds. Statistics are not collected for non-physical interfaces, such as bonds, bridges, and VXLANs. You can filter the output by interface or to view only error statistics. The ouput provides the following information for each switch and interface:
+
+- **Transmit**: tx_bytes, tx_carrier, tx_colls, tx_drop, tx_errs, tx_packets
+- **Receive**: rx_bytes, rx_drop, rx_errs, rx_frame, rx_multicast, rx_packets
+- When any of these items were last changed
+
+### Syntax
+
+```
+netq [<hostname>] show interface-stats
+    [errors | all]
+    [<physical-port>]
+    [around <text-time>]
+    [json]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for switch or host with this name |
+| errors | NA | Only display transmit and receive error statistics |
+| all | NA | Display all statistics |
+| NA | \<physical-port\> | Only display results for the interface with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| xxx | Introduced |
+| 2.2.0 | Early access |
+
+### Sample Usage
+
+Show all statistics
+
+```
+cumulus@switch:~$ netq show interface-stats
+Matching proc_dev_stats records:
+Hostname          Interface                 RX Packets           RX Drop              RX Errors            TX Packets           TX Drop              TX Errors            Last Updated
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+border01          swp1                      0                    0                    0                    0                    0                    0                    Mon Dec 14 22:52:46 2020
+border01          swp54                     5073123              0                    0                    5063783              0                    0                    Mon Dec 14 22:52:46 2020
+border01          swp52                     5066658              0                    0                    4765656              0                    0                    Mon Dec 14 22:52:46 2020
+border01          swp4                      0                    0                    0                    0                    0                    0                    Mon Dec 14 22:52:46 2020
+border01          swp53                     5068600              0                    0                    5045430              0                    0                    Mon Dec 14 22:52:46 2020
+border01          swp3                      6269292              0                    0                    9419916              0                    0                    Mon Dec 14 22:52:46 2020
+border01          swp49                     13272261             0                    0                    13775656             0                    0                    Mon Dec 14 22:52:46 2020
+border01          swp51                     5070658              0                    0                    5012296              0                    0                    Mon Dec 14 22:52:46 2020
+border01          swp2                      0                    0                    0                    0                    0                    0                    Mon Dec 14 22:52:46 2020
+border01          swp50                     13324872             0                    0                    12815151             0                    0                    Mon Dec 14 22:52:46 2020
+border02          swp1                      0                    0                    0                    0                    0                    0                    Mon Dec 14 22:52:40 2020
+border02          swp54                     5062672              1                    0                    5038338              0                    0                    Mon Dec 14 22:52:40 2020
+border02          swp52                     5060971              0                    0                    4740480              0                    0                    Mon Dec 14 22:52:40 2020
+border02          swp4                      0                    0                    0                    0                    0                    0                    Mon Dec 14 22:52:40 2020
+border02          swp53                     5057642              1                    0                    5039327              0                    0                    Mon Dec 14 22:52:40 2020
+border02          swp3                      6264055              0                    0                    6266544              0                    0                    Mon Dec 14 22:52:40 2020
+border02          swp49                     13775643             0                    0                    13272245             0                    0                    Mon Dec 14 22:52:40 2020
+border02          swp51                     5062516              1                    0                    5031044              0                    0                    Mon Dec 14 22:52:40 2020
+border02          swp2                      0                    0                    0                    0                    0                    0                    Mon Dec 14 22:52:40 2020
+border02          swp50                     12815137             0                    0                    13324858             0                    0                    Mon Dec 14 22:52:40 2020
+fw1               swp1                      9419887              0                    0                    6269271              0                    0                    Mon Dec 14 22:52:19 2020
+fw1               swp2                      6266531              0                    0                    6264041              0                    0                    Mon Dec 14 22:52:19 2020
+fw1               swp49                     0                    0                    0                    0                    0                    0                    Mon Dec 14 22:52:19 2020
+fw2               swp2                      0                    0                    0                    0                    0                    0                    Mon Dec 14 22:52:36 2020
+fw2               swp49                     0                    0                    0                    0                    0                    0                    Mon Dec 14 22:52:36 2020
+fw2               swp1                      0                    0                    0                    0                    0                    0                    Mon Dec 14 22:52:36 2020
+leaf01            swp54                     420818               0                    0                    423181               0                    0                    Mon Dec 14 22:52:40 2020
+leaf01            swp53                     422209               0                    0                    426090               0                    0                    Mon Dec 14 22:52:40 2020
+leaf01            swp3                      527422               2                    0                    794268               0                    0                    Mon Dec 14 22:52:40 2020
+leaf02            swp54                     5062516              1                    0                    5118197              0                    0                    Mon Dec 14 22:52:35 2020
+leaf02            swp53                     5077584              1                    0                    5052566              0                    0                    Mon Dec 14 22:52:35 2020
+leaf02            swp3                      6366020              0                    0                    6432546              0                    0                    Mon Dec 14 22:52:35 2020
+leaf03            swp54                     5087433              1                    0                    5042929              0                    0                    Mon Dec 14 22:52:32 2020
+leaf03            swp53                     5063037              1                    0                    4881323              0                    0                    Mon Dec 14 22:52:32 2020
+leaf03            swp3                      6360717              0                    0
+...
+```
+
+Show statistics for a given interface
+
+```
+cumulus@switch:~$ netq show interface-stats swp2
+Matching proc_dev_stats records:
+Hostname          Interface                 RX Packets           RX Drop              RX Errors            TX Packets           TX Drop              TX Errors            Last Updated
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+border01          swp2                      0                    0                    0                    0                    0                    0                    Tue Dec 15 15:47:23 2020
+border02          swp2                      0                    0                    0                    0                    0                    0                    Tue Dec 15 15:47:09 2020
+fw1               swp2                      6327111              0                    0                    6324616              0                    0                    Tue Dec 15 15:47:07 2020
+fw2               swp2                      0                    0                    0                    0                    0                    0                    Tue Dec 15 15:46:54 2020
+spine03           swp2                      5097329              0                    0                    5124570              0                    0                    Tue Dec 15 15:47:00 2020
+spine04           swp2                      5167364              0                    0                    5111678              0                    0                    Tue Dec 15 15:47:18 2020
+```
+
+### Related Commands
+
+- netq show interface-utilization
+- netq show ethtool-stats
 
 - - -
 
-### netq show interface-utilization
+## netq show interface-utilization
+
+Displays utilization (transmit and receive) and port speed for physical interfaces on switches in your network. NetQ collects this data every 30 seconds. You can filter the output by port name, data direction, and time.
+
+### Syntax
+
+```
+netq [<hostname>] show interface-utilization
+    [<text-port>]
+    [tx|rx]
+    [around <text-time>]
+    [json]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| NA | \<text-port\> | Only display results for the port with this name |
+| tx | NA | Only display results for transmit data |
+| rx | NA | Only display results for receive data |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.0.0 | Changed `interface-utils` keyword to `interface-utilization` |
+| 2.3.0 | Introduced |
+
+### Sample Usage
+
+Show utilization for a given device
+
+```
+cumulus@switch:~$ netq spine01 show interface-utilization
+Matching port_stats records:
+Hostname          Interface                 RX Bytes (30sec)     RX Drop (30sec)      RX Errors (30sec)    RX Util (%age)       TX Bytes (30sec)     TX Drop (30sec)      TX Errors (30sec)    TX Util (%age)       Port Speed           Last Changed
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+spine01           swp6                      2652                 0                    0                    0                    2650                 0                    0                    0                    1G                   Tue Dec 15 16:02:57
+                                                                                                                                                                                                                                         2020
+spine01           swp5                      2547                 0                    0                    0                    2545                 0                    0                    0                    1G                   Tue Dec 15 16:02:57
+                                                                                                                                                                                                                                         2020
+```
+
+Show utilization for all devices, transmit only
+
+```
+cumulus@switch:~$ netq show interface-utilization tx
+Matching port_stats records:
+Hostname          Interface                 TX Bytes (30sec)     TX Drop (30sec)      TX Errors (30sec)    TX Util (%age)       Port Speed           Last Changed
+----------------- ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+border01          swp1                      0                    0                    0                    0                    Unknown              Tue Dec 15 16:04:01
+                                                                                                                                                     2020
+border01          swp54                     2539                 0                    0                    0                    1G                   Tue Dec 15 16:04:01
+                                                                                                                                                     2020
+border01          swp52                     1679                 0                    0                    0                    1G                   Tue Dec 15 16:04:01
+                                                                                                                                                     2020
+border01          swp4                      0                    0                    0                    0                    Unknown              Tue Dec 15 16:04:01
+                                                                                                                                                     2020
+border01          swp53                     2539                 0                    0                    0                    1G                   Tue Dec 15 16:04:01
+                                                                                                                                                     2020
+border01          swp3                      4714                 0                    0                    0                    1G                   Tue Dec 15 16:04:01
+                                                                                                                                                     2020
+border01          swp49                     7708                 0                    0                    0                    1G                   Tue Dec 15 16:04:01
+                                                                                                                                                     2020
+border01          swp51                     2711                 0                    0                    0                    1G                   Tue Dec 15 16:04:01
+...
+```
+
+### Related Commands
+
+- netq show interface-stats
+- netq show ethtool-stats
 
 - - -
 
-### netq show interfaces
+## netq show inventory
+
+Displays information about the hardware and software components deployed on a given device or all devices networkwide. The output provides details specific to the component selected.
+
+### Syntax
+
+There are eight forms of this command based on the inventory component you want to view.
+
+```
+netq [<hostname>] show inventory brief
+    [opta]
+    [json]
+
+netq [<hostname>] show inventory asic
+    [vendor <asic-vendor>| model <asic-model>| model-id <asic-model-id>]
+    [opta]
+    [json]
+
+netq [<hostname>] show inventory board
+    [vendor <board-vendor>|model <board-model>]
+    [opta]
+    [json]
+
+netq [<hostname>] show inventory cpu
+    [arch <cpu-arch>]
+    [opta]
+    [json]
+
+netq [<hostname>] show inventory disk
+    [name <disk-name>|transport <disk-transport>| vendor <disk-vendor>]
+    [opta]
+    [json]
+
+netq [<hostname>] show inventory license
+    [cumulus]
+    [status ok | status missing]
+    [around <text-time>]
+    [opta]
+    [json]
+
+netq [<hostname>] show inventory memory
+    [type <memory-type>|vendor <memory-vendor>]
+    [opta]
+    [json]
+
+netq [<hostname>] show inventory os
+    [version <os-version>|name <os-name>]
+    [opta]
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| brief | NA | Only display summary information; hostname, switch, OS, CPU architecture, ASIC vendor, ports |
+| asic | NA | Only display ASIC information; hostname, vendor, model, model ID, core bandwidth, ports |
+| board | NA | Only display motherboard information; hostname, vendor, model, base MAC address, serial number, part number, revision, manufacturing date |
+| cpu | NA | Only display processor information; hostname, architecture, model, frequency, number of cores |
+| disk | NA | Only display disk information; hostname, disk name and type, transport, size, vendor, model |
+| license | NA | Only display license information; hostname, license name, current state, when changed |
+| memory | NA | Only display memory information; hostname, memory name, type, size, speed, vendor, serial number |
+| os | NA | Only display operating system information; hostname, OS name, version, when changed |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| vendor | \<asic-vendor\>, \<board-vendor\>, \<disk-vendor\>, \<memory-vendor\> | Only display results for the ASIC, board, disk, or memory vendor with this name |
+| model | \<asic-model\>, \<board-model\> | Only display results for ASIC or board model with this name |
+| model-id | \<asic-model-id\> | Only display results for ASIC models with this ID |
+| arch | \<cpu-arch\> | Only display results for CPUs with this architecure |
+| transport | \<disk-transport\> | Only display results for disks with this transport method |
+| cumulus | NA | Only display results for Cumulus Linux licenses |
+| status | ok, missing | Only display results for licenses with this status |
+| type | \<memory-type\> | Only display results for memory of this type |
+| version | \<os-version\> | Only display results for operating systems of this version |
+| name | \<os-name\> | Only display results for operating systems with this name |
+| opta | NA | Only display results for the NetQ appliance or VM (not other switches or hosts) |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON file format instead of default on-screen text format |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 2.1.2 | Added `status` keyword to license form of command |
+| 1.x | Introduced |
+
+### Sample Usage
+
+Show inventory summary
+
+```
+cumulus@switch:~$ netq show inventory brief
+Matching inventory records:
+Hostname          Switch               OS              CPU      ASIC            Ports
+----------------- -------------------- --------------- -------- --------------- -----------------------------------
+border01          VX                   CL              x86_64   VX              N/A
+border02          VX                   CL              x86_64   VX              N/A
+fw1               VX                   CL              x86_64   VX              N/A
+fw2               VX                   CL              x86_64   VX              N/A
+leaf01            VX                   CL              x86_64   VX              N/A
+leaf02            VX                   CL              x86_64   VX              N/A
+leaf03            VX                   CL              x86_64   VX              N/A
+oob-mgmt-server   N/A                  Ubuntu          x86_64   N/A             N/A
+server01          N/A                  Ubuntu          x86_64   N/A             N/A
+server02          N/A                  Ubuntu          x86_64   N/A             N/A
+server03          N/A                  Ubuntu          x86_64   N/A             N/A
+server04          N/A                  Ubuntu          x86_64   N/A             N/A
+server05          N/A                  Ubuntu          x86_64   N/A             N/A
+server06          N/A                  Ubuntu          x86_64   N/A             N/A
+server07          N/A                  Ubuntu          x86_64   N/A             N/A
+spine01           VX                   CL              x86_64   VX              N/A
+spine02           VX                   CL              x86_64   VX              N/A
+spine03           VX                   CL              x86_64   VX              N/A
+spine04           VX                   CL              x86_64   VX              N/A
+```
+
+Show ASIC information
+
+```
+cumulus@switch:~$ netq show inventory asic
+Matching inventory records:
+Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
+dell-z9100-05     Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
+mlx-2100-05       Mellanox             Spectrum                       MT52132                   N/A            16 x 100G-QSFP28
+mlx-2410a1-05     Mellanox             Spectrum                       MT52132                   N/A            48 x 25G-SFP28 & 8 x 100G-QSFP28
+mlx-2700-11       Mellanox             Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
+qct-ix1-08        Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
+qct-ix7-04        Broadcom             Trident3                       BCM56870                  N/A            32 x 100G-QSFP28
+st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
+st1-l2            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
+st1-l3            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
+st1-s1            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
+st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
+```
+
+Show OS information
+
+```
+cumulus@switch:~$ netq show inventory os
+Matching inventory records:
+Hostname          Name            Version                              Last Changed
+----------------- --------------- ------------------------------------ -------------------------
+border01          CL              3.7.13                               Tue Jul 28 18:49:46 2020
+border02          CL              3.7.13                               Tue Jul 28 18:44:42 2020
+fw1               CL              3.7.13                               Tue Jul 28 19:14:27 2020
+fw2               CL              3.7.13                               Tue Jul 28 19:12:50 2020
+leaf01            CL              3.7.13                               Wed Jul 29 16:12:20 2020
+leaf02            CL              3.7.13                               Wed Jul 29 16:12:21 2020
+leaf03            CL              3.7.13                               Tue Jul 14 21:18:21 2020
+leaf04            CL              3.7.13                               Tue Jul 14 20:58:47 2020
+oob-mgmt-server   Ubuntu          18.04                                Mon Jul 13 21:01:35 2020
+server01          Ubuntu          18.04                                Mon Jul 13 22:09:18 2020
+server02          Ubuntu          18.04                                Mon Jul 13 22:09:18 2020
+server03          Ubuntu          18.04                                Mon Jul 13 22:09:20 2020
+server04          Ubuntu          18.04                                Mon Jul 13 22:09:20 2020
+server05          Ubuntu          18.04                                Mon Jul 13 22:09:20 2020
+server06          Ubuntu          18.04                                Mon Jul 13 22:09:21 2020
+server07          Ubuntu          18.04                                Mon Jul 13 22:09:21 2020
+server08          Ubuntu          18.04                                Mon Jul 13 22:09:22 2020
+spine01           CL              3.7.12                               Mon Aug 10 19:55:06 2020
+spine02           CL              3.7.12                               Mon Aug 10 19:55:07 2020
+spine03           CL              3.7.12                               Mon Aug 10 19:55:09 2020
+spine04           CL              3.7.12                               Mon Aug 10 19:55:08 2020
+```
+
+Refer to {{<link title="">}} or {{<link title="">}} for additional examples.
+
+### Related Commands
+
+- netq config agent cpu-limit
+- netq show resource-util
 
 - - -
 
-### netq show inventory
-
-- - -
-
-### netq show ip/ipv6 addresses
+## netq show ip/ipv6 addresses
 
 Displays the IPv4 or IPv6 addresses configured for a given device or all devices networkwide, currently or for a time in the past. You can filter the output by remote-interface, address or prefix, and VRF. A count of addresses can be obtained for a given device. The output provides the following information for each address:
 
@@ -1410,7 +1931,7 @@ Displays the IPv4 or IPv6 addresses configured for a given device or all devices
 - VRF, when configured, on the interface with the address
 - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 There are two sets of IP address commands, one for IPv4 and one for IPv6.
 
@@ -1448,7 +1969,7 @@ netq show ipv6 addresses
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
@@ -1456,7 +1977,7 @@ netq show ipv6 addresses
 | ip | NA | Display TCP IPv4 addresses |
 | ipv6 | NA | Display TCP IPv6 addresses |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1472,7 +1993,7 @@ netq show ipv6 addresses
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1481,7 +2002,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added ability to display all addresses in a subnet or supernet or the layer 3 gateway of an address with `subnet`, `supernet`, and `gateway` options |
 | 2.1.2 | Removed `changes` and `between` options |
 
-#### Sample Usage
+### Sample Usage
 
 Show all IP address on the *spine01* switch
 
@@ -1523,14 +2044,14 @@ Address                   Hostname          Interface                 VRF       
 10.1.30.2/24              leaf03            vlan30                    BLUE            Thu Sep 17 20:25:08 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show ip/ipv6 neighbors
 - netq show ip/ipv6 routes
 
 - - -
 
-### netq show ip/ipv6 neighbors
+## netq show ip/ipv6 neighbors
 
 Displays the IPv4 or IPv6 neighbors configured for a given device or all devices networkwide, currently or for a time in the past. You can filter the output by remote-interface, address, address and VRF, or VRF. A count of neighbors can be obtained for a given device, or for a given device and MAC address. The output provides the following information for each address:
 
@@ -1541,7 +2062,7 @@ Displays the IPv4 or IPv6 neighbors configured for a given device or all devices
 - Whether this address owned by the neighbor or learned from by host
 - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 There are two sets of IP neighbors commands, one for IPv4 and one for IPv6.
 
@@ -1577,7 +2098,7 @@ netq <hostname> show ipv6 neighbors
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
@@ -1585,7 +2106,7 @@ netq <hostname> show ipv6 neighbors
 | ip | NA | Display TCP IPv4 neighbors |
 | ipv6 | NA | Display TCP IPv6 neighbors |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1599,7 +2120,7 @@ netq <hostname> show ipv6 neighbors
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1608,7 +2129,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added ability to display all addresses in a subnet or supernet or the layer 3 gateway of an address with `subnet`, `supernet`, and `gateway` options |
 | 2.1.2 | Removed `changes` and `between` options |
 
-#### Sample Usage
+### Sample Usage
 
 Show all IPv4 neighbors on the *spine01* switch
 
@@ -1662,14 +2183,14 @@ fe80::4638:39ff:fe00:180  leaf03            eth0                      44:38:39:0
 ...
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show ip/ipv6 addresses
 - netq show ip/ipv6 routes
 
 - - -
 
-### netq show ip routes
+## netq show ip routes
 
 Displays the IPv4 or IPv6 routes configured for a given device or all devices networkwide, currently or for a time in the past. You can filter the output by remote-interface, address, address and prefix, VRF, and route origin. A count of routes can be obtained for a given device. The output provides the following information for each route:
 
@@ -1680,7 +2201,7 @@ Displays the IPv4 or IPv6 routes configured for a given device or all devices ne
 - Next hops the route will take
 - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 There are two sets of IP routes commands, one for IPv4 and one for IPv6.
 
@@ -1716,7 +2237,7 @@ netq show ipv6 routes
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
@@ -1724,7 +2245,7 @@ netq show ipv6 routes
 | ip | NA | Display TCP IPv4 routes |
 | ipv6 | NA | Display TCP IPv6 routes |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1739,7 +2260,7 @@ netq show ipv6 routes
 | count | NA | Display the count of routes for a given switch or host |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1748,7 +2269,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added ability to display all addresses in a subnet or supernet or the layer 3 gateway of an address with `subnet`, `supernet`, and `gateway` options |
 | 2.1.2 | Removed `changes` and `between` options |
 
-#### Sample Usage
+### Sample Usage
 
 Show all IPv4 routes
 
@@ -1787,22 +2308,22 @@ no                     ::/0                           leaf03            Blackhol
 no     BLUE            ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show ip/ipv6 addresses
 - netq show ip/ipv6 neighbors
 
 - - -
 
-### netq show job-status
+## netq show job-status
 
 - - -
 
-### netq show kubernetes
+## netq show kubernetes
 
 Displays the configuration and health of the Kubernetes components for the NetQ containers. Outputs vary according to version of the command issued.
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show kubernetes cluster
@@ -1937,13 +2458,13 @@ netq <hostname> show impact kubernetes deployment
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | connectivity | NA | Display ??? |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1952,7 +2473,7 @@ netq <hostname> show impact kubernetes deployment
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1960,11 +2481,11 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.2.0 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 - - -
 
-### netq show lldp
+## netq show lldp
 
 Displays the health of all LLDP sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. You can filter the output to show sessions for a particular peer interface port. The output provides the following for each session:
 
@@ -1972,7 +2493,7 @@ Displays the health of all LLDP sessions or a single session on all nodes or a s
 - The hostname and interface of the peer device
 - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show lldp
@@ -1981,11 +2502,11 @@ netq [<hostname>] show lldp
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1994,7 +2515,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -2002,7 +2523,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all interfaces, currently
 
@@ -2045,7 +2566,7 @@ spine03           swp5                      border01          swp53             
 spine04           swp5                      border01          swp54                     Fri Nov 20 10:24:07 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show events
 - netq check lldp
@@ -2053,7 +2574,7 @@ spine04           swp5                      border01          swp54             
 - - -
 
 
-### netq show mac-commentary
+## netq show mac-commentary
 
 Displays descriptive information about changes to a given MAC address on a specific VLAN. Commentary is provided for the following MAC address-related events:
 
@@ -2064,7 +2585,7 @@ Displays descriptive information about changes to a given MAC address on a speci
 - When a MAC address is flushed or expires
 - When a MAC address moves
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show mac-commentary
@@ -2074,14 +2595,14 @@ netq [<hostname>] show mac-commentary
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<mac\> | Display descriptive summary of MAC moves for this MAC address |
 | vlan | \<1-4096\> | Display descriptive summary of MAC moves for the VLAN with this ID |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -2089,7 +2610,7 @@ netq [<hostname>] show mac-commentary
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: week(s)</li><li><strong>d</strong>: day(s)</li><li><strong>h</strong>: hour(s)</li><li><strong>m</strong>: minute(s)</li><li><strong>s</strong>: second(s)</li><li><strong>now</strong></li></ul></p><p>The start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values can be entered as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -2097,7 +2618,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.2.0 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 ```
 cumulus@switch:~$ netq show mac-commentary 44:38:39:be:ef:ff vlan 4002
@@ -2108,14 +2629,14 @@ Thu Oct  1 14:25:18 2020  border01         4002   44:38:39:be:ef:ff configured o
 Thu Oct  1 14:25:18 2020  border02         4002   44:38:39:be:ef:ff configured on interface bridge
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show mac-history
 - netq show ip/ipv6 addresses
 
 - - -
 
-### netq show mac-history
+## netq show mac-history
 
 Displays when a MAC address is learned, when and where it moved in the network after that, if there was a duplicate at any time, and so forth. By default, the various history threads are displayed in the output grouped by VLAN and timestamp (chronologically). You can filter the output based on the options used:
 
@@ -2126,7 +2647,7 @@ Displays when a MAC address is learned, when and where it moved in the network a
 
 The default time range used is now to one hour ago. You can view the output in JSON format as well.
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show mac-history
@@ -2138,13 +2659,13 @@ netq [<hostname>] show mac-history
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<mac\> | Display history for this MAC address |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -2155,7 +2676,7 @@ netq [<hostname>] show mac-history
 | listby | \<text-list-by\> | Display output in groups based on the specified output field |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -2163,7 +2684,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.3.1 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 This example shows how to view a full chronology of changes for a MAC address of *44:38:39:00:00:5d*. When shown, the caret (^) notation indicates no change in this value from the row above.
 
@@ -2191,14 +2712,14 @@ Tue Oct 27 22:29:07 2020  leaf04            30     no     peerlink              
 
 Refer to the {{<link title="Monitor MAC Addresses/#view-the-history-of-a-mac-address" text="NetQ User Guide">}} for more examples.
 
-#### Related Commands
+### Related Commands
 
 - netq show mac-commentary
 - netq show ip/ipv6 addresses
 
 - - -
 
-### netq show macs
+## netq show macs
 
 Displays MAC addresses for monitored switches networkwide, currently or for a time in the past. For a given switch, you can view the total number of MAC addresses associated with that switch. You can filter the output based on VLAN, egress port, and origination status.
 
@@ -2212,7 +2733,7 @@ The output displays the following information for each MAC address:
 
 This command does not show MAC addresses for hosts.
 
-#### Syntax
+### Syntax
 
 There are three forms of this command: the basic command which shows all MAC addresses networkwide, one to  view MAC addresses or a count of addresses for a given switch, and one to view MAC addresses on a given switch and egress port.
 
@@ -2240,14 +2761,14 @@ netq <hostname> show macs
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch with this name |
 | egress-port | \<egress-port\> | Only display results for the switch with this egress port |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -2258,7 +2779,7 @@ netq <hostname> show macs
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -2266,7 +2787,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 |  | Introduced before 2.1 |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all addresses, all switches, all VLANs, all egress ports
 
@@ -2310,14 +2831,14 @@ no     46:38:39:00:00:36  30     leaf01            bond3                        
 no     46:38:39:00:00:3c  30     leaf01            bond3                          no     Mon Dec  7 22:29:47 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show mac-commentary
 - netq show mac-history
 
 - - -
 
-### netq show mlag
+## netq show mlag
 
 Displays the health of all MLAG sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
@@ -2331,7 +2852,7 @@ Displays the health of all MLAG sessions or a single session on all nodes or a s
 
 If the total number of bonds does not match the number of dual-connected bonds, there might be a configuration issue.
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show mlag
@@ -2339,11 +2860,11 @@ netq [<hostname>] show mlag
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -2351,7 +2872,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -2359,7 +2880,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all states, currently
 
@@ -2377,7 +2898,7 @@ leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8
 leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:11:24 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show events type clag
 - netq check mlag
@@ -2385,7 +2906,7 @@ leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8
 
 - - -
 
-### netq show neighbor-history
+## netq show neighbor-history
 
 Displays when the neighbor configuration changed for an IP address. By default the changes are listed in chronological order. You can filter the output by time and interface, and you can choose to view only differences or group the output by historical thread.
 
@@ -2402,7 +2923,7 @@ The output provides the following information for each neighbor change:
 
 By default, each row in the output is a thread (or group) sorted by VLAN and the time range used is now to one hour ago. You can view the output in JSON format as well.
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show neighbor-history
@@ -2414,11 +2935,11 @@ netq [<hostname>] show neighbor-history
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -2430,7 +2951,7 @@ None
 | listby | \<text-list-by\> | Display results by the specified attribute. Attributes include the interface name or index, VRF name, remote status, MAC address, if the address is an IPv6 address, and hostname. |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -2438,7 +2959,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.2.0 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all addresses, all switches, all VLANs, all egress ports
 
@@ -2465,24 +2986,24 @@ yes    36:6a:10:4a:41:02  4001   leaf04            vniRED                       
 
 Refer to the {{<link title="Monitor Internet Protocol Service/#view-the-neighbor-history-for-an-ip-address" text="NetQ User Guide">}} for more examples.
 
-#### Related Commands
+### Related Commands
 
 - netq show address-history
 - netq show mac-history
 
 - - -
 
-### netq show notification proxy
+## netq show notification proxy
 
     netq show notification proxy
 
-### netq show notification
+## netq show notification
 
     netq show notification [channel|filter|rule] [json]
 
 - - -
 
-### netq show ntp
+## netq show ntp
 
 Displays whether the all or a specific node is in time synchronization with the NetQ appliance or VM currently or for a time in the past. The output provides:
 
@@ -2491,7 +3012,7 @@ Displays whether the all or a specific node is in time synchronization with the 
 - The number of hierarchical levels the switch or host is from reference clock
 - The NTP application used to obtain and synchronize the clock on the node
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show ntp
@@ -2500,11 +3021,11 @@ netq [<hostname>] show ntp
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -2513,7 +3034,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -2521,7 +3042,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | x.y.z | xxx |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all states, currently
 
@@ -2554,37 +3075,37 @@ spine03           yes      oob-mgmt-server   3       ntpq
 spine04           yes      oob-mgmt-server   3       ntpq
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq check ntp
 - netq show unit-tests ntp
 
 - - -
 
-### netq show opta-health
+## netq show opta-health
 
 Displays the status of the various applications and services running on the NetQ On-premises Appliance or the Virtual Machine. For the NetQ Cloud Appliance or VM, this command displays a simple statement indicating overall health.
 
 Note that when running this command as part of an installation, it takes between 5 and 10 minutes for the applications and services to become fully operational.
 
-#### Syntax
+### Syntax
 
 ```
 netq show opta-health
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -2592,7 +3113,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.1.2 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 On-premises appliance or VM
 
@@ -2620,34 +3141,34 @@ cumulus@hostname:~$ netq show opta-health
 OPTA is healthy
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show opta-platform
 
 - - -
 
-### netq show opta-platform
+## netq show opta-platform
 
 Displays the version of NetQ running on the switch, how long it has been running, and the last time it was re-initialized.
 
-#### Syntax
+### Syntax
 
 ```
 netq show opta-platform
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -2656,7 +3177,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 2.3.1 | Modified keyword name from `platform` to `opta-platform` |
 | 2.3.0 | Introduced as `netq show platform` |
 
-#### Sample Usage
+### Sample Usage
 
 ```
 cumulus@nswitch:~$ netq show opta-platform
@@ -2667,13 +3188,13 @@ Version                              Uptime                    Reinitialize Time
 
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show opta-health
 
 - - -
 
-### netq show ospf
+## netq show ospf
 
 Displays the health of all OSPF sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
@@ -2684,7 +3205,7 @@ Displays the health of all OSPF sessions or a single session on all nodes or a s
 - The hostname and interface of the peer node
 - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show ospf
@@ -2694,11 +3215,11 @@ netq [<hostname>] show ospf
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -2708,7 +3229,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -2716,7 +3237,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all states, currently
 
@@ -2743,7 +3264,7 @@ spine02           swp3                      0.0.0.0      Unnumbered       Full  
 spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     Thu Feb  7 14:42:16 2019
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show events
 - netq check ospf
@@ -2751,7 +3272,7 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 
 - - -
 
-### netq show recommended-pkg-version
+## netq show recommended-pkg-version
 
 When you have a software manifest in place, this command displays which software packages and versions are recommended for upgrade based on the installed Cumulus Linux release. You can then compare that to what is installed on your switch(es) to determine if it differs from the manifest. Such a difference might occur if one or more packages have been upgraded separately from the Cumulus Linux software itself.
 
@@ -2764,7 +3285,7 @@ The output provides the following information for each package:
 - Name and version of the package
 - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show recommended-pkg-version
@@ -2773,11 +3294,11 @@ netq [<hostname>] show recommended-pkg-version
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -2786,7 +3307,7 @@ None
 | package-name | \<text-package-name\> | Only display results for the software package with this name |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -2794,7 +3315,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.4.0 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 Packages that are recommended for upgrade on the *leaf12* switch
 
@@ -2816,14 +3337,14 @@ Hostname          Release ID           ASIC Vendor          CPU Arch            
 act-5712-09       3.7.2                bcm                  x86_64               switchd              1.0-cl3u31           Wed Feb  5 04:36:30 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show cl-manifest
 - netq show cl-pkg-info
 
 - - -
 
-### netq show resource-util
+## netq show resource-util
 
 Displays the utilization of compute resources &mdash; CPU, disk and memory &mdash; consumed by one or all switches and hosts in your network.
 
@@ -2836,7 +3357,7 @@ The output provides the following information for each switch or host:
 - Total disk storage, amount used, and percentage of total
 - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 There are two forms of this command; one for CPU and memory utilization, and one for disk utilization.
 
@@ -2852,13 +3373,13 @@ netq [<hostname>] show resource-util
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | disk | \<text-diskname\> | Display disk utilization |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -2868,7 +3389,7 @@ netq [<hostname>] show resource-util
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -2876,7 +3397,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.4.0 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 CPU/Memory show: All switches
 
@@ -2955,14 +3476,14 @@ server07          /dev/vda1            486105088            80372736            
 server08          /dev/vda1            486105088            80372736             17.6                 Wed Dec  9 16:20:45 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show cl-resource forwarding
 - netq show cl-resource acl
 
 - - -
 
-### netq show sensors
+## netq show sensors
 
 Displays the status of all fan, power supply, and temperature sensors on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
@@ -2971,7 +3492,7 @@ Displays the status of all fan, power supply, and temperature sensors on all nod
 - Any messages, when available
 - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 There are four forms of this command based on whether you want to view data for all sensors or only one category of sensors.
 
@@ -2997,7 +3518,7 @@ netq [<hostname>] show sensors
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
@@ -3006,7 +3527,7 @@ netq [<hostname>] show sensors
 | psu | \<psu-name\> | Display data for all power supply unit sensors or the one specified using the`psu-name` value |
 | temp | \<temp-name\> | Display data for all temperature sensors or the one specified using the `temp-name` value |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -3014,7 +3535,7 @@ netq [<hostname>] show sensors
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -3022,7 +3543,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | x.y.z | xxx |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all states, currently
 
@@ -3067,7 +3588,7 @@ spine03           fan4            fan tray 2, fan 2                   ok        
 spine04           fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 04:13:52 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show events
 - netq check sensors
@@ -3075,7 +3596,7 @@ spine04           fan4            fan tray 2, fan 2                   ok        
 
 - - -
 
-### netq show services
+## netq show services
 
 Displays configuration and health of system-level services for one or all switches and hosts, currently or for a time in the past. You can filter the output by switch, service, VRF, and status. Supported services include:
 
@@ -3112,7 +3633,7 @@ The output provides the following information for each switch and host:
 Using <code>netq config add color</code> is helpful with this command as it shows what services are not enabled, active, or monitored in red text.
 {{</notice>}}
 
-#### Syntax
+### Syntax
 
 There are two forms of this command; one for for all information, and one for a particular status.
 
@@ -3132,13 +3653,13 @@ netq [<hostname>] show services
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | status | ok, warning, error, fail | Only display services with this status |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -3150,7 +3671,7 @@ netq [<hostname>] show services
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -3158,7 +3679,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 1.x | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: All services, all switches and hosts
 
@@ -3244,29 +3765,29 @@ border01          snmpd                10152 mgmt            yes     yes    no  
 border01          ptmd                 9796  default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show ???
 
 - - -
 
-### netq show tca
+## netq show tca
 
     netq show tca [tca_id <tca-rule-name>]
 
 - - -
 
-### netq show trace
+## netq show trace
 
 - - -
 
-### netq show unit-tests
+## netq show unit-tests
 
 Displays a list of all validation tests that are run for the associated `netq check` command. The output provides an ID, name, and brief description of each validation test.
 
 Refer to {{<link title="Validate Operations" text="Validate Operations">}} for additional usage information.
 
-#### Syntax
+### Syntax
 
 ```
 netq show unit-tests agent [json]
@@ -3285,19 +3806,19 @@ netq show unit-tests vlan [json]
 netq show unit-tests vxlan [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | agent, bgp, clag, cl-version, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | NA | Display tests run during standard validation for the protocol or service with this name |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -3306,7 +3827,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 2.4.1 | Swapped the order of the `unit-tests` keyword and the protocol or service name |
 | ??? | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 Show tests for BGP
 
@@ -3321,18 +3842,18 @@ Configured global result filters:
 Configured per test result filters:
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show events
 - netq check sensors
 
 - - -
 
-### netq show validation settings
+## netq show validation settings
 
 Displays one or all scheduled validations, including their name, type, cadence, when the validation began, when it was created, and whether it is currently active. This is useful for obtaining the name of a scheduled validations for use in other validation commands.
 
-#### Syntax
+### Syntax
 
 ```
 netq show validation settings
@@ -3341,11 +3862,11 @@ netq show validation settings
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -3353,7 +3874,7 @@ None
 | type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | Filter output to view settings for only the indicated protocol or service |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -3361,7 +3882,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.1.0 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 ```
 cumulus@switch:~$ netq show validation settings
@@ -3399,7 +3920,7 @@ Default validat license    60m            Wed Nov 11 08:38:40  Wed Nov 11 08:38:
 ion LICENSE                               2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq add validation name
 - netq del validation
@@ -3407,11 +3928,11 @@ ion LICENSE                               2020
 
 - - -
 
-### netq show validation summary
+## netq show validation summary
 
 Displays summary status of a scheduled validation for a given protocol or service, including their name, type, job ID, number of nodes validated, number of nodes that failed validation, number of nodes running the protocol or service, and time when the validation was run.
 
-#### Syntax
+### Syntax
 
 ```
 netq show validation summary
@@ -3421,13 +3942,13 @@ netq show validation summary
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | type | agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan | Show validation runs summary for the indicated protocol or service |
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -3435,7 +3956,7 @@ netq show validation summary
 | around | \<text-time-hr\> | Show summary status for this time in the past. Value must be specified in hours and include the *h* time unit. Default is 24 hours. |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -3443,7 +3964,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 3.1.0 | Introduced |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: one protocol, within last 24 hours
 
@@ -3499,7 +4020,7 @@ ion                              2-4ee7-917e-
 ...
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq add validation name
 - netq del validation
@@ -3507,7 +4028,7 @@ ion                              2-4ee7-917e-
 
 - - -
 
-### netq show vlan
+## netq show vlan
 
 Displays the configuration of all VLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
@@ -3516,7 +4037,7 @@ Displays the configuration of all VLANs on all nodes or a specific node in your 
 - The SVIs (switch virtual interfaces) associated with that node
 - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show vlan
@@ -3525,11 +4046,11 @@ netq [<hostname>] show vlan
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -3538,7 +4059,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -3546,7 +4067,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all states, currently
 
@@ -3578,7 +4099,7 @@ leaf03            20     bond2,vni20                         yes  Tue Nov 24 20:
 leaf04            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show events
 - netq show interfaces
@@ -3588,7 +4109,7 @@ leaf04            20     bond2,vni20                         yes  Tue Nov 24 20:
 
 - - -
 
-### netq show vxlan
+## netq show vxlan
 
 Displays the configuration of all VXLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
 
@@ -3599,7 +4120,7 @@ Displays the configuration of all VXLANs on all nodes or a specific node in your
 - The replication list, if appropriate
 - When the last change was made to any of these items
 
-#### Syntax
+### Syntax
 
 ```
 netq [<hostname>] show vxlan
@@ -3608,11 +4129,11 @@ netq [<hostname>] show vxlan
     [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -3621,7 +4142,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -3629,7 +4150,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | ---- | ---- |
 | 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic show: all devices, all states, currently
 
@@ -3681,7 +4202,7 @@ leaf03            4001       EVPN   10.0.1.2         4001                       
 leaf04            4001       EVPN   10.0.1.2         4001                                       Tue Nov 10 22:29:34 2020
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show events
 - netq show interfaces
@@ -3690,7 +4211,7 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 
 - - -
 
-### netq show wjh-drops
+## netq show wjh-drops
 
 Shows drops that are captured by WJH (What just happened) on Mellanox switches
 

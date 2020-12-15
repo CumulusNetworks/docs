@@ -2,14 +2,72 @@
 title: A and B Commands
 author: NVIDIA
 weight: 1101
+toc: 3
+right_toc_levels: 1
+pdfhidden: true
+draft: true
 ---
 
 This topic includes all commands that begin with `netq a*` and `netq b*`.
 
 ## netq add events-config
 
-netq add events-config [events_config_id <text-events-config-id-anchor>] [events_config_name <text-events-config-name-anchor>] [message_type <text-message-type-anchor>] [scope <text-events-scope-anchor>] [is_active true | is_active false] [suppress_until <text-suppress-until>]
+Enables suppression of any of the numerous system events, excluding them from event displays. By default all events are delivered. You can suppress events for:
 
+- Two years (default): useful when you do not want to see the events (essentially never show them)
+- A period of time: useful when you want to temporarily suppress events due to maintenance (typically days), or when testing a new network configuration where the switch may generate many messages that are expected and not needed beyond this time period (typically minutes or hours)
+
+Events are automatically sent after the designated amount of time has passed.
+
+### Syntax
+
+```
+netq add events-config
+    [events_config_id <text-events-config-id-anchor>]
+    [events_config_name <text-events-config-name-anchor>]
+    [message_type <text-message-type-anchor>]
+    [scope <text-events-scope-anchor>]
+    [is_active true | is_active false]
+    [suppress_until <text-suppress-until>]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| events_config_id | \<text-events-config-id-anchor\> | Identifier for existing configuration; use to edit existing configuration |
+| events_config_name | \<text-events-config-name-anchor\> | User-defined name for the configuration |
+| message_type | \<text-message-type-anchor\> | Type of message to be suppressed. Values include *agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*. |
+| scope | \<text-events-scope-anchor\> | xxx |
+| is_active | true, false | Enables or disables configuration |
+| suppress_until | \<text-suppress-until\> | Amount of time, in seconds, to suppress the specified events |
+
+### Command History
+
+A release is included if there were changes to the command, otherwise it is not listed.
+
+| Release | Description |
+| ---- | ---- |
+| 3.1.0 | Introduced |
+
+### Sample Usage
+
+Add a configuration called `mybtrfs` that suppresses OSPF-related events on leaf01 for the next 10 minutes, run:
+
+```
+netq add events-config events_config_name mybtrfs message_type ospf scope '[{"scope_name":"hostname","scope_value":"leaf01"},{"scope_name":"severity","scope_value":"*"}]' suppress_until 600
+```
+
+### Related Commands
+
+- netq del events-config
+- netq show events-config
+
+ - - -
 
 ## netq add notification
 

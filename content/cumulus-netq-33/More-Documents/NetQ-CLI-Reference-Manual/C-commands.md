@@ -2,6 +2,10 @@
 title: C Commands
 author: NVIDIA
 weight: 1102
+toc: 3
+right_toc_levels: 1
+pdfhidden: true
+draft: true
 ---
 
 This topic includes all commands that begin with `netq c*`, including all `netq check` and `netq config` commands.
@@ -22,7 +26,7 @@ Add text here
 
 - - -
 
-### netq check agents
+## netq check agents
 
 Validates the communication status of all nodes (leafs, spines, and hosts) running the NetQ Agent in your network fabric. The output displays the status (passed/failed/skipped) of all tests and a summary including:
 
@@ -32,7 +36,7 @@ Validates the communication status of all nodes (leafs, spines, and hosts) runni
 - Number of nodes that have not been heard from in 90 seconds (rotten)
 - Number of nodes with warnings
 
-#### Syntax
+### Syntax
 
 ```
 netq check agents
@@ -42,11 +46,11 @@ netq check agents
    [json]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -57,7 +61,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. The value is written using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -66,7 +70,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic Validation: All devices, all tests, currently
 
@@ -113,7 +117,7 @@ Warning nodes       : 0
 Agent Health Test   : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show agents
 - netq show unit-tests agent
@@ -123,7 +127,7 @@ Agent Health Test   : passed
 
 - - -
 
-### netq check bgp
+## netq check bgp
 
 Validates that all configured route peering is established in your network fabric by looking for consistency across BGP sessions; in particular, whether duplicate router IDs exist and if any sessions are in the unestablished state. If you have nodes that implement virtual routing and forwarding (VRF), you can request status based on the relevant routing table. VRF is commonly configured in multi-tenancy deployments to maintain separate domains for each tenant.
 
@@ -137,7 +141,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of BGP sessions at the specified time
 - Number of sessions that have failed to establish a connection
 
-#### Syntax
+### Syntax
 
 ```
 netq check bgp
@@ -148,11 +152,11 @@ netq check bgp
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -165,7 +169,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -174,7 +178,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -197,7 +201,7 @@ Address Families Test        : passed
 Router ID Test               : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show bgp
 - netq show unit-tests bgp
@@ -206,21 +210,21 @@ Router ID Test               : passed
 
 - - -
 
-### netq check cl-version
+## netq check cl-version
 
 Verifies the Cumulus Linux version is consistent across nodes, matches a specified version, or is greater than or equal to a specified version, based on the options chosen.
 
-#### Syntax
+### Syntax
 
 ```
 netq check cl-version [label <text-label-name> | hostnames <text-list-hostnames>] [match-version <cl-ver> | min-version <cl-ver>] [include <version-number-range-list> | exclude <version-number-range-list>] [around <text-time>] [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -234,7 +238,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -243,7 +247,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices have the same version
 
@@ -306,13 +310,13 @@ Warning nodes       : 0
 Cumulus Linux Image Version Test   : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show unit-tests cl-version
 
 - - -
 
-### netq check clag
+## netq check clag
 
 Verifies CLAG session consistency by identifying all CLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for such items as:
 
@@ -330,7 +334,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of nodes that have not been heard from in 90 seconds (rotten)
 - Number of nodes with warnings
 
-#### Syntax
+### Syntax
 
 ```
 netq check clag
@@ -340,11 +344,11 @@ netq check clag
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -356,7 +360,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -365,7 +369,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -442,7 +446,7 @@ ProtoDown Bonds Test     : passed
 SVI Test                 : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show clag
 - netq show unit-tests clag
@@ -451,7 +455,7 @@ SVI Test                 : passed
 
 - - -
 
-### netq check evpn
+## netq check evpn
 
 Verifies communication status for all nodes (leafs, spines, and hosts) running instances of Ethernet VPN (EVPN) in your network fabric. In particular, it looks for such items as:
 
@@ -471,7 +475,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of failed BGP sessions
 - Total number of sessions
 
-#### Syntax
+### Syntax
 
 ```
 netq check evpn
@@ -482,11 +486,11 @@ netq check evpn
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -500,7 +504,7 @@ the same |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -510,7 +514,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 | 2.2.0 | Added `mac-consistency` option. Removed `hostname` and `vni` options. |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -539,7 +543,7 @@ Vrf Consistency Test             : passed
 L3 VNI RMAC Test                 : skipped
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show evpn
 - netq show unit-tests evpn
@@ -548,7 +552,7 @@ L3 VNI RMAC Test                 : skipped
 
 - - -
 
-### netq check interfaces
+## netq check interfaces
 
 Verifies interface communication status for all nodes (leafs, spines, and hosts) or an interface between specific nodes in your network fabric. In particular, it looks for such items as:
 
@@ -567,7 +571,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of ports that failed validation
 - Number of unverified ports (no peer was found for node)
 
-#### Syntax
+### Syntax
 
 ```
 netq check interfaces
@@ -577,11 +581,11 @@ netq check interfaces
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -593,7 +597,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -603,7 +607,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 | 2.1.0 | Removed host and peer options (`physical-hostname`, `physical-port`, `peer-physical-hostname`, `peer-physical-port`) and `unverified` option |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -667,7 +671,7 @@ Speed Test         : passed
 Autoneg Test       : 0 warnings, 12 errors
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show interfaces
 - netq show unit-tests interfaces
@@ -676,7 +680,7 @@ Autoneg Test       : 0 warnings, 12 errors
 
 - - -
 
-### netq check license
+## netq check license
 
 Verifies license status for all nodes (leafs, spines, and hosts) in your network fabric. In particular, it looks for the validity of the Cumulus Linux license on each node.
 
@@ -690,7 +694,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of licenses validated
 - Number of licenses that failed validation
 
-#### Syntax
+### Syntax
 
 ```
 netq check license
@@ -700,11 +704,11 @@ netq check license
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -716,7 +720,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -725,7 +729,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -746,7 +750,7 @@ Failed Licenses     : 0
 License validity Test   : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show unit-tests license
 - netq add validation
@@ -754,11 +758,11 @@ License validity Test   : passed
 
 - - -
 
-### netq check mlag
+## netq check mlag
 
 <!-- Add info here -->
 
-### netq check mtu
+## netq check mtu
 
 Verifies consistency of the maximum transmission unit (MTU) across all links in your network fabric. MTU consistency is verified at the level that is appropriate to the specific type of link. For example, bond interfaces have their MTU enforced at the bond level and not at the individual slave level. For MLAG/CLAG bonds, verification confirms whether or not both ends of the bond have the same MTU value configured for their local instance of the bond. You can also view nodes without a peer link.
 
@@ -773,7 +777,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of links that failed validation
 - Number of links that had warnings
 
-#### Syntax
+### Syntax
 
 ```
 netq check mtu
@@ -784,11 +788,11 @@ netq check mtu
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -801,7 +805,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -810,7 +814,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -885,7 +889,7 @@ Hostname          Interface                 MTU    Peer              Peer Interf
 oob-mgmt-server   vagrant                   1500   -                 -                         -        No Peer link info
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show unit-tests mtu
 - netq add validation
@@ -893,7 +897,7 @@ oob-mgmt-server   vagrant                   1500   -                 -          
 
 - - -
 
-### netq check ntp
+## netq check ntp
 
 Verifies network time synchronization using NTP for all nodes (leafs, spines, and hosts) in your network fabric. Nodes that are not in time sychronization with the NetQ appliance or VM may report data with an incorrect timestamp or lose communication altogether.
 
@@ -907,17 +911,17 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of nodes found that are unknown to NetQ
 - Number of NTP servers available for synchronization
 
-#### Syntax
+### Syntax
 
 ```
 netq check ntp [label <text-label-name> | hostnames <text-list-hostnames>] [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -929,7 +933,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -938,7 +942,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -965,7 +969,7 @@ fw1               no       2020-11-18 19:50:31
 fw2               no       2020-11-18 19:50:46
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show ntp
 - netq show unit-tests ntp
@@ -974,7 +978,7 @@ fw2               no       2020-11-18 19:50:46
 
 - - -
 
-### netq check ospf
+## netq check ospf
 
 Validates that all configured route peering is established in your network fabric by looking for consistency across OSPF sessions; in particular, whether duplicate router IDs exist and if any sessions are in the unestablished state.
 
@@ -988,7 +992,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of nodes with failed adjacencies
 - Total number of adjacencies
 
-#### Syntax
+### Syntax
 
 ```
 netq check ospf
@@ -998,11 +1002,11 @@ netq check ospf
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1014,7 +1018,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1023,7 +1027,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -1064,7 +1068,7 @@ spine-2           downlink-6                0.0.0.22                  27.0.0.22 
 tor-2             uplink-2                  0.0.0.20                  27.0.0.20                 mtu mismatch                                  Mon Jul  1 16:19:37 2019
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show ospf
 - netq show unit-tests ospf
@@ -1073,7 +1077,7 @@ tor-2             uplink-2                  0.0.0.20                  27.0.0.20 
 
 - - -
 
-### netq check sensors
+## netq check sensors
 
 Verifies the status of temperature, cooling fan, and power supply sensors for all nodes in your network fabric.
 
@@ -1087,7 +1091,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of sensors validated
 - Number of sensors that failed validation
 
-#### Syntax
+### Syntax
 
 ```
 netq check sensors
@@ -1097,11 +1101,11 @@ netq check sensors
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1113,7 +1117,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1122,7 +1126,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -1146,7 +1150,7 @@ Fan sensors Test           : passed
 Temperature sensors Test   : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show sensors
 - netq show unit-tests sensors
@@ -1155,7 +1159,7 @@ Temperature sensors Test   : passed
 
 - - -
 
-### netq check vlan
+## netq check vlan
 
 Verifies consistency of the virtual local area network (VLAN) nodes and interfaces across all links in your network fabric. In particular, it looks for link neighbor and MLAG bond consistency. You can also identify nodes without peers.
 
@@ -1169,7 +1173,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Total number of links found
 - Number of links that failed validation
 
-#### Syntax
+### Syntax
 
 ```
 netq check vlan
@@ -1180,11 +1184,11 @@ netq check vlan
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1197,7 +1201,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1206,7 +1210,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -1250,7 +1254,7 @@ border02          bond3                     10,20,30                  -         
                                                                                                                                             n peerlink
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show vlan
 - netq show unit-tests vlan
@@ -1259,7 +1263,7 @@ border02          bond3                     10,20,30                  -         
 
 - - -
 
-### netq check vxlan
+## netq check vxlan
 
 Verifies consistency of the virtual extensible local area network (VXLAN) nodes and interfaces across all links in your network fabric. In particular, it looks for consistent VXLAN configuration and BUM replication errors.
 
@@ -1271,7 +1275,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of nodes that have not been heard from in 90 seconds (rotten)
 - Number of nodes with warnings
 
-#### Syntax
+### Syntax
 
 ```
 netq check vxlan
@@ -1281,11 +1285,11 @@ netq check vxlan
     [json | summary]
 ```
 
-#### Required Arguments
+### Required Arguments
 
 None
 
-#### Options
+### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
@@ -1297,7 +1301,7 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-#### Command History
+### Command History
 
 A release is included if there were changes to the command, otherwise it is not listed.
 
@@ -1306,7 +1310,7 @@ A release is included if there were changes to the command, otherwise it is not 
 | 3.0.0 | Added `hostnames` option |
 | 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
 
-#### Sample Usage
+### Sample Usage
 
 Basic validation: All devices, all tests, currently
 
@@ -1324,7 +1328,7 @@ Vlan Consistency Test   : passed
 BUM replication Test    : passed
 ```
 
-#### Related Commands
+### Related Commands
 
 - netq show vxlan
 - netq show unit-tests vxlan
